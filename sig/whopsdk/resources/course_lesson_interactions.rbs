@@ -1,0 +1,16 @@
+module Whopsdk
+  module Resources
+    class CourseLessonInteractions
+      def retrieve: (
+        String id,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Models::CourseLessonInteractionRetrieveResponse
+
+      def list: (
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Models::CourseLessonInteractionListResponse
+
+      def initialize: (client: Whopsdk::Client) -> void
+    end
+  end
+end

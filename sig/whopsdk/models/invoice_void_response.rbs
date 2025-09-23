@@ -1,0 +1,5 @@
+module Whopsdk
+  module Models
+    InvoiceVoidResponse: Whopsdk::Internal::Type::Converter
+  end
+end

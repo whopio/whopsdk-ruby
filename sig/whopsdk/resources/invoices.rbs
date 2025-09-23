@@ -1,0 +1,22 @@
+module Whopsdk
+  module Resources
+    class Invoices
+      def create: (
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Models::InvoiceCreateResponse?
+
+      def retrieve: (
+        String id,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Models::InvoiceRetrieveResponse
+
+      def list: (
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Models::InvoiceListResponse
+
+      def `void`: (String id, ?request_options: Whopsdk::request_opts) -> bool?
+
+      def initialize: (client: Whopsdk::Client) -> void
+    end
+  end
+end

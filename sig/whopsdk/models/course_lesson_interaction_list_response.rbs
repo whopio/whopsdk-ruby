@@ -1,0 +1,120 @@
+module Whopsdk
+  module Models
+    type course_lesson_interaction_list_response =
+      {
+        data: ::Array[Whopsdk::Models::CourseLessonInteractionListResponse::Data?]?,
+        page_info: Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo
+      }
+
+    class CourseLessonInteractionListResponse < Whopsdk::Internal::Type::BaseModel
+      attr_accessor data: ::Array[Whopsdk::Models::CourseLessonInteractionListResponse::Data?]?
+
+      attr_accessor page_info: Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo
+
+      def initialize: (
+        data: ::Array[Whopsdk::Models::CourseLessonInteractionListResponse::Data?]?,
+        page_info: Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[Whopsdk::Models::CourseLessonInteractionListResponse::Data?]?,
+        page_info: Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo
+      }
+
+      type data =
+        {
+          id: String,
+          completed: bool,
+          created_at: Integer,
+          lesson: Whopsdk::Models::CourseLessonInteractionListResponse::Data::Lesson,
+          user: Whopsdk::Models::CourseLessonInteractionListResponse::Data::User
+        }
+
+      class Data < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor completed: bool
+
+        attr_accessor created_at: Integer
+
+        attr_accessor lesson: Whopsdk::Models::CourseLessonInteractionListResponse::Data::Lesson
+
+        attr_accessor user: Whopsdk::Models::CourseLessonInteractionListResponse::Data::User
+
+        def initialize: (
+          id: String,
+          completed: bool,
+          created_at: Integer,
+          lesson: Whopsdk::Models::CourseLessonInteractionListResponse::Data::Lesson,
+          user: Whopsdk::Models::CourseLessonInteractionListResponse::Data::User
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          completed: bool,
+          created_at: Integer,
+          lesson: Whopsdk::Models::CourseLessonInteractionListResponse::Data::Lesson,
+          user: Whopsdk::Models::CourseLessonInteractionListResponse::Data::User
+        }
+
+        type lesson = { id: String, title: String }
+
+        class Lesson < Whopsdk::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor title: String
+
+          def initialize: (id: String, title: String) -> void
+
+          def to_hash: -> { id: String, title: String }
+        end
+
+        type user = { id: String, name: String?, username: String }
+
+        class User < Whopsdk::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor name: String?
+
+          attr_accessor username: String
+
+          def initialize: (id: String, name: String?, username: String) -> void
+
+          def to_hash: -> { id: String, name: String?, username: String }
+        end
+      end
+
+      type page_info =
+        {
+          end_cursor: String?,
+          has_next_page: bool,
+          has_previous_page: bool,
+          start_cursor: String?
+        }
+
+      class PageInfo < Whopsdk::Internal::Type::BaseModel
+        attr_accessor end_cursor: String?
+
+        attr_accessor has_next_page: bool
+
+        attr_accessor has_previous_page: bool
+
+        attr_accessor start_cursor: String?
+
+        def initialize: (
+          end_cursor: String?,
+          has_next_page: bool,
+          has_previous_page: bool,
+          start_cursor: String?
+        ) -> void
+
+        def to_hash: -> {
+          end_cursor: String?,
+          has_next_page: bool,
+          has_previous_page: bool,
+          start_cursor: String?
+        }
+      end
+    end
+  end
+end

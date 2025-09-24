@@ -1,0 +1,283 @@
+module Whopsdk
+  module Models
+    type access_pass_list_response =
+      {
+        data: ::Array[Whopsdk::Models::AccessPassListResponse::Data?]?,
+        page_info: Whopsdk::Models::AccessPassListResponse::PageInfo
+      }
+
+    class AccessPassListResponse < Whopsdk::Internal::Type::BaseModel
+      attr_accessor data: ::Array[Whopsdk::Models::AccessPassListResponse::Data?]?
+
+      attr_accessor page_info: Whopsdk::Models::AccessPassListResponse::PageInfo
+
+      def initialize: (
+        data: ::Array[Whopsdk::Models::AccessPassListResponse::Data?]?,
+        page_info: Whopsdk::Models::AccessPassListResponse::PageInfo
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[Whopsdk::Models::AccessPassListResponse::Data?]?,
+        page_info: Whopsdk::Models::AccessPassListResponse::PageInfo
+      }
+
+      type data =
+        {
+          id: String,
+          business_type: Whopsdk::Models::AccessPassListResponse::Data::business_type?,
+          created_at: Integer,
+          industry_type: Whopsdk::Models::AccessPassListResponse::Data::industry_type?,
+          member_count: Integer,
+          published_reviews_count: Integer,
+          route: String,
+          title: String,
+          updated_at: Integer,
+          verified: bool
+        }
+
+      class Data < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor business_type: Whopsdk::Models::AccessPassListResponse::Data::business_type?
+
+        attr_accessor created_at: Integer
+
+        attr_accessor industry_type: Whopsdk::Models::AccessPassListResponse::Data::industry_type?
+
+        attr_accessor member_count: Integer
+
+        attr_accessor published_reviews_count: Integer
+
+        attr_accessor route: String
+
+        attr_accessor title: String
+
+        attr_accessor updated_at: Integer
+
+        attr_accessor verified: bool
+
+        def initialize: (
+          id: String,
+          business_type: Whopsdk::Models::AccessPassListResponse::Data::business_type?,
+          created_at: Integer,
+          industry_type: Whopsdk::Models::AccessPassListResponse::Data::industry_type?,
+          member_count: Integer,
+          published_reviews_count: Integer,
+          route: String,
+          title: String,
+          updated_at: Integer,
+          verified: bool
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          business_type: Whopsdk::Models::AccessPassListResponse::Data::business_type?,
+          created_at: Integer,
+          industry_type: Whopsdk::Models::AccessPassListResponse::Data::industry_type?,
+          member_count: Integer,
+          published_reviews_count: Integer,
+          route: String,
+          title: String,
+          updated_at: Integer,
+          verified: bool
+        }
+
+        type business_type =
+          :education_program
+          | :coaching
+          | :software
+          | :paid_group
+          | :newsletter
+          | :agency
+          | :physical_products
+          | :brick_and_mortar
+          | :events
+          | :coaching_and_courses
+          | :other
+          | :saas
+          | :course
+          | :community
+
+        module BusinessType
+          extend Whopsdk::Internal::Type::Enum
+
+          EDUCATION_PROGRAM: :education_program
+          COACHING: :coaching
+          SOFTWARE: :software
+          PAID_GROUP: :paid_group
+          NEWSLETTER: :newsletter
+          AGENCY: :agency
+          PHYSICAL_PRODUCTS: :physical_products
+          BRICK_AND_MORTAR: :brick_and_mortar
+          EVENTS: :events
+          COACHING_AND_COURSES: :coaching_and_courses
+          OTHER: :other
+          SAAS: :saas
+          COURSE: :course
+          COMMUNITY: :community
+
+          def self?.values: -> ::Array[Whopsdk::Models::AccessPassListResponse::Data::business_type]
+        end
+
+        type industry_type =
+          :trading
+          | :sports_betting
+          | :reselling
+          | :fitness
+          | :amazon_fba
+          | :real_estate
+          | :kindle_book_publishing
+          | :dating
+          | :agencies
+          | :health_and_wellness
+          | :social_media
+          | :sales
+          | :business
+          | :ecommerce
+          | :video_games
+          | :home_services
+          | :ai
+          | :public_speaking
+          | :personal_finance
+          | :careers
+          | :travel
+          | :clipping
+          | :spirituality
+          | :vas
+          | :personal_development
+          | :software
+          | :other
+          | :marketing_agency
+          | :sales_agency
+          | :ai_agency
+          | :design_agency
+          | :coaching_agency
+          | :development_agency
+          | :recruiting_agency
+          | :customer_support_agency
+          | :clipping_agency
+          | :clothing
+          | :supplements
+          | :beauty_and_personal_care
+          | :fitness_gear
+          | :accessories
+          | :home_goods
+          | :electronics_and_gadgets
+          | :food_and_beverages
+          | :gym
+          | :restaurant
+          | :retail_store
+          | :coffee_shop
+          | :salon_spa
+          | :medical_dentist_office
+          | :hotel_lodging
+          | :auto_repair_shop
+          | :masterminds
+          | :webinars
+          | :bootcamps
+          | :convention
+          | :concerts
+          | :meetups
+          | :parties
+
+        module IndustryType
+          extend Whopsdk::Internal::Type::Enum
+
+          TRADING: :trading
+          SPORTS_BETTING: :sports_betting
+          RESELLING: :reselling
+          FITNESS: :fitness
+          AMAZON_FBA: :amazon_fba
+          REAL_ESTATE: :real_estate
+          KINDLE_BOOK_PUBLISHING: :kindle_book_publishing
+          DATING: :dating
+          AGENCIES: :agencies
+          HEALTH_AND_WELLNESS: :health_and_wellness
+          SOCIAL_MEDIA: :social_media
+          SALES: :sales
+          BUSINESS: :business
+          ECOMMERCE: :ecommerce
+          VIDEO_GAMES: :video_games
+          HOME_SERVICES: :home_services
+          AI: :ai
+          PUBLIC_SPEAKING: :public_speaking
+          PERSONAL_FINANCE: :personal_finance
+          CAREERS: :careers
+          TRAVEL: :travel
+          CLIPPING: :clipping
+          SPIRITUALITY: :spirituality
+          VAS: :vas
+          PERSONAL_DEVELOPMENT: :personal_development
+          SOFTWARE: :software
+          OTHER: :other
+          MARKETING_AGENCY: :marketing_agency
+          SALES_AGENCY: :sales_agency
+          AI_AGENCY: :ai_agency
+          DESIGN_AGENCY: :design_agency
+          COACHING_AGENCY: :coaching_agency
+          DEVELOPMENT_AGENCY: :development_agency
+          RECRUITING_AGENCY: :recruiting_agency
+          CUSTOMER_SUPPORT_AGENCY: :customer_support_agency
+          CLIPPING_AGENCY: :clipping_agency
+          CLOTHING: :clothing
+          SUPPLEMENTS: :supplements
+          BEAUTY_AND_PERSONAL_CARE: :beauty_and_personal_care
+          FITNESS_GEAR: :fitness_gear
+          ACCESSORIES: :accessories
+          HOME_GOODS: :home_goods
+          ELECTRONICS_AND_GADGETS: :electronics_and_gadgets
+          FOOD_AND_BEVERAGES: :food_and_beverages
+          GYM: :gym
+          RESTAURANT: :restaurant
+          RETAIL_STORE: :retail_store
+          COFFEE_SHOP: :coffee_shop
+          SALON_SPA: :salon_spa
+          MEDICAL_DENTIST_OFFICE: :medical_dentist_office
+          HOTEL_LODGING: :hotel_lodging
+          AUTO_REPAIR_SHOP: :auto_repair_shop
+          MASTERMINDS: :masterminds
+          WEBINARS: :webinars
+          BOOTCAMPS: :bootcamps
+          CONVENTION: :convention
+          CONCERTS: :concerts
+          MEETUPS: :meetups
+          PARTIES: :parties
+
+          def self?.values: -> ::Array[Whopsdk::Models::AccessPassListResponse::Data::industry_type]
+        end
+      end
+
+      type page_info =
+        {
+          end_cursor: String?,
+          has_next_page: bool,
+          has_previous_page: bool,
+          start_cursor: String?
+        }
+
+      class PageInfo < Whopsdk::Internal::Type::BaseModel
+        attr_accessor end_cursor: String?
+
+        attr_accessor has_next_page: bool
+
+        attr_accessor has_previous_page: bool
+
+        attr_accessor start_cursor: String?
+
+        def initialize: (
+          end_cursor: String?,
+          has_next_page: bool,
+          has_previous_page: bool,
+          start_cursor: String?
+        ) -> void
+
+        def to_hash: -> {
+          end_cursor: String?,
+          has_next_page: bool,
+          has_previous_page: bool,
+          start_cursor: String?
+        }
+      end
+    end
+  end
+end

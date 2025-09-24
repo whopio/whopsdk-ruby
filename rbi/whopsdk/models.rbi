@@ -1,6 +1,12 @@
 # typed: strong
 
 module Whopsdk
+  AccessPassListParams = Whopsdk::Models::AccessPassListParams
+
+  AccessPassRetrieveParams = Whopsdk::Models::AccessPassRetrieveParams
+
+  CompanyRetrieveParams = Whopsdk::Models::CompanyRetrieveParams
+
   CourseLessonInteractionListParams =
     Whopsdk::Models::CourseLessonInteractionListParams
 

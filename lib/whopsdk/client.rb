@@ -24,6 +24,12 @@ module Whopsdk
     # @return [Whopsdk::Resources::CourseLessonInteractions]
     attr_reader :course_lesson_interactions
 
+    # @return [Whopsdk::Resources::AccessPasses]
+    attr_reader :access_passes
+
+    # @return [Whopsdk::Resources::Companies]
+    attr_reader :companies
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -69,6 +75,8 @@ module Whopsdk
 
       @invoices = Whopsdk::Resources::Invoices.new(client: self)
       @course_lesson_interactions = Whopsdk::Resources::CourseLessonInteractions.new(client: self)
+      @access_passes = Whopsdk::Resources::AccessPasses.new(client: self)
+      @companies = Whopsdk::Resources::Companies.new(client: self)
     end
   end
 end

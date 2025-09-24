@@ -1,4 +1,10 @@
 module Whopsdk
+  class AccessPassListParams = Whopsdk::Models::AccessPassListParams
+
+  class AccessPassRetrieveParams = Whopsdk::Models::AccessPassRetrieveParams
+
+  class CompanyRetrieveParams = Whopsdk::Models::CompanyRetrieveParams
+
   class CourseLessonInteractionListParams = Whopsdk::Models::CourseLessonInteractionListParams
 
   class CourseLessonInteractionRetrieveParams = Whopsdk::Models::CourseLessonInteractionRetrieveParams

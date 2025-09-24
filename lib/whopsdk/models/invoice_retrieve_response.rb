@@ -5,83 +5,129 @@ module Whopsdk
     # @see Whopsdk::Resources::Invoices#retrieve
     class InvoiceRetrieveResponse < Whopsdk::Internal::Type::BaseModel
       # @!attribute id
+      #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+      #   refetch an object or as key for a cache. The ID type appears in a JSON response
+      #   as a String; however, it is not intended to be human-readable. When expected as
+      #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+      #   input value will be accepted as an ID.
       #
       #   @return [String]
       required :id, String
 
       # @!attribute created_at
+      #   A valid timestamp in seconds, transported as an integer
       #
       #   @return [Integer]
       required :created_at, Integer
 
       # @!attribute current_plan
+      #   A plan for an access pass.
       #
       #   @return [Whopsdk::Models::InvoiceRetrieveResponse::CurrentPlan]
       required :current_plan, -> { Whopsdk::Models::InvoiceRetrieveResponse::CurrentPlan }
 
       # @!attribute due_date
+      #   A valid timestamp in seconds, transported as an integer
       #
       #   @return [Integer, nil]
       required :due_date, Integer, nil?: true
 
       # @!attribute email_address
+      #   Represents textual data as UTF-8 character sequences. This type is most often
+      #   used by GraphQL to represent free-form human-readable text.
       #
       #   @return [String, nil]
       required :email_address, String, nil?: true
 
       # @!attribute fetch_invoice_token
+      #   Represents textual data as UTF-8 character sequences. This type is most often
+      #   used by GraphQL to represent free-form human-readable text.
       #
       #   @return [String]
       required :fetch_invoice_token, String
 
       # @!attribute member
+      #   A user of the site.
       #
       #   @return [Whopsdk::Models::InvoiceRetrieveResponse::Member, nil]
       required :member, -> { Whopsdk::Models::InvoiceRetrieveResponse::Member }, nil?: true
 
       # @!attribute number
+      #   Represents textual data as UTF-8 character sequences. This type is most often
+      #   used by GraphQL to represent free-form human-readable text.
       #
       #   @return [String]
       required :number, String
 
       # @!attribute status
+      #   The different statuses an invoice can be in
       #
       #   @return [Symbol, Whopsdk::Models::InvoiceRetrieveResponse::Status]
       required :status, enum: -> { Whopsdk::Models::InvoiceRetrieveResponse::Status }
 
       # @!method initialize(id:, created_at:, current_plan:, due_date:, email_address:, fetch_invoice_token:, member:, number:, status:)
-      #   @param id [String]
-      #   @param created_at [Integer]
-      #   @param current_plan [Whopsdk::Models::InvoiceRetrieveResponse::CurrentPlan]
-      #   @param due_date [Integer, nil]
-      #   @param email_address [String, nil]
-      #   @param fetch_invoice_token [String]
-      #   @param member [Whopsdk::Models::InvoiceRetrieveResponse::Member, nil]
-      #   @param number [String]
-      #   @param status [Symbol, Whopsdk::Models::InvoiceRetrieveResponse::Status]
+      #   Some parameter documentations has been truncated, see
+      #   {Whopsdk::Models::InvoiceRetrieveResponse} for more details.
+      #
+      #   A statement that defines an amount due by a customer.
+      #
+      #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+      #
+      #   @param created_at [Integer] A valid timestamp in seconds, transported as an integer
+      #
+      #   @param current_plan [Whopsdk::Models::InvoiceRetrieveResponse::CurrentPlan] A plan for an access pass.
+      #
+      #   @param due_date [Integer, nil] A valid timestamp in seconds, transported as an integer
+      #
+      #   @param email_address [String, nil] Represents textual data as UTF-8 character sequences. This type is most often us
+      #
+      #   @param fetch_invoice_token [String] Represents textual data as UTF-8 character sequences. This type is most often us
+      #
+      #   @param member [Whopsdk::Models::InvoiceRetrieveResponse::Member, nil] A user of the site.
+      #
+      #   @param number [String] Represents textual data as UTF-8 character sequences. This type is most often us
+      #
+      #   @param status [Symbol, Whopsdk::Models::InvoiceRetrieveResponse::Status] The different statuses an invoice can be in
 
       # @see Whopsdk::Models::InvoiceRetrieveResponse#current_plan
       class CurrentPlan < Whopsdk::Internal::Type::BaseModel
         # @!attribute id
+        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+        #   refetch an object or as key for a cache. The ID type appears in a JSON response
+        #   as a String; however, it is not intended to be human-readable. When expected as
+        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        #   input value will be accepted as an ID.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute base_currency
+        #   The available currencies on the platform
         #
         #   @return [Symbol, Whopsdk::Models::InvoiceRetrieveResponse::CurrentPlan::BaseCurrency]
         required :base_currency, enum: -> { Whopsdk::Models::InvoiceRetrieveResponse::CurrentPlan::BaseCurrency }
 
         # @!attribute formatted_price
+        #   Represents textual data as UTF-8 character sequences. This type is most often
+        #   used by GraphQL to represent free-form human-readable text.
         #
         #   @return [String]
         required :formatted_price, String
 
         # @!method initialize(id:, base_currency:, formatted_price:)
-        #   @param id [String]
-        #   @param base_currency [Symbol, Whopsdk::Models::InvoiceRetrieveResponse::CurrentPlan::BaseCurrency]
-        #   @param formatted_price [String]
+        #   Some parameter documentations has been truncated, see
+        #   {Whopsdk::Models::InvoiceRetrieveResponse::CurrentPlan} for more details.
+        #
+        #   A plan for an access pass.
+        #
+        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+        #
+        #   @param base_currency [Symbol, Whopsdk::Models::InvoiceRetrieveResponse::CurrentPlan::BaseCurrency] The available currencies on the platform
+        #
+        #   @param formatted_price [String] Represents textual data as UTF-8 character sequences. This type is most often us
 
+        # The available currencies on the platform
+        #
         # @see Whopsdk::Models::InvoiceRetrieveResponse::CurrentPlan#base_currency
         module BaseCurrency
           extend Whopsdk::Internal::Type::Enum
@@ -179,32 +225,53 @@ module Whopsdk
       # @see Whopsdk::Models::InvoiceRetrieveResponse#member
       class Member < Whopsdk::Internal::Type::BaseModel
         # @!attribute id
+        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+        #   refetch an object or as key for a cache. The ID type appears in a JSON response
+        #   as a String; however, it is not intended to be human-readable. When expected as
+        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        #   input value will be accepted as an ID.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute email
+        #   Represents textual data as UTF-8 character sequences. This type is most often
+        #   used by GraphQL to represent free-form human-readable text.
         #
         #   @return [String, nil]
         required :email, String, nil?: true
 
         # @!attribute name
+        #   Represents textual data as UTF-8 character sequences. This type is most often
+        #   used by GraphQL to represent free-form human-readable text.
         #
         #   @return [String, nil]
         required :name, String, nil?: true
 
         # @!attribute username
+        #   Represents textual data as UTF-8 character sequences. This type is most often
+        #   used by GraphQL to represent free-form human-readable text.
         #
         #   @return [String, nil]
         required :username, String, nil?: true
 
         # @!method initialize(id:, email:, name:, username:)
-        #   @param id [String]
-        #   @param email [String, nil]
-        #   @param name [String, nil]
-        #   @param username [String, nil]
+        #   Some parameter documentations has been truncated, see
+        #   {Whopsdk::Models::InvoiceRetrieveResponse::Member} for more details.
+        #
+        #   A user of the site.
+        #
+        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+        #
+        #   @param email [String, nil] Represents textual data as UTF-8 character sequences. This type is most often us
+        #
+        #   @param name [String, nil] Represents textual data as UTF-8 character sequences. This type is most often us
+        #
+        #   @param username [String, nil] Represents textual data as UTF-8 character sequences. This type is most often us
       end
 
+      # The different statuses an invoice can be in
+      #
       # @see Whopsdk::Models::InvoiceRetrieveResponse#status
       module Status
         extend Whopsdk::Internal::Type::Enum

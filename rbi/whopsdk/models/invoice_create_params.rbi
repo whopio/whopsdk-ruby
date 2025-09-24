@@ -11,18 +11,22 @@ module Whopsdk
           T.any(Whopsdk::InvoiceCreateParams, Whopsdk::Internal::AnyHash)
         end
 
+      # The method of collection for an invoice.
       sig { returns(Whopsdk::InvoiceCreateParams::CollectionMethod::OrSymbol) }
       attr_accessor :collection_method
 
+      # A valid timestamp in seconds, transported as an integer
       sig { returns(Integer) }
       attr_accessor :due_date
 
+      # The properties of the plan to create for this invoice.
       sig { returns(Whopsdk::InvoiceCreateParams::Plan) }
       attr_reader :plan
 
       sig { params(plan: Whopsdk::InvoiceCreateParams::Plan::OrHash).void }
       attr_writer :plan
 
+      # The properties of the access pass to create for this invoice.
       sig { returns(T.nilable(Whopsdk::InvoiceCreateParams::AccessPass)) }
       attr_reader :access_pass
 
@@ -34,24 +38,46 @@ module Whopsdk
       end
       attr_writer :access_pass
 
+      # Represents a unique identifier that is Base64 obfuscated. It is often used to
+      # refetch an object or as key for a cache. The ID type appears in a JSON response
+      # as a String; however, it is not intended to be human-readable. When expected as
+      # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+      # input value will be accepted as an ID.
       sig { returns(T.nilable(String)) }
       attr_accessor :access_pass_id
 
+      # Represents `true` or `false` values.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :charge_buyer_fee
 
+      # Represents textual data as UTF-8 character sequences. This type is most often
+      # used by GraphQL to represent free-form human-readable text.
       sig { returns(T.nilable(String)) }
       attr_accessor :client_mutation_id
 
+      # Represents textual data as UTF-8 character sequences. This type is most often
+      # used by GraphQL to represent free-form human-readable text.
       sig { returns(T.nilable(String)) }
       attr_accessor :customer_name
 
+      # Represents textual data as UTF-8 character sequences. This type is most often
+      # used by GraphQL to represent free-form human-readable text.
       sig { returns(T.nilable(String)) }
       attr_accessor :email_address
 
+      # Represents a unique identifier that is Base64 obfuscated. It is often used to
+      # refetch an object or as key for a cache. The ID type appears in a JSON response
+      # as a String; however, it is not intended to be human-readable. When expected as
+      # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+      # input value will be accepted as an ID.
       sig { returns(T.nilable(String)) }
       attr_accessor :member_id
 
+      # Represents a unique identifier that is Base64 obfuscated. It is often used to
+      # refetch an object or as key for a cache. The ID type appears in a JSON response
+      # as a String; however, it is not intended to be human-readable. When expected as
+      # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+      # input value will be accepted as an ID.
       sig { returns(T.nilable(String)) }
       attr_accessor :payment_token_id
 
@@ -74,16 +100,42 @@ module Whopsdk
         ).returns(T.attached_class)
       end
       def self.new(
+        # The method of collection for an invoice.
         collection_method:,
+        # A valid timestamp in seconds, transported as an integer
         due_date:,
+        # The properties of the plan to create for this invoice.
         plan:,
+        # The properties of the access pass to create for this invoice.
         access_pass: nil,
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         access_pass_id: nil,
+        # Represents `true` or `false` values.
         charge_buyer_fee: nil,
+        # Represents textual data as UTF-8 character sequences. This type is most often
+        # used by GraphQL to represent free-form human-readable text.
         client_mutation_id: nil,
+        # Represents textual data as UTF-8 character sequences. This type is most often
+        # used by GraphQL to represent free-form human-readable text.
         customer_name: nil,
+        # Represents textual data as UTF-8 character sequences. This type is most often
+        # used by GraphQL to represent free-form human-readable text.
         email_address: nil,
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         member_id: nil,
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         payment_token_id: nil,
         request_options: {}
       )
@@ -111,6 +163,7 @@ module Whopsdk
       def to_hash
       end
 
+      # The method of collection for an invoice.
       module CollectionMethod
         extend Whopsdk::Internal::Type::Enum
 
@@ -151,9 +204,11 @@ module Whopsdk
             )
           end
 
+        # Represents `true` or `false` values.
         sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :ach_payments
 
+        # The available currencies on the platform
         sig do
           returns(
             T.nilable(
@@ -163,12 +218,16 @@ module Whopsdk
         end
         attr_accessor :base_currency
 
+        # Represents non-fractional signed whole numeric values. Int can represent values
+        # between -(2^31) and 2^31 - 1.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :billing_period
 
+        # Represents `true` or `false` values.
         sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :card_payments
 
+        # Represents `true` or `false` values.
         sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :coinbase_commerce_accepted
 
@@ -179,24 +238,34 @@ module Whopsdk
         end
         attr_accessor :custom_fields
 
+        # Represents textual data as UTF-8 character sequences. This type is most often
+        # used by GraphQL to represent free-form human-readable text.
         sig { returns(T.nilable(String)) }
         attr_accessor :description
 
+        # Represents non-fractional signed whole numeric values. Int can represent values
+        # between -(2^31) and 2^31 - 1.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :expiration_days
 
+        # A float that can be a string
         sig { returns(T.nilable(Float)) }
         attr_accessor :initial_price
 
+        # Represents textual data as UTF-8 character sequences. This type is most often
+        # used by GraphQL to represent free-form human-readable text.
         sig { returns(T.nilable(String)) }
         attr_accessor :internal_notes
 
+        # Represents `true` or `false` values.
         sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :offer_cancel_discount
 
+        # Represents `true` or `false` values.
         sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :paypal_accepted
 
+        # The type of plan that can be attached to an access pass
         sig do
           returns(
             T.nilable(Whopsdk::InvoiceCreateParams::Plan::PlanType::OrSymbol)
@@ -204,12 +273,16 @@ module Whopsdk
         end
         attr_accessor :plan_type
 
+        # Represents `true` or `false` values.
         sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :platform_balance_accepted
 
+        # Represents textual data as UTF-8 character sequences. This type is most often
+        # used by GraphQL to represent free-form human-readable text.
         sig { returns(T.nilable(String)) }
         attr_accessor :redirect_url
 
+        # The methods of how a plan can be released (including raffles and waitlists).
         sig do
           returns(
             T.nilable(
@@ -236,39 +309,34 @@ module Whopsdk
         end
         attr_writer :release_method_settings
 
+        # A float that can be a string
         sig { returns(T.nilable(Float)) }
         attr_accessor :renewal_price
 
-        sig do
-          returns(T.nilable(Whopsdk::InvoiceCreateParams::Plan::Requirements))
-        end
-        attr_reader :requirements
-
-        sig do
-          params(
-            requirements:
-              T.nilable(
-                Whopsdk::InvoiceCreateParams::Plan::Requirements::OrHash
-              )
-          ).void
-        end
-        attr_writer :requirements
-
+        # Represents non-fractional signed whole numeric values. Int can represent values
+        # between -(2^31) and 2^31 - 1.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :split_pay_required_payments
 
+        # Represents `true` or `false` values.
         sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :splitit_accepted
 
+        # Represents non-fractional signed whole numeric values. Int can represent values
+        # between -(2^31) and 2^31 - 1.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :stock
 
+        # Represents non-fractional signed whole numeric values. Int can represent values
+        # between -(2^31) and 2^31 - 1.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :trial_period_days
 
+        # Represents `true` or `false` values.
         sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :unlimited_stock
 
+        # Visibility of a resource
         sig do
           returns(
             T.nilable(Whopsdk::InvoiceCreateParams::Plan::Visibility::OrSymbol)
@@ -276,6 +344,7 @@ module Whopsdk
         end
         attr_accessor :visibility
 
+        # The properties of the plan to create for this invoice.
         sig do
           params(
             ach_payments: T.nilable(T::Boolean),
@@ -311,10 +380,6 @@ module Whopsdk
                 Whopsdk::InvoiceCreateParams::Plan::ReleaseMethodSettings::OrHash
               ),
             renewal_price: T.nilable(Float),
-            requirements:
-              T.nilable(
-                Whopsdk::InvoiceCreateParams::Plan::Requirements::OrHash
-              ),
             split_pay_required_payments: T.nilable(Integer),
             splitit_accepted: T.nilable(T::Boolean),
             stock: T.nilable(Integer),
@@ -327,30 +392,59 @@ module Whopsdk
           ).returns(T.attached_class)
         end
         def self.new(
+          # Represents `true` or `false` values.
           ach_payments: nil,
+          # The available currencies on the platform
           base_currency: nil,
+          # Represents non-fractional signed whole numeric values. Int can represent values
+          # between -(2^31) and 2^31 - 1.
           billing_period: nil,
+          # Represents `true` or `false` values.
           card_payments: nil,
+          # Represents `true` or `false` values.
           coinbase_commerce_accepted: nil,
           custom_fields: nil,
+          # Represents textual data as UTF-8 character sequences. This type is most often
+          # used by GraphQL to represent free-form human-readable text.
           description: nil,
+          # Represents non-fractional signed whole numeric values. Int can represent values
+          # between -(2^31) and 2^31 - 1.
           expiration_days: nil,
+          # A float that can be a string
           initial_price: nil,
+          # Represents textual data as UTF-8 character sequences. This type is most often
+          # used by GraphQL to represent free-form human-readable text.
           internal_notes: nil,
+          # Represents `true` or `false` values.
           offer_cancel_discount: nil,
+          # Represents `true` or `false` values.
           paypal_accepted: nil,
+          # The type of plan that can be attached to an access pass
           plan_type: nil,
+          # Represents `true` or `false` values.
           platform_balance_accepted: nil,
+          # Represents textual data as UTF-8 character sequences. This type is most often
+          # used by GraphQL to represent free-form human-readable text.
           redirect_url: nil,
+          # The methods of how a plan can be released (including raffles and waitlists).
           release_method: nil,
           release_method_settings: nil,
+          # A float that can be a string
           renewal_price: nil,
-          requirements: nil,
+          # Represents non-fractional signed whole numeric values. Int can represent values
+          # between -(2^31) and 2^31 - 1.
           split_pay_required_payments: nil,
+          # Represents `true` or `false` values.
           splitit_accepted: nil,
+          # Represents non-fractional signed whole numeric values. Int can represent values
+          # between -(2^31) and 2^31 - 1.
           stock: nil,
+          # Represents non-fractional signed whole numeric values. Int can represent values
+          # between -(2^31) and 2^31 - 1.
           trial_period_days: nil,
+          # Represents `true` or `false` values.
           unlimited_stock: nil,
+          # Visibility of a resource
           visibility: nil
         )
         end
@@ -391,8 +485,6 @@ module Whopsdk
                   Whopsdk::InvoiceCreateParams::Plan::ReleaseMethodSettings
                 ),
               renewal_price: T.nilable(Float),
-              requirements:
-                T.nilable(Whopsdk::InvoiceCreateParams::Plan::Requirements),
               split_pay_required_payments: T.nilable(Integer),
               splitit_accepted: T.nilable(T::Boolean),
               stock: T.nilable(Integer),
@@ -408,6 +500,7 @@ module Whopsdk
         def to_hash
         end
 
+        # The available currencies on the platform
         module BaseCurrency
           extend Whopsdk::Internal::Type::Enum
 
@@ -861,18 +954,30 @@ module Whopsdk
           sig { returns(Symbol) }
           attr_accessor :field_type
 
+          # Represents textual data as UTF-8 character sequences. This type is most often
+          # used by GraphQL to represent free-form human-readable text.
           sig { returns(String) }
           attr_accessor :name
 
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
           sig { returns(T.nilable(String)) }
           attr_accessor :id
 
+          # Represents non-fractional signed whole numeric values. Int can represent values
+          # between -(2^31) and 2^31 - 1.
           sig { returns(T.nilable(Integer)) }
           attr_accessor :order
 
+          # Represents textual data as UTF-8 character sequences. This type is most often
+          # used by GraphQL to represent free-form human-readable text.
           sig { returns(T.nilable(String)) }
           attr_accessor :placeholder
 
+          # Represents `true` or `false` values.
           sig { returns(T.nilable(T::Boolean)) }
           attr_accessor :required
 
@@ -887,10 +992,22 @@ module Whopsdk
             ).returns(T.attached_class)
           end
           def self.new(
+            # Represents textual data as UTF-8 character sequences. This type is most often
+            # used by GraphQL to represent free-form human-readable text.
             name:,
+            # Represents a unique identifier that is Base64 obfuscated. It is often used to
+            # refetch an object or as key for a cache. The ID type appears in a JSON response
+            # as a String; however, it is not intended to be human-readable. When expected as
+            # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+            # input value will be accepted as an ID.
             id: nil,
+            # Represents non-fractional signed whole numeric values. Int can represent values
+            # between -(2^31) and 2^31 - 1.
             order: nil,
+            # Represents textual data as UTF-8 character sequences. This type is most often
+            # used by GraphQL to represent free-form human-readable text.
             placeholder: nil,
+            # Represents `true` or `false` values.
             required: nil,
             field_type: :text
           )
@@ -912,6 +1029,7 @@ module Whopsdk
           end
         end
 
+        # The type of plan that can be attached to an access pass
         module PlanType
           extend Whopsdk::Internal::Type::Enum
 
@@ -943,6 +1061,7 @@ module Whopsdk
           end
         end
 
+        # The methods of how a plan can be released (including raffles and waitlists).
         module ReleaseMethod
           extend Whopsdk::Internal::Type::Enum
 
@@ -988,15 +1107,20 @@ module Whopsdk
               )
             end
 
+          # A valid timestamp in seconds, transported as an integer
           sig { returns(T.nilable(Integer)) }
           attr_accessor :expires_at
 
+          # Represents non-fractional signed whole numeric values. Int can represent values
+          # between -(2^31) and 2^31 - 1.
           sig { returns(T.nilable(Integer)) }
           attr_accessor :max_entries
 
+          # Represents `true` or `false` values.
           sig { returns(T.nilable(T::Boolean)) }
           attr_accessor :nft_weighted_entries
 
+          # A valid timestamp in seconds, transported as an integer
           sig { returns(T.nilable(Integer)) }
           attr_accessor :starts_at
 
@@ -1009,9 +1133,14 @@ module Whopsdk
             ).returns(T.attached_class)
           end
           def self.new(
+            # A valid timestamp in seconds, transported as an integer
             expires_at: nil,
+            # Represents non-fractional signed whole numeric values. Int can represent values
+            # between -(2^31) and 2^31 - 1.
             max_entries: nil,
+            # Represents `true` or `false` values.
             nft_weighted_entries: nil,
+            # A valid timestamp in seconds, transported as an integer
             starts_at: nil
           )
           end
@@ -1030,102 +1159,7 @@ module Whopsdk
           end
         end
 
-        class Requirements < Whopsdk::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                Whopsdk::InvoiceCreateParams::Plan::Requirements,
-                Whopsdk::Internal::AnyHash
-              )
-            end
-
-          sig { returns(T.nilable(String)) }
-          attr_reader :custom_password
-
-          sig { params(custom_password: String).void }
-          attr_writer :custom_password
-
-          sig do
-            returns(
-              T.nilable(
-                Whopsdk::InvoiceCreateParams::Plan::Requirements::EmailRequired::OrBoolean
-              )
-            )
-          end
-          attr_reader :email_required
-
-          sig do
-            params(
-              email_required:
-                Whopsdk::InvoiceCreateParams::Plan::Requirements::EmailRequired::OrBoolean
-            ).void
-          end
-          attr_writer :email_required
-
-          sig { returns(T.nilable(T::Array[String])) }
-          attr_reader :ownership_of_access_passes
-
-          sig { params(ownership_of_access_passes: T::Array[String]).void }
-          attr_writer :ownership_of_access_passes
-
-          sig do
-            params(
-              custom_password: String,
-              email_required:
-                Whopsdk::InvoiceCreateParams::Plan::Requirements::EmailRequired::OrBoolean,
-              ownership_of_access_passes: T::Array[String]
-            ).returns(T.attached_class)
-          end
-          def self.new(
-            custom_password: nil,
-            email_required: nil,
-            ownership_of_access_passes: nil
-          )
-          end
-
-          sig do
-            override.returns(
-              {
-                custom_password: String,
-                email_required:
-                  Whopsdk::InvoiceCreateParams::Plan::Requirements::EmailRequired::OrBoolean,
-                ownership_of_access_passes: T::Array[String]
-              }
-            )
-          end
-          def to_hash
-          end
-
-          module EmailRequired
-            extend Whopsdk::Internal::Type::Enum
-
-            TaggedBoolean =
-              T.type_alias do
-                T.all(
-                  T::Boolean,
-                  Whopsdk::InvoiceCreateParams::Plan::Requirements::EmailRequired
-                )
-              end
-            OrBoolean = T.type_alias { T::Boolean }
-
-            TRUE =
-              T.let(
-                true,
-                Whopsdk::InvoiceCreateParams::Plan::Requirements::EmailRequired::TaggedBoolean
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Whopsdk::InvoiceCreateParams::Plan::Requirements::EmailRequired::TaggedBoolean
-                ]
-              )
-            end
-            def self.values
-            end
-          end
-        end
-
+        # Visibility of a resource
         module Visibility
           extend Whopsdk::Internal::Type::Enum
 
@@ -1177,18 +1211,36 @@ module Whopsdk
             )
           end
 
+        # Represents textual data as UTF-8 character sequences. This type is most often
+        # used by GraphQL to represent free-form human-readable text.
         sig { returns(String) }
         attr_accessor :title
 
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         sig { returns(T.nilable(String)) }
         attr_accessor :product_tax_code_id
 
+        # The properties of the access pass to create for this invoice.
         sig do
           params(title: String, product_tax_code_id: T.nilable(String)).returns(
             T.attached_class
           )
         end
-        def self.new(title:, product_tax_code_id: nil)
+        def self.new(
+          # Represents textual data as UTF-8 character sequences. This type is most often
+          # used by GraphQL to represent free-form human-readable text.
+          title:,
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
+          product_tax_code_id: nil
+        )
         end
 
         sig do

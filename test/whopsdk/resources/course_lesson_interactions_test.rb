@@ -6,7 +6,7 @@ class Whopsdk::Test::Resources::CourseLessonInteractionsTest < Whopsdk::Test::Re
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.course_lesson_interactions.retrieve("id")
+    response = @whopsdk.course_lesson_interactions.retrieve("crsli_xxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Models::CourseLessonInteractionRetrieveResponse

@@ -209,10 +209,10 @@ module Whopsdk
           # The respective currency identifier for the plan.
           sig do
             returns(
-              Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+              Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
             )
           end
-          attr_accessor :base_currency
+          attr_accessor :currency
 
           # The formatted price (including currency) for the plan.
           sig { returns(String) }
@@ -222,8 +222,8 @@ module Whopsdk
           sig do
             params(
               id: String,
-              base_currency:
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::OrSymbol,
+              currency:
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::OrSymbol,
               formatted_price: String
             ).returns(T.attached_class)
           end
@@ -231,7 +231,7 @@ module Whopsdk
             # The internal ID of the plan.
             id:,
             # The respective currency identifier for the plan.
-            base_currency:,
+            currency:,
             # The formatted price (including currency) for the plan.
             formatted_price:
           )
@@ -241,8 +241,8 @@ module Whopsdk
             override.returns(
               {
                 id: String,
-                base_currency:
-                  Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol,
+                currency:
+                  Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol,
                 formatted_price: String
               }
             )
@@ -251,14 +251,14 @@ module Whopsdk
           end
 
           # The respective currency identifier for the plan.
-          module BaseCurrency
+          module Currency
             extend Whopsdk::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias do
                 T.all(
                   Symbol,
-                  Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency
+                  Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -266,428 +266,428 @@ module Whopsdk
             USD =
               T.let(
                 :usd,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             SGD =
               T.let(
                 :sgd,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             INR =
               T.let(
                 :inr,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             AUD =
               T.let(
                 :aud,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             BRL =
               T.let(
                 :brl,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             CAD =
               T.let(
                 :cad,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             DKK =
               T.let(
                 :dkk,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             EUR =
               T.let(
                 :eur,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             NOK =
               T.let(
                 :nok,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             GBP =
               T.let(
                 :gbp,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             SEK =
               T.let(
                 :sek,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             CHF =
               T.let(
                 :chf,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             HKD =
               T.let(
                 :hkd,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             HUF =
               T.let(
                 :huf,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             JPY =
               T.let(
                 :jpy,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             MXN =
               T.let(
                 :mxn,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             MYR =
               T.let(
                 :myr,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             PLN =
               T.let(
                 :pln,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             CZK =
               T.let(
                 :czk,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             NZD =
               T.let(
                 :nzd,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             AED =
               T.let(
                 :aed,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             ETH =
               T.let(
                 :eth,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             APE =
               T.let(
                 :ape,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             COP =
               T.let(
                 :cop,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             RON =
               T.let(
                 :ron,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             THB =
               T.let(
                 :thb,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             BGN =
               T.let(
                 :bgn,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             IDR =
               T.let(
                 :idr,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             DOP =
               T.let(
                 :dop,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             PHP =
               T.let(
                 :php,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             TRY =
               T.let(
                 :try,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             KRW =
               T.let(
                 :krw,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             TWD =
               T.let(
                 :twd,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             VND =
               T.let(
                 :vnd,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             PKR =
               T.let(
                 :pkr,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             CLP =
               T.let(
                 :clp,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             UYU =
               T.let(
                 :uyu,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             ARS =
               T.let(
                 :ars,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             ZAR =
               T.let(
                 :zar,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             DZD =
               T.let(
                 :dzd,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             TND =
               T.let(
                 :tnd,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             MAD =
               T.let(
                 :mad,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             KES =
               T.let(
                 :kes,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             KWD =
               T.let(
                 :kwd,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             JOD =
               T.let(
                 :jod,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             ALL =
               T.let(
                 :all,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             XCD =
               T.let(
                 :xcd,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             AMD =
               T.let(
                 :amd,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             BSD =
               T.let(
                 :bsd,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             BHD =
               T.let(
                 :bhd,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             BOB =
               T.let(
                 :bob,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             BAM =
               T.let(
                 :bam,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             KHR =
               T.let(
                 :khr,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             CRC =
               T.let(
                 :crc,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             XOF =
               T.let(
                 :xof,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             EGP =
               T.let(
                 :egp,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             ETB =
               T.let(
                 :etb,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             GMD =
               T.let(
                 :gmd,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             GHS =
               T.let(
                 :ghs,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             GTQ =
               T.let(
                 :gtq,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             GYD =
               T.let(
                 :gyd,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             ILS =
               T.let(
                 :ils,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             JMD =
               T.let(
                 :jmd,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             MOP =
               T.let(
                 :mop,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             MGA =
               T.let(
                 :mga,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             MUR =
               T.let(
                 :mur,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             MDL =
               T.let(
                 :mdl,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             MNT =
               T.let(
                 :mnt,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             NAD =
               T.let(
                 :nad,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             NGN =
               T.let(
                 :ngn,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             MKD =
               T.let(
                 :mkd,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             OMR =
               T.let(
                 :omr,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             PYG =
               T.let(
                 :pyg,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             PEN =
               T.let(
                 :pen,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             QAR =
               T.let(
                 :qar,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             RWF =
               T.let(
                 :rwf,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             SAR =
               T.let(
                 :sar,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             RSD =
               T.let(
                 :rsd,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             LKR =
               T.let(
                 :lkr,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             TZS =
               T.let(
                 :tzs,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             TTD =
               T.let(
                 :ttd,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             UZS =
               T.let(
                 :uzs,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             RUB =
               T.let(
                 :rub,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
             BTC =
               T.let(
                 :btc,
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::BaseCurrency::TaggedSymbol
+                  Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
                 ]
               )
             end

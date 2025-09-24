@@ -23,7 +23,7 @@ class Whopsdk::Test::Resources::InvoicesTest < Whopsdk::Test::ResourceTest
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.invoices.retrieve("id")
+    response = @whopsdk.invoices.retrieve("inv_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Models::InvoiceRetrieveResponse
@@ -64,7 +64,7 @@ class Whopsdk::Test::Resources::InvoicesTest < Whopsdk::Test::ResourceTest
   def test_void
     skip("Prism tests are disabled")
 
-    response = @whopsdk.invoices.void("id")
+    response = @whopsdk.invoices.void("inv_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Internal::Type::Boolean

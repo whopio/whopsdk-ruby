@@ -5,12 +5,11 @@ module Whopsdk
     class CourseLessonInteractions
       sig do
         params(
-          path_id: String,
-          query_id: String,
+          id: String,
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(Whopsdk::Models::CourseLessonInteractionRetrieveResponse)
       end
-      def retrieve(path_id, query_id:, request_options: {})
+      def retrieve(id, request_options: {})
       end
 
       sig do

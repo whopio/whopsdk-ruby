@@ -2,8 +2,7 @@ module Whopsdk
   module Resources
     class CourseLessonInteractions
       def retrieve: (
-        String path_id,
-        query_id: String,
+        String id,
         ?request_options: Whopsdk::request_opts
       ) -> Whopsdk::Models::CourseLessonInteractionRetrieveResponse
 

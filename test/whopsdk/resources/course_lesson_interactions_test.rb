@@ -3,10 +3,10 @@
 require_relative "../test_helper"
 
 class Whopsdk::Test::Resources::CourseLessonInteractionsTest < Whopsdk::Test::ResourceTest
-  def test_retrieve_required_params
+  def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.course_lesson_interactions.retrieve("id", query_id: "id")
+    response = @whopsdk.course_lesson_interactions.retrieve("id")
 
     assert_pattern do
       response => Whopsdk::Models::CourseLessonInteractionRetrieveResponse

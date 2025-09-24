@@ -7,13 +7,7 @@ module Whopsdk
       extend Whopsdk::Internal::Type::RequestParameters::Converter
       include Whopsdk::Internal::Type::RequestParameters
 
-      # @!attribute query_id
-      #
-      #   @return [String]
-      required :query_id, String
-
-      # @!method initialize(query_id:, request_options: {})
-      #   @param query_id [String]
+      # @!method initialize(request_options: {})
       #   @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}]
     end
   end

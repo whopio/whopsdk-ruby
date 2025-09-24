@@ -11,23 +11,15 @@ module Whopsdk
           T.any(Whopsdk::InvoiceRetrieveParams, Whopsdk::Internal::AnyHash)
         end
 
-      sig { returns(String) }
-      attr_accessor :query_id
-
       sig do
-        params(
-          query_id: String,
-          request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.attached_class)
-      end
-      def self.new(query_id:, request_options: {})
-      end
-
-      sig do
-        override.returns(
-          { query_id: String, request_options: Whopsdk::RequestOptions }
+        params(request_options: Whopsdk::RequestOptions::OrHash).returns(
+          T.attached_class
         )
       end
+      def self.new(request_options: {})
+      end
+
+      sig { override.returns({ request_options: Whopsdk::RequestOptions }) }
       def to_hash
       end
     end

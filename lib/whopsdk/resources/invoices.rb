@@ -32,23 +32,20 @@ module Whopsdk
         )
       end
 
-      # @overload retrieve(path_id, query_id:, request_options: {})
+      # @overload retrieve(id, request_options: {})
       #
-      # @param path_id [String]
-      # @param query_id [String]
+      # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Whopsdk::Models::InvoiceRetrieveResponse]
       #
       # @see Whopsdk::Models::InvoiceRetrieveParams
-      def retrieve(path_id, params)
-        parsed, options = Whopsdk::InvoiceRetrieveParams.dump_request(params)
+      def retrieve(id, params = {})
         @client.request(
           method: :get,
-          path: ["invoices/%1$s", path_id],
-          query: parsed.transform_keys(query_id: "id"),
+          path: ["invoices/%1$s", id],
           model: Whopsdk::Models::InvoiceRetrieveResponse,
-          options: options
+          options: params[:request_options]
         )
       end
 
@@ -78,21 +75,20 @@ module Whopsdk
         )
       end
 
-      # @overload void(path_id, body_id:, client_mutation_id: nil, request_options: {})
+      # @overload void(id, client_mutation_id: nil, request_options: {})
       #
-      # @param path_id [String]
-      # @param body_id [String]
+      # @param id [String]
       # @param client_mutation_id [String, nil]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Boolean, nil]
       #
       # @see Whopsdk::Models::InvoiceVoidParams
-      def void(path_id, params)
+      def void(id, params = {})
         parsed, options = Whopsdk::InvoiceVoidParams.dump_request(params)
         @client.request(
           method: :post,
-          path: ["invoices/%1$s/void", path_id],
+          path: ["invoices/%1$s/void", id],
           body: parsed,
           model: Whopsdk::Internal::Type::Boolean,
           options: options

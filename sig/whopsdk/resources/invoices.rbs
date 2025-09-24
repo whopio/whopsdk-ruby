@@ -17,8 +17,7 @@ module Whopsdk
       ) -> Whopsdk::Models::InvoiceCreateResponse?
 
       def retrieve: (
-        String path_id,
-        query_id: String,
+        String id,
         ?request_options: Whopsdk::request_opts
       ) -> Whopsdk::Models::InvoiceRetrieveResponse
 
@@ -35,8 +34,7 @@ module Whopsdk
       ) -> Whopsdk::Models::InvoiceListResponse
 
       def `void`: (
-        String path_id,
-        body_id: String,
+        String id,
         ?client_mutation_id: String?,
         ?request_options: Whopsdk::request_opts
       ) -> bool?

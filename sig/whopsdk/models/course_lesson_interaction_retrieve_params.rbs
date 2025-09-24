@@ -1,23 +1,15 @@
 module Whopsdk
   module Models
     type course_lesson_interaction_retrieve_params =
-      { query_id: String } & Whopsdk::Internal::Type::request_parameters
+      {  } & Whopsdk::Internal::Type::request_parameters
 
     class CourseLessonInteractionRetrieveParams < Whopsdk::Internal::Type::BaseModel
       extend Whopsdk::Internal::Type::RequestParameters::Converter
       include Whopsdk::Internal::Type::RequestParameters
 
-      attr_accessor query_id: String
+      def initialize: (?request_options: Whopsdk::request_opts) -> void
 
-      def initialize: (
-        query_id: String,
-        ?request_options: Whopsdk::request_opts
-      ) -> void
-
-      def to_hash: -> {
-        query_id: String,
-        request_options: Whopsdk::RequestOptions
-      }
+      def to_hash: -> { request_options: Whopsdk::RequestOptions }
     end
   end
 end

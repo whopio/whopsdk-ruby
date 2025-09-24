@@ -11,26 +11,21 @@ module Whopsdk
           T.any(Whopsdk::InvoiceVoidParams, Whopsdk::Internal::AnyHash)
         end
 
-      sig { returns(String) }
-      attr_accessor :body_id
-
       sig { returns(T.nilable(String)) }
       attr_accessor :client_mutation_id
 
       sig do
         params(
-          body_id: String,
           client_mutation_id: T.nilable(String),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(body_id:, client_mutation_id: nil, request_options: {})
+      def self.new(client_mutation_id: nil, request_options: {})
       end
 
       sig do
         override.returns(
           {
-            body_id: String,
             client_mutation_id: T.nilable(String),
             request_options: Whopsdk::RequestOptions
           }

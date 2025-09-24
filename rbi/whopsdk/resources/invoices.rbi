@@ -39,12 +39,11 @@ module Whopsdk
 
       sig do
         params(
-          path_id: String,
-          query_id: String,
+          id: String,
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(Whopsdk::Models::InvoiceRetrieveResponse)
       end
-      def retrieve(path_id, query_id:, request_options: {})
+      def retrieve(id, request_options: {})
       end
 
       sig do
@@ -75,13 +74,12 @@ module Whopsdk
 
       sig do
         params(
-          path_id: String,
-          body_id: String,
+          id: String,
           client_mutation_id: T.nilable(String),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(T.nilable(T::Boolean))
       end
-      def void(path_id, body_id:, client_mutation_id: nil, request_options: {})
+      def void(id, client_mutation_id: nil, request_options: {})
       end
 
       # @api private

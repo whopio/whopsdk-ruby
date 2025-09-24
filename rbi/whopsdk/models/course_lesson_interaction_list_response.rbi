@@ -11,6 +11,7 @@ module Whopsdk
           )
         end
 
+      # A list of nodes.
       sig do
         returns(
           T.nilable(
@@ -24,7 +25,7 @@ module Whopsdk
       end
       attr_accessor :data
 
-      # Information about pagination in a connection.
+      # Information to aid in pagination.
       sig do
         returns(Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo)
       end
@@ -54,8 +55,9 @@ module Whopsdk
         ).returns(T.attached_class)
       end
       def self.new(
+        # A list of nodes.
         data:,
-        # Information about pagination in a connection.
+        # Information to aid in pagination.
         page_info:
       )
       end
@@ -88,23 +90,19 @@ module Whopsdk
             )
           end
 
-        # Represents a unique identifier that is Base64 obfuscated. It is often used to
-        # refetch an object or as key for a cache. The ID type appears in a JSON response
-        # as a String; however, it is not intended to be human-readable. When expected as
-        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-        # input value will be accepted as an ID.
+        # The ID of the lesson interaction
         sig { returns(String) }
         attr_accessor :id
 
-        # Represents `true` or `false` values.
+        # Whether the lesson has been completed by the user
         sig { returns(T::Boolean) }
         attr_accessor :completed
 
-        # A valid timestamp in seconds, transported as an integer
+        # When the interaction was created
         sig { returns(Integer) }
         attr_accessor :created_at
 
-        # A lesson from the courses app
+        # The lesson this interaction is for
         sig do
           returns(
             Whopsdk::Models::CourseLessonInteractionListResponse::Data::Lesson
@@ -120,7 +118,7 @@ module Whopsdk
         end
         attr_writer :lesson
 
-        # An object representing a (sanitized) user of the site.
+        # The user who interacted with the lesson
         sig do
           returns(
             Whopsdk::Models::CourseLessonInteractionListResponse::Data::User
@@ -149,19 +147,15 @@ module Whopsdk
           ).returns(T.attached_class)
         end
         def self.new(
-          # Represents a unique identifier that is Base64 obfuscated. It is often used to
-          # refetch an object or as key for a cache. The ID type appears in a JSON response
-          # as a String; however, it is not intended to be human-readable. When expected as
-          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-          # input value will be accepted as an ID.
+          # The ID of the lesson interaction
           id:,
-          # Represents `true` or `false` values.
+          # Whether the lesson has been completed by the user
           completed:,
-          # A valid timestamp in seconds, transported as an integer
+          # When the interaction was created
           created_at:,
-          # A lesson from the courses app
+          # The lesson this interaction is for
           lesson:,
-          # An object representing a (sanitized) user of the site.
+          # The user who interacted with the lesson
           user:
         )
         end
@@ -191,30 +185,20 @@ module Whopsdk
               )
             end
 
-          # Represents a unique identifier that is Base64 obfuscated. It is often used to
-          # refetch an object or as key for a cache. The ID type appears in a JSON response
-          # as a String; however, it is not intended to be human-readable. When expected as
-          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-          # input value will be accepted as an ID.
+          # The ID of the lesson
           sig { returns(String) }
           attr_accessor :id
 
-          # Represents textual data as UTF-8 character sequences. This type is most often
-          # used by GraphQL to represent free-form human-readable text.
+          # The title of the lesson
           sig { returns(String) }
           attr_accessor :title
 
-          # A lesson from the courses app
+          # The lesson this interaction is for
           sig { params(id: String, title: String).returns(T.attached_class) }
           def self.new(
-            # Represents a unique identifier that is Base64 obfuscated. It is often used to
-            # refetch an object or as key for a cache. The ID type appears in a JSON response
-            # as a String; however, it is not intended to be human-readable. When expected as
-            # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-            # input value will be accepted as an ID.
+            # The ID of the lesson
             id:,
-            # Represents textual data as UTF-8 character sequences. This type is most often
-            # used by GraphQL to represent free-form human-readable text.
+            # The title of the lesson
             title:
           )
           end
@@ -233,25 +217,19 @@ module Whopsdk
               )
             end
 
-          # Represents a unique identifier that is Base64 obfuscated. It is often used to
-          # refetch an object or as key for a cache. The ID type appears in a JSON response
-          # as a String; however, it is not intended to be human-readable. When expected as
-          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-          # input value will be accepted as an ID.
+          # The internal ID of the user.
           sig { returns(String) }
           attr_accessor :id
 
-          # Represents textual data as UTF-8 character sequences. This type is most often
-          # used by GraphQL to represent free-form human-readable text.
+          # The name of the user from their Whop account.
           sig { returns(T.nilable(String)) }
           attr_accessor :name
 
-          # Represents textual data as UTF-8 character sequences. This type is most often
-          # used by GraphQL to represent free-form human-readable text.
+          # The username of the user from their Whop account.
           sig { returns(String) }
           attr_accessor :username
 
-          # An object representing a (sanitized) user of the site.
+          # The user who interacted with the lesson
           sig do
             params(
               id: String,
@@ -260,17 +238,11 @@ module Whopsdk
             ).returns(T.attached_class)
           end
           def self.new(
-            # Represents a unique identifier that is Base64 obfuscated. It is often used to
-            # refetch an object or as key for a cache. The ID type appears in a JSON response
-            # as a String; however, it is not intended to be human-readable. When expected as
-            # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-            # input value will be accepted as an ID.
+            # The internal ID of the user.
             id:,
-            # Represents textual data as UTF-8 character sequences. This type is most often
-            # used by GraphQL to represent free-form human-readable text.
+            # The name of the user from their Whop account.
             name:,
-            # Represents textual data as UTF-8 character sequences. This type is most often
-            # used by GraphQL to represent free-form human-readable text.
+            # The username of the user from their Whop account.
             username:
           )
           end
@@ -294,25 +266,23 @@ module Whopsdk
             )
           end
 
-        # Represents textual data as UTF-8 character sequences. This type is most often
-        # used by GraphQL to represent free-form human-readable text.
+        # When paginating forwards, the cursor to continue.
         sig { returns(T.nilable(String)) }
         attr_accessor :end_cursor
 
-        # Represents `true` or `false` values.
+        # When paginating forwards, are there more items?
         sig { returns(T::Boolean) }
         attr_accessor :has_next_page
 
-        # Represents `true` or `false` values.
+        # When paginating backwards, are there more items?
         sig { returns(T::Boolean) }
         attr_accessor :has_previous_page
 
-        # Represents textual data as UTF-8 character sequences. This type is most often
-        # used by GraphQL to represent free-form human-readable text.
+        # When paginating backwards, the cursor to continue.
         sig { returns(T.nilable(String)) }
         attr_accessor :start_cursor
 
-        # Information about pagination in a connection.
+        # Information to aid in pagination.
         sig do
           params(
             end_cursor: T.nilable(String),
@@ -322,15 +292,13 @@ module Whopsdk
           ).returns(T.attached_class)
         end
         def self.new(
-          # Represents textual data as UTF-8 character sequences. This type is most often
-          # used by GraphQL to represent free-form human-readable text.
+          # When paginating forwards, the cursor to continue.
           end_cursor:,
-          # Represents `true` or `false` values.
+          # When paginating forwards, are there more items?
           has_next_page:,
-          # Represents `true` or `false` values.
+          # When paginating backwards, are there more items?
           has_previous_page:,
-          # Represents textual data as UTF-8 character sequences. This type is most often
-          # used by GraphQL to represent free-form human-readable text.
+          # When paginating backwards, the cursor to continue.
           start_cursor:
         )
         end

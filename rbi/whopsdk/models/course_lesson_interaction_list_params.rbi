@@ -14,51 +14,35 @@ module Whopsdk
           )
         end
 
-      # Represents textual data as UTF-8 character sequences. This type is most often
-      # used by GraphQL to represent free-form human-readable text.
+      # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_accessor :after
 
-      # Represents textual data as UTF-8 character sequences. This type is most often
-      # used by GraphQL to represent free-form human-readable text.
+      # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # Represents `true` or `false` values.
+      # Whether the lesson has been completed by the user
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :completed
 
-      # Represents a unique identifier that is Base64 obfuscated. It is often used to
-      # refetch an object or as key for a cache. The ID type appears in a JSON response
-      # as a String; however, it is not intended to be human-readable. When expected as
-      # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-      # input value will be accepted as an ID.
+      # The ID of the course to list course lesson interactions for
       sig { returns(T.nilable(String)) }
       attr_accessor :course_id
 
-      # Represents non-fractional signed whole numeric values. Int can represent values
-      # between -(2^31) and 2^31 - 1.
+      # Returns the first _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :first
 
-      # Represents non-fractional signed whole numeric values. Int can represent values
-      # between -(2^31) and 2^31 - 1.
+      # Returns the last _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
-      # Represents a unique identifier that is Base64 obfuscated. It is often used to
-      # refetch an object or as key for a cache. The ID type appears in a JSON response
-      # as a String; however, it is not intended to be human-readable. When expected as
-      # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-      # input value will be accepted as an ID.
+      # The ID of the lesson to list course lesson interactions for
       sig { returns(T.nilable(String)) }
       attr_accessor :lesson_id
 
-      # Represents a unique identifier that is Base64 obfuscated. It is often used to
-      # refetch an object or as key for a cache. The ID type appears in a JSON response
-      # as a String; however, it is not intended to be human-readable. When expected as
-      # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-      # input value will be accepted as an ID.
+      # The ID of the user to list course lesson interactions for
       sig { returns(T.nilable(String)) }
       attr_accessor :user_id
 
@@ -76,37 +60,21 @@ module Whopsdk
         ).returns(T.attached_class)
       end
       def self.new(
-        # Represents textual data as UTF-8 character sequences. This type is most often
-        # used by GraphQL to represent free-form human-readable text.
+        # Returns the elements in the list that come after the specified cursor.
         after: nil,
-        # Represents textual data as UTF-8 character sequences. This type is most often
-        # used by GraphQL to represent free-form human-readable text.
+        # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # Represents `true` or `false` values.
+        # Whether the lesson has been completed by the user
         completed: nil,
-        # Represents a unique identifier that is Base64 obfuscated. It is often used to
-        # refetch an object or as key for a cache. The ID type appears in a JSON response
-        # as a String; however, it is not intended to be human-readable. When expected as
-        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-        # input value will be accepted as an ID.
+        # The ID of the course to list course lesson interactions for
         course_id: nil,
-        # Represents non-fractional signed whole numeric values. Int can represent values
-        # between -(2^31) and 2^31 - 1.
+        # Returns the first _n_ elements from the list.
         first: nil,
-        # Represents non-fractional signed whole numeric values. Int can represent values
-        # between -(2^31) and 2^31 - 1.
+        # Returns the last _n_ elements from the list.
         last: nil,
-        # Represents a unique identifier that is Base64 obfuscated. It is often used to
-        # refetch an object or as key for a cache. The ID type appears in a JSON response
-        # as a String; however, it is not intended to be human-readable. When expected as
-        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-        # input value will be accepted as an ID.
+        # The ID of the lesson to list course lesson interactions for
         lesson_id: nil,
-        # Represents a unique identifier that is Base64 obfuscated. It is often used to
-        # refetch an object or as key for a cache. The ID type appears in a JSON response
-        # as a String; however, it is not intended to be human-readable. When expected as
-        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-        # input value will be accepted as an ID.
+        # The ID of the user to list course lesson interactions for
         user_id: nil,
         request_options: {}
       )

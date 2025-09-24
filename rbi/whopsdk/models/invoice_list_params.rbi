@@ -11,31 +11,25 @@ module Whopsdk
           T.any(Whopsdk::InvoiceListParams, Whopsdk::Internal::AnyHash)
         end
 
-      # Represents a unique identifier that is Base64 obfuscated. It is often used to
-      # refetch an object or as key for a cache. The ID type appears in a JSON response
-      # as a String; however, it is not intended to be human-readable. When expected as
-      # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-      # input value will be accepted as an ID.
+      # The ID of the company to list invoices for
       sig { returns(String) }
       attr_accessor :company_id
 
-      # Represents textual data as UTF-8 character sequences. This type is most often
-      # used by GraphQL to represent free-form human-readable text.
+      # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_accessor :after
 
-      # Represents textual data as UTF-8 character sequences. This type is most often
-      # used by GraphQL to represent free-form human-readable text.
+      # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # The direction of the sort.
+      # The direction to sort the invoices by
       sig do
         returns(T.nilable(Whopsdk::InvoiceListParams::Direction::OrSymbol))
       end
       attr_accessor :direction
 
-      # Filters for the invoices table.
+      # The filters to apply to the invoices
       sig { returns(T.nilable(Whopsdk::InvoiceListParams::Filters)) }
       attr_reader :filters
 
@@ -46,17 +40,15 @@ module Whopsdk
       end
       attr_writer :filters
 
-      # Represents non-fractional signed whole numeric values. Int can represent values
-      # between -(2^31) and 2^31 - 1.
+      # Returns the first _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :first
 
-      # Represents non-fractional signed whole numeric values. Int can represent values
-      # between -(2^31) and 2^31 - 1.
+      # Returns the last _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
-      # Which columns can be used to sort.
+      # The order to sort the invoices by
       sig { returns(T.nilable(Whopsdk::InvoiceListParams::Order::OrSymbol)) }
       attr_accessor :order
 
@@ -74,29 +66,21 @@ module Whopsdk
         ).returns(T.attached_class)
       end
       def self.new(
-        # Represents a unique identifier that is Base64 obfuscated. It is often used to
-        # refetch an object or as key for a cache. The ID type appears in a JSON response
-        # as a String; however, it is not intended to be human-readable. When expected as
-        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-        # input value will be accepted as an ID.
+        # The ID of the company to list invoices for
         company_id:,
-        # Represents textual data as UTF-8 character sequences. This type is most often
-        # used by GraphQL to represent free-form human-readable text.
+        # Returns the elements in the list that come after the specified cursor.
         after: nil,
-        # Represents textual data as UTF-8 character sequences. This type is most often
-        # used by GraphQL to represent free-form human-readable text.
+        # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The direction of the sort.
+        # The direction to sort the invoices by
         direction: nil,
-        # Filters for the invoices table.
+        # The filters to apply to the invoices
         filters: nil,
-        # Represents non-fractional signed whole numeric values. Int can represent values
-        # between -(2^31) and 2^31 - 1.
+        # Returns the first _n_ elements from the list.
         first: nil,
-        # Represents non-fractional signed whole numeric values. Int can represent values
-        # between -(2^31) and 2^31 - 1.
+        # Returns the last _n_ elements from the list.
         last: nil,
-        # Which columns can be used to sort.
+        # The order to sort the invoices by
         order: nil,
         request_options: {}
       )
@@ -121,7 +105,7 @@ module Whopsdk
       def to_hash
       end
 
-      # The direction of the sort.
+      # The direction to sort the invoices by
       module Direction
         extend Whopsdk::Internal::Type::Enum
 
@@ -150,9 +134,11 @@ module Whopsdk
             )
           end
 
+        # The access pass IDs to filter the invoices by
         sig { returns(T.nilable(T::Array[String])) }
         attr_accessor :access_pass_ids
 
+        # The collection methods to filter the invoices by
         sig do
           returns(
             T.nilable(
@@ -164,6 +150,7 @@ module Whopsdk
         end
         attr_accessor :collection_methods
 
+        # The statuses to filter the invoices by
         sig do
           returns(
             T.nilable(
@@ -173,7 +160,7 @@ module Whopsdk
         end
         attr_accessor :statuses
 
-        # Filters for the invoices table.
+        # The filters to apply to the invoices
         sig do
           params(
             access_pass_ids: T.nilable(T::Array[String]),
@@ -190,8 +177,11 @@ module Whopsdk
           ).returns(T.attached_class)
         end
         def self.new(
+          # The access pass IDs to filter the invoices by
           access_pass_ids: nil,
+          # The collection methods to filter the invoices by
           collection_methods: nil,
+          # The statuses to filter the invoices by
           statuses: nil
         )
         end
@@ -296,7 +286,7 @@ module Whopsdk
         end
       end
 
-      # Which columns can be used to sort.
+      # The order to sort the invoices by
       module Order
         extend Whopsdk::Internal::Type::Enum
 

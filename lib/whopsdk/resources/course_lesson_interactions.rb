@@ -20,26 +20,23 @@ module Whopsdk
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Whopsdk::Models::CourseLessonInteractionListParams} for more details.
-      #
       # @overload list(after: nil, before: nil, completed: nil, course_id: nil, first: nil, last: nil, lesson_id: nil, user_id: nil, request_options: {})
       #
-      # @param after [String, nil] Represents textual data as UTF-8 character sequences. This type is most often us
+      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
-      # @param before [String, nil] Represents textual data as UTF-8 character sequences. This type is most often us
+      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param completed [Boolean, nil] Represents `true` or `false` values.
+      # @param completed [Boolean, nil] Whether the lesson has been completed by the user
       #
-      # @param course_id [String, nil] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+      # @param course_id [String, nil] The ID of the course to list course lesson interactions for
       #
-      # @param first [Integer, nil] Represents non-fractional signed whole numeric values. Int can represent values
+      # @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
-      # @param last [Integer, nil] Represents non-fractional signed whole numeric values. Int can represent values
+      # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param lesson_id [String, nil] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+      # @param lesson_id [String, nil] The ID of the lesson to list course lesson interactions for
       #
-      # @param user_id [String, nil] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+      # @param user_id [String, nil] The ID of the user to list course lesson interactions for
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #

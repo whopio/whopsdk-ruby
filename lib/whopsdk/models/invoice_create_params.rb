@@ -8,13 +8,14 @@ module Whopsdk
       include Whopsdk::Internal::Type::RequestParameters
 
       # @!attribute collection_method
-      #   The method of collection for an invoice.
+      #   The method of collection for this invoice. If using charge_automatically, you
+      #   must provide a payment_token.
       #
       #   @return [Symbol, Whopsdk::Models::InvoiceCreateParams::CollectionMethod]
       required :collection_method, enum: -> { Whopsdk::InvoiceCreateParams::CollectionMethod }
 
       # @!attribute due_date
-      #   A valid timestamp in seconds, transported as an integer
+      #   The date the invoice is due, if applicable.
       #
       #   @return [Integer]
       required :due_date, Integer
@@ -26,64 +27,57 @@ module Whopsdk
       required :plan, -> { Whopsdk::InvoiceCreateParams::Plan }
 
       # @!attribute access_pass
-      #   The properties of the access pass to create for this invoice.
+      #   The properties of the access pass to create for this invoice. Include this if
+      #   you want to create an invoice for a new product.
       #
       #   @return [Whopsdk::Models::InvoiceCreateParams::AccessPass, nil]
       optional :access_pass, -> { Whopsdk::InvoiceCreateParams::AccessPass }, nil?: true
 
       # @!attribute access_pass_id
-      #   Represents a unique identifier that is Base64 obfuscated. It is often used to
-      #   refetch an object or as key for a cache. The ID type appears in a JSON response
-      #   as a String; however, it is not intended to be human-readable. When expected as
-      #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-      #   input value will be accepted as an ID.
+      #   The access pass ID to create this invoice for. Include this if you want to
+      #   create an invoice for an existing product.
       #
       #   @return [String, nil]
       optional :access_pass_id, String, nil?: true
 
       # @!attribute charge_buyer_fee
-      #   Represents `true` or `false` values.
+      #   Whether or not to charge the customer a buyer fee.
       #
       #   @return [Boolean, nil]
       optional :charge_buyer_fee, Whopsdk::Internal::Type::Boolean, nil?: true
 
       # @!attribute client_mutation_id
-      #   Represents textual data as UTF-8 character sequences. This type is most often
-      #   used by GraphQL to represent free-form human-readable text.
+      #   A unique identifier for the client performing the mutation.
       #
       #   @return [String, nil]
       optional :client_mutation_id, String, nil?: true
 
       # @!attribute customer_name
-      #   Represents textual data as UTF-8 character sequences. This type is most often
-      #   used by GraphQL to represent free-form human-readable text.
+      #   The name of the customer to create this invoice for. This is required if you
+      #   want to create an invoice for a customer who does not have a member of your
+      #   company yet.
       #
       #   @return [String, nil]
       optional :customer_name, String, nil?: true
 
       # @!attribute email_address
-      #   Represents textual data as UTF-8 character sequences. This type is most often
-      #   used by GraphQL to represent free-form human-readable text.
+      #   The email address to create this invoice for. This is required if you want to
+      #   create an invoice for a user who does not have a member of your company yet.
       #
       #   @return [String, nil]
       optional :email_address, String, nil?: true
 
       # @!attribute member_id
-      #   Represents a unique identifier that is Base64 obfuscated. It is often used to
-      #   refetch an object or as key for a cache. The ID type appears in a JSON response
-      #   as a String; however, it is not intended to be human-readable. When expected as
-      #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-      #   input value will be accepted as an ID.
+      #   The member ID to create this invoice for. Include this if you want to create an
+      #   invoice for an existing member. If you do not have a member ID, you must provide
+      #   an email_address and customer_name.
       #
       #   @return [String, nil]
       optional :member_id, String, nil?: true
 
       # @!attribute payment_token_id
-      #   Represents a unique identifier that is Base64 obfuscated. It is often used to
-      #   refetch an object or as key for a cache. The ID type appears in a JSON response
-      #   as a String; however, it is not intended to be human-readable. When expected as
-      #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-      #   input value will be accepted as an ID.
+      #   The payment token ID to use for this invoice. If using charge_automatically, you
+      #   must provide a payment_token.
       #
       #   @return [String, nil]
       optional :payment_token_id, String, nil?: true
@@ -92,31 +86,32 @@ module Whopsdk
       #   Some parameter documentations has been truncated, see
       #   {Whopsdk::Models::InvoiceCreateParams} for more details.
       #
-      #   @param collection_method [Symbol, Whopsdk::Models::InvoiceCreateParams::CollectionMethod] The method of collection for an invoice.
+      #   @param collection_method [Symbol, Whopsdk::Models::InvoiceCreateParams::CollectionMethod] The method of collection for this invoice. If using charge_automatically, you mu
       #
-      #   @param due_date [Integer] A valid timestamp in seconds, transported as an integer
+      #   @param due_date [Integer] The date the invoice is due, if applicable.
       #
       #   @param plan [Whopsdk::Models::InvoiceCreateParams::Plan] The properties of the plan to create for this invoice.
       #
-      #   @param access_pass [Whopsdk::Models::InvoiceCreateParams::AccessPass, nil] The properties of the access pass to create for this invoice.
+      #   @param access_pass [Whopsdk::Models::InvoiceCreateParams::AccessPass, nil] The properties of the access pass to create for this invoice. Include this if yo
       #
-      #   @param access_pass_id [String, nil] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+      #   @param access_pass_id [String, nil] The access pass ID to create this invoice for. Include this if you want to creat
       #
-      #   @param charge_buyer_fee [Boolean, nil] Represents `true` or `false` values.
+      #   @param charge_buyer_fee [Boolean, nil] Whether or not to charge the customer a buyer fee.
       #
-      #   @param client_mutation_id [String, nil] Represents textual data as UTF-8 character sequences. This type is most often us
+      #   @param client_mutation_id [String, nil] A unique identifier for the client performing the mutation.
       #
-      #   @param customer_name [String, nil] Represents textual data as UTF-8 character sequences. This type is most often us
+      #   @param customer_name [String, nil] The name of the customer to create this invoice for. This is required if you wan
       #
-      #   @param email_address [String, nil] Represents textual data as UTF-8 character sequences. This type is most often us
+      #   @param email_address [String, nil] The email address to create this invoice for. This is required if you want to cr
       #
-      #   @param member_id [String, nil] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+      #   @param member_id [String, nil] The member ID to create this invoice for. Include this if you want to create an
       #
-      #   @param payment_token_id [String, nil] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+      #   @param payment_token_id [String, nil] The payment token ID to use for this invoice. If using charge_automatically, you
       #
       #   @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}]
 
-      # The method of collection for an invoice.
+      # The method of collection for this invoice. If using charge_automatically, you
+      # must provide a payment_token.
       module CollectionMethod
         extend Whopsdk::Internal::Type::Enum
 
@@ -129,37 +124,37 @@ module Whopsdk
 
       class Plan < Whopsdk::Internal::Type::BaseModel
         # @!attribute ach_payments
-        #   Represents `true` or `false` values.
+        #   Whether or not ACH payments are accepted
         #
         #   @return [Boolean, nil]
         optional :ach_payments, Whopsdk::Internal::Type::Boolean, nil?: true
 
         # @!attribute base_currency
-        #   The available currencies on the platform
+        #   The respective currency identifier for the plan.
         #
         #   @return [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::BaseCurrency, nil]
         optional :base_currency, enum: -> { Whopsdk::InvoiceCreateParams::Plan::BaseCurrency }, nil?: true
 
         # @!attribute billing_period
-        #   Represents non-fractional signed whole numeric values. Int can represent values
-        #   between -(2^31) and 2^31 - 1.
+        #   The interval at which the plan charges (renewal plans).
         #
         #   @return [Integer, nil]
         optional :billing_period, Integer, nil?: true
 
         # @!attribute card_payments
-        #   Represents `true` or `false` values.
+        #   Whether or not card payments are accepted
         #
         #   @return [Boolean, nil]
         optional :card_payments, Whopsdk::Internal::Type::Boolean, nil?: true
 
         # @!attribute coinbase_commerce_accepted
-        #   Represents `true` or `false` values.
+        #   Marks whether coinbase commerce payments are/aren't accepted.
         #
         #   @return [Boolean, nil]
         optional :coinbase_commerce_accepted, Whopsdk::Internal::Type::Boolean, nil?: true
 
         # @!attribute custom_fields
+        #   An array of custom field objects.
         #
         #   @return [Array<Whopsdk::Models::InvoiceCreateParams::Plan::CustomField>, nil]
         optional :custom_fields,
@@ -167,70 +162,67 @@ module Whopsdk
                  nil?: true
 
         # @!attribute description
-        #   Represents textual data as UTF-8 character sequences. This type is most often
-        #   used by GraphQL to represent free-form human-readable text.
+        #   The description of the plan.
         #
         #   @return [String, nil]
         optional :description, String, nil?: true
 
         # @!attribute expiration_days
-        #   Represents non-fractional signed whole numeric values. Int can represent values
-        #   between -(2^31) and 2^31 - 1.
+        #   The interval at which the plan charges (expiration plans).
         #
         #   @return [Integer, nil]
         optional :expiration_days, Integer, nil?: true
 
         # @!attribute initial_price
-        #   A float that can be a string
+        #   An additional amount charged upon first purchase.
         #
         #   @return [Float, nil]
         optional :initial_price, Float, nil?: true
 
         # @!attribute internal_notes
-        #   Represents textual data as UTF-8 character sequences. This type is most often
-        #   used by GraphQL to represent free-form human-readable text.
+        #   A personal description or notes section for the business.
         #
         #   @return [String, nil]
         optional :internal_notes, String, nil?: true
 
         # @!attribute offer_cancel_discount
-        #   Represents `true` or `false` values.
+        #   Whether or not to offer a discount to cancel a subscription.
         #
         #   @return [Boolean, nil]
         optional :offer_cancel_discount, Whopsdk::Internal::Type::Boolean, nil?: true
 
         # @!attribute paypal_accepted
-        #   Represents `true` or `false` values.
+        #   Marks whether paypal payments are/aren't accepted.
         #
         #   @return [Boolean, nil]
         optional :paypal_accepted, Whopsdk::Internal::Type::Boolean, nil?: true
 
         # @!attribute plan_type
-        #   The type of plan that can be attached to an access pass
+        #   Indicates if the plan is a one time payment or recurring.
         #
         #   @return [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::PlanType, nil]
         optional :plan_type, enum: -> { Whopsdk::InvoiceCreateParams::Plan::PlanType }, nil?: true
 
         # @!attribute platform_balance_accepted
-        #   Represents `true` or `false` values.
+        #   Marks whether platform balance payments are/aren't accepted.
         #
         #   @return [Boolean, nil]
         optional :platform_balance_accepted, Whopsdk::Internal::Type::Boolean, nil?: true
 
         # @!attribute redirect_url
-        #   Represents textual data as UTF-8 character sequences. This type is most often
-        #   used by GraphQL to represent free-form human-readable text.
+        #   The URL to redirect the customer to after purchase.
         #
         #   @return [String, nil]
         optional :redirect_url, String, nil?: true
 
         # @!attribute release_method
-        #   The methods of how a plan can be released (including raffles and waitlists).
+        #   This is the release method the business uses to sell this plan.
         #
         #   @return [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::ReleaseMethod, nil]
         optional :release_method, enum: -> { Whopsdk::InvoiceCreateParams::Plan::ReleaseMethod }, nil?: true
 
         # @!attribute release_method_settings
+        #   Configurable settings on how this plan is released.
         #
         #   @return [Whopsdk::Models::InvoiceCreateParams::Plan::ReleaseMethodSettings, nil]
         optional :release_method_settings,
@@ -238,46 +230,44 @@ module Whopsdk
                  nil?: true
 
         # @!attribute renewal_price
-        #   A float that can be a string
+        #   The amount the customer is charged every billing period.
         #
         #   @return [Float, nil]
         optional :renewal_price, Float, nil?: true
 
         # @!attribute split_pay_required_payments
-        #   Represents non-fractional signed whole numeric values. Int can represent values
-        #   between -(2^31) and 2^31 - 1.
+        #   The number of payments required before pausing the subscription.
         #
         #   @return [Integer, nil]
         optional :split_pay_required_payments, Integer, nil?: true
 
         # @!attribute splitit_accepted
-        #   Represents `true` or `false` values.
+        #   Marks whether payments using splitit, a payment processor, are/aren't accepted
+        #   for the plan.
         #
         #   @return [Boolean, nil]
         optional :splitit_accepted, Whopsdk::Internal::Type::Boolean, nil?: true
 
         # @!attribute stock
-        #   Represents non-fractional signed whole numeric values. Int can represent values
-        #   between -(2^31) and 2^31 - 1.
+        #   The number of units available for purchase.
         #
         #   @return [Integer, nil]
         optional :stock, Integer, nil?: true
 
         # @!attribute trial_period_days
-        #   Represents non-fractional signed whole numeric values. Int can represent values
-        #   between -(2^31) and 2^31 - 1.
+        #   The number of free trial days added before a renewal plan.
         #
         #   @return [Integer, nil]
         optional :trial_period_days, Integer, nil?: true
 
         # @!attribute unlimited_stock
-        #   Represents `true` or `false` values.
+        #   Limits/doesn't limit the number of units available for purchase.
         #
         #   @return [Boolean, nil]
         optional :unlimited_stock, Whopsdk::Internal::Type::Boolean, nil?: true
 
         # @!attribute visibility
-        #   Visibility of a resource
+        #   Shows or hides the plan from public/business view.
         #
         #   @return [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::Visibility, nil]
         optional :visibility, enum: -> { Whopsdk::InvoiceCreateParams::Plan::Visibility }, nil?: true
@@ -288,55 +278,55 @@ module Whopsdk
         #
         #   The properties of the plan to create for this invoice.
         #
-        #   @param ach_payments [Boolean, nil] Represents `true` or `false` values.
+        #   @param ach_payments [Boolean, nil] Whether or not ACH payments are accepted
         #
-        #   @param base_currency [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::BaseCurrency, nil] The available currencies on the platform
+        #   @param base_currency [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::BaseCurrency, nil] The respective currency identifier for the plan.
         #
-        #   @param billing_period [Integer, nil] Represents non-fractional signed whole numeric values. Int can represent values
+        #   @param billing_period [Integer, nil] The interval at which the plan charges (renewal plans).
         #
-        #   @param card_payments [Boolean, nil] Represents `true` or `false` values.
+        #   @param card_payments [Boolean, nil] Whether or not card payments are accepted
         #
-        #   @param coinbase_commerce_accepted [Boolean, nil] Represents `true` or `false` values.
+        #   @param coinbase_commerce_accepted [Boolean, nil] Marks whether coinbase commerce payments are/aren't accepted.
         #
-        #   @param custom_fields [Array<Whopsdk::Models::InvoiceCreateParams::Plan::CustomField>, nil]
+        #   @param custom_fields [Array<Whopsdk::Models::InvoiceCreateParams::Plan::CustomField>, nil] An array of custom field objects.
         #
-        #   @param description [String, nil] Represents textual data as UTF-8 character sequences. This type is most often us
+        #   @param description [String, nil] The description of the plan.
         #
-        #   @param expiration_days [Integer, nil] Represents non-fractional signed whole numeric values. Int can represent values
+        #   @param expiration_days [Integer, nil] The interval at which the plan charges (expiration plans).
         #
-        #   @param initial_price [Float, nil] A float that can be a string
+        #   @param initial_price [Float, nil] An additional amount charged upon first purchase.
         #
-        #   @param internal_notes [String, nil] Represents textual data as UTF-8 character sequences. This type is most often us
+        #   @param internal_notes [String, nil] A personal description or notes section for the business.
         #
-        #   @param offer_cancel_discount [Boolean, nil] Represents `true` or `false` values.
+        #   @param offer_cancel_discount [Boolean, nil] Whether or not to offer a discount to cancel a subscription.
         #
-        #   @param paypal_accepted [Boolean, nil] Represents `true` or `false` values.
+        #   @param paypal_accepted [Boolean, nil] Marks whether paypal payments are/aren't accepted.
         #
-        #   @param plan_type [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::PlanType, nil] The type of plan that can be attached to an access pass
+        #   @param plan_type [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::PlanType, nil] Indicates if the plan is a one time payment or recurring.
         #
-        #   @param platform_balance_accepted [Boolean, nil] Represents `true` or `false` values.
+        #   @param platform_balance_accepted [Boolean, nil] Marks whether platform balance payments are/aren't accepted.
         #
-        #   @param redirect_url [String, nil] Represents textual data as UTF-8 character sequences. This type is most often us
+        #   @param redirect_url [String, nil] The URL to redirect the customer to after purchase.
         #
-        #   @param release_method [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::ReleaseMethod, nil] The methods of how a plan can be released (including raffles and waitlists).
+        #   @param release_method [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::ReleaseMethod, nil] This is the release method the business uses to sell this plan.
         #
-        #   @param release_method_settings [Whopsdk::Models::InvoiceCreateParams::Plan::ReleaseMethodSettings, nil]
+        #   @param release_method_settings [Whopsdk::Models::InvoiceCreateParams::Plan::ReleaseMethodSettings, nil] Configurable settings on how this plan is released.
         #
-        #   @param renewal_price [Float, nil] A float that can be a string
+        #   @param renewal_price [Float, nil] The amount the customer is charged every billing period.
         #
-        #   @param split_pay_required_payments [Integer, nil] Represents non-fractional signed whole numeric values. Int can represent values
+        #   @param split_pay_required_payments [Integer, nil] The number of payments required before pausing the subscription.
         #
-        #   @param splitit_accepted [Boolean, nil] Represents `true` or `false` values.
+        #   @param splitit_accepted [Boolean, nil] Marks whether payments using splitit, a payment processor, are/aren't accepted f
         #
-        #   @param stock [Integer, nil] Represents non-fractional signed whole numeric values. Int can represent values
+        #   @param stock [Integer, nil] The number of units available for purchase.
         #
-        #   @param trial_period_days [Integer, nil] Represents non-fractional signed whole numeric values. Int can represent values
+        #   @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
         #
-        #   @param unlimited_stock [Boolean, nil] Represents `true` or `false` values.
+        #   @param unlimited_stock [Boolean, nil] Limits/doesn't limit the number of units available for purchase.
         #
-        #   @param visibility [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::Visibility, nil] Visibility of a resource
+        #   @param visibility [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::Visibility, nil] Shows or hides the plan from public/business view.
 
-        # The available currencies on the platform
+        # The respective currency identifier for the plan.
         #
         # @see Whopsdk::Models::InvoiceCreateParams::Plan#base_currency
         module BaseCurrency
@@ -433,65 +423,56 @@ module Whopsdk
 
         class CustomField < Whopsdk::Internal::Type::BaseModel
           # @!attribute field_type
+          #   The type of the custom field.
           #
           #   @return [Symbol, :text]
           required :field_type, const: :text
 
           # @!attribute name
-          #   Represents textual data as UTF-8 character sequences. This type is most often
-          #   used by GraphQL to represent free-form human-readable text.
+          #   The name of the custom field.
           #
           #   @return [String]
           required :name, String
 
           # @!attribute id
-          #   Represents a unique identifier that is Base64 obfuscated. It is often used to
-          #   refetch an object or as key for a cache. The ID type appears in a JSON response
-          #   as a String; however, it is not intended to be human-readable. When expected as
-          #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-          #   input value will be accepted as an ID.
+          #   The ID of the custom field (if being updated)
           #
           #   @return [String, nil]
           optional :id, String, nil?: true
 
           # @!attribute order
-          #   Represents non-fractional signed whole numeric values. Int can represent values
-          #   between -(2^31) and 2^31 - 1.
+          #   The order of the field.
           #
           #   @return [Integer, nil]
           optional :order, Integer, nil?: true
 
           # @!attribute placeholder
-          #   Represents textual data as UTF-8 character sequences. This type is most often
-          #   used by GraphQL to represent free-form human-readable text.
+          #   The placeholder value of the field.
           #
           #   @return [String, nil]
           optional :placeholder, String, nil?: true
 
           # @!attribute required
-          #   Represents `true` or `false` values.
+          #   Whether or not the field is required.
           #
           #   @return [Boolean, nil]
           optional :required, Whopsdk::Internal::Type::Boolean, nil?: true
 
           # @!method initialize(name:, id: nil, order: nil, placeholder: nil, required: nil, field_type: :text)
-          #   Some parameter documentations has been truncated, see
-          #   {Whopsdk::Models::InvoiceCreateParams::Plan::CustomField} for more details.
+          #   @param name [String] The name of the custom field.
           #
-          #   @param name [String] Represents textual data as UTF-8 character sequences. This type is most often us
+          #   @param id [String, nil] The ID of the custom field (if being updated)
           #
-          #   @param id [String, nil] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+          #   @param order [Integer, nil] The order of the field.
           #
-          #   @param order [Integer, nil] Represents non-fractional signed whole numeric values. Int can represent values
+          #   @param placeholder [String, nil] The placeholder value of the field.
           #
-          #   @param placeholder [String, nil] Represents textual data as UTF-8 character sequences. This type is most often us
+          #   @param required [Boolean, nil] Whether or not the field is required.
           #
-          #   @param required [Boolean, nil] Represents `true` or `false` values.
-          #
-          #   @param field_type [Symbol, :text]
+          #   @param field_type [Symbol, :text] The type of the custom field.
         end
 
-        # The type of plan that can be attached to an access pass
+        # Indicates if the plan is a one time payment or recurring.
         #
         # @see Whopsdk::Models::InvoiceCreateParams::Plan#plan_type
         module PlanType
@@ -504,7 +485,7 @@ module Whopsdk
           #   @return [Array<Symbol>]
         end
 
-        # The methods of how a plan can be released (including raffles and waitlists).
+        # This is the release method the business uses to sell this plan.
         #
         # @see Whopsdk::Models::InvoiceCreateParams::Plan#release_method
         module ReleaseMethod
@@ -521,26 +502,26 @@ module Whopsdk
         # @see Whopsdk::Models::InvoiceCreateParams::Plan#release_method_settings
         class ReleaseMethodSettings < Whopsdk::Internal::Type::BaseModel
           # @!attribute expires_at
-          #   A valid timestamp in seconds, transported as an integer
+          #   When the raffle will expire
           #
           #   @return [Integer, nil]
           optional :expires_at, Integer, nil?: true
 
           # @!attribute max_entries
-          #   Represents non-fractional signed whole numeric values. Int can represent values
-          #   between -(2^31) and 2^31 - 1.
+          #   The maximum number of entries allowed for the raffle or waitlist
           #
           #   @return [Integer, nil]
           optional :max_entries, Integer, nil?: true
 
           # @!attribute nft_weighted_entries
-          #   Represents `true` or `false` values.
+          #   If this is enabled, the raffle will get entries based off of how many NFTs the
+          #   user owns
           #
           #   @return [Boolean, nil]
           optional :nft_weighted_entries, Whopsdk::Internal::Type::Boolean, nil?: true
 
           # @!attribute starts_at
-          #   A valid timestamp in seconds, transported as an integer
+          #   When the raffle will start
           #
           #   @return [Integer, nil]
           optional :starts_at, Integer, nil?: true
@@ -550,16 +531,18 @@ module Whopsdk
           #   {Whopsdk::Models::InvoiceCreateParams::Plan::ReleaseMethodSettings} for more
           #   details.
           #
-          #   @param expires_at [Integer, nil] A valid timestamp in seconds, transported as an integer
+          #   Configurable settings on how this plan is released.
           #
-          #   @param max_entries [Integer, nil] Represents non-fractional signed whole numeric values. Int can represent values
+          #   @param expires_at [Integer, nil] When the raffle will expire
           #
-          #   @param nft_weighted_entries [Boolean, nil] Represents `true` or `false` values.
+          #   @param max_entries [Integer, nil] The maximum number of entries allowed for the raffle or waitlist
           #
-          #   @param starts_at [Integer, nil] A valid timestamp in seconds, transported as an integer
+          #   @param nft_weighted_entries [Boolean, nil] If this is enabled, the raffle will get entries based off of how many NFTs the u
+          #
+          #   @param starts_at [Integer, nil] When the raffle will start
         end
 
-        # Visibility of a resource
+        # Shows or hides the plan from public/business view.
         #
         # @see Whopsdk::Models::InvoiceCreateParams::Plan#visibility
         module Visibility
@@ -577,31 +560,24 @@ module Whopsdk
 
       class AccessPass < Whopsdk::Internal::Type::BaseModel
         # @!attribute title
-        #   Represents textual data as UTF-8 character sequences. This type is most often
-        #   used by GraphQL to represent free-form human-readable text.
+        #   The title of the access pass.
         #
         #   @return [String]
         required :title, String
 
         # @!attribute product_tax_code_id
-        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
-        #   refetch an object or as key for a cache. The ID type appears in a JSON response
-        #   as a String; however, it is not intended to be human-readable. When expected as
-        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-        #   input value will be accepted as an ID.
+        #   The ID of the product tax code to apply to this access pass.
         #
         #   @return [String, nil]
         optional :product_tax_code_id, String, nil?: true
 
         # @!method initialize(title:, product_tax_code_id: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Whopsdk::Models::InvoiceCreateParams::AccessPass} for more details.
+        #   The properties of the access pass to create for this invoice. Include this if
+        #   you want to create an invoice for a new product.
         #
-        #   The properties of the access pass to create for this invoice.
+        #   @param title [String] The title of the access pass.
         #
-        #   @param title [String] Represents textual data as UTF-8 character sequences. This type is most often us
-        #
-        #   @param product_tax_code_id [String, nil] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+        #   @param product_tax_code_id [String, nil] The ID of the product tax code to apply to this access pass.
       end
     end
   end

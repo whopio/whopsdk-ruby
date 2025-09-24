@@ -7,15 +7,7 @@ module Whopsdk
       extend Whopsdk::Internal::Type::RequestParameters::Converter
       include Whopsdk::Internal::Type::RequestParameters
 
-      # @!attribute client_mutation_id
-      #   A unique identifier for the client performing the mutation.
-      #
-      #   @return [String, nil]
-      optional :client_mutation_id, String, nil?: true
-
-      # @!method initialize(client_mutation_id: nil, request_options: {})
-      #   @param client_mutation_id [String, nil] A unique identifier for the client performing the mutation.
-      #
+      # @!method initialize(request_options: {})
       #   @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}]
     end
   end

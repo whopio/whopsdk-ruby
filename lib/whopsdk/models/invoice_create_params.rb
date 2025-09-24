@@ -46,12 +46,6 @@ module Whopsdk
       #   @return [Boolean, nil]
       optional :charge_buyer_fee, Whopsdk::Internal::Type::Boolean, nil?: true
 
-      # @!attribute client_mutation_id
-      #   A unique identifier for the client performing the mutation.
-      #
-      #   @return [String, nil]
-      optional :client_mutation_id, String, nil?: true
-
       # @!attribute customer_name
       #   The name of the customer to create this invoice for. This is required if you
       #   want to create an invoice for a customer who does not have a member of your
@@ -82,7 +76,7 @@ module Whopsdk
       #   @return [String, nil]
       optional :payment_token_id, String, nil?: true
 
-      # @!method initialize(collection_method:, due_date:, plan:, access_pass: nil, access_pass_id: nil, charge_buyer_fee: nil, client_mutation_id: nil, customer_name: nil, email_address: nil, member_id: nil, payment_token_id: nil, request_options: {})
+      # @!method initialize(collection_method:, due_date:, plan:, access_pass: nil, access_pass_id: nil, charge_buyer_fee: nil, customer_name: nil, email_address: nil, member_id: nil, payment_token_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Whopsdk::Models::InvoiceCreateParams} for more details.
       #
@@ -97,8 +91,6 @@ module Whopsdk
       #   @param access_pass_id [String, nil] The access pass ID to create this invoice for. Include this if you want to creat
       #
       #   @param charge_buyer_fee [Boolean, nil] Whether or not to charge the customer a buyer fee.
-      #
-      #   @param client_mutation_id [String, nil] A unique identifier for the client performing the mutation.
       #
       #   @param customer_name [String, nil] The name of the customer to create this invoice for. This is required if you wan
       #

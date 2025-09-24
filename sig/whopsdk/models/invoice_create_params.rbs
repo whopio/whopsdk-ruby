@@ -8,7 +8,6 @@ module Whopsdk
         access_pass: Whopsdk::InvoiceCreateParams::AccessPass?,
         access_pass_id: String?,
         charge_buyer_fee: bool?,
-        client_mutation_id: String?,
         customer_name: String?,
         email_address: String?,
         member_id: String?,
@@ -32,8 +31,6 @@ module Whopsdk
 
       attr_accessor charge_buyer_fee: bool?
 
-      attr_accessor client_mutation_id: String?
-
       attr_accessor customer_name: String?
 
       attr_accessor email_address: String?
@@ -49,7 +46,6 @@ module Whopsdk
         ?access_pass: Whopsdk::InvoiceCreateParams::AccessPass?,
         ?access_pass_id: String?,
         ?charge_buyer_fee: bool?,
-        ?client_mutation_id: String?,
         ?customer_name: String?,
         ?email_address: String?,
         ?member_id: String?,
@@ -64,7 +60,6 @@ module Whopsdk
         access_pass: Whopsdk::InvoiceCreateParams::AccessPass?,
         access_pass_id: String?,
         charge_buyer_fee: bool?,
-        client_mutation_id: String?,
         customer_name: String?,
         email_address: String?,
         member_id: String?,

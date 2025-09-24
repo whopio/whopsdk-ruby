@@ -5,6 +5,16 @@ module Whopsdk
     class CourseLessonInteractions
       sig do
         params(
+          path_id: String,
+          query_id: String,
+          request_options: Whopsdk::RequestOptions::OrHash
+        ).returns(Whopsdk::Models::CourseLessonInteractionRetrieveResponse)
+      end
+      def retrieve(path_id, query_id:, request_options: {})
+      end
+
+      sig do
+        params(
           after: T.nilable(String),
           before: T.nilable(String),
           completed: T.nilable(T::Boolean),

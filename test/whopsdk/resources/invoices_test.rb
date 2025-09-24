@@ -20,6 +20,30 @@ class Whopsdk::Test::Resources::InvoicesTest < Whopsdk::Test::ResourceTest
     end
   end
 
+  def test_retrieve_required_params
+    skip("Prism tests are disabled")
+
+    response = @whopsdk.invoices.retrieve("id", query_id: "id")
+
+    assert_pattern do
+      response => Whopsdk::Models::InvoiceRetrieveResponse
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        created_at: Integer,
+        current_plan: Whopsdk::Models::InvoiceRetrieveResponse::CurrentPlan,
+        due_date: Integer | nil,
+        email_address: String | nil,
+        fetch_invoice_token: String,
+        member: Whopsdk::Models::InvoiceRetrieveResponse::Member | nil,
+        number: String,
+        status: Whopsdk::Models::InvoiceRetrieveResponse::Status
+      }
+    end
+  end
+
   def test_list_required_params
     skip("Prism tests are disabled")
 
@@ -34,6 +58,16 @@ class Whopsdk::Test::Resources::InvoicesTest < Whopsdk::Test::ResourceTest
         data: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Models::InvoiceListResponse::Data, nil?: true]) | nil,
         page_info: Whopsdk::Models::InvoiceListResponse::PageInfo
       }
+    end
+  end
+
+  def test_void_required_params
+    skip("Prism tests are disabled")
+
+    response = @whopsdk.invoices.void("id", body_id: "id")
+
+    assert_pattern do
+      response => Whopsdk::Internal::Type::Boolean
     end
   end
 end

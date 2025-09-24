@@ -22,16 +22,42 @@ module Whopsdk
         ).returns(T.nilable(Whopsdk::Models::InvoiceCreateResponse))
       end
       def create(
+        # The method of collection for an invoice.
         collection_method:,
+        # A valid timestamp in seconds, transported as an integer
         due_date:,
+        # The properties of the plan to create for this invoice.
         plan:,
+        # The properties of the access pass to create for this invoice.
         access_pass: nil,
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         access_pass_id: nil,
+        # Represents `true` or `false` values.
         charge_buyer_fee: nil,
+        # Represents textual data as UTF-8 character sequences. This type is most often
+        # used by GraphQL to represent free-form human-readable text.
         client_mutation_id: nil,
+        # Represents textual data as UTF-8 character sequences. This type is most often
+        # used by GraphQL to represent free-form human-readable text.
         customer_name: nil,
+        # Represents textual data as UTF-8 character sequences. This type is most often
+        # used by GraphQL to represent free-form human-readable text.
         email_address: nil,
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         member_id: nil,
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         payment_token_id: nil,
         request_options: {}
       )
@@ -60,13 +86,29 @@ module Whopsdk
         ).returns(Whopsdk::Models::InvoiceListResponse)
       end
       def list(
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         company_id:,
+        # Represents textual data as UTF-8 character sequences. This type is most often
+        # used by GraphQL to represent free-form human-readable text.
         after: nil,
+        # Represents textual data as UTF-8 character sequences. This type is most often
+        # used by GraphQL to represent free-form human-readable text.
         before: nil,
+        # The direction of the sort.
         direction: nil,
+        # Filters for the invoices table.
         filters: nil,
+        # Represents non-fractional signed whole numeric values. Int can represent values
+        # between -(2^31) and 2^31 - 1.
         first: nil,
+        # Represents non-fractional signed whole numeric values. Int can represent values
+        # between -(2^31) and 2^31 - 1.
         last: nil,
+        # Which columns can be used to sort.
         order: nil,
         request_options: {}
       )
@@ -79,7 +121,13 @@ module Whopsdk
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(T.nilable(T::Boolean))
       end
-      def void(id, client_mutation_id: nil, request_options: {})
+      def void(
+        id,
+        # Represents textual data as UTF-8 character sequences. This type is most often
+        # used by GraphQL to represent free-form human-readable text.
+        client_mutation_id: nil,
+        request_options: {}
+      )
       end
 
       # @api private

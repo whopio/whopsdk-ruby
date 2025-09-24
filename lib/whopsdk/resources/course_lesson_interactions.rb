@@ -20,16 +20,27 @@ module Whopsdk
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Whopsdk::Models::CourseLessonInteractionListParams} for more details.
+      #
       # @overload list(after: nil, before: nil, completed: nil, course_id: nil, first: nil, last: nil, lesson_id: nil, user_id: nil, request_options: {})
       #
-      # @param after [String, nil]
-      # @param before [String, nil]
-      # @param completed [Boolean, nil]
-      # @param course_id [String, nil]
-      # @param first [Integer, nil]
-      # @param last [Integer, nil]
-      # @param lesson_id [String, nil]
-      # @param user_id [String, nil]
+      # @param after [String, nil] Represents textual data as UTF-8 character sequences. This type is most often us
+      #
+      # @param before [String, nil] Represents textual data as UTF-8 character sequences. This type is most often us
+      #
+      # @param completed [Boolean, nil] Represents `true` or `false` values.
+      #
+      # @param course_id [String, nil] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+      #
+      # @param first [Integer, nil] Represents non-fractional signed whole numeric values. Int can represent values
+      #
+      # @param last [Integer, nil] Represents non-fractional signed whole numeric values. Int can represent values
+      #
+      # @param lesson_id [String, nil] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+      #
+      # @param user_id [String, nil] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+      #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Whopsdk::Models::CourseLessonInteractionListResponse]

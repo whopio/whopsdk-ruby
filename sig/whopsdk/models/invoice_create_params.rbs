@@ -103,7 +103,6 @@ module Whopsdk
           release_method: Whopsdk::Models::InvoiceCreateParams::Plan::release_method?,
           release_method_settings: Whopsdk::InvoiceCreateParams::Plan::ReleaseMethodSettings?,
           renewal_price: Float?,
-          requirements: Whopsdk::InvoiceCreateParams::Plan::Requirements?,
           split_pay_required_payments: Integer?,
           splitit_accepted: bool?,
           stock: Integer?,
@@ -149,8 +148,6 @@ module Whopsdk
 
         attr_accessor renewal_price: Float?
 
-        attr_accessor requirements: Whopsdk::InvoiceCreateParams::Plan::Requirements?
-
         attr_accessor split_pay_required_payments: Integer?
 
         attr_accessor splitit_accepted: bool?
@@ -182,7 +179,6 @@ module Whopsdk
           ?release_method: Whopsdk::Models::InvoiceCreateParams::Plan::release_method?,
           ?release_method_settings: Whopsdk::InvoiceCreateParams::Plan::ReleaseMethodSettings?,
           ?renewal_price: Float?,
-          ?requirements: Whopsdk::InvoiceCreateParams::Plan::Requirements?,
           ?split_pay_required_payments: Integer?,
           ?splitit_accepted: bool?,
           ?stock: Integer?,
@@ -210,7 +206,6 @@ module Whopsdk
           release_method: Whopsdk::Models::InvoiceCreateParams::Plan::release_method?,
           release_method_settings: Whopsdk::InvoiceCreateParams::Plan::ReleaseMethodSettings?,
           renewal_price: Float?,
-          requirements: Whopsdk::InvoiceCreateParams::Plan::Requirements?,
           split_pay_required_payments: Integer?,
           splitit_accepted: bool?,
           stock: Integer?,
@@ -491,51 +486,6 @@ module Whopsdk
             nft_weighted_entries: bool?,
             starts_at: Integer?
           }
-        end
-
-        type requirements =
-          {
-            custom_password: String,
-            email_required: Whopsdk::Models::InvoiceCreateParams::Plan::Requirements::email_required,
-            ownership_of_access_passes: ::Array[String]
-          }
-
-        class Requirements < Whopsdk::Internal::Type::BaseModel
-          attr_reader custom_password: String?
-
-          def custom_password=: (String) -> String
-
-          attr_reader email_required: Whopsdk::Models::InvoiceCreateParams::Plan::Requirements::email_required?
-
-          def email_required=: (
-            Whopsdk::Models::InvoiceCreateParams::Plan::Requirements::email_required
-          ) -> Whopsdk::Models::InvoiceCreateParams::Plan::Requirements::email_required
-
-          attr_reader ownership_of_access_passes: ::Array[String]?
-
-          def ownership_of_access_passes=: (::Array[String]) -> ::Array[String]
-
-          def initialize: (
-            ?custom_password: String,
-            ?email_required: Whopsdk::Models::InvoiceCreateParams::Plan::Requirements::email_required,
-            ?ownership_of_access_passes: ::Array[String]
-          ) -> void
-
-          def to_hash: -> {
-            custom_password: String,
-            email_required: Whopsdk::Models::InvoiceCreateParams::Plan::Requirements::email_required,
-            ownership_of_access_passes: ::Array[String]
-          }
-
-          type email_required = true
-
-          module EmailRequired
-            extend Whopsdk::Internal::Type::Enum
-
-            TRUE: true
-
-            def self?.values: -> ::Array[Whopsdk::Models::InvoiceCreateParams::Plan::Requirements::email_required]
-          end
         end
 
         type visibility = :visible | :hidden | :archived | :quick_link

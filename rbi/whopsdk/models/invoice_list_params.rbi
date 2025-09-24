@@ -11,20 +11,31 @@ module Whopsdk
           T.any(Whopsdk::InvoiceListParams, Whopsdk::Internal::AnyHash)
         end
 
+      # Represents a unique identifier that is Base64 obfuscated. It is often used to
+      # refetch an object or as key for a cache. The ID type appears in a JSON response
+      # as a String; however, it is not intended to be human-readable. When expected as
+      # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+      # input value will be accepted as an ID.
       sig { returns(String) }
       attr_accessor :company_id
 
+      # Represents textual data as UTF-8 character sequences. This type is most often
+      # used by GraphQL to represent free-form human-readable text.
       sig { returns(T.nilable(String)) }
       attr_accessor :after
 
+      # Represents textual data as UTF-8 character sequences. This type is most often
+      # used by GraphQL to represent free-form human-readable text.
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
+      # The direction of the sort.
       sig do
         returns(T.nilable(Whopsdk::InvoiceListParams::Direction::OrSymbol))
       end
       attr_accessor :direction
 
+      # Filters for the invoices table.
       sig { returns(T.nilable(Whopsdk::InvoiceListParams::Filters)) }
       attr_reader :filters
 
@@ -35,12 +46,17 @@ module Whopsdk
       end
       attr_writer :filters
 
+      # Represents non-fractional signed whole numeric values. Int can represent values
+      # between -(2^31) and 2^31 - 1.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :first
 
+      # Represents non-fractional signed whole numeric values. Int can represent values
+      # between -(2^31) and 2^31 - 1.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
+      # Which columns can be used to sort.
       sig { returns(T.nilable(Whopsdk::InvoiceListParams::Order::OrSymbol)) }
       attr_accessor :order
 
@@ -58,13 +74,29 @@ module Whopsdk
         ).returns(T.attached_class)
       end
       def self.new(
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         company_id:,
+        # Represents textual data as UTF-8 character sequences. This type is most often
+        # used by GraphQL to represent free-form human-readable text.
         after: nil,
+        # Represents textual data as UTF-8 character sequences. This type is most often
+        # used by GraphQL to represent free-form human-readable text.
         before: nil,
+        # The direction of the sort.
         direction: nil,
+        # Filters for the invoices table.
         filters: nil,
+        # Represents non-fractional signed whole numeric values. Int can represent values
+        # between -(2^31) and 2^31 - 1.
         first: nil,
+        # Represents non-fractional signed whole numeric values. Int can represent values
+        # between -(2^31) and 2^31 - 1.
         last: nil,
+        # Which columns can be used to sort.
         order: nil,
         request_options: {}
       )
@@ -89,6 +121,7 @@ module Whopsdk
       def to_hash
       end
 
+      # The direction of the sort.
       module Direction
         extend Whopsdk::Internal::Type::Enum
 
@@ -140,6 +173,7 @@ module Whopsdk
         end
         attr_accessor :statuses
 
+        # Filters for the invoices table.
         sig do
           params(
             access_pass_ids: T.nilable(T::Array[String]),
@@ -184,6 +218,7 @@ module Whopsdk
         def to_hash
         end
 
+        # The method of collection for an invoice.
         module CollectionMethod
           extend Whopsdk::Internal::Type::Enum
 
@@ -218,6 +253,7 @@ module Whopsdk
           end
         end
 
+        # The different statuses an invoice can be in
         module Status
           extend Whopsdk::Internal::Type::Enum
 
@@ -260,6 +296,7 @@ module Whopsdk
         end
       end
 
+      # Which columns can be used to sort.
       module Order
         extend Whopsdk::Internal::Type::Enum
 

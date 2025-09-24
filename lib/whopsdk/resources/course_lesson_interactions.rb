@@ -3,6 +3,8 @@
 module Whopsdk
   module Resources
     class CourseLessonInteractions
+      # Retrieves a course lesson interaction by ID
+      #
       # @overload retrieve(id, request_options: {})
       #
       # @param id [String]
@@ -20,6 +22,8 @@ module Whopsdk
         )
       end
 
+      # Lists course lesson interactions
+      #
       # @overload list(after: nil, before: nil, completed: nil, course_id: nil, first: nil, last: nil, lesson_id: nil, user_id: nil, request_options: {})
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.

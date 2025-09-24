@@ -29,9 +29,9 @@ module Whopsdk
           due_date: Integer?,
           email_address: String?,
           fetch_invoice_token: String,
-          member: Whopsdk::Models::InvoiceListResponse::Data::Member?,
           number: String,
-          status: Whopsdk::Models::InvoiceListResponse::Data::status
+          status: Whopsdk::Models::InvoiceListResponse::Data::status,
+          user: Whopsdk::Models::InvoiceListResponse::Data::User?
         }
 
       class Data < Whopsdk::Internal::Type::BaseModel
@@ -47,11 +47,11 @@ module Whopsdk
 
         attr_accessor fetch_invoice_token: String
 
-        attr_accessor member: Whopsdk::Models::InvoiceListResponse::Data::Member?
-
         attr_accessor number: String
 
         attr_accessor status: Whopsdk::Models::InvoiceListResponse::Data::status
+
+        attr_accessor user: Whopsdk::Models::InvoiceListResponse::Data::User?
 
         def initialize: (
           id: String,
@@ -60,9 +60,9 @@ module Whopsdk
           due_date: Integer?,
           email_address: String?,
           fetch_invoice_token: String,
-          member: Whopsdk::Models::InvoiceListResponse::Data::Member?,
           number: String,
-          status: Whopsdk::Models::InvoiceListResponse::Data::status
+          status: Whopsdk::Models::InvoiceListResponse::Data::status,
+          user: Whopsdk::Models::InvoiceListResponse::Data::User?
         ) -> void
 
         def to_hash: -> {
@@ -72,9 +72,9 @@ module Whopsdk
           due_date: Integer?,
           email_address: String?,
           fetch_invoice_token: String,
-          member: Whopsdk::Models::InvoiceListResponse::Data::Member?,
           number: String,
-          status: Whopsdk::Models::InvoiceListResponse::Data::status
+          status: Whopsdk::Models::InvoiceListResponse::Data::status,
+          user: Whopsdk::Models::InvoiceListResponse::Data::User?
         }
 
         type current_plan =
@@ -281,33 +281,6 @@ module Whopsdk
           end
         end
 
-        type member =
-          { id: String, email: String?, name: String?, username: String? }
-
-        class Member < Whopsdk::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          attr_accessor email: String?
-
-          attr_accessor name: String?
-
-          attr_accessor username: String?
-
-          def initialize: (
-            id: String,
-            email: String?,
-            name: String?,
-            username: String?
-          ) -> void
-
-          def to_hash: -> {
-            id: String,
-            email: String?,
-            name: String?,
-            username: String?
-          }
-        end
-
         type status = :open | :paid | :past_due | :void
 
         module Status
@@ -319,6 +292,20 @@ module Whopsdk
           VOID: :void
 
           def self?.values: -> ::Array[Whopsdk::Models::InvoiceListResponse::Data::status]
+        end
+
+        type user = { id: String, name: String?, username: String }
+
+        class User < Whopsdk::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor name: String?
+
+          attr_accessor username: String
+
+          def initialize: (id: String, name: String?, username: String) -> void
+
+          def to_hash: -> { id: String, name: String?, username: String }
         end
       end
 

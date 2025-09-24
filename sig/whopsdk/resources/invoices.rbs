@@ -16,6 +16,12 @@ module Whopsdk
         ?request_options: Whopsdk::request_opts
       ) -> Whopsdk::Models::InvoiceCreateResponse?
 
+      def retrieve: (
+        String path_id,
+        query_id: String,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Models::InvoiceRetrieveResponse
+
       def list: (
         company_id: String,
         ?after: String?,
@@ -27,6 +33,13 @@ module Whopsdk
         ?order: Whopsdk::Models::InvoiceListParams::order?,
         ?request_options: Whopsdk::request_opts
       ) -> Whopsdk::Models::InvoiceListResponse
+
+      def `void`: (
+        String path_id,
+        body_id: String,
+        ?client_mutation_id: String?,
+        ?request_options: Whopsdk::request_opts
+      ) -> bool?
 
       def initialize: (client: Whopsdk::Client) -> void
     end

@@ -1,0 +1,66 @@
+module Whopsdk
+  module Models
+    type course_lesson_interaction_retrieve_response =
+      {
+        id: String,
+        completed: bool,
+        created_at: Integer,
+        lesson: Whopsdk::Models::CourseLessonInteractionRetrieveResponse::Lesson,
+        user: Whopsdk::Models::CourseLessonInteractionRetrieveResponse::User
+      }
+
+    class CourseLessonInteractionRetrieveResponse < Whopsdk::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor completed: bool
+
+      attr_accessor created_at: Integer
+
+      attr_accessor lesson: Whopsdk::Models::CourseLessonInteractionRetrieveResponse::Lesson
+
+      attr_accessor user: Whopsdk::Models::CourseLessonInteractionRetrieveResponse::User
+
+      def initialize: (
+        id: String,
+        completed: bool,
+        created_at: Integer,
+        lesson: Whopsdk::Models::CourseLessonInteractionRetrieveResponse::Lesson,
+        user: Whopsdk::Models::CourseLessonInteractionRetrieveResponse::User
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        completed: bool,
+        created_at: Integer,
+        lesson: Whopsdk::Models::CourseLessonInteractionRetrieveResponse::Lesson,
+        user: Whopsdk::Models::CourseLessonInteractionRetrieveResponse::User
+      }
+
+      type lesson = { id: String, title: String }
+
+      class Lesson < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type user = { id: String, name: String?, username: String }
+
+      class User < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
+      end
+    end
+  end
+end

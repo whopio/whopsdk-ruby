@@ -39,6 +39,16 @@ module Whopsdk
 
       sig do
         params(
+          path_id: String,
+          query_id: String,
+          request_options: Whopsdk::RequestOptions::OrHash
+        ).returns(Whopsdk::Models::InvoiceRetrieveResponse)
+      end
+      def retrieve(path_id, query_id:, request_options: {})
+      end
+
+      sig do
+        params(
           company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
@@ -61,6 +71,17 @@ module Whopsdk
         order: nil,
         request_options: {}
       )
+      end
+
+      sig do
+        params(
+          path_id: String,
+          body_id: String,
+          client_mutation_id: T.nilable(String),
+          request_options: Whopsdk::RequestOptions::OrHash
+        ).returns(T.nilable(T::Boolean))
+      end
+      def void(path_id, body_id:, client_mutation_id: nil, request_options: {})
       end
 
       # @api private

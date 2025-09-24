@@ -26,7 +26,7 @@ whopsdk = Whopsdk::Client.new(
   api_key: ENV["WHOPSDK_API_KEY"] # This is the default and can be omitted
 )
 
-invoices = whopsdk.invoices.list(company_id: "company_id")
+invoices = whopsdk.invoices.list(company_id: "REPLACE_ME")
 
 puts(invoices.data)
 ```
@@ -37,7 +37,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  invoice = whopsdk.invoices.list(company_id: "company_id")
+  invoice = whopsdk.invoices.list(company_id: "REPLACE_ME")
 rescue Whopsdk::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
@@ -80,7 +80,7 @@ whopsdk = Whopsdk::Client.new(
 )
 
 # Or, configure per-request:
-whopsdk.invoices.list(company_id: "company_id", request_options: {max_retries: 5})
+whopsdk.invoices.list(company_id: "REPLACE_ME", request_options: {max_retries: 5})
 ```
 
 ### Timeouts
@@ -94,7 +94,7 @@ whopsdk = Whopsdk::Client.new(
 )
 
 # Or, configure per-request:
-whopsdk.invoices.list(company_id: "company_id", request_options: {timeout: 5})
+whopsdk.invoices.list(company_id: "REPLACE_ME", request_options: {timeout: 5})
 ```
 
 On timeout, `Whopsdk::Errors::APITimeoutError` is raised.
@@ -126,7 +126,7 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 ```ruby
 invoices =
   whopsdk.invoices.list(
-    company_id: "company_id",
+    company_id: "REPLACE_ME",
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},
@@ -172,17 +172,17 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-whopsdk.invoices.list(company_id: "company_id")
+whopsdk.invoices.list(company_id: "REPLACE_ME")
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-whopsdk.invoices.list(company_id: "company_id")
+whopsdk.invoices.list(company_id: "REPLACE_ME")
 
 # You can also splat a full Params class:
-params = Whopsdk::InvoiceListParams.new(company_id: "company_id")
+params = Whopsdk::InvoiceListParams.new(company_id: "REPLACE_ME")
 whopsdk.invoices.list(**params)
 ```
 

@@ -11,31 +11,15 @@ module Whopsdk
           T.any(Whopsdk::InvoiceVoidParams, Whopsdk::Internal::AnyHash)
         end
 
-      # A unique identifier for the client performing the mutation.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :client_mutation_id
-
       sig do
-        params(
-          client_mutation_id: T.nilable(String),
-          request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.attached_class)
-      end
-      def self.new(
-        # A unique identifier for the client performing the mutation.
-        client_mutation_id: nil,
-        request_options: {}
-      )
-      end
-
-      sig do
-        override.returns(
-          {
-            client_mutation_id: T.nilable(String),
-            request_options: Whopsdk::RequestOptions
-          }
+        params(request_options: Whopsdk::RequestOptions::OrHash).returns(
+          T.attached_class
         )
       end
+      def self.new(request_options: {})
+      end
+
+      sig { override.returns({ request_options: Whopsdk::RequestOptions }) }
       def to_hash
       end
     end

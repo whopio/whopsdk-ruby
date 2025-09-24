@@ -14,7 +14,6 @@ module Whopsdk
             T.nilable(Whopsdk::InvoiceCreateParams::AccessPass::OrHash),
           access_pass_id: T.nilable(String),
           charge_buyer_fee: T.nilable(T::Boolean),
-          client_mutation_id: T.nilable(String),
           customer_name: T.nilable(String),
           email_address: T.nilable(String),
           member_id: T.nilable(String),
@@ -38,8 +37,6 @@ module Whopsdk
         access_pass_id: nil,
         # Whether or not to charge the customer a buyer fee.
         charge_buyer_fee: nil,
-        # A unique identifier for the client performing the mutation.
-        client_mutation_id: nil,
         # The name of the customer to create this invoice for. This is required if you
         # want to create an invoice for a customer who does not have a member of your
         # company yet.
@@ -107,16 +104,10 @@ module Whopsdk
       sig do
         params(
           id: String,
-          client_mutation_id: T.nilable(String),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(T.nilable(T::Boolean))
       end
-      def void(
-        id,
-        # A unique identifier for the client performing the mutation.
-        client_mutation_id: nil,
-        request_options: {}
-      )
+      def void(id, request_options: {})
       end
 
       # @api private

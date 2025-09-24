@@ -8,7 +8,7 @@ module Whopsdk
       #
       # Creates an invoice
       #
-      # @overload create(collection_method:, due_date:, plan:, access_pass: nil, access_pass_id: nil, charge_buyer_fee: nil, client_mutation_id: nil, customer_name: nil, email_address: nil, member_id: nil, payment_token_id: nil, request_options: {})
+      # @overload create(collection_method:, due_date:, plan:, access_pass: nil, access_pass_id: nil, charge_buyer_fee: nil, customer_name: nil, email_address: nil, member_id: nil, payment_token_id: nil, request_options: {})
       #
       # @param collection_method [Symbol, Whopsdk::Models::InvoiceCreateParams::CollectionMethod] The method of collection for this invoice. If using charge_automatically, you mu
       #
@@ -21,8 +21,6 @@ module Whopsdk
       # @param access_pass_id [String, nil] The access pass ID to create this invoice for. Include this if you want to creat
       #
       # @param charge_buyer_fee [Boolean, nil] Whether or not to charge the customer a buyer fee.
-      #
-      # @param client_mutation_id [String, nil] A unique identifier for the client performing the mutation.
       #
       # @param customer_name [String, nil] The name of the customer to create this invoice for. This is required if you wan
       #
@@ -105,25 +103,20 @@ module Whopsdk
 
       # Void an invoice
       #
-      # @overload void(id, client_mutation_id: nil, request_options: {})
+      # @overload void(id, request_options: {})
       #
       # @param id [String]
-      #
-      # @param client_mutation_id [String, nil] A unique identifier for the client performing the mutation.
-      #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Boolean, nil]
       #
       # @see Whopsdk::Models::InvoiceVoidParams
       def void(id, params = {})
-        parsed, options = Whopsdk::InvoiceVoidParams.dump_request(params)
         @client.request(
           method: :post,
           path: ["invoices/%1$s/void", id],
-          body: parsed,
           model: Whopsdk::Internal::Type::Boolean,
-          options: options
+          options: params[:request_options]
         )
       end
 

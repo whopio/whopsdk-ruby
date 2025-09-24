@@ -14,6 +14,10 @@ module Whopsdk
 
     attr_reader course_lesson_interactions: Whopsdk::Resources::CourseLessonInteractions
 
+    attr_reader access_passes: Whopsdk::Resources::AccessPasses
+
+    attr_reader companies: Whopsdk::Resources::Companies
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

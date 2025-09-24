@@ -19,6 +19,12 @@ module Whopsdk
     sig { returns(Whopsdk::Resources::CourseLessonInteractions) }
     attr_reader :course_lesson_interactions
 
+    sig { returns(Whopsdk::Resources::AccessPasses) }
+    attr_reader :access_passes
+
+    sig { returns(Whopsdk::Resources::Companies) }
+    attr_reader :companies
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

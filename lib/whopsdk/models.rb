@@ -39,6 +39,12 @@ module Whopsdk
     mod.define_sorbet_constant!(const) { T.type_alias { mod.to_sorbet_type } }
   end
 
+  AccessPassListParams = Whopsdk::Models::AccessPassListParams
+
+  AccessPassRetrieveParams = Whopsdk::Models::AccessPassRetrieveParams
+
+  CompanyRetrieveParams = Whopsdk::Models::CompanyRetrieveParams
+
   CourseLessonInteractionListParams = Whopsdk::Models::CourseLessonInteractionListParams
 
   CourseLessonInteractionRetrieveParams = Whopsdk::Models::CourseLessonInteractionRetrieveParams

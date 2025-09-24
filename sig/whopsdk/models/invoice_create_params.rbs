@@ -1,15 +1,544 @@
 module Whopsdk
   module Models
     type invoice_create_params =
-      {  } & Whopsdk::Internal::Type::request_parameters
+      { input: Whopsdk::InvoiceCreateParams::Input }
+      & Whopsdk::Internal::Type::request_parameters
 
     class InvoiceCreateParams < Whopsdk::Internal::Type::BaseModel
       extend Whopsdk::Internal::Type::RequestParameters::Converter
       include Whopsdk::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: Whopsdk::request_opts) -> void
+      attr_accessor input: Whopsdk::InvoiceCreateParams::Input
 
-      def to_hash: -> { request_options: Whopsdk::RequestOptions }
+      def initialize: (
+        input: Whopsdk::InvoiceCreateParams::Input,
+        ?request_options: Whopsdk::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        input: Whopsdk::InvoiceCreateParams::Input,
+        request_options: Whopsdk::RequestOptions
+      }
+
+      type input =
+        {
+          collection_method: Whopsdk::Models::InvoiceCreateParams::Input::collection_method,
+          due_date: Integer,
+          plan: Whopsdk::InvoiceCreateParams::Input::Plan,
+          access_pass: Whopsdk::InvoiceCreateParams::Input::AccessPass?,
+          access_pass_id: String?,
+          charge_buyer_fee: bool?,
+          client_mutation_id: String?,
+          customer_name: String?,
+          email_address: String?,
+          member_id: String?,
+          payment_token_id: String?
+        }
+
+      class Input < Whopsdk::Internal::Type::BaseModel
+        attr_accessor collection_method: Whopsdk::Models::InvoiceCreateParams::Input::collection_method
+
+        attr_accessor due_date: Integer
+
+        attr_accessor plan: Whopsdk::InvoiceCreateParams::Input::Plan
+
+        attr_accessor access_pass: Whopsdk::InvoiceCreateParams::Input::AccessPass?
+
+        attr_accessor access_pass_id: String?
+
+        attr_accessor charge_buyer_fee: bool?
+
+        attr_accessor client_mutation_id: String?
+
+        attr_accessor customer_name: String?
+
+        attr_accessor email_address: String?
+
+        attr_accessor member_id: String?
+
+        attr_accessor payment_token_id: String?
+
+        def initialize: (
+          collection_method: Whopsdk::Models::InvoiceCreateParams::Input::collection_method,
+          due_date: Integer,
+          plan: Whopsdk::InvoiceCreateParams::Input::Plan,
+          ?access_pass: Whopsdk::InvoiceCreateParams::Input::AccessPass?,
+          ?access_pass_id: String?,
+          ?charge_buyer_fee: bool?,
+          ?client_mutation_id: String?,
+          ?customer_name: String?,
+          ?email_address: String?,
+          ?member_id: String?,
+          ?payment_token_id: String?
+        ) -> void
+
+        def to_hash: -> {
+          collection_method: Whopsdk::Models::InvoiceCreateParams::Input::collection_method,
+          due_date: Integer,
+          plan: Whopsdk::InvoiceCreateParams::Input::Plan,
+          access_pass: Whopsdk::InvoiceCreateParams::Input::AccessPass?,
+          access_pass_id: String?,
+          charge_buyer_fee: bool?,
+          client_mutation_id: String?,
+          customer_name: String?,
+          email_address: String?,
+          member_id: String?,
+          payment_token_id: String?
+        }
+
+        type collection_method = :send_invoice | :charge_automatically
+
+        module CollectionMethod
+          extend Whopsdk::Internal::Type::Enum
+
+          SEND_INVOICE: :send_invoice
+          CHARGE_AUTOMATICALLY: :charge_automatically
+
+          def self?.values: -> ::Array[Whopsdk::Models::InvoiceCreateParams::Input::collection_method]
+        end
+
+        type plan =
+          {
+            ach_payments: bool?,
+            base_currency: Whopsdk::Models::InvoiceCreateParams::Input::Plan::base_currency?,
+            billing_period: Integer?,
+            card_payments: bool?,
+            coinbase_commerce_accepted: bool?,
+            custom_fields: ::Array[Whopsdk::InvoiceCreateParams::Input::Plan::CustomField]?,
+            description: String?,
+            expiration_days: Integer?,
+            initial_price: top,
+            internal_notes: String?,
+            offer_cancel_discount: bool?,
+            paypal_accepted: bool?,
+            plan_type: Whopsdk::Models::InvoiceCreateParams::Input::Plan::plan_type?,
+            platform_balance_accepted: bool?,
+            redirect_url: String?,
+            release_method: Whopsdk::Models::InvoiceCreateParams::Input::Plan::release_method?,
+            release_method_settings: Whopsdk::InvoiceCreateParams::Input::Plan::ReleaseMethodSettings?,
+            renewal_price: top,
+            requirements: top,
+            split_pay_required_payments: Integer?,
+            splitit_accepted: bool?,
+            stock: Integer?,
+            trial_period_days: Integer?,
+            unlimited_stock: bool?,
+            visibility: Whopsdk::Models::InvoiceCreateParams::Input::Plan::visibility?
+          }
+
+        class Plan < Whopsdk::Internal::Type::BaseModel
+          attr_accessor ach_payments: bool?
+
+          attr_accessor base_currency: Whopsdk::Models::InvoiceCreateParams::Input::Plan::base_currency?
+
+          attr_accessor billing_period: Integer?
+
+          attr_accessor card_payments: bool?
+
+          attr_accessor coinbase_commerce_accepted: bool?
+
+          attr_accessor custom_fields: ::Array[Whopsdk::InvoiceCreateParams::Input::Plan::CustomField]?
+
+          attr_accessor description: String?
+
+          attr_accessor expiration_days: Integer?
+
+          attr_reader initial_price: top?
+
+          def initial_price=: (top) -> top
+
+          attr_accessor internal_notes: String?
+
+          attr_accessor offer_cancel_discount: bool?
+
+          attr_accessor paypal_accepted: bool?
+
+          attr_accessor plan_type: Whopsdk::Models::InvoiceCreateParams::Input::Plan::plan_type?
+
+          attr_accessor platform_balance_accepted: bool?
+
+          attr_accessor redirect_url: String?
+
+          attr_accessor release_method: Whopsdk::Models::InvoiceCreateParams::Input::Plan::release_method?
+
+          attr_accessor release_method_settings: Whopsdk::InvoiceCreateParams::Input::Plan::ReleaseMethodSettings?
+
+          attr_reader renewal_price: top?
+
+          def renewal_price=: (top) -> top
+
+          attr_reader requirements: top?
+
+          def requirements=: (top) -> top
+
+          attr_accessor split_pay_required_payments: Integer?
+
+          attr_accessor splitit_accepted: bool?
+
+          attr_accessor stock: Integer?
+
+          attr_accessor trial_period_days: Integer?
+
+          attr_accessor unlimited_stock: bool?
+
+          attr_accessor visibility: Whopsdk::Models::InvoiceCreateParams::Input::Plan::visibility?
+
+          def initialize: (
+            ?ach_payments: bool?,
+            ?base_currency: Whopsdk::Models::InvoiceCreateParams::Input::Plan::base_currency?,
+            ?billing_period: Integer?,
+            ?card_payments: bool?,
+            ?coinbase_commerce_accepted: bool?,
+            ?custom_fields: ::Array[Whopsdk::InvoiceCreateParams::Input::Plan::CustomField]?,
+            ?description: String?,
+            ?expiration_days: Integer?,
+            ?initial_price: top,
+            ?internal_notes: String?,
+            ?offer_cancel_discount: bool?,
+            ?paypal_accepted: bool?,
+            ?plan_type: Whopsdk::Models::InvoiceCreateParams::Input::Plan::plan_type?,
+            ?platform_balance_accepted: bool?,
+            ?redirect_url: String?,
+            ?release_method: Whopsdk::Models::InvoiceCreateParams::Input::Plan::release_method?,
+            ?release_method_settings: Whopsdk::InvoiceCreateParams::Input::Plan::ReleaseMethodSettings?,
+            ?renewal_price: top,
+            ?requirements: top,
+            ?split_pay_required_payments: Integer?,
+            ?splitit_accepted: bool?,
+            ?stock: Integer?,
+            ?trial_period_days: Integer?,
+            ?unlimited_stock: bool?,
+            ?visibility: Whopsdk::Models::InvoiceCreateParams::Input::Plan::visibility?
+          ) -> void
+
+          def to_hash: -> {
+            ach_payments: bool?,
+            base_currency: Whopsdk::Models::InvoiceCreateParams::Input::Plan::base_currency?,
+            billing_period: Integer?,
+            card_payments: bool?,
+            coinbase_commerce_accepted: bool?,
+            custom_fields: ::Array[Whopsdk::InvoiceCreateParams::Input::Plan::CustomField]?,
+            description: String?,
+            expiration_days: Integer?,
+            initial_price: top,
+            internal_notes: String?,
+            offer_cancel_discount: bool?,
+            paypal_accepted: bool?,
+            plan_type: Whopsdk::Models::InvoiceCreateParams::Input::Plan::plan_type?,
+            platform_balance_accepted: bool?,
+            redirect_url: String?,
+            release_method: Whopsdk::Models::InvoiceCreateParams::Input::Plan::release_method?,
+            release_method_settings: Whopsdk::InvoiceCreateParams::Input::Plan::ReleaseMethodSettings?,
+            renewal_price: top,
+            requirements: top,
+            split_pay_required_payments: Integer?,
+            splitit_accepted: bool?,
+            stock: Integer?,
+            trial_period_days: Integer?,
+            unlimited_stock: bool?,
+            visibility: Whopsdk::Models::InvoiceCreateParams::Input::Plan::visibility?
+          }
+
+          type base_currency =
+            :usd
+            | :sgd
+            | :inr
+            | :aud
+            | :brl
+            | :cad
+            | :dkk
+            | :eur
+            | :nok
+            | :gbp
+            | :sek
+            | :chf
+            | :hkd
+            | :huf
+            | :jpy
+            | :mxn
+            | :myr
+            | :pln
+            | :czk
+            | :nzd
+            | :aed
+            | :eth
+            | :ape
+            | :cop
+            | :ron
+            | :thb
+            | :bgn
+            | :idr
+            | :dop
+            | :php
+            | :try
+            | :krw
+            | :twd
+            | :vnd
+            | :pkr
+            | :clp
+            | :uyu
+            | :ars
+            | :zar
+            | :dzd
+            | :tnd
+            | :mad
+            | :kes
+            | :kwd
+            | :jod
+            | :all
+            | :xcd
+            | :amd
+            | :bsd
+            | :bhd
+            | :bob
+            | :bam
+            | :khr
+            | :crc
+            | :xof
+            | :egp
+            | :etb
+            | :gmd
+            | :ghs
+            | :gtq
+            | :gyd
+            | :ils
+            | :jmd
+            | :mop
+            | :mga
+            | :mur
+            | :mdl
+            | :mnt
+            | :nad
+            | :ngn
+            | :mkd
+            | :omr
+            | :pyg
+            | :pen
+            | :qar
+            | :rwf
+            | :sar
+            | :rsd
+            | :lkr
+            | :tzs
+            | :ttd
+            | :uzs
+            | :rub
+            | :btc
+
+          module BaseCurrency
+            extend Whopsdk::Internal::Type::Enum
+
+            USD: :usd
+            SGD: :sgd
+            INR: :inr
+            AUD: :aud
+            BRL: :brl
+            CAD: :cad
+            DKK: :dkk
+            EUR: :eur
+            NOK: :nok
+            GBP: :gbp
+            SEK: :sek
+            CHF: :chf
+            HKD: :hkd
+            HUF: :huf
+            JPY: :jpy
+            MXN: :mxn
+            MYR: :myr
+            PLN: :pln
+            CZK: :czk
+            NZD: :nzd
+            AED: :aed
+            ETH: :eth
+            APE: :ape
+            COP: :cop
+            RON: :ron
+            THB: :thb
+            BGN: :bgn
+            IDR: :idr
+            DOP: :dop
+            PHP: :php
+            TRY: :try
+            KRW: :krw
+            TWD: :twd
+            VND: :vnd
+            PKR: :pkr
+            CLP: :clp
+            UYU: :uyu
+            ARS: :ars
+            ZAR: :zar
+            DZD: :dzd
+            TND: :tnd
+            MAD: :mad
+            KES: :kes
+            KWD: :kwd
+            JOD: :jod
+            ALL: :all
+            XCD: :xcd
+            AMD: :amd
+            BSD: :bsd
+            BHD: :bhd
+            BOB: :bob
+            BAM: :bam
+            KHR: :khr
+            CRC: :crc
+            XOF: :xof
+            EGP: :egp
+            ETB: :etb
+            GMD: :gmd
+            GHS: :ghs
+            GTQ: :gtq
+            GYD: :gyd
+            ILS: :ils
+            JMD: :jmd
+            MOP: :mop
+            MGA: :mga
+            MUR: :mur
+            MDL: :mdl
+            MNT: :mnt
+            NAD: :nad
+            NGN: :ngn
+            MKD: :mkd
+            OMR: :omr
+            PYG: :pyg
+            PEN: :pen
+            QAR: :qar
+            RWF: :rwf
+            SAR: :sar
+            RSD: :rsd
+            LKR: :lkr
+            TZS: :tzs
+            TTD: :ttd
+            UZS: :uzs
+            RUB: :rub
+            BTC: :btc
+
+            def self?.values: -> ::Array[Whopsdk::Models::InvoiceCreateParams::Input::Plan::base_currency]
+          end
+
+          type custom_field =
+            {
+              field_type: :text,
+              name: String,
+              id: String?,
+              order: Integer?,
+              placeholder: String?,
+              required: bool?
+            }
+
+          class CustomField < Whopsdk::Internal::Type::BaseModel
+            attr_accessor field_type: :text
+
+            attr_accessor name: String
+
+            attr_accessor id: String?
+
+            attr_accessor order: Integer?
+
+            attr_accessor placeholder: String?
+
+            attr_accessor required: bool?
+
+            def initialize: (
+              name: String,
+              ?id: String?,
+              ?order: Integer?,
+              ?placeholder: String?,
+              ?required: bool?,
+              ?field_type: :text
+            ) -> void
+
+            def to_hash: -> {
+              field_type: :text,
+              name: String,
+              id: String?,
+              order: Integer?,
+              placeholder: String?,
+              required: bool?
+            }
+          end
+
+          type plan_type = :renewal | :one_time
+
+          module PlanType
+            extend Whopsdk::Internal::Type::Enum
+
+            RENEWAL: :renewal
+            ONE_TIME: :one_time
+
+            def self?.values: -> ::Array[Whopsdk::Models::InvoiceCreateParams::Input::Plan::plan_type]
+          end
+
+          type release_method = :buy_now | :waitlist | :raffle
+
+          module ReleaseMethod
+            extend Whopsdk::Internal::Type::Enum
+
+            BUY_NOW: :buy_now
+            WAITLIST: :waitlist
+            RAFFLE: :raffle
+
+            def self?.values: -> ::Array[Whopsdk::Models::InvoiceCreateParams::Input::Plan::release_method]
+          end
+
+          type release_method_settings =
+            {
+              expires_at: Integer?,
+              max_entries: Integer?,
+              nft_weighted_entries: bool?,
+              starts_at: Integer?
+            }
+
+          class ReleaseMethodSettings < Whopsdk::Internal::Type::BaseModel
+            attr_accessor expires_at: Integer?
+
+            attr_accessor max_entries: Integer?
+
+            attr_accessor nft_weighted_entries: bool?
+
+            attr_accessor starts_at: Integer?
+
+            def initialize: (
+              ?expires_at: Integer?,
+              ?max_entries: Integer?,
+              ?nft_weighted_entries: bool?,
+              ?starts_at: Integer?
+            ) -> void
+
+            def to_hash: -> {
+              expires_at: Integer?,
+              max_entries: Integer?,
+              nft_weighted_entries: bool?,
+              starts_at: Integer?
+            }
+          end
+
+          type visibility = :visible | :hidden | :archived | :quick_link
+
+          module Visibility
+            extend Whopsdk::Internal::Type::Enum
+
+            VISIBLE: :visible
+            HIDDEN: :hidden
+            ARCHIVED: :archived
+            QUICK_LINK: :quick_link
+
+            def self?.values: -> ::Array[Whopsdk::Models::InvoiceCreateParams::Input::Plan::visibility]
+          end
+        end
+
+        type access_pass = { title: String, product_tax_code_id: String? }
+
+        class AccessPass < Whopsdk::Internal::Type::BaseModel
+          attr_accessor title: String
+
+          attr_accessor product_tax_code_id: String?
+
+          def initialize: (title: String, ?product_tax_code_id: String?) -> void
+
+          def to_hash: -> { title: String, product_tax_code_id: String? }
+        end
+      end
     end
   end
 end

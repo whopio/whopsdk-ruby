@@ -1,15 +1,61 @@
 module Whopsdk
   module Models
     type course_lesson_interaction_list_params =
-      {  } & Whopsdk::Internal::Type::request_parameters
+      {
+        after: String?,
+        before: String?,
+        completed: bool?,
+        course_id: String?,
+        first: Integer?,
+        last: Integer?,
+        lesson_id: String?,
+        user_id: String?
+      }
+      & Whopsdk::Internal::Type::request_parameters
 
     class CourseLessonInteractionListParams < Whopsdk::Internal::Type::BaseModel
       extend Whopsdk::Internal::Type::RequestParameters::Converter
       include Whopsdk::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: Whopsdk::request_opts) -> void
+      attr_accessor after: String?
 
-      def to_hash: -> { request_options: Whopsdk::RequestOptions }
+      attr_accessor before: String?
+
+      attr_accessor completed: bool?
+
+      attr_accessor course_id: String?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      attr_accessor lesson_id: String?
+
+      attr_accessor user_id: String?
+
+      def initialize: (
+        ?after: String?,
+        ?before: String?,
+        ?completed: bool?,
+        ?course_id: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?lesson_id: String?,
+        ?user_id: String?,
+        ?request_options: Whopsdk::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        after: String?,
+        before: String?,
+        completed: bool?,
+        course_id: String?,
+        first: Integer?,
+        last: Integer?,
+        lesson_id: String?,
+        user_id: String?,
+        request_options: Whopsdk::RequestOptions
+      }
     end
   end
 end

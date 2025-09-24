@@ -3,6 +3,7 @@
 module Whopsdk
   module Resources
     class CourseLessonInteractions
+      # Retrieves a course lesson interaction by ID
       sig do
         params(
           id: String,
@@ -12,6 +13,7 @@ module Whopsdk
       def retrieve(id, request_options: {})
       end
 
+      # Lists course lesson interactions
       sig do
         params(
           after: T.nilable(String),

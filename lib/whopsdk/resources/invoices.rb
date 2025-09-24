@@ -6,6 +6,8 @@ module Whopsdk
       # Some parameter documentations has been truncated, see
       # {Whopsdk::Models::InvoiceCreateParams} for more details.
       #
+      # Creates an invoice
+      #
       # @overload create(collection_method:, due_date:, plan:, access_pass: nil, access_pass_id: nil, charge_buyer_fee: nil, client_mutation_id: nil, customer_name: nil, email_address: nil, member_id: nil, payment_token_id: nil, request_options: {})
       #
       # @param collection_method [Symbol, Whopsdk::Models::InvoiceCreateParams::CollectionMethod] The method of collection for this invoice. If using charge_automatically, you mu
@@ -46,6 +48,8 @@ module Whopsdk
         )
       end
 
+      # Retrieves an invoice by ID or token
+      #
       # @overload retrieve(id, request_options: {})
       #
       # @param id [String]
@@ -63,6 +67,8 @@ module Whopsdk
         )
       end
 
+      # Lists invoices
+      #
       # @overload list(company_id:, after: nil, before: nil, direction: nil, filters: nil, first: nil, last: nil, order: nil, request_options: {})
       #
       # @param company_id [String] The ID of the company to list invoices for
@@ -97,6 +103,8 @@ module Whopsdk
         )
       end
 
+      # Void an invoice
+      #
       # @overload void(id, client_mutation_id: nil, request_options: {})
       #
       # @param id [String]

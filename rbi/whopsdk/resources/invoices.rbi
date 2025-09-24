@@ -3,6 +3,7 @@
 module Whopsdk
   module Resources
     class Invoices
+      # Creates an invoice
       sig do
         params(
           collection_method:
@@ -57,6 +58,7 @@ module Whopsdk
       )
       end
 
+      # Retrieves an invoice by ID or token
       sig do
         params(
           id: String,
@@ -66,6 +68,7 @@ module Whopsdk
       def retrieve(id, request_options: {})
       end
 
+      # Lists invoices
       sig do
         params(
           company_id: String,
@@ -100,6 +103,7 @@ module Whopsdk
       )
       end
 
+      # Void an invoice
       sig do
         params(
           id: String,

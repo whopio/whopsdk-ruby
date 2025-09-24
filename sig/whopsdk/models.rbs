@@ -1,13 +1,7 @@
 module Whopsdk
   class CourseLessonInteractionListParams = Whopsdk::Models::CourseLessonInteractionListParams
 
-  class CourseLessonInteractionRetrieveParams = Whopsdk::Models::CourseLessonInteractionRetrieveParams
-
   class InvoiceCreateParams = Whopsdk::Models::InvoiceCreateParams
 
   class InvoiceListParams = Whopsdk::Models::InvoiceListParams
-
-  class InvoiceRetrieveParams = Whopsdk::Models::InvoiceRetrieveParams
-
-  class InvoiceVoidParams = Whopsdk::Models::InvoiceVoidParams
 end

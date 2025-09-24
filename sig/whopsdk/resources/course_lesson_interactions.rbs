@@ -1,12 +1,15 @@
 module Whopsdk
   module Resources
     class CourseLessonInteractions
-      def retrieve: (
-        String id,
-        ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Models::CourseLessonInteractionRetrieveResponse
-
       def list: (
+        ?after: String?,
+        ?before: String?,
+        ?completed: bool?,
+        ?course_id: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?lesson_id: String?,
+        ?user_id: String?,
         ?request_options: Whopsdk::request_opts
       ) -> Whopsdk::Models::CourseLessonInteractionListResponse
 

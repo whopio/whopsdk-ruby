@@ -26,7 +26,7 @@ whopsdk = Whopsdk::Client.new(
   api_key: ENV["WHOPSDK_API_KEY"] # This is the default and can be omitted
 )
 
-invoices = whopsdk.invoices.list
+invoices = whopsdk.invoices.list(company_id: "company_id")
 
 puts(invoices.data)
 ```
@@ -37,7 +37,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  invoice = whopsdk.invoices.list
+  invoice = whopsdk.invoices.list(company_id: "company_id")
 rescue Whopsdk::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
@@ -80,7 +80,7 @@ whopsdk = Whopsdk::Client.new(
 )
 
 # Or, configure per-request:
-whopsdk.invoices.list(request_options: {max_retries: 5})
+whopsdk.invoices.list(company_id: "company_id", request_options: {max_retries: 5})
 ```
 
 ### Timeouts
@@ -94,7 +94,7 @@ whopsdk = Whopsdk::Client.new(
 )
 
 # Or, configure per-request:
-whopsdk.invoices.list(request_options: {timeout: 5})
+whopsdk.invoices.list(company_id: "company_id", request_options: {timeout: 5})
 ```
 
 On timeout, `Whopsdk::Errors::APITimeoutError` is raised.
@@ -126,6 +126,7 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 ```ruby
 invoices =
   whopsdk.invoices.list(
+    company_id: "company_id",
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},
@@ -171,18 +172,46 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-whopsdk.invoices.list
+whopsdk.invoices.list(company_id: "company_id")
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-whopsdk.invoices.list
+whopsdk.invoices.list(company_id: "company_id")
 
 # You can also splat a full Params class:
-params = Whopsdk::InvoiceListParams.new
+params = Whopsdk::InvoiceListParams.new(company_id: "company_id")
 whopsdk.invoices.list(**params)
+```
+
+### Enums
+
+Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
+
+```ruby
+# :asc
+puts(Whopsdk::InvoiceListParams::Direction::ASC)
+
+# Revealed type: `T.all(Whopsdk::InvoiceListParams::Direction, Symbol)`
+T.reveal_type(Whopsdk::InvoiceListParams::Direction::ASC)
+```
+
+Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
+
+```ruby
+# Using the enum constants preserves the tagged type information:
+whopsdk.invoices.list(
+  direction: Whopsdk::InvoiceListParams::Direction::ASC,
+  # …
+)
+
+# Literal values are also permissible:
+whopsdk.invoices.list(
+  direction: :asc,
+  # …
+)
 ```
 
 ## Versioning

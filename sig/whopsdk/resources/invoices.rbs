@@ -2,19 +2,21 @@ module Whopsdk
   module Resources
     class Invoices
       def create: (
+        input: Whopsdk::InvoiceCreateParams::Input,
         ?request_options: Whopsdk::request_opts
       ) -> Whopsdk::Models::InvoiceCreateResponse?
 
-      def retrieve: (
-        String id,
-        ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Models::InvoiceRetrieveResponse
-
       def list: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?direction: Whopsdk::Models::InvoiceListParams::direction?,
+        ?filters: Whopsdk::InvoiceListParams::Filters?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?order: Whopsdk::Models::InvoiceListParams::order?,
         ?request_options: Whopsdk::request_opts
       ) -> Whopsdk::Models::InvoiceListResponse
-
-      def `void`: (String id, ?request_options: Whopsdk::request_opts) -> bool?
 
       def initialize: (client: Whopsdk::Client) -> void
     end

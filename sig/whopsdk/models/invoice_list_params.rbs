@@ -1,15 +1,135 @@
 module Whopsdk
   module Models
     type invoice_list_params =
-      {  } & Whopsdk::Internal::Type::request_parameters
+      {
+        company_id: String,
+        after: String?,
+        before: String?,
+        direction: Whopsdk::Models::InvoiceListParams::direction?,
+        filters: Whopsdk::InvoiceListParams::Filters?,
+        first: Integer?,
+        last: Integer?,
+        order: Whopsdk::Models::InvoiceListParams::order?
+      }
+      & Whopsdk::Internal::Type::request_parameters
 
     class InvoiceListParams < Whopsdk::Internal::Type::BaseModel
       extend Whopsdk::Internal::Type::RequestParameters::Converter
       include Whopsdk::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: Whopsdk::request_opts) -> void
+      attr_accessor company_id: String
 
-      def to_hash: -> { request_options: Whopsdk::RequestOptions }
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor direction: Whopsdk::Models::InvoiceListParams::direction?
+
+      attr_accessor filters: Whopsdk::InvoiceListParams::Filters?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      attr_accessor order: Whopsdk::Models::InvoiceListParams::order?
+
+      def initialize: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?direction: Whopsdk::Models::InvoiceListParams::direction?,
+        ?filters: Whopsdk::InvoiceListParams::Filters?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?order: Whopsdk::Models::InvoiceListParams::order?,
+        ?request_options: Whopsdk::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        after: String?,
+        before: String?,
+        direction: Whopsdk::Models::InvoiceListParams::direction?,
+        filters: Whopsdk::InvoiceListParams::Filters?,
+        first: Integer?,
+        last: Integer?,
+        order: Whopsdk::Models::InvoiceListParams::order?,
+        request_options: Whopsdk::RequestOptions
+      }
+
+      type direction = :asc | :desc
+
+      module Direction
+        extend Whopsdk::Internal::Type::Enum
+
+        ASC: :asc
+        DESC: :desc
+
+        def self?.values: -> ::Array[Whopsdk::Models::InvoiceListParams::direction]
+      end
+
+      type filters =
+        {
+          access_pass_ids: ::Array[String]?,
+          collection_methods: ::Array[Whopsdk::Models::InvoiceListParams::Filters::collection_method]?,
+          statuses: ::Array[Whopsdk::Models::InvoiceListParams::Filters::status]?
+        }
+
+      class Filters < Whopsdk::Internal::Type::BaseModel
+        attr_accessor access_pass_ids: ::Array[String]?
+
+        attr_accessor collection_methods: ::Array[Whopsdk::Models::InvoiceListParams::Filters::collection_method]?
+
+        attr_accessor statuses: ::Array[Whopsdk::Models::InvoiceListParams::Filters::status]?
+
+        def initialize: (
+          ?access_pass_ids: ::Array[String]?,
+          ?collection_methods: ::Array[Whopsdk::Models::InvoiceListParams::Filters::collection_method]?,
+          ?statuses: ::Array[Whopsdk::Models::InvoiceListParams::Filters::status]?
+        ) -> void
+
+        def to_hash: -> {
+          access_pass_ids: ::Array[String]?,
+          collection_methods: ::Array[Whopsdk::Models::InvoiceListParams::Filters::collection_method]?,
+          statuses: ::Array[Whopsdk::Models::InvoiceListParams::Filters::status]?
+        }
+
+        type collection_method = :send_invoice | :charge_automatically
+
+        module CollectionMethod
+          extend Whopsdk::Internal::Type::Enum
+
+          SEND_INVOICE: :send_invoice
+          CHARGE_AUTOMATICALLY: :charge_automatically
+
+          def self?.values: -> ::Array[Whopsdk::Models::InvoiceListParams::Filters::collection_method]
+        end
+
+        type status = :open | :paid | :past_due | :void
+
+        module Status
+          extend Whopsdk::Internal::Type::Enum
+
+          OPEN: :open
+          PAID: :paid
+          PAST_DUE: :past_due
+          VOID: :void
+
+          def self?.values: -> ::Array[Whopsdk::Models::InvoiceListParams::Filters::status]
+        end
+      end
+
+      type order = :id | :created_at | :due_date
+
+      module Order
+        extend Whopsdk::Internal::Type::Enum
+
+        ID: :id
+        CREATED_AT: :created_at
+        DUE_DATE: :due_date
+
+        def self?.values: -> ::Array[Whopsdk::Models::InvoiceListParams::order]
+      end
     end
   end
 end

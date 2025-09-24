@@ -8,84 +8,73 @@ module Whopsdk
       include Whopsdk::Internal::Type::RequestParameters
 
       # @!attribute company_id
-      #   Represents a unique identifier that is Base64 obfuscated. It is often used to
-      #   refetch an object or as key for a cache. The ID type appears in a JSON response
-      #   as a String; however, it is not intended to be human-readable. When expected as
-      #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-      #   input value will be accepted as an ID.
+      #   The ID of the company to list invoices for
       #
       #   @return [String]
       required :company_id, String
 
       # @!attribute after
-      #   Represents textual data as UTF-8 character sequences. This type is most often
-      #   used by GraphQL to represent free-form human-readable text.
+      #   Returns the elements in the list that come after the specified cursor.
       #
       #   @return [String, nil]
       optional :after, String, nil?: true
 
       # @!attribute before
-      #   Represents textual data as UTF-8 character sequences. This type is most often
-      #   used by GraphQL to represent free-form human-readable text.
+      #   Returns the elements in the list that come before the specified cursor.
       #
       #   @return [String, nil]
       optional :before, String, nil?: true
 
       # @!attribute direction
-      #   The direction of the sort.
+      #   The direction to sort the invoices by
       #
       #   @return [Symbol, Whopsdk::Models::InvoiceListParams::Direction, nil]
       optional :direction, enum: -> { Whopsdk::InvoiceListParams::Direction }, nil?: true
 
       # @!attribute filters
-      #   Filters for the invoices table.
+      #   The filters to apply to the invoices
       #
       #   @return [Whopsdk::Models::InvoiceListParams::Filters, nil]
       optional :filters, -> { Whopsdk::InvoiceListParams::Filters }, nil?: true
 
       # @!attribute first
-      #   Represents non-fractional signed whole numeric values. Int can represent values
-      #   between -(2^31) and 2^31 - 1.
+      #   Returns the first _n_ elements from the list.
       #
       #   @return [Integer, nil]
       optional :first, Integer, nil?: true
 
       # @!attribute last
-      #   Represents non-fractional signed whole numeric values. Int can represent values
-      #   between -(2^31) and 2^31 - 1.
+      #   Returns the last _n_ elements from the list.
       #
       #   @return [Integer, nil]
       optional :last, Integer, nil?: true
 
       # @!attribute order
-      #   Which columns can be used to sort.
+      #   The order to sort the invoices by
       #
       #   @return [Symbol, Whopsdk::Models::InvoiceListParams::Order, nil]
       optional :order, enum: -> { Whopsdk::InvoiceListParams::Order }, nil?: true
 
       # @!method initialize(company_id:, after: nil, before: nil, direction: nil, filters: nil, first: nil, last: nil, order: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Whopsdk::Models::InvoiceListParams} for more details.
+      #   @param company_id [String] The ID of the company to list invoices for
       #
-      #   @param company_id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+      #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
-      #   @param after [String, nil] Represents textual data as UTF-8 character sequences. This type is most often us
+      #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param before [String, nil] Represents textual data as UTF-8 character sequences. This type is most often us
+      #   @param direction [Symbol, Whopsdk::Models::InvoiceListParams::Direction, nil] The direction to sort the invoices by
       #
-      #   @param direction [Symbol, Whopsdk::Models::InvoiceListParams::Direction, nil] The direction of the sort.
+      #   @param filters [Whopsdk::Models::InvoiceListParams::Filters, nil] The filters to apply to the invoices
       #
-      #   @param filters [Whopsdk::Models::InvoiceListParams::Filters, nil] Filters for the invoices table.
+      #   @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
-      #   @param first [Integer, nil] Represents non-fractional signed whole numeric values. Int can represent values
+      #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      #   @param last [Integer, nil] Represents non-fractional signed whole numeric values. Int can represent values
-      #
-      #   @param order [Symbol, Whopsdk::Models::InvoiceListParams::Order, nil] Which columns can be used to sort.
+      #   @param order [Symbol, Whopsdk::Models::InvoiceListParams::Order, nil] The order to sort the invoices by
       #
       #   @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}]
 
-      # The direction of the sort.
+      # The direction to sort the invoices by
       module Direction
         extend Whopsdk::Internal::Type::Enum
 
@@ -98,11 +87,13 @@ module Whopsdk
 
       class Filters < Whopsdk::Internal::Type::BaseModel
         # @!attribute access_pass_ids
+        #   The access pass IDs to filter the invoices by
         #
         #   @return [Array<String>, nil]
         optional :access_pass_ids, Whopsdk::Internal::Type::ArrayOf[String], nil?: true
 
         # @!attribute collection_methods
+        #   The collection methods to filter the invoices by
         #
         #   @return [Array<Symbol, Whopsdk::Models::InvoiceListParams::Filters::CollectionMethod>, nil]
         optional :collection_methods,
@@ -112,6 +103,7 @@ module Whopsdk
                  nil?: true
 
         # @!attribute statuses
+        #   The statuses to filter the invoices by
         #
         #   @return [Array<Symbol, Whopsdk::Models::InvoiceListParams::Filters::Status>, nil]
         optional :statuses,
@@ -119,11 +111,13 @@ module Whopsdk
                  nil?: true
 
         # @!method initialize(access_pass_ids: nil, collection_methods: nil, statuses: nil)
-        #   Filters for the invoices table.
+        #   The filters to apply to the invoices
         #
-        #   @param access_pass_ids [Array<String>, nil]
-        #   @param collection_methods [Array<Symbol, Whopsdk::Models::InvoiceListParams::Filters::CollectionMethod>, nil]
-        #   @param statuses [Array<Symbol, Whopsdk::Models::InvoiceListParams::Filters::Status>, nil]
+        #   @param access_pass_ids [Array<String>, nil] The access pass IDs to filter the invoices by
+        #
+        #   @param collection_methods [Array<Symbol, Whopsdk::Models::InvoiceListParams::Filters::CollectionMethod>, nil] The collection methods to filter the invoices by
+        #
+        #   @param statuses [Array<Symbol, Whopsdk::Models::InvoiceListParams::Filters::Status>, nil] The statuses to filter the invoices by
 
         # The method of collection for an invoice.
         module CollectionMethod
@@ -150,7 +144,7 @@ module Whopsdk
         end
       end
 
-      # Which columns can be used to sort.
+      # The order to sort the invoices by
       module Order
         extend Whopsdk::Internal::Type::Enum
 

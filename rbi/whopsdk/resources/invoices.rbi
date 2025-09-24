@@ -22,42 +22,36 @@ module Whopsdk
         ).returns(T.nilable(Whopsdk::Models::InvoiceCreateResponse))
       end
       def create(
-        # The method of collection for an invoice.
+        # The method of collection for this invoice. If using charge_automatically, you
+        # must provide a payment_token.
         collection_method:,
-        # A valid timestamp in seconds, transported as an integer
+        # The date the invoice is due, if applicable.
         due_date:,
         # The properties of the plan to create for this invoice.
         plan:,
-        # The properties of the access pass to create for this invoice.
+        # The properties of the access pass to create for this invoice. Include this if
+        # you want to create an invoice for a new product.
         access_pass: nil,
-        # Represents a unique identifier that is Base64 obfuscated. It is often used to
-        # refetch an object or as key for a cache. The ID type appears in a JSON response
-        # as a String; however, it is not intended to be human-readable. When expected as
-        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-        # input value will be accepted as an ID.
+        # The access pass ID to create this invoice for. Include this if you want to
+        # create an invoice for an existing product.
         access_pass_id: nil,
-        # Represents `true` or `false` values.
+        # Whether or not to charge the customer a buyer fee.
         charge_buyer_fee: nil,
-        # Represents textual data as UTF-8 character sequences. This type is most often
-        # used by GraphQL to represent free-form human-readable text.
+        # A unique identifier for the client performing the mutation.
         client_mutation_id: nil,
-        # Represents textual data as UTF-8 character sequences. This type is most often
-        # used by GraphQL to represent free-form human-readable text.
+        # The name of the customer to create this invoice for. This is required if you
+        # want to create an invoice for a customer who does not have a member of your
+        # company yet.
         customer_name: nil,
-        # Represents textual data as UTF-8 character sequences. This type is most often
-        # used by GraphQL to represent free-form human-readable text.
+        # The email address to create this invoice for. This is required if you want to
+        # create an invoice for a user who does not have a member of your company yet.
         email_address: nil,
-        # Represents a unique identifier that is Base64 obfuscated. It is often used to
-        # refetch an object or as key for a cache. The ID type appears in a JSON response
-        # as a String; however, it is not intended to be human-readable. When expected as
-        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-        # input value will be accepted as an ID.
+        # The member ID to create this invoice for. Include this if you want to create an
+        # invoice for an existing member. If you do not have a member ID, you must provide
+        # an email_address and customer_name.
         member_id: nil,
-        # Represents a unique identifier that is Base64 obfuscated. It is often used to
-        # refetch an object or as key for a cache. The ID type appears in a JSON response
-        # as a String; however, it is not intended to be human-readable. When expected as
-        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-        # input value will be accepted as an ID.
+        # The payment token ID to use for this invoice. If using charge_automatically, you
+        # must provide a payment_token.
         payment_token_id: nil,
         request_options: {}
       )
@@ -86,29 +80,21 @@ module Whopsdk
         ).returns(Whopsdk::Models::InvoiceListResponse)
       end
       def list(
-        # Represents a unique identifier that is Base64 obfuscated. It is often used to
-        # refetch an object or as key for a cache. The ID type appears in a JSON response
-        # as a String; however, it is not intended to be human-readable. When expected as
-        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-        # input value will be accepted as an ID.
+        # The ID of the company to list invoices for
         company_id:,
-        # Represents textual data as UTF-8 character sequences. This type is most often
-        # used by GraphQL to represent free-form human-readable text.
+        # Returns the elements in the list that come after the specified cursor.
         after: nil,
-        # Represents textual data as UTF-8 character sequences. This type is most often
-        # used by GraphQL to represent free-form human-readable text.
+        # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The direction of the sort.
+        # The direction to sort the invoices by
         direction: nil,
-        # Filters for the invoices table.
+        # The filters to apply to the invoices
         filters: nil,
-        # Represents non-fractional signed whole numeric values. Int can represent values
-        # between -(2^31) and 2^31 - 1.
+        # Returns the first _n_ elements from the list.
         first: nil,
-        # Represents non-fractional signed whole numeric values. Int can represent values
-        # between -(2^31) and 2^31 - 1.
+        # Returns the last _n_ elements from the list.
         last: nil,
-        # Which columns can be used to sort.
+        # The order to sort the invoices by
         order: nil,
         request_options: {}
       )
@@ -123,8 +109,7 @@ module Whopsdk
       end
       def void(
         id,
-        # Represents textual data as UTF-8 character sequences. This type is most often
-        # used by GraphQL to represent free-form human-readable text.
+        # A unique identifier for the client performing the mutation.
         client_mutation_id: nil,
         request_options: {}
       )

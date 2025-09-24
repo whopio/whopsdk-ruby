@@ -11,8 +11,7 @@ module Whopsdk
           T.any(Whopsdk::InvoiceVoidParams, Whopsdk::Internal::AnyHash)
         end
 
-      # Represents textual data as UTF-8 character sequences. This type is most often
-      # used by GraphQL to represent free-form human-readable text.
+      # A unique identifier for the client performing the mutation.
       sig { returns(T.nilable(String)) }
       attr_accessor :client_mutation_id
 
@@ -23,8 +22,7 @@ module Whopsdk
         ).returns(T.attached_class)
       end
       def self.new(
-        # Represents textual data as UTF-8 character sequences. This type is most often
-        # used by GraphQL to represent free-form human-readable text.
+        # A unique identifier for the client performing the mutation.
         client_mutation_id: nil,
         request_options: {}
       )

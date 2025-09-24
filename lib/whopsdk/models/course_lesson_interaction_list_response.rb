@@ -5,6 +5,7 @@ module Whopsdk
     # @see Whopsdk::Resources::CourseLessonInteractions#list
     class CourseLessonInteractionListResponse < Whopsdk::Internal::Type::BaseModel
       # @!attribute data
+      #   A list of nodes.
       #
       #   @return [Array<Whopsdk::Models::CourseLessonInteractionListResponse::Data, nil>, nil]
       required :data,
@@ -12,7 +13,7 @@ module Whopsdk
                nil?: true
 
       # @!attribute page_info
-      #   Information about pagination in a connection.
+      #   Information to aid in pagination.
       #
       #   @return [Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo]
       required :page_info, -> { Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo }
@@ -20,175 +21,143 @@ module Whopsdk
       # @!method initialize(data:, page_info:)
       #   The connection type for LessonInteraction.
       #
-      #   @param data [Array<Whopsdk::Models::CourseLessonInteractionListResponse::Data, nil>, nil]
+      #   @param data [Array<Whopsdk::Models::CourseLessonInteractionListResponse::Data, nil>, nil] A list of nodes.
       #
-      #   @param page_info [Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo] Information about pagination in a connection.
+      #   @param page_info [Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo] Information to aid in pagination.
 
       class Data < Whopsdk::Internal::Type::BaseModel
         # @!attribute id
-        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
-        #   refetch an object or as key for a cache. The ID type appears in a JSON response
-        #   as a String; however, it is not intended to be human-readable. When expected as
-        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-        #   input value will be accepted as an ID.
+        #   The ID of the lesson interaction
         #
         #   @return [String]
         required :id, String
 
         # @!attribute completed
-        #   Represents `true` or `false` values.
+        #   Whether the lesson has been completed by the user
         #
         #   @return [Boolean]
         required :completed, Whopsdk::Internal::Type::Boolean
 
         # @!attribute created_at
-        #   A valid timestamp in seconds, transported as an integer
+        #   When the interaction was created
         #
         #   @return [Integer]
         required :created_at, Integer
 
         # @!attribute lesson
-        #   A lesson from the courses app
+        #   The lesson this interaction is for
         #
         #   @return [Whopsdk::Models::CourseLessonInteractionListResponse::Data::Lesson]
         required :lesson, -> { Whopsdk::Models::CourseLessonInteractionListResponse::Data::Lesson }
 
         # @!attribute user
-        #   An object representing a (sanitized) user of the site.
+        #   The user who interacted with the lesson
         #
         #   @return [Whopsdk::Models::CourseLessonInteractionListResponse::Data::User]
         required :user, -> { Whopsdk::Models::CourseLessonInteractionListResponse::Data::User }
 
         # @!method initialize(id:, completed:, created_at:, lesson:, user:)
-        #   Some parameter documentations has been truncated, see
-        #   {Whopsdk::Models::CourseLessonInteractionListResponse::Data} for more details.
-        #
         #   A lesson interaction tracking user progress in courses
         #
-        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+        #   @param id [String] The ID of the lesson interaction
         #
-        #   @param completed [Boolean] Represents `true` or `false` values.
+        #   @param completed [Boolean] Whether the lesson has been completed by the user
         #
-        #   @param created_at [Integer] A valid timestamp in seconds, transported as an integer
+        #   @param created_at [Integer] When the interaction was created
         #
-        #   @param lesson [Whopsdk::Models::CourseLessonInteractionListResponse::Data::Lesson] A lesson from the courses app
+        #   @param lesson [Whopsdk::Models::CourseLessonInteractionListResponse::Data::Lesson] The lesson this interaction is for
         #
-        #   @param user [Whopsdk::Models::CourseLessonInteractionListResponse::Data::User] An object representing a (sanitized) user of the site.
+        #   @param user [Whopsdk::Models::CourseLessonInteractionListResponse::Data::User] The user who interacted with the lesson
 
         # @see Whopsdk::Models::CourseLessonInteractionListResponse::Data#lesson
         class Lesson < Whopsdk::Internal::Type::BaseModel
           # @!attribute id
-          #   Represents a unique identifier that is Base64 obfuscated. It is often used to
-          #   refetch an object or as key for a cache. The ID type appears in a JSON response
-          #   as a String; however, it is not intended to be human-readable. When expected as
-          #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-          #   input value will be accepted as an ID.
+          #   The ID of the lesson
           #
           #   @return [String]
           required :id, String
 
           # @!attribute title
-          #   Represents textual data as UTF-8 character sequences. This type is most often
-          #   used by GraphQL to represent free-form human-readable text.
+          #   The title of the lesson
           #
           #   @return [String]
           required :title, String
 
           # @!method initialize(id:, title:)
-          #   Some parameter documentations has been truncated, see
-          #   {Whopsdk::Models::CourseLessonInteractionListResponse::Data::Lesson} for more
-          #   details.
+          #   The lesson this interaction is for
           #
-          #   A lesson from the courses app
+          #   @param id [String] The ID of the lesson
           #
-          #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
-          #
-          #   @param title [String] Represents textual data as UTF-8 character sequences. This type is most often us
+          #   @param title [String] The title of the lesson
         end
 
         # @see Whopsdk::Models::CourseLessonInteractionListResponse::Data#user
         class User < Whopsdk::Internal::Type::BaseModel
           # @!attribute id
-          #   Represents a unique identifier that is Base64 obfuscated. It is often used to
-          #   refetch an object or as key for a cache. The ID type appears in a JSON response
-          #   as a String; however, it is not intended to be human-readable. When expected as
-          #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-          #   input value will be accepted as an ID.
+          #   The internal ID of the user.
           #
           #   @return [String]
           required :id, String
 
           # @!attribute name
-          #   Represents textual data as UTF-8 character sequences. This type is most often
-          #   used by GraphQL to represent free-form human-readable text.
+          #   The name of the user from their Whop account.
           #
           #   @return [String, nil]
           required :name, String, nil?: true
 
           # @!attribute username
-          #   Represents textual data as UTF-8 character sequences. This type is most often
-          #   used by GraphQL to represent free-form human-readable text.
+          #   The username of the user from their Whop account.
           #
           #   @return [String]
           required :username, String
 
           # @!method initialize(id:, name:, username:)
-          #   Some parameter documentations has been truncated, see
-          #   {Whopsdk::Models::CourseLessonInteractionListResponse::Data::User} for more
-          #   details.
+          #   The user who interacted with the lesson
           #
-          #   An object representing a (sanitized) user of the site.
+          #   @param id [String] The internal ID of the user.
           #
-          #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+          #   @param name [String, nil] The name of the user from their Whop account.
           #
-          #   @param name [String, nil] Represents textual data as UTF-8 character sequences. This type is most often us
-          #
-          #   @param username [String] Represents textual data as UTF-8 character sequences. This type is most often us
+          #   @param username [String] The username of the user from their Whop account.
         end
       end
 
       # @see Whopsdk::Models::CourseLessonInteractionListResponse#page_info
       class PageInfo < Whopsdk::Internal::Type::BaseModel
         # @!attribute end_cursor
-        #   Represents textual data as UTF-8 character sequences. This type is most often
-        #   used by GraphQL to represent free-form human-readable text.
+        #   When paginating forwards, the cursor to continue.
         #
         #   @return [String, nil]
         required :end_cursor, String, nil?: true
 
         # @!attribute has_next_page
-        #   Represents `true` or `false` values.
+        #   When paginating forwards, are there more items?
         #
         #   @return [Boolean]
         required :has_next_page, Whopsdk::Internal::Type::Boolean
 
         # @!attribute has_previous_page
-        #   Represents `true` or `false` values.
+        #   When paginating backwards, are there more items?
         #
         #   @return [Boolean]
         required :has_previous_page, Whopsdk::Internal::Type::Boolean
 
         # @!attribute start_cursor
-        #   Represents textual data as UTF-8 character sequences. This type is most often
-        #   used by GraphQL to represent free-form human-readable text.
+        #   When paginating backwards, the cursor to continue.
         #
         #   @return [String, nil]
         required :start_cursor, String, nil?: true
 
         # @!method initialize(end_cursor:, has_next_page:, has_previous_page:, start_cursor:)
-        #   Some parameter documentations has been truncated, see
-        #   {Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo} for more
-        #   details.
+        #   Information to aid in pagination.
         #
-        #   Information about pagination in a connection.
+        #   @param end_cursor [String, nil] When paginating forwards, the cursor to continue.
         #
-        #   @param end_cursor [String, nil] Represents textual data as UTF-8 character sequences. This type is most often us
+        #   @param has_next_page [Boolean] When paginating forwards, are there more items?
         #
-        #   @param has_next_page [Boolean] Represents `true` or `false` values.
+        #   @param has_previous_page [Boolean] When paginating backwards, are there more items?
         #
-        #   @param has_previous_page [Boolean] Represents `true` or `false` values.
-        #
-        #   @param start_cursor [String, nil] Represents textual data as UTF-8 character sequences. This type is most often us
+        #   @param start_cursor [String, nil] When paginating backwards, the cursor to continue.
       end
     end
   end

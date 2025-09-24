@@ -11,6 +11,7 @@ module Whopsdk
           )
         end
 
+      # A list of nodes.
       sig do
         returns(
           T.nilable(
@@ -20,7 +21,7 @@ module Whopsdk
       end
       attr_accessor :data
 
-      # Information about pagination in a connection.
+      # Information to aid in pagination.
       sig { returns(Whopsdk::Models::InvoiceListResponse::PageInfo) }
       attr_reader :page_info
 
@@ -44,8 +45,9 @@ module Whopsdk
         ).returns(T.attached_class)
       end
       def self.new(
+        # A list of nodes.
         data:,
-        # Information about pagination in a connection.
+        # Information to aid in pagination.
         page_info:
       )
       end
@@ -73,19 +75,15 @@ module Whopsdk
             )
           end
 
-        # Represents a unique identifier that is Base64 obfuscated. It is often used to
-        # refetch an object or as key for a cache. The ID type appears in a JSON response
-        # as a String; however, it is not intended to be human-readable. When expected as
-        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-        # input value will be accepted as an ID.
+        # The ID of the invoice.
         sig { returns(String) }
         attr_accessor :id
 
-        # A valid timestamp in seconds, transported as an integer
+        # The date the invoice was created.
         sig { returns(Integer) }
         attr_accessor :created_at
 
-        # A plan for an access pass.
+        # The plan that the invoice was created for.
         sig { returns(Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan) }
         attr_reader :current_plan
 
@@ -97,21 +95,19 @@ module Whopsdk
         end
         attr_writer :current_plan
 
-        # A valid timestamp in seconds, transported as an integer
+        # The date the invoice is due.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :due_date
 
-        # Represents textual data as UTF-8 character sequences. This type is most often
-        # used by GraphQL to represent free-form human-readable text.
+        # The email address that the invoice was created for.
         sig { returns(T.nilable(String)) }
         attr_accessor :email_address
 
-        # Represents textual data as UTF-8 character sequences. This type is most often
-        # used by GraphQL to represent free-form human-readable text.
+        # The token to fetch the invoice.
         sig { returns(String) }
         attr_accessor :fetch_invoice_token
 
-        # A user of the site.
+        # The member that the invoice was created for.
         sig do
           returns(T.nilable(Whopsdk::Models::InvoiceListResponse::Data::Member))
         end
@@ -127,12 +123,11 @@ module Whopsdk
         end
         attr_writer :member
 
-        # Represents textual data as UTF-8 character sequences. This type is most often
-        # used by GraphQL to represent free-form human-readable text.
+        # The number of the invoice.
         sig { returns(String) }
         attr_accessor :number
 
-        # The different statuses an invoice can be in
+        # The status of the invoice.
         sig do
           returns(
             Whopsdk::Models::InvoiceListResponse::Data::Status::TaggedSymbol
@@ -159,30 +154,23 @@ module Whopsdk
           ).returns(T.attached_class)
         end
         def self.new(
-          # Represents a unique identifier that is Base64 obfuscated. It is often used to
-          # refetch an object or as key for a cache. The ID type appears in a JSON response
-          # as a String; however, it is not intended to be human-readable. When expected as
-          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-          # input value will be accepted as an ID.
+          # The ID of the invoice.
           id:,
-          # A valid timestamp in seconds, transported as an integer
+          # The date the invoice was created.
           created_at:,
-          # A plan for an access pass.
+          # The plan that the invoice was created for.
           current_plan:,
-          # A valid timestamp in seconds, transported as an integer
+          # The date the invoice is due.
           due_date:,
-          # Represents textual data as UTF-8 character sequences. This type is most often
-          # used by GraphQL to represent free-form human-readable text.
+          # The email address that the invoice was created for.
           email_address:,
-          # Represents textual data as UTF-8 character sequences. This type is most often
-          # used by GraphQL to represent free-form human-readable text.
+          # The token to fetch the invoice.
           fetch_invoice_token:,
-          # A user of the site.
+          # The member that the invoice was created for.
           member:,
-          # Represents textual data as UTF-8 character sequences. This type is most often
-          # used by GraphQL to represent free-form human-readable text.
+          # The number of the invoice.
           number:,
-          # The different statuses an invoice can be in
+          # The status of the invoice.
           status:
         )
         end
@@ -217,15 +205,11 @@ module Whopsdk
               )
             end
 
-          # Represents a unique identifier that is Base64 obfuscated. It is often used to
-          # refetch an object or as key for a cache. The ID type appears in a JSON response
-          # as a String; however, it is not intended to be human-readable. When expected as
-          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-          # input value will be accepted as an ID.
+          # The internal ID of the plan.
           sig { returns(String) }
           attr_accessor :id
 
-          # The available currencies on the platform
+          # The respective currency identifier for the plan.
           sig do
             returns(
               Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::BaseCurrency::TaggedSymbol
@@ -233,12 +217,11 @@ module Whopsdk
           end
           attr_accessor :base_currency
 
-          # Represents textual data as UTF-8 character sequences. This type is most often
-          # used by GraphQL to represent free-form human-readable text.
+          # The formatted price (including currency) for the plan.
           sig { returns(String) }
           attr_accessor :formatted_price
 
-          # A plan for an access pass.
+          # The plan that the invoice was created for.
           sig do
             params(
               id: String,
@@ -248,16 +231,11 @@ module Whopsdk
             ).returns(T.attached_class)
           end
           def self.new(
-            # Represents a unique identifier that is Base64 obfuscated. It is often used to
-            # refetch an object or as key for a cache. The ID type appears in a JSON response
-            # as a String; however, it is not intended to be human-readable. When expected as
-            # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-            # input value will be accepted as an ID.
+            # The internal ID of the plan.
             id:,
-            # The available currencies on the platform
+            # The respective currency identifier for the plan.
             base_currency:,
-            # Represents textual data as UTF-8 character sequences. This type is most often
-            # used by GraphQL to represent free-form human-readable text.
+            # The formatted price (including currency) for the plan.
             formatted_price:
           )
           end
@@ -275,7 +253,7 @@ module Whopsdk
           def to_hash
           end
 
-          # The available currencies on the platform
+          # The respective currency identifier for the plan.
           module BaseCurrency
             extend Whopsdk::Internal::Type::Enum
 
@@ -730,30 +708,23 @@ module Whopsdk
               )
             end
 
-          # Represents a unique identifier that is Base64 obfuscated. It is often used to
-          # refetch an object or as key for a cache. The ID type appears in a JSON response
-          # as a String; however, it is not intended to be human-readable. When expected as
-          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-          # input value will be accepted as an ID.
+          # The internal ID of the user account for the member.
           sig { returns(String) }
           attr_accessor :id
 
-          # Represents textual data as UTF-8 character sequences. This type is most often
-          # used by GraphQL to represent free-form human-readable text.
+          # The digital mailing address of the member.
           sig { returns(T.nilable(String)) }
           attr_accessor :email
 
-          # Represents textual data as UTF-8 character sequences. This type is most often
-          # used by GraphQL to represent free-form human-readable text.
+          # The written name of the member.
           sig { returns(T.nilable(String)) }
           attr_accessor :name
 
-          # Represents textual data as UTF-8 character sequences. This type is most often
-          # used by GraphQL to represent free-form human-readable text.
+          # The whop username of the member.
           sig { returns(T.nilable(String)) }
           attr_accessor :username
 
-          # A user of the site.
+          # The member that the invoice was created for.
           sig do
             params(
               id: String,
@@ -763,20 +734,13 @@ module Whopsdk
             ).returns(T.attached_class)
           end
           def self.new(
-            # Represents a unique identifier that is Base64 obfuscated. It is often used to
-            # refetch an object or as key for a cache. The ID type appears in a JSON response
-            # as a String; however, it is not intended to be human-readable. When expected as
-            # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
-            # input value will be accepted as an ID.
+            # The internal ID of the user account for the member.
             id:,
-            # Represents textual data as UTF-8 character sequences. This type is most often
-            # used by GraphQL to represent free-form human-readable text.
+            # The digital mailing address of the member.
             email:,
-            # Represents textual data as UTF-8 character sequences. This type is most often
-            # used by GraphQL to represent free-form human-readable text.
+            # The written name of the member.
             name:,
-            # Represents textual data as UTF-8 character sequences. This type is most often
-            # used by GraphQL to represent free-form human-readable text.
+            # The whop username of the member.
             username:
           )
           end
@@ -795,7 +759,7 @@ module Whopsdk
           end
         end
 
-        # The different statuses an invoice can be in
+        # The status of the invoice.
         module Status
           extend Whopsdk::Internal::Type::Enum
 
@@ -847,25 +811,23 @@ module Whopsdk
             )
           end
 
-        # Represents textual data as UTF-8 character sequences. This type is most often
-        # used by GraphQL to represent free-form human-readable text.
+        # When paginating forwards, the cursor to continue.
         sig { returns(T.nilable(String)) }
         attr_accessor :end_cursor
 
-        # Represents `true` or `false` values.
+        # When paginating forwards, are there more items?
         sig { returns(T::Boolean) }
         attr_accessor :has_next_page
 
-        # Represents `true` or `false` values.
+        # When paginating backwards, are there more items?
         sig { returns(T::Boolean) }
         attr_accessor :has_previous_page
 
-        # Represents textual data as UTF-8 character sequences. This type is most often
-        # used by GraphQL to represent free-form human-readable text.
+        # When paginating backwards, the cursor to continue.
         sig { returns(T.nilable(String)) }
         attr_accessor :start_cursor
 
-        # Information about pagination in a connection.
+        # Information to aid in pagination.
         sig do
           params(
             end_cursor: T.nilable(String),
@@ -875,15 +837,13 @@ module Whopsdk
           ).returns(T.attached_class)
         end
         def self.new(
-          # Represents textual data as UTF-8 character sequences. This type is most often
-          # used by GraphQL to represent free-form human-readable text.
+          # When paginating forwards, the cursor to continue.
           end_cursor:,
-          # Represents `true` or `false` values.
+          # When paginating forwards, are there more items?
           has_next_page:,
-          # Represents `true` or `false` values.
+          # When paginating backwards, are there more items?
           has_previous_page:,
-          # Represents textual data as UTF-8 character sequences. This type is most often
-          # used by GraphQL to represent free-form human-readable text.
+          # When paginating backwards, the cursor to continue.
           start_cursor:
         )
         end

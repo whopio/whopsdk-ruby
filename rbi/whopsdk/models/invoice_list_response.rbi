@@ -107,22 +107,6 @@ module Whopsdk
         sig { returns(String) }
         attr_accessor :fetch_invoice_token
 
-        # The member that the invoice was created for.
-        sig do
-          returns(T.nilable(Whopsdk::Models::InvoiceListResponse::Data::Member))
-        end
-        attr_reader :member
-
-        sig do
-          params(
-            member:
-              T.nilable(
-                Whopsdk::Models::InvoiceListResponse::Data::Member::OrHash
-              )
-          ).void
-        end
-        attr_writer :member
-
         # The number of the invoice.
         sig { returns(String) }
         attr_accessor :number
@@ -135,6 +119,22 @@ module Whopsdk
         end
         attr_accessor :status
 
+        # The user that the invoice was created for.
+        sig do
+          returns(T.nilable(Whopsdk::Models::InvoiceListResponse::Data::User))
+        end
+        attr_reader :user
+
+        sig do
+          params(
+            user:
+              T.nilable(
+                Whopsdk::Models::InvoiceListResponse::Data::User::OrHash
+              )
+          ).void
+        end
+        attr_writer :user
+
         # A statement that defines an amount due by a customer.
         sig do
           params(
@@ -145,12 +145,13 @@ module Whopsdk
             due_date: T.nilable(Integer),
             email_address: T.nilable(String),
             fetch_invoice_token: String,
-            member:
-              T.nilable(
-                Whopsdk::Models::InvoiceListResponse::Data::Member::OrHash
-              ),
             number: String,
-            status: Whopsdk::Models::InvoiceListResponse::Data::Status::OrSymbol
+            status:
+              Whopsdk::Models::InvoiceListResponse::Data::Status::OrSymbol,
+            user:
+              T.nilable(
+                Whopsdk::Models::InvoiceListResponse::Data::User::OrHash
+              )
           ).returns(T.attached_class)
         end
         def self.new(
@@ -166,12 +167,12 @@ module Whopsdk
           email_address:,
           # The token to fetch the invoice.
           fetch_invoice_token:,
-          # The member that the invoice was created for.
-          member:,
           # The number of the invoice.
           number:,
           # The status of the invoice.
-          status:
+          status:,
+          # The user that the invoice was created for.
+          user:
         )
         end
 
@@ -185,11 +186,10 @@ module Whopsdk
               due_date: T.nilable(Integer),
               email_address: T.nilable(String),
               fetch_invoice_token: String,
-              member:
-                T.nilable(Whopsdk::Models::InvoiceListResponse::Data::Member),
               number: String,
               status:
-                Whopsdk::Models::InvoiceListResponse::Data::Status::TaggedSymbol
+                Whopsdk::Models::InvoiceListResponse::Data::Status::TaggedSymbol,
+              user: T.nilable(Whopsdk::Models::InvoiceListResponse::Data::User)
             }
           )
         end
@@ -699,66 +699,6 @@ module Whopsdk
           end
         end
 
-        class Member < Whopsdk::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                Whopsdk::Models::InvoiceListResponse::Data::Member,
-                Whopsdk::Internal::AnyHash
-              )
-            end
-
-          # The internal ID of the user account for the member.
-          sig { returns(String) }
-          attr_accessor :id
-
-          # The digital mailing address of the member.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :email
-
-          # The written name of the member.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :name
-
-          # The whop username of the member.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :username
-
-          # The member that the invoice was created for.
-          sig do
-            params(
-              id: String,
-              email: T.nilable(String),
-              name: T.nilable(String),
-              username: T.nilable(String)
-            ).returns(T.attached_class)
-          end
-          def self.new(
-            # The internal ID of the user account for the member.
-            id:,
-            # The digital mailing address of the member.
-            email:,
-            # The written name of the member.
-            name:,
-            # The whop username of the member.
-            username:
-          )
-          end
-
-          sig do
-            override.returns(
-              {
-                id: String,
-                email: T.nilable(String),
-                name: T.nilable(String),
-                username: T.nilable(String)
-              }
-            )
-          end
-          def to_hash
-          end
-        end
-
         # The status of the invoice.
         module Status
           extend Whopsdk::Internal::Type::Enum
@@ -798,6 +738,54 @@ module Whopsdk
             )
           end
           def self.values
+          end
+        end
+
+        class User < Whopsdk::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Whopsdk::Models::InvoiceListResponse::Data::User,
+                Whopsdk::Internal::AnyHash
+              )
+            end
+
+          # The internal ID of the user.
+          sig { returns(String) }
+          attr_accessor :id
+
+          # The name of the user from their Whop account.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :name
+
+          # The username of the user from their Whop account.
+          sig { returns(String) }
+          attr_accessor :username
+
+          # The user that the invoice was created for.
+          sig do
+            params(
+              id: String,
+              name: T.nilable(String),
+              username: String
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The internal ID of the user.
+            id:,
+            # The name of the user from their Whop account.
+            name:,
+            # The username of the user from their Whop account.
+            username:
+          )
+          end
+
+          sig do
+            override.returns(
+              { id: String, name: T.nilable(String), username: String }
+            )
+          end
+          def to_hash
           end
         end
       end

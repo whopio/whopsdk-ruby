@@ -62,12 +62,6 @@ module Whopsdk
         #   @return [String]
         required :fetch_invoice_token, String
 
-        # @!attribute member
-        #   The member that the invoice was created for.
-        #
-        #   @return [Whopsdk::Models::InvoiceListResponse::Data::Member, nil]
-        required :member, -> { Whopsdk::Models::InvoiceListResponse::Data::Member }, nil?: true
-
         # @!attribute number
         #   The number of the invoice.
         #
@@ -80,7 +74,13 @@ module Whopsdk
         #   @return [Symbol, Whopsdk::Models::InvoiceListResponse::Data::Status]
         required :status, enum: -> { Whopsdk::Models::InvoiceListResponse::Data::Status }
 
-        # @!method initialize(id:, created_at:, current_plan:, due_date:, email_address:, fetch_invoice_token:, member:, number:, status:)
+        # @!attribute user
+        #   The user that the invoice was created for.
+        #
+        #   @return [Whopsdk::Models::InvoiceListResponse::Data::User, nil]
+        required :user, -> { Whopsdk::Models::InvoiceListResponse::Data::User }, nil?: true
+
+        # @!method initialize(id:, created_at:, current_plan:, due_date:, email_address:, fetch_invoice_token:, number:, status:, user:)
         #   A statement that defines an amount due by a customer.
         #
         #   @param id [String] The ID of the invoice.
@@ -95,11 +95,11 @@ module Whopsdk
         #
         #   @param fetch_invoice_token [String] The token to fetch the invoice.
         #
-        #   @param member [Whopsdk::Models::InvoiceListResponse::Data::Member, nil] The member that the invoice was created for.
-        #
         #   @param number [String] The number of the invoice.
         #
         #   @param status [Symbol, Whopsdk::Models::InvoiceListResponse::Data::Status] The status of the invoice.
+        #
+        #   @param user [Whopsdk::Models::InvoiceListResponse::Data::User, nil] The user that the invoice was created for.
 
         # @see Whopsdk::Models::InvoiceListResponse::Data#current_plan
         class CurrentPlan < Whopsdk::Internal::Type::BaseModel
@@ -226,44 +226,6 @@ module Whopsdk
           end
         end
 
-        # @see Whopsdk::Models::InvoiceListResponse::Data#member
-        class Member < Whopsdk::Internal::Type::BaseModel
-          # @!attribute id
-          #   The internal ID of the user account for the member.
-          #
-          #   @return [String]
-          required :id, String
-
-          # @!attribute email
-          #   The digital mailing address of the member.
-          #
-          #   @return [String, nil]
-          required :email, String, nil?: true
-
-          # @!attribute name
-          #   The written name of the member.
-          #
-          #   @return [String, nil]
-          required :name, String, nil?: true
-
-          # @!attribute username
-          #   The whop username of the member.
-          #
-          #   @return [String, nil]
-          required :username, String, nil?: true
-
-          # @!method initialize(id:, email:, name:, username:)
-          #   The member that the invoice was created for.
-          #
-          #   @param id [String] The internal ID of the user account for the member.
-          #
-          #   @param email [String, nil] The digital mailing address of the member.
-          #
-          #   @param name [String, nil] The written name of the member.
-          #
-          #   @param username [String, nil] The whop username of the member.
-        end
-
         # The status of the invoice.
         #
         # @see Whopsdk::Models::InvoiceListResponse::Data#status
@@ -277,6 +239,36 @@ module Whopsdk
 
           # @!method self.values
           #   @return [Array<Symbol>]
+        end
+
+        # @see Whopsdk::Models::InvoiceListResponse::Data#user
+        class User < Whopsdk::Internal::Type::BaseModel
+          # @!attribute id
+          #   The internal ID of the user.
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!attribute name
+          #   The name of the user from their Whop account.
+          #
+          #   @return [String, nil]
+          required :name, String, nil?: true
+
+          # @!attribute username
+          #   The username of the user from their Whop account.
+          #
+          #   @return [String]
+          required :username, String
+
+          # @!method initialize(id:, name:, username:)
+          #   The user that the invoice was created for.
+          #
+          #   @param id [String] The internal ID of the user.
+          #
+          #   @param name [String, nil] The name of the user from their Whop account.
+          #
+          #   @param username [String] The username of the user from their Whop account.
         end
       end
 

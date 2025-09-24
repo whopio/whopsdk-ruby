@@ -109,12 +109,11 @@ module Whopsdk
           #   @return [String]
           required :id, String
 
-          # @!attribute base_currency
+          # @!attribute currency
           #   The respective currency identifier for the plan.
           #
-          #   @return [Symbol, Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::BaseCurrency]
-          required :base_currency,
-                   enum: -> { Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::BaseCurrency }
+          #   @return [Symbol, Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::Currency]
+          required :currency, enum: -> { Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::Currency }
 
           # @!attribute formatted_price
           #   The formatted price (including currency) for the plan.
@@ -122,19 +121,19 @@ module Whopsdk
           #   @return [String]
           required :formatted_price, String
 
-          # @!method initialize(id:, base_currency:, formatted_price:)
+          # @!method initialize(id:, currency:, formatted_price:)
           #   The plan that the invoice was created for.
           #
           #   @param id [String] The internal ID of the plan.
           #
-          #   @param base_currency [Symbol, Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::BaseCurrency] The respective currency identifier for the plan.
+          #   @param currency [Symbol, Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::Currency] The respective currency identifier for the plan.
           #
           #   @param formatted_price [String] The formatted price (including currency) for the plan.
 
           # The respective currency identifier for the plan.
           #
-          # @see Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan#base_currency
-          module BaseCurrency
+          # @see Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan#currency
+          module Currency
             extend Whopsdk::Internal::Type::Enum
 
             USD = :usd

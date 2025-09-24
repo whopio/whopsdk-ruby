@@ -80,30 +80,30 @@ module Whopsdk
         type current_plan =
           {
             id: String,
-            base_currency: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::base_currency,
+            currency: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::currency,
             formatted_price: String
           }
 
         class CurrentPlan < Whopsdk::Internal::Type::BaseModel
           attr_accessor id: String
 
-          attr_accessor base_currency: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::base_currency
+          attr_accessor currency: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::currency
 
           attr_accessor formatted_price: String
 
           def initialize: (
             id: String,
-            base_currency: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::base_currency,
+            currency: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::currency,
             formatted_price: String
           ) -> void
 
           def to_hash: -> {
             id: String,
-            base_currency: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::base_currency,
+            currency: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::currency,
             formatted_price: String
           }
 
-          type base_currency =
+          type currency =
             :usd
             | :sgd
             | :inr
@@ -189,7 +189,7 @@ module Whopsdk
             | :rub
             | :btc
 
-          module BaseCurrency
+          module Currency
             extend Whopsdk::Internal::Type::Enum
 
             USD: :usd
@@ -277,7 +277,7 @@ module Whopsdk
             RUB: :rub
             BTC: :btc
 
-            def self?.values: -> ::Array[Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::base_currency]
+            def self?.values: -> ::Array[Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::currency]
           end
         end
 

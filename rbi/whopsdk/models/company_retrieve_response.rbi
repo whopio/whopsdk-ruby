@@ -645,7 +645,9 @@ module Whopsdk
         # The website
         sig do
           returns(
-            Whopsdk::Models::CompanyRetrieveResponse::SocialLink::Website::TaggedSymbol
+            T.nilable(
+              Whopsdk::Models::CompanyRetrieveResponse::SocialLink::Website::TaggedSymbol
+            )
           )
         end
         attr_accessor :website
@@ -656,7 +658,9 @@ module Whopsdk
             id: String,
             url: String,
             website:
-              Whopsdk::Models::CompanyRetrieveResponse::SocialLink::Website::OrSymbol
+              T.nilable(
+                Whopsdk::Models::CompanyRetrieveResponse::SocialLink::Website::OrSymbol
+              )
           ).returns(T.attached_class)
         end
         def self.new(
@@ -675,7 +679,9 @@ module Whopsdk
               id: String,
               url: String,
               website:
-                Whopsdk::Models::CompanyRetrieveResponse::SocialLink::Website::TaggedSymbol
+                T.nilable(
+                  Whopsdk::Models::CompanyRetrieveResponse::SocialLink::Website::TaggedSymbol
+                )
             }
           )
         end

@@ -11,8 +11,8 @@ module Whopsdk
       #   The method of collection for this invoice. If using charge_automatically, you
       #   must provide a payment_token.
       #
-      #   @return [Symbol, Whopsdk::Models::InvoiceCreateParams::CollectionMethod]
-      required :collection_method, enum: -> { Whopsdk::InvoiceCreateParams::CollectionMethod }
+      #   @return [Symbol, Whopsdk::Models::InvoiceCreateParams::CollectionMethod, nil]
+      required :collection_method, enum: -> { Whopsdk::InvoiceCreateParams::CollectionMethod }, nil?: true
 
       # @!attribute due_date
       #   The date the invoice is due, if applicable.
@@ -80,7 +80,7 @@ module Whopsdk
       #   Some parameter documentations has been truncated, see
       #   {Whopsdk::Models::InvoiceCreateParams} for more details.
       #
-      #   @param collection_method [Symbol, Whopsdk::Models::InvoiceCreateParams::CollectionMethod] The method of collection for this invoice. If using charge_automatically, you mu
+      #   @param collection_method [Symbol, Whopsdk::Models::InvoiceCreateParams::CollectionMethod, nil] The method of collection for this invoice. If using charge_automatically, you mu
       #
       #   @param due_date [Integer] The date the invoice is due, if applicable.
       #

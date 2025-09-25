@@ -71,27 +71,27 @@ module Whopsdk
       type filters =
         {
           access_pass_ids: ::Array[String]?,
-          collection_methods: ::Array[Whopsdk::Models::InvoiceListParams::Filters::collection_method]?,
-          statuses: ::Array[Whopsdk::Models::InvoiceListParams::Filters::status]?
+          collection_methods: ::Array[Whopsdk::Models::InvoiceListParams::Filters::collection_method?]?,
+          statuses: ::Array[Whopsdk::Models::InvoiceListParams::Filters::status?]?
         }
 
       class Filters < Whopsdk::Internal::Type::BaseModel
         attr_accessor access_pass_ids: ::Array[String]?
 
-        attr_accessor collection_methods: ::Array[Whopsdk::Models::InvoiceListParams::Filters::collection_method]?
+        attr_accessor collection_methods: ::Array[Whopsdk::Models::InvoiceListParams::Filters::collection_method?]?
 
-        attr_accessor statuses: ::Array[Whopsdk::Models::InvoiceListParams::Filters::status]?
+        attr_accessor statuses: ::Array[Whopsdk::Models::InvoiceListParams::Filters::status?]?
 
         def initialize: (
           ?access_pass_ids: ::Array[String]?,
-          ?collection_methods: ::Array[Whopsdk::Models::InvoiceListParams::Filters::collection_method]?,
-          ?statuses: ::Array[Whopsdk::Models::InvoiceListParams::Filters::status]?
+          ?collection_methods: ::Array[Whopsdk::Models::InvoiceListParams::Filters::collection_method?]?,
+          ?statuses: ::Array[Whopsdk::Models::InvoiceListParams::Filters::status?]?
         ) -> void
 
         def to_hash: -> {
           access_pass_ids: ::Array[String]?,
-          collection_methods: ::Array[Whopsdk::Models::InvoiceListParams::Filters::collection_method]?,
-          statuses: ::Array[Whopsdk::Models::InvoiceListParams::Filters::status]?
+          collection_methods: ::Array[Whopsdk::Models::InvoiceListParams::Filters::collection_method?]?,
+          statuses: ::Array[Whopsdk::Models::InvoiceListParams::Filters::status?]?
         }
 
         type collection_method = :send_invoice | :charge_automatically

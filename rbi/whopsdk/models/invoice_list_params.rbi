@@ -143,7 +143,9 @@ module Whopsdk
           returns(
             T.nilable(
               T::Array[
-                Whopsdk::InvoiceListParams::Filters::CollectionMethod::OrSymbol
+                T.nilable(
+                  Whopsdk::InvoiceListParams::Filters::CollectionMethod::OrSymbol
+                )
               ]
             )
           )
@@ -154,7 +156,9 @@ module Whopsdk
         sig do
           returns(
             T.nilable(
-              T::Array[Whopsdk::InvoiceListParams::Filters::Status::OrSymbol]
+              T::Array[
+                T.nilable(Whopsdk::InvoiceListParams::Filters::Status::OrSymbol)
+              ]
             )
           )
         end
@@ -167,12 +171,18 @@ module Whopsdk
             collection_methods:
               T.nilable(
                 T::Array[
-                  Whopsdk::InvoiceListParams::Filters::CollectionMethod::OrSymbol
+                  T.nilable(
+                    Whopsdk::InvoiceListParams::Filters::CollectionMethod::OrSymbol
+                  )
                 ]
               ),
             statuses:
               T.nilable(
-                T::Array[Whopsdk::InvoiceListParams::Filters::Status::OrSymbol]
+                T::Array[
+                  T.nilable(
+                    Whopsdk::InvoiceListParams::Filters::Status::OrSymbol
+                  )
+                ]
               )
           ).returns(T.attached_class)
         end
@@ -193,13 +203,17 @@ module Whopsdk
               collection_methods:
                 T.nilable(
                   T::Array[
-                    Whopsdk::InvoiceListParams::Filters::CollectionMethod::OrSymbol
+                    T.nilable(
+                      Whopsdk::InvoiceListParams::Filters::CollectionMethod::OrSymbol
+                    )
                   ]
                 ),
               statuses:
                 T.nilable(
                   T::Array[
-                    Whopsdk::InvoiceListParams::Filters::Status::OrSymbol
+                    T.nilable(
+                      Whopsdk::InvoiceListParams::Filters::Status::OrSymbol
+                    )
                   ]
                 )
             }

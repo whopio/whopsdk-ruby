@@ -38,7 +38,7 @@ class Whopsdk::Test::Resources::InvoicesTest < Whopsdk::Test::ResourceTest
         email_address: String | nil,
         fetch_invoice_token: String,
         number: String,
-        status: Whopsdk::Models::InvoiceRetrieveResponse::Status,
+        status: Whopsdk::Models::InvoiceRetrieveResponse::Status | nil,
         user: Whopsdk::Models::InvoiceRetrieveResponse::User | nil
       }
     end

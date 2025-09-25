@@ -2,7 +2,7 @@ module Whopsdk
   module Models
     type invoice_create_params =
       {
-        collection_method: Whopsdk::Models::InvoiceCreateParams::collection_method,
+        collection_method: Whopsdk::Models::InvoiceCreateParams::collection_method?,
         due_date: Integer,
         plan: Whopsdk::InvoiceCreateParams::Plan,
         access_pass: Whopsdk::InvoiceCreateParams::AccessPass?,
@@ -19,7 +19,7 @@ module Whopsdk
       extend Whopsdk::Internal::Type::RequestParameters::Converter
       include Whopsdk::Internal::Type::RequestParameters
 
-      attr_accessor collection_method: Whopsdk::Models::InvoiceCreateParams::collection_method
+      attr_accessor collection_method: Whopsdk::Models::InvoiceCreateParams::collection_method?
 
       attr_accessor due_date: Integer
 
@@ -40,7 +40,7 @@ module Whopsdk
       attr_accessor payment_token_id: String?
 
       def initialize: (
-        collection_method: Whopsdk::Models::InvoiceCreateParams::collection_method,
+        collection_method: Whopsdk::Models::InvoiceCreateParams::collection_method?,
         due_date: Integer,
         plan: Whopsdk::InvoiceCreateParams::Plan,
         ?access_pass: Whopsdk::InvoiceCreateParams::AccessPass?,
@@ -54,7 +54,7 @@ module Whopsdk
       ) -> void
 
       def to_hash: -> {
-        collection_method: Whopsdk::Models::InvoiceCreateParams::collection_method,
+        collection_method: Whopsdk::Models::InvoiceCreateParams::collection_method?,
         due_date: Integer,
         plan: Whopsdk::InvoiceCreateParams::Plan,
         access_pass: Whopsdk::InvoiceCreateParams::AccessPass?,

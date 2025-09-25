@@ -49,8 +49,8 @@ module Whopsdk
       # @!attribute status
       #   The status of the invoice.
       #
-      #   @return [Symbol, Whopsdk::Models::InvoiceRetrieveResponse::Status]
-      required :status, enum: -> { Whopsdk::Models::InvoiceRetrieveResponse::Status }
+      #   @return [Symbol, Whopsdk::Models::InvoiceRetrieveResponse::Status, nil]
+      required :status, enum: -> { Whopsdk::Models::InvoiceRetrieveResponse::Status }, nil?: true
 
       # @!attribute user
       #   The user that the invoice was created for.
@@ -75,7 +75,7 @@ module Whopsdk
       #
       #   @param number [String] The number of the invoice.
       #
-      #   @param status [Symbol, Whopsdk::Models::InvoiceRetrieveResponse::Status] The status of the invoice.
+      #   @param status [Symbol, Whopsdk::Models::InvoiceRetrieveResponse::Status, nil] The status of the invoice.
       #
       #   @param user [Whopsdk::Models::InvoiceRetrieveResponse::User, nil] The user that the invoice was created for.
 
@@ -90,8 +90,10 @@ module Whopsdk
         # @!attribute currency
         #   The respective currency identifier for the plan.
         #
-        #   @return [Symbol, Whopsdk::Models::InvoiceRetrieveResponse::CurrentPlan::Currency]
-        required :currency, enum: -> { Whopsdk::Models::InvoiceRetrieveResponse::CurrentPlan::Currency }
+        #   @return [Symbol, Whopsdk::Models::InvoiceRetrieveResponse::CurrentPlan::Currency, nil]
+        required :currency,
+                 enum: -> { Whopsdk::Models::InvoiceRetrieveResponse::CurrentPlan::Currency },
+                 nil?: true
 
         # @!attribute formatted_price
         #   The formatted price (including currency) for the plan.
@@ -104,7 +106,7 @@ module Whopsdk
         #
         #   @param id [String] The internal ID of the plan.
         #
-        #   @param currency [Symbol, Whopsdk::Models::InvoiceRetrieveResponse::CurrentPlan::Currency] The respective currency identifier for the plan.
+        #   @param currency [Symbol, Whopsdk::Models::InvoiceRetrieveResponse::CurrentPlan::Currency, nil] The respective currency identifier for the plan.
         #
         #   @param formatted_price [String] The formatted price (including currency) for the plan.
 

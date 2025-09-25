@@ -11,7 +11,7 @@ module Whopsdk
       required :checkout_job_id, String, nil?: true
 
       # @!attribute invoice
-      #   The invoice that was created for this invoice.
+      #   A statement that defines an amount due by a customer.
       #
       #   @return [Whopsdk::Models::InvoiceCreateResponse::Invoice, nil]
       required :invoice, -> { Whopsdk::Models::InvoiceCreateResponse::Invoice }, nil?: true
@@ -21,7 +21,7 @@ module Whopsdk
       #
       #   @param checkout_job_id [String, nil] The ID of the checkout job that was created for this invoice.
       #
-      #   @param invoice [Whopsdk::Models::InvoiceCreateResponse::Invoice, nil] The invoice that was created for this invoice.
+      #   @param invoice [Whopsdk::Models::InvoiceCreateResponse::Invoice, nil] A statement that defines an amount due by a customer.
 
       # @see Whopsdk::Models::InvoiceCreateResponse#invoice
       class Invoice < Whopsdk::Internal::Type::BaseModel
@@ -70,8 +70,8 @@ module Whopsdk
         # @!attribute status
         #   The status of the invoice.
         #
-        #   @return [Symbol, Whopsdk::Models::InvoiceCreateResponse::Invoice::Status]
-        required :status, enum: -> { Whopsdk::Models::InvoiceCreateResponse::Invoice::Status }
+        #   @return [Symbol, Whopsdk::Models::InvoiceCreateResponse::Invoice::Status, nil]
+        required :status, enum: -> { Whopsdk::Models::InvoiceCreateResponse::Invoice::Status }, nil?: true
 
         # @!attribute user
         #   The user that the invoice was created for.
@@ -80,7 +80,7 @@ module Whopsdk
         required :user, -> { Whopsdk::Models::InvoiceCreateResponse::Invoice::User }, nil?: true
 
         # @!method initialize(id:, created_at:, current_plan:, due_date:, email_address:, fetch_invoice_token:, number:, status:, user:)
-        #   The invoice that was created for this invoice.
+        #   A statement that defines an amount due by a customer.
         #
         #   @param id [String] The ID of the invoice.
         #
@@ -96,7 +96,7 @@ module Whopsdk
         #
         #   @param number [String] The number of the invoice.
         #
-        #   @param status [Symbol, Whopsdk::Models::InvoiceCreateResponse::Invoice::Status] The status of the invoice.
+        #   @param status [Symbol, Whopsdk::Models::InvoiceCreateResponse::Invoice::Status, nil] The status of the invoice.
         #
         #   @param user [Whopsdk::Models::InvoiceCreateResponse::Invoice::User, nil] The user that the invoice was created for.
 
@@ -111,8 +111,10 @@ module Whopsdk
           # @!attribute currency
           #   The respective currency identifier for the plan.
           #
-          #   @return [Symbol, Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency]
-          required :currency, enum: -> { Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency }
+          #   @return [Symbol, Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency, nil]
+          required :currency,
+                   enum: -> { Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency },
+                   nil?: true
 
           # @!attribute formatted_price
           #   The formatted price (including currency) for the plan.
@@ -125,7 +127,7 @@ module Whopsdk
           #
           #   @param id [String] The internal ID of the plan.
           #
-          #   @param currency [Symbol, Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency] The respective currency identifier for the plan.
+          #   @param currency [Symbol, Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency, nil] The respective currency identifier for the plan.
           #
           #   @param formatted_price [String] The formatted price (including currency) for the plan.
 

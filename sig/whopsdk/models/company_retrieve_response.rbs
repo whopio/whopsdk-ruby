@@ -253,7 +253,7 @@ module Whopsdk
         {
           id: String,
           url: String,
-          website: Whopsdk::Models::CompanyRetrieveResponse::SocialLink::website
+          website: Whopsdk::Models::CompanyRetrieveResponse::SocialLink::website?
         }
 
       class SocialLink < Whopsdk::Internal::Type::BaseModel
@@ -261,18 +261,18 @@ module Whopsdk
 
         attr_accessor url: String
 
-        attr_accessor website: Whopsdk::Models::CompanyRetrieveResponse::SocialLink::website
+        attr_accessor website: Whopsdk::Models::CompanyRetrieveResponse::SocialLink::website?
 
         def initialize: (
           id: String,
           url: String,
-          website: Whopsdk::Models::CompanyRetrieveResponse::SocialLink::website
+          website: Whopsdk::Models::CompanyRetrieveResponse::SocialLink::website?
         ) -> void
 
         def to_hash: -> {
           id: String,
           url: String,
-          website: Whopsdk::Models::CompanyRetrieveResponse::SocialLink::website
+          website: Whopsdk::Models::CompanyRetrieveResponse::SocialLink::website?
         }
 
         type website =

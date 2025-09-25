@@ -15,7 +15,7 @@ module Whopsdk
       sig { returns(T.nilable(String)) }
       attr_accessor :checkout_job_id
 
-      # The invoice that was created for this invoice.
+      # A statement that defines an amount due by a customer.
       sig do
         returns(T.nilable(Whopsdk::Models::InvoiceCreateResponse::Invoice))
       end
@@ -40,7 +40,7 @@ module Whopsdk
       def self.new(
         # The ID of the checkout job that was created for this invoice.
         checkout_job_id:,
-        # The invoice that was created for this invoice.
+        # A statement that defines an amount due by a customer.
         invoice:
       )
       end
@@ -106,7 +106,9 @@ module Whopsdk
         # The status of the invoice.
         sig do
           returns(
-            Whopsdk::Models::InvoiceCreateResponse::Invoice::Status::TaggedSymbol
+            T.nilable(
+              Whopsdk::Models::InvoiceCreateResponse::Invoice::Status::TaggedSymbol
+            )
           )
         end
         attr_accessor :status
@@ -129,7 +131,7 @@ module Whopsdk
         end
         attr_writer :user
 
-        # The invoice that was created for this invoice.
+        # A statement that defines an amount due by a customer.
         sig do
           params(
             id: String,
@@ -141,7 +143,9 @@ module Whopsdk
             fetch_invoice_token: String,
             number: String,
             status:
-              Whopsdk::Models::InvoiceCreateResponse::Invoice::Status::OrSymbol,
+              T.nilable(
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::Status::OrSymbol
+              ),
             user:
               T.nilable(
                 Whopsdk::Models::InvoiceCreateResponse::Invoice::User::OrHash
@@ -182,7 +186,9 @@ module Whopsdk
               fetch_invoice_token: String,
               number: String,
               status:
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::Status::TaggedSymbol,
+                T.nilable(
+                  Whopsdk::Models::InvoiceCreateResponse::Invoice::Status::TaggedSymbol
+                ),
               user:
                 T.nilable(Whopsdk::Models::InvoiceCreateResponse::Invoice::User)
             }
@@ -207,7 +213,9 @@ module Whopsdk
           # The respective currency identifier for the plan.
           sig do
             returns(
-              Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
+              T.nilable(
+                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
+              )
             )
           end
           attr_accessor :currency
@@ -221,7 +229,9 @@ module Whopsdk
             params(
               id: String,
               currency:
-                Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::OrSymbol,
+                T.nilable(
+                  Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::OrSymbol
+                ),
               formatted_price: String
             ).returns(T.attached_class)
           end
@@ -240,7 +250,9 @@ module Whopsdk
               {
                 id: String,
                 currency:
-                  Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol,
+                  T.nilable(
+                    Whopsdk::Models::InvoiceCreateResponse::Invoice::CurrentPlan::Currency::TaggedSymbol
+                  ),
                 formatted_price: String
               }
             )

@@ -13,7 +13,11 @@ module Whopsdk
 
       # The method of collection for this invoice. If using charge_automatically, you
       # must provide a payment_token.
-      sig { returns(Whopsdk::InvoiceCreateParams::CollectionMethod::OrSymbol) }
+      sig do
+        returns(
+          T.nilable(Whopsdk::InvoiceCreateParams::CollectionMethod::OrSymbol)
+        )
+      end
       attr_accessor :collection_method
 
       # The date the invoice is due, if applicable.
@@ -74,7 +78,7 @@ module Whopsdk
       sig do
         params(
           collection_method:
-            Whopsdk::InvoiceCreateParams::CollectionMethod::OrSymbol,
+            T.nilable(Whopsdk::InvoiceCreateParams::CollectionMethod::OrSymbol),
           due_date: Integer,
           plan: Whopsdk::InvoiceCreateParams::Plan::OrHash,
           access_pass:
@@ -126,7 +130,9 @@ module Whopsdk
         override.returns(
           {
             collection_method:
-              Whopsdk::InvoiceCreateParams::CollectionMethod::OrSymbol,
+              T.nilable(
+                Whopsdk::InvoiceCreateParams::CollectionMethod::OrSymbol
+              ),
             due_date: Integer,
             plan: Whopsdk::InvoiceCreateParams::Plan,
             access_pass: T.nilable(Whopsdk::InvoiceCreateParams::AccessPass),

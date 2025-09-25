@@ -1,39 +1,39 @@
 module Whopsdk
   module Models
-    type course_lesson_interaction_retrieve_response =
+    type course_lesson_interaction =
       {
         id: String,
         completed: bool,
         created_at: Integer,
-        lesson: Whopsdk::Models::CourseLessonInteractionRetrieveResponse::Lesson,
-        user: Whopsdk::Models::CourseLessonInteractionRetrieveResponse::User
+        lesson: Whopsdk::CourseLessonInteraction::Lesson,
+        user: Whopsdk::CourseLessonInteraction::User
       }
 
-    class CourseLessonInteractionRetrieveResponse < Whopsdk::Internal::Type::BaseModel
+    class CourseLessonInteraction < Whopsdk::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor completed: bool
 
       attr_accessor created_at: Integer
 
-      attr_accessor lesson: Whopsdk::Models::CourseLessonInteractionRetrieveResponse::Lesson
+      attr_accessor lesson: Whopsdk::CourseLessonInteraction::Lesson
 
-      attr_accessor user: Whopsdk::Models::CourseLessonInteractionRetrieveResponse::User
+      attr_accessor user: Whopsdk::CourseLessonInteraction::User
 
       def initialize: (
         id: String,
         completed: bool,
         created_at: Integer,
-        lesson: Whopsdk::Models::CourseLessonInteractionRetrieveResponse::Lesson,
-        user: Whopsdk::Models::CourseLessonInteractionRetrieveResponse::User
+        lesson: Whopsdk::CourseLessonInteraction::Lesson,
+        user: Whopsdk::CourseLessonInteraction::User
       ) -> void
 
       def to_hash: -> {
         id: String,
         completed: bool,
         created_at: Integer,
-        lesson: Whopsdk::Models::CourseLessonInteractionRetrieveResponse::Lesson,
-        user: Whopsdk::Models::CourseLessonInteractionRetrieveResponse::User
+        lesson: Whopsdk::CourseLessonInteraction::Lesson,
+        user: Whopsdk::CourseLessonInteraction::User
       }
 
       type lesson = { id: String, title: String }

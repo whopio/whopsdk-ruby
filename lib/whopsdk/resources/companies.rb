@@ -10,14 +10,14 @@ module Whopsdk
       # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::CompanyRetrieveResponse]
+      # @return [Whopsdk::Models::Company]
       #
       # @see Whopsdk::Models::CompanyRetrieveParams
       def retrieve(id, params = {})
         @client.request(
           method: :get,
           path: ["companies/%1$s", id],
-          model: Whopsdk::Models::CompanyRetrieveResponse,
+          model: Whopsdk::Company,
           options: params[:request_options]
         )
       end

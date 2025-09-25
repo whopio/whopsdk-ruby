@@ -13,11 +13,7 @@ module Whopsdk
 
       # The method of collection for this invoice. If using charge_automatically, you
       # must provide a payment_token.
-      sig do
-        returns(
-          T.nilable(Whopsdk::InvoiceCreateParams::CollectionMethod::OrSymbol)
-        )
-      end
+      sig { returns(T.nilable(Whopsdk::CollectionMethod::OrSymbol)) }
       attr_accessor :collection_method
 
       # The date the invoice is due, if applicable.
@@ -77,8 +73,7 @@ module Whopsdk
 
       sig do
         params(
-          collection_method:
-            T.nilable(Whopsdk::InvoiceCreateParams::CollectionMethod::OrSymbol),
+          collection_method: T.nilable(Whopsdk::CollectionMethod::OrSymbol),
           due_date: Integer,
           plan: Whopsdk::InvoiceCreateParams::Plan::OrHash,
           access_pass:
@@ -129,10 +124,7 @@ module Whopsdk
       sig do
         override.returns(
           {
-            collection_method:
-              T.nilable(
-                Whopsdk::InvoiceCreateParams::CollectionMethod::OrSymbol
-              ),
+            collection_method: T.nilable(Whopsdk::CollectionMethod::OrSymbol),
             due_date: Integer,
             plan: Whopsdk::InvoiceCreateParams::Plan,
             access_pass: T.nilable(Whopsdk::InvoiceCreateParams::AccessPass),
@@ -149,39 +141,6 @@ module Whopsdk
       def to_hash
       end
 
-      # The method of collection for this invoice. If using charge_automatically, you
-      # must provide a payment_token.
-      module CollectionMethod
-        extend Whopsdk::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, Whopsdk::InvoiceCreateParams::CollectionMethod)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        SEND_INVOICE =
-          T.let(
-            :send_invoice,
-            Whopsdk::InvoiceCreateParams::CollectionMethod::TaggedSymbol
-          )
-        CHARGE_AUTOMATICALLY =
-          T.let(
-            :charge_automatically,
-            Whopsdk::InvoiceCreateParams::CollectionMethod::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              Whopsdk::InvoiceCreateParams::CollectionMethod::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
-        end
-      end
-
       class Plan < Whopsdk::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
@@ -196,13 +155,7 @@ module Whopsdk
         attr_accessor :ach_payments
 
         # The respective currency identifier for the plan.
-        sig do
-          returns(
-            T.nilable(
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::OrSymbol
-            )
-          )
-        end
+        sig { returns(T.nilable(Whopsdk::Currency::OrSymbol)) }
         attr_accessor :base_currency
 
         # The interval at which the plan charges (renewal plans).
@@ -330,10 +283,7 @@ module Whopsdk
         sig do
           params(
             ach_payments: T.nilable(T::Boolean),
-            base_currency:
-              T.nilable(
-                Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::OrSymbol
-              ),
+            base_currency: T.nilable(Whopsdk::Currency::OrSymbol),
             billing_period: T.nilable(Integer),
             card_payments: T.nilable(T::Boolean),
             coinbase_commerce_accepted: T.nilable(T::Boolean),
@@ -430,10 +380,7 @@ module Whopsdk
           override.returns(
             {
               ach_payments: T.nilable(T::Boolean),
-              base_currency:
-                T.nilable(
-                  Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::OrSymbol
-                ),
+              base_currency: T.nilable(Whopsdk::Currency::OrSymbol),
               billing_period: T.nilable(Integer),
               card_payments: T.nilable(T::Boolean),
               coinbase_commerce_accepted: T.nilable(T::Boolean),
@@ -475,448 +422,6 @@ module Whopsdk
           )
         end
         def to_hash
-        end
-
-        # The respective currency identifier for the plan.
-        module BaseCurrency
-          extend Whopsdk::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, Whopsdk::InvoiceCreateParams::Plan::BaseCurrency)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          USD =
-            T.let(
-              :usd,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          SGD =
-            T.let(
-              :sgd,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          INR =
-            T.let(
-              :inr,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          AUD =
-            T.let(
-              :aud,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          BRL =
-            T.let(
-              :brl,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          CAD =
-            T.let(
-              :cad,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          DKK =
-            T.let(
-              :dkk,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          EUR =
-            T.let(
-              :eur,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          NOK =
-            T.let(
-              :nok,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          GBP =
-            T.let(
-              :gbp,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          SEK =
-            T.let(
-              :sek,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          CHF =
-            T.let(
-              :chf,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          HKD =
-            T.let(
-              :hkd,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          HUF =
-            T.let(
-              :huf,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          JPY =
-            T.let(
-              :jpy,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          MXN =
-            T.let(
-              :mxn,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          MYR =
-            T.let(
-              :myr,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          PLN =
-            T.let(
-              :pln,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          CZK =
-            T.let(
-              :czk,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          NZD =
-            T.let(
-              :nzd,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          AED =
-            T.let(
-              :aed,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          ETH =
-            T.let(
-              :eth,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          APE =
-            T.let(
-              :ape,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          COP =
-            T.let(
-              :cop,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          RON =
-            T.let(
-              :ron,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          THB =
-            T.let(
-              :thb,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          BGN =
-            T.let(
-              :bgn,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          IDR =
-            T.let(
-              :idr,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          DOP =
-            T.let(
-              :dop,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          PHP =
-            T.let(
-              :php,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          TRY =
-            T.let(
-              :try,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          KRW =
-            T.let(
-              :krw,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          TWD =
-            T.let(
-              :twd,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          VND =
-            T.let(
-              :vnd,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          PKR =
-            T.let(
-              :pkr,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          CLP =
-            T.let(
-              :clp,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          UYU =
-            T.let(
-              :uyu,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          ARS =
-            T.let(
-              :ars,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          ZAR =
-            T.let(
-              :zar,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          DZD =
-            T.let(
-              :dzd,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          TND =
-            T.let(
-              :tnd,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          MAD =
-            T.let(
-              :mad,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          KES =
-            T.let(
-              :kes,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          KWD =
-            T.let(
-              :kwd,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          JOD =
-            T.let(
-              :jod,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          ALL =
-            T.let(
-              :all,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          XCD =
-            T.let(
-              :xcd,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          AMD =
-            T.let(
-              :amd,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          BSD =
-            T.let(
-              :bsd,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          BHD =
-            T.let(
-              :bhd,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          BOB =
-            T.let(
-              :bob,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          BAM =
-            T.let(
-              :bam,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          KHR =
-            T.let(
-              :khr,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          CRC =
-            T.let(
-              :crc,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          XOF =
-            T.let(
-              :xof,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          EGP =
-            T.let(
-              :egp,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          ETB =
-            T.let(
-              :etb,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          GMD =
-            T.let(
-              :gmd,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          GHS =
-            T.let(
-              :ghs,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          GTQ =
-            T.let(
-              :gtq,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          GYD =
-            T.let(
-              :gyd,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          ILS =
-            T.let(
-              :ils,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          JMD =
-            T.let(
-              :jmd,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          MOP =
-            T.let(
-              :mop,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          MGA =
-            T.let(
-              :mga,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          MUR =
-            T.let(
-              :mur,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          MDL =
-            T.let(
-              :mdl,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          MNT =
-            T.let(
-              :mnt,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          NAD =
-            T.let(
-              :nad,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          NGN =
-            T.let(
-              :ngn,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          MKD =
-            T.let(
-              :mkd,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          OMR =
-            T.let(
-              :omr,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          PYG =
-            T.let(
-              :pyg,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          PEN =
-            T.let(
-              :pen,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          QAR =
-            T.let(
-              :qar,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          RWF =
-            T.let(
-              :rwf,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          SAR =
-            T.let(
-              :sar,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          RSD =
-            T.let(
-              :rsd,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          LKR =
-            T.let(
-              :lkr,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          TZS =
-            T.let(
-              :tzs,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          TTD =
-            T.let(
-              :ttd,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          UZS =
-            T.let(
-              :uzs,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          RUB =
-            T.let(
-              :rub,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-          BTC =
-            T.let(
-              :btc,
-              Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Whopsdk::InvoiceCreateParams::Plan::BaseCurrency::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
         end
 
         class CustomField < Whopsdk::Internal::Type::BaseModel

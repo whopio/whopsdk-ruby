@@ -2,8 +2,7 @@
 
 module Whopsdk
   module Models
-    # @see Whopsdk::Resources::CourseLessonInteractions#retrieve
-    class CourseLessonInteractionRetrieveResponse < Whopsdk::Internal::Type::BaseModel
+    class CourseLessonInteraction < Whopsdk::Internal::Type::BaseModel
       # @!attribute id
       #   The ID of the lesson interaction
       #
@@ -25,14 +24,14 @@ module Whopsdk
       # @!attribute lesson
       #   The lesson this interaction is for
       #
-      #   @return [Whopsdk::Models::CourseLessonInteractionRetrieveResponse::Lesson]
-      required :lesson, -> { Whopsdk::Models::CourseLessonInteractionRetrieveResponse::Lesson }
+      #   @return [Whopsdk::Models::CourseLessonInteraction::Lesson]
+      required :lesson, -> { Whopsdk::CourseLessonInteraction::Lesson }
 
       # @!attribute user
       #   The user who interacted with the lesson
       #
-      #   @return [Whopsdk::Models::CourseLessonInteractionRetrieveResponse::User]
-      required :user, -> { Whopsdk::Models::CourseLessonInteractionRetrieveResponse::User }
+      #   @return [Whopsdk::Models::CourseLessonInteraction::User]
+      required :user, -> { Whopsdk::CourseLessonInteraction::User }
 
       # @!method initialize(id:, completed:, created_at:, lesson:, user:)
       #   A lesson interaction tracking user progress in courses
@@ -43,11 +42,11 @@ module Whopsdk
       #
       #   @param created_at [Integer] When the interaction was created
       #
-      #   @param lesson [Whopsdk::Models::CourseLessonInteractionRetrieveResponse::Lesson] The lesson this interaction is for
+      #   @param lesson [Whopsdk::Models::CourseLessonInteraction::Lesson] The lesson this interaction is for
       #
-      #   @param user [Whopsdk::Models::CourseLessonInteractionRetrieveResponse::User] The user who interacted with the lesson
+      #   @param user [Whopsdk::Models::CourseLessonInteraction::User] The user who interacted with the lesson
 
-      # @see Whopsdk::Models::CourseLessonInteractionRetrieveResponse#lesson
+      # @see Whopsdk::Models::CourseLessonInteraction#lesson
       class Lesson < Whopsdk::Internal::Type::BaseModel
         # @!attribute id
         #   The ID of the lesson
@@ -69,7 +68,7 @@ module Whopsdk
         #   @param title [String] The title of the lesson
       end
 
-      # @see Whopsdk::Models::CourseLessonInteractionRetrieveResponse#user
+      # @see Whopsdk::Models::CourseLessonInteraction#user
       class User < Whopsdk::Internal::Type::BaseModel
         # @!attribute id
         #   The internal ID of the user.

@@ -4,7 +4,7 @@ module Whopsdk
       def retrieve: (
         String id,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Models::AccessPassRetrieveResponse
+      ) -> Whopsdk::AccessPass
 
       def list: (
         company_id: String,

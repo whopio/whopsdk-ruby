@@ -15,15 +15,15 @@ module Whopsdk
       # @!attribute page_info
       #   Information to aid in pagination.
       #
-      #   @return [Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo]
-      required :page_info, -> { Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo }
+      #   @return [Whopsdk::Models::PageInfo]
+      required :page_info, -> { Whopsdk::PageInfo }
 
       # @!method initialize(data:, page_info:)
       #   The connection type for LessonInteraction.
       #
       #   @param data [Array<Whopsdk::Models::CourseLessonInteractionListResponse::Data, nil>, nil] A list of nodes.
       #
-      #   @param page_info [Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo] Information to aid in pagination.
+      #   @param page_info [Whopsdk::Models::PageInfo] Information to aid in pagination.
 
       class Data < Whopsdk::Internal::Type::BaseModel
         # @!attribute id
@@ -120,44 +120,6 @@ module Whopsdk
           #
           #   @param username [String] The username of the user from their Whop account.
         end
-      end
-
-      # @see Whopsdk::Models::CourseLessonInteractionListResponse#page_info
-      class PageInfo < Whopsdk::Internal::Type::BaseModel
-        # @!attribute end_cursor
-        #   When paginating forwards, the cursor to continue.
-        #
-        #   @return [String, nil]
-        required :end_cursor, String, nil?: true
-
-        # @!attribute has_next_page
-        #   When paginating forwards, are there more items?
-        #
-        #   @return [Boolean]
-        required :has_next_page, Whopsdk::Internal::Type::Boolean
-
-        # @!attribute has_previous_page
-        #   When paginating backwards, are there more items?
-        #
-        #   @return [Boolean]
-        required :has_previous_page, Whopsdk::Internal::Type::Boolean
-
-        # @!attribute start_cursor
-        #   When paginating backwards, the cursor to continue.
-        #
-        #   @return [String, nil]
-        required :start_cursor, String, nil?: true
-
-        # @!method initialize(end_cursor:, has_next_page:, has_previous_page:, start_cursor:)
-        #   Information to aid in pagination.
-        #
-        #   @param end_cursor [String, nil] When paginating forwards, the cursor to continue.
-        #
-        #   @param has_next_page [Boolean] When paginating forwards, are there more items?
-        #
-        #   @param has_previous_page [Boolean] When paginating backwards, are there more items?
-        #
-        #   @param start_cursor [String, nil] When paginating backwards, the cursor to continue.
       end
     end
   end

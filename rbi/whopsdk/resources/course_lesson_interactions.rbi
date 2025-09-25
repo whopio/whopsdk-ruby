@@ -8,7 +8,7 @@ module Whopsdk
         params(
           id: String,
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(Whopsdk::Models::CourseLessonInteractionRetrieveResponse)
+        ).returns(Whopsdk::CourseLessonInteraction)
       end
       def retrieve(id, request_options: {})
       end

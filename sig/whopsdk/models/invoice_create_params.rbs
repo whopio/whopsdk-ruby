@@ -2,7 +2,7 @@ module Whopsdk
   module Models
     type invoice_create_params =
       {
-        collection_method: Whopsdk::Models::InvoiceCreateParams::collection_method?,
+        collection_method: Whopsdk::Models::collection_method?,
         due_date: Integer,
         plan: Whopsdk::InvoiceCreateParams::Plan,
         access_pass: Whopsdk::InvoiceCreateParams::AccessPass?,
@@ -19,7 +19,7 @@ module Whopsdk
       extend Whopsdk::Internal::Type::RequestParameters::Converter
       include Whopsdk::Internal::Type::RequestParameters
 
-      attr_accessor collection_method: Whopsdk::Models::InvoiceCreateParams::collection_method?
+      attr_accessor collection_method: Whopsdk::Models::collection_method?
 
       attr_accessor due_date: Integer
 
@@ -40,7 +40,7 @@ module Whopsdk
       attr_accessor payment_token_id: String?
 
       def initialize: (
-        collection_method: Whopsdk::Models::InvoiceCreateParams::collection_method?,
+        collection_method: Whopsdk::Models::collection_method?,
         due_date: Integer,
         plan: Whopsdk::InvoiceCreateParams::Plan,
         ?access_pass: Whopsdk::InvoiceCreateParams::AccessPass?,
@@ -54,7 +54,7 @@ module Whopsdk
       ) -> void
 
       def to_hash: -> {
-        collection_method: Whopsdk::Models::InvoiceCreateParams::collection_method?,
+        collection_method: Whopsdk::Models::collection_method?,
         due_date: Integer,
         plan: Whopsdk::InvoiceCreateParams::Plan,
         access_pass: Whopsdk::InvoiceCreateParams::AccessPass?,
@@ -67,21 +67,10 @@ module Whopsdk
         request_options: Whopsdk::RequestOptions
       }
 
-      type collection_method = :send_invoice | :charge_automatically
-
-      module CollectionMethod
-        extend Whopsdk::Internal::Type::Enum
-
-        SEND_INVOICE: :send_invoice
-        CHARGE_AUTOMATICALLY: :charge_automatically
-
-        def self?.values: -> ::Array[Whopsdk::Models::InvoiceCreateParams::collection_method]
-      end
-
       type plan =
         {
           ach_payments: bool?,
-          base_currency: Whopsdk::Models::InvoiceCreateParams::Plan::base_currency?,
+          base_currency: Whopsdk::Models::currency?,
           billing_period: Integer?,
           card_payments: bool?,
           coinbase_commerce_accepted: bool?,
@@ -109,7 +98,7 @@ module Whopsdk
       class Plan < Whopsdk::Internal::Type::BaseModel
         attr_accessor ach_payments: bool?
 
-        attr_accessor base_currency: Whopsdk::Models::InvoiceCreateParams::Plan::base_currency?
+        attr_accessor base_currency: Whopsdk::Models::currency?
 
         attr_accessor billing_period: Integer?
 
@@ -157,7 +146,7 @@ module Whopsdk
 
         def initialize: (
           ?ach_payments: bool?,
-          ?base_currency: Whopsdk::Models::InvoiceCreateParams::Plan::base_currency?,
+          ?base_currency: Whopsdk::Models::currency?,
           ?billing_period: Integer?,
           ?card_payments: bool?,
           ?coinbase_commerce_accepted: bool?,
@@ -184,7 +173,7 @@ module Whopsdk
 
         def to_hash: -> {
           ach_payments: bool?,
-          base_currency: Whopsdk::Models::InvoiceCreateParams::Plan::base_currency?,
+          base_currency: Whopsdk::Models::currency?,
           billing_period: Integer?,
           card_payments: bool?,
           coinbase_commerce_accepted: bool?,
@@ -208,183 +197,6 @@ module Whopsdk
           unlimited_stock: bool?,
           visibility: Whopsdk::Models::InvoiceCreateParams::Plan::visibility?
         }
-
-        type base_currency =
-          :usd
-          | :sgd
-          | :inr
-          | :aud
-          | :brl
-          | :cad
-          | :dkk
-          | :eur
-          | :nok
-          | :gbp
-          | :sek
-          | :chf
-          | :hkd
-          | :huf
-          | :jpy
-          | :mxn
-          | :myr
-          | :pln
-          | :czk
-          | :nzd
-          | :aed
-          | :eth
-          | :ape
-          | :cop
-          | :ron
-          | :thb
-          | :bgn
-          | :idr
-          | :dop
-          | :php
-          | :try
-          | :krw
-          | :twd
-          | :vnd
-          | :pkr
-          | :clp
-          | :uyu
-          | :ars
-          | :zar
-          | :dzd
-          | :tnd
-          | :mad
-          | :kes
-          | :kwd
-          | :jod
-          | :all
-          | :xcd
-          | :amd
-          | :bsd
-          | :bhd
-          | :bob
-          | :bam
-          | :khr
-          | :crc
-          | :xof
-          | :egp
-          | :etb
-          | :gmd
-          | :ghs
-          | :gtq
-          | :gyd
-          | :ils
-          | :jmd
-          | :mop
-          | :mga
-          | :mur
-          | :mdl
-          | :mnt
-          | :nad
-          | :ngn
-          | :mkd
-          | :omr
-          | :pyg
-          | :pen
-          | :qar
-          | :rwf
-          | :sar
-          | :rsd
-          | :lkr
-          | :tzs
-          | :ttd
-          | :uzs
-          | :rub
-          | :btc
-
-        module BaseCurrency
-          extend Whopsdk::Internal::Type::Enum
-
-          USD: :usd
-          SGD: :sgd
-          INR: :inr
-          AUD: :aud
-          BRL: :brl
-          CAD: :cad
-          DKK: :dkk
-          EUR: :eur
-          NOK: :nok
-          GBP: :gbp
-          SEK: :sek
-          CHF: :chf
-          HKD: :hkd
-          HUF: :huf
-          JPY: :jpy
-          MXN: :mxn
-          MYR: :myr
-          PLN: :pln
-          CZK: :czk
-          NZD: :nzd
-          AED: :aed
-          ETH: :eth
-          APE: :ape
-          COP: :cop
-          RON: :ron
-          THB: :thb
-          BGN: :bgn
-          IDR: :idr
-          DOP: :dop
-          PHP: :php
-          TRY: :try
-          KRW: :krw
-          TWD: :twd
-          VND: :vnd
-          PKR: :pkr
-          CLP: :clp
-          UYU: :uyu
-          ARS: :ars
-          ZAR: :zar
-          DZD: :dzd
-          TND: :tnd
-          MAD: :mad
-          KES: :kes
-          KWD: :kwd
-          JOD: :jod
-          ALL: :all
-          XCD: :xcd
-          AMD: :amd
-          BSD: :bsd
-          BHD: :bhd
-          BOB: :bob
-          BAM: :bam
-          KHR: :khr
-          CRC: :crc
-          XOF: :xof
-          EGP: :egp
-          ETB: :etb
-          GMD: :gmd
-          GHS: :ghs
-          GTQ: :gtq
-          GYD: :gyd
-          ILS: :ils
-          JMD: :jmd
-          MOP: :mop
-          MGA: :mga
-          MUR: :mur
-          MDL: :mdl
-          MNT: :mnt
-          NAD: :nad
-          NGN: :ngn
-          MKD: :mkd
-          OMR: :omr
-          PYG: :pyg
-          PEN: :pen
-          QAR: :qar
-          RWF: :rwf
-          SAR: :sar
-          RSD: :rsd
-          LKR: :lkr
-          TZS: :tzs
-          TTD: :ttd
-          UZS: :uzs
-          RUB: :rub
-          BTC: :btc
-
-          def self?.values: -> ::Array[Whopsdk::Models::InvoiceCreateParams::Plan::base_currency]
-        end
 
         type custom_field =
           {

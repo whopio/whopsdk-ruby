@@ -15,7 +15,7 @@ class Whopsdk::Test::Resources::InvoicesTest < Whopsdk::Test::ResourceTest
     assert_pattern do
       response => {
         checkout_job_id: String | nil,
-        invoice: Whopsdk::Models::InvoiceCreateResponse::Invoice | nil
+        invoice: Whopsdk::Invoice | nil
       }
     end
   end
@@ -26,20 +26,20 @@ class Whopsdk::Test::Resources::InvoicesTest < Whopsdk::Test::ResourceTest
     response = @whopsdk.invoices.retrieve("inv_xxxxxxxxxxxxxx")
 
     assert_pattern do
-      response => Whopsdk::Models::InvoiceRetrieveResponse
+      response => Whopsdk::Invoice
     end
 
     assert_pattern do
       response => {
         id: String,
         created_at: Integer,
-        current_plan: Whopsdk::Models::InvoiceRetrieveResponse::CurrentPlan,
+        current_plan: Whopsdk::Invoice::CurrentPlan,
         due_date: Integer | nil,
         email_address: String | nil,
         fetch_invoice_token: String,
         number: String,
-        status: Whopsdk::Models::InvoiceRetrieveResponse::Status | nil,
-        user: Whopsdk::Models::InvoiceRetrieveResponse::User | nil
+        status: Whopsdk::InvoiceStatus | nil,
+        user: Whopsdk::Invoice::User | nil
       }
     end
   end
@@ -56,7 +56,7 @@ class Whopsdk::Test::Resources::InvoicesTest < Whopsdk::Test::ResourceTest
     assert_pattern do
       response => {
         data: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Models::InvoiceListResponse::Data, nil?: true]) | nil,
-        page_info: Whopsdk::Models::InvoiceListResponse::PageInfo
+        page_info: Whopsdk::PageInfo
       }
     end
   end

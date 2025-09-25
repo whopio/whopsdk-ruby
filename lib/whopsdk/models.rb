@@ -39,15 +39,31 @@ module Whopsdk
     mod.define_sorbet_constant!(const) { T.type_alias { mod.to_sorbet_type } }
   end
 
+  AccessPass = Whopsdk::Models::AccessPass
+
   AccessPassListParams = Whopsdk::Models::AccessPassListParams
 
   AccessPassRetrieveParams = Whopsdk::Models::AccessPassRetrieveParams
 
+  BusinessTypes = Whopsdk::Models::BusinessTypes
+
+  CollectionMethod = Whopsdk::Models::CollectionMethod
+
+  Company = Whopsdk::Models::Company
+
   CompanyRetrieveParams = Whopsdk::Models::CompanyRetrieveParams
+
+  CourseLessonInteraction = Whopsdk::Models::CourseLessonInteraction
 
   CourseLessonInteractionListParams = Whopsdk::Models::CourseLessonInteractionListParams
 
   CourseLessonInteractionRetrieveParams = Whopsdk::Models::CourseLessonInteractionRetrieveParams
+
+  Currency = Whopsdk::Models::Currency
+
+  IndustryTypes = Whopsdk::Models::IndustryTypes
+
+  Invoice = Whopsdk::Models::Invoice
 
   InvoiceCreateParams = Whopsdk::Models::InvoiceCreateParams
 
@@ -55,5 +71,9 @@ module Whopsdk
 
   InvoiceRetrieveParams = Whopsdk::Models::InvoiceRetrieveParams
 
+  InvoiceStatus = Whopsdk::Models::InvoiceStatus
+
   InvoiceVoidParams = Whopsdk::Models::InvoiceVoidParams
+
+  PageInfo = Whopsdk::Models::PageInfo
 end

@@ -1,13 +1,29 @@
 module Whopsdk
+  class AccessPass = Whopsdk::Models::AccessPass
+
   class AccessPassListParams = Whopsdk::Models::AccessPassListParams
 
   class AccessPassRetrieveParams = Whopsdk::Models::AccessPassRetrieveParams
 
+  module BusinessTypes = Whopsdk::Models::BusinessTypes
+
+  module CollectionMethod = Whopsdk::Models::CollectionMethod
+
+  class Company = Whopsdk::Models::Company
+
   class CompanyRetrieveParams = Whopsdk::Models::CompanyRetrieveParams
+
+  class CourseLessonInteraction = Whopsdk::Models::CourseLessonInteraction
 
   class CourseLessonInteractionListParams = Whopsdk::Models::CourseLessonInteractionListParams
 
   class CourseLessonInteractionRetrieveParams = Whopsdk::Models::CourseLessonInteractionRetrieveParams
+
+  module Currency = Whopsdk::Models::Currency
+
+  module IndustryTypes = Whopsdk::Models::IndustryTypes
+
+  class Invoice = Whopsdk::Models::Invoice
 
   class InvoiceCreateParams = Whopsdk::Models::InvoiceCreateParams
 
@@ -15,5 +31,9 @@ module Whopsdk
 
   class InvoiceRetrieveParams = Whopsdk::Models::InvoiceRetrieveParams
 
+  module InvoiceStatus = Whopsdk::Models::InvoiceStatus
+
   class InvoiceVoidParams = Whopsdk::Models::InvoiceVoidParams
+
+  class PageInfo = Whopsdk::Models::PageInfo
 end

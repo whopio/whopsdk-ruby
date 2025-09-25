@@ -2,13 +2,10 @@
 
 module Whopsdk
   module Models
-    class CourseLessonInteractionRetrieveResponse < Whopsdk::Internal::Type::BaseModel
+    class CourseLessonInteraction < Whopsdk::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(
-            Whopsdk::Models::CourseLessonInteractionRetrieveResponse,
-            Whopsdk::Internal::AnyHash
-          )
+          T.any(Whopsdk::CourseLessonInteraction, Whopsdk::Internal::AnyHash)
         end
 
       # The ID of the lesson interaction
@@ -24,33 +21,19 @@ module Whopsdk
       attr_accessor :created_at
 
       # The lesson this interaction is for
-      sig do
-        returns(
-          Whopsdk::Models::CourseLessonInteractionRetrieveResponse::Lesson
-        )
-      end
+      sig { returns(Whopsdk::CourseLessonInteraction::Lesson) }
       attr_reader :lesson
 
       sig do
-        params(
-          lesson:
-            Whopsdk::Models::CourseLessonInteractionRetrieveResponse::Lesson::OrHash
-        ).void
+        params(lesson: Whopsdk::CourseLessonInteraction::Lesson::OrHash).void
       end
       attr_writer :lesson
 
       # The user who interacted with the lesson
-      sig do
-        returns(Whopsdk::Models::CourseLessonInteractionRetrieveResponse::User)
-      end
+      sig { returns(Whopsdk::CourseLessonInteraction::User) }
       attr_reader :user
 
-      sig do
-        params(
-          user:
-            Whopsdk::Models::CourseLessonInteractionRetrieveResponse::User::OrHash
-        ).void
-      end
+      sig { params(user: Whopsdk::CourseLessonInteraction::User::OrHash).void }
       attr_writer :user
 
       # A lesson interaction tracking user progress in courses
@@ -59,10 +42,8 @@ module Whopsdk
           id: String,
           completed: T::Boolean,
           created_at: Integer,
-          lesson:
-            Whopsdk::Models::CourseLessonInteractionRetrieveResponse::Lesson::OrHash,
-          user:
-            Whopsdk::Models::CourseLessonInteractionRetrieveResponse::User::OrHash
+          lesson: Whopsdk::CourseLessonInteraction::Lesson::OrHash,
+          user: Whopsdk::CourseLessonInteraction::User::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -85,9 +66,8 @@ module Whopsdk
             id: String,
             completed: T::Boolean,
             created_at: Integer,
-            lesson:
-              Whopsdk::Models::CourseLessonInteractionRetrieveResponse::Lesson,
-            user: Whopsdk::Models::CourseLessonInteractionRetrieveResponse::User
+            lesson: Whopsdk::CourseLessonInteraction::Lesson,
+            user: Whopsdk::CourseLessonInteraction::User
           }
         )
       end
@@ -98,7 +78,7 @@ module Whopsdk
         OrHash =
           T.type_alias do
             T.any(
-              Whopsdk::Models::CourseLessonInteractionRetrieveResponse::Lesson,
+              Whopsdk::CourseLessonInteraction::Lesson,
               Whopsdk::Internal::AnyHash
             )
           end
@@ -130,7 +110,7 @@ module Whopsdk
         OrHash =
           T.type_alias do
             T.any(
-              Whopsdk::Models::CourseLessonInteractionRetrieveResponse::User,
+              Whopsdk::CourseLessonInteraction::User,
               Whopsdk::Internal::AnyHash
             )
           end

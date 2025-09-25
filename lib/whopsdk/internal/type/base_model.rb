@@ -438,10 +438,11 @@ module Whopsdk
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `invoice_create_response` is a `Whopsdk::Models::InvoiceCreateResponse`
-        #   invoice_create_response => {
-        #     checkout_job_id: checkout_job_id,
-        #     invoice: invoice
+        #   # `access_pass` is a `Whopsdk::AccessPass`
+        #   access_pass => {
+        #     id: id,
+        #     business_type: business_type,
+        #     created_at: created_at
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)

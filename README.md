@@ -26,7 +26,7 @@ whopsdk = Whopsdk::Client.new(
   api_key: ENV["WHOPSDK_API_KEY"] # This is the default and can be omitted
 )
 
-invoices = whopsdk.invoices.list(company_id: "REPLACE_ME")
+invoices = whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
 
 puts(invoices.data)
 ```
@@ -37,7 +37,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  invoice = whopsdk.invoices.list(company_id: "REPLACE_ME")
+  invoice = whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
 rescue Whopsdk::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
@@ -80,7 +80,7 @@ whopsdk = Whopsdk::Client.new(
 )
 
 # Or, configure per-request:
-whopsdk.invoices.list(company_id: "REPLACE_ME", request_options: {max_retries: 5})
+whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx", request_options: {max_retries: 5})
 ```
 
 ### Timeouts
@@ -94,7 +94,7 @@ whopsdk = Whopsdk::Client.new(
 )
 
 # Or, configure per-request:
-whopsdk.invoices.list(company_id: "REPLACE_ME", request_options: {timeout: 5})
+whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx", request_options: {timeout: 5})
 ```
 
 On timeout, `Whopsdk::Errors::APITimeoutError` is raised.
@@ -126,7 +126,7 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 ```ruby
 invoices =
   whopsdk.invoices.list(
-    company_id: "REPLACE_ME",
+    company_id: "biz_xxxxxxxxxxxxxx",
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},
@@ -172,17 +172,17 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-whopsdk.invoices.list(company_id: "REPLACE_ME")
+whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-whopsdk.invoices.list(company_id: "REPLACE_ME")
+whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
 
 # You can also splat a full Params class:
-params = Whopsdk::InvoiceListParams.new(company_id: "REPLACE_ME")
+params = Whopsdk::InvoiceListParams.new(company_id: "biz_xxxxxxxxxxxxxx")
 whopsdk.invoices.list(**params)
 ```
 
@@ -192,10 +192,10 @@ Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::E
 
 ```ruby
 # :send_invoice
-puts(Whopsdk::InvoiceCreateParams::CollectionMethod::SEND_INVOICE)
+puts(Whopsdk::CollectionMethod::SEND_INVOICE)
 
-# Revealed type: `T.all(Whopsdk::InvoiceCreateParams::CollectionMethod, Symbol)`
-T.reveal_type(Whopsdk::InvoiceCreateParams::CollectionMethod::SEND_INVOICE)
+# Revealed type: `T.all(Whopsdk::CollectionMethod, Symbol)`
+T.reveal_type(Whopsdk::CollectionMethod::SEND_INVOICE)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
@@ -203,7 +203,7 @@ Enum parameters have a "relaxed" type, so you can either pass in enum constants 
 ```ruby
 # Using the enum constants preserves the tagged type information:
 whopsdk.invoices.create(
-  collection_method: Whopsdk::InvoiceCreateParams::CollectionMethod::SEND_INVOICE,
+  collection_method: Whopsdk::CollectionMethod::SEND_INVOICE,
   # …
 )
 

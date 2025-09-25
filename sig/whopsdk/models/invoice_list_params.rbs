@@ -71,52 +71,28 @@ module Whopsdk
       type filters =
         {
           access_pass_ids: ::Array[String]?,
-          collection_methods: ::Array[Whopsdk::Models::InvoiceListParams::Filters::collection_method?]?,
-          statuses: ::Array[Whopsdk::Models::InvoiceListParams::Filters::status?]?
+          collection_methods: ::Array[Whopsdk::Models::collection_method?]?,
+          statuses: ::Array[Whopsdk::Models::invoice_status?]?
         }
 
       class Filters < Whopsdk::Internal::Type::BaseModel
         attr_accessor access_pass_ids: ::Array[String]?
 
-        attr_accessor collection_methods: ::Array[Whopsdk::Models::InvoiceListParams::Filters::collection_method?]?
+        attr_accessor collection_methods: ::Array[Whopsdk::Models::collection_method?]?
 
-        attr_accessor statuses: ::Array[Whopsdk::Models::InvoiceListParams::Filters::status?]?
+        attr_accessor statuses: ::Array[Whopsdk::Models::invoice_status?]?
 
         def initialize: (
           ?access_pass_ids: ::Array[String]?,
-          ?collection_methods: ::Array[Whopsdk::Models::InvoiceListParams::Filters::collection_method?]?,
-          ?statuses: ::Array[Whopsdk::Models::InvoiceListParams::Filters::status?]?
+          ?collection_methods: ::Array[Whopsdk::Models::collection_method?]?,
+          ?statuses: ::Array[Whopsdk::Models::invoice_status?]?
         ) -> void
 
         def to_hash: -> {
           access_pass_ids: ::Array[String]?,
-          collection_methods: ::Array[Whopsdk::Models::InvoiceListParams::Filters::collection_method?]?,
-          statuses: ::Array[Whopsdk::Models::InvoiceListParams::Filters::status?]?
+          collection_methods: ::Array[Whopsdk::Models::collection_method?]?,
+          statuses: ::Array[Whopsdk::Models::invoice_status?]?
         }
-
-        type collection_method = :send_invoice | :charge_automatically
-
-        module CollectionMethod
-          extend Whopsdk::Internal::Type::Enum
-
-          SEND_INVOICE: :send_invoice
-          CHARGE_AUTOMATICALLY: :charge_automatically
-
-          def self?.values: -> ::Array[Whopsdk::Models::InvoiceListParams::Filters::collection_method]
-        end
-
-        type status = :open | :paid | :past_due | :void
-
-        module Status
-          extend Whopsdk::Internal::Type::Enum
-
-          OPEN: :open
-          PAID: :paid
-          PAST_DUE: :past_due
-          VOID: :void
-
-          def self?.values: -> ::Array[Whopsdk::Models::InvoiceListParams::Filters::status]
-        end
       end
 
       type order = :id | :created_at | :due_date

@@ -10,14 +10,14 @@ module Whopsdk
       # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::AccessPassRetrieveResponse]
+      # @return [Whopsdk::Models::AccessPass]
       #
       # @see Whopsdk::Models::AccessPassRetrieveParams
       def retrieve(id, params = {})
         @client.request(
           method: :get,
           path: ["access_passes/%1$s", id],
-          model: Whopsdk::Models::AccessPassRetrieveResponse,
+          model: Whopsdk::AccessPass,
           options: params[:request_options]
         )
       end

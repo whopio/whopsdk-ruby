@@ -9,17 +9,17 @@ class Whopsdk::Test::Resources::AccessPassesTest < Whopsdk::Test::ResourceTest
     response = @whopsdk.access_passes.retrieve("prod_xxxxxxxxxxxxx")
 
     assert_pattern do
-      response => Whopsdk::Models::AccessPassRetrieveResponse
+      response => Whopsdk::AccessPass
     end
 
     assert_pattern do
       response => {
         id: String,
-        business_type: Whopsdk::Models::AccessPassRetrieveResponse::BusinessType | nil,
+        business_type: Whopsdk::BusinessTypes | nil,
         created_at: Integer,
-        industry_type: Whopsdk::Models::AccessPassRetrieveResponse::IndustryType | nil,
+        industry_type: Whopsdk::IndustryTypes | nil,
         member_count: Integer,
-        owner_user: Whopsdk::Models::AccessPassRetrieveResponse::OwnerUser,
+        owner_user: Whopsdk::AccessPass::OwnerUser,
         published_reviews_count: Integer,
         route: String,
         title: String,
@@ -41,7 +41,7 @@ class Whopsdk::Test::Resources::AccessPassesTest < Whopsdk::Test::ResourceTest
     assert_pattern do
       response => {
         data: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Models::AccessPassListResponse::Data, nil?: true]) | nil,
-        page_info: Whopsdk::Models::AccessPassListResponse::PageInfo
+        page_info: Whopsdk::PageInfo
       }
     end
   end

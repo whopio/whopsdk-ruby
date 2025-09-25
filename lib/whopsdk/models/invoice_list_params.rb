@@ -95,23 +95,17 @@ module Whopsdk
         # @!attribute collection_methods
         #   The collection methods to filter the invoices by
         #
-        #   @return [Array<Symbol, Whopsdk::Models::InvoiceListParams::Filters::CollectionMethod, nil>, nil]
+        #   @return [Array<Symbol, Whopsdk::Models::CollectionMethod, nil>, nil]
         optional :collection_methods,
-                 -> {
-                   Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::InvoiceListParams::Filters::CollectionMethod,
-                                                    nil?: true]
-                 },
+                 -> { Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::CollectionMethod, nil?: true] },
                  nil?: true
 
         # @!attribute statuses
         #   The statuses to filter the invoices by
         #
-        #   @return [Array<Symbol, Whopsdk::Models::InvoiceListParams::Filters::Status, nil>, nil]
+        #   @return [Array<Symbol, Whopsdk::Models::InvoiceStatus, nil>, nil]
         optional :statuses,
-                 -> {
-                   Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::InvoiceListParams::Filters::Status,
-                                                    nil?: true]
-                 },
+                 -> { Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::InvoiceStatus, nil?: true] },
                  nil?: true
 
         # @!method initialize(access_pass_ids: nil, collection_methods: nil, statuses: nil)
@@ -119,33 +113,9 @@ module Whopsdk
         #
         #   @param access_pass_ids [Array<String>, nil] The access pass IDs to filter the invoices by
         #
-        #   @param collection_methods [Array<Symbol, Whopsdk::Models::InvoiceListParams::Filters::CollectionMethod, nil>, nil] The collection methods to filter the invoices by
+        #   @param collection_methods [Array<Symbol, Whopsdk::Models::CollectionMethod, nil>, nil] The collection methods to filter the invoices by
         #
-        #   @param statuses [Array<Symbol, Whopsdk::Models::InvoiceListParams::Filters::Status, nil>, nil] The statuses to filter the invoices by
-
-        # The method of collection for an invoice.
-        module CollectionMethod
-          extend Whopsdk::Internal::Type::Enum
-
-          SEND_INVOICE = :send_invoice
-          CHARGE_AUTOMATICALLY = :charge_automatically
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-
-        # The different statuses an invoice can be in
-        module Status
-          extend Whopsdk::Internal::Type::Enum
-
-          OPEN = :open
-          PAID = :paid
-          PAST_DUE = :past_due
-          VOID = :void
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
+        #   @param statuses [Array<Symbol, Whopsdk::Models::InvoiceStatus, nil>, nil] The statuses to filter the invoices by
       end
 
       # The order to sort the invoices by

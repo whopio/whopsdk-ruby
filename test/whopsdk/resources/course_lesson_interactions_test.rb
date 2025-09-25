@@ -9,7 +9,7 @@ class Whopsdk::Test::Resources::CourseLessonInteractionsTest < Whopsdk::Test::Re
     response = @whopsdk.course_lesson_interactions.retrieve("crsli_xxxxxxxxxxxx")
 
     assert_pattern do
-      response => Whopsdk::Models::CourseLessonInteractionRetrieveResponse
+      response => Whopsdk::CourseLessonInteraction
     end
 
     assert_pattern do
@@ -17,8 +17,8 @@ class Whopsdk::Test::Resources::CourseLessonInteractionsTest < Whopsdk::Test::Re
         id: String,
         completed: Whopsdk::Internal::Type::Boolean,
         created_at: Integer,
-        lesson: Whopsdk::Models::CourseLessonInteractionRetrieveResponse::Lesson,
-        user: Whopsdk::Models::CourseLessonInteractionRetrieveResponse::User
+        lesson: Whopsdk::CourseLessonInteraction::Lesson,
+        user: Whopsdk::CourseLessonInteraction::User
       }
     end
   end
@@ -35,7 +35,7 @@ class Whopsdk::Test::Resources::CourseLessonInteractionsTest < Whopsdk::Test::Re
     assert_pattern do
       response => {
         data: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Models::CourseLessonInteractionListResponse::Data, nil?: true]) | nil,
-        page_info: Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo
+        page_info: Whopsdk::PageInfo
       }
     end
   end

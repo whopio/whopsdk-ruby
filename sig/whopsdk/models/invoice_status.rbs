@@ -1,0 +1,16 @@
+module Whopsdk
+  module Models
+    type invoice_status = :open | :paid | :past_due | :void
+
+    module InvoiceStatus
+      extend Whopsdk::Internal::Type::Enum
+
+      OPEN: :open
+      PAID: :paid
+      PAST_DUE: :past_due
+      VOID: :void
+
+      def self?.values: -> ::Array[Whopsdk::Models::invoice_status]
+    end
+  end
+end

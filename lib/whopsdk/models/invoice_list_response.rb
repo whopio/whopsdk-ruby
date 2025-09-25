@@ -15,15 +15,15 @@ module Whopsdk
       # @!attribute page_info
       #   Information to aid in pagination.
       #
-      #   @return [Whopsdk::Models::InvoiceListResponse::PageInfo]
-      required :page_info, -> { Whopsdk::Models::InvoiceListResponse::PageInfo }
+      #   @return [Whopsdk::Models::PageInfo]
+      required :page_info, -> { Whopsdk::PageInfo }
 
       # @!method initialize(data:, page_info:)
       #   The connection type for Invoice.
       #
       #   @param data [Array<Whopsdk::Models::InvoiceListResponse::Data, nil>, nil] A list of nodes.
       #
-      #   @param page_info [Whopsdk::Models::InvoiceListResponse::PageInfo] Information to aid in pagination.
+      #   @param page_info [Whopsdk::Models::PageInfo] Information to aid in pagination.
 
       class Data < Whopsdk::Internal::Type::BaseModel
         # @!attribute id
@@ -71,8 +71,8 @@ module Whopsdk
         # @!attribute status
         #   The status of the invoice.
         #
-        #   @return [Symbol, Whopsdk::Models::InvoiceListResponse::Data::Status, nil]
-        required :status, enum: -> { Whopsdk::Models::InvoiceListResponse::Data::Status }, nil?: true
+        #   @return [Symbol, Whopsdk::Models::InvoiceStatus, nil]
+        required :status, enum: -> { Whopsdk::InvoiceStatus }, nil?: true
 
         # @!attribute user
         #   The user that the invoice was created for.
@@ -97,7 +97,7 @@ module Whopsdk
         #
         #   @param number [String] The number of the invoice.
         #
-        #   @param status [Symbol, Whopsdk::Models::InvoiceListResponse::Data::Status, nil] The status of the invoice.
+        #   @param status [Symbol, Whopsdk::Models::InvoiceStatus, nil] The status of the invoice.
         #
         #   @param user [Whopsdk::Models::InvoiceListResponse::Data::User, nil] The user that the invoice was created for.
 
@@ -112,10 +112,8 @@ module Whopsdk
           # @!attribute currency
           #   The respective currency identifier for the plan.
           #
-          #   @return [Symbol, Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::Currency, nil]
-          required :currency,
-                   enum: -> { Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::Currency },
-                   nil?: true
+          #   @return [Symbol, Whopsdk::Models::Currency, nil]
+          required :currency, enum: -> { Whopsdk::Currency }, nil?: true
 
           # @!attribute formatted_price
           #   The formatted price (including currency) for the plan.
@@ -128,119 +126,9 @@ module Whopsdk
           #
           #   @param id [String] The internal ID of the plan.
           #
-          #   @param currency [Symbol, Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::Currency, nil] The respective currency identifier for the plan.
+          #   @param currency [Symbol, Whopsdk::Models::Currency, nil] The respective currency identifier for the plan.
           #
           #   @param formatted_price [String] The formatted price (including currency) for the plan.
-
-          # The respective currency identifier for the plan.
-          #
-          # @see Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan#currency
-          module Currency
-            extend Whopsdk::Internal::Type::Enum
-
-            USD = :usd
-            SGD = :sgd
-            INR = :inr
-            AUD = :aud
-            BRL = :brl
-            CAD = :cad
-            DKK = :dkk
-            EUR = :eur
-            NOK = :nok
-            GBP = :gbp
-            SEK = :sek
-            CHF = :chf
-            HKD = :hkd
-            HUF = :huf
-            JPY = :jpy
-            MXN = :mxn
-            MYR = :myr
-            PLN = :pln
-            CZK = :czk
-            NZD = :nzd
-            AED = :aed
-            ETH = :eth
-            APE = :ape
-            COP = :cop
-            RON = :ron
-            THB = :thb
-            BGN = :bgn
-            IDR = :idr
-            DOP = :dop
-            PHP = :php
-            TRY = :try
-            KRW = :krw
-            TWD = :twd
-            VND = :vnd
-            PKR = :pkr
-            CLP = :clp
-            UYU = :uyu
-            ARS = :ars
-            ZAR = :zar
-            DZD = :dzd
-            TND = :tnd
-            MAD = :mad
-            KES = :kes
-            KWD = :kwd
-            JOD = :jod
-            ALL = :all
-            XCD = :xcd
-            AMD = :amd
-            BSD = :bsd
-            BHD = :bhd
-            BOB = :bob
-            BAM = :bam
-            KHR = :khr
-            CRC = :crc
-            XOF = :xof
-            EGP = :egp
-            ETB = :etb
-            GMD = :gmd
-            GHS = :ghs
-            GTQ = :gtq
-            GYD = :gyd
-            ILS = :ils
-            JMD = :jmd
-            MOP = :mop
-            MGA = :mga
-            MUR = :mur
-            MDL = :mdl
-            MNT = :mnt
-            NAD = :nad
-            NGN = :ngn
-            MKD = :mkd
-            OMR = :omr
-            PYG = :pyg
-            PEN = :pen
-            QAR = :qar
-            RWF = :rwf
-            SAR = :sar
-            RSD = :rsd
-            LKR = :lkr
-            TZS = :tzs
-            TTD = :ttd
-            UZS = :uzs
-            RUB = :rub
-            BTC = :btc
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
-        end
-
-        # The status of the invoice.
-        #
-        # @see Whopsdk::Models::InvoiceListResponse::Data#status
-        module Status
-          extend Whopsdk::Internal::Type::Enum
-
-          OPEN = :open
-          PAID = :paid
-          PAST_DUE = :past_due
-          VOID = :void
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
         end
 
         # @see Whopsdk::Models::InvoiceListResponse::Data#user
@@ -272,44 +160,6 @@ module Whopsdk
           #
           #   @param username [String] The username of the user from their Whop account.
         end
-      end
-
-      # @see Whopsdk::Models::InvoiceListResponse#page_info
-      class PageInfo < Whopsdk::Internal::Type::BaseModel
-        # @!attribute end_cursor
-        #   When paginating forwards, the cursor to continue.
-        #
-        #   @return [String, nil]
-        required :end_cursor, String, nil?: true
-
-        # @!attribute has_next_page
-        #   When paginating forwards, are there more items?
-        #
-        #   @return [Boolean]
-        required :has_next_page, Whopsdk::Internal::Type::Boolean
-
-        # @!attribute has_previous_page
-        #   When paginating backwards, are there more items?
-        #
-        #   @return [Boolean]
-        required :has_previous_page, Whopsdk::Internal::Type::Boolean
-
-        # @!attribute start_cursor
-        #   When paginating backwards, the cursor to continue.
-        #
-        #   @return [String, nil]
-        required :start_cursor, String, nil?: true
-
-        # @!method initialize(end_cursor:, has_next_page:, has_previous_page:, start_cursor:)
-        #   Information to aid in pagination.
-        #
-        #   @param end_cursor [String, nil] When paginating forwards, the cursor to continue.
-        #
-        #   @param has_next_page [Boolean] When paginating forwards, are there more items?
-        #
-        #   @param has_previous_page [Boolean] When paginating backwards, are there more items?
-        #
-        #   @param start_cursor [String, nil] When paginating backwards, the cursor to continue.
       end
     end
   end

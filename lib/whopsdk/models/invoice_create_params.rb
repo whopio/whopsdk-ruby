@@ -11,8 +11,8 @@ module Whopsdk
       #   The method of collection for this invoice. If using charge_automatically, you
       #   must provide a payment_token.
       #
-      #   @return [Symbol, Whopsdk::Models::InvoiceCreateParams::CollectionMethod, nil]
-      required :collection_method, enum: -> { Whopsdk::InvoiceCreateParams::CollectionMethod }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::CollectionMethod, nil]
+      required :collection_method, enum: -> { Whopsdk::CollectionMethod }, nil?: true
 
       # @!attribute due_date
       #   The date the invoice is due, if applicable.
@@ -80,7 +80,7 @@ module Whopsdk
       #   Some parameter documentations has been truncated, see
       #   {Whopsdk::Models::InvoiceCreateParams} for more details.
       #
-      #   @param collection_method [Symbol, Whopsdk::Models::InvoiceCreateParams::CollectionMethod, nil] The method of collection for this invoice. If using charge_automatically, you mu
+      #   @param collection_method [Symbol, Whopsdk::Models::CollectionMethod, nil] The method of collection for this invoice. If using charge_automatically, you mu
       #
       #   @param due_date [Integer] The date the invoice is due, if applicable.
       #
@@ -102,18 +102,6 @@ module Whopsdk
       #
       #   @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}]
 
-      # The method of collection for this invoice. If using charge_automatically, you
-      # must provide a payment_token.
-      module CollectionMethod
-        extend Whopsdk::Internal::Type::Enum
-
-        SEND_INVOICE = :send_invoice
-        CHARGE_AUTOMATICALLY = :charge_automatically
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
-
       class Plan < Whopsdk::Internal::Type::BaseModel
         # @!attribute ach_payments
         #   Whether or not ACH payments are accepted
@@ -124,8 +112,8 @@ module Whopsdk
         # @!attribute base_currency
         #   The respective currency identifier for the plan.
         #
-        #   @return [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::BaseCurrency, nil]
-        optional :base_currency, enum: -> { Whopsdk::InvoiceCreateParams::Plan::BaseCurrency }, nil?: true
+        #   @return [Symbol, Whopsdk::Models::Currency, nil]
+        optional :base_currency, enum: -> { Whopsdk::Currency }, nil?: true
 
         # @!attribute billing_period
         #   The interval at which the plan charges (renewal plans).
@@ -272,7 +260,7 @@ module Whopsdk
         #
         #   @param ach_payments [Boolean, nil] Whether or not ACH payments are accepted
         #
-        #   @param base_currency [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::BaseCurrency, nil] The respective currency identifier for the plan.
+        #   @param base_currency [Symbol, Whopsdk::Models::Currency, nil] The respective currency identifier for the plan.
         #
         #   @param billing_period [Integer, nil] The interval at which the plan charges (renewal plans).
         #
@@ -317,101 +305,6 @@ module Whopsdk
         #   @param unlimited_stock [Boolean, nil] Limits/doesn't limit the number of units available for purchase.
         #
         #   @param visibility [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::Visibility, nil] Shows or hides the plan from public/business view.
-
-        # The respective currency identifier for the plan.
-        #
-        # @see Whopsdk::Models::InvoiceCreateParams::Plan#base_currency
-        module BaseCurrency
-          extend Whopsdk::Internal::Type::Enum
-
-          USD = :usd
-          SGD = :sgd
-          INR = :inr
-          AUD = :aud
-          BRL = :brl
-          CAD = :cad
-          DKK = :dkk
-          EUR = :eur
-          NOK = :nok
-          GBP = :gbp
-          SEK = :sek
-          CHF = :chf
-          HKD = :hkd
-          HUF = :huf
-          JPY = :jpy
-          MXN = :mxn
-          MYR = :myr
-          PLN = :pln
-          CZK = :czk
-          NZD = :nzd
-          AED = :aed
-          ETH = :eth
-          APE = :ape
-          COP = :cop
-          RON = :ron
-          THB = :thb
-          BGN = :bgn
-          IDR = :idr
-          DOP = :dop
-          PHP = :php
-          TRY = :try
-          KRW = :krw
-          TWD = :twd
-          VND = :vnd
-          PKR = :pkr
-          CLP = :clp
-          UYU = :uyu
-          ARS = :ars
-          ZAR = :zar
-          DZD = :dzd
-          TND = :tnd
-          MAD = :mad
-          KES = :kes
-          KWD = :kwd
-          JOD = :jod
-          ALL = :all
-          XCD = :xcd
-          AMD = :amd
-          BSD = :bsd
-          BHD = :bhd
-          BOB = :bob
-          BAM = :bam
-          KHR = :khr
-          CRC = :crc
-          XOF = :xof
-          EGP = :egp
-          ETB = :etb
-          GMD = :gmd
-          GHS = :ghs
-          GTQ = :gtq
-          GYD = :gyd
-          ILS = :ils
-          JMD = :jmd
-          MOP = :mop
-          MGA = :mga
-          MUR = :mur
-          MDL = :mdl
-          MNT = :mnt
-          NAD = :nad
-          NGN = :ngn
-          MKD = :mkd
-          OMR = :omr
-          PYG = :pyg
-          PEN = :pen
-          QAR = :qar
-          RWF = :rwf
-          SAR = :sar
-          RSD = :rsd
-          LKR = :lkr
-          TZS = :tzs
-          TTD = :ttd
-          UZS = :uzs
-          RUB = :rub
-          BTC = :btc
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
 
         class CustomField < Whopsdk::Internal::Type::BaseModel
           # @!attribute field_type

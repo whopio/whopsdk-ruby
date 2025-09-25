@@ -26,17 +26,10 @@ module Whopsdk
       attr_accessor :data
 
       # Information to aid in pagination.
-      sig do
-        returns(Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo)
-      end
+      sig { returns(Whopsdk::PageInfo) }
       attr_reader :page_info
 
-      sig do
-        params(
-          page_info:
-            Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo::OrHash
-        ).void
-      end
+      sig { params(page_info: Whopsdk::PageInfo::OrHash).void }
       attr_writer :page_info
 
       # The connection type for LessonInteraction.
@@ -50,8 +43,7 @@ module Whopsdk
                 )
               ]
             ),
-          page_info:
-            Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo::OrHash
+          page_info: Whopsdk::PageInfo::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -73,8 +65,7 @@ module Whopsdk
                   )
                 ]
               ),
-            page_info:
-              Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo
+            page_info: Whopsdk::PageInfo
           }
         )
       end
@@ -254,66 +245,6 @@ module Whopsdk
           end
           def to_hash
           end
-        end
-      end
-
-      class PageInfo < Whopsdk::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(
-              Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo,
-              Whopsdk::Internal::AnyHash
-            )
-          end
-
-        # When paginating forwards, the cursor to continue.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :end_cursor
-
-        # When paginating forwards, are there more items?
-        sig { returns(T::Boolean) }
-        attr_accessor :has_next_page
-
-        # When paginating backwards, are there more items?
-        sig { returns(T::Boolean) }
-        attr_accessor :has_previous_page
-
-        # When paginating backwards, the cursor to continue.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :start_cursor
-
-        # Information to aid in pagination.
-        sig do
-          params(
-            end_cursor: T.nilable(String),
-            has_next_page: T::Boolean,
-            has_previous_page: T::Boolean,
-            start_cursor: T.nilable(String)
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # When paginating forwards, the cursor to continue.
-          end_cursor:,
-          # When paginating forwards, are there more items?
-          has_next_page:,
-          # When paginating backwards, are there more items?
-          has_previous_page:,
-          # When paginating backwards, the cursor to continue.
-          start_cursor:
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              end_cursor: T.nilable(String),
-              has_next_page: T::Boolean,
-              has_previous_page: T::Boolean,
-              start_cursor: T.nilable(String)
-            }
-          )
-        end
-        def to_hash
         end
       end
     end

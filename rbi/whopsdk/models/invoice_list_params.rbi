@@ -141,13 +141,7 @@ module Whopsdk
         # The collection methods to filter the invoices by
         sig do
           returns(
-            T.nilable(
-              T::Array[
-                T.nilable(
-                  Whopsdk::InvoiceListParams::Filters::CollectionMethod::OrSymbol
-                )
-              ]
-            )
+            T.nilable(T::Array[T.nilable(Whopsdk::CollectionMethod::OrSymbol)])
           )
         end
         attr_accessor :collection_methods
@@ -155,11 +149,7 @@ module Whopsdk
         # The statuses to filter the invoices by
         sig do
           returns(
-            T.nilable(
-              T::Array[
-                T.nilable(Whopsdk::InvoiceListParams::Filters::Status::OrSymbol)
-              ]
-            )
+            T.nilable(T::Array[T.nilable(Whopsdk::InvoiceStatus::OrSymbol)])
           )
         end
         attr_accessor :statuses
@@ -170,20 +160,10 @@ module Whopsdk
             access_pass_ids: T.nilable(T::Array[String]),
             collection_methods:
               T.nilable(
-                T::Array[
-                  T.nilable(
-                    Whopsdk::InvoiceListParams::Filters::CollectionMethod::OrSymbol
-                  )
-                ]
+                T::Array[T.nilable(Whopsdk::CollectionMethod::OrSymbol)]
               ),
             statuses:
-              T.nilable(
-                T::Array[
-                  T.nilable(
-                    Whopsdk::InvoiceListParams::Filters::Status::OrSymbol
-                  )
-                ]
-              )
+              T.nilable(T::Array[T.nilable(Whopsdk::InvoiceStatus::OrSymbol)])
           ).returns(T.attached_class)
         end
         def self.new(
@@ -202,101 +182,14 @@ module Whopsdk
               access_pass_ids: T.nilable(T::Array[String]),
               collection_methods:
                 T.nilable(
-                  T::Array[
-                    T.nilable(
-                      Whopsdk::InvoiceListParams::Filters::CollectionMethod::OrSymbol
-                    )
-                  ]
+                  T::Array[T.nilable(Whopsdk::CollectionMethod::OrSymbol)]
                 ),
               statuses:
-                T.nilable(
-                  T::Array[
-                    T.nilable(
-                      Whopsdk::InvoiceListParams::Filters::Status::OrSymbol
-                    )
-                  ]
-                )
+                T.nilable(T::Array[T.nilable(Whopsdk::InvoiceStatus::OrSymbol)])
             }
           )
         end
         def to_hash
-        end
-
-        # The method of collection for an invoice.
-        module CollectionMethod
-          extend Whopsdk::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                Whopsdk::InvoiceListParams::Filters::CollectionMethod
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          SEND_INVOICE =
-            T.let(
-              :send_invoice,
-              Whopsdk::InvoiceListParams::Filters::CollectionMethod::TaggedSymbol
-            )
-          CHARGE_AUTOMATICALLY =
-            T.let(
-              :charge_automatically,
-              Whopsdk::InvoiceListParams::Filters::CollectionMethod::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Whopsdk::InvoiceListParams::Filters::CollectionMethod::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
-        end
-
-        # The different statuses an invoice can be in
-        module Status
-          extend Whopsdk::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, Whopsdk::InvoiceListParams::Filters::Status)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          OPEN =
-            T.let(
-              :open,
-              Whopsdk::InvoiceListParams::Filters::Status::TaggedSymbol
-            )
-          PAID =
-            T.let(
-              :paid,
-              Whopsdk::InvoiceListParams::Filters::Status::TaggedSymbol
-            )
-          PAST_DUE =
-            T.let(
-              :past_due,
-              Whopsdk::InvoiceListParams::Filters::Status::TaggedSymbol
-            )
-          VOID =
-            T.let(
-              :void,
-              Whopsdk::InvoiceListParams::Filters::Status::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Whopsdk::InvoiceListParams::Filters::Status::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
         end
       end
 

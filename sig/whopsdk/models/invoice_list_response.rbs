@@ -3,22 +3,22 @@ module Whopsdk
     type invoice_list_response =
       {
         data: ::Array[Whopsdk::Models::InvoiceListResponse::Data?]?,
-        page_info: Whopsdk::Models::InvoiceListResponse::PageInfo
+        page_info: Whopsdk::PageInfo
       }
 
     class InvoiceListResponse < Whopsdk::Internal::Type::BaseModel
       attr_accessor data: ::Array[Whopsdk::Models::InvoiceListResponse::Data?]?
 
-      attr_accessor page_info: Whopsdk::Models::InvoiceListResponse::PageInfo
+      attr_accessor page_info: Whopsdk::PageInfo
 
       def initialize: (
         data: ::Array[Whopsdk::Models::InvoiceListResponse::Data?]?,
-        page_info: Whopsdk::Models::InvoiceListResponse::PageInfo
+        page_info: Whopsdk::PageInfo
       ) -> void
 
       def to_hash: -> {
         data: ::Array[Whopsdk::Models::InvoiceListResponse::Data?]?,
-        page_info: Whopsdk::Models::InvoiceListResponse::PageInfo
+        page_info: Whopsdk::PageInfo
       }
 
       type data =
@@ -30,7 +30,7 @@ module Whopsdk
           email_address: String?,
           fetch_invoice_token: String,
           number: String,
-          status: Whopsdk::Models::InvoiceListResponse::Data::status?,
+          status: Whopsdk::Models::invoice_status?,
           user: Whopsdk::Models::InvoiceListResponse::Data::User?
         }
 
@@ -49,7 +49,7 @@ module Whopsdk
 
         attr_accessor number: String
 
-        attr_accessor status: Whopsdk::Models::InvoiceListResponse::Data::status?
+        attr_accessor status: Whopsdk::Models::invoice_status?
 
         attr_accessor user: Whopsdk::Models::InvoiceListResponse::Data::User?
 
@@ -61,7 +61,7 @@ module Whopsdk
           email_address: String?,
           fetch_invoice_token: String,
           number: String,
-          status: Whopsdk::Models::InvoiceListResponse::Data::status?,
+          status: Whopsdk::Models::invoice_status?,
           user: Whopsdk::Models::InvoiceListResponse::Data::User?
         ) -> void
 
@@ -73,225 +73,35 @@ module Whopsdk
           email_address: String?,
           fetch_invoice_token: String,
           number: String,
-          status: Whopsdk::Models::InvoiceListResponse::Data::status?,
+          status: Whopsdk::Models::invoice_status?,
           user: Whopsdk::Models::InvoiceListResponse::Data::User?
         }
 
         type current_plan =
           {
             id: String,
-            currency: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::currency?,
+            currency: Whopsdk::Models::currency?,
             formatted_price: String
           }
 
         class CurrentPlan < Whopsdk::Internal::Type::BaseModel
           attr_accessor id: String
 
-          attr_accessor currency: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::currency?
+          attr_accessor currency: Whopsdk::Models::currency?
 
           attr_accessor formatted_price: String
 
           def initialize: (
             id: String,
-            currency: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::currency?,
+            currency: Whopsdk::Models::currency?,
             formatted_price: String
           ) -> void
 
           def to_hash: -> {
             id: String,
-            currency: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::currency?,
+            currency: Whopsdk::Models::currency?,
             formatted_price: String
           }
-
-          type currency =
-            :usd
-            | :sgd
-            | :inr
-            | :aud
-            | :brl
-            | :cad
-            | :dkk
-            | :eur
-            | :nok
-            | :gbp
-            | :sek
-            | :chf
-            | :hkd
-            | :huf
-            | :jpy
-            | :mxn
-            | :myr
-            | :pln
-            | :czk
-            | :nzd
-            | :aed
-            | :eth
-            | :ape
-            | :cop
-            | :ron
-            | :thb
-            | :bgn
-            | :idr
-            | :dop
-            | :php
-            | :try
-            | :krw
-            | :twd
-            | :vnd
-            | :pkr
-            | :clp
-            | :uyu
-            | :ars
-            | :zar
-            | :dzd
-            | :tnd
-            | :mad
-            | :kes
-            | :kwd
-            | :jod
-            | :all
-            | :xcd
-            | :amd
-            | :bsd
-            | :bhd
-            | :bob
-            | :bam
-            | :khr
-            | :crc
-            | :xof
-            | :egp
-            | :etb
-            | :gmd
-            | :ghs
-            | :gtq
-            | :gyd
-            | :ils
-            | :jmd
-            | :mop
-            | :mga
-            | :mur
-            | :mdl
-            | :mnt
-            | :nad
-            | :ngn
-            | :mkd
-            | :omr
-            | :pyg
-            | :pen
-            | :qar
-            | :rwf
-            | :sar
-            | :rsd
-            | :lkr
-            | :tzs
-            | :ttd
-            | :uzs
-            | :rub
-            | :btc
-
-          module Currency
-            extend Whopsdk::Internal::Type::Enum
-
-            USD: :usd
-            SGD: :sgd
-            INR: :inr
-            AUD: :aud
-            BRL: :brl
-            CAD: :cad
-            DKK: :dkk
-            EUR: :eur
-            NOK: :nok
-            GBP: :gbp
-            SEK: :sek
-            CHF: :chf
-            HKD: :hkd
-            HUF: :huf
-            JPY: :jpy
-            MXN: :mxn
-            MYR: :myr
-            PLN: :pln
-            CZK: :czk
-            NZD: :nzd
-            AED: :aed
-            ETH: :eth
-            APE: :ape
-            COP: :cop
-            RON: :ron
-            THB: :thb
-            BGN: :bgn
-            IDR: :idr
-            DOP: :dop
-            PHP: :php
-            TRY: :try
-            KRW: :krw
-            TWD: :twd
-            VND: :vnd
-            PKR: :pkr
-            CLP: :clp
-            UYU: :uyu
-            ARS: :ars
-            ZAR: :zar
-            DZD: :dzd
-            TND: :tnd
-            MAD: :mad
-            KES: :kes
-            KWD: :kwd
-            JOD: :jod
-            ALL: :all
-            XCD: :xcd
-            AMD: :amd
-            BSD: :bsd
-            BHD: :bhd
-            BOB: :bob
-            BAM: :bam
-            KHR: :khr
-            CRC: :crc
-            XOF: :xof
-            EGP: :egp
-            ETB: :etb
-            GMD: :gmd
-            GHS: :ghs
-            GTQ: :gtq
-            GYD: :gyd
-            ILS: :ils
-            JMD: :jmd
-            MOP: :mop
-            MGA: :mga
-            MUR: :mur
-            MDL: :mdl
-            MNT: :mnt
-            NAD: :nad
-            NGN: :ngn
-            MKD: :mkd
-            OMR: :omr
-            PYG: :pyg
-            PEN: :pen
-            QAR: :qar
-            RWF: :rwf
-            SAR: :sar
-            RSD: :rsd
-            LKR: :lkr
-            TZS: :tzs
-            TTD: :ttd
-            UZS: :uzs
-            RUB: :rub
-            BTC: :btc
-
-            def self?.values: -> ::Array[Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::currency]
-          end
-        end
-
-        type status = :open | :paid | :past_due | :void
-
-        module Status
-          extend Whopsdk::Internal::Type::Enum
-
-          OPEN: :open
-          PAID: :paid
-          PAST_DUE: :past_due
-          VOID: :void
-
-          def self?.values: -> ::Array[Whopsdk::Models::InvoiceListResponse::Data::status]
         end
 
         type user = { id: String, name: String?, username: String }
@@ -307,38 +117,6 @@ module Whopsdk
 
           def to_hash: -> { id: String, name: String?, username: String }
         end
-      end
-
-      type page_info =
-        {
-          end_cursor: String?,
-          has_next_page: bool,
-          has_previous_page: bool,
-          start_cursor: String?
-        }
-
-      class PageInfo < Whopsdk::Internal::Type::BaseModel
-        attr_accessor end_cursor: String?
-
-        attr_accessor has_next_page: bool
-
-        attr_accessor has_previous_page: bool
-
-        attr_accessor start_cursor: String?
-
-        def initialize: (
-          end_cursor: String?,
-          has_next_page: bool,
-          has_previous_page: bool,
-          start_cursor: String?
-        ) -> void
-
-        def to_hash: -> {
-          end_cursor: String?,
-          has_next_page: bool,
-          has_previous_page: bool,
-          start_cursor: String?
-        }
       end
     end
   end

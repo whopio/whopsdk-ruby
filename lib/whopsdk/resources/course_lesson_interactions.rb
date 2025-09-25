@@ -10,14 +10,14 @@ module Whopsdk
       # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::CourseLessonInteractionRetrieveResponse]
+      # @return [Whopsdk::Models::CourseLessonInteraction]
       #
       # @see Whopsdk::Models::CourseLessonInteractionRetrieveParams
       def retrieve(id, params = {})
         @client.request(
           method: :get,
           path: ["course_lesson_interactions/%1$s", id],
-          model: Whopsdk::Models::CourseLessonInteractionRetrieveResponse,
+          model: Whopsdk::CourseLessonInteraction,
           options: params[:request_options]
         )
       end

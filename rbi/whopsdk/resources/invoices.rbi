@@ -6,8 +6,7 @@ module Whopsdk
       # Creates an invoice
       sig do
         params(
-          collection_method:
-            T.nilable(Whopsdk::InvoiceCreateParams::CollectionMethod::OrSymbol),
+          collection_method: T.nilable(Whopsdk::CollectionMethod::OrSymbol),
           due_date: Integer,
           plan: Whopsdk::InvoiceCreateParams::Plan::OrHash,
           access_pass:
@@ -60,7 +59,7 @@ module Whopsdk
         params(
           id: String,
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(Whopsdk::Models::InvoiceRetrieveResponse)
+        ).returns(Whopsdk::Invoice)
       end
       def retrieve(id, request_options: {})
       end

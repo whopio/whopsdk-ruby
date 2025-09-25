@@ -15,6 +15,27 @@ module Whopsdk
       #
       # We can therefore convert string values to Symbols, but can't convert other
       # values safely.
+      #
+      # @example
+      #   # `collection_method` is a `Whopsdk::CollectionMethod`
+      #   case collection_method
+      #   when Whopsdk::CollectionMethod::SEND_INVOICE
+      #     # ...
+      #   when Whopsdk::CollectionMethod::CHARGE_AUTOMATICALLY
+      #     # ...
+      #   else
+      #     puts(collection_method)
+      #   end
+      #
+      # @example
+      #   case collection_method
+      #   in :send_invoice
+      #     # ...
+      #   in :charge_automatically
+      #     # ...
+      #   else
+      #     puts(collection_method)
+      #   end
       module Enum
         include Whopsdk::Internal::Type::Converter
         include Whopsdk::Internal::Util::SorbetRuntimeSupport

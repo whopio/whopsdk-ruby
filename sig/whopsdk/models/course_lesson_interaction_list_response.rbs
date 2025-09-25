@@ -3,22 +3,22 @@ module Whopsdk
     type course_lesson_interaction_list_response =
       {
         data: ::Array[Whopsdk::Models::CourseLessonInteractionListResponse::Data?]?,
-        page_info: Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo
+        page_info: Whopsdk::PageInfo
       }
 
     class CourseLessonInteractionListResponse < Whopsdk::Internal::Type::BaseModel
       attr_accessor data: ::Array[Whopsdk::Models::CourseLessonInteractionListResponse::Data?]?
 
-      attr_accessor page_info: Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo
+      attr_accessor page_info: Whopsdk::PageInfo
 
       def initialize: (
         data: ::Array[Whopsdk::Models::CourseLessonInteractionListResponse::Data?]?,
-        page_info: Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo
+        page_info: Whopsdk::PageInfo
       ) -> void
 
       def to_hash: -> {
         data: ::Array[Whopsdk::Models::CourseLessonInteractionListResponse::Data?]?,
-        page_info: Whopsdk::Models::CourseLessonInteractionListResponse::PageInfo
+        page_info: Whopsdk::PageInfo
       }
 
       type data =
@@ -82,38 +82,6 @@ module Whopsdk
 
           def to_hash: -> { id: String, name: String?, username: String }
         end
-      end
-
-      type page_info =
-        {
-          end_cursor: String?,
-          has_next_page: bool,
-          has_previous_page: bool,
-          start_cursor: String?
-        }
-
-      class PageInfo < Whopsdk::Internal::Type::BaseModel
-        attr_accessor end_cursor: String?
-
-        attr_accessor has_next_page: bool
-
-        attr_accessor has_previous_page: bool
-
-        attr_accessor start_cursor: String?
-
-        def initialize: (
-          end_cursor: String?,
-          has_next_page: bool,
-          has_previous_page: bool,
-          start_cursor: String?
-        ) -> void
-
-        def to_hash: -> {
-          end_cursor: String?,
-          has_next_page: bool,
-          has_previous_page: bool,
-          start_cursor: String?
-        }
       end
     end
   end

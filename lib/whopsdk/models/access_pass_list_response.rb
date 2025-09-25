@@ -15,15 +15,15 @@ module Whopsdk
       # @!attribute page_info
       #   Information to aid in pagination.
       #
-      #   @return [Whopsdk::Models::AccessPassListResponse::PageInfo]
-      required :page_info, -> { Whopsdk::Models::AccessPassListResponse::PageInfo }
+      #   @return [Whopsdk::Models::PageInfo]
+      required :page_info, -> { Whopsdk::PageInfo }
 
       # @!method initialize(data:, page_info:)
       #   The connection type for PublicAccessPass.
       #
       #   @param data [Array<Whopsdk::Models::AccessPassListResponse::Data, nil>, nil] A list of nodes.
       #
-      #   @param page_info [Whopsdk::Models::AccessPassListResponse::PageInfo] Information to aid in pagination.
+      #   @param page_info [Whopsdk::Models::PageInfo] Information to aid in pagination.
 
       class Data < Whopsdk::Internal::Type::BaseModel
         # @!attribute id
@@ -35,10 +35,8 @@ module Whopsdk
         # @!attribute business_type
         #   The type of business the company is.
         #
-        #   @return [Symbol, Whopsdk::Models::AccessPassListResponse::Data::BusinessType, nil]
-        required :business_type,
-                 enum: -> { Whopsdk::Models::AccessPassListResponse::Data::BusinessType },
-                 nil?: true
+        #   @return [Symbol, Whopsdk::Models::BusinessTypes, nil]
+        required :business_type, enum: -> { Whopsdk::BusinessTypes }, nil?: true
 
         # @!attribute created_at
         #   When the access pass was created.
@@ -49,10 +47,8 @@ module Whopsdk
         # @!attribute industry_type
         #   The specific industry the company operates in.
         #
-        #   @return [Symbol, Whopsdk::Models::AccessPassListResponse::Data::IndustryType, nil]
-        required :industry_type,
-                 enum: -> { Whopsdk::Models::AccessPassListResponse::Data::IndustryType },
-                 nil?: true
+        #   @return [Symbol, Whopsdk::Models::IndustryTypes, nil]
+        required :industry_type, enum: -> { Whopsdk::IndustryTypes }, nil?: true
 
         # @!attribute member_count
         #   The number of active users for this access pass.
@@ -95,11 +91,11 @@ module Whopsdk
         #
         #   @param id [String] The internal ID of the public access pass.
         #
-        #   @param business_type [Symbol, Whopsdk::Models::AccessPassListResponse::Data::BusinessType, nil] The type of business the company is.
+        #   @param business_type [Symbol, Whopsdk::Models::BusinessTypes, nil] The type of business the company is.
         #
         #   @param created_at [Integer] When the access pass was created.
         #
-        #   @param industry_type [Symbol, Whopsdk::Models::AccessPassListResponse::Data::IndustryType, nil] The specific industry the company operates in.
+        #   @param industry_type [Symbol, Whopsdk::Models::IndustryTypes, nil] The specific industry the company operates in.
         #
         #   @param member_count [Integer] The number of active users for this access pass.
         #
@@ -112,139 +108,6 @@ module Whopsdk
         #   @param updated_at [Integer] When the access pass was updated.
         #
         #   @param verified [Boolean] Whether this product is Whop verified.
-
-        # The type of business the company is.
-        #
-        # @see Whopsdk::Models::AccessPassListResponse::Data#business_type
-        module BusinessType
-          extend Whopsdk::Internal::Type::Enum
-
-          EDUCATION_PROGRAM = :education_program
-          COACHING = :coaching
-          SOFTWARE = :software
-          PAID_GROUP = :paid_group
-          NEWSLETTER = :newsletter
-          AGENCY = :agency
-          PHYSICAL_PRODUCTS = :physical_products
-          BRICK_AND_MORTAR = :brick_and_mortar
-          EVENTS = :events
-          COACHING_AND_COURSES = :coaching_and_courses
-          OTHER = :other
-          SAAS = :saas
-          COURSE = :course
-          COMMUNITY = :community
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-
-        # The specific industry the company operates in.
-        #
-        # @see Whopsdk::Models::AccessPassListResponse::Data#industry_type
-        module IndustryType
-          extend Whopsdk::Internal::Type::Enum
-
-          TRADING = :trading
-          SPORTS_BETTING = :sports_betting
-          RESELLING = :reselling
-          FITNESS = :fitness
-          AMAZON_FBA = :amazon_fba
-          REAL_ESTATE = :real_estate
-          KINDLE_BOOK_PUBLISHING = :kindle_book_publishing
-          DATING = :dating
-          AGENCIES = :agencies
-          HEALTH_AND_WELLNESS = :health_and_wellness
-          SOCIAL_MEDIA = :social_media
-          SALES = :sales
-          BUSINESS = :business
-          ECOMMERCE = :ecommerce
-          VIDEO_GAMES = :video_games
-          HOME_SERVICES = :home_services
-          AI = :ai
-          PUBLIC_SPEAKING = :public_speaking
-          PERSONAL_FINANCE = :personal_finance
-          CAREERS = :careers
-          TRAVEL = :travel
-          CLIPPING = :clipping
-          SPIRITUALITY = :spirituality
-          VAS = :vas
-          PERSONAL_DEVELOPMENT = :personal_development
-          SOFTWARE = :software
-          OTHER = :other
-          MARKETING_AGENCY = :marketing_agency
-          SALES_AGENCY = :sales_agency
-          AI_AGENCY = :ai_agency
-          DESIGN_AGENCY = :design_agency
-          COACHING_AGENCY = :coaching_agency
-          DEVELOPMENT_AGENCY = :development_agency
-          RECRUITING_AGENCY = :recruiting_agency
-          CUSTOMER_SUPPORT_AGENCY = :customer_support_agency
-          CLIPPING_AGENCY = :clipping_agency
-          CLOTHING = :clothing
-          SUPPLEMENTS = :supplements
-          BEAUTY_AND_PERSONAL_CARE = :beauty_and_personal_care
-          FITNESS_GEAR = :fitness_gear
-          ACCESSORIES = :accessories
-          HOME_GOODS = :home_goods
-          ELECTRONICS_AND_GADGETS = :electronics_and_gadgets
-          FOOD_AND_BEVERAGES = :food_and_beverages
-          GYM = :gym
-          RESTAURANT = :restaurant
-          RETAIL_STORE = :retail_store
-          COFFEE_SHOP = :coffee_shop
-          SALON_SPA = :salon_spa
-          MEDICAL_DENTIST_OFFICE = :medical_dentist_office
-          HOTEL_LODGING = :hotel_lodging
-          AUTO_REPAIR_SHOP = :auto_repair_shop
-          MASTERMINDS = :masterminds
-          WEBINARS = :webinars
-          BOOTCAMPS = :bootcamps
-          CONVENTION = :convention
-          CONCERTS = :concerts
-          MEETUPS = :meetups
-          PARTIES = :parties
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-      end
-
-      # @see Whopsdk::Models::AccessPassListResponse#page_info
-      class PageInfo < Whopsdk::Internal::Type::BaseModel
-        # @!attribute end_cursor
-        #   When paginating forwards, the cursor to continue.
-        #
-        #   @return [String, nil]
-        required :end_cursor, String, nil?: true
-
-        # @!attribute has_next_page
-        #   When paginating forwards, are there more items?
-        #
-        #   @return [Boolean]
-        required :has_next_page, Whopsdk::Internal::Type::Boolean
-
-        # @!attribute has_previous_page
-        #   When paginating backwards, are there more items?
-        #
-        #   @return [Boolean]
-        required :has_previous_page, Whopsdk::Internal::Type::Boolean
-
-        # @!attribute start_cursor
-        #   When paginating backwards, the cursor to continue.
-        #
-        #   @return [String, nil]
-        required :start_cursor, String, nil?: true
-
-        # @!method initialize(end_cursor:, has_next_page:, has_previous_page:, start_cursor:)
-        #   Information to aid in pagination.
-        #
-        #   @param end_cursor [String, nil] When paginating forwards, the cursor to continue.
-        #
-        #   @param has_next_page [Boolean] When paginating forwards, are there more items?
-        #
-        #   @param has_previous_page [Boolean] When paginating backwards, are there more items?
-        #
-        #   @param start_cursor [String, nil] When paginating backwards, the cursor to continue.
       end
     end
   end

@@ -30,7 +30,7 @@ module Whopsdk
           email_address: String?,
           fetch_invoice_token: String,
           number: String,
-          status: Whopsdk::Models::InvoiceListResponse::Data::status,
+          status: Whopsdk::Models::InvoiceListResponse::Data::status?,
           user: Whopsdk::Models::InvoiceListResponse::Data::User?
         }
 
@@ -49,7 +49,7 @@ module Whopsdk
 
         attr_accessor number: String
 
-        attr_accessor status: Whopsdk::Models::InvoiceListResponse::Data::status
+        attr_accessor status: Whopsdk::Models::InvoiceListResponse::Data::status?
 
         attr_accessor user: Whopsdk::Models::InvoiceListResponse::Data::User?
 
@@ -61,7 +61,7 @@ module Whopsdk
           email_address: String?,
           fetch_invoice_token: String,
           number: String,
-          status: Whopsdk::Models::InvoiceListResponse::Data::status,
+          status: Whopsdk::Models::InvoiceListResponse::Data::status?,
           user: Whopsdk::Models::InvoiceListResponse::Data::User?
         ) -> void
 
@@ -73,33 +73,33 @@ module Whopsdk
           email_address: String?,
           fetch_invoice_token: String,
           number: String,
-          status: Whopsdk::Models::InvoiceListResponse::Data::status,
+          status: Whopsdk::Models::InvoiceListResponse::Data::status?,
           user: Whopsdk::Models::InvoiceListResponse::Data::User?
         }
 
         type current_plan =
           {
             id: String,
-            currency: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::currency,
+            currency: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::currency?,
             formatted_price: String
           }
 
         class CurrentPlan < Whopsdk::Internal::Type::BaseModel
           attr_accessor id: String
 
-          attr_accessor currency: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::currency
+          attr_accessor currency: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::currency?
 
           attr_accessor formatted_price: String
 
           def initialize: (
             id: String,
-            currency: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::currency,
+            currency: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::currency?,
             formatted_price: String
           ) -> void
 
           def to_hash: -> {
             id: String,
-            currency: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::currency,
+            currency: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::currency?,
             formatted_price: String
           }
 

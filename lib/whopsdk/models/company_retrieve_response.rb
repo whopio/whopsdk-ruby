@@ -245,8 +245,8 @@ module Whopsdk
         # @!attribute website
         #   The website
         #
-        #   @return [Symbol, Whopsdk::Models::CompanyRetrieveResponse::SocialLink::Website]
-        required :website, enum: -> { Whopsdk::Models::CompanyRetrieveResponse::SocialLink::Website }
+        #   @return [Symbol, Whopsdk::Models::CompanyRetrieveResponse::SocialLink::Website, nil]
+        required :website, enum: -> { Whopsdk::Models::CompanyRetrieveResponse::SocialLink::Website }, nil?: true
 
         # @!method initialize(id:, url:, website:)
         #   A social link attached to a resource on the site.
@@ -255,7 +255,7 @@ module Whopsdk
         #
         #   @param url [String] The URL
         #
-        #   @param website [Symbol, Whopsdk::Models::CompanyRetrieveResponse::SocialLink::Website] The website
+        #   @param website [Symbol, Whopsdk::Models::CompanyRetrieveResponse::SocialLink::Website, nil] The website
 
         # The website
         #

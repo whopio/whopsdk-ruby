@@ -71,8 +71,8 @@ module Whopsdk
         # @!attribute status
         #   The status of the invoice.
         #
-        #   @return [Symbol, Whopsdk::Models::InvoiceListResponse::Data::Status]
-        required :status, enum: -> { Whopsdk::Models::InvoiceListResponse::Data::Status }
+        #   @return [Symbol, Whopsdk::Models::InvoiceListResponse::Data::Status, nil]
+        required :status, enum: -> { Whopsdk::Models::InvoiceListResponse::Data::Status }, nil?: true
 
         # @!attribute user
         #   The user that the invoice was created for.
@@ -97,7 +97,7 @@ module Whopsdk
         #
         #   @param number [String] The number of the invoice.
         #
-        #   @param status [Symbol, Whopsdk::Models::InvoiceListResponse::Data::Status] The status of the invoice.
+        #   @param status [Symbol, Whopsdk::Models::InvoiceListResponse::Data::Status, nil] The status of the invoice.
         #
         #   @param user [Whopsdk::Models::InvoiceListResponse::Data::User, nil] The user that the invoice was created for.
 
@@ -112,8 +112,10 @@ module Whopsdk
           # @!attribute currency
           #   The respective currency identifier for the plan.
           #
-          #   @return [Symbol, Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::Currency]
-          required :currency, enum: -> { Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::Currency }
+          #   @return [Symbol, Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::Currency, nil]
+          required :currency,
+                   enum: -> { Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::Currency },
+                   nil?: true
 
           # @!attribute formatted_price
           #   The formatted price (including currency) for the plan.
@@ -126,7 +128,7 @@ module Whopsdk
           #
           #   @param id [String] The internal ID of the plan.
           #
-          #   @param currency [Symbol, Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::Currency] The respective currency identifier for the plan.
+          #   @param currency [Symbol, Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::Currency, nil] The respective currency identifier for the plan.
           #
           #   @param formatted_price [String] The formatted price (including currency) for the plan.
 

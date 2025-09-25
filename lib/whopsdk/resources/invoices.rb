@@ -10,7 +10,7 @@ module Whopsdk
       #
       # @overload create(collection_method:, due_date:, plan:, access_pass: nil, access_pass_id: nil, charge_buyer_fee: nil, customer_name: nil, email_address: nil, member_id: nil, payment_token_id: nil, request_options: {})
       #
-      # @param collection_method [Symbol, Whopsdk::Models::InvoiceCreateParams::CollectionMethod] The method of collection for this invoice. If using charge_automatically, you mu
+      # @param collection_method [Symbol, Whopsdk::Models::InvoiceCreateParams::CollectionMethod, nil] The method of collection for this invoice. If using charge_automatically, you mu
       #
       # @param due_date [Integer] The date the invoice is due, if applicable.
       #

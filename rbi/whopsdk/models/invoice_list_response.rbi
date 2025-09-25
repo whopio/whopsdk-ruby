@@ -114,7 +114,9 @@ module Whopsdk
         # The status of the invoice.
         sig do
           returns(
-            Whopsdk::Models::InvoiceListResponse::Data::Status::TaggedSymbol
+            T.nilable(
+              Whopsdk::Models::InvoiceListResponse::Data::Status::TaggedSymbol
+            )
           )
         end
         attr_accessor :status
@@ -147,7 +149,9 @@ module Whopsdk
             fetch_invoice_token: String,
             number: String,
             status:
-              Whopsdk::Models::InvoiceListResponse::Data::Status::OrSymbol,
+              T.nilable(
+                Whopsdk::Models::InvoiceListResponse::Data::Status::OrSymbol
+              ),
             user:
               T.nilable(
                 Whopsdk::Models::InvoiceListResponse::Data::User::OrHash
@@ -188,7 +192,9 @@ module Whopsdk
               fetch_invoice_token: String,
               number: String,
               status:
-                Whopsdk::Models::InvoiceListResponse::Data::Status::TaggedSymbol,
+                T.nilable(
+                  Whopsdk::Models::InvoiceListResponse::Data::Status::TaggedSymbol
+                ),
               user: T.nilable(Whopsdk::Models::InvoiceListResponse::Data::User)
             }
           )
@@ -212,7 +218,9 @@ module Whopsdk
           # The respective currency identifier for the plan.
           sig do
             returns(
-              Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::Currency::TaggedSymbol
+              T.nilable(
+                Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::Currency::TaggedSymbol
+              )
             )
           end
           attr_accessor :currency
@@ -226,7 +234,9 @@ module Whopsdk
             params(
               id: String,
               currency:
-                Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::Currency::OrSymbol,
+                T.nilable(
+                  Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::Currency::OrSymbol
+                ),
               formatted_price: String
             ).returns(T.attached_class)
           end
@@ -245,7 +255,9 @@ module Whopsdk
               {
                 id: String,
                 currency:
-                  Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::Currency::TaggedSymbol,
+                  T.nilable(
+                    Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan::Currency::TaggedSymbol
+                  ),
                 formatted_price: String
               }
             )

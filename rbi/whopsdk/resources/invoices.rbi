@@ -7,7 +7,7 @@ module Whopsdk
       sig do
         params(
           collection_method:
-            Whopsdk::InvoiceCreateParams::CollectionMethod::OrSymbol,
+            T.nilable(Whopsdk::InvoiceCreateParams::CollectionMethod::OrSymbol),
           due_date: Integer,
           plan: Whopsdk::InvoiceCreateParams::Plan::OrHash,
           access_pass:

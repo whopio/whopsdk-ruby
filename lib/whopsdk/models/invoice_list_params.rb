@@ -95,19 +95,23 @@ module Whopsdk
         # @!attribute collection_methods
         #   The collection methods to filter the invoices by
         #
-        #   @return [Array<Symbol, Whopsdk::Models::InvoiceListParams::Filters::CollectionMethod>, nil]
+        #   @return [Array<Symbol, Whopsdk::Models::InvoiceListParams::Filters::CollectionMethod, nil>, nil]
         optional :collection_methods,
                  -> {
-                   Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::InvoiceListParams::Filters::CollectionMethod]
+                   Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::InvoiceListParams::Filters::CollectionMethod,
+                                                    nil?: true]
                  },
                  nil?: true
 
         # @!attribute statuses
         #   The statuses to filter the invoices by
         #
-        #   @return [Array<Symbol, Whopsdk::Models::InvoiceListParams::Filters::Status>, nil]
+        #   @return [Array<Symbol, Whopsdk::Models::InvoiceListParams::Filters::Status, nil>, nil]
         optional :statuses,
-                 -> { Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::InvoiceListParams::Filters::Status] },
+                 -> {
+                   Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::InvoiceListParams::Filters::Status,
+                                                    nil?: true]
+                 },
                  nil?: true
 
         # @!method initialize(access_pass_ids: nil, collection_methods: nil, statuses: nil)
@@ -115,9 +119,9 @@ module Whopsdk
         #
         #   @param access_pass_ids [Array<String>, nil] The access pass IDs to filter the invoices by
         #
-        #   @param collection_methods [Array<Symbol, Whopsdk::Models::InvoiceListParams::Filters::CollectionMethod>, nil] The collection methods to filter the invoices by
+        #   @param collection_methods [Array<Symbol, Whopsdk::Models::InvoiceListParams::Filters::CollectionMethod, nil>, nil] The collection methods to filter the invoices by
         #
-        #   @param statuses [Array<Symbol, Whopsdk::Models::InvoiceListParams::Filters::Status>, nil] The statuses to filter the invoices by
+        #   @param statuses [Array<Symbol, Whopsdk::Models::InvoiceListParams::Filters::Status, nil>, nil] The statuses to filter the invoices by
 
         # The method of collection for an invoice.
         module CollectionMethod

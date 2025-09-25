@@ -34,7 +34,7 @@ class Whopsdk::Test::Resources::CourseLessonInteractionsTest < Whopsdk::Test::Re
 
     assert_pattern do
       response => {
-        data: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Models::CourseLessonInteractionListResponse::Data, nil?: true]) | nil,
+        data: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Models::CourseLessonInteractionListItem, nil?: true]) | nil,
         page_info: Whopsdk::PageInfo
       }
     end

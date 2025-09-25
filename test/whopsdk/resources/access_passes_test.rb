@@ -40,7 +40,7 @@ class Whopsdk::Test::Resources::AccessPassesTest < Whopsdk::Test::ResourceTest
 
     assert_pattern do
       response => {
-        data: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Models::AccessPassListResponse::Data, nil?: true]) | nil,
+        data: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Models::AccessPassListItem, nil?: true]) | nil,
         page_info: Whopsdk::PageInfo
       }
     end

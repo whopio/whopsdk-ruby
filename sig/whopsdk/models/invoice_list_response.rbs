@@ -2,122 +2,24 @@ module Whopsdk
   module Models
     type invoice_list_response =
       {
-        data: ::Array[Whopsdk::Models::InvoiceListResponse::Data?]?,
+        data: ::Array[Whopsdk::Models::InvoiceListItem?]?,
         page_info: Whopsdk::PageInfo
       }
 
     class InvoiceListResponse < Whopsdk::Internal::Type::BaseModel
-      attr_accessor data: ::Array[Whopsdk::Models::InvoiceListResponse::Data?]?
+      attr_accessor data: ::Array[Whopsdk::Models::InvoiceListItem?]?
 
       attr_accessor page_info: Whopsdk::PageInfo
 
       def initialize: (
-        data: ::Array[Whopsdk::Models::InvoiceListResponse::Data?]?,
+        data: ::Array[Whopsdk::Models::InvoiceListItem?]?,
         page_info: Whopsdk::PageInfo
       ) -> void
 
       def to_hash: -> {
-        data: ::Array[Whopsdk::Models::InvoiceListResponse::Data?]?,
+        data: ::Array[Whopsdk::Models::InvoiceListItem?]?,
         page_info: Whopsdk::PageInfo
       }
-
-      type data =
-        {
-          id: String,
-          created_at: Integer,
-          current_plan: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan,
-          due_date: Integer?,
-          email_address: String?,
-          fetch_invoice_token: String,
-          number: String,
-          status: Whopsdk::Models::invoice_status?,
-          user: Whopsdk::Models::InvoiceListResponse::Data::User?
-        }
-
-      class Data < Whopsdk::Internal::Type::BaseModel
-        attr_accessor id: String
-
-        attr_accessor created_at: Integer
-
-        attr_accessor current_plan: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan
-
-        attr_accessor due_date: Integer?
-
-        attr_accessor email_address: String?
-
-        attr_accessor fetch_invoice_token: String
-
-        attr_accessor number: String
-
-        attr_accessor status: Whopsdk::Models::invoice_status?
-
-        attr_accessor user: Whopsdk::Models::InvoiceListResponse::Data::User?
-
-        def initialize: (
-          id: String,
-          created_at: Integer,
-          current_plan: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan,
-          due_date: Integer?,
-          email_address: String?,
-          fetch_invoice_token: String,
-          number: String,
-          status: Whopsdk::Models::invoice_status?,
-          user: Whopsdk::Models::InvoiceListResponse::Data::User?
-        ) -> void
-
-        def to_hash: -> {
-          id: String,
-          created_at: Integer,
-          current_plan: Whopsdk::Models::InvoiceListResponse::Data::CurrentPlan,
-          due_date: Integer?,
-          email_address: String?,
-          fetch_invoice_token: String,
-          number: String,
-          status: Whopsdk::Models::invoice_status?,
-          user: Whopsdk::Models::InvoiceListResponse::Data::User?
-        }
-
-        type current_plan =
-          {
-            id: String,
-            currency: Whopsdk::Models::currency?,
-            formatted_price: String
-          }
-
-        class CurrentPlan < Whopsdk::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          attr_accessor currency: Whopsdk::Models::currency?
-
-          attr_accessor formatted_price: String
-
-          def initialize: (
-            id: String,
-            currency: Whopsdk::Models::currency?,
-            formatted_price: String
-          ) -> void
-
-          def to_hash: -> {
-            id: String,
-            currency: Whopsdk::Models::currency?,
-            formatted_price: String
-          }
-        end
-
-        type user = { id: String, name: String?, username: String }
-
-        class User < Whopsdk::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          attr_accessor name: String?
-
-          attr_accessor username: String
-
-          def initialize: (id: String, name: String?, username: String) -> void
-
-          def to_hash: -> { id: String, name: String?, username: String }
-        end
-      end
     end
   end
 end

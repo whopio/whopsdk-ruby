@@ -29,13 +29,23 @@ class Whopsdk::Test::Resources::CourseLessonInteractionsTest < Whopsdk::Test::Re
     response = @whopsdk.course_lesson_interactions.list
 
     assert_pattern do
-      response => Whopsdk::Models::CourseLessonInteractionListResponse
+      response => Whopsdk::Internal::CursorPage
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Whopsdk::CourseLessonInteractionListItem
     end
 
     assert_pattern do
-      response => {
-        data: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Models::CourseLessonInteractionListItem, nil?: true]) | nil,
-        page_info: Whopsdk::PageInfo
+      row => {
+        id: String,
+        completed: Whopsdk::Internal::Type::Boolean,
+        created_at: Integer,
+        lesson: Whopsdk::CourseLessonInteractionListItem::Lesson,
+        user: Whopsdk::CourseLessonInteractionListItem::User
       }
     end
   end

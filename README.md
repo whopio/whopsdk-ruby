@@ -26,9 +26,9 @@ whopsdk = Whopsdk::Client.new(
   api_key: ENV["WHOPSDK_API_KEY"] # This is the default and can be omitted
 )
 
-invoices = whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
+page = whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
 
-puts(invoices.data)
+puts(page.id)
 ```
 
 ### Handling errors
@@ -124,7 +124,7 @@ You can send undocumented parameters to any endpoint, and read undocumented resp
 Note: the `extra_` parameters of the same name overrides the documented parameters.
 
 ```ruby
-invoices =
+page =
   whopsdk.invoices.list(
     company_id: "biz_xxxxxxxxxxxxxx",
     request_options: {
@@ -134,7 +134,7 @@ invoices =
     }
   )
 
-puts(invoices[:my_undocumented_property])
+puts(page[:my_undocumented_property])
 ```
 
 #### Undocumented request params

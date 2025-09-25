@@ -44,7 +44,7 @@ module Whopsdk
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::CourseLessonInteractionListResponse]
+      # @return [Whopsdk::Internal::CursorPage<Whopsdk::Models::CourseLessonInteractionListItem, nil>]
       #
       # @see Whopsdk::Models::CourseLessonInteractionListParams
       def list(params = {})
@@ -53,7 +53,8 @@ module Whopsdk
           method: :get,
           path: "course_lesson_interactions",
           query: parsed,
-          model: Whopsdk::Models::CourseLessonInteractionListResponse,
+          page: Whopsdk::Internal::CursorPage,
+          model: Whopsdk::CourseLessonInteractionListItem,
           options: options
         )
       end

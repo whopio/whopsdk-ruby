@@ -16,7 +16,7 @@ module Whopsdk
         ?lesson_id: String?,
         ?user_id: String?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Models::CourseLessonInteractionListResponse
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::CourseLessonInteractionListItem?]
 
       def initialize: (client: Whopsdk::Client) -> void
     end

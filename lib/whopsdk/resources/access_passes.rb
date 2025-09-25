@@ -40,7 +40,7 @@ module Whopsdk
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::AccessPassListResponse]
+      # @return [Whopsdk::Internal::CursorPage<Whopsdk::Models::AccessPassListItem, nil>]
       #
       # @see Whopsdk::Models::AccessPassListParams
       def list(params)
@@ -49,7 +49,8 @@ module Whopsdk
           method: :get,
           path: "access_passes",
           query: parsed,
-          model: Whopsdk::Models::AccessPassListResponse,
+          page: Whopsdk::Internal::CursorPage,
+          model: Whopsdk::AccessPassListItem,
           options: options
         )
       end

@@ -50,13 +50,27 @@ class Whopsdk::Test::Resources::InvoicesTest < Whopsdk::Test::ResourceTest
     response = @whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
 
     assert_pattern do
-      response => Whopsdk::Models::InvoiceListResponse
+      response => Whopsdk::Internal::CursorPage
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Whopsdk::InvoiceListItem
     end
 
     assert_pattern do
-      response => {
-        data: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Models::InvoiceListItem, nil?: true]) | nil,
-        page_info: Whopsdk::PageInfo
+      row => {
+        id: String,
+        created_at: Integer,
+        current_plan: Whopsdk::InvoiceListItem::CurrentPlan,
+        due_date: Integer | nil,
+        email_address: String | nil,
+        fetch_invoice_token: String,
+        number: String,
+        status: Whopsdk::InvoiceStatus | nil,
+        user: Whopsdk::InvoiceListItem::User | nil
       }
     end
   end

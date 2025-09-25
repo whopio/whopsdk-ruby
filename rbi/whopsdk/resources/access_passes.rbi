@@ -3,7 +3,7 @@
 module Whopsdk
   module Resources
     class AccessPasses
-      # Retrieves an access pass by ID
+      # Retrieves an access pass by ID or route
       sig do
         params(
           id: String,

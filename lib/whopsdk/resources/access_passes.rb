@@ -3,7 +3,7 @@
 module Whopsdk
   module Resources
     class AccessPasses
-      # Retrieves an access pass by ID
+      # Retrieves an access pass by ID or route
       #
       # @overload retrieve(id, request_options: {})
       #

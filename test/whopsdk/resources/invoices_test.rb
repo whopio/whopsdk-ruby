@@ -55,7 +55,7 @@ class Whopsdk::Test::Resources::InvoicesTest < Whopsdk::Test::ResourceTest
 
     assert_pattern do
       response => {
-        data: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Models::InvoiceListResponse::Data, nil?: true]) | nil,
+        data: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Models::InvoiceListItem, nil?: true]) | nil,
         page_info: Whopsdk::PageInfo
       }
     end

@@ -1,0 +1,66 @@
+module Whopsdk
+  module Models
+    type course_lesson_interaction_list_item =
+      {
+        id: String,
+        completed: bool,
+        created_at: Integer,
+        lesson: Whopsdk::CourseLessonInteractionListItem::Lesson,
+        user: Whopsdk::CourseLessonInteractionListItem::User
+      }
+
+    class CourseLessonInteractionListItem < Whopsdk::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor completed: bool
+
+      attr_accessor created_at: Integer
+
+      attr_accessor lesson: Whopsdk::CourseLessonInteractionListItem::Lesson
+
+      attr_accessor user: Whopsdk::CourseLessonInteractionListItem::User
+
+      def initialize: (
+        id: String,
+        completed: bool,
+        created_at: Integer,
+        lesson: Whopsdk::CourseLessonInteractionListItem::Lesson,
+        user: Whopsdk::CourseLessonInteractionListItem::User
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        completed: bool,
+        created_at: Integer,
+        lesson: Whopsdk::CourseLessonInteractionListItem::Lesson,
+        user: Whopsdk::CourseLessonInteractionListItem::User
+      }
+
+      type lesson = { id: String, title: String }
+
+      class Lesson < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type user = { id: String, name: String?, username: String }
+
+      class User < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
+      end
+    end
+  end
+end

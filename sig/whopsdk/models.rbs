@@ -1,6 +1,8 @@
 module Whopsdk
   class AccessPass = Whopsdk::Models::AccessPass
 
+  class AccessPassListItem = Whopsdk::Models::AccessPassListItem
+
   class AccessPassListParams = Whopsdk::Models::AccessPassListParams
 
   class AccessPassRetrieveParams = Whopsdk::Models::AccessPassRetrieveParams
@@ -15,6 +17,8 @@ module Whopsdk
 
   class CourseLessonInteraction = Whopsdk::Models::CourseLessonInteraction
 
+  class CourseLessonInteractionListItem = Whopsdk::Models::CourseLessonInteractionListItem
+
   class CourseLessonInteractionListParams = Whopsdk::Models::CourseLessonInteractionListParams
 
   class CourseLessonInteractionRetrieveParams = Whopsdk::Models::CourseLessonInteractionRetrieveParams
@@ -26,6 +30,8 @@ module Whopsdk
   class Invoice = Whopsdk::Models::Invoice
 
   class InvoiceCreateParams = Whopsdk::Models::InvoiceCreateParams
+
+  class InvoiceListItem = Whopsdk::Models::InvoiceListItem
 
   class InvoiceListParams = Whopsdk::Models::InvoiceListParams
 

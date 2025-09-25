@@ -25,7 +25,11 @@ module Whopsdk
           lesson_id: T.nilable(String),
           user_id: T.nilable(String),
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(Whopsdk::Models::CourseLessonInteractionListResponse)
+        ).returns(
+          Whopsdk::Internal::CursorPage[
+            T.nilable(Whopsdk::CourseLessonInteractionListItem)
+          ]
+        )
       end
       def list(
         # Returns the elements in the list that come after the specified cursor.

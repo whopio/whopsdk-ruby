@@ -76,7 +76,9 @@ module Whopsdk
           last: T.nilable(Integer),
           order: T.nilable(Whopsdk::InvoiceListParams::Order::OrSymbol),
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(Whopsdk::Models::InvoiceListResponse)
+        ).returns(
+          Whopsdk::Internal::CursorPage[T.nilable(Whopsdk::InvoiceListItem)]
+        )
       end
       def list(
         # The ID of the company to list invoices for

@@ -87,7 +87,7 @@ module Whopsdk
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::InvoiceListResponse]
+      # @return [Whopsdk::Internal::CursorPage<Whopsdk::Models::InvoiceListItem, nil>]
       #
       # @see Whopsdk::Models::InvoiceListParams
       def list(params)
@@ -96,7 +96,8 @@ module Whopsdk
           method: :get,
           path: "invoices",
           query: parsed,
-          model: Whopsdk::Models::InvoiceListResponse,
+          page: Whopsdk::Internal::CursorPage,
+          model: Whopsdk::InvoiceListItem,
           options: options
         )
       end

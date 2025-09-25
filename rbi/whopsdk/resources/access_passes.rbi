@@ -24,7 +24,9 @@ module Whopsdk
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(Whopsdk::Models::AccessPassListResponse)
+        ).returns(
+          Whopsdk::Internal::CursorPage[T.nilable(Whopsdk::AccessPassListItem)]
+        )
       end
       def list(
         # The ID of the company to filter access passes by

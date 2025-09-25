@@ -14,7 +14,7 @@ module Whopsdk
         ?first: Integer?,
         ?last: Integer?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Models::AccessPassListResponse
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::AccessPassListItem?]
 
       def initialize: (client: Whopsdk::Client) -> void
     end

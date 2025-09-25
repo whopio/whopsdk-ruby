@@ -30,7 +30,7 @@ module Whopsdk
         ?last: Integer?,
         ?order: Whopsdk::Models::InvoiceListParams::order?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Models::InvoiceListResponse
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::InvoiceListItem?]
 
       def `void`: (String id, ?request_options: Whopsdk::request_opts) -> bool?
 

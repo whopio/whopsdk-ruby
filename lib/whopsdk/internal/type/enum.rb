@@ -17,24 +17,28 @@ module Whopsdk
       # values safely.
       #
       # @example
-      #   # `collection_method` is a `Whopsdk::CollectionMethod`
-      #   case collection_method
-      #   when Whopsdk::CollectionMethod::SEND_INVOICE
+      #   # `business_types` is a `Whopsdk::BusinessTypes`
+      #   case business_types
+      #   when Whopsdk::BusinessTypes::EDUCATION_PROGRAM
       #     # ...
-      #   when Whopsdk::CollectionMethod::CHARGE_AUTOMATICALLY
+      #   when Whopsdk::BusinessTypes::COACHING
+      #     # ...
+      #   when Whopsdk::BusinessTypes::SOFTWARE
       #     # ...
       #   else
-      #     puts(collection_method)
+      #     puts(business_types)
       #   end
       #
       # @example
-      #   case collection_method
-      #   in :send_invoice
+      #   case business_types
+      #   in :education_program
       #     # ...
-      #   in :charge_automatically
+      #   in :coaching
+      #     # ...
+      #   in :software
       #     # ...
       #   else
-      #     puts(collection_method)
+      #     puts(business_types)
       #   end
       module Enum
         include Whopsdk::Internal::Type::Converter

@@ -3,6 +3,7 @@ module Whopsdk
     type invoice_create_params =
       {
         collection_method: Whopsdk::Models::collection_method?,
+        company_id: String,
         due_date: Integer,
         plan: Whopsdk::InvoiceCreateParams::Plan,
         access_pass: Whopsdk::InvoiceCreateParams::AccessPass?,
@@ -20,6 +21,8 @@ module Whopsdk
       include Whopsdk::Internal::Type::RequestParameters
 
       attr_accessor collection_method: Whopsdk::Models::collection_method?
+
+      attr_accessor company_id: String
 
       attr_accessor due_date: Integer
 
@@ -41,6 +44,7 @@ module Whopsdk
 
       def initialize: (
         collection_method: Whopsdk::Models::collection_method?,
+        company_id: String,
         due_date: Integer,
         plan: Whopsdk::InvoiceCreateParams::Plan,
         ?access_pass: Whopsdk::InvoiceCreateParams::AccessPass?,
@@ -55,6 +59,7 @@ module Whopsdk
 
       def to_hash: -> {
         collection_method: Whopsdk::Models::collection_method?,
+        company_id: String,
         due_date: Integer,
         plan: Whopsdk::InvoiceCreateParams::Plan,
         access_pass: Whopsdk::InvoiceCreateParams::AccessPass?,
@@ -200,7 +205,7 @@ module Whopsdk
 
         type custom_field =
           {
-            field_type: :text,
+            field_type: Whopsdk::Models::InvoiceCreateParams::Plan::CustomField::field_type?,
             name: String,
             id: String?,
             order: Integer?,
@@ -209,7 +214,7 @@ module Whopsdk
           }
 
         class CustomField < Whopsdk::Internal::Type::BaseModel
-          attr_accessor field_type: :text
+          attr_accessor field_type: Whopsdk::Models::InvoiceCreateParams::Plan::CustomField::field_type?
 
           attr_accessor name: String
 
@@ -222,22 +227,32 @@ module Whopsdk
           attr_accessor required: bool?
 
           def initialize: (
+            field_type: Whopsdk::Models::InvoiceCreateParams::Plan::CustomField::field_type?,
             name: String,
             ?id: String?,
             ?order: Integer?,
             ?placeholder: String?,
-            ?required: bool?,
-            ?field_type: :text
+            ?required: bool?
           ) -> void
 
           def to_hash: -> {
-            field_type: :text,
+            field_type: Whopsdk::Models::InvoiceCreateParams::Plan::CustomField::field_type?,
             name: String,
             id: String?,
             order: Integer?,
             placeholder: String?,
             required: bool?
           }
+
+          type field_type = :text
+
+          module FieldType
+            extend Whopsdk::Internal::Type::Enum
+
+            TEXT: :text
+
+            def self?.values: -> ::Array[Whopsdk::Models::InvoiceCreateParams::Plan::CustomField::field_type]
+          end
         end
 
         type plan_type = :renewal | :one_time

@@ -3,6 +3,7 @@ module Whopsdk
     class Invoices
       def create: (
         collection_method: Whopsdk::Models::collection_method?,
+        company_id: String,
         due_date: Integer,
         plan: Whopsdk::InvoiceCreateParams::Plan,
         ?access_pass: Whopsdk::InvoiceCreateParams::AccessPass?,

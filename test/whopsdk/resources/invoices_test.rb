@@ -6,7 +6,13 @@ class Whopsdk::Test::Resources::InvoicesTest < Whopsdk::Test::ResourceTest
   def test_create_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.invoices.create(collection_method: :send_invoice, due_date: 1_701_406_800, plan: {})
+    response =
+      @whopsdk.invoices.create(
+        collection_method: :send_invoice,
+        company_id: "biz_xxxxxxxxxxxxxx",
+        due_date: 1_701_406_800,
+        plan: {}
+      )
 
     assert_pattern do
       response => Whopsdk::Models::InvoiceCreateResponse

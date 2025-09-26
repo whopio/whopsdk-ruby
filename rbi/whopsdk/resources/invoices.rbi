@@ -7,6 +7,7 @@ module Whopsdk
       sig do
         params(
           collection_method: T.nilable(Whopsdk::CollectionMethod::OrSymbol),
+          company_id: String,
           due_date: Integer,
           plan: Whopsdk::InvoiceCreateParams::Plan::OrHash,
           access_pass:
@@ -24,6 +25,8 @@ module Whopsdk
         # The method of collection for this invoice. If using charge_automatically, you
         # must provide a payment_token.
         collection_method:,
+        # The company ID to create this invoice for.
+        company_id:,
         # The date the invoice is due, if applicable.
         due_date:,
         # The properties of the plan to create for this invoice.

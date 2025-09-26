@@ -16,6 +16,10 @@ module Whopsdk
       sig { returns(T.nilable(Whopsdk::CollectionMethod::OrSymbol)) }
       attr_accessor :collection_method
 
+      # The company ID to create this invoice for.
+      sig { returns(String) }
+      attr_accessor :company_id
+
       # The date the invoice is due, if applicable.
       sig { returns(Integer) }
       attr_accessor :due_date
@@ -74,6 +78,7 @@ module Whopsdk
       sig do
         params(
           collection_method: T.nilable(Whopsdk::CollectionMethod::OrSymbol),
+          company_id: String,
           due_date: Integer,
           plan: Whopsdk::InvoiceCreateParams::Plan::OrHash,
           access_pass:
@@ -91,6 +96,8 @@ module Whopsdk
         # The method of collection for this invoice. If using charge_automatically, you
         # must provide a payment_token.
         collection_method:,
+        # The company ID to create this invoice for.
+        company_id:,
         # The date the invoice is due, if applicable.
         due_date:,
         # The properties of the plan to create for this invoice.
@@ -125,6 +132,7 @@ module Whopsdk
         override.returns(
           {
             collection_method: T.nilable(Whopsdk::CollectionMethod::OrSymbol),
+            company_id: String,
             due_date: Integer,
             plan: Whopsdk::InvoiceCreateParams::Plan,
             access_pass: T.nilable(Whopsdk::InvoiceCreateParams::AccessPass),
@@ -434,7 +442,13 @@ module Whopsdk
             end
 
           # The type of the custom field.
-          sig { returns(Symbol) }
+          sig do
+            returns(
+              T.nilable(
+                Whopsdk::InvoiceCreateParams::Plan::CustomField::FieldType::OrSymbol
+              )
+            )
+          end
           attr_accessor :field_type
 
           # The name of the custom field.
@@ -459,15 +473,20 @@ module Whopsdk
 
           sig do
             params(
+              field_type:
+                T.nilable(
+                  Whopsdk::InvoiceCreateParams::Plan::CustomField::FieldType::OrSymbol
+                ),
               name: String,
               id: T.nilable(String),
               order: T.nilable(Integer),
               placeholder: T.nilable(String),
-              required: T.nilable(T::Boolean),
-              field_type: Symbol
+              required: T.nilable(T::Boolean)
             ).returns(T.attached_class)
           end
           def self.new(
+            # The type of the custom field.
+            field_type:,
             # The name of the custom field.
             name:,
             # The ID of the custom field (if being updated)
@@ -477,16 +496,17 @@ module Whopsdk
             # The placeholder value of the field.
             placeholder: nil,
             # Whether or not the field is required.
-            required: nil,
-            # The type of the custom field.
-            field_type: :text
+            required: nil
           )
           end
 
           sig do
             override.returns(
               {
-                field_type: Symbol,
+                field_type:
+                  T.nilable(
+                    Whopsdk::InvoiceCreateParams::Plan::CustomField::FieldType::OrSymbol
+                  ),
                 name: String,
                 id: T.nilable(String),
                 order: T.nilable(Integer),
@@ -496,6 +516,36 @@ module Whopsdk
             )
           end
           def to_hash
+          end
+
+          # The type of the custom field.
+          module FieldType
+            extend Whopsdk::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Whopsdk::InvoiceCreateParams::Plan::CustomField::FieldType
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            TEXT =
+              T.let(
+                :text,
+                Whopsdk::InvoiceCreateParams::Plan::CustomField::FieldType::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Whopsdk::InvoiceCreateParams::Plan::CustomField::FieldType::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
         end
 

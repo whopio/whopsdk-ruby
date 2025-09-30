@@ -5,8 +5,6 @@ module Whopsdk
     class Products
       # Retrieves a product by ID or route
       #
-      # Required permissions:
-      #
       # @overload retrieve(id, request_options: {})
       #
       # @param id [String]

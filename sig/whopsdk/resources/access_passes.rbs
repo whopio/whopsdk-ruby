@@ -1,7 +1,0 @@
-module Whopsdk
-  module Resources
-    class AccessPasses
-      def initialize: (client: Whopsdk::Client) -> void
-    end
-  end
-end

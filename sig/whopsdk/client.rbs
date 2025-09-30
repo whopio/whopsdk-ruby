@@ -8,13 +8,13 @@ module Whopsdk
 
     DEFAULT_MAX_RETRY_DELAY: Float
 
-    attr_reader api_key: String?
+    attr_reader api_key: String
 
     attr_reader invoices: Whopsdk::Resources::Invoices
 
     attr_reader course_lesson_interactions: Whopsdk::Resources::CourseLessonInteractions
 
-    attr_reader access_passes: Whopsdk::Resources::AccessPasses
+    attr_reader products: Whopsdk::Resources::Products
 
     attr_reader companies: Whopsdk::Resources::Companies
 

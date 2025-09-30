@@ -27,6 +27,13 @@ class WhopsdkTest < Minitest::Test
     super
   end
 
+  def test_raises_on_missing_non_nullable_opts
+    e = assert_raises(ArgumentError) do
+      Whopsdk::Client.new
+    end
+    assert_match(/is required/, e.message)
+  end
+
   def test_client_default_request_default_retry_attempts
     stub_request(:get, "http://localhost/invoices").to_return_json(status: 500, body: {})
 

@@ -39,4 +39,12 @@ module Whopsdk
   InvoiceVoidParams = Whopsdk::Models::InvoiceVoidParams
 
   PageInfo = Whopsdk::Models::PageInfo
+
+  Product = Whopsdk::Models::Product
+
+  ProductListItem = Whopsdk::Models::ProductListItem
+
+  ProductListParams = Whopsdk::Models::ProductListParams
+
+  ProductRetrieveParams = Whopsdk::Models::ProductRetrieveParams
 end

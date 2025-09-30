@@ -1,0 +1,22 @@
+module Whopsdk
+  module Resources
+    class Products
+      def retrieve: (
+        String id,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Product?
+
+      def list: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?product_type: Whopsdk::Models::ProductListParams::product_type?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::ProductListItem?]
+
+      def initialize: (client: Whopsdk::Client) -> void
+    end
+  end
+end

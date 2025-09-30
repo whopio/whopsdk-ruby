@@ -15,7 +15,8 @@ module Whopsdk
     # Default max retry delay in seconds.
     DEFAULT_MAX_RETRY_DELAY = 8.0
 
-    # @return [String, nil]
+    # The app API key from an app from the /dashboard/developer page
+    # @return [String]
     attr_reader :api_key
 
     # @return [Whopsdk::Resources::Invoices]
@@ -24,8 +25,8 @@ module Whopsdk
     # @return [Whopsdk::Resources::CourseLessonInteractions]
     attr_reader :course_lesson_interactions
 
-    # @return [Whopsdk::Resources::AccessPasses]
-    attr_reader :access_passes
+    # @return [Whopsdk::Resources::Products]
+    attr_reader :products
 
     # @return [Whopsdk::Resources::Companies]
     attr_reader :companies
@@ -41,7 +42,8 @@ module Whopsdk
 
     # Creates and returns a new client for interacting with the API.
     #
-    # @param api_key [String, nil] Defaults to `ENV["WHOPSDK_API_KEY"]`
+    # @param api_key [String, nil] The app API key from an app from the /dashboard/developer page Defaults to
+    # `ENV["WHOP_API_KEY"]`
     #
     # @param base_url [String, nil] Override the default base URL for the API, e.g.,
     # `"https://api.example.com/v2/"`. Defaults to `ENV["WHOPSDK_BASE_URL"]`
@@ -54,7 +56,7 @@ module Whopsdk
     #
     # @param max_retry_delay [Float]
     def initialize(
-      api_key: ENV["WHOPSDK_API_KEY"],
+      api_key: ENV["WHOP_API_KEY"],
       base_url: ENV["WHOPSDK_BASE_URL"],
       max_retries: self.class::DEFAULT_MAX_RETRIES,
       timeout: self.class::DEFAULT_TIMEOUT_IN_SECONDS,
@@ -63,7 +65,11 @@ module Whopsdk
     )
       base_url ||= "https://api.whop.com/api/v1"
 
-      @api_key = api_key&.to_s
+      if api_key.nil?
+        raise ArgumentError.new("api_key is required, and can be set via environ: \"WHOP_API_KEY\"")
+      end
+
+      @api_key = api_key.to_s
 
       super(
         base_url: base_url,
@@ -75,7 +81,7 @@ module Whopsdk
 
       @invoices = Whopsdk::Resources::Invoices.new(client: self)
       @course_lesson_interactions = Whopsdk::Resources::CourseLessonInteractions.new(client: self)
-      @access_passes = Whopsdk::Resources::AccessPasses.new(client: self)
+      @products = Whopsdk::Resources::Products.new(client: self)
       @companies = Whopsdk::Resources::Companies.new(client: self)
     end
   end

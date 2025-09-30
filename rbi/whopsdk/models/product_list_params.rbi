@@ -31,11 +31,29 @@ module Whopsdk
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
-      # The different types an access pass can be.
+      # The type of products to filter by
       sig do
-        returns(T.nilable(Whopsdk::ProductListParams::ProductType::OrSymbol))
+        returns(
+          T.nilable(
+            T::Array[
+              T.nilable(Whopsdk::ProductListParams::ProductType::OrSymbol)
+            ]
+          )
+        )
       end
-      attr_accessor :product_type
+      attr_accessor :product_types
+
+      # The visibility of the products to filter by
+      sig do
+        returns(
+          T.nilable(
+            T::Array[
+              T.nilable(Whopsdk::ProductListParams::Visibility::OrSymbol)
+            ]
+          )
+        )
+      end
+      attr_accessor :visibilities
 
       sig do
         params(
@@ -44,8 +62,18 @@ module Whopsdk
           before: T.nilable(String),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
-          product_type:
-            T.nilable(Whopsdk::ProductListParams::ProductType::OrSymbol),
+          product_types:
+            T.nilable(
+              T::Array[
+                T.nilable(Whopsdk::ProductListParams::ProductType::OrSymbol)
+              ]
+            ),
+          visibilities:
+            T.nilable(
+              T::Array[
+                T.nilable(Whopsdk::ProductListParams::Visibility::OrSymbol)
+              ]
+            ),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -60,8 +88,10 @@ module Whopsdk
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The different types an access pass can be.
-        product_type: nil,
+        # The type of products to filter by
+        product_types: nil,
+        # The visibility of the products to filter by
+        visibilities: nil,
         request_options: {}
       )
       end
@@ -74,8 +104,18 @@ module Whopsdk
             before: T.nilable(String),
             first: T.nilable(Integer),
             last: T.nilable(Integer),
-            product_type:
-              T.nilable(Whopsdk::ProductListParams::ProductType::OrSymbol),
+            product_types:
+              T.nilable(
+                T::Array[
+                  T.nilable(Whopsdk::ProductListParams::ProductType::OrSymbol)
+                ]
+              ),
+            visibilities:
+              T.nilable(
+                T::Array[
+                  T.nilable(Whopsdk::ProductListParams::Visibility::OrSymbol)
+                ]
+              ),
             request_options: Whopsdk::RequestOptions
           }
         )
@@ -110,6 +150,46 @@ module Whopsdk
         sig do
           override.returns(
             T::Array[Whopsdk::ProductListParams::ProductType::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # The different levels of visibility for resources
+      module Visibility
+        extend Whopsdk::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, Whopsdk::ProductListParams::Visibility) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        VISIBLE =
+          T.let(:visible, Whopsdk::ProductListParams::Visibility::TaggedSymbol)
+        HIDDEN =
+          T.let(:hidden, Whopsdk::ProductListParams::Visibility::TaggedSymbol)
+        ARCHIVED =
+          T.let(:archived, Whopsdk::ProductListParams::Visibility::TaggedSymbol)
+        QUICK_LINK =
+          T.let(
+            :quick_link,
+            Whopsdk::ProductListParams::Visibility::TaggedSymbol
+          )
+        ALL = T.let(:all, Whopsdk::ProductListParams::Visibility::TaggedSymbol)
+        NOT_QUICK_LINK =
+          T.let(
+            :not_quick_link,
+            Whopsdk::ProductListParams::Visibility::TaggedSymbol
+          )
+        NOT_ARCHIVED =
+          T.let(
+            :not_archived,
+            Whopsdk::ProductListParams::Visibility::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[Whopsdk::ProductListParams::Visibility::TaggedSymbol]
           )
         end
         def self.values

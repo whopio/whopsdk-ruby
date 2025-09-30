@@ -12,7 +12,8 @@ module Whopsdk
         ?before: String?,
         ?first: Integer?,
         ?last: Integer?,
-        ?product_type: Whopsdk::Models::ProductListParams::product_type?,
+        ?product_types: ::Array[Whopsdk::Models::ProductListParams::product_type?]?,
+        ?visibilities: ::Array[Whopsdk::Models::ProductListParams::visibility?]?,
         ?request_options: Whopsdk::request_opts
       ) -> Whopsdk::Internal::CursorPage[Whopsdk::ProductListItem?]
 

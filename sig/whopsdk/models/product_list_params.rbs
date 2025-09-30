@@ -7,7 +7,8 @@ module Whopsdk
         before: String?,
         first: Integer?,
         last: Integer?,
-        product_type: Whopsdk::Models::ProductListParams::product_type?
+        product_types: ::Array[Whopsdk::Models::ProductListParams::product_type?]?,
+        visibilities: ::Array[Whopsdk::Models::ProductListParams::visibility?]?
       }
       & Whopsdk::Internal::Type::request_parameters
 
@@ -25,7 +26,9 @@ module Whopsdk
 
       attr_accessor last: Integer?
 
-      attr_accessor product_type: Whopsdk::Models::ProductListParams::product_type?
+      attr_accessor product_types: ::Array[Whopsdk::Models::ProductListParams::product_type?]?
+
+      attr_accessor visibilities: ::Array[Whopsdk::Models::ProductListParams::visibility?]?
 
       def initialize: (
         company_id: String,
@@ -33,7 +36,8 @@ module Whopsdk
         ?before: String?,
         ?first: Integer?,
         ?last: Integer?,
-        ?product_type: Whopsdk::Models::ProductListParams::product_type?,
+        ?product_types: ::Array[Whopsdk::Models::ProductListParams::product_type?]?,
+        ?visibilities: ::Array[Whopsdk::Models::ProductListParams::visibility?]?,
         ?request_options: Whopsdk::request_opts
       ) -> void
 
@@ -43,7 +47,8 @@ module Whopsdk
         before: String?,
         first: Integer?,
         last: Integer?,
-        product_type: Whopsdk::Models::ProductListParams::product_type?,
+        product_types: ::Array[Whopsdk::Models::ProductListParams::product_type?]?,
+        visibilities: ::Array[Whopsdk::Models::ProductListParams::visibility?]?,
         request_options: Whopsdk::RequestOptions
       }
 
@@ -58,6 +63,29 @@ module Whopsdk
         API_ONLY: :api_only
 
         def self?.values: -> ::Array[Whopsdk::Models::ProductListParams::product_type]
+      end
+
+      type visibility =
+        :visible
+        | :hidden
+        | :archived
+        | :quick_link
+        | :all
+        | :not_quick_link
+        | :not_archived
+
+      module Visibility
+        extend Whopsdk::Internal::Type::Enum
+
+        VISIBLE: :visible
+        HIDDEN: :hidden
+        ARCHIVED: :archived
+        QUICK_LINK: :quick_link
+        ALL: :all
+        NOT_QUICK_LINK: :not_quick_link
+        NOT_ARCHIVED: :not_archived
+
+        def self?.values: -> ::Array[Whopsdk::Models::ProductListParams::visibility]
       end
     end
   end

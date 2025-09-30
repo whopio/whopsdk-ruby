@@ -37,13 +37,27 @@ module Whopsdk
       #   @return [Integer, nil]
       optional :last, Integer, nil?: true
 
-      # @!attribute product_type
-      #   The different types an access pass can be.
+      # @!attribute product_types
+      #   The type of products to filter by
       #
-      #   @return [Symbol, Whopsdk::Models::ProductListParams::ProductType, nil]
-      optional :product_type, enum: -> { Whopsdk::ProductListParams::ProductType }, nil?: true
+      #   @return [Array<Symbol, Whopsdk::Models::ProductListParams::ProductType, nil>, nil]
+      optional :product_types,
+               -> {
+                 Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::ProductListParams::ProductType, nil?: true]
+               },
+               nil?: true
 
-      # @!method initialize(company_id:, after: nil, before: nil, first: nil, last: nil, product_type: nil, request_options: {})
+      # @!attribute visibilities
+      #   The visibility of the products to filter by
+      #
+      #   @return [Array<Symbol, Whopsdk::Models::ProductListParams::Visibility, nil>, nil]
+      optional :visibilities,
+               -> {
+                 Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::ProductListParams::Visibility, nil?: true]
+               },
+               nil?: true
+
+      # @!method initialize(company_id:, after: nil, before: nil, first: nil, last: nil, product_types: nil, visibilities: nil, request_options: {})
       #   @param company_id [String] The ID of the company to filter products by
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
@@ -54,7 +68,9 @@ module Whopsdk
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      #   @param product_type [Symbol, Whopsdk::Models::ProductListParams::ProductType, nil] The different types an access pass can be.
+      #   @param product_types [Array<Symbol, Whopsdk::Models::ProductListParams::ProductType, nil>, nil] The type of products to filter by
+      #
+      #   @param visibilities [Array<Symbol, Whopsdk::Models::ProductListParams::Visibility, nil>, nil] The visibility of the products to filter by
       #
       #   @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}]
 
@@ -66,6 +82,22 @@ module Whopsdk
         APP = :app
         EXPERIENCE_UPSELL = :experience_upsell
         API_ONLY = :api_only
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # The different levels of visibility for resources
+      module Visibility
+        extend Whopsdk::Internal::Type::Enum
+
+        VISIBLE = :visible
+        HIDDEN = :hidden
+        ARCHIVED = :archived
+        QUICK_LINK = :quick_link
+        ALL = :all
+        NOT_QUICK_LINK = :not_quick_link
+        NOT_ARCHIVED = :not_archived
 
         # @!method self.values
         #   @return [Array<Symbol>]

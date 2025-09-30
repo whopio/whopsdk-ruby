@@ -4,16 +4,26 @@ module Whopsdk
   module Resources
     class CourseLessonInteractions
       # Retrieves a course lesson interaction by ID
+      #
+      # Required permissions:
+      #
+      # - `course_lesson_interaction:read`
+      # - `courses:read`
       sig do
         params(
           id: String,
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(Whopsdk::CourseLessonInteraction)
+        ).returns(T.nilable(Whopsdk::CourseLessonInteraction))
       end
       def retrieve(id, request_options: {})
       end
 
       # Lists course lesson interactions
+      #
+      # Required permissions:
+      #
+      # - `course_lesson_interaction:read`
+      # - `courses:read`
       sig do
         params(
           after: T.nilable(String),

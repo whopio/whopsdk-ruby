@@ -4,7 +4,7 @@ module Whopsdk
       def retrieve: (
         String id,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::CourseLessonInteraction
+      ) -> Whopsdk::CourseLessonInteraction?
 
       def list: (
         ?after: String?,

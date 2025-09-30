@@ -2,7 +2,7 @@ module Whopsdk
   module Resources
     class Invoices
       def create: (
-        collection_method: Whopsdk::Models::collection_method,
+        collection_method: Whopsdk::Models::collection_method?,
         company_id: String,
         due_date: Integer,
         plan: Whopsdk::InvoiceCreateParams::Plan,
@@ -19,7 +19,7 @@ module Whopsdk
       def retrieve: (
         String id,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Invoice
+      ) -> Whopsdk::Invoice?
 
       def list: (
         company_id: String,

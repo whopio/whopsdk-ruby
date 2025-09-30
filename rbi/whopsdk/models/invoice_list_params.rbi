@@ -140,12 +140,18 @@ module Whopsdk
 
         # The collection methods to filter the invoices by
         sig do
-          returns(T.nilable(T::Array[Whopsdk::CollectionMethod::OrSymbol]))
+          returns(
+            T.nilable(T::Array[T.nilable(Whopsdk::CollectionMethod::OrSymbol)])
+          )
         end
         attr_accessor :collection_methods
 
         # The statuses to filter the invoices by
-        sig { returns(T.nilable(T::Array[Whopsdk::InvoiceStatus::OrSymbol])) }
+        sig do
+          returns(
+            T.nilable(T::Array[T.nilable(Whopsdk::InvoiceStatus::OrSymbol)])
+          )
+        end
         attr_accessor :statuses
 
         # The filters to apply to the invoices
@@ -153,8 +159,11 @@ module Whopsdk
           params(
             access_pass_ids: T.nilable(T::Array[String]),
             collection_methods:
-              T.nilable(T::Array[Whopsdk::CollectionMethod::OrSymbol]),
-            statuses: T.nilable(T::Array[Whopsdk::InvoiceStatus::OrSymbol])
+              T.nilable(
+                T::Array[T.nilable(Whopsdk::CollectionMethod::OrSymbol)]
+              ),
+            statuses:
+              T.nilable(T::Array[T.nilable(Whopsdk::InvoiceStatus::OrSymbol)])
           ).returns(T.attached_class)
         end
         def self.new(
@@ -172,8 +181,11 @@ module Whopsdk
             {
               access_pass_ids: T.nilable(T::Array[String]),
               collection_methods:
-                T.nilable(T::Array[Whopsdk::CollectionMethod::OrSymbol]),
-              statuses: T.nilable(T::Array[Whopsdk::InvoiceStatus::OrSymbol])
+                T.nilable(
+                  T::Array[T.nilable(Whopsdk::CollectionMethod::OrSymbol)]
+                ),
+              statuses:
+                T.nilable(T::Array[T.nilable(Whopsdk::InvoiceStatus::OrSymbol)])
             }
           )
         end

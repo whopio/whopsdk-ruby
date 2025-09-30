@@ -10,7 +10,8 @@ module Whopsdk
 
     DEFAULT_MAX_RETRY_DELAY = T.let(8.0, Float)
 
-    sig { returns(T.nilable(String)) }
+    # The app API key from an app from the /dashboard/developer page
+    sig { returns(String) }
     attr_reader :api_key
 
     sig { returns(Whopsdk::Resources::Invoices) }
@@ -19,8 +20,8 @@ module Whopsdk
     sig { returns(Whopsdk::Resources::CourseLessonInteractions) }
     attr_reader :course_lesson_interactions
 
-    sig { returns(Whopsdk::Resources::AccessPasses) }
-    attr_reader :access_passes
+    sig { returns(Whopsdk::Resources::Products) }
+    attr_reader :products
 
     sig { returns(Whopsdk::Resources::Companies) }
     attr_reader :companies
@@ -42,8 +43,9 @@ module Whopsdk
       ).returns(T.attached_class)
     end
     def self.new(
-      # Defaults to `ENV["WHOPSDK_API_KEY"]`
-      api_key: ENV["WHOPSDK_API_KEY"],
+      # The app API key from an app from the /dashboard/developer page Defaults to
+      # `ENV["WHOP_API_KEY"]`
+      api_key: ENV["WHOP_API_KEY"],
       # Override the default base URL for the API, e.g.,
       # `"https://api.example.com/v2/"`. Defaults to `ENV["WHOPSDK_BASE_URL"]`
       base_url: ENV["WHOPSDK_BASE_URL"],

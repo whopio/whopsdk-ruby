@@ -1,0 +1,64 @@
+module Whopsdk
+  module Models
+    type product_list_params =
+      {
+        company_id: String,
+        after: String?,
+        before: String?,
+        first: Integer?,
+        last: Integer?,
+        product_type: Whopsdk::Models::ProductListParams::product_type?
+      }
+      & Whopsdk::Internal::Type::request_parameters
+
+    class ProductListParams < Whopsdk::Internal::Type::BaseModel
+      extend Whopsdk::Internal::Type::RequestParameters::Converter
+      include Whopsdk::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      attr_accessor product_type: Whopsdk::Models::ProductListParams::product_type?
+
+      def initialize: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?product_type: Whopsdk::Models::ProductListParams::product_type?,
+        ?request_options: Whopsdk::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        after: String?,
+        before: String?,
+        first: Integer?,
+        last: Integer?,
+        product_type: Whopsdk::Models::ProductListParams::product_type?,
+        request_options: Whopsdk::RequestOptions
+      }
+
+      type product_type = :regular | :app | :experience_upsell | :api_only
+
+      module ProductType
+        extend Whopsdk::Internal::Type::Enum
+
+        REGULAR: :regular
+        APP: :app
+        EXPERIENCE_UPSELL: :experience_upsell
+        API_ONLY: :api_only
+
+        def self?.values: -> ::Array[Whopsdk::Models::ProductListParams::product_type]
+      end
+    end
+  end
+end

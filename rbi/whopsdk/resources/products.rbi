@@ -4,8 +4,6 @@ module Whopsdk
   module Resources
     class Products
       # Retrieves a product by ID or route
-      #
-      # Required permissions:
       sig do
         params(
           id: String,

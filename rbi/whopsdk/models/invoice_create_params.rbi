@@ -13,7 +13,7 @@ module Whopsdk
 
       # The method of collection for this invoice. If using charge_automatically, you
       # must provide a payment_token.
-      sig { returns(T.nilable(Whopsdk::CollectionMethod::OrSymbol)) }
+      sig { returns(Whopsdk::CollectionMethod::OrSymbol) }
       attr_accessor :collection_method
 
       # The company ID to create this invoice for.
@@ -76,7 +76,7 @@ module Whopsdk
 
       sig do
         params(
-          collection_method: T.nilable(Whopsdk::CollectionMethod::OrSymbol),
+          collection_method: Whopsdk::CollectionMethod::OrSymbol,
           company_id: String,
           due_date: Integer,
           plan: Whopsdk::InvoiceCreateParams::Plan::OrHash,
@@ -129,7 +129,7 @@ module Whopsdk
       sig do
         override.returns(
           {
-            collection_method: T.nilable(Whopsdk::CollectionMethod::OrSymbol),
+            collection_method: Whopsdk::CollectionMethod::OrSymbol,
             company_id: String,
             due_date: Integer,
             plan: Whopsdk::InvoiceCreateParams::Plan,
@@ -160,7 +160,7 @@ module Whopsdk
         sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :ach_payments
 
-        # The respective currency identifier for the plan.
+        # The available currencies on the platform
         sig { returns(T.nilable(Whopsdk::Currency::OrSymbol)) }
         attr_accessor :base_currency
 
@@ -208,7 +208,7 @@ module Whopsdk
         sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :paypal_accepted
 
-        # Indicates if the plan is a one time payment or recurring.
+        # The type of plan that can be attached to an access pass
         sig do
           returns(
             T.nilable(Whopsdk::InvoiceCreateParams::Plan::PlanType::OrSymbol)
@@ -224,7 +224,7 @@ module Whopsdk
         sig { returns(T.nilable(String)) }
         attr_accessor :redirect_url
 
-        # This is the release method the business uses to sell this plan.
+        # The methods of how a plan can be released (including raffles and waitlists).
         sig do
           returns(
             T.nilable(
@@ -277,7 +277,7 @@ module Whopsdk
         sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :unlimited_stock
 
-        # Shows or hides the plan from public/business view.
+        # Visibility of a resource
         sig do
           returns(
             T.nilable(Whopsdk::InvoiceCreateParams::Plan::Visibility::OrSymbol)
@@ -332,7 +332,7 @@ module Whopsdk
         def self.new(
           # Whether or not ACH payments are accepted
           ach_payments: nil,
-          # The respective currency identifier for the plan.
+          # The available currencies on the platform
           base_currency: nil,
           # The interval at which the plan charges (renewal plans).
           billing_period: nil,
@@ -354,13 +354,13 @@ module Whopsdk
           offer_cancel_discount: nil,
           # Marks whether paypal payments are/aren't accepted.
           paypal_accepted: nil,
-          # Indicates if the plan is a one time payment or recurring.
+          # The type of plan that can be attached to an access pass
           plan_type: nil,
           # Marks whether platform balance payments are/aren't accepted.
           platform_balance_accepted: nil,
           # The URL to redirect the customer to after purchase.
           redirect_url: nil,
-          # This is the release method the business uses to sell this plan.
+          # The methods of how a plan can be released (including raffles and waitlists).
           release_method: nil,
           # Configurable settings on how this plan is released.
           release_method_settings: nil,
@@ -377,7 +377,7 @@ module Whopsdk
           trial_period_days: nil,
           # Limits/doesn't limit the number of units available for purchase.
           unlimited_stock: nil,
-          # Shows or hides the plan from public/business view.
+          # Visibility of a resource
           visibility: nil
         )
         end
@@ -440,13 +440,7 @@ module Whopsdk
             end
 
           # The type of the custom field.
-          sig do
-            returns(
-              T.nilable(
-                Whopsdk::InvoiceCreateParams::Plan::CustomField::FieldType::OrSymbol
-              )
-            )
-          end
+          sig { returns(Symbol) }
           attr_accessor :field_type
 
           # The name of the custom field.
@@ -471,20 +465,15 @@ module Whopsdk
 
           sig do
             params(
-              field_type:
-                T.nilable(
-                  Whopsdk::InvoiceCreateParams::Plan::CustomField::FieldType::OrSymbol
-                ),
               name: String,
               id: T.nilable(String),
               order: T.nilable(Integer),
               placeholder: T.nilable(String),
-              required: T.nilable(T::Boolean)
+              required: T.nilable(T::Boolean),
+              field_type: Symbol
             ).returns(T.attached_class)
           end
           def self.new(
-            # The type of the custom field.
-            field_type:,
             # The name of the custom field.
             name:,
             # The ID of the custom field (if being updated)
@@ -494,17 +483,16 @@ module Whopsdk
             # The placeholder value of the field.
             placeholder: nil,
             # Whether or not the field is required.
-            required: nil
+            required: nil,
+            # The type of the custom field.
+            field_type: :text
           )
           end
 
           sig do
             override.returns(
               {
-                field_type:
-                  T.nilable(
-                    Whopsdk::InvoiceCreateParams::Plan::CustomField::FieldType::OrSymbol
-                  ),
+                field_type: Symbol,
                 name: String,
                 id: T.nilable(String),
                 order: T.nilable(Integer),
@@ -515,39 +503,9 @@ module Whopsdk
           end
           def to_hash
           end
-
-          # The type of the custom field.
-          module FieldType
-            extend Whopsdk::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Whopsdk::InvoiceCreateParams::Plan::CustomField::FieldType
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            TEXT =
-              T.let(
-                :text,
-                Whopsdk::InvoiceCreateParams::Plan::CustomField::FieldType::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Whopsdk::InvoiceCreateParams::Plan::CustomField::FieldType::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
-          end
         end
 
-        # Indicates if the plan is a one time payment or recurring.
+        # The type of plan that can be attached to an access pass
         module PlanType
           extend Whopsdk::Internal::Type::Enum
 
@@ -579,7 +537,7 @@ module Whopsdk
           end
         end
 
-        # This is the release method the business uses to sell this plan.
+        # The methods of how a plan can be released (including raffles and waitlists).
         module ReleaseMethod
           extend Whopsdk::Internal::Type::Enum
 
@@ -678,7 +636,7 @@ module Whopsdk
           end
         end
 
-        # Shows or hides the plan from public/business view.
+        # Visibility of a resource
         module Visibility
           extend Whopsdk::Internal::Type::Enum
 

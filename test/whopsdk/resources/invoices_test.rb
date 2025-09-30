@@ -44,7 +44,7 @@ class Whopsdk::Test::Resources::InvoicesTest < Whopsdk::Test::ResourceTest
         email_address: String | nil,
         fetch_invoice_token: String,
         number: String,
-        status: Whopsdk::InvoiceStatus | nil,
+        status: Whopsdk::InvoiceStatus,
         user: Whopsdk::Invoice::User | nil
       }
     end
@@ -75,7 +75,7 @@ class Whopsdk::Test::Resources::InvoicesTest < Whopsdk::Test::ResourceTest
         email_address: String | nil,
         fetch_invoice_token: String,
         number: String,
-        status: Whopsdk::InvoiceStatus | nil,
+        status: Whopsdk::InvoiceStatus,
         user: Whopsdk::InvoiceListItem::User | nil
       }
     end

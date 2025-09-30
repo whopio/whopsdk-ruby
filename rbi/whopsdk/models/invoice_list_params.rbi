@@ -23,7 +23,7 @@ module Whopsdk
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # The direction to sort the invoices by
+      # The direction of the sort.
       sig do
         returns(T.nilable(Whopsdk::InvoiceListParams::Direction::OrSymbol))
       end
@@ -48,7 +48,7 @@ module Whopsdk
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
-      # The order to sort the invoices by
+      # Which columns can be used to sort.
       sig { returns(T.nilable(Whopsdk::InvoiceListParams::Order::OrSymbol)) }
       attr_accessor :order
 
@@ -72,7 +72,7 @@ module Whopsdk
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The direction to sort the invoices by
+        # The direction of the sort.
         direction: nil,
         # The filters to apply to the invoices
         filters: nil,
@@ -80,7 +80,7 @@ module Whopsdk
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The order to sort the invoices by
+        # Which columns can be used to sort.
         order: nil,
         request_options: {}
       )
@@ -105,7 +105,7 @@ module Whopsdk
       def to_hash
       end
 
-      # The direction to sort the invoices by
+      # The direction of the sort.
       module Direction
         extend Whopsdk::Internal::Type::Enum
 
@@ -140,18 +140,12 @@ module Whopsdk
 
         # The collection methods to filter the invoices by
         sig do
-          returns(
-            T.nilable(T::Array[T.nilable(Whopsdk::CollectionMethod::OrSymbol)])
-          )
+          returns(T.nilable(T::Array[Whopsdk::CollectionMethod::OrSymbol]))
         end
         attr_accessor :collection_methods
 
         # The statuses to filter the invoices by
-        sig do
-          returns(
-            T.nilable(T::Array[T.nilable(Whopsdk::InvoiceStatus::OrSymbol)])
-          )
-        end
+        sig { returns(T.nilable(T::Array[Whopsdk::InvoiceStatus::OrSymbol])) }
         attr_accessor :statuses
 
         # The filters to apply to the invoices
@@ -159,11 +153,8 @@ module Whopsdk
           params(
             access_pass_ids: T.nilable(T::Array[String]),
             collection_methods:
-              T.nilable(
-                T::Array[T.nilable(Whopsdk::CollectionMethod::OrSymbol)]
-              ),
-            statuses:
-              T.nilable(T::Array[T.nilable(Whopsdk::InvoiceStatus::OrSymbol)])
+              T.nilable(T::Array[Whopsdk::CollectionMethod::OrSymbol]),
+            statuses: T.nilable(T::Array[Whopsdk::InvoiceStatus::OrSymbol])
           ).returns(T.attached_class)
         end
         def self.new(
@@ -181,11 +172,8 @@ module Whopsdk
             {
               access_pass_ids: T.nilable(T::Array[String]),
               collection_methods:
-                T.nilable(
-                  T::Array[T.nilable(Whopsdk::CollectionMethod::OrSymbol)]
-                ),
-              statuses:
-                T.nilable(T::Array[T.nilable(Whopsdk::InvoiceStatus::OrSymbol)])
+                T.nilable(T::Array[Whopsdk::CollectionMethod::OrSymbol]),
+              statuses: T.nilable(T::Array[Whopsdk::InvoiceStatus::OrSymbol])
             }
           )
         end
@@ -193,7 +181,7 @@ module Whopsdk
         end
       end
 
-      # The order to sort the invoices by
+      # Which columns can be used to sort.
       module Order
         extend Whopsdk::Internal::Type::Enum
 

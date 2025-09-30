@@ -10,7 +10,7 @@ module Whopsdk
       required :id, String
 
       # @!attribute business_type
-      #   The type of business the company is.
+      #   The different business types a company can be.
       #
       #   @return [Symbol, Whopsdk::Models::BusinessTypes, nil]
       required :business_type, enum: -> { Whopsdk::BusinessTypes }, nil?: true
@@ -22,7 +22,7 @@ module Whopsdk
       required :created_at, Integer
 
       # @!attribute industry_type
-      #   The specific industry the company operates in.
+      #   The different industry types a company can be in.
       #
       #   @return [Symbol, Whopsdk::Models::IndustryTypes, nil]
       required :industry_type, enum: -> { Whopsdk::IndustryTypes }, nil?: true
@@ -80,11 +80,11 @@ module Whopsdk
       #
       #   @param id [String] The ID (tag) of the company.
       #
-      #   @param business_type [Symbol, Whopsdk::Models::BusinessTypes, nil] The type of business the company is.
+      #   @param business_type [Symbol, Whopsdk::Models::BusinessTypes, nil] The different business types a company can be.
       #
       #   @param created_at [Integer] When the company was created (signed up)
       #
-      #   @param industry_type [Symbol, Whopsdk::Models::IndustryTypes, nil] The specific industry the company operates in.
+      #   @param industry_type [Symbol, Whopsdk::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
       #   @param member_count [Integer] The number of members in the company.
       #
@@ -148,8 +148,8 @@ module Whopsdk
         # @!attribute website
         #   The website
         #
-        #   @return [Symbol, Whopsdk::Models::Company::SocialLink::Website, nil]
-        required :website, enum: -> { Whopsdk::Company::SocialLink::Website }, nil?: true
+        #   @return [Symbol, Whopsdk::Models::Company::SocialLink::Website]
+        required :website, enum: -> { Whopsdk::Company::SocialLink::Website }
 
         # @!method initialize(id:, url:, website:)
         #   A social link attached to a resource on the site.
@@ -158,7 +158,7 @@ module Whopsdk
         #
         #   @param url [String] The URL
         #
-        #   @param website [Symbol, Whopsdk::Models::Company::SocialLink::Website, nil] The website
+        #   @param website [Symbol, Whopsdk::Models::Company::SocialLink::Website] The website
 
         # The website
         #

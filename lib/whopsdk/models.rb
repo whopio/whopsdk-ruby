@@ -39,14 +39,6 @@ module Whopsdk
     mod.define_sorbet_constant!(const) { T.type_alias { mod.to_sorbet_type } }
   end
 
-  AccessPass = Whopsdk::Models::AccessPass
-
-  AccessPassListItem = Whopsdk::Models::AccessPassListItem
-
-  AccessPassListParams = Whopsdk::Models::AccessPassListParams
-
-  AccessPassRetrieveParams = Whopsdk::Models::AccessPassRetrieveParams
-
   BusinessTypes = Whopsdk::Models::BusinessTypes
 
   CollectionMethod = Whopsdk::Models::CollectionMethod

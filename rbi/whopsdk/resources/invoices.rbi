@@ -10,14 +10,13 @@ module Whopsdk
           company_id: String,
           due_date: Integer,
           plan: Whopsdk::InvoiceCreateParams::Plan::OrHash,
-          access_pass:
-            T.nilable(Whopsdk::InvoiceCreateParams::AccessPass::OrHash),
-          access_pass_id: T.nilable(String),
           charge_buyer_fee: T.nilable(T::Boolean),
           customer_name: T.nilable(String),
           email_address: T.nilable(String),
           member_id: T.nilable(String),
           payment_token_id: T.nilable(String),
+          product: T.nilable(Whopsdk::InvoiceCreateParams::Product::OrHash),
+          product_id: T.nilable(String),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(T.nilable(Whopsdk::Models::InvoiceCreateResponse))
       end
@@ -31,12 +30,6 @@ module Whopsdk
         due_date:,
         # The properties of the plan to create for this invoice.
         plan:,
-        # The properties of the access pass to create for this invoice. Include this if
-        # you want to create an invoice for a new product.
-        access_pass: nil,
-        # The access pass ID to create this invoice for. Include this if you want to
-        # create an invoice for an existing product.
-        access_pass_id: nil,
         # Whether or not to charge the customer a buyer fee.
         charge_buyer_fee: nil,
         # The name of the customer to create this invoice for. This is required if you
@@ -53,6 +46,12 @@ module Whopsdk
         # The payment token ID to use for this invoice. If using charge_automatically, you
         # must provide a payment_token.
         payment_token_id: nil,
+        # The properties of the access pass to create for this invoice. Include this if
+        # you want to create an invoice for a new product.
+        product: nil,
+        # The access pass ID to create this invoice for. Include this if you want to
+        # create an invoice for an existing product.
+        product_id: nil,
         request_options: {}
       )
       end

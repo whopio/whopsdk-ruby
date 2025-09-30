@@ -1,14 +1,6 @@
 # typed: strong
 
 module Whopsdk
-  AccessPass = Whopsdk::Models::AccessPass
-
-  AccessPassListItem = Whopsdk::Models::AccessPassListItem
-
-  AccessPassListParams = Whopsdk::Models::AccessPassListParams
-
-  AccessPassRetrieveParams = Whopsdk::Models::AccessPassRetrieveParams
-
   BusinessTypes = Whopsdk::Models::BusinessTypes
 
   CollectionMethod = Whopsdk::Models::CollectionMethod

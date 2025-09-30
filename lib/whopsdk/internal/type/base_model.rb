@@ -438,8 +438,8 @@ module Whopsdk
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `access_pass` is a `Whopsdk::AccessPass`
-        #   access_pass => {
+        #   # `company` is a `Whopsdk::Company`
+        #   company => {
         #     id: id,
         #     business_type: business_type,
         #     created_at: created_at

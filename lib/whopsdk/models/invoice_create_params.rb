@@ -32,20 +32,6 @@ module Whopsdk
       #   @return [Whopsdk::Models::InvoiceCreateParams::Plan]
       required :plan, -> { Whopsdk::InvoiceCreateParams::Plan }
 
-      # @!attribute access_pass
-      #   The properties of the access pass to create for this invoice. Include this if
-      #   you want to create an invoice for a new product.
-      #
-      #   @return [Whopsdk::Models::InvoiceCreateParams::AccessPass, nil]
-      optional :access_pass, -> { Whopsdk::InvoiceCreateParams::AccessPass }, nil?: true
-
-      # @!attribute access_pass_id
-      #   The access pass ID to create this invoice for. Include this if you want to
-      #   create an invoice for an existing product.
-      #
-      #   @return [String, nil]
-      optional :access_pass_id, String, nil?: true
-
       # @!attribute charge_buyer_fee
       #   Whether or not to charge the customer a buyer fee.
       #
@@ -82,7 +68,21 @@ module Whopsdk
       #   @return [String, nil]
       optional :payment_token_id, String, nil?: true
 
-      # @!method initialize(collection_method:, company_id:, due_date:, plan:, access_pass: nil, access_pass_id: nil, charge_buyer_fee: nil, customer_name: nil, email_address: nil, member_id: nil, payment_token_id: nil, request_options: {})
+      # @!attribute product
+      #   The properties of the access pass to create for this invoice. Include this if
+      #   you want to create an invoice for a new product.
+      #
+      #   @return [Whopsdk::Models::InvoiceCreateParams::Product, nil]
+      optional :product, -> { Whopsdk::InvoiceCreateParams::Product }, nil?: true
+
+      # @!attribute product_id
+      #   The access pass ID to create this invoice for. Include this if you want to
+      #   create an invoice for an existing product.
+      #
+      #   @return [String, nil]
+      optional :product_id, String, nil?: true
+
+      # @!method initialize(collection_method:, company_id:, due_date:, plan:, charge_buyer_fee: nil, customer_name: nil, email_address: nil, member_id: nil, payment_token_id: nil, product: nil, product_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Whopsdk::Models::InvoiceCreateParams} for more details.
       #
@@ -94,10 +94,6 @@ module Whopsdk
       #
       #   @param plan [Whopsdk::Models::InvoiceCreateParams::Plan] The properties of the plan to create for this invoice.
       #
-      #   @param access_pass [Whopsdk::Models::InvoiceCreateParams::AccessPass, nil] The properties of the access pass to create for this invoice. Include this if yo
-      #
-      #   @param access_pass_id [String, nil] The access pass ID to create this invoice for. Include this if you want to creat
-      #
       #   @param charge_buyer_fee [Boolean, nil] Whether or not to charge the customer a buyer fee.
       #
       #   @param customer_name [String, nil] The name of the customer to create this invoice for. This is required if you wan
@@ -107,6 +103,10 @@ module Whopsdk
       #   @param member_id [String, nil] The member ID to create this invoice for. Include this if you want to create an
       #
       #   @param payment_token_id [String, nil] The payment token ID to use for this invoice. If using charge_automatically, you
+      #
+      #   @param product [Whopsdk::Models::InvoiceCreateParams::Product, nil] The properties of the access pass to create for this invoice. Include this if yo
+      #
+      #   @param product_id [String, nil] The access pass ID to create this invoice for. Include this if you want to creat
       #
       #   @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}]
 
@@ -467,7 +467,7 @@ module Whopsdk
         end
       end
 
-      class AccessPass < Whopsdk::Internal::Type::BaseModel
+      class Product < Whopsdk::Internal::Type::BaseModel
         # @!attribute title
         #   The title of the access pass.
         #

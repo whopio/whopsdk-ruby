@@ -6,13 +6,13 @@ module Whopsdk
         company_id: String,
         due_date: Integer,
         plan: Whopsdk::InvoiceCreateParams::Plan,
-        ?access_pass: Whopsdk::InvoiceCreateParams::AccessPass?,
-        ?access_pass_id: String?,
         ?charge_buyer_fee: bool?,
         ?customer_name: String?,
         ?email_address: String?,
         ?member_id: String?,
         ?payment_token_id: String?,
+        ?product: Whopsdk::InvoiceCreateParams::Product?,
+        ?product_id: String?,
         ?request_options: Whopsdk::request_opts
       ) -> Whopsdk::Models::InvoiceCreateResponse?
 

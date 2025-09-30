@@ -8,7 +8,7 @@ module Whopsdk
       #
       # Creates an invoice
       #
-      # @overload create(collection_method:, company_id:, due_date:, plan:, access_pass: nil, access_pass_id: nil, charge_buyer_fee: nil, customer_name: nil, email_address: nil, member_id: nil, payment_token_id: nil, request_options: {})
+      # @overload create(collection_method:, company_id:, due_date:, plan:, charge_buyer_fee: nil, customer_name: nil, email_address: nil, member_id: nil, payment_token_id: nil, product: nil, product_id: nil, request_options: {})
       #
       # @param collection_method [Symbol, Whopsdk::Models::CollectionMethod, nil] The method of collection for this invoice. If using charge_automatically, you mu
       #
@@ -17,10 +17,6 @@ module Whopsdk
       # @param due_date [Integer] The date the invoice is due, if applicable.
       #
       # @param plan [Whopsdk::Models::InvoiceCreateParams::Plan] The properties of the plan to create for this invoice.
-      #
-      # @param access_pass [Whopsdk::Models::InvoiceCreateParams::AccessPass, nil] The properties of the access pass to create for this invoice. Include this if yo
-      #
-      # @param access_pass_id [String, nil] The access pass ID to create this invoice for. Include this if you want to creat
       #
       # @param charge_buyer_fee [Boolean, nil] Whether or not to charge the customer a buyer fee.
       #
@@ -31,6 +27,10 @@ module Whopsdk
       # @param member_id [String, nil] The member ID to create this invoice for. Include this if you want to create an
       #
       # @param payment_token_id [String, nil] The payment token ID to use for this invoice. If using charge_automatically, you
+      #
+      # @param product [Whopsdk::Models::InvoiceCreateParams::Product, nil] The properties of the access pass to create for this invoice. Include this if yo
+      #
+      # @param product_id [String, nil] The access pass ID to create this invoice for. Include this if you want to creat
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #

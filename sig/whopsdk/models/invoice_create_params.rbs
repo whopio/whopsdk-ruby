@@ -6,13 +6,13 @@ module Whopsdk
         company_id: String,
         due_date: Integer,
         plan: Whopsdk::InvoiceCreateParams::Plan,
-        access_pass: Whopsdk::InvoiceCreateParams::AccessPass?,
-        access_pass_id: String?,
         charge_buyer_fee: bool?,
         customer_name: String?,
         email_address: String?,
         member_id: String?,
-        payment_token_id: String?
+        payment_token_id: String?,
+        product: Whopsdk::InvoiceCreateParams::Product?,
+        product_id: String?
       }
       & Whopsdk::Internal::Type::request_parameters
 
@@ -28,10 +28,6 @@ module Whopsdk
 
       attr_accessor plan: Whopsdk::InvoiceCreateParams::Plan
 
-      attr_accessor access_pass: Whopsdk::InvoiceCreateParams::AccessPass?
-
-      attr_accessor access_pass_id: String?
-
       attr_accessor charge_buyer_fee: bool?
 
       attr_accessor customer_name: String?
@@ -42,18 +38,22 @@ module Whopsdk
 
       attr_accessor payment_token_id: String?
 
+      attr_accessor product: Whopsdk::InvoiceCreateParams::Product?
+
+      attr_accessor product_id: String?
+
       def initialize: (
         collection_method: Whopsdk::Models::collection_method?,
         company_id: String,
         due_date: Integer,
         plan: Whopsdk::InvoiceCreateParams::Plan,
-        ?access_pass: Whopsdk::InvoiceCreateParams::AccessPass?,
-        ?access_pass_id: String?,
         ?charge_buyer_fee: bool?,
         ?customer_name: String?,
         ?email_address: String?,
         ?member_id: String?,
         ?payment_token_id: String?,
+        ?product: Whopsdk::InvoiceCreateParams::Product?,
+        ?product_id: String?,
         ?request_options: Whopsdk::request_opts
       ) -> void
 
@@ -62,13 +62,13 @@ module Whopsdk
         company_id: String,
         due_date: Integer,
         plan: Whopsdk::InvoiceCreateParams::Plan,
-        access_pass: Whopsdk::InvoiceCreateParams::AccessPass?,
-        access_pass_id: String?,
         charge_buyer_fee: bool?,
         customer_name: String?,
         email_address: String?,
         member_id: String?,
         payment_token_id: String?,
+        product: Whopsdk::InvoiceCreateParams::Product?,
+        product_id: String?,
         request_options: Whopsdk::RequestOptions
       }
 
@@ -324,9 +324,9 @@ module Whopsdk
         end
       end
 
-      type access_pass = { title: String, product_tax_code_id: String? }
+      type product = { title: String, product_tax_code_id: String? }
 
-      class AccessPass < Whopsdk::Internal::Type::BaseModel
+      class Product < Whopsdk::Internal::Type::BaseModel
         attr_accessor title: String
 
         attr_accessor product_tax_code_id: String?

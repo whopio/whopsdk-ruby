@@ -1,21 +1,6 @@
 module Whopsdk
   module Resources
     class AccessPasses
-      def retrieve: (
-        String id,
-        ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::AccessPass
-
-      def list: (
-        company_id: String,
-        ?access_pass_type: Whopsdk::Models::AccessPassListParams::access_pass_type?,
-        ?after: String?,
-        ?before: String?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Internal::CursorPage[Whopsdk::AccessPassListItem?]
-
       def initialize: (client: Whopsdk::Client) -> void
     end
   end

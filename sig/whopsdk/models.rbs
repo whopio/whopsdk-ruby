@@ -1,12 +1,4 @@
 module Whopsdk
-  class AccessPass = Whopsdk::Models::AccessPass
-
-  class AccessPassListItem = Whopsdk::Models::AccessPassListItem
-
-  class AccessPassListParams = Whopsdk::Models::AccessPassListParams
-
-  class AccessPassRetrieveParams = Whopsdk::Models::AccessPassRetrieveParams
-
   module BusinessTypes = Whopsdk::Models::BusinessTypes
 
   module CollectionMethod = Whopsdk::Models::CollectionMethod

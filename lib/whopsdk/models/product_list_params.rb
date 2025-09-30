@@ -25,6 +25,12 @@ module Whopsdk
       #   @return [String, nil]
       optional :before, String, nil?: true
 
+      # @!attribute direction
+      #   The direction of the sort.
+      #
+      #   @return [Symbol, Whopsdk::Models::ProductListParams::Direction, nil]
+      optional :direction, enum: -> { Whopsdk::ProductListParams::Direction }, nil?: true
+
       # @!attribute first
       #   Returns the first _n_ elements from the list.
       #
@@ -36,6 +42,12 @@ module Whopsdk
       #
       #   @return [Integer, nil]
       optional :last, Integer, nil?: true
+
+      # @!attribute order
+      #   The ways a relation of AccessPasses can be ordered
+      #
+      #   @return [Symbol, Whopsdk::Models::ProductListParams::Order, nil]
+      optional :order, enum: -> { Whopsdk::ProductListParams::Order }, nil?: true
 
       # @!attribute product_types
       #   The type of products to filter by
@@ -57,22 +69,50 @@ module Whopsdk
                },
                nil?: true
 
-      # @!method initialize(company_id:, after: nil, before: nil, first: nil, last: nil, product_types: nil, visibilities: nil, request_options: {})
+      # @!method initialize(company_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, order: nil, product_types: nil, visibilities: nil, request_options: {})
       #   @param company_id [String] The ID of the company to filter products by
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
+      #   @param direction [Symbol, Whopsdk::Models::ProductListParams::Direction, nil] The direction of the sort.
+      #
       #   @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #
+      #   @param order [Symbol, Whopsdk::Models::ProductListParams::Order, nil] The ways a relation of AccessPasses can be ordered
       #
       #   @param product_types [Array<Symbol, Whopsdk::Models::ProductListParams::ProductType, nil>, nil] The type of products to filter by
       #
       #   @param visibilities [Array<Symbol, Whopsdk::Models::ProductListParams::Visibility, nil>, nil] The visibility of the products to filter by
       #
       #   @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}]
+
+      # The direction of the sort.
+      module Direction
+        extend Whopsdk::Internal::Type::Enum
+
+        ASC = :asc
+        DESC = :desc
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # The ways a relation of AccessPasses can be ordered
+      module Order
+        extend Whopsdk::Internal::Type::Enum
+
+        ACTIVE_MEMBERSHIPS_COUNT = :active_memberships_count
+        CREATED_AT = :created_at
+        USD_GMV = :usd_gmv
+        USD_GMV_30_DAYS = :usd_gmv_30_days
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
 
       # The different types an access pass can be.
       module ProductType

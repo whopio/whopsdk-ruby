@@ -5,8 +5,10 @@ module Whopsdk
         company_id: String,
         after: String?,
         before: String?,
+        direction: Whopsdk::Models::ProductListParams::direction?,
         first: Integer?,
         last: Integer?,
+        order: Whopsdk::Models::ProductListParams::order?,
         product_types: ::Array[Whopsdk::Models::ProductListParams::product_type?]?,
         visibilities: ::Array[Whopsdk::Models::ProductListParams::visibility?]?
       }
@@ -22,9 +24,13 @@ module Whopsdk
 
       attr_accessor before: String?
 
+      attr_accessor direction: Whopsdk::Models::ProductListParams::direction?
+
       attr_accessor first: Integer?
 
       attr_accessor last: Integer?
+
+      attr_accessor order: Whopsdk::Models::ProductListParams::order?
 
       attr_accessor product_types: ::Array[Whopsdk::Models::ProductListParams::product_type?]?
 
@@ -34,8 +40,10 @@ module Whopsdk
         company_id: String,
         ?after: String?,
         ?before: String?,
+        ?direction: Whopsdk::Models::ProductListParams::direction?,
         ?first: Integer?,
         ?last: Integer?,
+        ?order: Whopsdk::Models::ProductListParams::order?,
         ?product_types: ::Array[Whopsdk::Models::ProductListParams::product_type?]?,
         ?visibilities: ::Array[Whopsdk::Models::ProductListParams::visibility?]?,
         ?request_options: Whopsdk::request_opts
@@ -45,12 +53,39 @@ module Whopsdk
         company_id: String,
         after: String?,
         before: String?,
+        direction: Whopsdk::Models::ProductListParams::direction?,
         first: Integer?,
         last: Integer?,
+        order: Whopsdk::Models::ProductListParams::order?,
         product_types: ::Array[Whopsdk::Models::ProductListParams::product_type?]?,
         visibilities: ::Array[Whopsdk::Models::ProductListParams::visibility?]?,
         request_options: Whopsdk::RequestOptions
       }
+
+      type direction = :asc | :desc
+
+      module Direction
+        extend Whopsdk::Internal::Type::Enum
+
+        ASC: :asc
+        DESC: :desc
+
+        def self?.values: -> ::Array[Whopsdk::Models::ProductListParams::direction]
+      end
+
+      type order =
+        :active_memberships_count | :created_at | :usd_gmv | :usd_gmv_30_days
+
+      module Order
+        extend Whopsdk::Internal::Type::Enum
+
+        ACTIVE_MEMBERSHIPS_COUNT: :active_memberships_count
+        CREATED_AT: :created_at
+        USD_GMV: :usd_gmv
+        USD_GMV_30_DAYS: :usd_gmv_30_days
+
+        def self?.values: -> ::Array[Whopsdk::Models::ProductListParams::order]
+      end
 
       type product_type = :regular | :app | :experience_upsell | :api_only
 

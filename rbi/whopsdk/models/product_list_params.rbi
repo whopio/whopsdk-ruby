@@ -23,6 +23,12 @@ module Whopsdk
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
+      # The direction of the sort.
+      sig do
+        returns(T.nilable(Whopsdk::ProductListParams::Direction::OrSymbol))
+      end
+      attr_accessor :direction
+
       # Returns the first _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :first
@@ -30,6 +36,10 @@ module Whopsdk
       # Returns the last _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
+
+      # The ways a relation of AccessPasses can be ordered
+      sig { returns(T.nilable(Whopsdk::ProductListParams::Order::OrSymbol)) }
+      attr_accessor :order
 
       # The type of products to filter by
       sig do
@@ -60,8 +70,10 @@ module Whopsdk
           company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
+          direction: T.nilable(Whopsdk::ProductListParams::Direction::OrSymbol),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
+          order: T.nilable(Whopsdk::ProductListParams::Order::OrSymbol),
           product_types:
             T.nilable(
               T::Array[
@@ -84,10 +96,14 @@ module Whopsdk
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
+        # The direction of the sort.
+        direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
+        # The ways a relation of AccessPasses can be ordered
+        order: nil,
         # The type of products to filter by
         product_types: nil,
         # The visibility of the products to filter by
@@ -102,8 +118,11 @@ module Whopsdk
             company_id: String,
             after: T.nilable(String),
             before: T.nilable(String),
+            direction:
+              T.nilable(Whopsdk::ProductListParams::Direction::OrSymbol),
             first: T.nilable(Integer),
             last: T.nilable(Integer),
+            order: T.nilable(Whopsdk::ProductListParams::Order::OrSymbol),
             product_types:
               T.nilable(
                 T::Array[
@@ -121,6 +140,58 @@ module Whopsdk
         )
       end
       def to_hash
+      end
+
+      # The direction of the sort.
+      module Direction
+        extend Whopsdk::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, Whopsdk::ProductListParams::Direction) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        ASC = T.let(:asc, Whopsdk::ProductListParams::Direction::TaggedSymbol)
+        DESC = T.let(:desc, Whopsdk::ProductListParams::Direction::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[Whopsdk::ProductListParams::Direction::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # The ways a relation of AccessPasses can be ordered
+      module Order
+        extend Whopsdk::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, Whopsdk::ProductListParams::Order) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        ACTIVE_MEMBERSHIPS_COUNT =
+          T.let(
+            :active_memberships_count,
+            Whopsdk::ProductListParams::Order::TaggedSymbol
+          )
+        CREATED_AT =
+          T.let(:created_at, Whopsdk::ProductListParams::Order::TaggedSymbol)
+        USD_GMV =
+          T.let(:usd_gmv, Whopsdk::ProductListParams::Order::TaggedSymbol)
+        USD_GMV_30_DAYS =
+          T.let(
+            :usd_gmv_30_days,
+            Whopsdk::ProductListParams::Order::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[Whopsdk::ProductListParams::Order::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
 
       # The different types an access pass can be.

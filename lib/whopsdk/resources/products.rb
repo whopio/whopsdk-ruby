@@ -32,7 +32,7 @@ module Whopsdk
       #
       # - `access_pass:basic:read`
       #
-      # @overload list(company_id:, after: nil, before: nil, first: nil, last: nil, product_types: nil, visibilities: nil, request_options: {})
+      # @overload list(company_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, order: nil, product_types: nil, visibilities: nil, request_options: {})
       #
       # @param company_id [String] The ID of the company to filter products by
       #
@@ -40,9 +40,13 @@ module Whopsdk
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
+      # @param direction [Symbol, Whopsdk::Models::ProductListParams::Direction, nil] The direction of the sort.
+      #
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #
+      # @param order [Symbol, Whopsdk::Models::ProductListParams::Order, nil] The ways a relation of AccessPasses can be ordered
       #
       # @param product_types [Array<Symbol, Whopsdk::Models::ProductListParams::ProductType, nil>, nil] The type of products to filter by
       #

@@ -22,9 +22,7 @@ gem "whopsdk", "~> 0.0.1"
 require "bundler/setup"
 require "whopsdk"
 
-whopsdk = Whopsdk::Client.new(
-  api_key: ENV["WHOPSDK_API_KEY"] # This is the default and can be omitted
-)
+whopsdk = Whopsdk::Client.new
 
 page = whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
 

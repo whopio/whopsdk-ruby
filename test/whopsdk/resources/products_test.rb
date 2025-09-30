@@ -18,14 +18,25 @@ class Whopsdk::Test::Resources::ProductsTest < Whopsdk::Test::ResourceTest
         business_type: Whopsdk::BusinessTypes | nil,
         company: Whopsdk::Product::Company,
         created_at: Integer,
+        custom_cta: Whopsdk::Product::CustomCta | nil,
+        custom_cta_url: String | nil,
+        custom_statement_descriptor: String | nil,
+        description: String | nil,
+        global_affiliate_percentage: Float | nil,
+        global_affiliate_status: Whopsdk::Product::GlobalAffiliateStatus | nil,
+        headline: String | nil,
         industry_type: Whopsdk::IndustryTypes | nil,
+        member_affiliate_percentage: Float | nil,
+        member_affiliate_status: Whopsdk::Product::MemberAffiliateStatus | nil,
         member_count: Integer,
         owner_user: Whopsdk::Product::OwnerUser,
+        product_tax_code: Whopsdk::Product::ProductTaxCode | nil,
         published_reviews_count: Integer,
         route: String,
         title: String,
         updated_at: Integer,
-        verified: Whopsdk::Internal::Type::Boolean
+        verified: Whopsdk::Internal::Type::Boolean,
+        visibility: Whopsdk::Product::Visibility | nil
       }
     end
   end
@@ -51,13 +62,15 @@ class Whopsdk::Test::Resources::ProductsTest < Whopsdk::Test::ResourceTest
         id: String,
         business_type: Whopsdk::BusinessTypes | nil,
         created_at: Integer,
+        headline: String | nil,
         industry_type: Whopsdk::IndustryTypes | nil,
         member_count: Integer,
         published_reviews_count: Integer,
         route: String,
         title: String,
         updated_at: Integer,
-        verified: Whopsdk::Internal::Type::Boolean
+        verified: Whopsdk::Internal::Type::Boolean,
+        visibility: Whopsdk::ProductListItem::Visibility | nil
       }
     end
   end

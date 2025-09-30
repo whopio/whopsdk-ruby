@@ -21,6 +21,12 @@ module Whopsdk
       #   @return [Integer]
       required :created_at, Integer
 
+      # @!attribute headline
+      #   The headline of the access pass.
+      #
+      #   @return [String, nil]
+      required :headline, String, nil?: true
+
       # @!attribute industry_type
       #   The different industry types a company can be in.
       #
@@ -63,7 +69,13 @@ module Whopsdk
       #   @return [Boolean]
       required :verified, Whopsdk::Internal::Type::Boolean
 
-      # @!method initialize(id:, business_type:, created_at:, industry_type:, member_count:, published_reviews_count:, route:, title:, updated_at:, verified:)
+      # @!attribute visibility
+      #   Visibility of a resource
+      #
+      #   @return [Symbol, Whopsdk::Models::ProductListItem::Visibility, nil]
+      required :visibility, enum: -> { Whopsdk::ProductListItem::Visibility }, nil?: true
+
+      # @!method initialize(id:, business_type:, created_at:, headline:, industry_type:, member_count:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
       #   An object representing a (sanitized) access pass.
       #
       #   @param id [String] The internal ID of the public access pass.
@@ -71,6 +83,8 @@ module Whopsdk
       #   @param business_type [Symbol, Whopsdk::Models::BusinessTypes, nil] The different business types a company can be.
       #
       #   @param created_at [Integer] When the access pass was created.
+      #
+      #   @param headline [String, nil] The headline of the access pass.
       #
       #   @param industry_type [Symbol, Whopsdk::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
@@ -85,6 +99,23 @@ module Whopsdk
       #   @param updated_at [Integer] When the access pass was updated.
       #
       #   @param verified [Boolean] Whether this product is Whop verified.
+      #
+      #   @param visibility [Symbol, Whopsdk::Models::ProductListItem::Visibility, nil] Visibility of a resource
+
+      # Visibility of a resource
+      #
+      # @see Whopsdk::Models::ProductListItem#visibility
+      module Visibility
+        extend Whopsdk::Internal::Type::Enum
+
+        VISIBLE = :visible
+        HIDDEN = :hidden
+        ARCHIVED = :archived
+        QUICK_LINK = :quick_link
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

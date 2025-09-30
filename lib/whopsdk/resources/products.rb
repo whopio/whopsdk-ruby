@@ -5,6 +5,10 @@ module Whopsdk
     class Products
       # Retrieves a product by ID or route
       #
+      # Required permissions:
+      #
+      # - `access_pass:basic:read`
+      #
       # @overload retrieve(id, request_options: {})
       #
       # @param id [String]
@@ -28,7 +32,7 @@ module Whopsdk
       #
       # - `access_pass:basic:read`
       #
-      # @overload list(company_id:, after: nil, before: nil, first: nil, last: nil, product_type: nil, request_options: {})
+      # @overload list(company_id:, after: nil, before: nil, first: nil, last: nil, product_types: nil, visibilities: nil, request_options: {})
       #
       # @param company_id [String] The ID of the company to filter products by
       #
@@ -40,7 +44,9 @@ module Whopsdk
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param product_type [Symbol, Whopsdk::Models::ProductListParams::ProductType, nil] The different types an access pass can be.
+      # @param product_types [Array<Symbol, Whopsdk::Models::ProductListParams::ProductType, nil>, nil] The type of products to filter by
+      #
+      # @param visibilities [Array<Symbol, Whopsdk::Models::ProductListParams::Visibility, nil>, nil] The visibility of the products to filter by
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #

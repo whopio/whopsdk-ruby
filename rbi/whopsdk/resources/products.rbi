@@ -4,6 +4,10 @@ module Whopsdk
   module Resources
     class Products
       # Retrieves a product by ID or route
+      #
+      # Required permissions:
+      #
+      # - `access_pass:basic:read`
       sig do
         params(
           id: String,
@@ -25,8 +29,18 @@ module Whopsdk
           before: T.nilable(String),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
-          product_type:
-            T.nilable(Whopsdk::ProductListParams::ProductType::OrSymbol),
+          product_types:
+            T.nilable(
+              T::Array[
+                T.nilable(Whopsdk::ProductListParams::ProductType::OrSymbol)
+              ]
+            ),
+          visibilities:
+            T.nilable(
+              T::Array[
+                T.nilable(Whopsdk::ProductListParams::Visibility::OrSymbol)
+              ]
+            ),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(
           Whopsdk::Internal::CursorPage[T.nilable(Whopsdk::ProductListItem)]
@@ -43,8 +57,10 @@ module Whopsdk
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The different types an access pass can be.
-        product_type: nil,
+        # The type of products to filter by
+        product_types: nil,
+        # The visibility of the products to filter by
+        visibilities: nil,
         request_options: {}
       )
       end

@@ -5,12 +5,16 @@ module Whopsdk
     class Companies
       # Retrieves an company by ID
       #
+      # Required permissions:
+      #
+      # - `company:basic:read`
+      #
       # @overload retrieve(id, request_options: {})
       #
       # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::Company]
+      # @return [Whopsdk::Models::Company, nil]
       #
       # @see Whopsdk::Models::CompanyRetrieveParams
       def retrieve(id, params = {})

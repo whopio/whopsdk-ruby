@@ -8,9 +8,14 @@ module Whopsdk
       #
       # Creates an invoice
       #
+      # Required permissions:
+      #
+      # - `invoice:create`
+      # - `plan:basic:read`
+      #
       # @overload create(collection_method:, company_id:, due_date:, plan:, charge_buyer_fee: nil, customer_name: nil, email_address: nil, member_id: nil, payment_token_id: nil, product: nil, product_id: nil, request_options: {})
       #
-      # @param collection_method [Symbol, Whopsdk::Models::CollectionMethod] The method of collection for this invoice. If using charge_automatically, you mu
+      # @param collection_method [Symbol, Whopsdk::Models::CollectionMethod, nil] The method of collection for an invoice.
       #
       # @param company_id [String] The company ID to create this invoice for.
       #
@@ -50,12 +55,17 @@ module Whopsdk
 
       # Retrieves an invoice by ID or token
       #
+      # Required permissions:
+      #
+      # - `invoice:basic:read`
+      # - `plan:basic:read`
+      #
       # @overload retrieve(id, request_options: {})
       #
       # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::Invoice]
+      # @return [Whopsdk::Models::Invoice, nil]
       #
       # @see Whopsdk::Models::InvoiceRetrieveParams
       def retrieve(id, params = {})
@@ -68,6 +78,11 @@ module Whopsdk
       end
 
       # Lists invoices
+      #
+      # Required permissions:
+      #
+      # - `invoice:basic:read`
+      # - `plan:basic:read`
       #
       # @overload list(company_id:, after: nil, before: nil, direction: nil, filters: nil, first: nil, last: nil, order: nil, request_options: {})
       #
@@ -105,6 +120,10 @@ module Whopsdk
       end
 
       # Void an invoice
+      #
+      # Required permissions:
+      #
+      # - `invoice:update`
       #
       # @overload void(id, request_options: {})
       #

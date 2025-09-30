@@ -146,10 +146,10 @@ module Whopsdk
         required :url, String
 
         # @!attribute website
-        #   The website
+        #   The different websites you can have social links for
         #
-        #   @return [Symbol, Whopsdk::Models::Company::SocialLink::Website]
-        required :website, enum: -> { Whopsdk::Company::SocialLink::Website }
+        #   @return [Symbol, Whopsdk::Models::Company::SocialLink::Website, nil]
+        required :website, enum: -> { Whopsdk::Company::SocialLink::Website }, nil?: true
 
         # @!method initialize(id:, url:, website:)
         #   A social link attached to a resource on the site.
@@ -158,9 +158,9 @@ module Whopsdk
         #
         #   @param url [String] The URL
         #
-        #   @param website [Symbol, Whopsdk::Models::Company::SocialLink::Website] The website
+        #   @param website [Symbol, Whopsdk::Models::Company::SocialLink::Website, nil] The different websites you can have social links for
 
-        # The website
+        # The different websites you can have social links for
         #
         # @see Whopsdk::Models::Company::SocialLink#website
         module Website

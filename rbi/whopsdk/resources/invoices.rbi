@@ -4,9 +4,14 @@ module Whopsdk
   module Resources
     class Invoices
       # Creates an invoice
+      #
+      # Required permissions:
+      #
+      # - `invoice:create`
+      # - `plan:basic:read`
       sig do
         params(
-          collection_method: Whopsdk::CollectionMethod::OrSymbol,
+          collection_method: T.nilable(Whopsdk::CollectionMethod::OrSymbol),
           company_id: String,
           due_date: Integer,
           plan: Whopsdk::InvoiceCreateParams::Plan::OrHash,
@@ -21,8 +26,7 @@ module Whopsdk
         ).returns(T.nilable(Whopsdk::Models::InvoiceCreateResponse))
       end
       def create(
-        # The method of collection for this invoice. If using charge_automatically, you
-        # must provide a payment_token.
+        # The method of collection for an invoice.
         collection_method:,
         # The company ID to create this invoice for.
         company_id:,
@@ -57,16 +61,26 @@ module Whopsdk
       end
 
       # Retrieves an invoice by ID or token
+      #
+      # Required permissions:
+      #
+      # - `invoice:basic:read`
+      # - `plan:basic:read`
       sig do
         params(
           id: String,
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(Whopsdk::Invoice)
+        ).returns(T.nilable(Whopsdk::Invoice))
       end
       def retrieve(id, request_options: {})
       end
 
       # Lists invoices
+      #
+      # Required permissions:
+      #
+      # - `invoice:basic:read`
+      # - `plan:basic:read`
       sig do
         params(
           company_id: String,
@@ -104,6 +118,10 @@ module Whopsdk
       end
 
       # Void an invoice
+      #
+      # Required permissions:
+      #
+      # - `invoice:update`
       sig do
         params(
           id: String,

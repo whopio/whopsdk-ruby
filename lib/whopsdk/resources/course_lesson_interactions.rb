@@ -5,12 +5,17 @@ module Whopsdk
     class CourseLessonInteractions
       # Retrieves a course lesson interaction by ID
       #
+      # Required permissions:
+      #
+      # - `course_lesson_interaction:read`
+      # - `courses:read`
+      #
       # @overload retrieve(id, request_options: {})
       #
       # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::CourseLessonInteraction]
+      # @return [Whopsdk::Models::CourseLessonInteraction, nil]
       #
       # @see Whopsdk::Models::CourseLessonInteractionRetrieveParams
       def retrieve(id, params = {})
@@ -23,6 +28,11 @@ module Whopsdk
       end
 
       # Lists course lesson interactions
+      #
+      # Required permissions:
+      #
+      # - `course_lesson_interaction:read`
+      # - `courses:read`
       #
       # @overload list(after: nil, before: nil, completed: nil, course_id: nil, first: nil, last: nil, lesson_id: nil, user_id: nil, request_options: {})
       #

@@ -6,7 +6,7 @@ module Whopsdk
       # Creates an invoice
       sig do
         params(
-          collection_method: T.nilable(Whopsdk::CollectionMethod::OrSymbol),
+          collection_method: Whopsdk::CollectionMethod::OrSymbol,
           company_id: String,
           due_date: Integer,
           plan: Whopsdk::InvoiceCreateParams::Plan::OrHash,
@@ -89,7 +89,7 @@ module Whopsdk
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The direction to sort the invoices by
+        # The direction of the sort.
         direction: nil,
         # The filters to apply to the invoices
         filters: nil,
@@ -97,7 +97,7 @@ module Whopsdk
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The order to sort the invoices by
+        # Which columns can be used to sort.
         order: nil,
         request_options: {}
       )

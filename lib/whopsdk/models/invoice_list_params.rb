@@ -26,7 +26,7 @@ module Whopsdk
       optional :before, String, nil?: true
 
       # @!attribute direction
-      #   The direction to sort the invoices by
+      #   The direction of the sort.
       #
       #   @return [Symbol, Whopsdk::Models::InvoiceListParams::Direction, nil]
       optional :direction, enum: -> { Whopsdk::InvoiceListParams::Direction }, nil?: true
@@ -50,7 +50,7 @@ module Whopsdk
       optional :last, Integer, nil?: true
 
       # @!attribute order
-      #   The order to sort the invoices by
+      #   Which columns can be used to sort.
       #
       #   @return [Symbol, Whopsdk::Models::InvoiceListParams::Order, nil]
       optional :order, enum: -> { Whopsdk::InvoiceListParams::Order }, nil?: true
@@ -62,7 +62,7 @@ module Whopsdk
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param direction [Symbol, Whopsdk::Models::InvoiceListParams::Direction, nil] The direction to sort the invoices by
+      #   @param direction [Symbol, Whopsdk::Models::InvoiceListParams::Direction, nil] The direction of the sort.
       #
       #   @param filters [Whopsdk::Models::InvoiceListParams::Filters, nil] The filters to apply to the invoices
       #
@@ -70,11 +70,11 @@ module Whopsdk
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      #   @param order [Symbol, Whopsdk::Models::InvoiceListParams::Order, nil] The order to sort the invoices by
+      #   @param order [Symbol, Whopsdk::Models::InvoiceListParams::Order, nil] Which columns can be used to sort.
       #
       #   @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}]
 
-      # The direction to sort the invoices by
+      # The direction of the sort.
       module Direction
         extend Whopsdk::Internal::Type::Enum
 
@@ -95,30 +95,28 @@ module Whopsdk
         # @!attribute collection_methods
         #   The collection methods to filter the invoices by
         #
-        #   @return [Array<Symbol, Whopsdk::Models::CollectionMethod, nil>, nil]
+        #   @return [Array<Symbol, Whopsdk::Models::CollectionMethod>, nil]
         optional :collection_methods,
-                 -> { Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::CollectionMethod, nil?: true] },
+                 -> { Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::CollectionMethod] },
                  nil?: true
 
         # @!attribute statuses
         #   The statuses to filter the invoices by
         #
-        #   @return [Array<Symbol, Whopsdk::Models::InvoiceStatus, nil>, nil]
-        optional :statuses,
-                 -> { Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::InvoiceStatus, nil?: true] },
-                 nil?: true
+        #   @return [Array<Symbol, Whopsdk::Models::InvoiceStatus>, nil]
+        optional :statuses, -> { Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::InvoiceStatus] }, nil?: true
 
         # @!method initialize(access_pass_ids: nil, collection_methods: nil, statuses: nil)
         #   The filters to apply to the invoices
         #
         #   @param access_pass_ids [Array<String>, nil] The access pass IDs to filter the invoices by
         #
-        #   @param collection_methods [Array<Symbol, Whopsdk::Models::CollectionMethod, nil>, nil] The collection methods to filter the invoices by
+        #   @param collection_methods [Array<Symbol, Whopsdk::Models::CollectionMethod>, nil] The collection methods to filter the invoices by
         #
-        #   @param statuses [Array<Symbol, Whopsdk::Models::InvoiceStatus, nil>, nil] The statuses to filter the invoices by
+        #   @param statuses [Array<Symbol, Whopsdk::Models::InvoiceStatus>, nil] The statuses to filter the invoices by
       end
 
-      # The order to sort the invoices by
+      # Which columns can be used to sort.
       module Order
         extend Whopsdk::Internal::Type::Enum
 

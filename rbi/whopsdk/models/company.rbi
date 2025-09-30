@@ -10,7 +10,7 @@ module Whopsdk
       sig { returns(String) }
       attr_accessor :id
 
-      # The type of business the company is.
+      # The different business types a company can be.
       sig { returns(T.nilable(Whopsdk::BusinessTypes::TaggedSymbol)) }
       attr_accessor :business_type
 
@@ -18,7 +18,7 @@ module Whopsdk
       sig { returns(Integer) }
       attr_accessor :created_at
 
-      # The specific industry the company operates in.
+      # The different industry types a company can be in.
       sig { returns(T.nilable(Whopsdk::IndustryTypes::TaggedSymbol)) }
       attr_accessor :industry_type
 
@@ -77,11 +77,11 @@ module Whopsdk
       def self.new(
         # The ID (tag) of the company.
         id:,
-        # The type of business the company is.
+        # The different business types a company can be.
         business_type:,
         # When the company was created (signed up)
         created_at:,
-        # The specific industry the company operates in.
+        # The different industry types a company can be in.
         industry_type:,
         # The number of members in the company.
         member_count:,
@@ -181,11 +181,7 @@ module Whopsdk
         attr_accessor :url
 
         # The website
-        sig do
-          returns(
-            T.nilable(Whopsdk::Company::SocialLink::Website::TaggedSymbol)
-          )
-        end
+        sig { returns(Whopsdk::Company::SocialLink::Website::TaggedSymbol) }
         attr_accessor :website
 
         # A social link attached to a resource on the site.
@@ -193,7 +189,7 @@ module Whopsdk
           params(
             id: String,
             url: String,
-            website: T.nilable(Whopsdk::Company::SocialLink::Website::OrSymbol)
+            website: Whopsdk::Company::SocialLink::Website::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(
@@ -211,8 +207,7 @@ module Whopsdk
             {
               id: String,
               url: String,
-              website:
-                T.nilable(Whopsdk::Company::SocialLink::Website::TaggedSymbol)
+              website: Whopsdk::Company::SocialLink::Website::TaggedSymbol
             }
           )
         end

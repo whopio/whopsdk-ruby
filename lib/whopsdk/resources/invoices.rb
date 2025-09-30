@@ -10,7 +10,7 @@ module Whopsdk
       #
       # @overload create(collection_method:, company_id:, due_date:, plan:, charge_buyer_fee: nil, customer_name: nil, email_address: nil, member_id: nil, payment_token_id: nil, product: nil, product_id: nil, request_options: {})
       #
-      # @param collection_method [Symbol, Whopsdk::Models::CollectionMethod, nil] The method of collection for this invoice. If using charge_automatically, you mu
+      # @param collection_method [Symbol, Whopsdk::Models::CollectionMethod] The method of collection for this invoice. If using charge_automatically, you mu
       #
       # @param company_id [String] The company ID to create this invoice for.
       #
@@ -77,7 +77,7 @@ module Whopsdk
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param direction [Symbol, Whopsdk::Models::InvoiceListParams::Direction, nil] The direction to sort the invoices by
+      # @param direction [Symbol, Whopsdk::Models::InvoiceListParams::Direction, nil] The direction of the sort.
       #
       # @param filters [Whopsdk::Models::InvoiceListParams::Filters, nil] The filters to apply to the invoices
       #
@@ -85,7 +85,7 @@ module Whopsdk
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param order [Symbol, Whopsdk::Models::InvoiceListParams::Order, nil] The order to sort the invoices by
+      # @param order [Symbol, Whopsdk::Models::InvoiceListParams::Order, nil] Which columns can be used to sort.
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #

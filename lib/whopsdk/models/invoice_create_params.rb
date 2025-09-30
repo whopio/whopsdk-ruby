@@ -11,8 +11,8 @@ module Whopsdk
       #   The method of collection for this invoice. If using charge_automatically, you
       #   must provide a payment_token.
       #
-      #   @return [Symbol, Whopsdk::Models::CollectionMethod, nil]
-      required :collection_method, enum: -> { Whopsdk::CollectionMethod }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::CollectionMethod]
+      required :collection_method, enum: -> { Whopsdk::CollectionMethod }
 
       # @!attribute company_id
       #   The company ID to create this invoice for.
@@ -86,7 +86,7 @@ module Whopsdk
       #   Some parameter documentations has been truncated, see
       #   {Whopsdk::Models::InvoiceCreateParams} for more details.
       #
-      #   @param collection_method [Symbol, Whopsdk::Models::CollectionMethod, nil] The method of collection for this invoice. If using charge_automatically, you mu
+      #   @param collection_method [Symbol, Whopsdk::Models::CollectionMethod] The method of collection for this invoice. If using charge_automatically, you mu
       #
       #   @param company_id [String] The company ID to create this invoice for.
       #
@@ -118,7 +118,7 @@ module Whopsdk
         optional :ach_payments, Whopsdk::Internal::Type::Boolean, nil?: true
 
         # @!attribute base_currency
-        #   The respective currency identifier for the plan.
+        #   The available currencies on the platform
         #
         #   @return [Symbol, Whopsdk::Models::Currency, nil]
         optional :base_currency, enum: -> { Whopsdk::Currency }, nil?: true
@@ -186,7 +186,7 @@ module Whopsdk
         optional :paypal_accepted, Whopsdk::Internal::Type::Boolean, nil?: true
 
         # @!attribute plan_type
-        #   Indicates if the plan is a one time payment or recurring.
+        #   The type of plan that can be attached to an access pass
         #
         #   @return [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::PlanType, nil]
         optional :plan_type, enum: -> { Whopsdk::InvoiceCreateParams::Plan::PlanType }, nil?: true
@@ -204,7 +204,7 @@ module Whopsdk
         optional :redirect_url, String, nil?: true
 
         # @!attribute release_method
-        #   This is the release method the business uses to sell this plan.
+        #   The methods of how a plan can be released (including raffles and waitlists).
         #
         #   @return [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::ReleaseMethod, nil]
         optional :release_method, enum: -> { Whopsdk::InvoiceCreateParams::Plan::ReleaseMethod }, nil?: true
@@ -255,7 +255,7 @@ module Whopsdk
         optional :unlimited_stock, Whopsdk::Internal::Type::Boolean, nil?: true
 
         # @!attribute visibility
-        #   Shows or hides the plan from public/business view.
+        #   Visibility of a resource
         #
         #   @return [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::Visibility, nil]
         optional :visibility, enum: -> { Whopsdk::InvoiceCreateParams::Plan::Visibility }, nil?: true
@@ -268,7 +268,7 @@ module Whopsdk
         #
         #   @param ach_payments [Boolean, nil] Whether or not ACH payments are accepted
         #
-        #   @param base_currency [Symbol, Whopsdk::Models::Currency, nil] The respective currency identifier for the plan.
+        #   @param base_currency [Symbol, Whopsdk::Models::Currency, nil] The available currencies on the platform
         #
         #   @param billing_period [Integer, nil] The interval at which the plan charges (renewal plans).
         #
@@ -290,13 +290,13 @@ module Whopsdk
         #
         #   @param paypal_accepted [Boolean, nil] Marks whether paypal payments are/aren't accepted.
         #
-        #   @param plan_type [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::PlanType, nil] Indicates if the plan is a one time payment or recurring.
+        #   @param plan_type [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::PlanType, nil] The type of plan that can be attached to an access pass
         #
         #   @param platform_balance_accepted [Boolean, nil] Marks whether platform balance payments are/aren't accepted.
         #
         #   @param redirect_url [String, nil] The URL to redirect the customer to after purchase.
         #
-        #   @param release_method [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::ReleaseMethod, nil] This is the release method the business uses to sell this plan.
+        #   @param release_method [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::ReleaseMethod, nil] The methods of how a plan can be released (including raffles and waitlists).
         #
         #   @param release_method_settings [Whopsdk::Models::InvoiceCreateParams::Plan::ReleaseMethodSettings, nil] Configurable settings on how this plan is released.
         #
@@ -312,18 +312,14 @@ module Whopsdk
         #
         #   @param unlimited_stock [Boolean, nil] Limits/doesn't limit the number of units available for purchase.
         #
-        #   @param visibility [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::Visibility, nil] Shows or hides the plan from public/business view.
+        #   @param visibility [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::Visibility, nil] Visibility of a resource
 
         class CustomField < Whopsdk::Internal::Type::BaseModel
           # @!attribute field_type
           #   The type of the custom field.
           #
-          #   @return [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::CustomField::FieldType, nil]
-          required :field_type,
-                   enum: -> {
-                     Whopsdk::InvoiceCreateParams::Plan::CustomField::FieldType
-                   },
-                   nil?: true
+          #   @return [Symbol, :text]
+          required :field_type, const: :text
 
           # @!attribute name
           #   The name of the custom field.
@@ -355,9 +351,7 @@ module Whopsdk
           #   @return [Boolean, nil]
           optional :required, Whopsdk::Internal::Type::Boolean, nil?: true
 
-          # @!method initialize(field_type:, name:, id: nil, order: nil, placeholder: nil, required: nil)
-          #   @param field_type [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::CustomField::FieldType, nil] The type of the custom field.
-          #
+          # @!method initialize(name:, id: nil, order: nil, placeholder: nil, required: nil, field_type: :text)
           #   @param name [String] The name of the custom field.
           #
           #   @param id [String, nil] The ID of the custom field (if being updated)
@@ -367,21 +361,11 @@ module Whopsdk
           #   @param placeholder [String, nil] The placeholder value of the field.
           #
           #   @param required [Boolean, nil] Whether or not the field is required.
-
-          # The type of the custom field.
           #
-          # @see Whopsdk::Models::InvoiceCreateParams::Plan::CustomField#field_type
-          module FieldType
-            extend Whopsdk::Internal::Type::Enum
-
-            TEXT = :text
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
+          #   @param field_type [Symbol, :text] The type of the custom field.
         end
 
-        # Indicates if the plan is a one time payment or recurring.
+        # The type of plan that can be attached to an access pass
         #
         # @see Whopsdk::Models::InvoiceCreateParams::Plan#plan_type
         module PlanType
@@ -394,7 +378,7 @@ module Whopsdk
           #   @return [Array<Symbol>]
         end
 
-        # This is the release method the business uses to sell this plan.
+        # The methods of how a plan can be released (including raffles and waitlists).
         #
         # @see Whopsdk::Models::InvoiceCreateParams::Plan#release_method
         module ReleaseMethod
@@ -451,7 +435,7 @@ module Whopsdk
           #   @param starts_at [Integer, nil] When the raffle will start
         end
 
-        # Shows or hides the plan from public/business view.
+        # Visibility of a resource
         #
         # @see Whopsdk::Models::InvoiceCreateParams::Plan#visibility
         module Visibility

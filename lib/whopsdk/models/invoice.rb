@@ -48,8 +48,8 @@ module Whopsdk
       # @!attribute status
       #   The status of the invoice.
       #
-      #   @return [Symbol, Whopsdk::Models::InvoiceStatus, nil]
-      required :status, enum: -> { Whopsdk::InvoiceStatus }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::InvoiceStatus]
+      required :status, enum: -> { Whopsdk::InvoiceStatus }
 
       # @!attribute user
       #   The user that the invoice was created for.
@@ -74,7 +74,7 @@ module Whopsdk
       #
       #   @param number [String] The number of the invoice.
       #
-      #   @param status [Symbol, Whopsdk::Models::InvoiceStatus, nil] The status of the invoice.
+      #   @param status [Symbol, Whopsdk::Models::InvoiceStatus] The status of the invoice.
       #
       #   @param user [Whopsdk::Models::Invoice::User, nil] The user that the invoice was created for.
 
@@ -89,8 +89,8 @@ module Whopsdk
         # @!attribute currency
         #   The respective currency identifier for the plan.
         #
-        #   @return [Symbol, Whopsdk::Models::Currency, nil]
-        required :currency, enum: -> { Whopsdk::Currency }, nil?: true
+        #   @return [Symbol, Whopsdk::Models::Currency]
+        required :currency, enum: -> { Whopsdk::Currency }
 
         # @!attribute formatted_price
         #   The formatted price (including currency) for the plan.
@@ -103,7 +103,7 @@ module Whopsdk
         #
         #   @param id [String] The internal ID of the plan.
         #
-        #   @param currency [Symbol, Whopsdk::Models::Currency, nil] The respective currency identifier for the plan.
+        #   @param currency [Symbol, Whopsdk::Models::Currency] The respective currency identifier for the plan.
         #
         #   @param formatted_price [String] The formatted price (including currency) for the plan.
       end

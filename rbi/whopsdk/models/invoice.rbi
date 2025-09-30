@@ -38,7 +38,7 @@ module Whopsdk
       attr_accessor :number
 
       # The status of the invoice.
-      sig { returns(T.nilable(Whopsdk::InvoiceStatus::TaggedSymbol)) }
+      sig { returns(Whopsdk::InvoiceStatus::TaggedSymbol) }
       attr_accessor :status
 
       # The user that the invoice was created for.
@@ -58,7 +58,7 @@ module Whopsdk
           email_address: T.nilable(String),
           fetch_invoice_token: String,
           number: String,
-          status: T.nilable(Whopsdk::InvoiceStatus::OrSymbol),
+          status: Whopsdk::InvoiceStatus::OrSymbol,
           user: T.nilable(Whopsdk::Invoice::User::OrHash)
         ).returns(T.attached_class)
       end
@@ -94,7 +94,7 @@ module Whopsdk
             email_address: T.nilable(String),
             fetch_invoice_token: String,
             number: String,
-            status: T.nilable(Whopsdk::InvoiceStatus::TaggedSymbol),
+            status: Whopsdk::InvoiceStatus::TaggedSymbol,
             user: T.nilable(Whopsdk::Invoice::User)
           }
         )
@@ -113,7 +113,7 @@ module Whopsdk
         attr_accessor :id
 
         # The respective currency identifier for the plan.
-        sig { returns(T.nilable(Whopsdk::Currency::TaggedSymbol)) }
+        sig { returns(Whopsdk::Currency::TaggedSymbol) }
         attr_accessor :currency
 
         # The formatted price (including currency) for the plan.
@@ -124,7 +124,7 @@ module Whopsdk
         sig do
           params(
             id: String,
-            currency: T.nilable(Whopsdk::Currency::OrSymbol),
+            currency: Whopsdk::Currency::OrSymbol,
             formatted_price: String
           ).returns(T.attached_class)
         end
@@ -142,7 +142,7 @@ module Whopsdk
           override.returns(
             {
               id: String,
-              currency: T.nilable(Whopsdk::Currency::TaggedSymbol),
+              currency: Whopsdk::Currency::TaggedSymbol,
               formatted_price: String
             }
           )

@@ -3,6 +3,44 @@
 require_relative "../test_helper"
 
 class Whopsdk::Test::Resources::ProductsTest < Whopsdk::Test::ResourceTest
+  def test_create_required_params
+    skip("Prism tests are disabled")
+
+    response = @whopsdk.products.create(company_id: "biz_xxxxxxxxxxxxxx", title: "title")
+
+    assert_pattern do
+      response => Whopsdk::Product
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        business_type: Whopsdk::BusinessTypes | nil,
+        company: Whopsdk::Product::Company,
+        created_at: Integer,
+        custom_cta: Whopsdk::CustomCta | nil,
+        custom_cta_url: String | nil,
+        custom_statement_descriptor: String | nil,
+        description: String | nil,
+        global_affiliate_percentage: Float | nil,
+        global_affiliate_status: Whopsdk::GlobalAffiliateStatus | nil,
+        headline: String | nil,
+        industry_type: Whopsdk::IndustryTypes | nil,
+        member_affiliate_percentage: Float | nil,
+        member_affiliate_status: Whopsdk::GlobalAffiliateStatus | nil,
+        member_count: Integer,
+        owner_user: Whopsdk::Product::OwnerUser,
+        product_tax_code: Whopsdk::Product::ProductTaxCode | nil,
+        published_reviews_count: Integer,
+        route: String,
+        title: String,
+        updated_at: Integer,
+        verified: Whopsdk::Internal::Type::Boolean,
+        visibility: Whopsdk::Visibility | nil
+      }
+    end
+  end
+
   def test_retrieve
     skip("Prism tests are disabled")
 
@@ -18,16 +56,16 @@ class Whopsdk::Test::Resources::ProductsTest < Whopsdk::Test::ResourceTest
         business_type: Whopsdk::BusinessTypes | nil,
         company: Whopsdk::Product::Company,
         created_at: Integer,
-        custom_cta: Whopsdk::Product::CustomCta | nil,
+        custom_cta: Whopsdk::CustomCta | nil,
         custom_cta_url: String | nil,
         custom_statement_descriptor: String | nil,
         description: String | nil,
         global_affiliate_percentage: Float | nil,
-        global_affiliate_status: Whopsdk::Product::GlobalAffiliateStatus | nil,
+        global_affiliate_status: Whopsdk::GlobalAffiliateStatus | nil,
         headline: String | nil,
         industry_type: Whopsdk::IndustryTypes | nil,
         member_affiliate_percentage: Float | nil,
-        member_affiliate_status: Whopsdk::Product::MemberAffiliateStatus | nil,
+        member_affiliate_status: Whopsdk::GlobalAffiliateStatus | nil,
         member_count: Integer,
         owner_user: Whopsdk::Product::OwnerUser,
         product_tax_code: Whopsdk::Product::ProductTaxCode | nil,
@@ -36,7 +74,45 @@ class Whopsdk::Test::Resources::ProductsTest < Whopsdk::Test::ResourceTest
         title: String,
         updated_at: Integer,
         verified: Whopsdk::Internal::Type::Boolean,
-        visibility: Whopsdk::Product::Visibility | nil
+        visibility: Whopsdk::Visibility | nil
+      }
+    end
+  end
+
+  def test_update
+    skip("Prism tests are disabled")
+
+    response = @whopsdk.products.update("prod_xxxxxxxxxxxxx")
+
+    assert_pattern do
+      response => Whopsdk::Product
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        business_type: Whopsdk::BusinessTypes | nil,
+        company: Whopsdk::Product::Company,
+        created_at: Integer,
+        custom_cta: Whopsdk::CustomCta | nil,
+        custom_cta_url: String | nil,
+        custom_statement_descriptor: String | nil,
+        description: String | nil,
+        global_affiliate_percentage: Float | nil,
+        global_affiliate_status: Whopsdk::GlobalAffiliateStatus | nil,
+        headline: String | nil,
+        industry_type: Whopsdk::IndustryTypes | nil,
+        member_affiliate_percentage: Float | nil,
+        member_affiliate_status: Whopsdk::GlobalAffiliateStatus | nil,
+        member_count: Integer,
+        owner_user: Whopsdk::Product::OwnerUser,
+        product_tax_code: Whopsdk::Product::ProductTaxCode | nil,
+        published_reviews_count: Integer,
+        route: String,
+        title: String,
+        updated_at: Integer,
+        verified: Whopsdk::Internal::Type::Boolean,
+        visibility: Whopsdk::Visibility | nil
       }
     end
   end
@@ -70,8 +146,18 @@ class Whopsdk::Test::Resources::ProductsTest < Whopsdk::Test::ResourceTest
         title: String,
         updated_at: Integer,
         verified: Whopsdk::Internal::Type::Boolean,
-        visibility: Whopsdk::ProductListItem::Visibility | nil
+        visibility: Whopsdk::Visibility | nil
       }
+    end
+  end
+
+  def test_delete
+    skip("Prism tests are disabled")
+
+    response = @whopsdk.products.delete("prod_xxxxxxxxxxxxx")
+
+    assert_pattern do
+      response => Whopsdk::Internal::Type::Boolean
     end
   end
 end

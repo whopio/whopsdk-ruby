@@ -438,11 +438,11 @@ module Whopsdk
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `company` is a `Whopsdk::Company`
-        #   company => {
+        #   # `app` is a `Whopsdk::App`
+        #   app => {
         #     id: id,
-        #     business_type: business_type,
-        #     created_at: created_at
+        #     api_key: api_key,
+        #     base_url: base_url
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)

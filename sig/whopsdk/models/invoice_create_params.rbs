@@ -86,10 +86,10 @@ module Whopsdk
           internal_notes: String?,
           offer_cancel_discount: bool?,
           paypal_accepted: bool?,
-          plan_type: Whopsdk::Models::InvoiceCreateParams::Plan::plan_type?,
+          plan_type: Whopsdk::Models::plan_type?,
           platform_balance_accepted: bool?,
           redirect_url: String?,
-          release_method: Whopsdk::Models::InvoiceCreateParams::Plan::release_method?,
+          release_method: Whopsdk::Models::release_method?,
           release_method_settings: Whopsdk::InvoiceCreateParams::Plan::ReleaseMethodSettings?,
           renewal_price: Float?,
           split_pay_required_payments: Integer?,
@@ -97,7 +97,7 @@ module Whopsdk
           stock: Integer?,
           trial_period_days: Integer?,
           unlimited_stock: bool?,
-          visibility: Whopsdk::Models::InvoiceCreateParams::Plan::visibility?
+          visibility: Whopsdk::Models::visibility?
         }
 
       class Plan < Whopsdk::Internal::Type::BaseModel
@@ -125,13 +125,13 @@ module Whopsdk
 
         attr_accessor paypal_accepted: bool?
 
-        attr_accessor plan_type: Whopsdk::Models::InvoiceCreateParams::Plan::plan_type?
+        attr_accessor plan_type: Whopsdk::Models::plan_type?
 
         attr_accessor platform_balance_accepted: bool?
 
         attr_accessor redirect_url: String?
 
-        attr_accessor release_method: Whopsdk::Models::InvoiceCreateParams::Plan::release_method?
+        attr_accessor release_method: Whopsdk::Models::release_method?
 
         attr_accessor release_method_settings: Whopsdk::InvoiceCreateParams::Plan::ReleaseMethodSettings?
 
@@ -147,7 +147,7 @@ module Whopsdk
 
         attr_accessor unlimited_stock: bool?
 
-        attr_accessor visibility: Whopsdk::Models::InvoiceCreateParams::Plan::visibility?
+        attr_accessor visibility: Whopsdk::Models::visibility?
 
         def initialize: (
           ?ach_payments: bool?,
@@ -162,10 +162,10 @@ module Whopsdk
           ?internal_notes: String?,
           ?offer_cancel_discount: bool?,
           ?paypal_accepted: bool?,
-          ?plan_type: Whopsdk::Models::InvoiceCreateParams::Plan::plan_type?,
+          ?plan_type: Whopsdk::Models::plan_type?,
           ?platform_balance_accepted: bool?,
           ?redirect_url: String?,
-          ?release_method: Whopsdk::Models::InvoiceCreateParams::Plan::release_method?,
+          ?release_method: Whopsdk::Models::release_method?,
           ?release_method_settings: Whopsdk::InvoiceCreateParams::Plan::ReleaseMethodSettings?,
           ?renewal_price: Float?,
           ?split_pay_required_payments: Integer?,
@@ -173,7 +173,7 @@ module Whopsdk
           ?stock: Integer?,
           ?trial_period_days: Integer?,
           ?unlimited_stock: bool?,
-          ?visibility: Whopsdk::Models::InvoiceCreateParams::Plan::visibility?
+          ?visibility: Whopsdk::Models::visibility?
         ) -> void
 
         def to_hash: -> {
@@ -189,10 +189,10 @@ module Whopsdk
           internal_notes: String?,
           offer_cancel_discount: bool?,
           paypal_accepted: bool?,
-          plan_type: Whopsdk::Models::InvoiceCreateParams::Plan::plan_type?,
+          plan_type: Whopsdk::Models::plan_type?,
           platform_balance_accepted: bool?,
           redirect_url: String?,
-          release_method: Whopsdk::Models::InvoiceCreateParams::Plan::release_method?,
+          release_method: Whopsdk::Models::release_method?,
           release_method_settings: Whopsdk::InvoiceCreateParams::Plan::ReleaseMethodSettings?,
           renewal_price: Float?,
           split_pay_required_payments: Integer?,
@@ -200,7 +200,7 @@ module Whopsdk
           stock: Integer?,
           trial_period_days: Integer?,
           unlimited_stock: bool?,
-          visibility: Whopsdk::Models::InvoiceCreateParams::Plan::visibility?
+          visibility: Whopsdk::Models::visibility?
         }
 
         type custom_field =
@@ -255,29 +255,6 @@ module Whopsdk
           end
         end
 
-        type plan_type = :renewal | :one_time
-
-        module PlanType
-          extend Whopsdk::Internal::Type::Enum
-
-          RENEWAL: :renewal
-          ONE_TIME: :one_time
-
-          def self?.values: -> ::Array[Whopsdk::Models::InvoiceCreateParams::Plan::plan_type]
-        end
-
-        type release_method = :buy_now | :waitlist | :raffle
-
-        module ReleaseMethod
-          extend Whopsdk::Internal::Type::Enum
-
-          BUY_NOW: :buy_now
-          WAITLIST: :waitlist
-          RAFFLE: :raffle
-
-          def self?.values: -> ::Array[Whopsdk::Models::InvoiceCreateParams::Plan::release_method]
-        end
-
         type release_method_settings =
           {
             expires_at: Integer?,
@@ -308,19 +285,6 @@ module Whopsdk
             nft_weighted_entries: bool?,
             starts_at: Integer?
           }
-        end
-
-        type visibility = :visible | :hidden | :archived | :quick_link
-
-        module Visibility
-          extend Whopsdk::Internal::Type::Enum
-
-          VISIBLE: :visible
-          HIDDEN: :hidden
-          ARCHIVED: :archived
-          QUICK_LINK: :quick_link
-
-          def self?.values: -> ::Array[Whopsdk::Models::InvoiceCreateParams::Plan::visibility]
         end
       end
 

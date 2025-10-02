@@ -219,25 +219,25 @@ whopsdk.invoices.list(**params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :send_invoice
-puts(Whopsdk::CollectionMethod::SEND_INVOICE)
+# :live
+puts(Whopsdk::AppStatuses::LIVE)
 
-# Revealed type: `T.all(Whopsdk::CollectionMethod, Symbol)`
-T.reveal_type(Whopsdk::CollectionMethod::SEND_INVOICE)
+# Revealed type: `T.all(Whopsdk::AppStatuses, Symbol)`
+T.reveal_type(Whopsdk::AppStatuses::LIVE)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
 # Using the enum constants preserves the tagged type information:
-whopsdk.invoices.create(
-  collection_method: Whopsdk::CollectionMethod::SEND_INVOICE,
+whopsdk.apps.update(
+  status: Whopsdk::AppStatuses::LIVE,
   # …
 )
 
 # Literal values are also permissible:
-whopsdk.invoices.create(
-  collection_method: :send_invoice,
+whopsdk.apps.update(
+  status: :live,
   # …
 )
 ```

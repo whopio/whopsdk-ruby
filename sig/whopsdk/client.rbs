@@ -10,6 +10,8 @@ module Whopsdk
 
     attr_reader api_key: String
 
+    attr_reader apps: Whopsdk::Resources::Apps
+
     attr_reader invoices: Whopsdk::Resources::Invoices
 
     attr_reader course_lesson_interactions: Whopsdk::Resources::CourseLessonInteractions
@@ -17,6 +19,8 @@ module Whopsdk
     attr_reader products: Whopsdk::Resources::Products
 
     attr_reader companies: Whopsdk::Resources::Companies
+
+    attr_reader webhooks: Whopsdk::Resources::Webhooks
 
     private def auth_headers: -> ::Hash[String, String]
 

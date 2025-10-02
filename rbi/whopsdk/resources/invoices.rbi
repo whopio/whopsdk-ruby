@@ -86,7 +86,7 @@ module Whopsdk
           company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
-          direction: T.nilable(Whopsdk::InvoiceListParams::Direction::OrSymbol),
+          direction: T.nilable(Whopsdk::Direction::OrSymbol),
           filters: T.nilable(Whopsdk::InvoiceListParams::Filters::OrHash),
           first: T.nilable(Integer),
           last: T.nilable(Integer),

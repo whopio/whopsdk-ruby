@@ -19,6 +19,9 @@ module Whopsdk
     # @return [String]
     attr_reader :api_key
 
+    # @return [Whopsdk::Resources::Apps]
+    attr_reader :apps
+
     # @return [Whopsdk::Resources::Invoices]
     attr_reader :invoices
 
@@ -30,6 +33,9 @@ module Whopsdk
 
     # @return [Whopsdk::Resources::Companies]
     attr_reader :companies
+
+    # @return [Whopsdk::Resources::Webhooks]
+    attr_reader :webhooks
 
     # @api private
     #
@@ -79,10 +85,12 @@ module Whopsdk
         max_retry_delay: max_retry_delay
       )
 
+      @apps = Whopsdk::Resources::Apps.new(client: self)
       @invoices = Whopsdk::Resources::Invoices.new(client: self)
       @course_lesson_interactions = Whopsdk::Resources::CourseLessonInteractions.new(client: self)
       @products = Whopsdk::Resources::Products.new(client: self)
       @companies = Whopsdk::Resources::Companies.new(client: self)
+      @webhooks = Whopsdk::Resources::Webhooks.new(client: self)
     end
   end
 end

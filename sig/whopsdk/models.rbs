@@ -1,4 +1,18 @@
 module Whopsdk
+  module AccessPassType = Whopsdk::Models::AccessPassType
+
+  class App = Whopsdk::Models::App
+
+  class AppCreateParams = Whopsdk::Models::AppCreateParams
+
+  class AppListParams = Whopsdk::Models::AppListParams
+
+  class AppRetrieveParams = Whopsdk::Models::AppRetrieveParams
+
+  module AppStatuses = Whopsdk::Models::AppStatuses
+
+  class AppUpdateParams = Whopsdk::Models::AppUpdateParams
+
   module BusinessTypes = Whopsdk::Models::BusinessTypes
 
   module CollectionMethod = Whopsdk::Models::CollectionMethod
@@ -17,9 +31,17 @@ module Whopsdk
 
   module Currency = Whopsdk::Models::Currency
 
+  module CustomCta = Whopsdk::Models::CustomCta
+
+  module Direction = Whopsdk::Models::Direction
+
+  module GlobalAffiliateStatus = Whopsdk::Models::GlobalAffiliateStatus
+
   module IndustryTypes = Whopsdk::Models::IndustryTypes
 
   class Invoice = Whopsdk::Models::Invoice
+
+  class InvoiceCreatedWebhookEvent = Whopsdk::Models::InvoiceCreatedWebhookEvent
 
   class InvoiceCreateParams = Whopsdk::Models::InvoiceCreateParams
 
@@ -27,19 +49,41 @@ module Whopsdk
 
   class InvoiceListParams = Whopsdk::Models::InvoiceListParams
 
+  class InvoicePaidWebhookEvent = Whopsdk::Models::InvoicePaidWebhookEvent
+
+  class InvoicePastDueWebhookEvent = Whopsdk::Models::InvoicePastDueWebhookEvent
+
   class InvoiceRetrieveParams = Whopsdk::Models::InvoiceRetrieveParams
 
   module InvoiceStatus = Whopsdk::Models::InvoiceStatus
+
+  class InvoiceVoidedWebhookEvent = Whopsdk::Models::InvoiceVoidedWebhookEvent
 
   class InvoiceVoidParams = Whopsdk::Models::InvoiceVoidParams
 
   class PageInfo = Whopsdk::Models::PageInfo
 
+  module PlanType = Whopsdk::Models::PlanType
+
   class Product = Whopsdk::Models::Product
+
+  class ProductCreateParams = Whopsdk::Models::ProductCreateParams
+
+  class ProductDeleteParams = Whopsdk::Models::ProductDeleteParams
 
   class ProductListItem = Whopsdk::Models::ProductListItem
 
   class ProductListParams = Whopsdk::Models::ProductListParams
 
   class ProductRetrieveParams = Whopsdk::Models::ProductRetrieveParams
+
+  class ProductUpdateParams = Whopsdk::Models::ProductUpdateParams
+
+  module ReleaseMethod = Whopsdk::Models::ReleaseMethod
+
+  module UnwrapWebhookEvent = Whopsdk::Models::UnwrapWebhookEvent
+
+  module Visibility = Whopsdk::Models::Visibility
+
+  class WebhookUnwrapParams = Whopsdk::Models::WebhookUnwrapParams
 end

@@ -17,28 +17,28 @@ module Whopsdk
       # values safely.
       #
       # @example
-      #   # `business_types` is a `Whopsdk::BusinessTypes`
-      #   case business_types
-      #   when Whopsdk::BusinessTypes::EDUCATION_PROGRAM
+      #   # `access_pass_type` is a `Whopsdk::AccessPassType`
+      #   case access_pass_type
+      #   when Whopsdk::AccessPassType::REGULAR
       #     # ...
-      #   when Whopsdk::BusinessTypes::COACHING
+      #   when Whopsdk::AccessPassType::APP
       #     # ...
-      #   when Whopsdk::BusinessTypes::SOFTWARE
+      #   when Whopsdk::AccessPassType::EXPERIENCE_UPSELL
       #     # ...
       #   else
-      #     puts(business_types)
+      #     puts(access_pass_type)
       #   end
       #
       # @example
-      #   case business_types
-      #   in :education_program
+      #   case access_pass_type
+      #   in :regular
       #     # ...
-      #   in :coaching
+      #   in :app
       #     # ...
-      #   in :software
+      #   in :experience_upsell
       #     # ...
       #   else
-      #     puts(business_types)
+      #     puts(access_pass_type)
       #   end
       module Enum
         include Whopsdk::Internal::Type::Converter

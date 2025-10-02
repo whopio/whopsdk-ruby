@@ -26,7 +26,7 @@ module Whopsdk
       attr_accessor :created_at
 
       # The different types of custom CTAs that can be selected.
-      sig { returns(T.nilable(Whopsdk::Product::CustomCta::TaggedSymbol)) }
+      sig { returns(T.nilable(Whopsdk::CustomCta::TaggedSymbol)) }
       attr_accessor :custom_cta
 
       # The custom call to action URL for the access pass, if any.
@@ -47,11 +47,7 @@ module Whopsdk
       attr_accessor :global_affiliate_percentage
 
       # The different statuses of the global affiliate program for an access pass.
-      sig do
-        returns(
-          T.nilable(Whopsdk::Product::GlobalAffiliateStatus::TaggedSymbol)
-        )
-      end
+      sig { returns(T.nilable(Whopsdk::GlobalAffiliateStatus::TaggedSymbol)) }
       attr_accessor :global_affiliate_status
 
       # The headline of the access pass.
@@ -68,11 +64,7 @@ module Whopsdk
       attr_accessor :member_affiliate_percentage
 
       # The different statuses of the global affiliate program for an access pass.
-      sig do
-        returns(
-          T.nilable(Whopsdk::Product::MemberAffiliateStatus::TaggedSymbol)
-        )
-      end
+      sig { returns(T.nilable(Whopsdk::GlobalAffiliateStatus::TaggedSymbol)) }
       attr_accessor :member_affiliate_status
 
       # The number of active users for this access pass.
@@ -118,7 +110,7 @@ module Whopsdk
       attr_accessor :verified
 
       # Visibility of a resource
-      sig { returns(T.nilable(Whopsdk::Product::Visibility::TaggedSymbol)) }
+      sig { returns(T.nilable(Whopsdk::Visibility::TaggedSymbol)) }
       attr_accessor :visibility
 
       # An object representing a (sanitized) access pass.
@@ -128,18 +120,18 @@ module Whopsdk
           business_type: T.nilable(Whopsdk::BusinessTypes::OrSymbol),
           company: Whopsdk::Product::Company::OrHash,
           created_at: Integer,
-          custom_cta: T.nilable(Whopsdk::Product::CustomCta::OrSymbol),
+          custom_cta: T.nilable(Whopsdk::CustomCta::OrSymbol),
           custom_cta_url: T.nilable(String),
           custom_statement_descriptor: T.nilable(String),
           description: T.nilable(String),
           global_affiliate_percentage: T.nilable(Float),
           global_affiliate_status:
-            T.nilable(Whopsdk::Product::GlobalAffiliateStatus::OrSymbol),
+            T.nilable(Whopsdk::GlobalAffiliateStatus::OrSymbol),
           headline: T.nilable(String),
           industry_type: T.nilable(Whopsdk::IndustryTypes::OrSymbol),
           member_affiliate_percentage: T.nilable(Float),
           member_affiliate_status:
-            T.nilable(Whopsdk::Product::MemberAffiliateStatus::OrSymbol),
+            T.nilable(Whopsdk::GlobalAffiliateStatus::OrSymbol),
           member_count: Integer,
           owner_user: Whopsdk::Product::OwnerUser::OrHash,
           product_tax_code: T.nilable(Whopsdk::Product::ProductTaxCode::OrHash),
@@ -148,7 +140,7 @@ module Whopsdk
           title: String,
           updated_at: Integer,
           verified: T::Boolean,
-          visibility: T.nilable(Whopsdk::Product::Visibility::OrSymbol)
+          visibility: T.nilable(Whopsdk::Visibility::OrSymbol)
         ).returns(T.attached_class)
       end
       def self.new(
@@ -210,18 +202,18 @@ module Whopsdk
             business_type: T.nilable(Whopsdk::BusinessTypes::TaggedSymbol),
             company: Whopsdk::Product::Company,
             created_at: Integer,
-            custom_cta: T.nilable(Whopsdk::Product::CustomCta::TaggedSymbol),
+            custom_cta: T.nilable(Whopsdk::CustomCta::TaggedSymbol),
             custom_cta_url: T.nilable(String),
             custom_statement_descriptor: T.nilable(String),
             description: T.nilable(String),
             global_affiliate_percentage: T.nilable(Float),
             global_affiliate_status:
-              T.nilable(Whopsdk::Product::GlobalAffiliateStatus::TaggedSymbol),
+              T.nilable(Whopsdk::GlobalAffiliateStatus::TaggedSymbol),
             headline: T.nilable(String),
             industry_type: T.nilable(Whopsdk::IndustryTypes::TaggedSymbol),
             member_affiliate_percentage: T.nilable(Float),
             member_affiliate_status:
-              T.nilable(Whopsdk::Product::MemberAffiliateStatus::TaggedSymbol),
+              T.nilable(Whopsdk::GlobalAffiliateStatus::TaggedSymbol),
             member_count: Integer,
             owner_user: Whopsdk::Product::OwnerUser,
             product_tax_code: T.nilable(Whopsdk::Product::ProductTaxCode),
@@ -230,7 +222,7 @@ module Whopsdk
             title: String,
             updated_at: Integer,
             verified: T::Boolean,
-            visibility: T.nilable(Whopsdk::Product::Visibility::TaggedSymbol)
+            visibility: T.nilable(Whopsdk::Visibility::TaggedSymbol)
           }
         )
       end
@@ -273,93 +265,6 @@ module Whopsdk
 
         sig { override.returns({ id: String, route: String, title: String }) }
         def to_hash
-        end
-      end
-
-      # The different types of custom CTAs that can be selected.
-      module CustomCta
-        extend Whopsdk::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, Whopsdk::Product::CustomCta) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        GET_ACCESS =
-          T.let(:get_access, Whopsdk::Product::CustomCta::TaggedSymbol)
-        JOIN = T.let(:join, Whopsdk::Product::CustomCta::TaggedSymbol)
-        ORDER_NOW = T.let(:order_now, Whopsdk::Product::CustomCta::TaggedSymbol)
-        SHOP_NOW = T.let(:shop_now, Whopsdk::Product::CustomCta::TaggedSymbol)
-        CALL_NOW = T.let(:call_now, Whopsdk::Product::CustomCta::TaggedSymbol)
-        DONATE_NOW =
-          T.let(:donate_now, Whopsdk::Product::CustomCta::TaggedSymbol)
-        CONTACT_US =
-          T.let(:contact_us, Whopsdk::Product::CustomCta::TaggedSymbol)
-        SIGN_UP = T.let(:sign_up, Whopsdk::Product::CustomCta::TaggedSymbol)
-        SUBSCRIBE = T.let(:subscribe, Whopsdk::Product::CustomCta::TaggedSymbol)
-        PURCHASE = T.let(:purchase, Whopsdk::Product::CustomCta::TaggedSymbol)
-        GET_OFFER = T.let(:get_offer, Whopsdk::Product::CustomCta::TaggedSymbol)
-        APPLY_NOW = T.let(:apply_now, Whopsdk::Product::CustomCta::TaggedSymbol)
-        COMPLETE_ORDER =
-          T.let(:complete_order, Whopsdk::Product::CustomCta::TaggedSymbol)
-
-        sig do
-          override.returns(T::Array[Whopsdk::Product::CustomCta::TaggedSymbol])
-        end
-        def self.values
-        end
-      end
-
-      # The different statuses of the global affiliate program for an access pass.
-      module GlobalAffiliateStatus
-        extend Whopsdk::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, Whopsdk::Product::GlobalAffiliateStatus)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        ENABLED =
-          T.let(:enabled, Whopsdk::Product::GlobalAffiliateStatus::TaggedSymbol)
-        DISABLED =
-          T.let(
-            :disabled,
-            Whopsdk::Product::GlobalAffiliateStatus::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[Whopsdk::Product::GlobalAffiliateStatus::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
-      end
-
-      # The different statuses of the global affiliate program for an access pass.
-      module MemberAffiliateStatus
-        extend Whopsdk::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, Whopsdk::Product::MemberAffiliateStatus)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        ENABLED =
-          T.let(:enabled, Whopsdk::Product::MemberAffiliateStatus::TaggedSymbol)
-        DISABLED =
-          T.let(
-            :disabled,
-            Whopsdk::Product::MemberAffiliateStatus::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[Whopsdk::Product::MemberAffiliateStatus::TaggedSymbol]
-          )
-        end
-        def self.values
         end
       end
 
@@ -499,27 +404,6 @@ module Whopsdk
           end
           def self.values
           end
-        end
-      end
-
-      # Visibility of a resource
-      module Visibility
-        extend Whopsdk::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, Whopsdk::Product::Visibility) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        VISIBLE = T.let(:visible, Whopsdk::Product::Visibility::TaggedSymbol)
-        HIDDEN = T.let(:hidden, Whopsdk::Product::Visibility::TaggedSymbol)
-        ARCHIVED = T.let(:archived, Whopsdk::Product::Visibility::TaggedSymbol)
-        QUICK_LINK =
-          T.let(:quick_link, Whopsdk::Product::Visibility::TaggedSymbol)
-
-        sig do
-          override.returns(T::Array[Whopsdk::Product::Visibility::TaggedSymbol])
-        end
-        def self.values
         end
       end
     end

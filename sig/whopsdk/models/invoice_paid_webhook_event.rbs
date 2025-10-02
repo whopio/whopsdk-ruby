@@ -1,0 +1,72 @@
+module Whopsdk
+  module Models
+    type invoice_paid_webhook_event =
+      {
+        id: String,
+        api_version: Whopsdk::Models::InvoicePaidWebhookEvent::api_version,
+        created_at: String,
+        data: Whopsdk::Invoice?,
+        type: Whopsdk::Models::InvoicePaidWebhookEvent::type_
+      }
+
+    class InvoicePaidWebhookEvent < Whopsdk::Internal::Type::BaseModel
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      attr_reader api_version: Whopsdk::Models::InvoicePaidWebhookEvent::api_version?
+
+      def api_version=: (
+        Whopsdk::Models::InvoicePaidWebhookEvent::api_version
+      ) -> Whopsdk::Models::InvoicePaidWebhookEvent::api_version
+
+      attr_reader created_at: String?
+
+      def created_at=: (String) -> String
+
+      attr_accessor data: Whopsdk::Invoice?
+
+      attr_reader type: Whopsdk::Models::InvoicePaidWebhookEvent::type_?
+
+      def type=: (
+        Whopsdk::Models::InvoicePaidWebhookEvent::type_
+      ) -> Whopsdk::Models::InvoicePaidWebhookEvent::type_
+
+      def initialize: (
+        ?id: String,
+        ?api_version: Whopsdk::Models::InvoicePaidWebhookEvent::api_version,
+        ?created_at: String,
+        ?data: Whopsdk::Invoice?,
+        ?type: Whopsdk::Models::InvoicePaidWebhookEvent::type_
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: Whopsdk::Models::InvoicePaidWebhookEvent::api_version,
+        created_at: String,
+        data: Whopsdk::Invoice?,
+        type: Whopsdk::Models::InvoicePaidWebhookEvent::type_
+      }
+
+      type api_version = :v1
+
+      module APIVersion
+        extend Whopsdk::Internal::Type::Enum
+
+        V1: :v1
+
+        def self?.values: -> ::Array[Whopsdk::Models::InvoicePaidWebhookEvent::api_version]
+      end
+
+      type type_ = :"invoice.paid"
+
+      module Type
+        extend Whopsdk::Internal::Type::Enum
+
+        INVOICE_PAID: :"invoice.paid"
+
+        def self?.values: -> ::Array[Whopsdk::Models::InvoicePaidWebhookEvent::type_]
+      end
+    end
+  end
+end

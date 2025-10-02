@@ -53,9 +53,7 @@ module Whopsdk
       attr_accessor :verified
 
       # Visibility of a resource
-      sig do
-        returns(T.nilable(Whopsdk::ProductListItem::Visibility::TaggedSymbol))
-      end
+      sig { returns(T.nilable(Whopsdk::Visibility::TaggedSymbol)) }
       attr_accessor :visibility
 
       # An object representing a (sanitized) access pass.
@@ -72,7 +70,7 @@ module Whopsdk
           title: String,
           updated_at: Integer,
           verified: T::Boolean,
-          visibility: T.nilable(Whopsdk::ProductListItem::Visibility::OrSymbol)
+          visibility: T.nilable(Whopsdk::Visibility::OrSymbol)
         ).returns(T.attached_class)
       end
       def self.new(
@@ -117,38 +115,11 @@ module Whopsdk
             title: String,
             updated_at: Integer,
             verified: T::Boolean,
-            visibility:
-              T.nilable(Whopsdk::ProductListItem::Visibility::TaggedSymbol)
+            visibility: T.nilable(Whopsdk::Visibility::TaggedSymbol)
           }
         )
       end
       def to_hash
-      end
-
-      # Visibility of a resource
-      module Visibility
-        extend Whopsdk::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, Whopsdk::ProductListItem::Visibility) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        VISIBLE =
-          T.let(:visible, Whopsdk::ProductListItem::Visibility::TaggedSymbol)
-        HIDDEN =
-          T.let(:hidden, Whopsdk::ProductListItem::Visibility::TaggedSymbol)
-        ARCHIVED =
-          T.let(:archived, Whopsdk::ProductListItem::Visibility::TaggedSymbol)
-        QUICK_LINK =
-          T.let(:quick_link, Whopsdk::ProductListItem::Visibility::TaggedSymbol)
-
-        sig do
-          override.returns(
-            T::Array[Whopsdk::ProductListItem::Visibility::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
       end
     end
   end

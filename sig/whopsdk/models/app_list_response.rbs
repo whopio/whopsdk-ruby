@@ -1,0 +1,65 @@
+module Whopsdk
+  module Models
+    type app_list_response =
+      {
+        id: String,
+        base_url: String?,
+        dashboard_path: String?,
+        description: String?,
+        discover_path: String?,
+        domain_id: String,
+        experience_path: String?,
+        name: String,
+        status: Whopsdk::Models::app_statuses?,
+        verified: bool
+      }
+
+    class AppListResponse < Whopsdk::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor base_url: String?
+
+      attr_accessor dashboard_path: String?
+
+      attr_accessor description: String?
+
+      attr_accessor discover_path: String?
+
+      attr_accessor domain_id: String
+
+      attr_accessor experience_path: String?
+
+      attr_accessor name: String
+
+      attr_accessor status: Whopsdk::Models::app_statuses?
+
+      attr_accessor verified: bool
+
+      def initialize: (
+        id: String,
+        base_url: String?,
+        dashboard_path: String?,
+        description: String?,
+        discover_path: String?,
+        domain_id: String,
+        experience_path: String?,
+        name: String,
+        status: Whopsdk::Models::app_statuses?,
+        verified: bool
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        base_url: String?,
+        dashboard_path: String?,
+        description: String?,
+        discover_path: String?,
+        domain_id: String,
+        experience_path: String?,
+        name: String,
+        status: Whopsdk::Models::app_statuses?,
+        verified: bool
+      }
+    end
+  end
+end

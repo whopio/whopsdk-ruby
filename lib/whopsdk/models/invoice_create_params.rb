@@ -187,8 +187,8 @@ module Whopsdk
         # @!attribute plan_type
         #   The type of plan that can be attached to an access pass
         #
-        #   @return [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::PlanType, nil]
-        optional :plan_type, enum: -> { Whopsdk::InvoiceCreateParams::Plan::PlanType }, nil?: true
+        #   @return [Symbol, Whopsdk::Models::PlanType, nil]
+        optional :plan_type, enum: -> { Whopsdk::PlanType }, nil?: true
 
         # @!attribute platform_balance_accepted
         #   Marks whether platform balance payments are/aren't accepted.
@@ -205,8 +205,8 @@ module Whopsdk
         # @!attribute release_method
         #   The methods of how a plan can be released (including raffles and waitlists).
         #
-        #   @return [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::ReleaseMethod, nil]
-        optional :release_method, enum: -> { Whopsdk::InvoiceCreateParams::Plan::ReleaseMethod }, nil?: true
+        #   @return [Symbol, Whopsdk::Models::ReleaseMethod, nil]
+        optional :release_method, enum: -> { Whopsdk::ReleaseMethod }, nil?: true
 
         # @!attribute release_method_settings
         #   Configurable settings on how this plan is released.
@@ -256,8 +256,8 @@ module Whopsdk
         # @!attribute visibility
         #   Visibility of a resource
         #
-        #   @return [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::Visibility, nil]
-        optional :visibility, enum: -> { Whopsdk::InvoiceCreateParams::Plan::Visibility }, nil?: true
+        #   @return [Symbol, Whopsdk::Models::Visibility, nil]
+        optional :visibility, enum: -> { Whopsdk::Visibility }, nil?: true
 
         # @!method initialize(ach_payments: nil, base_currency: nil, billing_period: nil, card_payments: nil, coinbase_commerce_accepted: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, offer_cancel_discount: nil, paypal_accepted: nil, plan_type: nil, platform_balance_accepted: nil, redirect_url: nil, release_method: nil, release_method_settings: nil, renewal_price: nil, split_pay_required_payments: nil, splitit_accepted: nil, stock: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil)
         #   Some parameter documentations has been truncated, see
@@ -289,13 +289,13 @@ module Whopsdk
         #
         #   @param paypal_accepted [Boolean, nil] Marks whether paypal payments are/aren't accepted.
         #
-        #   @param plan_type [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::PlanType, nil] The type of plan that can be attached to an access pass
+        #   @param plan_type [Symbol, Whopsdk::Models::PlanType, nil] The type of plan that can be attached to an access pass
         #
         #   @param platform_balance_accepted [Boolean, nil] Marks whether platform balance payments are/aren't accepted.
         #
         #   @param redirect_url [String, nil] The URL to redirect the customer to after purchase.
         #
-        #   @param release_method [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::ReleaseMethod, nil] The methods of how a plan can be released (including raffles and waitlists).
+        #   @param release_method [Symbol, Whopsdk::Models::ReleaseMethod, nil] The methods of how a plan can be released (including raffles and waitlists).
         #
         #   @param release_method_settings [Whopsdk::Models::InvoiceCreateParams::Plan::ReleaseMethodSettings, nil] Configurable settings on how this plan is released.
         #
@@ -311,7 +311,7 @@ module Whopsdk
         #
         #   @param unlimited_stock [Boolean, nil] Limits/doesn't limit the number of units available for purchase.
         #
-        #   @param visibility [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::Visibility, nil] Visibility of a resource
+        #   @param visibility [Symbol, Whopsdk::Models::Visibility, nil] Visibility of a resource
 
         class CustomField < Whopsdk::Internal::Type::BaseModel
           # @!attribute field_type
@@ -380,33 +380,6 @@ module Whopsdk
           end
         end
 
-        # The type of plan that can be attached to an access pass
-        #
-        # @see Whopsdk::Models::InvoiceCreateParams::Plan#plan_type
-        module PlanType
-          extend Whopsdk::Internal::Type::Enum
-
-          RENEWAL = :renewal
-          ONE_TIME = :one_time
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-
-        # The methods of how a plan can be released (including raffles and waitlists).
-        #
-        # @see Whopsdk::Models::InvoiceCreateParams::Plan#release_method
-        module ReleaseMethod
-          extend Whopsdk::Internal::Type::Enum
-
-          BUY_NOW = :buy_now
-          WAITLIST = :waitlist
-          RAFFLE = :raffle
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-
         # @see Whopsdk::Models::InvoiceCreateParams::Plan#release_method_settings
         class ReleaseMethodSettings < Whopsdk::Internal::Type::BaseModel
           # @!attribute expires_at
@@ -448,21 +421,6 @@ module Whopsdk
           #   @param nft_weighted_entries [Boolean, nil] If this is enabled, the raffle will get entries based off of how many NFTs the u
           #
           #   @param starts_at [Integer, nil] When the raffle will start
-        end
-
-        # Visibility of a resource
-        #
-        # @see Whopsdk::Models::InvoiceCreateParams::Plan#visibility
-        module Visibility
-          extend Whopsdk::Internal::Type::Enum
-
-          VISIBLE = :visible
-          HIDDEN = :hidden
-          ARCHIVED = :archived
-          QUICK_LINK = :quick_link
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
         end
       end
 

@@ -25,7 +25,7 @@ module Whopsdk
         company_id: String,
         ?after: String?,
         ?before: String?,
-        ?direction: Whopsdk::Models::InvoiceListParams::direction?,
+        ?direction: Whopsdk::Models::direction?,
         ?filters: Whopsdk::InvoiceListParams::Filters?,
         ?first: Integer?,
         ?last: Integer?,

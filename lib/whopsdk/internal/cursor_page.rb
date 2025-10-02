@@ -10,8 +10,8 @@ module Whopsdk
     #   end
     #
     # @example
-    #   cursor_page.auto_paging_each do |invoice|
-    #     puts(invoice)
+    #   cursor_page.auto_paging_each do |app|
+    #     puts(app)
     #   end
     class CursorPage
       include Whopsdk::Internal::Type::BasePage

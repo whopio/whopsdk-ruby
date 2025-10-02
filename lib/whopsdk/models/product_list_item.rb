@@ -72,8 +72,8 @@ module Whopsdk
       # @!attribute visibility
       #   Visibility of a resource
       #
-      #   @return [Symbol, Whopsdk::Models::ProductListItem::Visibility, nil]
-      required :visibility, enum: -> { Whopsdk::ProductListItem::Visibility }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::Visibility, nil]
+      required :visibility, enum: -> { Whopsdk::Visibility }, nil?: true
 
       # @!method initialize(id:, business_type:, created_at:, headline:, industry_type:, member_count:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
       #   An object representing a (sanitized) access pass.
@@ -100,22 +100,7 @@ module Whopsdk
       #
       #   @param verified [Boolean] Whether this product is Whop verified.
       #
-      #   @param visibility [Symbol, Whopsdk::Models::ProductListItem::Visibility, nil] Visibility of a resource
-
-      # Visibility of a resource
-      #
-      # @see Whopsdk::Models::ProductListItem#visibility
-      module Visibility
-        extend Whopsdk::Internal::Type::Enum
-
-        VISIBLE = :visible
-        HIDDEN = :hidden
-        ARCHIVED = :archived
-        QUICK_LINK = :quick_link
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
+      #   @param visibility [Symbol, Whopsdk::Models::Visibility, nil] Visibility of a resource
     end
   end
 end

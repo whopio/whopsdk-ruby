@@ -6,16 +6,16 @@ module Whopsdk
         business_type: Whopsdk::Models::business_types?,
         company: Whopsdk::Product::Company,
         created_at: Integer,
-        custom_cta: Whopsdk::Models::Product::custom_cta?,
+        custom_cta: Whopsdk::Models::custom_cta?,
         custom_cta_url: String?,
         custom_statement_descriptor: String?,
         description: String?,
         global_affiliate_percentage: Float?,
-        global_affiliate_status: Whopsdk::Models::Product::global_affiliate_status?,
+        global_affiliate_status: Whopsdk::Models::global_affiliate_status?,
         headline: String?,
         industry_type: Whopsdk::Models::industry_types?,
         member_affiliate_percentage: Float?,
-        member_affiliate_status: Whopsdk::Models::Product::member_affiliate_status?,
+        member_affiliate_status: Whopsdk::Models::global_affiliate_status?,
         member_count: Integer,
         owner_user: Whopsdk::Product::OwnerUser,
         product_tax_code: Whopsdk::Product::ProductTaxCode?,
@@ -24,7 +24,7 @@ module Whopsdk
         title: String,
         updated_at: Integer,
         verified: bool,
-        visibility: Whopsdk::Models::Product::visibility?
+        visibility: Whopsdk::Models::visibility?
       }
 
     class Product < Whopsdk::Internal::Type::BaseModel
@@ -36,7 +36,7 @@ module Whopsdk
 
       attr_accessor created_at: Integer
 
-      attr_accessor custom_cta: Whopsdk::Models::Product::custom_cta?
+      attr_accessor custom_cta: Whopsdk::Models::custom_cta?
 
       attr_accessor custom_cta_url: String?
 
@@ -46,7 +46,7 @@ module Whopsdk
 
       attr_accessor global_affiliate_percentage: Float?
 
-      attr_accessor global_affiliate_status: Whopsdk::Models::Product::global_affiliate_status?
+      attr_accessor global_affiliate_status: Whopsdk::Models::global_affiliate_status?
 
       attr_accessor headline: String?
 
@@ -54,7 +54,7 @@ module Whopsdk
 
       attr_accessor member_affiliate_percentage: Float?
 
-      attr_accessor member_affiliate_status: Whopsdk::Models::Product::member_affiliate_status?
+      attr_accessor member_affiliate_status: Whopsdk::Models::global_affiliate_status?
 
       attr_accessor member_count: Integer
 
@@ -72,23 +72,23 @@ module Whopsdk
 
       attr_accessor verified: bool
 
-      attr_accessor visibility: Whopsdk::Models::Product::visibility?
+      attr_accessor visibility: Whopsdk::Models::visibility?
 
       def initialize: (
         id: String,
         business_type: Whopsdk::Models::business_types?,
         company: Whopsdk::Product::Company,
         created_at: Integer,
-        custom_cta: Whopsdk::Models::Product::custom_cta?,
+        custom_cta: Whopsdk::Models::custom_cta?,
         custom_cta_url: String?,
         custom_statement_descriptor: String?,
         description: String?,
         global_affiliate_percentage: Float?,
-        global_affiliate_status: Whopsdk::Models::Product::global_affiliate_status?,
+        global_affiliate_status: Whopsdk::Models::global_affiliate_status?,
         headline: String?,
         industry_type: Whopsdk::Models::industry_types?,
         member_affiliate_percentage: Float?,
-        member_affiliate_status: Whopsdk::Models::Product::member_affiliate_status?,
+        member_affiliate_status: Whopsdk::Models::global_affiliate_status?,
         member_count: Integer,
         owner_user: Whopsdk::Product::OwnerUser,
         product_tax_code: Whopsdk::Product::ProductTaxCode?,
@@ -97,7 +97,7 @@ module Whopsdk
         title: String,
         updated_at: Integer,
         verified: bool,
-        visibility: Whopsdk::Models::Product::visibility?
+        visibility: Whopsdk::Models::visibility?
       ) -> void
 
       def to_hash: -> {
@@ -105,16 +105,16 @@ module Whopsdk
         business_type: Whopsdk::Models::business_types?,
         company: Whopsdk::Product::Company,
         created_at: Integer,
-        custom_cta: Whopsdk::Models::Product::custom_cta?,
+        custom_cta: Whopsdk::Models::custom_cta?,
         custom_cta_url: String?,
         custom_statement_descriptor: String?,
         description: String?,
         global_affiliate_percentage: Float?,
-        global_affiliate_status: Whopsdk::Models::Product::global_affiliate_status?,
+        global_affiliate_status: Whopsdk::Models::global_affiliate_status?,
         headline: String?,
         industry_type: Whopsdk::Models::industry_types?,
         member_affiliate_percentage: Float?,
-        member_affiliate_status: Whopsdk::Models::Product::member_affiliate_status?,
+        member_affiliate_status: Whopsdk::Models::global_affiliate_status?,
         member_count: Integer,
         owner_user: Whopsdk::Product::OwnerUser,
         product_tax_code: Whopsdk::Product::ProductTaxCode?,
@@ -123,7 +123,7 @@ module Whopsdk
         title: String,
         updated_at: Integer,
         verified: bool,
-        visibility: Whopsdk::Models::Product::visibility?
+        visibility: Whopsdk::Models::visibility?
       }
 
       type company = { id: String, route: String, title: String }
@@ -138,63 +138,6 @@ module Whopsdk
         def initialize: (id: String, route: String, title: String) -> void
 
         def to_hash: -> { id: String, route: String, title: String }
-      end
-
-      type custom_cta =
-        :get_access
-        | :join
-        | :order_now
-        | :shop_now
-        | :call_now
-        | :donate_now
-        | :contact_us
-        | :sign_up
-        | :subscribe
-        | :purchase
-        | :get_offer
-        | :apply_now
-        | :complete_order
-
-      module CustomCta
-        extend Whopsdk::Internal::Type::Enum
-
-        GET_ACCESS: :get_access
-        JOIN: :join
-        ORDER_NOW: :order_now
-        SHOP_NOW: :shop_now
-        CALL_NOW: :call_now
-        DONATE_NOW: :donate_now
-        CONTACT_US: :contact_us
-        SIGN_UP: :sign_up
-        SUBSCRIBE: :subscribe
-        PURCHASE: :purchase
-        GET_OFFER: :get_offer
-        APPLY_NOW: :apply_now
-        COMPLETE_ORDER: :complete_order
-
-        def self?.values: -> ::Array[Whopsdk::Models::Product::custom_cta]
-      end
-
-      type global_affiliate_status = :enabled | :disabled
-
-      module GlobalAffiliateStatus
-        extend Whopsdk::Internal::Type::Enum
-
-        ENABLED: :enabled
-        DISABLED: :disabled
-
-        def self?.values: -> ::Array[Whopsdk::Models::Product::global_affiliate_status]
-      end
-
-      type member_affiliate_status = :enabled | :disabled
-
-      module MemberAffiliateStatus
-        extend Whopsdk::Internal::Type::Enum
-
-        ENABLED: :enabled
-        DISABLED: :disabled
-
-        def self?.values: -> ::Array[Whopsdk::Models::Product::member_affiliate_status]
       end
 
       type owner_user = { id: String, name: String?, username: String }
@@ -248,19 +191,6 @@ module Whopsdk
 
           def self?.values: -> ::Array[Whopsdk::Models::Product::ProductTaxCode::product_type]
         end
-      end
-
-      type visibility = :visible | :hidden | :archived | :quick_link
-
-      module Visibility
-        extend Whopsdk::Internal::Type::Enum
-
-        VISIBLE: :visible
-        HIDDEN: :hidden
-        ARCHIVED: :archived
-        QUICK_LINK: :quick_link
-
-        def self?.values: -> ::Array[Whopsdk::Models::Product::visibility]
       end
     end
   end

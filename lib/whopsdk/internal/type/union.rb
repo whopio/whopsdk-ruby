@@ -4,6 +4,19 @@ module Whopsdk
   module Internal
     module Type
       # @api private
+      #
+      # @example
+      #   # `unwrap_webhook_event` is a `Whopsdk::UnwrapWebhookEvent`
+      #   case unwrap_webhook_event
+      #   when Whopsdk::InvoiceCreatedWebhookEvent
+      #     puts(unwrap_webhook_event.id)
+      #   when Whopsdk::InvoicePaidWebhookEvent
+      #     puts(unwrap_webhook_event.api_version)
+      #   when Whopsdk::InvoicePastDueWebhookEvent
+      #     puts(unwrap_webhook_event.created_at)
+      #   else
+      #     puts(unwrap_webhook_event)
+      #   end
       module Union
         include Whopsdk::Internal::Type::Converter
         include Whopsdk::Internal::Util::SorbetRuntimeSupport

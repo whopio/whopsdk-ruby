@@ -30,8 +30,8 @@ module Whopsdk
       # @!attribute custom_cta
       #   The different types of custom CTAs that can be selected.
       #
-      #   @return [Symbol, Whopsdk::Models::Product::CustomCta, nil]
-      required :custom_cta, enum: -> { Whopsdk::Product::CustomCta }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::CustomCta, nil]
+      required :custom_cta, enum: -> { Whopsdk::CustomCta }, nil?: true
 
       # @!attribute custom_cta_url
       #   The custom call to action URL for the access pass, if any.
@@ -61,8 +61,8 @@ module Whopsdk
       # @!attribute global_affiliate_status
       #   The different statuses of the global affiliate program for an access pass.
       #
-      #   @return [Symbol, Whopsdk::Models::Product::GlobalAffiliateStatus, nil]
-      required :global_affiliate_status, enum: -> { Whopsdk::Product::GlobalAffiliateStatus }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::GlobalAffiliateStatus, nil]
+      required :global_affiliate_status, enum: -> { Whopsdk::GlobalAffiliateStatus }, nil?: true
 
       # @!attribute headline
       #   The headline of the access pass.
@@ -86,8 +86,8 @@ module Whopsdk
       # @!attribute member_affiliate_status
       #   The different statuses of the global affiliate program for an access pass.
       #
-      #   @return [Symbol, Whopsdk::Models::Product::MemberAffiliateStatus, nil]
-      required :member_affiliate_status, enum: -> { Whopsdk::Product::MemberAffiliateStatus }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::GlobalAffiliateStatus, nil]
+      required :member_affiliate_status, enum: -> { Whopsdk::GlobalAffiliateStatus }, nil?: true
 
       # @!attribute member_count
       #   The number of active users for this access pass.
@@ -140,8 +140,8 @@ module Whopsdk
       # @!attribute visibility
       #   Visibility of a resource
       #
-      #   @return [Symbol, Whopsdk::Models::Product::Visibility, nil]
-      required :visibility, enum: -> { Whopsdk::Product::Visibility }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::Visibility, nil]
+      required :visibility, enum: -> { Whopsdk::Visibility }, nil?: true
 
       # @!method initialize(id:, business_type:, company:, created_at:, custom_cta:, custom_cta_url:, custom_statement_descriptor:, description:, global_affiliate_percentage:, global_affiliate_status:, headline:, industry_type:, member_affiliate_percentage:, member_affiliate_status:, member_count:, owner_user:, product_tax_code:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
       #   Some parameter documentations has been truncated, see {Whopsdk::Models::Product}
@@ -157,7 +157,7 @@ module Whopsdk
       #
       #   @param created_at [Integer] When the access pass was created.
       #
-      #   @param custom_cta [Symbol, Whopsdk::Models::Product::CustomCta, nil] The different types of custom CTAs that can be selected.
+      #   @param custom_cta [Symbol, Whopsdk::Models::CustomCta, nil] The different types of custom CTAs that can be selected.
       #
       #   @param custom_cta_url [String, nil] The custom call to action URL for the access pass, if any.
       #
@@ -167,7 +167,7 @@ module Whopsdk
       #
       #   @param global_affiliate_percentage [Float, nil] The percentage of a transaction a user is eligible to earn from the whop marketp
       #
-      #   @param global_affiliate_status [Symbol, Whopsdk::Models::Product::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for an access pass.
+      #   @param global_affiliate_status [Symbol, Whopsdk::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for an access pass.
       #
       #   @param headline [String, nil] The headline of the access pass.
       #
@@ -175,7 +175,7 @@ module Whopsdk
       #
       #   @param member_affiliate_percentage [Float, nil] The percentage of a transaction a user is eligible to earn from the whop marketp
       #
-      #   @param member_affiliate_status [Symbol, Whopsdk::Models::Product::MemberAffiliateStatus, nil] The different statuses of the global affiliate program for an access pass.
+      #   @param member_affiliate_status [Symbol, Whopsdk::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for an access pass.
       #
       #   @param member_count [Integer] The number of active users for this access pass.
       #
@@ -193,7 +193,7 @@ module Whopsdk
       #
       #   @param verified [Boolean] Whether this product is Whop verified.
       #
-      #   @param visibility [Symbol, Whopsdk::Models::Product::Visibility, nil] Visibility of a resource
+      #   @param visibility [Symbol, Whopsdk::Models::Visibility, nil] Visibility of a resource
 
       # @see Whopsdk::Models::Product#company
       class Company < Whopsdk::Internal::Type::BaseModel
@@ -223,56 +223,6 @@ module Whopsdk
         #   @param route [String] The slug/route of the company on the Whop site.
         #
         #   @param title [String] The title of the company.
-      end
-
-      # The different types of custom CTAs that can be selected.
-      #
-      # @see Whopsdk::Models::Product#custom_cta
-      module CustomCta
-        extend Whopsdk::Internal::Type::Enum
-
-        GET_ACCESS = :get_access
-        JOIN = :join
-        ORDER_NOW = :order_now
-        SHOP_NOW = :shop_now
-        CALL_NOW = :call_now
-        DONATE_NOW = :donate_now
-        CONTACT_US = :contact_us
-        SIGN_UP = :sign_up
-        SUBSCRIBE = :subscribe
-        PURCHASE = :purchase
-        GET_OFFER = :get_offer
-        APPLY_NOW = :apply_now
-        COMPLETE_ORDER = :complete_order
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
-
-      # The different statuses of the global affiliate program for an access pass.
-      #
-      # @see Whopsdk::Models::Product#global_affiliate_status
-      module GlobalAffiliateStatus
-        extend Whopsdk::Internal::Type::Enum
-
-        ENABLED = :enabled
-        DISABLED = :disabled
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
-
-      # The different statuses of the global affiliate program for an access pass.
-      #
-      # @see Whopsdk::Models::Product#member_affiliate_status
-      module MemberAffiliateStatus
-        extend Whopsdk::Internal::Type::Enum
-
-        ENABLED = :enabled
-        DISABLED = :disabled
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
 
       # @see Whopsdk::Models::Product#owner_user
@@ -347,21 +297,6 @@ module Whopsdk
           # @!method self.values
           #   @return [Array<Symbol>]
         end
-      end
-
-      # Visibility of a resource
-      #
-      # @see Whopsdk::Models::Product#visibility
-      module Visibility
-        extend Whopsdk::Internal::Type::Enum
-
-        VISIBLE = :visible
-        HIDDEN = :hidden
-        ARCHIVED = :archived
-        QUICK_LINK = :quick_link
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
     end
   end

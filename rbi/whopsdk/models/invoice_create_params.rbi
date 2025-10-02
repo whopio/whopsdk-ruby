@@ -207,11 +207,7 @@ module Whopsdk
         attr_accessor :paypal_accepted
 
         # The type of plan that can be attached to an access pass
-        sig do
-          returns(
-            T.nilable(Whopsdk::InvoiceCreateParams::Plan::PlanType::OrSymbol)
-          )
-        end
+        sig { returns(T.nilable(Whopsdk::PlanType::OrSymbol)) }
         attr_accessor :plan_type
 
         # Marks whether platform balance payments are/aren't accepted.
@@ -223,13 +219,7 @@ module Whopsdk
         attr_accessor :redirect_url
 
         # The methods of how a plan can be released (including raffles and waitlists).
-        sig do
-          returns(
-            T.nilable(
-              Whopsdk::InvoiceCreateParams::Plan::ReleaseMethod::OrSymbol
-            )
-          )
-        end
+        sig { returns(T.nilable(Whopsdk::ReleaseMethod::OrSymbol)) }
         attr_accessor :release_method
 
         # Configurable settings on how this plan is released.
@@ -276,11 +266,7 @@ module Whopsdk
         attr_accessor :unlimited_stock
 
         # Visibility of a resource
-        sig do
-          returns(
-            T.nilable(Whopsdk::InvoiceCreateParams::Plan::Visibility::OrSymbol)
-          )
-        end
+        sig { returns(T.nilable(Whopsdk::Visibility::OrSymbol)) }
         attr_accessor :visibility
 
         # The properties of the plan to create for this invoice.
@@ -303,14 +289,10 @@ module Whopsdk
             internal_notes: T.nilable(String),
             offer_cancel_discount: T.nilable(T::Boolean),
             paypal_accepted: T.nilable(T::Boolean),
-            plan_type:
-              T.nilable(Whopsdk::InvoiceCreateParams::Plan::PlanType::OrSymbol),
+            plan_type: T.nilable(Whopsdk::PlanType::OrSymbol),
             platform_balance_accepted: T.nilable(T::Boolean),
             redirect_url: T.nilable(String),
-            release_method:
-              T.nilable(
-                Whopsdk::InvoiceCreateParams::Plan::ReleaseMethod::OrSymbol
-              ),
+            release_method: T.nilable(Whopsdk::ReleaseMethod::OrSymbol),
             release_method_settings:
               T.nilable(
                 Whopsdk::InvoiceCreateParams::Plan::ReleaseMethodSettings::OrHash
@@ -321,10 +303,7 @@ module Whopsdk
             stock: T.nilable(Integer),
             trial_period_days: T.nilable(Integer),
             unlimited_stock: T.nilable(T::Boolean),
-            visibility:
-              T.nilable(
-                Whopsdk::InvoiceCreateParams::Plan::Visibility::OrSymbol
-              )
+            visibility: T.nilable(Whopsdk::Visibility::OrSymbol)
           ).returns(T.attached_class)
         end
         def self.new(
@@ -398,16 +377,10 @@ module Whopsdk
               internal_notes: T.nilable(String),
               offer_cancel_discount: T.nilable(T::Boolean),
               paypal_accepted: T.nilable(T::Boolean),
-              plan_type:
-                T.nilable(
-                  Whopsdk::InvoiceCreateParams::Plan::PlanType::OrSymbol
-                ),
+              plan_type: T.nilable(Whopsdk::PlanType::OrSymbol),
               platform_balance_accepted: T.nilable(T::Boolean),
               redirect_url: T.nilable(String),
-              release_method:
-                T.nilable(
-                  Whopsdk::InvoiceCreateParams::Plan::ReleaseMethod::OrSymbol
-                ),
+              release_method: T.nilable(Whopsdk::ReleaseMethod::OrSymbol),
               release_method_settings:
                 T.nilable(
                   Whopsdk::InvoiceCreateParams::Plan::ReleaseMethodSettings
@@ -418,10 +391,7 @@ module Whopsdk
               stock: T.nilable(Integer),
               trial_period_days: T.nilable(Integer),
               unlimited_stock: T.nilable(T::Boolean),
-              visibility:
-                T.nilable(
-                  Whopsdk::InvoiceCreateParams::Plan::Visibility::OrSymbol
-                )
+              visibility: T.nilable(Whopsdk::Visibility::OrSymbol)
             }
           )
         end
@@ -545,75 +515,6 @@ module Whopsdk
           end
         end
 
-        # The type of plan that can be attached to an access pass
-        module PlanType
-          extend Whopsdk::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, Whopsdk::InvoiceCreateParams::Plan::PlanType)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          RENEWAL =
-            T.let(
-              :renewal,
-              Whopsdk::InvoiceCreateParams::Plan::PlanType::TaggedSymbol
-            )
-          ONE_TIME =
-            T.let(
-              :one_time,
-              Whopsdk::InvoiceCreateParams::Plan::PlanType::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Whopsdk::InvoiceCreateParams::Plan::PlanType::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
-        end
-
-        # The methods of how a plan can be released (including raffles and waitlists).
-        module ReleaseMethod
-          extend Whopsdk::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, Whopsdk::InvoiceCreateParams::Plan::ReleaseMethod)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          BUY_NOW =
-            T.let(
-              :buy_now,
-              Whopsdk::InvoiceCreateParams::Plan::ReleaseMethod::TaggedSymbol
-            )
-          WAITLIST =
-            T.let(
-              :waitlist,
-              Whopsdk::InvoiceCreateParams::Plan::ReleaseMethod::TaggedSymbol
-            )
-          RAFFLE =
-            T.let(
-              :raffle,
-              Whopsdk::InvoiceCreateParams::Plan::ReleaseMethod::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Whopsdk::InvoiceCreateParams::Plan::ReleaseMethod::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
-        end
-
         class ReleaseMethodSettings < Whopsdk::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
@@ -673,48 +574,6 @@ module Whopsdk
             )
           end
           def to_hash
-          end
-        end
-
-        # Visibility of a resource
-        module Visibility
-          extend Whopsdk::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, Whopsdk::InvoiceCreateParams::Plan::Visibility)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          VISIBLE =
-            T.let(
-              :visible,
-              Whopsdk::InvoiceCreateParams::Plan::Visibility::TaggedSymbol
-            )
-          HIDDEN =
-            T.let(
-              :hidden,
-              Whopsdk::InvoiceCreateParams::Plan::Visibility::TaggedSymbol
-            )
-          ARCHIVED =
-            T.let(
-              :archived,
-              Whopsdk::InvoiceCreateParams::Plan::Visibility::TaggedSymbol
-            )
-          QUICK_LINK =
-            T.let(
-              :quick_link,
-              Whopsdk::InvoiceCreateParams::Plan::Visibility::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Whopsdk::InvoiceCreateParams::Plan::Visibility::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
           end
         end
       end

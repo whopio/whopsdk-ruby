@@ -24,9 +24,7 @@ module Whopsdk
       attr_accessor :before
 
       # The direction of the sort.
-      sig do
-        returns(T.nilable(Whopsdk::InvoiceListParams::Direction::OrSymbol))
-      end
+      sig { returns(T.nilable(Whopsdk::Direction::OrSymbol)) }
       attr_accessor :direction
 
       # The filters to apply to the invoices
@@ -57,7 +55,7 @@ module Whopsdk
           company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
-          direction: T.nilable(Whopsdk::InvoiceListParams::Direction::OrSymbol),
+          direction: T.nilable(Whopsdk::Direction::OrSymbol),
           filters: T.nilable(Whopsdk::InvoiceListParams::Filters::OrHash),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
@@ -92,8 +90,7 @@ module Whopsdk
             company_id: String,
             after: T.nilable(String),
             before: T.nilable(String),
-            direction:
-              T.nilable(Whopsdk::InvoiceListParams::Direction::OrSymbol),
+            direction: T.nilable(Whopsdk::Direction::OrSymbol),
             filters: T.nilable(Whopsdk::InvoiceListParams::Filters),
             first: T.nilable(Integer),
             last: T.nilable(Integer),
@@ -103,26 +100,6 @@ module Whopsdk
         )
       end
       def to_hash
-      end
-
-      # The direction of the sort.
-      module Direction
-        extend Whopsdk::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, Whopsdk::InvoiceListParams::Direction) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        ASC = T.let(:asc, Whopsdk::InvoiceListParams::Direction::TaggedSymbol)
-        DESC = T.let(:desc, Whopsdk::InvoiceListParams::Direction::TaggedSymbol)
-
-        sig do
-          override.returns(
-            T::Array[Whopsdk::InvoiceListParams::Direction::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
       end
 
       class Filters < Whopsdk::Internal::Type::BaseModel

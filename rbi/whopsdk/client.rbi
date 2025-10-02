@@ -14,6 +14,9 @@ module Whopsdk
     sig { returns(String) }
     attr_reader :api_key
 
+    sig { returns(Whopsdk::Resources::Apps) }
+    attr_reader :apps
+
     sig { returns(Whopsdk::Resources::Invoices) }
     attr_reader :invoices
 
@@ -25,6 +28,9 @@ module Whopsdk
 
     sig { returns(Whopsdk::Resources::Companies) }
     attr_reader :companies
+
+    sig { returns(Whopsdk::Resources::Webhooks) }
+    attr_reader :webhooks
 
     # @api private
     sig { override.returns(T::Hash[String, String]) }

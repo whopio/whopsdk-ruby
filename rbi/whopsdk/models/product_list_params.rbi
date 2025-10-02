@@ -24,9 +24,7 @@ module Whopsdk
       attr_accessor :before
 
       # The direction of the sort.
-      sig do
-        returns(T.nilable(Whopsdk::ProductListParams::Direction::OrSymbol))
-      end
+      sig { returns(T.nilable(Whopsdk::Direction::OrSymbol)) }
       attr_accessor :direction
 
       # Returns the first _n_ elements from the list.
@@ -44,11 +42,7 @@ module Whopsdk
       # The type of products to filter by
       sig do
         returns(
-          T.nilable(
-            T::Array[
-              T.nilable(Whopsdk::ProductListParams::ProductType::OrSymbol)
-            ]
-          )
+          T.nilable(T::Array[T.nilable(Whopsdk::AccessPassType::OrSymbol)])
         )
       end
       attr_accessor :product_types
@@ -70,16 +64,12 @@ module Whopsdk
           company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
-          direction: T.nilable(Whopsdk::ProductListParams::Direction::OrSymbol),
+          direction: T.nilable(Whopsdk::Direction::OrSymbol),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           order: T.nilable(Whopsdk::ProductListParams::Order::OrSymbol),
           product_types:
-            T.nilable(
-              T::Array[
-                T.nilable(Whopsdk::ProductListParams::ProductType::OrSymbol)
-              ]
-            ),
+            T.nilable(T::Array[T.nilable(Whopsdk::AccessPassType::OrSymbol)]),
           visibilities:
             T.nilable(
               T::Array[
@@ -118,17 +108,12 @@ module Whopsdk
             company_id: String,
             after: T.nilable(String),
             before: T.nilable(String),
-            direction:
-              T.nilable(Whopsdk::ProductListParams::Direction::OrSymbol),
+            direction: T.nilable(Whopsdk::Direction::OrSymbol),
             first: T.nilable(Integer),
             last: T.nilable(Integer),
             order: T.nilable(Whopsdk::ProductListParams::Order::OrSymbol),
             product_types:
-              T.nilable(
-                T::Array[
-                  T.nilable(Whopsdk::ProductListParams::ProductType::OrSymbol)
-                ]
-              ),
+              T.nilable(T::Array[T.nilable(Whopsdk::AccessPassType::OrSymbol)]),
             visibilities:
               T.nilable(
                 T::Array[
@@ -140,26 +125,6 @@ module Whopsdk
         )
       end
       def to_hash
-      end
-
-      # The direction of the sort.
-      module Direction
-        extend Whopsdk::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, Whopsdk::ProductListParams::Direction) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        ASC = T.let(:asc, Whopsdk::ProductListParams::Direction::TaggedSymbol)
-        DESC = T.let(:desc, Whopsdk::ProductListParams::Direction::TaggedSymbol)
-
-        sig do
-          override.returns(
-            T::Array[Whopsdk::ProductListParams::Direction::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
       end
 
       # The ways a relation of AccessPasses can be ordered
@@ -188,39 +153,6 @@ module Whopsdk
         sig do
           override.returns(
             T::Array[Whopsdk::ProductListParams::Order::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
-      end
-
-      # The different types an access pass can be.
-      module ProductType
-        extend Whopsdk::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, Whopsdk::ProductListParams::ProductType)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        REGULAR =
-          T.let(:regular, Whopsdk::ProductListParams::ProductType::TaggedSymbol)
-        APP = T.let(:app, Whopsdk::ProductListParams::ProductType::TaggedSymbol)
-        EXPERIENCE_UPSELL =
-          T.let(
-            :experience_upsell,
-            Whopsdk::ProductListParams::ProductType::TaggedSymbol
-          )
-        API_ONLY =
-          T.let(
-            :api_only,
-            Whopsdk::ProductListParams::ProductType::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[Whopsdk::ProductListParams::ProductType::TaggedSymbol]
           )
         end
         def self.values

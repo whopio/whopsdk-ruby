@@ -1,0 +1,104 @@
+module Whopsdk
+  module Models
+    type app_list_params =
+      {
+        after: String?,
+        before: String?,
+        company_id: String?,
+        direction: Whopsdk::Models::direction?,
+        first: Integer?,
+        last: Integer?,
+        order: Whopsdk::Models::AppListParams::order?,
+        query: String?,
+        verified_apps_only: bool?,
+        view_type: Whopsdk::Models::AppListParams::view_type?
+      }
+      & Whopsdk::Internal::Type::request_parameters
+
+    class AppListParams < Whopsdk::Internal::Type::BaseModel
+      extend Whopsdk::Internal::Type::RequestParameters::Converter
+      include Whopsdk::Internal::Type::RequestParameters
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor company_id: String?
+
+      attr_accessor direction: Whopsdk::Models::direction?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      attr_accessor order: Whopsdk::Models::AppListParams::order?
+
+      attr_accessor query: String?
+
+      attr_accessor verified_apps_only: bool?
+
+      attr_accessor view_type: Whopsdk::Models::AppListParams::view_type?
+
+      def initialize: (
+        ?after: String?,
+        ?before: String?,
+        ?company_id: String?,
+        ?direction: Whopsdk::Models::direction?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?order: Whopsdk::Models::AppListParams::order?,
+        ?query: String?,
+        ?verified_apps_only: bool?,
+        ?view_type: Whopsdk::Models::AppListParams::view_type?,
+        ?request_options: Whopsdk::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        after: String?,
+        before: String?,
+        company_id: String?,
+        direction: Whopsdk::Models::direction?,
+        first: Integer?,
+        last: Integer?,
+        order: Whopsdk::Models::AppListParams::order?,
+        query: String?,
+        verified_apps_only: bool?,
+        view_type: Whopsdk::Models::AppListParams::view_type?,
+        request_options: Whopsdk::RequestOptions
+      }
+
+      type order =
+        :discoverable_at
+        | :total_installs_last_30_days
+        | :time_spent
+        | :time_spent_last_24_hours
+        | :daily_active_users
+
+      module Order
+        extend Whopsdk::Internal::Type::Enum
+
+        DISCOVERABLE_AT: :discoverable_at
+        TOTAL_INSTALLS_LAST_30_DAYS: :total_installs_last_30_days
+        TIME_SPENT: :time_spent
+        TIME_SPENT_LAST_24_HOURS: :time_spent_last_24_hours
+        DAILY_ACTIVE_USERS: :daily_active_users
+
+        def self?.values: -> ::Array[Whopsdk::Models::AppListParams::order]
+      end
+
+      type view_type = :hub | :discover | :dash | :dashboard | :analytics
+
+      module ViewType
+        extend Whopsdk::Internal::Type::Enum
+
+        HUB: :hub
+        DISCOVER: :discover
+        DASH: :dash
+        DASHBOARD: :dashboard
+        ANALYTICS: :analytics
+
+        def self?.values: -> ::Array[Whopsdk::Models::AppListParams::view_type]
+      end
+    end
+  end
+end

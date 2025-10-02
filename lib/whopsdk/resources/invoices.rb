@@ -92,7 +92,7 @@ module Whopsdk
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param direction [Symbol, Whopsdk::Models::InvoiceListParams::Direction, nil] The direction of the sort.
+      # @param direction [Symbol, Whopsdk::Models::Direction, nil] The direction of the sort.
       #
       # @param filters [Whopsdk::Models::InvoiceListParams::Filters, nil] The filters to apply to the invoices
       #

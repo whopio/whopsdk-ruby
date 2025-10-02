@@ -13,7 +13,7 @@ module Whopsdk
         title: String,
         updated_at: Integer,
         verified: bool,
-        visibility: Whopsdk::Models::ProductListItem::visibility?
+        visibility: Whopsdk::Models::visibility?
       }
 
     class ProductListItem < Whopsdk::Internal::Type::BaseModel
@@ -39,7 +39,7 @@ module Whopsdk
 
       attr_accessor verified: bool
 
-      attr_accessor visibility: Whopsdk::Models::ProductListItem::visibility?
+      attr_accessor visibility: Whopsdk::Models::visibility?
 
       def initialize: (
         id: String,
@@ -53,7 +53,7 @@ module Whopsdk
         title: String,
         updated_at: Integer,
         verified: bool,
-        visibility: Whopsdk::Models::ProductListItem::visibility?
+        visibility: Whopsdk::Models::visibility?
       ) -> void
 
       def to_hash: -> {
@@ -68,21 +68,8 @@ module Whopsdk
         title: String,
         updated_at: Integer,
         verified: bool,
-        visibility: Whopsdk::Models::ProductListItem::visibility?
+        visibility: Whopsdk::Models::visibility?
       }
-
-      type visibility = :visible | :hidden | :archived | :quick_link
-
-      module Visibility
-        extend Whopsdk::Internal::Type::Enum
-
-        VISIBLE: :visible
-        HIDDEN: :hidden
-        ARCHIVED: :archived
-        QUICK_LINK: :quick_link
-
-        def self?.values: -> ::Array[Whopsdk::Models::ProductListItem::visibility]
-      end
     end
   end
 end

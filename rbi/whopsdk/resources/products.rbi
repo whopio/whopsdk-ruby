@@ -199,11 +199,7 @@ module Whopsdk
           product_types:
             T.nilable(T::Array[T.nilable(Whopsdk::AccessPassType::OrSymbol)]),
           visibilities:
-            T.nilable(
-              T::Array[
-                T.nilable(Whopsdk::ProductListParams::Visibility::OrSymbol)
-              ]
-            ),
+            T.nilable(T::Array[T.nilable(Whopsdk::VisibilityFilter::OrSymbol)]),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(
           Whopsdk::Internal::CursorPage[T.nilable(Whopsdk::ProductListItem)]

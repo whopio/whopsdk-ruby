@@ -1,6 +1,6 @@
 module Whopsdk
   module Models
-    type product_list_params =
+    type entry_list_params =
       {
         company_id: String,
         after: String?,
@@ -8,13 +8,14 @@ module Whopsdk
         direction: Whopsdk::Models::direction?,
         first: Integer?,
         last: Integer?,
-        order: Whopsdk::Models::ProductListParams::order?,
-        product_types: ::Array[Whopsdk::Models::access_pass_type?]?,
-        visibilities: ::Array[Whopsdk::Models::visibility_filter?]?
+        order: Whopsdk::Models::EntryListParams::order?,
+        plan_ids: ::Array[String]?,
+        product_ids: ::Array[String]?,
+        statuses: ::Array[Whopsdk::Models::entry_status?]?
       }
       & Whopsdk::Internal::Type::request_parameters
 
-    class ProductListParams < Whopsdk::Internal::Type::BaseModel
+    class EntryListParams < Whopsdk::Internal::Type::BaseModel
       extend Whopsdk::Internal::Type::RequestParameters::Converter
       include Whopsdk::Internal::Type::RequestParameters
 
@@ -30,11 +31,13 @@ module Whopsdk
 
       attr_accessor last: Integer?
 
-      attr_accessor order: Whopsdk::Models::ProductListParams::order?
+      attr_accessor order: Whopsdk::Models::EntryListParams::order?
 
-      attr_accessor product_types: ::Array[Whopsdk::Models::access_pass_type?]?
+      attr_accessor plan_ids: ::Array[String]?
 
-      attr_accessor visibilities: ::Array[Whopsdk::Models::visibility_filter?]?
+      attr_accessor product_ids: ::Array[String]?
+
+      attr_accessor statuses: ::Array[Whopsdk::Models::entry_status?]?
 
       def initialize: (
         company_id: String,
@@ -43,9 +46,10 @@ module Whopsdk
         ?direction: Whopsdk::Models::direction?,
         ?first: Integer?,
         ?last: Integer?,
-        ?order: Whopsdk::Models::ProductListParams::order?,
-        ?product_types: ::Array[Whopsdk::Models::access_pass_type?]?,
-        ?visibilities: ::Array[Whopsdk::Models::visibility_filter?]?,
+        ?order: Whopsdk::Models::EntryListParams::order?,
+        ?plan_ids: ::Array[String]?,
+        ?product_ids: ::Array[String]?,
+        ?statuses: ::Array[Whopsdk::Models::entry_status?]?,
         ?request_options: Whopsdk::request_opts
       ) -> void
 
@@ -56,24 +60,22 @@ module Whopsdk
         direction: Whopsdk::Models::direction?,
         first: Integer?,
         last: Integer?,
-        order: Whopsdk::Models::ProductListParams::order?,
-        product_types: ::Array[Whopsdk::Models::access_pass_type?]?,
-        visibilities: ::Array[Whopsdk::Models::visibility_filter?]?,
+        order: Whopsdk::Models::EntryListParams::order?,
+        plan_ids: ::Array[String]?,
+        product_ids: ::Array[String]?,
+        statuses: ::Array[Whopsdk::Models::entry_status?]?,
         request_options: Whopsdk::RequestOptions
       }
 
-      type order =
-        :active_memberships_count | :created_at | :usd_gmv | :usd_gmv_30_days
+      type order = :id | :created_at
 
       module Order
         extend Whopsdk::Internal::Type::Enum
 
-        ACTIVE_MEMBERSHIPS_COUNT: :active_memberships_count
+        ID: :id
         CREATED_AT: :created_at
-        USD_GMV: :usd_gmv
-        USD_GMV_30_DAYS: :usd_gmv_30_days
 
-        def self?.values: -> ::Array[Whopsdk::Models::ProductListParams::order]
+        def self?.values: -> ::Array[Whopsdk::Models::EntryListParams::order]
       end
     end
   end

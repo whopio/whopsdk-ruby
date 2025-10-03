@@ -1,0 +1,15 @@
+module Whopsdk
+  module Models
+    type tax_type = :inclusive | :exclusive | :unspecified
+
+    module TaxType
+      extend Whopsdk::Internal::Type::Enum
+
+      INCLUSIVE: :inclusive
+      EXCLUSIVE: :exclusive
+      UNSPECIFIED: :unspecified
+
+      def self?.values: -> ::Array[Whopsdk::Models::tax_type]
+    end
+  end
+end

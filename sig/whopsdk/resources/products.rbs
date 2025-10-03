@@ -63,7 +63,7 @@ module Whopsdk
         ?last: Integer?,
         ?order: Whopsdk::Models::ProductListParams::order?,
         ?product_types: ::Array[Whopsdk::Models::access_pass_type?]?,
-        ?visibilities: ::Array[Whopsdk::Models::ProductListParams::visibility?]?,
+        ?visibilities: ::Array[Whopsdk::Models::visibility_filter?]?,
         ?request_options: Whopsdk::request_opts
       ) -> Whopsdk::Internal::CursorPage[Whopsdk::ProductListItem?]
 

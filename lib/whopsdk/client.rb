@@ -37,6 +37,12 @@ module Whopsdk
     # @return [Whopsdk::Resources::Webhooks]
     attr_reader :webhooks
 
+    # @return [Whopsdk::Resources::Plans]
+    attr_reader :plans
+
+    # @return [Whopsdk::Resources::Entries]
+    attr_reader :entries
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -91,6 +97,8 @@ module Whopsdk
       @products = Whopsdk::Resources::Products.new(client: self)
       @companies = Whopsdk::Resources::Companies.new(client: self)
       @webhooks = Whopsdk::Resources::Webhooks.new(client: self)
+      @plans = Whopsdk::Resources::Plans.new(client: self)
+      @entries = Whopsdk::Resources::Entries.new(client: self)
     end
   end
 end

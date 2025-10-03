@@ -22,6 +22,10 @@ module Whopsdk
 
     attr_reader webhooks: Whopsdk::Resources::Webhooks
 
+    attr_reader plans: Whopsdk::Resources::Plans
+
+    attr_reader entries: Whopsdk::Resources::Entries
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

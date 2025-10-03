@@ -32,6 +32,12 @@ module Whopsdk
     sig { returns(Whopsdk::Resources::Webhooks) }
     attr_reader :webhooks
 
+    sig { returns(Whopsdk::Resources::Plans) }
+    attr_reader :plans
+
+    sig { returns(Whopsdk::Resources::Entries) }
+    attr_reader :entries
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

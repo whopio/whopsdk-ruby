@@ -1,6 +1,6 @@
 module Whopsdk
   module Models
-    type product_list_params =
+    type plan_list_params =
       {
         company_id: String,
         after: String?,
@@ -8,13 +8,15 @@ module Whopsdk
         direction: Whopsdk::Models::direction?,
         first: Integer?,
         last: Integer?,
-        order: Whopsdk::Models::ProductListParams::order?,
-        product_types: ::Array[Whopsdk::Models::access_pass_type?]?,
+        order: Whopsdk::Models::PlanListParams::order?,
+        plan_types: ::Array[Whopsdk::Models::plan_type?]?,
+        product_ids: ::Array[String]?,
+        release_methods: ::Array[Whopsdk::Models::release_method?]?,
         visibilities: ::Array[Whopsdk::Models::visibility_filter?]?
       }
       & Whopsdk::Internal::Type::request_parameters
 
-    class ProductListParams < Whopsdk::Internal::Type::BaseModel
+    class PlanListParams < Whopsdk::Internal::Type::BaseModel
       extend Whopsdk::Internal::Type::RequestParameters::Converter
       include Whopsdk::Internal::Type::RequestParameters
 
@@ -30,9 +32,13 @@ module Whopsdk
 
       attr_accessor last: Integer?
 
-      attr_accessor order: Whopsdk::Models::ProductListParams::order?
+      attr_accessor order: Whopsdk::Models::PlanListParams::order?
 
-      attr_accessor product_types: ::Array[Whopsdk::Models::access_pass_type?]?
+      attr_accessor plan_types: ::Array[Whopsdk::Models::plan_type?]?
+
+      attr_accessor product_ids: ::Array[String]?
+
+      attr_accessor release_methods: ::Array[Whopsdk::Models::release_method?]?
 
       attr_accessor visibilities: ::Array[Whopsdk::Models::visibility_filter?]?
 
@@ -43,8 +49,10 @@ module Whopsdk
         ?direction: Whopsdk::Models::direction?,
         ?first: Integer?,
         ?last: Integer?,
-        ?order: Whopsdk::Models::ProductListParams::order?,
-        ?product_types: ::Array[Whopsdk::Models::access_pass_type?]?,
+        ?order: Whopsdk::Models::PlanListParams::order?,
+        ?plan_types: ::Array[Whopsdk::Models::plan_type?]?,
+        ?product_ids: ::Array[String]?,
+        ?release_methods: ::Array[Whopsdk::Models::release_method?]?,
         ?visibilities: ::Array[Whopsdk::Models::visibility_filter?]?,
         ?request_options: Whopsdk::request_opts
       ) -> void
@@ -56,24 +64,31 @@ module Whopsdk
         direction: Whopsdk::Models::direction?,
         first: Integer?,
         last: Integer?,
-        order: Whopsdk::Models::ProductListParams::order?,
-        product_types: ::Array[Whopsdk::Models::access_pass_type?]?,
+        order: Whopsdk::Models::PlanListParams::order?,
+        plan_types: ::Array[Whopsdk::Models::plan_type?]?,
+        product_ids: ::Array[String]?,
+        release_methods: ::Array[Whopsdk::Models::release_method?]?,
         visibilities: ::Array[Whopsdk::Models::visibility_filter?]?,
         request_options: Whopsdk::RequestOptions
       }
 
       type order =
-        :active_memberships_count | :created_at | :usd_gmv | :usd_gmv_30_days
+        :id
+        | :active_members_count
+        | :created_at
+        | :internal_notes
+        | :expires_at
 
       module Order
         extend Whopsdk::Internal::Type::Enum
 
-        ACTIVE_MEMBERSHIPS_COUNT: :active_memberships_count
+        ID: :id
+        ACTIVE_MEMBERS_COUNT: :active_members_count
         CREATED_AT: :created_at
-        USD_GMV: :usd_gmv
-        USD_GMV_30_DAYS: :usd_gmv_30_days
+        INTERNAL_NOTES: :internal_notes
+        EXPIRES_AT: :expires_at
 
-        def self?.values: -> ::Array[Whopsdk::Models::ProductListParams::order]
+        def self?.values: -> ::Array[Whopsdk::Models::PlanListParams::order]
       end
     end
   end

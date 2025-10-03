@@ -1,0 +1,26 @@
+module Whopsdk
+  module Models
+    type visibility_filter =
+      :visible
+      | :hidden
+      | :archived
+      | :quick_link
+      | :all
+      | :not_quick_link
+      | :not_archived
+
+    module VisibilityFilter
+      extend Whopsdk::Internal::Type::Enum
+
+      VISIBLE: :visible
+      HIDDEN: :hidden
+      ARCHIVED: :archived
+      QUICK_LINK: :quick_link
+      ALL: :all
+      NOT_QUICK_LINK: :not_quick_link
+      NOT_ARCHIVED: :not_archived
+
+      def self?.values: -> ::Array[Whopsdk::Models::visibility_filter]
+    end
+  end
+end

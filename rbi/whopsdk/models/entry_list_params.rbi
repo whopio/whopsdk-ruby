@@ -2,16 +2,16 @@
 
 module Whopsdk
   module Models
-    class ProductListParams < Whopsdk::Internal::Type::BaseModel
+    class EntryListParams < Whopsdk::Internal::Type::BaseModel
       extend Whopsdk::Internal::Type::RequestParameters::Converter
       include Whopsdk::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Whopsdk::ProductListParams, Whopsdk::Internal::AnyHash)
+          T.any(Whopsdk::EntryListParams, Whopsdk::Internal::AnyHash)
         end
 
-      # The ID of the company to filter products by
+      # The ID of the company
       sig { returns(String) }
       attr_accessor :company_id
 
@@ -35,25 +35,23 @@ module Whopsdk
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
-      # The ways a relation of AccessPasses can be ordered
-      sig { returns(T.nilable(Whopsdk::ProductListParams::Order::OrSymbol)) }
+      # Which columns can be used to sort.
+      sig { returns(T.nilable(Whopsdk::EntryListParams::Order::OrSymbol)) }
       attr_accessor :order
 
-      # The type of products to filter by
-      sig do
-        returns(
-          T.nilable(T::Array[T.nilable(Whopsdk::AccessPassType::OrSymbol)])
-        )
-      end
-      attr_accessor :product_types
+      # The plan IDs to filter the entries by
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_accessor :plan_ids
 
-      # The visibility of the products to filter by
+      # The access pass IDs to filter the entries by
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_accessor :product_ids
+
+      # The statuses to filter the entries by
       sig do
-        returns(
-          T.nilable(T::Array[T.nilable(Whopsdk::VisibilityFilter::OrSymbol)])
-        )
+        returns(T.nilable(T::Array[T.nilable(Whopsdk::EntryStatus::OrSymbol)]))
       end
-      attr_accessor :visibilities
+      attr_accessor :statuses
 
       sig do
         params(
@@ -63,16 +61,16 @@ module Whopsdk
           direction: T.nilable(Whopsdk::Direction::OrSymbol),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
-          order: T.nilable(Whopsdk::ProductListParams::Order::OrSymbol),
-          product_types:
-            T.nilable(T::Array[T.nilable(Whopsdk::AccessPassType::OrSymbol)]),
-          visibilities:
-            T.nilable(T::Array[T.nilable(Whopsdk::VisibilityFilter::OrSymbol)]),
+          order: T.nilable(Whopsdk::EntryListParams::Order::OrSymbol),
+          plan_ids: T.nilable(T::Array[String]),
+          product_ids: T.nilable(T::Array[String]),
+          statuses:
+            T.nilable(T::Array[T.nilable(Whopsdk::EntryStatus::OrSymbol)]),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the company to filter products by
+        # The ID of the company
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
@@ -84,12 +82,14 @@ module Whopsdk
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The ways a relation of AccessPasses can be ordered
+        # Which columns can be used to sort.
         order: nil,
-        # The type of products to filter by
-        product_types: nil,
-        # The visibility of the products to filter by
-        visibilities: nil,
+        # The plan IDs to filter the entries by
+        plan_ids: nil,
+        # The access pass IDs to filter the entries by
+        product_ids: nil,
+        # The statuses to filter the entries by
+        statuses: nil,
         request_options: {}
       )
       end
@@ -103,13 +103,11 @@ module Whopsdk
             direction: T.nilable(Whopsdk::Direction::OrSymbol),
             first: T.nilable(Integer),
             last: T.nilable(Integer),
-            order: T.nilable(Whopsdk::ProductListParams::Order::OrSymbol),
-            product_types:
-              T.nilable(T::Array[T.nilable(Whopsdk::AccessPassType::OrSymbol)]),
-            visibilities:
-              T.nilable(
-                T::Array[T.nilable(Whopsdk::VisibilityFilter::OrSymbol)]
-              ),
+            order: T.nilable(Whopsdk::EntryListParams::Order::OrSymbol),
+            plan_ids: T.nilable(T::Array[String]),
+            product_ids: T.nilable(T::Array[String]),
+            statuses:
+              T.nilable(T::Array[T.nilable(Whopsdk::EntryStatus::OrSymbol)]),
             request_options: Whopsdk::RequestOptions
           }
         )
@@ -117,32 +115,21 @@ module Whopsdk
       def to_hash
       end
 
-      # The ways a relation of AccessPasses can be ordered
+      # Which columns can be used to sort.
       module Order
         extend Whopsdk::Internal::Type::Enum
 
         TaggedSymbol =
-          T.type_alias { T.all(Symbol, Whopsdk::ProductListParams::Order) }
+          T.type_alias { T.all(Symbol, Whopsdk::EntryListParams::Order) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        ACTIVE_MEMBERSHIPS_COUNT =
-          T.let(
-            :active_memberships_count,
-            Whopsdk::ProductListParams::Order::TaggedSymbol
-          )
+        ID = T.let(:id, Whopsdk::EntryListParams::Order::TaggedSymbol)
         CREATED_AT =
-          T.let(:created_at, Whopsdk::ProductListParams::Order::TaggedSymbol)
-        USD_GMV =
-          T.let(:usd_gmv, Whopsdk::ProductListParams::Order::TaggedSymbol)
-        USD_GMV_30_DAYS =
-          T.let(
-            :usd_gmv_30_days,
-            Whopsdk::ProductListParams::Order::TaggedSymbol
-          )
+          T.let(:created_at, Whopsdk::EntryListParams::Order::TaggedSymbol)
 
         sig do
           override.returns(
-            T::Array[Whopsdk::ProductListParams::Order::TaggedSymbol]
+            T::Array[Whopsdk::EntryListParams::Order::TaggedSymbol]
           )
         end
         def self.values

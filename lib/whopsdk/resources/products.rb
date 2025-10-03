@@ -188,7 +188,7 @@ module Whopsdk
       #
       # @param product_types [Array<Symbol, Whopsdk::Models::AccessPassType, nil>, nil] The type of products to filter by
       #
-      # @param visibilities [Array<Symbol, Whopsdk::Models::ProductListParams::Visibility, nil>, nil] The visibility of the products to filter by
+      # @param visibilities [Array<Symbol, Whopsdk::Models::VisibilityFilter, nil>, nil] The visibility of the products to filter by
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #

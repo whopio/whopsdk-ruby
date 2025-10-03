@@ -1,0 +1,133 @@
+module Whopsdk
+  module Models
+    type plan_update_params =
+      {
+        billing_period: Integer?,
+        currency: Whopsdk::Models::currency?,
+        custom_fields: ::Array[Whopsdk::PlanUpdateParams::CustomField]?,
+        description: String?,
+        expiration_days: Integer?,
+        initial_price: Float?,
+        internal_notes: String?,
+        offer_cancel_discount: bool?,
+        override_tax_type: Whopsdk::Models::tax_type?,
+        renewal_price: Float?,
+        trial_period_days: Integer?,
+        visibility: Whopsdk::Models::visibility?
+      }
+      & Whopsdk::Internal::Type::request_parameters
+
+    class PlanUpdateParams < Whopsdk::Internal::Type::BaseModel
+      extend Whopsdk::Internal::Type::RequestParameters::Converter
+      include Whopsdk::Internal::Type::RequestParameters
+
+      attr_accessor billing_period: Integer?
+
+      attr_accessor currency: Whopsdk::Models::currency?
+
+      attr_accessor custom_fields: ::Array[Whopsdk::PlanUpdateParams::CustomField]?
+
+      attr_accessor description: String?
+
+      attr_accessor expiration_days: Integer?
+
+      attr_accessor initial_price: Float?
+
+      attr_accessor internal_notes: String?
+
+      attr_accessor offer_cancel_discount: bool?
+
+      attr_accessor override_tax_type: Whopsdk::Models::tax_type?
+
+      attr_accessor renewal_price: Float?
+
+      attr_accessor trial_period_days: Integer?
+
+      attr_accessor visibility: Whopsdk::Models::visibility?
+
+      def initialize: (
+        ?billing_period: Integer?,
+        ?currency: Whopsdk::Models::currency?,
+        ?custom_fields: ::Array[Whopsdk::PlanUpdateParams::CustomField]?,
+        ?description: String?,
+        ?expiration_days: Integer?,
+        ?initial_price: Float?,
+        ?internal_notes: String?,
+        ?offer_cancel_discount: bool?,
+        ?override_tax_type: Whopsdk::Models::tax_type?,
+        ?renewal_price: Float?,
+        ?trial_period_days: Integer?,
+        ?visibility: Whopsdk::Models::visibility?,
+        ?request_options: Whopsdk::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        billing_period: Integer?,
+        currency: Whopsdk::Models::currency?,
+        custom_fields: ::Array[Whopsdk::PlanUpdateParams::CustomField]?,
+        description: String?,
+        expiration_days: Integer?,
+        initial_price: Float?,
+        internal_notes: String?,
+        offer_cancel_discount: bool?,
+        override_tax_type: Whopsdk::Models::tax_type?,
+        renewal_price: Float?,
+        trial_period_days: Integer?,
+        visibility: Whopsdk::Models::visibility?,
+        request_options: Whopsdk::RequestOptions
+      }
+
+      type custom_field =
+        {
+          field_type: Whopsdk::Models::PlanUpdateParams::CustomField::field_type?,
+          name: String,
+          id: String?,
+          order: Integer?,
+          placeholder: String?,
+          required: bool?
+        }
+
+      class CustomField < Whopsdk::Internal::Type::BaseModel
+        attr_accessor field_type: Whopsdk::Models::PlanUpdateParams::CustomField::field_type?
+
+        attr_accessor name: String
+
+        attr_accessor id: String?
+
+        attr_accessor order: Integer?
+
+        attr_accessor placeholder: String?
+
+        attr_accessor required: bool?
+
+        def initialize: (
+          field_type: Whopsdk::Models::PlanUpdateParams::CustomField::field_type?,
+          name: String,
+          ?id: String?,
+          ?order: Integer?,
+          ?placeholder: String?,
+          ?required: bool?
+        ) -> void
+
+        def to_hash: -> {
+          field_type: Whopsdk::Models::PlanUpdateParams::CustomField::field_type?,
+          name: String,
+          id: String?,
+          order: Integer?,
+          placeholder: String?,
+          required: bool?
+        }
+
+        type field_type = :text
+
+        module FieldType
+          extend Whopsdk::Internal::Type::Enum
+
+          TEXT: :text
+
+          def self?.values: -> ::Array[Whopsdk::Models::PlanUpdateParams::CustomField::field_type]
+        end
+      end
+    end
+  end
+end

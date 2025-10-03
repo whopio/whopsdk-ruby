@@ -2,13 +2,13 @@
 
 module Whopsdk
   module Models
-    # @see Whopsdk::Resources::Products#list
-    class ProductListParams < Whopsdk::Internal::Type::BaseModel
+    # @see Whopsdk::Resources::Entries#list
+    class EntryListParams < Whopsdk::Internal::Type::BaseModel
       extend Whopsdk::Internal::Type::RequestParameters::Converter
       include Whopsdk::Internal::Type::RequestParameters
 
       # @!attribute company_id
-      #   The ID of the company to filter products by
+      #   The ID of the company
       #
       #   @return [String]
       required :company_id, String
@@ -44,29 +44,33 @@ module Whopsdk
       optional :last, Integer, nil?: true
 
       # @!attribute order
-      #   The ways a relation of AccessPasses can be ordered
+      #   Which columns can be used to sort.
       #
-      #   @return [Symbol, Whopsdk::Models::ProductListParams::Order, nil]
-      optional :order, enum: -> { Whopsdk::ProductListParams::Order }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::EntryListParams::Order, nil]
+      optional :order, enum: -> { Whopsdk::EntryListParams::Order }, nil?: true
 
-      # @!attribute product_types
-      #   The type of products to filter by
+      # @!attribute plan_ids
+      #   The plan IDs to filter the entries by
       #
-      #   @return [Array<Symbol, Whopsdk::Models::AccessPassType, nil>, nil]
-      optional :product_types,
-               -> { Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::AccessPassType, nil?: true] },
+      #   @return [Array<String>, nil]
+      optional :plan_ids, Whopsdk::Internal::Type::ArrayOf[String], nil?: true
+
+      # @!attribute product_ids
+      #   The access pass IDs to filter the entries by
+      #
+      #   @return [Array<String>, nil]
+      optional :product_ids, Whopsdk::Internal::Type::ArrayOf[String], nil?: true
+
+      # @!attribute statuses
+      #   The statuses to filter the entries by
+      #
+      #   @return [Array<Symbol, Whopsdk::Models::EntryStatus, nil>, nil]
+      optional :statuses,
+               -> { Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::EntryStatus, nil?: true] },
                nil?: true
 
-      # @!attribute visibilities
-      #   The visibility of the products to filter by
-      #
-      #   @return [Array<Symbol, Whopsdk::Models::VisibilityFilter, nil>, nil]
-      optional :visibilities,
-               -> { Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::VisibilityFilter, nil?: true] },
-               nil?: true
-
-      # @!method initialize(company_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, order: nil, product_types: nil, visibilities: nil, request_options: {})
-      #   @param company_id [String] The ID of the company to filter products by
+      # @!method initialize(company_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, statuses: nil, request_options: {})
+      #   @param company_id [String] The ID of the company
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -78,22 +82,22 @@ module Whopsdk
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      #   @param order [Symbol, Whopsdk::Models::ProductListParams::Order, nil] The ways a relation of AccessPasses can be ordered
+      #   @param order [Symbol, Whopsdk::Models::EntryListParams::Order, nil] Which columns can be used to sort.
       #
-      #   @param product_types [Array<Symbol, Whopsdk::Models::AccessPassType, nil>, nil] The type of products to filter by
+      #   @param plan_ids [Array<String>, nil] The plan IDs to filter the entries by
       #
-      #   @param visibilities [Array<Symbol, Whopsdk::Models::VisibilityFilter, nil>, nil] The visibility of the products to filter by
+      #   @param product_ids [Array<String>, nil] The access pass IDs to filter the entries by
+      #
+      #   @param statuses [Array<Symbol, Whopsdk::Models::EntryStatus, nil>, nil] The statuses to filter the entries by
       #
       #   @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}]
 
-      # The ways a relation of AccessPasses can be ordered
+      # Which columns can be used to sort.
       module Order
         extend Whopsdk::Internal::Type::Enum
 
-        ACTIVE_MEMBERSHIPS_COUNT = :active_memberships_count
+        ID = :id
         CREATED_AT = :created_at
-        USD_GMV = :usd_gmv
-        USD_GMV_30_DAYS = :usd_gmv_30_days
 
         # @!method self.values
         #   @return [Array<Symbol>]

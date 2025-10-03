@@ -1,0 +1,211 @@
+module Whopsdk
+  module Models
+    type plan =
+      {
+        id: String,
+        billing_period: Integer?,
+        collect_tax: bool,
+        company: Whopsdk::Plan::Company?,
+        created_at: Integer,
+        currency: Whopsdk::Models::currency?,
+        custom_fields: ::Array[Whopsdk::Plan::CustomField],
+        description: String?,
+        expiration_days: Integer?,
+        initial_price: Float,
+        internal_notes: String?,
+        invoice: Whopsdk::Plan::Invoice?,
+        member_count: Integer?,
+        plan_type: Whopsdk::Models::plan_type?,
+        product: Whopsdk::Plan::Product?,
+        purchase_link: String,
+        release_method: Whopsdk::Models::release_method?,
+        renewal_price: Float,
+        tax_type: Whopsdk::Models::tax_type?,
+        trial_period_days: Integer?,
+        updated_at: Integer,
+        visibility: Whopsdk::Models::visibility?
+      }
+
+    class Plan < Whopsdk::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor billing_period: Integer?
+
+      attr_accessor collect_tax: bool
+
+      attr_accessor company: Whopsdk::Plan::Company?
+
+      attr_accessor created_at: Integer
+
+      attr_accessor currency: Whopsdk::Models::currency?
+
+      attr_accessor custom_fields: ::Array[Whopsdk::Plan::CustomField]
+
+      attr_accessor description: String?
+
+      attr_accessor expiration_days: Integer?
+
+      attr_accessor initial_price: Float
+
+      attr_accessor internal_notes: String?
+
+      attr_accessor invoice: Whopsdk::Plan::Invoice?
+
+      attr_accessor member_count: Integer?
+
+      attr_accessor plan_type: Whopsdk::Models::plan_type?
+
+      attr_accessor product: Whopsdk::Plan::Product?
+
+      attr_accessor purchase_link: String
+
+      attr_accessor release_method: Whopsdk::Models::release_method?
+
+      attr_accessor renewal_price: Float
+
+      attr_accessor tax_type: Whopsdk::Models::tax_type?
+
+      attr_accessor trial_period_days: Integer?
+
+      attr_accessor updated_at: Integer
+
+      attr_accessor visibility: Whopsdk::Models::visibility?
+
+      def initialize: (
+        id: String,
+        billing_period: Integer?,
+        collect_tax: bool,
+        company: Whopsdk::Plan::Company?,
+        created_at: Integer,
+        currency: Whopsdk::Models::currency?,
+        custom_fields: ::Array[Whopsdk::Plan::CustomField],
+        description: String?,
+        expiration_days: Integer?,
+        initial_price: Float,
+        internal_notes: String?,
+        invoice: Whopsdk::Plan::Invoice?,
+        member_count: Integer?,
+        plan_type: Whopsdk::Models::plan_type?,
+        product: Whopsdk::Plan::Product?,
+        purchase_link: String,
+        release_method: Whopsdk::Models::release_method?,
+        renewal_price: Float,
+        tax_type: Whopsdk::Models::tax_type?,
+        trial_period_days: Integer?,
+        updated_at: Integer,
+        visibility: Whopsdk::Models::visibility?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        billing_period: Integer?,
+        collect_tax: bool,
+        company: Whopsdk::Plan::Company?,
+        created_at: Integer,
+        currency: Whopsdk::Models::currency?,
+        custom_fields: ::Array[Whopsdk::Plan::CustomField],
+        description: String?,
+        expiration_days: Integer?,
+        initial_price: Float,
+        internal_notes: String?,
+        invoice: Whopsdk::Plan::Invoice?,
+        member_count: Integer?,
+        plan_type: Whopsdk::Models::plan_type?,
+        product: Whopsdk::Plan::Product?,
+        purchase_link: String,
+        release_method: Whopsdk::Models::release_method?,
+        renewal_price: Float,
+        tax_type: Whopsdk::Models::tax_type?,
+        trial_period_days: Integer?,
+        updated_at: Integer,
+        visibility: Whopsdk::Models::visibility?
+      }
+
+      type company = { id: String, title: String }
+
+      class Company < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type custom_field =
+        {
+          id: String,
+          field_type: Whopsdk::Models::Plan::CustomField::field_type?,
+          name: String,
+          order: Integer?,
+          placeholder: String?,
+          required: bool
+        }
+
+      class CustomField < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor field_type: Whopsdk::Models::Plan::CustomField::field_type?
+
+        attr_accessor name: String
+
+        attr_accessor order: Integer?
+
+        attr_accessor placeholder: String?
+
+        attr_accessor required: bool
+
+        def initialize: (
+          id: String,
+          field_type: Whopsdk::Models::Plan::CustomField::field_type?,
+          name: String,
+          order: Integer?,
+          placeholder: String?,
+          required: bool
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          field_type: Whopsdk::Models::Plan::CustomField::field_type?,
+          name: String,
+          order: Integer?,
+          placeholder: String?,
+          required: bool
+        }
+
+        type field_type = :text
+
+        module FieldType
+          extend Whopsdk::Internal::Type::Enum
+
+          TEXT: :text
+
+          def self?.values: -> ::Array[Whopsdk::Models::Plan::CustomField::field_type]
+        end
+      end
+
+      type invoice = { id: String }
+
+      class Invoice < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type product = { id: String, title: String }
+
+      class Product < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+    end
+  end
+end

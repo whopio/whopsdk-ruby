@@ -1,0 +1,65 @@
+module Whopsdk
+  module Resources
+    class Plans
+      def create: (
+        company_id: String,
+        product_id: String,
+        ?billing_period: Integer?,
+        ?currency: Whopsdk::Models::currency?,
+        ?custom_fields: ::Array[Whopsdk::PlanCreateParams::CustomField]?,
+        ?description: String?,
+        ?expiration_days: Integer?,
+        ?initial_price: Float?,
+        ?internal_notes: String?,
+        ?override_tax_type: Whopsdk::Models::tax_type?,
+        ?plan_type: Whopsdk::Models::plan_type?,
+        ?release_method: Whopsdk::Models::release_method?,
+        ?renewal_price: Float?,
+        ?trial_period_days: Integer?,
+        ?visibility: Whopsdk::Models::visibility?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Plan?
+
+      def retrieve: (
+        String id,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Plan?
+
+      def update: (
+        String id,
+        ?billing_period: Integer?,
+        ?currency: Whopsdk::Models::currency?,
+        ?custom_fields: ::Array[Whopsdk::PlanUpdateParams::CustomField]?,
+        ?description: String?,
+        ?expiration_days: Integer?,
+        ?initial_price: Float?,
+        ?internal_notes: String?,
+        ?offer_cancel_discount: bool?,
+        ?override_tax_type: Whopsdk::Models::tax_type?,
+        ?renewal_price: Float?,
+        ?trial_period_days: Integer?,
+        ?visibility: Whopsdk::Models::visibility?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Plan?
+
+      def list: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?direction: Whopsdk::Models::direction?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?order: Whopsdk::Models::PlanListParams::order?,
+        ?plan_types: ::Array[Whopsdk::Models::plan_type?]?,
+        ?product_ids: ::Array[String]?,
+        ?release_methods: ::Array[Whopsdk::Models::release_method?]?,
+        ?visibilities: ::Array[Whopsdk::Models::visibility_filter?]?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::PlanListResponse?]
+
+      def delete: (String id, ?request_options: Whopsdk::request_opts) -> bool?
+
+      def initialize: (client: Whopsdk::Client) -> void
+    end
+  end
+end

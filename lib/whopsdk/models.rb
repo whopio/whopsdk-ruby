@@ -75,6 +75,18 @@ module Whopsdk
 
   Direction = Whopsdk::Models::Direction
 
+  Entry = Whopsdk::Models::Entry
+
+  EntryApproveParams = Whopsdk::Models::EntryApproveParams
+
+  EntryDenyParams = Whopsdk::Models::EntryDenyParams
+
+  EntryListParams = Whopsdk::Models::EntryListParams
+
+  EntryRetrieveParams = Whopsdk::Models::EntryRetrieveParams
+
+  EntryStatus = Whopsdk::Models::EntryStatus
+
   GlobalAffiliateStatus = Whopsdk::Models::GlobalAffiliateStatus
 
   IndustryTypes = Whopsdk::Models::IndustryTypes
@@ -103,7 +115,19 @@ module Whopsdk
 
   PageInfo = Whopsdk::Models::PageInfo
 
+  Plan = Whopsdk::Models::Plan
+
+  PlanCreateParams = Whopsdk::Models::PlanCreateParams
+
+  PlanDeleteParams = Whopsdk::Models::PlanDeleteParams
+
+  PlanListParams = Whopsdk::Models::PlanListParams
+
+  PlanRetrieveParams = Whopsdk::Models::PlanRetrieveParams
+
   PlanType = Whopsdk::Models::PlanType
+
+  PlanUpdateParams = Whopsdk::Models::PlanUpdateParams
 
   Product = Whopsdk::Models::Product
 
@@ -121,9 +145,13 @@ module Whopsdk
 
   ReleaseMethod = Whopsdk::Models::ReleaseMethod
 
+  TaxType = Whopsdk::Models::TaxType
+
   UnwrapWebhookEvent = Whopsdk::Models::UnwrapWebhookEvent
 
   Visibility = Whopsdk::Models::Visibility
+
+  VisibilityFilter = Whopsdk::Models::VisibilityFilter
 
   WebhookUnwrapParams = Whopsdk::Models::WebhookUnwrapParams
 end

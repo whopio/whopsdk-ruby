@@ -5,6 +5,8 @@ module Whopsdk
         id: String,
         api_key: Whopsdk::App::APIKey?,
         base_url: String?,
+        company: Whopsdk::App::Company,
+        creator: Whopsdk::App::Creator,
         dashboard_path: String?,
         description: String?,
         discover_path: String?,
@@ -23,6 +25,10 @@ module Whopsdk
       attr_accessor api_key: Whopsdk::App::APIKey?
 
       attr_accessor base_url: String?
+
+      attr_accessor company: Whopsdk::App::Company
+
+      attr_accessor creator: Whopsdk::App::Creator
 
       attr_accessor dashboard_path: String?
 
@@ -48,6 +54,8 @@ module Whopsdk
         id: String,
         api_key: Whopsdk::App::APIKey?,
         base_url: String?,
+        company: Whopsdk::App::Company,
+        creator: Whopsdk::App::Creator,
         dashboard_path: String?,
         description: String?,
         discover_path: String?,
@@ -64,6 +72,8 @@ module Whopsdk
         id: String,
         api_key: Whopsdk::App::APIKey?,
         base_url: String?,
+        company: Whopsdk::App::Company,
+        creator: Whopsdk::App::Creator,
         dashboard_path: String?,
         description: String?,
         discover_path: String?,
@@ -88,6 +98,32 @@ module Whopsdk
         def initialize: (id: String, token: String, created_at: Integer) -> void
 
         def to_hash: -> { id: String, token: String, created_at: Integer }
+      end
+
+      type company = { id: String, title: String }
+
+      class Company < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type creator = { id: String, name: String?, username: String }
+
+      class Creator < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
       end
 
       type requested_permission =

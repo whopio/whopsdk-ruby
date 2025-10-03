@@ -21,6 +21,18 @@ module Whopsdk
       #   @return [String, nil]
       required :base_url, String, nil?: true
 
+      # @!attribute company
+      #   The company that owns the app
+      #
+      #   @return [Whopsdk::Models::App::Company]
+      required :company, -> { Whopsdk::App::Company }
+
+      # @!attribute creator
+      #   The creator of the app
+      #
+      #   @return [Whopsdk::Models::App::Creator]
+      required :creator, -> { Whopsdk::App::Creator }
+
       # @!attribute dashboard_path
       #   The path part for a specific view of the app. This is the template part of the
       #   url after the base domain. Eg: /experiences/[experienceId]
@@ -89,7 +101,7 @@ module Whopsdk
       #   @return [Boolean]
       required :verified, Whopsdk::Internal::Type::Boolean
 
-      # @!method initialize(id:, api_key:, base_url:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, name:, requested_permissions:, stats:, status:, verified:)
+      # @!method initialize(id:, api_key:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, name:, requested_permissions:, stats:, status:, verified:)
       #   Some parameter documentations has been truncated, see {Whopsdk::Models::App} for
       #   more details.
       #
@@ -100,6 +112,10 @@ module Whopsdk
       #   @param api_key [Whopsdk::Models::App::APIKey, nil] The API key for the app
       #
       #   @param base_url [String, nil] The base url of the app
+      #
+      #   @param company [Whopsdk::Models::App::Company] The company that owns the app
+      #
+      #   @param creator [Whopsdk::Models::App::Creator] The creator of the app
       #
       #   @param dashboard_path [String, nil] The path part for a specific view of the app. This is the template part of the u
       #
@@ -149,6 +165,58 @@ module Whopsdk
         #   @param token [String] This is the API key used to authenticate requests
         #
         #   @param created_at [Integer] When this API key was created at
+      end
+
+      # @see Whopsdk::Models::App#company
+      class Company < Whopsdk::Internal::Type::BaseModel
+        # @!attribute id
+        #   The ID (tag) of the company.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute title
+        #   The title of the company.
+        #
+        #   @return [String]
+        required :title, String
+
+        # @!method initialize(id:, title:)
+        #   The company that owns the app
+        #
+        #   @param id [String] The ID (tag) of the company.
+        #
+        #   @param title [String] The title of the company.
+      end
+
+      # @see Whopsdk::Models::App#creator
+      class Creator < Whopsdk::Internal::Type::BaseModel
+        # @!attribute id
+        #   The internal ID of the user.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute name
+        #   The name of the user from their Whop account.
+        #
+        #   @return [String, nil]
+        required :name, String, nil?: true
+
+        # @!attribute username
+        #   The username of the user from their Whop account.
+        #
+        #   @return [String]
+        required :username, String
+
+        # @!method initialize(id:, name:, username:)
+        #   The creator of the app
+        #
+        #   @param id [String] The internal ID of the user.
+        #
+        #   @param name [String, nil] The name of the user from their Whop account.
+        #
+        #   @param username [String] The username of the user from their Whop account.
       end
 
       class RequestedPermission < Whopsdk::Internal::Type::BaseModel

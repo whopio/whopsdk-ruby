@@ -8,7 +8,6 @@ module Whopsdk
 
       BUY_NOW = :buy_now
       WAITLIST = :waitlist
-      RAFFLE = :raffle
 
       # @!method self.values
       #   @return [Array<Symbol>]

@@ -20,6 +20,20 @@ module Whopsdk
       sig { returns(T.nilable(String)) }
       attr_accessor :base_url
 
+      # The company that owns the app
+      sig { returns(Whopsdk::App::Company) }
+      attr_reader :company
+
+      sig { params(company: Whopsdk::App::Company::OrHash).void }
+      attr_writer :company
+
+      # The creator of the app
+      sig { returns(Whopsdk::App::Creator) }
+      attr_reader :creator
+
+      sig { params(creator: Whopsdk::App::Creator::OrHash).void }
+      attr_writer :creator
+
       # The path part for a specific view of the app. This is the template part of the
       # url after the base domain. Eg: /experiences/[experienceId]
       sig { returns(T.nilable(String)) }
@@ -76,6 +90,8 @@ module Whopsdk
           id: String,
           api_key: T.nilable(Whopsdk::App::APIKey::OrHash),
           base_url: T.nilable(String),
+          company: Whopsdk::App::Company::OrHash,
+          creator: Whopsdk::App::Creator::OrHash,
           dashboard_path: T.nilable(String),
           description: T.nilable(String),
           discover_path: T.nilable(String),
@@ -96,6 +112,10 @@ module Whopsdk
         api_key:,
         # The base url of the app
         base_url:,
+        # The company that owns the app
+        company:,
+        # The creator of the app
+        creator:,
         # The path part for a specific view of the app. This is the template part of the
         # url after the base domain. Eg: /experiences/[experienceId]
         dashboard_path:,
@@ -132,6 +152,8 @@ module Whopsdk
             id: String,
             api_key: T.nilable(Whopsdk::App::APIKey),
             base_url: T.nilable(String),
+            company: Whopsdk::App::Company,
+            creator: Whopsdk::App::Creator,
             dashboard_path: T.nilable(String),
             description: T.nilable(String),
             discover_path: T.nilable(String),
@@ -184,6 +206,78 @@ module Whopsdk
 
         sig do
           override.returns({ id: String, token: String, created_at: Integer })
+        end
+        def to_hash
+        end
+      end
+
+      class Company < Whopsdk::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Whopsdk::App::Company, Whopsdk::Internal::AnyHash)
+          end
+
+        # The ID (tag) of the company.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The title of the company.
+        sig { returns(String) }
+        attr_accessor :title
+
+        # The company that owns the app
+        sig { params(id: String, title: String).returns(T.attached_class) }
+        def self.new(
+          # The ID (tag) of the company.
+          id:,
+          # The title of the company.
+          title:
+        )
+        end
+
+        sig { override.returns({ id: String, title: String }) }
+        def to_hash
+        end
+      end
+
+      class Creator < Whopsdk::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Whopsdk::App::Creator, Whopsdk::Internal::AnyHash)
+          end
+
+        # The internal ID of the user.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The name of the user from their Whop account.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
+        # The username of the user from their Whop account.
+        sig { returns(String) }
+        attr_accessor :username
+
+        # The creator of the app
+        sig do
+          params(id: String, name: T.nilable(String), username: String).returns(
+            T.attached_class
+          )
+        end
+        def self.new(
+          # The internal ID of the user.
+          id:,
+          # The name of the user from their Whop account.
+          name:,
+          # The username of the user from their Whop account.
+          username:
+        )
+        end
+
+        sig do
+          override.returns(
+            { id: String, name: T.nilable(String), username: String }
+          )
         end
         def to_hash
         end

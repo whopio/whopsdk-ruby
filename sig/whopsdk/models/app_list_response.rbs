@@ -4,6 +4,8 @@ module Whopsdk
       {
         id: String,
         base_url: String?,
+        company: Whopsdk::Models::AppListResponse::Company,
+        creator: Whopsdk::Models::AppListResponse::Creator,
         dashboard_path: String?,
         description: String?,
         discover_path: String?,
@@ -18,6 +20,10 @@ module Whopsdk
       attr_accessor id: String
 
       attr_accessor base_url: String?
+
+      attr_accessor company: Whopsdk::Models::AppListResponse::Company
+
+      attr_accessor creator: Whopsdk::Models::AppListResponse::Creator
 
       attr_accessor dashboard_path: String?
 
@@ -38,6 +44,8 @@ module Whopsdk
       def initialize: (
         id: String,
         base_url: String?,
+        company: Whopsdk::Models::AppListResponse::Company,
+        creator: Whopsdk::Models::AppListResponse::Creator,
         dashboard_path: String?,
         description: String?,
         discover_path: String?,
@@ -51,6 +59,8 @@ module Whopsdk
       def to_hash: -> {
         id: String,
         base_url: String?,
+        company: Whopsdk::Models::AppListResponse::Company,
+        creator: Whopsdk::Models::AppListResponse::Creator,
         dashboard_path: String?,
         description: String?,
         discover_path: String?,
@@ -60,6 +70,32 @@ module Whopsdk
         status: Whopsdk::Models::app_statuses?,
         verified: bool
       }
+
+      type company = { id: String, title: String }
+
+      class Company < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type creator = { id: String, name: String?, username: String }
+
+      class Creator < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
+      end
     end
   end
 end

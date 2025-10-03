@@ -11,7 +11,6 @@ module Whopsdk
 
       BUY_NOW = T.let(:buy_now, Whopsdk::ReleaseMethod::TaggedSymbol)
       WAITLIST = T.let(:waitlist, Whopsdk::ReleaseMethod::TaggedSymbol)
-      RAFFLE = T.let(:raffle, Whopsdk::ReleaseMethod::TaggedSymbol)
 
       sig { override.returns(T::Array[Whopsdk::ReleaseMethod::TaggedSymbol]) }
       def self.values

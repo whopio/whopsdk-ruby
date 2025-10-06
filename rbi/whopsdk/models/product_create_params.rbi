@@ -39,6 +39,10 @@ module Whopsdk
       sig { returns(T.nilable(Whopsdk::BusinessTypes::OrSymbol)) }
       attr_accessor :business_type
 
+      # Whether or not to collect shipping information at checkout from the customer.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :collect_shipping_address
+
       # The different types of custom CTAs that can be selected.
       sig { returns(T.nilable(Whopsdk::CustomCta::OrSymbol)) }
       attr_accessor :custom_cta
@@ -129,6 +133,7 @@ module Whopsdk
           banner_image:
             T.nilable(Whopsdk::ProductCreateParams::BannerImage::OrHash),
           business_type: T.nilable(Whopsdk::BusinessTypes::OrSymbol),
+          collect_shipping_address: T.nilable(T::Boolean),
           custom_cta: T.nilable(Whopsdk::CustomCta::OrSymbol),
           custom_cta_url: T.nilable(String),
           custom_statement_descriptor: T.nilable(String),
@@ -166,6 +171,8 @@ module Whopsdk
         banner_image: nil,
         # The different business types a company can be.
         business_type: nil,
+        # Whether or not to collect shipping information at checkout from the customer.
+        collect_shipping_address: nil,
         # The different types of custom CTAs that can be selected.
         custom_cta: nil,
         # The custom call to action URL for the access pass.
@@ -214,6 +221,7 @@ module Whopsdk
             access_pass_type: T.nilable(Whopsdk::AccessPassType::OrSymbol),
             banner_image: T.nilable(Whopsdk::ProductCreateParams::BannerImage),
             business_type: T.nilable(Whopsdk::BusinessTypes::OrSymbol),
+            collect_shipping_address: T.nilable(T::Boolean),
             custom_cta: T.nilable(Whopsdk::CustomCta::OrSymbol),
             custom_cta_url: T.nilable(String),
             custom_statement_descriptor: T.nilable(String),

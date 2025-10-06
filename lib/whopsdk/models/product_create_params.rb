@@ -37,6 +37,12 @@ module Whopsdk
       #   @return [Symbol, Whopsdk::Models::BusinessTypes, nil]
       optional :business_type, enum: -> { Whopsdk::BusinessTypes }, nil?: true
 
+      # @!attribute collect_shipping_address
+      #   Whether or not to collect shipping information at checkout from the customer.
+      #
+      #   @return [Boolean, nil]
+      optional :collect_shipping_address, Whopsdk::Internal::Type::Boolean, nil?: true
+
       # @!attribute custom_cta
       #   The different types of custom CTAs that can be selected.
       #
@@ -143,7 +149,7 @@ module Whopsdk
       #   @return [Symbol, Whopsdk::Models::Visibility, nil]
       optional :visibility, enum: -> { Whopsdk::Visibility }, nil?: true
 
-      # @!method initialize(company_id:, title:, access_pass_type: nil, banner_image: nil, business_type: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, experience_ids: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, plan_options: nil, product_highlights: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil, request_options: {})
+      # @!method initialize(company_id:, title:, access_pass_type: nil, banner_image: nil, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, experience_ids: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, plan_options: nil, product_highlights: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Whopsdk::Models::ProductCreateParams} for more details.
       #
@@ -156,6 +162,8 @@ module Whopsdk
       #   @param banner_image [Whopsdk::Models::ProductCreateParams::BannerImage, nil] A banner image for the access pass in png, jpeg format
       #
       #   @param business_type [Symbol, Whopsdk::Models::BusinessTypes, nil] The different business types a company can be.
+      #
+      #   @param collect_shipping_address [Boolean, nil] Whether or not to collect shipping information at checkout from the customer.
       #
       #   @param custom_cta [Symbol, Whopsdk::Models::CustomCta, nil] The different types of custom CTAs that can be selected.
       #

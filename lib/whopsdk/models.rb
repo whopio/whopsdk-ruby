@@ -87,6 +87,14 @@ module Whopsdk
 
   EntryStatus = Whopsdk::Models::EntryStatus
 
+  ForumPost = Whopsdk::Models::ForumPost
+
+  ForumPostCreateParams = Whopsdk::Models::ForumPostCreateParams
+
+  ForumPostListParams = Whopsdk::Models::ForumPostListParams
+
+  ForumPostRetrieveParams = Whopsdk::Models::ForumPostRetrieveParams
+
   GlobalAffiliateStatus = Whopsdk::Models::GlobalAffiliateStatus
 
   IndustryTypes = Whopsdk::Models::IndustryTypes

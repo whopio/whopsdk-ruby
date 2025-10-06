@@ -26,6 +26,8 @@ module Whopsdk
 
     attr_reader entries: Whopsdk::Resources::Entries
 
+    attr_reader forum_posts: Whopsdk::Resources::ForumPosts
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

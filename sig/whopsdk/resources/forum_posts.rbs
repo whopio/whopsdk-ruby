@@ -1,0 +1,37 @@
+module Whopsdk
+  module Resources
+    class ForumPosts
+      def create: (
+        experience_id: String,
+        ?attachments: ::Array[Whopsdk::ForumPostCreateParams::Attachment]?,
+        ?content: String?,
+        ?is_mention: bool?,
+        ?parent_id: String?,
+        ?paywall_amount: Float?,
+        ?paywall_currency: Whopsdk::Models::currency?,
+        ?pinned: bool?,
+        ?poll: Whopsdk::ForumPostCreateParams::Poll?,
+        ?title: String?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::ForumPost?
+
+      def retrieve: (
+        String id,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::ForumPost?
+
+      def list: (
+        experience_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?parent_id: String?,
+        ?pinned: bool?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::ForumPostListResponse?]
+
+      def initialize: (client: Whopsdk::Client) -> void
+    end
+  end
+end

@@ -38,6 +38,9 @@ module Whopsdk
     sig { returns(Whopsdk::Resources::Entries) }
     attr_reader :entries
 
+    sig { returns(Whopsdk::Resources::ForumPosts) }
+    attr_reader :forum_posts
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

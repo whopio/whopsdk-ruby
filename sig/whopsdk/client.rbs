@@ -28,6 +28,16 @@ module Whopsdk
 
     attr_reader forum_posts: Whopsdk::Resources::ForumPosts
 
+    attr_reader transfers: Whopsdk::Resources::Transfers
+
+    attr_reader ledger_accounts: Whopsdk::Resources::LedgerAccounts
+
+    attr_reader memberships: Whopsdk::Resources::Memberships
+
+    attr_reader authorized_users: Whopsdk::Resources::AuthorizedUsers
+
+    attr_reader app_builds: Whopsdk::Resources::AppBuilds
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

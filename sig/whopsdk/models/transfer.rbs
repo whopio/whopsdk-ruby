@@ -1,0 +1,203 @@
+module Whopsdk
+  module Models
+    type transfer =
+      {
+        id: String,
+        amount: Float,
+        created_at: Integer,
+        currency: Whopsdk::Models::currency,
+        destination: Whopsdk::Models::Transfer::destination?,
+        destination_ledger_account_id: String,
+        fee_amount: Float?,
+        notes: String?,
+        origin: Whopsdk::Models::Transfer::origin?,
+        origin_ledger_account_id: String
+      }
+
+    class Transfer < Whopsdk::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor amount: Float
+
+      attr_accessor created_at: Integer
+
+      attr_accessor currency: Whopsdk::Models::currency
+
+      attr_accessor destination: Whopsdk::Models::Transfer::destination?
+
+      attr_accessor destination_ledger_account_id: String
+
+      attr_accessor fee_amount: Float?
+
+      attr_accessor notes: String?
+
+      attr_accessor origin: Whopsdk::Models::Transfer::origin?
+
+      attr_accessor origin_ledger_account_id: String
+
+      def initialize: (
+        id: String,
+        amount: Float,
+        created_at: Integer,
+        currency: Whopsdk::Models::currency,
+        destination: Whopsdk::Models::Transfer::destination?,
+        destination_ledger_account_id: String,
+        fee_amount: Float?,
+        notes: String?,
+        origin: Whopsdk::Models::Transfer::origin?,
+        origin_ledger_account_id: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        amount: Float,
+        created_at: Integer,
+        currency: Whopsdk::Models::currency,
+        destination: Whopsdk::Models::Transfer::destination?,
+        destination_ledger_account_id: String,
+        fee_amount: Float?,
+        notes: String?,
+        origin: Whopsdk::Models::Transfer::origin?,
+        origin_ledger_account_id: String
+      }
+
+      type destination =
+        (Whopsdk::Transfer::Destination::UnionMember0
+        | Whopsdk::Transfer::Destination::UnionMember1)?
+
+      module Destination
+        extend Whopsdk::Internal::Type::Union
+
+        type union_member0 =
+          {
+            id: String,
+            name: String?,
+            typename: :PublicProfileUser,
+            username: String
+          }
+
+        class UnionMember0 < Whopsdk::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor name: String?
+
+          attr_accessor typename: :PublicProfileUser
+
+          attr_accessor username: String
+
+          def initialize: (
+            id: String,
+            name: String?,
+            username: String,
+            ?typename: :PublicProfileUser
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            name: String?,
+            typename: :PublicProfileUser,
+            username: String
+          }
+        end
+
+        type union_member1 =
+          { id: String, route: String, title: String, typename: :PublicCompany }
+
+        class UnionMember1 < Whopsdk::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor route: String
+
+          attr_accessor title: String
+
+          attr_accessor typename: :PublicCompany
+
+          def initialize: (
+            id: String,
+            route: String,
+            title: String,
+            ?typename: :PublicCompany
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            route: String,
+            title: String,
+            typename: :PublicCompany
+          }
+        end
+
+        def self?.variants: -> ::Array[Whopsdk::Models::Transfer::destination]
+      end
+
+      type origin =
+        (Whopsdk::Transfer::Origin::UnionMember0
+        | Whopsdk::Transfer::Origin::UnionMember1)?
+
+      module Origin
+        extend Whopsdk::Internal::Type::Union
+
+        type union_member0 =
+          {
+            id: String,
+            name: String?,
+            typename: :PublicProfileUser,
+            username: String
+          }
+
+        class UnionMember0 < Whopsdk::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor name: String?
+
+          attr_accessor typename: :PublicProfileUser
+
+          attr_accessor username: String
+
+          def initialize: (
+            id: String,
+            name: String?,
+            username: String,
+            ?typename: :PublicProfileUser
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            name: String?,
+            typename: :PublicProfileUser,
+            username: String
+          }
+        end
+
+        type union_member1 =
+          { id: String, route: String, title: String, typename: :PublicCompany }
+
+        class UnionMember1 < Whopsdk::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor route: String
+
+          attr_accessor title: String
+
+          attr_accessor typename: :PublicCompany
+
+          def initialize: (
+            id: String,
+            route: String,
+            title: String,
+            ?typename: :PublicCompany
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            route: String,
+            title: String,
+            typename: :PublicCompany
+          }
+        end
+
+        def self?.variants: -> ::Array[Whopsdk::Models::Transfer::origin]
+      end
+    end
+  end
+end

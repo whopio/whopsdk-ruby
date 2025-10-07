@@ -46,6 +46,21 @@ module Whopsdk
     # @return [Whopsdk::Resources::ForumPosts]
     attr_reader :forum_posts
 
+    # @return [Whopsdk::Resources::Transfers]
+    attr_reader :transfers
+
+    # @return [Whopsdk::Resources::LedgerAccounts]
+    attr_reader :ledger_accounts
+
+    # @return [Whopsdk::Resources::Memberships]
+    attr_reader :memberships
+
+    # @return [Whopsdk::Resources::AuthorizedUsers]
+    attr_reader :authorized_users
+
+    # @return [Whopsdk::Resources::AppBuilds]
+    attr_reader :app_builds
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -103,6 +118,11 @@ module Whopsdk
       @plans = Whopsdk::Resources::Plans.new(client: self)
       @entries = Whopsdk::Resources::Entries.new(client: self)
       @forum_posts = Whopsdk::Resources::ForumPosts.new(client: self)
+      @transfers = Whopsdk::Resources::Transfers.new(client: self)
+      @ledger_accounts = Whopsdk::Resources::LedgerAccounts.new(client: self)
+      @memberships = Whopsdk::Resources::Memberships.new(client: self)
+      @authorized_users = Whopsdk::Resources::AuthorizedUsers.new(client: self)
+      @app_builds = Whopsdk::Resources::AppBuilds.new(client: self)
     end
   end
 end

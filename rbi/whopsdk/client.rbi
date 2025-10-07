@@ -41,6 +41,21 @@ module Whopsdk
     sig { returns(Whopsdk::Resources::ForumPosts) }
     attr_reader :forum_posts
 
+    sig { returns(Whopsdk::Resources::Transfers) }
+    attr_reader :transfers
+
+    sig { returns(Whopsdk::Resources::LedgerAccounts) }
+    attr_reader :ledger_accounts
+
+    sig { returns(Whopsdk::Resources::Memberships) }
+    attr_reader :memberships
+
+    sig { returns(Whopsdk::Resources::AuthorizedUsers) }
+    attr_reader :authorized_users
+
+    sig { returns(Whopsdk::Resources::AppBuilds) }
+    attr_reader :app_builds
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

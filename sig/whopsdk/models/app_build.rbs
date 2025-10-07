@@ -1,0 +1,60 @@
+module Whopsdk
+  module Models
+    type app_build =
+      {
+        id: String,
+        checksum: String,
+        created_at: Integer,
+        file_url: String,
+        is_production: bool,
+        platform: Whopsdk::Models::app_build_platforms,
+        review_message: String?,
+        status: Whopsdk::Models::app_build_statuses,
+        supported_app_view_types: ::Array[Whopsdk::Models::app_view_type]
+      }
+
+    class AppBuild < Whopsdk::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor checksum: String
+
+      attr_accessor created_at: Integer
+
+      attr_accessor file_url: String
+
+      attr_accessor is_production: bool
+
+      attr_accessor platform: Whopsdk::Models::app_build_platforms
+
+      attr_accessor review_message: String?
+
+      attr_accessor status: Whopsdk::Models::app_build_statuses
+
+      attr_accessor supported_app_view_types: ::Array[Whopsdk::Models::app_view_type]
+
+      def initialize: (
+        id: String,
+        checksum: String,
+        created_at: Integer,
+        file_url: String,
+        is_production: bool,
+        platform: Whopsdk::Models::app_build_platforms,
+        review_message: String?,
+        status: Whopsdk::Models::app_build_statuses,
+        supported_app_view_types: ::Array[Whopsdk::Models::app_view_type]
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        checksum: String,
+        created_at: Integer,
+        file_url: String,
+        is_production: bool,
+        platform: Whopsdk::Models::app_build_platforms,
+        review_message: String?,
+        status: Whopsdk::Models::app_build_statuses,
+        supported_app_view_types: ::Array[Whopsdk::Models::app_view_type]
+      }
+    end
+  end
+end

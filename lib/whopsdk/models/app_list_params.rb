@@ -65,8 +65,8 @@ module Whopsdk
       # @!attribute view_type
       #   The different types of an app view
       #
-      #   @return [Symbol, Whopsdk::Models::AppListParams::ViewType, nil]
-      optional :view_type, enum: -> { Whopsdk::AppListParams::ViewType }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::AppViewType, nil]
+      optional :view_type, enum: -> { Whopsdk::AppViewType }, nil?: true
 
       # @!method initialize(after: nil, before: nil, company_id: nil, direction: nil, first: nil, last: nil, order: nil, query: nil, verified_apps_only: nil, view_type: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
@@ -90,7 +90,7 @@ module Whopsdk
       #
       #   @param verified_apps_only [Boolean, nil] If true, you will only get apps that are verified by Whop. Use this to populate
       #
-      #   @param view_type [Symbol, Whopsdk::Models::AppListParams::ViewType, nil] The different types of an app view
+      #   @param view_type [Symbol, Whopsdk::Models::AppViewType, nil] The different types of an app view
       #
       #   @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}]
 
@@ -103,20 +103,6 @@ module Whopsdk
         TIME_SPENT = :time_spent
         TIME_SPENT_LAST_24_HOURS = :time_spent_last_24_hours
         DAILY_ACTIVE_USERS = :daily_active_users
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
-
-      # The different types of an app view
-      module ViewType
-        extend Whopsdk::Internal::Type::Enum
-
-        HUB = :hub
-        DISCOVER = :discover
-        DASH = :dash
-        DASHBOARD = :dashboard
-        ANALYTICS = :analytics
 
         # @!method self.values
         #   @return [Array<Symbol>]

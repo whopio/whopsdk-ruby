@@ -123,7 +123,7 @@ module Whopsdk
       #
       # @param verified_apps_only [Boolean, nil] If true, you will only get apps that are verified by Whop. Use this to populate
       #
-      # @param view_type [Symbol, Whopsdk::Models::AppListParams::ViewType, nil] The different types of an app view
+      # @param view_type [Symbol, Whopsdk::Models::AppViewType, nil] The different types of an app view
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #

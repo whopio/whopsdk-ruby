@@ -41,6 +41,15 @@ module Whopsdk
       sig { returns(T.nilable(Integer)) }
       attr_accessor :expiration_days
 
+      # An image for the plan. This will be visible on the product page to customers.
+      sig { returns(T.nilable(Whopsdk::PlanCreateParams::Image)) }
+      attr_reader :image
+
+      sig do
+        params(image: T.nilable(Whopsdk::PlanCreateParams::Image::OrHash)).void
+      end
+      attr_writer :image
+
       # An additional amount charged upon first purchase.
       sig { returns(T.nilable(Float)) }
       attr_accessor :initial_price
@@ -58,13 +67,17 @@ module Whopsdk
       sig { returns(T.nilable(Whopsdk::PlanType::OrSymbol)) }
       attr_accessor :plan_type
 
-      # The methods of how a plan can be released (including raffles and waitlists).
+      # The methods of how a plan can be released.
       sig { returns(T.nilable(Whopsdk::ReleaseMethod::OrSymbol)) }
       attr_accessor :release_method
 
       # The amount the customer is charged every billing period.
       sig { returns(T.nilable(Float)) }
       attr_accessor :renewal_price
+
+      # The title of the plan. This will be visible on the product page to customers.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :title
 
       # The number of free trial days added before a renewal plan.
       sig { returns(T.nilable(Integer)) }
@@ -84,12 +97,14 @@ module Whopsdk
             T.nilable(T::Array[Whopsdk::PlanCreateParams::CustomField::OrHash]),
           description: T.nilable(String),
           expiration_days: T.nilable(Integer),
+          image: T.nilable(Whopsdk::PlanCreateParams::Image::OrHash),
           initial_price: T.nilable(Float),
           internal_notes: T.nilable(String),
           override_tax_type: T.nilable(Whopsdk::TaxType::OrSymbol),
           plan_type: T.nilable(Whopsdk::PlanType::OrSymbol),
           release_method: T.nilable(Whopsdk::ReleaseMethod::OrSymbol),
           renewal_price: T.nilable(Float),
+          title: T.nilable(String),
           trial_period_days: T.nilable(Integer),
           visibility: T.nilable(Whopsdk::Visibility::OrSymbol),
           request_options: Whopsdk::RequestOptions::OrHash
@@ -110,6 +125,8 @@ module Whopsdk
         description: nil,
         # The interval at which the plan charges (expiration plans).
         expiration_days: nil,
+        # An image for the plan. This will be visible on the product page to customers.
+        image: nil,
         # An additional amount charged upon first purchase.
         initial_price: nil,
         # A personal description or notes section for the business.
@@ -119,10 +136,12 @@ module Whopsdk
         override_tax_type: nil,
         # The type of plan that can be attached to an access pass
         plan_type: nil,
-        # The methods of how a plan can be released (including raffles and waitlists).
+        # The methods of how a plan can be released.
         release_method: nil,
         # The amount the customer is charged every billing period.
         renewal_price: nil,
+        # The title of the plan. This will be visible on the product page to customers.
+        title: nil,
         # The number of free trial days added before a renewal plan.
         trial_period_days: nil,
         # Visibility of a resource
@@ -142,12 +161,14 @@ module Whopsdk
               T.nilable(T::Array[Whopsdk::PlanCreateParams::CustomField]),
             description: T.nilable(String),
             expiration_days: T.nilable(Integer),
+            image: T.nilable(Whopsdk::PlanCreateParams::Image),
             initial_price: T.nilable(Float),
             internal_notes: T.nilable(String),
             override_tax_type: T.nilable(Whopsdk::TaxType::OrSymbol),
             plan_type: T.nilable(Whopsdk::PlanType::OrSymbol),
             release_method: T.nilable(Whopsdk::ReleaseMethod::OrSymbol),
             renewal_price: T.nilable(Float),
+            title: T.nilable(String),
             trial_period_days: T.nilable(Integer),
             visibility: T.nilable(Whopsdk::Visibility::OrSymbol),
             request_options: Whopsdk::RequestOptions
@@ -268,6 +289,52 @@ module Whopsdk
           end
           def self.values
           end
+        end
+      end
+
+      class Image < Whopsdk::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Whopsdk::PlanCreateParams::Image, Whopsdk::Internal::AnyHash)
+          end
+
+        # The ID of an existing attachment object. Use this when updating a resource and
+        # keeping a subset of the attachments. Don't use this unless you know what you're
+        # doing.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :id
+
+        # This ID should be used the first time you upload an attachment. It is the ID of
+        # the direct upload that was created when uploading the file to S3 via the
+        # mediaDirectUpload mutation.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :direct_upload_id
+
+        # An image for the plan. This will be visible on the product page to customers.
+        sig do
+          params(
+            id: T.nilable(String),
+            direct_upload_id: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The ID of an existing attachment object. Use this when updating a resource and
+          # keeping a subset of the attachments. Don't use this unless you know what you're
+          # doing.
+          id: nil,
+          # This ID should be used the first time you upload an attachment. It is the ID of
+          # the direct upload that was created when uploading the file to S3 via the
+          # mediaDirectUpload mutation.
+          direct_upload_id: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            { id: T.nilable(String), direct_upload_id: T.nilable(String) }
+          )
+        end
+        def to_hash
         end
       end
     end

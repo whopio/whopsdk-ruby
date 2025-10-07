@@ -78,7 +78,7 @@ module Whopsdk
       sig { returns(String) }
       attr_accessor :purchase_link
 
-      # The methods of how a plan can be released (including raffles and waitlists).
+      # The methods of how a plan can be released.
       sig { returns(T.nilable(Whopsdk::ReleaseMethod::TaggedSymbol)) }
       attr_accessor :release_method
 
@@ -163,7 +163,7 @@ module Whopsdk
         product:,
         # The direct link to purchase the access pass.
         purchase_link:,
-        # The methods of how a plan can be released (including raffles and waitlists).
+        # The methods of how a plan can be released.
         release_method:,
         # The price a person has to pay for a plan on the renewal purchase.
         renewal_price:,

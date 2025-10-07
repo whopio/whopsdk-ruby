@@ -2,7 +2,7 @@
 
 module Whopsdk
   module Models
-    # The status of an entry to a waitlist or raffle.
+    # The status of an entry to a waitlist.
     module EntryStatus
       extend Whopsdk::Internal::Type::Enum
 

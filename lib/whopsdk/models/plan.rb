@@ -100,7 +100,7 @@ module Whopsdk
       required :purchase_link, String
 
       # @!attribute release_method
-      #   The methods of how a plan can be released (including raffles and waitlists).
+      #   The methods of how a plan can be released.
       #
       #   @return [Symbol, Whopsdk::Models::ReleaseMethod, nil]
       required :release_method, enum: -> { Whopsdk::ReleaseMethod }, nil?: true
@@ -174,7 +174,7 @@ module Whopsdk
       #
       #   @param purchase_link [String] The direct link to purchase the access pass.
       #
-      #   @param release_method [Symbol, Whopsdk::Models::ReleaseMethod, nil] The methods of how a plan can be released (including raffles and waitlists).
+      #   @param release_method [Symbol, Whopsdk::Models::ReleaseMethod, nil] The methods of how a plan can be released.
       #
       #   @param renewal_price [Float] The price a person has to pay for a plan on the renewal purchase.
       #

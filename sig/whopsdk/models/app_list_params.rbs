@@ -11,7 +11,7 @@ module Whopsdk
         order: Whopsdk::Models::AppListParams::order?,
         query: String?,
         verified_apps_only: bool?,
-        view_type: Whopsdk::Models::AppListParams::view_type?
+        view_type: Whopsdk::Models::app_view_type?
       }
       & Whopsdk::Internal::Type::request_parameters
 
@@ -37,7 +37,7 @@ module Whopsdk
 
       attr_accessor verified_apps_only: bool?
 
-      attr_accessor view_type: Whopsdk::Models::AppListParams::view_type?
+      attr_accessor view_type: Whopsdk::Models::app_view_type?
 
       def initialize: (
         ?after: String?,
@@ -49,7 +49,7 @@ module Whopsdk
         ?order: Whopsdk::Models::AppListParams::order?,
         ?query: String?,
         ?verified_apps_only: bool?,
-        ?view_type: Whopsdk::Models::AppListParams::view_type?,
+        ?view_type: Whopsdk::Models::app_view_type?,
         ?request_options: Whopsdk::request_opts
       ) -> void
 
@@ -63,7 +63,7 @@ module Whopsdk
         order: Whopsdk::Models::AppListParams::order?,
         query: String?,
         verified_apps_only: bool?,
-        view_type: Whopsdk::Models::AppListParams::view_type?,
+        view_type: Whopsdk::Models::app_view_type?,
         request_options: Whopsdk::RequestOptions
       }
 
@@ -84,20 +84,6 @@ module Whopsdk
         DAILY_ACTIVE_USERS: :daily_active_users
 
         def self?.values: -> ::Array[Whopsdk::Models::AppListParams::order]
-      end
-
-      type view_type = :hub | :discover | :dash | :dashboard | :analytics
-
-      module ViewType
-        extend Whopsdk::Internal::Type::Enum
-
-        HUB: :hub
-        DISCOVER: :discover
-        DASH: :dash
-        DASHBOARD: :dashboard
-        ANALYTICS: :analytics
-
-        def self?.values: -> ::Array[Whopsdk::Models::AppListParams::view_type]
       end
     end
   end

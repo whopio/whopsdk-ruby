@@ -1,0 +1,58 @@
+module Whopsdk
+  module Models
+    type app_build_create_params =
+      {
+        attachment: Whopsdk::AppBuildCreateParams::Attachment,
+        checksum: String,
+        platform: Whopsdk::Models::app_build_platforms,
+        app_id: String?,
+        supported_app_view_types: ::Array[Whopsdk::Models::app_view_type]?
+      }
+      & Whopsdk::Internal::Type::request_parameters
+
+    class AppBuildCreateParams < Whopsdk::Internal::Type::BaseModel
+      extend Whopsdk::Internal::Type::RequestParameters::Converter
+      include Whopsdk::Internal::Type::RequestParameters
+
+      attr_accessor attachment: Whopsdk::AppBuildCreateParams::Attachment
+
+      attr_accessor checksum: String
+
+      attr_accessor platform: Whopsdk::Models::app_build_platforms
+
+      attr_accessor app_id: String?
+
+      attr_accessor supported_app_view_types: ::Array[Whopsdk::Models::app_view_type]?
+
+      def initialize: (
+        attachment: Whopsdk::AppBuildCreateParams::Attachment,
+        checksum: String,
+        platform: Whopsdk::Models::app_build_platforms,
+        ?app_id: String?,
+        ?supported_app_view_types: ::Array[Whopsdk::Models::app_view_type]?,
+        ?request_options: Whopsdk::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        attachment: Whopsdk::AppBuildCreateParams::Attachment,
+        checksum: String,
+        platform: Whopsdk::Models::app_build_platforms,
+        app_id: String?,
+        supported_app_view_types: ::Array[Whopsdk::Models::app_view_type]?,
+        request_options: Whopsdk::RequestOptions
+      }
+
+      type attachment = { id: String?, direct_upload_id: String? }
+
+      class Attachment < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String?
+
+        attr_accessor direct_upload_id: String?
+
+        def initialize: (?id: String?, ?direct_upload_id: String?) -> void
+
+        def to_hash: -> { id: String?, direct_upload_id: String? }
+      end
+    end
+  end
+end

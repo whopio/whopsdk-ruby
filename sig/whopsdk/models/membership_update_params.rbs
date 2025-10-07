@@ -1,0 +1,23 @@
+module Whopsdk
+  module Models
+    type membership_update_params =
+      { metadata: top? } & Whopsdk::Internal::Type::request_parameters
+
+    class MembershipUpdateParams < Whopsdk::Internal::Type::BaseModel
+      extend Whopsdk::Internal::Type::RequestParameters::Converter
+      include Whopsdk::Internal::Type::RequestParameters
+
+      attr_accessor metadata: top?
+
+      def initialize: (
+        ?metadata: top?,
+        ?request_options: Whopsdk::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        metadata: top?,
+        request_options: Whopsdk::RequestOptions
+      }
+    end
+  end
+end

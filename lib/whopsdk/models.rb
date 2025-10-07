@@ -43,6 +43,20 @@ module Whopsdk
 
   App = Whopsdk::Models::App
 
+  AppBuild = Whopsdk::Models::AppBuild
+
+  AppBuildCreateParams = Whopsdk::Models::AppBuildCreateParams
+
+  AppBuildListParams = Whopsdk::Models::AppBuildListParams
+
+  AppBuildPlatforms = Whopsdk::Models::AppBuildPlatforms
+
+  AppBuildPromoteParams = Whopsdk::Models::AppBuildPromoteParams
+
+  AppBuildRetrieveParams = Whopsdk::Models::AppBuildRetrieveParams
+
+  AppBuildStatuses = Whopsdk::Models::AppBuildStatuses
+
   AppCreateParams = Whopsdk::Models::AppCreateParams
 
   AppListParams = Whopsdk::Models::AppListParams
@@ -52,6 +66,14 @@ module Whopsdk
   AppStatuses = Whopsdk::Models::AppStatuses
 
   AppUpdateParams = Whopsdk::Models::AppUpdateParams
+
+  AppViewType = Whopsdk::Models::AppViewType
+
+  AuthorizedUserListParams = Whopsdk::Models::AuthorizedUserListParams
+
+  AuthorizedUserRetrieveParams = Whopsdk::Models::AuthorizedUserRetrieveParams
+
+  AuthorizedUserRoles = Whopsdk::Models::AuthorizedUserRoles
 
   BusinessTypes = Whopsdk::Models::BusinessTypes
 
@@ -121,6 +143,20 @@ module Whopsdk
 
   InvoiceVoidParams = Whopsdk::Models::InvoiceVoidParams
 
+  LedgerAccountRetrieveParams = Whopsdk::Models::LedgerAccountRetrieveParams
+
+  Membership = Whopsdk::Models::Membership
+
+  MembershipCancelParams = Whopsdk::Models::MembershipCancelParams
+
+  MembershipListParams = Whopsdk::Models::MembershipListParams
+
+  MembershipRetrieveParams = Whopsdk::Models::MembershipRetrieveParams
+
+  MembershipStatus = Whopsdk::Models::MembershipStatus
+
+  MembershipUpdateParams = Whopsdk::Models::MembershipUpdateParams
+
   PageInfo = Whopsdk::Models::PageInfo
 
   Plan = Whopsdk::Models::Plan
@@ -154,6 +190,14 @@ module Whopsdk
   ReleaseMethod = Whopsdk::Models::ReleaseMethod
 
   TaxType = Whopsdk::Models::TaxType
+
+  Transfer = Whopsdk::Models::Transfer
+
+  TransferCreateParams = Whopsdk::Models::TransferCreateParams
+
+  TransferListParams = Whopsdk::Models::TransferListParams
+
+  TransferRetrieveParams = Whopsdk::Models::TransferRetrieveParams
 
   UnwrapWebhookEvent = Whopsdk::Models::UnwrapWebhookEvent
 

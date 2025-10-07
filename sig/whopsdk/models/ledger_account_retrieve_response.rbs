@@ -1,0 +1,188 @@
+module Whopsdk
+  module Models
+    type ledger_account_retrieve_response =
+      {
+        id: String,
+        balances: ::Array[Whopsdk::Models::LedgerAccountRetrieveResponse::Balance],
+        ledger_account_audit_status: Whopsdk::Models::LedgerAccountRetrieveResponse::ledger_account_audit_status?,
+        ledger_type: Whopsdk::Models::LedgerAccountRetrieveResponse::ledger_type,
+        owner: Whopsdk::Models::LedgerAccountRetrieveResponse::owner?,
+        payments_approval_status: Whopsdk::Models::LedgerAccountRetrieveResponse::payments_approval_status?,
+        transfer_fee: Float?
+      }
+
+    class LedgerAccountRetrieveResponse < Whopsdk::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor balances: ::Array[Whopsdk::Models::LedgerAccountRetrieveResponse::Balance]
+
+      attr_accessor ledger_account_audit_status: Whopsdk::Models::LedgerAccountRetrieveResponse::ledger_account_audit_status?
+
+      attr_accessor ledger_type: Whopsdk::Models::LedgerAccountRetrieveResponse::ledger_type
+
+      attr_accessor owner: Whopsdk::Models::LedgerAccountRetrieveResponse::owner?
+
+      attr_accessor payments_approval_status: Whopsdk::Models::LedgerAccountRetrieveResponse::payments_approval_status?
+
+      attr_accessor transfer_fee: Float?
+
+      def initialize: (
+        id: String,
+        balances: ::Array[Whopsdk::Models::LedgerAccountRetrieveResponse::Balance],
+        ledger_account_audit_status: Whopsdk::Models::LedgerAccountRetrieveResponse::ledger_account_audit_status?,
+        ledger_type: Whopsdk::Models::LedgerAccountRetrieveResponse::ledger_type,
+        owner: Whopsdk::Models::LedgerAccountRetrieveResponse::owner?,
+        payments_approval_status: Whopsdk::Models::LedgerAccountRetrieveResponse::payments_approval_status?,
+        transfer_fee: Float?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        balances: ::Array[Whopsdk::Models::LedgerAccountRetrieveResponse::Balance],
+        ledger_account_audit_status: Whopsdk::Models::LedgerAccountRetrieveResponse::ledger_account_audit_status?,
+        ledger_type: Whopsdk::Models::LedgerAccountRetrieveResponse::ledger_type,
+        owner: Whopsdk::Models::LedgerAccountRetrieveResponse::owner?,
+        payments_approval_status: Whopsdk::Models::LedgerAccountRetrieveResponse::payments_approval_status?,
+        transfer_fee: Float?
+      }
+
+      type balance =
+        {
+          balance: Float,
+          currency: Whopsdk::Models::currency,
+          pending_balance: Float,
+          reserve_balance: Float
+        }
+
+      class Balance < Whopsdk::Internal::Type::BaseModel
+        attr_accessor balance: Float
+
+        attr_accessor currency: Whopsdk::Models::currency
+
+        attr_accessor pending_balance: Float
+
+        attr_accessor reserve_balance: Float
+
+        def initialize: (
+          balance: Float,
+          currency: Whopsdk::Models::currency,
+          pending_balance: Float,
+          reserve_balance: Float
+        ) -> void
+
+        def to_hash: -> {
+          balance: Float,
+          currency: Whopsdk::Models::currency,
+          pending_balance: Float,
+          reserve_balance: Float
+        }
+      end
+
+      type ledger_account_audit_status =
+        :reserves_imposed | :requested_more_information
+
+      module LedgerAccountAuditStatus
+        extend Whopsdk::Internal::Type::Enum
+
+        RESERVES_IMPOSED: :reserves_imposed
+        REQUESTED_MORE_INFORMATION: :requested_more_information
+
+        def self?.values: -> ::Array[Whopsdk::Models::LedgerAccountRetrieveResponse::ledger_account_audit_status]
+      end
+
+      type ledger_type = :primary | :pool
+
+      module LedgerType
+        extend Whopsdk::Internal::Type::Enum
+
+        PRIMARY: :primary
+        POOL: :pool
+
+        def self?.values: -> ::Array[Whopsdk::Models::LedgerAccountRetrieveResponse::ledger_type]
+      end
+
+      type owner =
+        (Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::UnionMember0
+        | Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::UnionMember1)?
+
+      module Owner
+        extend Whopsdk::Internal::Type::Union
+
+        type union_member0 =
+          {
+            id: String,
+            name: String?,
+            typename: :PublicProfileUser,
+            username: String
+          }
+
+        class UnionMember0 < Whopsdk::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor name: String?
+
+          attr_accessor typename: :PublicProfileUser
+
+          attr_accessor username: String
+
+          def initialize: (
+            id: String,
+            name: String?,
+            username: String,
+            ?typename: :PublicProfileUser
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            name: String?,
+            typename: :PublicProfileUser,
+            username: String
+          }
+        end
+
+        type union_member1 =
+          { id: String, route: String, title: String, typename: :PublicCompany }
+
+        class UnionMember1 < Whopsdk::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor route: String
+
+          attr_accessor title: String
+
+          attr_accessor typename: :PublicCompany
+
+          def initialize: (
+            id: String,
+            route: String,
+            title: String,
+            ?typename: :PublicCompany
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            route: String,
+            title: String,
+            typename: :PublicCompany
+          }
+        end
+
+        def self?.variants: -> ::Array[Whopsdk::Models::LedgerAccountRetrieveResponse::owner]
+      end
+
+      type payments_approval_status =
+        :pending | :approved | :monitoring | :rejected
+
+      module PaymentsApprovalStatus
+        extend Whopsdk::Internal::Type::Enum
+
+        PENDING: :pending
+        APPROVED: :approved
+        MONITORING: :monitoring
+        REJECTED: :rejected
+
+        def self?.values: -> ::Array[Whopsdk::Models::LedgerAccountRetrieveResponse::payments_approval_status]
+      end
+    end
+  end
+end

@@ -105,7 +105,7 @@ module Whopsdk
           order: T.nilable(Whopsdk::AppListParams::Order::OrSymbol),
           query: T.nilable(String),
           verified_apps_only: T.nilable(T::Boolean),
-          view_type: T.nilable(Whopsdk::AppListParams::ViewType::OrSymbol),
+          view_type: T.nilable(Whopsdk::AppViewType::OrSymbol),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(
           Whopsdk::Internal::CursorPage[

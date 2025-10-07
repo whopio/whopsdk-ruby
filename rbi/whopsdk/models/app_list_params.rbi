@@ -49,7 +49,7 @@ module Whopsdk
       attr_accessor :verified_apps_only
 
       # The different types of an app view
-      sig { returns(T.nilable(Whopsdk::AppListParams::ViewType::OrSymbol)) }
+      sig { returns(T.nilable(Whopsdk::AppViewType::OrSymbol)) }
       attr_accessor :view_type
 
       sig do
@@ -63,7 +63,7 @@ module Whopsdk
           order: T.nilable(Whopsdk::AppListParams::Order::OrSymbol),
           query: T.nilable(String),
           verified_apps_only: T.nilable(T::Boolean),
-          view_type: T.nilable(Whopsdk::AppListParams::ViewType::OrSymbol),
+          view_type: T.nilable(Whopsdk::AppViewType::OrSymbol),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -105,7 +105,7 @@ module Whopsdk
             order: T.nilable(Whopsdk::AppListParams::Order::OrSymbol),
             query: T.nilable(String),
             verified_apps_only: T.nilable(T::Boolean),
-            view_type: T.nilable(Whopsdk::AppListParams::ViewType::OrSymbol),
+            view_type: T.nilable(Whopsdk::AppViewType::OrSymbol),
             request_options: Whopsdk::RequestOptions
           }
         )
@@ -144,32 +144,6 @@ module Whopsdk
         sig do
           override.returns(
             T::Array[Whopsdk::AppListParams::Order::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
-      end
-
-      # The different types of an app view
-      module ViewType
-        extend Whopsdk::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, Whopsdk::AppListParams::ViewType) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        HUB = T.let(:hub, Whopsdk::AppListParams::ViewType::TaggedSymbol)
-        DISCOVER =
-          T.let(:discover, Whopsdk::AppListParams::ViewType::TaggedSymbol)
-        DASH = T.let(:dash, Whopsdk::AppListParams::ViewType::TaggedSymbol)
-        DASHBOARD =
-          T.let(:dashboard, Whopsdk::AppListParams::ViewType::TaggedSymbol)
-        ANALYTICS =
-          T.let(:analytics, Whopsdk::AppListParams::ViewType::TaggedSymbol)
-
-        sig do
-          override.returns(
-            T::Array[Whopsdk::AppListParams::ViewType::TaggedSymbol]
           )
         end
         def self.values

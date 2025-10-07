@@ -38,7 +38,7 @@ module Whopsdk
         ?order: Whopsdk::Models::AppListParams::order?,
         ?query: String?,
         ?verified_apps_only: bool?,
-        ?view_type: Whopsdk::Models::AppListParams::view_type?,
+        ?view_type: Whopsdk::Models::app_view_type?,
         ?request_options: Whopsdk::request_opts
       ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::AppListResponse?]
 

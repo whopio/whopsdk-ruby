@@ -1,0 +1,42 @@
+module Whopsdk
+  module Resources
+    class Memberships
+      def retrieve: (
+        String id,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Membership
+
+      def update: (
+        String id,
+        ?metadata: top?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Membership
+
+      def list: (
+        company_id: String,
+        ?access_pass_ids: ::Array[String]?,
+        ?after: String?,
+        ?before: String?,
+        ?cancel_options: ::Array[Whopsdk::Models::MembershipListParams::cancel_option]?,
+        ?created_after: Integer?,
+        ?created_before: Integer?,
+        ?direction: Whopsdk::Models::direction?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?order: Whopsdk::Models::MembershipListParams::order?,
+        ?plan_ids: ::Array[String]?,
+        ?promo_code_ids: ::Array[String]?,
+        ?statuses: ::Array[Whopsdk::Models::membership_status]?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::MembershipListResponse?]
+
+      def cancel: (
+        String id,
+        ?cancellation_mode: Whopsdk::Models::MembershipCancelParams::cancellation_mode?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Membership
+
+      def initialize: (client: Whopsdk::Client) -> void
+    end
+  end
+end

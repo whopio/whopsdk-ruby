@@ -1,0 +1,37 @@
+module Whopsdk
+  module Models
+    type membership_cancel_params =
+      {
+        cancellation_mode: Whopsdk::Models::MembershipCancelParams::cancellation_mode?
+      }
+      & Whopsdk::Internal::Type::request_parameters
+
+    class MembershipCancelParams < Whopsdk::Internal::Type::BaseModel
+      extend Whopsdk::Internal::Type::RequestParameters::Converter
+      include Whopsdk::Internal::Type::RequestParameters
+
+      attr_accessor cancellation_mode: Whopsdk::Models::MembershipCancelParams::cancellation_mode?
+
+      def initialize: (
+        ?cancellation_mode: Whopsdk::Models::MembershipCancelParams::cancellation_mode?,
+        ?request_options: Whopsdk::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        cancellation_mode: Whopsdk::Models::MembershipCancelParams::cancellation_mode?,
+        request_options: Whopsdk::RequestOptions
+      }
+
+      type cancellation_mode = :at_period_end | :immediate
+
+      module CancellationMode
+        extend Whopsdk::Internal::Type::Enum
+
+        AT_PERIOD_END: :at_period_end
+        IMMEDIATE: :immediate
+
+        def self?.values: -> ::Array[Whopsdk::Models::MembershipCancelParams::cancellation_mode]
+      end
+    end
+  end
+end

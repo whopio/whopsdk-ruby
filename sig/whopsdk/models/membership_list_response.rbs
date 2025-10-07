@@ -1,0 +1,156 @@
+module Whopsdk
+  module Models
+    type membership_list_response =
+      {
+        id: String,
+        cancel_at_period_end: bool,
+        canceled_at: Integer?,
+        cancellation_reason: String?,
+        company: Whopsdk::Models::MembershipListResponse::Company,
+        created_at: Integer,
+        currency: Whopsdk::Models::currency?,
+        license_key: String?,
+        member: Whopsdk::Models::MembershipListResponse::Member?,
+        metadata: top,
+        plan: Whopsdk::Models::MembershipListResponse::Plan,
+        promo_code: Whopsdk::Models::MembershipListResponse::PromoCode?,
+        renewal_period_end: Integer?,
+        renewal_period_start: Integer?,
+        status: Whopsdk::Models::membership_status,
+        updated_at: Integer,
+        user: Whopsdk::Models::MembershipListResponse::User?
+      }
+
+    class MembershipListResponse < Whopsdk::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor cancel_at_period_end: bool
+
+      attr_accessor canceled_at: Integer?
+
+      attr_accessor cancellation_reason: String?
+
+      attr_accessor company: Whopsdk::Models::MembershipListResponse::Company
+
+      attr_accessor created_at: Integer
+
+      attr_accessor currency: Whopsdk::Models::currency?
+
+      attr_accessor license_key: String?
+
+      attr_accessor member: Whopsdk::Models::MembershipListResponse::Member?
+
+      attr_accessor metadata: top
+
+      attr_accessor plan: Whopsdk::Models::MembershipListResponse::Plan
+
+      attr_accessor promo_code: Whopsdk::Models::MembershipListResponse::PromoCode?
+
+      attr_accessor renewal_period_end: Integer?
+
+      attr_accessor renewal_period_start: Integer?
+
+      attr_accessor status: Whopsdk::Models::membership_status
+
+      attr_accessor updated_at: Integer
+
+      attr_accessor user: Whopsdk::Models::MembershipListResponse::User?
+
+      def initialize: (
+        id: String,
+        cancel_at_period_end: bool,
+        canceled_at: Integer?,
+        cancellation_reason: String?,
+        company: Whopsdk::Models::MembershipListResponse::Company,
+        created_at: Integer,
+        currency: Whopsdk::Models::currency?,
+        license_key: String?,
+        member: Whopsdk::Models::MembershipListResponse::Member?,
+        metadata: top,
+        plan: Whopsdk::Models::MembershipListResponse::Plan,
+        promo_code: Whopsdk::Models::MembershipListResponse::PromoCode?,
+        renewal_period_end: Integer?,
+        renewal_period_start: Integer?,
+        status: Whopsdk::Models::membership_status,
+        updated_at: Integer,
+        user: Whopsdk::Models::MembershipListResponse::User?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        cancel_at_period_end: bool,
+        canceled_at: Integer?,
+        cancellation_reason: String?,
+        company: Whopsdk::Models::MembershipListResponse::Company,
+        created_at: Integer,
+        currency: Whopsdk::Models::currency?,
+        license_key: String?,
+        member: Whopsdk::Models::MembershipListResponse::Member?,
+        metadata: top,
+        plan: Whopsdk::Models::MembershipListResponse::Plan,
+        promo_code: Whopsdk::Models::MembershipListResponse::PromoCode?,
+        renewal_period_end: Integer?,
+        renewal_period_start: Integer?,
+        status: Whopsdk::Models::membership_status,
+        updated_at: Integer,
+        user: Whopsdk::Models::MembershipListResponse::User?
+      }
+
+      type company = { id: String, title: String }
+
+      class Company < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type member = { id: String }
+
+      class Member < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type plan = { id: String }
+
+      class Plan < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type promo_code = { id: String }
+
+      class PromoCode < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type user = { id: String, name: String?, username: String }
+
+      class User < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
+      end
+    end
+  end
+end

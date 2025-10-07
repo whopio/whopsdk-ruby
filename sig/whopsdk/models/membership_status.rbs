@@ -1,0 +1,28 @@
+module Whopsdk
+  module Models
+    type membership_status =
+      :trialing
+      | :active
+      | :past_due
+      | :completed
+      | :canceled
+      | :expired
+      | :unresolved
+      | :drafted
+
+    module MembershipStatus
+      extend Whopsdk::Internal::Type::Enum
+
+      TRIALING: :trialing
+      ACTIVE: :active
+      PAST_DUE: :past_due
+      COMPLETED: :completed
+      CANCELED: :canceled
+      EXPIRED: :expired
+      UNRESOLVED: :unresolved
+      DRAFTED: :drafted
+
+      def self?.values: -> ::Array[Whopsdk::Models::membership_status]
+    end
+  end
+end

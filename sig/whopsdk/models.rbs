@@ -3,6 +3,20 @@ module Whopsdk
 
   class App = Whopsdk::Models::App
 
+  class AppBuild = Whopsdk::Models::AppBuild
+
+  class AppBuildCreateParams = Whopsdk::Models::AppBuildCreateParams
+
+  class AppBuildListParams = Whopsdk::Models::AppBuildListParams
+
+  module AppBuildPlatforms = Whopsdk::Models::AppBuildPlatforms
+
+  class AppBuildPromoteParams = Whopsdk::Models::AppBuildPromoteParams
+
+  class AppBuildRetrieveParams = Whopsdk::Models::AppBuildRetrieveParams
+
+  module AppBuildStatuses = Whopsdk::Models::AppBuildStatuses
+
   class AppCreateParams = Whopsdk::Models::AppCreateParams
 
   class AppListParams = Whopsdk::Models::AppListParams
@@ -12,6 +26,14 @@ module Whopsdk
   module AppStatuses = Whopsdk::Models::AppStatuses
 
   class AppUpdateParams = Whopsdk::Models::AppUpdateParams
+
+  module AppViewType = Whopsdk::Models::AppViewType
+
+  class AuthorizedUserListParams = Whopsdk::Models::AuthorizedUserListParams
+
+  class AuthorizedUserRetrieveParams = Whopsdk::Models::AuthorizedUserRetrieveParams
+
+  module AuthorizedUserRoles = Whopsdk::Models::AuthorizedUserRoles
 
   module BusinessTypes = Whopsdk::Models::BusinessTypes
 
@@ -81,6 +103,20 @@ module Whopsdk
 
   class InvoiceVoidParams = Whopsdk::Models::InvoiceVoidParams
 
+  class LedgerAccountRetrieveParams = Whopsdk::Models::LedgerAccountRetrieveParams
+
+  class Membership = Whopsdk::Models::Membership
+
+  class MembershipCancelParams = Whopsdk::Models::MembershipCancelParams
+
+  class MembershipListParams = Whopsdk::Models::MembershipListParams
+
+  class MembershipRetrieveParams = Whopsdk::Models::MembershipRetrieveParams
+
+  module MembershipStatus = Whopsdk::Models::MembershipStatus
+
+  class MembershipUpdateParams = Whopsdk::Models::MembershipUpdateParams
+
   class PageInfo = Whopsdk::Models::PageInfo
 
   class Plan = Whopsdk::Models::Plan
@@ -114,6 +150,14 @@ module Whopsdk
   module ReleaseMethod = Whopsdk::Models::ReleaseMethod
 
   module TaxType = Whopsdk::Models::TaxType
+
+  class Transfer = Whopsdk::Models::Transfer
+
+  class TransferCreateParams = Whopsdk::Models::TransferCreateParams
+
+  class TransferListParams = Whopsdk::Models::TransferListParams
+
+  class TransferRetrieveParams = Whopsdk::Models::TransferRetrieveParams
 
   module UnwrapWebhookEvent = Whopsdk::Models::UnwrapWebhookEvent
 

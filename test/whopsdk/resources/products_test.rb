@@ -18,16 +18,16 @@ class Whopsdk::Test::Resources::ProductsTest < Whopsdk::Test::ResourceTest
         business_type: Whopsdk::BusinessTypes | nil,
         company: Whopsdk::Product::Company,
         created_at: Integer,
-        custom_cta: Whopsdk::CustomCta | nil,
+        custom_cta: Whopsdk::CustomCta,
         custom_cta_url: String | nil,
         custom_statement_descriptor: String | nil,
         description: String | nil,
         global_affiliate_percentage: Float | nil,
-        global_affiliate_status: Whopsdk::GlobalAffiliateStatus | nil,
+        global_affiliate_status: Whopsdk::GlobalAffiliateStatus,
         headline: String | nil,
         industry_type: Whopsdk::IndustryTypes | nil,
         member_affiliate_percentage: Float | nil,
-        member_affiliate_status: Whopsdk::GlobalAffiliateStatus | nil,
+        member_affiliate_status: Whopsdk::GlobalAffiliateStatus,
         member_count: Integer,
         owner_user: Whopsdk::Product::OwnerUser,
         product_tax_code: Whopsdk::Product::ProductTaxCode | nil,
@@ -36,7 +36,7 @@ class Whopsdk::Test::Resources::ProductsTest < Whopsdk::Test::ResourceTest
         title: String,
         updated_at: Integer,
         verified: Whopsdk::Internal::Type::Boolean,
-        visibility: Whopsdk::Visibility | nil
+        visibility: Whopsdk::Visibility
       }
     end
   end
@@ -56,16 +56,16 @@ class Whopsdk::Test::Resources::ProductsTest < Whopsdk::Test::ResourceTest
         business_type: Whopsdk::BusinessTypes | nil,
         company: Whopsdk::Product::Company,
         created_at: Integer,
-        custom_cta: Whopsdk::CustomCta | nil,
+        custom_cta: Whopsdk::CustomCta,
         custom_cta_url: String | nil,
         custom_statement_descriptor: String | nil,
         description: String | nil,
         global_affiliate_percentage: Float | nil,
-        global_affiliate_status: Whopsdk::GlobalAffiliateStatus | nil,
+        global_affiliate_status: Whopsdk::GlobalAffiliateStatus,
         headline: String | nil,
         industry_type: Whopsdk::IndustryTypes | nil,
         member_affiliate_percentage: Float | nil,
-        member_affiliate_status: Whopsdk::GlobalAffiliateStatus | nil,
+        member_affiliate_status: Whopsdk::GlobalAffiliateStatus,
         member_count: Integer,
         owner_user: Whopsdk::Product::OwnerUser,
         product_tax_code: Whopsdk::Product::ProductTaxCode | nil,
@@ -74,7 +74,7 @@ class Whopsdk::Test::Resources::ProductsTest < Whopsdk::Test::ResourceTest
         title: String,
         updated_at: Integer,
         verified: Whopsdk::Internal::Type::Boolean,
-        visibility: Whopsdk::Visibility | nil
+        visibility: Whopsdk::Visibility
       }
     end
   end
@@ -94,16 +94,16 @@ class Whopsdk::Test::Resources::ProductsTest < Whopsdk::Test::ResourceTest
         business_type: Whopsdk::BusinessTypes | nil,
         company: Whopsdk::Product::Company,
         created_at: Integer,
-        custom_cta: Whopsdk::CustomCta | nil,
+        custom_cta: Whopsdk::CustomCta,
         custom_cta_url: String | nil,
         custom_statement_descriptor: String | nil,
         description: String | nil,
         global_affiliate_percentage: Float | nil,
-        global_affiliate_status: Whopsdk::GlobalAffiliateStatus | nil,
+        global_affiliate_status: Whopsdk::GlobalAffiliateStatus,
         headline: String | nil,
         industry_type: Whopsdk::IndustryTypes | nil,
         member_affiliate_percentage: Float | nil,
-        member_affiliate_status: Whopsdk::GlobalAffiliateStatus | nil,
+        member_affiliate_status: Whopsdk::GlobalAffiliateStatus,
         member_count: Integer,
         owner_user: Whopsdk::Product::OwnerUser,
         product_tax_code: Whopsdk::Product::ProductTaxCode | nil,
@@ -112,7 +112,7 @@ class Whopsdk::Test::Resources::ProductsTest < Whopsdk::Test::ResourceTest
         title: String,
         updated_at: Integer,
         verified: Whopsdk::Internal::Type::Boolean,
-        visibility: Whopsdk::Visibility | nil
+        visibility: Whopsdk::Visibility
       }
     end
   end
@@ -146,7 +146,7 @@ class Whopsdk::Test::Resources::ProductsTest < Whopsdk::Test::ResourceTest
         title: String,
         updated_at: Integer,
         verified: Whopsdk::Internal::Type::Boolean,
-        visibility: Whopsdk::Visibility | nil
+        visibility: Whopsdk::Visibility
       }
     end
   end

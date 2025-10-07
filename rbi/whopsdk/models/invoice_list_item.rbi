@@ -41,8 +41,8 @@ module Whopsdk
       sig { returns(String) }
       attr_accessor :number
 
-      # The different statuses an invoice can be in
-      sig { returns(T.nilable(Whopsdk::InvoiceStatus::TaggedSymbol)) }
+      # The status of the invoice.
+      sig { returns(Whopsdk::InvoiceStatus::TaggedSymbol) }
       attr_accessor :status
 
       # The user that the invoice was created for.
@@ -64,7 +64,7 @@ module Whopsdk
           email_address: T.nilable(String),
           fetch_invoice_token: String,
           number: String,
-          status: T.nilable(Whopsdk::InvoiceStatus::OrSymbol),
+          status: Whopsdk::InvoiceStatus::OrSymbol,
           user: T.nilable(Whopsdk::InvoiceListItem::User::OrHash)
         ).returns(T.attached_class)
       end
@@ -83,7 +83,7 @@ module Whopsdk
         fetch_invoice_token:,
         # The number of the invoice.
         number:,
-        # The different statuses an invoice can be in
+        # The status of the invoice.
         status:,
         # The user that the invoice was created for.
         user:
@@ -100,7 +100,7 @@ module Whopsdk
             email_address: T.nilable(String),
             fetch_invoice_token: String,
             number: String,
-            status: T.nilable(Whopsdk::InvoiceStatus::TaggedSymbol),
+            status: Whopsdk::InvoiceStatus::TaggedSymbol,
             user: T.nilable(Whopsdk::InvoiceListItem::User)
           }
         )
@@ -121,8 +121,8 @@ module Whopsdk
         sig { returns(String) }
         attr_accessor :id
 
-        # The available currencies on the platform
-        sig { returns(T.nilable(Whopsdk::Currency::TaggedSymbol)) }
+        # The respective currency identifier for the plan.
+        sig { returns(Whopsdk::Currency::TaggedSymbol) }
         attr_accessor :currency
 
         # The formatted price (including currency) for the plan.
@@ -133,14 +133,14 @@ module Whopsdk
         sig do
           params(
             id: String,
-            currency: T.nilable(Whopsdk::Currency::OrSymbol),
+            currency: Whopsdk::Currency::OrSymbol,
             formatted_price: String
           ).returns(T.attached_class)
         end
         def self.new(
           # The internal ID of the plan.
           id:,
-          # The available currencies on the platform
+          # The respective currency identifier for the plan.
           currency:,
           # The formatted price (including currency) for the plan.
           formatted_price:
@@ -151,7 +151,7 @@ module Whopsdk
           override.returns(
             {
               id: String,
-              currency: T.nilable(Whopsdk::Currency::TaggedSymbol),
+              currency: Whopsdk::Currency::TaggedSymbol,
               formatted_price: String
             }
           )

@@ -19,7 +19,7 @@ class Whopsdk::Test::Resources::PlansTest < Whopsdk::Test::ResourceTest
         collect_tax: Whopsdk::Internal::Type::Boolean,
         company: Whopsdk::Plan::Company | nil,
         created_at: Integer,
-        currency: Whopsdk::Currency | nil,
+        currency: Whopsdk::Currency,
         custom_fields: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Plan::CustomField]),
         description: String | nil,
         expiration_days: Integer | nil,
@@ -27,15 +27,15 @@ class Whopsdk::Test::Resources::PlansTest < Whopsdk::Test::ResourceTest
         internal_notes: String | nil,
         invoice: Whopsdk::Plan::Invoice | nil,
         member_count: Integer | nil,
-        plan_type: Whopsdk::PlanType | nil,
+        plan_type: Whopsdk::PlanType,
         product: Whopsdk::Plan::Product | nil,
         purchase_link: String,
-        release_method: Whopsdk::ReleaseMethod | nil,
+        release_method: Whopsdk::ReleaseMethod,
         renewal_price: Float,
-        tax_type: Whopsdk::TaxType | nil,
+        tax_type: Whopsdk::TaxType,
         trial_period_days: Integer | nil,
         updated_at: Integer,
-        visibility: Whopsdk::Visibility | nil
+        visibility: Whopsdk::Visibility
       }
     end
   end
@@ -56,7 +56,7 @@ class Whopsdk::Test::Resources::PlansTest < Whopsdk::Test::ResourceTest
         collect_tax: Whopsdk::Internal::Type::Boolean,
         company: Whopsdk::Plan::Company | nil,
         created_at: Integer,
-        currency: Whopsdk::Currency | nil,
+        currency: Whopsdk::Currency,
         custom_fields: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Plan::CustomField]),
         description: String | nil,
         expiration_days: Integer | nil,
@@ -64,15 +64,15 @@ class Whopsdk::Test::Resources::PlansTest < Whopsdk::Test::ResourceTest
         internal_notes: String | nil,
         invoice: Whopsdk::Plan::Invoice | nil,
         member_count: Integer | nil,
-        plan_type: Whopsdk::PlanType | nil,
+        plan_type: Whopsdk::PlanType,
         product: Whopsdk::Plan::Product | nil,
         purchase_link: String,
-        release_method: Whopsdk::ReleaseMethod | nil,
+        release_method: Whopsdk::ReleaseMethod,
         renewal_price: Float,
-        tax_type: Whopsdk::TaxType | nil,
+        tax_type: Whopsdk::TaxType,
         trial_period_days: Integer | nil,
         updated_at: Integer,
-        visibility: Whopsdk::Visibility | nil
+        visibility: Whopsdk::Visibility
       }
     end
   end
@@ -93,7 +93,7 @@ class Whopsdk::Test::Resources::PlansTest < Whopsdk::Test::ResourceTest
         collect_tax: Whopsdk::Internal::Type::Boolean,
         company: Whopsdk::Plan::Company | nil,
         created_at: Integer,
-        currency: Whopsdk::Currency | nil,
+        currency: Whopsdk::Currency,
         custom_fields: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Plan::CustomField]),
         description: String | nil,
         expiration_days: Integer | nil,
@@ -101,15 +101,15 @@ class Whopsdk::Test::Resources::PlansTest < Whopsdk::Test::ResourceTest
         internal_notes: String | nil,
         invoice: Whopsdk::Plan::Invoice | nil,
         member_count: Integer | nil,
-        plan_type: Whopsdk::PlanType | nil,
+        plan_type: Whopsdk::PlanType,
         product: Whopsdk::Plan::Product | nil,
         purchase_link: String,
-        release_method: Whopsdk::ReleaseMethod | nil,
+        release_method: Whopsdk::ReleaseMethod,
         renewal_price: Float,
-        tax_type: Whopsdk::TaxType | nil,
+        tax_type: Whopsdk::TaxType,
         trial_period_days: Integer | nil,
         updated_at: Integer,
-        visibility: Whopsdk::Visibility | nil
+        visibility: Whopsdk::Visibility
       }
     end
   end
@@ -136,21 +136,21 @@ class Whopsdk::Test::Resources::PlansTest < Whopsdk::Test::ResourceTest
         billing_period: Integer | nil,
         company: Whopsdk::Models::PlanListResponse::Company | nil,
         created_at: Integer,
-        currency: Whopsdk::Currency | nil,
+        currency: Whopsdk::Currency,
         description: String | nil,
         expiration_days: Integer | nil,
         initial_price: Float,
         internal_notes: String | nil,
         invoice: Whopsdk::Models::PlanListResponse::Invoice | nil,
         member_count: Integer | nil,
-        plan_type: Whopsdk::PlanType | nil,
+        plan_type: Whopsdk::PlanType,
         product: Whopsdk::Models::PlanListResponse::Product | nil,
         purchase_link: String,
-        release_method: Whopsdk::ReleaseMethod | nil,
+        release_method: Whopsdk::ReleaseMethod,
         renewal_price: Float,
         trial_period_days: Integer | nil,
         updated_at: Integer,
-        visibility: Whopsdk::Visibility | nil
+        visibility: Whopsdk::Visibility
       }
     end
   end

@@ -15,7 +15,7 @@ module Whopsdk
         name: String,
         requested_permissions: ::Array[Whopsdk::App::RequestedPermission],
         stats: Whopsdk::App::Stats?,
-        status: Whopsdk::Models::app_statuses?,
+        status: Whopsdk::Models::app_statuses,
         verified: bool
       }
 
@@ -46,7 +46,7 @@ module Whopsdk
 
       attr_accessor stats: Whopsdk::App::Stats?
 
-      attr_accessor status: Whopsdk::Models::app_statuses?
+      attr_accessor status: Whopsdk::Models::app_statuses
 
       attr_accessor verified: bool
 
@@ -64,7 +64,7 @@ module Whopsdk
         name: String,
         requested_permissions: ::Array[Whopsdk::App::RequestedPermission],
         stats: Whopsdk::App::Stats?,
-        status: Whopsdk::Models::app_statuses?,
+        status: Whopsdk::Models::app_statuses,
         verified: bool
       ) -> void
 
@@ -82,7 +82,7 @@ module Whopsdk
         name: String,
         requested_permissions: ::Array[Whopsdk::App::RequestedPermission],
         stats: Whopsdk::App::Stats?,
-        status: Whopsdk::Models::app_statuses?,
+        status: Whopsdk::Models::app_statuses,
         verified: bool
       }
 

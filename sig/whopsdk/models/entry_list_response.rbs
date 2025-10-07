@@ -6,7 +6,7 @@ module Whopsdk
         created_at: Integer?,
         plan: Whopsdk::Models::EntryListResponse::Plan?,
         product: Whopsdk::Models::EntryListResponse::Product?,
-        status: Whopsdk::Models::entry_status?,
+        status: Whopsdk::Models::entry_status,
         user: Whopsdk::Models::EntryListResponse::User
       }
 
@@ -19,7 +19,7 @@ module Whopsdk
 
       attr_accessor product: Whopsdk::Models::EntryListResponse::Product?
 
-      attr_accessor status: Whopsdk::Models::entry_status?
+      attr_accessor status: Whopsdk::Models::entry_status
 
       attr_accessor user: Whopsdk::Models::EntryListResponse::User
 
@@ -28,7 +28,7 @@ module Whopsdk
         created_at: Integer?,
         plan: Whopsdk::Models::EntryListResponse::Plan?,
         product: Whopsdk::Models::EntryListResponse::Product?,
-        status: Whopsdk::Models::entry_status?,
+        status: Whopsdk::Models::entry_status,
         user: Whopsdk::Models::EntryListResponse::User
       ) -> void
 
@@ -37,7 +37,7 @@ module Whopsdk
         created_at: Integer?,
         plan: Whopsdk::Models::EntryListResponse::Plan?,
         product: Whopsdk::Models::EntryListResponse::Product?,
-        status: Whopsdk::Models::entry_status?,
+        status: Whopsdk::Models::entry_status,
         user: Whopsdk::Models::EntryListResponse::User
       }
 

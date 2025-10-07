@@ -10,7 +10,7 @@ module Whopsdk
         experience_path: String?,
         icon: Whopsdk::AppUpdateParams::Icon?,
         name: String?,
-        required_scopes: ::Array[Whopsdk::Models::AppUpdateParams::required_scope?]?,
+        required_scopes: ::Array[Whopsdk::Models::AppUpdateParams::required_scope]?,
         status: Whopsdk::Models::app_statuses?
       }
       & Whopsdk::Internal::Type::request_parameters
@@ -35,7 +35,7 @@ module Whopsdk
 
       attr_accessor name: String?
 
-      attr_accessor required_scopes: ::Array[Whopsdk::Models::AppUpdateParams::required_scope?]?
+      attr_accessor required_scopes: ::Array[Whopsdk::Models::AppUpdateParams::required_scope]?
 
       attr_accessor status: Whopsdk::Models::app_statuses?
 
@@ -48,7 +48,7 @@ module Whopsdk
         ?experience_path: String?,
         ?icon: Whopsdk::AppUpdateParams::Icon?,
         ?name: String?,
-        ?required_scopes: ::Array[Whopsdk::Models::AppUpdateParams::required_scope?]?,
+        ?required_scopes: ::Array[Whopsdk::Models::AppUpdateParams::required_scope]?,
         ?status: Whopsdk::Models::app_statuses?,
         ?request_options: Whopsdk::request_opts
       ) -> void
@@ -62,7 +62,7 @@ module Whopsdk
         experience_path: String?,
         icon: Whopsdk::AppUpdateParams::Icon?,
         name: String?,
-        required_scopes: ::Array[Whopsdk::Models::AppUpdateParams::required_scope?]?,
+        required_scopes: ::Array[Whopsdk::Models::AppUpdateParams::required_scope]?,
         status: Whopsdk::Models::app_statuses?,
         request_options: Whopsdk::RequestOptions
       }

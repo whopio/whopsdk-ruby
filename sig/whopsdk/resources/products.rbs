@@ -26,12 +26,12 @@ module Whopsdk
         ?route: String?,
         ?visibility: Whopsdk::Models::visibility?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Product?
+      ) -> Whopsdk::Product
 
       def retrieve: (
         String id,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Product?
+      ) -> Whopsdk::Product
 
       def update: (
         String id,
@@ -54,7 +54,7 @@ module Whopsdk
         ?title: String?,
         ?visibility: Whopsdk::Models::visibility?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Product?
+      ) -> Whopsdk::Product
 
       def list: (
         company_id: String,
@@ -64,12 +64,12 @@ module Whopsdk
         ?first: Integer?,
         ?last: Integer?,
         ?order: Whopsdk::Models::ProductListParams::order?,
-        ?product_types: ::Array[Whopsdk::Models::access_pass_type?]?,
-        ?visibilities: ::Array[Whopsdk::Models::visibility_filter?]?,
+        ?product_types: ::Array[Whopsdk::Models::access_pass_type]?,
+        ?visibilities: ::Array[Whopsdk::Models::visibility_filter]?,
         ?request_options: Whopsdk::request_opts
       ) -> Whopsdk::Internal::CursorPage[Whopsdk::ProductListItem?]
 
-      def delete: (String id, ?request_options: Whopsdk::request_opts) -> bool?
+      def delete: (String id, ?request_options: Whopsdk::request_opts) -> bool
 
       def initialize: (client: Whopsdk::Client) -> void
     end

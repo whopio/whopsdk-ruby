@@ -7,7 +7,7 @@ module Whopsdk
         collect_tax: bool,
         company: Whopsdk::Plan::Company?,
         created_at: Integer,
-        currency: Whopsdk::Models::currency?,
+        currency: Whopsdk::Models::currency,
         custom_fields: ::Array[Whopsdk::Plan::CustomField],
         description: String?,
         expiration_days: Integer?,
@@ -15,15 +15,15 @@ module Whopsdk
         internal_notes: String?,
         invoice: Whopsdk::Plan::Invoice?,
         member_count: Integer?,
-        plan_type: Whopsdk::Models::plan_type?,
+        plan_type: Whopsdk::Models::plan_type,
         product: Whopsdk::Plan::Product?,
         purchase_link: String,
-        release_method: Whopsdk::Models::release_method?,
+        release_method: Whopsdk::Models::release_method,
         renewal_price: Float,
-        tax_type: Whopsdk::Models::tax_type?,
+        tax_type: Whopsdk::Models::tax_type,
         trial_period_days: Integer?,
         updated_at: Integer,
-        visibility: Whopsdk::Models::visibility?
+        visibility: Whopsdk::Models::visibility
       }
 
     class Plan < Whopsdk::Internal::Type::BaseModel
@@ -37,7 +37,7 @@ module Whopsdk
 
       attr_accessor created_at: Integer
 
-      attr_accessor currency: Whopsdk::Models::currency?
+      attr_accessor currency: Whopsdk::Models::currency
 
       attr_accessor custom_fields: ::Array[Whopsdk::Plan::CustomField]
 
@@ -53,23 +53,23 @@ module Whopsdk
 
       attr_accessor member_count: Integer?
 
-      attr_accessor plan_type: Whopsdk::Models::plan_type?
+      attr_accessor plan_type: Whopsdk::Models::plan_type
 
       attr_accessor product: Whopsdk::Plan::Product?
 
       attr_accessor purchase_link: String
 
-      attr_accessor release_method: Whopsdk::Models::release_method?
+      attr_accessor release_method: Whopsdk::Models::release_method
 
       attr_accessor renewal_price: Float
 
-      attr_accessor tax_type: Whopsdk::Models::tax_type?
+      attr_accessor tax_type: Whopsdk::Models::tax_type
 
       attr_accessor trial_period_days: Integer?
 
       attr_accessor updated_at: Integer
 
-      attr_accessor visibility: Whopsdk::Models::visibility?
+      attr_accessor visibility: Whopsdk::Models::visibility
 
       def initialize: (
         id: String,
@@ -77,7 +77,7 @@ module Whopsdk
         collect_tax: bool,
         company: Whopsdk::Plan::Company?,
         created_at: Integer,
-        currency: Whopsdk::Models::currency?,
+        currency: Whopsdk::Models::currency,
         custom_fields: ::Array[Whopsdk::Plan::CustomField],
         description: String?,
         expiration_days: Integer?,
@@ -85,15 +85,15 @@ module Whopsdk
         internal_notes: String?,
         invoice: Whopsdk::Plan::Invoice?,
         member_count: Integer?,
-        plan_type: Whopsdk::Models::plan_type?,
+        plan_type: Whopsdk::Models::plan_type,
         product: Whopsdk::Plan::Product?,
         purchase_link: String,
-        release_method: Whopsdk::Models::release_method?,
+        release_method: Whopsdk::Models::release_method,
         renewal_price: Float,
-        tax_type: Whopsdk::Models::tax_type?,
+        tax_type: Whopsdk::Models::tax_type,
         trial_period_days: Integer?,
         updated_at: Integer,
-        visibility: Whopsdk::Models::visibility?
+        visibility: Whopsdk::Models::visibility
       ) -> void
 
       def to_hash: -> {
@@ -102,7 +102,7 @@ module Whopsdk
         collect_tax: bool,
         company: Whopsdk::Plan::Company?,
         created_at: Integer,
-        currency: Whopsdk::Models::currency?,
+        currency: Whopsdk::Models::currency,
         custom_fields: ::Array[Whopsdk::Plan::CustomField],
         description: String?,
         expiration_days: Integer?,
@@ -110,15 +110,15 @@ module Whopsdk
         internal_notes: String?,
         invoice: Whopsdk::Plan::Invoice?,
         member_count: Integer?,
-        plan_type: Whopsdk::Models::plan_type?,
+        plan_type: Whopsdk::Models::plan_type,
         product: Whopsdk::Plan::Product?,
         purchase_link: String,
-        release_method: Whopsdk::Models::release_method?,
+        release_method: Whopsdk::Models::release_method,
         renewal_price: Float,
-        tax_type: Whopsdk::Models::tax_type?,
+        tax_type: Whopsdk::Models::tax_type,
         trial_period_days: Integer?,
         updated_at: Integer,
-        visibility: Whopsdk::Models::visibility?
+        visibility: Whopsdk::Models::visibility
       }
 
       type company = { id: String, title: String }
@@ -136,7 +136,7 @@ module Whopsdk
       type custom_field =
         {
           id: String,
-          field_type: Whopsdk::Models::Plan::CustomField::field_type?,
+          field_type: :text,
           name: String,
           order: Integer?,
           placeholder: String?,
@@ -146,7 +146,7 @@ module Whopsdk
       class CustomField < Whopsdk::Internal::Type::BaseModel
         attr_accessor id: String
 
-        attr_accessor field_type: Whopsdk::Models::Plan::CustomField::field_type?
+        attr_accessor field_type: :text
 
         attr_accessor name: String
 
@@ -158,31 +158,21 @@ module Whopsdk
 
         def initialize: (
           id: String,
-          field_type: Whopsdk::Models::Plan::CustomField::field_type?,
           name: String,
           order: Integer?,
           placeholder: String?,
-          required: bool
+          required: bool,
+          ?field_type: :text
         ) -> void
 
         def to_hash: -> {
           id: String,
-          field_type: Whopsdk::Models::Plan::CustomField::field_type?,
+          field_type: :text,
           name: String,
           order: Integer?,
           placeholder: String?,
           required: bool
         }
-
-        type field_type = :text
-
-        module FieldType
-          extend Whopsdk::Internal::Type::Enum
-
-          TEXT: :text
-
-          def self?.values: -> ::Array[Whopsdk::Models::Plan::CustomField::field_type]
-        end
       end
 
       type invoice = { id: String }

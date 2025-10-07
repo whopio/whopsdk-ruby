@@ -188,13 +188,7 @@ module Whopsdk
           end
 
         # The type of the custom field.
-        sig do
-          returns(
-            T.nilable(
-              Whopsdk::PlanCreateParams::CustomField::FieldType::OrSymbol
-            )
-          )
-        end
+        sig { returns(Symbol) }
         attr_accessor :field_type
 
         # The name of the custom field.
@@ -219,20 +213,15 @@ module Whopsdk
 
         sig do
           params(
-            field_type:
-              T.nilable(
-                Whopsdk::PlanCreateParams::CustomField::FieldType::OrSymbol
-              ),
             name: String,
             id: T.nilable(String),
             order: T.nilable(Integer),
             placeholder: T.nilable(String),
-            required: T.nilable(T::Boolean)
+            required: T.nilable(T::Boolean),
+            field_type: Symbol
           ).returns(T.attached_class)
         end
         def self.new(
-          # The type of the custom field.
-          field_type:,
           # The name of the custom field.
           name:,
           # The ID of the custom field (if being updated)
@@ -242,17 +231,16 @@ module Whopsdk
           # The placeholder value of the field.
           placeholder: nil,
           # Whether or not the field is required.
-          required: nil
+          required: nil,
+          # The type of the custom field.
+          field_type: :text
         )
         end
 
         sig do
           override.returns(
             {
-              field_type:
-                T.nilable(
-                  Whopsdk::PlanCreateParams::CustomField::FieldType::OrSymbol
-                ),
+              field_type: Symbol,
               name: String,
               id: T.nilable(String),
               order: T.nilable(Integer),
@@ -262,33 +250,6 @@ module Whopsdk
           )
         end
         def to_hash
-        end
-
-        # The type of the custom field.
-        module FieldType
-          extend Whopsdk::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, Whopsdk::PlanCreateParams::CustomField::FieldType)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          TEXT =
-            T.let(
-              :text,
-              Whopsdk::PlanCreateParams::CustomField::FieldType::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Whopsdk::PlanCreateParams::CustomField::FieldType::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
         end
       end
 

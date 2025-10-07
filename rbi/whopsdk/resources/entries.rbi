@@ -13,7 +13,7 @@ module Whopsdk
         params(
           id: String,
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.nilable(Whopsdk::Entry))
+        ).returns(Whopsdk::Entry)
       end
       def retrieve(id, request_options: {})
       end
@@ -35,8 +35,7 @@ module Whopsdk
           order: T.nilable(Whopsdk::EntryListParams::Order::OrSymbol),
           plan_ids: T.nilable(T::Array[String]),
           product_ids: T.nilable(T::Array[String]),
-          statuses:
-            T.nilable(T::Array[T.nilable(Whopsdk::EntryStatus::OrSymbol)]),
+          statuses: T.nilable(T::Array[Whopsdk::EntryStatus::OrSymbol]),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(
           Whopsdk::Internal::CursorPage[
@@ -94,7 +93,7 @@ module Whopsdk
         params(
           id: String,
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.nilable(Whopsdk::Entry))
+        ).returns(Whopsdk::Entry)
       end
       def deny(id, request_options: {})
       end

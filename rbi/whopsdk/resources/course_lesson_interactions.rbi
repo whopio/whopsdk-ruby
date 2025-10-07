@@ -13,7 +13,7 @@ module Whopsdk
         params(
           id: String,
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.nilable(Whopsdk::CourseLessonInteraction))
+        ).returns(Whopsdk::CourseLessonInteraction)
       end
       def retrieve(id, request_options: {})
       end

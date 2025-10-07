@@ -32,8 +32,8 @@ module Whopsdk
       sig { params(product: T.nilable(Whopsdk::Entry::Product::OrHash)).void }
       attr_writer :product
 
-      # The status of an entry to a waitlist.
-      sig { returns(T.nilable(Whopsdk::EntryStatus::TaggedSymbol)) }
+      # The status of the entry.
+      sig { returns(Whopsdk::EntryStatus::TaggedSymbol) }
       attr_accessor :status
 
       # The user who created the entry.
@@ -52,7 +52,7 @@ module Whopsdk
             T.nilable(T::Array[Whopsdk::Entry::CustomFieldResponse::OrHash]),
           plan: T.nilable(Whopsdk::Entry::Plan::OrHash),
           product: T.nilable(Whopsdk::Entry::Product::OrHash),
-          status: T.nilable(Whopsdk::EntryStatus::OrSymbol),
+          status: Whopsdk::EntryStatus::OrSymbol,
           user: Whopsdk::Entry::User::OrHash
         ).returns(T.attached_class)
       end
@@ -67,7 +67,7 @@ module Whopsdk
         plan:,
         # The access pass tied to this entry, if there is one.
         product:,
-        # The status of an entry to a waitlist.
+        # The status of the entry.
         status:,
         # The user who created the entry.
         user:
@@ -83,7 +83,7 @@ module Whopsdk
               T.nilable(T::Array[Whopsdk::Entry::CustomFieldResponse]),
             plan: T.nilable(Whopsdk::Entry::Plan),
             product: T.nilable(Whopsdk::Entry::Product),
-            status: T.nilable(Whopsdk::EntryStatus::TaggedSymbol),
+            status: Whopsdk::EntryStatus::TaggedSymbol,
             user: Whopsdk::Entry::User
           }
         )

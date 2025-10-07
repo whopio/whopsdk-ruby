@@ -15,7 +15,7 @@ module Whopsdk
       # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::CourseLessonInteraction, nil]
+      # @return [Whopsdk::Models::CourseLessonInteraction]
       #
       # @see Whopsdk::Models::CourseLessonInteractionRetrieveParams
       def retrieve(id, params = {})

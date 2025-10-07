@@ -58,11 +58,9 @@ module Whopsdk
       # @!attribute required_scopes
       #   The scopes that the app will request off of users when a user installs the app.
       #
-      #   @return [Array<Symbol, Whopsdk::Models::AppUpdateParams::RequiredScope, nil>, nil]
+      #   @return [Array<Symbol, Whopsdk::Models::AppUpdateParams::RequiredScope>, nil]
       optional :required_scopes,
-               -> {
-                 Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::AppUpdateParams::RequiredScope, nil?: true]
-               },
+               -> { Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::AppUpdateParams::RequiredScope] },
                nil?: true
 
       # @!attribute status
@@ -88,7 +86,7 @@ module Whopsdk
       #
       #   @param name [String, nil] The name of the app
       #
-      #   @param required_scopes [Array<Symbol, Whopsdk::Models::AppUpdateParams::RequiredScope, nil>, nil] The scopes that the app will request off of users when a user installs the app.
+      #   @param required_scopes [Array<Symbol, Whopsdk::Models::AppUpdateParams::RequiredScope>, nil] The scopes that the app will request off of users when a user installs the app.
       #
       #   @param status [Symbol, Whopsdk::Models::AppStatuses, nil] The status of an experience interface
       #

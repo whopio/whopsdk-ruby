@@ -15,7 +15,7 @@ module Whopsdk
           name: String,
           base_url: T.nilable(String),
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.nilable(Whopsdk::App))
+        ).returns(Whopsdk::App)
       end
       def create(
         # The ID of the company to create the app for
@@ -37,7 +37,7 @@ module Whopsdk
         params(
           id: String,
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.nilable(Whopsdk::App))
+        ).returns(Whopsdk::App)
       end
       def retrieve(id, request_options: {})
       end
@@ -61,13 +61,11 @@ module Whopsdk
           name: T.nilable(String),
           required_scopes:
             T.nilable(
-              T::Array[
-                T.nilable(Whopsdk::AppUpdateParams::RequiredScope::OrSymbol)
-              ]
+              T::Array[Whopsdk::AppUpdateParams::RequiredScope::OrSymbol]
             ),
           status: T.nilable(Whopsdk::AppStatuses::OrSymbol),
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.nilable(Whopsdk::App))
+        ).returns(Whopsdk::App)
       end
       def update(
         id,

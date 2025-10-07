@@ -70,10 +70,10 @@ module Whopsdk
       required :verified, Whopsdk::Internal::Type::Boolean
 
       # @!attribute visibility
-      #   Visibility of a resource
+      #   This access pass will/will not be displayed publicly.
       #
-      #   @return [Symbol, Whopsdk::Models::Visibility, nil]
-      required :visibility, enum: -> { Whopsdk::Visibility }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::Visibility]
+      required :visibility, enum: -> { Whopsdk::Visibility }
 
       # @!method initialize(id:, business_type:, created_at:, headline:, industry_type:, member_count:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
       #   An object representing a (sanitized) access pass.
@@ -100,7 +100,7 @@ module Whopsdk
       #
       #   @param verified [Boolean] Whether this product is Whop verified.
       #
-      #   @param visibility [Symbol, Whopsdk::Models::Visibility, nil] Visibility of a resource
+      #   @param visibility [Symbol, Whopsdk::Models::Visibility] This access pass will/will not be displayed publicly.
     end
   end
 end

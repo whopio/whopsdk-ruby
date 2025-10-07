@@ -20,7 +20,7 @@ module Whopsdk
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::App, nil]
+      # @return [Whopsdk::Models::App]
       #
       # @see Whopsdk::Models::AppCreateParams
       def create(params)
@@ -39,7 +39,7 @@ module Whopsdk
       # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::App, nil]
+      # @return [Whopsdk::Models::App]
       #
       # @see Whopsdk::Models::AppRetrieveParams
       def retrieve(id, params = {})
@@ -78,13 +78,13 @@ module Whopsdk
       #
       # @param name [String, nil] The name of the app
       #
-      # @param required_scopes [Array<Symbol, Whopsdk::Models::AppUpdateParams::RequiredScope, nil>, nil] The scopes that the app will request off of users when a user installs the app.
+      # @param required_scopes [Array<Symbol, Whopsdk::Models::AppUpdateParams::RequiredScope>, nil] The scopes that the app will request off of users when a user installs the app.
       #
       # @param status [Symbol, Whopsdk::Models::AppStatuses, nil] The status of an experience interface
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::App, nil]
+      # @return [Whopsdk::Models::App]
       #
       # @see Whopsdk::Models::AppUpdateParams
       def update(id, params = {})

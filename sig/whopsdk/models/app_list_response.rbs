@@ -12,7 +12,7 @@ module Whopsdk
         domain_id: String,
         experience_path: String?,
         name: String,
-        status: Whopsdk::Models::app_statuses?,
+        status: Whopsdk::Models::app_statuses,
         verified: bool
       }
 
@@ -37,7 +37,7 @@ module Whopsdk
 
       attr_accessor name: String
 
-      attr_accessor status: Whopsdk::Models::app_statuses?
+      attr_accessor status: Whopsdk::Models::app_statuses
 
       attr_accessor verified: bool
 
@@ -52,7 +52,7 @@ module Whopsdk
         domain_id: String,
         experience_path: String?,
         name: String,
-        status: Whopsdk::Models::app_statuses?,
+        status: Whopsdk::Models::app_statuses,
         verified: bool
       ) -> void
 
@@ -67,7 +67,7 @@ module Whopsdk
         domain_id: String,
         experience_path: String?,
         name: String,
-        status: Whopsdk::Models::app_statuses?,
+        status: Whopsdk::Models::app_statuses,
         verified: bool
       }
 

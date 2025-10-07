@@ -52,7 +52,7 @@ module Whopsdk
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::Plan, nil]
+      # @return [Whopsdk::Models::Plan]
       #
       # @see Whopsdk::Models::PlanCreateParams
       def create(params)
@@ -71,7 +71,7 @@ module Whopsdk
       # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::Plan, nil]
+      # @return [Whopsdk::Models::Plan]
       #
       # @see Whopsdk::Models::PlanRetrieveParams
       def retrieve(id, params = {})
@@ -128,7 +128,7 @@ module Whopsdk
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::Plan, nil]
+      # @return [Whopsdk::Models::Plan]
       #
       # @see Whopsdk::Models::PlanUpdateParams
       def update(id, params = {})
@@ -164,13 +164,13 @@ module Whopsdk
       #
       # @param order [Symbol, Whopsdk::Models::PlanListParams::Order, nil] The ways a relation of Plans can be ordered
       #
-      # @param plan_types [Array<Symbol, Whopsdk::Models::PlanType, nil>, nil] The plan type to filter the plans by
+      # @param plan_types [Array<Symbol, Whopsdk::Models::PlanType>, nil] The plan type to filter the plans by
       #
       # @param product_ids [Array<String>, nil] The access pass IDs to filter the plans by
       #
-      # @param release_methods [Array<Symbol, Whopsdk::Models::ReleaseMethod, nil>, nil] The release method to filter the plans by
+      # @param release_methods [Array<Symbol, Whopsdk::Models::ReleaseMethod>, nil] The release method to filter the plans by
       #
-      # @param visibilities [Array<Symbol, Whopsdk::Models::VisibilityFilter, nil>, nil] The visibility to filter the plans by
+      # @param visibilities [Array<Symbol, Whopsdk::Models::VisibilityFilter>, nil] The visibility to filter the plans by
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -200,7 +200,7 @@ module Whopsdk
       # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Boolean, nil]
+      # @return [Boolean]
       #
       # @see Whopsdk::Models::PlanDeleteParams
       def delete(id, params = {})

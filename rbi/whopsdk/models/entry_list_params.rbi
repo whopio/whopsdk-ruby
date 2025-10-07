@@ -48,9 +48,7 @@ module Whopsdk
       attr_accessor :product_ids
 
       # The statuses to filter the entries by
-      sig do
-        returns(T.nilable(T::Array[T.nilable(Whopsdk::EntryStatus::OrSymbol)]))
-      end
+      sig { returns(T.nilable(T::Array[Whopsdk::EntryStatus::OrSymbol])) }
       attr_accessor :statuses
 
       sig do
@@ -64,8 +62,7 @@ module Whopsdk
           order: T.nilable(Whopsdk::EntryListParams::Order::OrSymbol),
           plan_ids: T.nilable(T::Array[String]),
           product_ids: T.nilable(T::Array[String]),
-          statuses:
-            T.nilable(T::Array[T.nilable(Whopsdk::EntryStatus::OrSymbol)]),
+          statuses: T.nilable(T::Array[Whopsdk::EntryStatus::OrSymbol]),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -106,8 +103,7 @@ module Whopsdk
             order: T.nilable(Whopsdk::EntryListParams::Order::OrSymbol),
             plan_ids: T.nilable(T::Array[String]),
             product_ids: T.nilable(T::Array[String]),
-            statuses:
-              T.nilable(T::Array[T.nilable(Whopsdk::EntryStatus::OrSymbol)]),
+            statuses: T.nilable(T::Array[Whopsdk::EntryStatus::OrSymbol]),
             request_options: Whopsdk::RequestOptions
           }
         )

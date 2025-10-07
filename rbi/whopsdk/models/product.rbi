@@ -25,8 +25,8 @@ module Whopsdk
       sig { returns(Integer) }
       attr_accessor :created_at
 
-      # The different types of custom CTAs that can be selected.
-      sig { returns(T.nilable(Whopsdk::CustomCta::TaggedSymbol)) }
+      # The custom call to action for the access pass.
+      sig { returns(Whopsdk::CustomCta::TaggedSymbol) }
       attr_accessor :custom_cta
 
       # The custom call to action URL for the access pass, if any.
@@ -46,8 +46,8 @@ module Whopsdk
       sig { returns(T.nilable(Float)) }
       attr_accessor :global_affiliate_percentage
 
-      # The different statuses of the global affiliate program for an access pass.
-      sig { returns(T.nilable(Whopsdk::GlobalAffiliateStatus::TaggedSymbol)) }
+      # The status of the global affiliate program for this access pass.
+      sig { returns(Whopsdk::GlobalAffiliateStatus::TaggedSymbol) }
       attr_accessor :global_affiliate_status
 
       # The headline of the access pass.
@@ -63,8 +63,8 @@ module Whopsdk
       sig { returns(T.nilable(Float)) }
       attr_accessor :member_affiliate_percentage
 
-      # The different statuses of the global affiliate program for an access pass.
-      sig { returns(T.nilable(Whopsdk::GlobalAffiliateStatus::TaggedSymbol)) }
+      # The status of the member affiliate program for this access pass.
+      sig { returns(Whopsdk::GlobalAffiliateStatus::TaggedSymbol) }
       attr_accessor :member_affiliate_status
 
       # The number of active users for this access pass.
@@ -109,8 +109,8 @@ module Whopsdk
       sig { returns(T::Boolean) }
       attr_accessor :verified
 
-      # Visibility of a resource
-      sig { returns(T.nilable(Whopsdk::Visibility::TaggedSymbol)) }
+      # This access pass will/will not be displayed publicly.
+      sig { returns(Whopsdk::Visibility::TaggedSymbol) }
       attr_accessor :visibility
 
       # An object representing a (sanitized) access pass.
@@ -120,18 +120,16 @@ module Whopsdk
           business_type: T.nilable(Whopsdk::BusinessTypes::OrSymbol),
           company: Whopsdk::Product::Company::OrHash,
           created_at: Integer,
-          custom_cta: T.nilable(Whopsdk::CustomCta::OrSymbol),
+          custom_cta: Whopsdk::CustomCta::OrSymbol,
           custom_cta_url: T.nilable(String),
           custom_statement_descriptor: T.nilable(String),
           description: T.nilable(String),
           global_affiliate_percentage: T.nilable(Float),
-          global_affiliate_status:
-            T.nilable(Whopsdk::GlobalAffiliateStatus::OrSymbol),
+          global_affiliate_status: Whopsdk::GlobalAffiliateStatus::OrSymbol,
           headline: T.nilable(String),
           industry_type: T.nilable(Whopsdk::IndustryTypes::OrSymbol),
           member_affiliate_percentage: T.nilable(Float),
-          member_affiliate_status:
-            T.nilable(Whopsdk::GlobalAffiliateStatus::OrSymbol),
+          member_affiliate_status: Whopsdk::GlobalAffiliateStatus::OrSymbol,
           member_count: Integer,
           owner_user: Whopsdk::Product::OwnerUser::OrHash,
           product_tax_code: T.nilable(Whopsdk::Product::ProductTaxCode::OrHash),
@@ -140,7 +138,7 @@ module Whopsdk
           title: String,
           updated_at: Integer,
           verified: T::Boolean,
-          visibility: T.nilable(Whopsdk::Visibility::OrSymbol)
+          visibility: Whopsdk::Visibility::OrSymbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -152,7 +150,7 @@ module Whopsdk
         company:,
         # When the access pass was created.
         created_at:,
-        # The different types of custom CTAs that can be selected.
+        # The custom call to action for the access pass.
         custom_cta:,
         # The custom call to action URL for the access pass, if any.
         custom_cta_url:,
@@ -163,7 +161,7 @@ module Whopsdk
         # The percentage of a transaction a user is eligible to earn from the whop
         # marketplace global affiliate program.
         global_affiliate_percentage:,
-        # The different statuses of the global affiliate program for an access pass.
+        # The status of the global affiliate program for this access pass.
         global_affiliate_status:,
         # The headline of the access pass.
         headline:,
@@ -172,7 +170,7 @@ module Whopsdk
         # The percentage of a transaction a user is eligible to earn from the whop
         # marketplace member affiliate program.
         member_affiliate_percentage:,
-        # The different statuses of the global affiliate program for an access pass.
+        # The status of the member affiliate program for this access pass.
         member_affiliate_status:,
         # The number of active users for this access pass.
         member_count:,
@@ -190,7 +188,7 @@ module Whopsdk
         updated_at:,
         # Whether this product is Whop verified.
         verified:,
-        # Visibility of a resource
+        # This access pass will/will not be displayed publicly.
         visibility:
       )
       end
@@ -202,18 +200,18 @@ module Whopsdk
             business_type: T.nilable(Whopsdk::BusinessTypes::TaggedSymbol),
             company: Whopsdk::Product::Company,
             created_at: Integer,
-            custom_cta: T.nilable(Whopsdk::CustomCta::TaggedSymbol),
+            custom_cta: Whopsdk::CustomCta::TaggedSymbol,
             custom_cta_url: T.nilable(String),
             custom_statement_descriptor: T.nilable(String),
             description: T.nilable(String),
             global_affiliate_percentage: T.nilable(Float),
             global_affiliate_status:
-              T.nilable(Whopsdk::GlobalAffiliateStatus::TaggedSymbol),
+              Whopsdk::GlobalAffiliateStatus::TaggedSymbol,
             headline: T.nilable(String),
             industry_type: T.nilable(Whopsdk::IndustryTypes::TaggedSymbol),
             member_affiliate_percentage: T.nilable(Float),
             member_affiliate_status:
-              T.nilable(Whopsdk::GlobalAffiliateStatus::TaggedSymbol),
+              Whopsdk::GlobalAffiliateStatus::TaggedSymbol,
             member_count: Integer,
             owner_user: Whopsdk::Product::OwnerUser,
             product_tax_code: T.nilable(Whopsdk::Product::ProductTaxCode),
@@ -222,7 +220,7 @@ module Whopsdk
             title: String,
             updated_at: Integer,
             verified: T::Boolean,
-            visibility: T.nilable(Whopsdk::Visibility::TaggedSymbol)
+            visibility: Whopsdk::Visibility::TaggedSymbol
           }
         )
       end
@@ -325,13 +323,9 @@ module Whopsdk
         sig { returns(String) }
         attr_accessor :name
 
-        # The product_type of the ProductTaxCode
+        # The type of product this tax code applies to.
         sig do
-          returns(
-            T.nilable(
-              Whopsdk::Product::ProductTaxCode::ProductType::TaggedSymbol
-            )
-          )
+          returns(Whopsdk::Product::ProductTaxCode::ProductType::TaggedSymbol)
         end
         attr_accessor :product_type
 
@@ -341,7 +335,7 @@ module Whopsdk
             id: String,
             name: String,
             product_type:
-              T.nilable(Whopsdk::Product::ProductTaxCode::ProductType::OrSymbol)
+              Whopsdk::Product::ProductTaxCode::ProductType::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(
@@ -349,7 +343,7 @@ module Whopsdk
           id:,
           # The name of the product tax code.
           name:,
-          # The product_type of the ProductTaxCode
+          # The type of product this tax code applies to.
           product_type:
         )
         end
@@ -360,16 +354,14 @@ module Whopsdk
               id: String,
               name: String,
               product_type:
-                T.nilable(
-                  Whopsdk::Product::ProductTaxCode::ProductType::TaggedSymbol
-                )
+                Whopsdk::Product::ProductTaxCode::ProductType::TaggedSymbol
             }
           )
         end
         def to_hash
         end
 
-        # The product_type of the ProductTaxCode
+        # The type of product this tax code applies to.
         module ProductType
           extend Whopsdk::Internal::Type::Enum
 

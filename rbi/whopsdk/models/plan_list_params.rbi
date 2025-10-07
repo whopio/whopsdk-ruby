@@ -40,9 +40,7 @@ module Whopsdk
       attr_accessor :order
 
       # The plan type to filter the plans by
-      sig do
-        returns(T.nilable(T::Array[T.nilable(Whopsdk::PlanType::OrSymbol)]))
-      end
+      sig { returns(T.nilable(T::Array[Whopsdk::PlanType::OrSymbol])) }
       attr_accessor :plan_types
 
       # The access pass IDs to filter the plans by
@@ -50,19 +48,11 @@ module Whopsdk
       attr_accessor :product_ids
 
       # The release method to filter the plans by
-      sig do
-        returns(
-          T.nilable(T::Array[T.nilable(Whopsdk::ReleaseMethod::OrSymbol)])
-        )
-      end
+      sig { returns(T.nilable(T::Array[Whopsdk::ReleaseMethod::OrSymbol])) }
       attr_accessor :release_methods
 
       # The visibility to filter the plans by
-      sig do
-        returns(
-          T.nilable(T::Array[T.nilable(Whopsdk::VisibilityFilter::OrSymbol)])
-        )
-      end
+      sig { returns(T.nilable(T::Array[Whopsdk::VisibilityFilter::OrSymbol])) }
       attr_accessor :visibilities
 
       sig do
@@ -74,13 +64,12 @@ module Whopsdk
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           order: T.nilable(Whopsdk::PlanListParams::Order::OrSymbol),
-          plan_types:
-            T.nilable(T::Array[T.nilable(Whopsdk::PlanType::OrSymbol)]),
+          plan_types: T.nilable(T::Array[Whopsdk::PlanType::OrSymbol]),
           product_ids: T.nilable(T::Array[String]),
           release_methods:
-            T.nilable(T::Array[T.nilable(Whopsdk::ReleaseMethod::OrSymbol)]),
+            T.nilable(T::Array[Whopsdk::ReleaseMethod::OrSymbol]),
           visibilities:
-            T.nilable(T::Array[T.nilable(Whopsdk::VisibilityFilter::OrSymbol)]),
+            T.nilable(T::Array[Whopsdk::VisibilityFilter::OrSymbol]),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -121,15 +110,12 @@ module Whopsdk
             first: T.nilable(Integer),
             last: T.nilable(Integer),
             order: T.nilable(Whopsdk::PlanListParams::Order::OrSymbol),
-            plan_types:
-              T.nilable(T::Array[T.nilable(Whopsdk::PlanType::OrSymbol)]),
+            plan_types: T.nilable(T::Array[Whopsdk::PlanType::OrSymbol]),
             product_ids: T.nilable(T::Array[String]),
             release_methods:
-              T.nilable(T::Array[T.nilable(Whopsdk::ReleaseMethod::OrSymbol)]),
+              T.nilable(T::Array[Whopsdk::ReleaseMethod::OrSymbol]),
             visibilities:
-              T.nilable(
-                T::Array[T.nilable(Whopsdk::VisibilityFilter::OrSymbol)]
-              ),
+              T.nilable(T::Array[Whopsdk::VisibilityFilter::OrSymbol]),
             request_options: Whopsdk::RequestOptions
           }
         )

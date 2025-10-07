@@ -20,12 +20,12 @@ module Whopsdk
         ?trial_period_days: Integer?,
         ?visibility: Whopsdk::Models::visibility?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Plan?
+      ) -> Whopsdk::Plan
 
       def retrieve: (
         String id,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Plan?
+      ) -> Whopsdk::Plan
 
       def update: (
         String id,
@@ -44,7 +44,7 @@ module Whopsdk
         ?trial_period_days: Integer?,
         ?visibility: Whopsdk::Models::visibility?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Plan?
+      ) -> Whopsdk::Plan
 
       def list: (
         company_id: String,
@@ -54,14 +54,14 @@ module Whopsdk
         ?first: Integer?,
         ?last: Integer?,
         ?order: Whopsdk::Models::PlanListParams::order?,
-        ?plan_types: ::Array[Whopsdk::Models::plan_type?]?,
+        ?plan_types: ::Array[Whopsdk::Models::plan_type]?,
         ?product_ids: ::Array[String]?,
-        ?release_methods: ::Array[Whopsdk::Models::release_method?]?,
-        ?visibilities: ::Array[Whopsdk::Models::visibility_filter?]?,
+        ?release_methods: ::Array[Whopsdk::Models::release_method]?,
+        ?visibilities: ::Array[Whopsdk::Models::visibility_filter]?,
         ?request_options: Whopsdk::request_opts
       ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::PlanListResponse?]
 
-      def delete: (String id, ?request_options: Whopsdk::request_opts) -> bool?
+      def delete: (String id, ?request_options: Whopsdk::request_opts) -> bool
 
       def initialize: (client: Whopsdk::Client) -> void
     end

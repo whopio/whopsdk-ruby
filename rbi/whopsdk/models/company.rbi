@@ -180,12 +180,8 @@ module Whopsdk
         sig { returns(String) }
         attr_accessor :url
 
-        # The different websites you can have social links for
-        sig do
-          returns(
-            T.nilable(Whopsdk::Company::SocialLink::Website::TaggedSymbol)
-          )
-        end
+        # The website
+        sig { returns(Whopsdk::Company::SocialLink::Website::TaggedSymbol) }
         attr_accessor :website
 
         # A social link attached to a resource on the site.
@@ -193,7 +189,7 @@ module Whopsdk
           params(
             id: String,
             url: String,
-            website: T.nilable(Whopsdk::Company::SocialLink::Website::OrSymbol)
+            website: Whopsdk::Company::SocialLink::Website::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(
@@ -201,7 +197,7 @@ module Whopsdk
           id:,
           # The URL
           url:,
-          # The different websites you can have social links for
+          # The website
           website:
         )
         end
@@ -211,15 +207,14 @@ module Whopsdk
             {
               id: String,
               url: String,
-              website:
-                T.nilable(Whopsdk::Company::SocialLink::Website::TaggedSymbol)
+              website: Whopsdk::Company::SocialLink::Website::TaggedSymbol
             }
           )
         end
         def to_hash
         end
 
-        # The different websites you can have social links for
+        # The website
         module Website
           extend Whopsdk::Internal::Type::Enum
 

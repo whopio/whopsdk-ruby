@@ -5,7 +5,7 @@ module Whopsdk
         id: String,
         api_version: Whopsdk::Models::InvoicePaidWebhookEvent::api_version,
         created_at: String,
-        data: Whopsdk::Invoice?,
+        data: Whopsdk::Invoice,
         type: Whopsdk::Models::InvoicePaidWebhookEvent::type_
       }
 
@@ -24,7 +24,9 @@ module Whopsdk
 
       def created_at=: (String) -> String
 
-      attr_accessor data: Whopsdk::Invoice?
+      attr_reader data: Whopsdk::Invoice?
+
+      def data=: (Whopsdk::Invoice) -> Whopsdk::Invoice
 
       attr_reader type: Whopsdk::Models::InvoicePaidWebhookEvent::type_?
 
@@ -36,7 +38,7 @@ module Whopsdk
         ?id: String,
         ?api_version: Whopsdk::Models::InvoicePaidWebhookEvent::api_version,
         ?created_at: String,
-        ?data: Whopsdk::Invoice?,
+        ?data: Whopsdk::Invoice,
         ?type: Whopsdk::Models::InvoicePaidWebhookEvent::type_
       ) -> void
 
@@ -44,7 +46,7 @@ module Whopsdk
         id: String,
         api_version: Whopsdk::Models::InvoicePaidWebhookEvent::api_version,
         created_at: String,
-        data: Whopsdk::Invoice?,
+        data: Whopsdk::Invoice,
         type: Whopsdk::Models::InvoicePaidWebhookEvent::type_
       }
 

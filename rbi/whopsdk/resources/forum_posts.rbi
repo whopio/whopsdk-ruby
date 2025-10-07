@@ -24,7 +24,7 @@ module Whopsdk
           poll: T.nilable(Whopsdk::ForumPostCreateParams::Poll::OrHash),
           title: T.nilable(String),
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.nilable(Whopsdk::ForumPost))
+        ).returns(Whopsdk::ForumPost)
       end
       def create(
         # The experience to create this post in
@@ -65,7 +65,7 @@ module Whopsdk
         params(
           id: String,
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.nilable(Whopsdk::ForumPost))
+        ).returns(Whopsdk::ForumPost)
       end
       def retrieve(id, request_options: {})
       end

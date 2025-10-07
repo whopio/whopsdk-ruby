@@ -52,8 +52,8 @@ module Whopsdk
       sig { returns(T::Boolean) }
       attr_accessor :verified
 
-      # Visibility of a resource
-      sig { returns(T.nilable(Whopsdk::Visibility::TaggedSymbol)) }
+      # This access pass will/will not be displayed publicly.
+      sig { returns(Whopsdk::Visibility::TaggedSymbol) }
       attr_accessor :visibility
 
       # An object representing a (sanitized) access pass.
@@ -70,7 +70,7 @@ module Whopsdk
           title: String,
           updated_at: Integer,
           verified: T::Boolean,
-          visibility: T.nilable(Whopsdk::Visibility::OrSymbol)
+          visibility: Whopsdk::Visibility::OrSymbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -96,7 +96,7 @@ module Whopsdk
         updated_at:,
         # Whether this product is Whop verified.
         verified:,
-        # Visibility of a resource
+        # This access pass will/will not be displayed publicly.
         visibility:
       )
       end
@@ -115,7 +115,7 @@ module Whopsdk
             title: String,
             updated_at: Integer,
             verified: T::Boolean,
-            visibility: T.nilable(Whopsdk::Visibility::TaggedSymbol)
+            visibility: Whopsdk::Visibility::TaggedSymbol
           }
         )
       end

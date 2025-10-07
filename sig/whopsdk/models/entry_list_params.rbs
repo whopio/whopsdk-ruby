@@ -11,7 +11,7 @@ module Whopsdk
         order: Whopsdk::Models::EntryListParams::order?,
         plan_ids: ::Array[String]?,
         product_ids: ::Array[String]?,
-        statuses: ::Array[Whopsdk::Models::entry_status?]?
+        statuses: ::Array[Whopsdk::Models::entry_status]?
       }
       & Whopsdk::Internal::Type::request_parameters
 
@@ -37,7 +37,7 @@ module Whopsdk
 
       attr_accessor product_ids: ::Array[String]?
 
-      attr_accessor statuses: ::Array[Whopsdk::Models::entry_status?]?
+      attr_accessor statuses: ::Array[Whopsdk::Models::entry_status]?
 
       def initialize: (
         company_id: String,
@@ -49,7 +49,7 @@ module Whopsdk
         ?order: Whopsdk::Models::EntryListParams::order?,
         ?plan_ids: ::Array[String]?,
         ?product_ids: ::Array[String]?,
-        ?statuses: ::Array[Whopsdk::Models::entry_status?]?,
+        ?statuses: ::Array[Whopsdk::Models::entry_status]?,
         ?request_options: Whopsdk::request_opts
       ) -> void
 
@@ -63,7 +63,7 @@ module Whopsdk
         order: Whopsdk::Models::EntryListParams::order?,
         plan_ids: ::Array[String]?,
         product_ids: ::Array[String]?,
-        statuses: ::Array[Whopsdk::Models::entry_status?]?,
+        statuses: ::Array[Whopsdk::Models::entry_status]?,
         request_options: Whopsdk::RequestOptions
       }
 

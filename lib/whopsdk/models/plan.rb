@@ -34,10 +34,10 @@ module Whopsdk
       required :created_at, Integer
 
       # @!attribute currency
-      #   The available currencies on the platform
+      #   The respective currency identifier for the plan.
       #
-      #   @return [Symbol, Whopsdk::Models::Currency, nil]
-      required :currency, enum: -> { Whopsdk::Currency }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::Currency]
+      required :currency, enum: -> { Whopsdk::Currency }
 
       # @!attribute custom_fields
       #   The custom fields for the plan.
@@ -82,10 +82,10 @@ module Whopsdk
       required :member_count, Integer, nil?: true
 
       # @!attribute plan_type
-      #   The type of plan that can be attached to an access pass
+      #   Indicates if the plan is a one time payment or recurring.
       #
-      #   @return [Symbol, Whopsdk::Models::PlanType, nil]
-      required :plan_type, enum: -> { Whopsdk::PlanType }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::PlanType]
+      required :plan_type, enum: -> { Whopsdk::PlanType }
 
       # @!attribute product
       #   The access pass for the plan.
@@ -100,10 +100,10 @@ module Whopsdk
       required :purchase_link, String
 
       # @!attribute release_method
-      #   The methods of how a plan can be released.
+      #   This is the release method the business uses to sell this plan.
       #
-      #   @return [Symbol, Whopsdk::Models::ReleaseMethod, nil]
-      required :release_method, enum: -> { Whopsdk::ReleaseMethod }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::ReleaseMethod]
+      required :release_method, enum: -> { Whopsdk::ReleaseMethod }
 
       # @!attribute renewal_price
       #   The price a person has to pay for a plan on the renewal purchase.
@@ -112,11 +112,10 @@ module Whopsdk
       required :renewal_price, Float
 
       # @!attribute tax_type
-      #   Whether or not the tax is included in a plan's price (or if it hasn't been set
-      #   up)
+      #   The tax type for the plan.
       #
-      #   @return [Symbol, Whopsdk::Models::TaxType, nil]
-      required :tax_type, enum: -> { Whopsdk::TaxType }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::TaxType]
+      required :tax_type, enum: -> { Whopsdk::TaxType }
 
       # @!attribute trial_period_days
       #   The number of free trial days added before a renewal plan.
@@ -131,15 +130,12 @@ module Whopsdk
       required :updated_at, Integer
 
       # @!attribute visibility
-      #   Visibility of a resource
+      #   Shows or hides the plan from public/business view.
       #
-      #   @return [Symbol, Whopsdk::Models::Visibility, nil]
-      required :visibility, enum: -> { Whopsdk::Visibility }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::Visibility]
+      required :visibility, enum: -> { Whopsdk::Visibility }
 
       # @!method initialize(id:, billing_period:, collect_tax:, company:, created_at:, currency:, custom_fields:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, plan_type:, product:, purchase_link:, release_method:, renewal_price:, tax_type:, trial_period_days:, updated_at:, visibility:)
-      #   Some parameter documentations has been truncated, see {Whopsdk::Models::Plan}
-      #   for more details.
-      #
       #   An object representing a (sanitized) plan of an access pass.
       #
       #   @param id [String] The internal ID of the plan.
@@ -152,7 +148,7 @@ module Whopsdk
       #
       #   @param created_at [Integer] When the plan was created.
       #
-      #   @param currency [Symbol, Whopsdk::Models::Currency, nil] The available currencies on the platform
+      #   @param currency [Symbol, Whopsdk::Models::Currency] The respective currency identifier for the plan.
       #
       #   @param custom_fields [Array<Whopsdk::Models::Plan::CustomField>] The custom fields for the plan.
       #
@@ -168,23 +164,23 @@ module Whopsdk
       #
       #   @param member_count [Integer, nil] The number of members for the plan.
       #
-      #   @param plan_type [Symbol, Whopsdk::Models::PlanType, nil] The type of plan that can be attached to an access pass
+      #   @param plan_type [Symbol, Whopsdk::Models::PlanType] Indicates if the plan is a one time payment or recurring.
       #
       #   @param product [Whopsdk::Models::Plan::Product, nil] The access pass for the plan.
       #
       #   @param purchase_link [String] The direct link to purchase the access pass.
       #
-      #   @param release_method [Symbol, Whopsdk::Models::ReleaseMethod, nil] The methods of how a plan can be released.
+      #   @param release_method [Symbol, Whopsdk::Models::ReleaseMethod] This is the release method the business uses to sell this plan.
       #
       #   @param renewal_price [Float] The price a person has to pay for a plan on the renewal purchase.
       #
-      #   @param tax_type [Symbol, Whopsdk::Models::TaxType, nil] Whether or not the tax is included in a plan's price (or if it hasn't been set u
+      #   @param tax_type [Symbol, Whopsdk::Models::TaxType] The tax type for the plan.
       #
       #   @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
       #
       #   @param updated_at [Integer] When the plan was last updated.
       #
-      #   @param visibility [Symbol, Whopsdk::Models::Visibility, nil] Visibility of a resource
+      #   @param visibility [Symbol, Whopsdk::Models::Visibility] Shows or hides the plan from public/business view.
 
       # @see Whopsdk::Models::Plan#company
       class Company < Whopsdk::Internal::Type::BaseModel
@@ -216,10 +212,10 @@ module Whopsdk
         required :id, String
 
         # @!attribute field_type
-        #   The type of the custom field.
+        #   What type of input field to use.
         #
-        #   @return [Symbol, Whopsdk::Models::Plan::CustomField::FieldType, nil]
-        required :field_type, enum: -> { Whopsdk::Plan::CustomField::FieldType }, nil?: true
+        #   @return [Symbol, :text]
+        required :field_type, const: :text
 
         # @!attribute name
         #   The title/header of the custom field.
@@ -245,12 +241,10 @@ module Whopsdk
         #   @return [Boolean]
         required :required, Whopsdk::Internal::Type::Boolean
 
-        # @!method initialize(id:, field_type:, name:, order:, placeholder:, required:)
+        # @!method initialize(id:, name:, order:, placeholder:, required:, field_type: :text)
         #   An object representing a custom field for a plan.
         #
         #   @param id [String] The internal ID of the given custom field
-        #
-        #   @param field_type [Symbol, Whopsdk::Models::Plan::CustomField::FieldType, nil] The type of the custom field.
         #
         #   @param name [String] The title/header of the custom field.
         #
@@ -259,18 +253,8 @@ module Whopsdk
         #   @param placeholder [String, nil] An example response displayed in the input field.
         #
         #   @param required [Boolean] Whether or not the custom field is required.
-
-        # The type of the custom field.
         #
-        # @see Whopsdk::Models::Plan::CustomField#field_type
-        module FieldType
-          extend Whopsdk::Internal::Type::Enum
-
-          TEXT = :text
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
+        #   @param field_type [Symbol, :text] What type of input field to use.
       end
 
       # @see Whopsdk::Models::Plan#invoice

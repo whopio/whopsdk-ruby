@@ -11,7 +11,7 @@ module Whopsdk
       # - `plan:basic:read`
       sig do
         params(
-          collection_method: T.nilable(Whopsdk::CollectionMethod::OrSymbol),
+          collection_method: Whopsdk::CollectionMethod::OrSymbol,
           company_id: String,
           due_date: Integer,
           plan: Whopsdk::InvoiceCreateParams::Plan::OrHash,
@@ -23,10 +23,11 @@ module Whopsdk
           product: T.nilable(Whopsdk::InvoiceCreateParams::Product::OrHash),
           product_id: T.nilable(String),
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.nilable(Whopsdk::Models::InvoiceCreateResponse))
+        ).returns(Whopsdk::Models::InvoiceCreateResponse)
       end
       def create(
-        # The method of collection for an invoice.
+        # The method of collection for this invoice. If using charge_automatically, you
+        # must provide a payment_token.
         collection_method:,
         # The company ID to create this invoice for.
         company_id:,
@@ -70,7 +71,7 @@ module Whopsdk
         params(
           id: String,
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.nilable(Whopsdk::Invoice))
+        ).returns(Whopsdk::Invoice)
       end
       def retrieve(id, request_options: {})
       end
@@ -126,7 +127,7 @@ module Whopsdk
         params(
           id: String,
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.nilable(T::Boolean))
+        ).returns(T::Boolean)
       end
       def void(id, request_options: {})
       end

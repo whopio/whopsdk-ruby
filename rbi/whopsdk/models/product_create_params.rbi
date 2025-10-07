@@ -417,13 +417,7 @@ module Whopsdk
             end
 
           # The type of the custom field.
-          sig do
-            returns(
-              T.nilable(
-                Whopsdk::ProductCreateParams::PlanOptions::CustomField::FieldType::OrSymbol
-              )
-            )
-          end
+          sig { returns(Symbol) }
           attr_accessor :field_type
 
           # The name of the custom field.
@@ -448,20 +442,15 @@ module Whopsdk
 
           sig do
             params(
-              field_type:
-                T.nilable(
-                  Whopsdk::ProductCreateParams::PlanOptions::CustomField::FieldType::OrSymbol
-                ),
               name: String,
               id: T.nilable(String),
               order: T.nilable(Integer),
               placeholder: T.nilable(String),
-              required: T.nilable(T::Boolean)
+              required: T.nilable(T::Boolean),
+              field_type: Symbol
             ).returns(T.attached_class)
           end
           def self.new(
-            # The type of the custom field.
-            field_type:,
             # The name of the custom field.
             name:,
             # The ID of the custom field (if being updated)
@@ -471,17 +460,16 @@ module Whopsdk
             # The placeholder value of the field.
             placeholder: nil,
             # Whether or not the field is required.
-            required: nil
+            required: nil,
+            # The type of the custom field.
+            field_type: :text
           )
           end
 
           sig do
             override.returns(
               {
-                field_type:
-                  T.nilable(
-                    Whopsdk::ProductCreateParams::PlanOptions::CustomField::FieldType::OrSymbol
-                  ),
+                field_type: Symbol,
                 name: String,
                 id: T.nilable(String),
                 order: T.nilable(Integer),
@@ -491,36 +479,6 @@ module Whopsdk
             )
           end
           def to_hash
-          end
-
-          # The type of the custom field.
-          module FieldType
-            extend Whopsdk::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Whopsdk::ProductCreateParams::PlanOptions::CustomField::FieldType
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            TEXT =
-              T.let(
-                :text,
-                Whopsdk::ProductCreateParams::PlanOptions::CustomField::FieldType::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Whopsdk::ProductCreateParams::PlanOptions::CustomField::FieldType::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
           end
         end
       end
@@ -539,12 +497,10 @@ module Whopsdk
         sig { returns(String) }
         attr_accessor :content
 
-        # Types of product highlight
+        # The type of this highlight.
         sig do
           returns(
-            T.nilable(
-              Whopsdk::ProductCreateParams::ProductHighlight::HighlightType::OrSymbol
-            )
+            Whopsdk::ProductCreateParams::ProductHighlight::HighlightType::OrSymbol
           )
         end
         attr_accessor :highlight_type
@@ -558,9 +514,7 @@ module Whopsdk
           params(
             content: String,
             highlight_type:
-              T.nilable(
-                Whopsdk::ProductCreateParams::ProductHighlight::HighlightType::OrSymbol
-              ),
+              Whopsdk::ProductCreateParams::ProductHighlight::HighlightType::OrSymbol,
             title: T.nilable(String)
           ).returns(T.attached_class)
         end
@@ -568,7 +522,7 @@ module Whopsdk
           # Text to display to describe the product highlight (max length 250 for
           # qualification or benefits, 170 for who this is for, 140 for pricing features).
           content:,
-          # Types of product highlight
+          # The type of this highlight.
           highlight_type:,
           # The title of the product highlight, if applicable.
           title: nil
@@ -580,9 +534,7 @@ module Whopsdk
             {
               content: String,
               highlight_type:
-                T.nilable(
-                  Whopsdk::ProductCreateParams::ProductHighlight::HighlightType::OrSymbol
-                ),
+                Whopsdk::ProductCreateParams::ProductHighlight::HighlightType::OrSymbol,
               title: T.nilable(String)
             }
           )
@@ -590,7 +542,7 @@ module Whopsdk
         def to_hash
         end
 
-        # Types of product highlight
+        # The type of this highlight.
         module HighlightType
           extend Whopsdk::Internal::Type::Enum
 

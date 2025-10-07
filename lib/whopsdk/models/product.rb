@@ -28,10 +28,10 @@ module Whopsdk
       required :created_at, Integer
 
       # @!attribute custom_cta
-      #   The different types of custom CTAs that can be selected.
+      #   The custom call to action for the access pass.
       #
-      #   @return [Symbol, Whopsdk::Models::CustomCta, nil]
-      required :custom_cta, enum: -> { Whopsdk::CustomCta }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::CustomCta]
+      required :custom_cta, enum: -> { Whopsdk::CustomCta }
 
       # @!attribute custom_cta_url
       #   The custom call to action URL for the access pass, if any.
@@ -59,10 +59,10 @@ module Whopsdk
       required :global_affiliate_percentage, Float, nil?: true
 
       # @!attribute global_affiliate_status
-      #   The different statuses of the global affiliate program for an access pass.
+      #   The status of the global affiliate program for this access pass.
       #
-      #   @return [Symbol, Whopsdk::Models::GlobalAffiliateStatus, nil]
-      required :global_affiliate_status, enum: -> { Whopsdk::GlobalAffiliateStatus }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::GlobalAffiliateStatus]
+      required :global_affiliate_status, enum: -> { Whopsdk::GlobalAffiliateStatus }
 
       # @!attribute headline
       #   The headline of the access pass.
@@ -84,10 +84,10 @@ module Whopsdk
       required :member_affiliate_percentage, Float, nil?: true
 
       # @!attribute member_affiliate_status
-      #   The different statuses of the global affiliate program for an access pass.
+      #   The status of the member affiliate program for this access pass.
       #
-      #   @return [Symbol, Whopsdk::Models::GlobalAffiliateStatus, nil]
-      required :member_affiliate_status, enum: -> { Whopsdk::GlobalAffiliateStatus }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::GlobalAffiliateStatus]
+      required :member_affiliate_status, enum: -> { Whopsdk::GlobalAffiliateStatus }
 
       # @!attribute member_count
       #   The number of active users for this access pass.
@@ -138,10 +138,10 @@ module Whopsdk
       required :verified, Whopsdk::Internal::Type::Boolean
 
       # @!attribute visibility
-      #   Visibility of a resource
+      #   This access pass will/will not be displayed publicly.
       #
-      #   @return [Symbol, Whopsdk::Models::Visibility, nil]
-      required :visibility, enum: -> { Whopsdk::Visibility }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::Visibility]
+      required :visibility, enum: -> { Whopsdk::Visibility }
 
       # @!method initialize(id:, business_type:, company:, created_at:, custom_cta:, custom_cta_url:, custom_statement_descriptor:, description:, global_affiliate_percentage:, global_affiliate_status:, headline:, industry_type:, member_affiliate_percentage:, member_affiliate_status:, member_count:, owner_user:, product_tax_code:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
       #   Some parameter documentations has been truncated, see {Whopsdk::Models::Product}
@@ -157,7 +157,7 @@ module Whopsdk
       #
       #   @param created_at [Integer] When the access pass was created.
       #
-      #   @param custom_cta [Symbol, Whopsdk::Models::CustomCta, nil] The different types of custom CTAs that can be selected.
+      #   @param custom_cta [Symbol, Whopsdk::Models::CustomCta] The custom call to action for the access pass.
       #
       #   @param custom_cta_url [String, nil] The custom call to action URL for the access pass, if any.
       #
@@ -167,7 +167,7 @@ module Whopsdk
       #
       #   @param global_affiliate_percentage [Float, nil] The percentage of a transaction a user is eligible to earn from the whop marketp
       #
-      #   @param global_affiliate_status [Symbol, Whopsdk::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for an access pass.
+      #   @param global_affiliate_status [Symbol, Whopsdk::Models::GlobalAffiliateStatus] The status of the global affiliate program for this access pass.
       #
       #   @param headline [String, nil] The headline of the access pass.
       #
@@ -175,7 +175,7 @@ module Whopsdk
       #
       #   @param member_affiliate_percentage [Float, nil] The percentage of a transaction a user is eligible to earn from the whop marketp
       #
-      #   @param member_affiliate_status [Symbol, Whopsdk::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for an access pass.
+      #   @param member_affiliate_status [Symbol, Whopsdk::Models::GlobalAffiliateStatus] The status of the member affiliate program for this access pass.
       #
       #   @param member_count [Integer] The number of active users for this access pass.
       #
@@ -193,7 +193,7 @@ module Whopsdk
       #
       #   @param verified [Boolean] Whether this product is Whop verified.
       #
-      #   @param visibility [Symbol, Whopsdk::Models::Visibility, nil] Visibility of a resource
+      #   @param visibility [Symbol, Whopsdk::Models::Visibility] This access pass will/will not be displayed publicly.
 
       # @see Whopsdk::Models::Product#company
       class Company < Whopsdk::Internal::Type::BaseModel
@@ -270,10 +270,10 @@ module Whopsdk
         required :name, String
 
         # @!attribute product_type
-        #   The product_type of the ProductTaxCode
+        #   The type of product this tax code applies to.
         #
-        #   @return [Symbol, Whopsdk::Models::Product::ProductTaxCode::ProductType, nil]
-        required :product_type, enum: -> { Whopsdk::Product::ProductTaxCode::ProductType }, nil?: true
+        #   @return [Symbol, Whopsdk::Models::Product::ProductTaxCode::ProductType]
+        required :product_type, enum: -> { Whopsdk::Product::ProductTaxCode::ProductType }
 
         # @!method initialize(id:, name:, product_type:)
         #   The product tax code for the access pass, if any.
@@ -282,9 +282,9 @@ module Whopsdk
         #
         #   @param name [String] The name of the product tax code.
         #
-        #   @param product_type [Symbol, Whopsdk::Models::Product::ProductTaxCode::ProductType, nil] The product_type of the ProductTaxCode
+        #   @param product_type [Symbol, Whopsdk::Models::Product::ProductTaxCode::ProductType] The type of product this tax code applies to.
 
-        # The product_type of the ProductTaxCode
+        # The type of product this tax code applies to.
         #
         # @see Whopsdk::Models::Product::ProductTaxCode#product_type
         module ProductType

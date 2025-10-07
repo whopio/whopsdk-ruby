@@ -29,10 +29,10 @@ module Whopsdk
       required :created_at, Integer
 
       # @!attribute currency
-      #   The available currencies on the platform
+      #   The respective currency identifier for the plan.
       #
-      #   @return [Symbol, Whopsdk::Models::Currency, nil]
-      required :currency, enum: -> { Whopsdk::Currency }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::Currency]
+      required :currency, enum: -> { Whopsdk::Currency }
 
       # @!attribute description
       #   The description of the plan.
@@ -71,10 +71,10 @@ module Whopsdk
       required :member_count, Integer, nil?: true
 
       # @!attribute plan_type
-      #   The type of plan that can be attached to an access pass
+      #   Indicates if the plan is a one time payment or recurring.
       #
-      #   @return [Symbol, Whopsdk::Models::PlanType, nil]
-      required :plan_type, enum: -> { Whopsdk::PlanType }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::PlanType]
+      required :plan_type, enum: -> { Whopsdk::PlanType }
 
       # @!attribute product
       #   The access pass for the plan.
@@ -89,10 +89,10 @@ module Whopsdk
       required :purchase_link, String
 
       # @!attribute release_method
-      #   The methods of how a plan can be released.
+      #   This is the release method the business uses to sell this plan.
       #
-      #   @return [Symbol, Whopsdk::Models::ReleaseMethod, nil]
-      required :release_method, enum: -> { Whopsdk::ReleaseMethod }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::ReleaseMethod]
+      required :release_method, enum: -> { Whopsdk::ReleaseMethod }
 
       # @!attribute renewal_price
       #   The price a person has to pay for a plan on the renewal purchase.
@@ -113,10 +113,10 @@ module Whopsdk
       required :updated_at, Integer
 
       # @!attribute visibility
-      #   Visibility of a resource
+      #   Shows or hides the plan from public/business view.
       #
-      #   @return [Symbol, Whopsdk::Models::Visibility, nil]
-      required :visibility, enum: -> { Whopsdk::Visibility }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::Visibility]
+      required :visibility, enum: -> { Whopsdk::Visibility }
 
       # @!method initialize(id:, billing_period:, company:, created_at:, currency:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, plan_type:, product:, purchase_link:, release_method:, renewal_price:, trial_period_days:, updated_at:, visibility:)
       #   An object representing a (sanitized) plan of an access pass.
@@ -129,7 +129,7 @@ module Whopsdk
       #
       #   @param created_at [Integer] When the plan was created.
       #
-      #   @param currency [Symbol, Whopsdk::Models::Currency, nil] The available currencies on the platform
+      #   @param currency [Symbol, Whopsdk::Models::Currency] The respective currency identifier for the plan.
       #
       #   @param description [String, nil] The description of the plan.
       #
@@ -143,13 +143,13 @@ module Whopsdk
       #
       #   @param member_count [Integer, nil] The number of members for the plan.
       #
-      #   @param plan_type [Symbol, Whopsdk::Models::PlanType, nil] The type of plan that can be attached to an access pass
+      #   @param plan_type [Symbol, Whopsdk::Models::PlanType] Indicates if the plan is a one time payment or recurring.
       #
       #   @param product [Whopsdk::Models::PlanListResponse::Product, nil] The access pass for the plan.
       #
       #   @param purchase_link [String] The direct link to purchase the access pass.
       #
-      #   @param release_method [Symbol, Whopsdk::Models::ReleaseMethod, nil] The methods of how a plan can be released.
+      #   @param release_method [Symbol, Whopsdk::Models::ReleaseMethod] This is the release method the business uses to sell this plan.
       #
       #   @param renewal_price [Float] The price a person has to pay for a plan on the renewal purchase.
       #
@@ -157,7 +157,7 @@ module Whopsdk
       #
       #   @param updated_at [Integer] When the plan was last updated.
       #
-      #   @param visibility [Symbol, Whopsdk::Models::Visibility, nil] Visibility of a resource
+      #   @param visibility [Symbol, Whopsdk::Models::Visibility] Shows or hides the plan from public/business view.
 
       # @see Whopsdk::Models::PlanListResponse#company
       class Company < Whopsdk::Internal::Type::BaseModel

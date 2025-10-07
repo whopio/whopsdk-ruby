@@ -15,7 +15,7 @@ module Whopsdk
       # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::Entry, nil]
+      # @return [Whopsdk::Models::Entry]
       #
       # @see Whopsdk::Models::EntryRetrieveParams
       def retrieve(id, params = {})
@@ -54,7 +54,7 @@ module Whopsdk
       #
       # @param product_ids [Array<String>, nil] The access pass IDs to filter the entries by
       #
-      # @param statuses [Array<Symbol, Whopsdk::Models::EntryStatus, nil>, nil] The statuses to filter the entries by
+      # @param statuses [Array<Symbol, Whopsdk::Models::EntryStatus>, nil] The statuses to filter the entries by
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -109,7 +109,7 @@ module Whopsdk
       # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::Entry, nil]
+      # @return [Whopsdk::Models::Entry]
       #
       # @see Whopsdk::Models::EntryDenyParams
       def deny(id, params = {})

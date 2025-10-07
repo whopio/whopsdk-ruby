@@ -75,8 +75,12 @@ module Whopsdk
       sig { params(stats: T.nilable(Whopsdk::App::Stats::OrHash)).void }
       attr_writer :stats
 
-      # The status of an experience interface
-      sig { returns(T.nilable(Whopsdk::AppStatuses::TaggedSymbol)) }
+      # If the status is live, the app is visible on Whop discovery. In order to be
+      # live, you need to set the name, icon, and description. Being unlisted or hidden
+      # means it's not visible on Whop but you can still install the app via direct
+      # link. To remove the app from whop discovery, you should set the status to
+      # unlisted.
+      sig { returns(Whopsdk::AppStatuses::TaggedSymbol) }
       attr_accessor :status
 
       # Whether this app has been verified by Whop. Verified apps are endorsed by whop
@@ -101,7 +105,7 @@ module Whopsdk
           requested_permissions:
             T::Array[Whopsdk::App::RequestedPermission::OrHash],
           stats: T.nilable(Whopsdk::App::Stats::OrHash),
-          status: T.nilable(Whopsdk::AppStatuses::OrSymbol),
+          status: Whopsdk::AppStatuses::OrSymbol,
           verified: T::Boolean
         ).returns(T.attached_class)
       end
@@ -138,7 +142,11 @@ module Whopsdk
         requested_permissions:,
         # A collection of stats for the app.
         stats:,
-        # The status of an experience interface
+        # If the status is live, the app is visible on Whop discovery. In order to be
+        # live, you need to set the name, icon, and description. Being unlisted or hidden
+        # means it's not visible on Whop but you can still install the app via direct
+        # link. To remove the app from whop discovery, you should set the status to
+        # unlisted.
         status:,
         # Whether this app has been verified by Whop. Verified apps are endorsed by whop
         # and are shown in the 'featured apps' section of the app store.
@@ -162,7 +170,7 @@ module Whopsdk
             name: String,
             requested_permissions: T::Array[Whopsdk::App::RequestedPermission],
             stats: T.nilable(Whopsdk::App::Stats),
-            status: T.nilable(Whopsdk::AppStatuses::TaggedSymbol),
+            status: Whopsdk::AppStatuses::TaggedSymbol,
             verified: T::Boolean
           }
         )

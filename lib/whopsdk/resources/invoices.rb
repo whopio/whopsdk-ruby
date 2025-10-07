@@ -15,7 +15,7 @@ module Whopsdk
       #
       # @overload create(collection_method:, company_id:, due_date:, plan:, charge_buyer_fee: nil, customer_name: nil, email_address: nil, member_id: nil, payment_token_id: nil, product: nil, product_id: nil, request_options: {})
       #
-      # @param collection_method [Symbol, Whopsdk::Models::CollectionMethod, nil] The method of collection for an invoice.
+      # @param collection_method [Symbol, Whopsdk::Models::CollectionMethod] The method of collection for this invoice. If using charge_automatically, you mu
       #
       # @param company_id [String] The company ID to create this invoice for.
       #
@@ -39,7 +39,7 @@ module Whopsdk
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::InvoiceCreateResponse, nil]
+      # @return [Whopsdk::Models::InvoiceCreateResponse]
       #
       # @see Whopsdk::Models::InvoiceCreateParams
       def create(params)
@@ -65,7 +65,7 @@ module Whopsdk
       # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::Invoice, nil]
+      # @return [Whopsdk::Models::Invoice]
       #
       # @see Whopsdk::Models::InvoiceRetrieveParams
       def retrieve(id, params = {})
@@ -130,7 +130,7 @@ module Whopsdk
       # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Boolean, nil]
+      # @return [Boolean]
       #
       # @see Whopsdk::Models::InvoiceVoidParams
       def void(id, params = {})

@@ -12,7 +12,7 @@ module Whopsdk
         params(
           id: String,
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.nilable(Whopsdk::Company))
+        ).returns(Whopsdk::Company)
       end
       def retrieve(id, request_options: {})
       end

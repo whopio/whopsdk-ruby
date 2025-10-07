@@ -8,10 +8,11 @@ module Whopsdk
       include Whopsdk::Internal::Type::RequestParameters
 
       # @!attribute collection_method
-      #   The method of collection for an invoice.
+      #   The method of collection for this invoice. If using charge_automatically, you
+      #   must provide a payment_token.
       #
-      #   @return [Symbol, Whopsdk::Models::CollectionMethod, nil]
-      required :collection_method, enum: -> { Whopsdk::CollectionMethod }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::CollectionMethod]
+      required :collection_method, enum: -> { Whopsdk::CollectionMethod }
 
       # @!attribute company_id
       #   The company ID to create this invoice for.
@@ -85,7 +86,7 @@ module Whopsdk
       #   Some parameter documentations has been truncated, see
       #   {Whopsdk::Models::InvoiceCreateParams} for more details.
       #
-      #   @param collection_method [Symbol, Whopsdk::Models::CollectionMethod, nil] The method of collection for an invoice.
+      #   @param collection_method [Symbol, Whopsdk::Models::CollectionMethod] The method of collection for this invoice. If using charge_automatically, you mu
       #
       #   @param company_id [String] The company ID to create this invoice for.
       #
@@ -307,12 +308,8 @@ module Whopsdk
           # @!attribute field_type
           #   The type of the custom field.
           #
-          #   @return [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::CustomField::FieldType, nil]
-          required :field_type,
-                   enum: -> {
-                     Whopsdk::InvoiceCreateParams::Plan::CustomField::FieldType
-                   },
-                   nil?: true
+          #   @return [Symbol, :text]
+          required :field_type, const: :text
 
           # @!attribute name
           #   The name of the custom field.
@@ -344,9 +341,7 @@ module Whopsdk
           #   @return [Boolean, nil]
           optional :required, Whopsdk::Internal::Type::Boolean, nil?: true
 
-          # @!method initialize(field_type:, name:, id: nil, order: nil, placeholder: nil, required: nil)
-          #   @param field_type [Symbol, Whopsdk::Models::InvoiceCreateParams::Plan::CustomField::FieldType, nil] The type of the custom field.
-          #
+          # @!method initialize(name:, id: nil, order: nil, placeholder: nil, required: nil, field_type: :text)
           #   @param name [String] The name of the custom field.
           #
           #   @param id [String, nil] The ID of the custom field (if being updated)
@@ -356,18 +351,8 @@ module Whopsdk
           #   @param placeholder [String, nil] The placeholder value of the field.
           #
           #   @param required [Boolean, nil] Whether or not the field is required.
-
-          # The type of the custom field.
           #
-          # @see Whopsdk::Models::InvoiceCreateParams::Plan::CustomField#field_type
-          module FieldType
-            extend Whopsdk::Internal::Type::Enum
-
-            TEXT = :text
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
+          #   @param field_type [Symbol, :text] The type of the custom field.
         end
       end
 

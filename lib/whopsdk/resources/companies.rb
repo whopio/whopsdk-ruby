@@ -14,7 +14,7 @@ module Whopsdk
       # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::Company, nil]
+      # @return [Whopsdk::Models::Company]
       #
       # @see Whopsdk::Models::CompanyRetrieveParams
       def retrieve(id, params = {})

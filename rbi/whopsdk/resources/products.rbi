@@ -42,7 +42,7 @@ module Whopsdk
           route: T.nilable(String),
           visibility: T.nilable(Whopsdk::Visibility::OrSymbol),
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.nilable(Whopsdk::Product))
+        ).returns(Whopsdk::Product)
       end
       def create(
         # The ID of the company to create the access pass for.
@@ -106,7 +106,7 @@ module Whopsdk
         params(
           id: String,
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.nilable(Whopsdk::Product))
+        ).returns(Whopsdk::Product)
       end
       def retrieve(id, request_options: {})
       end
@@ -142,7 +142,7 @@ module Whopsdk
           title: T.nilable(String),
           visibility: T.nilable(Whopsdk::Visibility::OrSymbol),
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.nilable(Whopsdk::Product))
+        ).returns(Whopsdk::Product)
       end
       def update(
         id,
@@ -202,10 +202,9 @@ module Whopsdk
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           order: T.nilable(Whopsdk::ProductListParams::Order::OrSymbol),
-          product_types:
-            T.nilable(T::Array[T.nilable(Whopsdk::AccessPassType::OrSymbol)]),
+          product_types: T.nilable(T::Array[Whopsdk::AccessPassType::OrSymbol]),
           visibilities:
-            T.nilable(T::Array[T.nilable(Whopsdk::VisibilityFilter::OrSymbol)]),
+            T.nilable(T::Array[Whopsdk::VisibilityFilter::OrSymbol]),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(
           Whopsdk::Internal::CursorPage[T.nilable(Whopsdk::ProductListItem)]
@@ -243,7 +242,7 @@ module Whopsdk
         params(
           id: String,
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.nilable(T::Boolean))
+        ).returns(T::Boolean)
       end
       def delete(id, request_options: {})
       end

@@ -70,10 +70,14 @@ module Whopsdk
       required :name, String
 
       # @!attribute status
-      #   The status of an experience interface
+      #   If the status is live, the app is visible on Whop discovery. In order to be
+      #   live, you need to set the name, icon, and description. Being unlisted or hidden
+      #   means it's not visible on Whop but you can still install the app via direct
+      #   link. To remove the app from whop discovery, you should set the status to
+      #   unlisted.
       #
-      #   @return [Symbol, Whopsdk::Models::AppStatuses, nil]
-      required :status, enum: -> { Whopsdk::AppStatuses }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::AppStatuses]
+      required :status, enum: -> { Whopsdk::AppStatuses }
 
       # @!attribute verified
       #   Whether this app has been verified by Whop. Verified apps are endorsed by whop
@@ -108,7 +112,7 @@ module Whopsdk
       #
       #   @param name [String] The name of the app
       #
-      #   @param status [Symbol, Whopsdk::Models::AppStatuses, nil] The status of an experience interface
+      #   @param status [Symbol, Whopsdk::Models::AppStatuses] If the status is live, the app is visible on Whop discovery. In order to be live
       #
       #   @param verified [Boolean] Whether this app has been verified by Whop. Verified apps are endorsed by whop a
 

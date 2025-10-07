@@ -64,7 +64,7 @@ module Whopsdk
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::Product, nil]
+      # @return [Whopsdk::Models::Product]
       #
       # @see Whopsdk::Models::ProductCreateParams
       def create(params)
@@ -89,7 +89,7 @@ module Whopsdk
       # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::Product, nil]
+      # @return [Whopsdk::Models::Product]
       #
       # @see Whopsdk::Models::ProductRetrieveParams
       def retrieve(id, params = {})
@@ -154,7 +154,7 @@ module Whopsdk
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::Product, nil]
+      # @return [Whopsdk::Models::Product]
       #
       # @see Whopsdk::Models::ProductUpdateParams
       def update(id, params = {})
@@ -190,9 +190,9 @@ module Whopsdk
       #
       # @param order [Symbol, Whopsdk::Models::ProductListParams::Order, nil] The ways a relation of AccessPasses can be ordered
       #
-      # @param product_types [Array<Symbol, Whopsdk::Models::AccessPassType, nil>, nil] The type of products to filter by
+      # @param product_types [Array<Symbol, Whopsdk::Models::AccessPassType>, nil] The type of products to filter by
       #
-      # @param visibilities [Array<Symbol, Whopsdk::Models::VisibilityFilter, nil>, nil] The visibility of the products to filter by
+      # @param visibilities [Array<Symbol, Whopsdk::Models::VisibilityFilter>, nil] The visibility of the products to filter by
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -222,7 +222,7 @@ module Whopsdk
       # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Boolean, nil]
+      # @return [Boolean]
       #
       # @see Whopsdk::Models::ProductDeleteParams
       def delete(id, params = {})

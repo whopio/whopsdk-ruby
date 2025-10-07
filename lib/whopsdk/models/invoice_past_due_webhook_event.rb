@@ -26,7 +26,7 @@ module Whopsdk
       #   A statement that defines an amount due by a customer.
       #
       #   @return [Whopsdk::Models::Invoice, nil]
-      optional :data, -> { Whopsdk::Invoice }, nil?: true
+      optional :data, -> { Whopsdk::Invoice }
 
       # @!attribute type
       #   The webhook event type
@@ -44,7 +44,7 @@ module Whopsdk
       #
       #   @param created_at [String] The timestamp in seconds since the Unix epoch that the webhook was sent at on th
       #
-      #   @param data [Whopsdk::Models::Invoice, nil] A statement that defines an amount due by a customer.
+      #   @param data [Whopsdk::Models::Invoice] A statement that defines an amount due by a customer.
       #
       #   @param type [Symbol, Whopsdk::Models::InvoicePastDueWebhookEvent::Type] The webhook event type
 

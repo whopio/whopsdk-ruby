@@ -36,7 +36,7 @@ module Whopsdk
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::ForumPost, nil]
+      # @return [Whopsdk::Models::ForumPost]
       #
       # @see Whopsdk::Models::ForumPostCreateParams
       def create(params)
@@ -61,7 +61,7 @@ module Whopsdk
       # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::ForumPost, nil]
+      # @return [Whopsdk::Models::ForumPost]
       #
       # @see Whopsdk::Models::ForumPostRetrieveParams
       def retrieve(id, params = {})

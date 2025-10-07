@@ -1,19 +1,19 @@
 module Whopsdk
   module Models
     type invoice_create_response =
-      { checkout_job_id: String?, invoice: Whopsdk::Invoice? }
+      { checkout_job_id: String?, invoice: Whopsdk::Invoice }
 
     class InvoiceCreateResponse < Whopsdk::Internal::Type::BaseModel
       attr_accessor checkout_job_id: String?
 
-      attr_accessor invoice: Whopsdk::Invoice?
+      attr_accessor invoice: Whopsdk::Invoice
 
       def initialize: (
         checkout_job_id: String?,
-        invoice: Whopsdk::Invoice?
+        invoice: Whopsdk::Invoice
       ) -> void
 
-      def to_hash: -> { checkout_job_id: String?, invoice: Whopsdk::Invoice? }
+      def to_hash: -> { checkout_job_id: String?, invoice: Whopsdk::Invoice }
     end
   end
 end

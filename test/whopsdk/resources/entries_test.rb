@@ -19,7 +19,7 @@ class Whopsdk::Test::Resources::EntriesTest < Whopsdk::Test::ResourceTest
         custom_field_responses: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Entry::CustomFieldResponse]) | nil,
         plan: Whopsdk::Entry::Plan | nil,
         product: Whopsdk::Entry::Product | nil,
-        status: Whopsdk::EntryStatus | nil,
+        status: Whopsdk::EntryStatus,
         user: Whopsdk::Entry::User
       }
     end
@@ -47,7 +47,7 @@ class Whopsdk::Test::Resources::EntriesTest < Whopsdk::Test::ResourceTest
         created_at: Integer | nil,
         plan: Whopsdk::Models::EntryListResponse::Plan | nil,
         product: Whopsdk::Models::EntryListResponse::Product | nil,
-        status: Whopsdk::EntryStatus | nil,
+        status: Whopsdk::EntryStatus,
         user: Whopsdk::Models::EntryListResponse::User
       }
     end
@@ -85,7 +85,7 @@ class Whopsdk::Test::Resources::EntriesTest < Whopsdk::Test::ResourceTest
         custom_field_responses: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Entry::CustomFieldResponse]) | nil,
         plan: Whopsdk::Entry::Plan | nil,
         product: Whopsdk::Entry::Product | nil,
-        status: Whopsdk::EntryStatus | nil,
+        status: Whopsdk::EntryStatus,
         user: Whopsdk::Entry::User
       }
     end

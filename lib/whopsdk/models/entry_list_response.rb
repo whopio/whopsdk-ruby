@@ -29,10 +29,10 @@ module Whopsdk
       required :product, -> { Whopsdk::Models::EntryListResponse::Product }, nil?: true
 
       # @!attribute status
-      #   The status of an entry to a waitlist.
+      #   The status of the entry.
       #
-      #   @return [Symbol, Whopsdk::Models::EntryStatus, nil]
-      required :status, enum: -> { Whopsdk::EntryStatus }, nil?: true
+      #   @return [Symbol, Whopsdk::Models::EntryStatus]
+      required :status, enum: -> { Whopsdk::EntryStatus }
 
       # @!attribute user
       #   The user who created the entry.
@@ -51,7 +51,7 @@ module Whopsdk
       #
       #   @param product [Whopsdk::Models::EntryListResponse::Product, nil] The access pass tied to this entry, if there is one.
       #
-      #   @param status [Symbol, Whopsdk::Models::EntryStatus, nil] The status of an entry to a waitlist.
+      #   @param status [Symbol, Whopsdk::Models::EntryStatus] The status of the entry.
       #
       #   @param user [Whopsdk::Models::EntryListResponse::User] The user who created the entry.
 

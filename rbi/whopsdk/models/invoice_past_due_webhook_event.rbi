@@ -44,7 +44,7 @@ module Whopsdk
       sig { returns(T.nilable(Whopsdk::Invoice)) }
       attr_reader :data
 
-      sig { params(data: T.nilable(Whopsdk::Invoice::OrHash)).void }
+      sig { params(data: Whopsdk::Invoice::OrHash).void }
       attr_writer :data
 
       # The webhook event type
@@ -66,7 +66,7 @@ module Whopsdk
           api_version:
             Whopsdk::InvoicePastDueWebhookEvent::APIVersion::OrSymbol,
           created_at: String,
-          data: T.nilable(Whopsdk::Invoice::OrHash),
+          data: Whopsdk::Invoice::OrHash,
           type: Whopsdk::InvoicePastDueWebhookEvent::Type::OrSymbol
         ).returns(T.attached_class)
       end
@@ -92,7 +92,7 @@ module Whopsdk
             api_version:
               Whopsdk::InvoicePastDueWebhookEvent::APIVersion::TaggedSymbol,
             created_at: String,
-            data: T.nilable(Whopsdk::Invoice),
+            data: Whopsdk::Invoice,
             type: Whopsdk::InvoicePastDueWebhookEvent::Type::TaggedSymbol
           }
         )

@@ -40,19 +40,11 @@ module Whopsdk
       attr_accessor :order
 
       # The type of products to filter by
-      sig do
-        returns(
-          T.nilable(T::Array[T.nilable(Whopsdk::AccessPassType::OrSymbol)])
-        )
-      end
+      sig { returns(T.nilable(T::Array[Whopsdk::AccessPassType::OrSymbol])) }
       attr_accessor :product_types
 
       # The visibility of the products to filter by
-      sig do
-        returns(
-          T.nilable(T::Array[T.nilable(Whopsdk::VisibilityFilter::OrSymbol)])
-        )
-      end
+      sig { returns(T.nilable(T::Array[Whopsdk::VisibilityFilter::OrSymbol])) }
       attr_accessor :visibilities
 
       sig do
@@ -64,10 +56,9 @@ module Whopsdk
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           order: T.nilable(Whopsdk::ProductListParams::Order::OrSymbol),
-          product_types:
-            T.nilable(T::Array[T.nilable(Whopsdk::AccessPassType::OrSymbol)]),
+          product_types: T.nilable(T::Array[Whopsdk::AccessPassType::OrSymbol]),
           visibilities:
-            T.nilable(T::Array[T.nilable(Whopsdk::VisibilityFilter::OrSymbol)]),
+            T.nilable(T::Array[Whopsdk::VisibilityFilter::OrSymbol]),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -105,11 +96,9 @@ module Whopsdk
             last: T.nilable(Integer),
             order: T.nilable(Whopsdk::ProductListParams::Order::OrSymbol),
             product_types:
-              T.nilable(T::Array[T.nilable(Whopsdk::AccessPassType::OrSymbol)]),
+              T.nilable(T::Array[Whopsdk::AccessPassType::OrSymbol]),
             visibilities:
-              T.nilable(
-                T::Array[T.nilable(Whopsdk::VisibilityFilter::OrSymbol)]
-              ),
+              T.nilable(T::Array[Whopsdk::VisibilityFilter::OrSymbol]),
             request_options: Whopsdk::RequestOptions
           }
         )

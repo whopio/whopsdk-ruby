@@ -28,8 +28,8 @@ module Whopsdk
       sig { returns(Integer) }
       attr_accessor :created_at
 
-      # The available currencies on the platform
-      sig { returns(T.nilable(Whopsdk::Currency::TaggedSymbol)) }
+      # The respective currency identifier for the plan.
+      sig { returns(Whopsdk::Currency::TaggedSymbol) }
       attr_accessor :currency
 
       # The custom fields for the plan.
@@ -63,8 +63,8 @@ module Whopsdk
       sig { returns(T.nilable(Integer)) }
       attr_accessor :member_count
 
-      # The type of plan that can be attached to an access pass
-      sig { returns(T.nilable(Whopsdk::PlanType::TaggedSymbol)) }
+      # Indicates if the plan is a one time payment or recurring.
+      sig { returns(Whopsdk::PlanType::TaggedSymbol) }
       attr_accessor :plan_type
 
       # The access pass for the plan.
@@ -78,17 +78,16 @@ module Whopsdk
       sig { returns(String) }
       attr_accessor :purchase_link
 
-      # The methods of how a plan can be released.
-      sig { returns(T.nilable(Whopsdk::ReleaseMethod::TaggedSymbol)) }
+      # This is the release method the business uses to sell this plan.
+      sig { returns(Whopsdk::ReleaseMethod::TaggedSymbol) }
       attr_accessor :release_method
 
       # The price a person has to pay for a plan on the renewal purchase.
       sig { returns(Float) }
       attr_accessor :renewal_price
 
-      # Whether or not the tax is included in a plan's price (or if it hasn't been set
-      # up)
-      sig { returns(T.nilable(Whopsdk::TaxType::TaggedSymbol)) }
+      # The tax type for the plan.
+      sig { returns(Whopsdk::TaxType::TaggedSymbol) }
       attr_accessor :tax_type
 
       # The number of free trial days added before a renewal plan.
@@ -99,8 +98,8 @@ module Whopsdk
       sig { returns(Integer) }
       attr_accessor :updated_at
 
-      # Visibility of a resource
-      sig { returns(T.nilable(Whopsdk::Visibility::TaggedSymbol)) }
+      # Shows or hides the plan from public/business view.
+      sig { returns(Whopsdk::Visibility::TaggedSymbol) }
       attr_accessor :visibility
 
       # An object representing a (sanitized) plan of an access pass.
@@ -111,7 +110,7 @@ module Whopsdk
           collect_tax: T::Boolean,
           company: T.nilable(Whopsdk::Plan::Company::OrHash),
           created_at: Integer,
-          currency: T.nilable(Whopsdk::Currency::OrSymbol),
+          currency: Whopsdk::Currency::OrSymbol,
           custom_fields: T::Array[Whopsdk::Plan::CustomField::OrHash],
           description: T.nilable(String),
           expiration_days: T.nilable(Integer),
@@ -119,15 +118,15 @@ module Whopsdk
           internal_notes: T.nilable(String),
           invoice: T.nilable(Whopsdk::Plan::Invoice::OrHash),
           member_count: T.nilable(Integer),
-          plan_type: T.nilable(Whopsdk::PlanType::OrSymbol),
+          plan_type: Whopsdk::PlanType::OrSymbol,
           product: T.nilable(Whopsdk::Plan::Product::OrHash),
           purchase_link: String,
-          release_method: T.nilable(Whopsdk::ReleaseMethod::OrSymbol),
+          release_method: Whopsdk::ReleaseMethod::OrSymbol,
           renewal_price: Float,
-          tax_type: T.nilable(Whopsdk::TaxType::OrSymbol),
+          tax_type: Whopsdk::TaxType::OrSymbol,
           trial_period_days: T.nilable(Integer),
           updated_at: Integer,
-          visibility: T.nilable(Whopsdk::Visibility::OrSymbol)
+          visibility: Whopsdk::Visibility::OrSymbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -141,7 +140,7 @@ module Whopsdk
         company:,
         # When the plan was created.
         created_at:,
-        # The available currencies on the platform
+        # The respective currency identifier for the plan.
         currency:,
         # The custom fields for the plan.
         custom_fields:,
@@ -157,24 +156,23 @@ module Whopsdk
         invoice:,
         # The number of members for the plan.
         member_count:,
-        # The type of plan that can be attached to an access pass
+        # Indicates if the plan is a one time payment or recurring.
         plan_type:,
         # The access pass for the plan.
         product:,
         # The direct link to purchase the access pass.
         purchase_link:,
-        # The methods of how a plan can be released.
+        # This is the release method the business uses to sell this plan.
         release_method:,
         # The price a person has to pay for a plan on the renewal purchase.
         renewal_price:,
-        # Whether or not the tax is included in a plan's price (or if it hasn't been set
-        # up)
+        # The tax type for the plan.
         tax_type:,
         # The number of free trial days added before a renewal plan.
         trial_period_days:,
         # When the plan was last updated.
         updated_at:,
-        # Visibility of a resource
+        # Shows or hides the plan from public/business view.
         visibility:
       )
       end
@@ -187,7 +185,7 @@ module Whopsdk
             collect_tax: T::Boolean,
             company: T.nilable(Whopsdk::Plan::Company),
             created_at: Integer,
-            currency: T.nilable(Whopsdk::Currency::TaggedSymbol),
+            currency: Whopsdk::Currency::TaggedSymbol,
             custom_fields: T::Array[Whopsdk::Plan::CustomField],
             description: T.nilable(String),
             expiration_days: T.nilable(Integer),
@@ -195,15 +193,15 @@ module Whopsdk
             internal_notes: T.nilable(String),
             invoice: T.nilable(Whopsdk::Plan::Invoice),
             member_count: T.nilable(Integer),
-            plan_type: T.nilable(Whopsdk::PlanType::TaggedSymbol),
+            plan_type: Whopsdk::PlanType::TaggedSymbol,
             product: T.nilable(Whopsdk::Plan::Product),
             purchase_link: String,
-            release_method: T.nilable(Whopsdk::ReleaseMethod::TaggedSymbol),
+            release_method: Whopsdk::ReleaseMethod::TaggedSymbol,
             renewal_price: Float,
-            tax_type: T.nilable(Whopsdk::TaxType::TaggedSymbol),
+            tax_type: Whopsdk::TaxType::TaggedSymbol,
             trial_period_days: T.nilable(Integer),
             updated_at: Integer,
-            visibility: T.nilable(Whopsdk::Visibility::TaggedSymbol)
+            visibility: Whopsdk::Visibility::TaggedSymbol
           }
         )
       end
@@ -249,12 +247,8 @@ module Whopsdk
         sig { returns(String) }
         attr_accessor :id
 
-        # The type of the custom field.
-        sig do
-          returns(
-            T.nilable(Whopsdk::Plan::CustomField::FieldType::TaggedSymbol)
-          )
-        end
+        # What type of input field to use.
+        sig { returns(Symbol) }
         attr_accessor :field_type
 
         # The title/header of the custom field.
@@ -277,19 +271,16 @@ module Whopsdk
         sig do
           params(
             id: String,
-            field_type:
-              T.nilable(Whopsdk::Plan::CustomField::FieldType::OrSymbol),
             name: String,
             order: T.nilable(Integer),
             placeholder: T.nilable(String),
-            required: T::Boolean
+            required: T::Boolean,
+            field_type: Symbol
           ).returns(T.attached_class)
         end
         def self.new(
           # The internal ID of the given custom field
           id:,
-          # The type of the custom field.
-          field_type:,
           # The title/header of the custom field.
           name:,
           # How the custom field should be ordered when rendered on the checkout page.
@@ -297,7 +288,9 @@ module Whopsdk
           # An example response displayed in the input field.
           placeholder:,
           # Whether or not the custom field is required.
-          required:
+          required:,
+          # What type of input field to use.
+          field_type: :text
         )
         end
 
@@ -305,8 +298,7 @@ module Whopsdk
           override.returns(
             {
               id: String,
-              field_type:
-                T.nilable(Whopsdk::Plan::CustomField::FieldType::TaggedSymbol),
+              field_type: Symbol,
               name: String,
               order: T.nilable(Integer),
               placeholder: T.nilable(String),
@@ -315,28 +307,6 @@ module Whopsdk
           )
         end
         def to_hash
-        end
-
-        # The type of the custom field.
-        module FieldType
-          extend Whopsdk::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, Whopsdk::Plan::CustomField::FieldType)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          TEXT =
-            T.let(:text, Whopsdk::Plan::CustomField::FieldType::TaggedSymbol)
-
-          sig do
-            override.returns(
-              T::Array[Whopsdk::Plan::CustomField::FieldType::TaggedSymbol]
-            )
-          end
-          def self.values
-          end
         end
       end
 

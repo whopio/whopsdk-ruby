@@ -31,8 +31,8 @@ module Whopsdk
       sig { returns(Integer) }
       attr_accessor :created_at
 
-      # The available currencies on the platform
-      sig { returns(T.nilable(Whopsdk::Currency::TaggedSymbol)) }
+      # The respective currency identifier for the plan.
+      sig { returns(Whopsdk::Currency::TaggedSymbol) }
       attr_accessor :currency
 
       # The description of the plan.
@@ -66,8 +66,8 @@ module Whopsdk
       sig { returns(T.nilable(Integer)) }
       attr_accessor :member_count
 
-      # The type of plan that can be attached to an access pass
-      sig { returns(T.nilable(Whopsdk::PlanType::TaggedSymbol)) }
+      # Indicates if the plan is a one time payment or recurring.
+      sig { returns(Whopsdk::PlanType::TaggedSymbol) }
       attr_accessor :plan_type
 
       # The access pass for the plan.
@@ -85,8 +85,8 @@ module Whopsdk
       sig { returns(String) }
       attr_accessor :purchase_link
 
-      # The methods of how a plan can be released.
-      sig { returns(T.nilable(Whopsdk::ReleaseMethod::TaggedSymbol)) }
+      # This is the release method the business uses to sell this plan.
+      sig { returns(Whopsdk::ReleaseMethod::TaggedSymbol) }
       attr_accessor :release_method
 
       # The price a person has to pay for a plan on the renewal purchase.
@@ -101,8 +101,8 @@ module Whopsdk
       sig { returns(Integer) }
       attr_accessor :updated_at
 
-      # Visibility of a resource
-      sig { returns(T.nilable(Whopsdk::Visibility::TaggedSymbol)) }
+      # Shows or hides the plan from public/business view.
+      sig { returns(Whopsdk::Visibility::TaggedSymbol) }
       attr_accessor :visibility
 
       # An object representing a (sanitized) plan of an access pass.
@@ -113,7 +113,7 @@ module Whopsdk
           company:
             T.nilable(Whopsdk::Models::PlanListResponse::Company::OrHash),
           created_at: Integer,
-          currency: T.nilable(Whopsdk::Currency::OrSymbol),
+          currency: Whopsdk::Currency::OrSymbol,
           description: T.nilable(String),
           expiration_days: T.nilable(Integer),
           initial_price: Float,
@@ -121,15 +121,15 @@ module Whopsdk
           invoice:
             T.nilable(Whopsdk::Models::PlanListResponse::Invoice::OrHash),
           member_count: T.nilable(Integer),
-          plan_type: T.nilable(Whopsdk::PlanType::OrSymbol),
+          plan_type: Whopsdk::PlanType::OrSymbol,
           product:
             T.nilable(Whopsdk::Models::PlanListResponse::Product::OrHash),
           purchase_link: String,
-          release_method: T.nilable(Whopsdk::ReleaseMethod::OrSymbol),
+          release_method: Whopsdk::ReleaseMethod::OrSymbol,
           renewal_price: Float,
           trial_period_days: T.nilable(Integer),
           updated_at: Integer,
-          visibility: T.nilable(Whopsdk::Visibility::OrSymbol)
+          visibility: Whopsdk::Visibility::OrSymbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -141,7 +141,7 @@ module Whopsdk
         company:,
         # When the plan was created.
         created_at:,
-        # The available currencies on the platform
+        # The respective currency identifier for the plan.
         currency:,
         # The description of the plan.
         description:,
@@ -155,13 +155,13 @@ module Whopsdk
         invoice:,
         # The number of members for the plan.
         member_count:,
-        # The type of plan that can be attached to an access pass
+        # Indicates if the plan is a one time payment or recurring.
         plan_type:,
         # The access pass for the plan.
         product:,
         # The direct link to purchase the access pass.
         purchase_link:,
-        # The methods of how a plan can be released.
+        # This is the release method the business uses to sell this plan.
         release_method:,
         # The price a person has to pay for a plan on the renewal purchase.
         renewal_price:,
@@ -169,7 +169,7 @@ module Whopsdk
         trial_period_days:,
         # When the plan was last updated.
         updated_at:,
-        # Visibility of a resource
+        # Shows or hides the plan from public/business view.
         visibility:
       )
       end
@@ -181,21 +181,21 @@ module Whopsdk
             billing_period: T.nilable(Integer),
             company: T.nilable(Whopsdk::Models::PlanListResponse::Company),
             created_at: Integer,
-            currency: T.nilable(Whopsdk::Currency::TaggedSymbol),
+            currency: Whopsdk::Currency::TaggedSymbol,
             description: T.nilable(String),
             expiration_days: T.nilable(Integer),
             initial_price: Float,
             internal_notes: T.nilable(String),
             invoice: T.nilable(Whopsdk::Models::PlanListResponse::Invoice),
             member_count: T.nilable(Integer),
-            plan_type: T.nilable(Whopsdk::PlanType::TaggedSymbol),
+            plan_type: Whopsdk::PlanType::TaggedSymbol,
             product: T.nilable(Whopsdk::Models::PlanListResponse::Product),
             purchase_link: String,
-            release_method: T.nilable(Whopsdk::ReleaseMethod::TaggedSymbol),
+            release_method: Whopsdk::ReleaseMethod::TaggedSymbol,
             renewal_price: Float,
             trial_period_days: T.nilable(Integer),
             updated_at: Integer,
-            visibility: T.nilable(Whopsdk::Visibility::TaggedSymbol)
+            visibility: Whopsdk::Visibility::TaggedSymbol
           }
         )
       end

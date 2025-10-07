@@ -31,7 +31,7 @@ module Whopsdk
           trial_period_days: T.nilable(Integer),
           visibility: T.nilable(Whopsdk::Visibility::OrSymbol),
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.nilable(Whopsdk::Plan))
+        ).returns(Whopsdk::Plan)
       end
       def create(
         # The company the plan should be created for.
@@ -82,7 +82,7 @@ module Whopsdk
         params(
           id: String,
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.nilable(Whopsdk::Plan))
+        ).returns(Whopsdk::Plan)
       end
       def retrieve(id, request_options: {})
       end
@@ -113,7 +113,7 @@ module Whopsdk
           trial_period_days: T.nilable(Integer),
           visibility: T.nilable(Whopsdk::Visibility::OrSymbol),
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.nilable(Whopsdk::Plan))
+        ).returns(Whopsdk::Plan)
       end
       def update(
         id,
@@ -164,13 +164,12 @@ module Whopsdk
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           order: T.nilable(Whopsdk::PlanListParams::Order::OrSymbol),
-          plan_types:
-            T.nilable(T::Array[T.nilable(Whopsdk::PlanType::OrSymbol)]),
+          plan_types: T.nilable(T::Array[Whopsdk::PlanType::OrSymbol]),
           product_ids: T.nilable(T::Array[String]),
           release_methods:
-            T.nilable(T::Array[T.nilable(Whopsdk::ReleaseMethod::OrSymbol)]),
+            T.nilable(T::Array[Whopsdk::ReleaseMethod::OrSymbol]),
           visibilities:
-            T.nilable(T::Array[T.nilable(Whopsdk::VisibilityFilter::OrSymbol)]),
+            T.nilable(T::Array[Whopsdk::VisibilityFilter::OrSymbol]),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(
           Whopsdk::Internal::CursorPage[
@@ -214,7 +213,7 @@ module Whopsdk
         params(
           id: String,
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(T.nilable(T::Boolean))
+        ).returns(T::Boolean)
       end
       def delete(id, request_options: {})
       end

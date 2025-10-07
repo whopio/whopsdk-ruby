@@ -6,12 +6,12 @@ module Whopsdk
         name: String,
         ?base_url: String?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::App?
+      ) -> Whopsdk::App
 
       def retrieve: (
         String id,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::App?
+      ) -> Whopsdk::App
 
       def update: (
         String id,
@@ -23,10 +23,10 @@ module Whopsdk
         ?experience_path: String?,
         ?icon: Whopsdk::AppUpdateParams::Icon?,
         ?name: String?,
-        ?required_scopes: ::Array[Whopsdk::Models::AppUpdateParams::required_scope?]?,
+        ?required_scopes: ::Array[Whopsdk::Models::AppUpdateParams::required_scope]?,
         ?status: Whopsdk::Models::app_statuses?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::App?
+      ) -> Whopsdk::App
 
       def list: (
         ?after: String?,

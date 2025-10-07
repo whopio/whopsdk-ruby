@@ -13,12 +13,12 @@ module Whopsdk
         ?poll: Whopsdk::ForumPostCreateParams::Poll?,
         ?title: String?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::ForumPost?
+      ) -> Whopsdk::ForumPost
 
       def retrieve: (
         String id,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::ForumPost?
+      ) -> Whopsdk::ForumPost
 
       def list: (
         experience_id: String,

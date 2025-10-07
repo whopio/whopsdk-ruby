@@ -64,10 +64,8 @@ module Whopsdk
       # @!attribute statuses
       #   The statuses to filter the entries by
       #
-      #   @return [Array<Symbol, Whopsdk::Models::EntryStatus, nil>, nil]
-      optional :statuses,
-               -> { Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::EntryStatus, nil?: true] },
-               nil?: true
+      #   @return [Array<Symbol, Whopsdk::Models::EntryStatus>, nil]
+      optional :statuses, -> { Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::EntryStatus] }, nil?: true
 
       # @!method initialize(company_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, statuses: nil, request_options: {})
       #   @param company_id [String] The ID of the company
@@ -88,7 +86,7 @@ module Whopsdk
       #
       #   @param product_ids [Array<String>, nil] The access pass IDs to filter the entries by
       #
-      #   @param statuses [Array<Symbol, Whopsdk::Models::EntryStatus, nil>, nil] The statuses to filter the entries by
+      #   @param statuses [Array<Symbol, Whopsdk::Models::EntryStatus>, nil] The statuses to filter the entries by
       #
       #   @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}]
 

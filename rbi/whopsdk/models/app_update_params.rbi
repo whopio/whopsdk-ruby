@@ -51,11 +51,7 @@ module Whopsdk
       # The scopes that the app will request off of users when a user installs the app.
       sig do
         returns(
-          T.nilable(
-            T::Array[
-              T.nilable(Whopsdk::AppUpdateParams::RequiredScope::OrSymbol)
-            ]
-          )
+          T.nilable(T::Array[Whopsdk::AppUpdateParams::RequiredScope::OrSymbol])
         )
       end
       attr_accessor :required_scopes
@@ -76,9 +72,7 @@ module Whopsdk
           name: T.nilable(String),
           required_scopes:
             T.nilable(
-              T::Array[
-                T.nilable(Whopsdk::AppUpdateParams::RequiredScope::OrSymbol)
-              ]
+              T::Array[Whopsdk::AppUpdateParams::RequiredScope::OrSymbol]
             ),
           status: T.nilable(Whopsdk::AppStatuses::OrSymbol),
           request_options: Whopsdk::RequestOptions::OrHash
@@ -122,9 +116,7 @@ module Whopsdk
             name: T.nilable(String),
             required_scopes:
               T.nilable(
-                T::Array[
-                  T.nilable(Whopsdk::AppUpdateParams::RequiredScope::OrSymbol)
-                ]
+                T::Array[Whopsdk::AppUpdateParams::RequiredScope::OrSymbol]
               ),
             status: T.nilable(Whopsdk::AppStatuses::OrSymbol),
             request_options: Whopsdk::RequestOptions

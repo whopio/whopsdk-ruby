@@ -52,10 +52,8 @@ module Whopsdk
       # @!attribute plan_types
       #   The plan type to filter the plans by
       #
-      #   @return [Array<Symbol, Whopsdk::Models::PlanType, nil>, nil]
-      optional :plan_types,
-               -> { Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::PlanType, nil?: true] },
-               nil?: true
+      #   @return [Array<Symbol, Whopsdk::Models::PlanType>, nil]
+      optional :plan_types, -> { Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::PlanType] }, nil?: true
 
       # @!attribute product_ids
       #   The access pass IDs to filter the plans by
@@ -66,17 +64,17 @@ module Whopsdk
       # @!attribute release_methods
       #   The release method to filter the plans by
       #
-      #   @return [Array<Symbol, Whopsdk::Models::ReleaseMethod, nil>, nil]
+      #   @return [Array<Symbol, Whopsdk::Models::ReleaseMethod>, nil]
       optional :release_methods,
-               -> { Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::ReleaseMethod, nil?: true] },
+               -> { Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::ReleaseMethod] },
                nil?: true
 
       # @!attribute visibilities
       #   The visibility to filter the plans by
       #
-      #   @return [Array<Symbol, Whopsdk::Models::VisibilityFilter, nil>, nil]
+      #   @return [Array<Symbol, Whopsdk::Models::VisibilityFilter>, nil]
       optional :visibilities,
-               -> { Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::VisibilityFilter, nil?: true] },
+               -> { Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::VisibilityFilter] },
                nil?: true
 
       # @!method initialize(company_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, order: nil, plan_types: nil, product_ids: nil, release_methods: nil, visibilities: nil, request_options: {})
@@ -94,13 +92,13 @@ module Whopsdk
       #
       #   @param order [Symbol, Whopsdk::Models::PlanListParams::Order, nil] The ways a relation of Plans can be ordered
       #
-      #   @param plan_types [Array<Symbol, Whopsdk::Models::PlanType, nil>, nil] The plan type to filter the plans by
+      #   @param plan_types [Array<Symbol, Whopsdk::Models::PlanType>, nil] The plan type to filter the plans by
       #
       #   @param product_ids [Array<String>, nil] The access pass IDs to filter the plans by
       #
-      #   @param release_methods [Array<Symbol, Whopsdk::Models::ReleaseMethod, nil>, nil] The release method to filter the plans by
+      #   @param release_methods [Array<Symbol, Whopsdk::Models::ReleaseMethod>, nil] The release method to filter the plans by
       #
-      #   @param visibilities [Array<Symbol, Whopsdk::Models::VisibilityFilter, nil>, nil] The visibility to filter the plans by
+      #   @param visibilities [Array<Symbol, Whopsdk::Models::VisibilityFilter>, nil] The visibility to filter the plans by
       #
       #   @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}]
 

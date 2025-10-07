@@ -27,7 +27,7 @@ class Whopsdk::Test::Resources::AppsTest < Whopsdk::Test::ResourceTest
         name: String,
         requested_permissions: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::App::RequestedPermission]),
         stats: Whopsdk::App::Stats | nil,
-        status: Whopsdk::AppStatuses | nil,
+        status: Whopsdk::AppStatuses,
         verified: Whopsdk::Internal::Type::Boolean
       }
     end
@@ -57,7 +57,7 @@ class Whopsdk::Test::Resources::AppsTest < Whopsdk::Test::ResourceTest
         name: String,
         requested_permissions: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::App::RequestedPermission]),
         stats: Whopsdk::App::Stats | nil,
-        status: Whopsdk::AppStatuses | nil,
+        status: Whopsdk::AppStatuses,
         verified: Whopsdk::Internal::Type::Boolean
       }
     end
@@ -87,7 +87,7 @@ class Whopsdk::Test::Resources::AppsTest < Whopsdk::Test::ResourceTest
         name: String,
         requested_permissions: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::App::RequestedPermission]),
         stats: Whopsdk::App::Stats | nil,
-        status: Whopsdk::AppStatuses | nil,
+        status: Whopsdk::AppStatuses,
         verified: Whopsdk::Internal::Type::Boolean
       }
     end
@@ -121,7 +121,7 @@ class Whopsdk::Test::Resources::AppsTest < Whopsdk::Test::ResourceTest
         domain_id: String,
         experience_path: String | nil,
         name: String,
-        status: Whopsdk::AppStatuses | nil,
+        status: Whopsdk::AppStatuses,
         verified: Whopsdk::Internal::Type::Boolean
       }
     end

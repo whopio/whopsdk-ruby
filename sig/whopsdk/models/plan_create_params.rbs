@@ -9,12 +9,14 @@ module Whopsdk
         custom_fields: ::Array[Whopsdk::PlanCreateParams::CustomField]?,
         description: String?,
         expiration_days: Integer?,
+        image: Whopsdk::PlanCreateParams::Image?,
         initial_price: Float?,
         internal_notes: String?,
         override_tax_type: Whopsdk::Models::tax_type?,
         plan_type: Whopsdk::Models::plan_type?,
         release_method: Whopsdk::Models::release_method?,
         renewal_price: Float?,
+        title: String?,
         trial_period_days: Integer?,
         visibility: Whopsdk::Models::visibility?
       }
@@ -38,6 +40,8 @@ module Whopsdk
 
       attr_accessor expiration_days: Integer?
 
+      attr_accessor image: Whopsdk::PlanCreateParams::Image?
+
       attr_accessor initial_price: Float?
 
       attr_accessor internal_notes: String?
@@ -49,6 +53,8 @@ module Whopsdk
       attr_accessor release_method: Whopsdk::Models::release_method?
 
       attr_accessor renewal_price: Float?
+
+      attr_accessor title: String?
 
       attr_accessor trial_period_days: Integer?
 
@@ -62,12 +68,14 @@ module Whopsdk
         ?custom_fields: ::Array[Whopsdk::PlanCreateParams::CustomField]?,
         ?description: String?,
         ?expiration_days: Integer?,
+        ?image: Whopsdk::PlanCreateParams::Image?,
         ?initial_price: Float?,
         ?internal_notes: String?,
         ?override_tax_type: Whopsdk::Models::tax_type?,
         ?plan_type: Whopsdk::Models::plan_type?,
         ?release_method: Whopsdk::Models::release_method?,
         ?renewal_price: Float?,
+        ?title: String?,
         ?trial_period_days: Integer?,
         ?visibility: Whopsdk::Models::visibility?,
         ?request_options: Whopsdk::request_opts
@@ -81,12 +89,14 @@ module Whopsdk
         custom_fields: ::Array[Whopsdk::PlanCreateParams::CustomField]?,
         description: String?,
         expiration_days: Integer?,
+        image: Whopsdk::PlanCreateParams::Image?,
         initial_price: Float?,
         internal_notes: String?,
         override_tax_type: Whopsdk::Models::tax_type?,
         plan_type: Whopsdk::Models::plan_type?,
         release_method: Whopsdk::Models::release_method?,
         renewal_price: Float?,
+        title: String?,
         trial_period_days: Integer?,
         visibility: Whopsdk::Models::visibility?,
         request_options: Whopsdk::RequestOptions
@@ -142,6 +152,18 @@ module Whopsdk
 
           def self?.values: -> ::Array[Whopsdk::Models::PlanCreateParams::CustomField::field_type]
         end
+      end
+
+      type image = { id: String?, direct_upload_id: String? }
+
+      class Image < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String?
+
+        attr_accessor direct_upload_id: String?
+
+        def initialize: (?id: String?, ?direct_upload_id: String?) -> void
+
+        def to_hash: -> { id: String?, direct_upload_id: String? }
       end
     end
   end

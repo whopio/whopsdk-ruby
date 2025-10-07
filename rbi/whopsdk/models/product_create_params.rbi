@@ -335,7 +335,7 @@ module Whopsdk
         sig { returns(T.nilable(Whopsdk::PlanType::OrSymbol)) }
         attr_accessor :plan_type
 
-        # The methods of how a plan can be released (including raffles and waitlists).
+        # The methods of how a plan can be released.
         sig { returns(T.nilable(Whopsdk::ReleaseMethod::OrSymbol)) }
         attr_accessor :release_method
 
@@ -376,7 +376,7 @@ module Whopsdk
           initial_price: nil,
           # The type of plan that can be attached to an access pass
           plan_type: nil,
-          # The methods of how a plan can be released (including raffles and waitlists).
+          # The methods of how a plan can be released.
           release_method: nil,
           # The amount the customer is charged every billing period.
           renewal_price: nil,

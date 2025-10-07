@@ -266,7 +266,7 @@ module Whopsdk
         optional :plan_type, enum: -> { Whopsdk::PlanType }, nil?: true
 
         # @!attribute release_method
-        #   The methods of how a plan can be released (including raffles and waitlists).
+        #   The methods of how a plan can be released.
         #
         #   @return [Symbol, Whopsdk::Models::ReleaseMethod, nil]
         optional :release_method, enum: -> { Whopsdk::ReleaseMethod }, nil?: true
@@ -296,7 +296,7 @@ module Whopsdk
         #
         #   @param plan_type [Symbol, Whopsdk::Models::PlanType, nil] The type of plan that can be attached to an access pass
         #
-        #   @param release_method [Symbol, Whopsdk::Models::ReleaseMethod, nil] The methods of how a plan can be released (including raffles and waitlists).
+        #   @param release_method [Symbol, Whopsdk::Models::ReleaseMethod, nil] The methods of how a plan can be released.
         #
         #   @param renewal_price [Float, nil] The amount the customer is charged every billing period.
         #

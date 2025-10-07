@@ -90,7 +90,6 @@ module Whopsdk
           platform_balance_accepted: bool?,
           redirect_url: String?,
           release_method: Whopsdk::Models::release_method?,
-          release_method_settings: Whopsdk::InvoiceCreateParams::Plan::ReleaseMethodSettings?,
           renewal_price: Float?,
           split_pay_required_payments: Integer?,
           splitit_accepted: bool?,
@@ -133,8 +132,6 @@ module Whopsdk
 
         attr_accessor release_method: Whopsdk::Models::release_method?
 
-        attr_accessor release_method_settings: Whopsdk::InvoiceCreateParams::Plan::ReleaseMethodSettings?
-
         attr_accessor renewal_price: Float?
 
         attr_accessor split_pay_required_payments: Integer?
@@ -166,7 +163,6 @@ module Whopsdk
           ?platform_balance_accepted: bool?,
           ?redirect_url: String?,
           ?release_method: Whopsdk::Models::release_method?,
-          ?release_method_settings: Whopsdk::InvoiceCreateParams::Plan::ReleaseMethodSettings?,
           ?renewal_price: Float?,
           ?split_pay_required_payments: Integer?,
           ?splitit_accepted: bool?,
@@ -193,7 +189,6 @@ module Whopsdk
           platform_balance_accepted: bool?,
           redirect_url: String?,
           release_method: Whopsdk::Models::release_method?,
-          release_method_settings: Whopsdk::InvoiceCreateParams::Plan::ReleaseMethodSettings?,
           renewal_price: Float?,
           split_pay_required_payments: Integer?,
           splitit_accepted: bool?,
@@ -253,38 +248,6 @@ module Whopsdk
 
             def self?.values: -> ::Array[Whopsdk::Models::InvoiceCreateParams::Plan::CustomField::field_type]
           end
-        end
-
-        type release_method_settings =
-          {
-            expires_at: Integer?,
-            max_entries: Integer?,
-            nft_weighted_entries: bool?,
-            starts_at: Integer?
-          }
-
-        class ReleaseMethodSettings < Whopsdk::Internal::Type::BaseModel
-          attr_accessor expires_at: Integer?
-
-          attr_accessor max_entries: Integer?
-
-          attr_accessor nft_weighted_entries: bool?
-
-          attr_accessor starts_at: Integer?
-
-          def initialize: (
-            ?expires_at: Integer?,
-            ?max_entries: Integer?,
-            ?nft_weighted_entries: bool?,
-            ?starts_at: Integer?
-          ) -> void
-
-          def to_hash: -> {
-            expires_at: Integer?,
-            max_entries: Integer?,
-            nft_weighted_entries: bool?,
-            starts_at: Integer?
-          }
         end
       end
 

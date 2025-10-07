@@ -14,7 +14,7 @@ module Whopsdk
       # - `access_pass:basic:read`
       # - `plan:basic:read`
       #
-      # @overload create(company_id:, product_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, plan_type: nil, release_method: nil, renewal_price: nil, trial_period_days: nil, visibility: nil, request_options: {})
+      # @overload create(company_id:, product_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, plan_type: nil, release_method: nil, renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil, request_options: {})
       #
       # @param company_id [String] The company the plan should be created for.
       #
@@ -30,6 +30,8 @@ module Whopsdk
       #
       # @param expiration_days [Integer, nil] The interval at which the plan charges (expiration plans).
       #
+      # @param image [Whopsdk::Models::PlanCreateParams::Image, nil] An image for the plan. This will be visible on the product page to customers.
+      #
       # @param initial_price [Float, nil] An additional amount charged upon first purchase.
       #
       # @param internal_notes [String, nil] A personal description or notes section for the business.
@@ -38,9 +40,11 @@ module Whopsdk
       #
       # @param plan_type [Symbol, Whopsdk::Models::PlanType, nil] The type of plan that can be attached to an access pass
       #
-      # @param release_method [Symbol, Whopsdk::Models::ReleaseMethod, nil] The methods of how a plan can be released (including raffles and waitlists).
+      # @param release_method [Symbol, Whopsdk::Models::ReleaseMethod, nil] The methods of how a plan can be released.
       #
       # @param renewal_price [Float, nil] The amount the customer is charged every billing period.
+      #
+      # @param title [String, nil] The title of the plan. This will be visible on the product page to customers.
       #
       # @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
       #
@@ -90,7 +94,7 @@ module Whopsdk
       # - `access_pass:basic:read`
       # - `plan:basic:read`
       #
-      # @overload update(id, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, offer_cancel_discount: nil, override_tax_type: nil, renewal_price: nil, trial_period_days: nil, visibility: nil, request_options: {})
+      # @overload update(id, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, offer_cancel_discount: nil, override_tax_type: nil, renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil, request_options: {})
       #
       # @param id [String]
       #
@@ -104,6 +108,8 @@ module Whopsdk
       #
       # @param expiration_days [Integer, nil] The interval at which the plan charges (expiration plans).
       #
+      # @param image [Whopsdk::Models::PlanUpdateParams::Image, nil] An image for the plan. This will be visible on the product page to customers.
+      #
       # @param initial_price [Float, nil] An additional amount charged upon first purchase.
       #
       # @param internal_notes [String, nil] A personal description or notes section for the business.
@@ -113,6 +119,8 @@ module Whopsdk
       # @param override_tax_type [Symbol, Whopsdk::Models::TaxType, nil] Whether or not the tax is included in a plan's price (or if it hasn't been set u
       #
       # @param renewal_price [Float, nil] The amount the customer is charged every billing period.
+      #
+      # @param title [String, nil] The title of the plan. This will be visible on the product page to customers.
       #
       # @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
       #

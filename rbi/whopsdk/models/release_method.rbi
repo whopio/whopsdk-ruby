@@ -2,7 +2,7 @@
 
 module Whopsdk
   module Models
-    # The methods of how a plan can be released (including raffles and waitlists).
+    # The methods of how a plan can be released.
     module ReleaseMethod
       extend Whopsdk::Internal::Type::Enum
 

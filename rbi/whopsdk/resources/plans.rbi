@@ -20,12 +20,14 @@ module Whopsdk
             T.nilable(T::Array[Whopsdk::PlanCreateParams::CustomField::OrHash]),
           description: T.nilable(String),
           expiration_days: T.nilable(Integer),
+          image: T.nilable(Whopsdk::PlanCreateParams::Image::OrHash),
           initial_price: T.nilable(Float),
           internal_notes: T.nilable(String),
           override_tax_type: T.nilable(Whopsdk::TaxType::OrSymbol),
           plan_type: T.nilable(Whopsdk::PlanType::OrSymbol),
           release_method: T.nilable(Whopsdk::ReleaseMethod::OrSymbol),
           renewal_price: T.nilable(Float),
+          title: T.nilable(String),
           trial_period_days: T.nilable(Integer),
           visibility: T.nilable(Whopsdk::Visibility::OrSymbol),
           request_options: Whopsdk::RequestOptions::OrHash
@@ -46,6 +48,8 @@ module Whopsdk
         description: nil,
         # The interval at which the plan charges (expiration plans).
         expiration_days: nil,
+        # An image for the plan. This will be visible on the product page to customers.
+        image: nil,
         # An additional amount charged upon first purchase.
         initial_price: nil,
         # A personal description or notes section for the business.
@@ -55,10 +59,12 @@ module Whopsdk
         override_tax_type: nil,
         # The type of plan that can be attached to an access pass
         plan_type: nil,
-        # The methods of how a plan can be released (including raffles and waitlists).
+        # The methods of how a plan can be released.
         release_method: nil,
         # The amount the customer is charged every billing period.
         renewal_price: nil,
+        # The title of the plan. This will be visible on the product page to customers.
+        title: nil,
         # The number of free trial days added before a renewal plan.
         trial_period_days: nil,
         # Visibility of a resource
@@ -97,11 +103,13 @@ module Whopsdk
             T.nilable(T::Array[Whopsdk::PlanUpdateParams::CustomField::OrHash]),
           description: T.nilable(String),
           expiration_days: T.nilable(Integer),
+          image: T.nilable(Whopsdk::PlanUpdateParams::Image::OrHash),
           initial_price: T.nilable(Float),
           internal_notes: T.nilable(String),
           offer_cancel_discount: T.nilable(T::Boolean),
           override_tax_type: T.nilable(Whopsdk::TaxType::OrSymbol),
           renewal_price: T.nilable(Float),
+          title: T.nilable(String),
           trial_period_days: T.nilable(Integer),
           visibility: T.nilable(Whopsdk::Visibility::OrSymbol),
           request_options: Whopsdk::RequestOptions::OrHash
@@ -119,6 +127,8 @@ module Whopsdk
         description: nil,
         # The interval at which the plan charges (expiration plans).
         expiration_days: nil,
+        # An image for the plan. This will be visible on the product page to customers.
+        image: nil,
         # An additional amount charged upon first purchase.
         initial_price: nil,
         # A personal description or notes section for the business.
@@ -130,6 +140,8 @@ module Whopsdk
         override_tax_type: nil,
         # The amount the customer is charged every billing period.
         renewal_price: nil,
+        # The title of the plan. This will be visible on the product page to customers.
+        title: nil,
         # The number of free trial days added before a renewal plan.
         trial_period_days: nil,
         # Visibility of a resource

@@ -18,7 +18,7 @@ module Whopsdk
       sig { returns(T.nilable(T::Array[Whopsdk::Entry::CustomFieldResponse])) }
       attr_accessor :custom_field_responses
 
-      # The plan (waitlist/raffle) the entry if for.
+      # The waitlist plan the entry if for.
       sig { returns(T.nilable(Whopsdk::Entry::Plan)) }
       attr_reader :plan
 
@@ -32,7 +32,7 @@ module Whopsdk
       sig { params(product: T.nilable(Whopsdk::Entry::Product::OrHash)).void }
       attr_writer :product
 
-      # The status of an entry to a waitlist or raffle.
+      # The status of an entry to a waitlist.
       sig { returns(T.nilable(Whopsdk::EntryStatus::TaggedSymbol)) }
       attr_accessor :status
 
@@ -43,7 +43,7 @@ module Whopsdk
       sig { params(user: Whopsdk::Entry::User::OrHash).void }
       attr_writer :user
 
-      # An object representing an entry in a raffle or waitlist.
+      # An object representing an entry in a waitlist.
       sig do
         params(
           id: String,
@@ -63,11 +63,11 @@ module Whopsdk
         created_at:,
         # Responses collected from the user when submitting their entry.
         custom_field_responses:,
-        # The plan (waitlist/raffle) the entry if for.
+        # The waitlist plan the entry if for.
         plan:,
         # The access pass tied to this entry, if there is one.
         product:,
-        # The status of an entry to a waitlist or raffle.
+        # The status of an entry to a waitlist.
         status:,
         # The user who created the entry.
         user:
@@ -145,7 +145,7 @@ module Whopsdk
         sig { returns(String) }
         attr_accessor :id
 
-        # The plan (waitlist/raffle) the entry if for.
+        # The waitlist plan the entry if for.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The internal ID of the plan.

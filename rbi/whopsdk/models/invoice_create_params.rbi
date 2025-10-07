@@ -218,27 +218,9 @@ module Whopsdk
         sig { returns(T.nilable(String)) }
         attr_accessor :redirect_url
 
-        # The methods of how a plan can be released (including raffles and waitlists).
+        # The methods of how a plan can be released.
         sig { returns(T.nilable(Whopsdk::ReleaseMethod::OrSymbol)) }
         attr_accessor :release_method
-
-        # Configurable settings on how this plan is released.
-        sig do
-          returns(
-            T.nilable(Whopsdk::InvoiceCreateParams::Plan::ReleaseMethodSettings)
-          )
-        end
-        attr_reader :release_method_settings
-
-        sig do
-          params(
-            release_method_settings:
-              T.nilable(
-                Whopsdk::InvoiceCreateParams::Plan::ReleaseMethodSettings::OrHash
-              )
-          ).void
-        end
-        attr_writer :release_method_settings
 
         # The amount the customer is charged every billing period.
         sig { returns(T.nilable(Float)) }
@@ -293,10 +275,6 @@ module Whopsdk
             platform_balance_accepted: T.nilable(T::Boolean),
             redirect_url: T.nilable(String),
             release_method: T.nilable(Whopsdk::ReleaseMethod::OrSymbol),
-            release_method_settings:
-              T.nilable(
-                Whopsdk::InvoiceCreateParams::Plan::ReleaseMethodSettings::OrHash
-              ),
             renewal_price: T.nilable(Float),
             split_pay_required_payments: T.nilable(Integer),
             splitit_accepted: T.nilable(T::Boolean),
@@ -337,10 +315,8 @@ module Whopsdk
           platform_balance_accepted: nil,
           # The URL to redirect the customer to after purchase.
           redirect_url: nil,
-          # The methods of how a plan can be released (including raffles and waitlists).
+          # The methods of how a plan can be released.
           release_method: nil,
-          # Configurable settings on how this plan is released.
-          release_method_settings: nil,
           # The amount the customer is charged every billing period.
           renewal_price: nil,
           # The number of payments required before pausing the subscription.
@@ -381,10 +357,6 @@ module Whopsdk
               platform_balance_accepted: T.nilable(T::Boolean),
               redirect_url: T.nilable(String),
               release_method: T.nilable(Whopsdk::ReleaseMethod::OrSymbol),
-              release_method_settings:
-                T.nilable(
-                  Whopsdk::InvoiceCreateParams::Plan::ReleaseMethodSettings
-                ),
               renewal_price: T.nilable(Float),
               split_pay_required_payments: T.nilable(Integer),
               splitit_accepted: T.nilable(T::Boolean),
@@ -512,68 +484,6 @@ module Whopsdk
             end
             def self.values
             end
-          end
-        end
-
-        class ReleaseMethodSettings < Whopsdk::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                Whopsdk::InvoiceCreateParams::Plan::ReleaseMethodSettings,
-                Whopsdk::Internal::AnyHash
-              )
-            end
-
-          # When the raffle will expire
-          sig { returns(T.nilable(Integer)) }
-          attr_accessor :expires_at
-
-          # The maximum number of entries allowed for the raffle or waitlist
-          sig { returns(T.nilable(Integer)) }
-          attr_accessor :max_entries
-
-          # If this is enabled, the raffle will get entries based off of how many NFTs the
-          # user owns
-          sig { returns(T.nilable(T::Boolean)) }
-          attr_accessor :nft_weighted_entries
-
-          # When the raffle will start
-          sig { returns(T.nilable(Integer)) }
-          attr_accessor :starts_at
-
-          # Configurable settings on how this plan is released.
-          sig do
-            params(
-              expires_at: T.nilable(Integer),
-              max_entries: T.nilable(Integer),
-              nft_weighted_entries: T.nilable(T::Boolean),
-              starts_at: T.nilable(Integer)
-            ).returns(T.attached_class)
-          end
-          def self.new(
-            # When the raffle will expire
-            expires_at: nil,
-            # The maximum number of entries allowed for the raffle or waitlist
-            max_entries: nil,
-            # If this is enabled, the raffle will get entries based off of how many NFTs the
-            # user owns
-            nft_weighted_entries: nil,
-            # When the raffle will start
-            starts_at: nil
-          )
-          end
-
-          sig do
-            override.returns(
-              {
-                expires_at: T.nilable(Integer),
-                max_entries: T.nilable(Integer),
-                nft_weighted_entries: T.nilable(T::Boolean),
-                starts_at: T.nilable(Integer)
-              }
-            )
-          end
-          def to_hash
           end
         end
       end

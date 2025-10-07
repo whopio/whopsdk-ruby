@@ -39,6 +39,12 @@ module Whopsdk
       #   @return [Integer, nil]
       optional :expiration_days, Integer, nil?: true
 
+      # @!attribute image
+      #   An image for the plan. This will be visible on the product page to customers.
+      #
+      #   @return [Whopsdk::Models::PlanUpdateParams::Image, nil]
+      optional :image, -> { Whopsdk::PlanUpdateParams::Image }, nil?: true
+
       # @!attribute initial_price
       #   An additional amount charged upon first purchase.
       #
@@ -70,6 +76,12 @@ module Whopsdk
       #   @return [Float, nil]
       optional :renewal_price, Float, nil?: true
 
+      # @!attribute title
+      #   The title of the plan. This will be visible on the product page to customers.
+      #
+      #   @return [String, nil]
+      optional :title, String, nil?: true
+
       # @!attribute trial_period_days
       #   The number of free trial days added before a renewal plan.
       #
@@ -82,7 +94,7 @@ module Whopsdk
       #   @return [Symbol, Whopsdk::Models::Visibility, nil]
       optional :visibility, enum: -> { Whopsdk::Visibility }, nil?: true
 
-      # @!method initialize(billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, offer_cancel_discount: nil, override_tax_type: nil, renewal_price: nil, trial_period_days: nil, visibility: nil, request_options: {})
+      # @!method initialize(billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, offer_cancel_discount: nil, override_tax_type: nil, renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {Whopsdk::Models::PlanUpdateParams} for more details.
       #
@@ -96,6 +108,8 @@ module Whopsdk
       #
       #   @param expiration_days [Integer, nil] The interval at which the plan charges (expiration plans).
       #
+      #   @param image [Whopsdk::Models::PlanUpdateParams::Image, nil] An image for the plan. This will be visible on the product page to customers.
+      #
       #   @param initial_price [Float, nil] An additional amount charged upon first purchase.
       #
       #   @param internal_notes [String, nil] A personal description or notes section for the business.
@@ -105,6 +119,8 @@ module Whopsdk
       #   @param override_tax_type [Symbol, Whopsdk::Models::TaxType, nil] Whether or not the tax is included in a plan's price (or if it hasn't been set u
       #
       #   @param renewal_price [Float, nil] The amount the customer is charged every billing period.
+      #
+      #   @param title [String, nil] The title of the plan. This will be visible on the product page to customers.
       #
       #   @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
       #
@@ -173,6 +189,34 @@ module Whopsdk
           # @!method self.values
           #   @return [Array<Symbol>]
         end
+      end
+
+      class Image < Whopsdk::Internal::Type::BaseModel
+        # @!attribute id
+        #   The ID of an existing attachment object. Use this when updating a resource and
+        #   keeping a subset of the attachments. Don't use this unless you know what you're
+        #   doing.
+        #
+        #   @return [String, nil]
+        optional :id, String, nil?: true
+
+        # @!attribute direct_upload_id
+        #   This ID should be used the first time you upload an attachment. It is the ID of
+        #   the direct upload that was created when uploading the file to S3 via the
+        #   mediaDirectUpload mutation.
+        #
+        #   @return [String, nil]
+        optional :direct_upload_id, String, nil?: true
+
+        # @!method initialize(id: nil, direct_upload_id: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Whopsdk::Models::PlanUpdateParams::Image} for more details.
+        #
+        #   An image for the plan. This will be visible on the product page to customers.
+        #
+        #   @param id [String, nil] The ID of an existing attachment object. Use this when updating a resource and k
+        #
+        #   @param direct_upload_id [String, nil] This ID should be used the first time you upload an attachment. It is the ID of
       end
     end
   end

@@ -24,7 +24,7 @@ module Whopsdk
                nil?: true
 
       # @!attribute plan
-      #   The plan (waitlist/raffle) the entry if for.
+      #   The waitlist plan the entry if for.
       #
       #   @return [Whopsdk::Models::Entry::Plan, nil]
       required :plan, -> { Whopsdk::Entry::Plan }, nil?: true
@@ -36,7 +36,7 @@ module Whopsdk
       required :product, -> { Whopsdk::Entry::Product }, nil?: true
 
       # @!attribute status
-      #   The status of an entry to a waitlist or raffle.
+      #   The status of an entry to a waitlist.
       #
       #   @return [Symbol, Whopsdk::Models::EntryStatus, nil]
       required :status, enum: -> { Whopsdk::EntryStatus }, nil?: true
@@ -48,7 +48,7 @@ module Whopsdk
       required :user, -> { Whopsdk::Entry::User }
 
       # @!method initialize(id:, created_at:, custom_field_responses:, plan:, product:, status:, user:)
-      #   An object representing an entry in a raffle or waitlist.
+      #   An object representing an entry in a waitlist.
       #
       #   @param id [String] The internal ID of the entry.
       #
@@ -56,11 +56,11 @@ module Whopsdk
       #
       #   @param custom_field_responses [Array<Whopsdk::Models::Entry::CustomFieldResponse>, nil] Responses collected from the user when submitting their entry.
       #
-      #   @param plan [Whopsdk::Models::Entry::Plan, nil] The plan (waitlist/raffle) the entry if for.
+      #   @param plan [Whopsdk::Models::Entry::Plan, nil] The waitlist plan the entry if for.
       #
       #   @param product [Whopsdk::Models::Entry::Product, nil] The access pass tied to this entry, if there is one.
       #
-      #   @param status [Symbol, Whopsdk::Models::EntryStatus, nil] The status of an entry to a waitlist or raffle.
+      #   @param status [Symbol, Whopsdk::Models::EntryStatus, nil] The status of an entry to a waitlist.
       #
       #   @param user [Whopsdk::Models::Entry::User] The user who created the entry.
 
@@ -102,7 +102,7 @@ module Whopsdk
         required :id, String
 
         # @!method initialize(id:)
-        #   The plan (waitlist/raffle) the entry if for.
+        #   The waitlist plan the entry if for.
         #
         #   @param id [String] The internal ID of the plan.
       end

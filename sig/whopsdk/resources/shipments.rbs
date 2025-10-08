@@ -14,9 +14,9 @@ module Whopsdk
       ) -> Whopsdk::Shipment
 
       def list: (
-        company_id: String,
         ?after: String?,
         ?before: String?,
+        ?company_id: String?,
         ?first: Integer?,
         ?last: Integer?,
         ?payment_id: String?,

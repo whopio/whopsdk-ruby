@@ -2,9 +2,9 @@ module Whopsdk
   module Models
     type shipment_list_params =
       {
-        company_id: String,
         after: String?,
         before: String?,
+        company_id: String?,
         first: Integer?,
         last: Integer?,
         payment_id: String?,
@@ -16,11 +16,11 @@ module Whopsdk
       extend Whopsdk::Internal::Type::RequestParameters::Converter
       include Whopsdk::Internal::Type::RequestParameters
 
-      attr_accessor company_id: String
-
       attr_accessor after: String?
 
       attr_accessor before: String?
+
+      attr_accessor company_id: String?
 
       attr_accessor first: Integer?
 
@@ -31,9 +31,9 @@ module Whopsdk
       attr_accessor user_id: String?
 
       def initialize: (
-        company_id: String,
         ?after: String?,
         ?before: String?,
+        ?company_id: String?,
         ?first: Integer?,
         ?last: Integer?,
         ?payment_id: String?,
@@ -42,9 +42,9 @@ module Whopsdk
       ) -> void
 
       def to_hash: -> {
-        company_id: String,
         after: String?,
         before: String?,
+        company_id: String?,
         first: Integer?,
         last: Integer?,
         payment_id: String?,

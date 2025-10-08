@@ -58,10 +58,10 @@ class Whopsdk::Test::Resources::ShipmentsTest < Whopsdk::Test::ResourceTest
     end
   end
 
-  def test_list_required_params
+  def test_list
     skip("Prism tests are disabled")
 
-    response = @whopsdk.shipments.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whopsdk.shipments.list
 
     assert_pattern do
       response => Whopsdk::Internal::CursorPage

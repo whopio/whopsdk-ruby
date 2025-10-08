@@ -64,6 +64,9 @@ module Whopsdk
     # @return [Whopsdk::Resources::Shipments]
     attr_reader :shipments
 
+    # @return [Whopsdk::Resources::CheckoutConfigurations]
+    attr_reader :checkout_configurations
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -127,6 +130,7 @@ module Whopsdk
       @authorized_users = Whopsdk::Resources::AuthorizedUsers.new(client: self)
       @app_builds = Whopsdk::Resources::AppBuilds.new(client: self)
       @shipments = Whopsdk::Resources::Shipments.new(client: self)
+      @checkout_configurations = Whopsdk::Resources::CheckoutConfigurations.new(client: self)
     end
   end
 end

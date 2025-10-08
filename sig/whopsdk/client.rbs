@@ -40,6 +40,8 @@ module Whopsdk
 
     attr_reader shipments: Whopsdk::Resources::Shipments
 
+    attr_reader checkout_configurations: Whopsdk::Resources::CheckoutConfigurations
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

@@ -1,0 +1,32 @@
+module Whopsdk
+  module Resources
+    class CheckoutConfigurations
+      def create: (
+        ?affiliate_code: String?,
+        ?metadata: ::Hash[Symbol, top]?,
+        ?plan: Whopsdk::CheckoutConfigurationCreateParams::Plan?,
+        ?plan_id: String?,
+        ?redirect_url: String?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::CheckoutConfiguration
+
+      def retrieve: (
+        String id,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::CheckoutConfiguration
+
+      def list: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?direction: Whopsdk::Models::direction?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?plan_id: String?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::CheckoutConfigurationListResponse?]
+
+      def initialize: (client: Whopsdk::Client) -> void
+    end
+  end
+end

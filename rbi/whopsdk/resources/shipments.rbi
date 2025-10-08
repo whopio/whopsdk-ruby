@@ -51,9 +51,9 @@ module Whopsdk
       # - `payment:basic:read`
       sig do
         params(
-          company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
+          company_id: T.nilable(String),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           payment_id: T.nilable(String),
@@ -66,12 +66,12 @@ module Whopsdk
         )
       end
       def list(
-        # The ID of the company
-        company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
+        # The ID of the company
+        company_id: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.

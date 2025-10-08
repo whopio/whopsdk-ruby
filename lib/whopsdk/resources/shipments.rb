@@ -65,13 +65,13 @@ module Whopsdk
       # - `shipment:basic:read`
       # - `payment:basic:read`
       #
-      # @overload list(company_id:, after: nil, before: nil, first: nil, last: nil, payment_id: nil, user_id: nil, request_options: {})
-      #
-      # @param company_id [String] The ID of the company
+      # @overload list(after: nil, before: nil, company_id: nil, first: nil, last: nil, payment_id: nil, user_id: nil, request_options: {})
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      # @param company_id [String, nil] The ID of the company
       #
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
@@ -86,7 +86,7 @@ module Whopsdk
       # @return [Whopsdk::Internal::CursorPage<Whopsdk::Models::ShipmentListResponse, nil>]
       #
       # @see Whopsdk::Models::ShipmentListParams
-      def list(params)
+      def list(params = {})
         parsed, options = Whopsdk::ShipmentListParams.dump_request(params)
         @client.request(
           method: :get,

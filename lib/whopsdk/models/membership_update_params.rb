@@ -10,11 +10,11 @@ module Whopsdk
       # @!attribute metadata
       #   The metadata to update the membership with.
       #
-      #   @return [Object, nil]
-      optional :metadata, Whopsdk::Internal::Type::Unknown, nil?: true
+      #   @return [Hash{Symbol=>Object}, nil]
+      optional :metadata, Whopsdk::Internal::Type::HashOf[Whopsdk::Internal::Type::Unknown], nil?: true
 
       # @!method initialize(metadata: nil, request_options: {})
-      #   @param metadata [Object, nil] The metadata to update the membership with.
+      #   @param metadata [Hash{Symbol=>Object}, nil] The metadata to update the membership with.
       #
       #   @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}]
     end

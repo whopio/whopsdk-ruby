@@ -10,8 +10,9 @@ module Whopsdk
         created_at: Integer,
         currency: Whopsdk::Models::currency?,
         license_key: String?,
+        manage_url: String?,
         member: Whopsdk::Models::MembershipListResponse::Member?,
-        metadata: top,
+        metadata: ::Hash[Symbol, top],
         plan: Whopsdk::Models::MembershipListResponse::Plan,
         promo_code: Whopsdk::Models::MembershipListResponse::PromoCode?,
         renewal_period_end: Integer?,
@@ -38,9 +39,11 @@ module Whopsdk
 
       attr_accessor license_key: String?
 
+      attr_accessor manage_url: String?
+
       attr_accessor member: Whopsdk::Models::MembershipListResponse::Member?
 
-      attr_accessor metadata: top
+      attr_accessor metadata: ::Hash[Symbol, top]
 
       attr_accessor plan: Whopsdk::Models::MembershipListResponse::Plan
 
@@ -65,8 +68,9 @@ module Whopsdk
         created_at: Integer,
         currency: Whopsdk::Models::currency?,
         license_key: String?,
+        manage_url: String?,
         member: Whopsdk::Models::MembershipListResponse::Member?,
-        metadata: top,
+        metadata: ::Hash[Symbol, top],
         plan: Whopsdk::Models::MembershipListResponse::Plan,
         promo_code: Whopsdk::Models::MembershipListResponse::PromoCode?,
         renewal_period_end: Integer?,
@@ -85,8 +89,9 @@ module Whopsdk
         created_at: Integer,
         currency: Whopsdk::Models::currency?,
         license_key: String?,
+        manage_url: String?,
         member: Whopsdk::Models::MembershipListResponse::Member?,
-        metadata: top,
+        metadata: ::Hash[Symbol, top],
         plan: Whopsdk::Models::MembershipListResponse::Plan,
         promo_code: Whopsdk::Models::MembershipListResponse::PromoCode?,
         renewal_period_end: Integer?,

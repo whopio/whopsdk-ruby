@@ -74,41 +74,21 @@ module Whopsdk
 
       type plan =
         {
-          ach_payments: bool?,
-          base_currency: Whopsdk::Models::currency?,
           billing_period: Integer?,
-          card_payments: bool?,
-          coinbase_commerce_accepted: bool?,
           custom_fields: ::Array[Whopsdk::InvoiceCreateParams::Plan::CustomField]?,
           description: String?,
           expiration_days: Integer?,
           initial_price: Float?,
           internal_notes: String?,
-          offer_cancel_discount: bool?,
-          paypal_accepted: bool?,
           plan_type: Whopsdk::Models::plan_type?,
-          platform_balance_accepted: bool?,
-          redirect_url: String?,
           release_method: Whopsdk::Models::release_method?,
           renewal_price: Float?,
-          split_pay_required_payments: Integer?,
-          splitit_accepted: bool?,
-          stock: Integer?,
           trial_period_days: Integer?,
-          unlimited_stock: bool?,
           visibility: Whopsdk::Models::visibility?
         }
 
       class Plan < Whopsdk::Internal::Type::BaseModel
-        attr_accessor ach_payments: bool?
-
-        attr_accessor base_currency: Whopsdk::Models::currency?
-
         attr_accessor billing_period: Integer?
-
-        attr_accessor card_payments: bool?
-
-        attr_accessor coinbase_commerce_accepted: bool?
 
         attr_accessor custom_fields: ::Array[Whopsdk::InvoiceCreateParams::Plan::CustomField]?
 
@@ -120,81 +100,41 @@ module Whopsdk
 
         attr_accessor internal_notes: String?
 
-        attr_accessor offer_cancel_discount: bool?
-
-        attr_accessor paypal_accepted: bool?
-
         attr_accessor plan_type: Whopsdk::Models::plan_type?
-
-        attr_accessor platform_balance_accepted: bool?
-
-        attr_accessor redirect_url: String?
 
         attr_accessor release_method: Whopsdk::Models::release_method?
 
         attr_accessor renewal_price: Float?
 
-        attr_accessor split_pay_required_payments: Integer?
-
-        attr_accessor splitit_accepted: bool?
-
-        attr_accessor stock: Integer?
-
         attr_accessor trial_period_days: Integer?
-
-        attr_accessor unlimited_stock: bool?
 
         attr_accessor visibility: Whopsdk::Models::visibility?
 
         def initialize: (
-          ?ach_payments: bool?,
-          ?base_currency: Whopsdk::Models::currency?,
           ?billing_period: Integer?,
-          ?card_payments: bool?,
-          ?coinbase_commerce_accepted: bool?,
           ?custom_fields: ::Array[Whopsdk::InvoiceCreateParams::Plan::CustomField]?,
           ?description: String?,
           ?expiration_days: Integer?,
           ?initial_price: Float?,
           ?internal_notes: String?,
-          ?offer_cancel_discount: bool?,
-          ?paypal_accepted: bool?,
           ?plan_type: Whopsdk::Models::plan_type?,
-          ?platform_balance_accepted: bool?,
-          ?redirect_url: String?,
           ?release_method: Whopsdk::Models::release_method?,
           ?renewal_price: Float?,
-          ?split_pay_required_payments: Integer?,
-          ?splitit_accepted: bool?,
-          ?stock: Integer?,
           ?trial_period_days: Integer?,
-          ?unlimited_stock: bool?,
           ?visibility: Whopsdk::Models::visibility?
         ) -> void
 
         def to_hash: -> {
-          ach_payments: bool?,
-          base_currency: Whopsdk::Models::currency?,
           billing_period: Integer?,
-          card_payments: bool?,
-          coinbase_commerce_accepted: bool?,
           custom_fields: ::Array[Whopsdk::InvoiceCreateParams::Plan::CustomField]?,
           description: String?,
           expiration_days: Integer?,
           initial_price: Float?,
           internal_notes: String?,
-          offer_cancel_discount: bool?,
-          paypal_accepted: bool?,
           plan_type: Whopsdk::Models::plan_type?,
-          platform_balance_accepted: bool?,
-          redirect_url: String?,
           release_method: Whopsdk::Models::release_method?,
           renewal_price: Float?,
-          split_pay_required_payments: Integer?,
-          splitit_accepted: bool?,
-          stock: Integer?,
           trial_period_days: Integer?,
-          unlimited_stock: bool?,
           visibility: Whopsdk::Models::visibility?
         }
 

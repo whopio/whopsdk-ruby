@@ -43,6 +43,10 @@ module Whopsdk
       sig { returns(T.nilable(String)) }
       attr_accessor :license_key
 
+      # The URL for the customer to manage their membership.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :manage_url
+
       # The Member that this Membership belongs to.
       sig { returns(T.nilable(Whopsdk::Membership::Member)) }
       attr_reader :member
@@ -53,7 +57,7 @@ module Whopsdk
       attr_writer :member
 
       # A JSON object used to store software licensing information. Ex. HWID
-      sig { returns(T.anything) }
+      sig { returns(T::Hash[Symbol, T.anything]) }
       attr_accessor :metadata
 
       # The Plan this Membership is for.
@@ -111,8 +115,9 @@ module Whopsdk
           created_at: Integer,
           currency: T.nilable(Whopsdk::Currency::OrSymbol),
           license_key: T.nilable(String),
+          manage_url: T.nilable(String),
           member: T.nilable(Whopsdk::Membership::Member::OrHash),
-          metadata: T.anything,
+          metadata: T::Hash[Symbol, T.anything],
           plan: Whopsdk::Membership::Plan::OrHash,
           promo_code: T.nilable(Whopsdk::Membership::PromoCode::OrHash),
           renewal_period_end: T.nilable(Integer),
@@ -141,6 +146,8 @@ module Whopsdk
         # The license key for this Membership. This is only present if the membership
         # grants access to an instance of the Whop Software app.
         license_key:,
+        # The URL for the customer to manage their membership.
+        manage_url:,
         # The Member that this Membership belongs to.
         member:,
         # A JSON object used to store software licensing information. Ex. HWID
@@ -175,8 +182,9 @@ module Whopsdk
             created_at: Integer,
             currency: T.nilable(Whopsdk::Currency::TaggedSymbol),
             license_key: T.nilable(String),
+            manage_url: T.nilable(String),
             member: T.nilable(Whopsdk::Membership::Member),
-            metadata: T.anything,
+            metadata: T::Hash[Symbol, T.anything],
             plan: Whopsdk::Membership::Plan,
             promo_code: T.nilable(Whopsdk::Membership::PromoCode),
             renewal_period_end: T.nilable(Integer),

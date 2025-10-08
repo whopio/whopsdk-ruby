@@ -26,7 +26,7 @@ module Whopsdk
       sig do
         params(
           id: String,
-          metadata: T.nilable(T.anything),
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(Whopsdk::Membership)
       end

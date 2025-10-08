@@ -17,7 +17,7 @@ module Whopsdk
         member_count: Integer?,
         plan_type: Whopsdk::Models::plan_type,
         product: Whopsdk::Plan::Product?,
-        purchase_link: String,
+        purchase_url: String,
         release_method: Whopsdk::Models::release_method,
         renewal_price: Float,
         tax_type: Whopsdk::Models::tax_type,
@@ -57,7 +57,7 @@ module Whopsdk
 
       attr_accessor product: Whopsdk::Plan::Product?
 
-      attr_accessor purchase_link: String
+      attr_accessor purchase_url: String
 
       attr_accessor release_method: Whopsdk::Models::release_method
 
@@ -87,7 +87,7 @@ module Whopsdk
         member_count: Integer?,
         plan_type: Whopsdk::Models::plan_type,
         product: Whopsdk::Plan::Product?,
-        purchase_link: String,
+        purchase_url: String,
         release_method: Whopsdk::Models::release_method,
         renewal_price: Float,
         tax_type: Whopsdk::Models::tax_type,
@@ -112,7 +112,7 @@ module Whopsdk
         member_count: Integer?,
         plan_type: Whopsdk::Models::plan_type,
         product: Whopsdk::Plan::Product?,
-        purchase_link: String,
+        purchase_url: String,
         release_method: Whopsdk::Models::release_method,
         renewal_price: Float,
         tax_type: Whopsdk::Models::tax_type,

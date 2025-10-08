@@ -37,7 +37,7 @@ module Whopsdk
       #
       # @param id [String]
       #
-      # @param metadata [Object, nil] The metadata to update the membership with.
+      # @param metadata [Hash{Symbol=>Object}, nil] The metadata to update the membership with.
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #

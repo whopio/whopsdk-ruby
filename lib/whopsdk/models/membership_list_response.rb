@@ -54,6 +54,12 @@ module Whopsdk
       #   @return [String, nil]
       required :license_key, String, nil?: true
 
+      # @!attribute manage_url
+      #   The URL for the customer to manage their membership.
+      #
+      #   @return [String, nil]
+      required :manage_url, String, nil?: true
+
       # @!attribute member
       #   The Member that this Membership belongs to.
       #
@@ -63,8 +69,8 @@ module Whopsdk
       # @!attribute metadata
       #   A JSON object used to store software licensing information. Ex. HWID
       #
-      #   @return [Object]
-      required :metadata, Whopsdk::Internal::Type::Unknown
+      #   @return [Hash{Symbol=>Object}]
+      required :metadata, Whopsdk::Internal::Type::HashOf[Whopsdk::Internal::Type::Unknown]
 
       # @!attribute plan
       #   The Plan this Membership is for.
@@ -110,7 +116,7 @@ module Whopsdk
       #   @return [Whopsdk::Models::MembershipListResponse::User, nil]
       required :user, -> { Whopsdk::Models::MembershipListResponse::User }, nil?: true
 
-      # @!method initialize(id:, cancel_at_period_end:, canceled_at:, cancellation_reason:, company:, created_at:, currency:, license_key:, member:, metadata:, plan:, promo_code:, renewal_period_end:, renewal_period_start:, status:, updated_at:, user:)
+      # @!method initialize(id:, cancel_at_period_end:, canceled_at:, cancellation_reason:, company:, created_at:, currency:, license_key:, manage_url:, member:, metadata:, plan:, promo_code:, renewal_period_end:, renewal_period_start:, status:, updated_at:, user:)
       #   Some parameter documentations has been truncated, see
       #   {Whopsdk::Models::MembershipListResponse} for more details.
       #
@@ -133,9 +139,11 @@ module Whopsdk
       #
       #   @param license_key [String, nil] The license key for this Membership. This is only present if the membership gran
       #
+      #   @param manage_url [String, nil] The URL for the customer to manage their membership.
+      #
       #   @param member [Whopsdk::Models::MembershipListResponse::Member, nil] The Member that this Membership belongs to.
       #
-      #   @param metadata [Object] A JSON object used to store software licensing information. Ex. HWID
+      #   @param metadata [Hash{Symbol=>Object}] A JSON object used to store software licensing information. Ex. HWID
       #
       #   @param plan [Whopsdk::Models::MembershipListResponse::Plan] The Plan this Membership is for.
       #

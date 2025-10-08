@@ -93,11 +93,11 @@ module Whopsdk
       #   @return [Whopsdk::Models::Plan::Product, nil]
       required :product, -> { Whopsdk::Plan::Product }, nil?: true
 
-      # @!attribute purchase_link
+      # @!attribute purchase_url
       #   The direct link to purchase the access pass.
       #
       #   @return [String]
-      required :purchase_link, String
+      required :purchase_url, String
 
       # @!attribute release_method
       #   This is the release method the business uses to sell this plan.
@@ -135,7 +135,7 @@ module Whopsdk
       #   @return [Symbol, Whopsdk::Models::Visibility]
       required :visibility, enum: -> { Whopsdk::Visibility }
 
-      # @!method initialize(id:, billing_period:, collect_tax:, company:, created_at:, currency:, custom_fields:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, plan_type:, product:, purchase_link:, release_method:, renewal_price:, tax_type:, trial_period_days:, updated_at:, visibility:)
+      # @!method initialize(id:, billing_period:, collect_tax:, company:, created_at:, currency:, custom_fields:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, plan_type:, product:, purchase_url:, release_method:, renewal_price:, tax_type:, trial_period_days:, updated_at:, visibility:)
       #   An object representing a (sanitized) plan of an access pass.
       #
       #   @param id [String] The internal ID of the plan.
@@ -168,7 +168,7 @@ module Whopsdk
       #
       #   @param product [Whopsdk::Models::Plan::Product, nil] The access pass for the plan.
       #
-      #   @param purchase_link [String] The direct link to purchase the access pass.
+      #   @param purchase_url [String] The direct link to purchase the access pass.
       #
       #   @param release_method [Symbol, Whopsdk::Models::ReleaseMethod] This is the release method the business uses to sell this plan.
       #

@@ -8,7 +8,7 @@ module Whopsdk
 
       def update: (
         String id,
-        ?metadata: top?,
+        ?metadata: ::Hash[Symbol, top]?,
         ?request_options: Whopsdk::request_opts
       ) -> Whopsdk::Membership
 

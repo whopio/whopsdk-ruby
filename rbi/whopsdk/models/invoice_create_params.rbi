@@ -156,25 +156,9 @@ module Whopsdk
             )
           end
 
-        # Whether or not ACH payments are accepted
-        sig { returns(T.nilable(T::Boolean)) }
-        attr_accessor :ach_payments
-
-        # The available currencies on the platform
-        sig { returns(T.nilable(Whopsdk::Currency::OrSymbol)) }
-        attr_accessor :base_currency
-
         # The interval at which the plan charges (renewal plans).
         sig { returns(T.nilable(Integer)) }
         attr_accessor :billing_period
-
-        # Whether or not card payments are accepted
-        sig { returns(T.nilable(T::Boolean)) }
-        attr_accessor :card_payments
-
-        # Marks whether coinbase commerce payments are/aren't accepted.
-        sig { returns(T.nilable(T::Boolean)) }
-        attr_accessor :coinbase_commerce_accepted
 
         # An array of custom field objects.
         sig do
@@ -200,25 +184,9 @@ module Whopsdk
         sig { returns(T.nilable(String)) }
         attr_accessor :internal_notes
 
-        # Whether or not to offer a discount to cancel a subscription.
-        sig { returns(T.nilable(T::Boolean)) }
-        attr_accessor :offer_cancel_discount
-
-        # Marks whether paypal payments are/aren't accepted.
-        sig { returns(T.nilable(T::Boolean)) }
-        attr_accessor :paypal_accepted
-
         # The type of plan that can be attached to an access pass
         sig { returns(T.nilable(Whopsdk::PlanType::OrSymbol)) }
         attr_accessor :plan_type
-
-        # Marks whether platform balance payments are/aren't accepted.
-        sig { returns(T.nilable(T::Boolean)) }
-        attr_accessor :platform_balance_accepted
-
-        # The URL to redirect the customer to after purchase.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :redirect_url
 
         # The methods of how a plan can be released.
         sig { returns(T.nilable(Whopsdk::ReleaseMethod::OrSymbol)) }
@@ -228,26 +196,9 @@ module Whopsdk
         sig { returns(T.nilable(Float)) }
         attr_accessor :renewal_price
 
-        # The number of payments required before pausing the subscription.
-        sig { returns(T.nilable(Integer)) }
-        attr_accessor :split_pay_required_payments
-
-        # Marks whether payments using splitit, a payment processor, are/aren't accepted
-        # for the plan.
-        sig { returns(T.nilable(T::Boolean)) }
-        attr_accessor :splitit_accepted
-
-        # The number of units available for purchase.
-        sig { returns(T.nilable(Integer)) }
-        attr_accessor :stock
-
         # The number of free trial days added before a renewal plan.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :trial_period_days
-
-        # Limits/doesn't limit the number of units available for purchase.
-        sig { returns(T.nilable(T::Boolean)) }
-        attr_accessor :unlimited_stock
 
         # Visibility of a resource
         sig { returns(T.nilable(Whopsdk::Visibility::OrSymbol)) }
@@ -256,11 +207,7 @@ module Whopsdk
         # The properties of the plan to create for this invoice.
         sig do
           params(
-            ach_payments: T.nilable(T::Boolean),
-            base_currency: T.nilable(Whopsdk::Currency::OrSymbol),
             billing_period: T.nilable(Integer),
-            card_payments: T.nilable(T::Boolean),
-            coinbase_commerce_accepted: T.nilable(T::Boolean),
             custom_fields:
               T.nilable(
                 T::Array[
@@ -271,32 +218,16 @@ module Whopsdk
             expiration_days: T.nilable(Integer),
             initial_price: T.nilable(Float),
             internal_notes: T.nilable(String),
-            offer_cancel_discount: T.nilable(T::Boolean),
-            paypal_accepted: T.nilable(T::Boolean),
             plan_type: T.nilable(Whopsdk::PlanType::OrSymbol),
-            platform_balance_accepted: T.nilable(T::Boolean),
-            redirect_url: T.nilable(String),
             release_method: T.nilable(Whopsdk::ReleaseMethod::OrSymbol),
             renewal_price: T.nilable(Float),
-            split_pay_required_payments: T.nilable(Integer),
-            splitit_accepted: T.nilable(T::Boolean),
-            stock: T.nilable(Integer),
             trial_period_days: T.nilable(Integer),
-            unlimited_stock: T.nilable(T::Boolean),
             visibility: T.nilable(Whopsdk::Visibility::OrSymbol)
           ).returns(T.attached_class)
         end
         def self.new(
-          # Whether or not ACH payments are accepted
-          ach_payments: nil,
-          # The available currencies on the platform
-          base_currency: nil,
           # The interval at which the plan charges (renewal plans).
           billing_period: nil,
-          # Whether or not card payments are accepted
-          card_payments: nil,
-          # Marks whether coinbase commerce payments are/aren't accepted.
-          coinbase_commerce_accepted: nil,
           # An array of custom field objects.
           custom_fields: nil,
           # The description of the plan.
@@ -307,31 +238,14 @@ module Whopsdk
           initial_price: nil,
           # A personal description or notes section for the business.
           internal_notes: nil,
-          # Whether or not to offer a discount to cancel a subscription.
-          offer_cancel_discount: nil,
-          # Marks whether paypal payments are/aren't accepted.
-          paypal_accepted: nil,
           # The type of plan that can be attached to an access pass
           plan_type: nil,
-          # Marks whether platform balance payments are/aren't accepted.
-          platform_balance_accepted: nil,
-          # The URL to redirect the customer to after purchase.
-          redirect_url: nil,
           # The methods of how a plan can be released.
           release_method: nil,
           # The amount the customer is charged every billing period.
           renewal_price: nil,
-          # The number of payments required before pausing the subscription.
-          split_pay_required_payments: nil,
-          # Marks whether payments using splitit, a payment processor, are/aren't accepted
-          # for the plan.
-          splitit_accepted: nil,
-          # The number of units available for purchase.
-          stock: nil,
           # The number of free trial days added before a renewal plan.
           trial_period_days: nil,
-          # Limits/doesn't limit the number of units available for purchase.
-          unlimited_stock: nil,
           # Visibility of a resource
           visibility: nil
         )
@@ -340,11 +254,7 @@ module Whopsdk
         sig do
           override.returns(
             {
-              ach_payments: T.nilable(T::Boolean),
-              base_currency: T.nilable(Whopsdk::Currency::OrSymbol),
               billing_period: T.nilable(Integer),
-              card_payments: T.nilable(T::Boolean),
-              coinbase_commerce_accepted: T.nilable(T::Boolean),
               custom_fields:
                 T.nilable(
                   T::Array[Whopsdk::InvoiceCreateParams::Plan::CustomField]
@@ -353,18 +263,10 @@ module Whopsdk
               expiration_days: T.nilable(Integer),
               initial_price: T.nilable(Float),
               internal_notes: T.nilable(String),
-              offer_cancel_discount: T.nilable(T::Boolean),
-              paypal_accepted: T.nilable(T::Boolean),
               plan_type: T.nilable(Whopsdk::PlanType::OrSymbol),
-              platform_balance_accepted: T.nilable(T::Boolean),
-              redirect_url: T.nilable(String),
               release_method: T.nilable(Whopsdk::ReleaseMethod::OrSymbol),
               renewal_price: T.nilable(Float),
-              split_pay_required_payments: T.nilable(Integer),
-              splitit_accepted: T.nilable(T::Boolean),
-              stock: T.nilable(Integer),
               trial_period_days: T.nilable(Integer),
-              unlimited_stock: T.nilable(T::Boolean),
               visibility: T.nilable(Whopsdk::Visibility::OrSymbol)
             }
           )

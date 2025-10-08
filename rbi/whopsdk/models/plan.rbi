@@ -76,7 +76,7 @@ module Whopsdk
 
       # The direct link to purchase the access pass.
       sig { returns(String) }
-      attr_accessor :purchase_link
+      attr_accessor :purchase_url
 
       # This is the release method the business uses to sell this plan.
       sig { returns(Whopsdk::ReleaseMethod::TaggedSymbol) }
@@ -120,7 +120,7 @@ module Whopsdk
           member_count: T.nilable(Integer),
           plan_type: Whopsdk::PlanType::OrSymbol,
           product: T.nilable(Whopsdk::Plan::Product::OrHash),
-          purchase_link: String,
+          purchase_url: String,
           release_method: Whopsdk::ReleaseMethod::OrSymbol,
           renewal_price: Float,
           tax_type: Whopsdk::TaxType::OrSymbol,
@@ -161,7 +161,7 @@ module Whopsdk
         # The access pass for the plan.
         product:,
         # The direct link to purchase the access pass.
-        purchase_link:,
+        purchase_url:,
         # This is the release method the business uses to sell this plan.
         release_method:,
         # The price a person has to pay for a plan on the renewal purchase.
@@ -195,7 +195,7 @@ module Whopsdk
             member_count: T.nilable(Integer),
             plan_type: Whopsdk::PlanType::TaggedSymbol,
             product: T.nilable(Whopsdk::Plan::Product),
-            purchase_link: String,
+            purchase_url: String,
             release_method: Whopsdk::ReleaseMethod::TaggedSymbol,
             renewal_price: Float,
             tax_type: Whopsdk::TaxType::TaggedSymbol,

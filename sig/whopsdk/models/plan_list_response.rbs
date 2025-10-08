@@ -15,7 +15,7 @@ module Whopsdk
         member_count: Integer?,
         plan_type: Whopsdk::Models::plan_type,
         product: Whopsdk::Models::PlanListResponse::Product?,
-        purchase_link: String,
+        purchase_url: String,
         release_method: Whopsdk::Models::release_method,
         renewal_price: Float,
         trial_period_days: Integer?,
@@ -50,7 +50,7 @@ module Whopsdk
 
       attr_accessor product: Whopsdk::Models::PlanListResponse::Product?
 
-      attr_accessor purchase_link: String
+      attr_accessor purchase_url: String
 
       attr_accessor release_method: Whopsdk::Models::release_method
 
@@ -76,7 +76,7 @@ module Whopsdk
         member_count: Integer?,
         plan_type: Whopsdk::Models::plan_type,
         product: Whopsdk::Models::PlanListResponse::Product?,
-        purchase_link: String,
+        purchase_url: String,
         release_method: Whopsdk::Models::release_method,
         renewal_price: Float,
         trial_period_days: Integer?,
@@ -98,7 +98,7 @@ module Whopsdk
         member_count: Integer?,
         plan_type: Whopsdk::Models::plan_type,
         product: Whopsdk::Models::PlanListResponse::Product?,
-        purchase_link: String,
+        purchase_url: String,
         release_method: Whopsdk::Models::release_method,
         renewal_price: Float,
         trial_period_days: Integer?,

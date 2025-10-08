@@ -111,35 +111,11 @@ module Whopsdk
       #   @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}]
 
       class Plan < Whopsdk::Internal::Type::BaseModel
-        # @!attribute ach_payments
-        #   Whether or not ACH payments are accepted
-        #
-        #   @return [Boolean, nil]
-        optional :ach_payments, Whopsdk::Internal::Type::Boolean, nil?: true
-
-        # @!attribute base_currency
-        #   The available currencies on the platform
-        #
-        #   @return [Symbol, Whopsdk::Models::Currency, nil]
-        optional :base_currency, enum: -> { Whopsdk::Currency }, nil?: true
-
         # @!attribute billing_period
         #   The interval at which the plan charges (renewal plans).
         #
         #   @return [Integer, nil]
         optional :billing_period, Integer, nil?: true
-
-        # @!attribute card_payments
-        #   Whether or not card payments are accepted
-        #
-        #   @return [Boolean, nil]
-        optional :card_payments, Whopsdk::Internal::Type::Boolean, nil?: true
-
-        # @!attribute coinbase_commerce_accepted
-        #   Marks whether coinbase commerce payments are/aren't accepted.
-        #
-        #   @return [Boolean, nil]
-        optional :coinbase_commerce_accepted, Whopsdk::Internal::Type::Boolean, nil?: true
 
         # @!attribute custom_fields
         #   An array of custom field objects.
@@ -173,35 +149,11 @@ module Whopsdk
         #   @return [String, nil]
         optional :internal_notes, String, nil?: true
 
-        # @!attribute offer_cancel_discount
-        #   Whether or not to offer a discount to cancel a subscription.
-        #
-        #   @return [Boolean, nil]
-        optional :offer_cancel_discount, Whopsdk::Internal::Type::Boolean, nil?: true
-
-        # @!attribute paypal_accepted
-        #   Marks whether paypal payments are/aren't accepted.
-        #
-        #   @return [Boolean, nil]
-        optional :paypal_accepted, Whopsdk::Internal::Type::Boolean, nil?: true
-
         # @!attribute plan_type
         #   The type of plan that can be attached to an access pass
         #
         #   @return [Symbol, Whopsdk::Models::PlanType, nil]
         optional :plan_type, enum: -> { Whopsdk::PlanType }, nil?: true
-
-        # @!attribute platform_balance_accepted
-        #   Marks whether platform balance payments are/aren't accepted.
-        #
-        #   @return [Boolean, nil]
-        optional :platform_balance_accepted, Whopsdk::Internal::Type::Boolean, nil?: true
-
-        # @!attribute redirect_url
-        #   The URL to redirect the customer to after purchase.
-        #
-        #   @return [String, nil]
-        optional :redirect_url, String, nil?: true
 
         # @!attribute release_method
         #   The methods of how a plan can be released.
@@ -215,36 +167,11 @@ module Whopsdk
         #   @return [Float, nil]
         optional :renewal_price, Float, nil?: true
 
-        # @!attribute split_pay_required_payments
-        #   The number of payments required before pausing the subscription.
-        #
-        #   @return [Integer, nil]
-        optional :split_pay_required_payments, Integer, nil?: true
-
-        # @!attribute splitit_accepted
-        #   Marks whether payments using splitit, a payment processor, are/aren't accepted
-        #   for the plan.
-        #
-        #   @return [Boolean, nil]
-        optional :splitit_accepted, Whopsdk::Internal::Type::Boolean, nil?: true
-
-        # @!attribute stock
-        #   The number of units available for purchase.
-        #
-        #   @return [Integer, nil]
-        optional :stock, Integer, nil?: true
-
         # @!attribute trial_period_days
         #   The number of free trial days added before a renewal plan.
         #
         #   @return [Integer, nil]
         optional :trial_period_days, Integer, nil?: true
-
-        # @!attribute unlimited_stock
-        #   Limits/doesn't limit the number of units available for purchase.
-        #
-        #   @return [Boolean, nil]
-        optional :unlimited_stock, Whopsdk::Internal::Type::Boolean, nil?: true
 
         # @!attribute visibility
         #   Visibility of a resource
@@ -252,21 +179,10 @@ module Whopsdk
         #   @return [Symbol, Whopsdk::Models::Visibility, nil]
         optional :visibility, enum: -> { Whopsdk::Visibility }, nil?: true
 
-        # @!method initialize(ach_payments: nil, base_currency: nil, billing_period: nil, card_payments: nil, coinbase_commerce_accepted: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, offer_cancel_discount: nil, paypal_accepted: nil, plan_type: nil, platform_balance_accepted: nil, redirect_url: nil, release_method: nil, renewal_price: nil, split_pay_required_payments: nil, splitit_accepted: nil, stock: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Whopsdk::Models::InvoiceCreateParams::Plan} for more details.
-        #
+        # @!method initialize(billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, plan_type: nil, release_method: nil, renewal_price: nil, trial_period_days: nil, visibility: nil)
         #   The properties of the plan to create for this invoice.
         #
-        #   @param ach_payments [Boolean, nil] Whether or not ACH payments are accepted
-        #
-        #   @param base_currency [Symbol, Whopsdk::Models::Currency, nil] The available currencies on the platform
-        #
         #   @param billing_period [Integer, nil] The interval at which the plan charges (renewal plans).
-        #
-        #   @param card_payments [Boolean, nil] Whether or not card payments are accepted
-        #
-        #   @param coinbase_commerce_accepted [Boolean, nil] Marks whether coinbase commerce payments are/aren't accepted.
         #
         #   @param custom_fields [Array<Whopsdk::Models::InvoiceCreateParams::Plan::CustomField>, nil] An array of custom field objects.
         #
@@ -278,29 +194,13 @@ module Whopsdk
         #
         #   @param internal_notes [String, nil] A personal description or notes section for the business.
         #
-        #   @param offer_cancel_discount [Boolean, nil] Whether or not to offer a discount to cancel a subscription.
-        #
-        #   @param paypal_accepted [Boolean, nil] Marks whether paypal payments are/aren't accepted.
-        #
         #   @param plan_type [Symbol, Whopsdk::Models::PlanType, nil] The type of plan that can be attached to an access pass
-        #
-        #   @param platform_balance_accepted [Boolean, nil] Marks whether platform balance payments are/aren't accepted.
-        #
-        #   @param redirect_url [String, nil] The URL to redirect the customer to after purchase.
         #
         #   @param release_method [Symbol, Whopsdk::Models::ReleaseMethod, nil] The methods of how a plan can be released.
         #
         #   @param renewal_price [Float, nil] The amount the customer is charged every billing period.
         #
-        #   @param split_pay_required_payments [Integer, nil] The number of payments required before pausing the subscription.
-        #
-        #   @param splitit_accepted [Boolean, nil] Marks whether payments using splitit, a payment processor, are/aren't accepted f
-        #
-        #   @param stock [Integer, nil] The number of units available for purchase.
-        #
         #   @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
-        #
-        #   @param unlimited_stock [Boolean, nil] Limits/doesn't limit the number of units available for purchase.
         #
         #   @param visibility [Symbol, Whopsdk::Models::Visibility, nil] Visibility of a resource
 

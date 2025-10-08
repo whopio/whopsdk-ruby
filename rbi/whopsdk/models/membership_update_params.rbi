@@ -12,12 +12,12 @@ module Whopsdk
         end
 
       # The metadata to update the membership with.
-      sig { returns(T.nilable(T.anything)) }
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
       sig do
         params(
-          metadata: T.nilable(T.anything),
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -31,7 +31,7 @@ module Whopsdk
       sig do
         override.returns(
           {
-            metadata: T.nilable(T.anything),
+            metadata: T.nilable(T::Hash[Symbol, T.anything]),
             request_options: Whopsdk::RequestOptions
           }
         )

@@ -37,6 +37,14 @@ module Whopsdk
 
   module BusinessTypes = Whopsdk::Models::BusinessTypes
 
+  class CheckoutConfiguration = Whopsdk::Models::CheckoutConfiguration
+
+  class CheckoutConfigurationCreateParams = Whopsdk::Models::CheckoutConfigurationCreateParams
+
+  class CheckoutConfigurationListParams = Whopsdk::Models::CheckoutConfigurationListParams
+
+  class CheckoutConfigurationRetrieveParams = Whopsdk::Models::CheckoutConfigurationRetrieveParams
+
   module CollectionMethod = Whopsdk::Models::CollectionMethod
 
   class Company = Whopsdk::Models::Company

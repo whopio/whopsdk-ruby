@@ -1,0 +1,32 @@
+module Whopsdk
+  module Models
+    type shipment_create_params =
+      { company_id: String, payment_id: String, tracking_code: String }
+      & Whopsdk::Internal::Type::request_parameters
+
+    class ShipmentCreateParams < Whopsdk::Internal::Type::BaseModel
+      extend Whopsdk::Internal::Type::RequestParameters::Converter
+      include Whopsdk::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor payment_id: String
+
+      attr_accessor tracking_code: String
+
+      def initialize: (
+        company_id: String,
+        payment_id: String,
+        tracking_code: String,
+        ?request_options: Whopsdk::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        payment_id: String,
+        tracking_code: String,
+        request_options: Whopsdk::RequestOptions
+      }
+    end
+  end
+end

@@ -149,6 +149,20 @@ module Whopsdk
 
   module ReleaseMethod = Whopsdk::Models::ReleaseMethod
 
+  class Shipment = Whopsdk::Models::Shipment
+
+  module ShipmentCarrier = Whopsdk::Models::ShipmentCarrier
+
+  class ShipmentCreateParams = Whopsdk::Models::ShipmentCreateParams
+
+  class ShipmentListParams = Whopsdk::Models::ShipmentListParams
+
+  class ShipmentRetrieveParams = Whopsdk::Models::ShipmentRetrieveParams
+
+  module ShipmentStatus = Whopsdk::Models::ShipmentStatus
+
+  module ShipmentSubstatus = Whopsdk::Models::ShipmentSubstatus
+
   module TaxType = Whopsdk::Models::TaxType
 
   class Transfer = Whopsdk::Models::Transfer

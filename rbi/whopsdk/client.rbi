@@ -56,6 +56,9 @@ module Whopsdk
     sig { returns(Whopsdk::Resources::AppBuilds) }
     attr_reader :app_builds
 
+    sig { returns(Whopsdk::Resources::Shipments) }
+    attr_reader :shipments
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

@@ -1,0 +1,91 @@
+# typed: strong
+
+module Whopsdk
+  module Models
+    class ShipmentListParams < Whopsdk::Internal::Type::BaseModel
+      extend Whopsdk::Internal::Type::RequestParameters::Converter
+      include Whopsdk::Internal::Type::RequestParameters
+
+      OrHash =
+        T.type_alias do
+          T.any(Whopsdk::ShipmentListParams, Whopsdk::Internal::AnyHash)
+        end
+
+      # The ID of the company
+      sig { returns(String) }
+      attr_accessor :company_id
+
+      # Returns the elements in the list that come after the specified cursor.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :after
+
+      # Returns the elements in the list that come before the specified cursor.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :before
+
+      # Returns the first _n_ elements from the list.
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :first
+
+      # Returns the last _n_ elements from the list.
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :last
+
+      # The ID of the payment
+      sig { returns(T.nilable(String)) }
+      attr_accessor :payment_id
+
+      # The ID of the user
+      sig { returns(T.nilable(String)) }
+      attr_accessor :user_id
+
+      sig do
+        params(
+          company_id: String,
+          after: T.nilable(String),
+          before: T.nilable(String),
+          first: T.nilable(Integer),
+          last: T.nilable(Integer),
+          payment_id: T.nilable(String),
+          user_id: T.nilable(String),
+          request_options: Whopsdk::RequestOptions::OrHash
+        ).returns(T.attached_class)
+      end
+      def self.new(
+        # The ID of the company
+        company_id:,
+        # Returns the elements in the list that come after the specified cursor.
+        after: nil,
+        # Returns the elements in the list that come before the specified cursor.
+        before: nil,
+        # Returns the first _n_ elements from the list.
+        first: nil,
+        # Returns the last _n_ elements from the list.
+        last: nil,
+        # The ID of the payment
+        payment_id: nil,
+        # The ID of the user
+        user_id: nil,
+        request_options: {}
+      )
+      end
+
+      sig do
+        override.returns(
+          {
+            company_id: String,
+            after: T.nilable(String),
+            before: T.nilable(String),
+            first: T.nilable(Integer),
+            last: T.nilable(Integer),
+            payment_id: T.nilable(String),
+            user_id: T.nilable(String),
+            request_options: Whopsdk::RequestOptions
+          }
+        )
+      end
+      def to_hash
+      end
+    end
+  end
+end

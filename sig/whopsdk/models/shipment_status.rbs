@@ -1,0 +1,32 @@
+module Whopsdk
+  module Models
+    type shipment_status =
+      :unknown
+      | :pre_transit
+      | :in_transit
+      | :out_for_delivery
+      | :delivered
+      | :available_for_pickup
+      | :return_to_sender
+      | :failure
+      | :cancelled
+      | :error
+
+    module ShipmentStatus
+      extend Whopsdk::Internal::Type::Enum
+
+      UNKNOWN: :unknown
+      PRE_TRANSIT: :pre_transit
+      IN_TRANSIT: :in_transit
+      OUT_FOR_DELIVERY: :out_for_delivery
+      DELIVERED: :delivered
+      AVAILABLE_FOR_PICKUP: :available_for_pickup
+      RETURN_TO_SENDER: :return_to_sender
+      FAILURE: :failure
+      CANCELLED: :cancelled
+      ERROR: :error
+
+      def self?.values: -> ::Array[Whopsdk::Models::shipment_status]
+    end
+  end
+end

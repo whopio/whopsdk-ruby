@@ -1,0 +1,75 @@
+module Whopsdk
+  module Models
+    type shipment_list_response =
+      {
+        id: String,
+        carrier: Whopsdk::Models::shipment_carrier,
+        created_at: Integer,
+        delivery_estimate: Integer?,
+        payment: Whopsdk::Models::ShipmentListResponse::Payment,
+        service: String?,
+        status: Whopsdk::Models::shipment_status,
+        substatus: Whopsdk::Models::shipment_substatus?,
+        tracking_code: String,
+        updated_at: Integer
+      }
+
+    class ShipmentListResponse < Whopsdk::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor carrier: Whopsdk::Models::shipment_carrier
+
+      attr_accessor created_at: Integer
+
+      attr_accessor delivery_estimate: Integer?
+
+      attr_accessor payment: Whopsdk::Models::ShipmentListResponse::Payment
+
+      attr_accessor service: String?
+
+      attr_accessor status: Whopsdk::Models::shipment_status
+
+      attr_accessor substatus: Whopsdk::Models::shipment_substatus?
+
+      attr_accessor tracking_code: String
+
+      attr_accessor updated_at: Integer
+
+      def initialize: (
+        id: String,
+        carrier: Whopsdk::Models::shipment_carrier,
+        created_at: Integer,
+        delivery_estimate: Integer?,
+        payment: Whopsdk::Models::ShipmentListResponse::Payment,
+        service: String?,
+        status: Whopsdk::Models::shipment_status,
+        substatus: Whopsdk::Models::shipment_substatus?,
+        tracking_code: String,
+        updated_at: Integer
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        carrier: Whopsdk::Models::shipment_carrier,
+        created_at: Integer,
+        delivery_estimate: Integer?,
+        payment: Whopsdk::Models::ShipmentListResponse::Payment,
+        service: String?,
+        status: Whopsdk::Models::shipment_status,
+        substatus: Whopsdk::Models::shipment_substatus?,
+        tracking_code: String,
+        updated_at: Integer
+      }
+
+      type payment = { id: String }
+
+      class Payment < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+    end
+  end
+end

@@ -1,0 +1,43 @@
+module Whopsdk
+  module Resources
+    class Payments
+      def retrieve: (
+        String id,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Payment
+
+      def list: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?billing_reasons: ::Array[Whopsdk::Models::PaymentListParams::billing_reason]?,
+        ?created_after: Integer?,
+        ?created_before: Integer?,
+        ?currencies: ::Array[Whopsdk::Models::currency]?,
+        ?direction: Whopsdk::Models::direction?,
+        ?first: Integer?,
+        ?include_free: bool?,
+        ?last: Integer?,
+        ?order: Whopsdk::Models::PaymentListParams::order?,
+        ?plan_ids: ::Array[String]?,
+        ?product_ids: ::Array[String]?,
+        ?statuses: ::Array[Whopsdk::Models::receipt_status]?,
+        ?substatuses: ::Array[Whopsdk::Models::friendly_receipt_status]?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::PaymentListResponse?]
+
+      def refund: (
+        String id,
+        ?partial_amount: Float?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Payment
+
+      def retry_: (
+        String id,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Payment
+
+      def initialize: (client: Whopsdk::Client) -> void
+    end
+  end
+end

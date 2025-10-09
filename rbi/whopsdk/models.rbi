@@ -99,6 +99,8 @@ module Whopsdk
 
   ForumPostRetrieveParams = Whopsdk::Models::ForumPostRetrieveParams
 
+  FriendlyReceiptStatus = Whopsdk::Models::FriendlyReceiptStatus
+
   GlobalAffiliateStatus = Whopsdk::Models::GlobalAffiliateStatus
 
   IndustryTypes = Whopsdk::Models::IndustryTypes
@@ -145,6 +147,16 @@ module Whopsdk
 
   PageInfo = Whopsdk::Models::PageInfo
 
+  Payment = Whopsdk::Models::Payment
+
+  PaymentListParams = Whopsdk::Models::PaymentListParams
+
+  PaymentRefundParams = Whopsdk::Models::PaymentRefundParams
+
+  PaymentRetrieveParams = Whopsdk::Models::PaymentRetrieveParams
+
+  PaymentRetryParams = Whopsdk::Models::PaymentRetryParams
+
   Plan = Whopsdk::Models::Plan
 
   PlanCreateParams = Whopsdk::Models::PlanCreateParams
@@ -172,6 +184,10 @@ module Whopsdk
   ProductRetrieveParams = Whopsdk::Models::ProductRetrieveParams
 
   ProductUpdateParams = Whopsdk::Models::ProductUpdateParams
+
+  PromoType = Whopsdk::Models::PromoType
+
+  ReceiptStatus = Whopsdk::Models::ReceiptStatus
 
   ReleaseMethod = Whopsdk::Models::ReleaseMethod
 

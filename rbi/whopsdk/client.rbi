@@ -71,6 +71,9 @@ module Whopsdk
     sig { returns(Whopsdk::Resources::Users) }
     attr_reader :users
 
+    sig { returns(Whopsdk::Resources::Payments) }
+    attr_reader :payments
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

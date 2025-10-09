@@ -48,6 +48,8 @@ module Whopsdk
 
     attr_reader users: Whopsdk::Resources::Users
 
+    attr_reader payments: Whopsdk::Resources::Payments
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

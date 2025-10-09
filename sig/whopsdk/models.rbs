@@ -193,6 +193,8 @@ module Whopsdk
 
   module UnwrapWebhookEvent = Whopsdk::Models::UnwrapWebhookEvent
 
+  class UserRetrieveParams = Whopsdk::Models::UserRetrieveParams
+
   module Visibility = Whopsdk::Models::Visibility
 
   module VisibilityFilter = Whopsdk::Models::VisibilityFilter

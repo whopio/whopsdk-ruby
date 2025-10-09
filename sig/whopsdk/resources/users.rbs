@@ -1,0 +1,12 @@
+module Whopsdk
+  module Resources
+    class Users
+      def retrieve: (
+        String id,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Models::UserRetrieveResponse
+
+      def initialize: (client: Whopsdk::Client) -> void
+    end
+  end
+end

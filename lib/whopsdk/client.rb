@@ -73,6 +73,9 @@ module Whopsdk
     # @return [Whopsdk::Resources::ChatChannels]
     attr_reader :chat_channels
 
+    # @return [Whopsdk::Resources::Users]
+    attr_reader :users
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -139,6 +142,7 @@ module Whopsdk
       @checkout_configurations = Whopsdk::Resources::CheckoutConfigurations.new(client: self)
       @messages = Whopsdk::Resources::Messages.new(client: self)
       @chat_channels = Whopsdk::Resources::ChatChannels.new(client: self)
+      @users = Whopsdk::Resources::Users.new(client: self)
     end
   end
 end

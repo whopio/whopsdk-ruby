@@ -46,6 +46,8 @@ module Whopsdk
 
     attr_reader chat_channels: Whopsdk::Resources::ChatChannels
 
+    attr_reader users: Whopsdk::Resources::Users
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

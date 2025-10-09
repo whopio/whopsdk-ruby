@@ -67,6 +67,12 @@ module Whopsdk
     # @return [Whopsdk::Resources::CheckoutConfigurations]
     attr_reader :checkout_configurations
 
+    # @return [Whopsdk::Resources::Messages]
+    attr_reader :messages
+
+    # @return [Whopsdk::Resources::ChatChannels]
+    attr_reader :chat_channels
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -131,6 +137,8 @@ module Whopsdk
       @app_builds = Whopsdk::Resources::AppBuilds.new(client: self)
       @shipments = Whopsdk::Resources::Shipments.new(client: self)
       @checkout_configurations = Whopsdk::Resources::CheckoutConfigurations.new(client: self)
+      @messages = Whopsdk::Resources::Messages.new(client: self)
+      @chat_channels = Whopsdk::Resources::ChatChannels.new(client: self)
     end
   end
 end

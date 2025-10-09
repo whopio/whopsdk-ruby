@@ -42,6 +42,10 @@ module Whopsdk
 
     attr_reader checkout_configurations: Whopsdk::Resources::CheckoutConfigurations
 
+    attr_reader messages: Whopsdk::Resources::Messages
+
+    attr_reader chat_channels: Whopsdk::Resources::ChatChannels
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

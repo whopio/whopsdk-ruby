@@ -37,6 +37,10 @@ module Whopsdk
 
   module BusinessTypes = Whopsdk::Models::BusinessTypes
 
+  class ChatChannelListParams = Whopsdk::Models::ChatChannelListParams
+
+  class ChatChannelRetrieveParams = Whopsdk::Models::ChatChannelRetrieveParams
+
   class CheckoutConfiguration = Whopsdk::Models::CheckoutConfiguration
 
   class CheckoutConfigurationCreateParams = Whopsdk::Models::CheckoutConfigurationCreateParams
@@ -64,6 +68,8 @@ module Whopsdk
   module CustomCta = Whopsdk::Models::CustomCta
 
   module Direction = Whopsdk::Models::Direction
+
+  module DmsPostTypes = Whopsdk::Models::DmsPostTypes
 
   class Entry = Whopsdk::Models::Entry
 
@@ -124,6 +130,10 @@ module Whopsdk
   module MembershipStatus = Whopsdk::Models::MembershipStatus
 
   class MembershipUpdateParams = Whopsdk::Models::MembershipUpdateParams
+
+  class MessageListParams = Whopsdk::Models::MessageListParams
+
+  class MessageRetrieveParams = Whopsdk::Models::MessageRetrieveParams
 
   class PageInfo = Whopsdk::Models::PageInfo
 
@@ -188,4 +198,8 @@ module Whopsdk
   module VisibilityFilter = Whopsdk::Models::VisibilityFilter
 
   class WebhookUnwrapParams = Whopsdk::Models::WebhookUnwrapParams
+
+  module WhoCanPost = Whopsdk::Models::WhoCanPost
+
+  module WhoCanReact = Whopsdk::Models::WhoCanReact
 end

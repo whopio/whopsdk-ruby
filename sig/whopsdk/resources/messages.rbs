@@ -1,0 +1,21 @@
+module Whopsdk
+  module Resources
+    class Messages
+      def retrieve: (
+        String id,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Models::MessageRetrieveResponse
+
+      def list: (
+        channel_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::MessageListResponse?]
+
+      def initialize: (client: Whopsdk::Client) -> void
+    end
+  end
+end

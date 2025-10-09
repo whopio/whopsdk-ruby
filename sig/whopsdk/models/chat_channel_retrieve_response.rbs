@@ -1,0 +1,62 @@
+module Whopsdk
+  module Models
+    type chat_channel_retrieve_response =
+      {
+        id: String,
+        ban_media: bool,
+        ban_urls: bool,
+        experience: Whopsdk::Models::ChatChannelRetrieveResponse::Experience,
+        user_posts_cooldown_seconds: Integer?,
+        who_can_post: Whopsdk::Models::who_can_post,
+        who_can_react: Whopsdk::Models::who_can_react
+      }
+
+    class ChatChannelRetrieveResponse < Whopsdk::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor ban_media: bool
+
+      attr_accessor ban_urls: bool
+
+      attr_accessor experience: Whopsdk::Models::ChatChannelRetrieveResponse::Experience
+
+      attr_accessor user_posts_cooldown_seconds: Integer?
+
+      attr_accessor who_can_post: Whopsdk::Models::who_can_post
+
+      attr_accessor who_can_react: Whopsdk::Models::who_can_react
+
+      def initialize: (
+        id: String,
+        ban_media: bool,
+        ban_urls: bool,
+        experience: Whopsdk::Models::ChatChannelRetrieveResponse::Experience,
+        user_posts_cooldown_seconds: Integer?,
+        who_can_post: Whopsdk::Models::who_can_post,
+        who_can_react: Whopsdk::Models::who_can_react
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        ban_media: bool,
+        ban_urls: bool,
+        experience: Whopsdk::Models::ChatChannelRetrieveResponse::Experience,
+        user_posts_cooldown_seconds: Integer?,
+        who_can_post: Whopsdk::Models::who_can_post,
+        who_can_react: Whopsdk::Models::who_can_react
+      }
+
+      type experience = { id: String, name: String }
+
+      class Experience < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String
+
+        def initialize: (id: String, name: String) -> void
+
+        def to_hash: -> { id: String, name: String }
+      end
+    end
+  end
+end

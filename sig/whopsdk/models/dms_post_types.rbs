@@ -1,0 +1,15 @@
+module Whopsdk
+  module Models
+    type dms_post_types = :regular | :system | :automated
+
+    module DmsPostTypes
+      extend Whopsdk::Internal::Type::Enum
+
+      REGULAR: :regular
+      SYSTEM: :system
+      AUTOMATED: :automated
+
+      def self?.values: -> ::Array[Whopsdk::Models::dms_post_types]
+    end
+  end
+end

@@ -13,6 +13,7 @@ module Whopsdk
         manage_url: String?,
         member: Whopsdk::Models::MembershipListResponse::Member?,
         metadata: ::Hash[Symbol, top],
+        payment_collection_paused: bool,
         plan: Whopsdk::Models::MembershipListResponse::Plan,
         promo_code: Whopsdk::Models::MembershipListResponse::PromoCode?,
         renewal_period_end: Integer?,
@@ -45,6 +46,8 @@ module Whopsdk
 
       attr_accessor metadata: ::Hash[Symbol, top]
 
+      attr_accessor payment_collection_paused: bool
+
       attr_accessor plan: Whopsdk::Models::MembershipListResponse::Plan
 
       attr_accessor promo_code: Whopsdk::Models::MembershipListResponse::PromoCode?
@@ -71,6 +74,7 @@ module Whopsdk
         manage_url: String?,
         member: Whopsdk::Models::MembershipListResponse::Member?,
         metadata: ::Hash[Symbol, top],
+        payment_collection_paused: bool,
         plan: Whopsdk::Models::MembershipListResponse::Plan,
         promo_code: Whopsdk::Models::MembershipListResponse::PromoCode?,
         renewal_period_end: Integer?,
@@ -92,6 +96,7 @@ module Whopsdk
         manage_url: String?,
         member: Whopsdk::Models::MembershipListResponse::Member?,
         metadata: ::Hash[Symbol, top],
+        payment_collection_paused: bool,
         plan: Whopsdk::Models::MembershipListResponse::Plan,
         promo_code: Whopsdk::Models::MembershipListResponse::PromoCode?,
         renewal_period_end: Integer?,

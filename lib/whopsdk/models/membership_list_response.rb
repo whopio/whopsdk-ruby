@@ -72,6 +72,12 @@ module Whopsdk
       #   @return [Hash{Symbol=>Object}]
       required :metadata, Whopsdk::Internal::Type::HashOf[Whopsdk::Internal::Type::Unknown]
 
+      # @!attribute payment_collection_paused
+      #   Whether the membership's payments are currently paused.
+      #
+      #   @return [Boolean]
+      required :payment_collection_paused, Whopsdk::Internal::Type::Boolean
+
       # @!attribute plan
       #   The Plan this Membership is for.
       #
@@ -116,7 +122,7 @@ module Whopsdk
       #   @return [Whopsdk::Models::MembershipListResponse::User, nil]
       required :user, -> { Whopsdk::Models::MembershipListResponse::User }, nil?: true
 
-      # @!method initialize(id:, cancel_at_period_end:, canceled_at:, cancellation_reason:, company:, created_at:, currency:, license_key:, manage_url:, member:, metadata:, plan:, promo_code:, renewal_period_end:, renewal_period_start:, status:, updated_at:, user:)
+      # @!method initialize(id:, cancel_at_period_end:, canceled_at:, cancellation_reason:, company:, created_at:, currency:, license_key:, manage_url:, member:, metadata:, payment_collection_paused:, plan:, promo_code:, renewal_period_end:, renewal_period_start:, status:, updated_at:, user:)
       #   Some parameter documentations has been truncated, see
       #   {Whopsdk::Models::MembershipListResponse} for more details.
       #
@@ -144,6 +150,8 @@ module Whopsdk
       #   @param member [Whopsdk::Models::MembershipListResponse::Member, nil] The Member that this Membership belongs to.
       #
       #   @param metadata [Hash{Symbol=>Object}] A JSON object used to store software licensing information. Ex. HWID
+      #
+      #   @param payment_collection_paused [Boolean] Whether the membership's payments are currently paused.
       #
       #   @param plan [Whopsdk::Models::MembershipListResponse::Plan] The Plan this Membership is for.
       #

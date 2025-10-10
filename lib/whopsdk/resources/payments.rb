@@ -12,6 +12,7 @@ module Whopsdk
       # - `access_pass:basic:read`
       # - `member:email:read`
       # - `member:basic:read`
+      # - `member:phone:read`
       # - `promo_code:basic:read`
       #
       # @overload retrieve(id, request_options: {})
@@ -40,6 +41,7 @@ module Whopsdk
       # - `access_pass:basic:read`
       # - `member:email:read`
       # - `member:basic:read`
+      # - `member:phone:read`
       # - `promo_code:basic:read`
       #
       # @overload list(company_id:, after: nil, before: nil, billing_reasons: nil, created_after: nil, created_before: nil, currencies: nil, direction: nil, first: nil, include_free: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, statuses: nil, substatuses: nil, request_options: {})
@@ -102,6 +104,7 @@ module Whopsdk
       # - `access_pass:basic:read`
       # - `member:email:read`
       # - `member:basic:read`
+      # - `member:phone:read`
       # - `promo_code:basic:read`
       #
       # @overload refund(id, partial_amount: nil, request_options: {})
@@ -135,6 +138,7 @@ module Whopsdk
       # - `access_pass:basic:read`
       # - `member:email:read`
       # - `member:basic:read`
+      # - `member:phone:read`
       # - `promo_code:basic:read`
       #
       # @overload retry_(id, request_options: {})
@@ -163,6 +167,7 @@ module Whopsdk
       # - `access_pass:basic:read`
       # - `member:email:read`
       # - `member:basic:read`
+      # - `member:phone:read`
       # - `promo_code:basic:read`
       #
       # @overload void(id, request_options: {})

@@ -82,6 +82,12 @@ module Whopsdk
       #   @return [Integer, nil]
       required :last_payment_attempt, Integer, nil?: true
 
+      # @!attribute member
+      #   The member attached to this receipt.
+      #
+      #   @return [Whopsdk::Models::PaymentListResponse::Member, nil]
+      required :member, -> { Whopsdk::Models::PaymentListResponse::Member }, nil?: true
+
       # @!attribute membership
       #   The membership attached to this receipt.
       #
@@ -185,7 +191,7 @@ module Whopsdk
       #   @return [Boolean]
       required :voidable, Whopsdk::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, company:, created_at:, currency:, dispute_alerted_at:, failure_message:, last_payment_attempt:, membership:, paid_at:, payment_method_type:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, status:, substatus:, subtotal:, total:, usd_total:, user:, voidable:)
+      # @!method initialize(id:, amount_after_fees:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, company:, created_at:, currency:, dispute_alerted_at:, failure_message:, last_payment_attempt:, member:, membership:, paid_at:, payment_method_type:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, status:, substatus:, subtotal:, total:, usd_total:, user:, voidable:)
       #   Some parameter documentations has been truncated, see
       #   {Whopsdk::Models::PaymentListResponse} for more details.
       #
@@ -216,6 +222,8 @@ module Whopsdk
       #   @param failure_message [String, nil] If the payment failed, the reason for the failure.
       #
       #   @param last_payment_attempt [Integer, nil] The time of the last payment attempt.
+      #
+      #   @param member [Whopsdk::Models::PaymentListResponse::Member, nil] The member attached to this receipt.
       #
       #   @param membership [Whopsdk::Models::PaymentListResponse::Membership, nil] The membership attached to this receipt.
       #
@@ -341,6 +349,28 @@ module Whopsdk
         #   @param route [String] The slug/route of the company on the Whop site.
         #
         #   @param title [String] The written name of the company.
+      end
+
+      # @see Whopsdk::Models::PaymentListResponse#member
+      class Member < Whopsdk::Internal::Type::BaseModel
+        # @!attribute id
+        #   The ID of the member
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute phone
+        #   The phone number for the member, if available.
+        #
+        #   @return [String, nil]
+        required :phone, String, nil?: true
+
+        # @!method initialize(id:, phone:)
+        #   The member attached to this receipt.
+        #
+        #   @param id [String] The ID of the member
+        #
+        #   @param phone [String, nil] The phone number for the member, if available.
       end
 
       # @see Whopsdk::Models::PaymentListResponse#membership

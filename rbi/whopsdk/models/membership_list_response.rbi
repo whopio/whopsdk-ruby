@@ -74,6 +74,10 @@ module Whopsdk
       sig { returns(T::Hash[Symbol, T.anything]) }
       attr_accessor :metadata
 
+      # Whether the membership's payments are currently paused.
+      sig { returns(T::Boolean) }
+      attr_accessor :payment_collection_paused
+
       # The Plan this Membership is for.
       sig { returns(Whopsdk::Models::MembershipListResponse::Plan) }
       attr_reader :plan
@@ -144,6 +148,7 @@ module Whopsdk
           member:
             T.nilable(Whopsdk::Models::MembershipListResponse::Member::OrHash),
           metadata: T::Hash[Symbol, T.anything],
+          payment_collection_paused: T::Boolean,
           plan: Whopsdk::Models::MembershipListResponse::Plan::OrHash,
           promo_code:
             T.nilable(
@@ -181,6 +186,8 @@ module Whopsdk
         member:,
         # A JSON object used to store software licensing information. Ex. HWID
         metadata:,
+        # Whether the membership's payments are currently paused.
+        payment_collection_paused:,
         # The Plan this Membership is for.
         plan:,
         # The Promo Code that is currently applied to this Membership.
@@ -214,6 +221,7 @@ module Whopsdk
             manage_url: T.nilable(String),
             member: T.nilable(Whopsdk::Models::MembershipListResponse::Member),
             metadata: T::Hash[Symbol, T.anything],
+            payment_collection_paused: T::Boolean,
             plan: Whopsdk::Models::MembershipListResponse::Plan,
             promo_code:
               T.nilable(Whopsdk::Models::MembershipListResponse::PromoCode),

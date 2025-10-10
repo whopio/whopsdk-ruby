@@ -28,13 +28,19 @@ module Whopsdk
       #   @return [Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser, nil]
       required :customer_user, -> { Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser }, nil?: true
 
+      # @!attribute last_message_at
+      #   When the last message was sent
+      #
+      #   @return [Integer, nil]
+      required :last_message_at, Integer, nil?: true
+
       # @!attribute resolved_at
       #   When the support ticket was resolved (null if unresolved)
       #
       #   @return [Integer, nil]
       required :resolved_at, Integer, nil?: true
 
-      # @!method initialize(id:, company_id:, custom_name:, customer_user:, resolved_at:)
+      # @!method initialize(id:, company_id:, custom_name:, customer_user:, last_message_at:, resolved_at:)
       #   Represents a DM channel
       #
       #   @param id [String] The unique identifier for the entity
@@ -44,6 +50,8 @@ module Whopsdk
       #   @param custom_name [String, nil] The custom name of the DM channel, if any
       #
       #   @param customer_user [Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser, nil] The customer user if this is a support chat
+      #
+      #   @param last_message_at [Integer, nil] When the last message was sent
       #
       #   @param resolved_at [Integer, nil] When the support ticket was resolved (null if unresolved)
 

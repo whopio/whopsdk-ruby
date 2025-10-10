@@ -12,6 +12,7 @@ module Whopsdk
       # - `access_pass:basic:read`
       # - `member:email:read`
       # - `member:basic:read`
+      # - `member:phone:read`
       # - `promo_code:basic:read`
       sig do
         params(
@@ -31,6 +32,7 @@ module Whopsdk
       # - `access_pass:basic:read`
       # - `member:email:read`
       # - `member:basic:read`
+      # - `member:phone:read`
       # - `promo_code:basic:read`
       sig do
         params(
@@ -107,6 +109,7 @@ module Whopsdk
       # - `access_pass:basic:read`
       # - `member:email:read`
       # - `member:basic:read`
+      # - `member:phone:read`
       # - `promo_code:basic:read`
       sig do
         params(
@@ -132,6 +135,7 @@ module Whopsdk
       # - `access_pass:basic:read`
       # - `member:email:read`
       # - `member:basic:read`
+      # - `member:phone:read`
       # - `promo_code:basic:read`
       sig do
         params(
@@ -151,6 +155,7 @@ module Whopsdk
       # - `access_pass:basic:read`
       # - `member:email:read`
       # - `member:basic:read`
+      # - `member:phone:read`
       # - `promo_code:basic:read`
       sig do
         params(

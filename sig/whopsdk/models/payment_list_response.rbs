@@ -15,6 +15,7 @@ module Whopsdk
         dispute_alerted_at: Integer?,
         failure_message: String?,
         last_payment_attempt: Integer?,
+        member: Whopsdk::Models::PaymentListResponse::Member?,
         membership: Whopsdk::Models::PaymentListResponse::Membership?,
         paid_at: Integer?,
         payment_method_type: String?,
@@ -60,6 +61,8 @@ module Whopsdk
       attr_accessor failure_message: String?
 
       attr_accessor last_payment_attempt: Integer?
+
+      attr_accessor member: Whopsdk::Models::PaymentListResponse::Member?
 
       attr_accessor membership: Whopsdk::Models::PaymentListResponse::Membership?
 
@@ -109,6 +112,7 @@ module Whopsdk
         dispute_alerted_at: Integer?,
         failure_message: String?,
         last_payment_attempt: Integer?,
+        member: Whopsdk::Models::PaymentListResponse::Member?,
         membership: Whopsdk::Models::PaymentListResponse::Membership?,
         paid_at: Integer?,
         payment_method_type: String?,
@@ -142,6 +146,7 @@ module Whopsdk
         dispute_alerted_at: Integer?,
         failure_message: String?,
         last_payment_attempt: Integer?,
+        member: Whopsdk::Models::PaymentListResponse::Member?,
         membership: Whopsdk::Models::PaymentListResponse::Membership?,
         paid_at: Integer?,
         payment_method_type: String?,
@@ -220,6 +225,18 @@ module Whopsdk
         def initialize: (id: String, route: String, title: String) -> void
 
         def to_hash: -> { id: String, route: String, title: String }
+      end
+
+      type member = { id: String, phone: String? }
+
+      class Member < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor phone: String?
+
+        def initialize: (id: String, phone: String?) -> void
+
+        def to_hash: -> { id: String, phone: String? }
       end
 
       type membership =

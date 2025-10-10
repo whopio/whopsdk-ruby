@@ -68,6 +68,13 @@ module Whopsdk
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last_payment_attempt
 
+      # The member attached to this receipt.
+      sig { returns(T.nilable(Whopsdk::Payment::Member)) }
+      attr_reader :member
+
+      sig { params(member: T.nilable(Whopsdk::Payment::Member::OrHash)).void }
+      attr_writer :member
+
       # The membership attached to this receipt.
       sig { returns(T.nilable(Whopsdk::Payment::Membership)) }
       attr_reader :membership
@@ -172,6 +179,7 @@ module Whopsdk
           dispute_alerted_at: T.nilable(Integer),
           failure_message: T.nilable(String),
           last_payment_attempt: T.nilable(Integer),
+          member: T.nilable(Whopsdk::Payment::Member::OrHash),
           membership: T.nilable(Whopsdk::Payment::Membership::OrHash),
           paid_at: T.nilable(Integer),
           payment_method_type: T.nilable(String),
@@ -218,6 +226,8 @@ module Whopsdk
         failure_message:,
         # The time of the last payment attempt.
         last_payment_attempt:,
+        # The member attached to this receipt.
+        member:,
         # The membership attached to this receipt.
         membership:,
         # The datetime the receipt was paid
@@ -272,6 +282,7 @@ module Whopsdk
             dispute_alerted_at: T.nilable(Integer),
             failure_message: T.nilable(String),
             last_payment_attempt: T.nilable(Integer),
+            member: T.nilable(Whopsdk::Payment::Member),
             membership: T.nilable(Whopsdk::Payment::Membership),
             paid_at: T.nilable(Integer),
             payment_method_type: T.nilable(String),
@@ -411,6 +422,37 @@ module Whopsdk
         end
 
         sig { override.returns({ id: String, route: String, title: String }) }
+        def to_hash
+        end
+      end
+
+      class Member < Whopsdk::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Whopsdk::Payment::Member, Whopsdk::Internal::AnyHash)
+          end
+
+        # The ID of the member
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The phone number for the member, if available.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :phone
+
+        # The member attached to this receipt.
+        sig do
+          params(id: String, phone: T.nilable(String)).returns(T.attached_class)
+        end
+        def self.new(
+          # The ID of the member
+          id:,
+          # The phone number for the member, if available.
+          phone:
+        )
+        end
+
+        sig { override.returns({ id: String, phone: T.nilable(String) }) }
         def to_hash
         end
       end

@@ -2,14 +2,9 @@
 
 module Whopsdk
   module Models
-    class MessageRetrieveResponse < Whopsdk::Internal::Type::BaseModel
+    class Message < Whopsdk::Internal::Type::BaseModel
       OrHash =
-        T.type_alias do
-          T.any(
-            Whopsdk::Models::MessageRetrieveResponse,
-            Whopsdk::Internal::AnyHash
-          )
-        end
+        T.type_alias { T.any(Whopsdk::Message, Whopsdk::Internal::AnyHash) }
 
       # The unique identifier for the entity
       sig { returns(String) }
@@ -32,29 +27,18 @@ module Whopsdk
       attr_accessor :message_type
 
       # The poll for this message
-      sig { returns(T.nilable(Whopsdk::Models::MessageRetrieveResponse::Poll)) }
+      sig { returns(T.nilable(Whopsdk::Message::Poll)) }
       attr_reader :poll
 
-      sig do
-        params(
-          poll:
-            T.nilable(Whopsdk::Models::MessageRetrieveResponse::Poll::OrHash)
-        ).void
-      end
+      sig { params(poll: T.nilable(Whopsdk::Message::Poll::OrHash)).void }
       attr_writer :poll
 
       # The reaction counts for this message
-      sig do
-        returns(T::Array[Whopsdk::Models::MessageRetrieveResponse::PollVote])
-      end
+      sig { returns(T::Array[Whopsdk::Message::PollVote]) }
       attr_accessor :poll_votes
 
       # The reaction counts for this message
-      sig do
-        returns(
-          T::Array[Whopsdk::Models::MessageRetrieveResponse::ReactionCount]
-        )
-      end
+      sig { returns(T::Array[Whopsdk::Message::ReactionCount]) }
       attr_accessor :reaction_counts
 
       # The ID of the message this is replying to, if applicable
@@ -62,14 +46,10 @@ module Whopsdk
       attr_accessor :replying_to_message_id
 
       # The user who sent this message
-      sig { returns(Whopsdk::Models::MessageRetrieveResponse::User) }
+      sig { returns(Whopsdk::Message::User) }
       attr_reader :user
 
-      sig do
-        params(
-          user: Whopsdk::Models::MessageRetrieveResponse::User::OrHash
-        ).void
-      end
+      sig { params(user: Whopsdk::Message::User::OrHash).void }
       attr_writer :user
 
       # The number of times this message has been viewed
@@ -84,18 +64,11 @@ module Whopsdk
           is_edited: T::Boolean,
           is_pinned: T::Boolean,
           message_type: Whopsdk::DmsPostTypes::OrSymbol,
-          poll:
-            T.nilable(Whopsdk::Models::MessageRetrieveResponse::Poll::OrHash),
-          poll_votes:
-            T::Array[
-              Whopsdk::Models::MessageRetrieveResponse::PollVote::OrHash
-            ],
-          reaction_counts:
-            T::Array[
-              Whopsdk::Models::MessageRetrieveResponse::ReactionCount::OrHash
-            ],
+          poll: T.nilable(Whopsdk::Message::Poll::OrHash),
+          poll_votes: T::Array[Whopsdk::Message::PollVote::OrHash],
+          reaction_counts: T::Array[Whopsdk::Message::ReactionCount::OrHash],
           replying_to_message_id: T.nilable(String),
-          user: Whopsdk::Models::MessageRetrieveResponse::User::OrHash,
+          user: Whopsdk::Message::User::OrHash,
           view_count: T.nilable(Integer)
         ).returns(T.attached_class)
       end
@@ -133,13 +106,11 @@ module Whopsdk
             is_edited: T::Boolean,
             is_pinned: T::Boolean,
             message_type: Whopsdk::DmsPostTypes::TaggedSymbol,
-            poll: T.nilable(Whopsdk::Models::MessageRetrieveResponse::Poll),
-            poll_votes:
-              T::Array[Whopsdk::Models::MessageRetrieveResponse::PollVote],
-            reaction_counts:
-              T::Array[Whopsdk::Models::MessageRetrieveResponse::ReactionCount],
+            poll: T.nilable(Whopsdk::Message::Poll),
+            poll_votes: T::Array[Whopsdk::Message::PollVote],
+            reaction_counts: T::Array[Whopsdk::Message::ReactionCount],
             replying_to_message_id: T.nilable(String),
-            user: Whopsdk::Models::MessageRetrieveResponse::User,
+            user: Whopsdk::Message::User,
             view_count: T.nilable(Integer)
           }
         )
@@ -150,31 +121,17 @@ module Whopsdk
       class Poll < Whopsdk::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(
-              Whopsdk::Models::MessageRetrieveResponse::Poll,
-              Whopsdk::Internal::AnyHash
-            )
+            T.any(Whopsdk::Message::Poll, Whopsdk::Internal::AnyHash)
           end
 
         # The options for the poll
-        sig do
-          returns(
-            T.nilable(
-              T::Array[Whopsdk::Models::MessageRetrieveResponse::Poll::Option]
-            )
-          )
-        end
+        sig { returns(T.nilable(T::Array[Whopsdk::Message::Poll::Option])) }
         attr_accessor :options
 
         # The poll for this message
         sig do
           params(
-            options:
-              T.nilable(
-                T::Array[
-                  Whopsdk::Models::MessageRetrieveResponse::Poll::Option::OrHash
-                ]
-              )
+            options: T.nilable(T::Array[Whopsdk::Message::Poll::Option::OrHash])
           ).returns(T.attached_class)
         end
         def self.new(
@@ -185,14 +142,7 @@ module Whopsdk
 
         sig do
           override.returns(
-            {
-              options:
-                T.nilable(
-                  T::Array[
-                    Whopsdk::Models::MessageRetrieveResponse::Poll::Option
-                  ]
-                )
-            }
+            { options: T.nilable(T::Array[Whopsdk::Message::Poll::Option]) }
           )
         end
         def to_hash
@@ -201,10 +151,7 @@ module Whopsdk
         class Option < Whopsdk::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
-              T.any(
-                Whopsdk::Models::MessageRetrieveResponse::Poll::Option,
-                Whopsdk::Internal::AnyHash
-              )
+              T.any(Whopsdk::Message::Poll::Option, Whopsdk::Internal::AnyHash)
             end
 
           # The ID of the poll option
@@ -234,10 +181,7 @@ module Whopsdk
       class PollVote < Whopsdk::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(
-              Whopsdk::Models::MessageRetrieveResponse::PollVote,
-              Whopsdk::Internal::AnyHash
-            )
+            T.any(Whopsdk::Message::PollVote, Whopsdk::Internal::AnyHash)
           end
 
         # The number of users who reacted
@@ -272,10 +216,7 @@ module Whopsdk
       class ReactionCount < Whopsdk::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(
-              Whopsdk::Models::MessageRetrieveResponse::ReactionCount,
-              Whopsdk::Internal::AnyHash
-            )
+            T.any(Whopsdk::Message::ReactionCount, Whopsdk::Internal::AnyHash)
           end
 
         # The number of users who reacted
@@ -308,10 +249,7 @@ module Whopsdk
       class User < Whopsdk::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(
-              Whopsdk::Models::MessageRetrieveResponse::User,
-              Whopsdk::Internal::AnyHash
-            )
+            T.any(Whopsdk::Message::User, Whopsdk::Internal::AnyHash)
           end
 
         # The internal ID of the user.

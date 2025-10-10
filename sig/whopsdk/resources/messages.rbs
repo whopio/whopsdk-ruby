@@ -1,10 +1,19 @@
 module Whopsdk
   module Resources
     class Messages
+      def create: (
+        content: String,
+        ?attachments: ::Array[Whopsdk::MessageCreateParams::Attachment]?,
+        ?channel_id: String?,
+        ?experience_id: String?,
+        ?poll: Whopsdk::MessageCreateParams::Poll?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Message
+
       def retrieve: (
         String id,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Models::MessageRetrieveResponse
+      ) -> Whopsdk::Message
 
       def list: (
         channel_id: String,

@@ -1,21 +1,21 @@
 module Whopsdk
   module Models
-    type message_retrieve_response =
+    type message =
       {
         id: String,
         content: String?,
         is_edited: bool,
         is_pinned: bool,
         message_type: Whopsdk::Models::dms_post_types,
-        poll: Whopsdk::Models::MessageRetrieveResponse::Poll?,
-        poll_votes: ::Array[Whopsdk::Models::MessageRetrieveResponse::PollVote],
-        reaction_counts: ::Array[Whopsdk::Models::MessageRetrieveResponse::ReactionCount],
+        poll: Whopsdk::Message::Poll?,
+        poll_votes: ::Array[Whopsdk::Message::PollVote],
+        reaction_counts: ::Array[Whopsdk::Message::ReactionCount],
         replying_to_message_id: String?,
-        user: Whopsdk::Models::MessageRetrieveResponse::User,
+        user: Whopsdk::Message::User,
         view_count: Integer?
       }
 
-    class MessageRetrieveResponse < Whopsdk::Internal::Type::BaseModel
+    class Message < Whopsdk::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor content: String?
@@ -26,15 +26,15 @@ module Whopsdk
 
       attr_accessor message_type: Whopsdk::Models::dms_post_types
 
-      attr_accessor poll: Whopsdk::Models::MessageRetrieveResponse::Poll?
+      attr_accessor poll: Whopsdk::Message::Poll?
 
-      attr_accessor poll_votes: ::Array[Whopsdk::Models::MessageRetrieveResponse::PollVote]
+      attr_accessor poll_votes: ::Array[Whopsdk::Message::PollVote]
 
-      attr_accessor reaction_counts: ::Array[Whopsdk::Models::MessageRetrieveResponse::ReactionCount]
+      attr_accessor reaction_counts: ::Array[Whopsdk::Message::ReactionCount]
 
       attr_accessor replying_to_message_id: String?
 
-      attr_accessor user: Whopsdk::Models::MessageRetrieveResponse::User
+      attr_accessor user: Whopsdk::Message::User
 
       attr_accessor view_count: Integer?
 
@@ -44,11 +44,11 @@ module Whopsdk
         is_edited: bool,
         is_pinned: bool,
         message_type: Whopsdk::Models::dms_post_types,
-        poll: Whopsdk::Models::MessageRetrieveResponse::Poll?,
-        poll_votes: ::Array[Whopsdk::Models::MessageRetrieveResponse::PollVote],
-        reaction_counts: ::Array[Whopsdk::Models::MessageRetrieveResponse::ReactionCount],
+        poll: Whopsdk::Message::Poll?,
+        poll_votes: ::Array[Whopsdk::Message::PollVote],
+        reaction_counts: ::Array[Whopsdk::Message::ReactionCount],
         replying_to_message_id: String?,
-        user: Whopsdk::Models::MessageRetrieveResponse::User,
+        user: Whopsdk::Message::User,
         view_count: Integer?
       ) -> void
 
@@ -58,29 +58,24 @@ module Whopsdk
         is_edited: bool,
         is_pinned: bool,
         message_type: Whopsdk::Models::dms_post_types,
-        poll: Whopsdk::Models::MessageRetrieveResponse::Poll?,
-        poll_votes: ::Array[Whopsdk::Models::MessageRetrieveResponse::PollVote],
-        reaction_counts: ::Array[Whopsdk::Models::MessageRetrieveResponse::ReactionCount],
+        poll: Whopsdk::Message::Poll?,
+        poll_votes: ::Array[Whopsdk::Message::PollVote],
+        reaction_counts: ::Array[Whopsdk::Message::ReactionCount],
         replying_to_message_id: String?,
-        user: Whopsdk::Models::MessageRetrieveResponse::User,
+        user: Whopsdk::Message::User,
         view_count: Integer?
       }
 
-      type poll =
-        {
-          options: ::Array[Whopsdk::Models::MessageRetrieveResponse::Poll::Option]?
-        }
+      type poll = { options: ::Array[Whopsdk::Message::Poll::Option]? }
 
       class Poll < Whopsdk::Internal::Type::BaseModel
-        attr_accessor options: ::Array[Whopsdk::Models::MessageRetrieveResponse::Poll::Option]?
+        attr_accessor options: ::Array[Whopsdk::Message::Poll::Option]?
 
         def initialize: (
-          options: ::Array[Whopsdk::Models::MessageRetrieveResponse::Poll::Option]?
+          options: ::Array[Whopsdk::Message::Poll::Option]?
         ) -> void
 
-        def to_hash: -> {
-          options: ::Array[Whopsdk::Models::MessageRetrieveResponse::Poll::Option]?
-        }
+        def to_hash: -> { options: ::Array[Whopsdk::Message::Poll::Option]? }
 
         type option = { id: String, text: String }
 

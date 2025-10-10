@@ -1,0 +1,24 @@
+module Whopsdk
+  module Resources
+    class SupportChannels
+      def retrieve: (
+        String id,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Models::SupportChannelRetrieveResponse
+
+      def list: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?direction: Whopsdk::Models::direction?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?open_: bool?,
+        ?order: Whopsdk::Models::SupportChannelListParams::order?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::SupportChannelListResponse?]
+
+      def initialize: (client: Whopsdk::Client) -> void
+    end
+  end
+end

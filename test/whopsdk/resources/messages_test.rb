@@ -3,13 +3,13 @@
 require_relative "../test_helper"
 
 class Whopsdk::Test::Resources::MessagesTest < Whopsdk::Test::ResourceTest
-  def test_retrieve
+  def test_create_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.messages.retrieve("id")
+    response = @whopsdk.messages.create(content: "content")
 
     assert_pattern do
-      response => Whopsdk::Models::MessageRetrieveResponse
+      response => Whopsdk::Message
     end
 
     assert_pattern do
@@ -19,11 +19,37 @@ class Whopsdk::Test::Resources::MessagesTest < Whopsdk::Test::ResourceTest
         is_edited: Whopsdk::Internal::Type::Boolean,
         is_pinned: Whopsdk::Internal::Type::Boolean,
         message_type: Whopsdk::DmsPostTypes,
-        poll: Whopsdk::Models::MessageRetrieveResponse::Poll | nil,
-        poll_votes: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Models::MessageRetrieveResponse::PollVote]),
-        reaction_counts: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Models::MessageRetrieveResponse::ReactionCount]),
+        poll: Whopsdk::Message::Poll | nil,
+        poll_votes: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Message::PollVote]),
+        reaction_counts: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Message::ReactionCount]),
         replying_to_message_id: String | nil,
-        user: Whopsdk::Models::MessageRetrieveResponse::User,
+        user: Whopsdk::Message::User,
+        view_count: Integer | nil
+      }
+    end
+  end
+
+  def test_retrieve
+    skip("Prism tests are disabled")
+
+    response = @whopsdk.messages.retrieve("id")
+
+    assert_pattern do
+      response => Whopsdk::Message
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        content: String | nil,
+        is_edited: Whopsdk::Internal::Type::Boolean,
+        is_pinned: Whopsdk::Internal::Type::Boolean,
+        message_type: Whopsdk::DmsPostTypes,
+        poll: Whopsdk::Message::Poll | nil,
+        poll_votes: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Message::PollVote]),
+        reaction_counts: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Message::ReactionCount]),
+        replying_to_message_id: String | nil,
+        user: Whopsdk::Message::User,
         view_count: Integer | nil
       }
     end

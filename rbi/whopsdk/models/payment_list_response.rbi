@@ -190,6 +190,10 @@ module Whopsdk
       end
       attr_writer :user
 
+      # Whether the payment can be voided.
+      sig { returns(T::Boolean) }
+      attr_accessor :voidable
+
       # An object representing a receipt for a membership.
       sig do
         params(
@@ -228,7 +232,8 @@ module Whopsdk
           subtotal: T.nilable(Float),
           total: T.nilable(Float),
           usd_total: T.nilable(Float),
-          user: T.nilable(Whopsdk::Models::PaymentListResponse::User::OrHash)
+          user: T.nilable(Whopsdk::Models::PaymentListResponse::User::OrHash),
+          voidable: T::Boolean
         ).returns(T.attached_class)
       end
       def self.new(
@@ -290,7 +295,9 @@ module Whopsdk
         # The total in USD to show to the creator (excluding buyer fees).
         usd_total:,
         # The user that made this payment.
-        user:
+        user:,
+        # Whether the payment can be voided.
+        voidable:
       )
       end
 
@@ -328,7 +335,8 @@ module Whopsdk
             subtotal: T.nilable(Float),
             total: T.nilable(Float),
             usd_total: T.nilable(Float),
-            user: T.nilable(Whopsdk::Models::PaymentListResponse::User)
+            user: T.nilable(Whopsdk::Models::PaymentListResponse::User),
+            voidable: T::Boolean
           }
         )
       end

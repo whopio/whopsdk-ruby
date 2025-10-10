@@ -30,7 +30,8 @@ module Whopsdk
         subtotal: Float?,
         total: Float?,
         usd_total: Float?,
-        user: Whopsdk::Models::PaymentListResponse::User?
+        user: Whopsdk::Models::PaymentListResponse::User?,
+        voidable: bool
       }
 
     class PaymentListResponse < Whopsdk::Internal::Type::BaseModel
@@ -92,6 +93,8 @@ module Whopsdk
 
       attr_accessor user: Whopsdk::Models::PaymentListResponse::User?
 
+      attr_accessor voidable: bool
+
       def initialize: (
         id: String,
         amount_after_fees: Float,
@@ -121,7 +124,8 @@ module Whopsdk
         subtotal: Float?,
         total: Float?,
         usd_total: Float?,
-        user: Whopsdk::Models::PaymentListResponse::User?
+        user: Whopsdk::Models::PaymentListResponse::User?,
+        voidable: bool
       ) -> void
 
       def to_hash: -> {
@@ -153,7 +157,8 @@ module Whopsdk
         subtotal: Float?,
         total: Float?,
         usd_total: Float?,
-        user: Whopsdk::Models::PaymentListResponse::User?
+        user: Whopsdk::Models::PaymentListResponse::User?,
+        voidable: bool
       }
 
       type billing_address =

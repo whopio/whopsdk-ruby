@@ -36,6 +36,17 @@ module Whopsdk
         ?request_options: Whopsdk::request_opts
       ) -> Whopsdk::Membership
 
+      def pause: (
+        String id,
+        ?void_payments: bool?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Membership
+
+      def resume: (
+        String id,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Membership
+
       def initialize: (client: Whopsdk::Client) -> void
     end
   end

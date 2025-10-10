@@ -138,6 +138,62 @@ module Whopsdk
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {Whopsdk::Models::MembershipPauseParams} for more details.
+      #
+      # Pauses a membership's payments
+      #
+      # Required permissions:
+      #
+      # - `member:manage`
+      # - `member:basic:read`
+      #
+      # @overload pause(id, void_payments: nil, request_options: {})
+      #
+      # @param id [String]
+      #
+      # @param void_payments [Boolean, nil] Whether to void past_due payments associated with the membership to prevent futu
+      #
+      # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Whopsdk::Models::Membership]
+      #
+      # @see Whopsdk::Models::MembershipPauseParams
+      def pause(id, params = {})
+        parsed, options = Whopsdk::MembershipPauseParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: ["memberships/%1$s/pause", id],
+          body: parsed,
+          model: Whopsdk::Membership,
+          options: options
+        )
+      end
+
+      # Resumes a membership's payments
+      #
+      # Required permissions:
+      #
+      # - `member:manage`
+      # - `member:basic:read`
+      #
+      # @overload resume(id, request_options: {})
+      #
+      # @param id [String]
+      # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Whopsdk::Models::Membership]
+      #
+      # @see Whopsdk::Models::MembershipResumeParams
+      def resume(id, params = {})
+        @client.request(
+          method: :post,
+          path: ["memberships/%1$s/resume", id],
+          model: Whopsdk::Membership,
+          options: params[:request_options]
+        )
+      end
+
       # @api private
       #
       # @param client [Whopsdk::Client]

@@ -1,0 +1,69 @@
+module Whopsdk
+  module Models
+    type experience_update_params =
+      {
+        access_level: Whopsdk::Models::ExperienceUpdateParams::access_level?,
+        logo: Whopsdk::ExperienceUpdateParams::Logo?,
+        name: String?,
+        order: String?,
+        section_id: String?
+      }
+      & Whopsdk::Internal::Type::request_parameters
+
+    class ExperienceUpdateParams < Whopsdk::Internal::Type::BaseModel
+      extend Whopsdk::Internal::Type::RequestParameters::Converter
+      include Whopsdk::Internal::Type::RequestParameters
+
+      attr_accessor access_level: Whopsdk::Models::ExperienceUpdateParams::access_level?
+
+      attr_accessor logo: Whopsdk::ExperienceUpdateParams::Logo?
+
+      attr_accessor name: String?
+
+      attr_accessor order: String?
+
+      attr_accessor section_id: String?
+
+      def initialize: (
+        ?access_level: Whopsdk::Models::ExperienceUpdateParams::access_level?,
+        ?logo: Whopsdk::ExperienceUpdateParams::Logo?,
+        ?name: String?,
+        ?order: String?,
+        ?section_id: String?,
+        ?request_options: Whopsdk::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        access_level: Whopsdk::Models::ExperienceUpdateParams::access_level?,
+        logo: Whopsdk::ExperienceUpdateParams::Logo?,
+        name: String?,
+        order: String?,
+        section_id: String?,
+        request_options: Whopsdk::RequestOptions
+      }
+
+      type access_level = :public | :private
+
+      module AccessLevel
+        extend Whopsdk::Internal::Type::Enum
+
+        PUBLIC: :public
+        PRIVATE: :private
+
+        def self?.values: -> ::Array[Whopsdk::Models::ExperienceUpdateParams::access_level]
+      end
+
+      type logo = { id: String?, direct_upload_id: String? }
+
+      class Logo < Whopsdk::Internal::Type::BaseModel
+        attr_accessor id: String?
+
+        attr_accessor direct_upload_id: String?
+
+        def initialize: (?id: String?, ?direct_upload_id: String?) -> void
+
+        def to_hash: -> { id: String?, direct_upload_id: String? }
+      end
+    end
+  end
+end

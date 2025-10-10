@@ -1,0 +1,56 @@
+module Whopsdk
+  module Models
+    type experience_list_params =
+      {
+        company_id: String,
+        after: String?,
+        app_id: String?,
+        before: String?,
+        first: Integer?,
+        last: Integer?,
+        product_id: String?
+      }
+      & Whopsdk::Internal::Type::request_parameters
+
+    class ExperienceListParams < Whopsdk::Internal::Type::BaseModel
+      extend Whopsdk::Internal::Type::RequestParameters::Converter
+      include Whopsdk::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor after: String?
+
+      attr_accessor app_id: String?
+
+      attr_accessor before: String?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      attr_accessor product_id: String?
+
+      def initialize: (
+        company_id: String,
+        ?after: String?,
+        ?app_id: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?product_id: String?,
+        ?request_options: Whopsdk::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        after: String?,
+        app_id: String?,
+        before: String?,
+        first: Integer?,
+        last: Integer?,
+        product_id: String?,
+        request_options: Whopsdk::RequestOptions
+      }
+    end
+  end
+end

@@ -145,4 +145,72 @@ class Whopsdk::Test::Resources::MembershipsTest < Whopsdk::Test::ResourceTest
       }
     end
   end
+
+  def test_pause
+    skip("Prism tests are disabled")
+
+    response = @whopsdk.memberships.pause("mem_xxxxxxxxxxxxxx")
+
+    assert_pattern do
+      response => Whopsdk::Membership
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        cancel_at_period_end: Whopsdk::Internal::Type::Boolean,
+        canceled_at: Integer | nil,
+        cancellation_reason: String | nil,
+        company: Whopsdk::Membership::Company,
+        created_at: Integer,
+        currency: Whopsdk::Currency | nil,
+        license_key: String | nil,
+        manage_url: String | nil,
+        member: Whopsdk::Membership::Member | nil,
+        metadata: ^(Whopsdk::Internal::Type::HashOf[Whopsdk::Internal::Type::Unknown]),
+        payment_collection_paused: Whopsdk::Internal::Type::Boolean,
+        plan: Whopsdk::Membership::Plan,
+        promo_code: Whopsdk::Membership::PromoCode | nil,
+        renewal_period_end: Integer | nil,
+        renewal_period_start: Integer | nil,
+        status: Whopsdk::MembershipStatus,
+        updated_at: Integer,
+        user: Whopsdk::Membership::User | nil
+      }
+    end
+  end
+
+  def test_resume
+    skip("Prism tests are disabled")
+
+    response = @whopsdk.memberships.resume("mem_xxxxxxxxxxxxxx")
+
+    assert_pattern do
+      response => Whopsdk::Membership
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        cancel_at_period_end: Whopsdk::Internal::Type::Boolean,
+        canceled_at: Integer | nil,
+        cancellation_reason: String | nil,
+        company: Whopsdk::Membership::Company,
+        created_at: Integer,
+        currency: Whopsdk::Currency | nil,
+        license_key: String | nil,
+        manage_url: String | nil,
+        member: Whopsdk::Membership::Member | nil,
+        metadata: ^(Whopsdk::Internal::Type::HashOf[Whopsdk::Internal::Type::Unknown]),
+        payment_collection_paused: Whopsdk::Internal::Type::Boolean,
+        plan: Whopsdk::Membership::Plan,
+        promo_code: Whopsdk::Membership::PromoCode | nil,
+        renewal_period_end: Integer | nil,
+        renewal_period_start: Integer | nil,
+        status: Whopsdk::MembershipStatus,
+        updated_at: Integer,
+        user: Whopsdk::Membership::User | nil
+      }
+    end
+  end
 end

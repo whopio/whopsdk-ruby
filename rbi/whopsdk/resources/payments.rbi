@@ -142,6 +142,25 @@ module Whopsdk
       def retry_(id, request_options: {})
       end
 
+      # Voids a payment
+      #
+      # Required permissions:
+      #
+      # - `payment:manage`
+      # - `plan:basic:read`
+      # - `access_pass:basic:read`
+      # - `member:email:read`
+      # - `member:basic:read`
+      # - `promo_code:basic:read`
+      sig do
+        params(
+          id: String,
+          request_options: Whopsdk::RequestOptions::OrHash
+        ).returns(Whopsdk::Payment)
+      end
+      def void(id, request_options: {})
+      end
+
       # @api private
       sig { params(client: Whopsdk::Client).returns(T.attached_class) }
       def self.new(client:)

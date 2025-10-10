@@ -37,6 +37,11 @@ module Whopsdk
         ?request_options: Whopsdk::request_opts
       ) -> Whopsdk::Payment
 
+      def `void`: (
+        String id,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Payment
+
       def initialize: (client: Whopsdk::Client) -> void
     end
   end

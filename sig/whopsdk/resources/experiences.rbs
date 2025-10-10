@@ -1,0 +1,55 @@
+module Whopsdk
+  module Resources
+    class Experiences
+      def create: (
+        app_id: String,
+        company_id: String,
+        ?name: String?,
+        ?section_id: String?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Experience
+
+      def retrieve: (
+        String id,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Experience
+
+      def update: (
+        String id,
+        ?access_level: Whopsdk::Models::ExperienceUpdateParams::access_level?,
+        ?logo: Whopsdk::ExperienceUpdateParams::Logo?,
+        ?name: String?,
+        ?order: String?,
+        ?section_id: String?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Experience
+
+      def list: (
+        company_id: String,
+        ?after: String?,
+        ?app_id: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?product_id: String?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::ExperienceListResponse?]
+
+      def delete: (String id, ?request_options: Whopsdk::request_opts) -> bool
+
+      def attach: (
+        String id,
+        product_id: String,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Experience
+
+      def detach: (
+        String id,
+        product_id: String,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Experience
+
+      def initialize: (client: Whopsdk::Client) -> void
+    end
+  end
+end

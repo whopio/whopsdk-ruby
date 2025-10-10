@@ -82,6 +82,9 @@ module Whopsdk
     # @return [Whopsdk::Resources::SupportChannels]
     attr_reader :support_channels
 
+    # @return [Whopsdk::Resources::Experiences]
+    attr_reader :experiences
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -151,6 +154,7 @@ module Whopsdk
       @users = Whopsdk::Resources::Users.new(client: self)
       @payments = Whopsdk::Resources::Payments.new(client: self)
       @support_channels = Whopsdk::Resources::SupportChannels.new(client: self)
+      @experiences = Whopsdk::Resources::Experiences.new(client: self)
     end
   end
 end

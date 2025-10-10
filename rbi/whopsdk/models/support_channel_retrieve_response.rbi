@@ -43,6 +43,10 @@ module Whopsdk
       end
       attr_writer :customer_user
 
+      # When the last message was sent
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :last_message_at
+
       # When the support ticket was resolved (null if unresolved)
       sig { returns(T.nilable(Integer)) }
       attr_accessor :resolved_at
@@ -57,6 +61,7 @@ module Whopsdk
             T.nilable(
               Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser::OrHash
             ),
+          last_message_at: T.nilable(Integer),
           resolved_at: T.nilable(Integer)
         ).returns(T.attached_class)
       end
@@ -69,6 +74,8 @@ module Whopsdk
         custom_name:,
         # The customer user if this is a support chat
         customer_user:,
+        # When the last message was sent
+        last_message_at:,
         # When the support ticket was resolved (null if unresolved)
         resolved_at:
       )
@@ -84,6 +91,7 @@ module Whopsdk
               T.nilable(
                 Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser
               ),
+            last_message_at: T.nilable(Integer),
             resolved_at: T.nilable(Integer)
           }
         )

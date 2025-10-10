@@ -18,6 +18,7 @@ class Whopsdk::Test::Resources::SupportChannelsTest < Whopsdk::Test::ResourceTes
         company_id: String | nil,
         custom_name: String | nil,
         customer_user: Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser | nil,
+        last_message_at: Integer | nil,
         resolved_at: Integer | nil
       }
     end
@@ -45,6 +46,7 @@ class Whopsdk::Test::Resources::SupportChannelsTest < Whopsdk::Test::ResourceTes
         company_id: String | nil,
         custom_name: String | nil,
         customer_user: Whopsdk::Models::SupportChannelListResponse::CustomerUser | nil,
+        last_message_at: Integer | nil,
         resolved_at: Integer | nil
       }
     end

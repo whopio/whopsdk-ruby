@@ -6,6 +6,7 @@ module Whopsdk
         company_id: String?,
         custom_name: String?,
         customer_user: Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser?,
+        last_message_at: Integer?,
         resolved_at: Integer?
       }
 
@@ -18,6 +19,8 @@ module Whopsdk
 
       attr_accessor customer_user: Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser?
 
+      attr_accessor last_message_at: Integer?
+
       attr_accessor resolved_at: Integer?
 
       def initialize: (
@@ -25,6 +28,7 @@ module Whopsdk
         company_id: String?,
         custom_name: String?,
         customer_user: Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser?,
+        last_message_at: Integer?,
         resolved_at: Integer?
       ) -> void
 
@@ -33,6 +37,7 @@ module Whopsdk
         company_id: String?,
         custom_name: String?,
         customer_user: Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser?,
+        last_message_at: Integer?,
         resolved_at: Integer?
       }
 

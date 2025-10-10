@@ -91,6 +91,22 @@ module Whopsdk
 
   EntryStatus = Whopsdk::Models::EntryStatus
 
+  Experience = Whopsdk::Models::Experience
+
+  ExperienceAttachParams = Whopsdk::Models::ExperienceAttachParams
+
+  ExperienceCreateParams = Whopsdk::Models::ExperienceCreateParams
+
+  ExperienceDeleteParams = Whopsdk::Models::ExperienceDeleteParams
+
+  ExperienceDetachParams = Whopsdk::Models::ExperienceDetachParams
+
+  ExperienceListParams = Whopsdk::Models::ExperienceListParams
+
+  ExperienceRetrieveParams = Whopsdk::Models::ExperienceRetrieveParams
+
+  ExperienceUpdateParams = Whopsdk::Models::ExperienceUpdateParams
+
   ForumPost = Whopsdk::Models::ForumPost
 
   ForumPostCreateParams = Whopsdk::Models::ForumPostCreateParams
@@ -135,6 +151,10 @@ module Whopsdk
 
   MembershipListParams = Whopsdk::Models::MembershipListParams
 
+  MembershipPauseParams = Whopsdk::Models::MembershipPauseParams
+
+  MembershipResumeParams = Whopsdk::Models::MembershipResumeParams
+
   MembershipRetrieveParams = Whopsdk::Models::MembershipRetrieveParams
 
   MembershipStatus = Whopsdk::Models::MembershipStatus
@@ -160,6 +180,8 @@ module Whopsdk
   PaymentRetrieveParams = Whopsdk::Models::PaymentRetrieveParams
 
   PaymentRetryParams = Whopsdk::Models::PaymentRetryParams
+
+  PaymentVoidParams = Whopsdk::Models::PaymentVoidParams
 
   Plan = Whopsdk::Models::Plan
 

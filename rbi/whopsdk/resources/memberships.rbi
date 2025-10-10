@@ -127,6 +127,43 @@ module Whopsdk
       )
       end
 
+      # Pauses a membership's payments
+      #
+      # Required permissions:
+      #
+      # - `member:manage`
+      # - `member:basic:read`
+      sig do
+        params(
+          id: String,
+          void_payments: T.nilable(T::Boolean),
+          request_options: Whopsdk::RequestOptions::OrHash
+        ).returns(Whopsdk::Membership)
+      end
+      def pause(
+        id,
+        # Whether to void past_due payments associated with the membership to prevent
+        # future payment attempts.
+        void_payments: nil,
+        request_options: {}
+      )
+      end
+
+      # Resumes a membership's payments
+      #
+      # Required permissions:
+      #
+      # - `member:manage`
+      # - `member:basic:read`
+      sig do
+        params(
+          id: String,
+          request_options: Whopsdk::RequestOptions::OrHash
+        ).returns(Whopsdk::Membership)
+      end
+      def resume(id, request_options: {})
+      end
+
       # @api private
       sig { params(client: Whopsdk::Client).returns(T.attached_class) }
       def self.new(client:)

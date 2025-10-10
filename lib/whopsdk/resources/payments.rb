@@ -154,6 +154,34 @@ module Whopsdk
         )
       end
 
+      # Voids a payment
+      #
+      # Required permissions:
+      #
+      # - `payment:manage`
+      # - `plan:basic:read`
+      # - `access_pass:basic:read`
+      # - `member:email:read`
+      # - `member:basic:read`
+      # - `promo_code:basic:read`
+      #
+      # @overload void(id, request_options: {})
+      #
+      # @param id [String]
+      # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Whopsdk::Models::Payment]
+      #
+      # @see Whopsdk::Models::PaymentVoidParams
+      def void(id, params = {})
+        @client.request(
+          method: :post,
+          path: ["payments/%1$s/void", id],
+          model: Whopsdk::Payment,
+          options: params[:request_options]
+        )
+      end
+
       # @api private
       #
       # @param client [Whopsdk::Client]

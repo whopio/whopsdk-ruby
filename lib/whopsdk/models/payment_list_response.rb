@@ -179,7 +179,13 @@ module Whopsdk
       #   @return [Whopsdk::Models::PaymentListResponse::User, nil]
       required :user, -> { Whopsdk::Models::PaymentListResponse::User }, nil?: true
 
-      # @!method initialize(id:, amount_after_fees:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, company:, created_at:, currency:, dispute_alerted_at:, failure_message:, last_payment_attempt:, membership:, paid_at:, payment_method_type:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, status:, substatus:, subtotal:, total:, usd_total:, user:)
+      # @!attribute voidable
+      #   Whether the payment can be voided.
+      #
+      #   @return [Boolean]
+      required :voidable, Whopsdk::Internal::Type::Boolean
+
+      # @!method initialize(id:, amount_after_fees:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, company:, created_at:, currency:, dispute_alerted_at:, failure_message:, last_payment_attempt:, membership:, paid_at:, payment_method_type:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, status:, substatus:, subtotal:, total:, usd_total:, user:, voidable:)
       #   Some parameter documentations has been truncated, see
       #   {Whopsdk::Models::PaymentListResponse} for more details.
       #
@@ -242,6 +248,8 @@ module Whopsdk
       #   @param usd_total [Float, nil] The total in USD to show to the creator (excluding buyer fees).
       #
       #   @param user [Whopsdk::Models::PaymentListResponse::User, nil] The user that made this payment.
+      #
+      #   @param voidable [Boolean] Whether the payment can be voided.
 
       # @see Whopsdk::Models::PaymentListResponse#billing_address
       class BillingAddress < Whopsdk::Internal::Type::BaseModel

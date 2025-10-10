@@ -42,7 +42,8 @@ class Whopsdk::Test::Resources::PaymentsTest < Whopsdk::Test::ResourceTest
         subtotal: Float | nil,
         total: Float | nil,
         usd_total: Float | nil,
-        user: Whopsdk::Payment::User | nil
+        user: Whopsdk::Payment::User | nil,
+        voidable: Whopsdk::Internal::Type::Boolean
       }
     end
   end
@@ -93,7 +94,8 @@ class Whopsdk::Test::Resources::PaymentsTest < Whopsdk::Test::ResourceTest
         subtotal: Float | nil,
         total: Float | nil,
         usd_total: Float | nil,
-        user: Whopsdk::Models::PaymentListResponse::User | nil
+        user: Whopsdk::Models::PaymentListResponse::User | nil,
+        voidable: Whopsdk::Internal::Type::Boolean
       }
     end
   end
@@ -137,7 +139,8 @@ class Whopsdk::Test::Resources::PaymentsTest < Whopsdk::Test::ResourceTest
         subtotal: Float | nil,
         total: Float | nil,
         usd_total: Float | nil,
-        user: Whopsdk::Payment::User | nil
+        user: Whopsdk::Payment::User | nil,
+        voidable: Whopsdk::Internal::Type::Boolean
       }
     end
   end
@@ -181,7 +184,8 @@ class Whopsdk::Test::Resources::PaymentsTest < Whopsdk::Test::ResourceTest
         subtotal: Float | nil,
         total: Float | nil,
         usd_total: Float | nil,
-        user: Whopsdk::Payment::User | nil
+        user: Whopsdk::Payment::User | nil,
+        voidable: Whopsdk::Internal::Type::Boolean
       }
     end
   end

@@ -133,6 +133,10 @@ module Whopsdk
 
   class MembershipUpdateParams = Whopsdk::Models::MembershipUpdateParams
 
+  class Message = Whopsdk::Models::Message
+
+  class MessageCreateParams = Whopsdk::Models::MessageCreateParams
+
   class MessageListParams = Whopsdk::Models::MessageListParams
 
   class MessageRetrieveParams = Whopsdk::Models::MessageRetrieveParams
@@ -196,6 +200,10 @@ module Whopsdk
   module ShipmentStatus = Whopsdk::Models::ShipmentStatus
 
   module ShipmentSubstatus = Whopsdk::Models::ShipmentSubstatus
+
+  class SupportChannelListParams = Whopsdk::Models::SupportChannelListParams
+
+  class SupportChannelRetrieveParams = Whopsdk::Models::SupportChannelRetrieveParams
 
   module TaxType = Whopsdk::Models::TaxType
 

@@ -2,8 +2,7 @@
 
 module Whopsdk
   module Models
-    # @see Whopsdk::Resources::Messages#retrieve
-    class MessageRetrieveResponse < Whopsdk::Internal::Type::BaseModel
+    class Message < Whopsdk::Internal::Type::BaseModel
       # @!attribute id
       #   The unique identifier for the entity
       #
@@ -37,22 +36,20 @@ module Whopsdk
       # @!attribute poll
       #   The poll for this message
       #
-      #   @return [Whopsdk::Models::MessageRetrieveResponse::Poll, nil]
-      required :poll, -> { Whopsdk::Models::MessageRetrieveResponse::Poll }, nil?: true
+      #   @return [Whopsdk::Models::Message::Poll, nil]
+      required :poll, -> { Whopsdk::Message::Poll }, nil?: true
 
       # @!attribute poll_votes
       #   The reaction counts for this message
       #
-      #   @return [Array<Whopsdk::Models::MessageRetrieveResponse::PollVote>]
-      required :poll_votes,
-               -> { Whopsdk::Internal::Type::ArrayOf[Whopsdk::Models::MessageRetrieveResponse::PollVote] }
+      #   @return [Array<Whopsdk::Models::Message::PollVote>]
+      required :poll_votes, -> { Whopsdk::Internal::Type::ArrayOf[Whopsdk::Message::PollVote] }
 
       # @!attribute reaction_counts
       #   The reaction counts for this message
       #
-      #   @return [Array<Whopsdk::Models::MessageRetrieveResponse::ReactionCount>]
-      required :reaction_counts,
-               -> { Whopsdk::Internal::Type::ArrayOf[Whopsdk::Models::MessageRetrieveResponse::ReactionCount] }
+      #   @return [Array<Whopsdk::Models::Message::ReactionCount>]
+      required :reaction_counts, -> { Whopsdk::Internal::Type::ArrayOf[Whopsdk::Message::ReactionCount] }
 
       # @!attribute replying_to_message_id
       #   The ID of the message this is replying to, if applicable
@@ -63,8 +60,8 @@ module Whopsdk
       # @!attribute user
       #   The user who sent this message
       #
-      #   @return [Whopsdk::Models::MessageRetrieveResponse::User]
-      required :user, -> { Whopsdk::Models::MessageRetrieveResponse::User }
+      #   @return [Whopsdk::Models::Message::User]
+      required :user, -> { Whopsdk::Message::User }
 
       # @!attribute view_count
       #   The number of times this message has been viewed
@@ -85,32 +82,30 @@ module Whopsdk
       #
       #   @param message_type [Symbol, Whopsdk::Models::DmsPostTypes] The type of post
       #
-      #   @param poll [Whopsdk::Models::MessageRetrieveResponse::Poll, nil] The poll for this message
+      #   @param poll [Whopsdk::Models::Message::Poll, nil] The poll for this message
       #
-      #   @param poll_votes [Array<Whopsdk::Models::MessageRetrieveResponse::PollVote>] The reaction counts for this message
+      #   @param poll_votes [Array<Whopsdk::Models::Message::PollVote>] The reaction counts for this message
       #
-      #   @param reaction_counts [Array<Whopsdk::Models::MessageRetrieveResponse::ReactionCount>] The reaction counts for this message
+      #   @param reaction_counts [Array<Whopsdk::Models::Message::ReactionCount>] The reaction counts for this message
       #
       #   @param replying_to_message_id [String, nil] The ID of the message this is replying to, if applicable
       #
-      #   @param user [Whopsdk::Models::MessageRetrieveResponse::User] The user who sent this message
+      #   @param user [Whopsdk::Models::Message::User] The user who sent this message
       #
       #   @param view_count [Integer, nil] The number of times this message has been viewed
 
-      # @see Whopsdk::Models::MessageRetrieveResponse#poll
+      # @see Whopsdk::Models::Message#poll
       class Poll < Whopsdk::Internal::Type::BaseModel
         # @!attribute options
         #   The options for the poll
         #
-        #   @return [Array<Whopsdk::Models::MessageRetrieveResponse::Poll::Option>, nil]
-        required :options,
-                 -> { Whopsdk::Internal::Type::ArrayOf[Whopsdk::Models::MessageRetrieveResponse::Poll::Option] },
-                 nil?: true
+        #   @return [Array<Whopsdk::Models::Message::Poll::Option>, nil]
+        required :options, -> { Whopsdk::Internal::Type::ArrayOf[Whopsdk::Message::Poll::Option] }, nil?: true
 
         # @!method initialize(options:)
         #   The poll for this message
         #
-        #   @param options [Array<Whopsdk::Models::MessageRetrieveResponse::Poll::Option>, nil] The options for the poll
+        #   @param options [Array<Whopsdk::Models::Message::Poll::Option>, nil] The options for the poll
 
         class Option < Whopsdk::Internal::Type::BaseModel
           # @!attribute id
@@ -176,7 +171,7 @@ module Whopsdk
         #   @param emoji [String, nil] The emoji that was used in shortcode format (:heart:)
       end
 
-      # @see Whopsdk::Models::MessageRetrieveResponse#user
+      # @see Whopsdk::Models::Message#user
       class User < Whopsdk::Internal::Type::BaseModel
         # @!attribute id
         #   The internal ID of the user.

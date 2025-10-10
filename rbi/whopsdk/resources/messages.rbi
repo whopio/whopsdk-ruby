@@ -3,6 +3,39 @@
 module Whopsdk
   module Resources
     class Messages
+      # Creates a new message
+      #
+      # Required permissions:
+      #
+      # - `chat:message:create`
+      sig do
+        params(
+          content: String,
+          attachments:
+            T.nilable(
+              T::Array[Whopsdk::MessageCreateParams::Attachment::OrHash]
+            ),
+          channel_id: T.nilable(String),
+          experience_id: T.nilable(String),
+          poll: T.nilable(Whopsdk::MessageCreateParams::Poll::OrHash),
+          request_options: Whopsdk::RequestOptions::OrHash
+        ).returns(Whopsdk::Message)
+      end
+      def create(
+        # The content of the message in Markdown format.
+        content:,
+        # The attachments for this message, such as videos or images.
+        attachments: nil,
+        # The ID of the channel to send to.
+        channel_id: nil,
+        # The ID of the chat experience to send the message in.
+        experience_id: nil,
+        # The poll for this message
+        poll: nil,
+        request_options: {}
+      )
+      end
+
       # Retrieves a message
       #
       # Required permissions:
@@ -12,7 +45,7 @@ module Whopsdk
         params(
           id: String,
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(Whopsdk::Models::MessageRetrieveResponse)
+        ).returns(Whopsdk::Message)
       end
       def retrieve(id, request_options: {})
       end

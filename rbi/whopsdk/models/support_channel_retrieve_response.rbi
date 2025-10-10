@@ -1,0 +1,141 @@
+# typed: strong
+
+module Whopsdk
+  module Models
+    class SupportChannelRetrieveResponse < Whopsdk::Internal::Type::BaseModel
+      OrHash =
+        T.type_alias do
+          T.any(
+            Whopsdk::Models::SupportChannelRetrieveResponse,
+            Whopsdk::Internal::AnyHash
+          )
+        end
+
+      # The unique identifier for the entity
+      sig { returns(String) }
+      attr_accessor :id
+
+      # The bot ID if this is a support chat
+      sig { returns(T.nilable(String)) }
+      attr_accessor :company_id
+
+      # The custom name of the DM channel, if any
+      sig { returns(T.nilable(String)) }
+      attr_accessor :custom_name
+
+      # The customer user if this is a support chat
+      sig do
+        returns(
+          T.nilable(
+            Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser
+          )
+        )
+      end
+      attr_reader :customer_user
+
+      sig do
+        params(
+          customer_user:
+            T.nilable(
+              Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser::OrHash
+            )
+        ).void
+      end
+      attr_writer :customer_user
+
+      # When the support ticket was resolved (null if unresolved)
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :resolved_at
+
+      # Represents a DM channel
+      sig do
+        params(
+          id: String,
+          company_id: T.nilable(String),
+          custom_name: T.nilable(String),
+          customer_user:
+            T.nilable(
+              Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser::OrHash
+            ),
+          resolved_at: T.nilable(Integer)
+        ).returns(T.attached_class)
+      end
+      def self.new(
+        # The unique identifier for the entity
+        id:,
+        # The bot ID if this is a support chat
+        company_id:,
+        # The custom name of the DM channel, if any
+        custom_name:,
+        # The customer user if this is a support chat
+        customer_user:,
+        # When the support ticket was resolved (null if unresolved)
+        resolved_at:
+      )
+      end
+
+      sig do
+        override.returns(
+          {
+            id: String,
+            company_id: T.nilable(String),
+            custom_name: T.nilable(String),
+            customer_user:
+              T.nilable(
+                Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser
+              ),
+            resolved_at: T.nilable(Integer)
+          }
+        )
+      end
+      def to_hash
+      end
+
+      class CustomerUser < Whopsdk::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser,
+              Whopsdk::Internal::AnyHash
+            )
+          end
+
+        # The internal ID of the user.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The name of the user from their Whop account.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
+        # The username of the user from their Whop account.
+        sig { returns(String) }
+        attr_accessor :username
+
+        # The customer user if this is a support chat
+        sig do
+          params(id: String, name: T.nilable(String), username: String).returns(
+            T.attached_class
+          )
+        end
+        def self.new(
+          # The internal ID of the user.
+          id:,
+          # The name of the user from their Whop account.
+          name:,
+          # The username of the user from their Whop account.
+          username:
+        )
+        end
+
+        sig do
+          override.returns(
+            { id: String, name: T.nilable(String), username: String }
+          )
+        end
+        def to_hash
+        end
+      end
+    end
+  end
+end

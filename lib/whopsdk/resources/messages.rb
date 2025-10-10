@@ -3,6 +3,40 @@
 module Whopsdk
   module Resources
     class Messages
+      # Creates a new message
+      #
+      # Required permissions:
+      #
+      # - `chat:message:create`
+      #
+      # @overload create(content:, attachments: nil, channel_id: nil, experience_id: nil, poll: nil, request_options: {})
+      #
+      # @param content [String] The content of the message in Markdown format.
+      #
+      # @param attachments [Array<Whopsdk::Models::MessageCreateParams::Attachment>, nil] The attachments for this message, such as videos or images.
+      #
+      # @param channel_id [String, nil] The ID of the channel to send to.
+      #
+      # @param experience_id [String, nil] The ID of the chat experience to send the message in.
+      #
+      # @param poll [Whopsdk::Models::MessageCreateParams::Poll, nil] The poll for this message
+      #
+      # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Whopsdk::Models::Message]
+      #
+      # @see Whopsdk::Models::MessageCreateParams
+      def create(params)
+        parsed, options = Whopsdk::MessageCreateParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: "messages",
+          body: parsed,
+          model: Whopsdk::Message,
+          options: options
+        )
+      end
+
       # Retrieves a message
       #
       # Required permissions:
@@ -14,14 +48,14 @@ module Whopsdk
       # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::MessageRetrieveResponse]
+      # @return [Whopsdk::Models::Message]
       #
       # @see Whopsdk::Models::MessageRetrieveParams
       def retrieve(id, params = {})
         @client.request(
           method: :get,
           path: ["messages/%1$s", id],
-          model: Whopsdk::Models::MessageRetrieveResponse,
+          model: Whopsdk::Message,
           options: params[:request_options]
         )
       end

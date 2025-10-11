@@ -22,6 +22,12 @@ module Whopsdk
       #   @return [Boolean]
       required :ban_urls, Whopsdk::Internal::Type::Boolean
 
+      # @!attribute banned_words
+      #   List of banned words in this chat
+      #
+      #   @return [Array<String>]
+      required :banned_words, Whopsdk::Internal::Type::ArrayOf[String]
+
       # @!attribute experience
       #   The experience for this chat
       #
@@ -46,7 +52,7 @@ module Whopsdk
       #   @return [Symbol, Whopsdk::Models::WhoCanReact]
       required :who_can_react, enum: -> { Whopsdk::WhoCanReact }
 
-      # @!method initialize(id:, ban_media:, ban_urls:, experience:, user_posts_cooldown_seconds:, who_can_post:, who_can_react:)
+      # @!method initialize(id:, ban_media:, ban_urls:, banned_words:, experience:, user_posts_cooldown_seconds:, who_can_post:, who_can_react:)
       #   Represents a Chat feed
       #
       #   @param id [String] The unique identifier for the entity
@@ -54,6 +60,8 @@ module Whopsdk
       #   @param ban_media [Boolean] Whether or not media is banned in this chat
       #
       #   @param ban_urls [Boolean] Whether or not URLs are banned in this chat
+      #
+      #   @param banned_words [Array<String>] List of banned words in this chat
       #
       #   @param experience [Whopsdk::Models::ChatChannelListResponse::Experience] The experience for this chat
       #

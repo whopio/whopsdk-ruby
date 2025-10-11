@@ -1,23 +1,23 @@
 module Whopsdk
   module Models
-    type support_channel_retrieve_response =
+    type support_channel =
       {
         id: String,
         company_id: String?,
         custom_name: String?,
-        customer_user: Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser?,
+        customer_user: Whopsdk::SupportChannel::CustomerUser?,
         last_message_at: Integer?,
         resolved_at: Integer?
       }
 
-    class SupportChannelRetrieveResponse < Whopsdk::Internal::Type::BaseModel
+    class SupportChannel < Whopsdk::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor company_id: String?
 
       attr_accessor custom_name: String?
 
-      attr_accessor customer_user: Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser?
+      attr_accessor customer_user: Whopsdk::SupportChannel::CustomerUser?
 
       attr_accessor last_message_at: Integer?
 
@@ -27,7 +27,7 @@ module Whopsdk
         id: String,
         company_id: String?,
         custom_name: String?,
-        customer_user: Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser?,
+        customer_user: Whopsdk::SupportChannel::CustomerUser?,
         last_message_at: Integer?,
         resolved_at: Integer?
       ) -> void
@@ -36,7 +36,7 @@ module Whopsdk
         id: String,
         company_id: String?,
         custom_name: String?,
-        customer_user: Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser?,
+        customer_user: Whopsdk::SupportChannel::CustomerUser?,
         last_message_at: Integer?,
         resolved_at: Integer?
       }

@@ -2,13 +2,10 @@
 
 module Whopsdk
   module Models
-    class SupportChannelRetrieveResponse < Whopsdk::Internal::Type::BaseModel
+    class SupportChannel < Whopsdk::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(
-            Whopsdk::Models::SupportChannelRetrieveResponse,
-            Whopsdk::Internal::AnyHash
-          )
+          T.any(Whopsdk::SupportChannel, Whopsdk::Internal::AnyHash)
         end
 
       # The unique identifier for the entity
@@ -24,21 +21,13 @@ module Whopsdk
       attr_accessor :custom_name
 
       # The customer user if this is a support chat
-      sig do
-        returns(
-          T.nilable(
-            Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser
-          )
-        )
-      end
+      sig { returns(T.nilable(Whopsdk::SupportChannel::CustomerUser)) }
       attr_reader :customer_user
 
       sig do
         params(
           customer_user:
-            T.nilable(
-              Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser::OrHash
-            )
+            T.nilable(Whopsdk::SupportChannel::CustomerUser::OrHash)
         ).void
       end
       attr_writer :customer_user
@@ -58,9 +47,7 @@ module Whopsdk
           company_id: T.nilable(String),
           custom_name: T.nilable(String),
           customer_user:
-            T.nilable(
-              Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser::OrHash
-            ),
+            T.nilable(Whopsdk::SupportChannel::CustomerUser::OrHash),
           last_message_at: T.nilable(Integer),
           resolved_at: T.nilable(Integer)
         ).returns(T.attached_class)
@@ -87,10 +74,7 @@ module Whopsdk
             id: String,
             company_id: T.nilable(String),
             custom_name: T.nilable(String),
-            customer_user:
-              T.nilable(
-                Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser
-              ),
+            customer_user: T.nilable(Whopsdk::SupportChannel::CustomerUser),
             last_message_at: T.nilable(Integer),
             resolved_at: T.nilable(Integer)
           }
@@ -103,7 +87,7 @@ module Whopsdk
         OrHash =
           T.type_alias do
             T.any(
-              Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser,
+              Whopsdk::SupportChannel::CustomerUser,
               Whopsdk::Internal::AnyHash
             )
           end

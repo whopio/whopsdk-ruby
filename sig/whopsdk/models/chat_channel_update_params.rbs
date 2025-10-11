@@ -1,0 +1,51 @@
+module Whopsdk
+  module Models
+    type chat_channel_update_params =
+      {
+        ban_media: bool?,
+        ban_urls: bool?,
+        banned_words: ::Array[String]?,
+        user_posts_cooldown_seconds: Integer?,
+        who_can_post: Whopsdk::Models::who_can_post?,
+        who_can_react: Whopsdk::Models::who_can_react?
+      }
+      & Whopsdk::Internal::Type::request_parameters
+
+    class ChatChannelUpdateParams < Whopsdk::Internal::Type::BaseModel
+      extend Whopsdk::Internal::Type::RequestParameters::Converter
+      include Whopsdk::Internal::Type::RequestParameters
+
+      attr_accessor ban_media: bool?
+
+      attr_accessor ban_urls: bool?
+
+      attr_accessor banned_words: ::Array[String]?
+
+      attr_accessor user_posts_cooldown_seconds: Integer?
+
+      attr_accessor who_can_post: Whopsdk::Models::who_can_post?
+
+      attr_accessor who_can_react: Whopsdk::Models::who_can_react?
+
+      def initialize: (
+        ?ban_media: bool?,
+        ?ban_urls: bool?,
+        ?banned_words: ::Array[String]?,
+        ?user_posts_cooldown_seconds: Integer?,
+        ?who_can_post: Whopsdk::Models::who_can_post?,
+        ?who_can_react: Whopsdk::Models::who_can_react?,
+        ?request_options: Whopsdk::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        ban_media: bool?,
+        ban_urls: bool?,
+        banned_words: ::Array[String]?,
+        user_posts_cooldown_seconds: Integer?,
+        who_can_post: Whopsdk::Models::who_can_post?,
+        who_can_react: Whopsdk::Models::who_can_react?,
+        request_options: Whopsdk::RequestOptions
+      }
+    end
+  end
+end

@@ -2,14 +2,9 @@
 
 module Whopsdk
   module Models
-    class ChatChannelRetrieveResponse < Whopsdk::Internal::Type::BaseModel
+    class ChatChannel < Whopsdk::Internal::Type::BaseModel
       OrHash =
-        T.type_alias do
-          T.any(
-            Whopsdk::Models::ChatChannelRetrieveResponse,
-            Whopsdk::Internal::AnyHash
-          )
-        end
+        T.type_alias { T.any(Whopsdk::ChatChannel, Whopsdk::Internal::AnyHash) }
 
       # The unique identifier for the entity
       sig { returns(String) }
@@ -28,15 +23,10 @@ module Whopsdk
       attr_accessor :banned_words
 
       # The experience for this chat
-      sig { returns(Whopsdk::Models::ChatChannelRetrieveResponse::Experience) }
+      sig { returns(Whopsdk::ChatChannel::Experience) }
       attr_reader :experience
 
-      sig do
-        params(
-          experience:
-            Whopsdk::Models::ChatChannelRetrieveResponse::Experience::OrHash
-        ).void
-      end
+      sig { params(experience: Whopsdk::ChatChannel::Experience::OrHash).void }
       attr_writer :experience
 
       # The number of seconds a user needs to wait before posting again, if any
@@ -58,8 +48,7 @@ module Whopsdk
           ban_media: T::Boolean,
           ban_urls: T::Boolean,
           banned_words: T::Array[String],
-          experience:
-            Whopsdk::Models::ChatChannelRetrieveResponse::Experience::OrHash,
+          experience: Whopsdk::ChatChannel::Experience::OrHash,
           user_posts_cooldown_seconds: T.nilable(Integer),
           who_can_post: Whopsdk::WhoCanPost::OrSymbol,
           who_can_react: Whopsdk::WhoCanReact::OrSymbol
@@ -92,8 +81,7 @@ module Whopsdk
             ban_media: T::Boolean,
             ban_urls: T::Boolean,
             banned_words: T::Array[String],
-            experience:
-              Whopsdk::Models::ChatChannelRetrieveResponse::Experience,
+            experience: Whopsdk::ChatChannel::Experience,
             user_posts_cooldown_seconds: T.nilable(Integer),
             who_can_post: Whopsdk::WhoCanPost::TaggedSymbol,
             who_can_react: Whopsdk::WhoCanReact::TaggedSymbol
@@ -106,10 +94,7 @@ module Whopsdk
       class Experience < Whopsdk::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(
-              Whopsdk::Models::ChatChannelRetrieveResponse::Experience,
-              Whopsdk::Internal::AnyHash
-            )
+            T.any(Whopsdk::ChatChannel::Experience, Whopsdk::Internal::AnyHash)
           end
 
         # The unique ID representing this experience

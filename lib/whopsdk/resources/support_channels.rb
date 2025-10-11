@@ -3,6 +3,35 @@
 module Whopsdk
   module Resources
     class SupportChannels
+      # Create a new support channel for a user in a bot. If one already exists, it will
+      # return the existing one.
+      #
+      # Required permissions:
+      #
+      # - `support_chat:create`
+      #
+      # @overload create(company_id:, user_id:, request_options: {})
+      #
+      # @param company_id [String] The ID of the company to create the support chat in
+      #
+      # @param user_id [String] The ID of the user to create the support chat for
+      #
+      # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Whopsdk::Models::SupportChannel]
+      #
+      # @see Whopsdk::Models::SupportChannelCreateParams
+      def create(params)
+        parsed, options = Whopsdk::SupportChannelCreateParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: "support_channels",
+          body: parsed,
+          model: Whopsdk::SupportChannel,
+          options: options
+        )
+      end
+
       # Retrieves a support channel
       #
       # Required permissions:
@@ -14,14 +43,14 @@ module Whopsdk
       # @param id [String]
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Models::SupportChannelRetrieveResponse]
+      # @return [Whopsdk::Models::SupportChannel]
       #
       # @see Whopsdk::Models::SupportChannelRetrieveParams
       def retrieve(id, params = {})
         @client.request(
           method: :get,
           path: ["support_channels/%1$s", id],
-          model: Whopsdk::Models::SupportChannelRetrieveResponse,
+          model: Whopsdk::SupportChannel,
           options: params[:request_options]
         )
       end

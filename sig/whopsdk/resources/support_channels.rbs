@@ -1,10 +1,16 @@
 module Whopsdk
   module Resources
     class SupportChannels
+      def create: (
+        company_id: String,
+        user_id: String,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::SupportChannel
+
       def retrieve: (
         String id,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Models::SupportChannelRetrieveResponse
+      ) -> Whopsdk::SupportChannel
 
       def list: (
         company_id: String,

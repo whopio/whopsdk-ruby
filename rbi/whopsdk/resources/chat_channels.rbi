@@ -12,9 +12,44 @@ module Whopsdk
         params(
           id: String,
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(Whopsdk::Models::ChatChannelRetrieveResponse)
+        ).returns(Whopsdk::ChatChannel)
       end
       def retrieve(id, request_options: {})
+      end
+
+      # Updates a chat channel
+      #
+      # Required permissions:
+      #
+      # - `chat:moderate`
+      sig do
+        params(
+          id: String,
+          ban_media: T.nilable(T::Boolean),
+          ban_urls: T.nilable(T::Boolean),
+          banned_words: T.nilable(T::Array[String]),
+          user_posts_cooldown_seconds: T.nilable(Integer),
+          who_can_post: T.nilable(Whopsdk::WhoCanPost::OrSymbol),
+          who_can_react: T.nilable(Whopsdk::WhoCanReact::OrSymbol),
+          request_options: Whopsdk::RequestOptions::OrHash
+        ).returns(Whopsdk::ChatChannel)
+      end
+      def update(
+        id,
+        # Whether media uploads are banned in this chat
+        ban_media: nil,
+        # Whether URLs are banned in this chat
+        ban_urls: nil,
+        # List of banned words for this chat
+        banned_words: nil,
+        # The cooldown period in seconds between user posts
+        user_posts_cooldown_seconds: nil,
+        # Who can post on a chat feed
+        who_can_post: nil,
+        # Who can react on a chat feed
+        who_can_react: nil,
+        request_options: {}
+      )
       end
 
       # Lists chat channels inside a company

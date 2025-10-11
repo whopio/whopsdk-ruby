@@ -3,6 +3,28 @@
 module Whopsdk
   module Resources
     class SupportChannels
+      # Create a new support channel for a user in a bot. If one already exists, it will
+      # return the existing one.
+      #
+      # Required permissions:
+      #
+      # - `support_chat:create`
+      sig do
+        params(
+          company_id: String,
+          user_id: String,
+          request_options: Whopsdk::RequestOptions::OrHash
+        ).returns(Whopsdk::SupportChannel)
+      end
+      def create(
+        # The ID of the company to create the support chat in
+        company_id:,
+        # The ID of the user to create the support chat for
+        user_id:,
+        request_options: {}
+      )
+      end
+
       # Retrieves a support channel
       #
       # Required permissions:
@@ -12,7 +34,7 @@ module Whopsdk
         params(
           id: String,
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(Whopsdk::Models::SupportChannelRetrieveResponse)
+        ).returns(Whopsdk::SupportChannel)
       end
       def retrieve(id, request_options: {})
       end

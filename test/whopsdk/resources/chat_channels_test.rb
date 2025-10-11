@@ -9,7 +9,7 @@ class Whopsdk::Test::Resources::ChatChannelsTest < Whopsdk::Test::ResourceTest
     response = @whopsdk.chat_channels.retrieve("id")
 
     assert_pattern do
-      response => Whopsdk::Models::ChatChannelRetrieveResponse
+      response => Whopsdk::ChatChannel
     end
 
     assert_pattern do
@@ -18,7 +18,30 @@ class Whopsdk::Test::Resources::ChatChannelsTest < Whopsdk::Test::ResourceTest
         ban_media: Whopsdk::Internal::Type::Boolean,
         ban_urls: Whopsdk::Internal::Type::Boolean,
         banned_words: ^(Whopsdk::Internal::Type::ArrayOf[String]),
-        experience: Whopsdk::Models::ChatChannelRetrieveResponse::Experience,
+        experience: Whopsdk::ChatChannel::Experience,
+        user_posts_cooldown_seconds: Integer | nil,
+        who_can_post: Whopsdk::WhoCanPost,
+        who_can_react: Whopsdk::WhoCanReact
+      }
+    end
+  end
+
+  def test_update
+    skip("Prism tests are disabled")
+
+    response = @whopsdk.chat_channels.update("id")
+
+    assert_pattern do
+      response => Whopsdk::ChatChannel
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        ban_media: Whopsdk::Internal::Type::Boolean,
+        ban_urls: Whopsdk::Internal::Type::Boolean,
+        banned_words: ^(Whopsdk::Internal::Type::ArrayOf[String]),
+        experience: Whopsdk::ChatChannel::Experience,
         user_posts_cooldown_seconds: Integer | nil,
         who_can_post: Whopsdk::WhoCanPost,
         who_can_react: Whopsdk::WhoCanReact

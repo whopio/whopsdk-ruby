@@ -2,8 +2,7 @@
 
 module Whopsdk
   module Models
-    # @see Whopsdk::Resources::SupportChannels#retrieve
-    class SupportChannelRetrieveResponse < Whopsdk::Internal::Type::BaseModel
+    class SupportChannel < Whopsdk::Internal::Type::BaseModel
       # @!attribute id
       #   The unique identifier for the entity
       #
@@ -25,8 +24,8 @@ module Whopsdk
       # @!attribute customer_user
       #   The customer user if this is a support chat
       #
-      #   @return [Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser, nil]
-      required :customer_user, -> { Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser }, nil?: true
+      #   @return [Whopsdk::Models::SupportChannel::CustomerUser, nil]
+      required :customer_user, -> { Whopsdk::SupportChannel::CustomerUser }, nil?: true
 
       # @!attribute last_message_at
       #   When the last message was sent
@@ -49,13 +48,13 @@ module Whopsdk
       #
       #   @param custom_name [String, nil] The custom name of the DM channel, if any
       #
-      #   @param customer_user [Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser, nil] The customer user if this is a support chat
+      #   @param customer_user [Whopsdk::Models::SupportChannel::CustomerUser, nil] The customer user if this is a support chat
       #
       #   @param last_message_at [Integer, nil] When the last message was sent
       #
       #   @param resolved_at [Integer, nil] When the support ticket was resolved (null if unresolved)
 
-      # @see Whopsdk::Models::SupportChannelRetrieveResponse#customer_user
+      # @see Whopsdk::Models::SupportChannel#customer_user
       class CustomerUser < Whopsdk::Internal::Type::BaseModel
         # @!attribute id
         #   The internal ID of the user.

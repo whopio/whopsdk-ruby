@@ -39,9 +39,13 @@ module Whopsdk
 
   BusinessTypes = Whopsdk::Models::BusinessTypes
 
+  ChatChannel = Whopsdk::Models::ChatChannel
+
   ChatChannelListParams = Whopsdk::Models::ChatChannelListParams
 
   ChatChannelRetrieveParams = Whopsdk::Models::ChatChannelRetrieveParams
+
+  ChatChannelUpdateParams = Whopsdk::Models::ChatChannelUpdateParams
 
   CheckoutConfiguration = Whopsdk::Models::CheckoutConfiguration
 
@@ -230,6 +234,10 @@ module Whopsdk
   ShipmentStatus = Whopsdk::Models::ShipmentStatus
 
   ShipmentSubstatus = Whopsdk::Models::ShipmentSubstatus
+
+  SupportChannel = Whopsdk::Models::SupportChannel
+
+  SupportChannelCreateParams = Whopsdk::Models::SupportChannelCreateParams
 
   SupportChannelListParams = Whopsdk::Models::SupportChannelListParams
 

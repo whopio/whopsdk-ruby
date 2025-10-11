@@ -3,13 +3,14 @@
 require_relative "../test_helper"
 
 class Whopsdk::Test::Resources::SupportChannelsTest < Whopsdk::Test::ResourceTest
-  def test_retrieve
+  def test_create_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.support_channels.retrieve("id")
+    response =
+      @whopsdk.support_channels.create(company_id: "biz_xxxxxxxxxxxxxx", user_id: "user_xxxxxxxxxxxxx")
 
     assert_pattern do
-      response => Whopsdk::Models::SupportChannelRetrieveResponse
+      response => Whopsdk::SupportChannel
     end
 
     assert_pattern do
@@ -17,7 +18,28 @@ class Whopsdk::Test::Resources::SupportChannelsTest < Whopsdk::Test::ResourceTes
         id: String,
         company_id: String | nil,
         custom_name: String | nil,
-        customer_user: Whopsdk::Models::SupportChannelRetrieveResponse::CustomerUser | nil,
+        customer_user: Whopsdk::SupportChannel::CustomerUser | nil,
+        last_message_at: Integer | nil,
+        resolved_at: Integer | nil
+      }
+    end
+  end
+
+  def test_retrieve
+    skip("Prism tests are disabled")
+
+    response = @whopsdk.support_channels.retrieve("id")
+
+    assert_pattern do
+      response => Whopsdk::SupportChannel
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        company_id: String | nil,
+        custom_name: String | nil,
+        customer_user: Whopsdk::SupportChannel::CustomerUser | nil,
         last_message_at: Integer | nil,
         resolved_at: Integer | nil
       }

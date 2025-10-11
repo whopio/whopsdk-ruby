@@ -2,8 +2,7 @@
 
 module Whopsdk
   module Models
-    # @see Whopsdk::Resources::ChatChannels#retrieve
-    class ChatChannelRetrieveResponse < Whopsdk::Internal::Type::BaseModel
+    class ChatChannel < Whopsdk::Internal::Type::BaseModel
       # @!attribute id
       #   The unique identifier for the entity
       #
@@ -31,8 +30,8 @@ module Whopsdk
       # @!attribute experience
       #   The experience for this chat
       #
-      #   @return [Whopsdk::Models::ChatChannelRetrieveResponse::Experience]
-      required :experience, -> { Whopsdk::Models::ChatChannelRetrieveResponse::Experience }
+      #   @return [Whopsdk::Models::ChatChannel::Experience]
+      required :experience, -> { Whopsdk::ChatChannel::Experience }
 
       # @!attribute user_posts_cooldown_seconds
       #   The number of seconds a user needs to wait before posting again, if any
@@ -63,7 +62,7 @@ module Whopsdk
       #
       #   @param banned_words [Array<String>] List of banned words in this chat
       #
-      #   @param experience [Whopsdk::Models::ChatChannelRetrieveResponse::Experience] The experience for this chat
+      #   @param experience [Whopsdk::Models::ChatChannel::Experience] The experience for this chat
       #
       #   @param user_posts_cooldown_seconds [Integer, nil] The number of seconds a user needs to wait before posting again, if any
       #
@@ -71,7 +70,7 @@ module Whopsdk
       #
       #   @param who_can_react [Symbol, Whopsdk::Models::WhoCanReact] Who can react on this chat
 
-      # @see Whopsdk::Models::ChatChannelRetrieveResponse#experience
+      # @see Whopsdk::Models::ChatChannel#experience
       class Experience < Whopsdk::Internal::Type::BaseModel
         # @!attribute id
         #   The unique ID representing this experience

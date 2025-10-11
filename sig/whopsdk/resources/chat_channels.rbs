@@ -4,7 +4,18 @@ module Whopsdk
       def retrieve: (
         String id,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Models::ChatChannelRetrieveResponse
+      ) -> Whopsdk::ChatChannel
+
+      def update: (
+        String id,
+        ?ban_media: bool?,
+        ?ban_urls: bool?,
+        ?banned_words: ::Array[String]?,
+        ?user_posts_cooldown_seconds: Integer?,
+        ?who_can_post: Whopsdk::Models::who_can_post?,
+        ?who_can_react: Whopsdk::Models::who_can_react?,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::ChatChannel
 
       def list: (
         company_id: String,

@@ -23,6 +23,10 @@ module Whopsdk
       sig { returns(T::Boolean) }
       attr_accessor :ban_urls
 
+      # List of banned words in this chat
+      sig { returns(T::Array[String]) }
+      attr_accessor :banned_words
+
       # The experience for this chat
       sig { returns(Whopsdk::Models::ChatChannelRetrieveResponse::Experience) }
       attr_reader :experience
@@ -53,6 +57,7 @@ module Whopsdk
           id: String,
           ban_media: T::Boolean,
           ban_urls: T::Boolean,
+          banned_words: T::Array[String],
           experience:
             Whopsdk::Models::ChatChannelRetrieveResponse::Experience::OrHash,
           user_posts_cooldown_seconds: T.nilable(Integer),
@@ -67,6 +72,8 @@ module Whopsdk
         ban_media:,
         # Whether or not URLs are banned in this chat
         ban_urls:,
+        # List of banned words in this chat
+        banned_words:,
         # The experience for this chat
         experience:,
         # The number of seconds a user needs to wait before posting again, if any
@@ -84,6 +91,7 @@ module Whopsdk
             id: String,
             ban_media: T::Boolean,
             ban_urls: T::Boolean,
+            banned_words: T::Array[String],
             experience:
               Whopsdk::Models::ChatChannelRetrieveResponse::Experience,
             user_posts_cooldown_seconds: T.nilable(Integer),

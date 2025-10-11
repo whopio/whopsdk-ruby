@@ -5,6 +5,7 @@ module Whopsdk
         id: String,
         ban_media: bool,
         ban_urls: bool,
+        banned_words: ::Array[String],
         experience: Whopsdk::Models::ChatChannelListResponse::Experience,
         user_posts_cooldown_seconds: Integer?,
         who_can_post: Whopsdk::Models::who_can_post,
@@ -18,6 +19,8 @@ module Whopsdk
 
       attr_accessor ban_urls: bool
 
+      attr_accessor banned_words: ::Array[String]
+
       attr_accessor experience: Whopsdk::Models::ChatChannelListResponse::Experience
 
       attr_accessor user_posts_cooldown_seconds: Integer?
@@ -30,6 +33,7 @@ module Whopsdk
         id: String,
         ban_media: bool,
         ban_urls: bool,
+        banned_words: ::Array[String],
         experience: Whopsdk::Models::ChatChannelListResponse::Experience,
         user_posts_cooldown_seconds: Integer?,
         who_can_post: Whopsdk::Models::who_can_post,
@@ -40,6 +44,7 @@ module Whopsdk
         id: String,
         ban_media: bool,
         ban_urls: bool,
+        banned_words: ::Array[String],
         experience: Whopsdk::Models::ChatChannelListResponse::Experience,
         user_posts_cooldown_seconds: Integer?,
         who_can_post: Whopsdk::Models::who_can_post,

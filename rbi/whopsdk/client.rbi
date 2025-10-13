@@ -80,6 +80,9 @@ module Whopsdk
     sig { returns(Whopsdk::Resources::Experiences) }
     attr_reader :experiences
 
+    sig { returns(Whopsdk::Resources::Reactions) }
+    attr_reader :reactions
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

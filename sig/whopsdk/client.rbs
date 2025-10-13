@@ -54,6 +54,8 @@ module Whopsdk
 
     attr_reader experiences: Whopsdk::Resources::Experiences
 
+    attr_reader reactions: Whopsdk::Resources::Reactions
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

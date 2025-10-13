@@ -3,7 +3,7 @@
 module Whopsdk
   module Resources
     class Companies
-      # Retrieves an company by ID
+      # Retrieves an company by ID or its url route
       #
       # Required permissions:
       #

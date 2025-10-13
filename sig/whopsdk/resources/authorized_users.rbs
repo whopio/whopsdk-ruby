@@ -15,7 +15,7 @@ module Whopsdk
         ?role: Whopsdk::Models::authorized_user_roles?,
         ?user_id: String?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::AuthorizedUserListResponse?]
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::AuthorizedUserListResponse]
 
       def initialize: (client: Whopsdk::Client) -> void
     end

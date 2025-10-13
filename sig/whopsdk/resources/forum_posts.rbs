@@ -29,7 +29,7 @@ module Whopsdk
         ?parent_id: String?,
         ?pinned: bool?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::ForumPostListResponse?]
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::ForumPostListResponse]
 
       def initialize: (client: Whopsdk::Client) -> void
     end

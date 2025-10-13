@@ -66,7 +66,7 @@ module Whopsdk
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(
           Whopsdk::Internal::CursorPage[
-            T.nilable(Whopsdk::Models::CheckoutConfigurationListResponse)
+            Whopsdk::Models::CheckoutConfigurationListResponse
           ]
         )
       end

@@ -52,7 +52,7 @@ module Whopsdk
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Internal::CursorPage<Whopsdk::Models::AuthorizedUserListResponse, nil>]
+      # @return [Whopsdk::Internal::CursorPage<Whopsdk::Models::AuthorizedUserListResponse>]
       #
       # @see Whopsdk::Models::AuthorizedUserListParams
       def list(params)

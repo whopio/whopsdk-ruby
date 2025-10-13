@@ -64,9 +64,7 @@ module Whopsdk
           statuses: T.nilable(T::Array[Whopsdk::MembershipStatus::OrSymbol]),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(
-          Whopsdk::Internal::CursorPage[
-            T.nilable(Whopsdk::Models::MembershipListResponse)
-          ]
+          Whopsdk::Internal::CursorPage[Whopsdk::Models::MembershipListResponse]
         )
       end
       def list(

@@ -174,7 +174,7 @@ module Whopsdk
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Internal::CursorPage<Whopsdk::Models::PlanListResponse, nil>]
+      # @return [Whopsdk::Internal::CursorPage<Whopsdk::Models::PlanListResponse>]
       #
       # @see Whopsdk::Models::PlanListParams
       def list(params)

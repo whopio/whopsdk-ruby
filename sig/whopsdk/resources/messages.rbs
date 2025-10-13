@@ -22,7 +22,7 @@ module Whopsdk
         ?first: Integer?,
         ?last: Integer?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::MessageListResponse?]
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::MessageListResponse]
 
       def initialize: (client: Whopsdk::Client) -> void
     end

@@ -18,7 +18,7 @@ module Whopsdk
         ?product_ids: ::Array[String]?,
         ?statuses: ::Array[Whopsdk::Models::entry_status]?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::EntryListResponse?]
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::EntryListResponse]
 
       def approve: (
         String id,

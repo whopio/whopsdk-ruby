@@ -86,9 +86,7 @@ module Whopsdk
           pinned: T.nilable(T::Boolean),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(
-          Whopsdk::Internal::CursorPage[
-            T.nilable(Whopsdk::Models::ForumPostListResponse)
-          ]
+          Whopsdk::Internal::CursorPage[Whopsdk::Models::ForumPostListResponse]
         )
       end
       def list(

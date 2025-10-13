@@ -40,7 +40,7 @@ module Whopsdk
         ?verified_apps_only: bool?,
         ?view_type: Whopsdk::Models::app_view_type?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::AppListResponse?]
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::AppListResponse]
 
       def initialize: (client: Whopsdk::Client) -> void
     end

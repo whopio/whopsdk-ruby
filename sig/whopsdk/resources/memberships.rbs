@@ -28,7 +28,7 @@ module Whopsdk
         ?promo_code_ids: ::Array[String]?,
         ?statuses: ::Array[Whopsdk::Models::membership_status]?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::MembershipListResponse?]
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::MembershipListResponse]
 
       def cancel: (
         String id,

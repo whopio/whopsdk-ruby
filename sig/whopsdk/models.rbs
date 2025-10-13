@@ -209,6 +209,14 @@ module Whopsdk
 
   module PromoType = Whopsdk::Models::PromoType
 
+  class Reaction = Whopsdk::Models::Reaction
+
+  class ReactionCreateParams = Whopsdk::Models::ReactionCreateParams
+
+  class ReactionListParams = Whopsdk::Models::ReactionListParams
+
+  class ReactionRetrieveParams = Whopsdk::Models::ReactionRetrieveParams
+
   module ReceiptStatus = Whopsdk::Models::ReceiptStatus
 
   module ReleaseMethod = Whopsdk::Models::ReleaseMethod

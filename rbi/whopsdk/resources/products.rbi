@@ -206,9 +206,7 @@ module Whopsdk
           visibilities:
             T.nilable(T::Array[Whopsdk::VisibilityFilter::OrSymbol]),
           request_options: Whopsdk::RequestOptions::OrHash
-        ).returns(
-          Whopsdk::Internal::CursorPage[T.nilable(Whopsdk::ProductListItem)]
-        )
+        ).returns(Whopsdk::Internal::CursorPage[Whopsdk::ProductListItem])
       end
       def list(
         # The ID of the company to filter products by

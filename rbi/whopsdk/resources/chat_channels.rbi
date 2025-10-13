@@ -68,7 +68,7 @@ module Whopsdk
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(
           Whopsdk::Internal::CursorPage[
-            T.nilable(Whopsdk::Models::ChatChannelListResponse)
+            Whopsdk::Models::ChatChannelListResponse
           ]
         )
       end

@@ -38,9 +38,7 @@ module Whopsdk
           statuses: T.nilable(T::Array[Whopsdk::EntryStatus::OrSymbol]),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(
-          Whopsdk::Internal::CursorPage[
-            T.nilable(Whopsdk::Models::EntryListResponse)
-          ]
+          Whopsdk::Internal::CursorPage[Whopsdk::Models::EntryListResponse]
         )
       end
       def list(

@@ -110,7 +110,7 @@ module Whopsdk
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Internal::CursorPage<Whopsdk::Models::ExperienceListResponse, nil>]
+      # @return [Whopsdk::Internal::CursorPage<Whopsdk::Models::ExperienceListResponse>]
       #
       # @see Whopsdk::Models::ExperienceListParams
       def list(params)

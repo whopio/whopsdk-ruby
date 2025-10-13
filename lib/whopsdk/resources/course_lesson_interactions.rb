@@ -54,7 +54,7 @@ module Whopsdk
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Internal::CursorPage<Whopsdk::Models::CourseLessonInteractionListItem, nil>]
+      # @return [Whopsdk::Internal::CursorPage<Whopsdk::Models::CourseLessonInteractionListItem>]
       #
       # @see Whopsdk::Models::CourseLessonInteractionListParams
       def list(params = {})

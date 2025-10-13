@@ -24,7 +24,7 @@ module Whopsdk
         ?platform: Whopsdk::Models::app_build_platforms?,
         ?status: Whopsdk::Models::app_build_statuses?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::AppBuildListResponse?]
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::AppBuildListResponse]
 
       def promote: (
         String id,

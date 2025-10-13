@@ -24,7 +24,7 @@ module Whopsdk
         ?statuses: ::Array[Whopsdk::Models::receipt_status]?,
         ?substatuses: ::Array[Whopsdk::Models::friendly_receipt_status]?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::PaymentListResponse?]
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::PaymentListResponse]
 
       def refund: (
         String id,

@@ -59,7 +59,7 @@ module Whopsdk
         ?release_methods: ::Array[Whopsdk::Models::release_method]?,
         ?visibilities: ::Array[Whopsdk::Models::visibility_filter]?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::PlanListResponse?]
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::PlanListResponse]
 
       def delete: (String id, ?request_options: Whopsdk::request_opts) -> bool
 

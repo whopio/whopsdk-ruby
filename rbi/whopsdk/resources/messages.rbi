@@ -64,9 +64,7 @@ module Whopsdk
           last: T.nilable(Integer),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(
-          Whopsdk::Internal::CursorPage[
-            T.nilable(Whopsdk::Models::MessageListResponse)
-          ]
+          Whopsdk::Internal::CursorPage[Whopsdk::Models::MessageListResponse]
         )
       end
       def list(

@@ -22,7 +22,7 @@ module Whopsdk
         ?payment_id: String?,
         ?user_id: String?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::ShipmentListResponse?]
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::ShipmentListResponse]
 
       def initialize: (client: Whopsdk::Client) -> void
     end

@@ -97,7 +97,7 @@ module Whopsdk
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Internal::CursorPage<Whopsdk::Models::ForumPostListResponse, nil>]
+      # @return [Whopsdk::Internal::CursorPage<Whopsdk::Models::ForumPostListResponse>]
       #
       # @see Whopsdk::Models::ForumPostListParams
       def list(params)

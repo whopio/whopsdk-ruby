@@ -70,9 +70,7 @@ module Whopsdk
           status: T.nilable(Whopsdk::AppBuildStatuses::OrSymbol),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(
-          Whopsdk::Internal::CursorPage[
-            T.nilable(Whopsdk::Models::AppBuildListResponse)
-          ]
+          Whopsdk::Internal::CursorPage[Whopsdk::Models::AppBuildListResponse]
         )
       end
       def list(

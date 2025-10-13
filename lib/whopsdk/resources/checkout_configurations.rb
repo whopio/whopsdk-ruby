@@ -85,7 +85,7 @@ module Whopsdk
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Internal::CursorPage<Whopsdk::Models::CheckoutConfigurationListResponse, nil>]
+      # @return [Whopsdk::Internal::CursorPage<Whopsdk::Models::CheckoutConfigurationListResponse>]
       #
       # @see Whopsdk::Models::CheckoutConfigurationListParams
       def list(params)

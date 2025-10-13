@@ -104,7 +104,7 @@ module Whopsdk
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Internal::CursorPage<Whopsdk::Models::InvoiceListItem, nil>]
+      # @return [Whopsdk::Internal::CursorPage<Whopsdk::Models::InvoiceListItem>]
       #
       # @see Whopsdk::Models::InvoiceListParams
       def list(params)

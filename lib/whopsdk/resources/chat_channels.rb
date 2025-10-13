@@ -86,7 +86,7 @@ module Whopsdk
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Whopsdk::Internal::CursorPage<Whopsdk::Models::ChatChannelListResponse, nil>]
+      # @return [Whopsdk::Internal::CursorPage<Whopsdk::Models::ChatChannelListResponse>]
       #
       # @see Whopsdk::Models::ChatChannelListParams
       def list(params)

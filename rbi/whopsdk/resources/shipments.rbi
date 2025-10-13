@@ -60,9 +60,7 @@ module Whopsdk
           user_id: T.nilable(String),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(
-          Whopsdk::Internal::CursorPage[
-            T.nilable(Whopsdk::Models::ShipmentListResponse)
-          ]
+          Whopsdk::Internal::CursorPage[Whopsdk::Models::ShipmentListResponse]
         )
       end
       def list(

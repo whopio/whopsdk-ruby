@@ -172,9 +172,7 @@ module Whopsdk
             T.nilable(T::Array[Whopsdk::VisibilityFilter::OrSymbol]),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(
-          Whopsdk::Internal::CursorPage[
-            T.nilable(Whopsdk::Models::PlanListResponse)
-          ]
+          Whopsdk::Internal::CursorPage[Whopsdk::Models::PlanListResponse]
         )
       end
       def list(

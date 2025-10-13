@@ -25,7 +25,7 @@ module Whopsdk
         ?last: Integer?,
         ?product_id: String?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::ChatChannelListResponse?]
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::ChatChannelListResponse]
 
       def initialize: (client: Whopsdk::Client) -> void
     end

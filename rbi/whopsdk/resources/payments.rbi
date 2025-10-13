@@ -58,9 +58,7 @@ module Whopsdk
             T.nilable(T::Array[Whopsdk::FriendlyReceiptStatus::OrSymbol]),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(
-          Whopsdk::Internal::CursorPage[
-            T.nilable(Whopsdk::Models::PaymentListResponse)
-          ]
+          Whopsdk::Internal::CursorPage[Whopsdk::Models::PaymentListResponse]
         )
       end
       def list(

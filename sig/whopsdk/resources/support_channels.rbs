@@ -22,7 +22,7 @@ module Whopsdk
         ?open_: bool?,
         ?order: Whopsdk::Models::SupportChannelListParams::order?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::SupportChannelListResponse?]
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::Models::SupportChannelListResponse]
 
       def initialize: (client: Whopsdk::Client) -> void
     end

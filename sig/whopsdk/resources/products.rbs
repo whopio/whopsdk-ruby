@@ -67,7 +67,7 @@ module Whopsdk
         ?product_types: ::Array[Whopsdk::Models::access_pass_type]?,
         ?visibilities: ::Array[Whopsdk::Models::visibility_filter]?,
         ?request_options: Whopsdk::request_opts
-      ) -> Whopsdk::Internal::CursorPage[Whopsdk::ProductListItem?]
+      ) -> Whopsdk::Internal::CursorPage[Whopsdk::ProductListItem]
 
       def delete: (String id, ?request_options: Whopsdk::request_opts) -> bool
 

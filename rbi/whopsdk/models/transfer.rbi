@@ -56,8 +56,8 @@ module Whopsdk
           destination:
             T.nilable(
               T.any(
-                Whopsdk::Transfer::Destination::UnionMember0::OrHash,
-                Whopsdk::Transfer::Destination::UnionMember1::OrHash
+                Whopsdk::Transfer::Destination::User::OrHash,
+                Whopsdk::Transfer::Destination::Company::OrHash
               )
             ),
           destination_ledger_account_id: String,
@@ -66,8 +66,8 @@ module Whopsdk
           origin:
             T.nilable(
               T.any(
-                Whopsdk::Transfer::Origin::UnionMember0::OrHash,
-                Whopsdk::Transfer::Origin::UnionMember1::OrHash
+                Whopsdk::Transfer::Origin::User::OrHash,
+                Whopsdk::Transfer::Origin::Company::OrHash
               )
             ),
           origin_ledger_account_id: String
@@ -124,17 +124,17 @@ module Whopsdk
           T.type_alias do
             T.nilable(
               T.any(
-                Whopsdk::Transfer::Destination::UnionMember0,
-                Whopsdk::Transfer::Destination::UnionMember1
+                Whopsdk::Transfer::Destination::User,
+                Whopsdk::Transfer::Destination::Company
               )
             )
           end
 
-        class UnionMember0 < Whopsdk::Internal::Type::BaseModel
+        class User < Whopsdk::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Whopsdk::Transfer::Destination::UnionMember0,
+                Whopsdk::Transfer::Destination::User,
                 Whopsdk::Internal::AnyHash
               )
             end
@@ -172,7 +172,7 @@ module Whopsdk
             # The username of the user from their Whop account.
             username:,
             # The typename of this object
-            typename: :PublicProfileUser
+            typename: :User
           )
           end
 
@@ -190,11 +190,11 @@ module Whopsdk
           end
         end
 
-        class UnionMember1 < Whopsdk::Internal::Type::BaseModel
+        class Company < Whopsdk::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Whopsdk::Transfer::Destination::UnionMember1,
+                Whopsdk::Transfer::Destination::Company,
                 Whopsdk::Internal::AnyHash
               )
             end
@@ -232,7 +232,7 @@ module Whopsdk
             # The title of the company.
             title:,
             # The typename of this object
-            typename: :PublicCompany
+            typename: :Company
           )
           end
 
@@ -260,19 +260,16 @@ module Whopsdk
           T.type_alias do
             T.nilable(
               T.any(
-                Whopsdk::Transfer::Origin::UnionMember0,
-                Whopsdk::Transfer::Origin::UnionMember1
+                Whopsdk::Transfer::Origin::User,
+                Whopsdk::Transfer::Origin::Company
               )
             )
           end
 
-        class UnionMember0 < Whopsdk::Internal::Type::BaseModel
+        class User < Whopsdk::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
-              T.any(
-                Whopsdk::Transfer::Origin::UnionMember0,
-                Whopsdk::Internal::AnyHash
-              )
+              T.any(Whopsdk::Transfer::Origin::User, Whopsdk::Internal::AnyHash)
             end
 
           # The internal ID of the user.
@@ -308,7 +305,7 @@ module Whopsdk
             # The username of the user from their Whop account.
             username:,
             # The typename of this object
-            typename: :PublicProfileUser
+            typename: :User
           )
           end
 
@@ -326,11 +323,11 @@ module Whopsdk
           end
         end
 
-        class UnionMember1 < Whopsdk::Internal::Type::BaseModel
+        class Company < Whopsdk::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Whopsdk::Transfer::Origin::UnionMember1,
+                Whopsdk::Transfer::Origin::Company,
                 Whopsdk::Internal::AnyHash
               )
             end
@@ -368,7 +365,7 @@ module Whopsdk
             # The title of the company.
             title:,
             # The typename of this object
-            typename: :PublicCompany
+            typename: :Company
           )
           end
 

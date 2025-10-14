@@ -62,26 +62,21 @@ module Whopsdk
       }
 
       type destination =
-        (Whopsdk::Transfer::Destination::UnionMember0
-        | Whopsdk::Transfer::Destination::UnionMember1)?
+        (Whopsdk::Transfer::Destination::User
+        | Whopsdk::Transfer::Destination::Company)?
 
       module Destination
         extend Whopsdk::Internal::Type::Union
 
-        type union_member0 =
-          {
-            id: String,
-            name: String?,
-            typename: :PublicProfileUser,
-            username: String
-          }
+        type user =
+          { id: String, name: String?, typename: :User, username: String }
 
-        class UnionMember0 < Whopsdk::Internal::Type::BaseModel
+        class User < Whopsdk::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor name: String?
 
-          attr_accessor typename: :PublicProfileUser
+          attr_accessor typename: :User
 
           attr_accessor username: String
 
@@ -89,41 +84,41 @@ module Whopsdk
             id: String,
             name: String?,
             username: String,
-            ?typename: :PublicProfileUser
+            ?typename: :User
           ) -> void
 
           def to_hash: -> {
             id: String,
             name: String?,
-            typename: :PublicProfileUser,
+            typename: :User,
             username: String
           }
         end
 
-        type union_member1 =
-          { id: String, route: String, title: String, typename: :PublicCompany }
+        type company =
+          { id: String, route: String, title: String, typename: :Company }
 
-        class UnionMember1 < Whopsdk::Internal::Type::BaseModel
+        class Company < Whopsdk::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor route: String
 
           attr_accessor title: String
 
-          attr_accessor typename: :PublicCompany
+          attr_accessor typename: :Company
 
           def initialize: (
             id: String,
             route: String,
             title: String,
-            ?typename: :PublicCompany
+            ?typename: :Company
           ) -> void
 
           def to_hash: -> {
             id: String,
             route: String,
             title: String,
-            typename: :PublicCompany
+            typename: :Company
           }
         end
 
@@ -131,26 +126,20 @@ module Whopsdk
       end
 
       type origin =
-        (Whopsdk::Transfer::Origin::UnionMember0
-        | Whopsdk::Transfer::Origin::UnionMember1)?
+        (Whopsdk::Transfer::Origin::User | Whopsdk::Transfer::Origin::Company)?
 
       module Origin
         extend Whopsdk::Internal::Type::Union
 
-        type union_member0 =
-          {
-            id: String,
-            name: String?,
-            typename: :PublicProfileUser,
-            username: String
-          }
+        type user =
+          { id: String, name: String?, typename: :User, username: String }
 
-        class UnionMember0 < Whopsdk::Internal::Type::BaseModel
+        class User < Whopsdk::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor name: String?
 
-          attr_accessor typename: :PublicProfileUser
+          attr_accessor typename: :User
 
           attr_accessor username: String
 
@@ -158,41 +147,41 @@ module Whopsdk
             id: String,
             name: String?,
             username: String,
-            ?typename: :PublicProfileUser
+            ?typename: :User
           ) -> void
 
           def to_hash: -> {
             id: String,
             name: String?,
-            typename: :PublicProfileUser,
+            typename: :User,
             username: String
           }
         end
 
-        type union_member1 =
-          { id: String, route: String, title: String, typename: :PublicCompany }
+        type company =
+          { id: String, route: String, title: String, typename: :Company }
 
-        class UnionMember1 < Whopsdk::Internal::Type::BaseModel
+        class Company < Whopsdk::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor route: String
 
           attr_accessor title: String
 
-          attr_accessor typename: :PublicCompany
+          attr_accessor typename: :Company
 
           def initialize: (
             id: String,
             route: String,
             title: String,
-            ?typename: :PublicCompany
+            ?typename: :Company
           ) -> void
 
           def to_hash: -> {
             id: String,
             route: String,
             title: String,
-            typename: :PublicCompany
+            typename: :Company
           }
         end
 

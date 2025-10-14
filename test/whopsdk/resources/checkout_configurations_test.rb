@@ -6,7 +6,7 @@ class Whopsdk::Test::Resources::CheckoutConfigurationsTest < Whopsdk::Test::Reso
   def test_create
     skip("Prism tests are disabled")
 
-    response = @whopsdk.checkout_configurations.create
+    response = @whop.checkout_configurations.create
 
     assert_pattern do
       response => Whopsdk::CheckoutConfiguration
@@ -28,7 +28,7 @@ class Whopsdk::Test::Resources::CheckoutConfigurationsTest < Whopsdk::Test::Reso
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.checkout_configurations.retrieve("ch_xxxxxxxxxxxxxxx")
+    response = @whop.checkout_configurations.retrieve("ch_xxxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::CheckoutConfiguration
@@ -50,7 +50,7 @@ class Whopsdk::Test::Resources::CheckoutConfigurationsTest < Whopsdk::Test::Reso
   def test_list_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.checkout_configurations.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.checkout_configurations.list(company_id: "biz_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Internal::CursorPage

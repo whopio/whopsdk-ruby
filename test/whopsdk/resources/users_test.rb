@@ -6,7 +6,7 @@ class Whopsdk::Test::Resources::UsersTest < Whopsdk::Test::ResourceTest
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.users.retrieve("user_xxxxxxxxxxxxx")
+    response = @whop.users.retrieve("user_xxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Models::UserRetrieveResponse

@@ -78,7 +78,7 @@ class Whopsdk::Test::ResourceTest < Minitest::Test
 
   def before_all
     super
-    @whopsdk = Whopsdk::Test::SingletonClient.instance
+    @whop = Whopsdk::Test::SingletonClient.instance
   end
 
   def around_all = async? ? Sync { super } : super

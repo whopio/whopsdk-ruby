@@ -6,8 +6,7 @@ class Whopsdk::Test::Resources::SupportChannelsTest < Whopsdk::Test::ResourceTes
   def test_create_required_params
     skip("Prism tests are disabled")
 
-    response =
-      @whopsdk.support_channels.create(company_id: "biz_xxxxxxxxxxxxxx", user_id: "user_xxxxxxxxxxxxx")
+    response = @whop.support_channels.create(company_id: "biz_xxxxxxxxxxxxxx", user_id: "user_xxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::SupportChannel
@@ -28,7 +27,7 @@ class Whopsdk::Test::Resources::SupportChannelsTest < Whopsdk::Test::ResourceTes
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.support_channels.retrieve("id")
+    response = @whop.support_channels.retrieve("id")
 
     assert_pattern do
       response => Whopsdk::SupportChannel
@@ -49,7 +48,7 @@ class Whopsdk::Test::Resources::SupportChannelsTest < Whopsdk::Test::ResourceTes
   def test_list_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.support_channels.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.support_channels.list(company_id: "biz_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Internal::CursorPage

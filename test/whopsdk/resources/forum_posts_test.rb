@@ -6,7 +6,7 @@ class Whopsdk::Test::Resources::ForumPostsTest < Whopsdk::Test::ResourceTest
   def test_create_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.forum_posts.create(experience_id: "exp_xxxxxxxxxxxxxx")
+    response = @whop.forum_posts.create(experience_id: "exp_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::ForumPost
@@ -32,7 +32,7 @@ class Whopsdk::Test::Resources::ForumPostsTest < Whopsdk::Test::ResourceTest
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.forum_posts.retrieve("id")
+    response = @whop.forum_posts.retrieve("id")
 
     assert_pattern do
       response => Whopsdk::ForumPost
@@ -58,7 +58,7 @@ class Whopsdk::Test::Resources::ForumPostsTest < Whopsdk::Test::ResourceTest
   def test_list_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.forum_posts.list(experience_id: "exp_xxxxxxxxxxxxxx")
+    response = @whop.forum_posts.list(experience_id: "exp_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Internal::CursorPage

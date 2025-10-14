@@ -1,12 +1,14 @@
-# Whopsdk Ruby API library
+# Whop Ruby API library
 
-The Whopsdk Ruby library provides convenient access to the Whopsdk REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/stainless-sdks/whopsdk-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
+The Whop Ruby library provides convenient access to the Whop REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/stainless-sdks/whopsdk-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
 
 It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
 Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/whopsdk).
+
+The REST API documentation can be found on [docs.whop.com](https://docs.whop.com/apps).
 
 ## Installation
 
@@ -22,32 +24,32 @@ gem "whopsdk", "~> 0.0.1"
 require "bundler/setup"
 require "whopsdk"
 
-whopsdk = Whopsdk::Client.new(
+whop = Whopsdk::Client.new(
   api_key: ENV["WHOP_API_KEY"], # This is the default and can be omitted
   app_id: "app_xxxxxxxxxxxxxx"
 )
 
-page = whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
+page = whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
 
 puts(page.id)
 ```
 
 ### Pagination
 
-List methods in the Whopsdk API are paginated.
+List methods in the Whop API are paginated.
 
 This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
 
 ```ruby
-page = whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
+page = whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
 
 # Fetch single item from page.
-invoice = page.data[0]
-puts(invoice.id)
+payment = page.data[0]
+puts(payment.id)
 
 # Automatically fetches more pages as needed.
-page.auto_paging_each do |invoice|
-  puts(invoice.id)
+page.auto_paging_each do |payment|
+  puts(payment.id)
 end
 ```
 
@@ -66,7 +68,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  invoice = whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
+  payment = whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
 rescue Whopsdk::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
@@ -104,13 +106,13 @@ You can use the `max_retries` option to configure or disable this:
 
 ```ruby
 # Configure the default for all requests:
-whopsdk = Whopsdk::Client.new(
+whop = Whopsdk::Client.new(
   max_retries: 0, # default is 2
   app_id: "app_xxxxxxxxxxxxxx"
 )
 
 # Or, configure per-request:
-whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx", request_options: {max_retries: 5})
+whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx", request_options: {max_retries: 5})
 ```
 
 ### Timeouts
@@ -119,13 +121,13 @@ By default, requests will time out after 60 seconds. You can use the timeout opt
 
 ```ruby
 # Configure the default for all requests:
-whopsdk = Whopsdk::Client.new(
+whop = Whopsdk::Client.new(
   timeout: nil, # default is 60
   app_id: "app_xxxxxxxxxxxxxx"
 )
 
 # Or, configure per-request:
-whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx", request_options: {timeout: 5})
+whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx", request_options: {timeout: 5})
 ```
 
 On timeout, `Whopsdk::Errors::APITimeoutError` is raised.
@@ -156,7 +158,7 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 
 ```ruby
 page =
-  whopsdk.invoices.list(
+  whop.payments.list(
     company_id: "biz_xxxxxxxxxxxxxx",
     request_options: {
       extra_query: {my_query_parameter: value},
@@ -203,18 +205,18 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
+whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
+whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
 
 # You can also splat a full Params class:
-params = Whopsdk::InvoiceListParams.new(company_id: "biz_xxxxxxxxxxxxxx")
-whopsdk.invoices.list(**params)
+params = Whopsdk::PaymentListParams.new(company_id: "biz_xxxxxxxxxxxxxx")
+whop.payments.list(**params)
 ```
 
 ### Enums
@@ -233,13 +235,13 @@ Enum parameters have a "relaxed" type, so you can either pass in enum constants 
 
 ```ruby
 # Using the enum constants preserves the tagged type information:
-whopsdk.apps.update(
+whop.apps.update(
   status: Whopsdk::AppStatuses::LIVE,
   # …
 )
 
 # Literal values are also permissible:
-whopsdk.apps.update(
+whop.apps.update(
   status: :live,
   # …
 )

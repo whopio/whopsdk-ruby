@@ -7,7 +7,7 @@ class Whopsdk::Test::Resources::InvoicesTest < Whopsdk::Test::ResourceTest
     skip("Prism tests are disabled")
 
     response =
-      @whopsdk.invoices.create(
+      @whop.invoices.create(
         collection_method: :send_invoice,
         company_id: "biz_xxxxxxxxxxxxxx",
         due_date: 1_701_406_800,
@@ -29,7 +29,7 @@ class Whopsdk::Test::Resources::InvoicesTest < Whopsdk::Test::ResourceTest
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.invoices.retrieve("inv_xxxxxxxxxxxxxx")
+    response = @whop.invoices.retrieve("inv_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Invoice
@@ -53,7 +53,7 @@ class Whopsdk::Test::Resources::InvoicesTest < Whopsdk::Test::ResourceTest
   def test_list_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Internal::CursorPage
@@ -84,7 +84,7 @@ class Whopsdk::Test::Resources::InvoicesTest < Whopsdk::Test::ResourceTest
   def test_void
     skip("Prism tests are disabled")
 
-    response = @whopsdk.invoices.void("inv_xxxxxxxxxxxxxx")
+    response = @whop.invoices.void("inv_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Internal::Type::Boolean

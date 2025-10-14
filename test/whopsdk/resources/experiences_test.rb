@@ -6,7 +6,7 @@ class Whopsdk::Test::Resources::ExperiencesTest < Whopsdk::Test::ResourceTest
   def test_create_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.experiences.create(app_id: "app_xxxxxxxxxxxxxx", company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.experiences.create(app_id: "app_xxxxxxxxxxxxxx", company_id: "biz_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Experience
@@ -28,7 +28,7 @@ class Whopsdk::Test::Resources::ExperiencesTest < Whopsdk::Test::ResourceTest
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.experiences.retrieve("exp_xxxxxxxxxxxxxx")
+    response = @whop.experiences.retrieve("exp_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Experience
@@ -50,7 +50,7 @@ class Whopsdk::Test::Resources::ExperiencesTest < Whopsdk::Test::ResourceTest
   def test_update
     skip("Prism tests are disabled")
 
-    response = @whopsdk.experiences.update("exp_xxxxxxxxxxxxxx")
+    response = @whop.experiences.update("exp_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Experience
@@ -72,7 +72,7 @@ class Whopsdk::Test::Resources::ExperiencesTest < Whopsdk::Test::ResourceTest
   def test_list_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.experiences.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.experiences.list(company_id: "biz_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Internal::CursorPage
@@ -100,7 +100,7 @@ class Whopsdk::Test::Resources::ExperiencesTest < Whopsdk::Test::ResourceTest
   def test_delete
     skip("Prism tests are disabled")
 
-    response = @whopsdk.experiences.delete("exp_xxxxxxxxxxxxxx")
+    response = @whop.experiences.delete("exp_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Internal::Type::Boolean
@@ -110,7 +110,7 @@ class Whopsdk::Test::Resources::ExperiencesTest < Whopsdk::Test::ResourceTest
   def test_attach_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.experiences.attach("exp_xxxxxxxxxxxxxx", product_id: "prod_xxxxxxxxxxxxx")
+    response = @whop.experiences.attach("exp_xxxxxxxxxxxxxx", product_id: "prod_xxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Experience
@@ -132,7 +132,7 @@ class Whopsdk::Test::Resources::ExperiencesTest < Whopsdk::Test::ResourceTest
   def test_detach_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.experiences.detach("exp_xxxxxxxxxxxxxx", product_id: "prod_xxxxxxxxxxxxx")
+    response = @whop.experiences.detach("exp_xxxxxxxxxxxxxx", product_id: "prod_xxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Experience

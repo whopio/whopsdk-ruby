@@ -6,7 +6,7 @@ class Whopsdk::Test::Resources::PaymentsTest < Whopsdk::Test::ResourceTest
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.payments.retrieve("pay_xxxxxxxxxxxxxx")
+    response = @whop.payments.retrieve("pay_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Payment
@@ -52,7 +52,7 @@ class Whopsdk::Test::Resources::PaymentsTest < Whopsdk::Test::ResourceTest
   def test_list_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Internal::CursorPage
@@ -105,7 +105,7 @@ class Whopsdk::Test::Resources::PaymentsTest < Whopsdk::Test::ResourceTest
   def test_refund
     skip("Prism tests are disabled")
 
-    response = @whopsdk.payments.refund("pay_xxxxxxxxxxxxxx")
+    response = @whop.payments.refund("pay_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Payment
@@ -151,7 +151,7 @@ class Whopsdk::Test::Resources::PaymentsTest < Whopsdk::Test::ResourceTest
   def test_retry_
     skip("Prism tests are disabled")
 
-    response = @whopsdk.payments.retry_("pay_xxxxxxxxxxxxxx")
+    response = @whop.payments.retry_("pay_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Payment
@@ -197,7 +197,7 @@ class Whopsdk::Test::Resources::PaymentsTest < Whopsdk::Test::ResourceTest
   def test_void
     skip("Prism tests are disabled")
 
-    response = @whopsdk.payments.void("pay_xxxxxxxxxxxxxx")
+    response = @whop.payments.void("pay_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Payment

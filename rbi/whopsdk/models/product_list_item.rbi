@@ -8,7 +8,7 @@ module Whopsdk
           T.any(Whopsdk::ProductListItem, Whopsdk::Internal::AnyHash)
         end
 
-      # The internal ID of the public access pass.
+      # The internal ID of the public product.
       sig { returns(String) }
       attr_accessor :id
 
@@ -16,11 +16,11 @@ module Whopsdk
       sig { returns(T.nilable(Whopsdk::BusinessTypes::TaggedSymbol)) }
       attr_accessor :business_type
 
-      # When the access pass was created.
+      # When the product was created.
       sig { returns(Integer) }
       attr_accessor :created_at
 
-      # The headline of the access pass.
+      # The headline of the product.
       sig { returns(T.nilable(String)) }
       attr_accessor :headline
 
@@ -28,23 +28,23 @@ module Whopsdk
       sig { returns(T.nilable(Whopsdk::IndustryTypes::TaggedSymbol)) }
       attr_accessor :industry_type
 
-      # The number of active users for this access pass.
+      # The number of active users for this product.
       sig { returns(Integer) }
       attr_accessor :member_count
 
-      # The number of reviews that have been published for the access pass.
+      # The number of reviews that have been published for the product.
       sig { returns(Integer) }
       attr_accessor :published_reviews_count
 
-      # The route of the access pass.
+      # The route of the product.
       sig { returns(String) }
       attr_accessor :route
 
-      # The title of the access pass. Use for Whop 4.0.
+      # The title of the product. Use for Whop 4.0.
       sig { returns(String) }
       attr_accessor :title
 
-      # When the access pass was updated.
+      # When the product was updated.
       sig { returns(Integer) }
       attr_accessor :updated_at
 
@@ -52,7 +52,7 @@ module Whopsdk
       sig { returns(T::Boolean) }
       attr_accessor :verified
 
-      # This access pass will/will not be displayed publicly.
+      # This product will/will not be displayed publicly.
       sig { returns(Whopsdk::Visibility::TaggedSymbol) }
       attr_accessor :visibility
 
@@ -74,29 +74,29 @@ module Whopsdk
         ).returns(T.attached_class)
       end
       def self.new(
-        # The internal ID of the public access pass.
+        # The internal ID of the public product.
         id:,
         # The different business types a company can be.
         business_type:,
-        # When the access pass was created.
+        # When the product was created.
         created_at:,
-        # The headline of the access pass.
+        # The headline of the product.
         headline:,
         # The different industry types a company can be in.
         industry_type:,
-        # The number of active users for this access pass.
+        # The number of active users for this product.
         member_count:,
-        # The number of reviews that have been published for the access pass.
+        # The number of reviews that have been published for the product.
         published_reviews_count:,
-        # The route of the access pass.
+        # The route of the product.
         route:,
-        # The title of the access pass. Use for Whop 4.0.
+        # The title of the product. Use for Whop 4.0.
         title:,
-        # When the access pass was updated.
+        # When the product was updated.
         updated_at:,
         # Whether this product is Whop verified.
         verified:,
-        # This access pass will/will not be displayed publicly.
+        # This product will/will not be displayed publicly.
         visibility:
       )
       end

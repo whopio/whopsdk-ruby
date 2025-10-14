@@ -52,7 +52,7 @@ module Whopsdk
       #
       # @param plan_ids [Array<String>, nil] The plan IDs to filter the entries by
       #
-      # @param product_ids [Array<String>, nil] The access pass IDs to filter the entries by
+      # @param product_ids [Array<String>, nil] The product IDs to filter the entries by
       #
       # @param statuses [Array<Symbol, Whopsdk::Models::EntryStatus>, nil] The statuses to filter the entries by
       #

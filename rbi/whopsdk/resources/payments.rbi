@@ -118,7 +118,7 @@ module Whopsdk
       end
       def refund(
         id,
-        # refund_payment | An amount if the refund is supposed to be partial.
+        # An amount if the refund is supposed to be partial.
         partial_amount: nil,
         request_options: {}
       )

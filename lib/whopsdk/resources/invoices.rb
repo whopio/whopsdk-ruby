@@ -33,9 +33,9 @@ module Whopsdk
       #
       # @param payment_token_id [String, nil] The payment token ID to use for this invoice. If using charge_automatically, you
       #
-      # @param product [Whopsdk::Models::InvoiceCreateParams::Product, nil] The properties of the access pass to create for this invoice. Include this if yo
+      # @param product [Whopsdk::Models::InvoiceCreateParams::Product, nil] The properties of the product to create for this invoice. Include this if you wa
       #
-      # @param product_id [String, nil] The access pass ID to create this invoice for. Include this if you want to creat
+      # @param product_id [String, nil] The product ID to create this invoice for. Include this if you want to create an
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #

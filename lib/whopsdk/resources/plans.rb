@@ -18,7 +18,7 @@ module Whopsdk
       #
       # @param company_id [String] The company the plan should be created for.
       #
-      # @param product_id [String] The access pass the plan is related to.
+      # @param product_id [String] The product the plan is related to.
       #
       # @param billing_period [Integer, nil] The interval at which the plan charges (renewal plans).
       #
@@ -166,7 +166,7 @@ module Whopsdk
       #
       # @param plan_types [Array<Symbol, Whopsdk::Models::PlanType>, nil] The plan type to filter the plans by
       #
-      # @param product_ids [Array<String>, nil] The access pass IDs to filter the plans by
+      # @param product_ids [Array<String>, nil] The product IDs to filter the plans by
       #
       # @param release_methods [Array<Symbol, Whopsdk::Models::ReleaseMethod>, nil] The release method to filter the plans by
       #

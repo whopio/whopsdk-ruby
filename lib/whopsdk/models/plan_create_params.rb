@@ -14,7 +14,7 @@ module Whopsdk
       required :company_id, String
 
       # @!attribute product_id
-      #   The access pass the plan is related to.
+      #   The product the plan is related to.
       #
       #   @return [String]
       required :product_id, String
@@ -118,7 +118,7 @@ module Whopsdk
       #
       #   @param company_id [String] The company the plan should be created for.
       #
-      #   @param product_id [String] The access pass the plan is related to.
+      #   @param product_id [String] The product the plan is related to.
       #
       #   @param billing_period [Integer, nil] The interval at which the plan charges (renewal plans).
       #

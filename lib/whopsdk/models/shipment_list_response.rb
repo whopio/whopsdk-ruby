@@ -90,7 +90,7 @@ module Whopsdk
       # @see Whopsdk::Models::ShipmentListResponse#payment
       class Payment < Whopsdk::Internal::Type::BaseModel
         # @!attribute id
-        #   The receipt ID
+        #   The payment ID
         #
         #   @return [String]
         required :id, String
@@ -98,7 +98,7 @@ module Whopsdk
         # @!method initialize(id:)
         #   The payment of the shipment
         #
-        #   @param id [String] The receipt ID
+        #   @param id [String] The payment ID
       end
     end
   end

@@ -43,7 +43,7 @@ module Whopsdk
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :plan_ids
 
-      # The access pass IDs to filter the entries by
+      # The product IDs to filter the entries by
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :product_ids
 
@@ -83,7 +83,7 @@ module Whopsdk
         order: nil,
         # The plan IDs to filter the entries by
         plan_ids: nil,
-        # The access pass IDs to filter the entries by
+        # The product IDs to filter the entries by
         product_ids: nil,
         # The statuses to filter the entries by
         statuses: nil,

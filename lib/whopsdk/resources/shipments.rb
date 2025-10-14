@@ -12,7 +12,7 @@ module Whopsdk
       #
       # @overload create(company_id:, payment_id:, tracking_code:, request_options: {})
       #
-      # @param company_id [String] The ID of the bot to create the shipment for
+      # @param company_id [String] The ID of the company to create the shipment for
       #
       # @param payment_id [String] The ID of the payment to create the shipment for
       #

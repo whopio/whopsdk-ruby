@@ -4,7 +4,7 @@ module Whopsdk
   module Models
     class ProductListItem < Whopsdk::Internal::Type::BaseModel
       # @!attribute id
-      #   The internal ID of the public access pass.
+      #   The internal ID of the public product.
       #
       #   @return [String]
       required :id, String
@@ -16,13 +16,13 @@ module Whopsdk
       required :business_type, enum: -> { Whopsdk::BusinessTypes }, nil?: true
 
       # @!attribute created_at
-      #   When the access pass was created.
+      #   When the product was created.
       #
       #   @return [Integer]
       required :created_at, Integer
 
       # @!attribute headline
-      #   The headline of the access pass.
+      #   The headline of the product.
       #
       #   @return [String, nil]
       required :headline, String, nil?: true
@@ -34,31 +34,31 @@ module Whopsdk
       required :industry_type, enum: -> { Whopsdk::IndustryTypes }, nil?: true
 
       # @!attribute member_count
-      #   The number of active users for this access pass.
+      #   The number of active users for this product.
       #
       #   @return [Integer]
       required :member_count, Integer
 
       # @!attribute published_reviews_count
-      #   The number of reviews that have been published for the access pass.
+      #   The number of reviews that have been published for the product.
       #
       #   @return [Integer]
       required :published_reviews_count, Integer
 
       # @!attribute route
-      #   The route of the access pass.
+      #   The route of the product.
       #
       #   @return [String]
       required :route, String
 
       # @!attribute title
-      #   The title of the access pass. Use for Whop 4.0.
+      #   The title of the product. Use for Whop 4.0.
       #
       #   @return [String]
       required :title, String
 
       # @!attribute updated_at
-      #   When the access pass was updated.
+      #   When the product was updated.
       #
       #   @return [Integer]
       required :updated_at, Integer
@@ -70,7 +70,7 @@ module Whopsdk
       required :verified, Whopsdk::Internal::Type::Boolean
 
       # @!attribute visibility
-      #   This access pass will/will not be displayed publicly.
+      #   This product will/will not be displayed publicly.
       #
       #   @return [Symbol, Whopsdk::Models::Visibility]
       required :visibility, enum: -> { Whopsdk::Visibility }
@@ -78,29 +78,29 @@ module Whopsdk
       # @!method initialize(id:, business_type:, created_at:, headline:, industry_type:, member_count:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
       #   An object representing a (sanitized) access pass.
       #
-      #   @param id [String] The internal ID of the public access pass.
+      #   @param id [String] The internal ID of the public product.
       #
       #   @param business_type [Symbol, Whopsdk::Models::BusinessTypes, nil] The different business types a company can be.
       #
-      #   @param created_at [Integer] When the access pass was created.
+      #   @param created_at [Integer] When the product was created.
       #
-      #   @param headline [String, nil] The headline of the access pass.
+      #   @param headline [String, nil] The headline of the product.
       #
       #   @param industry_type [Symbol, Whopsdk::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
-      #   @param member_count [Integer] The number of active users for this access pass.
+      #   @param member_count [Integer] The number of active users for this product.
       #
-      #   @param published_reviews_count [Integer] The number of reviews that have been published for the access pass.
+      #   @param published_reviews_count [Integer] The number of reviews that have been published for the product.
       #
-      #   @param route [String] The route of the access pass.
+      #   @param route [String] The route of the product.
       #
-      #   @param title [String] The title of the access pass. Use for Whop 4.0.
+      #   @param title [String] The title of the product. Use for Whop 4.0.
       #
-      #   @param updated_at [Integer] When the access pass was updated.
+      #   @param updated_at [Integer] When the product was updated.
       #
       #   @param verified [Boolean] Whether this product is Whop verified.
       #
-      #   @param visibility [Symbol, Whopsdk::Models::Visibility] This access pass will/will not be displayed publicly.
+      #   @param visibility [Symbol, Whopsdk::Models::Visibility] This product will/will not be displayed publicly.
     end
   end
 end

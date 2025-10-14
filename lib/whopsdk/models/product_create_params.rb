@@ -8,13 +8,13 @@ module Whopsdk
       include Whopsdk::Internal::Type::RequestParameters
 
       # @!attribute company_id
-      #   The ID of the company to create the access pass for.
+      #   The ID of the company to create the product for.
       #
       #   @return [String]
       required :company_id, String
 
       # @!attribute title
-      #   The title of the access pass.
+      #   The title of the product.
       #
       #   @return [String]
       required :title, String
@@ -26,7 +26,7 @@ module Whopsdk
       optional :access_pass_type, enum: -> { Whopsdk::AccessPassType }, nil?: true
 
       # @!attribute banner_image
-      #   A banner image for the access pass in png, jpeg format
+      #   A banner image for the product in png, jpeg format
       #
       #   @return [Whopsdk::Models::ProductCreateParams::BannerImage, nil]
       optional :banner_image, -> { Whopsdk::ProductCreateParams::BannerImage }, nil?: true
@@ -50,13 +50,13 @@ module Whopsdk
       optional :custom_cta, enum: -> { Whopsdk::CustomCta }, nil?: true
 
       # @!attribute custom_cta_url
-      #   The custom call to action URL for the access pass.
+      #   The custom call to action URL for the product.
       #
       #   @return [String, nil]
       optional :custom_cta_url, String, nil?: true
 
       # @!attribute custom_statement_descriptor
-      #   The custom statement descriptor for the access pass i.e. WHOP\*SPORTS, must be
+      #   The custom statement descriptor for the product i.e. WHOP\*SPORTS, must be
       #   between 5 and 22 characters, contain at least one letter, and not contain any of
       #   the following characters: <, >, \, ', "
       #
@@ -64,7 +64,7 @@ module Whopsdk
       optional :custom_statement_descriptor, String, nil?: true
 
       # @!attribute description
-      #   A written description of the access pass.
+      #   A written description of the product.
       #
       #   @return [String, nil]
       optional :description, String, nil?: true
@@ -88,7 +88,7 @@ module Whopsdk
       optional :global_affiliate_status, enum: -> { Whopsdk::GlobalAffiliateStatus }, nil?: true
 
       # @!attribute headline
-      #   The headline of the access pass.
+      #   The headline of the product.
       #
       #   @return [String, nil]
       optional :headline, String, nil?: true
@@ -118,7 +118,7 @@ module Whopsdk
       optional :plan_options, -> { Whopsdk::ProductCreateParams::PlanOptions }, nil?: true
 
       # @!attribute product_highlights
-      #   The product highlights for the access pass.
+      #   The product highlights for the product.
       #
       #   @return [Array<Whopsdk::Models::ProductCreateParams::ProductHighlight>, nil]
       optional :product_highlights,
@@ -126,7 +126,7 @@ module Whopsdk
                nil?: true
 
       # @!attribute product_tax_code_id
-      #   The ID of the product tax code to apply to this access pass.
+      #   The ID of the product tax code to apply to this product.
       #
       #   @return [String, nil]
       optional :product_tax_code_id, String, nil?: true
@@ -138,7 +138,7 @@ module Whopsdk
       optional :redirect_purchase_url, String, nil?: true
 
       # @!attribute route
-      #   The route of the access pass.
+      #   The route of the product.
       #
       #   @return [String, nil]
       optional :route, String, nil?: true
@@ -153,13 +153,13 @@ module Whopsdk
       #   Some parameter documentations has been truncated, see
       #   {Whopsdk::Models::ProductCreateParams} for more details.
       #
-      #   @param company_id [String] The ID of the company to create the access pass for.
+      #   @param company_id [String] The ID of the company to create the product for.
       #
-      #   @param title [String] The title of the access pass.
+      #   @param title [String] The title of the product.
       #
       #   @param access_pass_type [Symbol, Whopsdk::Models::AccessPassType, nil] The different types an access pass can be.
       #
-      #   @param banner_image [Whopsdk::Models::ProductCreateParams::BannerImage, nil] A banner image for the access pass in png, jpeg format
+      #   @param banner_image [Whopsdk::Models::ProductCreateParams::BannerImage, nil] A banner image for the product in png, jpeg format
       #
       #   @param business_type [Symbol, Whopsdk::Models::BusinessTypes, nil] The different business types a company can be.
       #
@@ -167,12 +167,12 @@ module Whopsdk
       #
       #   @param custom_cta [Symbol, Whopsdk::Models::CustomCta, nil] The different types of custom CTAs that can be selected.
       #
-      #   @param custom_cta_url [String, nil] The custom call to action URL for the access pass.
+      #   @param custom_cta_url [String, nil] The custom call to action URL for the product.
       #
-      #   @param custom_statement_descriptor [String, nil] The custom statement descriptor for the access pass i.e. WHOP\*SPORTS, must be
-      #   be
+      #   @param custom_statement_descriptor [String, nil] The custom statement descriptor for the product i.e. WHOP\*SPORTS, must be
+      #   betwee
       #
-      #   @param description [String, nil] A written description of the access pass.
+      #   @param description [String, nil] A written description of the product.
       #
       #   @param experience_ids [Array<String>, nil] An array of experience IDs that this pass has
       #
@@ -180,7 +180,7 @@ module Whopsdk
       #
       #   @param global_affiliate_status [Symbol, Whopsdk::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for an access pass.
       #
-      #   @param headline [String, nil] The headline of the access pass.
+      #   @param headline [String, nil] The headline of the product.
       #
       #   @param industry_type [Symbol, Whopsdk::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
@@ -190,13 +190,13 @@ module Whopsdk
       #
       #   @param plan_options [Whopsdk::Models::ProductCreateParams::PlanOptions, nil] The details to assign an autogenerated plan.
       #
-      #   @param product_highlights [Array<Whopsdk::Models::ProductCreateParams::ProductHighlight>, nil] The product highlights for the access pass.
+      #   @param product_highlights [Array<Whopsdk::Models::ProductCreateParams::ProductHighlight>, nil] The product highlights for the product.
       #
-      #   @param product_tax_code_id [String, nil] The ID of the product tax code to apply to this access pass.
+      #   @param product_tax_code_id [String, nil] The ID of the product tax code to apply to this product.
       #
       #   @param redirect_purchase_url [String, nil] The URL to redirect the customer to after a purchase.
       #
-      #   @param route [String, nil] The route of the access pass.
+      #   @param route [String, nil] The route of the product.
       #
       #   @param visibility [Symbol, Whopsdk::Models::Visibility, nil] Visibility of a resource
       #
@@ -223,7 +223,7 @@ module Whopsdk
         #   Some parameter documentations has been truncated, see
         #   {Whopsdk::Models::ProductCreateParams::BannerImage} for more details.
         #
-        #   A banner image for the access pass in png, jpeg format
+        #   A banner image for the product in png, jpeg format
         #
         #   @param id [String, nil] The ID of an existing attachment object. Use this when updating a resource and k
         #

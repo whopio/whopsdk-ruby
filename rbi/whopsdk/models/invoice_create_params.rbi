@@ -57,8 +57,8 @@ module Whopsdk
       sig { returns(T.nilable(String)) }
       attr_accessor :payment_token_id
 
-      # The properties of the access pass to create for this invoice. Include this if
-      # you want to create an invoice for a new product.
+      # The properties of the product to create for this invoice. Include this if you
+      # want to create an invoice for a new product.
       sig { returns(T.nilable(Whopsdk::InvoiceCreateParams::Product)) }
       attr_reader :product
 
@@ -69,8 +69,8 @@ module Whopsdk
       end
       attr_writer :product
 
-      # The access pass ID to create this invoice for. Include this if you want to
-      # create an invoice for an existing product.
+      # The product ID to create this invoice for. Include this if you want to create an
+      # invoice for an existing product.
       sig { returns(T.nilable(String)) }
       attr_accessor :product_id
 
@@ -116,11 +116,11 @@ module Whopsdk
         # The payment token ID to use for this invoice. If using charge_automatically, you
         # must provide a payment_token.
         payment_token_id: nil,
-        # The properties of the access pass to create for this invoice. Include this if
-        # you want to create an invoice for a new product.
+        # The properties of the product to create for this invoice. Include this if you
+        # want to create an invoice for a new product.
         product: nil,
-        # The access pass ID to create this invoice for. Include this if you want to
-        # create an invoice for an existing product.
+        # The product ID to create this invoice for. Include this if you want to create an
+        # invoice for an existing product.
         product_id: nil,
         request_options: {}
       )
@@ -359,25 +359,25 @@ module Whopsdk
             )
           end
 
-        # The title of the access pass.
+        # The title of the product.
         sig { returns(String) }
         attr_accessor :title
 
-        # The ID of the product tax code to apply to this access pass.
+        # The ID of the product tax code to apply to this product.
         sig { returns(T.nilable(String)) }
         attr_accessor :product_tax_code_id
 
-        # The properties of the access pass to create for this invoice. Include this if
-        # you want to create an invoice for a new product.
+        # The properties of the product to create for this invoice. Include this if you
+        # want to create an invoice for a new product.
         sig do
           params(title: String, product_tax_code_id: T.nilable(String)).returns(
             T.attached_class
           )
         end
         def self.new(
-          # The title of the access pass.
+          # The title of the product.
           title:,
-          # The ID of the product tax code to apply to this access pass.
+          # The ID of the product tax code to apply to this product.
           product_tax_code_id: nil
         )
         end

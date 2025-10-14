@@ -56,7 +56,7 @@ module Whopsdk
       optional :plan_types, -> { Whopsdk::Internal::Type::ArrayOf[enum: Whopsdk::PlanType] }, nil?: true
 
       # @!attribute product_ids
-      #   The access pass IDs to filter the plans by
+      #   The product IDs to filter the plans by
       #
       #   @return [Array<String>, nil]
       optional :product_ids, Whopsdk::Internal::Type::ArrayOf[String], nil?: true
@@ -94,7 +94,7 @@ module Whopsdk
       #
       #   @param plan_types [Array<Symbol, Whopsdk::Models::PlanType>, nil] The plan type to filter the plans by
       #
-      #   @param product_ids [Array<String>, nil] The access pass IDs to filter the plans by
+      #   @param product_ids [Array<String>, nil] The product IDs to filter the plans by
       #
       #   @param release_methods [Array<Symbol, Whopsdk::Models::ReleaseMethod>, nil] The release method to filter the plans by
       #

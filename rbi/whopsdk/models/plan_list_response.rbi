@@ -81,7 +81,7 @@ module Whopsdk
       end
       attr_writer :product
 
-      # The direct link to purchase the access pass.
+      # The direct link to purchase the product.
       sig { returns(String) }
       attr_accessor :purchase_url
 
@@ -159,7 +159,7 @@ module Whopsdk
         plan_type:,
         # The access pass for the plan.
         product:,
-        # The direct link to purchase the access pass.
+        # The direct link to purchase the product.
         purchase_url:,
         # This is the release method the business uses to sell this plan.
         release_method:,
@@ -269,20 +269,20 @@ module Whopsdk
             )
           end
 
-        # The internal ID of the public access pass.
+        # The internal ID of the public product.
         sig { returns(String) }
         attr_accessor :id
 
-        # The title of the access pass. Use for Whop 4.0.
+        # The title of the product. Use for Whop 4.0.
         sig { returns(String) }
         attr_accessor :title
 
         # The access pass for the plan.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
-          # The internal ID of the public access pass.
+          # The internal ID of the public product.
           id:,
-          # The title of the access pass. Use for Whop 4.0.
+          # The title of the product. Use for Whop 4.0.
           title:
         )
         end

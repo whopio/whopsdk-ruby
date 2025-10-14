@@ -36,7 +36,7 @@ module Whopsdk
       def create(
         # The company the plan should be created for.
         company_id:,
-        # The access pass the plan is related to.
+        # The product the plan is related to.
         product_id:,
         # The interval at which the plan charges (renewal plans).
         billing_period: nil,
@@ -192,7 +192,7 @@ module Whopsdk
         order: nil,
         # The plan type to filter the plans by
         plan_types: nil,
-        # The access pass IDs to filter the plans by
+        # The product IDs to filter the plans by
         product_ids: nil,
         # The release method to filter the plans by
         release_methods: nil,

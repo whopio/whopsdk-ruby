@@ -166,15 +166,15 @@ module Whopsdk
             T.any(Whopsdk::Experience::Product, Whopsdk::Internal::AnyHash)
           end
 
-        # The internal ID of the public access pass.
+        # The internal ID of the public product.
         sig { returns(String) }
         attr_accessor :id
 
-        # The route of the access pass.
+        # The route of the product.
         sig { returns(String) }
         attr_accessor :route
 
-        # The title of the access pass. Use for Whop 4.0.
+        # The title of the product. Use for Whop 4.0.
         sig { returns(String) }
         attr_accessor :title
 
@@ -185,11 +185,11 @@ module Whopsdk
           )
         end
         def self.new(
-          # The internal ID of the public access pass.
+          # The internal ID of the public product.
           id:,
-          # The route of the access pass.
+          # The route of the product.
           route:,
-          # The title of the access pass. Use for Whop 4.0.
+          # The title of the product. Use for Whop 4.0.
           title:
         )
         end

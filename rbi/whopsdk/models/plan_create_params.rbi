@@ -15,7 +15,7 @@ module Whopsdk
       sig { returns(String) }
       attr_accessor :company_id
 
-      # The access pass the plan is related to.
+      # The product the plan is related to.
       sig { returns(String) }
       attr_accessor :product_id
 
@@ -113,7 +113,7 @@ module Whopsdk
       def self.new(
         # The company the plan should be created for.
         company_id:,
-        # The access pass the plan is related to.
+        # The product the plan is related to.
         product_id:,
         # The interval at which the plan charges (renewal plans).
         billing_period: nil,

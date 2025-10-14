@@ -43,7 +43,7 @@ module Whopsdk
       sig { returns(T.nilable(T::Array[Whopsdk::PlanType::OrSymbol])) }
       attr_accessor :plan_types
 
-      # The access pass IDs to filter the plans by
+      # The product IDs to filter the plans by
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :product_ids
 
@@ -90,7 +90,7 @@ module Whopsdk
         order: nil,
         # The plan type to filter the plans by
         plan_types: nil,
-        # The access pass IDs to filter the plans by
+        # The product IDs to filter the plans by
         product_ids: nil,
         # The release method to filter the plans by
         release_methods: nil,

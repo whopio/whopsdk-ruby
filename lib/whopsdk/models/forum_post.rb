@@ -34,7 +34,7 @@ module Whopsdk
       required :is_pinned, Whopsdk::Internal::Type::Boolean
 
       # @!attribute is_poster_admin
-      #   Whether the user that sent the post is an admin of the bot
+      #   Whether the user that sent the post is an admin of the company
       #
       #   @return [Boolean]
       required :is_poster_admin, Whopsdk::Internal::Type::Boolean
@@ -82,7 +82,7 @@ module Whopsdk
       #
       #   @param is_pinned [Boolean] Whether this forum post is pinned
       #
-      #   @param is_poster_admin [Boolean] Whether the user that sent the post is an admin of the bot
+      #   @param is_poster_admin [Boolean] Whether the user that sent the post is an admin of the company
       #
       #   @param like_count [Integer, nil] The number of likes this post has received
       #

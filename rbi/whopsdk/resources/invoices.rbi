@@ -51,11 +51,11 @@ module Whopsdk
         # The payment token ID to use for this invoice. If using charge_automatically, you
         # must provide a payment_token.
         payment_token_id: nil,
-        # The properties of the access pass to create for this invoice. Include this if
-        # you want to create an invoice for a new product.
+        # The properties of the product to create for this invoice. Include this if you
+        # want to create an invoice for a new product.
         product: nil,
-        # The access pass ID to create this invoice for. Include this if you want to
-        # create an invoice for an existing product.
+        # The product ID to create this invoice for. Include this if you want to create an
+        # invoice for an existing product.
         product_id: nil,
         request_options: {}
       )

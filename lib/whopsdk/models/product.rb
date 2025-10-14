@@ -4,7 +4,7 @@ module Whopsdk
   module Models
     class Product < Whopsdk::Internal::Type::BaseModel
       # @!attribute id
-      #   The internal ID of the public access pass.
+      #   The internal ID of the public product.
       #
       #   @return [String]
       required :id, String
@@ -16,31 +16,31 @@ module Whopsdk
       required :business_type, enum: -> { Whopsdk::BusinessTypes }, nil?: true
 
       # @!attribute company
-      #   A short type of the company that this access pass belongs to.
+      #   A short type of the company that this product belongs to.
       #
       #   @return [Whopsdk::Models::Product::Company]
       required :company, -> { Whopsdk::Product::Company }
 
       # @!attribute created_at
-      #   When the access pass was created.
+      #   When the product was created.
       #
       #   @return [Integer]
       required :created_at, Integer
 
       # @!attribute custom_cta
-      #   The custom call to action for the access pass.
+      #   The custom call to action for the product.
       #
       #   @return [Symbol, Whopsdk::Models::CustomCta]
       required :custom_cta, enum: -> { Whopsdk::CustomCta }
 
       # @!attribute custom_cta_url
-      #   The custom call to action URL for the access pass, if any.
+      #   The custom call to action URL for the product, if any.
       #
       #   @return [String, nil]
       required :custom_cta_url, String, nil?: true
 
       # @!attribute custom_statement_descriptor
-      #   The custom statement descriptor for the access pass.
+      #   The custom statement descriptor for the product.
       #
       #   @return [String, nil]
       required :custom_statement_descriptor, String, nil?: true
@@ -59,13 +59,13 @@ module Whopsdk
       required :global_affiliate_percentage, Float, nil?: true
 
       # @!attribute global_affiliate_status
-      #   The status of the global affiliate program for this access pass.
+      #   The status of the global affiliate program for this product.
       #
       #   @return [Symbol, Whopsdk::Models::GlobalAffiliateStatus]
       required :global_affiliate_status, enum: -> { Whopsdk::GlobalAffiliateStatus }
 
       # @!attribute headline
-      #   The headline of the access pass.
+      #   The headline of the product.
       #
       #   @return [String, nil]
       required :headline, String, nil?: true
@@ -84,49 +84,49 @@ module Whopsdk
       required :member_affiliate_percentage, Float, nil?: true
 
       # @!attribute member_affiliate_status
-      #   The status of the member affiliate program for this access pass.
+      #   The status of the member affiliate program for this product.
       #
       #   @return [Symbol, Whopsdk::Models::GlobalAffiliateStatus]
       required :member_affiliate_status, enum: -> { Whopsdk::GlobalAffiliateStatus }
 
       # @!attribute member_count
-      #   The number of active users for this access pass.
+      #   The number of active users for this product.
       #
       #   @return [Integer]
       required :member_count, Integer
 
       # @!attribute owner_user
-      #   The user that owns the access pass (company owner).
+      #   The user that owns the product (company owner).
       #
       #   @return [Whopsdk::Models::Product::OwnerUser]
       required :owner_user, -> { Whopsdk::Product::OwnerUser }
 
       # @!attribute product_tax_code
-      #   The product tax code for the access pass, if any.
+      #   The product tax code for the product, if any.
       #
       #   @return [Whopsdk::Models::Product::ProductTaxCode, nil]
       required :product_tax_code, -> { Whopsdk::Product::ProductTaxCode }, nil?: true
 
       # @!attribute published_reviews_count
-      #   The number of reviews that have been published for the access pass.
+      #   The number of reviews that have been published for the product.
       #
       #   @return [Integer]
       required :published_reviews_count, Integer
 
       # @!attribute route
-      #   The route of the access pass.
+      #   The route of the product.
       #
       #   @return [String]
       required :route, String
 
       # @!attribute title
-      #   The title of the access pass. Use for Whop 4.0.
+      #   The title of the product. Use for Whop 4.0.
       #
       #   @return [String]
       required :title, String
 
       # @!attribute updated_at
-      #   When the access pass was updated.
+      #   When the product was updated.
       #
       #   @return [Integer]
       required :updated_at, Integer
@@ -138,7 +138,7 @@ module Whopsdk
       required :verified, Whopsdk::Internal::Type::Boolean
 
       # @!attribute visibility
-      #   This access pass will/will not be displayed publicly.
+      #   This product will/will not be displayed publicly.
       #
       #   @return [Symbol, Whopsdk::Models::Visibility]
       required :visibility, enum: -> { Whopsdk::Visibility }
@@ -149,51 +149,51 @@ module Whopsdk
       #
       #   An object representing a (sanitized) access pass.
       #
-      #   @param id [String] The internal ID of the public access pass.
+      #   @param id [String] The internal ID of the public product.
       #
       #   @param business_type [Symbol, Whopsdk::Models::BusinessTypes, nil] The different business types a company can be.
       #
-      #   @param company [Whopsdk::Models::Product::Company] A short type of the company that this access pass belongs to.
+      #   @param company [Whopsdk::Models::Product::Company] A short type of the company that this product belongs to.
       #
-      #   @param created_at [Integer] When the access pass was created.
+      #   @param created_at [Integer] When the product was created.
       #
-      #   @param custom_cta [Symbol, Whopsdk::Models::CustomCta] The custom call to action for the access pass.
+      #   @param custom_cta [Symbol, Whopsdk::Models::CustomCta] The custom call to action for the product.
       #
-      #   @param custom_cta_url [String, nil] The custom call to action URL for the access pass, if any.
+      #   @param custom_cta_url [String, nil] The custom call to action URL for the product, if any.
       #
-      #   @param custom_statement_descriptor [String, nil] The custom statement descriptor for the access pass.
+      #   @param custom_statement_descriptor [String, nil] The custom statement descriptor for the product.
       #
       #   @param description [String, nil] A short description of what the company offers or does.
       #
       #   @param global_affiliate_percentage [Float, nil] The percentage of a transaction a user is eligible to earn from the whop marketp
       #
-      #   @param global_affiliate_status [Symbol, Whopsdk::Models::GlobalAffiliateStatus] The status of the global affiliate program for this access pass.
+      #   @param global_affiliate_status [Symbol, Whopsdk::Models::GlobalAffiliateStatus] The status of the global affiliate program for this product.
       #
-      #   @param headline [String, nil] The headline of the access pass.
+      #   @param headline [String, nil] The headline of the product.
       #
       #   @param industry_type [Symbol, Whopsdk::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
       #   @param member_affiliate_percentage [Float, nil] The percentage of a transaction a user is eligible to earn from the whop marketp
       #
-      #   @param member_affiliate_status [Symbol, Whopsdk::Models::GlobalAffiliateStatus] The status of the member affiliate program for this access pass.
+      #   @param member_affiliate_status [Symbol, Whopsdk::Models::GlobalAffiliateStatus] The status of the member affiliate program for this product.
       #
-      #   @param member_count [Integer] The number of active users for this access pass.
+      #   @param member_count [Integer] The number of active users for this product.
       #
-      #   @param owner_user [Whopsdk::Models::Product::OwnerUser] The user that owns the access pass (company owner).
+      #   @param owner_user [Whopsdk::Models::Product::OwnerUser] The user that owns the product (company owner).
       #
-      #   @param product_tax_code [Whopsdk::Models::Product::ProductTaxCode, nil] The product tax code for the access pass, if any.
+      #   @param product_tax_code [Whopsdk::Models::Product::ProductTaxCode, nil] The product tax code for the product, if any.
       #
-      #   @param published_reviews_count [Integer] The number of reviews that have been published for the access pass.
+      #   @param published_reviews_count [Integer] The number of reviews that have been published for the product.
       #
-      #   @param route [String] The route of the access pass.
+      #   @param route [String] The route of the product.
       #
-      #   @param title [String] The title of the access pass. Use for Whop 4.0.
+      #   @param title [String] The title of the product. Use for Whop 4.0.
       #
-      #   @param updated_at [Integer] When the access pass was updated.
+      #   @param updated_at [Integer] When the product was updated.
       #
       #   @param verified [Boolean] Whether this product is Whop verified.
       #
-      #   @param visibility [Symbol, Whopsdk::Models::Visibility] This access pass will/will not be displayed publicly.
+      #   @param visibility [Symbol, Whopsdk::Models::Visibility] This product will/will not be displayed publicly.
 
       # @see Whopsdk::Models::Product#company
       class Company < Whopsdk::Internal::Type::BaseModel
@@ -216,7 +216,7 @@ module Whopsdk
         required :title, String
 
         # @!method initialize(id:, route:, title:)
-        #   A short type of the company that this access pass belongs to.
+        #   A short type of the company that this product belongs to.
         #
         #   @param id [String] The ID (tag) of the company.
         #
@@ -246,7 +246,7 @@ module Whopsdk
         required :username, String
 
         # @!method initialize(id:, name:, username:)
-        #   The user that owns the access pass (company owner).
+        #   The user that owns the product (company owner).
         #
         #   @param id [String] The internal ID of the user.
         #
@@ -276,7 +276,7 @@ module Whopsdk
         required :product_type, enum: -> { Whopsdk::Product::ProductTaxCode::ProductType }
 
         # @!method initialize(id:, name:, product_type:)
-        #   The product tax code for the access pass, if any.
+        #   The product tax code for the product, if any.
         #
         #   @param id [String] The internal ID of the product tax code.
         #

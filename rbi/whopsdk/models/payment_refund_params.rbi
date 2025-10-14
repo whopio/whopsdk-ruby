@@ -11,7 +11,7 @@ module Whopsdk
           T.any(Whopsdk::PaymentRefundParams, Whopsdk::Internal::AnyHash)
         end
 
-      # refund_payment | An amount if the refund is supposed to be partial.
+      # An amount if the refund is supposed to be partial.
       sig { returns(T.nilable(Float)) }
       attr_accessor :partial_amount
 
@@ -22,7 +22,7 @@ module Whopsdk
         ).returns(T.attached_class)
       end
       def self.new(
-        # refund_payment | An amount if the refund is supposed to be partial.
+        # An amount if the refund is supposed to be partial.
         partial_amount: nil,
         request_options: {}
       )

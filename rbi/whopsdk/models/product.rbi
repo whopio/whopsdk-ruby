@@ -6,7 +6,7 @@ module Whopsdk
       OrHash =
         T.type_alias { T.any(Whopsdk::Product, Whopsdk::Internal::AnyHash) }
 
-      # The internal ID of the public access pass.
+      # The internal ID of the public product.
       sig { returns(String) }
       attr_accessor :id
 
@@ -14,26 +14,26 @@ module Whopsdk
       sig { returns(T.nilable(Whopsdk::BusinessTypes::TaggedSymbol)) }
       attr_accessor :business_type
 
-      # A short type of the company that this access pass belongs to.
+      # A short type of the company that this product belongs to.
       sig { returns(Whopsdk::Product::Company) }
       attr_reader :company
 
       sig { params(company: Whopsdk::Product::Company::OrHash).void }
       attr_writer :company
 
-      # When the access pass was created.
+      # When the product was created.
       sig { returns(Integer) }
       attr_accessor :created_at
 
-      # The custom call to action for the access pass.
+      # The custom call to action for the product.
       sig { returns(Whopsdk::CustomCta::TaggedSymbol) }
       attr_accessor :custom_cta
 
-      # The custom call to action URL for the access pass, if any.
+      # The custom call to action URL for the product, if any.
       sig { returns(T.nilable(String)) }
       attr_accessor :custom_cta_url
 
-      # The custom statement descriptor for the access pass.
+      # The custom statement descriptor for the product.
       sig { returns(T.nilable(String)) }
       attr_accessor :custom_statement_descriptor
 
@@ -46,11 +46,11 @@ module Whopsdk
       sig { returns(T.nilable(Float)) }
       attr_accessor :global_affiliate_percentage
 
-      # The status of the global affiliate program for this access pass.
+      # The status of the global affiliate program for this product.
       sig { returns(Whopsdk::GlobalAffiliateStatus::TaggedSymbol) }
       attr_accessor :global_affiliate_status
 
-      # The headline of the access pass.
+      # The headline of the product.
       sig { returns(T.nilable(String)) }
       attr_accessor :headline
 
@@ -63,22 +63,22 @@ module Whopsdk
       sig { returns(T.nilable(Float)) }
       attr_accessor :member_affiliate_percentage
 
-      # The status of the member affiliate program for this access pass.
+      # The status of the member affiliate program for this product.
       sig { returns(Whopsdk::GlobalAffiliateStatus::TaggedSymbol) }
       attr_accessor :member_affiliate_status
 
-      # The number of active users for this access pass.
+      # The number of active users for this product.
       sig { returns(Integer) }
       attr_accessor :member_count
 
-      # The user that owns the access pass (company owner).
+      # The user that owns the product (company owner).
       sig { returns(Whopsdk::Product::OwnerUser) }
       attr_reader :owner_user
 
       sig { params(owner_user: Whopsdk::Product::OwnerUser::OrHash).void }
       attr_writer :owner_user
 
-      # The product tax code for the access pass, if any.
+      # The product tax code for the product, if any.
       sig { returns(T.nilable(Whopsdk::Product::ProductTaxCode)) }
       attr_reader :product_tax_code
 
@@ -89,19 +89,19 @@ module Whopsdk
       end
       attr_writer :product_tax_code
 
-      # The number of reviews that have been published for the access pass.
+      # The number of reviews that have been published for the product.
       sig { returns(Integer) }
       attr_accessor :published_reviews_count
 
-      # The route of the access pass.
+      # The route of the product.
       sig { returns(String) }
       attr_accessor :route
 
-      # The title of the access pass. Use for Whop 4.0.
+      # The title of the product. Use for Whop 4.0.
       sig { returns(String) }
       attr_accessor :title
 
-      # When the access pass was updated.
+      # When the product was updated.
       sig { returns(Integer) }
       attr_accessor :updated_at
 
@@ -109,7 +109,7 @@ module Whopsdk
       sig { returns(T::Boolean) }
       attr_accessor :verified
 
-      # This access pass will/will not be displayed publicly.
+      # This product will/will not be displayed publicly.
       sig { returns(Whopsdk::Visibility::TaggedSymbol) }
       attr_accessor :visibility
 
@@ -142,53 +142,53 @@ module Whopsdk
         ).returns(T.attached_class)
       end
       def self.new(
-        # The internal ID of the public access pass.
+        # The internal ID of the public product.
         id:,
         # The different business types a company can be.
         business_type:,
-        # A short type of the company that this access pass belongs to.
+        # A short type of the company that this product belongs to.
         company:,
-        # When the access pass was created.
+        # When the product was created.
         created_at:,
-        # The custom call to action for the access pass.
+        # The custom call to action for the product.
         custom_cta:,
-        # The custom call to action URL for the access pass, if any.
+        # The custom call to action URL for the product, if any.
         custom_cta_url:,
-        # The custom statement descriptor for the access pass.
+        # The custom statement descriptor for the product.
         custom_statement_descriptor:,
         # A short description of what the company offers or does.
         description:,
         # The percentage of a transaction a user is eligible to earn from the whop
         # marketplace global affiliate program.
         global_affiliate_percentage:,
-        # The status of the global affiliate program for this access pass.
+        # The status of the global affiliate program for this product.
         global_affiliate_status:,
-        # The headline of the access pass.
+        # The headline of the product.
         headline:,
         # The different industry types a company can be in.
         industry_type:,
         # The percentage of a transaction a user is eligible to earn from the whop
         # marketplace member affiliate program.
         member_affiliate_percentage:,
-        # The status of the member affiliate program for this access pass.
+        # The status of the member affiliate program for this product.
         member_affiliate_status:,
-        # The number of active users for this access pass.
+        # The number of active users for this product.
         member_count:,
-        # The user that owns the access pass (company owner).
+        # The user that owns the product (company owner).
         owner_user:,
-        # The product tax code for the access pass, if any.
+        # The product tax code for the product, if any.
         product_tax_code:,
-        # The number of reviews that have been published for the access pass.
+        # The number of reviews that have been published for the product.
         published_reviews_count:,
-        # The route of the access pass.
+        # The route of the product.
         route:,
-        # The title of the access pass. Use for Whop 4.0.
+        # The title of the product. Use for Whop 4.0.
         title:,
-        # When the access pass was updated.
+        # When the product was updated.
         updated_at:,
         # Whether this product is Whop verified.
         verified:,
-        # This access pass will/will not be displayed publicly.
+        # This product will/will not be displayed publicly.
         visibility:
       )
       end
@@ -245,7 +245,7 @@ module Whopsdk
         sig { returns(String) }
         attr_accessor :title
 
-        # A short type of the company that this access pass belongs to.
+        # A short type of the company that this product belongs to.
         sig do
           params(id: String, route: String, title: String).returns(
             T.attached_class
@@ -284,7 +284,7 @@ module Whopsdk
         sig { returns(String) }
         attr_accessor :username
 
-        # The user that owns the access pass (company owner).
+        # The user that owns the product (company owner).
         sig do
           params(id: String, name: T.nilable(String), username: String).returns(
             T.attached_class
@@ -329,7 +329,7 @@ module Whopsdk
         end
         attr_accessor :product_type
 
-        # The product tax code for the access pass, if any.
+        # The product tax code for the product, if any.
         sig do
           params(
             id: String,

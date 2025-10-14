@@ -111,7 +111,7 @@ module Whopsdk
       #
       # @param id [String]
       #
-      # @param partial_amount [Float, nil] refund_payment | An amount if the refund is supposed to be partial.
+      # @param partial_amount [Float, nil] An amount if the refund is supposed to be partial.
       #
       # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
       #

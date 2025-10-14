@@ -125,14 +125,14 @@ module Whopsdk
             )
           end
 
-        # The receipt ID
+        # The payment ID
         sig { returns(String) }
         attr_accessor :id
 
         # The payment of the shipment
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The receipt ID
+          # The payment ID
           id:
         )
         end

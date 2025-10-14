@@ -18,7 +18,7 @@ module Whopsdk
         ).returns(Whopsdk::Shipment)
       end
       def create(
-        # The ID of the bot to create the shipment for
+        # The ID of the company to create the shipment for
         company_id:,
         # The ID of the payment to create the shipment for
         payment_id:,

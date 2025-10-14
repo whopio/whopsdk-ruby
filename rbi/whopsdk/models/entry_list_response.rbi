@@ -130,20 +130,20 @@ module Whopsdk
             )
           end
 
-        # The internal ID of the public access pass.
+        # The internal ID of the public product.
         sig { returns(String) }
         attr_accessor :id
 
-        # The title of the access pass. Use for Whop 4.0.
+        # The title of the product. Use for Whop 4.0.
         sig { returns(String) }
         attr_accessor :title
 
         # The access pass tied to this entry, if there is one.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
-          # The internal ID of the public access pass.
+          # The internal ID of the public product.
           id:,
-          # The title of the access pass. Use for Whop 4.0.
+          # The title of the product. Use for Whop 4.0.
           title:
         )
         end

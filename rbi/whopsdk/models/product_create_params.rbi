@@ -11,11 +11,11 @@ module Whopsdk
           T.any(Whopsdk::ProductCreateParams, Whopsdk::Internal::AnyHash)
         end
 
-      # The ID of the company to create the access pass for.
+      # The ID of the company to create the product for.
       sig { returns(String) }
       attr_accessor :company_id
 
-      # The title of the access pass.
+      # The title of the product.
       sig { returns(String) }
       attr_accessor :title
 
@@ -23,7 +23,7 @@ module Whopsdk
       sig { returns(T.nilable(Whopsdk::AccessPassType::OrSymbol)) }
       attr_accessor :access_pass_type
 
-      # A banner image for the access pass in png, jpeg format
+      # A banner image for the product in png, jpeg format
       sig { returns(T.nilable(Whopsdk::ProductCreateParams::BannerImage)) }
       attr_reader :banner_image
 
@@ -47,17 +47,17 @@ module Whopsdk
       sig { returns(T.nilable(Whopsdk::CustomCta::OrSymbol)) }
       attr_accessor :custom_cta
 
-      # The custom call to action URL for the access pass.
+      # The custom call to action URL for the product.
       sig { returns(T.nilable(String)) }
       attr_accessor :custom_cta_url
 
-      # The custom statement descriptor for the access pass i.e. WHOP\*SPORTS, must be
+      # The custom statement descriptor for the product i.e. WHOP\*SPORTS, must be
       # between 5 and 22 characters, contain at least one letter, and not contain any of
       # the following characters: <, >, \, ', "
       sig { returns(T.nilable(String)) }
       attr_accessor :custom_statement_descriptor
 
-      # A written description of the access pass.
+      # A written description of the product.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
@@ -73,7 +73,7 @@ module Whopsdk
       sig { returns(T.nilable(Whopsdk::GlobalAffiliateStatus::OrSymbol)) }
       attr_accessor :global_affiliate_status
 
-      # The headline of the access pass.
+      # The headline of the product.
       sig { returns(T.nilable(String)) }
       attr_accessor :headline
 
@@ -101,7 +101,7 @@ module Whopsdk
       end
       attr_writer :plan_options
 
-      # The product highlights for the access pass.
+      # The product highlights for the product.
       sig do
         returns(
           T.nilable(T::Array[Whopsdk::ProductCreateParams::ProductHighlight])
@@ -109,7 +109,7 @@ module Whopsdk
       end
       attr_accessor :product_highlights
 
-      # The ID of the product tax code to apply to this access pass.
+      # The ID of the product tax code to apply to this product.
       sig { returns(T.nilable(String)) }
       attr_accessor :product_tax_code_id
 
@@ -117,7 +117,7 @@ module Whopsdk
       sig { returns(T.nilable(String)) }
       attr_accessor :redirect_purchase_url
 
-      # The route of the access pass.
+      # The route of the product.
       sig { returns(T.nilable(String)) }
       attr_accessor :route
 
@@ -161,13 +161,13 @@ module Whopsdk
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the company to create the access pass for.
+        # The ID of the company to create the product for.
         company_id:,
-        # The title of the access pass.
+        # The title of the product.
         title:,
         # The different types an access pass can be.
         access_pass_type: nil,
-        # A banner image for the access pass in png, jpeg format
+        # A banner image for the product in png, jpeg format
         banner_image: nil,
         # The different business types a company can be.
         business_type: nil,
@@ -175,13 +175,13 @@ module Whopsdk
         collect_shipping_address: nil,
         # The different types of custom CTAs that can be selected.
         custom_cta: nil,
-        # The custom call to action URL for the access pass.
+        # The custom call to action URL for the product.
         custom_cta_url: nil,
-        # The custom statement descriptor for the access pass i.e. WHOP\*SPORTS, must be
+        # The custom statement descriptor for the product i.e. WHOP\*SPORTS, must be
         # between 5 and 22 characters, contain at least one letter, and not contain any of
         # the following characters: <, >, \, ', "
         custom_statement_descriptor: nil,
-        # A written description of the access pass.
+        # A written description of the product.
         description: nil,
         # An array of experience IDs that this pass has
         experience_ids: nil,
@@ -189,7 +189,7 @@ module Whopsdk
         global_affiliate_percentage: nil,
         # The different statuses of the global affiliate program for an access pass.
         global_affiliate_status: nil,
-        # The headline of the access pass.
+        # The headline of the product.
         headline: nil,
         # The different industry types a company can be in.
         industry_type: nil,
@@ -199,13 +199,13 @@ module Whopsdk
         member_affiliate_status: nil,
         # The details to assign an autogenerated plan.
         plan_options: nil,
-        # The product highlights for the access pass.
+        # The product highlights for the product.
         product_highlights: nil,
-        # The ID of the product tax code to apply to this access pass.
+        # The ID of the product tax code to apply to this product.
         product_tax_code_id: nil,
         # The URL to redirect the customer to after a purchase.
         redirect_purchase_url: nil,
-        # The route of the access pass.
+        # The route of the product.
         route: nil,
         # Visibility of a resource
         visibility: nil,
@@ -272,7 +272,7 @@ module Whopsdk
         sig { returns(T.nilable(String)) }
         attr_accessor :direct_upload_id
 
-        # A banner image for the access pass in png, jpeg format
+        # A banner image for the product in png, jpeg format
         sig do
           params(
             id: T.nilable(String),

@@ -69,15 +69,15 @@ module Whopsdk
       optional :payment_token_id, String, nil?: true
 
       # @!attribute product
-      #   The properties of the access pass to create for this invoice. Include this if
-      #   you want to create an invoice for a new product.
+      #   The properties of the product to create for this invoice. Include this if you
+      #   want to create an invoice for a new product.
       #
       #   @return [Whopsdk::Models::InvoiceCreateParams::Product, nil]
       optional :product, -> { Whopsdk::InvoiceCreateParams::Product }, nil?: true
 
       # @!attribute product_id
-      #   The access pass ID to create this invoice for. Include this if you want to
-      #   create an invoice for an existing product.
+      #   The product ID to create this invoice for. Include this if you want to create an
+      #   invoice for an existing product.
       #
       #   @return [String, nil]
       optional :product_id, String, nil?: true
@@ -104,9 +104,9 @@ module Whopsdk
       #
       #   @param payment_token_id [String, nil] The payment token ID to use for this invoice. If using charge_automatically, you
       #
-      #   @param product [Whopsdk::Models::InvoiceCreateParams::Product, nil] The properties of the access pass to create for this invoice. Include this if yo
+      #   @param product [Whopsdk::Models::InvoiceCreateParams::Product, nil] The properties of the product to create for this invoice. Include this if you wa
       #
-      #   @param product_id [String, nil] The access pass ID to create this invoice for. Include this if you want to creat
+      #   @param product_id [String, nil] The product ID to create this invoice for. Include this if you want to create an
       #
       #   @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}]
 
@@ -258,24 +258,24 @@ module Whopsdk
 
       class Product < Whopsdk::Internal::Type::BaseModel
         # @!attribute title
-        #   The title of the access pass.
+        #   The title of the product.
         #
         #   @return [String]
         required :title, String
 
         # @!attribute product_tax_code_id
-        #   The ID of the product tax code to apply to this access pass.
+        #   The ID of the product tax code to apply to this product.
         #
         #   @return [String, nil]
         optional :product_tax_code_id, String, nil?: true
 
         # @!method initialize(title:, product_tax_code_id: nil)
-        #   The properties of the access pass to create for this invoice. Include this if
-        #   you want to create an invoice for a new product.
+        #   The properties of the product to create for this invoice. Include this if you
+        #   want to create an invoice for a new product.
         #
-        #   @param title [String] The title of the access pass.
+        #   @param title [String] The title of the product.
         #
-        #   @param product_tax_code_id [String, nil] The ID of the product tax code to apply to this access pass.
+        #   @param product_tax_code_id [String, nil] The ID of the product tax code to apply to this product.
       end
     end
   end

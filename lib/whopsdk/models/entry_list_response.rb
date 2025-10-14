@@ -72,13 +72,13 @@ module Whopsdk
       # @see Whopsdk::Models::EntryListResponse#product
       class Product < Whopsdk::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the public access pass.
+        #   The internal ID of the public product.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute title
-        #   The title of the access pass. Use for Whop 4.0.
+        #   The title of the product. Use for Whop 4.0.
         #
         #   @return [String]
         required :title, String
@@ -86,9 +86,9 @@ module Whopsdk
         # @!method initialize(id:, title:)
         #   The access pass tied to this entry, if there is one.
         #
-        #   @param id [String] The internal ID of the public access pass.
+        #   @param id [String] The internal ID of the public product.
         #
-        #   @param title [String] The title of the access pass. Use for Whop 4.0.
+        #   @param title [String] The title of the product. Use for Whop 4.0.
       end
 
       # @see Whopsdk::Models::EntryListResponse#user

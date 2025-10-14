@@ -4,13 +4,13 @@ module Whopsdk
   module Models
     class Payment < Whopsdk::Internal::Type::BaseModel
       # @!attribute id
-      #   The receipt ID
+      #   The payment ID
       #
       #   @return [String]
       required :id, String
 
       # @!attribute amount_after_fees
-      #   How much the receipt is for after fees
+      #   How much the payment is for after fees
       #
       #   @return [Float]
       required :amount_after_fees, Float
@@ -46,13 +46,13 @@ module Whopsdk
       required :card_last4, String, nil?: true
 
       # @!attribute company
-      #   The company for the receipt.
+      #   The company for the payment.
       #
       #   @return [Whopsdk::Models::Payment::Company, nil]
       required :company, -> { Whopsdk::Payment::Company }, nil?: true
 
       # @!attribute created_at
-      #   The datetime the receipt was created
+      #   The datetime the payment was created
       #
       #   @return [Integer]
       required :created_at, Integer
@@ -82,19 +82,19 @@ module Whopsdk
       required :last_payment_attempt, Integer, nil?: true
 
       # @!attribute member
-      #   The member attached to this receipt.
+      #   The member attached to this payment.
       #
       #   @return [Whopsdk::Models::Payment::Member, nil]
       required :member, -> { Whopsdk::Payment::Member }, nil?: true
 
       # @!attribute membership
-      #   The membership attached to this receipt.
+      #   The membership attached to this payment.
       #
       #   @return [Whopsdk::Models::Payment::Membership, nil]
       required :membership, -> { Whopsdk::Payment::Membership }, nil?: true
 
       # @!attribute paid_at
-      #   The datetime the receipt was paid
+      #   The datetime the payment was paid
       #
       #   @return [Integer, nil]
       required :paid_at, Integer, nil?: true
@@ -107,19 +107,19 @@ module Whopsdk
       required :payment_method_type, String, nil?: true
 
       # @!attribute plan
-      #   The plan attached to this receipt.
+      #   The plan attached to this payment.
       #
       #   @return [Whopsdk::Models::Payment::Plan, nil]
       required :plan, -> { Whopsdk::Payment::Plan }, nil?: true
 
       # @!attribute product
-      #   The access pass attached to this receipt.
+      #   The access pass attached to this payment.
       #
       #   @return [Whopsdk::Models::Payment::Product, nil]
       required :product, -> { Whopsdk::Payment::Product }, nil?: true
 
       # @!attribute promo_code
-      #   The promo code used for this receipt.
+      #   The promo code used for this payment.
       #
       #   @return [Whopsdk::Models::Payment::PromoCode, nil]
       required :promo_code, -> { Whopsdk::Payment::PromoCode }, nil?: true
@@ -155,7 +155,7 @@ module Whopsdk
       required :status, enum: -> { Whopsdk::ReceiptStatus }, nil?: true
 
       # @!attribute substatus
-      #   The friendly status of the receipt.
+      #   The friendly status of the payment.
       #
       #   @return [Symbol, Whopsdk::Models::FriendlyReceiptStatus]
       required :substatus, enum: -> { Whopsdk::FriendlyReceiptStatus }
@@ -196,9 +196,9 @@ module Whopsdk
       #
       #   An object representing a receipt for a membership.
       #
-      #   @param id [String] The receipt ID
+      #   @param id [String] The payment ID
       #
-      #   @param amount_after_fees [Float] How much the receipt is for after fees
+      #   @param amount_after_fees [Float] How much the payment is for after fees
       #
       #   @param auto_refunded [Boolean] Whether this payment was auto refunded or not
       #
@@ -210,9 +210,9 @@ module Whopsdk
       #
       #   @param card_last4 [String, nil] The last 4 digits of the card used to make the payment.
       #
-      #   @param company [Whopsdk::Models::Payment::Company, nil] The company for the receipt.
+      #   @param company [Whopsdk::Models::Payment::Company, nil] The company for the payment.
       #
-      #   @param created_at [Integer] The datetime the receipt was created
+      #   @param created_at [Integer] The datetime the payment was created
       #
       #   @param currency [Symbol, Whopsdk::Models::Currency, nil] The available currencies on the platform
       #
@@ -222,19 +222,19 @@ module Whopsdk
       #
       #   @param last_payment_attempt [Integer, nil] The time of the last payment attempt.
       #
-      #   @param member [Whopsdk::Models::Payment::Member, nil] The member attached to this receipt.
+      #   @param member [Whopsdk::Models::Payment::Member, nil] The member attached to this payment.
       #
-      #   @param membership [Whopsdk::Models::Payment::Membership, nil] The membership attached to this receipt.
+      #   @param membership [Whopsdk::Models::Payment::Membership, nil] The membership attached to this payment.
       #
-      #   @param paid_at [Integer, nil] The datetime the receipt was paid
+      #   @param paid_at [Integer, nil] The datetime the payment was paid
       #
       #   @param payment_method_type [String, nil] Returns the type of payment method used for the payment, if available. Ex. klarn
       #
-      #   @param plan [Whopsdk::Models::Payment::Plan, nil] The plan attached to this receipt.
+      #   @param plan [Whopsdk::Models::Payment::Plan, nil] The plan attached to this payment.
       #
-      #   @param product [Whopsdk::Models::Payment::Product, nil] The access pass attached to this receipt.
+      #   @param product [Whopsdk::Models::Payment::Product, nil] The access pass attached to this payment.
       #
-      #   @param promo_code [Whopsdk::Models::Payment::PromoCode, nil] The promo code used for this receipt.
+      #   @param promo_code [Whopsdk::Models::Payment::PromoCode, nil] The promo code used for this payment.
       #
       #   @param refundable [Boolean] Whether the payment can be refunded.
       #
@@ -246,7 +246,7 @@ module Whopsdk
       #
       #   @param status [Symbol, Whopsdk::Models::ReceiptStatus, nil] The status of a receipt
       #
-      #   @param substatus [Symbol, Whopsdk::Models::FriendlyReceiptStatus] The friendly status of the receipt.
+      #   @param substatus [Symbol, Whopsdk::Models::FriendlyReceiptStatus] The friendly status of the payment.
       #
       #   @param subtotal [Float, nil] The subtotal to show to the creator (excluding buyer fees).
       #
@@ -341,7 +341,7 @@ module Whopsdk
         required :title, String
 
         # @!method initialize(id:, route:, title:)
-        #   The company for the receipt.
+        #   The company for the payment.
         #
         #   @param id [String] The ID of the company
         #
@@ -365,7 +365,7 @@ module Whopsdk
         required :phone, String, nil?: true
 
         # @!method initialize(id:, phone:)
-        #   The member attached to this receipt.
+        #   The member attached to this payment.
         #
         #   @param id [String] The ID of the member
         #
@@ -387,7 +387,7 @@ module Whopsdk
         required :status, enum: -> { Whopsdk::MembershipStatus }
 
         # @!method initialize(id:, status:)
-        #   The membership attached to this receipt.
+        #   The membership attached to this payment.
         #
         #   @param id [String] The internal ID of the membership.
         #
@@ -403,7 +403,7 @@ module Whopsdk
         required :id, String
 
         # @!method initialize(id:)
-        #   The plan attached to this receipt.
+        #   The plan attached to this payment.
         #
         #   @param id [String] The internal ID of the plan.
       end
@@ -411,31 +411,31 @@ module Whopsdk
       # @see Whopsdk::Models::Payment#product
       class Product < Whopsdk::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the public access pass.
+        #   The internal ID of the public product.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute route
-        #   The route of the access pass.
+        #   The route of the product.
         #
         #   @return [String]
         required :route, String
 
         # @!attribute title
-        #   The title of the access pass. Use for Whop 4.0.
+        #   The title of the product. Use for Whop 4.0.
         #
         #   @return [String]
         required :title, String
 
         # @!method initialize(id:, route:, title:)
-        #   The access pass attached to this receipt.
+        #   The access pass attached to this payment.
         #
-        #   @param id [String] The internal ID of the public access pass.
+        #   @param id [String] The internal ID of the public product.
         #
-        #   @param route [String] The route of the access pass.
+        #   @param route [String] The route of the product.
         #
-        #   @param title [String] The title of the access pass. Use for Whop 4.0.
+        #   @param title [String] The title of the product. Use for Whop 4.0.
       end
 
       # @see Whopsdk::Models::Payment#promo_code
@@ -477,7 +477,7 @@ module Whopsdk
         required :promo_type, enum: -> { Whopsdk::PromoType }
 
         # @!method initialize(id:, amount_off:, base_currency:, code:, number_of_intervals:, promo_type:)
-        #   The promo code used for this receipt.
+        #   The promo code used for this payment.
         #
         #   @param id [String] The ID of the promo.
         #

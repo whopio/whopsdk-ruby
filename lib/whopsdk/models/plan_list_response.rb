@@ -83,7 +83,7 @@ module Whopsdk
       required :product, -> { Whopsdk::Models::PlanListResponse::Product }, nil?: true
 
       # @!attribute purchase_url
-      #   The direct link to purchase the access pass.
+      #   The direct link to purchase the product.
       #
       #   @return [String]
       required :purchase_url, String
@@ -147,7 +147,7 @@ module Whopsdk
       #
       #   @param product [Whopsdk::Models::PlanListResponse::Product, nil] The access pass for the plan.
       #
-      #   @param purchase_url [String] The direct link to purchase the access pass.
+      #   @param purchase_url [String] The direct link to purchase the product.
       #
       #   @param release_method [Symbol, Whopsdk::Models::ReleaseMethod] This is the release method the business uses to sell this plan.
       #
@@ -198,13 +198,13 @@ module Whopsdk
       # @see Whopsdk::Models::PlanListResponse#product
       class Product < Whopsdk::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the public access pass.
+        #   The internal ID of the public product.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute title
-        #   The title of the access pass. Use for Whop 4.0.
+        #   The title of the product. Use for Whop 4.0.
         #
         #   @return [String]
         required :title, String
@@ -212,9 +212,9 @@ module Whopsdk
         # @!method initialize(id:, title:)
         #   The access pass for the plan.
         #
-        #   @param id [String] The internal ID of the public access pass.
+        #   @param id [String] The internal ID of the public product.
         #
-        #   @param title [String] The title of the access pass. Use for Whop 4.0.
+        #   @param title [String] The title of the product. Use for Whop 4.0.
       end
     end
   end

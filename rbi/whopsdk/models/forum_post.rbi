@@ -26,7 +26,7 @@ module Whopsdk
       sig { returns(T::Boolean) }
       attr_accessor :is_pinned
 
-      # Whether the user that sent the post is an admin of the bot
+      # Whether the user that sent the post is an admin of the company
       sig { returns(T::Boolean) }
       attr_accessor :is_poster_admin
 
@@ -80,7 +80,7 @@ module Whopsdk
         is_edited:,
         # Whether this forum post is pinned
         is_pinned:,
-        # Whether the user that sent the post is an admin of the bot
+        # Whether the user that sent the post is an admin of the company
         is_poster_admin:,
         # The number of likes this post has received
         like_count:,

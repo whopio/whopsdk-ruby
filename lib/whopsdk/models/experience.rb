@@ -122,19 +122,19 @@ module Whopsdk
 
       class Product < Whopsdk::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the public access pass.
+        #   The internal ID of the public product.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute route
-        #   The route of the access pass.
+        #   The route of the product.
         #
         #   @return [String]
         required :route, String
 
         # @!attribute title
-        #   The title of the access pass. Use for Whop 4.0.
+        #   The title of the product. Use for Whop 4.0.
         #
         #   @return [String]
         required :title, String
@@ -142,11 +142,11 @@ module Whopsdk
         # @!method initialize(id:, route:, title:)
         #   An object representing a (sanitized) access pass.
         #
-        #   @param id [String] The internal ID of the public access pass.
+        #   @param id [String] The internal ID of the public product.
         #
-        #   @param route [String] The route of the access pass.
+        #   @param route [String] The route of the product.
         #
-        #   @param title [String] The title of the access pass. Use for Whop 4.0.
+        #   @param title [String] The title of the product. Use for Whop 4.0.
       end
     end
   end

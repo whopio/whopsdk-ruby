@@ -56,7 +56,7 @@ module Whopsdk
       optional :plan_ids, Whopsdk::Internal::Type::ArrayOf[String], nil?: true
 
       # @!attribute product_ids
-      #   The access pass IDs to filter the entries by
+      #   The product IDs to filter the entries by
       #
       #   @return [Array<String>, nil]
       optional :product_ids, Whopsdk::Internal::Type::ArrayOf[String], nil?: true
@@ -84,7 +84,7 @@ module Whopsdk
       #
       #   @param plan_ids [Array<String>, nil] The plan IDs to filter the entries by
       #
-      #   @param product_ids [Array<String>, nil] The access pass IDs to filter the entries by
+      #   @param product_ids [Array<String>, nil] The product IDs to filter the entries by
       #
       #   @param statuses [Array<Symbol, Whopsdk::Models::EntryStatus>, nil] The statuses to filter the entries by
       #

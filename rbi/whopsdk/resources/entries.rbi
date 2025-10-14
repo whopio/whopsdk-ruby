@@ -58,7 +58,7 @@ module Whopsdk
         order: nil,
         # The plan IDs to filter the entries by
         plan_ids: nil,
-        # The access pass IDs to filter the entries by
+        # The product IDs to filter the entries by
         product_ids: nil,
         # The statuses to filter the entries by
         statuses: nil,

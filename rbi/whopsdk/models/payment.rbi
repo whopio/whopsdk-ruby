@@ -6,11 +6,11 @@ module Whopsdk
       OrHash =
         T.type_alias { T.any(Whopsdk::Payment, Whopsdk::Internal::AnyHash) }
 
-      # The receipt ID
+      # The payment ID
       sig { returns(String) }
       attr_accessor :id
 
-      # How much the receipt is for after fees
+      # How much the payment is for after fees
       sig { returns(Float) }
       attr_accessor :amount_after_fees
 
@@ -41,14 +41,14 @@ module Whopsdk
       sig { returns(T.nilable(String)) }
       attr_accessor :card_last4
 
-      # The company for the receipt.
+      # The company for the payment.
       sig { returns(T.nilable(Whopsdk::Payment::Company)) }
       attr_reader :company
 
       sig { params(company: T.nilable(Whopsdk::Payment::Company::OrHash)).void }
       attr_writer :company
 
-      # The datetime the receipt was created
+      # The datetime the payment was created
       sig { returns(Integer) }
       attr_accessor :created_at
 
@@ -68,14 +68,14 @@ module Whopsdk
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last_payment_attempt
 
-      # The member attached to this receipt.
+      # The member attached to this payment.
       sig { returns(T.nilable(Whopsdk::Payment::Member)) }
       attr_reader :member
 
       sig { params(member: T.nilable(Whopsdk::Payment::Member::OrHash)).void }
       attr_writer :member
 
-      # The membership attached to this receipt.
+      # The membership attached to this payment.
       sig { returns(T.nilable(Whopsdk::Payment::Membership)) }
       attr_reader :membership
 
@@ -84,7 +84,7 @@ module Whopsdk
       end
       attr_writer :membership
 
-      # The datetime the receipt was paid
+      # The datetime the payment was paid
       sig { returns(T.nilable(Integer)) }
       attr_accessor :paid_at
 
@@ -93,21 +93,21 @@ module Whopsdk
       sig { returns(T.nilable(String)) }
       attr_accessor :payment_method_type
 
-      # The plan attached to this receipt.
+      # The plan attached to this payment.
       sig { returns(T.nilable(Whopsdk::Payment::Plan)) }
       attr_reader :plan
 
       sig { params(plan: T.nilable(Whopsdk::Payment::Plan::OrHash)).void }
       attr_writer :plan
 
-      # The access pass attached to this receipt.
+      # The access pass attached to this payment.
       sig { returns(T.nilable(Whopsdk::Payment::Product)) }
       attr_reader :product
 
       sig { params(product: T.nilable(Whopsdk::Payment::Product::OrHash)).void }
       attr_writer :product
 
-      # The promo code used for this receipt.
+      # The promo code used for this payment.
       sig { returns(T.nilable(Whopsdk::Payment::PromoCode)) }
       attr_reader :promo_code
 
@@ -136,7 +136,7 @@ module Whopsdk
       sig { returns(T.nilable(Whopsdk::ReceiptStatus::TaggedSymbol)) }
       attr_accessor :status
 
-      # The friendly status of the receipt.
+      # The friendly status of the payment.
       sig { returns(Whopsdk::FriendlyReceiptStatus::TaggedSymbol) }
       attr_accessor :substatus
 
@@ -200,9 +200,9 @@ module Whopsdk
         ).returns(T.attached_class)
       end
       def self.new(
-        # The receipt ID
+        # The payment ID
         id:,
-        # How much the receipt is for after fees
+        # How much the payment is for after fees
         amount_after_fees:,
         # Whether this payment was auto refunded or not
         auto_refunded:,
@@ -214,9 +214,9 @@ module Whopsdk
         card_brand:,
         # The last 4 digits of the card used to make the payment.
         card_last4:,
-        # The company for the receipt.
+        # The company for the payment.
         company:,
-        # The datetime the receipt was created
+        # The datetime the payment was created
         created_at:,
         # The available currencies on the platform
         currency:,
@@ -226,20 +226,20 @@ module Whopsdk
         failure_message:,
         # The time of the last payment attempt.
         last_payment_attempt:,
-        # The member attached to this receipt.
+        # The member attached to this payment.
         member:,
-        # The membership attached to this receipt.
+        # The membership attached to this payment.
         membership:,
-        # The datetime the receipt was paid
+        # The datetime the payment was paid
         paid_at:,
         # Returns the type of payment method used for the payment, if available. Ex.
         # klarna, affirm, card, cashapp
         payment_method_type:,
-        # The plan attached to this receipt.
+        # The plan attached to this payment.
         plan:,
-        # The access pass attached to this receipt.
+        # The access pass attached to this payment.
         product:,
-        # The promo code used for this receipt.
+        # The promo code used for this payment.
         promo_code:,
         # Whether the payment can be refunded.
         refundable:,
@@ -251,7 +251,7 @@ module Whopsdk
         retryable:,
         # The status of a receipt
         status:,
-        # The friendly status of the receipt.
+        # The friendly status of the payment.
         substatus:,
         # The subtotal to show to the creator (excluding buyer fees).
         subtotal:,
@@ -405,7 +405,7 @@ module Whopsdk
         sig { returns(String) }
         attr_accessor :title
 
-        # The company for the receipt.
+        # The company for the payment.
         sig do
           params(id: String, route: String, title: String).returns(
             T.attached_class
@@ -440,7 +440,7 @@ module Whopsdk
         sig { returns(T.nilable(String)) }
         attr_accessor :phone
 
-        # The member attached to this receipt.
+        # The member attached to this payment.
         sig do
           params(id: String, phone: T.nilable(String)).returns(T.attached_class)
         end
@@ -471,7 +471,7 @@ module Whopsdk
         sig { returns(Whopsdk::MembershipStatus::TaggedSymbol) }
         attr_accessor :status
 
-        # The membership attached to this receipt.
+        # The membership attached to this payment.
         sig do
           params(
             id: String,
@@ -505,7 +505,7 @@ module Whopsdk
         sig { returns(String) }
         attr_accessor :id
 
-        # The plan attached to this receipt.
+        # The plan attached to this payment.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The internal ID of the plan.
@@ -524,30 +524,30 @@ module Whopsdk
             T.any(Whopsdk::Payment::Product, Whopsdk::Internal::AnyHash)
           end
 
-        # The internal ID of the public access pass.
+        # The internal ID of the public product.
         sig { returns(String) }
         attr_accessor :id
 
-        # The route of the access pass.
+        # The route of the product.
         sig { returns(String) }
         attr_accessor :route
 
-        # The title of the access pass. Use for Whop 4.0.
+        # The title of the product. Use for Whop 4.0.
         sig { returns(String) }
         attr_accessor :title
 
-        # The access pass attached to this receipt.
+        # The access pass attached to this payment.
         sig do
           params(id: String, route: String, title: String).returns(
             T.attached_class
           )
         end
         def self.new(
-          # The internal ID of the public access pass.
+          # The internal ID of the public product.
           id:,
-          # The route of the access pass.
+          # The route of the product.
           route:,
-          # The title of the access pass. Use for Whop 4.0.
+          # The title of the product. Use for Whop 4.0.
           title:
         )
         end
@@ -587,7 +587,7 @@ module Whopsdk
         sig { returns(Whopsdk::PromoType::TaggedSymbol) }
         attr_accessor :promo_type
 
-        # The promo code used for this receipt.
+        # The promo code used for this payment.
         sig do
           params(
             id: String,

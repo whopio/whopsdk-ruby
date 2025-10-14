@@ -10,6 +10,8 @@ module Whopsdk
 
     attr_reader api_key: String
 
+    attr_reader app_id: String
+
     attr_reader apps: Whopsdk::Resources::Apps
 
     attr_reader invoices: Whopsdk::Resources::Invoices
@@ -60,6 +62,7 @@ module Whopsdk
 
     def initialize: (
       ?api_key: String?,
+      ?app_id: String?,
       ?base_url: String?,
       ?max_retries: Integer,
       ?timeout: Float,

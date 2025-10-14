@@ -37,7 +37,8 @@ class WhopsdkTest < Minitest::Test
   def test_client_default_request_default_retry_attempts
     stub_request(:get, "http://localhost/invoices").to_return_json(status: 500, body: {})
 
-    whopsdk = Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    whopsdk =
+      Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key", app_id: "app_xxxxxxxxxxxxxx")
 
     assert_raises(Whopsdk::Errors::InternalServerError) do
       whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
@@ -49,7 +50,13 @@ class WhopsdkTest < Minitest::Test
   def test_client_given_request_default_retry_attempts
     stub_request(:get, "http://localhost/invoices").to_return_json(status: 500, body: {})
 
-    whopsdk = Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
+    whopsdk =
+      Whopsdk::Client.new(
+        base_url: "http://localhost",
+        api_key: "My API Key",
+        app_id: "app_xxxxxxxxxxxxxx",
+        max_retries: 3
+      )
 
     assert_raises(Whopsdk::Errors::InternalServerError) do
       whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
@@ -61,7 +68,8 @@ class WhopsdkTest < Minitest::Test
   def test_client_default_request_given_retry_attempts
     stub_request(:get, "http://localhost/invoices").to_return_json(status: 500, body: {})
 
-    whopsdk = Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    whopsdk =
+      Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key", app_id: "app_xxxxxxxxxxxxxx")
 
     assert_raises(Whopsdk::Errors::InternalServerError) do
       whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx", request_options: {max_retries: 3})
@@ -73,7 +81,13 @@ class WhopsdkTest < Minitest::Test
   def test_client_given_request_given_retry_attempts
     stub_request(:get, "http://localhost/invoices").to_return_json(status: 500, body: {})
 
-    whopsdk = Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
+    whopsdk =
+      Whopsdk::Client.new(
+        base_url: "http://localhost",
+        api_key: "My API Key",
+        app_id: "app_xxxxxxxxxxxxxx",
+        max_retries: 3
+      )
 
     assert_raises(Whopsdk::Errors::InternalServerError) do
       whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx", request_options: {max_retries: 4})
@@ -89,7 +103,13 @@ class WhopsdkTest < Minitest::Test
       body: {}
     )
 
-    whopsdk = Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+    whopsdk =
+      Whopsdk::Client.new(
+        base_url: "http://localhost",
+        api_key: "My API Key",
+        app_id: "app_xxxxxxxxxxxxxx",
+        max_retries: 1
+      )
 
     assert_raises(Whopsdk::Errors::InternalServerError) do
       whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
@@ -106,7 +126,13 @@ class WhopsdkTest < Minitest::Test
       body: {}
     )
 
-    whopsdk = Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+    whopsdk =
+      Whopsdk::Client.new(
+        base_url: "http://localhost",
+        api_key: "My API Key",
+        app_id: "app_xxxxxxxxxxxxxx",
+        max_retries: 1
+      )
 
     assert_raises(Whopsdk::Errors::InternalServerError) do
       Thread.current.thread_variable_set(:time_now, Time.now)
@@ -125,7 +151,13 @@ class WhopsdkTest < Minitest::Test
       body: {}
     )
 
-    whopsdk = Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+    whopsdk =
+      Whopsdk::Client.new(
+        base_url: "http://localhost",
+        api_key: "My API Key",
+        app_id: "app_xxxxxxxxxxxxxx",
+        max_retries: 1
+      )
 
     assert_raises(Whopsdk::Errors::InternalServerError) do
       whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
@@ -138,7 +170,8 @@ class WhopsdkTest < Minitest::Test
   def test_retry_count_header
     stub_request(:get, "http://localhost/invoices").to_return_json(status: 500, body: {})
 
-    whopsdk = Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    whopsdk =
+      Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key", app_id: "app_xxxxxxxxxxxxxx")
 
     assert_raises(Whopsdk::Errors::InternalServerError) do
       whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
@@ -152,7 +185,8 @@ class WhopsdkTest < Minitest::Test
   def test_omit_retry_count_header
     stub_request(:get, "http://localhost/invoices").to_return_json(status: 500, body: {})
 
-    whopsdk = Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    whopsdk =
+      Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key", app_id: "app_xxxxxxxxxxxxxx")
 
     assert_raises(Whopsdk::Errors::InternalServerError) do
       whopsdk.invoices.list(
@@ -169,7 +203,8 @@ class WhopsdkTest < Minitest::Test
   def test_overwrite_retry_count_header
     stub_request(:get, "http://localhost/invoices").to_return_json(status: 500, body: {})
 
-    whopsdk = Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    whopsdk =
+      Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key", app_id: "app_xxxxxxxxxxxxxx")
 
     assert_raises(Whopsdk::Errors::InternalServerError) do
       whopsdk.invoices.list(
@@ -192,7 +227,8 @@ class WhopsdkTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    whopsdk = Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    whopsdk =
+      Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key", app_id: "app_xxxxxxxxxxxxxx")
 
     assert_raises(Whopsdk::Errors::APIConnectionError) do
       whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx", request_options: {extra_headers: {}})
@@ -221,7 +257,8 @@ class WhopsdkTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    whopsdk = Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    whopsdk =
+      Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key", app_id: "app_xxxxxxxxxxxxxx")
 
     assert_raises(Whopsdk::Errors::APIConnectionError) do
       whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx", request_options: {extra_headers: {}})
@@ -245,7 +282,8 @@ class WhopsdkTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    whopsdk = Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    whopsdk =
+      Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key", app_id: "app_xxxxxxxxxxxxxx")
 
     assert_raises(Whopsdk::Errors::APIConnectionError) do
       whopsdk.invoices.list(
@@ -275,7 +313,8 @@ class WhopsdkTest < Minitest::Test
       headers: {"location" => "https://example.com/redirected"}
     )
 
-    whopsdk = Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    whopsdk =
+      Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key", app_id: "app_xxxxxxxxxxxxxx")
 
     assert_raises(Whopsdk::Errors::APIConnectionError) do
       whopsdk.invoices.list(
@@ -293,7 +332,8 @@ class WhopsdkTest < Minitest::Test
   def test_default_headers
     stub_request(:get, "http://localhost/invoices").to_return_json(status: 200, body: {})
 
-    whopsdk = Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    whopsdk =
+      Whopsdk::Client.new(base_url: "http://localhost", api_key: "My API Key", app_id: "app_xxxxxxxxxxxxxx")
 
     whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
 

@@ -23,7 +23,8 @@ require "bundler/setup"
 require "whopsdk"
 
 whopsdk = Whopsdk::Client.new(
-  api_key: ENV["WHOP_API_KEY"] # This is the default and can be omitted
+  api_key: ENV["WHOP_API_KEY"], # This is the default and can be omitted
+  app_id: "app_xxxxxxxxxxxxxx"
 )
 
 page = whopsdk.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
@@ -104,7 +105,8 @@ You can use the `max_retries` option to configure or disable this:
 ```ruby
 # Configure the default for all requests:
 whopsdk = Whopsdk::Client.new(
-  max_retries: 0 # default is 2
+  max_retries: 0, # default is 2
+  app_id: "app_xxxxxxxxxxxxxx"
 )
 
 # Or, configure per-request:
@@ -118,7 +120,8 @@ By default, requests will time out after 60 seconds. You can use the timeout opt
 ```ruby
 # Configure the default for all requests:
 whopsdk = Whopsdk::Client.new(
-  timeout: nil # default is 60
+  timeout: nil, # default is 60
+  app_id: "app_xxxxxxxxxxxxxx"
 )
 
 # Or, configure per-request:

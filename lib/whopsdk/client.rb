@@ -19,6 +19,9 @@ module Whopsdk
     # @return [String]
     attr_reader :api_key
 
+    # @return [String]
+    attr_reader :app_id
+
     # @return [Whopsdk::Resources::Apps]
     attr_reader :apps
 
@@ -102,6 +105,8 @@ module Whopsdk
     # @param api_key [String, nil] The app API key from an app from the /dashboard/developer page Defaults to
     # `ENV["WHOP_API_KEY"]`
     #
+    # @param app_id [String, nil] Defaults to `ENV["WHOP_APP_ID"]`
+    #
     # @param base_url [String, nil] Override the default base URL for the API, e.g.,
     # `"https://api.example.com/v2/"`. Defaults to `ENV["WHOPSDK_BASE_URL"]`
     #
@@ -114,6 +119,7 @@ module Whopsdk
     # @param max_retry_delay [Float]
     def initialize(
       api_key: ENV["WHOP_API_KEY"],
+      app_id: ENV["WHOP_APP_ID"],
       base_url: ENV["WHOPSDK_BASE_URL"],
       max_retries: self.class::DEFAULT_MAX_RETRIES,
       timeout: self.class::DEFAULT_TIMEOUT_IN_SECONDS,
@@ -122,9 +128,16 @@ module Whopsdk
     )
       base_url ||= "https://api.whop.com/api/v1"
 
+      if app_id.nil?
+        raise ArgumentError.new("app_id is required, and can be set via environ: \"WHOP_APP_ID\"")
+      end
       if api_key.nil?
         raise ArgumentError.new("api_key is required, and can be set via environ: \"WHOP_API_KEY\"")
       end
+
+      headers = {
+        "x-whop-app-id" => (@app_id = app_id.to_s)
+      }
 
       @api_key = api_key.to_s
 
@@ -133,7 +146,8 @@ module Whopsdk
         timeout: timeout,
         max_retries: max_retries,
         initial_retry_delay: initial_retry_delay,
-        max_retry_delay: max_retry_delay
+        max_retry_delay: max_retry_delay,
+        headers: headers
       )
 
       @apps = Whopsdk::Resources::Apps.new(client: self)

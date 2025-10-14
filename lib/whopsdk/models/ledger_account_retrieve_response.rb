@@ -34,7 +34,7 @@ module Whopsdk
       # @!attribute owner
       #   The owner of the ledger account.
       #
-      #   @return [Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::UnionMember0, Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::UnionMember1, nil]
+      #   @return [Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::User, Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::Company, nil]
       required :owner, union: -> { Whopsdk::Models::LedgerAccountRetrieveResponse::Owner }
 
       # @!attribute payments_approval_status
@@ -62,7 +62,7 @@ module Whopsdk
       #
       #   @param ledger_type [Symbol, Whopsdk::Models::LedgerAccountRetrieveResponse::LedgerType] The type of ledger account.
       #
-      #   @param owner [Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::UnionMember0, Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::UnionMember1, nil] The owner of the ledger account.
+      #   @param owner [Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::User, Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::Company, nil] The owner of the ledger account.
       #
       #   @param payments_approval_status [Symbol, Whopsdk::Models::LedgerAccountRetrieveResponse::PaymentsApprovalStatus, nil] The different approval statuses an account can have.
       #
@@ -138,12 +138,12 @@ module Whopsdk
         extend Whopsdk::Internal::Type::Union
 
         # An object representing a (sanitized) user of the site.
-        variant -> { Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::UnionMember0 }
+        variant -> { Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::User }
 
         # An object representing a (sanitized) company.
-        variant -> { Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::UnionMember1 }
+        variant -> { Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::Company }
 
-        class UnionMember0 < Whopsdk::Internal::Type::BaseModel
+        class User < Whopsdk::Internal::Type::BaseModel
           # @!attribute id
           #   The internal ID of the user.
           #
@@ -159,8 +159,8 @@ module Whopsdk
           # @!attribute typename
           #   The typename of this object
           #
-          #   @return [Symbol, :PublicProfileUser]
-          required :typename, const: :PublicProfileUser
+          #   @return [Symbol, :User]
+          required :typename, const: :User
 
           # @!attribute username
           #   The username of the user from their Whop account.
@@ -168,7 +168,7 @@ module Whopsdk
           #   @return [String]
           required :username, String
 
-          # @!method initialize(id:, name:, username:, typename: :PublicProfileUser)
+          # @!method initialize(id:, name:, username:, typename: :User)
           #   An object representing a (sanitized) user of the site.
           #
           #   @param id [String] The internal ID of the user.
@@ -177,10 +177,10 @@ module Whopsdk
           #
           #   @param username [String] The username of the user from their Whop account.
           #
-          #   @param typename [Symbol, :PublicProfileUser] The typename of this object
+          #   @param typename [Symbol, :User] The typename of this object
         end
 
-        class UnionMember1 < Whopsdk::Internal::Type::BaseModel
+        class Company < Whopsdk::Internal::Type::BaseModel
           # @!attribute id
           #   The ID (tag) of the company.
           #
@@ -202,10 +202,10 @@ module Whopsdk
           # @!attribute typename
           #   The typename of this object
           #
-          #   @return [Symbol, :PublicCompany]
-          required :typename, const: :PublicCompany
+          #   @return [Symbol, :Company]
+          required :typename, const: :Company
 
-          # @!method initialize(id:, route:, title:, typename: :PublicCompany)
+          # @!method initialize(id:, route:, title:, typename: :Company)
           #   An object representing a (sanitized) company.
           #
           #   @param id [String] The ID (tag) of the company.
@@ -214,11 +214,11 @@ module Whopsdk
           #
           #   @param title [String] The title of the company.
           #
-          #   @param typename [Symbol, :PublicCompany] The typename of this object
+          #   @param typename [Symbol, :Company] The typename of this object
         end
 
         # @!method self.variants
-        #   @return [Array(Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::UnionMember0, Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::UnionMember1)]
+        #   @return [Array(Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::User, Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::Company)]
       end
 
       # The different approval statuses an account can have.

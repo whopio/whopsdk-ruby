@@ -82,8 +82,8 @@ module Whopsdk
           owner:
             T.nilable(
               T.any(
-                Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::UnionMember0::OrHash,
-                Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::UnionMember1::OrHash
+                Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::User::OrHash,
+                Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::Company::OrHash
               )
             ),
           payments_approval_status:
@@ -276,17 +276,17 @@ module Whopsdk
           T.type_alias do
             T.nilable(
               T.any(
-                Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::UnionMember0,
-                Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::UnionMember1
+                Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::User,
+                Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::Company
               )
             )
           end
 
-        class UnionMember0 < Whopsdk::Internal::Type::BaseModel
+        class User < Whopsdk::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::UnionMember0,
+                Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::User,
                 Whopsdk::Internal::AnyHash
               )
             end
@@ -324,7 +324,7 @@ module Whopsdk
             # The username of the user from their Whop account.
             username:,
             # The typename of this object
-            typename: :PublicProfileUser
+            typename: :User
           )
           end
 
@@ -342,11 +342,11 @@ module Whopsdk
           end
         end
 
-        class UnionMember1 < Whopsdk::Internal::Type::BaseModel
+        class Company < Whopsdk::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::UnionMember1,
+                Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::Company,
                 Whopsdk::Internal::AnyHash
               )
             end
@@ -384,7 +384,7 @@ module Whopsdk
             # The title of the company.
             title:,
             # The typename of this object
-            typename: :PublicCompany
+            typename: :Company
           )
           end
 

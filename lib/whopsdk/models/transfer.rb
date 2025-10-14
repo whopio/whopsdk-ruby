@@ -30,7 +30,7 @@ module Whopsdk
       # @!attribute destination
       #   The recipient of the credit transaction transfer
       #
-      #   @return [Whopsdk::Models::Transfer::Destination::UnionMember0, Whopsdk::Models::Transfer::Destination::UnionMember1, nil]
+      #   @return [Whopsdk::Models::Transfer::Destination::User, Whopsdk::Models::Transfer::Destination::Company, nil]
       required :destination, union: -> { Whopsdk::Transfer::Destination }
 
       # @!attribute destination_ledger_account_id
@@ -54,7 +54,7 @@ module Whopsdk
       # @!attribute origin
       #   The sender of the credit transaction transfer
       #
-      #   @return [Whopsdk::Models::Transfer::Origin::UnionMember0, Whopsdk::Models::Transfer::Origin::UnionMember1, nil]
+      #   @return [Whopsdk::Models::Transfer::Origin::User, Whopsdk::Models::Transfer::Origin::Company, nil]
       required :origin, union: -> { Whopsdk::Transfer::Origin }
 
       # @!attribute origin_ledger_account_id
@@ -74,7 +74,7 @@ module Whopsdk
       #
       #   @param currency [Symbol, Whopsdk::Models::Currency] The currency of the credit transaction transfer
       #
-      #   @param destination [Whopsdk::Models::Transfer::Destination::UnionMember0, Whopsdk::Models::Transfer::Destination::UnionMember1, nil] The recipient of the credit transaction transfer
+      #   @param destination [Whopsdk::Models::Transfer::Destination::User, Whopsdk::Models::Transfer::Destination::Company, nil] The recipient of the credit transaction transfer
       #
       #   @param destination_ledger_account_id [String] The ID of the destination ledger account
       #
@@ -82,7 +82,7 @@ module Whopsdk
       #
       #   @param notes [String, nil] The notes of the credit transaction transfer
       #
-      #   @param origin [Whopsdk::Models::Transfer::Origin::UnionMember0, Whopsdk::Models::Transfer::Origin::UnionMember1, nil] The sender of the credit transaction transfer
+      #   @param origin [Whopsdk::Models::Transfer::Origin::User, Whopsdk::Models::Transfer::Origin::Company, nil] The sender of the credit transaction transfer
       #
       #   @param origin_ledger_account_id [String] The ID of the origin ledger account
 
@@ -93,12 +93,12 @@ module Whopsdk
         extend Whopsdk::Internal::Type::Union
 
         # An object representing a (sanitized) user of the site.
-        variant -> { Whopsdk::Transfer::Destination::UnionMember0 }
+        variant -> { Whopsdk::Transfer::Destination::User }
 
         # An object representing a (sanitized) company.
-        variant -> { Whopsdk::Transfer::Destination::UnionMember1 }
+        variant -> { Whopsdk::Transfer::Destination::Company }
 
-        class UnionMember0 < Whopsdk::Internal::Type::BaseModel
+        class User < Whopsdk::Internal::Type::BaseModel
           # @!attribute id
           #   The internal ID of the user.
           #
@@ -114,8 +114,8 @@ module Whopsdk
           # @!attribute typename
           #   The typename of this object
           #
-          #   @return [Symbol, :PublicProfileUser]
-          required :typename, const: :PublicProfileUser
+          #   @return [Symbol, :User]
+          required :typename, const: :User
 
           # @!attribute username
           #   The username of the user from their Whop account.
@@ -123,7 +123,7 @@ module Whopsdk
           #   @return [String]
           required :username, String
 
-          # @!method initialize(id:, name:, username:, typename: :PublicProfileUser)
+          # @!method initialize(id:, name:, username:, typename: :User)
           #   An object representing a (sanitized) user of the site.
           #
           #   @param id [String] The internal ID of the user.
@@ -132,10 +132,10 @@ module Whopsdk
           #
           #   @param username [String] The username of the user from their Whop account.
           #
-          #   @param typename [Symbol, :PublicProfileUser] The typename of this object
+          #   @param typename [Symbol, :User] The typename of this object
         end
 
-        class UnionMember1 < Whopsdk::Internal::Type::BaseModel
+        class Company < Whopsdk::Internal::Type::BaseModel
           # @!attribute id
           #   The ID (tag) of the company.
           #
@@ -157,10 +157,10 @@ module Whopsdk
           # @!attribute typename
           #   The typename of this object
           #
-          #   @return [Symbol, :PublicCompany]
-          required :typename, const: :PublicCompany
+          #   @return [Symbol, :Company]
+          required :typename, const: :Company
 
-          # @!method initialize(id:, route:, title:, typename: :PublicCompany)
+          # @!method initialize(id:, route:, title:, typename: :Company)
           #   An object representing a (sanitized) company.
           #
           #   @param id [String] The ID (tag) of the company.
@@ -169,11 +169,11 @@ module Whopsdk
           #
           #   @param title [String] The title of the company.
           #
-          #   @param typename [Symbol, :PublicCompany] The typename of this object
+          #   @param typename [Symbol, :Company] The typename of this object
         end
 
         # @!method self.variants
-        #   @return [Array(Whopsdk::Models::Transfer::Destination::UnionMember0, Whopsdk::Models::Transfer::Destination::UnionMember1)]
+        #   @return [Array(Whopsdk::Models::Transfer::Destination::User, Whopsdk::Models::Transfer::Destination::Company)]
       end
 
       # The sender of the credit transaction transfer
@@ -183,12 +183,12 @@ module Whopsdk
         extend Whopsdk::Internal::Type::Union
 
         # An object representing a (sanitized) user of the site.
-        variant -> { Whopsdk::Transfer::Origin::UnionMember0 }
+        variant -> { Whopsdk::Transfer::Origin::User }
 
         # An object representing a (sanitized) company.
-        variant -> { Whopsdk::Transfer::Origin::UnionMember1 }
+        variant -> { Whopsdk::Transfer::Origin::Company }
 
-        class UnionMember0 < Whopsdk::Internal::Type::BaseModel
+        class User < Whopsdk::Internal::Type::BaseModel
           # @!attribute id
           #   The internal ID of the user.
           #
@@ -204,8 +204,8 @@ module Whopsdk
           # @!attribute typename
           #   The typename of this object
           #
-          #   @return [Symbol, :PublicProfileUser]
-          required :typename, const: :PublicProfileUser
+          #   @return [Symbol, :User]
+          required :typename, const: :User
 
           # @!attribute username
           #   The username of the user from their Whop account.
@@ -213,7 +213,7 @@ module Whopsdk
           #   @return [String]
           required :username, String
 
-          # @!method initialize(id:, name:, username:, typename: :PublicProfileUser)
+          # @!method initialize(id:, name:, username:, typename: :User)
           #   An object representing a (sanitized) user of the site.
           #
           #   @param id [String] The internal ID of the user.
@@ -222,10 +222,10 @@ module Whopsdk
           #
           #   @param username [String] The username of the user from their Whop account.
           #
-          #   @param typename [Symbol, :PublicProfileUser] The typename of this object
+          #   @param typename [Symbol, :User] The typename of this object
         end
 
-        class UnionMember1 < Whopsdk::Internal::Type::BaseModel
+        class Company < Whopsdk::Internal::Type::BaseModel
           # @!attribute id
           #   The ID (tag) of the company.
           #
@@ -247,10 +247,10 @@ module Whopsdk
           # @!attribute typename
           #   The typename of this object
           #
-          #   @return [Symbol, :PublicCompany]
-          required :typename, const: :PublicCompany
+          #   @return [Symbol, :Company]
+          required :typename, const: :Company
 
-          # @!method initialize(id:, route:, title:, typename: :PublicCompany)
+          # @!method initialize(id:, route:, title:, typename: :Company)
           #   An object representing a (sanitized) company.
           #
           #   @param id [String] The ID (tag) of the company.
@@ -259,11 +259,11 @@ module Whopsdk
           #
           #   @param title [String] The title of the company.
           #
-          #   @param typename [Symbol, :PublicCompany] The typename of this object
+          #   @param typename [Symbol, :Company] The typename of this object
         end
 
         # @!method self.variants
-        #   @return [Array(Whopsdk::Models::Transfer::Origin::UnionMember0, Whopsdk::Models::Transfer::Origin::UnionMember1)]
+        #   @return [Array(Whopsdk::Models::Transfer::Origin::User, Whopsdk::Models::Transfer::Origin::Company)]
       end
     end
   end

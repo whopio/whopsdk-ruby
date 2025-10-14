@@ -25,6 +25,12 @@ module Whopsdk
       #   @return [String, nil]
       optional :before, String, nil?: true
 
+      # @!attribute direction
+      #   The direction of the sort.
+      #
+      #   @return [Symbol, Whopsdk::Models::Direction, nil]
+      optional :direction, enum: -> { Whopsdk::Direction }, nil?: true
+
       # @!attribute first
       #   Returns the first _n_ elements from the list.
       #
@@ -37,12 +43,14 @@ module Whopsdk
       #   @return [Integer, nil]
       optional :last, Integer, nil?: true
 
-      # @!method initialize(channel_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
+      # @!method initialize(channel_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, request_options: {})
       #   @param channel_id [String] The ID of the channel or the experience ID to list messages for
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      #   @param direction [Symbol, Whopsdk::Models::Direction, nil] The direction of the sort.
       #
       #   @param first [Integer, nil] Returns the first _n_ elements from the list.
       #

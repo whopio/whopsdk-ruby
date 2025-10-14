@@ -2,10 +2,9 @@ module Whopsdk
   module Resources
     class Messages
       def create: (
+        channel_id: String,
         content: String,
         ?attachments: ::Array[Whopsdk::MessageCreateParams::Attachment]?,
-        ?channel_id: String?,
-        ?experience_id: String?,
         ?poll: Whopsdk::MessageCreateParams::Poll?,
         ?request_options: Whopsdk::request_opts
       ) -> Whopsdk::Message
@@ -19,6 +18,7 @@ module Whopsdk
         channel_id: String,
         ?after: String?,
         ?before: String?,
+        ?direction: Whopsdk::Models::direction?,
         ?first: Integer?,
         ?last: Integer?,
         ?request_options: Whopsdk::request_opts

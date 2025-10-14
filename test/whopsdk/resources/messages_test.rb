@@ -6,7 +6,7 @@ class Whopsdk::Test::Resources::MessagesTest < Whopsdk::Test::ResourceTest
   def test_create_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.messages.create(content: "content")
+    response = @whopsdk.messages.create(channel_id: "channel_id", content: "content")
 
     assert_pattern do
       response => Whopsdk::Message

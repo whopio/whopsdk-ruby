@@ -10,26 +10,23 @@ module Whopsdk
       # - `chat:message:create`
       sig do
         params(
+          channel_id: String,
           content: String,
           attachments:
             T.nilable(
               T::Array[Whopsdk::MessageCreateParams::Attachment::OrHash]
             ),
-          channel_id: T.nilable(String),
-          experience_id: T.nilable(String),
           poll: T.nilable(Whopsdk::MessageCreateParams::Poll::OrHash),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(Whopsdk::Message)
       end
       def create(
+        # The ID of the channel or experience to send to.
+        channel_id:,
         # The content of the message in Markdown format.
         content:,
         # The attachments for this message, such as videos or images.
         attachments: nil,
-        # The ID of the channel to send to.
-        channel_id: nil,
-        # The ID of the chat experience to send the message in.
-        experience_id: nil,
         # The poll for this message
         poll: nil,
         request_options: {}
@@ -60,6 +57,7 @@ module Whopsdk
           channel_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
+          direction: T.nilable(Whopsdk::Direction::OrSymbol),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           request_options: Whopsdk::RequestOptions::OrHash
@@ -74,6 +72,8 @@ module Whopsdk
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
+        # The direction of the sort.
+        direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.

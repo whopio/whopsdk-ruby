@@ -9,15 +9,13 @@ module Whopsdk
       #
       # - `chat:message:create`
       #
-      # @overload create(content:, attachments: nil, channel_id: nil, experience_id: nil, poll: nil, request_options: {})
+      # @overload create(channel_id:, content:, attachments: nil, poll: nil, request_options: {})
+      #
+      # @param channel_id [String] The ID of the channel or experience to send to.
       #
       # @param content [String] The content of the message in Markdown format.
       #
       # @param attachments [Array<Whopsdk::Models::MessageCreateParams::Attachment>, nil] The attachments for this message, such as videos or images.
-      #
-      # @param channel_id [String, nil] The ID of the channel to send to.
-      #
-      # @param experience_id [String, nil] The ID of the chat experience to send the message in.
       #
       # @param poll [Whopsdk::Models::MessageCreateParams::Poll, nil] The poll for this message
       #
@@ -66,13 +64,15 @@ module Whopsdk
       #
       # - `chat:read`
       #
-      # @overload list(channel_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
+      # @overload list(channel_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, request_options: {})
       #
       # @param channel_id [String] The ID of the channel or the experience ID to list messages for
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      # @param direction [Symbol, Whopsdk::Models::Direction, nil] The direction of the sort.
       #
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
       #

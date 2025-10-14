@@ -5,6 +5,7 @@ module Whopsdk
         channel_id: String,
         after: String?,
         before: String?,
+        direction: Whopsdk::Models::direction?,
         first: Integer?,
         last: Integer?
       }
@@ -20,6 +21,8 @@ module Whopsdk
 
       attr_accessor before: String?
 
+      attr_accessor direction: Whopsdk::Models::direction?
+
       attr_accessor first: Integer?
 
       attr_accessor last: Integer?
@@ -28,6 +31,7 @@ module Whopsdk
         channel_id: String,
         ?after: String?,
         ?before: String?,
+        ?direction: Whopsdk::Models::direction?,
         ?first: Integer?,
         ?last: Integer?,
         ?request_options: Whopsdk::request_opts
@@ -37,6 +41,7 @@ module Whopsdk
         channel_id: String,
         after: String?,
         before: String?,
+        direction: Whopsdk::Models::direction?,
         first: Integer?,
         last: Integer?,
         request_options: Whopsdk::RequestOptions

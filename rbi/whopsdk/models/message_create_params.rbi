@@ -11,6 +11,10 @@ module Whopsdk
           T.any(Whopsdk::MessageCreateParams, Whopsdk::Internal::AnyHash)
         end
 
+      # The ID of the channel or experience to send to.
+      sig { returns(String) }
+      attr_accessor :channel_id
+
       # The content of the message in Markdown format.
       sig { returns(String) }
       attr_accessor :content
@@ -20,14 +24,6 @@ module Whopsdk
         returns(T.nilable(T::Array[Whopsdk::MessageCreateParams::Attachment]))
       end
       attr_accessor :attachments
-
-      # The ID of the channel to send to.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :channel_id
-
-      # The ID of the chat experience to send the message in.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :experience_id
 
       # The poll for this message
       sig { returns(T.nilable(Whopsdk::MessageCreateParams::Poll)) }
@@ -40,26 +36,23 @@ module Whopsdk
 
       sig do
         params(
+          channel_id: String,
           content: String,
           attachments:
             T.nilable(
               T::Array[Whopsdk::MessageCreateParams::Attachment::OrHash]
             ),
-          channel_id: T.nilable(String),
-          experience_id: T.nilable(String),
           poll: T.nilable(Whopsdk::MessageCreateParams::Poll::OrHash),
           request_options: Whopsdk::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The ID of the channel or experience to send to.
+        channel_id:,
         # The content of the message in Markdown format.
         content:,
         # The attachments for this message, such as videos or images.
         attachments: nil,
-        # The ID of the channel to send to.
-        channel_id: nil,
-        # The ID of the chat experience to send the message in.
-        experience_id: nil,
         # The poll for this message
         poll: nil,
         request_options: {}
@@ -69,11 +62,10 @@ module Whopsdk
       sig do
         override.returns(
           {
+            channel_id: String,
             content: String,
             attachments:
               T.nilable(T::Array[Whopsdk::MessageCreateParams::Attachment]),
-            channel_id: T.nilable(String),
-            experience_id: T.nilable(String),
             poll: T.nilable(Whopsdk::MessageCreateParams::Poll),
             request_options: Whopsdk::RequestOptions
           }

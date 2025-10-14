@@ -137,11 +137,13 @@ module Whopsdk
       module Owner
         extend Whopsdk::Internal::Type::Union
 
+        discriminator :typename
+
         # An object representing a (sanitized) user of the site.
-        variant -> { Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::User }
+        variant :User, -> { Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::User }
 
         # An object representing a (sanitized) company.
-        variant -> { Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::Company }
+        variant :Company, -> { Whopsdk::Models::LedgerAccountRetrieveResponse::Owner::Company }
 
         class User < Whopsdk::Internal::Type::BaseModel
           # @!attribute id

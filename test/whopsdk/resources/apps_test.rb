@@ -6,7 +6,7 @@ class Whopsdk::Test::Resources::AppsTest < Whopsdk::Test::ResourceTest
   def test_create_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.apps.create(company_id: "biz_xxxxxxxxxxxxxx", name: "name")
+    response = @whop.apps.create(company_id: "biz_xxxxxxxxxxxxxx", name: "name")
 
     assert_pattern do
       response => Whopsdk::App
@@ -36,7 +36,7 @@ class Whopsdk::Test::Resources::AppsTest < Whopsdk::Test::ResourceTest
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.apps.retrieve("app_xxxxxxxxxxxxxx")
+    response = @whop.apps.retrieve("app_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::App
@@ -66,7 +66,7 @@ class Whopsdk::Test::Resources::AppsTest < Whopsdk::Test::ResourceTest
   def test_update
     skip("Prism tests are disabled")
 
-    response = @whopsdk.apps.update("app_xxxxxxxxxxxxxx")
+    response = @whop.apps.update("app_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::App
@@ -96,7 +96,7 @@ class Whopsdk::Test::Resources::AppsTest < Whopsdk::Test::ResourceTest
   def test_list
     skip("Prism tests are disabled")
 
-    response = @whopsdk.apps.list
+    response = @whop.apps.list
 
     assert_pattern do
       response => Whopsdk::Internal::CursorPage

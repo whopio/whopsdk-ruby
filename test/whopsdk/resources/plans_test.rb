@@ -6,7 +6,7 @@ class Whopsdk::Test::Resources::PlansTest < Whopsdk::Test::ResourceTest
   def test_create_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.plans.create(company_id: "biz_xxxxxxxxxxxxxx", product_id: "prod_xxxxxxxxxxxxx")
+    response = @whop.plans.create(company_id: "biz_xxxxxxxxxxxxxx", product_id: "prod_xxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Plan
@@ -43,7 +43,7 @@ class Whopsdk::Test::Resources::PlansTest < Whopsdk::Test::ResourceTest
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.plans.retrieve("plan_xxxxxxxxxxxxx")
+    response = @whop.plans.retrieve("plan_xxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Plan
@@ -80,7 +80,7 @@ class Whopsdk::Test::Resources::PlansTest < Whopsdk::Test::ResourceTest
   def test_update
     skip("Prism tests are disabled")
 
-    response = @whopsdk.plans.update("plan_xxxxxxxxxxxxx")
+    response = @whop.plans.update("plan_xxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Plan
@@ -117,7 +117,7 @@ class Whopsdk::Test::Resources::PlansTest < Whopsdk::Test::ResourceTest
   def test_list_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.plans.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.plans.list(company_id: "biz_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Internal::CursorPage
@@ -158,7 +158,7 @@ class Whopsdk::Test::Resources::PlansTest < Whopsdk::Test::ResourceTest
   def test_delete
     skip("Prism tests are disabled")
 
-    response = @whopsdk.plans.delete("plan_xxxxxxxxxxxxx")
+    response = @whop.plans.delete("plan_xxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Internal::Type::Boolean

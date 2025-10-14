@@ -6,7 +6,7 @@ class Whopsdk::Test::Resources::MembershipsTest < Whopsdk::Test::ResourceTest
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.memberships.retrieve("mem_xxxxxxxxxxxxxx")
+    response = @whop.memberships.retrieve("mem_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Membership
@@ -40,7 +40,7 @@ class Whopsdk::Test::Resources::MembershipsTest < Whopsdk::Test::ResourceTest
   def test_update
     skip("Prism tests are disabled")
 
-    response = @whopsdk.memberships.update("mem_xxxxxxxxxxxxxx")
+    response = @whop.memberships.update("mem_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Membership
@@ -74,7 +74,7 @@ class Whopsdk::Test::Resources::MembershipsTest < Whopsdk::Test::ResourceTest
   def test_list_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.memberships.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.memberships.list(company_id: "biz_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Internal::CursorPage
@@ -115,7 +115,7 @@ class Whopsdk::Test::Resources::MembershipsTest < Whopsdk::Test::ResourceTest
   def test_cancel
     skip("Prism tests are disabled")
 
-    response = @whopsdk.memberships.cancel("mem_xxxxxxxxxxxxxx")
+    response = @whop.memberships.cancel("mem_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Membership
@@ -149,7 +149,7 @@ class Whopsdk::Test::Resources::MembershipsTest < Whopsdk::Test::ResourceTest
   def test_pause
     skip("Prism tests are disabled")
 
-    response = @whopsdk.memberships.pause("mem_xxxxxxxxxxxxxx")
+    response = @whop.memberships.pause("mem_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Membership
@@ -183,7 +183,7 @@ class Whopsdk::Test::Resources::MembershipsTest < Whopsdk::Test::ResourceTest
   def test_resume
     skip("Prism tests are disabled")
 
-    response = @whopsdk.memberships.resume("mem_xxxxxxxxxxxxxx")
+    response = @whop.memberships.resume("mem_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Membership

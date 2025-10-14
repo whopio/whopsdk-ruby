@@ -6,7 +6,7 @@ class Whopsdk::Test::Resources::LedgerAccountsTest < Whopsdk::Test::ResourceTest
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.ledger_accounts.retrieve("ldgr_xxxxxxxxxxxxx")
+    response = @whop.ledger_accounts.retrieve("ldgr_xxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Models::LedgerAccountRetrieveResponse

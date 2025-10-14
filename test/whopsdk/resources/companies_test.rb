@@ -6,7 +6,7 @@ class Whopsdk::Test::Resources::CompaniesTest < Whopsdk::Test::ResourceTest
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.companies.retrieve("biz_xxxxxxxxxxxxxx")
+    response = @whop.companies.retrieve("biz_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Company

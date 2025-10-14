@@ -6,7 +6,7 @@ class Whopsdk::Test::Resources::MessagesTest < Whopsdk::Test::ResourceTest
   def test_create_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.messages.create(channel_id: "channel_id", content: "content")
+    response = @whop.messages.create(channel_id: "channel_id", content: "content")
 
     assert_pattern do
       response => Whopsdk::Message
@@ -32,7 +32,7 @@ class Whopsdk::Test::Resources::MessagesTest < Whopsdk::Test::ResourceTest
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.messages.retrieve("id")
+    response = @whop.messages.retrieve("id")
 
     assert_pattern do
       response => Whopsdk::Message
@@ -58,7 +58,7 @@ class Whopsdk::Test::Resources::MessagesTest < Whopsdk::Test::ResourceTest
   def test_list_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.messages.list(channel_id: "channel_id")
+    response = @whop.messages.list(channel_id: "channel_id")
 
     assert_pattern do
       response => Whopsdk::Internal::CursorPage

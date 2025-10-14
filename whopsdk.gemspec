@@ -5,8 +5,8 @@ require_relative "lib/whopsdk/version"
 Gem::Specification.new do |s|
   s.name = "whopsdk"
   s.version = Whopsdk::VERSION
-  s.summary = "Ruby library to access the Whopsdk API"
-  s.authors = ["Whopsdk"]
+  s.summary = "Ruby library to access the Whop API"
+  s.authors = ["Whop"]
   s.email = ""
   s.homepage = "https://gemdocs.org/gems/whopsdk"
   s.metadata["homepage_uri"] = s.homepage

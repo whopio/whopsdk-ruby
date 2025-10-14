@@ -110,8 +110,8 @@ module Whopsdk
       # Defaults to `ENV["WHOP_APP_ID"]`
       app_id: ENV["WHOP_APP_ID"],
       # Override the default base URL for the API, e.g.,
-      # `"https://api.example.com/v2/"`. Defaults to `ENV["WHOPSDK_BASE_URL"]`
-      base_url: ENV["WHOPSDK_BASE_URL"],
+      # `"https://api.example.com/v2/"`. Defaults to `ENV["WHOP_BASE_URL"]`
+      base_url: ENV["WHOP_BASE_URL"],
       # Max number of retries to attempt after a failed retryable request.
       max_retries: Whopsdk::Client::DEFAULT_MAX_RETRIES,
       timeout: Whopsdk::Client::DEFAULT_TIMEOUT_IN_SECONDS,

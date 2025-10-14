@@ -6,7 +6,7 @@ class Whopsdk::Test::Resources::CourseLessonInteractionsTest < Whopsdk::Test::Re
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.course_lesson_interactions.retrieve("crsli_xxxxxxxxxxxx")
+    response = @whop.course_lesson_interactions.retrieve("crsli_xxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::CourseLessonInteraction
@@ -26,7 +26,7 @@ class Whopsdk::Test::Resources::CourseLessonInteractionsTest < Whopsdk::Test::Re
   def test_list
     skip("Prism tests are disabled")
 
-    response = @whopsdk.course_lesson_interactions.list
+    response = @whop.course_lesson_interactions.list
 
     assert_pattern do
       response => Whopsdk::Internal::CursorPage

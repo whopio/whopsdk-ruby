@@ -6,7 +6,7 @@ class Whopsdk::Test::Resources::AuthorizedUsersTest < Whopsdk::Test::ResourceTes
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.authorized_users.retrieve("ausr_xxxxxxxxxxxxx")
+    response = @whop.authorized_users.retrieve("ausr_xxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Models::AuthorizedUserRetrieveResponse
@@ -24,7 +24,7 @@ class Whopsdk::Test::Resources::AuthorizedUsersTest < Whopsdk::Test::ResourceTes
   def test_list_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.authorized_users.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.authorized_users.list(company_id: "biz_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Internal::CursorPage

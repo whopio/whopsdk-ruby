@@ -7,7 +7,7 @@ class Whopsdk::Test::Resources::ShipmentsTest < Whopsdk::Test::ResourceTest
     skip("Prism tests are disabled")
 
     response =
-      @whopsdk.shipments.create(
+      @whop.shipments.create(
         company_id: "biz_xxxxxxxxxxxxxx",
         payment_id: "pay_xxxxxxxxxxxxxx",
         tracking_code: "tracking_code"
@@ -36,7 +36,7 @@ class Whopsdk::Test::Resources::ShipmentsTest < Whopsdk::Test::ResourceTest
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.shipments.retrieve("ship_xxxxxxxxxxxxx")
+    response = @whop.shipments.retrieve("ship_xxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Shipment
@@ -61,7 +61,7 @@ class Whopsdk::Test::Resources::ShipmentsTest < Whopsdk::Test::ResourceTest
   def test_list
     skip("Prism tests are disabled")
 
-    response = @whopsdk.shipments.list
+    response = @whop.shipments.list
 
     assert_pattern do
       response => Whopsdk::Internal::CursorPage

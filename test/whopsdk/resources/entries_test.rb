@@ -6,7 +6,7 @@ class Whopsdk::Test::Resources::EntriesTest < Whopsdk::Test::ResourceTest
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.entries.retrieve("entry_xxxxxxxxxxxx")
+    response = @whop.entries.retrieve("entry_xxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Entry
@@ -28,7 +28,7 @@ class Whopsdk::Test::Resources::EntriesTest < Whopsdk::Test::ResourceTest
   def test_list_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.entries.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.entries.list(company_id: "biz_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Internal::CursorPage
@@ -56,7 +56,7 @@ class Whopsdk::Test::Resources::EntriesTest < Whopsdk::Test::ResourceTest
   def test_approve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.entries.approve("entry_xxxxxxxxxxxx")
+    response = @whop.entries.approve("entry_xxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Models::EntryApproveResponse
@@ -72,7 +72,7 @@ class Whopsdk::Test::Resources::EntriesTest < Whopsdk::Test::ResourceTest
   def test_deny
     skip("Prism tests are disabled")
 
-    response = @whopsdk.entries.deny("entry_xxxxxxxxxxxx")
+    response = @whop.entries.deny("entry_xxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Entry

@@ -6,7 +6,7 @@ class Whopsdk::Test::Resources::AppBuildsTest < Whopsdk::Test::ResourceTest
   def test_create_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.app_builds.create(attachment: {}, checksum: "checksum", platform: :ios)
+    response = @whop.app_builds.create(attachment: {}, checksum: "checksum", platform: :ios)
 
     assert_pattern do
       response => Whopsdk::AppBuild
@@ -30,7 +30,7 @@ class Whopsdk::Test::Resources::AppBuildsTest < Whopsdk::Test::ResourceTest
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.app_builds.retrieve("apbu_xxxxxxxxxxxxx")
+    response = @whop.app_builds.retrieve("apbu_xxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::AppBuild
@@ -54,7 +54,7 @@ class Whopsdk::Test::Resources::AppBuildsTest < Whopsdk::Test::ResourceTest
   def test_list_required_params
     skip("Prism tests are disabled")
 
-    response = @whopsdk.app_builds.list(app_id: "app_xxxxxxxxxxxxxx")
+    response = @whop.app_builds.list(app_id: "app_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Internal::CursorPage
@@ -85,7 +85,7 @@ class Whopsdk::Test::Resources::AppBuildsTest < Whopsdk::Test::ResourceTest
   def test_promote
     skip("Prism tests are disabled")
 
-    response = @whopsdk.app_builds.promote("apbu_xxxxxxxxxxxxx")
+    response = @whop.app_builds.promote("apbu_xxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::AppBuild

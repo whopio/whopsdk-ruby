@@ -7,7 +7,7 @@ class Whopsdk::Test::Resources::TransfersTest < Whopsdk::Test::ResourceTest
     skip("Prism tests are disabled")
 
     response =
-      @whopsdk.transfers.create(
+      @whop.transfers.create(
         amount: 6.9,
         currency: :usd,
         destination_id: "destination_id",
@@ -37,7 +37,7 @@ class Whopsdk::Test::Resources::TransfersTest < Whopsdk::Test::ResourceTest
   def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whopsdk.transfers.retrieve("ctt_xxxxxxxxxxxxxx")
+    response = @whop.transfers.retrieve("ctt_xxxxxxxxxxxxxx")
 
     assert_pattern do
       response => Whopsdk::Transfer
@@ -62,7 +62,7 @@ class Whopsdk::Test::Resources::TransfersTest < Whopsdk::Test::ResourceTest
   def test_list
     skip("Prism tests are disabled")
 
-    response = @whopsdk.transfers.list
+    response = @whop.transfers.list
 
     assert_pattern do
       response => Whopsdk::Internal::CursorPage

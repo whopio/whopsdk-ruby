@@ -92,11 +92,13 @@ module Whopsdk
       module Destination
         extend Whopsdk::Internal::Type::Union
 
+        discriminator :typename
+
         # An object representing a (sanitized) user of the site.
-        variant -> { Whopsdk::Transfer::Destination::User }
+        variant :User, -> { Whopsdk::Transfer::Destination::User }
 
         # An object representing a (sanitized) company.
-        variant -> { Whopsdk::Transfer::Destination::Company }
+        variant :Company, -> { Whopsdk::Transfer::Destination::Company }
 
         class User < Whopsdk::Internal::Type::BaseModel
           # @!attribute id
@@ -182,11 +184,13 @@ module Whopsdk
       module Origin
         extend Whopsdk::Internal::Type::Union
 
+        discriminator :typename
+
         # An object representing a (sanitized) user of the site.
-        variant -> { Whopsdk::Transfer::Origin::User }
+        variant :User, -> { Whopsdk::Transfer::Origin::User }
 
         # An object representing a (sanitized) company.
-        variant -> { Whopsdk::Transfer::Origin::Company }
+        variant :Company, -> { Whopsdk::Transfer::Origin::Company }
 
         class User < Whopsdk::Internal::Type::BaseModel
           # @!attribute id

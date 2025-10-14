@@ -48,7 +48,11 @@ class Whopsdk::Test::SingletonClient < Whopsdk::Client
   TEST_API_BASE_URL = ENV.fetch("TEST_API_BASE_URL", "http://localhost:4010")
 
   def initialize
-    super(base_url: Whopsdk::Test::SingletonClient::TEST_API_BASE_URL, api_key: "My API Key")
+    super(
+      base_url: Whopsdk::Test::SingletonClient::TEST_API_BASE_URL,
+      api_key: "My API Key",
+      app_id: "app_xxxxxxxxxxxxxx"
+    )
   end
 end
 

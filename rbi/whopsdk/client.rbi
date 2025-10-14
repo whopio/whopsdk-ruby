@@ -14,6 +14,9 @@ module Whopsdk
     sig { returns(String) }
     attr_reader :api_key
 
+    sig { returns(String) }
+    attr_reader :app_id
+
     sig { returns(Whopsdk::Resources::Apps) }
     attr_reader :apps
 
@@ -92,6 +95,7 @@ module Whopsdk
     sig do
       params(
         api_key: T.nilable(String),
+        app_id: T.nilable(String),
         base_url: T.nilable(String),
         max_retries: Integer,
         timeout: Float,
@@ -103,6 +107,8 @@ module Whopsdk
       # The app API key from an app from the /dashboard/developer page Defaults to
       # `ENV["WHOP_API_KEY"]`
       api_key: ENV["WHOP_API_KEY"],
+      # Defaults to `ENV["WHOP_APP_ID"]`
+      app_id: ENV["WHOP_APP_ID"],
       # Override the default base URL for the API, e.g.,
       # `"https://api.example.com/v2/"`. Defaults to `ENV["WHOPSDK_BASE_URL"]`
       base_url: ENV["WHOPSDK_BASE_URL"],

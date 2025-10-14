@@ -7,6 +7,12 @@ module Whopsdk
       extend Whopsdk::Internal::Type::RequestParameters::Converter
       include Whopsdk::Internal::Type::RequestParameters
 
+      # @!attribute channel_id
+      #   The ID of the channel or experience to send to.
+      #
+      #   @return [String]
+      required :channel_id, String
+
       # @!attribute content
       #   The content of the message in Markdown format.
       #
@@ -21,32 +27,18 @@ module Whopsdk
                -> { Whopsdk::Internal::Type::ArrayOf[Whopsdk::MessageCreateParams::Attachment] },
                nil?: true
 
-      # @!attribute channel_id
-      #   The ID of the channel to send to.
-      #
-      #   @return [String, nil]
-      optional :channel_id, String, nil?: true
-
-      # @!attribute experience_id
-      #   The ID of the chat experience to send the message in.
-      #
-      #   @return [String, nil]
-      optional :experience_id, String, nil?: true
-
       # @!attribute poll
       #   The poll for this message
       #
       #   @return [Whopsdk::Models::MessageCreateParams::Poll, nil]
       optional :poll, -> { Whopsdk::MessageCreateParams::Poll }, nil?: true
 
-      # @!method initialize(content:, attachments: nil, channel_id: nil, experience_id: nil, poll: nil, request_options: {})
+      # @!method initialize(channel_id:, content:, attachments: nil, poll: nil, request_options: {})
+      #   @param channel_id [String] The ID of the channel or experience to send to.
+      #
       #   @param content [String] The content of the message in Markdown format.
       #
       #   @param attachments [Array<Whopsdk::Models::MessageCreateParams::Attachment>, nil] The attachments for this message, such as videos or images.
-      #
-      #   @param channel_id [String, nil] The ID of the channel to send to.
-      #
-      #   @param experience_id [String, nil] The ID of the chat experience to send the message in.
       #
       #   @param poll [Whopsdk::Models::MessageCreateParams::Poll, nil] The poll for this message
       #

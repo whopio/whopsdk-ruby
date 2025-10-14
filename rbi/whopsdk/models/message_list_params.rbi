@@ -23,6 +23,10 @@ module Whopsdk
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
+      # The direction of the sort.
+      sig { returns(T.nilable(Whopsdk::Direction::OrSymbol)) }
+      attr_accessor :direction
+
       # Returns the first _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :first
@@ -36,6 +40,7 @@ module Whopsdk
           channel_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
+          direction: T.nilable(Whopsdk::Direction::OrSymbol),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           request_options: Whopsdk::RequestOptions::OrHash
@@ -48,6 +53,8 @@ module Whopsdk
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
+        # The direction of the sort.
+        direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
@@ -62,6 +69,7 @@ module Whopsdk
             channel_id: String,
             after: T.nilable(String),
             before: T.nilable(String),
+            direction: T.nilable(Whopsdk::Direction::OrSymbol),
             first: T.nilable(Integer),
             last: T.nilable(Integer),
             request_options: Whopsdk::RequestOptions

@@ -4,7 +4,7 @@ module Whopsdk
       {
         id: String,
         bio: String?,
-        created_at: Integer,
+        created_at: Time,
         name: String?,
         username: String
       }
@@ -14,7 +14,7 @@ module Whopsdk
 
       attr_accessor bio: String?
 
-      attr_accessor created_at: Integer
+      attr_accessor created_at: Time
 
       attr_accessor name: String?
 
@@ -23,7 +23,7 @@ module Whopsdk
       def initialize: (
         id: String,
         bio: String?,
-        created_at: Integer,
+        created_at: Time,
         name: String?,
         username: String
       ) -> void
@@ -31,7 +31,7 @@ module Whopsdk
       def to_hash: -> {
         id: String,
         bio: String?,
-        created_at: Integer,
+        created_at: Time,
         name: String?,
         username: String
       }

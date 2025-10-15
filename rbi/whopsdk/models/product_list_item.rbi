@@ -17,7 +17,7 @@ module Whopsdk
       attr_accessor :business_type
 
       # When the product was created.
-      sig { returns(Integer) }
+      sig { returns(Time) }
       attr_accessor :created_at
 
       # The headline of the product.
@@ -45,7 +45,7 @@ module Whopsdk
       attr_accessor :title
 
       # When the product was updated.
-      sig { returns(Integer) }
+      sig { returns(Time) }
       attr_accessor :updated_at
 
       # Whether this product is Whop verified.
@@ -61,14 +61,14 @@ module Whopsdk
         params(
           id: String,
           business_type: T.nilable(Whopsdk::BusinessTypes::OrSymbol),
-          created_at: Integer,
+          created_at: Time,
           headline: T.nilable(String),
           industry_type: T.nilable(Whopsdk::IndustryTypes::OrSymbol),
           member_count: Integer,
           published_reviews_count: Integer,
           route: String,
           title: String,
-          updated_at: Integer,
+          updated_at: Time,
           verified: T::Boolean,
           visibility: Whopsdk::Visibility::OrSymbol
         ).returns(T.attached_class)
@@ -106,14 +106,14 @@ module Whopsdk
           {
             id: String,
             business_type: T.nilable(Whopsdk::BusinessTypes::TaggedSymbol),
-            created_at: Integer,
+            created_at: Time,
             headline: T.nilable(String),
             industry_type: T.nilable(Whopsdk::IndustryTypes::TaggedSymbol),
             member_count: Integer,
             published_reviews_count: Integer,
             route: String,
             title: String,
-            updated_at: Integer,
+            updated_at: Time,
             verified: T::Boolean,
             visibility: Whopsdk::Visibility::TaggedSymbol
           }

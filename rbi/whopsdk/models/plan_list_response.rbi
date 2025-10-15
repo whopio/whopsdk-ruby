@@ -28,7 +28,7 @@ module Whopsdk
       attr_writer :company
 
       # When the plan was created.
-      sig { returns(Integer) }
+      sig { returns(Time) }
       attr_accessor :created_at
 
       # The respective currency identifier for the plan.
@@ -98,7 +98,7 @@ module Whopsdk
       attr_accessor :trial_period_days
 
       # When the plan was last updated.
-      sig { returns(Integer) }
+      sig { returns(Time) }
       attr_accessor :updated_at
 
       # Shows or hides the plan from public/business view.
@@ -112,7 +112,7 @@ module Whopsdk
           billing_period: T.nilable(Integer),
           company:
             T.nilable(Whopsdk::Models::PlanListResponse::Company::OrHash),
-          created_at: Integer,
+          created_at: Time,
           currency: Whopsdk::Currency::OrSymbol,
           description: T.nilable(String),
           expiration_days: T.nilable(Integer),
@@ -128,7 +128,7 @@ module Whopsdk
           release_method: Whopsdk::ReleaseMethod::OrSymbol,
           renewal_price: Float,
           trial_period_days: T.nilable(Integer),
-          updated_at: Integer,
+          updated_at: Time,
           visibility: Whopsdk::Visibility::OrSymbol
         ).returns(T.attached_class)
       end
@@ -180,7 +180,7 @@ module Whopsdk
             id: String,
             billing_period: T.nilable(Integer),
             company: T.nilable(Whopsdk::Models::PlanListResponse::Company),
-            created_at: Integer,
+            created_at: Time,
             currency: Whopsdk::Currency::TaggedSymbol,
             description: T.nilable(String),
             expiration_days: T.nilable(Integer),
@@ -194,7 +194,7 @@ module Whopsdk
             release_method: Whopsdk::ReleaseMethod::TaggedSymbol,
             renewal_price: Float,
             trial_period_days: T.nilable(Integer),
-            updated_at: Integer,
+            updated_at: Time,
             visibility: Whopsdk::Visibility::TaggedSymbol
           }
         )

@@ -18,8 +18,8 @@ module Whopsdk
       # @!attribute created_at
       #   When the interaction was created
       #
-      #   @return [Integer]
-      required :created_at, Integer
+      #   @return [Time]
+      required :created_at, Time
 
       # @!attribute lesson
       #   The lesson this interaction is for
@@ -40,7 +40,7 @@ module Whopsdk
       #
       #   @param completed [Boolean] Whether the lesson has been completed by the user
       #
-      #   @param created_at [Integer] When the interaction was created
+      #   @param created_at [Time] When the interaction was created
       #
       #   @param lesson [Whopsdk::Models::CourseLessonInteraction::Lesson] The lesson this interaction is for
       #

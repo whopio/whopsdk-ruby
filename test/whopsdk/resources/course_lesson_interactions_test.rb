@@ -16,7 +16,7 @@ class Whopsdk::Test::Resources::CourseLessonInteractionsTest < Whopsdk::Test::Re
       response => {
         id: String,
         completed: Whopsdk::Internal::Type::Boolean,
-        created_at: Integer,
+        created_at: Time,
         lesson: Whopsdk::CourseLessonInteraction::Lesson,
         user: Whopsdk::CourseLessonInteraction::User
       }
@@ -43,7 +43,7 @@ class Whopsdk::Test::Resources::CourseLessonInteractionsTest < Whopsdk::Test::Re
       row => {
         id: String,
         completed: Whopsdk::Internal::Type::Boolean,
-        created_at: Integer,
+        created_at: Time,
         lesson: Whopsdk::CourseLessonInteractionListItem::Lesson,
         user: Whopsdk::CourseLessonInteractionListItem::User
       }

@@ -13,7 +13,7 @@ module Whopsdk
       attr_accessor :id
 
       # When the entry was created.
-      sig { returns(T.nilable(Integer)) }
+      sig { returns(T.nilable(Time)) }
       attr_accessor :created_at
 
       # The waitlist plan the entry if for.
@@ -56,7 +56,7 @@ module Whopsdk
       sig do
         params(
           id: String,
-          created_at: T.nilable(Integer),
+          created_at: T.nilable(Time),
           plan: T.nilable(Whopsdk::Models::EntryListResponse::Plan::OrHash),
           product:
             T.nilable(Whopsdk::Models::EntryListResponse::Product::OrHash),
@@ -84,7 +84,7 @@ module Whopsdk
         override.returns(
           {
             id: String,
-            created_at: T.nilable(Integer),
+            created_at: T.nilable(Time),
             plan: T.nilable(Whopsdk::Models::EntryListResponse::Plan),
             product: T.nilable(Whopsdk::Models::EntryListResponse::Product),
             status: Whopsdk::EntryStatus::TaggedSymbol,

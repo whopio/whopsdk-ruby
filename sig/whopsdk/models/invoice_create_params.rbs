@@ -4,7 +4,7 @@ module Whopsdk
       {
         collection_method: Whopsdk::Models::collection_method,
         company_id: String,
-        due_date: Integer,
+        due_date: Time,
         plan: Whopsdk::InvoiceCreateParams::Plan,
         charge_buyer_fee: bool?,
         customer_name: String?,
@@ -24,7 +24,7 @@ module Whopsdk
 
       attr_accessor company_id: String
 
-      attr_accessor due_date: Integer
+      attr_accessor due_date: Time
 
       attr_accessor plan: Whopsdk::InvoiceCreateParams::Plan
 
@@ -45,7 +45,7 @@ module Whopsdk
       def initialize: (
         collection_method: Whopsdk::Models::collection_method,
         company_id: String,
-        due_date: Integer,
+        due_date: Time,
         plan: Whopsdk::InvoiceCreateParams::Plan,
         ?charge_buyer_fee: bool?,
         ?customer_name: String?,
@@ -60,7 +60,7 @@ module Whopsdk
       def to_hash: -> {
         collection_method: Whopsdk::Models::collection_method,
         company_id: String,
-        due_date: Integer,
+        due_date: Time,
         plan: Whopsdk::InvoiceCreateParams::Plan,
         charge_buyer_fee: bool?,
         customer_name: String?,

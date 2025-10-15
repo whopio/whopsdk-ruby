@@ -19,8 +19,8 @@ module Whopsdk
       # @!attribute created_at
       #   When the user was created.
       #
-      #   @return [Integer]
-      required :created_at, Integer
+      #   @return [Time]
+      required :created_at, Time
 
       # @!attribute name
       #   The name of the user from their Whop account.
@@ -41,7 +41,7 @@ module Whopsdk
       #
       #   @param bio [String, nil] The user's bio
       #
-      #   @param created_at [Integer] When the user was created.
+      #   @param created_at [Time] When the user was created.
       #
       #   @param name [String, nil] The name of the user from their Whop account.
       #

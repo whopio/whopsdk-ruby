@@ -16,7 +16,7 @@ module Whopsdk
       attr_accessor :checksum
 
       # When this app build was created.
-      sig { returns(Integer) }
+      sig { returns(Time) }
       attr_accessor :created_at
 
       # The URL to download the app build .zip file.
@@ -50,7 +50,7 @@ module Whopsdk
         params(
           id: String,
           checksum: String,
-          created_at: Integer,
+          created_at: Time,
           file_url: String,
           is_production: T::Boolean,
           platform: Whopsdk::AppBuildPlatforms::OrSymbol,
@@ -89,7 +89,7 @@ module Whopsdk
           {
             id: String,
             checksum: String,
-            created_at: Integer,
+            created_at: Time,
             file_url: String,
             is_production: T::Boolean,
             platform: Whopsdk::AppBuildPlatforms::TaggedSymbol,

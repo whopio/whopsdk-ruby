@@ -158,8 +158,8 @@ module Whopsdk
         # @!attribute created_at
         #   When this API key was created at
         #
-        #   @return [Integer]
-        required :created_at, Integer
+        #   @return [Time]
+        required :created_at, Time
 
         # @!method initialize(id:, token:, created_at:)
         #   The API key for the app
@@ -168,7 +168,7 @@ module Whopsdk
         #
         #   @param token [String] This is the API key used to authenticate requests
         #
-        #   @param created_at [Integer] When this API key was created at
+        #   @param created_at [Time] When this API key was created at
       end
 
       # @see Whopsdk::Models::App#company

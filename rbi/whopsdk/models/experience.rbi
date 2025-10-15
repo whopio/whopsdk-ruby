@@ -25,7 +25,7 @@ module Whopsdk
       attr_writer :company
 
       # The timestamp of when this experience was created.
-      sig { returns(Integer) }
+      sig { returns(Time) }
       attr_accessor :created_at
 
       # The written name of the description.
@@ -49,7 +49,7 @@ module Whopsdk
           id: String,
           app: Whopsdk::Experience::App::OrHash,
           company: Whopsdk::Experience::Company::OrHash,
-          created_at: Integer,
+          created_at: Time,
           name: String,
           order: T.nilable(String),
           products: T::Array[Whopsdk::Experience::Product::OrHash]
@@ -82,7 +82,7 @@ module Whopsdk
             id: String,
             app: Whopsdk::Experience::App,
             company: Whopsdk::Experience::Company,
-            created_at: Integer,
+            created_at: Time,
             name: String,
             order: T.nilable(String),
             products: T::Array[Whopsdk::Experience::Product]

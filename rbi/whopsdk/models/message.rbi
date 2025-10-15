@@ -14,6 +14,10 @@ module Whopsdk
       sig { returns(T.nilable(String)) }
       attr_accessor :content
 
+      # The timestamp when the post was created
+      sig { returns(Time) }
+      attr_accessor :created_at
+
       # Whether the message has been edited
       sig { returns(T::Boolean) }
       attr_accessor :is_edited
@@ -45,6 +49,10 @@ module Whopsdk
       sig { returns(T.nilable(String)) }
       attr_accessor :replying_to_message_id
 
+      # The timestamp when the post was last updated
+      sig { returns(Time) }
+      attr_accessor :updated_at
+
       # The user who sent this message
       sig { returns(Whopsdk::Message::User) }
       attr_reader :user
@@ -61,6 +69,7 @@ module Whopsdk
         params(
           id: String,
           content: T.nilable(String),
+          created_at: Time,
           is_edited: T::Boolean,
           is_pinned: T::Boolean,
           message_type: Whopsdk::DmsPostTypes::OrSymbol,
@@ -68,6 +77,7 @@ module Whopsdk
           poll_votes: T::Array[Whopsdk::Message::PollVote::OrHash],
           reaction_counts: T::Array[Whopsdk::Message::ReactionCount::OrHash],
           replying_to_message_id: T.nilable(String),
+          updated_at: Time,
           user: Whopsdk::Message::User::OrHash,
           view_count: T.nilable(Integer)
         ).returns(T.attached_class)
@@ -77,6 +87,8 @@ module Whopsdk
         id:,
         # The content of the message in Markdown format
         content:,
+        # The timestamp when the post was created
+        created_at:,
         # Whether the message has been edited
         is_edited:,
         # Whether this message is pinned
@@ -91,6 +103,8 @@ module Whopsdk
         reaction_counts:,
         # The ID of the message this is replying to, if applicable
         replying_to_message_id:,
+        # The timestamp when the post was last updated
+        updated_at:,
         # The user who sent this message
         user:,
         # The number of times this message has been viewed
@@ -103,6 +117,7 @@ module Whopsdk
           {
             id: String,
             content: T.nilable(String),
+            created_at: Time,
             is_edited: T::Boolean,
             is_pinned: T::Boolean,
             message_type: Whopsdk::DmsPostTypes::TaggedSymbol,
@@ -110,6 +125,7 @@ module Whopsdk
             poll_votes: T::Array[Whopsdk::Message::PollVote],
             reaction_counts: T::Array[Whopsdk::Message::ReactionCount],
             replying_to_message_id: T.nilable(String),
+            updated_at: Time,
             user: Whopsdk::Message::User,
             view_count: T.nilable(Integer)
           }

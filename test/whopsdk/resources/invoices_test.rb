@@ -10,7 +10,7 @@ class Whopsdk::Test::Resources::InvoicesTest < Whopsdk::Test::ResourceTest
       @whop.invoices.create(
         collection_method: :send_invoice,
         company_id: "biz_xxxxxxxxxxxxxx",
-        due_date: 1_701_406_800,
+        due_date: "2023-12-01T05:00:00.401Z",
         plan: {}
       )
 
@@ -38,9 +38,9 @@ class Whopsdk::Test::Resources::InvoicesTest < Whopsdk::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        created_at: Integer,
+        created_at: Time,
         current_plan: Whopsdk::Invoice::CurrentPlan,
-        due_date: Integer | nil,
+        due_date: Time | nil,
         email_address: String | nil,
         fetch_invoice_token: String,
         number: String,
@@ -69,9 +69,9 @@ class Whopsdk::Test::Resources::InvoicesTest < Whopsdk::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
-        created_at: Integer,
+        created_at: Time,
         current_plan: Whopsdk::InvoiceListItem::CurrentPlan,
-        due_date: Integer | nil,
+        due_date: Time | nil,
         email_address: String | nil,
         fetch_invoice_token: String,
         number: String,

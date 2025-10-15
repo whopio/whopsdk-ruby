@@ -23,8 +23,8 @@ module Whopsdk
       # @!attribute due_date
       #   The date the invoice is due, if applicable.
       #
-      #   @return [Integer]
-      required :due_date, Integer
+      #   @return [Time]
+      required :due_date, Time
 
       # @!attribute plan
       #   The properties of the plan to create for this invoice.
@@ -90,7 +90,7 @@ module Whopsdk
       #
       #   @param company_id [String] The company ID to create this invoice for.
       #
-      #   @param due_date [Integer] The date the invoice is due, if applicable.
+      #   @param due_date [Time] The date the invoice is due, if applicable.
       #
       #   @param plan [Whopsdk::Models::InvoiceCreateParams::Plan] The properties of the plan to create for this invoice.
       #

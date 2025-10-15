@@ -4,6 +4,7 @@ module Whopsdk
       {
         id: String,
         content: String?,
+        created_at: Time,
         is_edited: bool,
         is_pinned: bool,
         message_type: Whopsdk::Models::dms_post_types,
@@ -11,6 +12,7 @@ module Whopsdk
         poll_votes: ::Array[Whopsdk::Message::PollVote],
         reaction_counts: ::Array[Whopsdk::Message::ReactionCount],
         replying_to_message_id: String?,
+        updated_at: Time,
         user: Whopsdk::Message::User,
         view_count: Integer?
       }
@@ -19,6 +21,8 @@ module Whopsdk
       attr_accessor id: String
 
       attr_accessor content: String?
+
+      attr_accessor created_at: Time
 
       attr_accessor is_edited: bool
 
@@ -34,6 +38,8 @@ module Whopsdk
 
       attr_accessor replying_to_message_id: String?
 
+      attr_accessor updated_at: Time
+
       attr_accessor user: Whopsdk::Message::User
 
       attr_accessor view_count: Integer?
@@ -41,6 +47,7 @@ module Whopsdk
       def initialize: (
         id: String,
         content: String?,
+        created_at: Time,
         is_edited: bool,
         is_pinned: bool,
         message_type: Whopsdk::Models::dms_post_types,
@@ -48,6 +55,7 @@ module Whopsdk
         poll_votes: ::Array[Whopsdk::Message::PollVote],
         reaction_counts: ::Array[Whopsdk::Message::ReactionCount],
         replying_to_message_id: String?,
+        updated_at: Time,
         user: Whopsdk::Message::User,
         view_count: Integer?
       ) -> void
@@ -55,6 +63,7 @@ module Whopsdk
       def to_hash: -> {
         id: String,
         content: String?,
+        created_at: Time,
         is_edited: bool,
         is_pinned: bool,
         message_type: Whopsdk::Models::dms_post_types,
@@ -62,6 +71,7 @@ module Whopsdk
         poll_votes: ::Array[Whopsdk::Message::PollVote],
         reaction_counts: ::Array[Whopsdk::Message::ReactionCount],
         replying_to_message_id: String?,
+        updated_at: Time,
         user: Whopsdk::Message::User,
         view_count: Integer?
       }

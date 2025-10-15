@@ -3,7 +3,7 @@ module Whopsdk
     type entry_list_response =
       {
         id: String,
-        created_at: Integer?,
+        created_at: Time?,
         plan: Whopsdk::Models::EntryListResponse::Plan?,
         product: Whopsdk::Models::EntryListResponse::Product?,
         status: Whopsdk::Models::entry_status,
@@ -13,7 +13,7 @@ module Whopsdk
     class EntryListResponse < Whopsdk::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor created_at: Integer?
+      attr_accessor created_at: Time?
 
       attr_accessor plan: Whopsdk::Models::EntryListResponse::Plan?
 
@@ -25,7 +25,7 @@ module Whopsdk
 
       def initialize: (
         id: String,
-        created_at: Integer?,
+        created_at: Time?,
         plan: Whopsdk::Models::EntryListResponse::Plan?,
         product: Whopsdk::Models::EntryListResponse::Product?,
         status: Whopsdk::Models::entry_status,
@@ -34,7 +34,7 @@ module Whopsdk
 
       def to_hash: -> {
         id: String,
-        created_at: Integer?,
+        created_at: Time?,
         plan: Whopsdk::Models::EntryListResponse::Plan?,
         product: Whopsdk::Models::EntryListResponse::Product?,
         status: Whopsdk::Models::entry_status,

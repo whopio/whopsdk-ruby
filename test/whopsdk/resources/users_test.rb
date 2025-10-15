@@ -16,7 +16,7 @@ class Whopsdk::Test::Resources::UsersTest < Whopsdk::Test::ResourceTest
       response => {
         id: String,
         bio: String | nil,
-        created_at: Integer,
+        created_at: Time,
         name: String | nil,
         username: String
       }

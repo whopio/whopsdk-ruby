@@ -18,8 +18,8 @@ module Whopsdk
       # @!attribute created_at
       #   When the product was created.
       #
-      #   @return [Integer]
-      required :created_at, Integer
+      #   @return [Time]
+      required :created_at, Time
 
       # @!attribute headline
       #   The headline of the product.
@@ -60,8 +60,8 @@ module Whopsdk
       # @!attribute updated_at
       #   When the product was updated.
       #
-      #   @return [Integer]
-      required :updated_at, Integer
+      #   @return [Time]
+      required :updated_at, Time
 
       # @!attribute verified
       #   Whether this product is Whop verified.
@@ -82,7 +82,7 @@ module Whopsdk
       #
       #   @param business_type [Symbol, Whopsdk::Models::BusinessTypes, nil] The different business types a company can be.
       #
-      #   @param created_at [Integer] When the product was created.
+      #   @param created_at [Time] When the product was created.
       #
       #   @param headline [String, nil] The headline of the product.
       #
@@ -96,7 +96,7 @@ module Whopsdk
       #
       #   @param title [String] The title of the product. Use for Whop 4.0.
       #
-      #   @param updated_at [Integer] When the product was updated.
+      #   @param updated_at [Time] When the product was updated.
       #
       #   @param verified [Boolean] Whether this product is Whop verified.
       #

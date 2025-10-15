@@ -16,6 +16,7 @@ class Whopsdk::Test::Resources::MessagesTest < Whopsdk::Test::ResourceTest
       response => {
         id: String,
         content: String | nil,
+        created_at: Time,
         is_edited: Whopsdk::Internal::Type::Boolean,
         is_pinned: Whopsdk::Internal::Type::Boolean,
         message_type: Whopsdk::DmsPostTypes,
@@ -23,6 +24,7 @@ class Whopsdk::Test::Resources::MessagesTest < Whopsdk::Test::ResourceTest
         poll_votes: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Message::PollVote]),
         reaction_counts: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Message::ReactionCount]),
         replying_to_message_id: String | nil,
+        updated_at: Time,
         user: Whopsdk::Message::User,
         view_count: Integer | nil
       }
@@ -42,6 +44,7 @@ class Whopsdk::Test::Resources::MessagesTest < Whopsdk::Test::ResourceTest
       response => {
         id: String,
         content: String | nil,
+        created_at: Time,
         is_edited: Whopsdk::Internal::Type::Boolean,
         is_pinned: Whopsdk::Internal::Type::Boolean,
         message_type: Whopsdk::DmsPostTypes,
@@ -49,6 +52,7 @@ class Whopsdk::Test::Resources::MessagesTest < Whopsdk::Test::ResourceTest
         poll_votes: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Message::PollVote]),
         reaction_counts: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Message::ReactionCount]),
         replying_to_message_id: String | nil,
+        updated_at: Time,
         user: Whopsdk::Message::User,
         view_count: Integer | nil
       }
@@ -75,6 +79,7 @@ class Whopsdk::Test::Resources::MessagesTest < Whopsdk::Test::ResourceTest
       row => {
         id: String,
         content: String | nil,
+        created_at: Time,
         is_edited: Whopsdk::Internal::Type::Boolean,
         is_pinned: Whopsdk::Internal::Type::Boolean,
         message_type: Whopsdk::DmsPostTypes,
@@ -82,6 +87,7 @@ class Whopsdk::Test::Resources::MessagesTest < Whopsdk::Test::ResourceTest
         poll_votes: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Models::MessageListResponse::PollVote]),
         reaction_counts: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Models::MessageListResponse::ReactionCount]),
         replying_to_message_id: String | nil,
+        updated_at: Time,
         user: Whopsdk::Models::MessageListResponse::User,
         view_count: Integer | nil
       }

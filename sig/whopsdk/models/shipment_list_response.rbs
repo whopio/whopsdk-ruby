@@ -4,14 +4,14 @@ module Whopsdk
       {
         id: String,
         carrier: Whopsdk::Models::shipment_carrier,
-        created_at: Integer,
-        delivery_estimate: Integer?,
+        created_at: Time,
+        delivery_estimate: Time?,
         payment: Whopsdk::Models::ShipmentListResponse::Payment,
         service: String?,
         status: Whopsdk::Models::shipment_status,
         substatus: Whopsdk::Models::shipment_substatus?,
         tracking_code: String,
-        updated_at: Integer
+        updated_at: Time
       }
 
     class ShipmentListResponse < Whopsdk::Internal::Type::BaseModel
@@ -19,9 +19,9 @@ module Whopsdk
 
       attr_accessor carrier: Whopsdk::Models::shipment_carrier
 
-      attr_accessor created_at: Integer
+      attr_accessor created_at: Time
 
-      attr_accessor delivery_estimate: Integer?
+      attr_accessor delivery_estimate: Time?
 
       attr_accessor payment: Whopsdk::Models::ShipmentListResponse::Payment
 
@@ -33,32 +33,32 @@ module Whopsdk
 
       attr_accessor tracking_code: String
 
-      attr_accessor updated_at: Integer
+      attr_accessor updated_at: Time
 
       def initialize: (
         id: String,
         carrier: Whopsdk::Models::shipment_carrier,
-        created_at: Integer,
-        delivery_estimate: Integer?,
+        created_at: Time,
+        delivery_estimate: Time?,
         payment: Whopsdk::Models::ShipmentListResponse::Payment,
         service: String?,
         status: Whopsdk::Models::shipment_status,
         substatus: Whopsdk::Models::shipment_substatus?,
         tracking_code: String,
-        updated_at: Integer
+        updated_at: Time
       ) -> void
 
       def to_hash: -> {
         id: String,
         carrier: Whopsdk::Models::shipment_carrier,
-        created_at: Integer,
-        delivery_estimate: Integer?,
+        created_at: Time,
+        delivery_estimate: Time?,
         payment: Whopsdk::Models::ShipmentListResponse::Payment,
         service: String?,
         status: Whopsdk::Models::shipment_status,
         substatus: Whopsdk::Models::shipment_substatus?,
         tracking_code: String,
-        updated_at: Integer
+        updated_at: Time
       }
 
       type payment = { id: String }

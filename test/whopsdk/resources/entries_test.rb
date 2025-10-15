@@ -15,7 +15,7 @@ class Whopsdk::Test::Resources::EntriesTest < Whopsdk::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        created_at: Integer | nil,
+        created_at: Time | nil,
         custom_field_responses: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Entry::CustomFieldResponse]) | nil,
         plan: Whopsdk::Entry::Plan | nil,
         product: Whopsdk::Entry::Product | nil,
@@ -44,7 +44,7 @@ class Whopsdk::Test::Resources::EntriesTest < Whopsdk::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
-        created_at: Integer | nil,
+        created_at: Time | nil,
         plan: Whopsdk::Models::EntryListResponse::Plan | nil,
         product: Whopsdk::Models::EntryListResponse::Product | nil,
         status: Whopsdk::EntryStatus,
@@ -81,7 +81,7 @@ class Whopsdk::Test::Resources::EntriesTest < Whopsdk::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        created_at: Integer | nil,
+        created_at: Time | nil,
         custom_field_responses: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Entry::CustomFieldResponse]) | nil,
         plan: Whopsdk::Entry::Plan | nil,
         product: Whopsdk::Entry::Product | nil,

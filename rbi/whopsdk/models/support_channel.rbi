@@ -33,11 +33,11 @@ module Whopsdk
       attr_writer :customer_user
 
       # When the last message was sent
-      sig { returns(T.nilable(Integer)) }
+      sig { returns(T.nilable(Time)) }
       attr_accessor :last_message_at
 
       # When the support ticket was resolved (null if unresolved)
-      sig { returns(T.nilable(Integer)) }
+      sig { returns(T.nilable(Time)) }
       attr_accessor :resolved_at
 
       # Represents a DM channel
@@ -48,8 +48,8 @@ module Whopsdk
           custom_name: T.nilable(String),
           customer_user:
             T.nilable(Whopsdk::SupportChannel::CustomerUser::OrHash),
-          last_message_at: T.nilable(Integer),
-          resolved_at: T.nilable(Integer)
+          last_message_at: T.nilable(Time),
+          resolved_at: T.nilable(Time)
         ).returns(T.attached_class)
       end
       def self.new(
@@ -75,8 +75,8 @@ module Whopsdk
             company_id: T.nilable(String),
             custom_name: T.nilable(String),
             customer_user: T.nilable(Whopsdk::SupportChannel::CustomerUser),
-            last_message_at: T.nilable(Integer),
-            resolved_at: T.nilable(Integer)
+            last_message_at: T.nilable(Time),
+            resolved_at: T.nilable(Time)
           }
         )
       end

@@ -19,14 +19,14 @@ module Whopsdk
       # @!attribute created_at
       #   The date and time the shipment was created
       #
-      #   @return [Integer]
-      required :created_at, Integer
+      #   @return [Time]
+      required :created_at, Time
 
       # @!attribute delivery_estimate
       #   The delivery estimate of the shipment
       #
-      #   @return [Integer, nil]
-      required :delivery_estimate, Integer, nil?: true
+      #   @return [Time, nil]
+      required :delivery_estimate, Time, nil?: true
 
       # @!attribute payment
       #   The payment of the shipment
@@ -61,8 +61,8 @@ module Whopsdk
       # @!attribute updated_at
       #   The date and time the shipment was last updated
       #
-      #   @return [Integer]
-      required :updated_at, Integer
+      #   @return [Time]
+      required :updated_at, Time
 
       # @!method initialize(id:, carrier:, created_at:, delivery_estimate:, payment:, service:, status:, substatus:, tracking_code:, updated_at:)
       #   A shipment
@@ -71,9 +71,9 @@ module Whopsdk
       #
       #   @param carrier [Symbol, Whopsdk::Models::ShipmentCarrier] The carrier of the shipment
       #
-      #   @param created_at [Integer] The date and time the shipment was created
+      #   @param created_at [Time] The date and time the shipment was created
       #
-      #   @param delivery_estimate [Integer, nil] The delivery estimate of the shipment
+      #   @param delivery_estimate [Time, nil] The delivery estimate of the shipment
       #
       #   @param payment [Whopsdk::Models::ShipmentListResponse::Payment] The payment of the shipment
       #
@@ -85,7 +85,7 @@ module Whopsdk
       #
       #   @param tracking_code [String] The tracking code of the shipment
       #
-      #   @param updated_at [Integer] The date and time the shipment was last updated
+      #   @param updated_at [Time] The date and time the shipment was last updated
 
       # @see Whopsdk::Models::ShipmentListResponse#payment
       class Payment < Whopsdk::Internal::Type::BaseModel

@@ -3,7 +3,7 @@ module Whopsdk
     type entry =
       {
         id: String,
-        created_at: Integer?,
+        created_at: Time?,
         custom_field_responses: ::Array[Whopsdk::Entry::CustomFieldResponse]?,
         plan: Whopsdk::Entry::Plan?,
         product: Whopsdk::Entry::Product?,
@@ -14,7 +14,7 @@ module Whopsdk
     class Entry < Whopsdk::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor created_at: Integer?
+      attr_accessor created_at: Time?
 
       attr_accessor custom_field_responses: ::Array[Whopsdk::Entry::CustomFieldResponse]?
 
@@ -28,7 +28,7 @@ module Whopsdk
 
       def initialize: (
         id: String,
-        created_at: Integer?,
+        created_at: Time?,
         custom_field_responses: ::Array[Whopsdk::Entry::CustomFieldResponse]?,
         plan: Whopsdk::Entry::Plan?,
         product: Whopsdk::Entry::Product?,
@@ -38,7 +38,7 @@ module Whopsdk
 
       def to_hash: -> {
         id: String,
-        created_at: Integer?,
+        created_at: Time?,
         custom_field_responses: ::Array[Whopsdk::Entry::CustomFieldResponse]?,
         plan: Whopsdk::Entry::Plan?,
         product: Whopsdk::Entry::Product?,

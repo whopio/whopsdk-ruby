@@ -12,8 +12,8 @@ module Whopsdk
       # @!attribute created_at
       #   When the entry was created.
       #
-      #   @return [Integer, nil]
-      required :created_at, Integer, nil?: true
+      #   @return [Time, nil]
+      required :created_at, Time, nil?: true
 
       # @!attribute custom_field_responses
       #   Responses collected from the user when submitting their entry.
@@ -52,7 +52,7 @@ module Whopsdk
       #
       #   @param id [String] The internal ID of the entry.
       #
-      #   @param created_at [Integer, nil] When the entry was created.
+      #   @param created_at [Time, nil] When the entry was created.
       #
       #   @param custom_field_responses [Array<Whopsdk::Models::Entry::CustomFieldResponse>, nil] Responses collected from the user when submitting their entry.
       #

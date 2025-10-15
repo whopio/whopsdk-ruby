@@ -22,7 +22,7 @@ module Whopsdk
       attr_writer :company
 
       # When the product was created.
-      sig { returns(Integer) }
+      sig { returns(Time) }
       attr_accessor :created_at
 
       # The custom call to action for the product.
@@ -102,7 +102,7 @@ module Whopsdk
       attr_accessor :title
 
       # When the product was updated.
-      sig { returns(Integer) }
+      sig { returns(Time) }
       attr_accessor :updated_at
 
       # Whether this product is Whop verified.
@@ -119,7 +119,7 @@ module Whopsdk
           id: String,
           business_type: T.nilable(Whopsdk::BusinessTypes::OrSymbol),
           company: Whopsdk::Product::Company::OrHash,
-          created_at: Integer,
+          created_at: Time,
           custom_cta: Whopsdk::CustomCta::OrSymbol,
           custom_cta_url: T.nilable(String),
           custom_statement_descriptor: T.nilable(String),
@@ -136,7 +136,7 @@ module Whopsdk
           published_reviews_count: Integer,
           route: String,
           title: String,
-          updated_at: Integer,
+          updated_at: Time,
           verified: T::Boolean,
           visibility: Whopsdk::Visibility::OrSymbol
         ).returns(T.attached_class)
@@ -199,7 +199,7 @@ module Whopsdk
             id: String,
             business_type: T.nilable(Whopsdk::BusinessTypes::TaggedSymbol),
             company: Whopsdk::Product::Company,
-            created_at: Integer,
+            created_at: Time,
             custom_cta: Whopsdk::CustomCta::TaggedSymbol,
             custom_cta_url: T.nilable(String),
             custom_statement_descriptor: T.nilable(String),
@@ -218,7 +218,7 @@ module Whopsdk
             published_reviews_count: Integer,
             route: String,
             title: String,
-            updated_at: Integer,
+            updated_at: Time,
             verified: T::Boolean,
             visibility: Whopsdk::Visibility::TaggedSymbol
           }

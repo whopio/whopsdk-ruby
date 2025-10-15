@@ -13,7 +13,7 @@ module Whopsdk
         params(
           collection_method: Whopsdk::CollectionMethod::OrSymbol,
           company_id: String,
-          due_date: Integer,
+          due_date: Time,
           plan: Whopsdk::InvoiceCreateParams::Plan::OrHash,
           charge_buyer_fee: T.nilable(T::Boolean),
           customer_name: T.nilable(String),

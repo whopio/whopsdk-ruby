@@ -53,8 +53,8 @@ module Whopsdk
             T.nilable(
               T::Array[Whopsdk::MembershipListParams::CancelOption::OrSymbol]
             ),
-          created_after: T.nilable(Integer),
-          created_before: T.nilable(Integer),
+          created_after: T.nilable(Time),
+          created_before: T.nilable(Time),
           direction: T.nilable(Whopsdk::Direction::OrSymbol),
           first: T.nilable(Integer),
           last: T.nilable(Integer),

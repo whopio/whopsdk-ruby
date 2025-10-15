@@ -43,8 +43,8 @@ module Whopsdk
             T.nilable(
               T::Array[Whopsdk::PaymentListParams::BillingReason::OrSymbol]
             ),
-          created_after: T.nilable(Integer),
-          created_before: T.nilable(Integer),
+          created_after: T.nilable(Time),
+          created_before: T.nilable(Time),
           currencies: T.nilable(T::Array[Whopsdk::Currency::OrSymbol]),
           direction: T.nilable(Whopsdk::Direction::OrSymbol),
           first: T.nilable(Integer),

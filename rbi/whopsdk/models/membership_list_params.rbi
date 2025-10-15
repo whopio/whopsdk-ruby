@@ -38,11 +38,11 @@ module Whopsdk
       attr_accessor :cancel_options
 
       # The minimum creation date to filter by
-      sig { returns(T.nilable(Integer)) }
+      sig { returns(T.nilable(Time)) }
       attr_accessor :created_after
 
       # The maximum creation date to filter by
-      sig { returns(T.nilable(Integer)) }
+      sig { returns(T.nilable(Time)) }
       attr_accessor :created_before
 
       # The direction of the sort.
@@ -83,8 +83,8 @@ module Whopsdk
             T.nilable(
               T::Array[Whopsdk::MembershipListParams::CancelOption::OrSymbol]
             ),
-          created_after: T.nilable(Integer),
-          created_before: T.nilable(Integer),
+          created_after: T.nilable(Time),
+          created_before: T.nilable(Time),
           direction: T.nilable(Whopsdk::Direction::OrSymbol),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
@@ -139,8 +139,8 @@ module Whopsdk
               T.nilable(
                 T::Array[Whopsdk::MembershipListParams::CancelOption::OrSymbol]
               ),
-            created_after: T.nilable(Integer),
-            created_before: T.nilable(Integer),
+            created_after: T.nilable(Time),
+            created_before: T.nilable(Time),
             direction: T.nilable(Whopsdk::Direction::OrSymbol),
             first: T.nilable(Integer),
             last: T.nilable(Integer),

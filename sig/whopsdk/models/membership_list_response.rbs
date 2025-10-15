@@ -4,10 +4,10 @@ module Whopsdk
       {
         id: String,
         cancel_at_period_end: bool,
-        canceled_at: Integer?,
+        canceled_at: Time?,
         cancellation_reason: String?,
         company: Whopsdk::Models::MembershipListResponse::Company,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Models::currency?,
         license_key: String?,
         manage_url: String?,
@@ -16,10 +16,10 @@ module Whopsdk
         payment_collection_paused: bool,
         plan: Whopsdk::Models::MembershipListResponse::Plan,
         promo_code: Whopsdk::Models::MembershipListResponse::PromoCode?,
-        renewal_period_end: Integer?,
-        renewal_period_start: Integer?,
+        renewal_period_end: Time?,
+        renewal_period_start: Time?,
         status: Whopsdk::Models::membership_status,
-        updated_at: Integer,
+        updated_at: Time,
         user: Whopsdk::Models::MembershipListResponse::User?
       }
 
@@ -28,13 +28,13 @@ module Whopsdk
 
       attr_accessor cancel_at_period_end: bool
 
-      attr_accessor canceled_at: Integer?
+      attr_accessor canceled_at: Time?
 
       attr_accessor cancellation_reason: String?
 
       attr_accessor company: Whopsdk::Models::MembershipListResponse::Company
 
-      attr_accessor created_at: Integer
+      attr_accessor created_at: Time
 
       attr_accessor currency: Whopsdk::Models::currency?
 
@@ -52,23 +52,23 @@ module Whopsdk
 
       attr_accessor promo_code: Whopsdk::Models::MembershipListResponse::PromoCode?
 
-      attr_accessor renewal_period_end: Integer?
+      attr_accessor renewal_period_end: Time?
 
-      attr_accessor renewal_period_start: Integer?
+      attr_accessor renewal_period_start: Time?
 
       attr_accessor status: Whopsdk::Models::membership_status
 
-      attr_accessor updated_at: Integer
+      attr_accessor updated_at: Time
 
       attr_accessor user: Whopsdk::Models::MembershipListResponse::User?
 
       def initialize: (
         id: String,
         cancel_at_period_end: bool,
-        canceled_at: Integer?,
+        canceled_at: Time?,
         cancellation_reason: String?,
         company: Whopsdk::Models::MembershipListResponse::Company,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Models::currency?,
         license_key: String?,
         manage_url: String?,
@@ -77,20 +77,20 @@ module Whopsdk
         payment_collection_paused: bool,
         plan: Whopsdk::Models::MembershipListResponse::Plan,
         promo_code: Whopsdk::Models::MembershipListResponse::PromoCode?,
-        renewal_period_end: Integer?,
-        renewal_period_start: Integer?,
+        renewal_period_end: Time?,
+        renewal_period_start: Time?,
         status: Whopsdk::Models::membership_status,
-        updated_at: Integer,
+        updated_at: Time,
         user: Whopsdk::Models::MembershipListResponse::User?
       ) -> void
 
       def to_hash: -> {
         id: String,
         cancel_at_period_end: bool,
-        canceled_at: Integer?,
+        canceled_at: Time?,
         cancellation_reason: String?,
         company: Whopsdk::Models::MembershipListResponse::Company,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Models::currency?,
         license_key: String?,
         manage_url: String?,
@@ -99,10 +99,10 @@ module Whopsdk
         payment_collection_paused: bool,
         plan: Whopsdk::Models::MembershipListResponse::Plan,
         promo_code: Whopsdk::Models::MembershipListResponse::PromoCode?,
-        renewal_period_end: Integer?,
-        renewal_period_start: Integer?,
+        renewal_period_end: Time?,
+        renewal_period_start: Time?,
         status: Whopsdk::Models::membership_status,
-        updated_at: Integer,
+        updated_at: Time,
         user: Whopsdk::Models::MembershipListResponse::User?
       }
 

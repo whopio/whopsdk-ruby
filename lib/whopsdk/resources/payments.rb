@@ -54,9 +54,9 @@ module Whopsdk
       #
       # @param billing_reasons [Array<Symbol, Whopsdk::Models::PaymentListParams::BillingReason>, nil] The billing reason for the payment
       #
-      # @param created_after [Integer, nil] The minimum creation date to filter by
+      # @param created_after [Time, nil] The minimum creation date to filter by
       #
-      # @param created_before [Integer, nil] The maximum creation date to filter by
+      # @param created_before [Time, nil] The maximum creation date to filter by
       #
       # @param currencies [Array<Symbol, Whopsdk::Models::Currency>, nil] The currency of the payment.
       #

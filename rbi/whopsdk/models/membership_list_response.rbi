@@ -21,7 +21,7 @@ module Whopsdk
       attr_accessor :cancel_at_period_end
 
       # The epoch timestamp of when the customer initiated a cancellation.
-      sig { returns(T.nilable(Integer)) }
+      sig { returns(T.nilable(Time)) }
       attr_accessor :canceled_at
 
       # The reason that the member canceled the membership (filled out by the member).
@@ -40,7 +40,7 @@ module Whopsdk
       attr_writer :company
 
       # The timestamp, in seconds, that this Membership was created at.
-      sig { returns(Integer) }
+      sig { returns(Time) }
       attr_accessor :created_at
 
       # The available currencies on the platform
@@ -105,12 +105,12 @@ module Whopsdk
 
       # The timestamp in seconds at which the current billing cycle for this
       # subscription ends. Only applies for memberships that have a renewal plan.
-      sig { returns(T.nilable(Integer)) }
+      sig { returns(T.nilable(Time)) }
       attr_accessor :renewal_period_end
 
       # The timestamp in seconds at which the current billing cycle for this
       # subscription start. Only applies for memberships that have a renewal plan.
-      sig { returns(T.nilable(Integer)) }
+      sig { returns(T.nilable(Time)) }
       attr_accessor :renewal_period_start
 
       # The status of the membership.
@@ -118,7 +118,7 @@ module Whopsdk
       attr_accessor :status
 
       # A timestamp of when the membership was last updated
-      sig { returns(Integer) }
+      sig { returns(Time) }
       attr_accessor :updated_at
 
       # The user this membership belongs to
@@ -138,10 +138,10 @@ module Whopsdk
         params(
           id: String,
           cancel_at_period_end: T::Boolean,
-          canceled_at: T.nilable(Integer),
+          canceled_at: T.nilable(Time),
           cancellation_reason: T.nilable(String),
           company: Whopsdk::Models::MembershipListResponse::Company::OrHash,
-          created_at: Integer,
+          created_at: Time,
           currency: T.nilable(Whopsdk::Currency::OrSymbol),
           license_key: T.nilable(String),
           manage_url: T.nilable(String),
@@ -154,10 +154,10 @@ module Whopsdk
             T.nilable(
               Whopsdk::Models::MembershipListResponse::PromoCode::OrHash
             ),
-          renewal_period_end: T.nilable(Integer),
-          renewal_period_start: T.nilable(Integer),
+          renewal_period_end: T.nilable(Time),
+          renewal_period_start: T.nilable(Time),
           status: Whopsdk::MembershipStatus::OrSymbol,
-          updated_at: Integer,
+          updated_at: Time,
           user: T.nilable(Whopsdk::Models::MembershipListResponse::User::OrHash)
         ).returns(T.attached_class)
       end
@@ -212,10 +212,10 @@ module Whopsdk
           {
             id: String,
             cancel_at_period_end: T::Boolean,
-            canceled_at: T.nilable(Integer),
+            canceled_at: T.nilable(Time),
             cancellation_reason: T.nilable(String),
             company: Whopsdk::Models::MembershipListResponse::Company,
-            created_at: Integer,
+            created_at: Time,
             currency: T.nilable(Whopsdk::Currency::TaggedSymbol),
             license_key: T.nilable(String),
             manage_url: T.nilable(String),
@@ -225,10 +225,10 @@ module Whopsdk
             plan: Whopsdk::Models::MembershipListResponse::Plan,
             promo_code:
               T.nilable(Whopsdk::Models::MembershipListResponse::PromoCode),
-            renewal_period_end: T.nilable(Integer),
-            renewal_period_start: T.nilable(Integer),
+            renewal_period_end: T.nilable(Time),
+            renewal_period_start: T.nilable(Time),
             status: Whopsdk::MembershipStatus::TaggedSymbol,
-            updated_at: Integer,
+            updated_at: Time,
             user: T.nilable(Whopsdk::Models::MembershipListResponse::User)
           }
         )

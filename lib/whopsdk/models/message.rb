@@ -15,6 +15,12 @@ module Whopsdk
       #   @return [String, nil]
       required :content, String, nil?: true
 
+      # @!attribute created_at
+      #   The timestamp when the post was created
+      #
+      #   @return [Time]
+      required :created_at, Time
+
       # @!attribute is_edited
       #   Whether the message has been edited
       #
@@ -57,6 +63,12 @@ module Whopsdk
       #   @return [String, nil]
       required :replying_to_message_id, String, nil?: true
 
+      # @!attribute updated_at
+      #   The timestamp when the post was last updated
+      #
+      #   @return [Time]
+      required :updated_at, Time
+
       # @!attribute user
       #   The user who sent this message
       #
@@ -69,12 +81,14 @@ module Whopsdk
       #   @return [Integer, nil]
       required :view_count, Integer, nil?: true
 
-      # @!method initialize(id:, content:, is_edited:, is_pinned:, message_type:, poll:, poll_votes:, reaction_counts:, replying_to_message_id:, user:, view_count:)
+      # @!method initialize(id:, content:, created_at:, is_edited:, is_pinned:, message_type:, poll:, poll_votes:, reaction_counts:, replying_to_message_id:, updated_at:, user:, view_count:)
       #   Represents a message in a DM channel
       #
       #   @param id [String] The unique identifier for the entity
       #
       #   @param content [String, nil] The content of the message in Markdown format
+      #
+      #   @param created_at [Time] The timestamp when the post was created
       #
       #   @param is_edited [Boolean] Whether the message has been edited
       #
@@ -89,6 +103,8 @@ module Whopsdk
       #   @param reaction_counts [Array<Whopsdk::Models::Message::ReactionCount>] The reaction counts for this message
       #
       #   @param replying_to_message_id [String, nil] The ID of the message this is replying to, if applicable
+      #
+      #   @param updated_at [Time] The timestamp when the post was last updated
       #
       #   @param user [Whopsdk::Models::Message::User] The user who sent this message
       #

@@ -73,9 +73,9 @@ module Whopsdk
       #
       # @param cancel_options [Array<Symbol, Whopsdk::Models::MembershipListParams::CancelOption>, nil] The cancel options to filter the memberships by
       #
-      # @param created_after [Integer, nil] The minimum creation date to filter by
+      # @param created_after [Time, nil] The minimum creation date to filter by
       #
-      # @param created_before [Integer, nil] The maximum creation date to filter by
+      # @param created_before [Time, nil] The maximum creation date to filter by
       #
       # @param direction [Symbol, Whopsdk::Models::Direction, nil] The direction of the sort.
       #

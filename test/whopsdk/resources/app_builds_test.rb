@@ -16,7 +16,7 @@ class Whopsdk::Test::Resources::AppBuildsTest < Whopsdk::Test::ResourceTest
       response => {
         id: String,
         checksum: String,
-        created_at: Integer,
+        created_at: Time,
         file_url: String,
         is_production: Whopsdk::Internal::Type::Boolean,
         platform: Whopsdk::AppBuildPlatforms,
@@ -40,7 +40,7 @@ class Whopsdk::Test::Resources::AppBuildsTest < Whopsdk::Test::ResourceTest
       response => {
         id: String,
         checksum: String,
-        created_at: Integer,
+        created_at: Time,
         file_url: String,
         is_production: Whopsdk::Internal::Type::Boolean,
         platform: Whopsdk::AppBuildPlatforms,
@@ -71,7 +71,7 @@ class Whopsdk::Test::Resources::AppBuildsTest < Whopsdk::Test::ResourceTest
       row => {
         id: String,
         checksum: String,
-        created_at: Integer,
+        created_at: Time,
         file_url: String,
         is_production: Whopsdk::Internal::Type::Boolean,
         platform: Whopsdk::AppBuildPlatforms,
@@ -95,7 +95,7 @@ class Whopsdk::Test::Resources::AppBuildsTest < Whopsdk::Test::ResourceTest
       response => {
         id: String,
         checksum: String,
-        created_at: Integer,
+        created_at: Time,
         file_url: String,
         is_production: Whopsdk::Internal::Type::Boolean,
         platform: Whopsdk::AppBuildPlatforms,

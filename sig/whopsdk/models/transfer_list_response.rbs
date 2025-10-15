@@ -4,7 +4,7 @@ module Whopsdk
       {
         id: String,
         amount: Float,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Models::currency,
         destination_ledger_account_id: String,
         fee_amount: Float?,
@@ -17,7 +17,7 @@ module Whopsdk
 
       attr_accessor amount: Float
 
-      attr_accessor created_at: Integer
+      attr_accessor created_at: Time
 
       attr_accessor currency: Whopsdk::Models::currency
 
@@ -32,7 +32,7 @@ module Whopsdk
       def initialize: (
         id: String,
         amount: Float,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Models::currency,
         destination_ledger_account_id: String,
         fee_amount: Float?,
@@ -43,7 +43,7 @@ module Whopsdk
       def to_hash: -> {
         id: String,
         amount: Float,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Models::currency,
         destination_ledger_account_id: String,
         fee_amount: Float?,

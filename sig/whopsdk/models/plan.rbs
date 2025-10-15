@@ -6,7 +6,7 @@ module Whopsdk
         billing_period: Integer?,
         collect_tax: bool,
         company: Whopsdk::Plan::Company?,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Models::currency,
         custom_fields: ::Array[Whopsdk::Plan::CustomField],
         description: String?,
@@ -22,7 +22,7 @@ module Whopsdk
         renewal_price: Float,
         tax_type: Whopsdk::Models::tax_type,
         trial_period_days: Integer?,
-        updated_at: Integer,
+        updated_at: Time,
         visibility: Whopsdk::Models::visibility
       }
 
@@ -35,7 +35,7 @@ module Whopsdk
 
       attr_accessor company: Whopsdk::Plan::Company?
 
-      attr_accessor created_at: Integer
+      attr_accessor created_at: Time
 
       attr_accessor currency: Whopsdk::Models::currency
 
@@ -67,7 +67,7 @@ module Whopsdk
 
       attr_accessor trial_period_days: Integer?
 
-      attr_accessor updated_at: Integer
+      attr_accessor updated_at: Time
 
       attr_accessor visibility: Whopsdk::Models::visibility
 
@@ -76,7 +76,7 @@ module Whopsdk
         billing_period: Integer?,
         collect_tax: bool,
         company: Whopsdk::Plan::Company?,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Models::currency,
         custom_fields: ::Array[Whopsdk::Plan::CustomField],
         description: String?,
@@ -92,7 +92,7 @@ module Whopsdk
         renewal_price: Float,
         tax_type: Whopsdk::Models::tax_type,
         trial_period_days: Integer?,
-        updated_at: Integer,
+        updated_at: Time,
         visibility: Whopsdk::Models::visibility
       ) -> void
 
@@ -101,7 +101,7 @@ module Whopsdk
         billing_period: Integer?,
         collect_tax: bool,
         company: Whopsdk::Plan::Company?,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Models::currency,
         custom_fields: ::Array[Whopsdk::Plan::CustomField],
         description: String?,
@@ -117,7 +117,7 @@ module Whopsdk
         renewal_price: Float,
         tax_type: Whopsdk::Models::tax_type,
         trial_period_days: Integer?,
-        updated_at: Integer,
+        updated_at: Time,
         visibility: Whopsdk::Models::visibility
       }
 

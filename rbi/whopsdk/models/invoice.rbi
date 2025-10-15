@@ -11,7 +11,7 @@ module Whopsdk
       attr_accessor :id
 
       # The date the invoice was created.
-      sig { returns(Integer) }
+      sig { returns(Time) }
       attr_accessor :created_at
 
       # The plan that the invoice was created for.
@@ -22,7 +22,7 @@ module Whopsdk
       attr_writer :current_plan
 
       # The date the invoice is due.
-      sig { returns(T.nilable(Integer)) }
+      sig { returns(T.nilable(Time)) }
       attr_accessor :due_date
 
       # The email address that the invoice was created for.
@@ -52,9 +52,9 @@ module Whopsdk
       sig do
         params(
           id: String,
-          created_at: Integer,
+          created_at: Time,
           current_plan: Whopsdk::Invoice::CurrentPlan::OrHash,
-          due_date: T.nilable(Integer),
+          due_date: T.nilable(Time),
           email_address: T.nilable(String),
           fetch_invoice_token: String,
           number: String,
@@ -88,9 +88,9 @@ module Whopsdk
         override.returns(
           {
             id: String,
-            created_at: Integer,
+            created_at: Time,
             current_plan: Whopsdk::Invoice::CurrentPlan,
-            due_date: T.nilable(Integer),
+            due_date: T.nilable(Time),
             email_address: T.nilable(String),
             fetch_invoice_token: String,
             number: String,

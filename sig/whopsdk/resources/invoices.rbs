@@ -4,7 +4,7 @@ module Whopsdk
       def create: (
         collection_method: Whopsdk::Models::collection_method,
         company_id: String,
-        due_date: Integer,
+        due_date: Time,
         plan: Whopsdk::InvoiceCreateParams::Plan,
         ?charge_buyer_fee: bool?,
         ?customer_name: String?,

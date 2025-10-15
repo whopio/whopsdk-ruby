@@ -22,6 +22,31 @@ module Whopsdk
         )
       end
 
+      # Check if a user has access (and their access level) to a resource
+      #
+      # @overload check_access(resource_id, id:, request_options: {})
+      #
+      # @param resource_id [String]
+      # @param id [String]
+      # @param request_options [Whopsdk::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Whopsdk::Models::UserCheckAccessResponse]
+      #
+      # @see Whopsdk::Models::UserCheckAccessParams
+      def check_access(resource_id, params)
+        parsed, options = Whopsdk::UserCheckAccessParams.dump_request(params)
+        id =
+          parsed.delete(:id) do
+            raise ArgumentError.new("missing required path argument #{_1}")
+          end
+        @client.request(
+          method: :get,
+          path: ["users/%1$s/access/%2$s", id, resource_id],
+          model: Whopsdk::Models::UserCheckAccessResponse,
+          options: options
+        )
+      end
+
       # @api private
       #
       # @param client [Whopsdk::Client]

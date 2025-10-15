@@ -6,6 +6,12 @@ module Whopsdk
         ?request_options: Whopsdk::request_opts
       ) -> Whopsdk::Models::UserRetrieveResponse
 
+      def check_access: (
+        String resource_id,
+        id: String,
+        ?request_options: Whopsdk::request_opts
+      ) -> Whopsdk::Models::UserCheckAccessResponse
+
       def initialize: (client: Whopsdk::Client) -> void
     end
   end

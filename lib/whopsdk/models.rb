@@ -295,6 +295,8 @@ module Whopsdk
 
   UnwrapWebhookEvent = Whopsdk::Models::UnwrapWebhookEvent
 
+  UserCheckAccessParams = Whopsdk::Models::UserCheckAccessParams
+
   UserRetrieveParams = Whopsdk::Models::UserRetrieveParams
 
   Visibility = Whopsdk::Models::Visibility

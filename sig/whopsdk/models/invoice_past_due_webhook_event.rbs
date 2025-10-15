@@ -3,72 +3,38 @@ module Whopsdk
     type invoice_past_due_webhook_event =
       {
         id: String,
-        api_version: Whopsdk::Models::InvoicePastDueWebhookEvent::api_version,
+        api_version: :v1,
         created_at: String,
         data: Whopsdk::Invoice,
-        type: Whopsdk::Models::InvoicePastDueWebhookEvent::type_
+        type: :"invoice.past_due"
       }
 
     class InvoicePastDueWebhookEvent < Whopsdk::Internal::Type::BaseModel
-      attr_reader id: String?
+      attr_accessor id: String
 
-      def id=: (String) -> String
+      attr_accessor api_version: :v1
 
-      attr_reader api_version: Whopsdk::Models::InvoicePastDueWebhookEvent::api_version?
+      attr_accessor created_at: String
 
-      def api_version=: (
-        Whopsdk::Models::InvoicePastDueWebhookEvent::api_version
-      ) -> Whopsdk::Models::InvoicePastDueWebhookEvent::api_version
+      attr_accessor data: Whopsdk::Invoice
 
-      attr_reader created_at: String?
-
-      def created_at=: (String) -> String
-
-      attr_reader data: Whopsdk::Invoice?
-
-      def data=: (Whopsdk::Invoice) -> Whopsdk::Invoice
-
-      attr_reader type: Whopsdk::Models::InvoicePastDueWebhookEvent::type_?
-
-      def type=: (
-        Whopsdk::Models::InvoicePastDueWebhookEvent::type_
-      ) -> Whopsdk::Models::InvoicePastDueWebhookEvent::type_
+      attr_accessor type: :"invoice.past_due"
 
       def initialize: (
-        ?id: String,
-        ?api_version: Whopsdk::Models::InvoicePastDueWebhookEvent::api_version,
-        ?created_at: String,
-        ?data: Whopsdk::Invoice,
-        ?type: Whopsdk::Models::InvoicePastDueWebhookEvent::type_
+        id: String,
+        created_at: String,
+        data: Whopsdk::Invoice,
+        ?api_version: :v1,
+        ?type: :"invoice.past_due"
       ) -> void
 
       def to_hash: -> {
         id: String,
-        api_version: Whopsdk::Models::InvoicePastDueWebhookEvent::api_version,
+        api_version: :v1,
         created_at: String,
         data: Whopsdk::Invoice,
-        type: Whopsdk::Models::InvoicePastDueWebhookEvent::type_
+        type: :"invoice.past_due"
       }
-
-      type api_version = :v1
-
-      module APIVersion
-        extend Whopsdk::Internal::Type::Enum
-
-        V1: :v1
-
-        def self?.values: -> ::Array[Whopsdk::Models::InvoicePastDueWebhookEvent::api_version]
-      end
-
-      type type_ = :"invoice.past_due"
-
-      module Type
-        extend Whopsdk::Internal::Type::Enum
-
-        INVOICE_PAST_DUE: :"invoice.past_due"
-
-        def self?.values: -> ::Array[Whopsdk::Models::InvoicePastDueWebhookEvent::type_]
-      end
     end
   end
 end

@@ -3,72 +3,38 @@ module Whopsdk
     type invoice_created_webhook_event =
       {
         id: String,
-        api_version: Whopsdk::Models::InvoiceCreatedWebhookEvent::api_version,
+        api_version: :v1,
         created_at: String,
         data: Whopsdk::Invoice,
-        type: Whopsdk::Models::InvoiceCreatedWebhookEvent::type_
+        type: :"invoice.created"
       }
 
     class InvoiceCreatedWebhookEvent < Whopsdk::Internal::Type::BaseModel
-      attr_reader id: String?
+      attr_accessor id: String
 
-      def id=: (String) -> String
+      attr_accessor api_version: :v1
 
-      attr_reader api_version: Whopsdk::Models::InvoiceCreatedWebhookEvent::api_version?
+      attr_accessor created_at: String
 
-      def api_version=: (
-        Whopsdk::Models::InvoiceCreatedWebhookEvent::api_version
-      ) -> Whopsdk::Models::InvoiceCreatedWebhookEvent::api_version
+      attr_accessor data: Whopsdk::Invoice
 
-      attr_reader created_at: String?
-
-      def created_at=: (String) -> String
-
-      attr_reader data: Whopsdk::Invoice?
-
-      def data=: (Whopsdk::Invoice) -> Whopsdk::Invoice
-
-      attr_reader type: Whopsdk::Models::InvoiceCreatedWebhookEvent::type_?
-
-      def type=: (
-        Whopsdk::Models::InvoiceCreatedWebhookEvent::type_
-      ) -> Whopsdk::Models::InvoiceCreatedWebhookEvent::type_
+      attr_accessor type: :"invoice.created"
 
       def initialize: (
-        ?id: String,
-        ?api_version: Whopsdk::Models::InvoiceCreatedWebhookEvent::api_version,
-        ?created_at: String,
-        ?data: Whopsdk::Invoice,
-        ?type: Whopsdk::Models::InvoiceCreatedWebhookEvent::type_
+        id: String,
+        created_at: String,
+        data: Whopsdk::Invoice,
+        ?api_version: :v1,
+        ?type: :"invoice.created"
       ) -> void
 
       def to_hash: -> {
         id: String,
-        api_version: Whopsdk::Models::InvoiceCreatedWebhookEvent::api_version,
+        api_version: :v1,
         created_at: String,
         data: Whopsdk::Invoice,
-        type: Whopsdk::Models::InvoiceCreatedWebhookEvent::type_
+        type: :"invoice.created"
       }
-
-      type api_version = :v1
-
-      module APIVersion
-        extend Whopsdk::Internal::Type::Enum
-
-        V1: :v1
-
-        def self?.values: -> ::Array[Whopsdk::Models::InvoiceCreatedWebhookEvent::api_version]
-      end
-
-      type type_ = :"invoice.created"
-
-      module Type
-        extend Whopsdk::Internal::Type::Enum
-
-        INVOICE_CREATED: :"invoice.created"
-
-        def self?.values: -> ::Array[Whopsdk::Models::InvoiceCreatedWebhookEvent::type_]
-      end
     end
   end
 end

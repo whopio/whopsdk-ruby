@@ -1,0 +1,37 @@
+module Whopsdk
+  module Models
+    type user_check_access_response =
+      {
+        access_level: Whopsdk::Models::UserCheckAccessResponse::access_level,
+        has_access: bool
+      }
+
+    class UserCheckAccessResponse < Whopsdk::Internal::Type::BaseModel
+      attr_accessor access_level: Whopsdk::Models::UserCheckAccessResponse::access_level
+
+      attr_accessor has_access: bool
+
+      def initialize: (
+        access_level: Whopsdk::Models::UserCheckAccessResponse::access_level,
+        has_access: bool
+      ) -> void
+
+      def to_hash: -> {
+        access_level: Whopsdk::Models::UserCheckAccessResponse::access_level,
+        has_access: bool
+      }
+
+      type access_level = :no_access | :admin | :customer
+
+      module AccessLevel
+        extend Whopsdk::Internal::Type::Enum
+
+        NO_ACCESS: :no_access
+        ADMIN: :admin
+        CUSTOMER: :customer
+
+        def self?.values: -> ::Array[Whopsdk::Models::UserCheckAccessResponse::access_level]
+      end
+    end
+  end
+end

@@ -20,7 +20,7 @@ module Whopsdk
       attr_accessor :bio
 
       # When the user was created.
-      sig { returns(Integer) }
+      sig { returns(Time) }
       attr_accessor :created_at
 
       # The name of the user from their Whop account.
@@ -36,7 +36,7 @@ module Whopsdk
         params(
           id: String,
           bio: T.nilable(String),
-          created_at: Integer,
+          created_at: Time,
           name: T.nilable(String),
           username: String
         ).returns(T.attached_class)
@@ -60,7 +60,7 @@ module Whopsdk
           {
             id: String,
             bio: T.nilable(String),
-            created_at: Integer,
+            created_at: Time,
             name: T.nilable(String),
             username: String
           }

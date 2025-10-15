@@ -34,11 +34,11 @@ module Whopsdk
       attr_accessor :billing_reasons
 
       # The minimum creation date to filter by
-      sig { returns(T.nilable(Integer)) }
+      sig { returns(T.nilable(Time)) }
       attr_accessor :created_after
 
       # The maximum creation date to filter by
-      sig { returns(T.nilable(Integer)) }
+      sig { returns(T.nilable(Time)) }
       attr_accessor :created_before
 
       # The currency of the payment.
@@ -92,8 +92,8 @@ module Whopsdk
             T.nilable(
               T::Array[Whopsdk::PaymentListParams::BillingReason::OrSymbol]
             ),
-          created_after: T.nilable(Integer),
-          created_before: T.nilable(Integer),
+          created_after: T.nilable(Time),
+          created_before: T.nilable(Time),
           currencies: T.nilable(T::Array[Whopsdk::Currency::OrSymbol]),
           direction: T.nilable(Whopsdk::Direction::OrSymbol),
           first: T.nilable(Integer),
@@ -155,8 +155,8 @@ module Whopsdk
               T.nilable(
                 T::Array[Whopsdk::PaymentListParams::BillingReason::OrSymbol]
               ),
-            created_after: T.nilable(Integer),
-            created_before: T.nilable(Integer),
+            created_after: T.nilable(Time),
+            created_before: T.nilable(Time),
             currencies: T.nilable(T::Array[Whopsdk::Currency::OrSymbol]),
             direction: T.nilable(Whopsdk::Direction::OrSymbol),
             first: T.nilable(Integer),

@@ -18,7 +18,7 @@ class Whopsdk::Test::Resources::PlansTest < Whopsdk::Test::ResourceTest
         billing_period: Integer | nil,
         collect_tax: Whopsdk::Internal::Type::Boolean,
         company: Whopsdk::Plan::Company | nil,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Currency,
         custom_fields: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Plan::CustomField]),
         description: String | nil,
@@ -34,7 +34,7 @@ class Whopsdk::Test::Resources::PlansTest < Whopsdk::Test::ResourceTest
         renewal_price: Float,
         tax_type: Whopsdk::TaxType,
         trial_period_days: Integer | nil,
-        updated_at: Integer,
+        updated_at: Time,
         visibility: Whopsdk::Visibility
       }
     end
@@ -55,7 +55,7 @@ class Whopsdk::Test::Resources::PlansTest < Whopsdk::Test::ResourceTest
         billing_period: Integer | nil,
         collect_tax: Whopsdk::Internal::Type::Boolean,
         company: Whopsdk::Plan::Company | nil,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Currency,
         custom_fields: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Plan::CustomField]),
         description: String | nil,
@@ -71,7 +71,7 @@ class Whopsdk::Test::Resources::PlansTest < Whopsdk::Test::ResourceTest
         renewal_price: Float,
         tax_type: Whopsdk::TaxType,
         trial_period_days: Integer | nil,
-        updated_at: Integer,
+        updated_at: Time,
         visibility: Whopsdk::Visibility
       }
     end
@@ -92,7 +92,7 @@ class Whopsdk::Test::Resources::PlansTest < Whopsdk::Test::ResourceTest
         billing_period: Integer | nil,
         collect_tax: Whopsdk::Internal::Type::Boolean,
         company: Whopsdk::Plan::Company | nil,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Currency,
         custom_fields: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Plan::CustomField]),
         description: String | nil,
@@ -108,7 +108,7 @@ class Whopsdk::Test::Resources::PlansTest < Whopsdk::Test::ResourceTest
         renewal_price: Float,
         tax_type: Whopsdk::TaxType,
         trial_period_days: Integer | nil,
-        updated_at: Integer,
+        updated_at: Time,
         visibility: Whopsdk::Visibility
       }
     end
@@ -135,7 +135,7 @@ class Whopsdk::Test::Resources::PlansTest < Whopsdk::Test::ResourceTest
         id: String,
         billing_period: Integer | nil,
         company: Whopsdk::Models::PlanListResponse::Company | nil,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Currency,
         description: String | nil,
         expiration_days: Integer | nil,
@@ -149,7 +149,7 @@ class Whopsdk::Test::Resources::PlansTest < Whopsdk::Test::ResourceTest
         release_method: Whopsdk::ReleaseMethod,
         renewal_price: Float,
         trial_period_days: Integer | nil,
-        updated_at: Integer,
+        updated_at: Time,
         visibility: Whopsdk::Visibility
       }
     end

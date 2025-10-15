@@ -15,11 +15,11 @@ module Whopsdk
       attr_accessor :carrier
 
       # The date and time the shipment was created
-      sig { returns(Integer) }
+      sig { returns(Time) }
       attr_accessor :created_at
 
       # The delivery estimate of the shipment
-      sig { returns(T.nilable(Integer)) }
+      sig { returns(T.nilable(Time)) }
       attr_accessor :delivery_estimate
 
       # The payment of the shipment
@@ -46,7 +46,7 @@ module Whopsdk
       attr_accessor :tracking_code
 
       # The date and time the shipment was last updated
-      sig { returns(Integer) }
+      sig { returns(Time) }
       attr_accessor :updated_at
 
       # A shipment
@@ -54,14 +54,14 @@ module Whopsdk
         params(
           id: String,
           carrier: Whopsdk::ShipmentCarrier::OrSymbol,
-          created_at: Integer,
-          delivery_estimate: T.nilable(Integer),
+          created_at: Time,
+          delivery_estimate: T.nilable(Time),
           payment: Whopsdk::Shipment::Payment::OrHash,
           service: T.nilable(String),
           status: Whopsdk::ShipmentStatus::OrSymbol,
           substatus: T.nilable(Whopsdk::ShipmentSubstatus::OrSymbol),
           tracking_code: String,
-          updated_at: Integer
+          updated_at: Time
         ).returns(T.attached_class)
       end
       def self.new(
@@ -93,14 +93,14 @@ module Whopsdk
           {
             id: String,
             carrier: Whopsdk::ShipmentCarrier::TaggedSymbol,
-            created_at: Integer,
-            delivery_estimate: T.nilable(Integer),
+            created_at: Time,
+            delivery_estimate: T.nilable(Time),
             payment: Whopsdk::Shipment::Payment,
             service: T.nilable(String),
             status: Whopsdk::ShipmentStatus::TaggedSymbol,
             substatus: T.nilable(Whopsdk::ShipmentSubstatus::TaggedSymbol),
             tracking_code: String,
-            updated_at: Integer
+            updated_at: Time
           }
         )
       end

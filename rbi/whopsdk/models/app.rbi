@@ -193,12 +193,12 @@ module Whopsdk
         attr_accessor :token
 
         # When this API key was created at
-        sig { returns(Integer) }
+        sig { returns(Time) }
         attr_accessor :created_at
 
         # The API key for the app
         sig do
-          params(id: String, token: String, created_at: Integer).returns(
+          params(id: String, token: String, created_at: Time).returns(
             T.attached_class
           )
         end
@@ -213,7 +213,7 @@ module Whopsdk
         end
 
         sig do
-          override.returns({ id: String, token: String, created_at: Integer })
+          override.returns({ id: String, token: String, created_at: Time })
         end
         def to_hash
         end

@@ -15,7 +15,7 @@ module Whopsdk
       attr_accessor :amount
 
       # The timestamp when the credit transaction transfer was created
-      sig { returns(Integer) }
+      sig { returns(Time) }
       attr_accessor :created_at
 
       # The currency of the credit transaction transfer
@@ -51,7 +51,7 @@ module Whopsdk
         params(
           id: String,
           amount: Float,
-          created_at: Integer,
+          created_at: Time,
           currency: Whopsdk::Currency::OrSymbol,
           destination:
             T.nilable(
@@ -102,7 +102,7 @@ module Whopsdk
           {
             id: String,
             amount: Float,
-            created_at: Integer,
+            created_at: Time,
             currency: Whopsdk::Currency::TaggedSymbol,
             destination: T.nilable(Whopsdk::Transfer::Destination::Variants),
             destination_ledger_account_id: String,

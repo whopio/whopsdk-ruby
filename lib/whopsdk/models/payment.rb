@@ -54,8 +54,8 @@ module Whopsdk
       # @!attribute created_at
       #   The datetime the payment was created
       #
-      #   @return [Integer]
-      required :created_at, Integer
+      #   @return [Time]
+      required :created_at, Time
 
       # @!attribute currency
       #   The available currencies on the platform
@@ -66,8 +66,8 @@ module Whopsdk
       # @!attribute dispute_alerted_at
       #   When an alert came in that this transaction will be disputed
       #
-      #   @return [Integer, nil]
-      required :dispute_alerted_at, Integer, nil?: true
+      #   @return [Time, nil]
+      required :dispute_alerted_at, Time, nil?: true
 
       # @!attribute failure_message
       #   If the payment failed, the reason for the failure.
@@ -78,8 +78,8 @@ module Whopsdk
       # @!attribute last_payment_attempt
       #   The time of the last payment attempt.
       #
-      #   @return [Integer, nil]
-      required :last_payment_attempt, Integer, nil?: true
+      #   @return [Time, nil]
+      required :last_payment_attempt, Time, nil?: true
 
       # @!attribute member
       #   The member attached to this payment.
@@ -96,8 +96,8 @@ module Whopsdk
       # @!attribute paid_at
       #   The datetime the payment was paid
       #
-      #   @return [Integer, nil]
-      required :paid_at, Integer, nil?: true
+      #   @return [Time, nil]
+      required :paid_at, Time, nil?: true
 
       # @!attribute payment_method_type
       #   Returns the type of payment method used for the payment, if available. Ex.
@@ -139,8 +139,8 @@ module Whopsdk
       # @!attribute refunded_at
       #   When the payment was refunded (if applicable).
       #
-      #   @return [Integer, nil]
-      required :refunded_at, Integer, nil?: true
+      #   @return [Time, nil]
+      required :refunded_at, Time, nil?: true
 
       # @!attribute retryable
       #   Whether the payment can be retried.
@@ -212,21 +212,21 @@ module Whopsdk
       #
       #   @param company [Whopsdk::Models::Payment::Company, nil] The company for the payment.
       #
-      #   @param created_at [Integer] The datetime the payment was created
+      #   @param created_at [Time] The datetime the payment was created
       #
       #   @param currency [Symbol, Whopsdk::Models::Currency, nil] The available currencies on the platform
       #
-      #   @param dispute_alerted_at [Integer, nil] When an alert came in that this transaction will be disputed
+      #   @param dispute_alerted_at [Time, nil] When an alert came in that this transaction will be disputed
       #
       #   @param failure_message [String, nil] If the payment failed, the reason for the failure.
       #
-      #   @param last_payment_attempt [Integer, nil] The time of the last payment attempt.
+      #   @param last_payment_attempt [Time, nil] The time of the last payment attempt.
       #
       #   @param member [Whopsdk::Models::Payment::Member, nil] The member attached to this payment.
       #
       #   @param membership [Whopsdk::Models::Payment::Membership, nil] The membership attached to this payment.
       #
-      #   @param paid_at [Integer, nil] The datetime the payment was paid
+      #   @param paid_at [Time, nil] The datetime the payment was paid
       #
       #   @param payment_method_type [String, nil] Returns the type of payment method used for the payment, if available. Ex. klarn
       #
@@ -240,7 +240,7 @@ module Whopsdk
       #
       #   @param refunded_amount [Float, nil] The payment refund amount(if applicable).
       #
-      #   @param refunded_at [Integer, nil] When the payment was refunded (if applicable).
+      #   @param refunded_at [Time, nil] When the payment was refunded (if applicable).
       #
       #   @param retryable [Boolean] Whether the payment can be retried.
       #

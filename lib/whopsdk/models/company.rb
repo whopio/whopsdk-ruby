@@ -18,8 +18,8 @@ module Whopsdk
       # @!attribute created_at
       #   When the company was created (signed up)
       #
-      #   @return [Integer]
-      required :created_at, Integer
+      #   @return [Time]
+      required :created_at, Time
 
       # @!attribute industry_type
       #   The different industry types a company can be in.
@@ -66,8 +66,8 @@ module Whopsdk
       # @!attribute updated_at
       #   The time the company was last updated.
       #
-      #   @return [Integer]
-      required :updated_at, Integer
+      #   @return [Time]
+      required :updated_at, Time
 
       # @!attribute verified
       #   If the company is Whop Verified
@@ -82,7 +82,7 @@ module Whopsdk
       #
       #   @param business_type [Symbol, Whopsdk::Models::BusinessTypes, nil] The different business types a company can be.
       #
-      #   @param created_at [Integer] When the company was created (signed up)
+      #   @param created_at [Time] When the company was created (signed up)
       #
       #   @param industry_type [Symbol, Whopsdk::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
@@ -98,7 +98,7 @@ module Whopsdk
       #
       #   @param title [String] The title of the company.
       #
-      #   @param updated_at [Integer] The time the company was last updated.
+      #   @param updated_at [Time] The time the company was last updated.
       #
       #   @param verified [Boolean] If the company is Whop Verified
 

@@ -19,8 +19,8 @@ module Whopsdk
       # @!attribute created_at
       #   The timestamp when the credit transaction transfer was created
       #
-      #   @return [Integer]
-      required :created_at, Integer
+      #   @return [Time]
+      required :created_at, Time
 
       # @!attribute currency
       #   The currency of the credit transaction transfer
@@ -59,7 +59,7 @@ module Whopsdk
       #
       #   @param amount [Float] The amount of the credit transaction transfer
       #
-      #   @param created_at [Integer] The timestamp when the credit transaction transfer was created
+      #   @param created_at [Time] The timestamp when the credit transaction transfer was created
       #
       #   @param currency [Symbol, Whopsdk::Models::Currency] The currency of the credit transaction transfer
       #

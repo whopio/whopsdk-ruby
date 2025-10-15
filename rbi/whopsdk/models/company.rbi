@@ -15,7 +15,7 @@ module Whopsdk
       attr_accessor :business_type
 
       # When the company was created (signed up)
-      sig { returns(Integer) }
+      sig { returns(Time) }
       attr_accessor :created_at
 
       # The different industry types a company can be in.
@@ -50,7 +50,7 @@ module Whopsdk
       attr_accessor :title
 
       # The time the company was last updated.
-      sig { returns(Integer) }
+      sig { returns(Time) }
       attr_accessor :updated_at
 
       # If the company is Whop Verified
@@ -62,7 +62,7 @@ module Whopsdk
         params(
           id: String,
           business_type: T.nilable(Whopsdk::BusinessTypes::OrSymbol),
-          created_at: Integer,
+          created_at: Time,
           industry_type: T.nilable(Whopsdk::IndustryTypes::OrSymbol),
           member_count: Integer,
           owner_user: Whopsdk::Company::OwnerUser::OrHash,
@@ -70,7 +70,7 @@ module Whopsdk
           route: String,
           social_links: T::Array[Whopsdk::Company::SocialLink::OrHash],
           title: String,
-          updated_at: Integer,
+          updated_at: Time,
           verified: T::Boolean
         ).returns(T.attached_class)
       end
@@ -107,7 +107,7 @@ module Whopsdk
           {
             id: String,
             business_type: T.nilable(Whopsdk::BusinessTypes::TaggedSymbol),
-            created_at: Integer,
+            created_at: Time,
             industry_type: T.nilable(Whopsdk::IndustryTypes::TaggedSymbol),
             member_count: Integer,
             owner_user: Whopsdk::Company::OwnerUser,
@@ -115,7 +115,7 @@ module Whopsdk
             route: String,
             social_links: T::Array[Whopsdk::Company::SocialLink],
             title: String,
-            updated_at: Integer,
+            updated_at: Time,
             verified: T::Boolean
           }
         )

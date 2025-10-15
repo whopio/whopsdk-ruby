@@ -49,7 +49,7 @@ module Whopsdk
       attr_writer :company
 
       # The datetime the payment was created
-      sig { returns(Integer) }
+      sig { returns(Time) }
       attr_accessor :created_at
 
       # The available currencies on the platform
@@ -57,7 +57,7 @@ module Whopsdk
       attr_accessor :currency
 
       # When an alert came in that this transaction will be disputed
-      sig { returns(T.nilable(Integer)) }
+      sig { returns(T.nilable(Time)) }
       attr_accessor :dispute_alerted_at
 
       # If the payment failed, the reason for the failure.
@@ -65,7 +65,7 @@ module Whopsdk
       attr_accessor :failure_message
 
       # The time of the last payment attempt.
-      sig { returns(T.nilable(Integer)) }
+      sig { returns(T.nilable(Time)) }
       attr_accessor :last_payment_attempt
 
       # The member attached to this payment.
@@ -85,7 +85,7 @@ module Whopsdk
       attr_writer :membership
 
       # The datetime the payment was paid
-      sig { returns(T.nilable(Integer)) }
+      sig { returns(T.nilable(Time)) }
       attr_accessor :paid_at
 
       # Returns the type of payment method used for the payment, if available. Ex.
@@ -125,7 +125,7 @@ module Whopsdk
       attr_accessor :refunded_amount
 
       # When the payment was refunded (if applicable).
-      sig { returns(T.nilable(Integer)) }
+      sig { returns(T.nilable(Time)) }
       attr_accessor :refunded_at
 
       # Whether the payment can be retried.
@@ -174,21 +174,21 @@ module Whopsdk
           card_brand: T.nilable(String),
           card_last4: T.nilable(String),
           company: T.nilable(Whopsdk::Payment::Company::OrHash),
-          created_at: Integer,
+          created_at: Time,
           currency: T.nilable(Whopsdk::Currency::OrSymbol),
-          dispute_alerted_at: T.nilable(Integer),
+          dispute_alerted_at: T.nilable(Time),
           failure_message: T.nilable(String),
-          last_payment_attempt: T.nilable(Integer),
+          last_payment_attempt: T.nilable(Time),
           member: T.nilable(Whopsdk::Payment::Member::OrHash),
           membership: T.nilable(Whopsdk::Payment::Membership::OrHash),
-          paid_at: T.nilable(Integer),
+          paid_at: T.nilable(Time),
           payment_method_type: T.nilable(String),
           plan: T.nilable(Whopsdk::Payment::Plan::OrHash),
           product: T.nilable(Whopsdk::Payment::Product::OrHash),
           promo_code: T.nilable(Whopsdk::Payment::PromoCode::OrHash),
           refundable: T::Boolean,
           refunded_amount: T.nilable(Float),
-          refunded_at: T.nilable(Integer),
+          refunded_at: T.nilable(Time),
           retryable: T::Boolean,
           status: T.nilable(Whopsdk::ReceiptStatus::OrSymbol),
           substatus: Whopsdk::FriendlyReceiptStatus::OrSymbol,
@@ -277,21 +277,21 @@ module Whopsdk
             card_brand: T.nilable(String),
             card_last4: T.nilable(String),
             company: T.nilable(Whopsdk::Payment::Company),
-            created_at: Integer,
+            created_at: Time,
             currency: T.nilable(Whopsdk::Currency::TaggedSymbol),
-            dispute_alerted_at: T.nilable(Integer),
+            dispute_alerted_at: T.nilable(Time),
             failure_message: T.nilable(String),
-            last_payment_attempt: T.nilable(Integer),
+            last_payment_attempt: T.nilable(Time),
             member: T.nilable(Whopsdk::Payment::Member),
             membership: T.nilable(Whopsdk::Payment::Membership),
-            paid_at: T.nilable(Integer),
+            paid_at: T.nilable(Time),
             payment_method_type: T.nilable(String),
             plan: T.nilable(Whopsdk::Payment::Plan),
             product: T.nilable(Whopsdk::Payment::Product),
             promo_code: T.nilable(Whopsdk::Payment::PromoCode),
             refundable: T::Boolean,
             refunded_amount: T.nilable(Float),
-            refunded_at: T.nilable(Integer),
+            refunded_at: T.nilable(Time),
             retryable: T::Boolean,
             status: T.nilable(Whopsdk::ReceiptStatus::TaggedSymbol),
             substatus: Whopsdk::FriendlyReceiptStatus::TaggedSymbol,

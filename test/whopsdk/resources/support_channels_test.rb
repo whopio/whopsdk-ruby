@@ -18,8 +18,8 @@ class Whopsdk::Test::Resources::SupportChannelsTest < Whopsdk::Test::ResourceTes
         company_id: String | nil,
         custom_name: String | nil,
         customer_user: Whopsdk::SupportChannel::CustomerUser | nil,
-        last_message_at: Integer | nil,
-        resolved_at: Integer | nil
+        last_message_at: Time | nil,
+        resolved_at: Time | nil
       }
     end
   end
@@ -39,8 +39,8 @@ class Whopsdk::Test::Resources::SupportChannelsTest < Whopsdk::Test::ResourceTes
         company_id: String | nil,
         custom_name: String | nil,
         customer_user: Whopsdk::SupportChannel::CustomerUser | nil,
-        last_message_at: Integer | nil,
-        resolved_at: Integer | nil
+        last_message_at: Time | nil,
+        resolved_at: Time | nil
       }
     end
   end
@@ -67,8 +67,8 @@ class Whopsdk::Test::Resources::SupportChannelsTest < Whopsdk::Test::ResourceTes
         company_id: String | nil,
         custom_name: String | nil,
         customer_user: Whopsdk::Models::SupportChannelListResponse::CustomerUser | nil,
-        last_message_at: Integer | nil,
-        resolved_at: Integer | nil
+        last_message_at: Time | nil,
+        resolved_at: Time | nil
       }
     end
   end

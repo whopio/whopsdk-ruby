@@ -21,7 +21,7 @@ module Whopsdk
       attr_accessor :company_id
 
       # The date the invoice is due, if applicable.
-      sig { returns(Integer) }
+      sig { returns(Time) }
       attr_accessor :due_date
 
       # The properties of the plan to create for this invoice.
@@ -78,7 +78,7 @@ module Whopsdk
         params(
           collection_method: Whopsdk::CollectionMethod::OrSymbol,
           company_id: String,
-          due_date: Integer,
+          due_date: Time,
           plan: Whopsdk::InvoiceCreateParams::Plan::OrHash,
           charge_buyer_fee: T.nilable(T::Boolean),
           customer_name: T.nilable(String),
@@ -131,7 +131,7 @@ module Whopsdk
           {
             collection_method: Whopsdk::CollectionMethod::OrSymbol,
             company_id: String,
-            due_date: Integer,
+            due_date: Time,
             plan: Whopsdk::InvoiceCreateParams::Plan,
             charge_buyer_fee: T.nilable(T::Boolean),
             customer_name: T.nilable(String),

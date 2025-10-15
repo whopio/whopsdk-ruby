@@ -16,7 +16,7 @@ class Whopsdk::Test::Resources::CompaniesTest < Whopsdk::Test::ResourceTest
       response => {
         id: String,
         business_type: Whopsdk::BusinessTypes | nil,
-        created_at: Integer,
+        created_at: Time,
         industry_type: Whopsdk::IndustryTypes | nil,
         member_count: Integer,
         owner_user: Whopsdk::Company::OwnerUser,
@@ -24,7 +24,7 @@ class Whopsdk::Test::Resources::CompaniesTest < Whopsdk::Test::ResourceTest
         route: String,
         social_links: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Company::SocialLink]),
         title: String,
-        updated_at: Integer,
+        updated_at: Time,
         verified: Whopsdk::Internal::Type::Boolean
       }
     end

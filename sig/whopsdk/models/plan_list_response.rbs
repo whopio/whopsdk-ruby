@@ -5,7 +5,7 @@ module Whopsdk
         id: String,
         billing_period: Integer?,
         company: Whopsdk::Models::PlanListResponse::Company?,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Models::currency,
         description: String?,
         expiration_days: Integer?,
@@ -19,7 +19,7 @@ module Whopsdk
         release_method: Whopsdk::Models::release_method,
         renewal_price: Float,
         trial_period_days: Integer?,
-        updated_at: Integer,
+        updated_at: Time,
         visibility: Whopsdk::Models::visibility
       }
 
@@ -30,7 +30,7 @@ module Whopsdk
 
       attr_accessor company: Whopsdk::Models::PlanListResponse::Company?
 
-      attr_accessor created_at: Integer
+      attr_accessor created_at: Time
 
       attr_accessor currency: Whopsdk::Models::currency
 
@@ -58,7 +58,7 @@ module Whopsdk
 
       attr_accessor trial_period_days: Integer?
 
-      attr_accessor updated_at: Integer
+      attr_accessor updated_at: Time
 
       attr_accessor visibility: Whopsdk::Models::visibility
 
@@ -66,7 +66,7 @@ module Whopsdk
         id: String,
         billing_period: Integer?,
         company: Whopsdk::Models::PlanListResponse::Company?,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Models::currency,
         description: String?,
         expiration_days: Integer?,
@@ -80,7 +80,7 @@ module Whopsdk
         release_method: Whopsdk::Models::release_method,
         renewal_price: Float,
         trial_period_days: Integer?,
-        updated_at: Integer,
+        updated_at: Time,
         visibility: Whopsdk::Models::visibility
       ) -> void
 
@@ -88,7 +88,7 @@ module Whopsdk
         id: String,
         billing_period: Integer?,
         company: Whopsdk::Models::PlanListResponse::Company?,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Models::currency,
         description: String?,
         expiration_days: Integer?,
@@ -102,7 +102,7 @@ module Whopsdk
         release_method: Whopsdk::Models::release_method,
         renewal_price: Float,
         trial_period_days: Integer?,
-        updated_at: Integer,
+        updated_at: Time,
         visibility: Whopsdk::Models::visibility
       }
 

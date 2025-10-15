@@ -25,8 +25,8 @@ module Whopsdk
       # @!attribute created_at
       #   When the plan was created.
       #
-      #   @return [Integer]
-      required :created_at, Integer
+      #   @return [Time]
+      required :created_at, Time
 
       # @!attribute currency
       #   The respective currency identifier for the plan.
@@ -109,8 +109,8 @@ module Whopsdk
       # @!attribute updated_at
       #   When the plan was last updated.
       #
-      #   @return [Integer]
-      required :updated_at, Integer
+      #   @return [Time]
+      required :updated_at, Time
 
       # @!attribute visibility
       #   Shows or hides the plan from public/business view.
@@ -127,7 +127,7 @@ module Whopsdk
       #
       #   @param company [Whopsdk::Models::PlanListResponse::Company, nil] The company for the plan.
       #
-      #   @param created_at [Integer] When the plan was created.
+      #   @param created_at [Time] When the plan was created.
       #
       #   @param currency [Symbol, Whopsdk::Models::Currency] The respective currency identifier for the plan.
       #
@@ -155,7 +155,7 @@ module Whopsdk
       #
       #   @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
       #
-      #   @param updated_at [Integer] When the plan was last updated.
+      #   @param updated_at [Time] When the plan was last updated.
       #
       #   @param visibility [Symbol, Whopsdk::Models::Visibility] Shows or hides the plan from public/business view.
 

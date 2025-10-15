@@ -5,7 +5,7 @@ module Whopsdk
         id: String,
         app: Whopsdk::Experience::App,
         company: Whopsdk::Experience::Company,
-        created_at: Integer,
+        created_at: Time,
         name: String,
         order: String?,
         products: ::Array[Whopsdk::Experience::Product]
@@ -18,7 +18,7 @@ module Whopsdk
 
       attr_accessor company: Whopsdk::Experience::Company
 
-      attr_accessor created_at: Integer
+      attr_accessor created_at: Time
 
       attr_accessor name: String
 
@@ -30,7 +30,7 @@ module Whopsdk
         id: String,
         app: Whopsdk::Experience::App,
         company: Whopsdk::Experience::Company,
-        created_at: Integer,
+        created_at: Time,
         name: String,
         order: String?,
         products: ::Array[Whopsdk::Experience::Product]
@@ -40,7 +40,7 @@ module Whopsdk
         id: String,
         app: Whopsdk::Experience::App,
         company: Whopsdk::Experience::Company,
-        created_at: Integer,
+        created_at: Time,
         name: String,
         order: String?,
         products: ::Array[Whopsdk::Experience::Product]

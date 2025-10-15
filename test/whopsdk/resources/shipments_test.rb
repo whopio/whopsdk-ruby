@@ -21,14 +21,14 @@ class Whopsdk::Test::Resources::ShipmentsTest < Whopsdk::Test::ResourceTest
       response => {
         id: String,
         carrier: Whopsdk::ShipmentCarrier,
-        created_at: Integer,
-        delivery_estimate: Integer | nil,
+        created_at: Time,
+        delivery_estimate: Time | nil,
         payment: Whopsdk::Shipment::Payment,
         service: String | nil,
         status: Whopsdk::ShipmentStatus,
         substatus: Whopsdk::ShipmentSubstatus | nil,
         tracking_code: String,
-        updated_at: Integer
+        updated_at: Time
       }
     end
   end
@@ -46,14 +46,14 @@ class Whopsdk::Test::Resources::ShipmentsTest < Whopsdk::Test::ResourceTest
       response => {
         id: String,
         carrier: Whopsdk::ShipmentCarrier,
-        created_at: Integer,
-        delivery_estimate: Integer | nil,
+        created_at: Time,
+        delivery_estimate: Time | nil,
         payment: Whopsdk::Shipment::Payment,
         service: String | nil,
         status: Whopsdk::ShipmentStatus,
         substatus: Whopsdk::ShipmentSubstatus | nil,
         tracking_code: String,
-        updated_at: Integer
+        updated_at: Time
       }
     end
   end
@@ -78,14 +78,14 @@ class Whopsdk::Test::Resources::ShipmentsTest < Whopsdk::Test::ResourceTest
       row => {
         id: String,
         carrier: Whopsdk::ShipmentCarrier,
-        created_at: Integer,
-        delivery_estimate: Integer | nil,
+        created_at: Time,
+        delivery_estimate: Time | nil,
         payment: Whopsdk::Models::ShipmentListResponse::Payment,
         service: String | nil,
         status: Whopsdk::ShipmentStatus,
         substatus: Whopsdk::ShipmentSubstatus | nil,
         tracking_code: String,
-        updated_at: Integer
+        updated_at: Time
       }
     end
   end

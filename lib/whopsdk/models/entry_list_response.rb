@@ -13,8 +13,8 @@ module Whopsdk
       # @!attribute created_at
       #   When the entry was created.
       #
-      #   @return [Integer, nil]
-      required :created_at, Integer, nil?: true
+      #   @return [Time, nil]
+      required :created_at, Time, nil?: true
 
       # @!attribute plan
       #   The waitlist plan the entry if for.
@@ -45,7 +45,7 @@ module Whopsdk
       #
       #   @param id [String] The internal ID of the entry.
       #
-      #   @param created_at [Integer, nil] When the entry was created.
+      #   @param created_at [Time, nil] When the entry was created.
       #
       #   @param plan [Whopsdk::Models::EntryListResponse::Plan, nil] The waitlist plan the entry if for.
       #

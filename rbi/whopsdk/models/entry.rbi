@@ -11,7 +11,7 @@ module Whopsdk
       attr_accessor :id
 
       # When the entry was created.
-      sig { returns(T.nilable(Integer)) }
+      sig { returns(T.nilable(Time)) }
       attr_accessor :created_at
 
       # Responses collected from the user when submitting their entry.
@@ -47,7 +47,7 @@ module Whopsdk
       sig do
         params(
           id: String,
-          created_at: T.nilable(Integer),
+          created_at: T.nilable(Time),
           custom_field_responses:
             T.nilable(T::Array[Whopsdk::Entry::CustomFieldResponse::OrHash]),
           plan: T.nilable(Whopsdk::Entry::Plan::OrHash),
@@ -78,7 +78,7 @@ module Whopsdk
         override.returns(
           {
             id: String,
-            created_at: T.nilable(Integer),
+            created_at: T.nilable(Time),
             custom_field_responses:
               T.nilable(T::Array[Whopsdk::Entry::CustomFieldResponse]),
             plan: T.nilable(Whopsdk::Entry::Plan),

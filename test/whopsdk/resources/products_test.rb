@@ -17,7 +17,7 @@ class Whopsdk::Test::Resources::ProductsTest < Whopsdk::Test::ResourceTest
         id: String,
         business_type: Whopsdk::BusinessTypes | nil,
         company: Whopsdk::Product::Company,
-        created_at: Integer,
+        created_at: Time,
         custom_cta: Whopsdk::CustomCta,
         custom_cta_url: String | nil,
         custom_statement_descriptor: String | nil,
@@ -34,7 +34,7 @@ class Whopsdk::Test::Resources::ProductsTest < Whopsdk::Test::ResourceTest
         published_reviews_count: Integer,
         route: String,
         title: String,
-        updated_at: Integer,
+        updated_at: Time,
         verified: Whopsdk::Internal::Type::Boolean,
         visibility: Whopsdk::Visibility
       }
@@ -55,7 +55,7 @@ class Whopsdk::Test::Resources::ProductsTest < Whopsdk::Test::ResourceTest
         id: String,
         business_type: Whopsdk::BusinessTypes | nil,
         company: Whopsdk::Product::Company,
-        created_at: Integer,
+        created_at: Time,
         custom_cta: Whopsdk::CustomCta,
         custom_cta_url: String | nil,
         custom_statement_descriptor: String | nil,
@@ -72,7 +72,7 @@ class Whopsdk::Test::Resources::ProductsTest < Whopsdk::Test::ResourceTest
         published_reviews_count: Integer,
         route: String,
         title: String,
-        updated_at: Integer,
+        updated_at: Time,
         verified: Whopsdk::Internal::Type::Boolean,
         visibility: Whopsdk::Visibility
       }
@@ -93,7 +93,7 @@ class Whopsdk::Test::Resources::ProductsTest < Whopsdk::Test::ResourceTest
         id: String,
         business_type: Whopsdk::BusinessTypes | nil,
         company: Whopsdk::Product::Company,
-        created_at: Integer,
+        created_at: Time,
         custom_cta: Whopsdk::CustomCta,
         custom_cta_url: String | nil,
         custom_statement_descriptor: String | nil,
@@ -110,7 +110,7 @@ class Whopsdk::Test::Resources::ProductsTest < Whopsdk::Test::ResourceTest
         published_reviews_count: Integer,
         route: String,
         title: String,
-        updated_at: Integer,
+        updated_at: Time,
         verified: Whopsdk::Internal::Type::Boolean,
         visibility: Whopsdk::Visibility
       }
@@ -137,14 +137,14 @@ class Whopsdk::Test::Resources::ProductsTest < Whopsdk::Test::ResourceTest
       row => {
         id: String,
         business_type: Whopsdk::BusinessTypes | nil,
-        created_at: Integer,
+        created_at: Time,
         headline: String | nil,
         industry_type: Whopsdk::IndustryTypes | nil,
         member_count: Integer,
         published_reviews_count: Integer,
         route: String,
         title: String,
-        updated_at: Integer,
+        updated_at: Time,
         verified: Whopsdk::Internal::Type::Boolean,
         visibility: Whopsdk::Visibility
       }

@@ -5,7 +5,7 @@ module Whopsdk
         id: String,
         business_type: Whopsdk::Models::business_types?,
         company: Whopsdk::Product::Company,
-        created_at: Integer,
+        created_at: Time,
         custom_cta: Whopsdk::Models::custom_cta,
         custom_cta_url: String?,
         custom_statement_descriptor: String?,
@@ -22,7 +22,7 @@ module Whopsdk
         published_reviews_count: Integer,
         route: String,
         title: String,
-        updated_at: Integer,
+        updated_at: Time,
         verified: bool,
         visibility: Whopsdk::Models::visibility
       }
@@ -34,7 +34,7 @@ module Whopsdk
 
       attr_accessor company: Whopsdk::Product::Company
 
-      attr_accessor created_at: Integer
+      attr_accessor created_at: Time
 
       attr_accessor custom_cta: Whopsdk::Models::custom_cta
 
@@ -68,7 +68,7 @@ module Whopsdk
 
       attr_accessor title: String
 
-      attr_accessor updated_at: Integer
+      attr_accessor updated_at: Time
 
       attr_accessor verified: bool
 
@@ -78,7 +78,7 @@ module Whopsdk
         id: String,
         business_type: Whopsdk::Models::business_types?,
         company: Whopsdk::Product::Company,
-        created_at: Integer,
+        created_at: Time,
         custom_cta: Whopsdk::Models::custom_cta,
         custom_cta_url: String?,
         custom_statement_descriptor: String?,
@@ -95,7 +95,7 @@ module Whopsdk
         published_reviews_count: Integer,
         route: String,
         title: String,
-        updated_at: Integer,
+        updated_at: Time,
         verified: bool,
         visibility: Whopsdk::Models::visibility
       ) -> void
@@ -104,7 +104,7 @@ module Whopsdk
         id: String,
         business_type: Whopsdk::Models::business_types?,
         company: Whopsdk::Product::Company,
-        created_at: Integer,
+        created_at: Time,
         custom_cta: Whopsdk::Models::custom_cta,
         custom_cta_url: String?,
         custom_statement_descriptor: String?,
@@ -121,7 +121,7 @@ module Whopsdk
         published_reviews_count: Integer,
         route: String,
         title: String,
-        updated_at: Integer,
+        updated_at: Time,
         verified: bool,
         visibility: Whopsdk::Models::visibility
       }

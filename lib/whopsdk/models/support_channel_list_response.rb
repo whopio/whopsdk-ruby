@@ -31,14 +31,14 @@ module Whopsdk
       # @!attribute last_message_at
       #   When the last message was sent
       #
-      #   @return [Integer, nil]
-      required :last_message_at, Integer, nil?: true
+      #   @return [Time, nil]
+      required :last_message_at, Time, nil?: true
 
       # @!attribute resolved_at
       #   When the support ticket was resolved (null if unresolved)
       #
-      #   @return [Integer, nil]
-      required :resolved_at, Integer, nil?: true
+      #   @return [Time, nil]
+      required :resolved_at, Time, nil?: true
 
       # @!method initialize(id:, company_id:, custom_name:, customer_user:, last_message_at:, resolved_at:)
       #   Represents a DM channel
@@ -51,9 +51,9 @@ module Whopsdk
       #
       #   @param customer_user [Whopsdk::Models::SupportChannelListResponse::CustomerUser, nil] The customer user if this is a support chat
       #
-      #   @param last_message_at [Integer, nil] When the last message was sent
+      #   @param last_message_at [Time, nil] When the last message was sent
       #
-      #   @param resolved_at [Integer, nil] When the support ticket was resolved (null if unresolved)
+      #   @param resolved_at [Time, nil] When the support ticket was resolved (null if unresolved)
 
       # @see Whopsdk::Models::SupportChannelListResponse#customer_user
       class CustomerUser < Whopsdk::Internal::Type::BaseModel

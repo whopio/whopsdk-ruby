@@ -12,8 +12,8 @@ module Whopsdk
       # @!attribute created_at
       #   The date the invoice was created.
       #
-      #   @return [Integer]
-      required :created_at, Integer
+      #   @return [Time]
+      required :created_at, Time
 
       # @!attribute current_plan
       #   The plan that the invoice was created for.
@@ -24,8 +24,8 @@ module Whopsdk
       # @!attribute due_date
       #   The date the invoice is due.
       #
-      #   @return [Integer, nil]
-      required :due_date, Integer, nil?: true
+      #   @return [Time, nil]
+      required :due_date, Time, nil?: true
 
       # @!attribute email_address
       #   The email address that the invoice was created for.
@@ -62,11 +62,11 @@ module Whopsdk
       #
       #   @param id [String] The ID of the invoice.
       #
-      #   @param created_at [Integer] The date the invoice was created.
+      #   @param created_at [Time] The date the invoice was created.
       #
       #   @param current_plan [Whopsdk::Models::InvoiceListItem::CurrentPlan] The plan that the invoice was created for.
       #
-      #   @param due_date [Integer, nil] The date the invoice is due.
+      #   @param due_date [Time, nil] The date the invoice is due.
       #
       #   @param email_address [String, nil] The email address that the invoice was created for.
       #

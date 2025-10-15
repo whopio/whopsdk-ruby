@@ -24,8 +24,8 @@ module Whopsdk
       # @!attribute created_at
       #   When the product was created.
       #
-      #   @return [Integer]
-      required :created_at, Integer
+      #   @return [Time]
+      required :created_at, Time
 
       # @!attribute custom_cta
       #   The custom call to action for the product.
@@ -128,8 +128,8 @@ module Whopsdk
       # @!attribute updated_at
       #   When the product was updated.
       #
-      #   @return [Integer]
-      required :updated_at, Integer
+      #   @return [Time]
+      required :updated_at, Time
 
       # @!attribute verified
       #   Whether this product is Whop verified.
@@ -155,7 +155,7 @@ module Whopsdk
       #
       #   @param company [Whopsdk::Models::Product::Company] A short type of the company that this product belongs to.
       #
-      #   @param created_at [Integer] When the product was created.
+      #   @param created_at [Time] When the product was created.
       #
       #   @param custom_cta [Symbol, Whopsdk::Models::CustomCta] The custom call to action for the product.
       #
@@ -189,7 +189,7 @@ module Whopsdk
       #
       #   @param title [String] The title of the product. Use for Whop 4.0.
       #
-      #   @param updated_at [Integer] When the product was updated.
+      #   @param updated_at [Time] When the product was updated.
       #
       #   @param verified [Boolean] Whether this product is Whop verified.
       #

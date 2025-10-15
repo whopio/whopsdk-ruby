@@ -17,7 +17,7 @@ module Whopsdk
       attr_accessor :completed
 
       # When the interaction was created
-      sig { returns(Integer) }
+      sig { returns(Time) }
       attr_accessor :created_at
 
       # The lesson this interaction is for
@@ -41,7 +41,7 @@ module Whopsdk
         params(
           id: String,
           completed: T::Boolean,
-          created_at: Integer,
+          created_at: Time,
           lesson: Whopsdk::CourseLessonInteraction::Lesson::OrHash,
           user: Whopsdk::CourseLessonInteraction::User::OrHash
         ).returns(T.attached_class)
@@ -65,7 +65,7 @@ module Whopsdk
           {
             id: String,
             completed: T::Boolean,
-            created_at: Integer,
+            created_at: Time,
             lesson: Whopsdk::CourseLessonInteraction::Lesson,
             user: Whopsdk::CourseLessonInteraction::User
           }

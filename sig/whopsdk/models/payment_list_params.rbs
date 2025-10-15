@@ -6,8 +6,8 @@ module Whopsdk
         after: String?,
         before: String?,
         billing_reasons: ::Array[Whopsdk::Models::PaymentListParams::billing_reason]?,
-        created_after: Integer?,
-        created_before: Integer?,
+        created_after: Time?,
+        created_before: Time?,
         currencies: ::Array[Whopsdk::Models::currency]?,
         direction: Whopsdk::Models::direction?,
         first: Integer?,
@@ -33,9 +33,9 @@ module Whopsdk
 
       attr_accessor billing_reasons: ::Array[Whopsdk::Models::PaymentListParams::billing_reason]?
 
-      attr_accessor created_after: Integer?
+      attr_accessor created_after: Time?
 
-      attr_accessor created_before: Integer?
+      attr_accessor created_before: Time?
 
       attr_accessor currencies: ::Array[Whopsdk::Models::currency]?
 
@@ -62,8 +62,8 @@ module Whopsdk
         ?after: String?,
         ?before: String?,
         ?billing_reasons: ::Array[Whopsdk::Models::PaymentListParams::billing_reason]?,
-        ?created_after: Integer?,
-        ?created_before: Integer?,
+        ?created_after: Time?,
+        ?created_before: Time?,
         ?currencies: ::Array[Whopsdk::Models::currency]?,
         ?direction: Whopsdk::Models::direction?,
         ?first: Integer?,
@@ -82,8 +82,8 @@ module Whopsdk
         after: String?,
         before: String?,
         billing_reasons: ::Array[Whopsdk::Models::PaymentListParams::billing_reason]?,
-        created_after: Integer?,
-        created_before: Integer?,
+        created_after: Time?,
+        created_before: Time?,
         currencies: ::Array[Whopsdk::Models::currency]?,
         direction: Whopsdk::Models::direction?,
         first: Integer?,

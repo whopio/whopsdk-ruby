@@ -20,8 +20,8 @@ module Whopsdk
       # @!attribute canceled_at
       #   The epoch timestamp of when the customer initiated a cancellation.
       #
-      #   @return [Integer, nil]
-      required :canceled_at, Integer, nil?: true
+      #   @return [Time, nil]
+      required :canceled_at, Time, nil?: true
 
       # @!attribute cancellation_reason
       #   The reason that the member canceled the membership (filled out by the member).
@@ -38,8 +38,8 @@ module Whopsdk
       # @!attribute created_at
       #   The timestamp, in seconds, that this Membership was created at.
       #
-      #   @return [Integer]
-      required :created_at, Integer
+      #   @return [Time]
+      required :created_at, Time
 
       # @!attribute currency
       #   The available currencies on the platform
@@ -94,15 +94,15 @@ module Whopsdk
       #   The timestamp in seconds at which the current billing cycle for this
       #   subscription ends. Only applies for memberships that have a renewal plan.
       #
-      #   @return [Integer, nil]
-      required :renewal_period_end, Integer, nil?: true
+      #   @return [Time, nil]
+      required :renewal_period_end, Time, nil?: true
 
       # @!attribute renewal_period_start
       #   The timestamp in seconds at which the current billing cycle for this
       #   subscription start. Only applies for memberships that have a renewal plan.
       #
-      #   @return [Integer, nil]
-      required :renewal_period_start, Integer, nil?: true
+      #   @return [Time, nil]
+      required :renewal_period_start, Time, nil?: true
 
       # @!attribute status
       #   The status of the membership.
@@ -113,8 +113,8 @@ module Whopsdk
       # @!attribute updated_at
       #   A timestamp of when the membership was last updated
       #
-      #   @return [Integer]
-      required :updated_at, Integer
+      #   @return [Time]
+      required :updated_at, Time
 
       # @!attribute user
       #   The user this membership belongs to
@@ -133,13 +133,13 @@ module Whopsdk
       #
       #   @param cancel_at_period_end [Boolean] Whether this Membership is set to cancel at the end of the current billing cycle
       #
-      #   @param canceled_at [Integer, nil] The epoch timestamp of when the customer initiated a cancellation.
+      #   @param canceled_at [Time, nil] The epoch timestamp of when the customer initiated a cancellation.
       #
       #   @param cancellation_reason [String, nil] The reason that the member canceled the membership (filled out by the member).
       #
       #   @param company [Whopsdk::Models::MembershipListResponse::Company] The Company this Membership belongs to.
       #
-      #   @param created_at [Integer] The timestamp, in seconds, that this Membership was created at.
+      #   @param created_at [Time] The timestamp, in seconds, that this Membership was created at.
       #
       #   @param currency [Symbol, Whopsdk::Models::Currency, nil] The available currencies on the platform
       #
@@ -157,13 +157,13 @@ module Whopsdk
       #
       #   @param promo_code [Whopsdk::Models::MembershipListResponse::PromoCode, nil] The Promo Code that is currently applied to this Membership.
       #
-      #   @param renewal_period_end [Integer, nil] The timestamp in seconds at which the current billing cycle for this subscriptio
+      #   @param renewal_period_end [Time, nil] The timestamp in seconds at which the current billing cycle for this subscriptio
       #
-      #   @param renewal_period_start [Integer, nil] The timestamp in seconds at which the current billing cycle for this subscriptio
+      #   @param renewal_period_start [Time, nil] The timestamp in seconds at which the current billing cycle for this subscriptio
       #
       #   @param status [Symbol, Whopsdk::Models::MembershipStatus] The status of the membership.
       #
-      #   @param updated_at [Integer] A timestamp of when the membership was last updated
+      #   @param updated_at [Time] A timestamp of when the membership was last updated
       #
       #   @param user [Whopsdk::Models::MembershipListResponse::User, nil] The user this membership belongs to
 

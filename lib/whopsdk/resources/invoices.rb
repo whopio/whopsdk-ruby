@@ -19,7 +19,7 @@ module Whopsdk
       #
       # @param company_id [String] The company ID to create this invoice for.
       #
-      # @param due_date [Integer] The date the invoice is due, if applicable.
+      # @param due_date [Time] The date the invoice is due, if applicable.
       #
       # @param plan [Whopsdk::Models::InvoiceCreateParams::Plan] The properties of the plan to create for this invoice.
       #

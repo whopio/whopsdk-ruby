@@ -17,7 +17,7 @@ class Whopsdk::Test::Resources::ExperiencesTest < Whopsdk::Test::ResourceTest
         id: String,
         app: Whopsdk::Experience::App,
         company: Whopsdk::Experience::Company,
-        created_at: Integer,
+        created_at: Time,
         name: String,
         order: String | nil,
         products: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Experience::Product])
@@ -39,7 +39,7 @@ class Whopsdk::Test::Resources::ExperiencesTest < Whopsdk::Test::ResourceTest
         id: String,
         app: Whopsdk::Experience::App,
         company: Whopsdk::Experience::Company,
-        created_at: Integer,
+        created_at: Time,
         name: String,
         order: String | nil,
         products: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Experience::Product])
@@ -61,7 +61,7 @@ class Whopsdk::Test::Resources::ExperiencesTest < Whopsdk::Test::ResourceTest
         id: String,
         app: Whopsdk::Experience::App,
         company: Whopsdk::Experience::Company,
-        created_at: Integer,
+        created_at: Time,
         name: String,
         order: String | nil,
         products: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Experience::Product])
@@ -90,7 +90,7 @@ class Whopsdk::Test::Resources::ExperiencesTest < Whopsdk::Test::ResourceTest
         id: String,
         app: Whopsdk::Models::ExperienceListResponse::App,
         company: Whopsdk::Models::ExperienceListResponse::Company,
-        created_at: Integer,
+        created_at: Time,
         name: String,
         order: String | nil
       }
@@ -121,7 +121,7 @@ class Whopsdk::Test::Resources::ExperiencesTest < Whopsdk::Test::ResourceTest
         id: String,
         app: Whopsdk::Experience::App,
         company: Whopsdk::Experience::Company,
-        created_at: Integer,
+        created_at: Time,
         name: String,
         order: String | nil,
         products: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Experience::Product])
@@ -143,7 +143,7 @@ class Whopsdk::Test::Resources::ExperiencesTest < Whopsdk::Test::ResourceTest
         id: String,
         app: Whopsdk::Experience::App,
         company: Whopsdk::Experience::Company,
-        created_at: Integer,
+        created_at: Time,
         name: String,
         order: String | nil,
         products: ^(Whopsdk::Internal::Type::ArrayOf[Whopsdk::Experience::Product])

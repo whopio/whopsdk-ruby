@@ -22,7 +22,7 @@ class Whopsdk::Test::Resources::TransfersTest < Whopsdk::Test::ResourceTest
       response => {
         id: String,
         amount: Float,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Currency,
         destination: Whopsdk::Transfer::Destination,
         destination_ledger_account_id: String,
@@ -47,7 +47,7 @@ class Whopsdk::Test::Resources::TransfersTest < Whopsdk::Test::ResourceTest
       response => {
         id: String,
         amount: Float,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Currency,
         destination: Whopsdk::Transfer::Destination,
         destination_ledger_account_id: String,
@@ -79,7 +79,7 @@ class Whopsdk::Test::Resources::TransfersTest < Whopsdk::Test::ResourceTest
       row => {
         id: String,
         amount: Float,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Currency,
         destination_ledger_account_id: String,
         fee_amount: Float | nil,

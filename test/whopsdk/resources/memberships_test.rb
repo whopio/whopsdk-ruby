@@ -16,10 +16,10 @@ class Whopsdk::Test::Resources::MembershipsTest < Whopsdk::Test::ResourceTest
       response => {
         id: String,
         cancel_at_period_end: Whopsdk::Internal::Type::Boolean,
-        canceled_at: Integer | nil,
+        canceled_at: Time | nil,
         cancellation_reason: String | nil,
         company: Whopsdk::Membership::Company,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Currency | nil,
         license_key: String | nil,
         manage_url: String | nil,
@@ -28,10 +28,10 @@ class Whopsdk::Test::Resources::MembershipsTest < Whopsdk::Test::ResourceTest
         payment_collection_paused: Whopsdk::Internal::Type::Boolean,
         plan: Whopsdk::Membership::Plan,
         promo_code: Whopsdk::Membership::PromoCode | nil,
-        renewal_period_end: Integer | nil,
-        renewal_period_start: Integer | nil,
+        renewal_period_end: Time | nil,
+        renewal_period_start: Time | nil,
         status: Whopsdk::MembershipStatus,
-        updated_at: Integer,
+        updated_at: Time,
         user: Whopsdk::Membership::User | nil
       }
     end
@@ -50,10 +50,10 @@ class Whopsdk::Test::Resources::MembershipsTest < Whopsdk::Test::ResourceTest
       response => {
         id: String,
         cancel_at_period_end: Whopsdk::Internal::Type::Boolean,
-        canceled_at: Integer | nil,
+        canceled_at: Time | nil,
         cancellation_reason: String | nil,
         company: Whopsdk::Membership::Company,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Currency | nil,
         license_key: String | nil,
         manage_url: String | nil,
@@ -62,10 +62,10 @@ class Whopsdk::Test::Resources::MembershipsTest < Whopsdk::Test::ResourceTest
         payment_collection_paused: Whopsdk::Internal::Type::Boolean,
         plan: Whopsdk::Membership::Plan,
         promo_code: Whopsdk::Membership::PromoCode | nil,
-        renewal_period_end: Integer | nil,
-        renewal_period_start: Integer | nil,
+        renewal_period_end: Time | nil,
+        renewal_period_start: Time | nil,
         status: Whopsdk::MembershipStatus,
-        updated_at: Integer,
+        updated_at: Time,
         user: Whopsdk::Membership::User | nil
       }
     end
@@ -91,10 +91,10 @@ class Whopsdk::Test::Resources::MembershipsTest < Whopsdk::Test::ResourceTest
       row => {
         id: String,
         cancel_at_period_end: Whopsdk::Internal::Type::Boolean,
-        canceled_at: Integer | nil,
+        canceled_at: Time | nil,
         cancellation_reason: String | nil,
         company: Whopsdk::Models::MembershipListResponse::Company,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Currency | nil,
         license_key: String | nil,
         manage_url: String | nil,
@@ -103,10 +103,10 @@ class Whopsdk::Test::Resources::MembershipsTest < Whopsdk::Test::ResourceTest
         payment_collection_paused: Whopsdk::Internal::Type::Boolean,
         plan: Whopsdk::Models::MembershipListResponse::Plan,
         promo_code: Whopsdk::Models::MembershipListResponse::PromoCode | nil,
-        renewal_period_end: Integer | nil,
-        renewal_period_start: Integer | nil,
+        renewal_period_end: Time | nil,
+        renewal_period_start: Time | nil,
         status: Whopsdk::MembershipStatus,
-        updated_at: Integer,
+        updated_at: Time,
         user: Whopsdk::Models::MembershipListResponse::User | nil
       }
     end
@@ -125,10 +125,10 @@ class Whopsdk::Test::Resources::MembershipsTest < Whopsdk::Test::ResourceTest
       response => {
         id: String,
         cancel_at_period_end: Whopsdk::Internal::Type::Boolean,
-        canceled_at: Integer | nil,
+        canceled_at: Time | nil,
         cancellation_reason: String | nil,
         company: Whopsdk::Membership::Company,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Currency | nil,
         license_key: String | nil,
         manage_url: String | nil,
@@ -137,10 +137,10 @@ class Whopsdk::Test::Resources::MembershipsTest < Whopsdk::Test::ResourceTest
         payment_collection_paused: Whopsdk::Internal::Type::Boolean,
         plan: Whopsdk::Membership::Plan,
         promo_code: Whopsdk::Membership::PromoCode | nil,
-        renewal_period_end: Integer | nil,
-        renewal_period_start: Integer | nil,
+        renewal_period_end: Time | nil,
+        renewal_period_start: Time | nil,
         status: Whopsdk::MembershipStatus,
-        updated_at: Integer,
+        updated_at: Time,
         user: Whopsdk::Membership::User | nil
       }
     end
@@ -159,10 +159,10 @@ class Whopsdk::Test::Resources::MembershipsTest < Whopsdk::Test::ResourceTest
       response => {
         id: String,
         cancel_at_period_end: Whopsdk::Internal::Type::Boolean,
-        canceled_at: Integer | nil,
+        canceled_at: Time | nil,
         cancellation_reason: String | nil,
         company: Whopsdk::Membership::Company,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Currency | nil,
         license_key: String | nil,
         manage_url: String | nil,
@@ -171,10 +171,10 @@ class Whopsdk::Test::Resources::MembershipsTest < Whopsdk::Test::ResourceTest
         payment_collection_paused: Whopsdk::Internal::Type::Boolean,
         plan: Whopsdk::Membership::Plan,
         promo_code: Whopsdk::Membership::PromoCode | nil,
-        renewal_period_end: Integer | nil,
-        renewal_period_start: Integer | nil,
+        renewal_period_end: Time | nil,
+        renewal_period_start: Time | nil,
         status: Whopsdk::MembershipStatus,
-        updated_at: Integer,
+        updated_at: Time,
         user: Whopsdk::Membership::User | nil
       }
     end
@@ -193,10 +193,10 @@ class Whopsdk::Test::Resources::MembershipsTest < Whopsdk::Test::ResourceTest
       response => {
         id: String,
         cancel_at_period_end: Whopsdk::Internal::Type::Boolean,
-        canceled_at: Integer | nil,
+        canceled_at: Time | nil,
         cancellation_reason: String | nil,
         company: Whopsdk::Membership::Company,
-        created_at: Integer,
+        created_at: Time,
         currency: Whopsdk::Currency | nil,
         license_key: String | nil,
         manage_url: String | nil,
@@ -205,10 +205,10 @@ class Whopsdk::Test::Resources::MembershipsTest < Whopsdk::Test::ResourceTest
         payment_collection_paused: Whopsdk::Internal::Type::Boolean,
         plan: Whopsdk::Membership::Plan,
         promo_code: Whopsdk::Membership::PromoCode | nil,
-        renewal_period_end: Integer | nil,
-        renewal_period_start: Integer | nil,
+        renewal_period_end: Time | nil,
+        renewal_period_start: Time | nil,
         status: Whopsdk::MembershipStatus,
-        updated_at: Integer,
+        updated_at: Time,
         user: Whopsdk::Membership::User | nil
       }
     end

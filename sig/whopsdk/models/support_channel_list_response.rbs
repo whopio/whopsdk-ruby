@@ -6,8 +6,8 @@ module Whopsdk
         company_id: String?,
         custom_name: String?,
         customer_user: Whopsdk::Models::SupportChannelListResponse::CustomerUser?,
-        last_message_at: Integer?,
-        resolved_at: Integer?
+        last_message_at: Time?,
+        resolved_at: Time?
       }
 
     class SupportChannelListResponse < Whopsdk::Internal::Type::BaseModel
@@ -19,17 +19,17 @@ module Whopsdk
 
       attr_accessor customer_user: Whopsdk::Models::SupportChannelListResponse::CustomerUser?
 
-      attr_accessor last_message_at: Integer?
+      attr_accessor last_message_at: Time?
 
-      attr_accessor resolved_at: Integer?
+      attr_accessor resolved_at: Time?
 
       def initialize: (
         id: String,
         company_id: String?,
         custom_name: String?,
         customer_user: Whopsdk::Models::SupportChannelListResponse::CustomerUser?,
-        last_message_at: Integer?,
-        resolved_at: Integer?
+        last_message_at: Time?,
+        resolved_at: Time?
       ) -> void
 
       def to_hash: -> {
@@ -37,8 +37,8 @@ module Whopsdk
         company_id: String?,
         custom_name: String?,
         customer_user: Whopsdk::Models::SupportChannelListResponse::CustomerUser?,
-        last_message_at: Integer?,
-        resolved_at: Integer?
+        last_message_at: Time?,
+        resolved_at: Time?
       }
 
       type customer_user = { id: String, name: String?, username: String }

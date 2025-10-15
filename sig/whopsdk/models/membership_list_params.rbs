@@ -7,8 +7,8 @@ module Whopsdk
         after: String?,
         before: String?,
         cancel_options: ::Array[Whopsdk::Models::MembershipListParams::cancel_option]?,
-        created_after: Integer?,
-        created_before: Integer?,
+        created_after: Time?,
+        created_before: Time?,
         direction: Whopsdk::Models::direction?,
         first: Integer?,
         last: Integer?,
@@ -33,9 +33,9 @@ module Whopsdk
 
       attr_accessor cancel_options: ::Array[Whopsdk::Models::MembershipListParams::cancel_option]?
 
-      attr_accessor created_after: Integer?
+      attr_accessor created_after: Time?
 
-      attr_accessor created_before: Integer?
+      attr_accessor created_before: Time?
 
       attr_accessor direction: Whopsdk::Models::direction?
 
@@ -57,8 +57,8 @@ module Whopsdk
         ?after: String?,
         ?before: String?,
         ?cancel_options: ::Array[Whopsdk::Models::MembershipListParams::cancel_option]?,
-        ?created_after: Integer?,
-        ?created_before: Integer?,
+        ?created_after: Time?,
+        ?created_before: Time?,
         ?direction: Whopsdk::Models::direction?,
         ?first: Integer?,
         ?last: Integer?,
@@ -75,8 +75,8 @@ module Whopsdk
         after: String?,
         before: String?,
         cancel_options: ::Array[Whopsdk::Models::MembershipListParams::cancel_option]?,
-        created_after: Integer?,
-        created_before: Integer?,
+        created_after: Time?,
+        created_before: Time?,
         direction: Whopsdk::Models::direction?,
         first: Integer?,
         last: Integer?,

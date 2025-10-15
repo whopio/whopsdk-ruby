@@ -25,8 +25,8 @@ module Whopsdk
       # @!attribute created_at
       #   The timestamp of when this experience was created.
       #
-      #   @return [Integer]
-      required :created_at, Integer
+      #   @return [Time]
+      required :created_at, Time
 
       # @!attribute name
       #   The written name of the description.
@@ -49,7 +49,7 @@ module Whopsdk
       #
       #   @param company [Whopsdk::Models::ExperienceListResponse::Company] The company that owns this experience.
       #
-      #   @param created_at [Integer] The timestamp of when this experience was created.
+      #   @param created_at [Time] The timestamp of when this experience was created.
       #
       #   @param name [String] The written name of the description.
       #

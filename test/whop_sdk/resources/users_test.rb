@@ -34,7 +34,7 @@ class WhopSDK::Test::Resources::UsersTest < WhopSDK::Test::ResourceTest
 
     assert_pattern do
       response => {
-        access_level: WhopSDK::Models::UserCheckAccessResponse::AccessLevel,
+        access_level: WhopSDK::AccessLevel,
         has_access: WhopSDK::Internal::Type::Boolean
       }
     end

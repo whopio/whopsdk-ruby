@@ -1,0 +1,15 @@
+module WhopSDK
+  module Models
+    type member_statuses = :drafted | :joined | :left
+
+    module MemberStatuses
+      extend WhopSDK::Internal::Type::Enum
+
+      DRAFTED: :drafted
+      JOINED: :joined
+      LEFT: :left
+
+      def self?.values: -> ::Array[WhopSDK::Models::member_statuses]
+    end
+  end
+end

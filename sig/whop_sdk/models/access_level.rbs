@@ -1,0 +1,15 @@
+module WhopSDK
+  module Models
+    type access_level = :no_access | :admin | :customer
+
+    module AccessLevel
+      extend WhopSDK::Internal::Type::Enum
+
+      NO_ACCESS: :no_access
+      ADMIN: :admin
+      CUSTOMER: :customer
+
+      def self?.values: -> ::Array[WhopSDK::Models::access_level]
+    end
+  end
+end

@@ -86,6 +86,12 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::Reactions) }
     attr_reader :reactions
 
+    sig { returns(WhopSDK::Resources::Members) }
+    attr_reader :members
+
+    sig { returns(WhopSDK::Resources::Forums) }
+    attr_reader :forums
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

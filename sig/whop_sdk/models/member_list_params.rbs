@@ -1,0 +1,116 @@
+module WhopSDK
+  module Models
+    type member_list_params =
+      {
+        company_id: String,
+        access_level: WhopSDK::Models::access_level?,
+        access_pass_ids: ::Array[String]?,
+        after: String?,
+        before: String?,
+        created_after: Time?,
+        created_before: Time?,
+        direction: WhopSDK::Models::direction?,
+        first: Integer?,
+        last: Integer?,
+        most_recent_actions: ::Array[WhopSDK::Models::member_most_recent_actions]?,
+        order: WhopSDK::Models::MemberListParams::order?,
+        plan_ids: ::Array[String]?,
+        promo_code_ids: ::Array[String]?,
+        query: String?,
+        statuses: ::Array[WhopSDK::Models::member_statuses]?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class MemberListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor access_level: WhopSDK::Models::access_level?
+
+      attr_accessor access_pass_ids: ::Array[String]?
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor created_after: Time?
+
+      attr_accessor created_before: Time?
+
+      attr_accessor direction: WhopSDK::Models::direction?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      attr_accessor most_recent_actions: ::Array[WhopSDK::Models::member_most_recent_actions]?
+
+      attr_accessor order: WhopSDK::Models::MemberListParams::order?
+
+      attr_accessor plan_ids: ::Array[String]?
+
+      attr_accessor promo_code_ids: ::Array[String]?
+
+      attr_accessor query: String?
+
+      attr_accessor statuses: ::Array[WhopSDK::Models::member_statuses]?
+
+      def initialize: (
+        company_id: String,
+        ?access_level: WhopSDK::Models::access_level?,
+        ?access_pass_ids: ::Array[String]?,
+        ?after: String?,
+        ?before: String?,
+        ?created_after: Time?,
+        ?created_before: Time?,
+        ?direction: WhopSDK::Models::direction?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?most_recent_actions: ::Array[WhopSDK::Models::member_most_recent_actions]?,
+        ?order: WhopSDK::Models::MemberListParams::order?,
+        ?plan_ids: ::Array[String]?,
+        ?promo_code_ids: ::Array[String]?,
+        ?query: String?,
+        ?statuses: ::Array[WhopSDK::Models::member_statuses]?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        access_level: WhopSDK::Models::access_level?,
+        access_pass_ids: ::Array[String]?,
+        after: String?,
+        before: String?,
+        created_after: Time?,
+        created_before: Time?,
+        direction: WhopSDK::Models::direction?,
+        first: Integer?,
+        last: Integer?,
+        most_recent_actions: ::Array[WhopSDK::Models::member_most_recent_actions]?,
+        order: WhopSDK::Models::MemberListParams::order?,
+        plan_ids: ::Array[String]?,
+        promo_code_ids: ::Array[String]?,
+        query: String?,
+        statuses: ::Array[WhopSDK::Models::member_statuses]?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type order =
+        :id | :usd_total_spent | :created_at | :joined_at | :most_recent_action
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        ID: :id
+        USD_TOTAL_SPENT: :usd_total_spent
+        CREATED_AT: :created_at
+        JOINED_AT: :joined_at
+        MOST_RECENT_ACTION: :most_recent_action
+
+        def self?.values: -> ::Array[WhopSDK::Models::MemberListParams::order]
+      end
+    end
+  end
+end

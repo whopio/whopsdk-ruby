@@ -39,6 +39,8 @@ module WhopSDK
     mod.define_sorbet_constant!(const) { T.type_alias { mod.to_sorbet_type } }
   end
 
+  AccessLevel = WhopSDK::Models::AccessLevel
+
   AccessPassType = WhopSDK::Models::AccessPassType
 
   App = WhopSDK::Models::App
@@ -115,6 +117,8 @@ module WhopSDK
 
   DmsPostTypes = WhopSDK::Models::DmsPostTypes
 
+  EmailNotificationPreferences = WhopSDK::Models::EmailNotificationPreferences
+
   Entry = WhopSDK::Models::Entry
 
   EntryApproveParams = WhopSDK::Models::EntryApproveParams
@@ -143,6 +147,10 @@ module WhopSDK
 
   ExperienceUpdateParams = WhopSDK::Models::ExperienceUpdateParams
 
+  Forum = WhopSDK::Models::Forum
+
+  ForumListParams = WhopSDK::Models::ForumListParams
+
   ForumPost = WhopSDK::Models::ForumPost
 
   ForumPostCreateParams = WhopSDK::Models::ForumPostCreateParams
@@ -150,6 +158,10 @@ module WhopSDK
   ForumPostListParams = WhopSDK::Models::ForumPostListParams
 
   ForumPostRetrieveParams = WhopSDK::Models::ForumPostRetrieveParams
+
+  ForumRetrieveParams = WhopSDK::Models::ForumRetrieveParams
+
+  ForumUpdateParams = WhopSDK::Models::ForumUpdateParams
 
   FriendlyReceiptStatus = WhopSDK::Models::FriendlyReceiptStatus
 
@@ -181,6 +193,12 @@ module WhopSDK
 
   LedgerAccountRetrieveParams = WhopSDK::Models::LedgerAccountRetrieveParams
 
+  MemberListParams = WhopSDK::Models::MemberListParams
+
+  MemberMostRecentActions = WhopSDK::Models::MemberMostRecentActions
+
+  MemberRetrieveParams = WhopSDK::Models::MemberRetrieveParams
+
   Membership = WhopSDK::Models::Membership
 
   MembershipCancelParams = WhopSDK::Models::MembershipCancelParams
@@ -196,6 +214,8 @@ module WhopSDK
   MembershipStatus = WhopSDK::Models::MembershipStatus
 
   MembershipUpdateParams = WhopSDK::Models::MembershipUpdateParams
+
+  MemberStatuses = WhopSDK::Models::MemberStatuses
 
   Message = WhopSDK::Models::Message
 
@@ -305,7 +325,11 @@ module WhopSDK
 
   WebhookUnwrapParams = WhopSDK::Models::WebhookUnwrapParams
 
+  WhoCanCommentTypes = WhopSDK::Models::WhoCanCommentTypes
+
   WhoCanPost = WhopSDK::Models::WhoCanPost
+
+  WhoCanPostTypes = WhopSDK::Models::WhoCanPostTypes
 
   WhoCanReact = WhopSDK::Models::WhoCanReact
 end

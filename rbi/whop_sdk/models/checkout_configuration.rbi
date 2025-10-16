@@ -8,38 +8,42 @@ module WhopSDK
           T.any(WhopSDK::CheckoutConfiguration, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the checkout session
+      # The ID of the checkout configuration
       sig { returns(String) }
       attr_accessor :id
 
-      # The affiliate code to use for the checkout session
+      # The affiliate code to use for the checkout configuration
       sig { returns(String) }
       attr_accessor :affiliate_code
 
-      # The ID of the company to use for the checkout session
+      # The ID of the company to use for the checkout configuration
       sig { returns(String) }
       attr_accessor :company_id
 
-      # The metadata to use for the checkout session
+      # The metadata to use for the checkout configuration
       sig { returns(T::Hash[Symbol, T.anything]) }
       attr_accessor :metadata
 
-      # The plan to use for the checkout session
+      # The plan to use for the checkout configuration
       sig { returns(WhopSDK::CheckoutConfiguration::Plan) }
       attr_reader :plan
 
       sig { params(plan: WhopSDK::CheckoutConfiguration::Plan::OrHash).void }
       attr_writer :plan
 
-      # The URL to redirect the user to after the checkout session is created
+      # The URL to redirect the user to after the checkout configuration is created
       sig { returns(String) }
       attr_accessor :purchase_url
 
-      # The URL to redirect the user to after the checkout session is created
+      # The URL to redirect the user to after the checkout configuration is created
       sig { returns(String) }
       attr_accessor :redirect_url
 
-      # A checkout session
+      # A checkout configuration object. Can be used to create a reusable custom
+      # configuration for a checkout, including attaching plans, affiliates and custom
+      # metadata to the checkout. This configuration can be re-used by multiple users.
+      # All successful payments and memberships resulting from a checkout will contain
+      # the passed metadata.
       sig do
         params(
           id: String,
@@ -52,19 +56,19 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the checkout session
+        # The ID of the checkout configuration
         id:,
-        # The affiliate code to use for the checkout session
+        # The affiliate code to use for the checkout configuration
         affiliate_code:,
-        # The ID of the company to use for the checkout session
+        # The ID of the company to use for the checkout configuration
         company_id:,
-        # The metadata to use for the checkout session
+        # The metadata to use for the checkout configuration
         metadata:,
-        # The plan to use for the checkout session
+        # The plan to use for the checkout configuration
         plan:,
-        # The URL to redirect the user to after the checkout session is created
+        # The URL to redirect the user to after the checkout configuration is created
         purchase_url:,
-        # The URL to redirect the user to after the checkout session is created
+        # The URL to redirect the user to after the checkout configuration is created
         redirect_url:
       )
       end
@@ -134,7 +138,7 @@ module WhopSDK
         sig { returns(WhopSDK::Visibility::TaggedSymbol) }
         attr_accessor :visibility
 
-        # The plan to use for the checkout session
+        # The plan to use for the checkout configuration
         sig do
           params(
             id: String,

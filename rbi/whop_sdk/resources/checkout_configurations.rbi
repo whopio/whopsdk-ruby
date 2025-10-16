@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class CheckoutConfigurations
-      # Creates a new checkout session
+      # Creates a new checkout configuration
       #
       # Required permissions:
       #
@@ -21,15 +21,15 @@ module WhopSDK
         ).returns(WhopSDK::CheckoutConfiguration)
       end
       def create(
-        # The affiliate code to use for the checkout session
+        # The affiliate code to use for the checkout configuration
         affiliate_code: nil,
-        # The metadata to use for the checkout session
+        # The metadata to use for the checkout configuration
         metadata: nil,
-        # Pass this object to create a new plan for this checkout session
+        # Pass this object to create a new plan for this checkout configuration
         plan: nil,
-        # The ID of the plan to use for the checkout session
+        # The ID of the plan to use for the checkout configuration
         plan_id: nil,
-        # The URL to redirect the user to after the checkout session is created
+        # The URL to redirect the user to after the checkout configuration is created
         redirect_url: nil,
         request_options: {}
       )

@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class CheckoutConfigurations
-      # Creates a new checkout session
+      # Creates a new checkout configuration
       #
       # Required permissions:
       #
@@ -12,15 +12,15 @@ module WhopSDK
       #
       # @overload create(affiliate_code: nil, metadata: nil, plan: nil, plan_id: nil, redirect_url: nil, request_options: {})
       #
-      # @param affiliate_code [String, nil] The affiliate code to use for the checkout session
+      # @param affiliate_code [String, nil] The affiliate code to use for the checkout configuration
       #
-      # @param metadata [Hash{Symbol=>Object}, nil] The metadata to use for the checkout session
+      # @param metadata [Hash{Symbol=>Object}, nil] The metadata to use for the checkout configuration
       #
-      # @param plan [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan, nil] Pass this object to create a new plan for this checkout session
+      # @param plan [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan, nil] Pass this object to create a new plan for this checkout configuration
       #
-      # @param plan_id [String, nil] The ID of the plan to use for the checkout session
+      # @param plan_id [String, nil] The ID of the plan to use for the checkout configuration
       #
-      # @param redirect_url [String, nil] The URL to redirect the user to after the checkout session is created
+      # @param redirect_url [String, nil] The URL to redirect the user to after the checkout configuration is created
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

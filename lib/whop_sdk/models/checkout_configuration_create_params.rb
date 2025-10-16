@@ -8,45 +8,45 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute affiliate_code
-      #   The affiliate code to use for the checkout session
+      #   The affiliate code to use for the checkout configuration
       #
       #   @return [String, nil]
       optional :affiliate_code, String, nil?: true
 
       # @!attribute metadata
-      #   The metadata to use for the checkout session
+      #   The metadata to use for the checkout configuration
       #
       #   @return [Hash{Symbol=>Object}, nil]
       optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
       # @!attribute plan
-      #   Pass this object to create a new plan for this checkout session
+      #   Pass this object to create a new plan for this checkout configuration
       #
       #   @return [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan, nil]
       optional :plan, -> { WhopSDK::CheckoutConfigurationCreateParams::Plan }, nil?: true
 
       # @!attribute plan_id
-      #   The ID of the plan to use for the checkout session
+      #   The ID of the plan to use for the checkout configuration
       #
       #   @return [String, nil]
       optional :plan_id, String, nil?: true
 
       # @!attribute redirect_url
-      #   The URL to redirect the user to after the checkout session is created
+      #   The URL to redirect the user to after the checkout configuration is created
       #
       #   @return [String, nil]
       optional :redirect_url, String, nil?: true
 
       # @!method initialize(affiliate_code: nil, metadata: nil, plan: nil, plan_id: nil, redirect_url: nil, request_options: {})
-      #   @param affiliate_code [String, nil] The affiliate code to use for the checkout session
+      #   @param affiliate_code [String, nil] The affiliate code to use for the checkout configuration
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] The metadata to use for the checkout session
+      #   @param metadata [Hash{Symbol=>Object}, nil] The metadata to use for the checkout configuration
       #
-      #   @param plan [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan, nil] Pass this object to create a new plan for this checkout session
+      #   @param plan [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan, nil] Pass this object to create a new plan for this checkout configuration
       #
-      #   @param plan_id [String, nil] The ID of the plan to use for the checkout session
+      #   @param plan_id [String, nil] The ID of the plan to use for the checkout configuration
       #
-      #   @param redirect_url [String, nil] The URL to redirect the user to after the checkout session is created
+      #   @param redirect_url [String, nil] The URL to redirect the user to after the checkout configuration is created
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
@@ -169,7 +169,7 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan} for more details.
         #
-        #   Pass this object to create a new plan for this checkout session
+        #   Pass this object to create a new plan for this checkout configuration
         #
         #   @param company_id [String] The company the plan should be created for.
         #

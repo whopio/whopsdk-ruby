@@ -5,63 +5,67 @@ module WhopSDK
     # @see WhopSDK::Resources::CheckoutConfigurations#list
     class CheckoutConfigurationListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the checkout session
+      #   The ID of the checkout configuration
       #
       #   @return [String]
       required :id, String
 
       # @!attribute affiliate_code
-      #   The affiliate code to use for the checkout session
+      #   The affiliate code to use for the checkout configuration
       #
       #   @return [String]
       required :affiliate_code, String
 
       # @!attribute company_id
-      #   The ID of the company to use for the checkout session
+      #   The ID of the company to use for the checkout configuration
       #
       #   @return [String]
       required :company_id, String
 
       # @!attribute metadata
-      #   The metadata to use for the checkout session
+      #   The metadata to use for the checkout configuration
       #
       #   @return [Hash{Symbol=>Object}]
       required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]
 
       # @!attribute plan
-      #   The plan to use for the checkout session
+      #   The plan to use for the checkout configuration
       #
       #   @return [WhopSDK::Models::CheckoutConfigurationListResponse::Plan]
       required :plan, -> { WhopSDK::Models::CheckoutConfigurationListResponse::Plan }
 
       # @!attribute purchase_url
-      #   The URL to redirect the user to after the checkout session is created
+      #   The URL to redirect the user to after the checkout configuration is created
       #
       #   @return [String]
       required :purchase_url, String
 
       # @!attribute redirect_url
-      #   The URL to redirect the user to after the checkout session is created
+      #   The URL to redirect the user to after the checkout configuration is created
       #
       #   @return [String]
       required :redirect_url, String
 
       # @!method initialize(id:, affiliate_code:, company_id:, metadata:, plan:, purchase_url:, redirect_url:)
-      #   A checkout session
+      #   A checkout configuration object. Can be used to create a reusable custom
+      #   configuration for a checkout, including attaching plans, affiliates and custom
+      #   metadata to the checkout. This configuration can be re-used by multiple users.
+      #   All successful payments and memberships resulting from a checkout will contain
+      #   the passed metadata.
       #
-      #   @param id [String] The ID of the checkout session
+      #   @param id [String] The ID of the checkout configuration
       #
-      #   @param affiliate_code [String] The affiliate code to use for the checkout session
+      #   @param affiliate_code [String] The affiliate code to use for the checkout configuration
       #
-      #   @param company_id [String] The ID of the company to use for the checkout session
+      #   @param company_id [String] The ID of the company to use for the checkout configuration
       #
-      #   @param metadata [Hash{Symbol=>Object}] The metadata to use for the checkout session
+      #   @param metadata [Hash{Symbol=>Object}] The metadata to use for the checkout configuration
       #
-      #   @param plan [WhopSDK::Models::CheckoutConfigurationListResponse::Plan] The plan to use for the checkout session
+      #   @param plan [WhopSDK::Models::CheckoutConfigurationListResponse::Plan] The plan to use for the checkout configuration
       #
-      #   @param purchase_url [String] The URL to redirect the user to after the checkout session is created
+      #   @param purchase_url [String] The URL to redirect the user to after the checkout configuration is created
       #
-      #   @param redirect_url [String] The URL to redirect the user to after the checkout session is created
+      #   @param redirect_url [String] The URL to redirect the user to after the checkout configuration is created
 
       # @see WhopSDK::Models::CheckoutConfigurationListResponse#plan
       class Plan < WhopSDK::Internal::Type::BaseModel
@@ -126,7 +130,7 @@ module WhopSDK
         required :visibility, enum: -> { WhopSDK::Visibility }
 
         # @!method initialize(id:, billing_period:, currency:, expiration_days:, initial_price:, plan_type:, release_method:, renewal_price:, trial_period_days:, visibility:)
-        #   The plan to use for the checkout session
+        #   The plan to use for the checkout configuration
         #
         #   @param id [String] The internal ID of the plan.
         #

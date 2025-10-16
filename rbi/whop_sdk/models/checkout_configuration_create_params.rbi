@@ -14,15 +14,15 @@ module WhopSDK
           )
         end
 
-      # The affiliate code to use for the checkout session
+      # The affiliate code to use for the checkout configuration
       sig { returns(T.nilable(String)) }
       attr_accessor :affiliate_code
 
-      # The metadata to use for the checkout session
+      # The metadata to use for the checkout configuration
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
-      # Pass this object to create a new plan for this checkout session
+      # Pass this object to create a new plan for this checkout configuration
       sig do
         returns(T.nilable(WhopSDK::CheckoutConfigurationCreateParams::Plan))
       end
@@ -36,11 +36,11 @@ module WhopSDK
       end
       attr_writer :plan
 
-      # The ID of the plan to use for the checkout session
+      # The ID of the plan to use for the checkout configuration
       sig { returns(T.nilable(String)) }
       attr_accessor :plan_id
 
-      # The URL to redirect the user to after the checkout session is created
+      # The URL to redirect the user to after the checkout configuration is created
       sig { returns(T.nilable(String)) }
       attr_accessor :redirect_url
 
@@ -56,15 +56,15 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The affiliate code to use for the checkout session
+        # The affiliate code to use for the checkout configuration
         affiliate_code: nil,
-        # The metadata to use for the checkout session
+        # The metadata to use for the checkout configuration
         metadata: nil,
-        # Pass this object to create a new plan for this checkout session
+        # Pass this object to create a new plan for this checkout configuration
         plan: nil,
-        # The ID of the plan to use for the checkout session
+        # The ID of the plan to use for the checkout configuration
         plan_id: nil,
-        # The URL to redirect the user to after the checkout session is created
+        # The URL to redirect the user to after the checkout configuration is created
         redirect_url: nil,
         request_options: {}
       )
@@ -190,7 +190,7 @@ module WhopSDK
         sig { returns(T.nilable(WhopSDK::Visibility::OrSymbol)) }
         attr_accessor :visibility
 
-        # Pass this object to create a new plan for this checkout session
+        # Pass this object to create a new plan for this checkout configuration
         sig do
           params(
             company_id: String,

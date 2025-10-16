@@ -15,18 +15,17 @@ module Whopsdk
       #   @return [Symbol, :v1]
       required :api_version, const: :v1
 
-      # @!attribute created_at
-      #   The timestamp in seconds since the Unix epoch that the webhook was sent at on
-      #   the server
-      #
-      #   @return [String]
-      required :created_at, String
-
       # @!attribute data
       #   A statement that defines an amount due by a customer.
       #
       #   @return [Whopsdk::Models::Invoice]
       required :data, -> { Whopsdk::Invoice }
+
+      # @!attribute timestamp
+      #   The timestamp in ISO 8601 format that the webhook was sent at on the server
+      #
+      #   @return [Time]
+      required :timestamp, Time
 
       # @!attribute type
       #   The webhook event type
@@ -34,15 +33,12 @@ module Whopsdk
       #   @return [Symbol, :"invoice.paid"]
       required :type, const: :"invoice.paid"
 
-      # @!method initialize(id:, created_at:, data:, api_version: :v1, type: :"invoice.paid")
-      #   Some parameter documentations has been truncated, see
-      #   {Whopsdk::Models::InvoicePaidWebhookEvent} for more details.
-      #
+      # @!method initialize(id:, data:, timestamp:, api_version: :v1, type: :"invoice.paid")
       #   @param id [String] A unique ID for every single webhook request
       #
-      #   @param created_at [String] The timestamp in seconds since the Unix epoch that the webhook was sent at on th
-      #
       #   @param data [Whopsdk::Models::Invoice] A statement that defines an amount due by a customer.
+      #
+      #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #
       #   @param api_version [Symbol, :v1] The API version for this webhook
       #

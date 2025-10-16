@@ -4,8 +4,8 @@ module Whopsdk
       {
         id: String,
         api_version: :v1,
-        created_at: String,
         data: Whopsdk::Invoice,
+        timestamp: Time,
         type: :"invoice.past_due"
       }
 
@@ -14,16 +14,16 @@ module Whopsdk
 
       attr_accessor api_version: :v1
 
-      attr_accessor created_at: String
-
       attr_accessor data: Whopsdk::Invoice
+
+      attr_accessor timestamp: Time
 
       attr_accessor type: :"invoice.past_due"
 
       def initialize: (
         id: String,
-        created_at: String,
         data: Whopsdk::Invoice,
+        timestamp: Time,
         ?api_version: :v1,
         ?type: :"invoice.past_due"
       ) -> void
@@ -31,8 +31,8 @@ module Whopsdk
       def to_hash: -> {
         id: String,
         api_version: :v1,
-        created_at: String,
         data: Whopsdk::Invoice,
+        timestamp: Time,
         type: :"invoice.past_due"
       }
     end

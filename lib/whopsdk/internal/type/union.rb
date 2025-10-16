@@ -13,7 +13,7 @@ module Whopsdk
       #   when Whopsdk::InvoicePaidWebhookEvent
       #     puts(unwrap_webhook_event.api_version)
       #   when Whopsdk::InvoicePastDueWebhookEvent
-      #     puts(unwrap_webhook_event.created_at)
+      #     puts(unwrap_webhook_event.data)
       #   else
       #     puts(unwrap_webhook_event)
       #   end

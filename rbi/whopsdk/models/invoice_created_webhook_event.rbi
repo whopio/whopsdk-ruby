@@ -16,17 +16,16 @@ module Whopsdk
       sig { returns(Symbol) }
       attr_accessor :api_version
 
-      # The timestamp in seconds since the Unix epoch that the webhook was sent at on
-      # the server
-      sig { returns(String) }
-      attr_accessor :created_at
-
       # A statement that defines an amount due by a customer.
       sig { returns(Whopsdk::Invoice) }
       attr_reader :data
 
       sig { params(data: Whopsdk::Invoice::OrHash).void }
       attr_writer :data
+
+      # The timestamp in ISO 8601 format that the webhook was sent at on the server
+      sig { returns(Time) }
+      attr_accessor :timestamp
 
       # The webhook event type
       sig { returns(Symbol) }
@@ -35,8 +34,8 @@ module Whopsdk
       sig do
         params(
           id: String,
-          created_at: String,
           data: Whopsdk::Invoice::OrHash,
+          timestamp: Time,
           api_version: Symbol,
           type: Symbol
         ).returns(T.attached_class)
@@ -44,11 +43,10 @@ module Whopsdk
       def self.new(
         # A unique ID for every single webhook request
         id:,
-        # The timestamp in seconds since the Unix epoch that the webhook was sent at on
-        # the server
-        created_at:,
         # A statement that defines an amount due by a customer.
         data:,
+        # The timestamp in ISO 8601 format that the webhook was sent at on the server
+        timestamp:,
         # The API version for this webhook
         api_version: :v1,
         # The webhook event type
@@ -61,8 +59,8 @@ module Whopsdk
           {
             id: String,
             api_version: Symbol,
-            created_at: String,
             data: Whopsdk::Invoice,
+            timestamp: Time,
             type: Symbol
           }
         )

@@ -1,0 +1,72 @@
+module WhopSDK
+  module Models
+    type transfer_list_params =
+      {
+        after: String?,
+        before: String?,
+        destination_id: String?,
+        direction: WhopSDK::Models::direction?,
+        first: Integer?,
+        last: Integer?,
+        order: WhopSDK::Models::TransferListParams::order?,
+        origin_id: String?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class TransferListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor destination_id: String?
+
+      attr_accessor direction: WhopSDK::Models::direction?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      attr_accessor order: WhopSDK::Models::TransferListParams::order?
+
+      attr_accessor origin_id: String?
+
+      def initialize: (
+        ?after: String?,
+        ?before: String?,
+        ?destination_id: String?,
+        ?direction: WhopSDK::Models::direction?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?order: WhopSDK::Models::TransferListParams::order?,
+        ?origin_id: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        after: String?,
+        before: String?,
+        destination_id: String?,
+        direction: WhopSDK::Models::direction?,
+        first: Integer?,
+        last: Integer?,
+        order: WhopSDK::Models::TransferListParams::order?,
+        origin_id: String?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type order = :amount | :created_at
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        AMOUNT: :amount
+        CREATED_AT: :created_at
+
+        def self?.values: -> ::Array[WhopSDK::Models::TransferListParams::order]
+      end
+    end
+  end
+end

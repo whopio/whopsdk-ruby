@@ -162,7 +162,7 @@ multitask(:"build:gem") do
     sig/*
   GLOB
 
-  sh(*%w[gem build -- whopsdk.gemspec])
+  sh(*%w[gem build -- whop_sdk.gemspec])
   rm_rf(ignore_file)
 end
 

@@ -1,0 +1,166 @@
+module WhopSDK
+  module Models
+    type membership_list_response =
+      {
+        id: String,
+        cancel_at_period_end: bool,
+        canceled_at: Time?,
+        cancellation_reason: String?,
+        company: WhopSDK::Models::MembershipListResponse::Company,
+        created_at: Time,
+        currency: WhopSDK::Models::currency?,
+        license_key: String?,
+        manage_url: String?,
+        member: WhopSDK::Models::MembershipListResponse::Member?,
+        metadata: ::Hash[Symbol, top],
+        payment_collection_paused: bool,
+        plan: WhopSDK::Models::MembershipListResponse::Plan,
+        promo_code: WhopSDK::Models::MembershipListResponse::PromoCode?,
+        renewal_period_end: Time?,
+        renewal_period_start: Time?,
+        status: WhopSDK::Models::membership_status,
+        updated_at: Time,
+        user: WhopSDK::Models::MembershipListResponse::User?
+      }
+
+    class MembershipListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor cancel_at_period_end: bool
+
+      attr_accessor canceled_at: Time?
+
+      attr_accessor cancellation_reason: String?
+
+      attr_accessor company: WhopSDK::Models::MembershipListResponse::Company
+
+      attr_accessor created_at: Time
+
+      attr_accessor currency: WhopSDK::Models::currency?
+
+      attr_accessor license_key: String?
+
+      attr_accessor manage_url: String?
+
+      attr_accessor member: WhopSDK::Models::MembershipListResponse::Member?
+
+      attr_accessor metadata: ::Hash[Symbol, top]
+
+      attr_accessor payment_collection_paused: bool
+
+      attr_accessor plan: WhopSDK::Models::MembershipListResponse::Plan
+
+      attr_accessor promo_code: WhopSDK::Models::MembershipListResponse::PromoCode?
+
+      attr_accessor renewal_period_end: Time?
+
+      attr_accessor renewal_period_start: Time?
+
+      attr_accessor status: WhopSDK::Models::membership_status
+
+      attr_accessor updated_at: Time
+
+      attr_accessor user: WhopSDK::Models::MembershipListResponse::User?
+
+      def initialize: (
+        id: String,
+        cancel_at_period_end: bool,
+        canceled_at: Time?,
+        cancellation_reason: String?,
+        company: WhopSDK::Models::MembershipListResponse::Company,
+        created_at: Time,
+        currency: WhopSDK::Models::currency?,
+        license_key: String?,
+        manage_url: String?,
+        member: WhopSDK::Models::MembershipListResponse::Member?,
+        metadata: ::Hash[Symbol, top],
+        payment_collection_paused: bool,
+        plan: WhopSDK::Models::MembershipListResponse::Plan,
+        promo_code: WhopSDK::Models::MembershipListResponse::PromoCode?,
+        renewal_period_end: Time?,
+        renewal_period_start: Time?,
+        status: WhopSDK::Models::membership_status,
+        updated_at: Time,
+        user: WhopSDK::Models::MembershipListResponse::User?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        cancel_at_period_end: bool,
+        canceled_at: Time?,
+        cancellation_reason: String?,
+        company: WhopSDK::Models::MembershipListResponse::Company,
+        created_at: Time,
+        currency: WhopSDK::Models::currency?,
+        license_key: String?,
+        manage_url: String?,
+        member: WhopSDK::Models::MembershipListResponse::Member?,
+        metadata: ::Hash[Symbol, top],
+        payment_collection_paused: bool,
+        plan: WhopSDK::Models::MembershipListResponse::Plan,
+        promo_code: WhopSDK::Models::MembershipListResponse::PromoCode?,
+        renewal_period_end: Time?,
+        renewal_period_start: Time?,
+        status: WhopSDK::Models::membership_status,
+        updated_at: Time,
+        user: WhopSDK::Models::MembershipListResponse::User?
+      }
+
+      type company = { id: String, title: String }
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type member = { id: String }
+
+      class Member < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type plan = { id: String }
+
+      class Plan < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type promo_code = { id: String }
+
+      class PromoCode < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type user = { id: String, name: String?, username: String }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
+      end
+    end
+  end
+end

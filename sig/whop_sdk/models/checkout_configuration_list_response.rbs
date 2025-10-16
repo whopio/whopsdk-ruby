@@ -1,0 +1,112 @@
+module WhopSDK
+  module Models
+    type checkout_configuration_list_response =
+      {
+        id: String,
+        affiliate_code: String,
+        company_id: String,
+        metadata: ::Hash[Symbol, top],
+        plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan,
+        purchase_url: String,
+        redirect_url: String
+      }
+
+    class CheckoutConfigurationListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor affiliate_code: String
+
+      attr_accessor company_id: String
+
+      attr_accessor metadata: ::Hash[Symbol, top]
+
+      attr_accessor plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan
+
+      attr_accessor purchase_url: String
+
+      attr_accessor redirect_url: String
+
+      def initialize: (
+        id: String,
+        affiliate_code: String,
+        company_id: String,
+        metadata: ::Hash[Symbol, top],
+        plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan,
+        purchase_url: String,
+        redirect_url: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        affiliate_code: String,
+        company_id: String,
+        metadata: ::Hash[Symbol, top],
+        plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan,
+        purchase_url: String,
+        redirect_url: String
+      }
+
+      type plan =
+        {
+          id: String,
+          billing_period: Integer?,
+          currency: WhopSDK::Models::currency,
+          expiration_days: Integer?,
+          initial_price: Float,
+          plan_type: WhopSDK::Models::plan_type,
+          release_method: WhopSDK::Models::release_method,
+          renewal_price: Float,
+          trial_period_days: Integer?,
+          visibility: WhopSDK::Models::visibility
+        }
+
+      class Plan < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor billing_period: Integer?
+
+        attr_accessor currency: WhopSDK::Models::currency
+
+        attr_accessor expiration_days: Integer?
+
+        attr_accessor initial_price: Float
+
+        attr_accessor plan_type: WhopSDK::Models::plan_type
+
+        attr_accessor release_method: WhopSDK::Models::release_method
+
+        attr_accessor renewal_price: Float
+
+        attr_accessor trial_period_days: Integer?
+
+        attr_accessor visibility: WhopSDK::Models::visibility
+
+        def initialize: (
+          id: String,
+          billing_period: Integer?,
+          currency: WhopSDK::Models::currency,
+          expiration_days: Integer?,
+          initial_price: Float,
+          plan_type: WhopSDK::Models::plan_type,
+          release_method: WhopSDK::Models::release_method,
+          renewal_price: Float,
+          trial_period_days: Integer?,
+          visibility: WhopSDK::Models::visibility
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          billing_period: Integer?,
+          currency: WhopSDK::Models::currency,
+          expiration_days: Integer?,
+          initial_price: Float,
+          plan_type: WhopSDK::Models::plan_type,
+          release_method: WhopSDK::Models::release_method,
+          renewal_price: Float,
+          trial_period_days: Integer?,
+          visibility: WhopSDK::Models::visibility
+        }
+      end
+    end
+  end
+end

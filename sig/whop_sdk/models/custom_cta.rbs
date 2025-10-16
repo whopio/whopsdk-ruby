@@ -1,0 +1,38 @@
+module WhopSDK
+  module Models
+    type custom_cta =
+      :get_access
+      | :join
+      | :order_now
+      | :shop_now
+      | :call_now
+      | :donate_now
+      | :contact_us
+      | :sign_up
+      | :subscribe
+      | :purchase
+      | :get_offer
+      | :apply_now
+      | :complete_order
+
+    module CustomCta
+      extend WhopSDK::Internal::Type::Enum
+
+      GET_ACCESS: :get_access
+      JOIN: :join
+      ORDER_NOW: :order_now
+      SHOP_NOW: :shop_now
+      CALL_NOW: :call_now
+      DONATE_NOW: :donate_now
+      CONTACT_US: :contact_us
+      SIGN_UP: :sign_up
+      SUBSCRIBE: :subscribe
+      PURCHASE: :purchase
+      GET_OFFER: :get_offer
+      APPLY_NOW: :apply_now
+      COMPLETE_ORDER: :complete_order
+
+      def self?.values: -> ::Array[WhopSDK::Models::custom_cta]
+    end
+  end
+end

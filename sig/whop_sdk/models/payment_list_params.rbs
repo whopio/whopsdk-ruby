@@ -1,0 +1,134 @@
+module WhopSDK
+  module Models
+    type payment_list_params =
+      {
+        company_id: String,
+        after: String?,
+        before: String?,
+        billing_reasons: ::Array[WhopSDK::Models::PaymentListParams::billing_reason]?,
+        created_after: Time?,
+        created_before: Time?,
+        currencies: ::Array[WhopSDK::Models::currency]?,
+        direction: WhopSDK::Models::direction?,
+        first: Integer?,
+        include_free: bool?,
+        last: Integer?,
+        order: WhopSDK::Models::PaymentListParams::order?,
+        plan_ids: ::Array[String]?,
+        product_ids: ::Array[String]?,
+        statuses: ::Array[WhopSDK::Models::receipt_status]?,
+        substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class PaymentListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor billing_reasons: ::Array[WhopSDK::Models::PaymentListParams::billing_reason]?
+
+      attr_accessor created_after: Time?
+
+      attr_accessor created_before: Time?
+
+      attr_accessor currencies: ::Array[WhopSDK::Models::currency]?
+
+      attr_accessor direction: WhopSDK::Models::direction?
+
+      attr_accessor first: Integer?
+
+      attr_accessor include_free: bool?
+
+      attr_accessor last: Integer?
+
+      attr_accessor order: WhopSDK::Models::PaymentListParams::order?
+
+      attr_accessor plan_ids: ::Array[String]?
+
+      attr_accessor product_ids: ::Array[String]?
+
+      attr_accessor statuses: ::Array[WhopSDK::Models::receipt_status]?
+
+      attr_accessor substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?
+
+      def initialize: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?billing_reasons: ::Array[WhopSDK::Models::PaymentListParams::billing_reason]?,
+        ?created_after: Time?,
+        ?created_before: Time?,
+        ?currencies: ::Array[WhopSDK::Models::currency]?,
+        ?direction: WhopSDK::Models::direction?,
+        ?first: Integer?,
+        ?include_free: bool?,
+        ?last: Integer?,
+        ?order: WhopSDK::Models::PaymentListParams::order?,
+        ?plan_ids: ::Array[String]?,
+        ?product_ids: ::Array[String]?,
+        ?statuses: ::Array[WhopSDK::Models::receipt_status]?,
+        ?substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        after: String?,
+        before: String?,
+        billing_reasons: ::Array[WhopSDK::Models::PaymentListParams::billing_reason]?,
+        created_after: Time?,
+        created_before: Time?,
+        currencies: ::Array[WhopSDK::Models::currency]?,
+        direction: WhopSDK::Models::direction?,
+        first: Integer?,
+        include_free: bool?,
+        last: Integer?,
+        order: WhopSDK::Models::PaymentListParams::order?,
+        plan_ids: ::Array[String]?,
+        product_ids: ::Array[String]?,
+        statuses: ::Array[WhopSDK::Models::receipt_status]?,
+        substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type billing_reason =
+        :subscription_create
+        | :subscription_cycle
+        | :subscription_update
+        | :one_time
+        | :manual
+        | :subscription
+
+      module BillingReason
+        extend WhopSDK::Internal::Type::Enum
+
+        SUBSCRIPTION_CREATE: :subscription_create
+        SUBSCRIPTION_CYCLE: :subscription_cycle
+        SUBSCRIPTION_UPDATE: :subscription_update
+        ONE_TIME: :one_time
+        MANUAL: :manual
+        SUBSCRIPTION: :subscription
+
+        def self?.values: -> ::Array[WhopSDK::Models::PaymentListParams::billing_reason]
+      end
+
+      type order = :final_amount | :created_at | :paid_at
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        FINAL_AMOUNT: :final_amount
+        CREATED_AT: :created_at
+        PAID_AT: :paid_at
+
+        def self?.values: -> ::Array[WhopSDK::Models::PaymentListParams::order]
+      end
+    end
+  end
+end

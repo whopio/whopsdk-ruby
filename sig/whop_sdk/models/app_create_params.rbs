@@ -1,0 +1,32 @@
+module WhopSDK
+  module Models
+    type app_create_params =
+      { company_id: String, name: String, base_url: String? }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class AppCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor name: String
+
+      attr_accessor base_url: String?
+
+      def initialize: (
+        company_id: String,
+        name: String,
+        ?base_url: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        name: String,
+        base_url: String?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

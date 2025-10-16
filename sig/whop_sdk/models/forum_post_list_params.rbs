@@ -1,0 +1,56 @@
+module WhopSDK
+  module Models
+    type forum_post_list_params =
+      {
+        experience_id: String,
+        after: String?,
+        before: String?,
+        first: Integer?,
+        last: Integer?,
+        parent_id: String?,
+        pinned: bool?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class ForumPostListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor experience_id: String
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      attr_accessor parent_id: String?
+
+      attr_accessor pinned: bool?
+
+      def initialize: (
+        experience_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?parent_id: String?,
+        ?pinned: bool?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        experience_id: String,
+        after: String?,
+        before: String?,
+        first: Integer?,
+        last: Integer?,
+        parent_id: String?,
+        pinned: bool?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

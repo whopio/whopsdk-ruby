@@ -1,0 +1,23 @@
+module WhopSDK
+  module Models
+    type membership_pause_params =
+      { void_payments: bool? } & WhopSDK::Internal::Type::request_parameters
+
+    class MembershipPauseParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor void_payments: bool?
+
+      def initialize: (
+        ?void_payments: bool?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        void_payments: bool?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

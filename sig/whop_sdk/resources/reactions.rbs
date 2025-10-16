@@ -1,0 +1,27 @@
+module WhopSDK
+  module Resources
+    class Reactions
+      def create: (
+        resource_id: String,
+        ?emoji: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Reaction
+
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Reaction
+
+      def list: (
+        resource_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::ReactionListResponse]
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

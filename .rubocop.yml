@@ -40,9 +40,9 @@ Layout/LineLength:
   AllowedPatterns:
     - "^\\s*#.*$"
     - ^require(_relative)?
-    - "Whopsdk::Internal::Type::BaseModel$"
+    - "WhopSDK::Internal::Type::BaseModel$"
     - "^\\s*[A-Z0-9_]+ = :"
-    - "Whopsdk::(Models|Resources|Test)::"
+    - "WhopSDK::(Models|Resources|Test)::"
   Max: 110
 
 Layout/MultilineArrayLineBreaks:

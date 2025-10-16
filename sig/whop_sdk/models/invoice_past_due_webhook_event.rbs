@@ -1,0 +1,40 @@
+module WhopSDK
+  module Models
+    type invoice_past_due_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::Invoice,
+        timestamp: Time,
+        type: :"invoice.past_due"
+      }
+
+    class InvoicePastDueWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor data: WhopSDK::Invoice
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"invoice.past_due"
+
+      def initialize: (
+        id: String,
+        data: WhopSDK::Invoice,
+        timestamp: Time,
+        ?api_version: :v1,
+        ?type: :"invoice.past_due"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::Invoice,
+        timestamp: Time,
+        type: :"invoice.past_due"
+      }
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module WhopSDK
+  module Models
+    type entry_status = :drafted | :pending | :approved | :denied | :any
+
+    module EntryStatus
+      extend WhopSDK::Internal::Type::Enum
+
+      DRAFTED: :drafted
+      PENDING: :pending
+      APPROVED: :approved
+      DENIED: :denied
+      ANY: :any
+
+      def self?.values: -> ::Array[WhopSDK::Models::entry_status]
+    end
+  end
+end

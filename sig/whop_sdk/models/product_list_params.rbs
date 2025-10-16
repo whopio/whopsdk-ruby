@@ -1,0 +1,80 @@
+module WhopSDK
+  module Models
+    type product_list_params =
+      {
+        company_id: String,
+        after: String?,
+        before: String?,
+        direction: WhopSDK::Models::direction?,
+        first: Integer?,
+        last: Integer?,
+        order: WhopSDK::Models::ProductListParams::order?,
+        product_types: ::Array[WhopSDK::Models::access_pass_type]?,
+        visibilities: ::Array[WhopSDK::Models::visibility_filter]?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class ProductListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor direction: WhopSDK::Models::direction?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      attr_accessor order: WhopSDK::Models::ProductListParams::order?
+
+      attr_accessor product_types: ::Array[WhopSDK::Models::access_pass_type]?
+
+      attr_accessor visibilities: ::Array[WhopSDK::Models::visibility_filter]?
+
+      def initialize: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?direction: WhopSDK::Models::direction?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?order: WhopSDK::Models::ProductListParams::order?,
+        ?product_types: ::Array[WhopSDK::Models::access_pass_type]?,
+        ?visibilities: ::Array[WhopSDK::Models::visibility_filter]?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        after: String?,
+        before: String?,
+        direction: WhopSDK::Models::direction?,
+        first: Integer?,
+        last: Integer?,
+        order: WhopSDK::Models::ProductListParams::order?,
+        product_types: ::Array[WhopSDK::Models::access_pass_type]?,
+        visibilities: ::Array[WhopSDK::Models::visibility_filter]?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type order =
+        :active_memberships_count | :created_at | :usd_gmv | :usd_gmv_30_days
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        ACTIVE_MEMBERSHIPS_COUNT: :active_memberships_count
+        CREATED_AT: :created_at
+        USD_GMV: :usd_gmv
+        USD_GMV_30_DAYS: :usd_gmv_30_days
+
+        def self?.values: -> ::Array[WhopSDK::Models::ProductListParams::order]
+      end
+    end
+  end
+end

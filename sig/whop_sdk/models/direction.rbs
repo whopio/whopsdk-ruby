@@ -1,0 +1,14 @@
+module WhopSDK
+  module Models
+    type direction = :asc | :desc
+
+    module Direction
+      extend WhopSDK::Internal::Type::Enum
+
+      ASC: :asc
+      DESC: :desc
+
+      def self?.values: -> ::Array[WhopSDK::Models::direction]
+    end
+  end
+end

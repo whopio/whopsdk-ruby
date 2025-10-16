@@ -1,0 +1,17 @@
+module WhopSDK
+  module Models
+    type app_view_type = :hub | :discover | :dash | :dashboard | :analytics
+
+    module AppViewType
+      extend WhopSDK::Internal::Type::Enum
+
+      HUB: :hub
+      DISCOVER: :discover
+      DASH: :dash
+      DASHBOARD: :dashboard
+      ANALYTICS: :analytics
+
+      def self?.values: -> ::Array[WhopSDK::Models::app_view_type]
+    end
+  end
+end

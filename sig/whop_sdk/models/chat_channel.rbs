@@ -1,0 +1,67 @@
+module WhopSDK
+  module Models
+    type chat_channel =
+      {
+        id: String,
+        ban_media: bool,
+        ban_urls: bool,
+        banned_words: ::Array[String],
+        experience: WhopSDK::ChatChannel::Experience,
+        user_posts_cooldown_seconds: Integer?,
+        who_can_post: WhopSDK::Models::who_can_post,
+        who_can_react: WhopSDK::Models::who_can_react
+      }
+
+    class ChatChannel < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor ban_media: bool
+
+      attr_accessor ban_urls: bool
+
+      attr_accessor banned_words: ::Array[String]
+
+      attr_accessor experience: WhopSDK::ChatChannel::Experience
+
+      attr_accessor user_posts_cooldown_seconds: Integer?
+
+      attr_accessor who_can_post: WhopSDK::Models::who_can_post
+
+      attr_accessor who_can_react: WhopSDK::Models::who_can_react
+
+      def initialize: (
+        id: String,
+        ban_media: bool,
+        ban_urls: bool,
+        banned_words: ::Array[String],
+        experience: WhopSDK::ChatChannel::Experience,
+        user_posts_cooldown_seconds: Integer?,
+        who_can_post: WhopSDK::Models::who_can_post,
+        who_can_react: WhopSDK::Models::who_can_react
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        ban_media: bool,
+        ban_urls: bool,
+        banned_words: ::Array[String],
+        experience: WhopSDK::ChatChannel::Experience,
+        user_posts_cooldown_seconds: Integer?,
+        who_can_post: WhopSDK::Models::who_can_post,
+        who_can_react: WhopSDK::Models::who_can_react
+      }
+
+      type experience = { id: String, name: String }
+
+      class Experience < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String
+
+        def initialize: (id: String, name: String) -> void
+
+        def to_hash: -> { id: String, name: String }
+      end
+    end
+  end
+end

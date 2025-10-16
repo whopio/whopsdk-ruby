@@ -58,6 +58,10 @@ module WhopSDK
 
     attr_reader reactions: WhopSDK::Resources::Reactions
 
+    attr_reader members: WhopSDK::Resources::Members
+
+    attr_reader forums: WhopSDK::Resources::Forums
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

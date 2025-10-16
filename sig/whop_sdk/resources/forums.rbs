@@ -1,0 +1,30 @@
+module WhopSDK
+  module Resources
+    class Forums
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Forum
+
+      def update: (
+        String id,
+        ?email_notification_preference: WhopSDK::Models::email_notification_preferences?,
+        ?who_can_comment: WhopSDK::Models::who_can_comment_types?,
+        ?who_can_post: WhopSDK::Models::who_can_post_types?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Forum
+
+      def list: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?product_id: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::ForumListResponse]
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

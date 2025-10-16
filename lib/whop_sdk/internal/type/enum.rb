@@ -17,28 +17,28 @@ module WhopSDK
       # values safely.
       #
       # @example
-      #   # `access_pass_type` is a `WhopSDK::AccessPassType`
-      #   case access_pass_type
-      #   when WhopSDK::AccessPassType::REGULAR
+      #   # `access_level` is a `WhopSDK::AccessLevel`
+      #   case access_level
+      #   when WhopSDK::AccessLevel::NO_ACCESS
       #     # ...
-      #   when WhopSDK::AccessPassType::APP
+      #   when WhopSDK::AccessLevel::ADMIN
       #     # ...
-      #   when WhopSDK::AccessPassType::EXPERIENCE_UPSELL
+      #   when WhopSDK::AccessLevel::CUSTOMER
       #     # ...
       #   else
-      #     puts(access_pass_type)
+      #     puts(access_level)
       #   end
       #
       # @example
-      #   case access_pass_type
-      #   in :regular
+      #   case access_level
+      #   in :no_access
       #     # ...
-      #   in :app
+      #   in :admin
       #     # ...
-      #   in :experience_upsell
+      #   in :customer
       #     # ...
       #   else
-      #     puts(access_pass_type)
+      #     puts(access_level)
       #   end
       module Enum
         include WhopSDK::Internal::Type::Converter

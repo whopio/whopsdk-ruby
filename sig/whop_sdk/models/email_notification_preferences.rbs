@@ -1,0 +1,16 @@
+module WhopSDK
+  module Models
+    type email_notification_preferences =
+      :all_admin_posts | :only_weekly_summary | :none
+
+    module EmailNotificationPreferences
+      extend WhopSDK::Internal::Type::Enum
+
+      ALL_ADMIN_POSTS: :all_admin_posts
+      ONLY_WEEKLY_SUMMARY: :only_weekly_summary
+      NONE: :none
+
+      def self?.values: -> ::Array[WhopSDK::Models::email_notification_preferences]
+    end
+  end
+end

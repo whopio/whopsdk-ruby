@@ -91,6 +91,12 @@ module WhopSDK
     # @return [WhopSDK::Resources::Reactions]
     attr_reader :reactions
 
+    # @return [WhopSDK::Resources::Members]
+    attr_reader :members
+
+    # @return [WhopSDK::Resources::Forums]
+    attr_reader :forums
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -173,6 +179,8 @@ module WhopSDK
       @support_channels = WhopSDK::Resources::SupportChannels.new(client: self)
       @experiences = WhopSDK::Resources::Experiences.new(client: self)
       @reactions = WhopSDK::Resources::Reactions.new(client: self)
+      @members = WhopSDK::Resources::Members.new(client: self)
+      @forums = WhopSDK::Resources::Forums.new(client: self)
     end
   end
 end

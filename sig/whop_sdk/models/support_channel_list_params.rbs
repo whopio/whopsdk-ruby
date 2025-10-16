@@ -1,0 +1,72 @@
+module WhopSDK
+  module Models
+    type support_channel_list_params =
+      {
+        company_id: String,
+        after: String?,
+        before: String?,
+        direction: WhopSDK::Models::direction?,
+        first: Integer?,
+        last: Integer?,
+        open_: bool?,
+        order: WhopSDK::Models::SupportChannelListParams::order?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class SupportChannelListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor direction: WhopSDK::Models::direction?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      attr_accessor open_: bool?
+
+      attr_accessor order: WhopSDK::Models::SupportChannelListParams::order?
+
+      def initialize: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?direction: WhopSDK::Models::direction?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?open_: bool?,
+        ?order: WhopSDK::Models::SupportChannelListParams::order?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        after: String?,
+        before: String?,
+        direction: WhopSDK::Models::direction?,
+        first: Integer?,
+        last: Integer?,
+        open_: bool?,
+        order: WhopSDK::Models::SupportChannelListParams::order?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type order = :created_at | :last_post_sent_at
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        CREATED_AT: :created_at
+        LAST_POST_SENT_AT: :last_post_sent_at
+
+        def self?.values: -> ::Array[WhopSDK::Models::SupportChannelListParams::order]
+      end
+    end
+  end
+end

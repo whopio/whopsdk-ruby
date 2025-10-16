@@ -1,0 +1,14 @@
+module WhopSDK
+  module Models
+    type promo_type = :percentage | :flat_amount
+
+    module PromoType
+      extend WhopSDK::Internal::Type::Enum
+
+      PERCENTAGE: :percentage
+      FLAT_AMOUNT: :flat_amount
+
+      def self?.values: -> ::Array[WhopSDK::Models::promo_type]
+    end
+  end
+end

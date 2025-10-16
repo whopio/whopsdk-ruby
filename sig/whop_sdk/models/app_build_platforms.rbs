@@ -1,0 +1,15 @@
+module WhopSDK
+  module Models
+    type app_build_platforms = :ios | :android | :web
+
+    module AppBuildPlatforms
+      extend WhopSDK::Internal::Type::Enum
+
+      IOS: :ios
+      ANDROID: :android
+      WEB: :web
+
+      def self?.values: -> ::Array[WhopSDK::Models::app_build_platforms]
+    end
+  end
+end

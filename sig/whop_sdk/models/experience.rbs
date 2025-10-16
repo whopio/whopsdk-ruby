@@ -1,0 +1,90 @@
+module WhopSDK
+  module Models
+    type experience =
+      {
+        id: String,
+        app: WhopSDK::Experience::App,
+        company: WhopSDK::Experience::Company,
+        created_at: Time,
+        name: String,
+        order: String?,
+        products: ::Array[WhopSDK::Experience::Product]
+      }
+
+    class Experience < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor app: WhopSDK::Experience::App
+
+      attr_accessor company: WhopSDK::Experience::Company
+
+      attr_accessor created_at: Time
+
+      attr_accessor name: String
+
+      attr_accessor order: String?
+
+      attr_accessor products: ::Array[WhopSDK::Experience::Product]
+
+      def initialize: (
+        id: String,
+        app: WhopSDK::Experience::App,
+        company: WhopSDK::Experience::Company,
+        created_at: Time,
+        name: String,
+        order: String?,
+        products: ::Array[WhopSDK::Experience::Product]
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        app: WhopSDK::Experience::App,
+        company: WhopSDK::Experience::Company,
+        created_at: Time,
+        name: String,
+        order: String?,
+        products: ::Array[WhopSDK::Experience::Product]
+      }
+
+      type app = { id: String, name: String }
+
+      class App < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String
+
+        def initialize: (id: String, name: String) -> void
+
+        def to_hash: -> { id: String, name: String }
+      end
+
+      type company = { id: String, route: String, title: String }
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor route: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, route: String, title: String) -> void
+
+        def to_hash: -> { id: String, route: String, title: String }
+      end
+
+      type product = { id: String, route: String, title: String }
+
+      class Product < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor route: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, route: String, title: String) -> void
+
+        def to_hash: -> { id: String, route: String, title: String }
+      end
+    end
+  end
+end

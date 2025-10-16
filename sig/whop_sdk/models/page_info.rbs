@@ -1,0 +1,35 @@
+module WhopSDK
+  module Models
+    type page_info =
+      {
+        end_cursor: String?,
+        has_next_page: bool,
+        has_previous_page: bool,
+        start_cursor: String?
+      }
+
+    class PageInfo < WhopSDK::Internal::Type::BaseModel
+      attr_accessor end_cursor: String?
+
+      attr_accessor has_next_page: bool
+
+      attr_accessor has_previous_page: bool
+
+      attr_accessor start_cursor: String?
+
+      def initialize: (
+        end_cursor: String?,
+        has_next_page: bool,
+        has_previous_page: bool,
+        start_cursor: String?
+      ) -> void
+
+      def to_hash: -> {
+        end_cursor: String?,
+        has_next_page: bool,
+        has_previous_page: bool,
+        start_cursor: String?
+      }
+    end
+  end
+end

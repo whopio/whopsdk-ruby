@@ -1,0 +1,16 @@
+module WhopSDK
+  module Models
+    type access_pass_type = :regular | :app | :experience_upsell | :api_only
+
+    module AccessPassType
+      extend WhopSDK::Internal::Type::Enum
+
+      REGULAR: :regular
+      APP: :app
+      EXPERIENCE_UPSELL: :experience_upsell
+      API_ONLY: :api_only
+
+      def self?.values: -> ::Array[WhopSDK::Models::access_pass_type]
+    end
+  end
+end

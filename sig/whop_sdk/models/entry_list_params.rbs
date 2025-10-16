@@ -1,0 +1,82 @@
+module WhopSDK
+  module Models
+    type entry_list_params =
+      {
+        company_id: String,
+        after: String?,
+        before: String?,
+        direction: WhopSDK::Models::direction?,
+        first: Integer?,
+        last: Integer?,
+        order: WhopSDK::Models::EntryListParams::order?,
+        plan_ids: ::Array[String]?,
+        product_ids: ::Array[String]?,
+        statuses: ::Array[WhopSDK::Models::entry_status]?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class EntryListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor direction: WhopSDK::Models::direction?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      attr_accessor order: WhopSDK::Models::EntryListParams::order?
+
+      attr_accessor plan_ids: ::Array[String]?
+
+      attr_accessor product_ids: ::Array[String]?
+
+      attr_accessor statuses: ::Array[WhopSDK::Models::entry_status]?
+
+      def initialize: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?direction: WhopSDK::Models::direction?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?order: WhopSDK::Models::EntryListParams::order?,
+        ?plan_ids: ::Array[String]?,
+        ?product_ids: ::Array[String]?,
+        ?statuses: ::Array[WhopSDK::Models::entry_status]?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        after: String?,
+        before: String?,
+        direction: WhopSDK::Models::direction?,
+        first: Integer?,
+        last: Integer?,
+        order: WhopSDK::Models::EntryListParams::order?,
+        plan_ids: ::Array[String]?,
+        product_ids: ::Array[String]?,
+        statuses: ::Array[WhopSDK::Models::entry_status]?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type order = :id | :created_at
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        ID: :id
+        CREATED_AT: :created_at
+
+        def self?.values: -> ::Array[WhopSDK::Models::EntryListParams::order]
+      end
+    end
+  end
+end

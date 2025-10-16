@@ -1,0 +1,51 @@
+module WhopSDK
+  module Models
+    type transfer_create_params =
+      {
+        amount: Float,
+        currency: WhopSDK::Models::currency,
+        destination_id: String,
+        origin_id: String,
+        idempotence_key: String?,
+        notes: String?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class TransferCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor amount: Float
+
+      attr_accessor currency: WhopSDK::Models::currency
+
+      attr_accessor destination_id: String
+
+      attr_accessor origin_id: String
+
+      attr_accessor idempotence_key: String?
+
+      attr_accessor notes: String?
+
+      def initialize: (
+        amount: Float,
+        currency: WhopSDK::Models::currency,
+        destination_id: String,
+        origin_id: String,
+        ?idempotence_key: String?,
+        ?notes: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        amount: Float,
+        currency: WhopSDK::Models::currency,
+        destination_id: String,
+        origin_id: String,
+        idempotence_key: String?,
+        notes: String?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

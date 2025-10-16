@@ -1,0 +1,66 @@
+module WhopSDK
+  module Models
+    type course_lesson_interaction =
+      {
+        id: String,
+        completed: bool,
+        created_at: Time,
+        lesson: WhopSDK::CourseLessonInteraction::Lesson,
+        user: WhopSDK::CourseLessonInteraction::User
+      }
+
+    class CourseLessonInteraction < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor completed: bool
+
+      attr_accessor created_at: Time
+
+      attr_accessor lesson: WhopSDK::CourseLessonInteraction::Lesson
+
+      attr_accessor user: WhopSDK::CourseLessonInteraction::User
+
+      def initialize: (
+        id: String,
+        completed: bool,
+        created_at: Time,
+        lesson: WhopSDK::CourseLessonInteraction::Lesson,
+        user: WhopSDK::CourseLessonInteraction::User
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        completed: bool,
+        created_at: Time,
+        lesson: WhopSDK::CourseLessonInteraction::Lesson,
+        user: WhopSDK::CourseLessonInteraction::User
+      }
+
+      type lesson = { id: String, title: String }
+
+      class Lesson < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type user = { id: String, name: String?, username: String }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
+      end
+    end
+  end
+end

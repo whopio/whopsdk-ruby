@@ -1,0 +1,23 @@
+module WhopSDK
+  module Models
+    type experience_attach_params =
+      { product_id: String } & WhopSDK::Internal::Type::request_parameters
+
+    class ExperienceAttachParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor product_id: String
+
+      def initialize: (
+        product_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        product_id: String,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

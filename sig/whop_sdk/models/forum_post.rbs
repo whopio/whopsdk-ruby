@@ -1,0 +1,84 @@
+module WhopSDK
+  module Models
+    type forum_post =
+      {
+        id: String,
+        comment_count: Integer,
+        content: String?,
+        is_edited: bool,
+        is_pinned: bool,
+        is_poster_admin: bool,
+        like_count: Integer?,
+        parent_id: String?,
+        title: String?,
+        user: WhopSDK::ForumPost::User,
+        view_count: Integer?
+      }
+
+    class ForumPost < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor comment_count: Integer
+
+      attr_accessor content: String?
+
+      attr_accessor is_edited: bool
+
+      attr_accessor is_pinned: bool
+
+      attr_accessor is_poster_admin: bool
+
+      attr_accessor like_count: Integer?
+
+      attr_accessor parent_id: String?
+
+      attr_accessor title: String?
+
+      attr_accessor user: WhopSDK::ForumPost::User
+
+      attr_accessor view_count: Integer?
+
+      def initialize: (
+        id: String,
+        comment_count: Integer,
+        content: String?,
+        is_edited: bool,
+        is_pinned: bool,
+        is_poster_admin: bool,
+        like_count: Integer?,
+        parent_id: String?,
+        title: String?,
+        user: WhopSDK::ForumPost::User,
+        view_count: Integer?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        comment_count: Integer,
+        content: String?,
+        is_edited: bool,
+        is_pinned: bool,
+        is_poster_admin: bool,
+        like_count: Integer?,
+        parent_id: String?,
+        title: String?,
+        user: WhopSDK::ForumPost::User,
+        view_count: Integer?
+      }
+
+      type user = { id: String, name: String?, username: String }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
+      end
+    end
+  end
+end

@@ -1,0 +1,14 @@
+module WhopSDK
+  module Models
+    type release_method = :buy_now | :waitlist
+
+    module ReleaseMethod
+      extend WhopSDK::Internal::Type::Enum
+
+      BUY_NOW: :buy_now
+      WAITLIST: :waitlist
+
+      def self?.values: -> ::Array[WhopSDK::Models::release_method]
+    end
+  end
+end

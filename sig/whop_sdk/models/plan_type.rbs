@@ -1,0 +1,14 @@
+module WhopSDK
+  module Models
+    type plan_type = :renewal | :one_time
+
+    module PlanType
+      extend WhopSDK::Internal::Type::Enum
+
+      RENEWAL: :renewal
+      ONE_TIME: :one_time
+
+      def self?.values: -> ::Array[WhopSDK::Models::plan_type]
+    end
+  end
+end

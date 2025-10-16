@@ -1,0 +1,15 @@
+module WhopSDK
+  module Models
+    type unwrap_webhook_event =
+      WhopSDK::InvoiceCreatedWebhookEvent
+      | WhopSDK::InvoicePaidWebhookEvent
+      | WhopSDK::InvoicePastDueWebhookEvent
+      | WhopSDK::InvoiceVoidedWebhookEvent
+
+    module UnwrapWebhookEvent
+      extend WhopSDK::Internal::Type::Union
+
+      def self?.variants: -> ::Array[WhopSDK::Models::unwrap_webhook_event]
+    end
+  end
+end

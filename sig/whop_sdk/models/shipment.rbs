@@ -1,0 +1,75 @@
+module WhopSDK
+  module Models
+    type shipment =
+      {
+        id: String,
+        carrier: WhopSDK::Models::shipment_carrier,
+        created_at: Time,
+        delivery_estimate: Time?,
+        payment: WhopSDK::Shipment::Payment,
+        service: String?,
+        status: WhopSDK::Models::shipment_status,
+        substatus: WhopSDK::Models::shipment_substatus?,
+        tracking_code: String,
+        updated_at: Time
+      }
+
+    class Shipment < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor carrier: WhopSDK::Models::shipment_carrier
+
+      attr_accessor created_at: Time
+
+      attr_accessor delivery_estimate: Time?
+
+      attr_accessor payment: WhopSDK::Shipment::Payment
+
+      attr_accessor service: String?
+
+      attr_accessor status: WhopSDK::Models::shipment_status
+
+      attr_accessor substatus: WhopSDK::Models::shipment_substatus?
+
+      attr_accessor tracking_code: String
+
+      attr_accessor updated_at: Time
+
+      def initialize: (
+        id: String,
+        carrier: WhopSDK::Models::shipment_carrier,
+        created_at: Time,
+        delivery_estimate: Time?,
+        payment: WhopSDK::Shipment::Payment,
+        service: String?,
+        status: WhopSDK::Models::shipment_status,
+        substatus: WhopSDK::Models::shipment_substatus?,
+        tracking_code: String,
+        updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        carrier: WhopSDK::Models::shipment_carrier,
+        created_at: Time,
+        delivery_estimate: Time?,
+        payment: WhopSDK::Shipment::Payment,
+        service: String?,
+        status: WhopSDK::Models::shipment_status,
+        substatus: WhopSDK::Models::shipment_substatus?,
+        tracking_code: String,
+        updated_at: Time
+      }
+
+      type payment = { id: String }
+
+      class Payment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+    end
+  end
+end

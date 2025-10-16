@@ -1,0 +1,49 @@
+module WhopSDK
+  module Models
+    type reaction_list_response =
+      {
+        id: String,
+        emoji: String?,
+        resource_id: String,
+        user: WhopSDK::Models::ReactionListResponse::User
+      }
+
+    class ReactionListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor emoji: String?
+
+      attr_accessor resource_id: String
+
+      attr_accessor user: WhopSDK::Models::ReactionListResponse::User
+
+      def initialize: (
+        id: String,
+        emoji: String?,
+        resource_id: String,
+        user: WhopSDK::Models::ReactionListResponse::User
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        emoji: String?,
+        resource_id: String,
+        user: WhopSDK::Models::ReactionListResponse::User
+      }
+
+      type user = { id: String, name: String?, username: String }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
+      end
+    end
+  end
+end

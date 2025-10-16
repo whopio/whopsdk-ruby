@@ -1,0 +1,93 @@
+module WhopSDK
+  module Models
+    type app_update_params =
+      {
+        app_store_description: String?,
+        base_url: String?,
+        dashboard_path: String?,
+        description: String?,
+        discover_path: String?,
+        experience_path: String?,
+        icon: WhopSDK::AppUpdateParams::Icon?,
+        name: String?,
+        required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
+        status: WhopSDK::Models::app_statuses?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class AppUpdateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor app_store_description: String?
+
+      attr_accessor base_url: String?
+
+      attr_accessor dashboard_path: String?
+
+      attr_accessor description: String?
+
+      attr_accessor discover_path: String?
+
+      attr_accessor experience_path: String?
+
+      attr_accessor icon: WhopSDK::AppUpdateParams::Icon?
+
+      attr_accessor name: String?
+
+      attr_accessor required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?
+
+      attr_accessor status: WhopSDK::Models::app_statuses?
+
+      def initialize: (
+        ?app_store_description: String?,
+        ?base_url: String?,
+        ?dashboard_path: String?,
+        ?description: String?,
+        ?discover_path: String?,
+        ?experience_path: String?,
+        ?icon: WhopSDK::AppUpdateParams::Icon?,
+        ?name: String?,
+        ?required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
+        ?status: WhopSDK::Models::app_statuses?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        app_store_description: String?,
+        base_url: String?,
+        dashboard_path: String?,
+        description: String?,
+        discover_path: String?,
+        experience_path: String?,
+        icon: WhopSDK::AppUpdateParams::Icon?,
+        name: String?,
+        required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
+        status: WhopSDK::Models::app_statuses?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type icon = { id: String?, direct_upload_id: String? }
+
+      class Icon < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String?
+
+        attr_accessor direct_upload_id: String?
+
+        def initialize: (?id: String?, ?direct_upload_id: String?) -> void
+
+        def to_hash: -> { id: String?, direct_upload_id: String? }
+      end
+
+      type required_scope = :read_user
+
+      module RequiredScope
+        extend WhopSDK::Internal::Type::Enum
+
+        READ_USER: :read_user
+
+        def self?.values: -> ::Array[WhopSDK::Models::AppUpdateParams::required_scope]
+      end
+    end
+  end
+end

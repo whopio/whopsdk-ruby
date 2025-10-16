@@ -1,0 +1,48 @@
+module WhopSDK
+  module Resources
+    class Apps
+      def create: (
+        company_id: String,
+        name: String,
+        ?base_url: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::App
+
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::App
+
+      def update: (
+        String id,
+        ?app_store_description: String?,
+        ?base_url: String?,
+        ?dashboard_path: String?,
+        ?description: String?,
+        ?discover_path: String?,
+        ?experience_path: String?,
+        ?icon: WhopSDK::AppUpdateParams::Icon?,
+        ?name: String?,
+        ?required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
+        ?status: WhopSDK::Models::app_statuses?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::App
+
+      def list: (
+        ?after: String?,
+        ?before: String?,
+        ?company_id: String?,
+        ?direction: WhopSDK::Models::direction?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?order: WhopSDK::Models::AppListParams::order?,
+        ?query: String?,
+        ?verified_apps_only: bool?,
+        ?view_type: WhopSDK::Models::app_view_type?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::AppListResponse]
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

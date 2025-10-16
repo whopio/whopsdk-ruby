@@ -1,0 +1,44 @@
+module WhopSDK
+  module Models
+    type friendly_receipt_status =
+      :auto_refunded
+      | :refunded
+      | :partially_refunded
+      | :dispute_warning
+      | :open_resolution
+      | :open_dispute
+      | :failed
+      | :price_too_low
+      | :succeeded
+      | :drafted
+      | :uncollectible
+      | :unresolved
+      | :past_due
+      | :pending
+      | :incomplete
+      | :canceled
+
+    module FriendlyReceiptStatus
+      extend WhopSDK::Internal::Type::Enum
+
+      AUTO_REFUNDED: :auto_refunded
+      REFUNDED: :refunded
+      PARTIALLY_REFUNDED: :partially_refunded
+      DISPUTE_WARNING: :dispute_warning
+      OPEN_RESOLUTION: :open_resolution
+      OPEN_DISPUTE: :open_dispute
+      FAILED: :failed
+      PRICE_TOO_LOW: :price_too_low
+      SUCCEEDED: :succeeded
+      DRAFTED: :drafted
+      UNCOLLECTIBLE: :uncollectible
+      UNRESOLVED: :unresolved
+      PAST_DUE: :past_due
+      PENDING: :pending
+      INCOMPLETE: :incomplete
+      CANCELED: :canceled
+
+      def self?.values: -> ::Array[WhopSDK::Models::friendly_receipt_status]
+    end
+  end
+end

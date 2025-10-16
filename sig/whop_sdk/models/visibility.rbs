@@ -1,0 +1,16 @@
+module WhopSDK
+  module Models
+    type visibility = :visible | :hidden | :archived | :quick_link
+
+    module Visibility
+      extend WhopSDK::Internal::Type::Enum
+
+      VISIBLE: :visible
+      HIDDEN: :hidden
+      ARCHIVED: :archived
+      QUICK_LINK: :quick_link
+
+      def self?.values: -> ::Array[WhopSDK::Models::visibility]
+    end
+  end
+end

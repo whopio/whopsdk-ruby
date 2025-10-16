@@ -1,0 +1,77 @@
+module WhopSDK
+  module Resources
+    class Products
+      def create: (
+        company_id: String,
+        title: String,
+        ?access_pass_type: WhopSDK::Models::access_pass_type?,
+        ?banner_image: WhopSDK::ProductCreateParams::BannerImage?,
+        ?business_type: WhopSDK::Models::business_types?,
+        ?collect_shipping_address: bool?,
+        ?custom_cta: WhopSDK::Models::custom_cta?,
+        ?custom_cta_url: String?,
+        ?custom_statement_descriptor: String?,
+        ?description: String?,
+        ?experience_ids: ::Array[String]?,
+        ?global_affiliate_percentage: Float?,
+        ?global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
+        ?headline: String?,
+        ?industry_type: WhopSDK::Models::industry_types?,
+        ?member_affiliate_percentage: Float?,
+        ?member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
+        ?plan_options: WhopSDK::ProductCreateParams::PlanOptions?,
+        ?product_highlights: ::Array[WhopSDK::ProductCreateParams::ProductHighlight]?,
+        ?product_tax_code_id: String?,
+        ?redirect_purchase_url: String?,
+        ?route: String?,
+        ?visibility: WhopSDK::Models::visibility?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Product
+
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Product
+
+      def update: (
+        String id,
+        ?banner_image: WhopSDK::ProductUpdateParams::BannerImage?,
+        ?business_type: WhopSDK::Models::business_types?,
+        ?collect_shipping_address: bool?,
+        ?custom_cta: WhopSDK::Models::custom_cta?,
+        ?custom_cta_url: String?,
+        ?custom_statement_descriptor: String?,
+        ?description: String?,
+        ?global_affiliate_percentage: Float?,
+        ?global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
+        ?headline: String?,
+        ?industry_type: WhopSDK::Models::industry_types?,
+        ?member_affiliate_percentage: Float?,
+        ?member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
+        ?product_tax_code_id: String?,
+        ?redirect_purchase_url: String?,
+        ?route: String?,
+        ?title: String?,
+        ?visibility: WhopSDK::Models::visibility?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Product
+
+      def list: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?direction: WhopSDK::Models::direction?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?order: WhopSDK::Models::ProductListParams::order?,
+        ?product_types: ::Array[WhopSDK::Models::access_pass_type]?,
+        ?visibilities: ::Array[WhopSDK::Models::visibility_filter]?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::ProductListItem]
+
+      def delete: (String id, ?request_options: WhopSDK::request_opts) -> bool
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

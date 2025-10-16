@@ -1,0 +1,61 @@
+module WhopSDK
+  module Models
+    type course_lesson_interaction_list_params =
+      {
+        after: String?,
+        before: String?,
+        completed: bool?,
+        course_id: String?,
+        first: Integer?,
+        last: Integer?,
+        lesson_id: String?,
+        user_id: String?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class CourseLessonInteractionListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor completed: bool?
+
+      attr_accessor course_id: String?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      attr_accessor lesson_id: String?
+
+      attr_accessor user_id: String?
+
+      def initialize: (
+        ?after: String?,
+        ?before: String?,
+        ?completed: bool?,
+        ?course_id: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?lesson_id: String?,
+        ?user_id: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        after: String?,
+        before: String?,
+        completed: bool?,
+        course_id: String?,
+        first: Integer?,
+        last: Integer?,
+        lesson_id: String?,
+        user_id: String?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

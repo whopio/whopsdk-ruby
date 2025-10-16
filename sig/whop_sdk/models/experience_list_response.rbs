@@ -1,0 +1,71 @@
+module WhopSDK
+  module Models
+    type experience_list_response =
+      {
+        id: String,
+        app: WhopSDK::Models::ExperienceListResponse::App,
+        company: WhopSDK::Models::ExperienceListResponse::Company,
+        created_at: Time,
+        name: String,
+        order: String?
+      }
+
+    class ExperienceListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor app: WhopSDK::Models::ExperienceListResponse::App
+
+      attr_accessor company: WhopSDK::Models::ExperienceListResponse::Company
+
+      attr_accessor created_at: Time
+
+      attr_accessor name: String
+
+      attr_accessor order: String?
+
+      def initialize: (
+        id: String,
+        app: WhopSDK::Models::ExperienceListResponse::App,
+        company: WhopSDK::Models::ExperienceListResponse::Company,
+        created_at: Time,
+        name: String,
+        order: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        app: WhopSDK::Models::ExperienceListResponse::App,
+        company: WhopSDK::Models::ExperienceListResponse::Company,
+        created_at: Time,
+        name: String,
+        order: String?
+      }
+
+      type app = { id: String, name: String }
+
+      class App < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String
+
+        def initialize: (id: String, name: String) -> void
+
+        def to_hash: -> { id: String, name: String }
+      end
+
+      type company = { id: String, route: String, title: String }
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor route: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, route: String, title: String) -> void
+
+        def to_hash: -> { id: String, route: String, title: String }
+      end
+    end
+  end
+end

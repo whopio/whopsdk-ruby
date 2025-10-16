@@ -1,0 +1,53 @@
+module WhopSDK
+  module Resources
+    class Memberships
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Membership
+
+      def update: (
+        String id,
+        ?metadata: ::Hash[Symbol, top]?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Membership
+
+      def list: (
+        company_id: String,
+        ?access_pass_ids: ::Array[String]?,
+        ?after: String?,
+        ?before: String?,
+        ?cancel_options: ::Array[WhopSDK::Models::MembershipListParams::cancel_option]?,
+        ?created_after: Time?,
+        ?created_before: Time?,
+        ?direction: WhopSDK::Models::direction?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?order: WhopSDK::Models::MembershipListParams::order?,
+        ?plan_ids: ::Array[String]?,
+        ?promo_code_ids: ::Array[String]?,
+        ?statuses: ::Array[WhopSDK::Models::membership_status]?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::MembershipListResponse]
+
+      def cancel: (
+        String id,
+        ?cancellation_mode: WhopSDK::Models::MembershipCancelParams::cancellation_mode?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Membership
+
+      def pause: (
+        String id,
+        ?void_payments: bool?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Membership
+
+      def resume: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Membership
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

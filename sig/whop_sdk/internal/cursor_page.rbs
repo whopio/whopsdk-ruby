@@ -1,0 +1,24 @@
+module WhopSDK
+  module Internal
+    class CursorPage[Elem]
+      include WhopSDK::Internal::Type::BasePage[Elem]
+
+      attr_accessor data: ::Array[Elem]?
+
+      attr_accessor page_info: PageInfo
+
+      def inspect: -> String
+
+      type page_info = { end_cursor: String }
+      class PageInfo < WhopSDK::Internal::Type::BaseModel
+        attr_reader end_cursor: String?
+
+        def end_cursor=: (String) -> String
+
+        def initialize: (?end_cursor: String) -> void
+
+        def to_hash: -> { end_cursor: String }
+      end
+    end
+  end
+end

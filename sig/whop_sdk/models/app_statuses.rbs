@@ -1,0 +1,15 @@
+module WhopSDK
+  module Models
+    type app_statuses = :live | :unlisted | :hidden
+
+    module AppStatuses
+      extend WhopSDK::Internal::Type::Enum
+
+      LIVE: :live
+      UNLISTED: :unlisted
+      HIDDEN: :hidden
+
+      def self?.values: -> ::Array[WhopSDK::Models::app_statuses]
+    end
+  end
+end

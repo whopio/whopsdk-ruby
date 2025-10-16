@@ -1,0 +1,57 @@
+module WhopSDK
+  module Models
+    type authorized_user_list_response =
+      {
+        id: String,
+        role: WhopSDK::Models::authorized_user_roles,
+        user: WhopSDK::Models::AuthorizedUserListResponse::User
+      }
+
+    class AuthorizedUserListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor role: WhopSDK::Models::authorized_user_roles
+
+      attr_accessor user: WhopSDK::Models::AuthorizedUserListResponse::User
+
+      def initialize: (
+        id: String,
+        role: WhopSDK::Models::authorized_user_roles,
+        user: WhopSDK::Models::AuthorizedUserListResponse::User
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        role: WhopSDK::Models::authorized_user_roles,
+        user: WhopSDK::Models::AuthorizedUserListResponse::User
+      }
+
+      type user =
+        { id: String, email: String?, name: String?, username: String }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor email: String?
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (
+          id: String,
+          email: String?,
+          name: String?,
+          username: String
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          email: String?,
+          name: String?,
+          username: String
+        }
+      end
+    end
+  end
+end

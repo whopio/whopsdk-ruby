@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    whopsdk (0.0.1)
+    whop-sdk (0.0.1)
       connection_pool
 
 GEM
@@ -219,7 +219,7 @@ DEPENDENCIES
   tapioca
   webmock
   webrick
-  whopsdk!
+  whop-sdk!
   yard
 
 BUNDLED WITH

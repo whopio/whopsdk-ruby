@@ -1,0 +1,36 @@
+module WhopSDK
+  module Models
+    type forum_update_params =
+      {
+        email_notification_preference: WhopSDK::Models::email_notification_preferences?,
+        who_can_comment: WhopSDK::Models::who_can_comment_types?,
+        who_can_post: WhopSDK::Models::who_can_post_types?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class ForumUpdateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor email_notification_preference: WhopSDK::Models::email_notification_preferences?
+
+      attr_accessor who_can_comment: WhopSDK::Models::who_can_comment_types?
+
+      attr_accessor who_can_post: WhopSDK::Models::who_can_post_types?
+
+      def initialize: (
+        ?email_notification_preference: WhopSDK::Models::email_notification_preferences?,
+        ?who_can_comment: WhopSDK::Models::who_can_comment_types?,
+        ?who_can_post: WhopSDK::Models::who_can_post_types?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        email_notification_preference: WhopSDK::Models::email_notification_preferences?,
+        who_can_comment: WhopSDK::Models::who_can_comment_types?,
+        who_can_post: WhopSDK::Models::who_can_post_types?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

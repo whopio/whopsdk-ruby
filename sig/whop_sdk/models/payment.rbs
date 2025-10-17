@@ -1,0 +1,355 @@
+module WhopSDK
+  module Models
+    type payment =
+      {
+        id: String,
+        amount_after_fees: Float,
+        auto_refunded: bool,
+        billing_address: WhopSDK::Payment::BillingAddress?,
+        billing_reason: String?,
+        card_brand: String?,
+        :card_last4 => String?,
+        company: WhopSDK::Payment::Company?,
+        created_at: Time,
+        currency: WhopSDK::Models::currency?,
+        dispute_alerted_at: Time?,
+        failure_message: String?,
+        last_payment_attempt: Time?,
+        member: WhopSDK::Payment::Member?,
+        membership: WhopSDK::Payment::Membership?,
+        paid_at: Time?,
+        payment_method_type: String?,
+        plan: WhopSDK::Payment::Plan?,
+        product: WhopSDK::Payment::Product?,
+        promo_code: WhopSDK::Payment::PromoCode?,
+        refundable: bool,
+        refunded_amount: Float?,
+        refunded_at: Time?,
+        retryable: bool,
+        status: WhopSDK::Models::receipt_status?,
+        substatus: WhopSDK::Models::friendly_receipt_status,
+        subtotal: Float?,
+        total: Float?,
+        usd_total: Float?,
+        user: WhopSDK::Payment::User?,
+        voidable: bool
+      }
+
+    class Payment < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor amount_after_fees: Float
+
+      attr_accessor auto_refunded: bool
+
+      attr_accessor billing_address: WhopSDK::Payment::BillingAddress?
+
+      attr_accessor billing_reason: String?
+
+      attr_accessor card_brand: String?
+
+      attr_accessor card_last4: String?
+
+      attr_accessor company: WhopSDK::Payment::Company?
+
+      attr_accessor created_at: Time
+
+      attr_accessor currency: WhopSDK::Models::currency?
+
+      attr_accessor dispute_alerted_at: Time?
+
+      attr_accessor failure_message: String?
+
+      attr_accessor last_payment_attempt: Time?
+
+      attr_accessor member: WhopSDK::Payment::Member?
+
+      attr_accessor membership: WhopSDK::Payment::Membership?
+
+      attr_accessor paid_at: Time?
+
+      attr_accessor payment_method_type: String?
+
+      attr_accessor plan: WhopSDK::Payment::Plan?
+
+      attr_accessor product: WhopSDK::Payment::Product?
+
+      attr_accessor promo_code: WhopSDK::Payment::PromoCode?
+
+      attr_accessor refundable: bool
+
+      attr_accessor refunded_amount: Float?
+
+      attr_accessor refunded_at: Time?
+
+      attr_accessor retryable: bool
+
+      attr_accessor status: WhopSDK::Models::receipt_status?
+
+      attr_accessor substatus: WhopSDK::Models::friendly_receipt_status
+
+      attr_accessor subtotal: Float?
+
+      attr_accessor total: Float?
+
+      attr_accessor usd_total: Float?
+
+      attr_accessor user: WhopSDK::Payment::User?
+
+      attr_accessor voidable: bool
+
+      def initialize: (
+        id: String,
+        amount_after_fees: Float,
+        auto_refunded: bool,
+        billing_address: WhopSDK::Payment::BillingAddress?,
+        billing_reason: String?,
+        card_brand: String?,
+        card_last4: String?,
+        company: WhopSDK::Payment::Company?,
+        created_at: Time,
+        currency: WhopSDK::Models::currency?,
+        dispute_alerted_at: Time?,
+        failure_message: String?,
+        last_payment_attempt: Time?,
+        member: WhopSDK::Payment::Member?,
+        membership: WhopSDK::Payment::Membership?,
+        paid_at: Time?,
+        payment_method_type: String?,
+        plan: WhopSDK::Payment::Plan?,
+        product: WhopSDK::Payment::Product?,
+        promo_code: WhopSDK::Payment::PromoCode?,
+        refundable: bool,
+        refunded_amount: Float?,
+        refunded_at: Time?,
+        retryable: bool,
+        status: WhopSDK::Models::receipt_status?,
+        substatus: WhopSDK::Models::friendly_receipt_status,
+        subtotal: Float?,
+        total: Float?,
+        usd_total: Float?,
+        user: WhopSDK::Payment::User?,
+        voidable: bool
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        amount_after_fees: Float,
+        auto_refunded: bool,
+        billing_address: WhopSDK::Payment::BillingAddress?,
+        billing_reason: String?,
+        card_brand: String?,
+        :card_last4 => String?,
+        company: WhopSDK::Payment::Company?,
+        created_at: Time,
+        currency: WhopSDK::Models::currency?,
+        dispute_alerted_at: Time?,
+        failure_message: String?,
+        last_payment_attempt: Time?,
+        member: WhopSDK::Payment::Member?,
+        membership: WhopSDK::Payment::Membership?,
+        paid_at: Time?,
+        payment_method_type: String?,
+        plan: WhopSDK::Payment::Plan?,
+        product: WhopSDK::Payment::Product?,
+        promo_code: WhopSDK::Payment::PromoCode?,
+        refundable: bool,
+        refunded_amount: Float?,
+        refunded_at: Time?,
+        retryable: bool,
+        status: WhopSDK::Models::receipt_status?,
+        substatus: WhopSDK::Models::friendly_receipt_status,
+        subtotal: Float?,
+        total: Float?,
+        usd_total: Float?,
+        user: WhopSDK::Payment::User?,
+        voidable: bool
+      }
+
+      type billing_address =
+        {
+          city: String?,
+          country: String?,
+          :line1 => String?,
+          :line2 => String?,
+          name: String?,
+          postal_code: String?,
+          state: String?
+        }
+
+      class BillingAddress < WhopSDK::Internal::Type::BaseModel
+        attr_accessor city: String?
+
+        attr_accessor country: String?
+
+        attr_accessor line1: String?
+
+        attr_accessor line2: String?
+
+        attr_accessor name: String?
+
+        attr_accessor postal_code: String?
+
+        attr_accessor state: String?
+
+        def initialize: (
+          city: String?,
+          country: String?,
+          line1: String?,
+          line2: String?,
+          name: String?,
+          postal_code: String?,
+          state: String?
+        ) -> void
+
+        def to_hash: -> {
+          city: String?,
+          country: String?,
+          :line1 => String?,
+          :line2 => String?,
+          name: String?,
+          postal_code: String?,
+          state: String?
+        }
+      end
+
+      type company = { id: String, route: String, title: String }
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor route: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, route: String, title: String) -> void
+
+        def to_hash: -> { id: String, route: String, title: String }
+      end
+
+      type member = { id: String, phone: String? }
+
+      class Member < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor phone: String?
+
+        def initialize: (id: String, phone: String?) -> void
+
+        def to_hash: -> { id: String, phone: String? }
+      end
+
+      type membership =
+        { id: String, status: WhopSDK::Models::membership_status }
+
+      class Membership < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor status: WhopSDK::Models::membership_status
+
+        def initialize: (
+          id: String,
+          status: WhopSDK::Models::membership_status
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          status: WhopSDK::Models::membership_status
+        }
+      end
+
+      type plan = { id: String }
+
+      class Plan < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type product = { id: String, route: String, title: String }
+
+      class Product < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor route: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, route: String, title: String) -> void
+
+        def to_hash: -> { id: String, route: String, title: String }
+      end
+
+      type promo_code =
+        {
+          id: String,
+          amount_off: Float,
+          base_currency: WhopSDK::Models::currency,
+          code: String?,
+          number_of_intervals: Integer?,
+          promo_type: WhopSDK::Models::promo_type
+        }
+
+      class PromoCode < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor amount_off: Float
+
+        attr_accessor base_currency: WhopSDK::Models::currency
+
+        attr_accessor code: String?
+
+        attr_accessor number_of_intervals: Integer?
+
+        attr_accessor promo_type: WhopSDK::Models::promo_type
+
+        def initialize: (
+          id: String,
+          amount_off: Float,
+          base_currency: WhopSDK::Models::currency,
+          code: String?,
+          number_of_intervals: Integer?,
+          promo_type: WhopSDK::Models::promo_type
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          amount_off: Float,
+          base_currency: WhopSDK::Models::currency,
+          code: String?,
+          number_of_intervals: Integer?,
+          promo_type: WhopSDK::Models::promo_type
+        }
+      end
+
+      type user =
+        { id: String, email: String?, name: String?, username: String }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor email: String?
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (
+          id: String,
+          email: String?,
+          name: String?,
+          username: String
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          email: String?,
+          name: String?,
+          username: String
+        }
+      end
+    end
+  end
+end

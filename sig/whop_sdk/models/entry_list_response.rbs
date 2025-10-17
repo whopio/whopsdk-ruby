@@ -1,0 +1,94 @@
+module WhopSDK
+  module Models
+    type entry_list_response =
+      {
+        id: String,
+        created_at: Time?,
+        plan: WhopSDK::Models::EntryListResponse::Plan?,
+        product: WhopSDK::Models::EntryListResponse::Product?,
+        status: WhopSDK::Models::entry_status,
+        user: WhopSDK::Models::EntryListResponse::User
+      }
+
+    class EntryListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time?
+
+      attr_accessor plan: WhopSDK::Models::EntryListResponse::Plan?
+
+      attr_accessor product: WhopSDK::Models::EntryListResponse::Product?
+
+      attr_accessor status: WhopSDK::Models::entry_status
+
+      attr_accessor user: WhopSDK::Models::EntryListResponse::User
+
+      def initialize: (
+        id: String,
+        created_at: Time?,
+        plan: WhopSDK::Models::EntryListResponse::Plan?,
+        product: WhopSDK::Models::EntryListResponse::Product?,
+        status: WhopSDK::Models::entry_status,
+        user: WhopSDK::Models::EntryListResponse::User
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time?,
+        plan: WhopSDK::Models::EntryListResponse::Plan?,
+        product: WhopSDK::Models::EntryListResponse::Product?,
+        status: WhopSDK::Models::entry_status,
+        user: WhopSDK::Models::EntryListResponse::User
+      }
+
+      type plan = { id: String }
+
+      class Plan < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type product = { id: String, title: String }
+
+      class Product < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type user =
+        { id: String, email: String?, name: String?, username: String }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor email: String?
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (
+          id: String,
+          email: String?,
+          name: String?,
+          username: String
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          email: String?,
+          name: String?,
+          username: String
+        }
+      end
+    end
+  end
+end

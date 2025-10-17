@@ -1,0 +1,80 @@
+module WhopSDK
+  module Models
+    type message_create_params =
+      {
+        channel_id: String,
+        content: String,
+        attachments: ::Array[WhopSDK::MessageCreateParams::Attachment]?,
+        poll: WhopSDK::MessageCreateParams::Poll?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class MessageCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor channel_id: String
+
+      attr_accessor content: String
+
+      attr_accessor attachments: ::Array[WhopSDK::MessageCreateParams::Attachment]?
+
+      attr_accessor poll: WhopSDK::MessageCreateParams::Poll?
+
+      def initialize: (
+        channel_id: String,
+        content: String,
+        ?attachments: ::Array[WhopSDK::MessageCreateParams::Attachment]?,
+        ?poll: WhopSDK::MessageCreateParams::Poll?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        channel_id: String,
+        content: String,
+        attachments: ::Array[WhopSDK::MessageCreateParams::Attachment]?,
+        poll: WhopSDK::MessageCreateParams::Poll?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type attachment = { id: String?, direct_upload_id: String? }
+
+      class Attachment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String?
+
+        attr_accessor direct_upload_id: String?
+
+        def initialize: (?id: String?, ?direct_upload_id: String?) -> void
+
+        def to_hash: -> { id: String?, direct_upload_id: String? }
+      end
+
+      type poll =
+        { options: ::Array[WhopSDK::MessageCreateParams::Poll::Option] }
+
+      class Poll < WhopSDK::Internal::Type::BaseModel
+        attr_accessor options: ::Array[WhopSDK::MessageCreateParams::Poll::Option]
+
+        def initialize: (
+          options: ::Array[WhopSDK::MessageCreateParams::Poll::Option]
+        ) -> void
+
+        def to_hash: -> {
+          options: ::Array[WhopSDK::MessageCreateParams::Poll::Option]
+        }
+
+        type option = { id: String, text: String }
+
+        class Option < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor text: String
+
+          def initialize: (id: String, text: String) -> void
+
+          def to_hash: -> { id: String, text: String }
+        end
+      end
+    end
+  end
+end

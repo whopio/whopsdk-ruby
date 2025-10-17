@@ -1,0 +1,37 @@
+module WhopSDK
+  module Resources
+    class AppBuilds
+      def create: (
+        attachment: WhopSDK::AppBuildCreateParams::Attachment,
+        checksum: String,
+        platform: WhopSDK::Models::app_build_platforms,
+        ?app_id: String?,
+        ?supported_app_view_types: ::Array[WhopSDK::Models::app_view_type]?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::AppBuild
+
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::AppBuild
+
+      def list: (
+        app_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?platform: WhopSDK::Models::app_build_platforms?,
+        ?status: WhopSDK::Models::app_build_statuses?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::AppBuildListResponse]
+
+      def promote: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::AppBuild
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

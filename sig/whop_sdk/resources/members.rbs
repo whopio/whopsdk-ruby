@@ -1,0 +1,32 @@
+module WhopSDK
+  module Resources
+    class Members
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::MemberRetrieveResponse
+
+      def list: (
+        company_id: String,
+        ?access_level: WhopSDK::Models::access_level?,
+        ?access_pass_ids: ::Array[String]?,
+        ?after: String?,
+        ?before: String?,
+        ?created_after: Time?,
+        ?created_before: Time?,
+        ?direction: WhopSDK::Models::direction?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?most_recent_actions: ::Array[WhopSDK::Models::member_most_recent_actions]?,
+        ?order: WhopSDK::Models::MemberListParams::order?,
+        ?plan_ids: ::Array[String]?,
+        ?promo_code_ids: ::Array[String]?,
+        ?query: String?,
+        ?statuses: ::Array[WhopSDK::Models::member_statuses]?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::MemberListResponse]
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

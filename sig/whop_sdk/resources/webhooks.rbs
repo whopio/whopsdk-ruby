@@ -1,0 +1,14 @@
+module WhopSDK
+  module Resources
+    class Webhooks
+      def unwrap: (
+        String payload
+      ) -> (WhopSDK::InvoiceCreatedWebhookEvent
+      | WhopSDK::InvoicePaidWebhookEvent
+      | WhopSDK::InvoicePastDueWebhookEvent
+      | WhopSDK::InvoiceVoidedWebhookEvent)
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

@@ -1,0 +1,24 @@
+module WhopSDK
+  module Models
+    type membership_update_params =
+      { metadata: ::Hash[Symbol, top]? }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class MembershipUpdateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor metadata: ::Hash[Symbol, top]?
+
+      def initialize: (
+        ?metadata: ::Hash[Symbol, top]?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        metadata: ::Hash[Symbol, top]?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

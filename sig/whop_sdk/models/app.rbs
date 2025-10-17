@@ -1,0 +1,201 @@
+module WhopSDK
+  module Models
+    type app =
+      {
+        id: String,
+        api_key: WhopSDK::App::APIKey?,
+        base_url: String?,
+        company: WhopSDK::App::Company,
+        creator: WhopSDK::App::Creator,
+        dashboard_path: String?,
+        description: String?,
+        discover_path: String?,
+        domain_id: String,
+        experience_path: String?,
+        name: String,
+        requested_permissions: ::Array[WhopSDK::App::RequestedPermission],
+        stats: WhopSDK::App::Stats?,
+        status: WhopSDK::Models::app_statuses,
+        verified: bool
+      }
+
+    class App < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_key: WhopSDK::App::APIKey?
+
+      attr_accessor base_url: String?
+
+      attr_accessor company: WhopSDK::App::Company
+
+      attr_accessor creator: WhopSDK::App::Creator
+
+      attr_accessor dashboard_path: String?
+
+      attr_accessor description: String?
+
+      attr_accessor discover_path: String?
+
+      attr_accessor domain_id: String
+
+      attr_accessor experience_path: String?
+
+      attr_accessor name: String
+
+      attr_accessor requested_permissions: ::Array[WhopSDK::App::RequestedPermission]
+
+      attr_accessor stats: WhopSDK::App::Stats?
+
+      attr_accessor status: WhopSDK::Models::app_statuses
+
+      attr_accessor verified: bool
+
+      def initialize: (
+        id: String,
+        api_key: WhopSDK::App::APIKey?,
+        base_url: String?,
+        company: WhopSDK::App::Company,
+        creator: WhopSDK::App::Creator,
+        dashboard_path: String?,
+        description: String?,
+        discover_path: String?,
+        domain_id: String,
+        experience_path: String?,
+        name: String,
+        requested_permissions: ::Array[WhopSDK::App::RequestedPermission],
+        stats: WhopSDK::App::Stats?,
+        status: WhopSDK::Models::app_statuses,
+        verified: bool
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_key: WhopSDK::App::APIKey?,
+        base_url: String?,
+        company: WhopSDK::App::Company,
+        creator: WhopSDK::App::Creator,
+        dashboard_path: String?,
+        description: String?,
+        discover_path: String?,
+        domain_id: String,
+        experience_path: String?,
+        name: String,
+        requested_permissions: ::Array[WhopSDK::App::RequestedPermission],
+        stats: WhopSDK::App::Stats?,
+        status: WhopSDK::Models::app_statuses,
+        verified: bool
+      }
+
+      type api_key = { id: String, token: String, created_at: Time }
+
+      class APIKey < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor token: String
+
+        attr_accessor created_at: Time
+
+        def initialize: (id: String, token: String, created_at: Time) -> void
+
+        def to_hash: -> { id: String, token: String, created_at: Time }
+      end
+
+      type company = { id: String, title: String }
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type creator = { id: String, name: String?, username: String }
+
+      class Creator < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
+      end
+
+      type requested_permission =
+        {
+          is_required: bool,
+          justification: String,
+          permission_action: WhopSDK::App::RequestedPermission::PermissionAction
+        }
+
+      class RequestedPermission < WhopSDK::Internal::Type::BaseModel
+        attr_accessor is_required: bool
+
+        attr_accessor justification: String
+
+        attr_accessor permission_action: WhopSDK::App::RequestedPermission::PermissionAction
+
+        def initialize: (
+          is_required: bool,
+          justification: String,
+          permission_action: WhopSDK::App::RequestedPermission::PermissionAction
+        ) -> void
+
+        def to_hash: -> {
+          is_required: bool,
+          justification: String,
+          permission_action: WhopSDK::App::RequestedPermission::PermissionAction
+        }
+
+        type permission_action = { action: String, name: String }
+
+        class PermissionAction < WhopSDK::Internal::Type::BaseModel
+          attr_accessor action: String
+
+          attr_accessor name: String
+
+          def initialize: (action: String, name: String) -> void
+
+          def to_hash: -> { action: String, name: String }
+        end
+      end
+
+      type stats =
+        {
+          dau: Integer,
+          mau: Integer,
+          :time_spent_last24_hours => Integer,
+          wau: Integer
+        }
+
+      class Stats < WhopSDK::Internal::Type::BaseModel
+        attr_accessor dau: Integer
+
+        attr_accessor mau: Integer
+
+        attr_accessor time_spent_last24_hours: Integer
+
+        attr_accessor wau: Integer
+
+        def initialize: (
+          dau: Integer,
+          mau: Integer,
+          time_spent_last24_hours: Integer,
+          wau: Integer
+        ) -> void
+
+        def to_hash: -> {
+          dau: Integer,
+          mau: Integer,
+          :time_spent_last24_hours => Integer,
+          wau: Integer
+        }
+      end
+    end
+  end
+end

@@ -1,0 +1,26 @@
+module WhopSDK
+  module Models
+    type authorized_user_roles =
+      :owner
+      | :admin
+      | :sales_manager
+      | :moderator
+      | :app_manager
+      | :support
+      | :manager
+
+    module AuthorizedUserRoles
+      extend WhopSDK::Internal::Type::Enum
+
+      OWNER: :owner
+      ADMIN: :admin
+      SALES_MANAGER: :sales_manager
+      MODERATOR: :moderator
+      APP_MANAGER: :app_manager
+      SUPPORT: :support
+      MANAGER: :manager
+
+      def self?.values: -> ::Array[WhopSDK::Models::authorized_user_roles]
+    end
+  end
+end

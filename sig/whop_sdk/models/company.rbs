@@ -1,0 +1,141 @@
+module WhopSDK
+  module Models
+    type company =
+      {
+        id: String,
+        business_type: WhopSDK::Models::business_types?,
+        created_at: Time,
+        industry_type: WhopSDK::Models::industry_types?,
+        member_count: Integer,
+        owner_user: WhopSDK::Company::OwnerUser,
+        published_reviews_count: Integer,
+        route: String,
+        social_links: ::Array[WhopSDK::Company::SocialLink],
+        title: String,
+        updated_at: Time,
+        verified: bool
+      }
+
+    class Company < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor business_type: WhopSDK::Models::business_types?
+
+      attr_accessor created_at: Time
+
+      attr_accessor industry_type: WhopSDK::Models::industry_types?
+
+      attr_accessor member_count: Integer
+
+      attr_accessor owner_user: WhopSDK::Company::OwnerUser
+
+      attr_accessor published_reviews_count: Integer
+
+      attr_accessor route: String
+
+      attr_accessor social_links: ::Array[WhopSDK::Company::SocialLink]
+
+      attr_accessor title: String
+
+      attr_accessor updated_at: Time
+
+      attr_accessor verified: bool
+
+      def initialize: (
+        id: String,
+        business_type: WhopSDK::Models::business_types?,
+        created_at: Time,
+        industry_type: WhopSDK::Models::industry_types?,
+        member_count: Integer,
+        owner_user: WhopSDK::Company::OwnerUser,
+        published_reviews_count: Integer,
+        route: String,
+        social_links: ::Array[WhopSDK::Company::SocialLink],
+        title: String,
+        updated_at: Time,
+        verified: bool
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        business_type: WhopSDK::Models::business_types?,
+        created_at: Time,
+        industry_type: WhopSDK::Models::industry_types?,
+        member_count: Integer,
+        owner_user: WhopSDK::Company::OwnerUser,
+        published_reviews_count: Integer,
+        route: String,
+        social_links: ::Array[WhopSDK::Company::SocialLink],
+        title: String,
+        updated_at: Time,
+        verified: bool
+      }
+
+      type owner_user = { id: String, name: String?, username: String }
+
+      class OwnerUser < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
+      end
+
+      type social_link =
+        {
+          id: String,
+          url: String,
+          website: WhopSDK::Models::Company::SocialLink::website
+        }
+
+      class SocialLink < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor url: String
+
+        attr_accessor website: WhopSDK::Models::Company::SocialLink::website
+
+        def initialize: (
+          id: String,
+          url: String,
+          website: WhopSDK::Models::Company::SocialLink::website
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          url: String,
+          website: WhopSDK::Models::Company::SocialLink::website
+        }
+
+        type website =
+          :x
+          | :instagram
+          | :facebook
+          | :tiktok
+          | :youtube
+          | :linkedin
+          | :twitch
+          | :website
+
+        module Website
+          extend WhopSDK::Internal::Type::Enum
+
+          X: :x
+          INSTAGRAM: :instagram
+          FACEBOOK: :facebook
+          TIKTOK: :tiktok
+          YOUTUBE: :youtube
+          LINKEDIN: :linkedin
+          TWITCH: :twitch
+          WEBSITE: :website
+
+          def self?.values: -> ::Array[WhopSDK::Models::Company::SocialLink::website]
+        end
+      end
+    end
+  end
+end

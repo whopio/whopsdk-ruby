@@ -1,0 +1,16 @@
+module WhopSDK
+  module Models
+    type app_build_statuses = :draft | :pending | :approved | :rejected
+
+    module AppBuildStatuses
+      extend WhopSDK::Internal::Type::Enum
+
+      DRAFT: :draft
+      PENDING: :pending
+      APPROVED: :approved
+      REJECTED: :rejected
+
+      def self?.values: -> ::Array[WhopSDK::Models::app_build_statuses]
+    end
+  end
+end

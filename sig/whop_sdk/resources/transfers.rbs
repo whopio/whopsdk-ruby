@@ -1,0 +1,34 @@
+module WhopSDK
+  module Resources
+    class Transfers
+      def create: (
+        amount: Float,
+        currency: WhopSDK::Models::currency,
+        destination_id: String,
+        origin_id: String,
+        ?idempotence_key: String?,
+        ?notes: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Transfer
+
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Transfer
+
+      def list: (
+        ?after: String?,
+        ?before: String?,
+        ?destination_id: String?,
+        ?direction: WhopSDK::Models::direction?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?order: WhopSDK::Models::TransferListParams::order?,
+        ?origin_id: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::TransferListResponse]
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

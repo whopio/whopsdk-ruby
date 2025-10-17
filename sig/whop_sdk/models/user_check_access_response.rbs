@@ -1,0 +1,22 @@
+module WhopSDK
+  module Models
+    type user_check_access_response =
+      { access_level: WhopSDK::Models::access_level, has_access: bool }
+
+    class UserCheckAccessResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor access_level: WhopSDK::Models::access_level
+
+      attr_accessor has_access: bool
+
+      def initialize: (
+        access_level: WhopSDK::Models::access_level,
+        has_access: bool
+      ) -> void
+
+      def to_hash: -> {
+        access_level: WhopSDK::Models::access_level,
+        has_access: bool
+      }
+    end
+  end
+end

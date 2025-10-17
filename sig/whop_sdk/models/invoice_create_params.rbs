@@ -1,0 +1,197 @@
+module WhopSDK
+  module Models
+    type invoice_create_params =
+      {
+        collection_method: WhopSDK::Models::collection_method,
+        company_id: String,
+        due_date: Time,
+        plan: WhopSDK::InvoiceCreateParams::Plan,
+        charge_buyer_fee: bool?,
+        customer_name: String?,
+        email_address: String?,
+        member_id: String?,
+        payment_token_id: String?,
+        product: WhopSDK::InvoiceCreateParams::Product?,
+        product_id: String?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class InvoiceCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor collection_method: WhopSDK::Models::collection_method
+
+      attr_accessor company_id: String
+
+      attr_accessor due_date: Time
+
+      attr_accessor plan: WhopSDK::InvoiceCreateParams::Plan
+
+      attr_accessor charge_buyer_fee: bool?
+
+      attr_accessor customer_name: String?
+
+      attr_accessor email_address: String?
+
+      attr_accessor member_id: String?
+
+      attr_accessor payment_token_id: String?
+
+      attr_accessor product: WhopSDK::InvoiceCreateParams::Product?
+
+      attr_accessor product_id: String?
+
+      def initialize: (
+        collection_method: WhopSDK::Models::collection_method,
+        company_id: String,
+        due_date: Time,
+        plan: WhopSDK::InvoiceCreateParams::Plan,
+        ?charge_buyer_fee: bool?,
+        ?customer_name: String?,
+        ?email_address: String?,
+        ?member_id: String?,
+        ?payment_token_id: String?,
+        ?product: WhopSDK::InvoiceCreateParams::Product?,
+        ?product_id: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        collection_method: WhopSDK::Models::collection_method,
+        company_id: String,
+        due_date: Time,
+        plan: WhopSDK::InvoiceCreateParams::Plan,
+        charge_buyer_fee: bool?,
+        customer_name: String?,
+        email_address: String?,
+        member_id: String?,
+        payment_token_id: String?,
+        product: WhopSDK::InvoiceCreateParams::Product?,
+        product_id: String?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type plan =
+        {
+          billing_period: Integer?,
+          custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Plan::CustomField]?,
+          description: String?,
+          expiration_days: Integer?,
+          initial_price: Float?,
+          internal_notes: String?,
+          plan_type: WhopSDK::Models::plan_type?,
+          release_method: WhopSDK::Models::release_method?,
+          renewal_price: Float?,
+          trial_period_days: Integer?,
+          visibility: WhopSDK::Models::visibility?
+        }
+
+      class Plan < WhopSDK::Internal::Type::BaseModel
+        attr_accessor billing_period: Integer?
+
+        attr_accessor custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Plan::CustomField]?
+
+        attr_accessor description: String?
+
+        attr_accessor expiration_days: Integer?
+
+        attr_accessor initial_price: Float?
+
+        attr_accessor internal_notes: String?
+
+        attr_accessor plan_type: WhopSDK::Models::plan_type?
+
+        attr_accessor release_method: WhopSDK::Models::release_method?
+
+        attr_accessor renewal_price: Float?
+
+        attr_accessor trial_period_days: Integer?
+
+        attr_accessor visibility: WhopSDK::Models::visibility?
+
+        def initialize: (
+          ?billing_period: Integer?,
+          ?custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Plan::CustomField]?,
+          ?description: String?,
+          ?expiration_days: Integer?,
+          ?initial_price: Float?,
+          ?internal_notes: String?,
+          ?plan_type: WhopSDK::Models::plan_type?,
+          ?release_method: WhopSDK::Models::release_method?,
+          ?renewal_price: Float?,
+          ?trial_period_days: Integer?,
+          ?visibility: WhopSDK::Models::visibility?
+        ) -> void
+
+        def to_hash: -> {
+          billing_period: Integer?,
+          custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Plan::CustomField]?,
+          description: String?,
+          expiration_days: Integer?,
+          initial_price: Float?,
+          internal_notes: String?,
+          plan_type: WhopSDK::Models::plan_type?,
+          release_method: WhopSDK::Models::release_method?,
+          renewal_price: Float?,
+          trial_period_days: Integer?,
+          visibility: WhopSDK::Models::visibility?
+        }
+
+        type custom_field =
+          {
+            field_type: :text,
+            name: String,
+            id: String?,
+            order: Integer?,
+            placeholder: String?,
+            required: bool?
+          }
+
+        class CustomField < WhopSDK::Internal::Type::BaseModel
+          attr_accessor field_type: :text
+
+          attr_accessor name: String
+
+          attr_accessor id: String?
+
+          attr_accessor order: Integer?
+
+          attr_accessor placeholder: String?
+
+          attr_accessor required: bool?
+
+          def initialize: (
+            name: String,
+            ?id: String?,
+            ?order: Integer?,
+            ?placeholder: String?,
+            ?required: bool?,
+            ?field_type: :text
+          ) -> void
+
+          def to_hash: -> {
+            field_type: :text,
+            name: String,
+            id: String?,
+            order: Integer?,
+            placeholder: String?,
+            required: bool?
+          }
+        end
+      end
+
+      type product = { title: String, product_tax_code_id: String? }
+
+      class Product < WhopSDK::Internal::Type::BaseModel
+        attr_accessor title: String
+
+        attr_accessor product_tax_code_id: String?
+
+        def initialize: (title: String, ?product_tax_code_id: String?) -> void
+
+        def to_hash: -> { title: String, product_tax_code_id: String? }
+      end
+    end
+  end
+end

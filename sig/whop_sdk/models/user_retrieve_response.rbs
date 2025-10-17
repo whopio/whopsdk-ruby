@@ -1,0 +1,40 @@
+module WhopSDK
+  module Models
+    type user_retrieve_response =
+      {
+        id: String,
+        bio: String?,
+        created_at: Time,
+        name: String?,
+        username: String
+      }
+
+    class UserRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor bio: String?
+
+      attr_accessor created_at: Time
+
+      attr_accessor name: String?
+
+      attr_accessor username: String
+
+      def initialize: (
+        id: String,
+        bio: String?,
+        created_at: Time,
+        name: String?,
+        username: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        bio: String?,
+        created_at: Time,
+        name: String?,
+        username: String
+      }
+    end
+  end
+end

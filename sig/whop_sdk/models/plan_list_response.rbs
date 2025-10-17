@@ -1,0 +1,144 @@
+module WhopSDK
+  module Models
+    type plan_list_response =
+      {
+        id: String,
+        billing_period: Integer?,
+        company: WhopSDK::Models::PlanListResponse::Company?,
+        created_at: Time,
+        currency: WhopSDK::Models::currency,
+        description: String?,
+        expiration_days: Integer?,
+        initial_price: Float,
+        internal_notes: String?,
+        invoice: WhopSDK::Models::PlanListResponse::Invoice?,
+        member_count: Integer?,
+        plan_type: WhopSDK::Models::plan_type,
+        product: WhopSDK::Models::PlanListResponse::Product?,
+        purchase_url: String,
+        release_method: WhopSDK::Models::release_method,
+        renewal_price: Float,
+        trial_period_days: Integer?,
+        updated_at: Time,
+        visibility: WhopSDK::Models::visibility
+      }
+
+    class PlanListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor billing_period: Integer?
+
+      attr_accessor company: WhopSDK::Models::PlanListResponse::Company?
+
+      attr_accessor created_at: Time
+
+      attr_accessor currency: WhopSDK::Models::currency
+
+      attr_accessor description: String?
+
+      attr_accessor expiration_days: Integer?
+
+      attr_accessor initial_price: Float
+
+      attr_accessor internal_notes: String?
+
+      attr_accessor invoice: WhopSDK::Models::PlanListResponse::Invoice?
+
+      attr_accessor member_count: Integer?
+
+      attr_accessor plan_type: WhopSDK::Models::plan_type
+
+      attr_accessor product: WhopSDK::Models::PlanListResponse::Product?
+
+      attr_accessor purchase_url: String
+
+      attr_accessor release_method: WhopSDK::Models::release_method
+
+      attr_accessor renewal_price: Float
+
+      attr_accessor trial_period_days: Integer?
+
+      attr_accessor updated_at: Time
+
+      attr_accessor visibility: WhopSDK::Models::visibility
+
+      def initialize: (
+        id: String,
+        billing_period: Integer?,
+        company: WhopSDK::Models::PlanListResponse::Company?,
+        created_at: Time,
+        currency: WhopSDK::Models::currency,
+        description: String?,
+        expiration_days: Integer?,
+        initial_price: Float,
+        internal_notes: String?,
+        invoice: WhopSDK::Models::PlanListResponse::Invoice?,
+        member_count: Integer?,
+        plan_type: WhopSDK::Models::plan_type,
+        product: WhopSDK::Models::PlanListResponse::Product?,
+        purchase_url: String,
+        release_method: WhopSDK::Models::release_method,
+        renewal_price: Float,
+        trial_period_days: Integer?,
+        updated_at: Time,
+        visibility: WhopSDK::Models::visibility
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        billing_period: Integer?,
+        company: WhopSDK::Models::PlanListResponse::Company?,
+        created_at: Time,
+        currency: WhopSDK::Models::currency,
+        description: String?,
+        expiration_days: Integer?,
+        initial_price: Float,
+        internal_notes: String?,
+        invoice: WhopSDK::Models::PlanListResponse::Invoice?,
+        member_count: Integer?,
+        plan_type: WhopSDK::Models::plan_type,
+        product: WhopSDK::Models::PlanListResponse::Product?,
+        purchase_url: String,
+        release_method: WhopSDK::Models::release_method,
+        renewal_price: Float,
+        trial_period_days: Integer?,
+        updated_at: Time,
+        visibility: WhopSDK::Models::visibility
+      }
+
+      type company = { id: String, title: String }
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type invoice = { id: String }
+
+      class Invoice < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type product = { id: String, title: String }
+
+      class Product < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+    end
+  end
+end

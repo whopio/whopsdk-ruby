@@ -1,0 +1,77 @@
+module WhopSDK
+  class Client < WhopSDK::Internal::Transport::BaseClient
+    DEFAULT_MAX_RETRIES: 2
+
+    DEFAULT_TIMEOUT_IN_SECONDS: Float
+
+    DEFAULT_INITIAL_RETRY_DELAY: Float
+
+    DEFAULT_MAX_RETRY_DELAY: Float
+
+    attr_reader api_key: String
+
+    attr_reader app_id: String
+
+    attr_reader apps: WhopSDK::Resources::Apps
+
+    attr_reader invoices: WhopSDK::Resources::Invoices
+
+    attr_reader course_lesson_interactions: WhopSDK::Resources::CourseLessonInteractions
+
+    attr_reader products: WhopSDK::Resources::Products
+
+    attr_reader companies: WhopSDK::Resources::Companies
+
+    attr_reader webhooks: WhopSDK::Resources::Webhooks
+
+    attr_reader plans: WhopSDK::Resources::Plans
+
+    attr_reader entries: WhopSDK::Resources::Entries
+
+    attr_reader forum_posts: WhopSDK::Resources::ForumPosts
+
+    attr_reader transfers: WhopSDK::Resources::Transfers
+
+    attr_reader ledger_accounts: WhopSDK::Resources::LedgerAccounts
+
+    attr_reader memberships: WhopSDK::Resources::Memberships
+
+    attr_reader authorized_users: WhopSDK::Resources::AuthorizedUsers
+
+    attr_reader app_builds: WhopSDK::Resources::AppBuilds
+
+    attr_reader shipments: WhopSDK::Resources::Shipments
+
+    attr_reader checkout_configurations: WhopSDK::Resources::CheckoutConfigurations
+
+    attr_reader messages: WhopSDK::Resources::Messages
+
+    attr_reader chat_channels: WhopSDK::Resources::ChatChannels
+
+    attr_reader users: WhopSDK::Resources::Users
+
+    attr_reader payments: WhopSDK::Resources::Payments
+
+    attr_reader support_channels: WhopSDK::Resources::SupportChannels
+
+    attr_reader experiences: WhopSDK::Resources::Experiences
+
+    attr_reader reactions: WhopSDK::Resources::Reactions
+
+    attr_reader members: WhopSDK::Resources::Members
+
+    attr_reader forums: WhopSDK::Resources::Forums
+
+    private def auth_headers: -> ::Hash[String, String]
+
+    def initialize: (
+      ?api_key: String?,
+      ?app_id: String?,
+      ?base_url: String?,
+      ?max_retries: Integer,
+      ?timeout: Float,
+      ?initial_retry_delay: Float,
+      ?max_retry_delay: Float
+    ) -> void
+  end
+end

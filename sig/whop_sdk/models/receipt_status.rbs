@@ -1,0 +1,20 @@
+module WhopSDK
+  module Models
+    type receipt_status =
+      :draft | :open | :paid | :pending | :uncollectible | :unresolved | :void
+
+    module ReceiptStatus
+      extend WhopSDK::Internal::Type::Enum
+
+      DRAFT: :draft
+      OPEN: :open
+      PAID: :paid
+      PENDING: :pending
+      UNCOLLECTIBLE: :uncollectible
+      UNRESOLVED: :unresolved
+      VOID: :void
+
+      def self?.values: -> ::Array[WhopSDK::Models::receipt_status]
+    end
+  end
+end

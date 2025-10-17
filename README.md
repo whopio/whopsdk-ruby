@@ -1,12 +1,12 @@
 # Whop Ruby API library
 
-The Whop Ruby library provides convenient access to the Whop REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/stainless-sdks/whopsdk-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
+The Whop Ruby library provides convenient access to the Whop REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/whopio/whopsdk-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
 
 It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
-Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/whopsdk).
+Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/whop-sdk).
 
 The REST API documentation can be found on [docs.whop.com](https://docs.whop.com/apps).
 
@@ -14,17 +14,21 @@ The REST API documentation can be found on [docs.whop.com](https://docs.whop.com
 
 To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
 
+<!-- x-release-please-start-version -->
+
 ```ruby
-gem "whopsdk", "~> 0.0.1"
+gem "whop-sdk", "~> 0.0.1"
 ```
+
+<!-- x-release-please-end -->
 
 ## Usage
 
 ```ruby
 require "bundler/setup"
-require "whopsdk"
+require "whop_sdk"
 
-whop = Whopsdk::Client.new(
+whop = WhopSDK::Client.new(
   api_key: ENV["WHOP_API_KEY"], # This is the default and can be omitted
   app_id: "app_xxxxxxxxxxxxxx"
 )
@@ -64,17 +68,17 @@ end
 
 ### Handling errors
 
-When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `Whopsdk::Errors::APIError` will be thrown:
+When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `WhopSDK::Errors::APIError` will be thrown:
 
 ```ruby
 begin
   payment = whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
-rescue Whopsdk::Errors::APIConnectionError => e
+rescue WhopSDK::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
-rescue Whopsdk::Errors::RateLimitError => e
+rescue WhopSDK::Errors::RateLimitError => e
   puts("A 429 status code was received; we should back off a bit.")
-rescue Whopsdk::Errors::APIStatusError => e
+rescue WhopSDK::Errors::APIStatusError => e
   puts("Another non-200-range status code was received")
   puts(e.status)
 end
@@ -106,7 +110,7 @@ You can use the `max_retries` option to configure or disable this:
 
 ```ruby
 # Configure the default for all requests:
-whop = Whopsdk::Client.new(
+whop = WhopSDK::Client.new(
   max_retries: 0, # default is 2
   app_id: "app_xxxxxxxxxxxxxx"
 )
@@ -121,7 +125,7 @@ By default, requests will time out after 60 seconds. You can use the timeout opt
 
 ```ruby
 # Configure the default for all requests:
-whop = Whopsdk::Client.new(
+whop = WhopSDK::Client.new(
   timeout: nil, # default is 60
   app_id: "app_xxxxxxxxxxxxxx"
 )
@@ -130,7 +134,7 @@ whop = Whopsdk::Client.new(
 whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx", request_options: {timeout: 5})
 ```
 
-On timeout, `Whopsdk::Errors::APITimeoutError` is raised.
+On timeout, `WhopSDK::Errors::APITimeoutError` is raised.
 
 Note that requests that time out are retried by default.
 
@@ -138,7 +142,7 @@ Note that requests that time out are retried by default.
 
 ### BaseModel
 
-All parameter and response objects inherit from `Whopsdk::Internal::Type::BaseModel`, which provides several conveniences, including:
+All parameter and response objects inherit from `WhopSDK::Internal::Type::BaseModel`, which provides several conveniences, including:
 
 1. All fields, including unknown ones, are accessible with `obj[:prop]` syntax, and can be destructured with `obj => {prop: prop}` or pattern-matching syntax.
 
@@ -190,9 +194,9 @@ response = client.request(
 
 ### Concurrency & connection pooling
 
-The `Whopsdk::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.
+The `WhopSDK::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.
 
-Each instance of `Whopsdk::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.
+Each instance of `WhopSDK::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.
 
 When all available connections from the pool are checked out, requests wait for a new connection to become available, with queue time counting towards the request timeout.
 
@@ -215,7 +219,7 @@ Or, equivalently:
 whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
 
 # You can also splat a full Params class:
-params = Whopsdk::PaymentListParams.new(company_id: "biz_xxxxxxxxxxxxxx")
+params = WhopSDK::PaymentListParams.new(company_id: "biz_xxxxxxxxxxxxxx")
 whop.payments.list(**params)
 ```
 
@@ -225,10 +229,10 @@ Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::E
 
 ```ruby
 # :live
-puts(Whopsdk::AppStatuses::LIVE)
+puts(WhopSDK::AppStatuses::LIVE)
 
-# Revealed type: `T.all(Whopsdk::AppStatuses, Symbol)`
-T.reveal_type(Whopsdk::AppStatuses::LIVE)
+# Revealed type: `T.all(WhopSDK::AppStatuses, Symbol)`
+T.reveal_type(WhopSDK::AppStatuses::LIVE)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
@@ -236,7 +240,7 @@ Enum parameters have a "relaxed" type, so you can either pass in enum constants 
 ```ruby
 # Using the enum constants preserves the tagged type information:
 whop.apps.update(
-  status: Whopsdk::AppStatuses::LIVE,
+  status: WhopSDK::AppStatuses::LIVE,
   # …
 )
 
@@ -259,4 +263,4 @@ Ruby 3.2.0 or higher.
 
 ## Contributing
 
-See [the contributing documentation](https://github.com/stainless-sdks/whopsdk-ruby/tree/main/CONTRIBUTING.md).
+See [the contributing documentation](https://github.com/whopio/whopsdk-ruby/tree/main/CONTRIBUTING.md).

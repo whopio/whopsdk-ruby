@@ -1,0 +1,52 @@
+module WhopSDK
+  module Models
+    type forum_list_response =
+      {
+        id: String,
+        email_notification_preference: WhopSDK::Models::email_notification_preferences,
+        experience: WhopSDK::Models::ForumListResponse::Experience,
+        who_can_comment: WhopSDK::Models::who_can_comment_types,
+        who_can_post: WhopSDK::Models::who_can_post_types
+      }
+
+    class ForumListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor email_notification_preference: WhopSDK::Models::email_notification_preferences
+
+      attr_accessor experience: WhopSDK::Models::ForumListResponse::Experience
+
+      attr_accessor who_can_comment: WhopSDK::Models::who_can_comment_types
+
+      attr_accessor who_can_post: WhopSDK::Models::who_can_post_types
+
+      def initialize: (
+        id: String,
+        email_notification_preference: WhopSDK::Models::email_notification_preferences,
+        experience: WhopSDK::Models::ForumListResponse::Experience,
+        who_can_comment: WhopSDK::Models::who_can_comment_types,
+        who_can_post: WhopSDK::Models::who_can_post_types
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        email_notification_preference: WhopSDK::Models::email_notification_preferences,
+        experience: WhopSDK::Models::ForumListResponse::Experience,
+        who_can_comment: WhopSDK::Models::who_can_comment_types,
+        who_can_post: WhopSDK::Models::who_can_post_types
+      }
+
+      type experience = { id: String, name: String }
+
+      class Experience < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String
+
+        def initialize: (id: String, name: String) -> void
+
+        def to_hash: -> { id: String, name: String }
+      end
+    end
+  end
+end

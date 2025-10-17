@@ -1,0 +1,14 @@
+module WhopSDK
+  module Models
+    type who_can_post_types = :everyone | :admins
+
+    module WhoCanPostTypes
+      extend WhopSDK::Internal::Type::Enum
+
+      EVERYONE: :everyone
+      ADMINS: :admins
+
+      def self?.values: -> ::Array[WhopSDK::Models::who_can_post_types]
+    end
+  end
+end

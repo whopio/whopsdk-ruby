@@ -1,0 +1,41 @@
+module WhopSDK
+  module Resources
+    class Invoices
+      def create: (
+        collection_method: WhopSDK::Models::collection_method,
+        company_id: String,
+        due_date: Time,
+        plan: WhopSDK::InvoiceCreateParams::Plan,
+        ?charge_buyer_fee: bool?,
+        ?customer_name: String?,
+        ?email_address: String?,
+        ?member_id: String?,
+        ?payment_token_id: String?,
+        ?product: WhopSDK::InvoiceCreateParams::Product?,
+        ?product_id: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::InvoiceCreateResponse
+
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Invoice
+
+      def list: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?direction: WhopSDK::Models::direction?,
+        ?filters: WhopSDK::InvoiceListParams::Filters?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?order: WhopSDK::Models::InvoiceListParams::order?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::InvoiceListItem]
+
+      def `void`: (String id, ?request_options: WhopSDK::request_opts) -> bool
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

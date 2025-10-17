@@ -1,0 +1,14 @@
+module WhopSDK
+  module Models
+    type collection_method = :send_invoice | :charge_automatically
+
+    module CollectionMethod
+      extend WhopSDK::Internal::Type::Enum
+
+      SEND_INVOICE: :send_invoice
+      CHARGE_AUTOMATICALLY: :charge_automatically
+
+      def self?.values: -> ::Array[WhopSDK::Models::collection_method]
+    end
+  end
+end

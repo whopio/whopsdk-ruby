@@ -1,0 +1,116 @@
+module WhopSDK
+  module Models
+    type member_retrieve_response =
+      {
+        id: String,
+        access_level: WhopSDK::Models::access_level,
+        company: WhopSDK::Models::MemberRetrieveResponse::Company,
+        created_at: Time,
+        joined_at: Time,
+        most_recent_action: WhopSDK::Models::member_most_recent_actions?,
+        most_recent_action_at: Time?,
+        phone: String?,
+        status: WhopSDK::Models::member_statuses,
+        updated_at: Time,
+        usd_total_spent: Float,
+        user: WhopSDK::Models::MemberRetrieveResponse::User?
+      }
+
+    class MemberRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor access_level: WhopSDK::Models::access_level
+
+      attr_accessor company: WhopSDK::Models::MemberRetrieveResponse::Company
+
+      attr_accessor created_at: Time
+
+      attr_accessor joined_at: Time
+
+      attr_accessor most_recent_action: WhopSDK::Models::member_most_recent_actions?
+
+      attr_accessor most_recent_action_at: Time?
+
+      attr_accessor phone: String?
+
+      attr_accessor status: WhopSDK::Models::member_statuses
+
+      attr_accessor updated_at: Time
+
+      attr_accessor usd_total_spent: Float
+
+      attr_accessor user: WhopSDK::Models::MemberRetrieveResponse::User?
+
+      def initialize: (
+        id: String,
+        access_level: WhopSDK::Models::access_level,
+        company: WhopSDK::Models::MemberRetrieveResponse::Company,
+        created_at: Time,
+        joined_at: Time,
+        most_recent_action: WhopSDK::Models::member_most_recent_actions?,
+        most_recent_action_at: Time?,
+        phone: String?,
+        status: WhopSDK::Models::member_statuses,
+        updated_at: Time,
+        usd_total_spent: Float,
+        user: WhopSDK::Models::MemberRetrieveResponse::User?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        access_level: WhopSDK::Models::access_level,
+        company: WhopSDK::Models::MemberRetrieveResponse::Company,
+        created_at: Time,
+        joined_at: Time,
+        most_recent_action: WhopSDK::Models::member_most_recent_actions?,
+        most_recent_action_at: Time?,
+        phone: String?,
+        status: WhopSDK::Models::member_statuses,
+        updated_at: Time,
+        usd_total_spent: Float,
+        user: WhopSDK::Models::MemberRetrieveResponse::User?
+      }
+
+      type company = { id: String, route: String, title: String }
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor route: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, route: String, title: String) -> void
+
+        def to_hash: -> { id: String, route: String, title: String }
+      end
+
+      type user =
+        { id: String, email: String?, name: String?, username: String }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor email: String?
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (
+          id: String,
+          email: String?,
+          name: String?,
+          username: String
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          email: String?,
+          name: String?,
+          username: String
+        }
+      end
+    end
+  end
+end

@@ -1,0 +1,20 @@
+module WhopSDK
+  module Models
+    type user_check_access_params =
+      { id: String } & WhopSDK::Internal::Type::request_parameters
+
+    class UserCheckAccessParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      def initialize: (
+        id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> { id: String, request_options: WhopSDK::RequestOptions }
+    end
+  end
+end

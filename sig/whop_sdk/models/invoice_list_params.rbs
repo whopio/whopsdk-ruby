@@ -1,0 +1,100 @@
+module WhopSDK
+  module Models
+    type invoice_list_params =
+      {
+        company_id: String,
+        after: String?,
+        before: String?,
+        direction: WhopSDK::Models::direction?,
+        filters: WhopSDK::InvoiceListParams::Filters?,
+        first: Integer?,
+        last: Integer?,
+        order: WhopSDK::Models::InvoiceListParams::order?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class InvoiceListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor direction: WhopSDK::Models::direction?
+
+      attr_accessor filters: WhopSDK::InvoiceListParams::Filters?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      attr_accessor order: WhopSDK::Models::InvoiceListParams::order?
+
+      def initialize: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?direction: WhopSDK::Models::direction?,
+        ?filters: WhopSDK::InvoiceListParams::Filters?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?order: WhopSDK::Models::InvoiceListParams::order?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        after: String?,
+        before: String?,
+        direction: WhopSDK::Models::direction?,
+        filters: WhopSDK::InvoiceListParams::Filters?,
+        first: Integer?,
+        last: Integer?,
+        order: WhopSDK::Models::InvoiceListParams::order?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type filters =
+        {
+          access_pass_ids: ::Array[String]?,
+          collection_methods: ::Array[WhopSDK::Models::collection_method]?,
+          statuses: ::Array[WhopSDK::Models::invoice_status]?
+        }
+
+      class Filters < WhopSDK::Internal::Type::BaseModel
+        attr_accessor access_pass_ids: ::Array[String]?
+
+        attr_accessor collection_methods: ::Array[WhopSDK::Models::collection_method]?
+
+        attr_accessor statuses: ::Array[WhopSDK::Models::invoice_status]?
+
+        def initialize: (
+          ?access_pass_ids: ::Array[String]?,
+          ?collection_methods: ::Array[WhopSDK::Models::collection_method]?,
+          ?statuses: ::Array[WhopSDK::Models::invoice_status]?
+        ) -> void
+
+        def to_hash: -> {
+          access_pass_ids: ::Array[String]?,
+          collection_methods: ::Array[WhopSDK::Models::collection_method]?,
+          statuses: ::Array[WhopSDK::Models::invoice_status]?
+        }
+      end
+
+      type order = :id | :created_at | :due_date
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        ID: :id
+        CREATED_AT: :created_at
+        DUE_DATE: :due_date
+
+        def self?.values: -> ::Array[WhopSDK::Models::InvoiceListParams::order]
+      end
+    end
+  end
+end

@@ -1,0 +1,114 @@
+module WhopSDK
+  module Models
+    type entry =
+      {
+        id: String,
+        created_at: Time?,
+        custom_field_responses: ::Array[WhopSDK::Entry::CustomFieldResponse]?,
+        plan: WhopSDK::Entry::Plan?,
+        product: WhopSDK::Entry::Product?,
+        status: WhopSDK::Models::entry_status,
+        user: WhopSDK::Entry::User
+      }
+
+    class Entry < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time?
+
+      attr_accessor custom_field_responses: ::Array[WhopSDK::Entry::CustomFieldResponse]?
+
+      attr_accessor plan: WhopSDK::Entry::Plan?
+
+      attr_accessor product: WhopSDK::Entry::Product?
+
+      attr_accessor status: WhopSDK::Models::entry_status
+
+      attr_accessor user: WhopSDK::Entry::User
+
+      def initialize: (
+        id: String,
+        created_at: Time?,
+        custom_field_responses: ::Array[WhopSDK::Entry::CustomFieldResponse]?,
+        plan: WhopSDK::Entry::Plan?,
+        product: WhopSDK::Entry::Product?,
+        status: WhopSDK::Models::entry_status,
+        user: WhopSDK::Entry::User
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time?,
+        custom_field_responses: ::Array[WhopSDK::Entry::CustomFieldResponse]?,
+        plan: WhopSDK::Entry::Plan?,
+        product: WhopSDK::Entry::Product?,
+        status: WhopSDK::Models::entry_status,
+        user: WhopSDK::Entry::User
+      }
+
+      type custom_field_response =
+        { id: String, answer: String, question: String }
+
+      class CustomFieldResponse < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor answer: String
+
+        attr_accessor question: String
+
+        def initialize: (id: String, answer: String, question: String) -> void
+
+        def to_hash: -> { id: String, answer: String, question: String }
+      end
+
+      type plan = { id: String }
+
+      class Plan < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type product = { id: String, title: String }
+
+      class Product < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type user =
+        { id: String, email: String?, name: String?, username: String }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor email: String?
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (
+          id: String,
+          email: String?,
+          name: String?,
+          username: String
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          email: String?,
+          name: String?,
+          username: String
+        }
+      end
+    end
+  end
+end

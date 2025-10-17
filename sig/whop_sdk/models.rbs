@@ -1,0 +1,295 @@
+module WhopSDK
+  module AccessLevel = WhopSDK::Models::AccessLevel
+
+  module AccessPassType = WhopSDK::Models::AccessPassType
+
+  class App = WhopSDK::Models::App
+
+  class AppBuild = WhopSDK::Models::AppBuild
+
+  class AppBuildCreateParams = WhopSDK::Models::AppBuildCreateParams
+
+  class AppBuildListParams = WhopSDK::Models::AppBuildListParams
+
+  module AppBuildPlatforms = WhopSDK::Models::AppBuildPlatforms
+
+  class AppBuildPromoteParams = WhopSDK::Models::AppBuildPromoteParams
+
+  class AppBuildRetrieveParams = WhopSDK::Models::AppBuildRetrieveParams
+
+  module AppBuildStatuses = WhopSDK::Models::AppBuildStatuses
+
+  class AppCreateParams = WhopSDK::Models::AppCreateParams
+
+  class AppListParams = WhopSDK::Models::AppListParams
+
+  class AppRetrieveParams = WhopSDK::Models::AppRetrieveParams
+
+  module AppStatuses = WhopSDK::Models::AppStatuses
+
+  class AppUpdateParams = WhopSDK::Models::AppUpdateParams
+
+  module AppViewType = WhopSDK::Models::AppViewType
+
+  class AuthorizedUserListParams = WhopSDK::Models::AuthorizedUserListParams
+
+  class AuthorizedUserRetrieveParams = WhopSDK::Models::AuthorizedUserRetrieveParams
+
+  module AuthorizedUserRoles = WhopSDK::Models::AuthorizedUserRoles
+
+  module BusinessTypes = WhopSDK::Models::BusinessTypes
+
+  class ChatChannel = WhopSDK::Models::ChatChannel
+
+  class ChatChannelListParams = WhopSDK::Models::ChatChannelListParams
+
+  class ChatChannelRetrieveParams = WhopSDK::Models::ChatChannelRetrieveParams
+
+  class ChatChannelUpdateParams = WhopSDK::Models::ChatChannelUpdateParams
+
+  class CheckoutConfiguration = WhopSDK::Models::CheckoutConfiguration
+
+  class CheckoutConfigurationCreateParams = WhopSDK::Models::CheckoutConfigurationCreateParams
+
+  class CheckoutConfigurationListParams = WhopSDK::Models::CheckoutConfigurationListParams
+
+  class CheckoutConfigurationRetrieveParams = WhopSDK::Models::CheckoutConfigurationRetrieveParams
+
+  module CollectionMethod = WhopSDK::Models::CollectionMethod
+
+  class Company = WhopSDK::Models::Company
+
+  class CompanyRetrieveParams = WhopSDK::Models::CompanyRetrieveParams
+
+  class CourseLessonInteraction = WhopSDK::Models::CourseLessonInteraction
+
+  class CourseLessonInteractionListItem = WhopSDK::Models::CourseLessonInteractionListItem
+
+  class CourseLessonInteractionListParams = WhopSDK::Models::CourseLessonInteractionListParams
+
+  class CourseLessonInteractionRetrieveParams = WhopSDK::Models::CourseLessonInteractionRetrieveParams
+
+  module Currency = WhopSDK::Models::Currency
+
+  module CustomCta = WhopSDK::Models::CustomCta
+
+  module Direction = WhopSDK::Models::Direction
+
+  module DmsPostTypes = WhopSDK::Models::DmsPostTypes
+
+  module EmailNotificationPreferences = WhopSDK::Models::EmailNotificationPreferences
+
+  class Entry = WhopSDK::Models::Entry
+
+  class EntryApproveParams = WhopSDK::Models::EntryApproveParams
+
+  class EntryDenyParams = WhopSDK::Models::EntryDenyParams
+
+  class EntryListParams = WhopSDK::Models::EntryListParams
+
+  class EntryRetrieveParams = WhopSDK::Models::EntryRetrieveParams
+
+  module EntryStatus = WhopSDK::Models::EntryStatus
+
+  class Experience = WhopSDK::Models::Experience
+
+  class ExperienceAttachParams = WhopSDK::Models::ExperienceAttachParams
+
+  class ExperienceCreateParams = WhopSDK::Models::ExperienceCreateParams
+
+  class ExperienceDeleteParams = WhopSDK::Models::ExperienceDeleteParams
+
+  class ExperienceDetachParams = WhopSDK::Models::ExperienceDetachParams
+
+  class ExperienceListParams = WhopSDK::Models::ExperienceListParams
+
+  class ExperienceRetrieveParams = WhopSDK::Models::ExperienceRetrieveParams
+
+  class ExperienceUpdateParams = WhopSDK::Models::ExperienceUpdateParams
+
+  class Forum = WhopSDK::Models::Forum
+
+  class ForumListParams = WhopSDK::Models::ForumListParams
+
+  class ForumPost = WhopSDK::Models::ForumPost
+
+  class ForumPostCreateParams = WhopSDK::Models::ForumPostCreateParams
+
+  class ForumPostListParams = WhopSDK::Models::ForumPostListParams
+
+  class ForumPostRetrieveParams = WhopSDK::Models::ForumPostRetrieveParams
+
+  class ForumRetrieveParams = WhopSDK::Models::ForumRetrieveParams
+
+  class ForumUpdateParams = WhopSDK::Models::ForumUpdateParams
+
+  module FriendlyReceiptStatus = WhopSDK::Models::FriendlyReceiptStatus
+
+  module GlobalAffiliateStatus = WhopSDK::Models::GlobalAffiliateStatus
+
+  module IndustryTypes = WhopSDK::Models::IndustryTypes
+
+  class Invoice = WhopSDK::Models::Invoice
+
+  class InvoiceCreatedWebhookEvent = WhopSDK::Models::InvoiceCreatedWebhookEvent
+
+  class InvoiceCreateParams = WhopSDK::Models::InvoiceCreateParams
+
+  class InvoiceListItem = WhopSDK::Models::InvoiceListItem
+
+  class InvoiceListParams = WhopSDK::Models::InvoiceListParams
+
+  class InvoicePaidWebhookEvent = WhopSDK::Models::InvoicePaidWebhookEvent
+
+  class InvoicePastDueWebhookEvent = WhopSDK::Models::InvoicePastDueWebhookEvent
+
+  class InvoiceRetrieveParams = WhopSDK::Models::InvoiceRetrieveParams
+
+  module InvoiceStatus = WhopSDK::Models::InvoiceStatus
+
+  class InvoiceVoidedWebhookEvent = WhopSDK::Models::InvoiceVoidedWebhookEvent
+
+  class InvoiceVoidParams = WhopSDK::Models::InvoiceVoidParams
+
+  class LedgerAccountRetrieveParams = WhopSDK::Models::LedgerAccountRetrieveParams
+
+  class MemberListParams = WhopSDK::Models::MemberListParams
+
+  module MemberMostRecentActions = WhopSDK::Models::MemberMostRecentActions
+
+  class MemberRetrieveParams = WhopSDK::Models::MemberRetrieveParams
+
+  class Membership = WhopSDK::Models::Membership
+
+  class MembershipCancelParams = WhopSDK::Models::MembershipCancelParams
+
+  class MembershipListParams = WhopSDK::Models::MembershipListParams
+
+  class MembershipPauseParams = WhopSDK::Models::MembershipPauseParams
+
+  class MembershipResumeParams = WhopSDK::Models::MembershipResumeParams
+
+  class MembershipRetrieveParams = WhopSDK::Models::MembershipRetrieveParams
+
+  module MembershipStatus = WhopSDK::Models::MembershipStatus
+
+  class MembershipUpdateParams = WhopSDK::Models::MembershipUpdateParams
+
+  module MemberStatuses = WhopSDK::Models::MemberStatuses
+
+  class Message = WhopSDK::Models::Message
+
+  class MessageCreateParams = WhopSDK::Models::MessageCreateParams
+
+  class MessageListParams = WhopSDK::Models::MessageListParams
+
+  class MessageRetrieveParams = WhopSDK::Models::MessageRetrieveParams
+
+  class PageInfo = WhopSDK::Models::PageInfo
+
+  class Payment = WhopSDK::Models::Payment
+
+  class PaymentListParams = WhopSDK::Models::PaymentListParams
+
+  class PaymentRefundParams = WhopSDK::Models::PaymentRefundParams
+
+  class PaymentRetrieveParams = WhopSDK::Models::PaymentRetrieveParams
+
+  class PaymentRetryParams = WhopSDK::Models::PaymentRetryParams
+
+  class PaymentVoidParams = WhopSDK::Models::PaymentVoidParams
+
+  class Plan = WhopSDK::Models::Plan
+
+  class PlanCreateParams = WhopSDK::Models::PlanCreateParams
+
+  class PlanDeleteParams = WhopSDK::Models::PlanDeleteParams
+
+  class PlanListParams = WhopSDK::Models::PlanListParams
+
+  class PlanRetrieveParams = WhopSDK::Models::PlanRetrieveParams
+
+  module PlanType = WhopSDK::Models::PlanType
+
+  class PlanUpdateParams = WhopSDK::Models::PlanUpdateParams
+
+  class Product = WhopSDK::Models::Product
+
+  class ProductCreateParams = WhopSDK::Models::ProductCreateParams
+
+  class ProductDeleteParams = WhopSDK::Models::ProductDeleteParams
+
+  class ProductListItem = WhopSDK::Models::ProductListItem
+
+  class ProductListParams = WhopSDK::Models::ProductListParams
+
+  class ProductRetrieveParams = WhopSDK::Models::ProductRetrieveParams
+
+  class ProductUpdateParams = WhopSDK::Models::ProductUpdateParams
+
+  module PromoType = WhopSDK::Models::PromoType
+
+  class Reaction = WhopSDK::Models::Reaction
+
+  class ReactionCreateParams = WhopSDK::Models::ReactionCreateParams
+
+  class ReactionListParams = WhopSDK::Models::ReactionListParams
+
+  class ReactionRetrieveParams = WhopSDK::Models::ReactionRetrieveParams
+
+  module ReceiptStatus = WhopSDK::Models::ReceiptStatus
+
+  module ReleaseMethod = WhopSDK::Models::ReleaseMethod
+
+  class Shipment = WhopSDK::Models::Shipment
+
+  module ShipmentCarrier = WhopSDK::Models::ShipmentCarrier
+
+  class ShipmentCreateParams = WhopSDK::Models::ShipmentCreateParams
+
+  class ShipmentListParams = WhopSDK::Models::ShipmentListParams
+
+  class ShipmentRetrieveParams = WhopSDK::Models::ShipmentRetrieveParams
+
+  module ShipmentStatus = WhopSDK::Models::ShipmentStatus
+
+  module ShipmentSubstatus = WhopSDK::Models::ShipmentSubstatus
+
+  class SupportChannel = WhopSDK::Models::SupportChannel
+
+  class SupportChannelCreateParams = WhopSDK::Models::SupportChannelCreateParams
+
+  class SupportChannelListParams = WhopSDK::Models::SupportChannelListParams
+
+  class SupportChannelRetrieveParams = WhopSDK::Models::SupportChannelRetrieveParams
+
+  module TaxType = WhopSDK::Models::TaxType
+
+  class Transfer = WhopSDK::Models::Transfer
+
+  class TransferCreateParams = WhopSDK::Models::TransferCreateParams
+
+  class TransferListParams = WhopSDK::Models::TransferListParams
+
+  class TransferRetrieveParams = WhopSDK::Models::TransferRetrieveParams
+
+  module UnwrapWebhookEvent = WhopSDK::Models::UnwrapWebhookEvent
+
+  class UserCheckAccessParams = WhopSDK::Models::UserCheckAccessParams
+
+  class UserRetrieveParams = WhopSDK::Models::UserRetrieveParams
+
+  module Visibility = WhopSDK::Models::Visibility
+
+  module VisibilityFilter = WhopSDK::Models::VisibilityFilter
+
+  class WebhookUnwrapParams = WhopSDK::Models::WebhookUnwrapParams
+
+  module WhoCanCommentTypes = WhopSDK::Models::WhoCanCommentTypes
+
+  module WhoCanPost = WhopSDK::Models::WhoCanPost
+
+  module WhoCanPostTypes = WhopSDK::Models::WhoCanPostTypes
+
+  module WhoCanReact = WhopSDK::Models::WhoCanReact
+end

@@ -1,0 +1,55 @@
+module WhopSDK
+  module Models
+    type transfer_list_response =
+      {
+        id: String,
+        amount: Float,
+        created_at: Time,
+        currency: WhopSDK::Models::currency,
+        destination_ledger_account_id: String,
+        fee_amount: Float?,
+        notes: String?,
+        origin_ledger_account_id: String
+      }
+
+    class TransferListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor amount: Float
+
+      attr_accessor created_at: Time
+
+      attr_accessor currency: WhopSDK::Models::currency
+
+      attr_accessor destination_ledger_account_id: String
+
+      attr_accessor fee_amount: Float?
+
+      attr_accessor notes: String?
+
+      attr_accessor origin_ledger_account_id: String
+
+      def initialize: (
+        id: String,
+        amount: Float,
+        created_at: Time,
+        currency: WhopSDK::Models::currency,
+        destination_ledger_account_id: String,
+        fee_amount: Float?,
+        notes: String?,
+        origin_ledger_account_id: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        amount: Float,
+        created_at: Time,
+        currency: WhopSDK::Models::currency,
+        destination_ledger_account_id: String,
+        fee_amount: Float?,
+        notes: String?,
+        origin_ledger_account_id: String
+      }
+    end
+  end
+end

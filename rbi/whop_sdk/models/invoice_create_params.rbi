@@ -176,7 +176,9 @@ module WhopSDK
         sig { returns(T.nilable(Integer)) }
         attr_accessor :expiration_days
 
-        # An additional amount charged upon first purchase.
+        # An additional amount charged upon first purchase. Use only if a one time payment
+        # OR you want to charge an additional amount on top of the renewal price. Provided
+        # as a number in dollars. Eg: 10.43 for $10.43
         sig { returns(T.nilable(Float)) }
         attr_accessor :initial_price
 
@@ -192,7 +194,8 @@ module WhopSDK
         sig { returns(T.nilable(WhopSDK::ReleaseMethod::OrSymbol)) }
         attr_accessor :release_method
 
-        # The amount the customer is charged every billing period.
+        # The amount the customer is charged every billing period. Use only if a recurring
+        # payment. Provided as a number in dollars. Eg: 10.43 for $10.43
         sig { returns(T.nilable(Float)) }
         attr_accessor :renewal_price
 
@@ -234,7 +237,9 @@ module WhopSDK
           description: nil,
           # The interval at which the plan charges (expiration plans).
           expiration_days: nil,
-          # An additional amount charged upon first purchase.
+          # An additional amount charged upon first purchase. Use only if a one time payment
+          # OR you want to charge an additional amount on top of the renewal price. Provided
+          # as a number in dollars. Eg: 10.43 for $10.43
           initial_price: nil,
           # A personal description or notes section for the business.
           internal_notes: nil,
@@ -242,7 +247,8 @@ module WhopSDK
           plan_type: nil,
           # The methods of how a plan can be released.
           release_method: nil,
-          # The amount the customer is charged every billing period.
+          # The amount the customer is charged every billing period. Use only if a recurring
+          # payment. Provided as a number in dollars. Eg: 10.43 for $10.43
           renewal_price: nil,
           # The number of free trial days added before a renewal plan.
           trial_period_days: nil,

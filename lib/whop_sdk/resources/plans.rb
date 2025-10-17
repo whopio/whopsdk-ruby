@@ -32,7 +32,7 @@ module WhopSDK
       #
       # @param image [WhopSDK::Models::PlanCreateParams::Image, nil] An image for the plan. This will be visible on the product page to customers.
       #
-      # @param initial_price [Float, nil] An additional amount charged upon first purchase.
+      # @param initial_price [Float, nil] An additional amount charged upon first purchase. Use only if a one time payment
       #
       # @param internal_notes [String, nil] A personal description or notes section for the business.
       #
@@ -42,7 +42,7 @@ module WhopSDK
       #
       # @param release_method [Symbol, WhopSDK::Models::ReleaseMethod, nil] The methods of how a plan can be released.
       #
-      # @param renewal_price [Float, nil] The amount the customer is charged every billing period.
+      # @param renewal_price [Float, nil] The amount the customer is charged every billing period. Use only if a recurring
       #
       # @param title [String, nil] The title of the plan. This will be visible on the product page to customers.
       #

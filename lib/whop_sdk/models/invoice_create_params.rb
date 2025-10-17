@@ -138,7 +138,9 @@ module WhopSDK
         optional :expiration_days, Integer, nil?: true
 
         # @!attribute initial_price
-        #   An additional amount charged upon first purchase.
+        #   An additional amount charged upon first purchase. Use only if a one time payment
+        #   OR you want to charge an additional amount on top of the renewal price. Provided
+        #   as a number in dollars. Eg: 10.43 for $10.43
         #
         #   @return [Float, nil]
         optional :initial_price, Float, nil?: true
@@ -162,7 +164,8 @@ module WhopSDK
         optional :release_method, enum: -> { WhopSDK::ReleaseMethod }, nil?: true
 
         # @!attribute renewal_price
-        #   The amount the customer is charged every billing period.
+        #   The amount the customer is charged every billing period. Use only if a recurring
+        #   payment. Provided as a number in dollars. Eg: 10.43 for $10.43
         #
         #   @return [Float, nil]
         optional :renewal_price, Float, nil?: true
@@ -180,6 +183,9 @@ module WhopSDK
         optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
         # @!method initialize(billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, plan_type: nil, release_method: nil, renewal_price: nil, trial_period_days: nil, visibility: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::InvoiceCreateParams::Plan} for more details.
+        #
         #   The properties of the plan to create for this invoice.
         #
         #   @param billing_period [Integer, nil] The interval at which the plan charges (renewal plans).
@@ -190,7 +196,7 @@ module WhopSDK
         #
         #   @param expiration_days [Integer, nil] The interval at which the plan charges (expiration plans).
         #
-        #   @param initial_price [Float, nil] An additional amount charged upon first purchase.
+        #   @param initial_price [Float, nil] An additional amount charged upon first purchase. Use only if a one time payment
         #
         #   @param internal_notes [String, nil] A personal description or notes section for the business.
         #
@@ -198,7 +204,7 @@ module WhopSDK
         #
         #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod, nil] The methods of how a plan can be released.
         #
-        #   @param renewal_price [Float, nil] The amount the customer is charged every billing period.
+        #   @param renewal_price [Float, nil] The amount the customer is charged every billing period. Use only if a recurring
         #
         #   @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
         #

@@ -58,7 +58,9 @@ module WhopSDK
       optional :image, -> { WhopSDK::PlanCreateParams::Image }, nil?: true
 
       # @!attribute initial_price
-      #   An additional amount charged upon first purchase.
+      #   An additional amount charged upon first purchase. Use only if a one time payment
+      #   OR you want to charge an additional amount on top of the renewal price. Provided
+      #   as a number in dollars. Eg: 10.43 for $10.43
       #
       #   @return [Float, nil]
       optional :initial_price, Float, nil?: true
@@ -89,7 +91,8 @@ module WhopSDK
       optional :release_method, enum: -> { WhopSDK::ReleaseMethod }, nil?: true
 
       # @!attribute renewal_price
-      #   The amount the customer is charged every billing period.
+      #   The amount the customer is charged every billing period. Use only if a recurring
+      #   payment. Provided as a number in dollars. Eg: 10.43 for $10.43
       #
       #   @return [Float, nil]
       optional :renewal_price, Float, nil?: true
@@ -132,7 +135,7 @@ module WhopSDK
       #
       #   @param image [WhopSDK::Models::PlanCreateParams::Image, nil] An image for the plan. This will be visible on the product page to customers.
       #
-      #   @param initial_price [Float, nil] An additional amount charged upon first purchase.
+      #   @param initial_price [Float, nil] An additional amount charged upon first purchase. Use only if a one time payment
       #
       #   @param internal_notes [String, nil] A personal description or notes section for the business.
       #
@@ -142,7 +145,7 @@ module WhopSDK
       #
       #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod, nil] The methods of how a plan can be released.
       #
-      #   @param renewal_price [Float, nil] The amount the customer is charged every billing period.
+      #   @param renewal_price [Float, nil] The amount the customer is charged every billing period. Use only if a recurring
       #
       #   @param title [String, nil] The title of the plan. This will be visible on the product page to customers.
       #

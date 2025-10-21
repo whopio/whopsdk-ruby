@@ -12,6 +12,7 @@ module WhopSDK
         discover_path: String?,
         domain_id: String,
         experience_path: String?,
+        icon: WhopSDK::App::Icon?,
         name: String,
         requested_permissions: ::Array[WhopSDK::App::RequestedPermission],
         stats: WhopSDK::App::Stats?,
@@ -40,6 +41,8 @@ module WhopSDK
 
       attr_accessor experience_path: String?
 
+      attr_accessor icon: WhopSDK::App::Icon?
+
       attr_accessor name: String
 
       attr_accessor requested_permissions: ::Array[WhopSDK::App::RequestedPermission]
@@ -61,6 +64,7 @@ module WhopSDK
         discover_path: String?,
         domain_id: String,
         experience_path: String?,
+        icon: WhopSDK::App::Icon?,
         name: String,
         requested_permissions: ::Array[WhopSDK::App::RequestedPermission],
         stats: WhopSDK::App::Stats?,
@@ -79,6 +83,7 @@ module WhopSDK
         discover_path: String?,
         domain_id: String,
         experience_path: String?,
+        icon: WhopSDK::App::Icon?,
         name: String,
         requested_permissions: ::Array[WhopSDK::App::RequestedPermission],
         stats: WhopSDK::App::Stats?,
@@ -124,6 +129,16 @@ module WhopSDK
         def initialize: (id: String, name: String?, username: String) -> void
 
         def to_hash: -> { id: String, name: String?, username: String }
+      end
+
+      type icon = { url: String? }
+
+      class Icon < WhopSDK::Internal::Type::BaseModel
+        attr_accessor url: String?
+
+        def initialize: (url: String?) -> void
+
+        def to_hash: -> { url: String? }
       end
 
       type requested_permission =

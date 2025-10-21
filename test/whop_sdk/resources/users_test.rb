@@ -18,6 +18,7 @@ class WhopSDK::Test::Resources::UsersTest < WhopSDK::Test::ResourceTest
         bio: String | nil,
         created_at: Time,
         name: String | nil,
+        profile_picture: WhopSDK::Models::UserRetrieveResponse::ProfilePicture | nil,
         username: String
       }
     end

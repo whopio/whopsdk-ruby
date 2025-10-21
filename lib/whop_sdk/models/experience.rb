@@ -27,6 +27,12 @@ module WhopSDK
       #   @return [Time]
       required :created_at, Time
 
+      # @!attribute image
+      #   The logo for the experience.
+      #
+      #   @return [WhopSDK::Models::Experience::Image, nil]
+      required :image, -> { WhopSDK::Experience::Image }, nil?: true
+
       # @!attribute name
       #   The written name of the description.
       #
@@ -48,7 +54,7 @@ module WhopSDK
       #   @return [Array<WhopSDK::Models::Experience::Product>]
       required :products, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Experience::Product] }
 
-      # @!method initialize(id:, app:, company:, created_at:, name:, order:, products:)
+      # @!method initialize(id:, app:, company:, created_at:, image:, name:, order:, products:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::Experience} for more details.
       #
@@ -61,6 +67,8 @@ module WhopSDK
       #   @param company [WhopSDK::Models::Experience::Company] The company that owns this experience.
       #
       #   @param created_at [Time] The timestamp of when this experience was created.
+      #
+      #   @param image [WhopSDK::Models::Experience::Image, nil] The logo for the experience.
       #
       #   @param name [String] The written name of the description.
       #
@@ -76,18 +84,49 @@ module WhopSDK
         #   @return [String]
         required :id, String
 
+        # @!attribute icon
+        #   The icon for the app. This icon is shown on discovery, on the product page, on
+        #   checkout, and as a default icon for the experiences.
+        #
+        #   @return [WhopSDK::Models::Experience::App::Icon, nil]
+        required :icon, -> { WhopSDK::Experience::App::Icon }, nil?: true
+
         # @!attribute name
         #   The name of the app
         #
         #   @return [String]
         required :name, String
 
-        # @!method initialize(id:, name:)
+        # @!method initialize(id:, icon:, name:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Experience::App} for more details.
+        #
         #   The experience interface for this experience.
         #
         #   @param id [String] The ID of the app
         #
+        #   @param icon [WhopSDK::Models::Experience::App::Icon, nil] The icon for the app. This icon is shown on discovery, on the product page, on c
+        #
         #   @param name [String] The name of the app
+
+        # @see WhopSDK::Models::Experience::App#icon
+        class Icon < WhopSDK::Internal::Type::BaseModel
+          # @!attribute url
+          #   This is the URL you use to render optimized attachments on the client. This
+          #   should be used for apps.
+          #
+          #   @return [String, nil]
+          required :url, String, nil?: true
+
+          # @!method initialize(url:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::Experience::App::Icon} for more details.
+          #
+          #   The icon for the app. This icon is shown on discovery, on the product page, on
+          #   checkout, and as a default icon for the experiences.
+          #
+          #   @param url [String, nil] This is the URL you use to render optimized attachments on the client. This shou
+        end
       end
 
       # @see WhopSDK::Models::Experience#company
@@ -118,6 +157,24 @@ module WhopSDK
         #   @param route [String] The slug/route of the company on the Whop site.
         #
         #   @param title [String] The title of the company.
+      end
+
+      # @see WhopSDK::Models::Experience#image
+      class Image < WhopSDK::Internal::Type::BaseModel
+        # @!attribute url
+        #   This is the URL you use to render optimized attachments on the client. This
+        #   should be used for apps.
+        #
+        #   @return [String, nil]
+        required :url, String, nil?: true
+
+        # @!method initialize(url:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Experience::Image} for more details.
+        #
+        #   The logo for the experience.
+        #
+        #   @param url [String, nil] This is the URL you use to render optimized attachments on the client. This shou
       end
 
       class Product < WhopSDK::Internal::Type::BaseModel

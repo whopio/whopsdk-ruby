@@ -5,7 +5,9 @@ module WhopSDK
         id: String,
         business_type: WhopSDK::Models::business_types?,
         created_at: Time,
+        description: String?,
         industry_type: WhopSDK::Models::industry_types?,
+        logo: WhopSDK::Company::Logo?,
         member_count: Integer,
         owner_user: WhopSDK::Company::OwnerUser,
         published_reviews_count: Integer,
@@ -23,7 +25,11 @@ module WhopSDK
 
       attr_accessor created_at: Time
 
+      attr_accessor description: String?
+
       attr_accessor industry_type: WhopSDK::Models::industry_types?
+
+      attr_accessor logo: WhopSDK::Company::Logo?
 
       attr_accessor member_count: Integer
 
@@ -45,7 +51,9 @@ module WhopSDK
         id: String,
         business_type: WhopSDK::Models::business_types?,
         created_at: Time,
+        description: String?,
         industry_type: WhopSDK::Models::industry_types?,
+        logo: WhopSDK::Company::Logo?,
         member_count: Integer,
         owner_user: WhopSDK::Company::OwnerUser,
         published_reviews_count: Integer,
@@ -60,7 +68,9 @@ module WhopSDK
         id: String,
         business_type: WhopSDK::Models::business_types?,
         created_at: Time,
+        description: String?,
         industry_type: WhopSDK::Models::industry_types?,
+        logo: WhopSDK::Company::Logo?,
         member_count: Integer,
         owner_user: WhopSDK::Company::OwnerUser,
         published_reviews_count: Integer,
@@ -70,6 +80,16 @@ module WhopSDK
         updated_at: Time,
         verified: bool
       }
+
+      type logo = { url: String? }
+
+      class Logo < WhopSDK::Internal::Type::BaseModel
+        attr_accessor url: String?
+
+        def initialize: (url: String?) -> void
+
+        def to_hash: -> { url: String? }
+      end
 
       type owner_user = { id: String, name: String?, username: String }
 

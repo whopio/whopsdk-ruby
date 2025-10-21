@@ -21,11 +21,23 @@ module WhopSDK
       #   @return [Time]
       required :created_at, Time
 
+      # @!attribute description
+      #   The creator pitch for the company.
+      #
+      #   @return [String, nil]
+      required :description, String, nil?: true
+
       # @!attribute industry_type
       #   The different industry types a company can be in.
       #
       #   @return [Symbol, WhopSDK::Models::IndustryTypes, nil]
       required :industry_type, enum: -> { WhopSDK::IndustryTypes }, nil?: true
+
+      # @!attribute logo
+      #   The company's logo.
+      #
+      #   @return [WhopSDK::Models::Company::Logo, nil]
+      required :logo, -> { WhopSDK::Company::Logo }, nil?: true
 
       # @!attribute member_count
       #   The number of members in the company.
@@ -75,7 +87,7 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, business_type:, created_at:, industry_type:, member_count:, owner_user:, published_reviews_count:, route:, social_links:, title:, updated_at:, verified:)
+      # @!method initialize(id:, business_type:, created_at:, description:, industry_type:, logo:, member_count:, owner_user:, published_reviews_count:, route:, social_links:, title:, updated_at:, verified:)
       #   An object representing a (sanitized) company.
       #
       #   @param id [String] The ID (tag) of the company.
@@ -84,7 +96,11 @@ module WhopSDK
       #
       #   @param created_at [Time] When the company was created (signed up)
       #
+      #   @param description [String, nil] The creator pitch for the company.
+      #
       #   @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
+      #
+      #   @param logo [WhopSDK::Models::Company::Logo, nil] The company's logo.
       #
       #   @param member_count [Integer] The number of members in the company.
       #
@@ -101,6 +117,24 @@ module WhopSDK
       #   @param updated_at [Time] The time the company was last updated.
       #
       #   @param verified [Boolean] If the company is Whop Verified
+
+      # @see WhopSDK::Models::Company#logo
+      class Logo < WhopSDK::Internal::Type::BaseModel
+        # @!attribute url
+        #   This is the URL you use to render optimized attachments on the client. This
+        #   should be used for apps.
+        #
+        #   @return [String, nil]
+        required :url, String, nil?: true
+
+        # @!method initialize(url:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Company::Logo} for more details.
+        #
+        #   The company's logo.
+        #
+        #   @param url [String, nil] This is the URL you use to render optimized attachments on the client. This shou
+      end
 
       # @see WhopSDK::Models::Company#owner_user
       class OwnerUser < WhopSDK::Internal::Type::BaseModel

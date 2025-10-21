@@ -18,9 +18,20 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
+      # The creator pitch for the company.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :description
+
       # The different industry types a company can be in.
       sig { returns(T.nilable(WhopSDK::IndustryTypes::TaggedSymbol)) }
       attr_accessor :industry_type
+
+      # The company's logo.
+      sig { returns(T.nilable(WhopSDK::Company::Logo)) }
+      attr_reader :logo
+
+      sig { params(logo: T.nilable(WhopSDK::Company::Logo::OrHash)).void }
+      attr_writer :logo
 
       # The number of members in the company.
       sig { returns(Integer) }
@@ -63,7 +74,9 @@ module WhopSDK
           id: String,
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           created_at: Time,
+          description: T.nilable(String),
           industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
+          logo: T.nilable(WhopSDK::Company::Logo::OrHash),
           member_count: Integer,
           owner_user: WhopSDK::Company::OwnerUser::OrHash,
           published_reviews_count: Integer,
@@ -81,8 +94,12 @@ module WhopSDK
         business_type:,
         # When the company was created (signed up)
         created_at:,
+        # The creator pitch for the company.
+        description:,
         # The different industry types a company can be in.
         industry_type:,
+        # The company's logo.
+        logo:,
         # The number of members in the company.
         member_count:,
         # The user who owns this company
@@ -108,7 +125,9 @@ module WhopSDK
             id: String,
             business_type: T.nilable(WhopSDK::BusinessTypes::TaggedSymbol),
             created_at: Time,
+            description: T.nilable(String),
             industry_type: T.nilable(WhopSDK::IndustryTypes::TaggedSymbol),
+            logo: T.nilable(WhopSDK::Company::Logo),
             member_count: Integer,
             owner_user: WhopSDK::Company::OwnerUser,
             published_reviews_count: Integer,
@@ -121,6 +140,31 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      class Logo < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Company::Logo, WhopSDK::Internal::AnyHash)
+          end
+
+        # This is the URL you use to render optimized attachments on the client. This
+        # should be used for apps.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :url
+
+        # The company's logo.
+        sig { params(url: T.nilable(String)).returns(T.attached_class) }
+        def self.new(
+          # This is the URL you use to render optimized attachments on the client. This
+          # should be used for apps.
+          url:
+        )
+        end
+
+        sig { override.returns({ url: T.nilable(String) }) }
+        def to_hash
+        end
       end
 
       class OwnerUser < WhopSDK::Internal::Type::BaseModel

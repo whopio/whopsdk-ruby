@@ -294,3 +294,8 @@ Style/SymbolArray:
 Style/SymbolProc:
   Exclude:
     - "examples/**/*.rb"
+
+# Alow non snake-case naming for gem name auto loading
+Naming/FileName:
+  Exclude:
+    - "lib/whop-sdk.rb"

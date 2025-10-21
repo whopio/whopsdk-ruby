@@ -3,18 +3,18 @@ module WhopSDK
     type checkout_configuration_list_response =
       {
         id: String,
-        affiliate_code: String,
+        affiliate_code: String?,
         company_id: String,
         metadata: ::Hash[Symbol, top],
         plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan,
         purchase_url: String,
-        redirect_url: String
+        redirect_url: String?
       }
 
     class CheckoutConfigurationListResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor affiliate_code: String
+      attr_accessor affiliate_code: String?
 
       attr_accessor company_id: String
 
@@ -24,26 +24,26 @@ module WhopSDK
 
       attr_accessor purchase_url: String
 
-      attr_accessor redirect_url: String
+      attr_accessor redirect_url: String?
 
       def initialize: (
         id: String,
-        affiliate_code: String,
+        affiliate_code: String?,
         company_id: String,
         metadata: ::Hash[Symbol, top],
         plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan,
         purchase_url: String,
-        redirect_url: String
+        redirect_url: String?
       ) -> void
 
       def to_hash: -> {
         id: String,
-        affiliate_code: String,
+        affiliate_code: String?,
         company_id: String,
         metadata: ::Hash[Symbol, top],
         plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan,
         purchase_url: String,
-        redirect_url: String
+        redirect_url: String?
       }
 
       type plan =

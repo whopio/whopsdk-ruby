@@ -63,6 +63,13 @@ module WhopSDK
       #   @return [String, nil]
       required :experience_path, String, nil?: true
 
+      # @!attribute icon
+      #   The icon for the app. This icon is shown on discovery, on the product page, on
+      #   checkout, and as a default icon for the experiences.
+      #
+      #   @return [WhopSDK::Models::AppListResponse::Icon, nil]
+      required :icon, -> { WhopSDK::Models::AppListResponse::Icon }, nil?: true
+
       # @!attribute name
       #   The name of the app
       #
@@ -86,7 +93,7 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, name:, status:, verified:)
+      # @!method initialize(id:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, icon:, name:, status:, verified:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AppListResponse} for more details.
       #
@@ -109,6 +116,8 @@ module WhopSDK
       #   @param domain_id [String] The unique part of the proxied domain for this app. Used to generate the base ur
       #
       #   @param experience_path [String, nil] The path part for a specific view of the app. This is the template part of the u
+      #
+      #   @param icon [WhopSDK::Models::AppListResponse::Icon, nil] The icon for the app. This icon is shown on discovery, on the product page, on c
       #
       #   @param name [String] The name of the app
       #
@@ -166,6 +175,25 @@ module WhopSDK
         #   @param name [String, nil] The name of the user from their Whop account.
         #
         #   @param username [String] The username of the user from their Whop account.
+      end
+
+      # @see WhopSDK::Models::AppListResponse#icon
+      class Icon < WhopSDK::Internal::Type::BaseModel
+        # @!attribute url
+        #   This is the URL you use to render optimized attachments on the client. This
+        #   should be used for apps.
+        #
+        #   @return [String, nil]
+        required :url, String, nil?: true
+
+        # @!method initialize(url:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::AppListResponse::Icon} for more details.
+        #
+        #   The icon for the app. This icon is shown on discovery, on the product page, on
+        #   checkout, and as a default icon for the experiences.
+        #
+        #   @param url [String, nil] This is the URL you use to render optimized attachments on the client. This shou
       end
     end
   end

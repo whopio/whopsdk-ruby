@@ -59,6 +59,14 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :experience_path
 
+      # The icon for the app. This icon is shown on discovery, on the product page, on
+      # checkout, and as a default icon for the experiences.
+      sig { returns(T.nilable(WhopSDK::App::Icon)) }
+      attr_reader :icon
+
+      sig { params(icon: T.nilable(WhopSDK::App::Icon::OrHash)).void }
+      attr_writer :icon
+
       # The name of the app
       sig { returns(String) }
       attr_accessor :name
@@ -101,6 +109,7 @@ module WhopSDK
           discover_path: T.nilable(String),
           domain_id: String,
           experience_path: T.nilable(String),
+          icon: T.nilable(WhopSDK::App::Icon::OrHash),
           name: String,
           requested_permissions:
             T::Array[WhopSDK::App::RequestedPermission::OrHash],
@@ -135,6 +144,9 @@ module WhopSDK
         # The path part for a specific view of the app. This is the template part of the
         # url after the base domain. Eg: /experiences/[experienceId]
         experience_path:,
+        # The icon for the app. This icon is shown on discovery, on the product page, on
+        # checkout, and as a default icon for the experiences.
+        icon:,
         # The name of the app
         name:,
         # The set of permissions that an app requests to be granted when a user installs
@@ -167,6 +179,7 @@ module WhopSDK
             discover_path: T.nilable(String),
             domain_id: String,
             experience_path: T.nilable(String),
+            icon: T.nilable(WhopSDK::App::Icon),
             name: String,
             requested_permissions: T::Array[WhopSDK::App::RequestedPermission],
             stats: T.nilable(WhopSDK::App::Stats),
@@ -287,6 +300,30 @@ module WhopSDK
             { id: String, name: T.nilable(String), username: String }
           )
         end
+        def to_hash
+        end
+      end
+
+      class Icon < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias { T.any(WhopSDK::App::Icon, WhopSDK::Internal::AnyHash) }
+
+        # This is the URL you use to render optimized attachments on the client. This
+        # should be used for apps.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :url
+
+        # The icon for the app. This icon is shown on discovery, on the product page, on
+        # checkout, and as a default icon for the experiences.
+        sig { params(url: T.nilable(String)).returns(T.attached_class) }
+        def self.new(
+          # This is the URL you use to render optimized attachments on the client. This
+          # should be used for apps.
+          url:
+        )
+        end
+
+        sig { override.returns({ url: T.nilable(String) }) }
         def to_hash
         end
       end

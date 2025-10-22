@@ -16,6 +16,7 @@ class WhopSDK::Test::Resources::CourseLessonInteractionsTest < WhopSDK::Test::Re
       response => {
         id: String,
         completed: WhopSDK::Internal::Type::Boolean,
+        course: WhopSDK::CourseLessonInteraction::Course,
         created_at: Time,
         lesson: WhopSDK::CourseLessonInteraction::Lesson,
         user: WhopSDK::CourseLessonInteraction::User

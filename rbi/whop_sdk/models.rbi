@@ -68,6 +68,9 @@ module WhopSDK
 
   CourseLessonInteraction = WhopSDK::Models::CourseLessonInteraction
 
+  CourseLessonInteractionCompletedWebhookEvent =
+    WhopSDK::Models::CourseLessonInteractionCompletedWebhookEvent
+
   CourseLessonInteractionListItem =
     WhopSDK::Models::CourseLessonInteractionListItem
 
@@ -89,7 +92,15 @@ module WhopSDK
 
   Entry = WhopSDK::Models::Entry
 
+  EntryApprovedWebhookEvent = WhopSDK::Models::EntryApprovedWebhookEvent
+
   EntryApproveParams = WhopSDK::Models::EntryApproveParams
+
+  EntryCreatedWebhookEvent = WhopSDK::Models::EntryCreatedWebhookEvent
+
+  EntryDeletedWebhookEvent = WhopSDK::Models::EntryDeletedWebhookEvent
+
+  EntryDeniedWebhookEvent = WhopSDK::Models::EntryDeniedWebhookEvent
 
   EntryDenyParams = WhopSDK::Models::EntryDenyParams
 

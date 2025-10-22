@@ -14,6 +14,11 @@ module WhopSDK
             WhopSDK::InvoiceVoidedWebhookEvent,
             WhopSDK::MembershipActivatedWebhookEvent,
             WhopSDK::MembershipDeactivatedWebhookEvent,
+            WhopSDK::EntryCreatedWebhookEvent,
+            WhopSDK::EntryApprovedWebhookEvent,
+            WhopSDK::EntryDeniedWebhookEvent,
+            WhopSDK::EntryDeletedWebhookEvent,
+            WhopSDK::CourseLessonInteractionCompletedWebhookEvent,
             WhopSDK::PaymentSucceededWebhookEvent,
             WhopSDK::PaymentFailedWebhookEvent,
             WhopSDK::PaymentPendingWebhookEvent

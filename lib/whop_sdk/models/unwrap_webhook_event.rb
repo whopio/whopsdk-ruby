@@ -17,6 +17,16 @@ module WhopSDK
 
       variant -> { WhopSDK::MembershipDeactivatedWebhookEvent }
 
+      variant -> { WhopSDK::EntryCreatedWebhookEvent }
+
+      variant -> { WhopSDK::EntryApprovedWebhookEvent }
+
+      variant -> { WhopSDK::EntryDeniedWebhookEvent }
+
+      variant -> { WhopSDK::EntryDeletedWebhookEvent }
+
+      variant -> { WhopSDK::CourseLessonInteractionCompletedWebhookEvent }
+
       variant -> { WhopSDK::PaymentSucceededWebhookEvent }
 
       variant -> { WhopSDK::PaymentFailedWebhookEvent }
@@ -24,7 +34,7 @@ module WhopSDK
       variant -> { WhopSDK::PaymentPendingWebhookEvent }
 
       # @!method self.variants
-      #   @return [Array(WhopSDK::Models::InvoiceCreatedWebhookEvent, WhopSDK::Models::InvoicePaidWebhookEvent, WhopSDK::Models::InvoicePastDueWebhookEvent, WhopSDK::Models::InvoiceVoidedWebhookEvent, WhopSDK::Models::MembershipActivatedWebhookEvent, WhopSDK::Models::MembershipDeactivatedWebhookEvent, WhopSDK::Models::PaymentSucceededWebhookEvent, WhopSDK::Models::PaymentFailedWebhookEvent, WhopSDK::Models::PaymentPendingWebhookEvent)]
+      #   @return [Array(WhopSDK::Models::InvoiceCreatedWebhookEvent, WhopSDK::Models::InvoicePaidWebhookEvent, WhopSDK::Models::InvoicePastDueWebhookEvent, WhopSDK::Models::InvoiceVoidedWebhookEvent, WhopSDK::Models::MembershipActivatedWebhookEvent, WhopSDK::Models::MembershipDeactivatedWebhookEvent, WhopSDK::Models::EntryCreatedWebhookEvent, WhopSDK::Models::EntryApprovedWebhookEvent, WhopSDK::Models::EntryDeniedWebhookEvent, WhopSDK::Models::EntryDeletedWebhookEvent, WhopSDK::Models::CourseLessonInteractionCompletedWebhookEvent, WhopSDK::Models::PaymentSucceededWebhookEvent, WhopSDK::Models::PaymentFailedWebhookEvent, WhopSDK::Models::PaymentPendingWebhookEvent)]
     end
   end
 end

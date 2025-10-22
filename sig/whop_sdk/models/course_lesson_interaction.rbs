@@ -4,6 +4,7 @@ module WhopSDK
       {
         id: String,
         completed: bool,
+        course: WhopSDK::CourseLessonInteraction::Course,
         created_at: Time,
         lesson: WhopSDK::CourseLessonInteraction::Lesson,
         user: WhopSDK::CourseLessonInteraction::User
@@ -14,6 +15,8 @@ module WhopSDK
 
       attr_accessor completed: bool
 
+      attr_accessor course: WhopSDK::CourseLessonInteraction::Course
+
       attr_accessor created_at: Time
 
       attr_accessor lesson: WhopSDK::CourseLessonInteraction::Lesson
@@ -23,6 +26,7 @@ module WhopSDK
       def initialize: (
         id: String,
         completed: bool,
+        course: WhopSDK::CourseLessonInteraction::Course,
         created_at: Time,
         lesson: WhopSDK::CourseLessonInteraction::Lesson,
         user: WhopSDK::CourseLessonInteraction::User
@@ -31,10 +35,48 @@ module WhopSDK
       def to_hash: -> {
         id: String,
         completed: bool,
+        course: WhopSDK::CourseLessonInteraction::Course,
         created_at: Time,
         lesson: WhopSDK::CourseLessonInteraction::Lesson,
         user: WhopSDK::CourseLessonInteraction::User
       }
+
+      type course =
+        {
+          id: String,
+          experience: WhopSDK::CourseLessonInteraction::Course::Experience,
+          title: String?
+        }
+
+      class Course < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor experience: WhopSDK::CourseLessonInteraction::Course::Experience
+
+        attr_accessor title: String?
+
+        def initialize: (
+          id: String,
+          experience: WhopSDK::CourseLessonInteraction::Course::Experience,
+          title: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          experience: WhopSDK::CourseLessonInteraction::Course::Experience,
+          title: String?
+        }
+
+        type experience = { id: String }
+
+        class Experience < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
+      end
 
       type lesson = { id: String, title: String }
 

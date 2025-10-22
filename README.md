@@ -6,7 +6,7 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
-Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/whop-sdk).
+Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/whop_sdk).
 
 The REST API documentation can be found on [docs.whop.com](https://docs.whop.com/apps).
 
@@ -17,7 +17,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "whop-sdk", "~> 0.0.1"
+gem "whop_sdk", "~> 0.0.2"
 ```
 
 <!-- x-release-please-end -->

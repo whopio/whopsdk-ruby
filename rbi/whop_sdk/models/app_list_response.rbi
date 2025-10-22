@@ -59,6 +59,18 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :experience_path
 
+      # The icon for the app. This icon is shown on discovery, on the product page, on
+      # checkout, and as a default icon for the experiences.
+      sig { returns(T.nilable(WhopSDK::Models::AppListResponse::Icon)) }
+      attr_reader :icon
+
+      sig do
+        params(
+          icon: T.nilable(WhopSDK::Models::AppListResponse::Icon::OrHash)
+        ).void
+      end
+      attr_writer :icon
+
       # The name of the app
       sig { returns(String) }
       attr_accessor :name
@@ -88,6 +100,7 @@ module WhopSDK
           discover_path: T.nilable(String),
           domain_id: String,
           experience_path: T.nilable(String),
+          icon: T.nilable(WhopSDK::Models::AppListResponse::Icon::OrHash),
           name: String,
           status: WhopSDK::AppStatuses::OrSymbol,
           verified: T::Boolean
@@ -117,6 +130,9 @@ module WhopSDK
         # The path part for a specific view of the app. This is the template part of the
         # url after the base domain. Eg: /experiences/[experienceId]
         experience_path:,
+        # The icon for the app. This icon is shown on discovery, on the product page, on
+        # checkout, and as a default icon for the experiences.
+        icon:,
         # The name of the app
         name:,
         # If the status is live, the app is visible on Whop discovery. In order to be
@@ -143,6 +159,7 @@ module WhopSDK
             discover_path: T.nilable(String),
             domain_id: String,
             experience_path: T.nilable(String),
+            icon: T.nilable(WhopSDK::Models::AppListResponse::Icon),
             name: String,
             status: WhopSDK::AppStatuses::TaggedSymbol,
             verified: T::Boolean
@@ -226,6 +243,35 @@ module WhopSDK
             { id: String, name: T.nilable(String), username: String }
           )
         end
+        def to_hash
+        end
+      end
+
+      class Icon < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Models::AppListResponse::Icon,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # This is the URL you use to render optimized attachments on the client. This
+        # should be used for apps.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :url
+
+        # The icon for the app. This icon is shown on discovery, on the product page, on
+        # checkout, and as a default icon for the experiences.
+        sig { params(url: T.nilable(String)).returns(T.attached_class) }
+        def self.new(
+          # This is the URL you use to render optimized attachments on the client. This
+          # should be used for apps.
+          url:
+        )
+        end
+
+        sig { override.returns({ url: T.nilable(String) }) }
         def to_hash
         end
       end

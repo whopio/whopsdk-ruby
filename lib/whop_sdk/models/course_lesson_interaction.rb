@@ -15,6 +15,12 @@ module WhopSDK
       #   @return [Boolean]
       required :completed, WhopSDK::Internal::Type::Boolean
 
+      # @!attribute course
+      #   The course for this lesson interaction
+      #
+      #   @return [WhopSDK::Models::CourseLessonInteraction::Course]
+      required :course, -> { WhopSDK::CourseLessonInteraction::Course }
+
       # @!attribute created_at
       #   When the interaction was created
       #
@@ -33,18 +39,64 @@ module WhopSDK
       #   @return [WhopSDK::Models::CourseLessonInteraction::User]
       required :user, -> { WhopSDK::CourseLessonInteraction::User }
 
-      # @!method initialize(id:, completed:, created_at:, lesson:, user:)
+      # @!method initialize(id:, completed:, course:, created_at:, lesson:, user:)
       #   A lesson interaction tracking user progress in courses
       #
       #   @param id [String] The ID of the lesson interaction
       #
       #   @param completed [Boolean] Whether the lesson has been completed by the user
       #
+      #   @param course [WhopSDK::Models::CourseLessonInteraction::Course] The course for this lesson interaction
+      #
       #   @param created_at [Time] When the interaction was created
       #
       #   @param lesson [WhopSDK::Models::CourseLessonInteraction::Lesson] The lesson this interaction is for
       #
       #   @param user [WhopSDK::Models::CourseLessonInteraction::User] The user who interacted with the lesson
+
+      # @see WhopSDK::Models::CourseLessonInteraction#course
+      class Course < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The ID of the course. Looks like cors_XXX
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute experience
+        #   The experience that the course belongs to
+        #
+        #   @return [WhopSDK::Models::CourseLessonInteraction::Course::Experience]
+        required :experience, -> { WhopSDK::CourseLessonInteraction::Course::Experience }
+
+        # @!attribute title
+        #   The title of the course
+        #
+        #   @return [String, nil]
+        required :title, String, nil?: true
+
+        # @!method initialize(id:, experience:, title:)
+        #   The course for this lesson interaction
+        #
+        #   @param id [String] The ID of the course. Looks like cors_XXX
+        #
+        #   @param experience [WhopSDK::Models::CourseLessonInteraction::Course::Experience] The experience that the course belongs to
+        #
+        #   @param title [String, nil] The title of the course
+
+        # @see WhopSDK::Models::CourseLessonInteraction::Course#experience
+        class Experience < WhopSDK::Internal::Type::BaseModel
+          # @!attribute id
+          #   The unique ID representing this experience
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!method initialize(id:)
+          #   The experience that the course belongs to
+          #
+          #   @param id [String] The unique ID representing this experience
+        end
+      end
 
       # @see WhopSDK::Models::CourseLessonInteraction#lesson
       class Lesson < WhopSDK::Internal::Type::BaseModel

@@ -15,12 +15,12 @@ class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::Reso
     assert_pattern do
       response => {
         id: String,
-        affiliate_code: String,
+        affiliate_code: String | nil,
         company_id: String,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),
         plan: WhopSDK::CheckoutConfiguration::Plan,
         purchase_url: String,
-        redirect_url: String
+        redirect_url: String | nil
       }
     end
   end
@@ -37,12 +37,12 @@ class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::Reso
     assert_pattern do
       response => {
         id: String,
-        affiliate_code: String,
+        affiliate_code: String | nil,
         company_id: String,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),
         plan: WhopSDK::CheckoutConfiguration::Plan,
         purchase_url: String,
-        redirect_url: String
+        redirect_url: String | nil
       }
     end
   end
@@ -66,12 +66,12 @@ class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::Reso
     assert_pattern do
       row => {
         id: String,
-        affiliate_code: String,
+        affiliate_code: String | nil,
         company_id: String,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),
         plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan,
         purchase_url: String,
-        redirect_url: String
+        redirect_url: String | nil
       }
     end
   end

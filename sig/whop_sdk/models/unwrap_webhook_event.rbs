@@ -5,6 +5,16 @@ module WhopSDK
       | WhopSDK::InvoicePaidWebhookEvent
       | WhopSDK::InvoicePastDueWebhookEvent
       | WhopSDK::InvoiceVoidedWebhookEvent
+      | WhopSDK::MembershipActivatedWebhookEvent
+      | WhopSDK::MembershipDeactivatedWebhookEvent
+      | WhopSDK::EntryCreatedWebhookEvent
+      | WhopSDK::EntryApprovedWebhookEvent
+      | WhopSDK::EntryDeniedWebhookEvent
+      | WhopSDK::EntryDeletedWebhookEvent
+      | WhopSDK::CourseLessonInteractionCompletedWebhookEvent
+      | WhopSDK::PaymentSucceededWebhookEvent
+      | WhopSDK::PaymentFailedWebhookEvent
+      | WhopSDK::PaymentPendingWebhookEvent
 
     module UnwrapWebhookEvent
       extend WhopSDK::Internal::Type::Union

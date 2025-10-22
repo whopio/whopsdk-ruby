@@ -182,5 +182,31 @@ module WhopSDK
       @members = WhopSDK::Resources::Members.new(client: self)
       @forums = WhopSDK::Resources::Forums.new(client: self)
     end
+
+    # Verifies a Whop user token
+    #
+    # @param token_or_headers [String, Hash, nil] The token string or headers hash
+    # @param app_id [String, nil] The app id to verify against
+    # @param public_key [String, nil] Optional custom public key (PEM format)
+    # @param header_name [String, nil] The header name to use (defaults to x-whop-user-token)
+    # @return [UserTokenPayload] The verified token payload
+    # @raise [StandardError] If verification fails
+    def verify_user_token!(token_or_headers, **opts)
+      opts[:app_id] ||= app_id
+      Helpers::VerifyUserToken.verify_user_token!(token_or_headers, **opts)
+    end
+
+    # Verifies a Whop user token
+    #
+    # @param token_or_headers [String, Hash, nil] The token string or headers hash
+    # @param app_id [String, nil] The app id to verify against
+    # @param public_key [String, nil] Optional custom public key (PEM format)
+    # @param header_name [String, nil] The header name to use (defaults to x-whop-user-token)
+    # @return [UserTokenPayload, nil] The verified token payload or nil if the verification failed
+    def verify_user_token(token_or_headers, **opts)
+      verify_user_token!(token_or_headers, **opts)
+    rescue StandardError
+      nil
+    end
   end
 end

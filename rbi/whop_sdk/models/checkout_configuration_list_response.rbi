@@ -16,7 +16,7 @@ module WhopSDK
       attr_accessor :id
 
       # The affiliate code to use for the checkout configuration
-      sig { returns(String) }
+      sig { returns(T.nilable(String)) }
       attr_accessor :affiliate_code
 
       # The ID of the company to use for the checkout configuration
@@ -43,7 +43,7 @@ module WhopSDK
       attr_accessor :purchase_url
 
       # The URL to redirect the user to after the checkout configuration is created
-      sig { returns(String) }
+      sig { returns(T.nilable(String)) }
       attr_accessor :redirect_url
 
       # A checkout configuration object. Can be used to create a reusable custom
@@ -54,13 +54,13 @@ module WhopSDK
       sig do
         params(
           id: String,
-          affiliate_code: String,
+          affiliate_code: T.nilable(String),
           company_id: String,
           metadata: T::Hash[Symbol, T.anything],
           plan:
             WhopSDK::Models::CheckoutConfigurationListResponse::Plan::OrHash,
           purchase_url: String,
-          redirect_url: String
+          redirect_url: T.nilable(String)
         ).returns(T.attached_class)
       end
       def self.new(
@@ -85,12 +85,12 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            affiliate_code: String,
+            affiliate_code: T.nilable(String),
             company_id: String,
             metadata: T::Hash[Symbol, T.anything],
             plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan,
             purchase_url: String,
-            redirect_url: String
+            redirect_url: T.nilable(String)
           }
         )
       end

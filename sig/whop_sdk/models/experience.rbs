@@ -6,6 +6,7 @@ module WhopSDK
         app: WhopSDK::Experience::App,
         company: WhopSDK::Experience::Company,
         created_at: Time,
+        image: WhopSDK::Experience::Image?,
         name: String,
         order: String?,
         products: ::Array[WhopSDK::Experience::Product]
@@ -20,6 +21,8 @@ module WhopSDK
 
       attr_accessor created_at: Time
 
+      attr_accessor image: WhopSDK::Experience::Image?
+
       attr_accessor name: String
 
       attr_accessor order: String?
@@ -31,6 +34,7 @@ module WhopSDK
         app: WhopSDK::Experience::App,
         company: WhopSDK::Experience::Company,
         created_at: Time,
+        image: WhopSDK::Experience::Image?,
         name: String,
         order: String?,
         products: ::Array[WhopSDK::Experience::Product]
@@ -41,21 +45,43 @@ module WhopSDK
         app: WhopSDK::Experience::App,
         company: WhopSDK::Experience::Company,
         created_at: Time,
+        image: WhopSDK::Experience::Image?,
         name: String,
         order: String?,
         products: ::Array[WhopSDK::Experience::Product]
       }
 
-      type app = { id: String, name: String }
+      type app =
+        { id: String, icon: WhopSDK::Experience::App::Icon?, name: String }
 
       class App < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
+        attr_accessor icon: WhopSDK::Experience::App::Icon?
+
         attr_accessor name: String
 
-        def initialize: (id: String, name: String) -> void
+        def initialize: (
+          id: String,
+          icon: WhopSDK::Experience::App::Icon?,
+          name: String
+        ) -> void
 
-        def to_hash: -> { id: String, name: String }
+        def to_hash: -> {
+          id: String,
+          icon: WhopSDK::Experience::App::Icon?,
+          name: String
+        }
+
+        type icon = { url: String? }
+
+        class Icon < WhopSDK::Internal::Type::BaseModel
+          attr_accessor url: String?
+
+          def initialize: (url: String?) -> void
+
+          def to_hash: -> { url: String? }
+        end
       end
 
       type company = { id: String, route: String, title: String }
@@ -70,6 +96,16 @@ module WhopSDK
         def initialize: (id: String, route: String, title: String) -> void
 
         def to_hash: -> { id: String, route: String, title: String }
+      end
+
+      type image = { url: String? }
+
+      class Image < WhopSDK::Internal::Type::BaseModel
+        attr_accessor url: String?
+
+        def initialize: (url: String?) -> void
+
+        def to_hash: -> { url: String? }
       end
 
       type product = { id: String, route: String, title: String }

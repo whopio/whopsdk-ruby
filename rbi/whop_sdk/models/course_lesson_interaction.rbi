@@ -16,6 +16,15 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :completed
 
+      # The course for this lesson interaction
+      sig { returns(WhopSDK::CourseLessonInteraction::Course) }
+      attr_reader :course
+
+      sig do
+        params(course: WhopSDK::CourseLessonInteraction::Course::OrHash).void
+      end
+      attr_writer :course
+
       # When the interaction was created
       sig { returns(Time) }
       attr_accessor :created_at
@@ -41,6 +50,7 @@ module WhopSDK
         params(
           id: String,
           completed: T::Boolean,
+          course: WhopSDK::CourseLessonInteraction::Course::OrHash,
           created_at: Time,
           lesson: WhopSDK::CourseLessonInteraction::Lesson::OrHash,
           user: WhopSDK::CourseLessonInteraction::User::OrHash
@@ -51,6 +61,8 @@ module WhopSDK
         id:,
         # Whether the lesson has been completed by the user
         completed:,
+        # The course for this lesson interaction
+        course:,
         # When the interaction was created
         created_at:,
         # The lesson this interaction is for
@@ -65,6 +77,7 @@ module WhopSDK
           {
             id: String,
             completed: T::Boolean,
+            course: WhopSDK::CourseLessonInteraction::Course,
             created_at: Time,
             lesson: WhopSDK::CourseLessonInteraction::Lesson,
             user: WhopSDK::CourseLessonInteraction::User
@@ -72,6 +85,93 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      class Course < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::CourseLessonInteraction::Course,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The ID of the course. Looks like cors_XXX
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The experience that the course belongs to
+        sig { returns(WhopSDK::CourseLessonInteraction::Course::Experience) }
+        attr_reader :experience
+
+        sig do
+          params(
+            experience:
+              WhopSDK::CourseLessonInteraction::Course::Experience::OrHash
+          ).void
+        end
+        attr_writer :experience
+
+        # The title of the course
+        sig { returns(T.nilable(String)) }
+        attr_accessor :title
+
+        # The course for this lesson interaction
+        sig do
+          params(
+            id: String,
+            experience:
+              WhopSDK::CourseLessonInteraction::Course::Experience::OrHash,
+            title: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The ID of the course. Looks like cors_XXX
+          id:,
+          # The experience that the course belongs to
+          experience:,
+          # The title of the course
+          title:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              experience: WhopSDK::CourseLessonInteraction::Course::Experience,
+              title: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class Experience < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::CourseLessonInteraction::Course::Experience,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The unique ID representing this experience
+          sig { returns(String) }
+          attr_accessor :id
+
+          # The experience that the course belongs to
+          sig { params(id: String).returns(T.attached_class) }
+          def self.new(
+            # The unique ID representing this experience
+            id:
+          )
+          end
+
+          sig { override.returns({ id: String }) }
+          def to_hash
+          end
+        end
       end
 
       class Lesson < WhopSDK::Internal::Type::BaseModel

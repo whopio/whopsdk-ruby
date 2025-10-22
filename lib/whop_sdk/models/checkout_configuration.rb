@@ -12,8 +12,8 @@ module WhopSDK
       # @!attribute affiliate_code
       #   The affiliate code to use for the checkout configuration
       #
-      #   @return [String]
-      required :affiliate_code, String
+      #   @return [String, nil]
+      required :affiliate_code, String, nil?: true
 
       # @!attribute company_id
       #   The ID of the company to use for the checkout configuration
@@ -42,8 +42,8 @@ module WhopSDK
       # @!attribute redirect_url
       #   The URL to redirect the user to after the checkout configuration is created
       #
-      #   @return [String]
-      required :redirect_url, String
+      #   @return [String, nil]
+      required :redirect_url, String, nil?: true
 
       # @!method initialize(id:, affiliate_code:, company_id:, metadata:, plan:, purchase_url:, redirect_url:)
       #   A checkout configuration object. Can be used to create a reusable custom
@@ -54,7 +54,7 @@ module WhopSDK
       #
       #   @param id [String] The ID of the checkout configuration
       #
-      #   @param affiliate_code [String] The affiliate code to use for the checkout configuration
+      #   @param affiliate_code [String, nil] The affiliate code to use for the checkout configuration
       #
       #   @param company_id [String] The ID of the company to use for the checkout configuration
       #
@@ -64,7 +64,7 @@ module WhopSDK
       #
       #   @param purchase_url [String] The URL to redirect the user to after the checkout configuration is created
       #
-      #   @param redirect_url [String] The URL to redirect the user to after the checkout configuration is created
+      #   @param redirect_url [String, nil] The URL to redirect the user to after the checkout configuration is created
 
       # @see WhopSDK::Models::CheckoutConfiguration#plan
       class Plan < WhopSDK::Internal::Type::BaseModel

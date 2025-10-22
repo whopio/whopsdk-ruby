@@ -4,6 +4,9 @@ source "https://rubygems.org"
 
 gemspec
 
+gem "jwt"
+gem "openssl"
+
 group :development do
   gem "rake"
   gem "rbs"

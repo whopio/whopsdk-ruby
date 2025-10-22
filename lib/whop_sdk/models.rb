@@ -103,6 +103,9 @@ module WhopSDK
 
   CourseLessonInteraction = WhopSDK::Models::CourseLessonInteraction
 
+  CourseLessonInteractionCompletedWebhookEvent =
+    WhopSDK::Models::CourseLessonInteractionCompletedWebhookEvent
+
   CourseLessonInteractionListItem = WhopSDK::Models::CourseLessonInteractionListItem
 
   CourseLessonInteractionListParams = WhopSDK::Models::CourseLessonInteractionListParams
@@ -121,7 +124,15 @@ module WhopSDK
 
   Entry = WhopSDK::Models::Entry
 
+  EntryApprovedWebhookEvent = WhopSDK::Models::EntryApprovedWebhookEvent
+
   EntryApproveParams = WhopSDK::Models::EntryApproveParams
+
+  EntryCreatedWebhookEvent = WhopSDK::Models::EntryCreatedWebhookEvent
+
+  EntryDeletedWebhookEvent = WhopSDK::Models::EntryDeletedWebhookEvent
+
+  EntryDeniedWebhookEvent = WhopSDK::Models::EntryDeniedWebhookEvent
 
   EntryDenyParams = WhopSDK::Models::EntryDenyParams
 
@@ -201,7 +212,11 @@ module WhopSDK
 
   Membership = WhopSDK::Models::Membership
 
+  MembershipActivatedWebhookEvent = WhopSDK::Models::MembershipActivatedWebhookEvent
+
   MembershipCancelParams = WhopSDK::Models::MembershipCancelParams
+
+  MembershipDeactivatedWebhookEvent = WhopSDK::Models::MembershipDeactivatedWebhookEvent
 
   MembershipListParams = WhopSDK::Models::MembershipListParams
 
@@ -229,13 +244,19 @@ module WhopSDK
 
   Payment = WhopSDK::Models::Payment
 
+  PaymentFailedWebhookEvent = WhopSDK::Models::PaymentFailedWebhookEvent
+
   PaymentListParams = WhopSDK::Models::PaymentListParams
+
+  PaymentPendingWebhookEvent = WhopSDK::Models::PaymentPendingWebhookEvent
 
   PaymentRefundParams = WhopSDK::Models::PaymentRefundParams
 
   PaymentRetrieveParams = WhopSDK::Models::PaymentRetrieveParams
 
   PaymentRetryParams = WhopSDK::Models::PaymentRetryParams
+
+  PaymentSucceededWebhookEvent = WhopSDK::Models::PaymentSucceededWebhookEvent
 
   PaymentVoidParams = WhopSDK::Models::PaymentVoidParams
 

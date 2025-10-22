@@ -43,7 +43,7 @@ If you’d like to use the repository from source, you can either install from g
 To install via git in your `Gemfile`:
 
 ```ruby
-gem "whop-sdk", git: "https://www.github.com/whopio/whopsdk-ruby"
+gem "whop_sdk", git: "https://www.github.com/whopio/whopsdk-ruby"
 ```
 
 Alternatively, reference local copy of the repo:
@@ -53,7 +53,7 @@ $ git clone -- 'https://www.github.com/whopio/whopsdk-ruby' '<path-to-repo>'
 ```
 
 ```ruby
-gem "whop-sdk", path: "<path-to-repo>"
+gem "whop_sdk", path: "<path-to-repo>"
 ```
 
 ## Running commands

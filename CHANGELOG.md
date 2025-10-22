@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.0.2 (2025-10-22)
+
+Full Changelog: [v0.0.1...v0.0.2](https://github.com/whopio/whopsdk-ruby/compare/v0.0.1...v0.0.2)
+
+### Features
+
+* add verify user token to the sdk ([#1](https://github.com/whopio/whopsdk-ruby/issues/1)) ([2a1e952](https://github.com/whopio/whopsdk-ruby/commit/2a1e952fb4a42e83b66960d1a9d1b0c463a6bbac))
+* **api:** api update ([c1a451f](https://github.com/whopio/whopsdk-ruby/commit/c1a451fa23e49d6fffbfa7f14855010fc6c59b82))
+* **api:** api update ([7631521](https://github.com/whopio/whopsdk-ruby/commit/76315210f8b5470fb795215050cc7ab4e70bd40e))
+* **api:** api update ([6e3b823](https://github.com/whopio/whopsdk-ruby/commit/6e3b823ecfa4c55bff3b4532864b9e78d8eb9f5b))
+* **api:** api update ([69780a0](https://github.com/whopio/whopsdk-ruby/commit/69780a0352b9990ffa91ceaabf4aa630f8ca6966))
+* **api:** update the gem name ([350cc01](https://github.com/whopio/whopsdk-ruby/commit/350cc019f142b908e342dc7f74c7626b01876904))
+
+
+### Bug Fixes
+
+* **tests:** properly stub requests for the mock tests ([#2](https://github.com/whopio/whopsdk-ruby/issues/2)) ([740f3da](https://github.com/whopio/whopsdk-ruby/commit/740f3daf9330c3d680264ce1a6cec72922540e38))
+
 ## 0.0.1 (2025-10-17)
 
 Full Changelog: [v0.0.1...v0.0.1](https://github.com/whopio/whopsdk-ruby/compare/v0.0.1...v0.0.1)

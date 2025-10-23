@@ -13,9 +13,6 @@ module WhopSDK
         params(
           company_id: String,
           title: String,
-          access_pass_type: T.nilable(WhopSDK::AccessPassType::OrSymbol),
-          banner_image:
-            T.nilable(WhopSDK::ProductCreateParams::BannerImage::OrHash),
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           collect_shipping_address: T.nilable(T::Boolean),
           custom_cta: T.nilable(WhopSDK::CustomCta::OrSymbol),
@@ -49,10 +46,6 @@ module WhopSDK
         company_id:,
         # The title of the product.
         title:,
-        # The different types an access pass can be.
-        access_pass_type: nil,
-        # A banner image for the product in png, jpeg format
-        banner_image: nil,
         # The different business types a company can be.
         business_type: nil,
         # Whether or not to collect shipping information at checkout from the customer.

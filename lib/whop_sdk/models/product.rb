@@ -51,6 +51,14 @@ module WhopSDK
       #   @return [String, nil]
       required :description, String, nil?: true
 
+      # @!attribute external_identifier
+      #   A unique identifier used to create or update products. When provided on product
+      #   creation endpoints, we’ll look up an existing product by this identifier — if it
+      #   exists, we’ll update it; if not, we’ll create a new one.
+      #
+      #   @return [String, nil]
+      required :external_identifier, String, nil?: true
+
       # @!attribute global_affiliate_percentage
       #   The percentage of a transaction a user is eligible to earn from the whop
       #   marketplace global affiliate program.
@@ -143,7 +151,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility]
       required :visibility, enum: -> { WhopSDK::Visibility }
 
-      # @!method initialize(id:, business_type:, company:, created_at:, custom_cta:, custom_cta_url:, custom_statement_descriptor:, description:, global_affiliate_percentage:, global_affiliate_status:, headline:, industry_type:, member_affiliate_percentage:, member_affiliate_status:, member_count:, owner_user:, product_tax_code:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
+      # @!method initialize(id:, business_type:, company:, created_at:, custom_cta:, custom_cta_url:, custom_statement_descriptor:, description:, external_identifier:, global_affiliate_percentage:, global_affiliate_status:, headline:, industry_type:, member_affiliate_percentage:, member_affiliate_status:, member_count:, owner_user:, product_tax_code:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Product}
       #   for more details.
       #
@@ -164,6 +172,8 @@ module WhopSDK
       #   @param custom_statement_descriptor [String, nil] The custom statement descriptor for the product.
       #
       #   @param description [String, nil] A short description of what the company offers or does.
+      #
+      #   @param external_identifier [String, nil] A unique identifier used to create or update products. When provided on product
       #
       #   @param global_affiliate_percentage [Float, nil] The percentage of a transaction a user is eligible to earn from the whop marketp
       #

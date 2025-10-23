@@ -5,6 +5,7 @@ module WhopSDK
         id: String,
         business_type: WhopSDK::Models::business_types?,
         created_at: Time,
+        external_identifier: String?,
         headline: String?,
         industry_type: WhopSDK::Models::industry_types?,
         member_count: Integer,
@@ -22,6 +23,8 @@ module WhopSDK
       attr_accessor business_type: WhopSDK::Models::business_types?
 
       attr_accessor created_at: Time
+
+      attr_accessor external_identifier: String?
 
       attr_accessor headline: String?
 
@@ -45,6 +48,7 @@ module WhopSDK
         id: String,
         business_type: WhopSDK::Models::business_types?,
         created_at: Time,
+        external_identifier: String?,
         headline: String?,
         industry_type: WhopSDK::Models::industry_types?,
         member_count: Integer,
@@ -60,6 +64,7 @@ module WhopSDK
         id: String,
         business_type: WhopSDK::Models::business_types?,
         created_at: Time,
+        external_identifier: String?,
         headline: String?,
         industry_type: WhopSDK::Models::industry_types?,
         member_count: Integer,

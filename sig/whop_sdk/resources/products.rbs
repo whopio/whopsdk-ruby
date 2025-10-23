@@ -4,8 +4,6 @@ module WhopSDK
       def create: (
         company_id: String,
         title: String,
-        ?access_pass_type: WhopSDK::Models::access_pass_type?,
-        ?banner_image: WhopSDK::ProductCreateParams::BannerImage?,
         ?business_type: WhopSDK::Models::business_types?,
         ?collect_shipping_address: bool?,
         ?custom_cta: WhopSDK::Models::custom_cta?,

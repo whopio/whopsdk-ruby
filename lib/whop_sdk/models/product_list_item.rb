@@ -21,6 +21,14 @@ module WhopSDK
       #   @return [Time]
       required :created_at, Time
 
+      # @!attribute external_identifier
+      #   A unique identifier used to create or update products. When provided on product
+      #   creation endpoints, we’ll look up an existing product by this identifier — if it
+      #   exists, we’ll update it; if not, we’ll create a new one.
+      #
+      #   @return [String, nil]
+      required :external_identifier, String, nil?: true
+
       # @!attribute headline
       #   The headline of the product.
       #
@@ -75,7 +83,10 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility]
       required :visibility, enum: -> { WhopSDK::Visibility }
 
-      # @!method initialize(id:, business_type:, created_at:, headline:, industry_type:, member_count:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
+      # @!method initialize(id:, business_type:, created_at:, external_identifier:, headline:, industry_type:, member_count:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::ProductListItem} for more details.
+      #
       #   An object representing a (sanitized) access pass.
       #
       #   @param id [String] The internal ID of the public product.
@@ -83,6 +94,8 @@ module WhopSDK
       #   @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #
       #   @param created_at [Time] When the product was created.
+      #
+      #   @param external_identifier [String, nil] A unique identifier used to create or update products. When provided on product
       #
       #   @param headline [String, nil] The headline of the product.
       #

@@ -20,6 +20,12 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
+      # A unique identifier used to create or update products. When provided on product
+      # creation endpoints, we’ll look up an existing product by this identifier — if it
+      # exists, we’ll update it; if not, we’ll create a new one.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :external_identifier
+
       # The headline of the product.
       sig { returns(T.nilable(String)) }
       attr_accessor :headline
@@ -62,6 +68,7 @@ module WhopSDK
           id: String,
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           created_at: Time,
+          external_identifier: T.nilable(String),
           headline: T.nilable(String),
           industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           member_count: Integer,
@@ -80,6 +87,10 @@ module WhopSDK
         business_type:,
         # When the product was created.
         created_at:,
+        # A unique identifier used to create or update products. When provided on product
+        # creation endpoints, we’ll look up an existing product by this identifier — if it
+        # exists, we’ll update it; if not, we’ll create a new one.
+        external_identifier:,
         # The headline of the product.
         headline:,
         # The different industry types a company can be in.
@@ -107,6 +118,7 @@ module WhopSDK
             id: String,
             business_type: T.nilable(WhopSDK::BusinessTypes::TaggedSymbol),
             created_at: Time,
+            external_identifier: T.nilable(String),
             headline: T.nilable(String),
             industry_type: T.nilable(WhopSDK::IndustryTypes::TaggedSymbol),
             member_count: Integer,

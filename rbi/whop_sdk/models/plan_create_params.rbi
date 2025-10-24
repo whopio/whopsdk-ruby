@@ -78,6 +78,16 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :renewal_price
 
+      # The price to display with a strikethrough for the initial price. Provided as a
+      # number in dollars. Eg: 19.99 for $19.99
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :strike_through_initial_price
+
+      # The price to display with a strikethrough for the renewal price. Provided as a
+      # number in dollars. Eg: 19.99 for $19.99
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :strike_through_renewal_price
+
       # The title of the plan. This will be visible on the product page to customers.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
@@ -107,6 +117,8 @@ module WhopSDK
           plan_type: T.nilable(WhopSDK::PlanType::OrSymbol),
           release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
           renewal_price: T.nilable(Float),
+          strike_through_initial_price: T.nilable(Float),
+          strike_through_renewal_price: T.nilable(Float),
           title: T.nilable(String),
           trial_period_days: T.nilable(Integer),
           visibility: T.nilable(WhopSDK::Visibility::OrSymbol),
@@ -146,6 +158,12 @@ module WhopSDK
         # The amount the customer is charged every billing period. Use only if a recurring
         # payment. Provided as a number in dollars. Eg: 10.43 for $10.43
         renewal_price: nil,
+        # The price to display with a strikethrough for the initial price. Provided as a
+        # number in dollars. Eg: 19.99 for $19.99
+        strike_through_initial_price: nil,
+        # The price to display with a strikethrough for the renewal price. Provided as a
+        # number in dollars. Eg: 19.99 for $19.99
+        strike_through_renewal_price: nil,
         # The title of the plan. This will be visible on the product page to customers.
         title: nil,
         # The number of free trial days added before a renewal plan.
@@ -174,6 +192,8 @@ module WhopSDK
             plan_type: T.nilable(WhopSDK::PlanType::OrSymbol),
             release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
             renewal_price: T.nilable(Float),
+            strike_through_initial_price: T.nilable(Float),
+            strike_through_renewal_price: T.nilable(Float),
             title: T.nilable(String),
             trial_period_days: T.nilable(Integer),
             visibility: T.nilable(WhopSDK::Visibility::OrSymbol),

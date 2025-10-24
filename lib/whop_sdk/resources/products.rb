@@ -107,7 +107,7 @@ module WhopSDK
       # - `access_pass:update`
       # - `access_pass:basic:read`
       #
-      # @overload update(id, banner_image: nil, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, title: nil, visibility: nil, request_options: {})
+      # @overload update(id, banner_image: nil, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
       #
       # @param id [String]
       #
@@ -143,6 +143,8 @@ module WhopSDK
       # @param redirect_purchase_url [String, nil] The URL to redirect the customer to after a purchase.
       #
       # @param route [String, nil] The route of the product.
+      #
+      # @param store_page_config [WhopSDK::Models::ProductUpdateParams::StorePageConfig, nil] Configuration for a product on the company's store page.
       #
       # @param title [String, nil] The title of the product.
       #

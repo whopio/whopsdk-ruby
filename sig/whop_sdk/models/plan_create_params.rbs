@@ -16,6 +16,8 @@ module WhopSDK
         plan_type: WhopSDK::Models::plan_type?,
         release_method: WhopSDK::Models::release_method?,
         renewal_price: Float?,
+        strike_through_initial_price: Float?,
+        strike_through_renewal_price: Float?,
         title: String?,
         trial_period_days: Integer?,
         visibility: WhopSDK::Models::visibility?
@@ -54,6 +56,10 @@ module WhopSDK
 
       attr_accessor renewal_price: Float?
 
+      attr_accessor strike_through_initial_price: Float?
+
+      attr_accessor strike_through_renewal_price: Float?
+
       attr_accessor title: String?
 
       attr_accessor trial_period_days: Integer?
@@ -75,6 +81,8 @@ module WhopSDK
         ?plan_type: WhopSDK::Models::plan_type?,
         ?release_method: WhopSDK::Models::release_method?,
         ?renewal_price: Float?,
+        ?strike_through_initial_price: Float?,
+        ?strike_through_renewal_price: Float?,
         ?title: String?,
         ?trial_period_days: Integer?,
         ?visibility: WhopSDK::Models::visibility?,
@@ -96,6 +104,8 @@ module WhopSDK
         plan_type: WhopSDK::Models::plan_type?,
         release_method: WhopSDK::Models::release_method?,
         renewal_price: Float?,
+        strike_through_initial_price: Float?,
+        strike_through_renewal_price: Float?,
         title: String?,
         trial_period_days: Integer?,
         visibility: WhopSDK::Models::visibility?,

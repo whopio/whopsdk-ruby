@@ -76,6 +76,20 @@ module WhopSDK
       #   @return [Float, nil]
       optional :renewal_price, Float, nil?: true
 
+      # @!attribute strike_through_initial_price
+      #   The price to display with a strikethrough for the initial price. Provided as a
+      #   number in dollars. Eg: 19.99 for $19.99
+      #
+      #   @return [Float, nil]
+      optional :strike_through_initial_price, Float, nil?: true
+
+      # @!attribute strike_through_renewal_price
+      #   The price to display with a strikethrough for the renewal price. Provided as a
+      #   number in dollars. Eg: 19.99 for $19.99
+      #
+      #   @return [Float, nil]
+      optional :strike_through_renewal_price, Float, nil?: true
+
       # @!attribute title
       #   The title of the plan. This will be visible on the product page to customers.
       #
@@ -94,7 +108,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility, nil]
       optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-      # @!method initialize(billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, offer_cancel_discount: nil, override_tax_type: nil, renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil, request_options: {})
+      # @!method initialize(billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, offer_cancel_discount: nil, override_tax_type: nil, renewal_price: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PlanUpdateParams} for more details.
       #
@@ -119,6 +133,10 @@ module WhopSDK
       #   @param override_tax_type [Symbol, WhopSDK::Models::TaxType, nil] Whether or not the tax is included in a plan's price (or if it hasn't been set u
       #
       #   @param renewal_price [Float, nil] The amount the customer is charged every billing period.
+      #
+      #   @param strike_through_initial_price [Float, nil] The price to display with a strikethrough for the initial price. Provided as a n
+      #
+      #   @param strike_through_renewal_price [Float, nil] The price to display with a strikethrough for the renewal price. Provided as a n
       #
       #   @param title [String, nil] The title of the plan. This will be visible on the product page to customers.
       #

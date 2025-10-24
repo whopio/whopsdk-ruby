@@ -14,7 +14,7 @@ module WhopSDK
       # - `access_pass:basic:read`
       # - `plan:basic:read`
       #
-      # @overload create(company_id:, product_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, plan_type: nil, release_method: nil, renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil, request_options: {})
+      # @overload create(company_id:, product_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, plan_type: nil, release_method: nil, renewal_price: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil, request_options: {})
       #
       # @param company_id [String] The company the plan should be created for.
       #
@@ -43,6 +43,10 @@ module WhopSDK
       # @param release_method [Symbol, WhopSDK::Models::ReleaseMethod, nil] The methods of how a plan can be released.
       #
       # @param renewal_price [Float, nil] The amount the customer is charged every billing period. Use only if a recurring
+      #
+      # @param strike_through_initial_price [Float, nil] The price to display with a strikethrough for the initial price. Provided as a n
+      #
+      # @param strike_through_renewal_price [Float, nil] The price to display with a strikethrough for the renewal price. Provided as a n
       #
       # @param title [String, nil] The title of the plan. This will be visible on the product page to customers.
       #
@@ -94,7 +98,7 @@ module WhopSDK
       # - `access_pass:basic:read`
       # - `plan:basic:read`
       #
-      # @overload update(id, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, offer_cancel_discount: nil, override_tax_type: nil, renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil, request_options: {})
+      # @overload update(id, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, offer_cancel_discount: nil, override_tax_type: nil, renewal_price: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil, request_options: {})
       #
       # @param id [String]
       #
@@ -119,6 +123,10 @@ module WhopSDK
       # @param override_tax_type [Symbol, WhopSDK::Models::TaxType, nil] Whether or not the tax is included in a plan's price (or if it hasn't been set u
       #
       # @param renewal_price [Float, nil] The amount the customer is charged every billing period.
+      #
+      # @param strike_through_initial_price [Float, nil] The price to display with a strikethrough for the initial price. Provided as a n
+      #
+      # @param strike_through_renewal_price [Float, nil] The price to display with a strikethrough for the renewal price. Provided as a n
       #
       # @param title [String, nil] The title of the plan. This will be visible on the product page to customers.
       #

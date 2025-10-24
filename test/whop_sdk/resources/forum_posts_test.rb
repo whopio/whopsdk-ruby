@@ -17,12 +17,14 @@ class WhopSDK::Test::Resources::ForumPostsTest < WhopSDK::Test::ResourceTest
         id: String,
         comment_count: Integer,
         content: String | nil,
+        created_at: Time,
         is_edited: WhopSDK::Internal::Type::Boolean,
         is_pinned: WhopSDK::Internal::Type::Boolean,
         is_poster_admin: WhopSDK::Internal::Type::Boolean,
         like_count: Integer | nil,
         parent_id: String | nil,
         title: String | nil,
+        updated_at: Time,
         user: WhopSDK::ForumPost::User,
         view_count: Integer | nil
       }
@@ -43,12 +45,14 @@ class WhopSDK::Test::Resources::ForumPostsTest < WhopSDK::Test::ResourceTest
         id: String,
         comment_count: Integer,
         content: String | nil,
+        created_at: Time,
         is_edited: WhopSDK::Internal::Type::Boolean,
         is_pinned: WhopSDK::Internal::Type::Boolean,
         is_poster_admin: WhopSDK::Internal::Type::Boolean,
         like_count: Integer | nil,
         parent_id: String | nil,
         title: String | nil,
+        updated_at: Time,
         user: WhopSDK::ForumPost::User,
         view_count: Integer | nil
       }
@@ -76,12 +80,14 @@ class WhopSDK::Test::Resources::ForumPostsTest < WhopSDK::Test::ResourceTest
         id: String,
         comment_count: Integer,
         content: String | nil,
+        created_at: Time,
         is_edited: WhopSDK::Internal::Type::Boolean,
         is_pinned: WhopSDK::Internal::Type::Boolean,
         is_poster_admin: WhopSDK::Internal::Type::Boolean,
         like_count: Integer | nil,
         parent_id: String | nil,
         title: String | nil,
+        updated_at: Time,
         user: WhopSDK::Models::ForumPostListResponse::User,
         view_count: Integer | nil
       }

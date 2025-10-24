@@ -20,7 +20,7 @@ module WhopSDK
       #
       # @param product_id [String] The product the plan is related to.
       #
-      # @param billing_period [Integer, nil] The interval at which the plan charges (renewal plans).
+      # @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans).
       #
       # @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #

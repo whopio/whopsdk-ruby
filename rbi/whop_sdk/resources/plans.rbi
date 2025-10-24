@@ -40,7 +40,7 @@ module WhopSDK
         company_id:,
         # The product the plan is related to.
         product_id:,
-        # The interval at which the plan charges (renewal plans).
+        # The interval in days at which the plan charges (renewal plans).
         billing_period: nil,
         # The available currencies on the platform
         currency: nil,

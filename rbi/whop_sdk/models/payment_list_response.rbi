@@ -167,7 +167,7 @@ module WhopSDK
       sig { returns(T.nilable(Time)) }
       attr_accessor :refunded_at
 
-      # Whether the payment can be retried.
+      # A payment can be retried if the associated membership is past due
       sig { returns(T::Boolean) }
       attr_accessor :retryable
 
@@ -298,7 +298,7 @@ module WhopSDK
         refunded_amount:,
         # When the payment was refunded (if applicable).
         refunded_at:,
-        # Whether the payment can be retried.
+        # A payment can be retried if the associated membership is past due
         retryable:,
         # The status of a receipt
         status:,
@@ -654,7 +654,7 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :code
 
-        # The number of billing cycles the promo is applied for.
+        # The number of months the promo is applied for.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :number_of_intervals
 
@@ -682,7 +682,7 @@ module WhopSDK
           base_currency:,
           # The specific code used to apply the promo at checkout.
           code:,
-          # The number of billing cycles the promo is applied for.
+          # The number of months the promo is applied for.
           number_of_intervals:,
           # The type (% or flat amount) of the promo.
           promo_type:

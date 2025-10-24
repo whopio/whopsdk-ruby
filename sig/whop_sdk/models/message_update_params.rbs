@@ -1,0 +1,48 @@
+module WhopSDK
+  module Models
+    type message_update_params =
+      {
+        attachments: ::Array[WhopSDK::MessageUpdateParams::Attachment]?,
+        content: String?,
+        is_pinned: bool?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class MessageUpdateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor attachments: ::Array[WhopSDK::MessageUpdateParams::Attachment]?
+
+      attr_accessor content: String?
+
+      attr_accessor is_pinned: bool?
+
+      def initialize: (
+        ?attachments: ::Array[WhopSDK::MessageUpdateParams::Attachment]?,
+        ?content: String?,
+        ?is_pinned: bool?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        attachments: ::Array[WhopSDK::MessageUpdateParams::Attachment]?,
+        content: String?,
+        is_pinned: bool?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type attachment = { id: String?, direct_upload_id: String? }
+
+      class Attachment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String?
+
+        attr_accessor direct_upload_id: String?
+
+        def initialize: (?id: String?, ?direct_upload_id: String?) -> void
+
+        def to_hash: -> { id: String?, direct_upload_id: String? }
+      end
+    end
+  end
+end

@@ -161,6 +161,24 @@ module WhopSDK
       )
       end
 
+      # Required permissions:
+      #
+      # - `experience:create`
+      sig do
+        params(
+          id: String,
+          name: T.nilable(String),
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::Experience)
+      end
+      def duplicate(
+        id,
+        # The name of the new experience
+        name: nil,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: WhopSDK::Client).returns(T.attached_class) }
       def self.new(client:)

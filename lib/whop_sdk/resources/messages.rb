@@ -58,6 +58,34 @@ module WhopSDK
         )
       end
 
+      # Updates an existing message
+      #
+      # @overload update(id, attachments: nil, content: nil, is_pinned: nil, request_options: {})
+      #
+      # @param id [String]
+      #
+      # @param attachments [Array<WhopSDK::Models::MessageUpdateParams::Attachment>, nil] The attachments for this message
+      #
+      # @param content [String, nil] The content of the message in Markdown format
+      #
+      # @param is_pinned [Boolean, nil] Whether this message is pinned
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::Message]
+      #
+      # @see WhopSDK::Models::MessageUpdateParams
+      def update(id, params = {})
+        parsed, options = WhopSDK::MessageUpdateParams.dump_request(params)
+        @client.request(
+          method: :patch,
+          path: ["messages/%1$s", id],
+          body: parsed,
+          model: WhopSDK::Message,
+          options: options
+        )
+      end
+
       # Lists messages inside a channel
       #
       # Required permissions:

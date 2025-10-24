@@ -97,6 +97,18 @@ module WhopSDK
     # @return [WhopSDK::Resources::Forums]
     attr_reader :forums
 
+    # @return [WhopSDK::Resources::PromoCodes]
+    attr_reader :promo_codes
+
+    # @return [WhopSDK::Resources::Courses]
+    attr_reader :courses
+
+    # @return [WhopSDK::Resources::CourseChapters]
+    attr_reader :course_chapters
+
+    # @return [WhopSDK::Resources::CourseLessons]
+    attr_reader :course_lessons
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -181,6 +193,10 @@ module WhopSDK
       @reactions = WhopSDK::Resources::Reactions.new(client: self)
       @members = WhopSDK::Resources::Members.new(client: self)
       @forums = WhopSDK::Resources::Forums.new(client: self)
+      @promo_codes = WhopSDK::Resources::PromoCodes.new(client: self)
+      @courses = WhopSDK::Resources::Courses.new(client: self)
+      @course_chapters = WhopSDK::Resources::CourseChapters.new(client: self)
+      @course_lessons = WhopSDK::Resources::CourseLessons.new(client: self)
     end
   end
 end

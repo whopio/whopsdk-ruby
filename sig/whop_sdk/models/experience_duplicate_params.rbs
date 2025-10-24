@@ -1,0 +1,23 @@
+module WhopSDK
+  module Models
+    type experience_duplicate_params =
+      { name: String? } & WhopSDK::Internal::Type::request_parameters
+
+    class ExperienceDuplicateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor name: String?
+
+      def initialize: (
+        ?name: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        name: String?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

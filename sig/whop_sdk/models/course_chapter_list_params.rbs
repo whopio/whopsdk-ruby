@@ -1,0 +1,46 @@
+module WhopSDK
+  module Models
+    type course_chapter_list_params =
+      {
+        course_id: String,
+        after: String?,
+        before: String?,
+        first: Integer?,
+        last: Integer?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class CourseChapterListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor course_id: String
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      def initialize: (
+        course_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        course_id: String,
+        after: String?,
+        before: String?,
+        first: Integer?,
+        last: Integer?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

@@ -1,0 +1,35 @@
+module WhopSDK
+  module Resources
+    class CourseChapters
+      def create: (
+        course_id: String,
+        ?title: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::CourseChapter
+
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::CourseChapter
+
+      def update: (
+        String id,
+        title: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::CourseChapter
+
+      def list: (
+        course_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::CourseChapterListResponse]
+
+      def delete: (String id, ?request_options: WhopSDK::request_opts) -> bool
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

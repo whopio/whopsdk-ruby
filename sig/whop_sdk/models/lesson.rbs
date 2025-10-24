@@ -1,0 +1,248 @@
+module WhopSDK
+  module Models
+    type lesson =
+      {
+        id: String,
+        assessment_questions: ::Array[WhopSDK::Lesson::AssessmentQuestion],
+        attachments: ::Array[WhopSDK::Lesson::Attachment],
+        content: String?,
+        days_from_course_start_until_unlock: Integer?,
+        lesson_type: WhopSDK::Models::lesson_types,
+        main_pdf: WhopSDK::Lesson::MainPdf?,
+        order: Integer,
+        title: String,
+        video_asset: WhopSDK::Lesson::VideoAsset?,
+        visibility: WhopSDK::Models::lesson_visibilities
+      }
+
+    class Lesson < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor assessment_questions: ::Array[WhopSDK::Lesson::AssessmentQuestion]
+
+      attr_accessor attachments: ::Array[WhopSDK::Lesson::Attachment]
+
+      attr_accessor content: String?
+
+      attr_accessor days_from_course_start_until_unlock: Integer?
+
+      attr_accessor lesson_type: WhopSDK::Models::lesson_types
+
+      attr_accessor main_pdf: WhopSDK::Lesson::MainPdf?
+
+      attr_accessor order: Integer
+
+      attr_accessor title: String
+
+      attr_accessor video_asset: WhopSDK::Lesson::VideoAsset?
+
+      attr_accessor visibility: WhopSDK::Models::lesson_visibilities
+
+      def initialize: (
+        id: String,
+        assessment_questions: ::Array[WhopSDK::Lesson::AssessmentQuestion],
+        attachments: ::Array[WhopSDK::Lesson::Attachment],
+        content: String?,
+        days_from_course_start_until_unlock: Integer?,
+        lesson_type: WhopSDK::Models::lesson_types,
+        main_pdf: WhopSDK::Lesson::MainPdf?,
+        order: Integer,
+        title: String,
+        video_asset: WhopSDK::Lesson::VideoAsset?,
+        visibility: WhopSDK::Models::lesson_visibilities
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        assessment_questions: ::Array[WhopSDK::Lesson::AssessmentQuestion],
+        attachments: ::Array[WhopSDK::Lesson::Attachment],
+        content: String?,
+        days_from_course_start_until_unlock: Integer?,
+        lesson_type: WhopSDK::Models::lesson_types,
+        main_pdf: WhopSDK::Lesson::MainPdf?,
+        order: Integer,
+        title: String,
+        video_asset: WhopSDK::Lesson::VideoAsset?,
+        visibility: WhopSDK::Models::lesson_visibilities
+      }
+
+      type assessment_question =
+        {
+          id: String,
+          correct_answer: String,
+          created_at: Time,
+          image: WhopSDK::Lesson::AssessmentQuestion::Image?,
+          options: ::Array[WhopSDK::Lesson::AssessmentQuestion::Option],
+          order: Integer,
+          question_text: String,
+          question_type: WhopSDK::Models::assessment_question_types
+        }
+
+      class AssessmentQuestion < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor correct_answer: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor image: WhopSDK::Lesson::AssessmentQuestion::Image?
+
+        attr_accessor options: ::Array[WhopSDK::Lesson::AssessmentQuestion::Option]
+
+        attr_accessor order: Integer
+
+        attr_accessor question_text: String
+
+        attr_accessor question_type: WhopSDK::Models::assessment_question_types
+
+        def initialize: (
+          id: String,
+          correct_answer: String,
+          created_at: Time,
+          image: WhopSDK::Lesson::AssessmentQuestion::Image?,
+          options: ::Array[WhopSDK::Lesson::AssessmentQuestion::Option],
+          order: Integer,
+          question_text: String,
+          question_type: WhopSDK::Models::assessment_question_types
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          correct_answer: String,
+          created_at: Time,
+          image: WhopSDK::Lesson::AssessmentQuestion::Image?,
+          options: ::Array[WhopSDK::Lesson::AssessmentQuestion::Option],
+          order: Integer,
+          question_text: String,
+          question_type: WhopSDK::Models::assessment_question_types
+        }
+
+        type image =
+          { id: String, content_type: String?, filename: String?, url: String? }
+
+        class Image < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor content_type: String?
+
+          attr_accessor filename: String?
+
+          attr_accessor url: String?
+
+          def initialize: (
+            id: String,
+            content_type: String?,
+            filename: String?,
+            url: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            content_type: String?,
+            filename: String?,
+            url: String?
+          }
+        end
+
+        type option =
+          { id: String, is_correct: bool, option_text: String, order: Integer }
+
+        class Option < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor is_correct: bool
+
+          attr_accessor option_text: String
+
+          attr_accessor order: Integer
+
+          def initialize: (
+            id: String,
+            is_correct: bool,
+            option_text: String,
+            order: Integer
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            is_correct: bool,
+            option_text: String,
+            order: Integer
+          }
+        end
+      end
+
+      type attachment =
+        { id: String, content_type: String?, filename: String?, url: String? }
+
+      class Attachment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor content_type: String?
+
+        attr_accessor filename: String?
+
+        attr_accessor url: String?
+
+        def initialize: (
+          id: String,
+          content_type: String?,
+          filename: String?,
+          url: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          content_type: String?,
+          filename: String?,
+          url: String?
+        }
+      end
+
+      type main_pdf =
+        { id: String, content_type: String?, filename: String?, url: String? }
+
+      class MainPdf < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor content_type: String?
+
+        attr_accessor filename: String?
+
+        attr_accessor url: String?
+
+        def initialize: (
+          id: String,
+          content_type: String?,
+          filename: String?,
+          url: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          content_type: String?,
+          filename: String?,
+          url: String?
+        }
+      end
+
+      type video_asset = { id: String, asset_id: String?, playback_id: String? }
+
+      class VideoAsset < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor asset_id: String?
+
+        attr_accessor playback_id: String?
+
+        def initialize: (
+          id: String,
+          asset_id: String?,
+          playback_id: String?
+        ) -> void
+
+        def to_hash: -> { id: String, asset_id: String?, playback_id: String? }
+      end
+    end
+  end
+end

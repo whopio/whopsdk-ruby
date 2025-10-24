@@ -1,0 +1,50 @@
+module WhopSDK
+  module Models
+    type course_lesson_list_response =
+      {
+        id: String,
+        content: String?,
+        days_from_course_start_until_unlock: Integer?,
+        lesson_type: WhopSDK::Models::lesson_types,
+        order: Integer,
+        title: String,
+        visibility: WhopSDK::Models::lesson_visibilities
+      }
+
+    class CourseLessonListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor content: String?
+
+      attr_accessor days_from_course_start_until_unlock: Integer?
+
+      attr_accessor lesson_type: WhopSDK::Models::lesson_types
+
+      attr_accessor order: Integer
+
+      attr_accessor title: String
+
+      attr_accessor visibility: WhopSDK::Models::lesson_visibilities
+
+      def initialize: (
+        id: String,
+        content: String?,
+        days_from_course_start_until_unlock: Integer?,
+        lesson_type: WhopSDK::Models::lesson_types,
+        order: Integer,
+        title: String,
+        visibility: WhopSDK::Models::lesson_visibilities
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        content: String?,
+        days_from_course_start_until_unlock: Integer?,
+        lesson_type: WhopSDK::Models::lesson_types,
+        order: Integer,
+        title: String,
+        visibility: WhopSDK::Models::lesson_visibilities
+      }
+    end
+  end
+end

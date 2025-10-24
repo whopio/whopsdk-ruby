@@ -1,0 +1,49 @@
+module WhopSDK
+  module Models
+    type course_chapter =
+      {
+        id: String,
+        lessons: ::Array[WhopSDK::CourseChapter::Lesson],
+        order: Integer,
+        title: String
+      }
+
+    class CourseChapter < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor lessons: ::Array[WhopSDK::CourseChapter::Lesson]
+
+      attr_accessor order: Integer
+
+      attr_accessor title: String
+
+      def initialize: (
+        id: String,
+        lessons: ::Array[WhopSDK::CourseChapter::Lesson],
+        order: Integer,
+        title: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        lessons: ::Array[WhopSDK::CourseChapter::Lesson],
+        order: Integer,
+        title: String
+      }
+
+      type lesson = { id: String, order: Integer, title: String }
+
+      class Lesson < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor order: Integer
+
+        attr_accessor title: String
+
+        def initialize: (id: String, order: Integer, title: String) -> void
+
+        def to_hash: -> { id: String, order: Integer, title: String }
+      end
+    end
+  end
+end

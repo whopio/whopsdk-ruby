@@ -71,6 +71,8 @@ module WhopSDK
 
   AppViewType = WhopSDK::Models::AppViewType
 
+  AssessmentQuestionTypes = WhopSDK::Models::AssessmentQuestionTypes
+
   AuthorizedUserListParams = WhopSDK::Models::AuthorizedUserListParams
 
   AuthorizedUserRetrieveParams = WhopSDK::Models::AuthorizedUserRetrieveParams
@@ -101,6 +103,28 @@ module WhopSDK
 
   CompanyRetrieveParams = WhopSDK::Models::CompanyRetrieveParams
 
+  Course = WhopSDK::Models::Course
+
+  CourseChapter = WhopSDK::Models::CourseChapter
+
+  CourseChapterCreateParams = WhopSDK::Models::CourseChapterCreateParams
+
+  CourseChapterDeleteParams = WhopSDK::Models::CourseChapterDeleteParams
+
+  CourseChapterListParams = WhopSDK::Models::CourseChapterListParams
+
+  CourseChapterRetrieveParams = WhopSDK::Models::CourseChapterRetrieveParams
+
+  CourseChapterUpdateParams = WhopSDK::Models::CourseChapterUpdateParams
+
+  CourseCreateParams = WhopSDK::Models::CourseCreateParams
+
+  CourseDeleteParams = WhopSDK::Models::CourseDeleteParams
+
+  CourseLessonCreateParams = WhopSDK::Models::CourseLessonCreateParams
+
+  CourseLessonDeleteParams = WhopSDK::Models::CourseLessonDeleteParams
+
   CourseLessonInteraction = WhopSDK::Models::CourseLessonInteraction
 
   CourseLessonInteractionCompletedWebhookEvent =
@@ -111,6 +135,18 @@ module WhopSDK
   CourseLessonInteractionListParams = WhopSDK::Models::CourseLessonInteractionListParams
 
   CourseLessonInteractionRetrieveParams = WhopSDK::Models::CourseLessonInteractionRetrieveParams
+
+  CourseLessonListParams = WhopSDK::Models::CourseLessonListParams
+
+  CourseLessonRetrieveParams = WhopSDK::Models::CourseLessonRetrieveParams
+
+  CourseLessonUpdateParams = WhopSDK::Models::CourseLessonUpdateParams
+
+  CourseListParams = WhopSDK::Models::CourseListParams
+
+  CourseRetrieveParams = WhopSDK::Models::CourseRetrieveParams
+
+  CourseUpdateParams = WhopSDK::Models::CourseUpdateParams
 
   Currency = WhopSDK::Models::Currency
 
@@ -152,6 +188,8 @@ module WhopSDK
 
   ExperienceDetachParams = WhopSDK::Models::ExperienceDetachParams
 
+  ExperienceDuplicateParams = WhopSDK::Models::ExperienceDuplicateParams
+
   ExperienceListParams = WhopSDK::Models::ExperienceListParams
 
   ExperienceRetrieveParams = WhopSDK::Models::ExperienceRetrieveParams
@@ -169,6 +207,8 @@ module WhopSDK
   ForumPostListParams = WhopSDK::Models::ForumPostListParams
 
   ForumPostRetrieveParams = WhopSDK::Models::ForumPostRetrieveParams
+
+  ForumPostUpdateParams = WhopSDK::Models::ForumPostUpdateParams
 
   ForumRetrieveParams = WhopSDK::Models::ForumRetrieveParams
 
@@ -202,7 +242,15 @@ module WhopSDK
 
   InvoiceVoidParams = WhopSDK::Models::InvoiceVoidParams
 
+  Languages = WhopSDK::Models::Languages
+
   LedgerAccountRetrieveParams = WhopSDK::Models::LedgerAccountRetrieveParams
+
+  Lesson = WhopSDK::Models::Lesson
+
+  LessonTypes = WhopSDK::Models::LessonTypes
+
+  LessonVisibilities = WhopSDK::Models::LessonVisibilities
 
   MemberListParams = WhopSDK::Models::MemberListParams
 
@@ -239,6 +287,8 @@ module WhopSDK
   MessageListParams = WhopSDK::Models::MessageListParams
 
   MessageRetrieveParams = WhopSDK::Models::MessageRetrieveParams
+
+  MessageUpdateParams = WhopSDK::Models::MessageUpdateParams
 
   PageInfo = WhopSDK::Models::PageInfo
 
@@ -287,6 +337,20 @@ module WhopSDK
   ProductRetrieveParams = WhopSDK::Models::ProductRetrieveParams
 
   ProductUpdateParams = WhopSDK::Models::ProductUpdateParams
+
+  PromoCode = WhopSDK::Models::PromoCode
+
+  PromoCodeCreateParams = WhopSDK::Models::PromoCodeCreateParams
+
+  PromoCodeDeleteParams = WhopSDK::Models::PromoCodeDeleteParams
+
+  PromoCodeListParams = WhopSDK::Models::PromoCodeListParams
+
+  PromoCodeRetrieveParams = WhopSDK::Models::PromoCodeRetrieveParams
+
+  PromoCodeStatus = WhopSDK::Models::PromoCodeStatus
+
+  PromoDuration = WhopSDK::Models::PromoDuration
 
   PromoType = WhopSDK::Models::PromoType
 

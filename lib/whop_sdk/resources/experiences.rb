@@ -204,6 +204,32 @@ module WhopSDK
         )
       end
 
+      # Required permissions:
+      #
+      # - `experience:create`
+      #
+      # @overload duplicate(id, name: nil, request_options: {})
+      #
+      # @param id [String]
+      #
+      # @param name [String, nil] The name of the new experience
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::Experience]
+      #
+      # @see WhopSDK::Models::ExperienceDuplicateParams
+      def duplicate(id, params = {})
+        parsed, options = WhopSDK::ExperienceDuplicateParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: ["experiences/%1$s/duplicate", id],
+          body: parsed,
+          model: WhopSDK::Experience,
+          options: options
+        )
+      end
+
       # @api private
       #
       # @param client [WhopSDK::Client]

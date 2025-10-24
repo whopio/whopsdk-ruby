@@ -1,0 +1,132 @@
+module WhopSDK
+  module Models
+    type course_update_params =
+      {
+        certificate_after_completion_enabled: bool?,
+        chapters: ::Array[WhopSDK::CourseUpdateParams::Chapter]?,
+        description: String?,
+        language: WhopSDK::Models::languages?,
+        require_completing_lessons_in_order: bool?,
+        tagline: String?,
+        thumbnail: WhopSDK::CourseUpdateParams::Thumbnail?,
+        title: String?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class CourseUpdateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor certificate_after_completion_enabled: bool?
+
+      attr_accessor chapters: ::Array[WhopSDK::CourseUpdateParams::Chapter]?
+
+      attr_accessor description: String?
+
+      attr_accessor language: WhopSDK::Models::languages?
+
+      attr_accessor require_completing_lessons_in_order: bool?
+
+      attr_accessor tagline: String?
+
+      attr_accessor thumbnail: WhopSDK::CourseUpdateParams::Thumbnail?
+
+      attr_accessor title: String?
+
+      def initialize: (
+        ?certificate_after_completion_enabled: bool?,
+        ?chapters: ::Array[WhopSDK::CourseUpdateParams::Chapter]?,
+        ?description: String?,
+        ?language: WhopSDK::Models::languages?,
+        ?require_completing_lessons_in_order: bool?,
+        ?tagline: String?,
+        ?thumbnail: WhopSDK::CourseUpdateParams::Thumbnail?,
+        ?title: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        certificate_after_completion_enabled: bool?,
+        chapters: ::Array[WhopSDK::CourseUpdateParams::Chapter]?,
+        description: String?,
+        language: WhopSDK::Models::languages?,
+        require_completing_lessons_in_order: bool?,
+        tagline: String?,
+        thumbnail: WhopSDK::CourseUpdateParams::Thumbnail?,
+        title: String?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type chapter =
+        {
+          id: String,
+          order: Integer,
+          title: String,
+          lessons: ::Array[WhopSDK::CourseUpdateParams::Chapter::Lesson]?
+        }
+
+      class Chapter < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor order: Integer
+
+        attr_accessor title: String
+
+        attr_accessor lessons: ::Array[WhopSDK::CourseUpdateParams::Chapter::Lesson]?
+
+        def initialize: (
+          id: String,
+          order: Integer,
+          title: String,
+          ?lessons: ::Array[WhopSDK::CourseUpdateParams::Chapter::Lesson]?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          order: Integer,
+          title: String,
+          lessons: ::Array[WhopSDK::CourseUpdateParams::Chapter::Lesson]?
+        }
+
+        type lesson =
+          { id: String, chapter_id: String, order: Integer, title: String }
+
+        class Lesson < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor chapter_id: String
+
+          attr_accessor order: Integer
+
+          attr_accessor title: String
+
+          def initialize: (
+            id: String,
+            chapter_id: String,
+            order: Integer,
+            title: String
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            chapter_id: String,
+            order: Integer,
+            title: String
+          }
+        end
+      end
+
+      type thumbnail = { id: String?, direct_upload_id: String? }
+
+      class Thumbnail < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String?
+
+        attr_accessor direct_upload_id: String?
+
+        def initialize: (?id: String?, ?direct_upload_id: String?) -> void
+
+        def to_hash: -> { id: String?, direct_upload_id: String? }
+      end
+    end
+  end
+end

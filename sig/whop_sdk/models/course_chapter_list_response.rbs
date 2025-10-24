@@ -1,0 +1,18 @@
+module WhopSDK
+  module Models
+    type course_chapter_list_response =
+      { id: String, order: Integer, title: String }
+
+    class CourseChapterListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor order: Integer
+
+      attr_accessor title: String
+
+      def initialize: (id: String, order: Integer, title: String) -> void
+
+      def to_hash: -> { id: String, order: Integer, title: String }
+    end
+  end
+end

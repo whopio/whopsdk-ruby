@@ -70,6 +70,35 @@ module WhopSDK
       def retrieve(id, request_options: {})
       end
 
+      # Update an existing forum post
+      sig do
+        params(
+          id: String,
+          attachments:
+            T.nilable(
+              T::Array[WhopSDK::ForumPostUpdateParams::Attachment::OrHash]
+            ),
+          content: T.nilable(String),
+          is_pinned: T.nilable(T::Boolean),
+          title: T.nilable(String),
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::ForumPost)
+      end
+      def update(
+        id,
+        # The attachments for this post
+        attachments: nil,
+        # This is the main body of the post in Markdown format. Hidden if paywalled and
+        # user hasn't purchased access to it.
+        content: nil,
+        # Whether the post is pinned. You can only pin a top level posts (not comments).
+        is_pinned: nil,
+        # The title of the post. Only visible if paywalled.
+        title: nil,
+        request_options: {}
+      )
+      end
+
       # Lists forum posts
       #
       # Required permissions:

@@ -132,6 +132,8 @@ module WhopSDK
           product_tax_code_id: T.nilable(String),
           redirect_purchase_url: T.nilable(String),
           route: T.nilable(String),
+          store_page_config:
+            T.nilable(WhopSDK::ProductUpdateParams::StorePageConfig::OrHash),
           title: T.nilable(String),
           visibility: T.nilable(WhopSDK::Visibility::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -173,6 +175,8 @@ module WhopSDK
         redirect_purchase_url: nil,
         # The route of the product.
         route: nil,
+        # Configuration for a product on the company's store page.
+        store_page_config: nil,
         # The title of the product.
         title: nil,
         # Visibility of a resource

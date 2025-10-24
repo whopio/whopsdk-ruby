@@ -32,8 +32,11 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
         purchase_url: String,
         release_method: WhopSDK::ReleaseMethod,
         renewal_price: Float,
+        stock: Integer | nil,
         tax_type: WhopSDK::TaxType,
+        title: String | nil,
         trial_period_days: Integer | nil,
+        unlimited_stock: WhopSDK::Internal::Type::Boolean,
         updated_at: Time,
         visibility: WhopSDK::Visibility
       }
@@ -69,8 +72,11 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
         purchase_url: String,
         release_method: WhopSDK::ReleaseMethod,
         renewal_price: Float,
+        stock: Integer | nil,
         tax_type: WhopSDK::TaxType,
+        title: String | nil,
         trial_period_days: Integer | nil,
+        unlimited_stock: WhopSDK::Internal::Type::Boolean,
         updated_at: Time,
         visibility: WhopSDK::Visibility
       }
@@ -106,8 +112,11 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
         purchase_url: String,
         release_method: WhopSDK::ReleaseMethod,
         renewal_price: Float,
+        stock: Integer | nil,
         tax_type: WhopSDK::TaxType,
+        title: String | nil,
         trial_period_days: Integer | nil,
+        unlimited_stock: WhopSDK::Internal::Type::Boolean,
         updated_at: Time,
         visibility: WhopSDK::Visibility
       }
@@ -148,7 +157,10 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
         purchase_url: String,
         release_method: WhopSDK::ReleaseMethod,
         renewal_price: Float,
+        stock: Integer | nil,
+        title: String | nil,
         trial_period_days: Integer | nil,
+        unlimited_stock: WhopSDK::Internal::Type::Boolean,
         updated_at: Time,
         visibility: WhopSDK::Visibility
       }

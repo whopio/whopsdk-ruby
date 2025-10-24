@@ -19,7 +19,7 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :product_id
 
-      # The interval at which the plan charges (renewal plans).
+      # The interval in days at which the plan charges (renewal plans).
       sig { returns(T.nilable(Integer)) }
       attr_accessor :billing_period
 
@@ -130,7 +130,7 @@ module WhopSDK
         company_id:,
         # The product the plan is related to.
         product_id:,
-        # The interval at which the plan charges (renewal plans).
+        # The interval in days at which the plan charges (renewal plans).
         billing_period: nil,
         # The available currencies on the platform
         currency: nil,

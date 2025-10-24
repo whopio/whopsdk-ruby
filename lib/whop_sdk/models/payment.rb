@@ -143,7 +143,7 @@ module WhopSDK
       required :refunded_at, Time, nil?: true
 
       # @!attribute retryable
-      #   Whether the payment can be retried.
+      #   A payment can be retried if the associated membership is past due
       #
       #   @return [Boolean]
       required :retryable, WhopSDK::Internal::Type::Boolean
@@ -242,7 +242,7 @@ module WhopSDK
       #
       #   @param refunded_at [Time, nil] When the payment was refunded (if applicable).
       #
-      #   @param retryable [Boolean] Whether the payment can be retried.
+      #   @param retryable [Boolean] A payment can be retried if the associated membership is past due
       #
       #   @param status [Symbol, WhopSDK::Models::ReceiptStatus, nil] The status of a receipt
       #
@@ -465,7 +465,7 @@ module WhopSDK
         required :code, String, nil?: true
 
         # @!attribute number_of_intervals
-        #   The number of billing cycles the promo is applied for.
+        #   The number of months the promo is applied for.
         #
         #   @return [Integer, nil]
         required :number_of_intervals, Integer, nil?: true
@@ -487,7 +487,7 @@ module WhopSDK
         #
         #   @param code [String, nil] The specific code used to apply the promo at checkout.
         #
-        #   @param number_of_intervals [Integer, nil] The number of billing cycles the promo is applied for.
+        #   @param number_of_intervals [Integer, nil] The number of months the promo is applied for.
         #
         #   @param promo_type [Symbol, WhopSDK::Models::PromoType] The type (% or flat amount) of the promo.
       end

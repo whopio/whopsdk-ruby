@@ -13,10 +13,12 @@ module WhopSDK
         offer_cancel_discount: bool?,
         override_tax_type: WhopSDK::Models::tax_type?,
         renewal_price: Float?,
+        stock: Integer?,
         strike_through_initial_price: Float?,
         strike_through_renewal_price: Float?,
         title: String?,
         trial_period_days: Integer?,
+        unlimited_stock: bool?,
         visibility: WhopSDK::Models::visibility?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -47,6 +49,8 @@ module WhopSDK
 
       attr_accessor renewal_price: Float?
 
+      attr_accessor stock: Integer?
+
       attr_accessor strike_through_initial_price: Float?
 
       attr_accessor strike_through_renewal_price: Float?
@@ -54,6 +58,8 @@ module WhopSDK
       attr_accessor title: String?
 
       attr_accessor trial_period_days: Integer?
+
+      attr_accessor unlimited_stock: bool?
 
       attr_accessor visibility: WhopSDK::Models::visibility?
 
@@ -69,10 +75,12 @@ module WhopSDK
         ?offer_cancel_discount: bool?,
         ?override_tax_type: WhopSDK::Models::tax_type?,
         ?renewal_price: Float?,
+        ?stock: Integer?,
         ?strike_through_initial_price: Float?,
         ?strike_through_renewal_price: Float?,
         ?title: String?,
         ?trial_period_days: Integer?,
+        ?unlimited_stock: bool?,
         ?visibility: WhopSDK::Models::visibility?,
         ?request_options: WhopSDK::request_opts
       ) -> void
@@ -89,10 +97,12 @@ module WhopSDK
         offer_cancel_discount: bool?,
         override_tax_type: WhopSDK::Models::tax_type?,
         renewal_price: Float?,
+        stock: Integer?,
         strike_through_initial_price: Float?,
         strike_through_renewal_price: Float?,
         title: String?,
         trial_period_days: Integer?,
+        unlimited_stock: bool?,
         visibility: WhopSDK::Models::visibility?,
         request_options: WhopSDK::RequestOptions
       }

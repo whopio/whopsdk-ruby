@@ -16,10 +16,12 @@ module WhopSDK
         ?plan_type: WhopSDK::Models::plan_type?,
         ?release_method: WhopSDK::Models::release_method?,
         ?renewal_price: Float?,
+        ?stock: Integer?,
         ?strike_through_initial_price: Float?,
         ?strike_through_renewal_price: Float?,
         ?title: String?,
         ?trial_period_days: Integer?,
+        ?unlimited_stock: bool?,
         ?visibility: WhopSDK::Models::visibility?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Plan
@@ -42,10 +44,12 @@ module WhopSDK
         ?offer_cancel_discount: bool?,
         ?override_tax_type: WhopSDK::Models::tax_type?,
         ?renewal_price: Float?,
+        ?stock: Integer?,
         ?strike_through_initial_price: Float?,
         ?strike_through_renewal_price: Float?,
         ?title: String?,
         ?trial_period_days: Integer?,
+        ?unlimited_stock: bool?,
         ?visibility: WhopSDK::Models::visibility?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Plan

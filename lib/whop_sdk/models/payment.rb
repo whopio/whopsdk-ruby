@@ -28,16 +28,16 @@ module WhopSDK
       required :billing_address, -> { WhopSDK::Payment::BillingAddress }, nil?: true
 
       # @!attribute billing_reason
-      #   The billing reason
+      #   The reason why a specific payment was billed
       #
-      #   @return [String, nil]
-      required :billing_reason, String, nil?: true
+      #   @return [Symbol, WhopSDK::Models::Payment::BillingReason, nil]
+      required :billing_reason, enum: -> { WhopSDK::Payment::BillingReason }, nil?: true
 
       # @!attribute card_brand
-      #   The type of card used as the payment method.
+      #   Possible card brands that a payment token can have
       #
-      #   @return [String, nil]
-      required :card_brand, String, nil?: true
+      #   @return [Symbol, WhopSDK::Models::Payment::CardBrand, nil]
+      required :card_brand, enum: -> { WhopSDK::Payment::CardBrand }, nil?: true
 
       # @!attribute card_last4
       #   The last 4 digits of the card used to make the payment.
@@ -100,11 +100,10 @@ module WhopSDK
       required :paid_at, Time, nil?: true
 
       # @!attribute payment_method_type
-      #   Returns the type of payment method used for the payment, if available. Ex.
-      #   klarna, affirm, card, cashapp
+      #   The different types of payment methods that can be used.
       #
-      #   @return [String, nil]
-      required :payment_method_type, String, nil?: true
+      #   @return [Symbol, WhopSDK::Models::Payment::PaymentMethodType, nil]
+      required :payment_method_type, enum: -> { WhopSDK::Payment::PaymentMethodType }, nil?: true
 
       # @!attribute plan
       #   The plan attached to this payment.
@@ -125,7 +124,8 @@ module WhopSDK
       required :promo_code, -> { WhopSDK::Payment::PromoCode }, nil?: true
 
       # @!attribute refundable
-      #   Whether the payment can be refunded.
+      #   True only for payments that are `paid`, have not been fully refunded, and were
+      #   processed by a payment processor that allows refunds.
       #
       #   @return [Boolean]
       required :refundable, WhopSDK::Internal::Type::Boolean
@@ -143,7 +143,9 @@ module WhopSDK
       required :refunded_at, Time, nil?: true
 
       # @!attribute retryable
-      #   A payment can be retried if the associated membership is past due
+      #   True when the payment status is `open` and its membership is in one of the
+      #   retry-eligible states (`active`, `trialing`, `completed`, or `past_due`);
+      #   otherwise false. Used to decide if Whop can attempt the charge again.
       #
       #   @return [Boolean]
       required :retryable, WhopSDK::Internal::Type::Boolean
@@ -185,7 +187,8 @@ module WhopSDK
       required :user, -> { WhopSDK::Payment::User }, nil?: true
 
       # @!attribute voidable
-      #   Whether the payment can be voided.
+      #   True when the payment is tied to a membership in `past_due`, the payment status
+      #   is `open`, and the processor allows voiding payments; otherwise false.
       #
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
@@ -204,9 +207,9 @@ module WhopSDK
       #
       #   @param billing_address [WhopSDK::Models::Payment::BillingAddress, nil] The address of the user who made the payment.
       #
-      #   @param billing_reason [String, nil] The billing reason
+      #   @param billing_reason [Symbol, WhopSDK::Models::Payment::BillingReason, nil] The reason why a specific payment was billed
       #
-      #   @param card_brand [String, nil] The type of card used as the payment method.
+      #   @param card_brand [Symbol, WhopSDK::Models::Payment::CardBrand, nil] Possible card brands that a payment token can have
       #
       #   @param card_last4 [String, nil] The last 4 digits of the card used to make the payment.
       #
@@ -228,7 +231,7 @@ module WhopSDK
       #
       #   @param paid_at [Time, nil] The datetime the payment was paid
       #
-      #   @param payment_method_type [String, nil] Returns the type of payment method used for the payment, if available. Ex. klarn
+      #   @param payment_method_type [Symbol, WhopSDK::Models::Payment::PaymentMethodType, nil] The different types of payment methods that can be used.
       #
       #   @param plan [WhopSDK::Models::Payment::Plan, nil] The plan attached to this payment.
       #
@@ -236,13 +239,13 @@ module WhopSDK
       #
       #   @param promo_code [WhopSDK::Models::Payment::PromoCode, nil] The promo code used for this payment.
       #
-      #   @param refundable [Boolean] Whether the payment can be refunded.
+      #   @param refundable [Boolean] True only for payments that are `paid`, have not been fully refunded, and were p
       #
       #   @param refunded_amount [Float, nil] The payment refund amount(if applicable).
       #
       #   @param refunded_at [Time, nil] When the payment was refunded (if applicable).
       #
-      #   @param retryable [Boolean] A payment can be retried if the associated membership is past due
+      #   @param retryable [Boolean] True when the payment status is `open` and its membership is in one of the retry
       #
       #   @param status [Symbol, WhopSDK::Models::ReceiptStatus, nil] The status of a receipt
       #
@@ -256,7 +259,7 @@ module WhopSDK
       #
       #   @param user [WhopSDK::Models::Payment::User, nil] The user that made this payment.
       #
-      #   @param voidable [Boolean] Whether the payment can be voided.
+      #   @param voidable [Boolean] True when the payment is tied to a membership in `past_due`, the payment status
 
       # @see WhopSDK::Models::Payment#billing_address
       class BillingAddress < WhopSDK::Internal::Type::BaseModel
@@ -318,6 +321,50 @@ module WhopSDK
         #   @param postal_code [String, nil] The postal code of the address.
         #
         #   @param state [String, nil] The state of the address.
+      end
+
+      # The reason why a specific payment was billed
+      #
+      # @see WhopSDK::Models::Payment#billing_reason
+      module BillingReason
+        extend WhopSDK::Internal::Type::Enum
+
+        SUBSCRIPTION_CREATE = :subscription_create
+        SUBSCRIPTION_CYCLE = :subscription_cycle
+        SUBSCRIPTION_UPDATE = :subscription_update
+        ONE_TIME = :one_time
+        MANUAL = :manual
+        SUBSCRIPTION = :subscription
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Possible card brands that a payment token can have
+      #
+      # @see WhopSDK::Models::Payment#card_brand
+      module CardBrand
+        extend WhopSDK::Internal::Type::Enum
+
+        MASTERCARD = :mastercard
+        VISA = :visa
+        AMEX = :amex
+        DISCOVER = :discover
+        UNIONPAY = :unionpay
+        JCB = :jcb
+        DINERS = :diners
+        LINK = :link
+        TROY = :troy
+        VISADANKORT = :visadankort
+        VISABANCONTACT = :visabancontact
+        CHINA_UNION_PAY = :china_union_pay
+        RUPAY = :rupay
+        JCBRUPAY = :jcbrupay
+        ELO = :elo
+        UNKNOWN = :unknown
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # @see WhopSDK::Models::Payment#company
@@ -392,6 +439,96 @@ module WhopSDK
         #   @param id [String] The internal ID of the membership.
         #
         #   @param status [Symbol, WhopSDK::Models::MembershipStatus] The state of the membership.
+      end
+
+      # The different types of payment methods that can be used.
+      #
+      # @see WhopSDK::Models::Payment#payment_method_type
+      module PaymentMethodType
+        extend WhopSDK::Internal::Type::Enum
+
+        ACSS_DEBIT = :acss_debit
+        AFFIRM = :affirm
+        AFTERPAY_CLEARPAY = :afterpay_clearpay
+        ALIPAY = :alipay
+        ALMA = :alma
+        AMAZON_PAY = :amazon_pay
+        APPLE_PAY = :apple_pay
+        AU_BECS_DEBIT = :au_becs_debit
+        BACS_DEBIT = :bacs_debit
+        BANCONTACT = :bancontact
+        BILLIE = :billie
+        BLIK = :blik
+        BOLETO = :boleto
+        CARD = :card
+        CASHAPP = :cashapp
+        CRYPTO = :crypto
+        EPS = :eps
+        FPX = :fpx
+        GIROPAY = :giropay
+        GOOGLE_PAY = :google_pay
+        GRABPAY = :grabpay
+        IDEAL = :ideal
+        KAKAO_PAY = :kakao_pay
+        KLARNA = :klarna
+        KONBINI = :konbini
+        KR_CARD = :kr_card
+        LINK = :link
+        MOBILEPAY = :mobilepay
+        MULTIBANCO = :multibanco
+        NAVER_PAY = :naver_pay
+        NZ_BANK_ACCOUNT = :nz_bank_account
+        OXXO = :oxxo
+        P24 = :p24
+        PAY_BY_BANK = :pay_by_bank
+        PAYCO = :payco
+        PAYNOW = :paynow
+        PIX = :pix
+        PROMPTPAY = :promptpay
+        REVOLUT_PAY = :revolut_pay
+        SAMSUNG_PAY = :samsung_pay
+        SATISPAY = :satispay
+        SEPA_DEBIT = :sepa_debit
+        SOFORT = :sofort
+        SWISH = :swish
+        TWINT = :twint
+        US_BANK_ACCOUNT = :us_bank_account
+        WECHAT_PAY = :wechat_pay
+        ZIP = :zip
+        BIZUM = :bizum
+        CAPCHASE_PAY = :capchase_pay
+        KRIYA = :kriya
+        MONDU = :mondu
+        NG_WALLET = :ng_wallet
+        PAYPAY = :paypay
+        SEQURA = :sequra
+        SCALAPAY = :scalapay
+        VIPPS = :vipps
+        CUSTOM = :custom
+        CUSTOMER_BALANCE = :customer_balance
+        GOPAY = :gopay
+        MB_WAY = :mb_way
+        NG_BANK = :ng_bank
+        NG_BANK_TRANSFER = :ng_bank_transfer
+        NG_CARD = :ng_card
+        NG_MARKET = :ng_market
+        NG_USSD = :ng_ussd
+        PAYPAL = :paypal
+        PAYTO = :payto
+        QRIS = :qris
+        RECHNUNG = :rechnung
+        SOUTH_KOREA_MARKET = :south_korea_market
+        KR_MARKET = :kr_market
+        SHOPEEPAY = :shopeepay
+        UPI = :upi
+        SUNBIT = :sunbit
+        NETBANKING = :netbanking
+        ID_BANK_TRANSFER = :id_bank_transfer
+        DEMO_PAY = :demo_pay
+        SHOP_PAY = :shop_pay
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # @see WhopSDK::Models::Payment#plan

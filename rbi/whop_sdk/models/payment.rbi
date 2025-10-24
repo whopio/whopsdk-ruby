@@ -29,12 +29,12 @@ module WhopSDK
       end
       attr_writer :billing_address
 
-      # The billing reason
-      sig { returns(T.nilable(String)) }
+      # The reason why a specific payment was billed
+      sig { returns(T.nilable(WhopSDK::Payment::BillingReason::TaggedSymbol)) }
       attr_accessor :billing_reason
 
-      # The type of card used as the payment method.
-      sig { returns(T.nilable(String)) }
+      # Possible card brands that a payment token can have
+      sig { returns(T.nilable(WhopSDK::Payment::CardBrand::TaggedSymbol)) }
       attr_accessor :card_brand
 
       # The last 4 digits of the card used to make the payment.
@@ -88,9 +88,10 @@ module WhopSDK
       sig { returns(T.nilable(Time)) }
       attr_accessor :paid_at
 
-      # Returns the type of payment method used for the payment, if available. Ex.
-      # klarna, affirm, card, cashapp
-      sig { returns(T.nilable(String)) }
+      # The different types of payment methods that can be used.
+      sig do
+        returns(T.nilable(WhopSDK::Payment::PaymentMethodType::TaggedSymbol))
+      end
       attr_accessor :payment_method_type
 
       # The plan attached to this payment.
@@ -116,7 +117,8 @@ module WhopSDK
       end
       attr_writer :promo_code
 
-      # Whether the payment can be refunded.
+      # True only for payments that are `paid`, have not been fully refunded, and were
+      # processed by a payment processor that allows refunds.
       sig { returns(T::Boolean) }
       attr_accessor :refundable
 
@@ -128,7 +130,9 @@ module WhopSDK
       sig { returns(T.nilable(Time)) }
       attr_accessor :refunded_at
 
-      # A payment can be retried if the associated membership is past due
+      # True when the payment status is `open` and its membership is in one of the
+      # retry-eligible states (`active`, `trialing`, `completed`, or `past_due`);
+      # otherwise false. Used to decide if Whop can attempt the charge again.
       sig { returns(T::Boolean) }
       attr_accessor :retryable
 
@@ -159,7 +163,8 @@ module WhopSDK
       sig { params(user: T.nilable(WhopSDK::Payment::User::OrHash)).void }
       attr_writer :user
 
-      # Whether the payment can be voided.
+      # True when the payment is tied to a membership in `past_due`, the payment status
+      # is `open`, and the processor allows voiding payments; otherwise false.
       sig { returns(T::Boolean) }
       attr_accessor :voidable
 
@@ -170,8 +175,8 @@ module WhopSDK
           amount_after_fees: Float,
           auto_refunded: T::Boolean,
           billing_address: T.nilable(WhopSDK::Payment::BillingAddress::OrHash),
-          billing_reason: T.nilable(String),
-          card_brand: T.nilable(String),
+          billing_reason: T.nilable(WhopSDK::Payment::BillingReason::OrSymbol),
+          card_brand: T.nilable(WhopSDK::Payment::CardBrand::OrSymbol),
           card_last4: T.nilable(String),
           company: T.nilable(WhopSDK::Payment::Company::OrHash),
           created_at: Time,
@@ -182,7 +187,8 @@ module WhopSDK
           member: T.nilable(WhopSDK::Payment::Member::OrHash),
           membership: T.nilable(WhopSDK::Payment::Membership::OrHash),
           paid_at: T.nilable(Time),
-          payment_method_type: T.nilable(String),
+          payment_method_type:
+            T.nilable(WhopSDK::Payment::PaymentMethodType::OrSymbol),
           plan: T.nilable(WhopSDK::Payment::Plan::OrHash),
           product: T.nilable(WhopSDK::Payment::Product::OrHash),
           promo_code: T.nilable(WhopSDK::Payment::PromoCode::OrHash),
@@ -208,9 +214,9 @@ module WhopSDK
         auto_refunded:,
         # The address of the user who made the payment.
         billing_address:,
-        # The billing reason
+        # The reason why a specific payment was billed
         billing_reason:,
-        # The type of card used as the payment method.
+        # Possible card brands that a payment token can have
         card_brand:,
         # The last 4 digits of the card used to make the payment.
         card_last4:,
@@ -232,8 +238,7 @@ module WhopSDK
         membership:,
         # The datetime the payment was paid
         paid_at:,
-        # Returns the type of payment method used for the payment, if available. Ex.
-        # klarna, affirm, card, cashapp
+        # The different types of payment methods that can be used.
         payment_method_type:,
         # The plan attached to this payment.
         plan:,
@@ -241,13 +246,16 @@ module WhopSDK
         product:,
         # The promo code used for this payment.
         promo_code:,
-        # Whether the payment can be refunded.
+        # True only for payments that are `paid`, have not been fully refunded, and were
+        # processed by a payment processor that allows refunds.
         refundable:,
         # The payment refund amount(if applicable).
         refunded_amount:,
         # When the payment was refunded (if applicable).
         refunded_at:,
-        # A payment can be retried if the associated membership is past due
+        # True when the payment status is `open` and its membership is in one of the
+        # retry-eligible states (`active`, `trialing`, `completed`, or `past_due`);
+        # otherwise false. Used to decide if Whop can attempt the charge again.
         retryable:,
         # The status of a receipt
         status:,
@@ -261,7 +269,8 @@ module WhopSDK
         usd_total:,
         # The user that made this payment.
         user:,
-        # Whether the payment can be voided.
+        # True when the payment is tied to a membership in `past_due`, the payment status
+        # is `open`, and the processor allows voiding payments; otherwise false.
         voidable:
       )
       end
@@ -273,8 +282,9 @@ module WhopSDK
             amount_after_fees: Float,
             auto_refunded: T::Boolean,
             billing_address: T.nilable(WhopSDK::Payment::BillingAddress),
-            billing_reason: T.nilable(String),
-            card_brand: T.nilable(String),
+            billing_reason:
+              T.nilable(WhopSDK::Payment::BillingReason::TaggedSymbol),
+            card_brand: T.nilable(WhopSDK::Payment::CardBrand::TaggedSymbol),
             card_last4: T.nilable(String),
             company: T.nilable(WhopSDK::Payment::Company),
             created_at: Time,
@@ -285,7 +295,8 @@ module WhopSDK
             member: T.nilable(WhopSDK::Payment::Member),
             membership: T.nilable(WhopSDK::Payment::Membership),
             paid_at: T.nilable(Time),
-            payment_method_type: T.nilable(String),
+            payment_method_type:
+              T.nilable(WhopSDK::Payment::PaymentMethodType::TaggedSymbol),
             plan: T.nilable(WhopSDK::Payment::Plan),
             product: T.nilable(WhopSDK::Payment::Product),
             promo_code: T.nilable(WhopSDK::Payment::PromoCode),
@@ -384,6 +395,80 @@ module WhopSDK
           )
         end
         def to_hash
+        end
+      end
+
+      # The reason why a specific payment was billed
+      module BillingReason
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::Payment::BillingReason) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        SUBSCRIPTION_CREATE =
+          T.let(
+            :subscription_create,
+            WhopSDK::Payment::BillingReason::TaggedSymbol
+          )
+        SUBSCRIPTION_CYCLE =
+          T.let(
+            :subscription_cycle,
+            WhopSDK::Payment::BillingReason::TaggedSymbol
+          )
+        SUBSCRIPTION_UPDATE =
+          T.let(
+            :subscription_update,
+            WhopSDK::Payment::BillingReason::TaggedSymbol
+          )
+        ONE_TIME =
+          T.let(:one_time, WhopSDK::Payment::BillingReason::TaggedSymbol)
+        MANUAL = T.let(:manual, WhopSDK::Payment::BillingReason::TaggedSymbol)
+        SUBSCRIPTION =
+          T.let(:subscription, WhopSDK::Payment::BillingReason::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::Payment::BillingReason::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # Possible card brands that a payment token can have
+      module CardBrand
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::Payment::CardBrand) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        MASTERCARD =
+          T.let(:mastercard, WhopSDK::Payment::CardBrand::TaggedSymbol)
+        VISA = T.let(:visa, WhopSDK::Payment::CardBrand::TaggedSymbol)
+        AMEX = T.let(:amex, WhopSDK::Payment::CardBrand::TaggedSymbol)
+        DISCOVER = T.let(:discover, WhopSDK::Payment::CardBrand::TaggedSymbol)
+        UNIONPAY = T.let(:unionpay, WhopSDK::Payment::CardBrand::TaggedSymbol)
+        JCB = T.let(:jcb, WhopSDK::Payment::CardBrand::TaggedSymbol)
+        DINERS = T.let(:diners, WhopSDK::Payment::CardBrand::TaggedSymbol)
+        LINK = T.let(:link, WhopSDK::Payment::CardBrand::TaggedSymbol)
+        TROY = T.let(:troy, WhopSDK::Payment::CardBrand::TaggedSymbol)
+        VISADANKORT =
+          T.let(:visadankort, WhopSDK::Payment::CardBrand::TaggedSymbol)
+        VISABANCONTACT =
+          T.let(:visabancontact, WhopSDK::Payment::CardBrand::TaggedSymbol)
+        CHINA_UNION_PAY =
+          T.let(:china_union_pay, WhopSDK::Payment::CardBrand::TaggedSymbol)
+        RUPAY = T.let(:rupay, WhopSDK::Payment::CardBrand::TaggedSymbol)
+        JCBRUPAY = T.let(:jcbrupay, WhopSDK::Payment::CardBrand::TaggedSymbol)
+        ELO = T.let(:elo, WhopSDK::Payment::CardBrand::TaggedSymbol)
+        UNKNOWN = T.let(:unknown, WhopSDK::Payment::CardBrand::TaggedSymbol)
+
+        sig do
+          override.returns(T::Array[WhopSDK::Payment::CardBrand::TaggedSymbol])
+        end
+        def self.values
         end
       end
 
@@ -492,6 +577,187 @@ module WhopSDK
           )
         end
         def to_hash
+        end
+      end
+
+      # The different types of payment methods that can be used.
+      module PaymentMethodType
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::Payment::PaymentMethodType) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        ACSS_DEBIT =
+          T.let(:acss_debit, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        AFFIRM =
+          T.let(:affirm, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        AFTERPAY_CLEARPAY =
+          T.let(
+            :afterpay_clearpay,
+            WhopSDK::Payment::PaymentMethodType::TaggedSymbol
+          )
+        ALIPAY =
+          T.let(:alipay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        ALMA = T.let(:alma, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        AMAZON_PAY =
+          T.let(:amazon_pay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        APPLE_PAY =
+          T.let(:apple_pay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        AU_BECS_DEBIT =
+          T.let(
+            :au_becs_debit,
+            WhopSDK::Payment::PaymentMethodType::TaggedSymbol
+          )
+        BACS_DEBIT =
+          T.let(:bacs_debit, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        BANCONTACT =
+          T.let(:bancontact, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        BILLIE =
+          T.let(:billie, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        BLIK = T.let(:blik, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        BOLETO =
+          T.let(:boleto, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        CARD = T.let(:card, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        CASHAPP =
+          T.let(:cashapp, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        CRYPTO =
+          T.let(:crypto, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        EPS = T.let(:eps, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        FPX = T.let(:fpx, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        GIROPAY =
+          T.let(:giropay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        GOOGLE_PAY =
+          T.let(:google_pay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        GRABPAY =
+          T.let(:grabpay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        IDEAL = T.let(:ideal, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        KAKAO_PAY =
+          T.let(:kakao_pay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        KLARNA =
+          T.let(:klarna, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        KONBINI =
+          T.let(:konbini, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        KR_CARD =
+          T.let(:kr_card, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        LINK = T.let(:link, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        MOBILEPAY =
+          T.let(:mobilepay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        MULTIBANCO =
+          T.let(:multibanco, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        NAVER_PAY =
+          T.let(:naver_pay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        NZ_BANK_ACCOUNT =
+          T.let(
+            :nz_bank_account,
+            WhopSDK::Payment::PaymentMethodType::TaggedSymbol
+          )
+        OXXO = T.let(:oxxo, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        P24 = T.let(:p24, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        PAY_BY_BANK =
+          T.let(:pay_by_bank, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        PAYCO = T.let(:payco, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        PAYNOW =
+          T.let(:paynow, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        PIX = T.let(:pix, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        PROMPTPAY =
+          T.let(:promptpay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        REVOLUT_PAY =
+          T.let(:revolut_pay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        SAMSUNG_PAY =
+          T.let(:samsung_pay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        SATISPAY =
+          T.let(:satispay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        SEPA_DEBIT =
+          T.let(:sepa_debit, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        SOFORT =
+          T.let(:sofort, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        SWISH = T.let(:swish, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        TWINT = T.let(:twint, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        US_BANK_ACCOUNT =
+          T.let(
+            :us_bank_account,
+            WhopSDK::Payment::PaymentMethodType::TaggedSymbol
+          )
+        WECHAT_PAY =
+          T.let(:wechat_pay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        ZIP = T.let(:zip, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        BIZUM = T.let(:bizum, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        CAPCHASE_PAY =
+          T.let(
+            :capchase_pay,
+            WhopSDK::Payment::PaymentMethodType::TaggedSymbol
+          )
+        KRIYA = T.let(:kriya, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        MONDU = T.let(:mondu, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        NG_WALLET =
+          T.let(:ng_wallet, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        PAYPAY =
+          T.let(:paypay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        SEQURA =
+          T.let(:sequra, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        SCALAPAY =
+          T.let(:scalapay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        VIPPS = T.let(:vipps, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        CUSTOM =
+          T.let(:custom, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        CUSTOMER_BALANCE =
+          T.let(
+            :customer_balance,
+            WhopSDK::Payment::PaymentMethodType::TaggedSymbol
+          )
+        GOPAY = T.let(:gopay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        MB_WAY =
+          T.let(:mb_way, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        NG_BANK =
+          T.let(:ng_bank, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        NG_BANK_TRANSFER =
+          T.let(
+            :ng_bank_transfer,
+            WhopSDK::Payment::PaymentMethodType::TaggedSymbol
+          )
+        NG_CARD =
+          T.let(:ng_card, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        NG_MARKET =
+          T.let(:ng_market, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        NG_USSD =
+          T.let(:ng_ussd, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        PAYPAL =
+          T.let(:paypal, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        PAYTO = T.let(:payto, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        QRIS = T.let(:qris, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        RECHNUNG =
+          T.let(:rechnung, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        SOUTH_KOREA_MARKET =
+          T.let(
+            :south_korea_market,
+            WhopSDK::Payment::PaymentMethodType::TaggedSymbol
+          )
+        KR_MARKET =
+          T.let(:kr_market, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        SHOPEEPAY =
+          T.let(:shopeepay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        UPI = T.let(:upi, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        SUNBIT =
+          T.let(:sunbit, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        NETBANKING =
+          T.let(:netbanking, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        ID_BANK_TRANSFER =
+          T.let(
+            :id_bank_transfer,
+            WhopSDK::Payment::PaymentMethodType::TaggedSymbol
+          )
+        DEMO_PAY =
+          T.let(:demo_pay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        SHOP_PAY =
+          T.let(:shop_pay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::Payment::PaymentMethodType::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
 

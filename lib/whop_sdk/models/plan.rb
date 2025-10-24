@@ -111,17 +111,35 @@ module WhopSDK
       #   @return [Float]
       required :renewal_price, Float
 
+      # @!attribute stock
+      #   An un-used field - do not use.
+      #
+      #   @return [Integer, nil]
+      required :stock, Integer, nil?: true
+
       # @!attribute tax_type
       #   The tax type for the plan.
       #
       #   @return [Symbol, WhopSDK::Models::TaxType]
       required :tax_type, enum: -> { WhopSDK::TaxType }
 
+      # @!attribute title
+      #   The title of the plan. This will be visible on the product page to customers.
+      #
+      #   @return [String, nil]
+      required :title, String, nil?: true
+
       # @!attribute trial_period_days
       #   The number of free trial days added before a renewal plan.
       #
       #   @return [Integer, nil]
       required :trial_period_days, Integer, nil?: true
+
+      # @!attribute unlimited_stock
+      #   Limits/doesn't limit the number of units available for purchase.
+      #
+      #   @return [Boolean]
+      required :unlimited_stock, WhopSDK::Internal::Type::Boolean
 
       # @!attribute updated_at
       #   When the plan was last updated.
@@ -135,7 +153,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility]
       required :visibility, enum: -> { WhopSDK::Visibility }
 
-      # @!method initialize(id:, billing_period:, collect_tax:, company:, created_at:, currency:, custom_fields:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, plan_type:, product:, purchase_url:, release_method:, renewal_price:, tax_type:, trial_period_days:, updated_at:, visibility:)
+      # @!method initialize(id:, billing_period:, collect_tax:, company:, created_at:, currency:, custom_fields:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, plan_type:, product:, purchase_url:, release_method:, renewal_price:, stock:, tax_type:, title:, trial_period_days:, unlimited_stock:, updated_at:, visibility:)
       #   An object representing a (sanitized) plan of an access pass.
       #
       #   @param id [String] The internal ID of the plan.
@@ -174,9 +192,15 @@ module WhopSDK
       #
       #   @param renewal_price [Float] The price a person has to pay for a plan on the renewal purchase.
       #
+      #   @param stock [Integer, nil] An un-used field - do not use.
+      #
       #   @param tax_type [Symbol, WhopSDK::Models::TaxType] The tax type for the plan.
       #
+      #   @param title [String, nil] The title of the plan. This will be visible on the product page to customers.
+      #
       #   @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
+      #
+      #   @param unlimited_stock [Boolean] Limits/doesn't limit the number of units available for purchase.
       #
       #   @param updated_at [Time] When the plan was last updated.
       #

@@ -9,11 +9,13 @@ module WhopSDK
       #
       # - `courses:update`
       #
-      # @overload create(experience_id:, title:, tagline: nil, thumbnail: nil, request_options: {})
+      # @overload create(experience_id:, title:, cover_image: nil, tagline: nil, thumbnail: nil, request_options: {})
       #
       # @param experience_id [String] The ID of the experience to create the course in
       #
       # @param title [String] The title of the course
+      #
+      # @param cover_image [String, nil] The cover image URL of the course
       #
       # @param tagline [String, nil] The tagline of the course
       #
@@ -67,13 +69,15 @@ module WhopSDK
       #
       # - `courses:update`
       #
-      # @overload update(id, certificate_after_completion_enabled: nil, chapters: nil, description: nil, language: nil, require_completing_lessons_in_order: nil, tagline: nil, thumbnail: nil, title: nil, request_options: {})
+      # @overload update(id, certificate_after_completion_enabled: nil, chapters: nil, cover_image: nil, description: nil, language: nil, require_completing_lessons_in_order: nil, tagline: nil, thumbnail: nil, title: nil, request_options: {})
       #
       # @param id [String]
       #
       # @param certificate_after_completion_enabled [Boolean, nil] Whether the course will award its students a PDF certificate after completing al
       #
       # @param chapters [Array<WhopSDK::Models::CourseUpdateParams::Chapter>, nil] The chapters and lessons to update
+      #
+      # @param cover_image [String, nil] The cover image URL of the course
       #
       # @param description [String, nil] A short description of the course
       #

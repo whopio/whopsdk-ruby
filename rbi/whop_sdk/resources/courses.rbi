@@ -12,6 +12,7 @@ module WhopSDK
         params(
           experience_id: String,
           title: String,
+          cover_image: T.nilable(String),
           tagline: T.nilable(String),
           thumbnail: T.nilable(WhopSDK::CourseCreateParams::Thumbnail::OrHash),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -22,6 +23,8 @@ module WhopSDK
         experience_id:,
         # The title of the course
         title:,
+        # The cover image URL of the course
+        cover_image: nil,
         # The tagline of the course
         tagline: nil,
         # The thumbnail for the course in png, jpeg, or gif format
@@ -55,6 +58,7 @@ module WhopSDK
           certificate_after_completion_enabled: T.nilable(T::Boolean),
           chapters:
             T.nilable(T::Array[WhopSDK::CourseUpdateParams::Chapter::OrHash]),
+          cover_image: T.nilable(String),
           description: T.nilable(String),
           language: T.nilable(WhopSDK::Languages::OrSymbol),
           require_completing_lessons_in_order: T.nilable(T::Boolean),
@@ -71,6 +75,8 @@ module WhopSDK
         certificate_after_completion_enabled: nil,
         # The chapters and lessons to update
         chapters: nil,
+        # The cover image URL of the course
+        cover_image: nil,
         # A short description of the course
         description: nil,
         # The available languages for a course

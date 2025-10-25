@@ -20,6 +20,10 @@ module WhopSDK
       sig { returns(T.nilable(T::Array[WhopSDK::CourseUpdateParams::Chapter])) }
       attr_accessor :chapters
 
+      # The cover image URL of the course
+      sig { returns(T.nilable(String)) }
+      attr_accessor :cover_image
+
       # A short description of the course
       sig { returns(T.nilable(String)) }
       attr_accessor :description
@@ -57,6 +61,7 @@ module WhopSDK
           certificate_after_completion_enabled: T.nilable(T::Boolean),
           chapters:
             T.nilable(T::Array[WhopSDK::CourseUpdateParams::Chapter::OrHash]),
+          cover_image: T.nilable(String),
           description: T.nilable(String),
           language: T.nilable(WhopSDK::Languages::OrSymbol),
           require_completing_lessons_in_order: T.nilable(T::Boolean),
@@ -72,6 +77,8 @@ module WhopSDK
         certificate_after_completion_enabled: nil,
         # The chapters and lessons to update
         chapters: nil,
+        # The cover image URL of the course
+        cover_image: nil,
         # A short description of the course
         description: nil,
         # The available languages for a course
@@ -94,6 +101,7 @@ module WhopSDK
           {
             certificate_after_completion_enabled: T.nilable(T::Boolean),
             chapters: T.nilable(T::Array[WhopSDK::CourseUpdateParams::Chapter]),
+            cover_image: T.nilable(String),
             description: T.nilable(String),
             language: T.nilable(WhopSDK::Languages::OrSymbol),
             require_completing_lessons_in_order: T.nilable(T::Boolean),

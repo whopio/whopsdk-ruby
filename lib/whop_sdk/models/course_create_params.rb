@@ -19,6 +19,12 @@ module WhopSDK
       #   @return [String]
       required :title, String
 
+      # @!attribute cover_image
+      #   The cover image URL of the course
+      #
+      #   @return [String, nil]
+      optional :cover_image, String, nil?: true
+
       # @!attribute tagline
       #   The tagline of the course
       #
@@ -31,10 +37,12 @@ module WhopSDK
       #   @return [WhopSDK::Models::CourseCreateParams::Thumbnail, nil]
       optional :thumbnail, -> { WhopSDK::CourseCreateParams::Thumbnail }, nil?: true
 
-      # @!method initialize(experience_id:, title:, tagline: nil, thumbnail: nil, request_options: {})
+      # @!method initialize(experience_id:, title:, cover_image: nil, tagline: nil, thumbnail: nil, request_options: {})
       #   @param experience_id [String] The ID of the experience to create the course in
       #
       #   @param title [String] The title of the course
+      #
+      #   @param cover_image [String, nil] The cover image URL of the course
       #
       #   @param tagline [String, nil] The tagline of the course
       #

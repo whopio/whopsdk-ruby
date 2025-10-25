@@ -86,7 +86,7 @@ module WhopSDK
       sig { returns(Float) }
       attr_accessor :renewal_price
 
-      # An un-used field - do not use.
+      # The number of units available for purchase. Only displayed to authorized actors
       sig { returns(T.nilable(Integer)) }
       attr_accessor :stock
 
@@ -181,7 +181,7 @@ module WhopSDK
         release_method:,
         # The price a person has to pay for a plan on the renewal purchase.
         renewal_price:,
-        # An un-used field - do not use.
+        # The number of units available for purchase. Only displayed to authorized actors
         stock:,
         # The tax type for the plan.
         tax_type:,

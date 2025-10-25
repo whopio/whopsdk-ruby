@@ -34,7 +34,8 @@ module WhopSDK
       required :plan, -> { WhopSDK::CheckoutConfiguration::Plan }
 
       # @!attribute purchase_url
-      #   The URL to redirect the user to after the checkout configuration is created
+      #   A URL you can send to customers to complete a checkout. It looks like
+      #   `/checkout/plan_xxxx?session={id}`
       #
       #   @return [String]
       required :purchase_url, String
@@ -46,11 +47,13 @@ module WhopSDK
       required :redirect_url, String, nil?: true
 
       # @!method initialize(id:, affiliate_code:, company_id:, metadata:, plan:, purchase_url:, redirect_url:)
-      #   A checkout configuration object. Can be used to create a reusable custom
-      #   configuration for a checkout, including attaching plans, affiliates and custom
-      #   metadata to the checkout. This configuration can be re-used by multiple users.
-      #   All successful payments and memberships resulting from a checkout will contain
-      #   the passed metadata.
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::CheckoutConfiguration} for more details.
+      #
+      #           A checkout configuration object.
+      #           Can be used to create a reusable custom configuration for a checkout, including attaching plans, affiliates and custom metadata to the checkout.
+      #           This configuration can be re-used by multiple users.
+      #           All successful payments and memberships resulting from a checkout will contain the passed metadata.
       #
       #   @param id [String] The ID of the checkout configuration
       #
@@ -62,7 +65,7 @@ module WhopSDK
       #
       #   @param plan [WhopSDK::Models::CheckoutConfiguration::Plan] The plan to use for the checkout configuration
       #
-      #   @param purchase_url [String] The URL to redirect the user to after the checkout configuration is created
+      #   @param purchase_url [String] A URL you can send to customers to complete a checkout. It looks like `/checkout
       #
       #   @param redirect_url [String, nil] The URL to redirect the user to after the checkout configuration is created
 

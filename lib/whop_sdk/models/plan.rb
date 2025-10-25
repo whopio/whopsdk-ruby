@@ -112,7 +112,7 @@ module WhopSDK
       required :renewal_price, Float
 
       # @!attribute stock
-      #   The number of units available for purchase. Only displayed to authorized actors
+      #   An un-used field - do not use.
       #
       #   @return [Integer, nil]
       required :stock, Integer, nil?: true
@@ -192,7 +192,7 @@ module WhopSDK
       #
       #   @param renewal_price [Float] The price a person has to pay for a plan on the renewal purchase.
       #
-      #   @param stock [Integer, nil] The number of units available for purchase. Only displayed to authorized actors
+      #   @param stock [Integer, nil] An un-used field - do not use.
       #
       #   @param tax_type [Symbol, WhopSDK::Models::TaxType] The tax type for the plan.
       #

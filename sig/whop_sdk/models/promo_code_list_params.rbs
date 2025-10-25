@@ -1,0 +1,61 @@
+module WhopSDK
+  module Models
+    type promo_code_list_params =
+      {
+        company_id: String,
+        after: String?,
+        before: String?,
+        first: Integer?,
+        last: Integer?,
+        plan_ids: ::Array[String]?,
+        product_ids: ::Array[String]?,
+        status: WhopSDK::Models::promo_code_status?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class PromoCodeListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      attr_accessor plan_ids: ::Array[String]?
+
+      attr_accessor product_ids: ::Array[String]?
+
+      attr_accessor status: WhopSDK::Models::promo_code_status?
+
+      def initialize: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?plan_ids: ::Array[String]?,
+        ?product_ids: ::Array[String]?,
+        ?status: WhopSDK::Models::promo_code_status?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        after: String?,
+        before: String?,
+        first: Integer?,
+        last: Integer?,
+        plan_ids: ::Array[String]?,
+        product_ids: ::Array[String]?,
+        status: WhopSDK::Models::promo_code_status?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

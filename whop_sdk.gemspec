@@ -25,4 +25,6 @@ Gem::Specification.new do |s|
   ]
   s.extra_rdoc_files = ["README.md"]
   s.add_dependency "connection_pool"
+  s.add_dependency "jwt"
+  s.add_dependency "openssl"
 end

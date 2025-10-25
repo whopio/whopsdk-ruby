@@ -84,6 +84,12 @@ module WhopSDK
       #   @return [WhopSDK::Models::MembershipListResponse::Plan]
       required :plan, -> { WhopSDK::Models::MembershipListResponse::Plan }
 
+      # @!attribute product
+      #   The Product this Membership grants access to.
+      #
+      #   @return [WhopSDK::Models::MembershipListResponse::Product]
+      required :product, -> { WhopSDK::Models::MembershipListResponse::Product }
+
       # @!attribute promo_code
       #   The Promo Code that is currently applied to this Membership.
       #
@@ -122,7 +128,7 @@ module WhopSDK
       #   @return [WhopSDK::Models::MembershipListResponse::User, nil]
       required :user, -> { WhopSDK::Models::MembershipListResponse::User }, nil?: true
 
-      # @!method initialize(id:, cancel_at_period_end:, canceled_at:, cancellation_reason:, company:, created_at:, currency:, license_key:, manage_url:, member:, metadata:, payment_collection_paused:, plan:, promo_code:, renewal_period_end:, renewal_period_start:, status:, updated_at:, user:)
+      # @!method initialize(id:, cancel_at_period_end:, canceled_at:, cancellation_reason:, company:, created_at:, currency:, license_key:, manage_url:, member:, metadata:, payment_collection_paused:, plan:, product:, promo_code:, renewal_period_end:, renewal_period_start:, status:, updated_at:, user:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::MembershipListResponse} for more details.
       #
@@ -154,6 +160,8 @@ module WhopSDK
       #   @param payment_collection_paused [Boolean] Whether the membership's payments are currently paused.
       #
       #   @param plan [WhopSDK::Models::MembershipListResponse::Plan] The Plan this Membership is for.
+      #
+      #   @param product [WhopSDK::Models::MembershipListResponse::Product] The Product this Membership grants access to.
       #
       #   @param promo_code [WhopSDK::Models::MembershipListResponse::PromoCode, nil] The Promo Code that is currently applied to this Membership.
       #
@@ -215,6 +223,28 @@ module WhopSDK
         #   The Plan this Membership is for.
         #
         #   @param id [String] The internal ID of the plan.
+      end
+
+      # @see WhopSDK::Models::MembershipListResponse#product
+      class Product < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The internal ID of the public product.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute title
+        #   The title of the product. Use for Whop 4.0.
+        #
+        #   @return [String]
+        required :title, String
+
+        # @!method initialize(id:, title:)
+        #   The Product this Membership grants access to.
+        #
+        #   @param id [String] The internal ID of the public product.
+        #
+        #   @param title [String] The title of the product. Use for Whop 4.0.
       end
 
       # @see WhopSDK::Models::MembershipListResponse#promo_code

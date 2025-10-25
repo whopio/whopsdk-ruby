@@ -56,6 +56,7 @@ module WhopSDK
           internal_notes: String?,
           override_tax_type: WhopSDK::Models::tax_type?,
           plan_type: WhopSDK::Models::plan_type?,
+          product: WhopSDK::CheckoutConfigurationCreateParams::Plan::Product?,
           product_id: String?,
           release_method: WhopSDK::Models::release_method?,
           renewal_price: Float?,
@@ -89,6 +90,8 @@ module WhopSDK
 
         attr_accessor plan_type: WhopSDK::Models::plan_type?
 
+        attr_accessor product: WhopSDK::CheckoutConfigurationCreateParams::Plan::Product?
+
         attr_accessor product_id: String?
 
         attr_accessor release_method: WhopSDK::Models::release_method?
@@ -114,6 +117,7 @@ module WhopSDK
           ?internal_notes: String?,
           ?override_tax_type: WhopSDK::Models::tax_type?,
           ?plan_type: WhopSDK::Models::plan_type?,
+          ?product: WhopSDK::CheckoutConfigurationCreateParams::Plan::Product?,
           ?product_id: String?,
           ?release_method: WhopSDK::Models::release_method?,
           ?renewal_price: Float?,
@@ -135,6 +139,7 @@ module WhopSDK
           internal_notes: String?,
           override_tax_type: WhopSDK::Models::tax_type?,
           plan_type: WhopSDK::Models::plan_type?,
+          product: WhopSDK::CheckoutConfigurationCreateParams::Plan::Product?,
           product_id: String?,
           release_method: WhopSDK::Models::release_method?,
           renewal_price: Float?,
@@ -195,6 +200,88 @@ module WhopSDK
           def initialize: (?id: String?, ?direct_upload_id: String?) -> void
 
           def to_hash: -> { id: String?, direct_upload_id: String? }
+        end
+
+        type product =
+          {
+            external_identifier: String,
+            title: String,
+            business_type: WhopSDK::Models::business_types?,
+            collect_shipping_address: bool?,
+            custom_statement_descriptor: String?,
+            description: String?,
+            global_affiliate_percentage: Float?,
+            global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
+            headline: String?,
+            industry_type: WhopSDK::Models::industry_types?,
+            product_tax_code_id: String?,
+            redirect_purchase_url: String?,
+            route: String?,
+            visibility: WhopSDK::Models::visibility?
+          }
+
+        class Product < WhopSDK::Internal::Type::BaseModel
+          attr_accessor external_identifier: String
+
+          attr_accessor title: String
+
+          attr_accessor business_type: WhopSDK::Models::business_types?
+
+          attr_accessor collect_shipping_address: bool?
+
+          attr_accessor custom_statement_descriptor: String?
+
+          attr_accessor description: String?
+
+          attr_accessor global_affiliate_percentage: Float?
+
+          attr_accessor global_affiliate_status: WhopSDK::Models::global_affiliate_status?
+
+          attr_accessor headline: String?
+
+          attr_accessor industry_type: WhopSDK::Models::industry_types?
+
+          attr_accessor product_tax_code_id: String?
+
+          attr_accessor redirect_purchase_url: String?
+
+          attr_accessor route: String?
+
+          attr_accessor visibility: WhopSDK::Models::visibility?
+
+          def initialize: (
+            external_identifier: String,
+            title: String,
+            ?business_type: WhopSDK::Models::business_types?,
+            ?collect_shipping_address: bool?,
+            ?custom_statement_descriptor: String?,
+            ?description: String?,
+            ?global_affiliate_percentage: Float?,
+            ?global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
+            ?headline: String?,
+            ?industry_type: WhopSDK::Models::industry_types?,
+            ?product_tax_code_id: String?,
+            ?redirect_purchase_url: String?,
+            ?route: String?,
+            ?visibility: WhopSDK::Models::visibility?
+          ) -> void
+
+          def to_hash: -> {
+            external_identifier: String,
+            title: String,
+            business_type: WhopSDK::Models::business_types?,
+            collect_shipping_address: bool?,
+            custom_statement_descriptor: String?,
+            description: String?,
+            global_affiliate_percentage: Float?,
+            global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
+            headline: String?,
+            industry_type: WhopSDK::Models::industry_types?,
+            product_tax_code_id: String?,
+            redirect_purchase_url: String?,
+            route: String?,
+            visibility: WhopSDK::Models::visibility?
+          }
         end
       end
     end

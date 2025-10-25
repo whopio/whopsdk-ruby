@@ -20,6 +20,15 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::ForumPost
 
+      def update: (
+        String id,
+        ?attachments: ::Array[WhopSDK::ForumPostUpdateParams::Attachment]?,
+        ?content: String?,
+        ?is_pinned: bool?,
+        ?title: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::ForumPost
+
       def list: (
         experience_id: String,
         ?after: String?,

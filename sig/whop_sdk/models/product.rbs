@@ -10,6 +10,7 @@ module WhopSDK
         custom_cta_url: String?,
         custom_statement_descriptor: String?,
         description: String?,
+        external_identifier: String?,
         global_affiliate_percentage: Float?,
         global_affiliate_status: WhopSDK::Models::global_affiliate_status,
         headline: String?,
@@ -43,6 +44,8 @@ module WhopSDK
       attr_accessor custom_statement_descriptor: String?
 
       attr_accessor description: String?
+
+      attr_accessor external_identifier: String?
 
       attr_accessor global_affiliate_percentage: Float?
 
@@ -83,6 +86,7 @@ module WhopSDK
         custom_cta_url: String?,
         custom_statement_descriptor: String?,
         description: String?,
+        external_identifier: String?,
         global_affiliate_percentage: Float?,
         global_affiliate_status: WhopSDK::Models::global_affiliate_status,
         headline: String?,
@@ -109,6 +113,7 @@ module WhopSDK
         custom_cta_url: String?,
         custom_statement_descriptor: String?,
         description: String?,
+        external_identifier: String?,
         global_affiliate_percentage: Float?,
         global_affiliate_status: WhopSDK::Models::global_affiliate_status,
         headline: String?,

@@ -9,6 +9,8 @@ module WhopSDK
       #
       # - `checkout_configuration:create`
       # - `plan:create`
+      # - `access_pass:create`
+      # - `access_pass:update`
       sig do
         params(
           affiliate_code: T.nilable(String),

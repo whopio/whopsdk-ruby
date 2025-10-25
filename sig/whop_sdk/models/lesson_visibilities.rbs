@@ -1,0 +1,14 @@
+module WhopSDK
+  module Models
+    type lesson_visibilities = :visible | :hidden
+
+    module LessonVisibilities
+      extend WhopSDK::Internal::Type::Enum
+
+      VISIBLE: :visible
+      HIDDEN: :hidden
+
+      def self?.values: -> ::Array[WhopSDK::Models::lesson_visibilities]
+    end
+  end
+end

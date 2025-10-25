@@ -14,13 +14,13 @@ module WhopSDK
       # - `access_pass:basic:read`
       # - `plan:basic:read`
       #
-      # @overload create(company_id:, product_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, plan_type: nil, release_method: nil, renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil, request_options: {})
+      # @overload create(company_id:, product_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
       #
       # @param company_id [String] The company the plan should be created for.
       #
       # @param product_id [String] The product the plan is related to.
       #
-      # @param billing_period [Integer, nil] The interval at which the plan charges (renewal plans).
+      # @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans).
       #
       # @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #
@@ -44,9 +44,17 @@ module WhopSDK
       #
       # @param renewal_price [Float, nil] The amount the customer is charged every billing period. Use only if a recurring
       #
+      # @param stock [Integer, nil] The number of units available for purchase.
+      #
+      # @param strike_through_initial_price [Float, nil] The price to display with a strikethrough for the initial price. Provided as a n
+      #
+      # @param strike_through_renewal_price [Float, nil] The price to display with a strikethrough for the renewal price. Provided as a n
+      #
       # @param title [String, nil] The title of the plan. This will be visible on the product page to customers.
       #
       # @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
+      #
+      # @param unlimited_stock [Boolean, nil] Limits/doesn't limit the number of units available for purchase.
       #
       # @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
       #
@@ -94,7 +102,7 @@ module WhopSDK
       # - `access_pass:basic:read`
       # - `plan:basic:read`
       #
-      # @overload update(id, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, offer_cancel_discount: nil, override_tax_type: nil, renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil, request_options: {})
+      # @overload update(id, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, offer_cancel_discount: nil, override_tax_type: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
       #
       # @param id [String]
       #
@@ -120,9 +128,17 @@ module WhopSDK
       #
       # @param renewal_price [Float, nil] The amount the customer is charged every billing period.
       #
+      # @param stock [Integer, nil] The number of units available for purchase.
+      #
+      # @param strike_through_initial_price [Float, nil] The price to display with a strikethrough for the initial price. Provided as a n
+      #
+      # @param strike_through_renewal_price [Float, nil] The price to display with a strikethrough for the renewal price. Provided as a n
+      #
       # @param title [String, nil] The title of the plan. This will be visible on the product page to customers.
       #
       # @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
+      #
+      # @param unlimited_stock [Boolean, nil] Limits/doesn't limit the number of units available for purchase.
       #
       # @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
       #

@@ -6,8 +6,8 @@ module WhopSDK
         amount_after_fees: Float,
         auto_refunded: bool,
         billing_address: WhopSDK::Models::PaymentListResponse::BillingAddress?,
-        billing_reason: String?,
-        card_brand: String?,
+        billing_reason: WhopSDK::Models::PaymentListResponse::billing_reason?,
+        card_brand: WhopSDK::Models::PaymentListResponse::card_brand?,
         :card_last4 => String?,
         company: WhopSDK::Models::PaymentListResponse::Company?,
         created_at: Time,
@@ -18,7 +18,7 @@ module WhopSDK
         member: WhopSDK::Models::PaymentListResponse::Member?,
         membership: WhopSDK::Models::PaymentListResponse::Membership?,
         paid_at: Time?,
-        payment_method_type: String?,
+        payment_method_type: WhopSDK::Models::PaymentListResponse::payment_method_type?,
         plan: WhopSDK::Models::PaymentListResponse::Plan?,
         product: WhopSDK::Models::PaymentListResponse::Product?,
         promo_code: WhopSDK::Models::PaymentListResponse::PromoCode?,
@@ -44,9 +44,9 @@ module WhopSDK
 
       attr_accessor billing_address: WhopSDK::Models::PaymentListResponse::BillingAddress?
 
-      attr_accessor billing_reason: String?
+      attr_accessor billing_reason: WhopSDK::Models::PaymentListResponse::billing_reason?
 
-      attr_accessor card_brand: String?
+      attr_accessor card_brand: WhopSDK::Models::PaymentListResponse::card_brand?
 
       attr_accessor card_last4: String?
 
@@ -68,7 +68,7 @@ module WhopSDK
 
       attr_accessor paid_at: Time?
 
-      attr_accessor payment_method_type: String?
+      attr_accessor payment_method_type: WhopSDK::Models::PaymentListResponse::payment_method_type?
 
       attr_accessor plan: WhopSDK::Models::PaymentListResponse::Plan?
 
@@ -103,8 +103,8 @@ module WhopSDK
         amount_after_fees: Float,
         auto_refunded: bool,
         billing_address: WhopSDK::Models::PaymentListResponse::BillingAddress?,
-        billing_reason: String?,
-        card_brand: String?,
+        billing_reason: WhopSDK::Models::PaymentListResponse::billing_reason?,
+        card_brand: WhopSDK::Models::PaymentListResponse::card_brand?,
         card_last4: String?,
         company: WhopSDK::Models::PaymentListResponse::Company?,
         created_at: Time,
@@ -115,7 +115,7 @@ module WhopSDK
         member: WhopSDK::Models::PaymentListResponse::Member?,
         membership: WhopSDK::Models::PaymentListResponse::Membership?,
         paid_at: Time?,
-        payment_method_type: String?,
+        payment_method_type: WhopSDK::Models::PaymentListResponse::payment_method_type?,
         plan: WhopSDK::Models::PaymentListResponse::Plan?,
         product: WhopSDK::Models::PaymentListResponse::Product?,
         promo_code: WhopSDK::Models::PaymentListResponse::PromoCode?,
@@ -137,8 +137,8 @@ module WhopSDK
         amount_after_fees: Float,
         auto_refunded: bool,
         billing_address: WhopSDK::Models::PaymentListResponse::BillingAddress?,
-        billing_reason: String?,
-        card_brand: String?,
+        billing_reason: WhopSDK::Models::PaymentListResponse::billing_reason?,
+        card_brand: WhopSDK::Models::PaymentListResponse::card_brand?,
         :card_last4 => String?,
         company: WhopSDK::Models::PaymentListResponse::Company?,
         created_at: Time,
@@ -149,7 +149,7 @@ module WhopSDK
         member: WhopSDK::Models::PaymentListResponse::Member?,
         membership: WhopSDK::Models::PaymentListResponse::Membership?,
         paid_at: Time?,
-        payment_method_type: String?,
+        payment_method_type: WhopSDK::Models::PaymentListResponse::payment_method_type?,
         plan: WhopSDK::Models::PaymentListResponse::Plan?,
         product: WhopSDK::Models::PaymentListResponse::Product?,
         promo_code: WhopSDK::Models::PaymentListResponse::PromoCode?,
@@ -213,6 +213,68 @@ module WhopSDK
         }
       end
 
+      type billing_reason =
+        :subscription_create
+        | :subscription_cycle
+        | :subscription_update
+        | :one_time
+        | :manual
+        | :subscription
+
+      module BillingReason
+        extend WhopSDK::Internal::Type::Enum
+
+        SUBSCRIPTION_CREATE: :subscription_create
+        SUBSCRIPTION_CYCLE: :subscription_cycle
+        SUBSCRIPTION_UPDATE: :subscription_update
+        ONE_TIME: :one_time
+        MANUAL: :manual
+        SUBSCRIPTION: :subscription
+
+        def self?.values: -> ::Array[WhopSDK::Models::PaymentListResponse::billing_reason]
+      end
+
+      type card_brand =
+        :mastercard
+        | :visa
+        | :amex
+        | :discover
+        | :unionpay
+        | :jcb
+        | :diners
+        | :link
+        | :troy
+        | :visadankort
+        | :visabancontact
+        | :china_union_pay
+        | :rupay
+        | :jcbrupay
+        | :elo
+        | :unknown
+
+      module CardBrand
+        extend WhopSDK::Internal::Type::Enum
+
+        MASTERCARD: :mastercard
+        VISA: :visa
+        AMEX: :amex
+        DISCOVER: :discover
+        UNIONPAY: :unionpay
+        JCB: :jcb
+        DINERS: :diners
+        LINK: :link
+        TROY: :troy
+        VISADANKORT: :visadankort
+        VISABANCONTACT: :visabancontact
+        CHINA_UNION_PAY: :china_union_pay
+        RUPAY: :rupay
+        JCBRUPAY: :jcbrupay
+        ELO: :elo
+        UNKNOWN: :unknown
+
+        def self?.values: -> ::Array[WhopSDK::Models::PaymentListResponse::card_brand]
+      end
+
       type company = { id: String, route: String, title: String }
 
       class Company < WhopSDK::Internal::Type::BaseModel
@@ -256,6 +318,173 @@ module WhopSDK
           id: String,
           status: WhopSDK::Models::membership_status
         }
+      end
+
+      type payment_method_type =
+        :acss_debit
+        | :affirm
+        | :afterpay_clearpay
+        | :alipay
+        | :alma
+        | :amazon_pay
+        | :apple_pay
+        | :au_becs_debit
+        | :bacs_debit
+        | :bancontact
+        | :billie
+        | :blik
+        | :boleto
+        | :card
+        | :cashapp
+        | :crypto
+        | :eps
+        | :fpx
+        | :giropay
+        | :google_pay
+        | :grabpay
+        | :ideal
+        | :kakao_pay
+        | :klarna
+        | :konbini
+        | :kr_card
+        | :link
+        | :mobilepay
+        | :multibanco
+        | :naver_pay
+        | :nz_bank_account
+        | :oxxo
+        | :p24
+        | :pay_by_bank
+        | :payco
+        | :paynow
+        | :pix
+        | :promptpay
+        | :revolut_pay
+        | :samsung_pay
+        | :satispay
+        | :sepa_debit
+        | :sofort
+        | :swish
+        | :twint
+        | :us_bank_account
+        | :wechat_pay
+        | :zip
+        | :bizum
+        | :capchase_pay
+        | :kriya
+        | :mondu
+        | :ng_wallet
+        | :paypay
+        | :sequra
+        | :scalapay
+        | :vipps
+        | :custom
+        | :customer_balance
+        | :gopay
+        | :mb_way
+        | :ng_bank
+        | :ng_bank_transfer
+        | :ng_card
+        | :ng_market
+        | :ng_ussd
+        | :paypal
+        | :payto
+        | :qris
+        | :rechnung
+        | :south_korea_market
+        | :kr_market
+        | :shopeepay
+        | :upi
+        | :sunbit
+        | :netbanking
+        | :id_bank_transfer
+        | :demo_pay
+        | :shop_pay
+
+      module PaymentMethodType
+        extend WhopSDK::Internal::Type::Enum
+
+        ACSS_DEBIT: :acss_debit
+        AFFIRM: :affirm
+        AFTERPAY_CLEARPAY: :afterpay_clearpay
+        ALIPAY: :alipay
+        ALMA: :alma
+        AMAZON_PAY: :amazon_pay
+        APPLE_PAY: :apple_pay
+        AU_BECS_DEBIT: :au_becs_debit
+        BACS_DEBIT: :bacs_debit
+        BANCONTACT: :bancontact
+        BILLIE: :billie
+        BLIK: :blik
+        BOLETO: :boleto
+        CARD: :card
+        CASHAPP: :cashapp
+        CRYPTO: :crypto
+        EPS: :eps
+        FPX: :fpx
+        GIROPAY: :giropay
+        GOOGLE_PAY: :google_pay
+        GRABPAY: :grabpay
+        IDEAL: :ideal
+        KAKAO_PAY: :kakao_pay
+        KLARNA: :klarna
+        KONBINI: :konbini
+        KR_CARD: :kr_card
+        LINK: :link
+        MOBILEPAY: :mobilepay
+        MULTIBANCO: :multibanco
+        NAVER_PAY: :naver_pay
+        NZ_BANK_ACCOUNT: :nz_bank_account
+        OXXO: :oxxo
+        P24: :p24
+        PAY_BY_BANK: :pay_by_bank
+        PAYCO: :payco
+        PAYNOW: :paynow
+        PIX: :pix
+        PROMPTPAY: :promptpay
+        REVOLUT_PAY: :revolut_pay
+        SAMSUNG_PAY: :samsung_pay
+        SATISPAY: :satispay
+        SEPA_DEBIT: :sepa_debit
+        SOFORT: :sofort
+        SWISH: :swish
+        TWINT: :twint
+        US_BANK_ACCOUNT: :us_bank_account
+        WECHAT_PAY: :wechat_pay
+        ZIP: :zip
+        BIZUM: :bizum
+        CAPCHASE_PAY: :capchase_pay
+        KRIYA: :kriya
+        MONDU: :mondu
+        NG_WALLET: :ng_wallet
+        PAYPAY: :paypay
+        SEQURA: :sequra
+        SCALAPAY: :scalapay
+        VIPPS: :vipps
+        CUSTOM: :custom
+        CUSTOMER_BALANCE: :customer_balance
+        GOPAY: :gopay
+        MB_WAY: :mb_way
+        NG_BANK: :ng_bank
+        NG_BANK_TRANSFER: :ng_bank_transfer
+        NG_CARD: :ng_card
+        NG_MARKET: :ng_market
+        NG_USSD: :ng_ussd
+        PAYPAL: :paypal
+        PAYTO: :payto
+        QRIS: :qris
+        RECHNUNG: :rechnung
+        SOUTH_KOREA_MARKET: :south_korea_market
+        KR_MARKET: :kr_market
+        SHOPEEPAY: :shopeepay
+        UPI: :upi
+        SUNBIT: :sunbit
+        NETBANKING: :netbanking
+        ID_BANK_TRANSFER: :id_bank_transfer
+        DEMO_PAY: :demo_pay
+        SHOP_PAY: :shop_pay
+
+        def self?.values: -> ::Array[WhopSDK::Models::PaymentListResponse::payment_method_type]
       end
 
       type plan = { id: String }

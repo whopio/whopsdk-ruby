@@ -29,7 +29,8 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :email_address
 
-      # The token to fetch the invoice.
+      # A signed token that allows fetching the invoice data publically without being
+      # authenticated.
       sig { returns(String) }
       attr_accessor :fetch_invoice_token
 
@@ -73,7 +74,8 @@ module WhopSDK
         due_date:,
         # The email address that the invoice was created for.
         email_address:,
-        # The token to fetch the invoice.
+        # A signed token that allows fetching the invoice data publically without being
+        # authenticated.
         fetch_invoice_token:,
         # The number of the invoice.
         number:,

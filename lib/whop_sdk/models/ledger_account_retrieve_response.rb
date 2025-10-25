@@ -111,8 +111,17 @@ module WhopSDK
       module LedgerAccountAuditStatus
         extend WhopSDK::Internal::Type::Enum
 
+        PENDING = :pending
+        APPROVED = :approved
         RESERVES_IMPOSED = :reserves_imposed
+        SUSPENDED = :suspended
+        IGNORED = :ignored
+        REJECTED = :rejected
         REQUESTED_MORE_INFORMATION = :requested_more_information
+        INFORMATION_SUBMITTED = :information_submitted
+        REQUESTED_TOS_VIOLATION_CORRECTION = :requested_tos_violation_correction
+        CLAWBACK_ATTEMPTED = :clawback_attempted
+        AWAITING_SALES_REVIEW = :awaiting_sales_review
 
         # @!method self.values
         #   @return [Array<Symbol>]

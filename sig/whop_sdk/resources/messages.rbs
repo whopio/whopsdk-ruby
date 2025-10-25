@@ -14,6 +14,14 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Message
 
+      def update: (
+        String id,
+        ?attachments: ::Array[WhopSDK::MessageUpdateParams::Attachment]?,
+        ?content: String?,
+        ?is_pinned: bool?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Message
+
       def list: (
         channel_id: String,
         ?after: String?,

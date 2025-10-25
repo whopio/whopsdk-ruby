@@ -19,22 +19,6 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :title
 
-      # The different types an access pass can be.
-      sig { returns(T.nilable(WhopSDK::AccessPassType::OrSymbol)) }
-      attr_accessor :access_pass_type
-
-      # A banner image for the product in png, jpeg format
-      sig { returns(T.nilable(WhopSDK::ProductCreateParams::BannerImage)) }
-      attr_reader :banner_image
-
-      sig do
-        params(
-          banner_image:
-            T.nilable(WhopSDK::ProductCreateParams::BannerImage::OrHash)
-        ).void
-      end
-      attr_writer :banner_image
-
       # The different business types a company can be.
       sig { returns(T.nilable(WhopSDK::BusinessTypes::OrSymbol)) }
       attr_accessor :business_type
@@ -129,9 +113,6 @@ module WhopSDK
         params(
           company_id: String,
           title: String,
-          access_pass_type: T.nilable(WhopSDK::AccessPassType::OrSymbol),
-          banner_image:
-            T.nilable(WhopSDK::ProductCreateParams::BannerImage::OrHash),
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           collect_shipping_address: T.nilable(T::Boolean),
           custom_cta: T.nilable(WhopSDK::CustomCta::OrSymbol),
@@ -165,10 +146,6 @@ module WhopSDK
         company_id:,
         # The title of the product.
         title:,
-        # The different types an access pass can be.
-        access_pass_type: nil,
-        # A banner image for the product in png, jpeg format
-        banner_image: nil,
         # The different business types a company can be.
         business_type: nil,
         # Whether or not to collect shipping information at checkout from the customer.
@@ -218,8 +195,6 @@ module WhopSDK
           {
             company_id: String,
             title: String,
-            access_pass_type: T.nilable(WhopSDK::AccessPassType::OrSymbol),
-            banner_image: T.nilable(WhopSDK::ProductCreateParams::BannerImage),
             business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
             collect_shipping_address: T.nilable(T::Boolean),
             custom_cta: T.nilable(WhopSDK::CustomCta::OrSymbol),
@@ -249,55 +224,6 @@ module WhopSDK
         )
       end
       def to_hash
-      end
-
-      class BannerImage < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(
-              WhopSDK::ProductCreateParams::BannerImage,
-              WhopSDK::Internal::AnyHash
-            )
-          end
-
-        # The ID of an existing attachment object. Use this when updating a resource and
-        # keeping a subset of the attachments. Don't use this unless you know what you're
-        # doing.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :id
-
-        # This ID should be used the first time you upload an attachment. It is the ID of
-        # the direct upload that was created when uploading the file to S3 via the
-        # mediaDirectUpload mutation.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :direct_upload_id
-
-        # A banner image for the product in png, jpeg format
-        sig do
-          params(
-            id: T.nilable(String),
-            direct_upload_id: T.nilable(String)
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The ID of an existing attachment object. Use this when updating a resource and
-          # keeping a subset of the attachments. Don't use this unless you know what you're
-          # doing.
-          id: nil,
-          # This ID should be used the first time you upload an attachment. It is the ID of
-          # the direct upload that was created when uploading the file to S3 via the
-          # mediaDirectUpload mutation.
-          direct_upload_id: nil
-        )
-        end
-
-        sig do
-          override.returns(
-            { id: T.nilable(String), direct_upload_id: T.nilable(String) }
-          )
-        end
-        def to_hash
-        end
       end
 
       class PlanOptions < WhopSDK::Internal::Type::BaseModel

@@ -21,6 +21,12 @@ module WhopSDK
       #   @return [String, nil]
       required :content, String, nil?: true
 
+      # @!attribute created_at
+      #   The timestamp when the post was created
+      #
+      #   @return [Time]
+      required :created_at, Time
+
       # @!attribute is_edited
       #   Whether the forum post has been edited
       #
@@ -57,6 +63,12 @@ module WhopSDK
       #   @return [String, nil]
       required :title, String, nil?: true
 
+      # @!attribute updated_at
+      #   The timestamp when the post was last updated
+      #
+      #   @return [Time]
+      required :updated_at, Time
+
       # @!attribute user
       #   The user who created this forum post
       #
@@ -69,7 +81,7 @@ module WhopSDK
       #   @return [Integer, nil]
       required :view_count, Integer, nil?: true
 
-      # @!method initialize(id:, comment_count:, content:, is_edited:, is_pinned:, is_poster_admin:, like_count:, parent_id:, title:, user:, view_count:)
+      # @!method initialize(id:, comment_count:, content:, created_at:, is_edited:, is_pinned:, is_poster_admin:, like_count:, parent_id:, title:, updated_at:, user:, view_count:)
       #   Represents a post in forum
       #
       #   @param id [String] The unique identifier for the entity
@@ -77,6 +89,8 @@ module WhopSDK
       #   @param comment_count [Integer] The amount of comments on this post
       #
       #   @param content [String, nil] The content of the forum post in Markdown format
+      #
+      #   @param created_at [Time] The timestamp when the post was created
       #
       #   @param is_edited [Boolean] Whether the forum post has been edited
       #
@@ -89,6 +103,8 @@ module WhopSDK
       #   @param parent_id [String, nil] The ID of the parent forum post, if applicable
       #
       #   @param title [String, nil] The title of the forum post
+      #
+      #   @param updated_at [Time] The timestamp when the post was last updated
       #
       #   @param user [WhopSDK::Models::ForumPost::User] The user who created this forum post
       #

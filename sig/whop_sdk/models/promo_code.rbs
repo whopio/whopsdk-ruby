@@ -1,0 +1,134 @@
+module WhopSDK
+  module Models
+    type promo_code =
+      {
+        id: String,
+        amount_off: Float,
+        churned_users_only: bool,
+        code: String?,
+        company: WhopSDK::PromoCode::Company,
+        created_at: Time,
+        currency: WhopSDK::Models::currency,
+        duration: WhopSDK::Models::promo_duration?,
+        existing_memberships_only: bool,
+        expires_at: Time?,
+        new_users_only: bool,
+        one_per_customer: bool,
+        product: WhopSDK::PromoCode::Product?,
+        promo_duration_months: Integer?,
+        promo_type: WhopSDK::Models::promo_type,
+        status: WhopSDK::Models::promo_code_status,
+        stock: Integer,
+        unlimited_stock: bool,
+        uses: Integer
+      }
+
+    class PromoCode < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor amount_off: Float
+
+      attr_accessor churned_users_only: bool
+
+      attr_accessor code: String?
+
+      attr_accessor company: WhopSDK::PromoCode::Company
+
+      attr_accessor created_at: Time
+
+      attr_accessor currency: WhopSDK::Models::currency
+
+      attr_accessor duration: WhopSDK::Models::promo_duration?
+
+      attr_accessor existing_memberships_only: bool
+
+      attr_accessor expires_at: Time?
+
+      attr_accessor new_users_only: bool
+
+      attr_accessor one_per_customer: bool
+
+      attr_accessor product: WhopSDK::PromoCode::Product?
+
+      attr_accessor promo_duration_months: Integer?
+
+      attr_accessor promo_type: WhopSDK::Models::promo_type
+
+      attr_accessor status: WhopSDK::Models::promo_code_status
+
+      attr_accessor stock: Integer
+
+      attr_accessor unlimited_stock: bool
+
+      attr_accessor uses: Integer
+
+      def initialize: (
+        id: String,
+        amount_off: Float,
+        churned_users_only: bool,
+        code: String?,
+        company: WhopSDK::PromoCode::Company,
+        created_at: Time,
+        currency: WhopSDK::Models::currency,
+        duration: WhopSDK::Models::promo_duration?,
+        existing_memberships_only: bool,
+        expires_at: Time?,
+        new_users_only: bool,
+        one_per_customer: bool,
+        product: WhopSDK::PromoCode::Product?,
+        promo_duration_months: Integer?,
+        promo_type: WhopSDK::Models::promo_type,
+        status: WhopSDK::Models::promo_code_status,
+        stock: Integer,
+        unlimited_stock: bool,
+        uses: Integer
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        amount_off: Float,
+        churned_users_only: bool,
+        code: String?,
+        company: WhopSDK::PromoCode::Company,
+        created_at: Time,
+        currency: WhopSDK::Models::currency,
+        duration: WhopSDK::Models::promo_duration?,
+        existing_memberships_only: bool,
+        expires_at: Time?,
+        new_users_only: bool,
+        one_per_customer: bool,
+        product: WhopSDK::PromoCode::Product?,
+        promo_duration_months: Integer?,
+        promo_type: WhopSDK::Models::promo_type,
+        status: WhopSDK::Models::promo_code_status,
+        stock: Integer,
+        unlimited_stock: bool,
+        uses: Integer
+      }
+
+      type company = { id: String, title: String }
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type product = { id: String, title: String }
+
+      class Product < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+    end
+  end
+end

@@ -156,4 +156,27 @@ class WhopSDK::Test::Resources::ExperiencesTest < WhopSDK::Test::ResourceTest
       }
     end
   end
+
+  def test_duplicate
+    skip("Prism tests are disabled")
+
+    response = @whop.experiences.duplicate("exp_xxxxxxxxxxxxxx")
+
+    assert_pattern do
+      response => WhopSDK::Experience
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        app: WhopSDK::Experience::App,
+        company: WhopSDK::Experience::Company,
+        created_at: Time,
+        image: WhopSDK::Experience::Image | nil,
+        name: String,
+        order: String | nil,
+        products: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Experience::Product])
+      }
+    end
+  end
 end

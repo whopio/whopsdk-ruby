@@ -1,0 +1,15 @@
+module WhopSDK
+  module Models
+    type promo_duration = :forever | :once | :repeating
+
+    module PromoDuration
+      extend WhopSDK::Internal::Type::Enum
+
+      FOREVER: :forever
+      ONCE: :once
+      REPEATING: :repeating
+
+      def self?.values: -> ::Array[WhopSDK::Models::promo_duration]
+    end
+  end
+end

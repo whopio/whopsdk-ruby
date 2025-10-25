@@ -86,13 +86,25 @@ module WhopSDK
       sig { returns(Float) }
       attr_accessor :renewal_price
 
+      # An un-used field - do not use.
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :stock
+
       # The tax type for the plan.
       sig { returns(WhopSDK::TaxType::TaggedSymbol) }
       attr_accessor :tax_type
 
+      # The title of the plan. This will be visible on the product page to customers.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :title
+
       # The number of free trial days added before a renewal plan.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :trial_period_days
+
+      # Limits/doesn't limit the number of units available for purchase.
+      sig { returns(T::Boolean) }
+      attr_accessor :unlimited_stock
 
       # When the plan was last updated.
       sig { returns(Time) }
@@ -123,8 +135,11 @@ module WhopSDK
           purchase_url: String,
           release_method: WhopSDK::ReleaseMethod::OrSymbol,
           renewal_price: Float,
+          stock: T.nilable(Integer),
           tax_type: WhopSDK::TaxType::OrSymbol,
+          title: T.nilable(String),
           trial_period_days: T.nilable(Integer),
+          unlimited_stock: T::Boolean,
           updated_at: Time,
           visibility: WhopSDK::Visibility::OrSymbol
         ).returns(T.attached_class)
@@ -166,10 +181,16 @@ module WhopSDK
         release_method:,
         # The price a person has to pay for a plan on the renewal purchase.
         renewal_price:,
+        # An un-used field - do not use.
+        stock:,
         # The tax type for the plan.
         tax_type:,
+        # The title of the plan. This will be visible on the product page to customers.
+        title:,
         # The number of free trial days added before a renewal plan.
         trial_period_days:,
+        # Limits/doesn't limit the number of units available for purchase.
+        unlimited_stock:,
         # When the plan was last updated.
         updated_at:,
         # Shows or hides the plan from public/business view.
@@ -198,8 +219,11 @@ module WhopSDK
             purchase_url: String,
             release_method: WhopSDK::ReleaseMethod::TaggedSymbol,
             renewal_price: Float,
+            stock: T.nilable(Integer),
             tax_type: WhopSDK::TaxType::TaggedSymbol,
+            title: T.nilable(String),
             trial_period_days: T.nilable(Integer),
+            unlimited_stock: T::Boolean,
             updated_at: Time,
             visibility: WhopSDK::Visibility::TaggedSymbol
           }

@@ -204,6 +204,39 @@ module WhopSDK
         )
       end
 
+      # Duplicates an existing experience. The name will be copied, unless provided. The
+      # new experience will be attached to the same products as the original experience.
+      # If duplicating a Forum or Chat experience, the new experience will have the same
+      # settings as the original experience, e.g. who can post, who can comment, etc. No
+      # content, e.g. posts, messages, lessons from within the original experience will
+      # be copied.
+      #
+      # Required permissions:
+      #
+      # - `experience:create`
+      #
+      # @overload duplicate(id, name: nil, request_options: {})
+      #
+      # @param id [String]
+      #
+      # @param name [String, nil] The name of the new experience
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::Experience]
+      #
+      # @see WhopSDK::Models::ExperienceDuplicateParams
+      def duplicate(id, params = {})
+        parsed, options = WhopSDK::ExperienceDuplicateParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: ["experiences/%1$s/duplicate", id],
+          body: parsed,
+          model: WhopSDK::Experience,
+          options: options
+        )
+      end
+
       # @api private
       #
       # @param client [WhopSDK::Client]

@@ -4,8 +4,6 @@ module WhopSDK
       {
         company_id: String,
         title: String,
-        access_pass_type: WhopSDK::Models::access_pass_type?,
-        banner_image: WhopSDK::ProductCreateParams::BannerImage?,
         business_type: WhopSDK::Models::business_types?,
         collect_shipping_address: bool?,
         custom_cta: WhopSDK::Models::custom_cta?,
@@ -35,10 +33,6 @@ module WhopSDK
       attr_accessor company_id: String
 
       attr_accessor title: String
-
-      attr_accessor access_pass_type: WhopSDK::Models::access_pass_type?
-
-      attr_accessor banner_image: WhopSDK::ProductCreateParams::BannerImage?
 
       attr_accessor business_type: WhopSDK::Models::business_types?
 
@@ -81,8 +75,6 @@ module WhopSDK
       def initialize: (
         company_id: String,
         title: String,
-        ?access_pass_type: WhopSDK::Models::access_pass_type?,
-        ?banner_image: WhopSDK::ProductCreateParams::BannerImage?,
         ?business_type: WhopSDK::Models::business_types?,
         ?collect_shipping_address: bool?,
         ?custom_cta: WhopSDK::Models::custom_cta?,
@@ -108,8 +100,6 @@ module WhopSDK
       def to_hash: -> {
         company_id: String,
         title: String,
-        access_pass_type: WhopSDK::Models::access_pass_type?,
-        banner_image: WhopSDK::ProductCreateParams::BannerImage?,
         business_type: WhopSDK::Models::business_types?,
         collect_shipping_address: bool?,
         custom_cta: WhopSDK::Models::custom_cta?,
@@ -131,18 +121,6 @@ module WhopSDK
         visibility: WhopSDK::Models::visibility?,
         request_options: WhopSDK::RequestOptions
       }
-
-      type banner_image = { id: String?, direct_upload_id: String? }
-
-      class BannerImage < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String?
-
-        attr_accessor direct_upload_id: String?
-
-        def initialize: (?id: String?, ?direct_upload_id: String?) -> void
-
-        def to_hash: -> { id: String?, direct_upload_id: String? }
-      end
 
       type plan_options =
         {

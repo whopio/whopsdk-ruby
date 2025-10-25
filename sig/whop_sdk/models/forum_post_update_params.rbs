@@ -1,0 +1,53 @@
+module WhopSDK
+  module Models
+    type forum_post_update_params =
+      {
+        attachments: ::Array[WhopSDK::ForumPostUpdateParams::Attachment]?,
+        content: String?,
+        is_pinned: bool?,
+        title: String?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class ForumPostUpdateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor attachments: ::Array[WhopSDK::ForumPostUpdateParams::Attachment]?
+
+      attr_accessor content: String?
+
+      attr_accessor is_pinned: bool?
+
+      attr_accessor title: String?
+
+      def initialize: (
+        ?attachments: ::Array[WhopSDK::ForumPostUpdateParams::Attachment]?,
+        ?content: String?,
+        ?is_pinned: bool?,
+        ?title: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        attachments: ::Array[WhopSDK::ForumPostUpdateParams::Attachment]?,
+        content: String?,
+        is_pinned: bool?,
+        title: String?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type attachment = { id: String?, direct_upload_id: String? }
+
+      class Attachment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String?
+
+        attr_accessor direct_upload_id: String?
+
+        def initialize: (?id: String?, ?direct_upload_id: String?) -> void
+
+        def to_hash: -> { id: String?, direct_upload_id: String? }
+      end
+    end
+  end
+end

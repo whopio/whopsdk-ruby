@@ -9,6 +9,8 @@ module WhopSDK
       #
       # - `checkout_configuration:create`
       # - `plan:create`
+      # - `access_pass:create`
+      # - `access_pass:update`
       #
       # @overload create(affiliate_code: nil, metadata: nil, plan: nil, plan_id: nil, redirect_url: nil, request_options: {})
       #

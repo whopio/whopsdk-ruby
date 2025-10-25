@@ -166,7 +166,26 @@ module WhopSDK
         sig { returns(T.nilable(WhopSDK::PlanType::OrSymbol)) }
         attr_accessor :plan_type
 
-        # The product the plan is related to.
+        # Pass this object to create a new product for this plan. We will use the product
+        # external identifier to find or create an existing product.
+        sig do
+          returns(
+            T.nilable(WhopSDK::CheckoutConfigurationCreateParams::Plan::Product)
+          )
+        end
+        attr_reader :product
+
+        sig do
+          params(
+            product:
+              T.nilable(
+                WhopSDK::CheckoutConfigurationCreateParams::Plan::Product::OrHash
+              )
+          ).void
+        end
+        attr_writer :product
+
+        # The product the plan is related to. Either this or product is required.
         sig { returns(T.nilable(String)) }
         attr_accessor :product_id
 
@@ -213,6 +232,10 @@ module WhopSDK
             internal_notes: T.nilable(String),
             override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
             plan_type: T.nilable(WhopSDK::PlanType::OrSymbol),
+            product:
+              T.nilable(
+                WhopSDK::CheckoutConfigurationCreateParams::Plan::Product::OrHash
+              ),
             product_id: T.nilable(String),
             release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
             renewal_price: T.nilable(Float),
@@ -248,7 +271,10 @@ module WhopSDK
           override_tax_type: nil,
           # The type of plan that can be attached to an access pass
           plan_type: nil,
-          # The product the plan is related to.
+          # Pass this object to create a new product for this plan. We will use the product
+          # external identifier to find or create an existing product.
+          product: nil,
+          # The product the plan is related to. Either this or product is required.
           product_id: nil,
           # The methods of how a plan can be released.
           release_method: nil,
@@ -286,6 +312,10 @@ module WhopSDK
               internal_notes: T.nilable(String),
               override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
               plan_type: T.nilable(WhopSDK::PlanType::OrSymbol),
+              product:
+                T.nilable(
+                  WhopSDK::CheckoutConfigurationCreateParams::Plan::Product
+                ),
               product_id: T.nilable(String),
               release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
               renewal_price: T.nilable(Float),
@@ -416,6 +446,157 @@ module WhopSDK
           sig do
             override.returns(
               { id: T.nilable(String), direct_upload_id: T.nilable(String) }
+            )
+          end
+          def to_hash
+          end
+        end
+
+        class Product < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::CheckoutConfigurationCreateParams::Plan::Product,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # A unique ID used to find or create a product. When provided during creation, we
+          # will look for an existing product with this external identifier — if found, it
+          # will be updated; otherwise, a new product will be created.
+          sig { returns(String) }
+          attr_accessor :external_identifier
+
+          # The title of the product.
+          sig { returns(String) }
+          attr_accessor :title
+
+          # The different business types a company can be.
+          sig { returns(T.nilable(WhopSDK::BusinessTypes::OrSymbol)) }
+          attr_accessor :business_type
+
+          # Whether or not to collect shipping information at checkout from the customer.
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_accessor :collect_shipping_address
+
+          # The custom statement descriptor for the product i.e. WHOP\*SPORTS, must be
+          # between 5 and 22 characters, contain at least one letter, and not contain any of
+          # the following characters: <, >, \, ', "
+          sig { returns(T.nilable(String)) }
+          attr_accessor :custom_statement_descriptor
+
+          # A written description of the product.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :description
+
+          # The percentage of the revenue that goes to the global affiliate program.
+          sig { returns(T.nilable(Float)) }
+          attr_accessor :global_affiliate_percentage
+
+          # The different statuses of the global affiliate program for an access pass.
+          sig { returns(T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol)) }
+          attr_accessor :global_affiliate_status
+
+          # The headline of the product.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :headline
+
+          # The different industry types a company can be in.
+          sig { returns(T.nilable(WhopSDK::IndustryTypes::OrSymbol)) }
+          attr_accessor :industry_type
+
+          # The ID of the product tax code to apply to this product.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :product_tax_code_id
+
+          # The URL to redirect the customer to after a purchase.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :redirect_purchase_url
+
+          # The route of the product.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :route
+
+          # Visibility of a resource
+          sig { returns(T.nilable(WhopSDK::Visibility::OrSymbol)) }
+          attr_accessor :visibility
+
+          # Pass this object to create a new product for this plan. We will use the product
+          # external identifier to find or create an existing product.
+          sig do
+            params(
+              external_identifier: String,
+              title: String,
+              business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
+              collect_shipping_address: T.nilable(T::Boolean),
+              custom_statement_descriptor: T.nilable(String),
+              description: T.nilable(String),
+              global_affiliate_percentage: T.nilable(Float),
+              global_affiliate_status:
+                T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
+              headline: T.nilable(String),
+              industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
+              product_tax_code_id: T.nilable(String),
+              redirect_purchase_url: T.nilable(String),
+              route: T.nilable(String),
+              visibility: T.nilable(WhopSDK::Visibility::OrSymbol)
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # A unique ID used to find or create a product. When provided during creation, we
+            # will look for an existing product with this external identifier — if found, it
+            # will be updated; otherwise, a new product will be created.
+            external_identifier:,
+            # The title of the product.
+            title:,
+            # The different business types a company can be.
+            business_type: nil,
+            # Whether or not to collect shipping information at checkout from the customer.
+            collect_shipping_address: nil,
+            # The custom statement descriptor for the product i.e. WHOP\*SPORTS, must be
+            # between 5 and 22 characters, contain at least one letter, and not contain any of
+            # the following characters: <, >, \, ', "
+            custom_statement_descriptor: nil,
+            # A written description of the product.
+            description: nil,
+            # The percentage of the revenue that goes to the global affiliate program.
+            global_affiliate_percentage: nil,
+            # The different statuses of the global affiliate program for an access pass.
+            global_affiliate_status: nil,
+            # The headline of the product.
+            headline: nil,
+            # The different industry types a company can be in.
+            industry_type: nil,
+            # The ID of the product tax code to apply to this product.
+            product_tax_code_id: nil,
+            # The URL to redirect the customer to after a purchase.
+            redirect_purchase_url: nil,
+            # The route of the product.
+            route: nil,
+            # Visibility of a resource
+            visibility: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                external_identifier: String,
+                title: String,
+                business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
+                collect_shipping_address: T.nilable(T::Boolean),
+                custom_statement_descriptor: T.nilable(String),
+                description: T.nilable(String),
+                global_affiliate_percentage: T.nilable(Float),
+                global_affiliate_status:
+                  T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
+                headline: T.nilable(String),
+                industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
+                product_tax_code_id: T.nilable(String),
+                redirect_purchase_url: T.nilable(String),
+                route: T.nilable(String),
+                visibility: T.nilable(WhopSDK::Visibility::OrSymbol)
+              }
             )
           end
           def to_hash

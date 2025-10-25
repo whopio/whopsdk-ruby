@@ -49,6 +49,12 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Experience
 
+      def duplicate: (
+        String id,
+        ?name: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Experience
+
       def initialize: (client: WhopSDK::Client) -> void
     end
   end

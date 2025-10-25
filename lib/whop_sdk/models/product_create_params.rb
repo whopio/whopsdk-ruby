@@ -19,18 +19,6 @@ module WhopSDK
       #   @return [String]
       required :title, String
 
-      # @!attribute access_pass_type
-      #   The different types an access pass can be.
-      #
-      #   @return [Symbol, WhopSDK::Models::AccessPassType, nil]
-      optional :access_pass_type, enum: -> { WhopSDK::AccessPassType }, nil?: true
-
-      # @!attribute banner_image
-      #   A banner image for the product in png, jpeg format
-      #
-      #   @return [WhopSDK::Models::ProductCreateParams::BannerImage, nil]
-      optional :banner_image, -> { WhopSDK::ProductCreateParams::BannerImage }, nil?: true
-
       # @!attribute business_type
       #   The different business types a company can be.
       #
@@ -149,17 +137,13 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility, nil]
       optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-      # @!method initialize(company_id:, title:, access_pass_type: nil, banner_image: nil, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, experience_ids: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, plan_options: nil, product_highlights: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil, request_options: {})
+      # @!method initialize(company_id:, title:, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, experience_ids: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, plan_options: nil, product_highlights: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ProductCreateParams} for more details.
       #
       #   @param company_id [String] The ID of the company to create the product for.
       #
       #   @param title [String] The title of the product.
-      #
-      #   @param access_pass_type [Symbol, WhopSDK::Models::AccessPassType, nil] The different types an access pass can be.
-      #
-      #   @param banner_image [WhopSDK::Models::ProductCreateParams::BannerImage, nil] A banner image for the product in png, jpeg format
       #
       #   @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #
@@ -201,34 +185,6 @@ module WhopSDK
       #   @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
-
-      class BannerImage < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The ID of an existing attachment object. Use this when updating a resource and
-        #   keeping a subset of the attachments. Don't use this unless you know what you're
-        #   doing.
-        #
-        #   @return [String, nil]
-        optional :id, String, nil?: true
-
-        # @!attribute direct_upload_id
-        #   This ID should be used the first time you upload an attachment. It is the ID of
-        #   the direct upload that was created when uploading the file to S3 via the
-        #   mediaDirectUpload mutation.
-        #
-        #   @return [String, nil]
-        optional :direct_upload_id, String, nil?: true
-
-        # @!method initialize(id: nil, direct_upload_id: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::ProductCreateParams::BannerImage} for more details.
-        #
-        #   A banner image for the product in png, jpeg format
-        #
-        #   @param id [String, nil] The ID of an existing attachment object. Use this when updating a resource and k
-        #
-        #   @param direct_upload_id [String, nil] This ID should be used the first time you upload an attachment. It is the ID of
-      end
 
       class PlanOptions < WhopSDK::Internal::Type::BaseModel
         # @!attribute base_currency

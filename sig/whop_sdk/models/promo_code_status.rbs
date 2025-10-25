@@ -1,0 +1,15 @@
+module WhopSDK
+  module Models
+    type promo_code_status = :active | :inactive | :archived
+
+    module PromoCodeStatus
+      extend WhopSDK::Internal::Type::Enum
+
+      ACTIVE: :active
+      INACTIVE: :inactive
+      ARCHIVED: :archived
+
+      def self?.values: -> ::Array[WhopSDK::Models::promo_code_status]
+    end
+  end
+end

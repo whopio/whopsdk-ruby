@@ -1,0 +1,28 @@
+module WhopSDK
+  module Models
+    type course_chapter_create_params =
+      { course_id: String, title: String? }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class CourseChapterCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor course_id: String
+
+      attr_accessor title: String?
+
+      def initialize: (
+        course_id: String,
+        ?title: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        course_id: String,
+        title: String?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

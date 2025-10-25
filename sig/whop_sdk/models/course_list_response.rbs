@@ -1,0 +1,92 @@
+module WhopSDK
+  module Models
+    type course_list_response =
+      {
+        id: String,
+        certificate_after_completion_enabled: bool?,
+        description: String?,
+        language: WhopSDK::Models::languages,
+        require_completing_lessons_in_order: bool,
+        tagline: String?,
+        thumbnail: WhopSDK::Models::CourseListResponse::Thumbnail?,
+        title: String?
+      }
+
+    class CourseListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor certificate_after_completion_enabled: bool?
+
+      attr_accessor description: String?
+
+      attr_accessor language: WhopSDK::Models::languages
+
+      attr_accessor require_completing_lessons_in_order: bool
+
+      attr_accessor tagline: String?
+
+      attr_accessor thumbnail: WhopSDK::Models::CourseListResponse::Thumbnail?
+
+      attr_accessor title: String?
+
+      def initialize: (
+        id: String,
+        certificate_after_completion_enabled: bool?,
+        description: String?,
+        language: WhopSDK::Models::languages,
+        require_completing_lessons_in_order: bool,
+        tagline: String?,
+        thumbnail: WhopSDK::Models::CourseListResponse::Thumbnail?,
+        title: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        certificate_after_completion_enabled: bool?,
+        description: String?,
+        language: WhopSDK::Models::languages,
+        require_completing_lessons_in_order: bool,
+        tagline: String?,
+        thumbnail: WhopSDK::Models::CourseListResponse::Thumbnail?,
+        title: String?
+      }
+
+      type thumbnail =
+        {
+          id: String,
+          content_type: String?,
+          filename: String?,
+          optimized_url: String?,
+          source_url: String?
+        }
+
+      class Thumbnail < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor content_type: String?
+
+        attr_accessor filename: String?
+
+        attr_accessor optimized_url: String?
+
+        attr_accessor source_url: String?
+
+        def initialize: (
+          id: String,
+          content_type: String?,
+          filename: String?,
+          optimized_url: String?,
+          source_url: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          content_type: String?,
+          filename: String?,
+          optimized_url: String?,
+          source_url: String?
+        }
+      end
+    end
+  end
+end

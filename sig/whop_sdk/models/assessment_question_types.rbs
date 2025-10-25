@@ -1,0 +1,17 @@
+module WhopSDK
+  module Models
+    type assessment_question_types =
+      :short_answer | :true_false | :multiple_choice | :multiple_select
+
+    module AssessmentQuestionTypes
+      extend WhopSDK::Internal::Type::Enum
+
+      SHORT_ANSWER: :short_answer
+      TRUE_FALSE: :true_false
+      MULTIPLE_CHOICE: :multiple_choice
+      MULTIPLE_SELECT: :multiple_select
+
+      def self?.values: -> ::Array[WhopSDK::Models::assessment_question_types]
+    end
+  end
+end

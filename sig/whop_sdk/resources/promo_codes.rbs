@@ -1,0 +1,45 @@
+module WhopSDK
+  module Resources
+    class PromoCodes
+      def create: (
+        amount_off: Float,
+        base_currency: WhopSDK::Models::currency,
+        code: String,
+        company_id: String,
+        new_users_only: bool,
+        promo_duration_months: Integer,
+        promo_type: WhopSDK::Models::promo_type,
+        ?churned_users_only: bool?,
+        ?existing_memberships_only: bool?,
+        ?expires_at: Time?,
+        ?one_per_customer: bool?,
+        ?plan_ids: ::Array[String]?,
+        ?product_id: String?,
+        ?stock: Integer?,
+        ?unlimited_stock: bool?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::PromoCode
+
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::PromoCode
+
+      def list: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?plan_ids: ::Array[String]?,
+        ?product_ids: ::Array[String]?,
+        ?status: WhopSDK::Models::promo_code_status?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::PromoCodeListResponse]
+
+      def delete: (String id, ?request_options: WhopSDK::request_opts) -> bool
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

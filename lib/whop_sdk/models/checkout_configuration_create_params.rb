@@ -129,8 +129,15 @@ module WhopSDK
         #   @return [Symbol, WhopSDK::Models::PlanType, nil]
         optional :plan_type, enum: -> { WhopSDK::PlanType }, nil?: true
 
+        # @!attribute product
+        #   Pass this object to create a new product for this plan. We will use the product
+        #   external identifier to find or create an existing product.
+        #
+        #   @return [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Product, nil]
+        optional :product, -> { WhopSDK::CheckoutConfigurationCreateParams::Plan::Product }, nil?: true
+
         # @!attribute product_id
-        #   The product the plan is related to.
+        #   The product the plan is related to. Either this or product is required.
         #
         #   @return [String, nil]
         optional :product_id, String, nil?: true
@@ -165,7 +172,7 @@ module WhopSDK
         #   @return [Symbol, WhopSDK::Models::Visibility, nil]
         optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-        # @!method initialize(company_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, force_create_new_plan: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, plan_type: nil, product_id: nil, release_method: nil, renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil)
+        # @!method initialize(company_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, force_create_new_plan: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, plan_type: nil, product: nil, product_id: nil, release_method: nil, renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan} for more details.
         #
@@ -195,7 +202,9 @@ module WhopSDK
         #
         #   @param plan_type [Symbol, WhopSDK::Models::PlanType, nil] The type of plan that can be attached to an access pass
         #
-        #   @param product_id [String, nil] The product the plan is related to.
+        #   @param product [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Product, nil] Pass this object to create a new product for this plan. We will use the product
+        #
+        #   @param product_id [String, nil] The product the plan is related to. Either this or product is required.
         #
         #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod, nil] The methods of how a plan can be released.
         #
@@ -286,6 +295,134 @@ module WhopSDK
           #   @param id [String, nil] The ID of an existing attachment object. Use this when updating a resource and k
           #
           #   @param direct_upload_id [String, nil] This ID should be used the first time you upload an attachment. It is the ID of
+        end
+
+        # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Plan#product
+        class Product < WhopSDK::Internal::Type::BaseModel
+          # @!attribute external_identifier
+          #   A unique ID used to find or create a product. When provided during creation, we
+          #   will look for an existing product with this external identifier — if found, it
+          #   will be updated; otherwise, a new product will be created.
+          #
+          #   @return [String]
+          required :external_identifier, String
+
+          # @!attribute title
+          #   The title of the product.
+          #
+          #   @return [String]
+          required :title, String
+
+          # @!attribute business_type
+          #   The different business types a company can be.
+          #
+          #   @return [Symbol, WhopSDK::Models::BusinessTypes, nil]
+          optional :business_type, enum: -> { WhopSDK::BusinessTypes }, nil?: true
+
+          # @!attribute collect_shipping_address
+          #   Whether or not to collect shipping information at checkout from the customer.
+          #
+          #   @return [Boolean, nil]
+          optional :collect_shipping_address, WhopSDK::Internal::Type::Boolean, nil?: true
+
+          # @!attribute custom_statement_descriptor
+          #   The custom statement descriptor for the product i.e. WHOP\*SPORTS, must be
+          #   between 5 and 22 characters, contain at least one letter, and not contain any of
+          #   the following characters: <, >, \, ', "
+          #
+          #   @return [String, nil]
+          optional :custom_statement_descriptor, String, nil?: true
+
+          # @!attribute description
+          #   A written description of the product.
+          #
+          #   @return [String, nil]
+          optional :description, String, nil?: true
+
+          # @!attribute global_affiliate_percentage
+          #   The percentage of the revenue that goes to the global affiliate program.
+          #
+          #   @return [Float, nil]
+          optional :global_affiliate_percentage, Float, nil?: true
+
+          # @!attribute global_affiliate_status
+          #   The different statuses of the global affiliate program for an access pass.
+          #
+          #   @return [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil]
+          optional :global_affiliate_status, enum: -> { WhopSDK::GlobalAffiliateStatus }, nil?: true
+
+          # @!attribute headline
+          #   The headline of the product.
+          #
+          #   @return [String, nil]
+          optional :headline, String, nil?: true
+
+          # @!attribute industry_type
+          #   The different industry types a company can be in.
+          #
+          #   @return [Symbol, WhopSDK::Models::IndustryTypes, nil]
+          optional :industry_type, enum: -> { WhopSDK::IndustryTypes }, nil?: true
+
+          # @!attribute product_tax_code_id
+          #   The ID of the product tax code to apply to this product.
+          #
+          #   @return [String, nil]
+          optional :product_tax_code_id, String, nil?: true
+
+          # @!attribute redirect_purchase_url
+          #   The URL to redirect the customer to after a purchase.
+          #
+          #   @return [String, nil]
+          optional :redirect_purchase_url, String, nil?: true
+
+          # @!attribute route
+          #   The route of the product.
+          #
+          #   @return [String, nil]
+          optional :route, String, nil?: true
+
+          # @!attribute visibility
+          #   Visibility of a resource
+          #
+          #   @return [Symbol, WhopSDK::Models::Visibility, nil]
+          optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
+
+          # @!method initialize(external_identifier:, title:, business_type: nil, collect_shipping_address: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Product} for more
+          #   details.
+          #
+          #   Pass this object to create a new product for this plan. We will use the product
+          #   external identifier to find or create an existing product.
+          #
+          #   @param external_identifier [String] A unique ID used to find or create a product. When provided during creation, we
+          #
+          #   @param title [String] The title of the product.
+          #
+          #   @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
+          #
+          #   @param collect_shipping_address [Boolean, nil] Whether or not to collect shipping information at checkout from the customer.
+          #
+          #   @param custom_statement_descriptor [String, nil] The custom statement descriptor for the product i.e. WHOP\*SPORTS, must be
+          #   betwee
+          #
+          #   @param description [String, nil] A written description of the product.
+          #
+          #   @param global_affiliate_percentage [Float, nil] The percentage of the revenue that goes to the global affiliate program.
+          #
+          #   @param global_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for an access pass.
+          #
+          #   @param headline [String, nil] The headline of the product.
+          #
+          #   @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
+          #
+          #   @param product_tax_code_id [String, nil] The ID of the product tax code to apply to this product.
+          #
+          #   @param redirect_purchase_url [String, nil] The URL to redirect the customer to after a purchase.
+          #
+          #   @param route [String, nil] The route of the product.
+          #
+          #   @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
         end
       end
     end

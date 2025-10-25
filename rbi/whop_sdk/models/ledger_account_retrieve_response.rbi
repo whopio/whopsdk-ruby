@@ -211,14 +211,59 @@ module WhopSDK
           end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
+        PENDING =
+          T.let(
+            :pending,
+            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
+          )
+        APPROVED =
+          T.let(
+            :approved,
+            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
+          )
         RESERVES_IMPOSED =
           T.let(
             :reserves_imposed,
             WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
           )
+        SUSPENDED =
+          T.let(
+            :suspended,
+            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
+          )
+        IGNORED =
+          T.let(
+            :ignored,
+            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
+          )
+        REJECTED =
+          T.let(
+            :rejected,
+            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
+          )
         REQUESTED_MORE_INFORMATION =
           T.let(
             :requested_more_information,
+            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
+          )
+        INFORMATION_SUBMITTED =
+          T.let(
+            :information_submitted,
+            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
+          )
+        REQUESTED_TOS_VIOLATION_CORRECTION =
+          T.let(
+            :requested_tos_violation_correction,
+            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
+          )
+        CLAWBACK_ATTEMPTED =
+          T.let(
+            :clawback_attempted,
+            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
+          )
+        AWAITING_SALES_REVIEW =
+          T.let(
+            :awaiting_sales_review,
             WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
           )
 

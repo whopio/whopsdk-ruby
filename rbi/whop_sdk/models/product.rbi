@@ -41,6 +41,12 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
+      # A unique identifier used to create or update products. When provided on product
+      # creation endpoints, we’ll look up an existing product by this identifier — if it
+      # exists, we’ll update it; if not, we’ll create a new one.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :external_identifier
+
       # The percentage of a transaction a user is eligible to earn from the whop
       # marketplace global affiliate program.
       sig { returns(T.nilable(Float)) }
@@ -124,6 +130,7 @@ module WhopSDK
           custom_cta_url: T.nilable(String),
           custom_statement_descriptor: T.nilable(String),
           description: T.nilable(String),
+          external_identifier: T.nilable(String),
           global_affiliate_percentage: T.nilable(Float),
           global_affiliate_status: WhopSDK::GlobalAffiliateStatus::OrSymbol,
           headline: T.nilable(String),
@@ -158,6 +165,10 @@ module WhopSDK
         custom_statement_descriptor:,
         # A short description of what the company offers or does.
         description:,
+        # A unique identifier used to create or update products. When provided on product
+        # creation endpoints, we’ll look up an existing product by this identifier — if it
+        # exists, we’ll update it; if not, we’ll create a new one.
+        external_identifier:,
         # The percentage of a transaction a user is eligible to earn from the whop
         # marketplace global affiliate program.
         global_affiliate_percentage:,
@@ -204,6 +215,7 @@ module WhopSDK
             custom_cta_url: T.nilable(String),
             custom_statement_descriptor: T.nilable(String),
             description: T.nilable(String),
+            external_identifier: T.nilable(String),
             global_affiliate_percentage: T.nilable(Float),
             global_affiliate_status:
               WhopSDK::GlobalAffiliateStatus::TaggedSymbol,

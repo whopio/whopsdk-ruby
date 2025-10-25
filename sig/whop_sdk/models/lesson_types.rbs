@@ -1,0 +1,19 @@
+module WhopSDK
+  module Models
+    type lesson_types =
+      :text | :video | :pdf | :multi | :quiz | :knowledge_check
+
+    module LessonTypes
+      extend WhopSDK::Internal::Type::Enum
+
+      TEXT: :text
+      VIDEO: :video
+      PDF: :pdf
+      MULTI: :multi
+      QUIZ: :quiz
+      KNOWLEDGE_CHECK: :knowledge_check
+
+      def self?.values: -> ::Array[WhopSDK::Models::lesson_types]
+    end
+  end
+end

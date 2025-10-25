@@ -47,6 +47,31 @@ module WhopSDK
       def retrieve(id, request_options: {})
       end
 
+      # Updates an existing message
+      sig do
+        params(
+          id: String,
+          attachments:
+            T.nilable(
+              T::Array[WhopSDK::MessageUpdateParams::Attachment::OrHash]
+            ),
+          content: T.nilable(String),
+          is_pinned: T.nilable(T::Boolean),
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::Message)
+      end
+      def update(
+        id,
+        # The attachments for this message
+        attachments: nil,
+        # The content of the message in Markdown format
+        content: nil,
+        # Whether this message is pinned
+        is_pinned: nil,
+        request_options: {}
+      )
+      end
+
       # Lists messages inside a channel
       #
       # Required permissions:

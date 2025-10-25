@@ -87,6 +87,17 @@ module WhopSDK
       end
       attr_writer :plan
 
+      # The Product this Membership grants access to.
+      sig { returns(WhopSDK::Models::MembershipListResponse::Product) }
+      attr_reader :product
+
+      sig do
+        params(
+          product: WhopSDK::Models::MembershipListResponse::Product::OrHash
+        ).void
+      end
+      attr_writer :product
+
       # The Promo Code that is currently applied to this Membership.
       sig do
         returns(T.nilable(WhopSDK::Models::MembershipListResponse::PromoCode))
@@ -150,6 +161,7 @@ module WhopSDK
           metadata: T::Hash[Symbol, T.anything],
           payment_collection_paused: T::Boolean,
           plan: WhopSDK::Models::MembershipListResponse::Plan::OrHash,
+          product: WhopSDK::Models::MembershipListResponse::Product::OrHash,
           promo_code:
             T.nilable(
               WhopSDK::Models::MembershipListResponse::PromoCode::OrHash
@@ -190,6 +202,8 @@ module WhopSDK
         payment_collection_paused:,
         # The Plan this Membership is for.
         plan:,
+        # The Product this Membership grants access to.
+        product:,
         # The Promo Code that is currently applied to this Membership.
         promo_code:,
         # The timestamp in seconds at which the current billing cycle for this
@@ -223,6 +237,7 @@ module WhopSDK
             metadata: T::Hash[Symbol, T.anything],
             payment_collection_paused: T::Boolean,
             plan: WhopSDK::Models::MembershipListResponse::Plan,
+            product: WhopSDK::Models::MembershipListResponse::Product,
             promo_code:
               T.nilable(WhopSDK::Models::MembershipListResponse::PromoCode),
             renewal_period_end: T.nilable(Time),
@@ -316,6 +331,38 @@ module WhopSDK
         end
 
         sig { override.returns({ id: String }) }
+        def to_hash
+        end
+      end
+
+      class Product < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Models::MembershipListResponse::Product,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The internal ID of the public product.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The title of the product. Use for Whop 4.0.
+        sig { returns(String) }
+        attr_accessor :title
+
+        # The Product this Membership grants access to.
+        sig { params(id: String, title: String).returns(T.attached_class) }
+        def self.new(
+          # The internal ID of the public product.
+          id:,
+          # The title of the product. Use for Whop 4.0.
+          title:
+        )
+        end
+
+        sig { override.returns({ id: String, title: String }) }
         def to_hash
         end
       end

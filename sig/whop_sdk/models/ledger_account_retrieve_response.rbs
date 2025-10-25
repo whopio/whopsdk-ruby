@@ -79,13 +79,32 @@ module WhopSDK
       end
 
       type ledger_account_audit_status =
-        :reserves_imposed | :requested_more_information
+        :pending
+        | :approved
+        | :reserves_imposed
+        | :suspended
+        | :ignored
+        | :rejected
+        | :requested_more_information
+        | :information_submitted
+        | :requested_tos_violation_correction
+        | :clawback_attempted
+        | :awaiting_sales_review
 
       module LedgerAccountAuditStatus
         extend WhopSDK::Internal::Type::Enum
 
+        PENDING: :pending
+        APPROVED: :approved
         RESERVES_IMPOSED: :reserves_imposed
+        SUSPENDED: :suspended
+        IGNORED: :ignored
+        REJECTED: :rejected
         REQUESTED_MORE_INFORMATION: :requested_more_information
+        INFORMATION_SUBMITTED: :information_submitted
+        REQUESTED_TOS_VIOLATION_CORRECTION: :requested_tos_violation_correction
+        CLAWBACK_ATTEMPTED: :clawback_attempted
+        AWAITING_SALES_REVIEW: :awaiting_sales_review
 
         def self?.values: -> ::Array[WhopSDK::Models::LedgerAccountRetrieveResponse::ledger_account_audit_status]
       end

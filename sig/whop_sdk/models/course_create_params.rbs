@@ -4,6 +4,7 @@ module WhopSDK
       {
         experience_id: String,
         title: String,
+        cover_image: String?,
         tagline: String?,
         thumbnail: WhopSDK::CourseCreateParams::Thumbnail?
       }
@@ -17,6 +18,8 @@ module WhopSDK
 
       attr_accessor title: String
 
+      attr_accessor cover_image: String?
+
       attr_accessor tagline: String?
 
       attr_accessor thumbnail: WhopSDK::CourseCreateParams::Thumbnail?
@@ -24,6 +27,7 @@ module WhopSDK
       def initialize: (
         experience_id: String,
         title: String,
+        ?cover_image: String?,
         ?tagline: String?,
         ?thumbnail: WhopSDK::CourseCreateParams::Thumbnail?,
         ?request_options: WhopSDK::request_opts
@@ -32,6 +36,7 @@ module WhopSDK
       def to_hash: -> {
         experience_id: String,
         title: String,
+        cover_image: String?,
         tagline: String?,
         thumbnail: WhopSDK::CourseCreateParams::Thumbnail?,
         request_options: WhopSDK::RequestOptions

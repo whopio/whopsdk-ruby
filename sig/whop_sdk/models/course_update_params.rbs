@@ -4,6 +4,7 @@ module WhopSDK
       {
         certificate_after_completion_enabled: bool?,
         chapters: ::Array[WhopSDK::CourseUpdateParams::Chapter]?,
+        cover_image: String?,
         description: String?,
         language: WhopSDK::Models::languages?,
         require_completing_lessons_in_order: bool?,
@@ -21,6 +22,8 @@ module WhopSDK
 
       attr_accessor chapters: ::Array[WhopSDK::CourseUpdateParams::Chapter]?
 
+      attr_accessor cover_image: String?
+
       attr_accessor description: String?
 
       attr_accessor language: WhopSDK::Models::languages?
@@ -36,6 +39,7 @@ module WhopSDK
       def initialize: (
         ?certificate_after_completion_enabled: bool?,
         ?chapters: ::Array[WhopSDK::CourseUpdateParams::Chapter]?,
+        ?cover_image: String?,
         ?description: String?,
         ?language: WhopSDK::Models::languages?,
         ?require_completing_lessons_in_order: bool?,
@@ -48,6 +52,7 @@ module WhopSDK
       def to_hash: -> {
         certificate_after_completion_enabled: bool?,
         chapters: ::Array[WhopSDK::CourseUpdateParams::Chapter]?,
+        cover_image: String?,
         description: String?,
         language: WhopSDK::Models::languages?,
         require_completing_lessons_in_order: bool?,

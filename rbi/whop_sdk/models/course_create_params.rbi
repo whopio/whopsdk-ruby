@@ -19,6 +19,10 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :title
 
+      # The cover image URL of the course
+      sig { returns(T.nilable(String)) }
+      attr_accessor :cover_image
+
       # The tagline of the course
       sig { returns(T.nilable(String)) }
       attr_accessor :tagline
@@ -38,6 +42,7 @@ module WhopSDK
         params(
           experience_id: String,
           title: String,
+          cover_image: T.nilable(String),
           tagline: T.nilable(String),
           thumbnail: T.nilable(WhopSDK::CourseCreateParams::Thumbnail::OrHash),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -48,6 +53,8 @@ module WhopSDK
         experience_id:,
         # The title of the course
         title:,
+        # The cover image URL of the course
+        cover_image: nil,
         # The tagline of the course
         tagline: nil,
         # The thumbnail for the course in png, jpeg, or gif format
@@ -61,6 +68,7 @@ module WhopSDK
           {
             experience_id: String,
             title: String,
+            cover_image: T.nilable(String),
             tagline: T.nilable(String),
             thumbnail: T.nilable(WhopSDK::CourseCreateParams::Thumbnail),
             request_options: WhopSDK::RequestOptions

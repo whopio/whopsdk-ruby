@@ -751,6 +751,15 @@ module WhopSDK
           T.let(:demo_pay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
         SHOP_PAY =
           T.let(:shop_pay, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        APPLE = T.let(:apple, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        SEZZLE =
+          T.let(:sezzle, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        COINBASE =
+          T.let(:coinbase, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        SPLITIT =
+          T.let(:splitit, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
+        UNKNOWN =
+          T.let(:unknown, WhopSDK::Payment::PaymentMethodType::TaggedSymbol)
 
         sig do
           override.returns(

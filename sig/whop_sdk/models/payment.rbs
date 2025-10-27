@@ -400,6 +400,11 @@ module WhopSDK
         | :id_bank_transfer
         | :demo_pay
         | :shop_pay
+        | :apple
+        | :sezzle
+        | :coinbase
+        | :splitit
+        | :unknown
 
       module PaymentMethodType
         extend WhopSDK::Internal::Type::Enum
@@ -483,6 +488,11 @@ module WhopSDK
         ID_BANK_TRANSFER: :id_bank_transfer
         DEMO_PAY: :demo_pay
         SHOP_PAY: :shop_pay
+        APPLE: :apple
+        SEZZLE: :sezzle
+        COINBASE: :coinbase
+        SPLITIT: :splitit
+        UNKNOWN: :unknown
 
         def self?.values: -> ::Array[WhopSDK::Models::Payment::payment_method_type]
       end

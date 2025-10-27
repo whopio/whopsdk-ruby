@@ -529,6 +529,11 @@ module WhopSDK
         ID_BANK_TRANSFER = :id_bank_transfer
         DEMO_PAY = :demo_pay
         SHOP_PAY = :shop_pay
+        APPLE = :apple
+        SEZZLE = :sezzle
+        COINBASE = :coinbase
+        SPLITIT = :splitit
+        UNKNOWN = :unknown
 
         # @!method self.values
         #   @return [Array<Symbol>]

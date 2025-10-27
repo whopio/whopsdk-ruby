@@ -15,7 +15,8 @@ module WhopSDK
         order: WhopSDK::Models::MembershipListParams::order?,
         plan_ids: ::Array[String]?,
         promo_code_ids: ::Array[String]?,
-        statuses: ::Array[WhopSDK::Models::membership_status]?
+        statuses: ::Array[WhopSDK::Models::membership_status]?,
+        user_ids: ::Array[String]?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -51,6 +52,8 @@ module WhopSDK
 
       attr_accessor statuses: ::Array[WhopSDK::Models::membership_status]?
 
+      attr_accessor user_ids: ::Array[String]?
+
       def initialize: (
         company_id: String,
         ?access_pass_ids: ::Array[String]?,
@@ -66,6 +69,7 @@ module WhopSDK
         ?plan_ids: ::Array[String]?,
         ?promo_code_ids: ::Array[String]?,
         ?statuses: ::Array[WhopSDK::Models::membership_status]?,
+        ?user_ids: ::Array[String]?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -84,6 +88,7 @@ module WhopSDK
         plan_ids: ::Array[String]?,
         promo_code_ids: ::Array[String]?,
         statuses: ::Array[WhopSDK::Models::membership_status]?,
+        user_ids: ::Array[String]?,
         request_options: WhopSDK::RequestOptions
       }
 

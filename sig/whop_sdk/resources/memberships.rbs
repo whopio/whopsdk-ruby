@@ -27,6 +27,7 @@ module WhopSDK
         ?plan_ids: ::Array[String]?,
         ?promo_code_ids: ::Array[String]?,
         ?statuses: ::Array[WhopSDK::Models::membership_status]?,
+        ?user_ids: ::Array[String]?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::MembershipListResponse]
 

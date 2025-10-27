@@ -61,7 +61,7 @@ module WhopSDK
       #
       # - `member:basic:read`
       #
-      # @overload list(company_id:, access_pass_ids: nil, after: nil, before: nil, cancel_options: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_ids: nil, promo_code_ids: nil, statuses: nil, request_options: {})
+      # @overload list(company_id:, access_pass_ids: nil, after: nil, before: nil, cancel_options: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_ids: nil, promo_code_ids: nil, statuses: nil, user_ids: nil, request_options: {})
       #
       # @param company_id [String] The ID of the company to list memberships for
       #
@@ -90,6 +90,8 @@ module WhopSDK
       # @param promo_code_ids [Array<String>, nil] The promo code IDs to filter the memberships by
       #
       # @param statuses [Array<Symbol, WhopSDK::Models::MembershipStatus>, nil] The membership status to filter the memberships by
+      #
+      # @param user_ids [Array<String>, nil] Only return memberships from these whop user ids
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

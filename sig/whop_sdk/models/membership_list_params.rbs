@@ -2,11 +2,11 @@ module WhopSDK
   module Models
     type membership_list_params =
       {
-        company_id: String,
         access_pass_ids: ::Array[String]?,
         after: String?,
         before: String?,
         cancel_options: ::Array[WhopSDK::Models::MembershipListParams::cancel_option]?,
+        company_id: String?,
         created_after: Time?,
         created_before: Time?,
         direction: WhopSDK::Models::direction?,
@@ -24,8 +24,6 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor company_id: String
-
       attr_accessor access_pass_ids: ::Array[String]?
 
       attr_accessor after: String?
@@ -33,6 +31,8 @@ module WhopSDK
       attr_accessor before: String?
 
       attr_accessor cancel_options: ::Array[WhopSDK::Models::MembershipListParams::cancel_option]?
+
+      attr_accessor company_id: String?
 
       attr_accessor created_after: Time?
 
@@ -55,11 +55,11 @@ module WhopSDK
       attr_accessor user_ids: ::Array[String]?
 
       def initialize: (
-        company_id: String,
         ?access_pass_ids: ::Array[String]?,
         ?after: String?,
         ?before: String?,
         ?cancel_options: ::Array[WhopSDK::Models::MembershipListParams::cancel_option]?,
+        ?company_id: String?,
         ?created_after: Time?,
         ?created_before: Time?,
         ?direction: WhopSDK::Models::direction?,
@@ -74,11 +74,11 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
-        company_id: String,
         access_pass_ids: ::Array[String]?,
         after: String?,
         before: String?,
         cancel_options: ::Array[WhopSDK::Models::MembershipListParams::cancel_option]?,
+        company_id: String?,
         created_after: Time?,
         created_before: Time?,
         direction: WhopSDK::Models::direction?,

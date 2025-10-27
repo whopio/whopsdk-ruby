@@ -39,7 +39,7 @@ module WhopSDK
       # - `member:email:read`
       # - `member:phone:read`
       #
-      # @overload list(company_id:, access_level: nil, access_pass_ids: nil, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, most_recent_actions: nil, order: nil, plan_ids: nil, promo_code_ids: nil, query: nil, statuses: nil, request_options: {})
+      # @overload list(company_id:, access_level: nil, access_pass_ids: nil, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, most_recent_actions: nil, order: nil, plan_ids: nil, promo_code_ids: nil, query: nil, statuses: nil, user_ids: nil, request_options: {})
       #
       # @param company_id [String] The ID of the company to list members for
       #
@@ -72,6 +72,8 @@ module WhopSDK
       # @param query [String, nil] The name, username, or email to filter the members by. The email filter will onl
       #
       # @param statuses [Array<Symbol, WhopSDK::Models::MemberStatuses>, nil] The statuses to filter the members by
+      #
+      # @param user_ids [Array<String>, nil] The user IDs to filter the members by
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

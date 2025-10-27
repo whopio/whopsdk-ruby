@@ -78,6 +78,10 @@ module WhopSDK
       sig { returns(T.nilable(T::Array[WhopSDK::MemberStatuses::OrSymbol])) }
       attr_accessor :statuses
 
+      # The user IDs to filter the members by
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_accessor :user_ids
+
       sig do
         params(
           company_id: String,
@@ -97,6 +101,7 @@ module WhopSDK
           promo_code_ids: T.nilable(T::Array[String]),
           query: T.nilable(String),
           statuses: T.nilable(T::Array[WhopSDK::MemberStatuses::OrSymbol]),
+          user_ids: T.nilable(T::Array[String]),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -134,6 +139,8 @@ module WhopSDK
         query: nil,
         # The statuses to filter the members by
         statuses: nil,
+        # The user IDs to filter the members by
+        user_ids: nil,
         request_options: {}
       )
       end
@@ -158,6 +165,7 @@ module WhopSDK
             promo_code_ids: T.nilable(T::Array[String]),
             query: T.nilable(String),
             statuses: T.nilable(T::Array[WhopSDK::MemberStatuses::OrSymbol]),
+            user_ids: T.nilable(T::Array[String]),
             request_options: WhopSDK::RequestOptions
           }
         )

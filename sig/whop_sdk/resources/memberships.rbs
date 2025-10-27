@@ -13,11 +13,11 @@ module WhopSDK
       ) -> WhopSDK::Membership
 
       def list: (
-        company_id: String,
         ?access_pass_ids: ::Array[String]?,
         ?after: String?,
         ?before: String?,
         ?cancel_options: ::Array[WhopSDK::Models::MembershipListParams::cancel_option]?,
+        ?company_id: String?,
         ?created_after: Time?,
         ?created_before: Time?,
         ?direction: WhopSDK::Models::direction?,

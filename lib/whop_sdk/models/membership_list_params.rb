@@ -7,12 +7,6 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute company_id
-      #   The ID of the company to list memberships for
-      #
-      #   @return [String]
-      required :company_id, String
-
       # @!attribute access_pass_ids
       #   The access pass IDs to filter the memberships by
       #
@@ -38,6 +32,12 @@ module WhopSDK
       optional :cancel_options,
                -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::MembershipListParams::CancelOption] },
                nil?: true
+
+      # @!attribute company_id
+      #   The ID of the company to list memberships for
+      #
+      #   @return [String, nil]
+      optional :company_id, String, nil?: true
 
       # @!attribute created_after
       #   The minimum creation date to filter by
@@ -99,9 +99,7 @@ module WhopSDK
       #   @return [Array<String>, nil]
       optional :user_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
 
-      # @!method initialize(company_id:, access_pass_ids: nil, after: nil, before: nil, cancel_options: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_ids: nil, promo_code_ids: nil, statuses: nil, user_ids: nil, request_options: {})
-      #   @param company_id [String] The ID of the company to list memberships for
-      #
+      # @!method initialize(access_pass_ids: nil, after: nil, before: nil, cancel_options: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_ids: nil, promo_code_ids: nil, statuses: nil, user_ids: nil, request_options: {})
       #   @param access_pass_ids [Array<String>, nil] The access pass IDs to filter the memberships by
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
@@ -109,6 +107,8 @@ module WhopSDK
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
       #   @param cancel_options [Array<Symbol, WhopSDK::Models::MembershipListParams::CancelOption>, nil] The cancel options to filter the memberships by
+      #
+      #   @param company_id [String, nil] The ID of the company to list memberships for
       #
       #   @param created_after [Time, nil] The minimum creation date to filter by
       #

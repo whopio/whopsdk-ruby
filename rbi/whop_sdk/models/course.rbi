@@ -19,6 +19,10 @@ module WhopSDK
       sig { returns(T::Array[WhopSDK::Course::Chapter]) }
       attr_accessor :chapters
 
+      # The timestamp of when the course was created
+      sig { returns(Time) }
+      attr_accessor :created_at
+
       # A short description of the course
       sig { returns(T.nilable(String)) }
       attr_accessor :description
@@ -50,18 +54,24 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
+      # The timestamp of when the course was last updated
+      sig { returns(Time) }
+      attr_accessor :updated_at
+
       # A course from the courses app
       sig do
         params(
           id: String,
           certificate_after_completion_enabled: T.nilable(T::Boolean),
           chapters: T::Array[WhopSDK::Course::Chapter::OrHash],
+          created_at: Time,
           description: T.nilable(String),
           language: WhopSDK::Languages::OrSymbol,
           require_completing_lessons_in_order: T::Boolean,
           tagline: T.nilable(String),
           thumbnail: T.nilable(WhopSDK::Course::Thumbnail::OrHash),
-          title: T.nilable(String)
+          title: T.nilable(String),
+          updated_at: Time
         ).returns(T.attached_class)
       end
       def self.new(
@@ -72,6 +82,8 @@ module WhopSDK
         certificate_after_completion_enabled:,
         # The chapters in this course
         chapters:,
+        # The timestamp of when the course was created
+        created_at:,
         # A short description of the course
         description:,
         # The language spoken in the video content of the course, used to generate closed
@@ -85,7 +97,9 @@ module WhopSDK
         # The thumbnail for the course
         thumbnail:,
         # The title of the course
-        title:
+        title:,
+        # The timestamp of when the course was last updated
+        updated_at:
       )
       end
 
@@ -95,12 +109,14 @@ module WhopSDK
             id: String,
             certificate_after_completion_enabled: T.nilable(T::Boolean),
             chapters: T::Array[WhopSDK::Course::Chapter],
+            created_at: Time,
             description: T.nilable(String),
             language: WhopSDK::Languages::TaggedSymbol,
             require_completing_lessons_in_order: T::Boolean,
             tagline: T.nilable(String),
             thumbnail: T.nilable(WhopSDK::Course::Thumbnail),
-            title: T.nilable(String)
+            title: T.nilable(String),
+            updated_at: Time
           }
         )
       end

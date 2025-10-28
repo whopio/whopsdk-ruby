@@ -17,6 +17,12 @@ module WhopSDK
       #   @return [Boolean, nil]
       required :certificate_after_completion_enabled, WhopSDK::Internal::Type::Boolean, nil?: true
 
+      # @!attribute created_at
+      #   The timestamp of when the course was created
+      #
+      #   @return [Time]
+      required :created_at, Time
+
       # @!attribute description
       #   A short description of the course
       #
@@ -55,7 +61,13 @@ module WhopSDK
       #   @return [String, nil]
       required :title, String, nil?: true
 
-      # @!method initialize(id:, certificate_after_completion_enabled:, description:, language:, require_completing_lessons_in_order:, tagline:, thumbnail:, title:)
+      # @!attribute updated_at
+      #   The timestamp of when the course was last updated
+      #
+      #   @return [Time]
+      required :updated_at, Time
+
+      # @!method initialize(id:, certificate_after_completion_enabled:, created_at:, description:, language:, require_completing_lessons_in_order:, tagline:, thumbnail:, title:, updated_at:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CourseListResponse} for more details.
       #
@@ -64,6 +76,8 @@ module WhopSDK
       #   @param id [String] The ID of the course. Looks like cors_XXX
       #
       #   @param certificate_after_completion_enabled [Boolean, nil] Whether the course will award its students a PDF certificate after completing al
+      #
+      #   @param created_at [Time] The timestamp of when the course was created
       #
       #   @param description [String, nil] A short description of the course
       #
@@ -76,6 +90,8 @@ module WhopSDK
       #   @param thumbnail [WhopSDK::Models::CourseListResponse::Thumbnail, nil] The thumbnail for the course
       #
       #   @param title [String, nil] The title of the course
+      #
+      #   @param updated_at [Time] The timestamp of when the course was last updated
 
       # @see WhopSDK::Models::CourseListResponse#thumbnail
       class Thumbnail < WhopSDK::Internal::Type::BaseModel

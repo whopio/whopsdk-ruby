@@ -5,12 +5,14 @@ module WhopSDK
         id: String,
         certificate_after_completion_enabled: bool?,
         chapters: ::Array[WhopSDK::Course::Chapter],
+        created_at: Time,
         description: String?,
         language: WhopSDK::Models::languages,
         require_completing_lessons_in_order: bool,
         tagline: String?,
         thumbnail: WhopSDK::Course::Thumbnail?,
-        title: String?
+        title: String?,
+        updated_at: Time
       }
 
     class Course < WhopSDK::Internal::Type::BaseModel
@@ -19,6 +21,8 @@ module WhopSDK
       attr_accessor certificate_after_completion_enabled: bool?
 
       attr_accessor chapters: ::Array[WhopSDK::Course::Chapter]
+
+      attr_accessor created_at: Time
 
       attr_accessor description: String?
 
@@ -32,28 +36,34 @@ module WhopSDK
 
       attr_accessor title: String?
 
+      attr_accessor updated_at: Time
+
       def initialize: (
         id: String,
         certificate_after_completion_enabled: bool?,
         chapters: ::Array[WhopSDK::Course::Chapter],
+        created_at: Time,
         description: String?,
         language: WhopSDK::Models::languages,
         require_completing_lessons_in_order: bool,
         tagline: String?,
         thumbnail: WhopSDK::Course::Thumbnail?,
-        title: String?
+        title: String?,
+        updated_at: Time
       ) -> void
 
       def to_hash: -> {
         id: String,
         certificate_after_completion_enabled: bool?,
         chapters: ::Array[WhopSDK::Course::Chapter],
+        created_at: Time,
         description: String?,
         language: WhopSDK::Models::languages,
         require_completing_lessons_in_order: bool,
         tagline: String?,
         thumbnail: WhopSDK::Course::Thumbnail?,
-        title: String?
+        title: String?,
+        updated_at: Time
       }
 
       type chapter =

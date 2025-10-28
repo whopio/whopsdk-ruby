@@ -17,12 +17,14 @@ class WhopSDK::Test::Resources::CoursesTest < WhopSDK::Test::ResourceTest
         id: String,
         certificate_after_completion_enabled: WhopSDK::Internal::Type::Boolean | nil,
         chapters: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Course::Chapter]),
+        created_at: Time,
         description: String | nil,
         language: WhopSDK::Languages,
         require_completing_lessons_in_order: WhopSDK::Internal::Type::Boolean,
         tagline: String | nil,
         thumbnail: WhopSDK::Course::Thumbnail | nil,
-        title: String | nil
+        title: String | nil,
+        updated_at: Time
       }
     end
   end
@@ -41,12 +43,14 @@ class WhopSDK::Test::Resources::CoursesTest < WhopSDK::Test::ResourceTest
         id: String,
         certificate_after_completion_enabled: WhopSDK::Internal::Type::Boolean | nil,
         chapters: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Course::Chapter]),
+        created_at: Time,
         description: String | nil,
         language: WhopSDK::Languages,
         require_completing_lessons_in_order: WhopSDK::Internal::Type::Boolean,
         tagline: String | nil,
         thumbnail: WhopSDK::Course::Thumbnail | nil,
-        title: String | nil
+        title: String | nil,
+        updated_at: Time
       }
     end
   end
@@ -65,12 +69,14 @@ class WhopSDK::Test::Resources::CoursesTest < WhopSDK::Test::ResourceTest
         id: String,
         certificate_after_completion_enabled: WhopSDK::Internal::Type::Boolean | nil,
         chapters: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Course::Chapter]),
+        created_at: Time,
         description: String | nil,
         language: WhopSDK::Languages,
         require_completing_lessons_in_order: WhopSDK::Internal::Type::Boolean,
         tagline: String | nil,
         thumbnail: WhopSDK::Course::Thumbnail | nil,
-        title: String | nil
+        title: String | nil,
+        updated_at: Time
       }
     end
   end
@@ -95,12 +101,14 @@ class WhopSDK::Test::Resources::CoursesTest < WhopSDK::Test::ResourceTest
       row => {
         id: String,
         certificate_after_completion_enabled: WhopSDK::Internal::Type::Boolean | nil,
+        created_at: Time,
         description: String | nil,
         language: WhopSDK::Languages,
         require_completing_lessons_in_order: WhopSDK::Internal::Type::Boolean,
         tagline: String | nil,
         thumbnail: WhopSDK::Models::CourseListResponse::Thumbnail | nil,
-        title: String | nil
+        title: String | nil,
+        updated_at: Time
       }
     end
   end

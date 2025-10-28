@@ -17,6 +17,7 @@ module WhopSDK
 
       def update: (
         String id,
+        ?assessment_completion_requirement: WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement?,
         ?assessment_questions: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion]?,
         ?attachments: ::Array[WhopSDK::CourseLessonUpdateParams::Attachment]?,
         ?content: String?,

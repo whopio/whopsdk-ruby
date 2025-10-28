@@ -55,6 +55,10 @@ module WhopSDK
       sig do
         params(
           id: String,
+          assessment_completion_requirement:
+            T.nilable(
+              WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement::OrHash
+            ),
           assessment_questions:
             T.nilable(
               T::Array[
@@ -78,6 +82,8 @@ module WhopSDK
       end
       def update(
         id,
+        # Completion requirements for quiz/knowledge check lessons
+        assessment_completion_requirement: nil,
         # Assessment questions for quiz/knowledge check lessons. Replaces all existing
         # questions.
         assessment_questions: nil,

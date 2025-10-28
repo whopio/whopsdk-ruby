@@ -19,9 +19,19 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :title
 
+      # Whether the course will award its students a PDF certificate after completing
+      # all lessons
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :certificate_after_completion_enabled
+
       # The cover image URL of the course
       sig { returns(T.nilable(String)) }
       attr_accessor :cover_image
+
+      # Whether the course requires students to complete the previous lesson before
+      # moving on to the next one
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :require_completing_lessons_in_order
 
       # The tagline of the course
       sig { returns(T.nilable(String)) }
@@ -42,7 +52,9 @@ module WhopSDK
         params(
           experience_id: String,
           title: String,
+          certificate_after_completion_enabled: T.nilable(T::Boolean),
           cover_image: T.nilable(String),
+          require_completing_lessons_in_order: T.nilable(T::Boolean),
           tagline: T.nilable(String),
           thumbnail: T.nilable(WhopSDK::CourseCreateParams::Thumbnail::OrHash),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -53,8 +65,14 @@ module WhopSDK
         experience_id:,
         # The title of the course
         title:,
+        # Whether the course will award its students a PDF certificate after completing
+        # all lessons
+        certificate_after_completion_enabled: nil,
         # The cover image URL of the course
         cover_image: nil,
+        # Whether the course requires students to complete the previous lesson before
+        # moving on to the next one
+        require_completing_lessons_in_order: nil,
         # The tagline of the course
         tagline: nil,
         # The thumbnail for the course in png, jpeg, or gif format
@@ -68,7 +86,9 @@ module WhopSDK
           {
             experience_id: String,
             title: String,
+            certificate_after_completion_enabled: T.nilable(T::Boolean),
             cover_image: T.nilable(String),
+            require_completing_lessons_in_order: T.nilable(T::Boolean),
             tagline: T.nilable(String),
             thumbnail: T.nilable(WhopSDK::CourseCreateParams::Thumbnail),
             request_options: WhopSDK::RequestOptions

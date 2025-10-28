@@ -11,6 +11,26 @@ module WhopSDK
           T.any(WhopSDK::CourseLessonUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
+      # Completion requirements for quiz/knowledge check lessons
+      sig do
+        returns(
+          T.nilable(
+            WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement
+          )
+        )
+      end
+      attr_reader :assessment_completion_requirement
+
+      sig do
+        params(
+          assessment_completion_requirement:
+            T.nilable(
+              WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement::OrHash
+            )
+        ).void
+      end
+      attr_writer :assessment_completion_requirement
+
       # Assessment questions for quiz/knowledge check lessons. Replaces all existing
       # questions.
       sig do
@@ -70,6 +90,10 @@ module WhopSDK
 
       sig do
         params(
+          assessment_completion_requirement:
+            T.nilable(
+              WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement::OrHash
+            ),
           assessment_questions:
             T.nilable(
               T::Array[
@@ -92,6 +116,8 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        # Completion requirements for quiz/knowledge check lessons
+        assessment_completion_requirement: nil,
         # Assessment questions for quiz/knowledge check lessons. Replaces all existing
         # questions.
         assessment_questions: nil,
@@ -120,6 +146,10 @@ module WhopSDK
       sig do
         override.returns(
           {
+            assessment_completion_requirement:
+              T.nilable(
+                WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement
+              ),
             assessment_questions:
               T.nilable(
                 T::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion]
@@ -140,6 +170,54 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      class AssessmentCompletionRequirement < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The minimum grade percentage required to pass (0-100). Cannot be set together
+        # with minimum_questions_correct.
+        sig { returns(T.nilable(Float)) }
+        attr_accessor :minimum_grade_percent
+
+        # The minimum number of questions that must be answered correctly. Cannot be set
+        # together with minimum_grade_percent.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :minimum_questions_correct
+
+        # Completion requirements for quiz/knowledge check lessons
+        sig do
+          params(
+            minimum_grade_percent: T.nilable(Float),
+            minimum_questions_correct: T.nilable(Integer)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The minimum grade percentage required to pass (0-100). Cannot be set together
+          # with minimum_questions_correct.
+          minimum_grade_percent: nil,
+          # The minimum number of questions that must be answered correctly. Cannot be set
+          # together with minimum_grade_percent.
+          minimum_questions_correct: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              minimum_grade_percent: T.nilable(Float),
+              minimum_questions_correct: T.nilable(Integer)
+            }
+          )
+        end
+        def to_hash
+        end
       end
 
       class AssessmentQuestion < WhopSDK::Internal::Type::BaseModel

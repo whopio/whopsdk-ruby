@@ -7,6 +7,14 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute assessment_completion_requirement
+      #   Completion requirements for quiz/knowledge check lessons
+      #
+      #   @return [WhopSDK::Models::CourseLessonUpdateParams::AssessmentCompletionRequirement, nil]
+      optional :assessment_completion_requirement,
+               -> { WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement },
+               nil?: true
+
       # @!attribute assessment_questions
       #   Assessment questions for quiz/knowledge check lessons. Replaces all existing
       #   questions.
@@ -68,9 +76,11 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::LessonVisibilities, nil]
       optional :visibility, enum: -> { WhopSDK::LessonVisibilities }, nil?: true
 
-      # @!method initialize(assessment_questions: nil, attachments: nil, content: nil, days_from_course_start_until_unlock: nil, lesson_type: nil, main_pdf: nil, mux_asset_id: nil, title: nil, visibility: nil, request_options: {})
+      # @!method initialize(assessment_completion_requirement: nil, assessment_questions: nil, attachments: nil, content: nil, days_from_course_start_until_unlock: nil, lesson_type: nil, main_pdf: nil, mux_asset_id: nil, title: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CourseLessonUpdateParams} for more details.
+      #
+      #   @param assessment_completion_requirement [WhopSDK::Models::CourseLessonUpdateParams::AssessmentCompletionRequirement, nil] Completion requirements for quiz/knowledge check lessons
       #
       #   @param assessment_questions [Array<WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion>, nil] Assessment questions for quiz/knowledge check lessons. Replaces all existing que
       #
@@ -91,6 +101,33 @@ module WhopSDK
       #   @param visibility [Symbol, WhopSDK::Models::LessonVisibilities, nil] The available visibilities for a lesson. Determines how / whether a lesson is vi
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      class AssessmentCompletionRequirement < WhopSDK::Internal::Type::BaseModel
+        # @!attribute minimum_grade_percent
+        #   The minimum grade percentage required to pass (0-100). Cannot be set together
+        #   with minimum_questions_correct.
+        #
+        #   @return [Float, nil]
+        optional :minimum_grade_percent, Float, nil?: true
+
+        # @!attribute minimum_questions_correct
+        #   The minimum number of questions that must be answered correctly. Cannot be set
+        #   together with minimum_grade_percent.
+        #
+        #   @return [Integer, nil]
+        optional :minimum_questions_correct, Integer, nil?: true
+
+        # @!method initialize(minimum_grade_percent: nil, minimum_questions_correct: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::CourseLessonUpdateParams::AssessmentCompletionRequirement} for
+        #   more details.
+        #
+        #   Completion requirements for quiz/knowledge check lessons
+        #
+        #   @param minimum_grade_percent [Float, nil] The minimum grade percentage required to pass (0-100). Cannot be set together wi
+        #
+        #   @param minimum_questions_correct [Integer, nil] The minimum number of questions that must be answered correctly. Cannot be set t
+      end
 
       class AssessmentQuestion < WhopSDK::Internal::Type::BaseModel
         # @!attribute correct_answer

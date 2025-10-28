@@ -69,9 +69,11 @@ module WhopSDK
       #
       # - `courses:update`
       #
-      # @overload update(id, assessment_questions: nil, attachments: nil, content: nil, days_from_course_start_until_unlock: nil, lesson_type: nil, main_pdf: nil, mux_asset_id: nil, title: nil, visibility: nil, request_options: {})
+      # @overload update(id, assessment_completion_requirement: nil, assessment_questions: nil, attachments: nil, content: nil, days_from_course_start_until_unlock: nil, lesson_type: nil, main_pdf: nil, mux_asset_id: nil, title: nil, visibility: nil, request_options: {})
       #
       # @param id [String]
+      #
+      # @param assessment_completion_requirement [WhopSDK::Models::CourseLessonUpdateParams::AssessmentCompletionRequirement, nil] Completion requirements for quiz/knowledge check lessons
       #
       # @param assessment_questions [Array<WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion>, nil] Assessment questions for quiz/knowledge check lessons. Replaces all existing que
       #

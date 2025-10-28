@@ -3,19 +3,26 @@
 module WhopSDK
   module Resources
     class Courses
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::CourseCreateParams} for more details.
+      #
       # Creates a new course module in an experience
       #
       # Required permissions:
       #
       # - `courses:update`
       #
-      # @overload create(experience_id:, title:, cover_image: nil, tagline: nil, thumbnail: nil, request_options: {})
+      # @overload create(experience_id:, title:, certificate_after_completion_enabled: nil, cover_image: nil, require_completing_lessons_in_order: nil, tagline: nil, thumbnail: nil, request_options: {})
       #
       # @param experience_id [String] The ID of the experience to create the course in
       #
       # @param title [String] The title of the course
       #
+      # @param certificate_after_completion_enabled [Boolean, nil] Whether the course will award its students a PDF certificate after completing al
+      #
       # @param cover_image [String, nil] The cover image URL of the course
+      #
+      # @param require_completing_lessons_in_order [Boolean, nil] Whether the course requires students to complete the previous lesson before movi
       #
       # @param tagline [String, nil] The tagline of the course
       #

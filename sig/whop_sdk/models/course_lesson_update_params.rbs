@@ -2,6 +2,7 @@ module WhopSDK
   module Models
     type course_lesson_update_params =
       {
+        assessment_completion_requirement: WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement?,
         assessment_questions: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion]?,
         attachments: ::Array[WhopSDK::CourseLessonUpdateParams::Attachment]?,
         content: String?,
@@ -17,6 +18,8 @@ module WhopSDK
     class CourseLessonUpdateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor assessment_completion_requirement: WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement?
 
       attr_accessor assessment_questions: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion]?
 
@@ -37,6 +40,7 @@ module WhopSDK
       attr_accessor visibility: WhopSDK::Models::lesson_visibilities?
 
       def initialize: (
+        ?assessment_completion_requirement: WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement?,
         ?assessment_questions: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion]?,
         ?attachments: ::Array[WhopSDK::CourseLessonUpdateParams::Attachment]?,
         ?content: String?,
@@ -50,6 +54,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
+        assessment_completion_requirement: WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement?,
         assessment_questions: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion]?,
         attachments: ::Array[WhopSDK::CourseLessonUpdateParams::Attachment]?,
         content: String?,
@@ -61,6 +66,25 @@ module WhopSDK
         visibility: WhopSDK::Models::lesson_visibilities?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type assessment_completion_requirement =
+        { minimum_grade_percent: Float?, minimum_questions_correct: Integer? }
+
+      class AssessmentCompletionRequirement < WhopSDK::Internal::Type::BaseModel
+        attr_accessor minimum_grade_percent: Float?
+
+        attr_accessor minimum_questions_correct: Integer?
+
+        def initialize: (
+          ?minimum_grade_percent: Float?,
+          ?minimum_questions_correct: Integer?
+        ) -> void
+
+        def to_hash: -> {
+          minimum_grade_percent: Float?,
+          minimum_questions_correct: Integer?
+        }
+      end
 
       type assessment_question =
         {

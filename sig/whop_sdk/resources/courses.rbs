@@ -4,7 +4,9 @@ module WhopSDK
       def create: (
         experience_id: String,
         title: String,
+        ?certificate_after_completion_enabled: bool?,
         ?cover_image: String?,
+        ?require_completing_lessons_in_order: bool?,
         ?tagline: String?,
         ?thumbnail: WhopSDK::CourseCreateParams::Thumbnail?,
         ?request_options: WhopSDK::request_opts

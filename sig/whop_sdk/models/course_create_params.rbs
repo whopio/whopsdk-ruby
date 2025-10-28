@@ -4,7 +4,9 @@ module WhopSDK
       {
         experience_id: String,
         title: String,
+        certificate_after_completion_enabled: bool?,
         cover_image: String?,
+        require_completing_lessons_in_order: bool?,
         tagline: String?,
         thumbnail: WhopSDK::CourseCreateParams::Thumbnail?
       }
@@ -18,7 +20,11 @@ module WhopSDK
 
       attr_accessor title: String
 
+      attr_accessor certificate_after_completion_enabled: bool?
+
       attr_accessor cover_image: String?
+
+      attr_accessor require_completing_lessons_in_order: bool?
 
       attr_accessor tagline: String?
 
@@ -27,7 +33,9 @@ module WhopSDK
       def initialize: (
         experience_id: String,
         title: String,
+        ?certificate_after_completion_enabled: bool?,
         ?cover_image: String?,
+        ?require_completing_lessons_in_order: bool?,
         ?tagline: String?,
         ?thumbnail: WhopSDK::CourseCreateParams::Thumbnail?,
         ?request_options: WhopSDK::request_opts
@@ -36,7 +44,9 @@ module WhopSDK
       def to_hash: -> {
         experience_id: String,
         title: String,
+        certificate_after_completion_enabled: bool?,
         cover_image: String?,
+        require_completing_lessons_in_order: bool?,
         tagline: String?,
         thumbnail: WhopSDK::CourseCreateParams::Thumbnail?,
         request_options: WhopSDK::RequestOptions

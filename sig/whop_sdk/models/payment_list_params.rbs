@@ -5,7 +5,7 @@ module WhopSDK
         company_id: String,
         after: String?,
         before: String?,
-        billing_reasons: ::Array[WhopSDK::Models::PaymentListParams::billing_reason]?,
+        billing_reasons: ::Array[WhopSDK::Models::billing_reasons]?,
         created_after: Time?,
         created_before: Time?,
         currencies: ::Array[WhopSDK::Models::currency]?,
@@ -31,7 +31,7 @@ module WhopSDK
 
       attr_accessor before: String?
 
-      attr_accessor billing_reasons: ::Array[WhopSDK::Models::PaymentListParams::billing_reason]?
+      attr_accessor billing_reasons: ::Array[WhopSDK::Models::billing_reasons]?
 
       attr_accessor created_after: Time?
 
@@ -61,7 +61,7 @@ module WhopSDK
         company_id: String,
         ?after: String?,
         ?before: String?,
-        ?billing_reasons: ::Array[WhopSDK::Models::PaymentListParams::billing_reason]?,
+        ?billing_reasons: ::Array[WhopSDK::Models::billing_reasons]?,
         ?created_after: Time?,
         ?created_before: Time?,
         ?currencies: ::Array[WhopSDK::Models::currency]?,
@@ -81,7 +81,7 @@ module WhopSDK
         company_id: String,
         after: String?,
         before: String?,
-        billing_reasons: ::Array[WhopSDK::Models::PaymentListParams::billing_reason]?,
+        billing_reasons: ::Array[WhopSDK::Models::billing_reasons]?,
         created_after: Time?,
         created_before: Time?,
         currencies: ::Array[WhopSDK::Models::currency]?,
@@ -96,27 +96,6 @@ module WhopSDK
         substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?,
         request_options: WhopSDK::RequestOptions
       }
-
-      type billing_reason =
-        :subscription_create
-        | :subscription_cycle
-        | :subscription_update
-        | :one_time
-        | :manual
-        | :subscription
-
-      module BillingReason
-        extend WhopSDK::Internal::Type::Enum
-
-        SUBSCRIPTION_CREATE: :subscription_create
-        SUBSCRIPTION_CYCLE: :subscription_cycle
-        SUBSCRIPTION_UPDATE: :subscription_update
-        ONE_TIME: :one_time
-        MANUAL: :manual
-        SUBSCRIPTION: :subscription
-
-        def self?.values: -> ::Array[WhopSDK::Models::PaymentListParams::billing_reason]
-      end
 
       type order = :final_amount | :created_at | :paid_at
 

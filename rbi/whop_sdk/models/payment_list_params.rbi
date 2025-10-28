@@ -24,13 +24,7 @@ module WhopSDK
       attr_accessor :before
 
       # The billing reason for the payment
-      sig do
-        returns(
-          T.nilable(
-            T::Array[WhopSDK::PaymentListParams::BillingReason::OrSymbol]
-          )
-        )
-      end
+      sig { returns(T.nilable(T::Array[WhopSDK::BillingReasons::OrSymbol])) }
       attr_accessor :billing_reasons
 
       # The minimum creation date to filter by
@@ -89,9 +83,7 @@ module WhopSDK
           after: T.nilable(String),
           before: T.nilable(String),
           billing_reasons:
-            T.nilable(
-              T::Array[WhopSDK::PaymentListParams::BillingReason::OrSymbol]
-            ),
+            T.nilable(T::Array[WhopSDK::BillingReasons::OrSymbol]),
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
           currencies: T.nilable(T::Array[WhopSDK::Currency::OrSymbol]),
@@ -152,9 +144,7 @@ module WhopSDK
             after: T.nilable(String),
             before: T.nilable(String),
             billing_reasons:
-              T.nilable(
-                T::Array[WhopSDK::PaymentListParams::BillingReason::OrSymbol]
-              ),
+              T.nilable(T::Array[WhopSDK::BillingReasons::OrSymbol]),
             created_after: T.nilable(Time),
             created_before: T.nilable(Time),
             currencies: T.nilable(T::Array[WhopSDK::Currency::OrSymbol]),
@@ -173,56 +163,6 @@ module WhopSDK
         )
       end
       def to_hash
-      end
-
-      # The reason why a specific payment was billed
-      module BillingReason
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::PaymentListParams::BillingReason)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        SUBSCRIPTION_CREATE =
-          T.let(
-            :subscription_create,
-            WhopSDK::PaymentListParams::BillingReason::TaggedSymbol
-          )
-        SUBSCRIPTION_CYCLE =
-          T.let(
-            :subscription_cycle,
-            WhopSDK::PaymentListParams::BillingReason::TaggedSymbol
-          )
-        SUBSCRIPTION_UPDATE =
-          T.let(
-            :subscription_update,
-            WhopSDK::PaymentListParams::BillingReason::TaggedSymbol
-          )
-        ONE_TIME =
-          T.let(
-            :one_time,
-            WhopSDK::PaymentListParams::BillingReason::TaggedSymbol
-          )
-        MANUAL =
-          T.let(
-            :manual,
-            WhopSDK::PaymentListParams::BillingReason::TaggedSymbol
-          )
-        SUBSCRIPTION =
-          T.let(
-            :subscription,
-            WhopSDK::PaymentListParams::BillingReason::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[WhopSDK::PaymentListParams::BillingReason::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
       end
 
       # The order to sort the results by.

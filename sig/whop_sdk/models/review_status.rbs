@@ -1,0 +1,15 @@
+module WhopSDK
+  module Models
+    type review_status = :pending | :published | :removed
+
+    module ReviewStatus
+      extend WhopSDK::Internal::Type::Enum
+
+      PENDING: :pending
+      PUBLISHED: :published
+      REMOVED: :removed
+
+      def self?.values: -> ::Array[WhopSDK::Models::review_status]
+    end
+  end
+end

@@ -1,0 +1,152 @@
+module WhopSDK
+  module Models
+    type review_retrieve_response =
+      {
+        id: String,
+        attachments: ::Array[WhopSDK::Models::ReviewRetrieveResponse::Attachment],
+        company: WhopSDK::Models::ReviewRetrieveResponse::Company,
+        created_at: Time,
+        description: String?,
+        joined_at: Time?,
+        paid_for_product: bool?,
+        product: WhopSDK::Models::ReviewRetrieveResponse::Product,
+        published_at: Time?,
+        stars: Integer,
+        status: WhopSDK::Models::review_status,
+        title: String?,
+        updated_at: Time,
+        user: WhopSDK::Models::ReviewRetrieveResponse::User
+      }
+
+    class ReviewRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor attachments: ::Array[WhopSDK::Models::ReviewRetrieveResponse::Attachment]
+
+      attr_accessor company: WhopSDK::Models::ReviewRetrieveResponse::Company
+
+      attr_accessor created_at: Time
+
+      attr_accessor description: String?
+
+      attr_accessor joined_at: Time?
+
+      attr_accessor paid_for_product: bool?
+
+      attr_accessor product: WhopSDK::Models::ReviewRetrieveResponse::Product
+
+      attr_accessor published_at: Time?
+
+      attr_accessor stars: Integer
+
+      attr_accessor status: WhopSDK::Models::review_status
+
+      attr_accessor title: String?
+
+      attr_accessor updated_at: Time
+
+      attr_accessor user: WhopSDK::Models::ReviewRetrieveResponse::User
+
+      def initialize: (
+        id: String,
+        attachments: ::Array[WhopSDK::Models::ReviewRetrieveResponse::Attachment],
+        company: WhopSDK::Models::ReviewRetrieveResponse::Company,
+        created_at: Time,
+        description: String?,
+        joined_at: Time?,
+        paid_for_product: bool?,
+        product: WhopSDK::Models::ReviewRetrieveResponse::Product,
+        published_at: Time?,
+        stars: Integer,
+        status: WhopSDK::Models::review_status,
+        title: String?,
+        updated_at: Time,
+        user: WhopSDK::Models::ReviewRetrieveResponse::User
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        attachments: ::Array[WhopSDK::Models::ReviewRetrieveResponse::Attachment],
+        company: WhopSDK::Models::ReviewRetrieveResponse::Company,
+        created_at: Time,
+        description: String?,
+        joined_at: Time?,
+        paid_for_product: bool?,
+        product: WhopSDK::Models::ReviewRetrieveResponse::Product,
+        published_at: Time?,
+        stars: Integer,
+        status: WhopSDK::Models::review_status,
+        title: String?,
+        updated_at: Time,
+        user: WhopSDK::Models::ReviewRetrieveResponse::User
+      }
+
+      type attachment =
+        { id: String, content_type: String?, filename: String?, url: String? }
+
+      class Attachment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor content_type: String?
+
+        attr_accessor filename: String?
+
+        attr_accessor url: String?
+
+        def initialize: (
+          id: String,
+          content_type: String?,
+          filename: String?,
+          url: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          content_type: String?,
+          filename: String?,
+          url: String?
+        }
+      end
+
+      type company = { id: String, route: String, title: String }
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor route: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, route: String, title: String) -> void
+
+        def to_hash: -> { id: String, route: String, title: String }
+      end
+
+      type product = { id: String, title: String }
+
+      class Product < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type user = { id: String, name: String?, username: String }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
+      end
+    end
+  end
+end

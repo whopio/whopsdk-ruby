@@ -28,9 +28,9 @@ module WhopSDK
       # @!attribute billing_reasons
       #   The billing reason for the payment
       #
-      #   @return [Array<Symbol, WhopSDK::Models::PaymentListParams::BillingReason>, nil]
+      #   @return [Array<Symbol, WhopSDK::Models::BillingReasons>, nil]
       optional :billing_reasons,
-               -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentListParams::BillingReason] },
+               -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::BillingReasons] },
                nil?: true
 
       # @!attribute created_after
@@ -114,7 +114,7 @@ module WhopSDK
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param billing_reasons [Array<Symbol, WhopSDK::Models::PaymentListParams::BillingReason>, nil] The billing reason for the payment
+      #   @param billing_reasons [Array<Symbol, WhopSDK::Models::BillingReasons>, nil] The billing reason for the payment
       #
       #   @param created_after [Time, nil] The minimum creation date to filter by
       #
@@ -141,21 +141,6 @@ module WhopSDK
       #   @param substatuses [Array<Symbol, WhopSDK::Models::FriendlyReceiptStatus>, nil] The substatus of the payment.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
-
-      # The reason why a specific payment was billed
-      module BillingReason
-        extend WhopSDK::Internal::Type::Enum
-
-        SUBSCRIPTION_CREATE = :subscription_create
-        SUBSCRIPTION_CYCLE = :subscription_cycle
-        SUBSCRIPTION_UPDATE = :subscription_update
-        ONE_TIME = :one_time
-        MANUAL = :manual
-        SUBSCRIPTION = :subscription
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
 
       # The order to sort the results by.
       module Order

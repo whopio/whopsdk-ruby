@@ -39,7 +39,11 @@ module WhopSDK
 
   module AuthorizedUserRoles = WhopSDK::Models::AuthorizedUserRoles
 
+  module BillingReasons = WhopSDK::Models::BillingReasons
+
   module BusinessTypes = WhopSDK::Models::BusinessTypes
+
+  module CardBrands = WhopSDK::Models::CardBrands
 
   class ChatChannel = WhopSDK::Models::ChatChannel
 
@@ -257,6 +261,8 @@ module WhopSDK
 
   class PaymentListParams = WhopSDK::Models::PaymentListParams
 
+  module PaymentMethodTypes = WhopSDK::Models::PaymentMethodTypes
+
   class PaymentPendingWebhookEvent = WhopSDK::Models::PaymentPendingWebhookEvent
 
   class PaymentRefundParams = WhopSDK::Models::PaymentRefundParams
@@ -324,6 +330,12 @@ module WhopSDK
   module ReceiptStatus = WhopSDK::Models::ReceiptStatus
 
   module ReleaseMethod = WhopSDK::Models::ReleaseMethod
+
+  class ReviewListParams = WhopSDK::Models::ReviewListParams
+
+  class ReviewRetrieveParams = WhopSDK::Models::ReviewRetrieveParams
+
+  module ReviewStatus = WhopSDK::Models::ReviewStatus
 
   class Shipment = WhopSDK::Models::Shipment
 

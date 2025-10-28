@@ -1,0 +1,24 @@
+module WhopSDK
+  module Models
+    type billing_reasons =
+      :subscription_create
+      | :subscription_cycle
+      | :subscription_update
+      | :one_time
+      | :manual
+      | :subscription
+
+    module BillingReasons
+      extend WhopSDK::Internal::Type::Enum
+
+      SUBSCRIPTION_CREATE: :subscription_create
+      SUBSCRIPTION_CYCLE: :subscription_cycle
+      SUBSCRIPTION_UPDATE: :subscription_update
+      ONE_TIME: :one_time
+      MANUAL: :manual
+      SUBSCRIPTION: :subscription
+
+      def self?.values: -> ::Array[WhopSDK::Models::billing_reasons]
+    end
+  end
+end

@@ -85,6 +85,18 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :route
 
+      # Configuration for a product on the company's store page.
+      sig { returns(T.nilable(WhopSDK::ProductUpdateParams::StorePageConfig)) }
+      attr_reader :store_page_config
+
+      sig do
+        params(
+          store_page_config:
+            T.nilable(WhopSDK::ProductUpdateParams::StorePageConfig::OrHash)
+        ).void
+      end
+      attr_writer :store_page_config
+
       # The title of the product.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
@@ -114,6 +126,8 @@ module WhopSDK
           product_tax_code_id: T.nilable(String),
           redirect_purchase_url: T.nilable(String),
           route: T.nilable(String),
+          store_page_config:
+            T.nilable(WhopSDK::ProductUpdateParams::StorePageConfig::OrHash),
           title: T.nilable(String),
           visibility: T.nilable(WhopSDK::Visibility::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -154,6 +168,8 @@ module WhopSDK
         redirect_purchase_url: nil,
         # The route of the product.
         route: nil,
+        # Configuration for a product on the company's store page.
+        store_page_config: nil,
         # The title of the product.
         title: nil,
         # Visibility of a resource
@@ -183,6 +199,8 @@ module WhopSDK
             product_tax_code_id: T.nilable(String),
             redirect_purchase_url: T.nilable(String),
             route: T.nilable(String),
+            store_page_config:
+              T.nilable(WhopSDK::ProductUpdateParams::StorePageConfig),
             title: T.nilable(String),
             visibility: T.nilable(WhopSDK::Visibility::OrSymbol),
             request_options: WhopSDK::RequestOptions
@@ -235,6 +253,47 @@ module WhopSDK
         sig do
           override.returns(
             { id: T.nilable(String), direct_upload_id: T.nilable(String) }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class StorePageConfig < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::ProductUpdateParams::StorePageConfig,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # Custom call-to-action text for the product's store page.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :custom_cta
+
+        # Whether or not to show the price on the product's store page.
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_accessor :show_price
+
+        # Configuration for a product on the company's store page.
+        sig do
+          params(
+            custom_cta: T.nilable(String),
+            show_price: T.nilable(T::Boolean)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Custom call-to-action text for the product's store page.
+          custom_cta: nil,
+          # Whether or not to show the price on the product's store page.
+          show_price: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            { custom_cta: T.nilable(String), show_price: T.nilable(T::Boolean) }
           )
         end
         def to_hash

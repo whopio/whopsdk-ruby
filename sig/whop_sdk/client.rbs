@@ -62,6 +62,16 @@ module WhopSDK
 
     attr_reader forums: WhopSDK::Resources::Forums
 
+    attr_reader promo_codes: WhopSDK::Resources::PromoCodes
+
+    attr_reader courses: WhopSDK::Resources::Courses
+
+    attr_reader course_chapters: WhopSDK::Resources::CourseChapters
+
+    attr_reader course_lessons: WhopSDK::Resources::CourseLessons
+
+    attr_reader reviews: WhopSDK::Resources::Reviews
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

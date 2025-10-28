@@ -92,6 +92,21 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::Forums) }
     attr_reader :forums
 
+    sig { returns(WhopSDK::Resources::PromoCodes) }
+    attr_reader :promo_codes
+
+    sig { returns(WhopSDK::Resources::Courses) }
+    attr_reader :courses
+
+    sig { returns(WhopSDK::Resources::CourseChapters) }
+    attr_reader :course_chapters
+
+    sig { returns(WhopSDK::Resources::CourseLessons) }
+    attr_reader :course_lessons
+
+    sig { returns(WhopSDK::Resources::Reviews) }
+    attr_reader :reviews
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

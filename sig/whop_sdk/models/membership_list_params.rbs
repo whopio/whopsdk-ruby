@@ -2,11 +2,11 @@ module WhopSDK
   module Models
     type membership_list_params =
       {
-        company_id: String,
         access_pass_ids: ::Array[String]?,
         after: String?,
         before: String?,
         cancel_options: ::Array[WhopSDK::Models::MembershipListParams::cancel_option]?,
+        company_id: String?,
         created_after: Time?,
         created_before: Time?,
         direction: WhopSDK::Models::direction?,
@@ -15,15 +15,14 @@ module WhopSDK
         order: WhopSDK::Models::MembershipListParams::order?,
         plan_ids: ::Array[String]?,
         promo_code_ids: ::Array[String]?,
-        statuses: ::Array[WhopSDK::Models::membership_status]?
+        statuses: ::Array[WhopSDK::Models::membership_status]?,
+        user_ids: ::Array[String]?
       }
       & WhopSDK::Internal::Type::request_parameters
 
     class MembershipListParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
-
-      attr_accessor company_id: String
 
       attr_accessor access_pass_ids: ::Array[String]?
 
@@ -32,6 +31,8 @@ module WhopSDK
       attr_accessor before: String?
 
       attr_accessor cancel_options: ::Array[WhopSDK::Models::MembershipListParams::cancel_option]?
+
+      attr_accessor company_id: String?
 
       attr_accessor created_after: Time?
 
@@ -51,12 +52,14 @@ module WhopSDK
 
       attr_accessor statuses: ::Array[WhopSDK::Models::membership_status]?
 
+      attr_accessor user_ids: ::Array[String]?
+
       def initialize: (
-        company_id: String,
         ?access_pass_ids: ::Array[String]?,
         ?after: String?,
         ?before: String?,
         ?cancel_options: ::Array[WhopSDK::Models::MembershipListParams::cancel_option]?,
+        ?company_id: String?,
         ?created_after: Time?,
         ?created_before: Time?,
         ?direction: WhopSDK::Models::direction?,
@@ -66,15 +69,16 @@ module WhopSDK
         ?plan_ids: ::Array[String]?,
         ?promo_code_ids: ::Array[String]?,
         ?statuses: ::Array[WhopSDK::Models::membership_status]?,
+        ?user_ids: ::Array[String]?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        company_id: String,
         access_pass_ids: ::Array[String]?,
         after: String?,
         before: String?,
         cancel_options: ::Array[WhopSDK::Models::MembershipListParams::cancel_option]?,
+        company_id: String?,
         created_after: Time?,
         created_before: Time?,
         direction: WhopSDK::Models::direction?,
@@ -84,6 +88,7 @@ module WhopSDK
         plan_ids: ::Array[String]?,
         promo_code_ids: ::Array[String]?,
         statuses: ::Array[WhopSDK::Models::membership_status]?,
+        user_ids: ::Array[String]?,
         request_options: WhopSDK::RequestOptions
       }
 

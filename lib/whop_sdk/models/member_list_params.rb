@@ -106,7 +106,13 @@ module WhopSDK
       #   @return [Array<Symbol, WhopSDK::Models::MemberStatuses>, nil]
       optional :statuses, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::MemberStatuses] }, nil?: true
 
-      # @!method initialize(company_id:, access_level: nil, access_pass_ids: nil, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, most_recent_actions: nil, order: nil, plan_ids: nil, promo_code_ids: nil, query: nil, statuses: nil, request_options: {})
+      # @!attribute user_ids
+      #   The user IDs to filter the members by
+      #
+      #   @return [Array<String>, nil]
+      optional :user_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
+
+      # @!method initialize(company_id:, access_level: nil, access_pass_ids: nil, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, most_recent_actions: nil, order: nil, plan_ids: nil, promo_code_ids: nil, query: nil, statuses: nil, user_ids: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::MemberListParams} for more details.
       #
@@ -141,6 +147,8 @@ module WhopSDK
       #   @param query [String, nil] The name, username, or email to filter the members by. The email filter will onl
       #
       #   @param statuses [Array<Symbol, WhopSDK::Models::MemberStatuses>, nil] The statuses to filter the members by
+      #
+      #   @param user_ids [Array<String>, nil] The user IDs to filter the members by
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 

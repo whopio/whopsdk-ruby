@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.0.3 (2025-10-28)
+
+Full Changelog: [v0.0.2...v0.0.3](https://github.com/whopio/whopsdk-ruby/compare/v0.0.2...v0.0.3)
+
+### Features
+
+* **api:** api update ([f57593b](https://github.com/whopio/whopsdk-ruby/commit/f57593b8c663eb02087053b4afdae6a1cb3f0332))
+* **api:** api update ([f93cc72](https://github.com/whopio/whopsdk-ruby/commit/f93cc72cb4ea4b88eb038ba1beb3e1b15abdeb71))
+* **api:** api update ([d0607e1](https://github.com/whopio/whopsdk-ruby/commit/d0607e1e42b88416cb361b71c517ef8cb3d63086))
+* **api:** api update ([e585196](https://github.com/whopio/whopsdk-ruby/commit/e585196705e29132831730fd7420b9ae008078c1))
+* **api:** api update ([af02bee](https://github.com/whopio/whopsdk-ruby/commit/af02beef6674bafe3a06324ec028ad4aa373dc80))
+* **api:** api update ([d82e763](https://github.com/whopio/whopsdk-ruby/commit/d82e76376492bbadfcf2076055efe159fe1910f8))
+* **api:** api update ([9e7307e](https://github.com/whopio/whopsdk-ruby/commit/9e7307e336c1085c0e591c9783f61a5524a5fd64))
+* **api:** api update ([bd96e80](https://github.com/whopio/whopsdk-ruby/commit/bd96e80107f6c07541c57a63a90a633af22728fc))
+* **api:** api update ([6115201](https://github.com/whopio/whopsdk-ruby/commit/61152016923691ee1a5b779c1fff55137cce8bfc))
+* **api:** api update ([857fa4b](https://github.com/whopio/whopsdk-ruby/commit/857fa4b486a7eca620fb007b2a49b6274999973c))
+* **api:** api update ([d0758be](https://github.com/whopio/whopsdk-ruby/commit/d0758be1bc5d663f20615c010308320257055907))
+* **api:** api update ([6cce5a5](https://github.com/whopio/whopsdk-ruby/commit/6cce5a50461c8f30523ca1b426d6119c030d4095))
+* **api:** api update ([dd7ec59](https://github.com/whopio/whopsdk-ruby/commit/dd7ec595756131adb75a0b610973deb36944abec))
+* **api:** api update ([5200b69](https://github.com/whopio/whopsdk-ruby/commit/5200b6950ee0ee7d76caf2bc41418733c57b46b7))
+* **api:** manual updates ([2f07d4c](https://github.com/whopio/whopsdk-ruby/commit/2f07d4ce1da116b57bd84e864a351091ec76da19))
+* **api:** manual updates ([1389faf](https://github.com/whopio/whopsdk-ruby/commit/1389faf501860796adc9672dd5fa69be895e95dd))
+* handle thread interrupts in the core HTTP client ([15125cb](https://github.com/whopio/whopsdk-ruby/commit/15125cbe9bdfabe2dfe7877474dd2910ef20ac23))
+
+
+### Bug Fixes
+
+* **api:** add jwt and openssl as deps in gemspec ([#3](https://github.com/whopio/whopsdk-ruby/issues/3)) ([8f51b55](https://github.com/whopio/whopsdk-ruby/commit/8f51b55a3c9367312eac1f54e9b111766c68fded))
+
 ## 0.0.2 (2025-10-22)
 
 Full Changelog: [v0.0.1...v0.0.2](https://github.com/whopio/whopsdk-ruby/compare/v0.0.1...v0.0.2)

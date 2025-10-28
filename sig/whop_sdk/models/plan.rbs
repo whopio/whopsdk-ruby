@@ -20,8 +20,11 @@ module WhopSDK
         purchase_url: String,
         release_method: WhopSDK::Models::release_method,
         renewal_price: Float,
+        stock: Integer?,
         tax_type: WhopSDK::Models::tax_type,
+        title: String?,
         trial_period_days: Integer?,
+        unlimited_stock: bool,
         updated_at: Time,
         visibility: WhopSDK::Models::visibility
       }
@@ -63,9 +66,15 @@ module WhopSDK
 
       attr_accessor renewal_price: Float
 
+      attr_accessor stock: Integer?
+
       attr_accessor tax_type: WhopSDK::Models::tax_type
 
+      attr_accessor title: String?
+
       attr_accessor trial_period_days: Integer?
+
+      attr_accessor unlimited_stock: bool
 
       attr_accessor updated_at: Time
 
@@ -90,8 +99,11 @@ module WhopSDK
         purchase_url: String,
         release_method: WhopSDK::Models::release_method,
         renewal_price: Float,
+        stock: Integer?,
         tax_type: WhopSDK::Models::tax_type,
+        title: String?,
         trial_period_days: Integer?,
+        unlimited_stock: bool,
         updated_at: Time,
         visibility: WhopSDK::Models::visibility
       ) -> void
@@ -115,8 +127,11 @@ module WhopSDK
         purchase_url: String,
         release_method: WhopSDK::Models::release_method,
         renewal_price: Float,
+        stock: Integer?,
         tax_type: WhopSDK::Models::tax_type,
+        title: String?,
         trial_period_days: Integer?,
+        unlimited_stock: bool,
         updated_at: Time,
         visibility: WhopSDK::Models::visibility
       }

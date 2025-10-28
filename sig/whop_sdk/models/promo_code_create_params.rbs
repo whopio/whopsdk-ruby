@@ -1,0 +1,96 @@
+module WhopSDK
+  module Models
+    type promo_code_create_params =
+      {
+        amount_off: Float,
+        base_currency: WhopSDK::Models::currency,
+        code: String,
+        company_id: String,
+        new_users_only: bool,
+        promo_duration_months: Integer,
+        promo_type: WhopSDK::Models::promo_type,
+        churned_users_only: bool?,
+        existing_memberships_only: bool?,
+        expires_at: Time?,
+        one_per_customer: bool?,
+        plan_ids: ::Array[String]?,
+        product_id: String?,
+        stock: Integer?,
+        unlimited_stock: bool?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class PromoCodeCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor amount_off: Float
+
+      attr_accessor base_currency: WhopSDK::Models::currency
+
+      attr_accessor code: String
+
+      attr_accessor company_id: String
+
+      attr_accessor new_users_only: bool
+
+      attr_accessor promo_duration_months: Integer
+
+      attr_accessor promo_type: WhopSDK::Models::promo_type
+
+      attr_accessor churned_users_only: bool?
+
+      attr_accessor existing_memberships_only: bool?
+
+      attr_accessor expires_at: Time?
+
+      attr_accessor one_per_customer: bool?
+
+      attr_accessor plan_ids: ::Array[String]?
+
+      attr_accessor product_id: String?
+
+      attr_accessor stock: Integer?
+
+      attr_accessor unlimited_stock: bool?
+
+      def initialize: (
+        amount_off: Float,
+        base_currency: WhopSDK::Models::currency,
+        code: String,
+        company_id: String,
+        new_users_only: bool,
+        promo_duration_months: Integer,
+        promo_type: WhopSDK::Models::promo_type,
+        ?churned_users_only: bool?,
+        ?existing_memberships_only: bool?,
+        ?expires_at: Time?,
+        ?one_per_customer: bool?,
+        ?plan_ids: ::Array[String]?,
+        ?product_id: String?,
+        ?stock: Integer?,
+        ?unlimited_stock: bool?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        amount_off: Float,
+        base_currency: WhopSDK::Models::currency,
+        code: String,
+        company_id: String,
+        new_users_only: bool,
+        promo_duration_months: Integer,
+        promo_type: WhopSDK::Models::promo_type,
+        churned_users_only: bool?,
+        existing_memberships_only: bool?,
+        expires_at: Time?,
+        one_per_customer: bool?,
+        plan_ids: ::Array[String]?,
+        product_id: String?,
+        stock: Integer?,
+        unlimited_stock: bool?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

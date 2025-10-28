@@ -1,0 +1,44 @@
+module WhopSDK
+  module Models
+    type card_brands =
+      :mastercard
+      | :visa
+      | :amex
+      | :discover
+      | :unionpay
+      | :jcb
+      | :diners
+      | :link
+      | :troy
+      | :visadankort
+      | :visabancontact
+      | :china_union_pay
+      | :rupay
+      | :jcbrupay
+      | :elo
+      | :unknown
+
+    module CardBrands
+      extend WhopSDK::Internal::Type::Enum
+
+      MASTERCARD: :mastercard
+      VISA: :visa
+      AMEX: :amex
+      DISCOVER: :discover
+      UNIONPAY: :unionpay
+      JCB: :jcb
+      DINERS: :diners
+      LINK: :link
+      TROY: :troy
+      VISADANKORT: :visadankort
+      VISABANCONTACT: :visabancontact
+      CHINA_UNION_PAY: :china_union_pay
+      RUPAY: :rupay
+      JCBRUPAY: :jcbrupay
+      ELO: :elo
+      UNKNOWN: :unknown
+
+      def self?.values: -> ::Array[WhopSDK::Models::card_brands]
+    end
+  end
+end

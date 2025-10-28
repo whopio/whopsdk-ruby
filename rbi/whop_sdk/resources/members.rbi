@@ -45,6 +45,7 @@ module WhopSDK
           promo_code_ids: T.nilable(T::Array[String]),
           query: T.nilable(String),
           statuses: T.nilable(T::Array[WhopSDK::MemberStatuses::OrSymbol]),
+          user_ids: T.nilable(T::Array[String]),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::MemberListResponse]
@@ -84,6 +85,8 @@ module WhopSDK
         query: nil,
         # The statuses to filter the members by
         statuses: nil,
+        # The user IDs to filter the members by
+        user_ids: nil,
         request_options: {}
       )
       end

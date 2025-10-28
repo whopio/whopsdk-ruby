@@ -63,6 +63,20 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :renewal_price
 
+      # The number of units available for purchase.
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :stock
+
+      # The price to display with a strikethrough for the initial price. Provided as a
+      # number in dollars. Eg: 19.99 for $19.99
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :strike_through_initial_price
+
+      # The price to display with a strikethrough for the renewal price. Provided as a
+      # number in dollars. Eg: 19.99 for $19.99
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :strike_through_renewal_price
+
       # The title of the plan. This will be visible on the product page to customers.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
@@ -70,6 +84,10 @@ module WhopSDK
       # The number of free trial days added before a renewal plan.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :trial_period_days
+
+      # Limits/doesn't limit the number of units available for purchase.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :unlimited_stock
 
       # Visibility of a resource
       sig { returns(T.nilable(WhopSDK::Visibility::OrSymbol)) }
@@ -89,8 +107,12 @@ module WhopSDK
           offer_cancel_discount: T.nilable(T::Boolean),
           override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
           renewal_price: T.nilable(Float),
+          stock: T.nilable(Integer),
+          strike_through_initial_price: T.nilable(Float),
+          strike_through_renewal_price: T.nilable(Float),
           title: T.nilable(String),
           trial_period_days: T.nilable(Integer),
+          unlimited_stock: T.nilable(T::Boolean),
           visibility: T.nilable(WhopSDK::Visibility::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -119,10 +141,20 @@ module WhopSDK
         override_tax_type: nil,
         # The amount the customer is charged every billing period.
         renewal_price: nil,
+        # The number of units available for purchase.
+        stock: nil,
+        # The price to display with a strikethrough for the initial price. Provided as a
+        # number in dollars. Eg: 19.99 for $19.99
+        strike_through_initial_price: nil,
+        # The price to display with a strikethrough for the renewal price. Provided as a
+        # number in dollars. Eg: 19.99 for $19.99
+        strike_through_renewal_price: nil,
         # The title of the plan. This will be visible on the product page to customers.
         title: nil,
         # The number of free trial days added before a renewal plan.
         trial_period_days: nil,
+        # Limits/doesn't limit the number of units available for purchase.
+        unlimited_stock: nil,
         # Visibility of a resource
         visibility: nil,
         request_options: {}
@@ -144,8 +176,12 @@ module WhopSDK
             offer_cancel_discount: T.nilable(T::Boolean),
             override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
             renewal_price: T.nilable(Float),
+            stock: T.nilable(Integer),
+            strike_through_initial_price: T.nilable(Float),
+            strike_through_renewal_price: T.nilable(Float),
             title: T.nilable(String),
             trial_period_days: T.nilable(Integer),
+            unlimited_stock: T.nilable(T::Boolean),
             visibility: T.nilable(WhopSDK::Visibility::OrSymbol),
             request_options: WhopSDK::RequestOptions
           }

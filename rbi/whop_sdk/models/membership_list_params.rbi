@@ -11,10 +11,6 @@ module WhopSDK
           T.any(WhopSDK::MembershipListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the company to list memberships for
-      sig { returns(String) }
-      attr_accessor :company_id
-
       # The access pass IDs to filter the memberships by
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :access_pass_ids
@@ -36,6 +32,10 @@ module WhopSDK
         )
       end
       attr_accessor :cancel_options
+
+      # The ID of the company to list memberships for
+      sig { returns(T.nilable(String)) }
+      attr_accessor :company_id
 
       # The minimum creation date to filter by
       sig { returns(T.nilable(Time)) }
@@ -73,9 +73,12 @@ module WhopSDK
       sig { returns(T.nilable(T::Array[WhopSDK::MembershipStatus::OrSymbol])) }
       attr_accessor :statuses
 
+      # Only return memberships from these whop user ids
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_accessor :user_ids
+
       sig do
         params(
-          company_id: String,
           access_pass_ids: T.nilable(T::Array[String]),
           after: T.nilable(String),
           before: T.nilable(String),
@@ -83,6 +86,7 @@ module WhopSDK
             T.nilable(
               T::Array[WhopSDK::MembershipListParams::CancelOption::OrSymbol]
             ),
+          company_id: T.nilable(String),
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
           direction: T.nilable(WhopSDK::Direction::OrSymbol),
@@ -92,12 +96,11 @@ module WhopSDK
           plan_ids: T.nilable(T::Array[String]),
           promo_code_ids: T.nilable(T::Array[String]),
           statuses: T.nilable(T::Array[WhopSDK::MembershipStatus::OrSymbol]),
+          user_ids: T.nilable(T::Array[String]),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the company to list memberships for
-        company_id:,
         # The access pass IDs to filter the memberships by
         access_pass_ids: nil,
         # Returns the elements in the list that come after the specified cursor.
@@ -106,6 +109,8 @@ module WhopSDK
         before: nil,
         # The cancel options to filter the memberships by
         cancel_options: nil,
+        # The ID of the company to list memberships for
+        company_id: nil,
         # The minimum creation date to filter by
         created_after: nil,
         # The maximum creation date to filter by
@@ -124,6 +129,8 @@ module WhopSDK
         promo_code_ids: nil,
         # The membership status to filter the memberships by
         statuses: nil,
+        # Only return memberships from these whop user ids
+        user_ids: nil,
         request_options: {}
       )
       end
@@ -131,7 +138,6 @@ module WhopSDK
       sig do
         override.returns(
           {
-            company_id: String,
             access_pass_ids: T.nilable(T::Array[String]),
             after: T.nilable(String),
             before: T.nilable(String),
@@ -139,6 +145,7 @@ module WhopSDK
               T.nilable(
                 T::Array[WhopSDK::MembershipListParams::CancelOption::OrSymbol]
               ),
+            company_id: T.nilable(String),
             created_after: T.nilable(Time),
             created_before: T.nilable(Time),
             direction: T.nilable(WhopSDK::Direction::OrSymbol),
@@ -148,6 +155,7 @@ module WhopSDK
             plan_ids: T.nilable(T::Array[String]),
             promo_code_ids: T.nilable(T::Array[String]),
             statuses: T.nilable(T::Array[WhopSDK::MembershipStatus::OrSymbol]),
+            user_ids: T.nilable(T::Array[String]),
             request_options: WhopSDK::RequestOptions
           }
         )

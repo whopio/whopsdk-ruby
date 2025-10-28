@@ -27,6 +27,7 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),
         payment_collection_paused: WhopSDK::Internal::Type::Boolean,
         plan: WhopSDK::Membership::Plan,
+        product: WhopSDK::Membership::Product,
         promo_code: WhopSDK::Membership::PromoCode | nil,
         renewal_period_end: Time | nil,
         renewal_period_start: Time | nil,
@@ -61,6 +62,7 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),
         payment_collection_paused: WhopSDK::Internal::Type::Boolean,
         plan: WhopSDK::Membership::Plan,
+        product: WhopSDK::Membership::Product,
         promo_code: WhopSDK::Membership::PromoCode | nil,
         renewal_period_end: Time | nil,
         renewal_period_start: Time | nil,
@@ -71,10 +73,10 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
     end
   end
 
-  def test_list_required_params
+  def test_list
     skip("Prism tests are disabled")
 
-    response = @whop.memberships.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.memberships.list
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage
@@ -102,6 +104,7 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),
         payment_collection_paused: WhopSDK::Internal::Type::Boolean,
         plan: WhopSDK::Models::MembershipListResponse::Plan,
+        product: WhopSDK::Models::MembershipListResponse::Product,
         promo_code: WhopSDK::Models::MembershipListResponse::PromoCode | nil,
         renewal_period_end: Time | nil,
         renewal_period_start: Time | nil,
@@ -136,6 +139,7 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),
         payment_collection_paused: WhopSDK::Internal::Type::Boolean,
         plan: WhopSDK::Membership::Plan,
+        product: WhopSDK::Membership::Product,
         promo_code: WhopSDK::Membership::PromoCode | nil,
         renewal_period_end: Time | nil,
         renewal_period_start: Time | nil,
@@ -170,6 +174,7 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),
         payment_collection_paused: WhopSDK::Internal::Type::Boolean,
         plan: WhopSDK::Membership::Plan,
+        product: WhopSDK::Membership::Product,
         promo_code: WhopSDK::Membership::PromoCode | nil,
         renewal_period_end: Time | nil,
         renewal_period_start: Time | nil,
@@ -204,6 +209,7 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),
         payment_collection_paused: WhopSDK::Internal::Type::Boolean,
         plan: WhopSDK::Membership::Plan,
+        product: WhopSDK::Membership::Product,
         promo_code: WhopSDK::Membership::PromoCode | nil,
         renewal_period_end: Time | nil,
         renewal_period_start: Time | nil,

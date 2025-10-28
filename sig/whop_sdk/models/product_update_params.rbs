@@ -18,6 +18,7 @@ module WhopSDK
         product_tax_code_id: String?,
         redirect_purchase_url: String?,
         route: String?,
+        store_page_config: WhopSDK::ProductUpdateParams::StorePageConfig?,
         title: String?,
         visibility: WhopSDK::Models::visibility?
       }
@@ -59,6 +60,8 @@ module WhopSDK
 
       attr_accessor route: String?
 
+      attr_accessor store_page_config: WhopSDK::ProductUpdateParams::StorePageConfig?
+
       attr_accessor title: String?
 
       attr_accessor visibility: WhopSDK::Models::visibility?
@@ -80,6 +83,7 @@ module WhopSDK
         ?product_tax_code_id: String?,
         ?redirect_purchase_url: String?,
         ?route: String?,
+        ?store_page_config: WhopSDK::ProductUpdateParams::StorePageConfig?,
         ?title: String?,
         ?visibility: WhopSDK::Models::visibility?,
         ?request_options: WhopSDK::request_opts
@@ -102,6 +106,7 @@ module WhopSDK
         product_tax_code_id: String?,
         redirect_purchase_url: String?,
         route: String?,
+        store_page_config: WhopSDK::ProductUpdateParams::StorePageConfig?,
         title: String?,
         visibility: WhopSDK::Models::visibility?,
         request_options: WhopSDK::RequestOptions
@@ -117,6 +122,18 @@ module WhopSDK
         def initialize: (?id: String?, ?direct_upload_id: String?) -> void
 
         def to_hash: -> { id: String?, direct_upload_id: String? }
+      end
+
+      type store_page_config = { custom_cta: String?, show_price: bool? }
+
+      class StorePageConfig < WhopSDK::Internal::Type::BaseModel
+        attr_accessor custom_cta: String?
+
+        attr_accessor show_price: bool?
+
+        def initialize: (?custom_cta: String?, ?show_price: bool?) -> void
+
+        def to_hash: -> { custom_cta: String?, show_price: bool? }
       end
     end
   end

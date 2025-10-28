@@ -5,12 +5,14 @@ module WhopSDK
         id: String,
         comment_count: Integer,
         content: String?,
+        created_at: Time,
         is_edited: bool,
         is_pinned: bool,
         is_poster_admin: bool,
         like_count: Integer?,
         parent_id: String?,
         title: String?,
+        updated_at: Time,
         user: WhopSDK::Models::ForumPostListResponse::User,
         view_count: Integer?
       }
@@ -21,6 +23,8 @@ module WhopSDK
       attr_accessor comment_count: Integer
 
       attr_accessor content: String?
+
+      attr_accessor created_at: Time
 
       attr_accessor is_edited: bool
 
@@ -34,6 +38,8 @@ module WhopSDK
 
       attr_accessor title: String?
 
+      attr_accessor updated_at: Time
+
       attr_accessor user: WhopSDK::Models::ForumPostListResponse::User
 
       attr_accessor view_count: Integer?
@@ -42,12 +48,14 @@ module WhopSDK
         id: String,
         comment_count: Integer,
         content: String?,
+        created_at: Time,
         is_edited: bool,
         is_pinned: bool,
         is_poster_admin: bool,
         like_count: Integer?,
         parent_id: String?,
         title: String?,
+        updated_at: Time,
         user: WhopSDK::Models::ForumPostListResponse::User,
         view_count: Integer?
       ) -> void
@@ -56,12 +64,14 @@ module WhopSDK
         id: String,
         comment_count: Integer,
         content: String?,
+        created_at: Time,
         is_edited: bool,
         is_pinned: bool,
         is_poster_admin: bool,
         like_count: Integer?,
         parent_id: String?,
         title: String?,
+        updated_at: Time,
         user: WhopSDK::Models::ForumPostListResponse::User,
         view_count: Integer?
       }

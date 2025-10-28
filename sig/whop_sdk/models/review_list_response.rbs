@@ -1,0 +1,116 @@
+module WhopSDK
+  module Models
+    type review_list_response =
+      {
+        id: String,
+        attachments: ::Array[WhopSDK::Models::ReviewListResponse::Attachment],
+        created_at: Time,
+        description: String?,
+        joined_at: Time?,
+        paid_for_product: bool?,
+        published_at: Time?,
+        stars: Integer,
+        status: WhopSDK::Models::review_status,
+        title: String?,
+        updated_at: Time,
+        user: WhopSDK::Models::ReviewListResponse::User
+      }
+
+    class ReviewListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor attachments: ::Array[WhopSDK::Models::ReviewListResponse::Attachment]
+
+      attr_accessor created_at: Time
+
+      attr_accessor description: String?
+
+      attr_accessor joined_at: Time?
+
+      attr_accessor paid_for_product: bool?
+
+      attr_accessor published_at: Time?
+
+      attr_accessor stars: Integer
+
+      attr_accessor status: WhopSDK::Models::review_status
+
+      attr_accessor title: String?
+
+      attr_accessor updated_at: Time
+
+      attr_accessor user: WhopSDK::Models::ReviewListResponse::User
+
+      def initialize: (
+        id: String,
+        attachments: ::Array[WhopSDK::Models::ReviewListResponse::Attachment],
+        created_at: Time,
+        description: String?,
+        joined_at: Time?,
+        paid_for_product: bool?,
+        published_at: Time?,
+        stars: Integer,
+        status: WhopSDK::Models::review_status,
+        title: String?,
+        updated_at: Time,
+        user: WhopSDK::Models::ReviewListResponse::User
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        attachments: ::Array[WhopSDK::Models::ReviewListResponse::Attachment],
+        created_at: Time,
+        description: String?,
+        joined_at: Time?,
+        paid_for_product: bool?,
+        published_at: Time?,
+        stars: Integer,
+        status: WhopSDK::Models::review_status,
+        title: String?,
+        updated_at: Time,
+        user: WhopSDK::Models::ReviewListResponse::User
+      }
+
+      type attachment =
+        { id: String, content_type: String?, filename: String?, url: String? }
+
+      class Attachment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor content_type: String?
+
+        attr_accessor filename: String?
+
+        attr_accessor url: String?
+
+        def initialize: (
+          id: String,
+          content_type: String?,
+          filename: String?,
+          url: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          content_type: String?,
+          filename: String?,
+          url: String?
+        }
+      end
+
+      type user = { id: String, name: String?, username: String }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
+      end
+    end
+  end
+end

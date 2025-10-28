@@ -1,0 +1,56 @@
+module WhopSDK
+  module Models
+    type review_list_params =
+      {
+        product_id: String,
+        after: String?,
+        before: String?,
+        first: Integer?,
+        last: Integer?,
+        max_stars: Integer?,
+        min_stars: Integer?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class ReviewListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor product_id: String
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      attr_accessor max_stars: Integer?
+
+      attr_accessor min_stars: Integer?
+
+      def initialize: (
+        product_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?max_stars: Integer?,
+        ?min_stars: Integer?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        product_id: String,
+        after: String?,
+        before: String?,
+        first: Integer?,
+        last: Integer?,
+        max_stars: Integer?,
+        min_stars: Integer?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

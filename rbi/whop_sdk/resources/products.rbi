@@ -13,9 +13,6 @@ module WhopSDK
         params(
           company_id: String,
           title: String,
-          access_pass_type: T.nilable(WhopSDK::AccessPassType::OrSymbol),
-          banner_image:
-            T.nilable(WhopSDK::ProductCreateParams::BannerImage::OrHash),
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           collect_shipping_address: T.nilable(T::Boolean),
           custom_cta: T.nilable(WhopSDK::CustomCta::OrSymbol),
@@ -49,10 +46,6 @@ module WhopSDK
         company_id:,
         # The title of the product.
         title:,
-        # The different types an access pass can be.
-        access_pass_type: nil,
-        # A banner image for the product in png, jpeg format
-        banner_image: nil,
         # The different business types a company can be.
         business_type: nil,
         # Whether or not to collect shipping information at checkout from the customer.
@@ -139,6 +132,8 @@ module WhopSDK
           product_tax_code_id: T.nilable(String),
           redirect_purchase_url: T.nilable(String),
           route: T.nilable(String),
+          store_page_config:
+            T.nilable(WhopSDK::ProductUpdateParams::StorePageConfig::OrHash),
           title: T.nilable(String),
           visibility: T.nilable(WhopSDK::Visibility::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -180,6 +175,8 @@ module WhopSDK
         redirect_purchase_url: nil,
         # The route of the product.
         route: nil,
+        # Configuration for a product on the company's store page.
+        store_page_config: nil,
         # The title of the product.
         title: nil,
         # Visibility of a resource

@@ -1,0 +1,46 @@
+module WhopSDK
+  module Models
+    type course_lesson_create_params =
+      {
+        chapter_id: String,
+        lesson_type: WhopSDK::Models::lesson_types,
+        content: String?,
+        days_from_course_start_until_unlock: Integer?,
+        title: String?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class CourseLessonCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor chapter_id: String
+
+      attr_accessor lesson_type: WhopSDK::Models::lesson_types
+
+      attr_accessor content: String?
+
+      attr_accessor days_from_course_start_until_unlock: Integer?
+
+      attr_accessor title: String?
+
+      def initialize: (
+        chapter_id: String,
+        lesson_type: WhopSDK::Models::lesson_types,
+        ?content: String?,
+        ?days_from_course_start_until_unlock: Integer?,
+        ?title: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        chapter_id: String,
+        lesson_type: WhopSDK::Models::lesson_types,
+        content: String?,
+        days_from_course_start_until_unlock: Integer?,
+        title: String?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

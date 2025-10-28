@@ -105,6 +105,12 @@ module WhopSDK
       #   @return [String, nil]
       optional :route, String, nil?: true
 
+      # @!attribute store_page_config
+      #   Configuration for a product on the company's store page.
+      #
+      #   @return [WhopSDK::Models::ProductUpdateParams::StorePageConfig, nil]
+      optional :store_page_config, -> { WhopSDK::ProductUpdateParams::StorePageConfig }, nil?: true
+
       # @!attribute title
       #   The title of the product.
       #
@@ -117,7 +123,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility, nil]
       optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-      # @!method initialize(banner_image: nil, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, title: nil, visibility: nil, request_options: {})
+      # @!method initialize(banner_image: nil, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ProductUpdateParams} for more details.
       #
@@ -154,6 +160,8 @@ module WhopSDK
       #
       #   @param route [String, nil] The route of the product.
       #
+      #   @param store_page_config [WhopSDK::Models::ProductUpdateParams::StorePageConfig, nil] Configuration for a product on the company's store page.
+      #
       #   @param title [String, nil] The title of the product.
       #
       #   @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
@@ -186,6 +194,27 @@ module WhopSDK
         #   @param id [String, nil] The ID of an existing attachment object. Use this when updating a resource and k
         #
         #   @param direct_upload_id [String, nil] This ID should be used the first time you upload an attachment. It is the ID of
+      end
+
+      class StorePageConfig < WhopSDK::Internal::Type::BaseModel
+        # @!attribute custom_cta
+        #   Custom call-to-action text for the product's store page.
+        #
+        #   @return [String, nil]
+        optional :custom_cta, String, nil?: true
+
+        # @!attribute show_price
+        #   Whether or not to show the price on the product's store page.
+        #
+        #   @return [Boolean, nil]
+        optional :show_price, WhopSDK::Internal::Type::Boolean, nil?: true
+
+        # @!method initialize(custom_cta: nil, show_price: nil)
+        #   Configuration for a product on the company's store page.
+        #
+        #   @param custom_cta [String, nil] Custom call-to-action text for the product's store page.
+        #
+        #   @param show_price [Boolean, nil] Whether or not to show the price on the product's store page.
       end
     end
   end

@@ -39,12 +39,12 @@ module WhopSDK
       end
       attr_writer :billing_address
 
-      # The billing reason
-      sig { returns(T.nilable(String)) }
+      # The reason why a specific payment was billed
+      sig { returns(T.nilable(WhopSDK::BillingReasons::TaggedSymbol)) }
       attr_accessor :billing_reason
 
-      # The type of card used as the payment method.
-      sig { returns(T.nilable(String)) }
+      # Possible card brands that a payment token can have
+      sig { returns(T.nilable(WhopSDK::CardBrands::TaggedSymbol)) }
       attr_accessor :card_brand
 
       # The last 4 digits of the card used to make the payment.
@@ -113,9 +113,8 @@ module WhopSDK
       sig { returns(T.nilable(Time)) }
       attr_accessor :paid_at
 
-      # Returns the type of payment method used for the payment, if available. Ex.
-      # klarna, affirm, card, cashapp
-      sig { returns(T.nilable(String)) }
+      # The different types of payment methods that can be used.
+      sig { returns(T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol)) }
       attr_accessor :payment_method_type
 
       # The plan attached to this payment.
@@ -155,7 +154,8 @@ module WhopSDK
       end
       attr_writer :promo_code
 
-      # Whether the payment can be refunded.
+      # True only for payments that are `paid`, have not been fully refunded, and were
+      # processed by a payment processor that allows refunds.
       sig { returns(T::Boolean) }
       attr_accessor :refundable
 
@@ -167,7 +167,9 @@ module WhopSDK
       sig { returns(T.nilable(Time)) }
       attr_accessor :refunded_at
 
-      # Whether the payment can be retried.
+      # True when the payment status is `open` and its membership is in one of the
+      # retry-eligible states (`active`, `trialing`, `completed`, or `past_due`);
+      # otherwise false. Used to decide if Whop can attempt the charge again.
       sig { returns(T::Boolean) }
       attr_accessor :retryable
 
@@ -202,7 +204,8 @@ module WhopSDK
       end
       attr_writer :user
 
-      # Whether the payment can be voided.
+      # True when the payment is tied to a membership in `past_due`, the payment status
+      # is `open`, and the processor allows voiding payments; otherwise false.
       sig { returns(T::Boolean) }
       attr_accessor :voidable
 
@@ -216,8 +219,8 @@ module WhopSDK
             T.nilable(
               WhopSDK::Models::PaymentListResponse::BillingAddress::OrHash
             ),
-          billing_reason: T.nilable(String),
-          card_brand: T.nilable(String),
+          billing_reason: T.nilable(WhopSDK::BillingReasons::OrSymbol),
+          card_brand: T.nilable(WhopSDK::CardBrands::OrSymbol),
           card_last4: T.nilable(String),
           company:
             T.nilable(WhopSDK::Models::PaymentListResponse::Company::OrHash),
@@ -231,7 +234,7 @@ module WhopSDK
           membership:
             T.nilable(WhopSDK::Models::PaymentListResponse::Membership::OrHash),
           paid_at: T.nilable(Time),
-          payment_method_type: T.nilable(String),
+          payment_method_type: T.nilable(WhopSDK::PaymentMethodTypes::OrSymbol),
           plan: T.nilable(WhopSDK::Models::PaymentListResponse::Plan::OrHash),
           product:
             T.nilable(WhopSDK::Models::PaymentListResponse::Product::OrHash),
@@ -259,9 +262,9 @@ module WhopSDK
         auto_refunded:,
         # The address of the user who made the payment.
         billing_address:,
-        # The billing reason
+        # The reason why a specific payment was billed
         billing_reason:,
-        # The type of card used as the payment method.
+        # Possible card brands that a payment token can have
         card_brand:,
         # The last 4 digits of the card used to make the payment.
         card_last4:,
@@ -283,8 +286,7 @@ module WhopSDK
         membership:,
         # The datetime the payment was paid
         paid_at:,
-        # Returns the type of payment method used for the payment, if available. Ex.
-        # klarna, affirm, card, cashapp
+        # The different types of payment methods that can be used.
         payment_method_type:,
         # The plan attached to this payment.
         plan:,
@@ -292,13 +294,16 @@ module WhopSDK
         product:,
         # The promo code used for this payment.
         promo_code:,
-        # Whether the payment can be refunded.
+        # True only for payments that are `paid`, have not been fully refunded, and were
+        # processed by a payment processor that allows refunds.
         refundable:,
         # The payment refund amount(if applicable).
         refunded_amount:,
         # When the payment was refunded (if applicable).
         refunded_at:,
-        # Whether the payment can be retried.
+        # True when the payment status is `open` and its membership is in one of the
+        # retry-eligible states (`active`, `trialing`, `completed`, or `past_due`);
+        # otherwise false. Used to decide if Whop can attempt the charge again.
         retryable:,
         # The status of a receipt
         status:,
@@ -312,7 +317,8 @@ module WhopSDK
         usd_total:,
         # The user that made this payment.
         user:,
-        # Whether the payment can be voided.
+        # True when the payment is tied to a membership in `past_due`, the payment status
+        # is `open`, and the processor allows voiding payments; otherwise false.
         voidable:
       )
       end
@@ -325,8 +331,8 @@ module WhopSDK
             auto_refunded: T::Boolean,
             billing_address:
               T.nilable(WhopSDK::Models::PaymentListResponse::BillingAddress),
-            billing_reason: T.nilable(String),
-            card_brand: T.nilable(String),
+            billing_reason: T.nilable(WhopSDK::BillingReasons::TaggedSymbol),
+            card_brand: T.nilable(WhopSDK::CardBrands::TaggedSymbol),
             card_last4: T.nilable(String),
             company: T.nilable(WhopSDK::Models::PaymentListResponse::Company),
             created_at: Time,
@@ -338,7 +344,8 @@ module WhopSDK
             membership:
               T.nilable(WhopSDK::Models::PaymentListResponse::Membership),
             paid_at: T.nilable(Time),
-            payment_method_type: T.nilable(String),
+            payment_method_type:
+              T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol),
             plan: T.nilable(WhopSDK::Models::PaymentListResponse::Plan),
             product: T.nilable(WhopSDK::Models::PaymentListResponse::Product),
             promo_code:
@@ -654,7 +661,7 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :code
 
-        # The number of billing cycles the promo is applied for.
+        # The number of months the promo is applied for.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :number_of_intervals
 
@@ -682,7 +689,7 @@ module WhopSDK
           base_currency:,
           # The specific code used to apply the promo at checkout.
           code:,
-          # The number of billing cycles the promo is applied for.
+          # The number of months the promo is applied for.
           number_of_intervals:,
           # The type (% or flat amount) of the promo.
           promo_type:

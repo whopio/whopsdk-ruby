@@ -29,16 +29,16 @@ module WhopSDK
       required :billing_address, -> { WhopSDK::Models::PaymentListResponse::BillingAddress }, nil?: true
 
       # @!attribute billing_reason
-      #   The billing reason
+      #   The reason why a specific payment was billed
       #
-      #   @return [String, nil]
-      required :billing_reason, String, nil?: true
+      #   @return [Symbol, WhopSDK::Models::BillingReasons, nil]
+      required :billing_reason, enum: -> { WhopSDK::BillingReasons }, nil?: true
 
       # @!attribute card_brand
-      #   The type of card used as the payment method.
+      #   Possible card brands that a payment token can have
       #
-      #   @return [String, nil]
-      required :card_brand, String, nil?: true
+      #   @return [Symbol, WhopSDK::Models::CardBrands, nil]
+      required :card_brand, enum: -> { WhopSDK::CardBrands }, nil?: true
 
       # @!attribute card_last4
       #   The last 4 digits of the card used to make the payment.
@@ -101,11 +101,10 @@ module WhopSDK
       required :paid_at, Time, nil?: true
 
       # @!attribute payment_method_type
-      #   Returns the type of payment method used for the payment, if available. Ex.
-      #   klarna, affirm, card, cashapp
+      #   The different types of payment methods that can be used.
       #
-      #   @return [String, nil]
-      required :payment_method_type, String, nil?: true
+      #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes, nil]
+      required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }, nil?: true
 
       # @!attribute plan
       #   The plan attached to this payment.
@@ -126,7 +125,8 @@ module WhopSDK
       required :promo_code, -> { WhopSDK::Models::PaymentListResponse::PromoCode }, nil?: true
 
       # @!attribute refundable
-      #   Whether the payment can be refunded.
+      #   True only for payments that are `paid`, have not been fully refunded, and were
+      #   processed by a payment processor that allows refunds.
       #
       #   @return [Boolean]
       required :refundable, WhopSDK::Internal::Type::Boolean
@@ -144,7 +144,9 @@ module WhopSDK
       required :refunded_at, Time, nil?: true
 
       # @!attribute retryable
-      #   Whether the payment can be retried.
+      #   True when the payment status is `open` and its membership is in one of the
+      #   retry-eligible states (`active`, `trialing`, `completed`, or `past_due`);
+      #   otherwise false. Used to decide if Whop can attempt the charge again.
       #
       #   @return [Boolean]
       required :retryable, WhopSDK::Internal::Type::Boolean
@@ -186,7 +188,8 @@ module WhopSDK
       required :user, -> { WhopSDK::Models::PaymentListResponse::User }, nil?: true
 
       # @!attribute voidable
-      #   Whether the payment can be voided.
+      #   True when the payment is tied to a membership in `past_due`, the payment status
+      #   is `open`, and the processor allows voiding payments; otherwise false.
       #
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
@@ -205,9 +208,9 @@ module WhopSDK
       #
       #   @param billing_address [WhopSDK::Models::PaymentListResponse::BillingAddress, nil] The address of the user who made the payment.
       #
-      #   @param billing_reason [String, nil] The billing reason
+      #   @param billing_reason [Symbol, WhopSDK::Models::BillingReasons, nil] The reason why a specific payment was billed
       #
-      #   @param card_brand [String, nil] The type of card used as the payment method.
+      #   @param card_brand [Symbol, WhopSDK::Models::CardBrands, nil] Possible card brands that a payment token can have
       #
       #   @param card_last4 [String, nil] The last 4 digits of the card used to make the payment.
       #
@@ -229,7 +232,7 @@ module WhopSDK
       #
       #   @param paid_at [Time, nil] The datetime the payment was paid
       #
-      #   @param payment_method_type [String, nil] Returns the type of payment method used for the payment, if available. Ex. klarn
+      #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes, nil] The different types of payment methods that can be used.
       #
       #   @param plan [WhopSDK::Models::PaymentListResponse::Plan, nil] The plan attached to this payment.
       #
@@ -237,13 +240,13 @@ module WhopSDK
       #
       #   @param promo_code [WhopSDK::Models::PaymentListResponse::PromoCode, nil] The promo code used for this payment.
       #
-      #   @param refundable [Boolean] Whether the payment can be refunded.
+      #   @param refundable [Boolean] True only for payments that are `paid`, have not been fully refunded, and were p
       #
       #   @param refunded_amount [Float, nil] The payment refund amount(if applicable).
       #
       #   @param refunded_at [Time, nil] When the payment was refunded (if applicable).
       #
-      #   @param retryable [Boolean] Whether the payment can be retried.
+      #   @param retryable [Boolean] True when the payment status is `open` and its membership is in one of the retry
       #
       #   @param status [Symbol, WhopSDK::Models::ReceiptStatus, nil] The status of a receipt
       #
@@ -257,7 +260,7 @@ module WhopSDK
       #
       #   @param user [WhopSDK::Models::PaymentListResponse::User, nil] The user that made this payment.
       #
-      #   @param voidable [Boolean] Whether the payment can be voided.
+      #   @param voidable [Boolean] True when the payment is tied to a membership in `past_due`, the payment status
 
       # @see WhopSDK::Models::PaymentListResponse#billing_address
       class BillingAddress < WhopSDK::Internal::Type::BaseModel
@@ -466,7 +469,7 @@ module WhopSDK
         required :code, String, nil?: true
 
         # @!attribute number_of_intervals
-        #   The number of billing cycles the promo is applied for.
+        #   The number of months the promo is applied for.
         #
         #   @return [Integer, nil]
         required :number_of_intervals, Integer, nil?: true
@@ -488,7 +491,7 @@ module WhopSDK
         #
         #   @param code [String, nil] The specific code used to apply the promo at checkout.
         #
-        #   @param number_of_intervals [Integer, nil] The number of billing cycles the promo is applied for.
+        #   @param number_of_intervals [Integer, nil] The number of months the promo is applied for.
         #
         #   @param promo_type [Symbol, WhopSDK::Models::PromoType] The type (% or flat amount) of the promo.
       end

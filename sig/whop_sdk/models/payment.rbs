@@ -6,8 +6,8 @@ module WhopSDK
         amount_after_fees: Float,
         auto_refunded: bool,
         billing_address: WhopSDK::Payment::BillingAddress?,
-        billing_reason: String?,
-        card_brand: String?,
+        billing_reason: WhopSDK::Models::billing_reasons?,
+        card_brand: WhopSDK::Models::card_brands?,
         :card_last4 => String?,
         company: WhopSDK::Payment::Company?,
         created_at: Time,
@@ -18,7 +18,7 @@ module WhopSDK
         member: WhopSDK::Payment::Member?,
         membership: WhopSDK::Payment::Membership?,
         paid_at: Time?,
-        payment_method_type: String?,
+        payment_method_type: WhopSDK::Models::payment_method_types?,
         plan: WhopSDK::Payment::Plan?,
         product: WhopSDK::Payment::Product?,
         promo_code: WhopSDK::Payment::PromoCode?,
@@ -44,9 +44,9 @@ module WhopSDK
 
       attr_accessor billing_address: WhopSDK::Payment::BillingAddress?
 
-      attr_accessor billing_reason: String?
+      attr_accessor billing_reason: WhopSDK::Models::billing_reasons?
 
-      attr_accessor card_brand: String?
+      attr_accessor card_brand: WhopSDK::Models::card_brands?
 
       attr_accessor card_last4: String?
 
@@ -68,7 +68,7 @@ module WhopSDK
 
       attr_accessor paid_at: Time?
 
-      attr_accessor payment_method_type: String?
+      attr_accessor payment_method_type: WhopSDK::Models::payment_method_types?
 
       attr_accessor plan: WhopSDK::Payment::Plan?
 
@@ -103,8 +103,8 @@ module WhopSDK
         amount_after_fees: Float,
         auto_refunded: bool,
         billing_address: WhopSDK::Payment::BillingAddress?,
-        billing_reason: String?,
-        card_brand: String?,
+        billing_reason: WhopSDK::Models::billing_reasons?,
+        card_brand: WhopSDK::Models::card_brands?,
         card_last4: String?,
         company: WhopSDK::Payment::Company?,
         created_at: Time,
@@ -115,7 +115,7 @@ module WhopSDK
         member: WhopSDK::Payment::Member?,
         membership: WhopSDK::Payment::Membership?,
         paid_at: Time?,
-        payment_method_type: String?,
+        payment_method_type: WhopSDK::Models::payment_method_types?,
         plan: WhopSDK::Payment::Plan?,
         product: WhopSDK::Payment::Product?,
         promo_code: WhopSDK::Payment::PromoCode?,
@@ -137,8 +137,8 @@ module WhopSDK
         amount_after_fees: Float,
         auto_refunded: bool,
         billing_address: WhopSDK::Payment::BillingAddress?,
-        billing_reason: String?,
-        card_brand: String?,
+        billing_reason: WhopSDK::Models::billing_reasons?,
+        card_brand: WhopSDK::Models::card_brands?,
         :card_last4 => String?,
         company: WhopSDK::Payment::Company?,
         created_at: Time,
@@ -149,7 +149,7 @@ module WhopSDK
         member: WhopSDK::Payment::Member?,
         membership: WhopSDK::Payment::Membership?,
         paid_at: Time?,
-        payment_method_type: String?,
+        payment_method_type: WhopSDK::Models::payment_method_types?,
         plan: WhopSDK::Payment::Plan?,
         product: WhopSDK::Payment::Product?,
         promo_code: WhopSDK::Payment::PromoCode?,

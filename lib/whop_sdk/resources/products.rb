@@ -13,15 +13,11 @@ module WhopSDK
       # - `access_pass:create`
       # - `access_pass:basic:read`
       #
-      # @overload create(company_id:, title:, access_pass_type: nil, banner_image: nil, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, experience_ids: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, plan_options: nil, product_highlights: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil, request_options: {})
+      # @overload create(company_id:, title:, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, experience_ids: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, plan_options: nil, product_highlights: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil, request_options: {})
       #
       # @param company_id [String] The ID of the company to create the product for.
       #
       # @param title [String] The title of the product.
-      #
-      # @param access_pass_type [Symbol, WhopSDK::Models::AccessPassType, nil] The different types an access pass can be.
-      #
-      # @param banner_image [WhopSDK::Models::ProductCreateParams::BannerImage, nil] A banner image for the product in png, jpeg format
       #
       # @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #
@@ -111,7 +107,7 @@ module WhopSDK
       # - `access_pass:update`
       # - `access_pass:basic:read`
       #
-      # @overload update(id, banner_image: nil, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, title: nil, visibility: nil, request_options: {})
+      # @overload update(id, banner_image: nil, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
       #
       # @param id [String]
       #
@@ -147,6 +143,8 @@ module WhopSDK
       # @param redirect_purchase_url [String, nil] The URL to redirect the customer to after a purchase.
       #
       # @param route [String, nil] The route of the product.
+      #
+      # @param store_page_config [WhopSDK::Models::ProductUpdateParams::StorePageConfig, nil] Configuration for a product on the company's store page.
       #
       # @param title [String, nil] The title of the product.
       #

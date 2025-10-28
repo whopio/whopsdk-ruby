@@ -17,7 +17,8 @@ module WhopSDK
         plan_ids: ::Array[String]?,
         promo_code_ids: ::Array[String]?,
         query: String?,
-        statuses: ::Array[WhopSDK::Models::member_statuses]?
+        statuses: ::Array[WhopSDK::Models::member_statuses]?,
+        user_ids: ::Array[String]?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -57,6 +58,8 @@ module WhopSDK
 
       attr_accessor statuses: ::Array[WhopSDK::Models::member_statuses]?
 
+      attr_accessor user_ids: ::Array[String]?
+
       def initialize: (
         company_id: String,
         ?access_level: WhopSDK::Models::access_level?,
@@ -74,6 +77,7 @@ module WhopSDK
         ?promo_code_ids: ::Array[String]?,
         ?query: String?,
         ?statuses: ::Array[WhopSDK::Models::member_statuses]?,
+        ?user_ids: ::Array[String]?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -94,6 +98,7 @@ module WhopSDK
         promo_code_ids: ::Array[String]?,
         query: String?,
         statuses: ::Array[WhopSDK::Models::member_statuses]?,
+        user_ids: ::Array[String]?,
         request_options: WhopSDK::RequestOptions
       }
 

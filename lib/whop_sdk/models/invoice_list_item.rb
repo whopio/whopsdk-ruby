@@ -34,7 +34,8 @@ module WhopSDK
       required :email_address, String, nil?: true
 
       # @!attribute fetch_invoice_token
-      #   The token to fetch the invoice.
+      #   A signed token that allows fetching the invoice data publically without being
+      #   authenticated.
       #
       #   @return [String]
       required :fetch_invoice_token, String
@@ -58,6 +59,9 @@ module WhopSDK
       required :user, -> { WhopSDK::InvoiceListItem::User }, nil?: true
 
       # @!method initialize(id:, created_at:, current_plan:, due_date:, email_address:, fetch_invoice_token:, number:, status:, user:)
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::InvoiceListItem} for more details.
+      #
       #   A statement that defines an amount due by a customer.
       #
       #   @param id [String] The ID of the invoice.
@@ -70,7 +74,7 @@ module WhopSDK
       #
       #   @param email_address [String, nil] The email address that the invoice was created for.
       #
-      #   @param fetch_invoice_token [String] The token to fetch the invoice.
+      #   @param fetch_invoice_token [String] A signed token that allows fetching the invoice data publically without being au
       #
       #   @param number [String] The number of the invoice.
       #

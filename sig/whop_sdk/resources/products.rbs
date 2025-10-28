@@ -4,8 +4,6 @@ module WhopSDK
       def create: (
         company_id: String,
         title: String,
-        ?access_pass_type: WhopSDK::Models::access_pass_type?,
-        ?banner_image: WhopSDK::ProductCreateParams::BannerImage?,
         ?business_type: WhopSDK::Models::business_types?,
         ?collect_shipping_address: bool?,
         ?custom_cta: WhopSDK::Models::custom_cta?,
@@ -51,6 +49,7 @@ module WhopSDK
         ?product_tax_code_id: String?,
         ?redirect_purchase_url: String?,
         ?route: String?,
+        ?store_page_config: WhopSDK::ProductUpdateParams::StorePageConfig?,
         ?title: String?,
         ?visibility: WhopSDK::Models::visibility?,
         ?request_options: WhopSDK::request_opts

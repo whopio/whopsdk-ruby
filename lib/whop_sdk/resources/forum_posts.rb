@@ -73,6 +73,39 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::ForumPostUpdateParams} for more details.
+      #
+      # Update an existing forum post
+      #
+      # @overload update(id, attachments: nil, content: nil, is_pinned: nil, title: nil, request_options: {})
+      #
+      # @param id [String]
+      #
+      # @param attachments [Array<WhopSDK::Models::ForumPostUpdateParams::Attachment>, nil] The attachments for this post
+      #
+      # @param content [String, nil] This is the main body of the post in Markdown format. Hidden if paywalled and us
+      #
+      # @param is_pinned [Boolean, nil] Whether the post is pinned. You can only pin a top level posts (not comments).
+      #
+      # @param title [String, nil] The title of the post. Only visible if paywalled.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::ForumPost]
+      #
+      # @see WhopSDK::Models::ForumPostUpdateParams
+      def update(id, params = {})
+        parsed, options = WhopSDK::ForumPostUpdateParams.dump_request(params)
+        @client.request(
+          method: :patch,
+          path: ["forum_posts/%1$s", id],
+          body: parsed,
+          model: WhopSDK::ForumPost,
+          options: options
+        )
+      end
+
       # Lists forum posts
       #
       # Required permissions:

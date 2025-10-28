@@ -1,0 +1,47 @@
+module WhopSDK
+  module Resources
+    class Courses
+      def create: (
+        experience_id: String,
+        title: String,
+        ?cover_image: String?,
+        ?tagline: String?,
+        ?thumbnail: WhopSDK::CourseCreateParams::Thumbnail?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Course
+
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Course
+
+      def update: (
+        String id,
+        ?certificate_after_completion_enabled: bool?,
+        ?chapters: ::Array[WhopSDK::CourseUpdateParams::Chapter]?,
+        ?cover_image: String?,
+        ?description: String?,
+        ?language: WhopSDK::Models::languages?,
+        ?require_completing_lessons_in_order: bool?,
+        ?tagline: String?,
+        ?thumbnail: WhopSDK::CourseUpdateParams::Thumbnail?,
+        ?title: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Course
+
+      def list: (
+        ?after: String?,
+        ?before: String?,
+        ?company_id: String?,
+        ?experience_id: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::CourseListResponse]
+
+      def delete: (String id, ?request_options: WhopSDK::request_opts) -> bool
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

@@ -52,7 +52,7 @@ module WhopSDK
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param billing_reasons [Array<Symbol, WhopSDK::Models::PaymentListParams::BillingReason>, nil] The billing reason for the payment
+      # @param billing_reasons [Array<Symbol, WhopSDK::Models::BillingReasons>, nil] The billing reason for the payment
       #
       # @param created_after [Time, nil] The minimum creation date to filter by
       #

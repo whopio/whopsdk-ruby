@@ -10,7 +10,7 @@ module WhopSDK
         company_id: String,
         ?after: String?,
         ?before: String?,
-        ?billing_reasons: ::Array[WhopSDK::Models::PaymentListParams::billing_reason]?,
+        ?billing_reasons: ::Array[WhopSDK::Models::billing_reasons]?,
         ?created_after: Time?,
         ?created_before: Time?,
         ?currencies: ::Array[WhopSDK::Models::currency]?,

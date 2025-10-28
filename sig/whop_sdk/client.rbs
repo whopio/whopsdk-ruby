@@ -70,6 +70,8 @@ module WhopSDK
 
     attr_reader course_lessons: WhopSDK::Resources::CourseLessons
 
+    attr_reader reviews: WhopSDK::Resources::Reviews
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

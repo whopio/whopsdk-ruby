@@ -1,0 +1,23 @@
+module WhopSDK
+  module Resources
+    class Reviews
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::ReviewRetrieveResponse
+
+      def list: (
+        product_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?max_stars: Integer?,
+        ?min_stars: Integer?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::ReviewListResponse]
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

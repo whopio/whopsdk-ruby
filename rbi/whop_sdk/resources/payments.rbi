@@ -40,9 +40,7 @@ module WhopSDK
           after: T.nilable(String),
           before: T.nilable(String),
           billing_reasons:
-            T.nilable(
-              T::Array[WhopSDK::PaymentListParams::BillingReason::OrSymbol]
-            ),
+            T.nilable(T::Array[WhopSDK::BillingReasons::OrSymbol]),
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
           currencies: T.nilable(T::Array[WhopSDK::Currency::OrSymbol]),

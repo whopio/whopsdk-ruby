@@ -31,14 +31,14 @@ module WhopSDK
       # @!attribute billing_reason
       #   The reason why a specific payment was billed
       #
-      #   @return [Symbol, WhopSDK::Models::PaymentListResponse::BillingReason, nil]
-      required :billing_reason, enum: -> { WhopSDK::Models::PaymentListResponse::BillingReason }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::BillingReasons, nil]
+      required :billing_reason, enum: -> { WhopSDK::BillingReasons }, nil?: true
 
       # @!attribute card_brand
       #   Possible card brands that a payment token can have
       #
-      #   @return [Symbol, WhopSDK::Models::PaymentListResponse::CardBrand, nil]
-      required :card_brand, enum: -> { WhopSDK::Models::PaymentListResponse::CardBrand }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::CardBrands, nil]
+      required :card_brand, enum: -> { WhopSDK::CardBrands }, nil?: true
 
       # @!attribute card_last4
       #   The last 4 digits of the card used to make the payment.
@@ -103,10 +103,8 @@ module WhopSDK
       # @!attribute payment_method_type
       #   The different types of payment methods that can be used.
       #
-      #   @return [Symbol, WhopSDK::Models::PaymentListResponse::PaymentMethodType, nil]
-      required :payment_method_type,
-               enum: -> { WhopSDK::Models::PaymentListResponse::PaymentMethodType },
-               nil?: true
+      #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes, nil]
+      required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }, nil?: true
 
       # @!attribute plan
       #   The plan attached to this payment.
@@ -210,9 +208,9 @@ module WhopSDK
       #
       #   @param billing_address [WhopSDK::Models::PaymentListResponse::BillingAddress, nil] The address of the user who made the payment.
       #
-      #   @param billing_reason [Symbol, WhopSDK::Models::PaymentListResponse::BillingReason, nil] The reason why a specific payment was billed
+      #   @param billing_reason [Symbol, WhopSDK::Models::BillingReasons, nil] The reason why a specific payment was billed
       #
-      #   @param card_brand [Symbol, WhopSDK::Models::PaymentListResponse::CardBrand, nil] Possible card brands that a payment token can have
+      #   @param card_brand [Symbol, WhopSDK::Models::CardBrands, nil] Possible card brands that a payment token can have
       #
       #   @param card_last4 [String, nil] The last 4 digits of the card used to make the payment.
       #
@@ -234,7 +232,7 @@ module WhopSDK
       #
       #   @param paid_at [Time, nil] The datetime the payment was paid
       #
-      #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentListResponse::PaymentMethodType, nil] The different types of payment methods that can be used.
+      #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes, nil] The different types of payment methods that can be used.
       #
       #   @param plan [WhopSDK::Models::PaymentListResponse::Plan, nil] The plan attached to this payment.
       #
@@ -326,50 +324,6 @@ module WhopSDK
         #   @param state [String, nil] The state of the address.
       end
 
-      # The reason why a specific payment was billed
-      #
-      # @see WhopSDK::Models::PaymentListResponse#billing_reason
-      module BillingReason
-        extend WhopSDK::Internal::Type::Enum
-
-        SUBSCRIPTION_CREATE = :subscription_create
-        SUBSCRIPTION_CYCLE = :subscription_cycle
-        SUBSCRIPTION_UPDATE = :subscription_update
-        ONE_TIME = :one_time
-        MANUAL = :manual
-        SUBSCRIPTION = :subscription
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
-
-      # Possible card brands that a payment token can have
-      #
-      # @see WhopSDK::Models::PaymentListResponse#card_brand
-      module CardBrand
-        extend WhopSDK::Internal::Type::Enum
-
-        MASTERCARD = :mastercard
-        VISA = :visa
-        AMEX = :amex
-        DISCOVER = :discover
-        UNIONPAY = :unionpay
-        JCB = :jcb
-        DINERS = :diners
-        LINK = :link
-        TROY = :troy
-        VISADANKORT = :visadankort
-        VISABANCONTACT = :visabancontact
-        CHINA_UNION_PAY = :china_union_pay
-        RUPAY = :rupay
-        JCBRUPAY = :jcbrupay
-        ELO = :elo
-        UNKNOWN = :unknown
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
-
       # @see WhopSDK::Models::PaymentListResponse#company
       class Company < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
@@ -442,101 +396,6 @@ module WhopSDK
         #   @param id [String] The internal ID of the membership.
         #
         #   @param status [Symbol, WhopSDK::Models::MembershipStatus] The state of the membership.
-      end
-
-      # The different types of payment methods that can be used.
-      #
-      # @see WhopSDK::Models::PaymentListResponse#payment_method_type
-      module PaymentMethodType
-        extend WhopSDK::Internal::Type::Enum
-
-        ACSS_DEBIT = :acss_debit
-        AFFIRM = :affirm
-        AFTERPAY_CLEARPAY = :afterpay_clearpay
-        ALIPAY = :alipay
-        ALMA = :alma
-        AMAZON_PAY = :amazon_pay
-        APPLE_PAY = :apple_pay
-        AU_BECS_DEBIT = :au_becs_debit
-        BACS_DEBIT = :bacs_debit
-        BANCONTACT = :bancontact
-        BILLIE = :billie
-        BLIK = :blik
-        BOLETO = :boleto
-        CARD = :card
-        CASHAPP = :cashapp
-        CRYPTO = :crypto
-        EPS = :eps
-        FPX = :fpx
-        GIROPAY = :giropay
-        GOOGLE_PAY = :google_pay
-        GRABPAY = :grabpay
-        IDEAL = :ideal
-        KAKAO_PAY = :kakao_pay
-        KLARNA = :klarna
-        KONBINI = :konbini
-        KR_CARD = :kr_card
-        LINK = :link
-        MOBILEPAY = :mobilepay
-        MULTIBANCO = :multibanco
-        NAVER_PAY = :naver_pay
-        NZ_BANK_ACCOUNT = :nz_bank_account
-        OXXO = :oxxo
-        P24 = :p24
-        PAY_BY_BANK = :pay_by_bank
-        PAYCO = :payco
-        PAYNOW = :paynow
-        PIX = :pix
-        PROMPTPAY = :promptpay
-        REVOLUT_PAY = :revolut_pay
-        SAMSUNG_PAY = :samsung_pay
-        SATISPAY = :satispay
-        SEPA_DEBIT = :sepa_debit
-        SOFORT = :sofort
-        SWISH = :swish
-        TWINT = :twint
-        US_BANK_ACCOUNT = :us_bank_account
-        WECHAT_PAY = :wechat_pay
-        ZIP = :zip
-        BIZUM = :bizum
-        CAPCHASE_PAY = :capchase_pay
-        KRIYA = :kriya
-        MONDU = :mondu
-        NG_WALLET = :ng_wallet
-        PAYPAY = :paypay
-        SEQURA = :sequra
-        SCALAPAY = :scalapay
-        VIPPS = :vipps
-        CUSTOM = :custom
-        CUSTOMER_BALANCE = :customer_balance
-        GOPAY = :gopay
-        MB_WAY = :mb_way
-        NG_BANK = :ng_bank
-        NG_BANK_TRANSFER = :ng_bank_transfer
-        NG_CARD = :ng_card
-        NG_MARKET = :ng_market
-        NG_USSD = :ng_ussd
-        PAYPAL = :paypal
-        PAYTO = :payto
-        QRIS = :qris
-        RECHNUNG = :rechnung
-        SOUTH_KOREA_MARKET = :south_korea_market
-        KR_MARKET = :kr_market
-        SHOPEEPAY = :shopeepay
-        UPI = :upi
-        SUNBIT = :sunbit
-        NETBANKING = :netbanking
-        ID_BANK_TRANSFER = :id_bank_transfer
-        DEMO_PAY = :demo_pay
-        SHOP_PAY = :shop_pay
-        APPLE = :apple
-        SEZZLE = :sezzle
-        COINBASE = :coinbase
-        SPLITIT = :splitit
-        UNKNOWN = :unknown
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
 
       # @see WhopSDK::Models::PaymentListResponse#plan

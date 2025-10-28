@@ -23,6 +23,12 @@ module WhopSDK
       #   @return [Array<WhopSDK::Models::Course::Chapter>]
       required :chapters, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Course::Chapter] }
 
+      # @!attribute created_at
+      #   The timestamp of when the course was created
+      #
+      #   @return [Time]
+      required :created_at, Time
+
       # @!attribute description
       #   A short description of the course
       #
@@ -61,7 +67,13 @@ module WhopSDK
       #   @return [String, nil]
       required :title, String, nil?: true
 
-      # @!method initialize(id:, certificate_after_completion_enabled:, chapters:, description:, language:, require_completing_lessons_in_order:, tagline:, thumbnail:, title:)
+      # @!attribute updated_at
+      #   The timestamp of when the course was last updated
+      #
+      #   @return [Time]
+      required :updated_at, Time
+
+      # @!method initialize(id:, certificate_after_completion_enabled:, chapters:, created_at:, description:, language:, require_completing_lessons_in_order:, tagline:, thumbnail:, title:, updated_at:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Course}
       #   for more details.
       #
@@ -72,6 +84,8 @@ module WhopSDK
       #   @param certificate_after_completion_enabled [Boolean, nil] Whether the course will award its students a PDF certificate after completing al
       #
       #   @param chapters [Array<WhopSDK::Models::Course::Chapter>] The chapters in this course
+      #
+      #   @param created_at [Time] The timestamp of when the course was created
       #
       #   @param description [String, nil] A short description of the course
       #
@@ -84,6 +98,8 @@ module WhopSDK
       #   @param thumbnail [WhopSDK::Models::Course::Thumbnail, nil] The thumbnail for the course
       #
       #   @param title [String, nil] The title of the course
+      #
+      #   @param updated_at [Time] The timestamp of when the course was last updated
 
       class Chapter < WhopSDK::Internal::Type::BaseModel
         # @!attribute id

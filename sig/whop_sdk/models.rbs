@@ -109,6 +109,10 @@ module WhopSDK
 
   class CourseRetrieveParams = WhopSDK::Models::CourseRetrieveParams
 
+  class CourseStudentListParams = WhopSDK::Models::CourseStudentListParams
+
+  class CourseStudentRetrieveParams = WhopSDK::Models::CourseStudentRetrieveParams
+
   class CourseUpdateParams = WhopSDK::Models::CourseUpdateParams
 
   module Currency = WhopSDK::Models::Currency

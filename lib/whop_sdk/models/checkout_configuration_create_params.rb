@@ -123,6 +123,15 @@ module WhopSDK
         #   @return [Symbol, WhopSDK::Models::TaxType, nil]
         optional :override_tax_type, enum: -> { WhopSDK::TaxType }, nil?: true
 
+        # @!attribute payment_method_configuration
+        #   The explicit payment method configuration for the plan. If not provided, the
+        #   platform or company's defaults will apply.
+        #
+        #   @return [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::PaymentMethodConfiguration, nil]
+        optional :payment_method_configuration,
+                 -> { WhopSDK::CheckoutConfigurationCreateParams::Plan::PaymentMethodConfiguration },
+                 nil?: true
+
         # @!attribute plan_type
         #   The type of plan that can be attached to an access pass
         #
@@ -172,7 +181,7 @@ module WhopSDK
         #   @return [Symbol, WhopSDK::Models::Visibility, nil]
         optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-        # @!method initialize(company_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, force_create_new_plan: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, plan_type: nil, product: nil, product_id: nil, release_method: nil, renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil)
+        # @!method initialize(company_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, force_create_new_plan: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, product: nil, product_id: nil, release_method: nil, renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan} for more details.
         #
@@ -199,6 +208,8 @@ module WhopSDK
         #   @param internal_notes [String, nil] A personal description or notes section for the business.
         #
         #   @param override_tax_type [Symbol, WhopSDK::Models::TaxType, nil] Whether or not the tax is included in a plan's price (or if it hasn't been set u
+        #
+        #   @param payment_method_configuration [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::PaymentMethodConfiguration, nil] The explicit payment method configuration for the plan. If not provided, the pla
         #
         #   @param plan_type [Symbol, WhopSDK::Models::PlanType, nil] The type of plan that can be attached to an access pass
         #
@@ -295,6 +306,47 @@ module WhopSDK
           #   @param id [String, nil] The ID of an existing attachment object. Use this when updating a resource and k
           #
           #   @param direct_upload_id [String, nil] This ID should be used the first time you upload an attachment. It is the ID of
+        end
+
+        # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Plan#payment_method_configuration
+        class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+          # @!attribute disabled
+          #   An array of payment method identifiers that are explicitly disabled. Only
+          #   applies if the include_platform_defaults is true.
+          #
+          #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
+          required :disabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+
+          # @!attribute enabled
+          #   An array of payment method identifiers that are explicitly enabled. This means
+          #   these payment methods will be shown on checkout. Example use case is to only
+          #   enable a specific payment method like cashapp, or extending the platform
+          #   defaults with additional methods.
+          #
+          #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
+          required :enabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+
+          # @!attribute include_platform_defaults
+          #   Whether Whop's platform default payment method enablement settings are included
+          #   in this configuration. The full list of default payment methods can be found in
+          #   the documentation at docs.whop.com/payments.
+          #
+          #   @return [Boolean]
+          required :include_platform_defaults, WhopSDK::Internal::Type::Boolean
+
+          # @!method initialize(disabled:, enabled:, include_platform_defaults:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::PaymentMethodConfiguration}
+          #   for more details.
+          #
+          #   The explicit payment method configuration for the plan. If not provided, the
+          #   platform or company's defaults will apply.
+          #
+          #   @param disabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly disabled. Only applie
+          #
+          #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
+          #
+          #   @param include_platform_defaults [Boolean] Whether Whop's platform default payment method enablement settings are included
         end
 
         # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Plan#product

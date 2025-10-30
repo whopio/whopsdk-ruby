@@ -12,6 +12,7 @@ module WhopSDK
         internal_notes: String?,
         offer_cancel_discount: bool?,
         override_tax_type: WhopSDK::Models::tax_type?,
+        payment_method_configuration: WhopSDK::PlanUpdateParams::PaymentMethodConfiguration?,
         renewal_price: Float?,
         stock: Integer?,
         strike_through_initial_price: Float?,
@@ -47,6 +48,8 @@ module WhopSDK
 
       attr_accessor override_tax_type: WhopSDK::Models::tax_type?
 
+      attr_accessor payment_method_configuration: WhopSDK::PlanUpdateParams::PaymentMethodConfiguration?
+
       attr_accessor renewal_price: Float?
 
       attr_accessor stock: Integer?
@@ -74,6 +77,7 @@ module WhopSDK
         ?internal_notes: String?,
         ?offer_cancel_discount: bool?,
         ?override_tax_type: WhopSDK::Models::tax_type?,
+        ?payment_method_configuration: WhopSDK::PlanUpdateParams::PaymentMethodConfiguration?,
         ?renewal_price: Float?,
         ?stock: Integer?,
         ?strike_through_initial_price: Float?,
@@ -96,6 +100,7 @@ module WhopSDK
         internal_notes: String?,
         offer_cancel_discount: bool?,
         override_tax_type: WhopSDK::Models::tax_type?,
+        payment_method_configuration: WhopSDK::PlanUpdateParams::PaymentMethodConfiguration?,
         renewal_price: Float?,
         stock: Integer?,
         strike_through_initial_price: Float?,
@@ -159,6 +164,33 @@ module WhopSDK
         def initialize: (?id: String?, ?direct_upload_id: String?) -> void
 
         def to_hash: -> { id: String?, direct_upload_id: String? }
+      end
+
+      type payment_method_configuration =
+        {
+          disabled: ::Array[WhopSDK::Models::payment_method_types],
+          enabled: ::Array[WhopSDK::Models::payment_method_types],
+          include_platform_defaults: bool
+        }
+
+      class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+        attr_accessor disabled: ::Array[WhopSDK::Models::payment_method_types]
+
+        attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
+
+        attr_accessor include_platform_defaults: bool
+
+        def initialize: (
+          disabled: ::Array[WhopSDK::Models::payment_method_types],
+          enabled: ::Array[WhopSDK::Models::payment_method_types],
+          include_platform_defaults: bool
+        ) -> void
+
+        def to_hash: -> {
+          disabled: ::Array[WhopSDK::Models::payment_method_types],
+          enabled: ::Array[WhopSDK::Models::payment_method_types],
+          include_platform_defaults: bool
+        }
       end
     end
   end

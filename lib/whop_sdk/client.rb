@@ -112,6 +112,9 @@ module WhopSDK
     # @return [WhopSDK::Resources::Reviews]
     attr_reader :reviews
 
+    # @return [WhopSDK::Resources::CourseStudents]
+    attr_reader :course_students
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -201,6 +204,7 @@ module WhopSDK
       @course_chapters = WhopSDK::Resources::CourseChapters.new(client: self)
       @course_lessons = WhopSDK::Resources::CourseLessons.new(client: self)
       @reviews = WhopSDK::Resources::Reviews.new(client: self)
+      @course_students = WhopSDK::Resources::CourseStudents.new(client: self)
     end
   end
 end

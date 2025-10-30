@@ -1,0 +1,106 @@
+module WhopSDK
+  module Models
+    type course_student_retrieve_response =
+      {
+        id: String,
+        completed_lessons_count: Integer,
+        completion_rate: Float,
+        course: WhopSDK::Models::CourseStudentRetrieveResponse::Course,
+        first_interaction_at: Time,
+        last_interaction_at: Time,
+        total_lessons_count: Integer,
+        user: WhopSDK::Models::CourseStudentRetrieveResponse::User
+      }
+
+    class CourseStudentRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor completed_lessons_count: Integer
+
+      attr_accessor completion_rate: Float
+
+      attr_accessor course: WhopSDK::Models::CourseStudentRetrieveResponse::Course
+
+      attr_accessor first_interaction_at: Time
+
+      attr_accessor last_interaction_at: Time
+
+      attr_accessor total_lessons_count: Integer
+
+      attr_accessor user: WhopSDK::Models::CourseStudentRetrieveResponse::User
+
+      def initialize: (
+        id: String,
+        completed_lessons_count: Integer,
+        completion_rate: Float,
+        course: WhopSDK::Models::CourseStudentRetrieveResponse::Course,
+        first_interaction_at: Time,
+        last_interaction_at: Time,
+        total_lessons_count: Integer,
+        user: WhopSDK::Models::CourseStudentRetrieveResponse::User
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        completed_lessons_count: Integer,
+        completion_rate: Float,
+        course: WhopSDK::Models::CourseStudentRetrieveResponse::Course,
+        first_interaction_at: Time,
+        last_interaction_at: Time,
+        total_lessons_count: Integer,
+        user: WhopSDK::Models::CourseStudentRetrieveResponse::User
+      }
+
+      type course =
+        {
+          id: String,
+          experience: WhopSDK::Models::CourseStudentRetrieveResponse::Course::Experience,
+          title: String?
+        }
+
+      class Course < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor experience: WhopSDK::Models::CourseStudentRetrieveResponse::Course::Experience
+
+        attr_accessor title: String?
+
+        def initialize: (
+          id: String,
+          experience: WhopSDK::Models::CourseStudentRetrieveResponse::Course::Experience,
+          title: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          experience: WhopSDK::Models::CourseStudentRetrieveResponse::Course::Experience,
+          title: String?
+        }
+
+        type experience = { id: String }
+
+        class Experience < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
+      end
+
+      type user = { id: String, name: String?, username: String }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
+      end
+    end
+  end
+end

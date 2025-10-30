@@ -65,6 +65,25 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::TaxType::OrSymbol)) }
       attr_accessor :override_tax_type
 
+      # The explicit payment method configuration for the plan. If not provided, the
+      # platform or company's defaults will apply.
+      sig do
+        returns(
+          T.nilable(WhopSDK::PlanCreateParams::PaymentMethodConfiguration)
+        )
+      end
+      attr_reader :payment_method_configuration
+
+      sig do
+        params(
+          payment_method_configuration:
+            T.nilable(
+              WhopSDK::PlanCreateParams::PaymentMethodConfiguration::OrHash
+            )
+        ).void
+      end
+      attr_writer :payment_method_configuration
+
       # The type of plan that can be attached to an access pass
       sig { returns(T.nilable(WhopSDK::PlanType::OrSymbol)) }
       attr_accessor :plan_type
@@ -122,6 +141,10 @@ module WhopSDK
           initial_price: T.nilable(Float),
           internal_notes: T.nilable(String),
           override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
+          payment_method_configuration:
+            T.nilable(
+              WhopSDK::PlanCreateParams::PaymentMethodConfiguration::OrHash
+            ),
           plan_type: T.nilable(WhopSDK::PlanType::OrSymbol),
           release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
           renewal_price: T.nilable(Float),
@@ -161,6 +184,9 @@ module WhopSDK
         # Whether or not the tax is included in a plan's price (or if it hasn't been set
         # up)
         override_tax_type: nil,
+        # The explicit payment method configuration for the plan. If not provided, the
+        # platform or company's defaults will apply.
+        payment_method_configuration: nil,
         # The type of plan that can be attached to an access pass
         plan_type: nil,
         # The methods of how a plan can be released.
@@ -203,6 +229,8 @@ module WhopSDK
             initial_price: T.nilable(Float),
             internal_notes: T.nilable(String),
             override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
+            payment_method_configuration:
+              T.nilable(WhopSDK::PlanCreateParams::PaymentMethodConfiguration),
             plan_type: T.nilable(WhopSDK::PlanType::OrSymbol),
             release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
             renewal_price: T.nilable(Float),
@@ -335,6 +363,71 @@ module WhopSDK
         sig do
           override.returns(
             { id: T.nilable(String), direct_upload_id: T.nilable(String) }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::PlanCreateParams::PaymentMethodConfiguration,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # An array of payment method identifiers that are explicitly disabled. Only
+        # applies if the include_platform_defaults is true.
+        sig { returns(T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]) }
+        attr_accessor :disabled
+
+        # An array of payment method identifiers that are explicitly enabled. This means
+        # these payment methods will be shown on checkout. Example use case is to only
+        # enable a specific payment method like cashapp, or extending the platform
+        # defaults with additional methods.
+        sig { returns(T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]) }
+        attr_accessor :enabled
+
+        # Whether Whop's platform default payment method enablement settings are included
+        # in this configuration. The full list of default payment methods can be found in
+        # the documentation at docs.whop.com/payments.
+        sig { returns(T::Boolean) }
+        attr_accessor :include_platform_defaults
+
+        # The explicit payment method configuration for the plan. If not provided, the
+        # platform or company's defaults will apply.
+        sig do
+          params(
+            disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+            enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+            include_platform_defaults: T::Boolean
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # An array of payment method identifiers that are explicitly disabled. Only
+          # applies if the include_platform_defaults is true.
+          disabled:,
+          # An array of payment method identifiers that are explicitly enabled. This means
+          # these payment methods will be shown on checkout. Example use case is to only
+          # enable a specific payment method like cashapp, or extending the platform
+          # defaults with additional methods.
+          enabled:,
+          # Whether Whop's platform default payment method enablement settings are included
+          # in this configuration. The full list of default payment methods can be found in
+          # the documentation at docs.whop.com/payments.
+          include_platform_defaults:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+              enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+              include_platform_defaults: T::Boolean
+            }
           )
         end
         def to_hash

@@ -34,13 +34,17 @@ module WhopSDK
       attr_accessor :expiration_days
 
       # An image for the plan. This will be visible on the product page to customers.
-      sig { returns(T.nilable(WhopSDK::PlanUpdateParams::Image)) }
-      attr_reader :image
-
       sig do
-        params(image: T.nilable(WhopSDK::PlanUpdateParams::Image::OrHash)).void
+        returns(
+          T.nilable(
+            T.any(
+              WhopSDK::PlanUpdateParams::Image::AttachmentInputWithDirectUploadID,
+              WhopSDK::PlanUpdateParams::Image::AttachmentInputWithID
+            )
+          )
+        )
       end
-      attr_writer :image
+      attr_accessor :image
 
       # An additional amount charged upon first purchase.
       sig { returns(T.nilable(Float)) }
@@ -120,7 +124,13 @@ module WhopSDK
             T.nilable(T::Array[WhopSDK::PlanUpdateParams::CustomField::OrHash]),
           description: T.nilable(String),
           expiration_days: T.nilable(Integer),
-          image: T.nilable(WhopSDK::PlanUpdateParams::Image::OrHash),
+          image:
+            T.nilable(
+              T.any(
+                WhopSDK::PlanUpdateParams::Image::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::PlanUpdateParams::Image::AttachmentInputWithID::OrHash
+              )
+            ),
           initial_price: T.nilable(Float),
           internal_notes: T.nilable(String),
           offer_cancel_discount: T.nilable(T::Boolean),
@@ -196,7 +206,13 @@ module WhopSDK
               T.nilable(T::Array[WhopSDK::PlanUpdateParams::CustomField]),
             description: T.nilable(String),
             expiration_days: T.nilable(Integer),
-            image: T.nilable(WhopSDK::PlanUpdateParams::Image),
+            image:
+              T.nilable(
+                T.any(
+                  WhopSDK::PlanUpdateParams::Image::AttachmentInputWithDirectUploadID,
+                  WhopSDK::PlanUpdateParams::Image::AttachmentInputWithID
+                )
+              ),
             initial_price: T.nilable(Float),
             internal_notes: T.nilable(String),
             offer_cancel_discount: T.nilable(T::Boolean),
@@ -293,49 +309,82 @@ module WhopSDK
         end
       end
 
-      class Image < WhopSDK::Internal::Type::BaseModel
-        OrHash =
+      # An image for the plan. This will be visible on the product page to customers.
+      module Image
+        extend WhopSDK::Internal::Type::Union
+
+        Variants =
           T.type_alias do
-            T.any(WhopSDK::PlanUpdateParams::Image, WhopSDK::Internal::AnyHash)
+            T.any(
+              WhopSDK::PlanUpdateParams::Image::AttachmentInputWithDirectUploadID,
+              WhopSDK::PlanUpdateParams::Image::AttachmentInputWithID
+            )
           end
 
-        # The ID of an existing attachment object. Use this when updating a resource and
-        # keeping a subset of the attachments. Don't use this unless you know what you're
-        # doing.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :id
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::PlanUpdateParams::Image::AttachmentInputWithDirectUploadID,
+                WhopSDK::Internal::AnyHash
+              )
+            end
 
-        # This ID should be used the first time you upload an attachment. It is the ID of
-        # the direct upload that was created when uploading the file to S3 via the
-        # mediaDirectUpload mutation.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :direct_upload_id
-
-        # An image for the plan. This will be visible on the product page to customers.
-        sig do
-          params(
-            id: T.nilable(String),
-            direct_upload_id: T.nilable(String)
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The ID of an existing attachment object. Use this when updating a resource and
-          # keeping a subset of the attachments. Don't use this unless you know what you're
-          # doing.
-          id: nil,
           # This ID should be used the first time you upload an attachment. It is the ID of
           # the direct upload that was created when uploading the file to S3 via the
           # mediaDirectUpload mutation.
-          direct_upload_id: nil
-        )
+          sig { returns(String) }
+          attr_accessor :direct_upload_id
+
+          # Input for an attachment
+          sig { params(direct_upload_id: String).returns(T.attached_class) }
+          def self.new(
+            # This ID should be used the first time you upload an attachment. It is the ID of
+            # the direct upload that was created when uploading the file to S3 via the
+            # mediaDirectUpload mutation.
+            direct_upload_id:
+          )
+          end
+
+          sig { override.returns({ direct_upload_id: String }) }
+          def to_hash
+          end
+        end
+
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::PlanUpdateParams::Image::AttachmentInputWithID,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The ID of an existing attachment object. Use this when updating a resource and
+          # keeping a subset of the attachments. Don't use this unless you know what you're
+          # doing.
+          sig { returns(String) }
+          attr_accessor :id
+
+          # Input for an attachment
+          sig { params(id: String).returns(T.attached_class) }
+          def self.new(
+            # The ID of an existing attachment object. Use this when updating a resource and
+            # keeping a subset of the attachments. Don't use this unless you know what you're
+            # doing.
+            id:
+          )
+          end
+
+          sig { override.returns({ id: String }) }
+          def to_hash
+          end
         end
 
         sig do
-          override.returns(
-            { id: T.nilable(String), direct_upload_id: T.nilable(String) }
-          )
+          override.returns(T::Array[WhopSDK::PlanUpdateParams::Image::Variants])
         end
-        def to_hash
+        def self.variants
         end
       end
 

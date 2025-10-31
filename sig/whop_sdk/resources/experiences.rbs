@@ -17,7 +17,7 @@ module WhopSDK
       def update: (
         String id,
         ?access_level: WhopSDK::Models::ExperienceUpdateParams::access_level?,
-        ?logo: WhopSDK::ExperienceUpdateParams::Logo?,
+        ?logo: WhopSDK::Models::ExperienceUpdateParams::logo?,
         ?name: String?,
         ?order: String?,
         ?section_id: String?,

@@ -4,7 +4,7 @@ module WhopSDK
       def create: (
         channel_id: String,
         content: String,
-        ?attachments: ::Array[WhopSDK::MessageCreateParams::Attachment]?,
+        ?attachments: ::Array[WhopSDK::Models::MessageCreateParams::attachment]?,
         ?poll: WhopSDK::MessageCreateParams::Poll?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Message
@@ -16,7 +16,7 @@ module WhopSDK
 
       def update: (
         String id,
-        ?attachments: ::Array[WhopSDK::MessageUpdateParams::Attachment]?,
+        ?attachments: ::Array[WhopSDK::Models::MessageUpdateParams::attachment]?,
         ?content: String?,
         ?is_pinned: bool?,
         ?request_options: WhopSDK::request_opts

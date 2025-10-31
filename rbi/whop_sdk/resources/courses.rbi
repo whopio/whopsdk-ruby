@@ -16,7 +16,13 @@ module WhopSDK
           cover_image: T.nilable(String),
           require_completing_lessons_in_order: T.nilable(T::Boolean),
           tagline: T.nilable(String),
-          thumbnail: T.nilable(WhopSDK::CourseCreateParams::Thumbnail::OrHash),
+          thumbnail:
+            T.nilable(
+              T.any(
+                WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithID::OrHash
+              )
+            ),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Course)
       end
@@ -71,7 +77,13 @@ module WhopSDK
           language: T.nilable(WhopSDK::Languages::OrSymbol),
           require_completing_lessons_in_order: T.nilable(T::Boolean),
           tagline: T.nilable(String),
-          thumbnail: T.nilable(WhopSDK::CourseUpdateParams::Thumbnail::OrHash),
+          thumbnail:
+            T.nilable(
+              T.any(
+                WhopSDK::CourseUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::CourseUpdateParams::Thumbnail::AttachmentInputWithID::OrHash
+              )
+            ),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Course)

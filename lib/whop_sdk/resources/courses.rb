@@ -26,7 +26,7 @@ module WhopSDK
       #
       # @param tagline [String, nil] The tagline of the course
       #
-      # @param thumbnail [WhopSDK::Models::CourseCreateParams::Thumbnail, nil] The thumbnail for the course in png, jpeg, or gif format
+      # @param thumbnail [WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithID, nil] The thumbnail for the course in png, jpeg, or gif format
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -94,7 +94,7 @@ module WhopSDK
       #
       # @param tagline [String, nil] A short tagline for the course
       #
-      # @param thumbnail [WhopSDK::Models::CourseUpdateParams::Thumbnail, nil] The thumbnail for the course in png, jpeg, or gif format
+      # @param thumbnail [WhopSDK::Models::CourseUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseUpdateParams::Thumbnail::AttachmentInputWithID, nil] The thumbnail for the course in png, jpeg, or gif format
       #
       # @param title [String, nil] The title of the course
       #

@@ -45,7 +45,9 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::PlanCreateParams::Image)) }
       attr_reader :image
 
-      sig { params(image: WhopSDK::PlanCreateParams::Image::OrHash).void }
+      sig do
+        params(image: T.nilable(WhopSDK::PlanCreateParams::Image::OrHash)).void
+      end
       attr_writer :image
 
       # An additional amount charged upon first purchase. Use only if a one time payment
@@ -135,7 +137,7 @@ module WhopSDK
             T.nilable(T::Array[WhopSDK::PlanCreateParams::CustomField::OrHash]),
           description: T.nilable(String),
           expiration_days: T.nilable(Integer),
-          image: WhopSDK::PlanCreateParams::Image::OrHash,
+          image: T.nilable(WhopSDK::PlanCreateParams::Image::OrHash),
           initial_price: T.nilable(Float),
           internal_notes: T.nilable(String),
           override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
@@ -223,7 +225,7 @@ module WhopSDK
               T.nilable(T::Array[WhopSDK::PlanCreateParams::CustomField]),
             description: T.nilable(String),
             expiration_days: T.nilable(Integer),
-            image: WhopSDK::PlanCreateParams::Image,
+            image: T.nilable(WhopSDK::PlanCreateParams::Image),
             initial_price: T.nilable(Float),
             internal_notes: T.nilable(String),
             override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),

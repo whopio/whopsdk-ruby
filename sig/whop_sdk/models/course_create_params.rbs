@@ -8,7 +8,7 @@ module WhopSDK
         cover_image: String?,
         require_completing_lessons_in_order: bool?,
         tagline: String?,
-        thumbnail: WhopSDK::CourseCreateParams::Thumbnail
+        thumbnail: WhopSDK::CourseCreateParams::Thumbnail?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -28,11 +28,7 @@ module WhopSDK
 
       attr_accessor tagline: String?
 
-      attr_reader thumbnail: WhopSDK::CourseCreateParams::Thumbnail?
-
-      def thumbnail=: (
-        WhopSDK::CourseCreateParams::Thumbnail
-      ) -> WhopSDK::CourseCreateParams::Thumbnail
+      attr_accessor thumbnail: WhopSDK::CourseCreateParams::Thumbnail?
 
       def initialize: (
         experience_id: String,
@@ -41,7 +37,7 @@ module WhopSDK
         ?cover_image: String?,
         ?require_completing_lessons_in_order: bool?,
         ?tagline: String?,
-        ?thumbnail: WhopSDK::CourseCreateParams::Thumbnail,
+        ?thumbnail: WhopSDK::CourseCreateParams::Thumbnail?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -52,7 +48,7 @@ module WhopSDK
         cover_image: String?,
         require_completing_lessons_in_order: bool?,
         tagline: String?,
-        thumbnail: WhopSDK::CourseCreateParams::Thumbnail,
+        thumbnail: WhopSDK::CourseCreateParams::Thumbnail?,
         request_options: WhopSDK::RequestOptions
       }
 

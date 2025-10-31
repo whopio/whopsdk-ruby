@@ -113,7 +113,8 @@ module WhopSDK
       sig do
         params(
           id: String,
-          banner_image: WhopSDK::ProductUpdateParams::BannerImage::OrHash,
+          banner_image:
+            T.nilable(WhopSDK::ProductUpdateParams::BannerImage::OrHash),
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           collect_shipping_address: T.nilable(T::Boolean),
           custom_cta: T.nilable(WhopSDK::CustomCta::OrSymbol),

@@ -17,7 +17,8 @@ module WhopSDK
 
       sig do
         params(
-          banner_image: WhopSDK::ProductUpdateParams::BannerImage::OrHash
+          banner_image:
+            T.nilable(WhopSDK::ProductUpdateParams::BannerImage::OrHash)
         ).void
       end
       attr_writer :banner_image
@@ -106,7 +107,8 @@ module WhopSDK
 
       sig do
         params(
-          banner_image: WhopSDK::ProductUpdateParams::BannerImage::OrHash,
+          banner_image:
+            T.nilable(WhopSDK::ProductUpdateParams::BannerImage::OrHash),
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           collect_shipping_address: T.nilable(T::Boolean),
           custom_cta: T.nilable(WhopSDK::CustomCta::OrSymbol),
@@ -179,7 +181,7 @@ module WhopSDK
       sig do
         override.returns(
           {
-            banner_image: WhopSDK::ProductUpdateParams::BannerImage,
+            banner_image: T.nilable(WhopSDK::ProductUpdateParams::BannerImage),
             business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
             collect_shipping_address: T.nilable(T::Boolean),
             custom_cta: T.nilable(WhopSDK::CustomCta::OrSymbol),

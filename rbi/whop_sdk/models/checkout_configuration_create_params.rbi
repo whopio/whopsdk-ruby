@@ -142,7 +142,9 @@ module WhopSDK
         sig do
           params(
             image:
-              WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::OrHash
+              T.nilable(
+                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::OrHash
+              )
           ).void
         end
         attr_writer :image
@@ -244,7 +246,9 @@ module WhopSDK
             expiration_days: T.nilable(Integer),
             force_create_new_plan: T.nilable(T::Boolean),
             image:
-              WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::OrHash,
+              T.nilable(
+                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::OrHash
+              ),
             initial_price: T.nilable(Float),
             internal_notes: T.nilable(String),
             override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
@@ -328,7 +332,10 @@ module WhopSDK
               description: T.nilable(String),
               expiration_days: T.nilable(Integer),
               force_create_new_plan: T.nilable(T::Boolean),
-              image: WhopSDK::CheckoutConfigurationCreateParams::Plan::Image,
+              image:
+                T.nilable(
+                  WhopSDK::CheckoutConfigurationCreateParams::Plan::Image
+                ),
               initial_price: T.nilable(Float),
               internal_notes: T.nilable(String),
               override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),

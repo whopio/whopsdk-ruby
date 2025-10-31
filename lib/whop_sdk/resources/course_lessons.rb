@@ -69,7 +69,7 @@ module WhopSDK
       #
       # - `courses:update`
       #
-      # @overload update(id, assessment_completion_requirement: nil, assessment_questions: nil, attachments: nil, content: nil, days_from_course_start_until_unlock: nil, lesson_type: nil, main_pdf: nil, mux_asset_id: nil, title: nil, visibility: nil, request_options: {})
+      # @overload update(id, assessment_completion_requirement: nil, assessment_questions: nil, attachments: nil, content: nil, days_from_course_start_until_unlock: nil, lesson_type: nil, main_pdf: nil, max_attempts: nil, mux_asset_id: nil, title: nil, visibility: nil, request_options: {})
       #
       # @param id [String]
       #
@@ -86,6 +86,8 @@ module WhopSDK
       # @param lesson_type [Symbol, WhopSDK::Models::LessonTypes, nil] The available types for a lesson
       #
       # @param main_pdf [WhopSDK::Models::CourseLessonUpdateParams::MainPdf, nil] The main PDF file for this lesson
+      #
+      # @param max_attempts [Integer, nil] Maximum number of attempts allowed for assessments
       #
       # @param mux_asset_id [String, nil] The ID of the Mux asset to attach to this lesson for video lessons
       #

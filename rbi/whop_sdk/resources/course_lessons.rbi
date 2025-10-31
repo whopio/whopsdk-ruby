@@ -74,6 +74,7 @@ module WhopSDK
           lesson_type: T.nilable(WhopSDK::LessonTypes::OrSymbol),
           main_pdf:
             T.nilable(WhopSDK::CourseLessonUpdateParams::MainPdf::OrHash),
+          max_attempts: T.nilable(Integer),
           mux_asset_id: T.nilable(String),
           title: T.nilable(String),
           visibility: T.nilable(WhopSDK::LessonVisibilities::OrSymbol),
@@ -98,6 +99,8 @@ module WhopSDK
         lesson_type: nil,
         # The main PDF file for this lesson
         main_pdf: nil,
+        # Maximum number of attempts allowed for assessments
+        max_attempts: nil,
         # The ID of the Mux asset to attach to this lesson for video lessons
         mux_asset_id: nil,
         # The title of the lesson

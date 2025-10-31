@@ -4,7 +4,7 @@ module WhopSDK
       {
         channel_id: String,
         content: String,
-        attachments: ::Array[WhopSDK::MessageCreateParams::Attachment]?,
+        attachments: ::Array[WhopSDK::Models::MessageCreateParams::attachment]?,
         poll: WhopSDK::MessageCreateParams::Poll?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -17,14 +17,14 @@ module WhopSDK
 
       attr_accessor content: String
 
-      attr_accessor attachments: ::Array[WhopSDK::MessageCreateParams::Attachment]?
+      attr_accessor attachments: ::Array[WhopSDK::Models::MessageCreateParams::attachment]?
 
       attr_accessor poll: WhopSDK::MessageCreateParams::Poll?
 
       def initialize: (
         channel_id: String,
         content: String,
-        ?attachments: ::Array[WhopSDK::MessageCreateParams::Attachment]?,
+        ?attachments: ::Array[WhopSDK::Models::MessageCreateParams::attachment]?,
         ?poll: WhopSDK::MessageCreateParams::Poll?,
         ?request_options: WhopSDK::request_opts
       ) -> void
@@ -32,21 +32,39 @@ module WhopSDK
       def to_hash: -> {
         channel_id: String,
         content: String,
-        attachments: ::Array[WhopSDK::MessageCreateParams::Attachment]?,
+        attachments: ::Array[WhopSDK::Models::MessageCreateParams::attachment]?,
         poll: WhopSDK::MessageCreateParams::Poll?,
         request_options: WhopSDK::RequestOptions
       }
 
-      type attachment = { id: String?, direct_upload_id: String? }
+      type attachment =
+        WhopSDK::MessageCreateParams::Attachment::DirectUploadID
+        | WhopSDK::MessageCreateParams::Attachment::ID
 
-      class Attachment < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String?
+      module Attachment
+        extend WhopSDK::Internal::Type::Union
 
-        attr_accessor direct_upload_id: String?
+        type direct_upload_id = { direct_upload_id: String }
 
-        def initialize: (?id: String?, ?direct_upload_id: String?) -> void
+        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor direct_upload_id: String
 
-        def to_hash: -> { id: String?, direct_upload_id: String? }
+          def initialize: (direct_upload_id: String) -> void
+
+          def to_hash: -> { direct_upload_id: String }
+        end
+
+        type id = { id: String }
+
+        class ID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
+
+        def self?.variants: -> ::Array[WhopSDK::Models::MessageCreateParams::attachment]
       end
 
       type poll =

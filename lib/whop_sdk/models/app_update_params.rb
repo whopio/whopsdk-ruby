@@ -46,8 +46,8 @@ module WhopSDK
       # @!attribute icon
       #   The icon for the app
       #
-      #   @return [WhopSDK::Models::AppUpdateParams::Icon, nil]
-      optional :icon, -> { WhopSDK::AppUpdateParams::Icon }, nil?: true
+      #   @return [WhopSDK::Models::AppUpdateParams::Icon::DirectUploadID, WhopSDK::Models::AppUpdateParams::Icon::ID, nil]
+      optional :icon, union: -> { WhopSDK::AppUpdateParams::Icon }, nil?: true
 
       # @!attribute name
       #   The name of the app
@@ -82,7 +82,7 @@ module WhopSDK
       #
       #   @param experience_path [String, nil] The path for the hub view of the app
       #
-      #   @param icon [WhopSDK::Models::AppUpdateParams::Icon, nil] The icon for the app
+      #   @param icon [WhopSDK::Models::AppUpdateParams::Icon::DirectUploadID, WhopSDK::Models::AppUpdateParams::Icon::ID, nil] The icon for the app
       #
       #   @param name [String, nil] The name of the app
       #
@@ -92,32 +92,54 @@ module WhopSDK
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      class Icon < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The ID of an existing attachment object. Use this when updating a resource and
-        #   keeping a subset of the attachments. Don't use this unless you know what you're
-        #   doing.
-        #
-        #   @return [String, nil]
-        optional :id, String, nil?: true
+      # The icon for the app
+      module Icon
+        extend WhopSDK::Internal::Type::Union
 
-        # @!attribute direct_upload_id
-        #   This ID should be used the first time you upload an attachment. It is the ID of
-        #   the direct upload that was created when uploading the file to S3 via the
-        #   mediaDirectUpload mutation.
-        #
-        #   @return [String, nil]
-        optional :direct_upload_id, String, nil?: true
+        # Input for an attachment
+        variant -> { WhopSDK::AppUpdateParams::Icon::DirectUploadID }
 
-        # @!method initialize(id: nil, direct_upload_id: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::AppUpdateParams::Icon} for more details.
-        #
-        #   The icon for the app
-        #
-        #   @param id [String, nil] The ID of an existing attachment object. Use this when updating a resource and k
-        #
-        #   @param direct_upload_id [String, nil] This ID should be used the first time you upload an attachment. It is the ID of
+        # Input for an attachment
+        variant -> { WhopSDK::AppUpdateParams::Icon::ID }
+
+        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+          # @!attribute direct_upload_id
+          #   This ID should be used the first time you upload an attachment. It is the ID of
+          #   the direct upload that was created when uploading the file to S3 via the
+          #   mediaDirectUpload mutation.
+          #
+          #   @return [String]
+          required :direct_upload_id, String
+
+          # @!method initialize(direct_upload_id:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::AppUpdateParams::Icon::DirectUploadID} for more details.
+          #
+          #   Input for an attachment
+          #
+          #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
+        end
+
+        class ID < WhopSDK::Internal::Type::BaseModel
+          # @!attribute id
+          #   The ID of an existing attachment object. Use this when updating a resource and
+          #   keeping a subset of the attachments. Don't use this unless you know what you're
+          #   doing.
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!method initialize(id:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::AppUpdateParams::Icon::ID} for more details.
+          #
+          #   Input for an attachment
+          #
+          #   @param id [String] The ID of an existing attachment object. Use this when updating a resource and k
+        end
+
+        # @!method self.variants
+        #   @return [Array(WhopSDK::Models::AppUpdateParams::Icon::DirectUploadID, WhopSDK::Models::AppUpdateParams::Icon::ID)]
       end
 
       # These are the scopes an app can request on behalf of a user

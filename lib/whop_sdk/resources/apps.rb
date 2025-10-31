@@ -74,7 +74,7 @@ module WhopSDK
       #
       # @param experience_path [String, nil] The path for the hub view of the app
       #
-      # @param icon [WhopSDK::Models::AppUpdateParams::Icon, nil] The icon for the app
+      # @param icon [WhopSDK::Models::AppUpdateParams::Icon::DirectUploadID, WhopSDK::Models::AppUpdateParams::Icon::ID, nil] The icon for the app
       #
       # @param name [String, nil] The name of the app
       #

@@ -9,7 +9,7 @@ module WhopSDK
         custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?,
         description: String?,
         expiration_days: Integer?,
-        image: WhopSDK::PlanCreateParams::Image?,
+        image: WhopSDK::Models::PlanCreateParams::image?,
         initial_price: Float?,
         internal_notes: String?,
         override_tax_type: WhopSDK::Models::tax_type?,
@@ -45,7 +45,7 @@ module WhopSDK
 
       attr_accessor expiration_days: Integer?
 
-      attr_accessor image: WhopSDK::PlanCreateParams::Image?
+      attr_accessor image: WhopSDK::Models::PlanCreateParams::image?
 
       attr_accessor initial_price: Float?
 
@@ -83,7 +83,7 @@ module WhopSDK
         ?custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?,
         ?description: String?,
         ?expiration_days: Integer?,
-        ?image: WhopSDK::PlanCreateParams::Image?,
+        ?image: WhopSDK::Models::PlanCreateParams::image?,
         ?initial_price: Float?,
         ?internal_notes: String?,
         ?override_tax_type: WhopSDK::Models::tax_type?,
@@ -109,7 +109,7 @@ module WhopSDK
         custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?,
         description: String?,
         expiration_days: Integer?,
-        image: WhopSDK::PlanCreateParams::Image?,
+        image: WhopSDK::Models::PlanCreateParams::image?,
         initial_price: Float?,
         internal_notes: String?,
         override_tax_type: WhopSDK::Models::tax_type?,
@@ -169,16 +169,34 @@ module WhopSDK
         }
       end
 
-      type image = { id: String?, direct_upload_id: String? }
+      type image =
+        WhopSDK::PlanCreateParams::Image::DirectUploadID
+        | WhopSDK::PlanCreateParams::Image::ID
 
-      class Image < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String?
+      module Image
+        extend WhopSDK::Internal::Type::Union
 
-        attr_accessor direct_upload_id: String?
+        type direct_upload_id = { direct_upload_id: String }
 
-        def initialize: (?id: String?, ?direct_upload_id: String?) -> void
+        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor direct_upload_id: String
 
-        def to_hash: -> { id: String?, direct_upload_id: String? }
+          def initialize: (direct_upload_id: String) -> void
+
+          def to_hash: -> { direct_upload_id: String }
+        end
+
+        type id = { id: String }
+
+        class ID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
+
+        def self?.variants: -> ::Array[WhopSDK::Models::PlanCreateParams::image]
       end
 
       type payment_method_configuration =

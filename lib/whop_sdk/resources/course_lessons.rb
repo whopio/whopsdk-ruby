@@ -77,7 +77,7 @@ module WhopSDK
       #
       # @param assessment_questions [Array<WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion>, nil] Assessment questions for quiz/knowledge check lessons. Replaces all existing que
       #
-      # @param attachments [Array<WhopSDK::Models::CourseLessonUpdateParams::Attachment>, nil] General attachments for the lesson (PDFs, files, etc). Replaces all existing att
+      # @param attachments [Array<WhopSDK::Models::CourseLessonUpdateParams::Attachment::DirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::Attachment::ID>, nil] General attachments for the lesson (PDFs, files, etc). Replaces all existing att
       #
       # @param content [String, nil] The content of the lesson
       #
@@ -85,7 +85,7 @@ module WhopSDK
       #
       # @param lesson_type [Symbol, WhopSDK::Models::LessonTypes, nil] The available types for a lesson
       #
-      # @param main_pdf [WhopSDK::Models::CourseLessonUpdateParams::MainPdf, nil] The main PDF file for this lesson
+      # @param main_pdf [WhopSDK::Models::CourseLessonUpdateParams::MainPdf::DirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::MainPdf::ID, nil] The main PDF file for this lesson
       #
       # @param max_attempts [Integer, nil] Maximum number of attempts allowed for assessments
       #

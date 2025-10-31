@@ -8,7 +8,7 @@ module WhopSDK
         cover_image: String?,
         require_completing_lessons_in_order: bool?,
         tagline: String?,
-        thumbnail: WhopSDK::CourseCreateParams::Thumbnail?
+        thumbnail: WhopSDK::Models::CourseCreateParams::thumbnail?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -28,7 +28,7 @@ module WhopSDK
 
       attr_accessor tagline: String?
 
-      attr_accessor thumbnail: WhopSDK::CourseCreateParams::Thumbnail?
+      attr_accessor thumbnail: WhopSDK::Models::CourseCreateParams::thumbnail?
 
       def initialize: (
         experience_id: String,
@@ -37,7 +37,7 @@ module WhopSDK
         ?cover_image: String?,
         ?require_completing_lessons_in_order: bool?,
         ?tagline: String?,
-        ?thumbnail: WhopSDK::CourseCreateParams::Thumbnail?,
+        ?thumbnail: WhopSDK::Models::CourseCreateParams::thumbnail?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -48,20 +48,38 @@ module WhopSDK
         cover_image: String?,
         require_completing_lessons_in_order: bool?,
         tagline: String?,
-        thumbnail: WhopSDK::CourseCreateParams::Thumbnail?,
+        thumbnail: WhopSDK::Models::CourseCreateParams::thumbnail?,
         request_options: WhopSDK::RequestOptions
       }
 
-      type thumbnail = { id: String?, direct_upload_id: String? }
+      type thumbnail =
+        WhopSDK::CourseCreateParams::Thumbnail::DirectUploadID
+        | WhopSDK::CourseCreateParams::Thumbnail::ID
 
-      class Thumbnail < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String?
+      module Thumbnail
+        extend WhopSDK::Internal::Type::Union
 
-        attr_accessor direct_upload_id: String?
+        type direct_upload_id = { direct_upload_id: String }
 
-        def initialize: (?id: String?, ?direct_upload_id: String?) -> void
+        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor direct_upload_id: String
 
-        def to_hash: -> { id: String?, direct_upload_id: String? }
+          def initialize: (direct_upload_id: String) -> void
+
+          def to_hash: -> { direct_upload_id: String }
+        end
+
+        type id = { id: String }
+
+        class ID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
+
+        def self?.variants: -> ::Array[WhopSDK::Models::CourseCreateParams::thumbnail]
       end
     end
   end

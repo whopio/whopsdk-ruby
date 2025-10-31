@@ -16,7 +16,7 @@ module WhopSDK
       #
       # @param experience_id [String] The experience to create this post in
       #
-      # @param attachments [Array<WhopSDK::Models::ForumPostCreateParams::Attachment>, nil] The attachments for this post
+      # @param attachments [Array<WhopSDK::Models::ForumPostCreateParams::Attachment::DirectUploadID, WhopSDK::Models::ForumPostCreateParams::Attachment::ID>, nil] The attachments for this post
       #
       # @param content [String, nil] This is the main body of the post in Markdown format. Hidden if paywalled and us
       #
@@ -82,7 +82,7 @@ module WhopSDK
       #
       # @param id [String]
       #
-      # @param attachments [Array<WhopSDK::Models::ForumPostUpdateParams::Attachment>, nil] The attachments for this post
+      # @param attachments [Array<WhopSDK::Models::ForumPostUpdateParams::Attachment::DirectUploadID, WhopSDK::Models::ForumPostUpdateParams::Attachment::ID>, nil] The attachments for this post
       #
       # @param content [String, nil] This is the main body of the post in Markdown format. Hidden if paywalled and us
       #

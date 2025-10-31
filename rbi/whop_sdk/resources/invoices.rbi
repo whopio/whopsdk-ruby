@@ -14,14 +14,14 @@ module WhopSDK
           collection_method: WhopSDK::CollectionMethod::OrSymbol,
           company_id: String,
           due_date: Time,
+          member_id: String,
           plan: WhopSDK::InvoiceCreateParams::Plan::OrHash,
+          product: WhopSDK::InvoiceCreateParams::Product::OrHash,
+          email_address: String,
+          product_id: String,
           charge_buyer_fee: T.nilable(T::Boolean),
           customer_name: T.nilable(String),
-          email_address: T.nilable(String),
-          member_id: T.nilable(String),
           payment_token_id: T.nilable(String),
-          product: T.nilable(WhopSDK::InvoiceCreateParams::Product::OrHash),
-          product_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::InvoiceCreateResponse)
       end
@@ -33,30 +33,30 @@ module WhopSDK
         company_id:,
         # The date the invoice is due, if applicable.
         due_date:,
+        # The member ID to create this invoice for. Include this if you want to create an
+        # invoice for an existing member. If you do not have a member ID, you must provide
+        # an email_address and customer_name.
+        member_id:,
         # The properties of the plan to create for this invoice.
         plan:,
+        # The properties of the product to create for this invoice. Include this if you
+        # want to create an invoice for a new product.
+        product:,
+        # The email address to create this invoice for. This is required if you want to
+        # create an invoice for a user who does not have a member of your company yet.
+        email_address:,
+        # The product ID to create this invoice for. Include this if you want to create an
+        # invoice for an existing product.
+        product_id:,
         # Whether or not to charge the customer a buyer fee.
         charge_buyer_fee: nil,
         # The name of the customer to create this invoice for. This is required if you
         # want to create an invoice for a customer who does not have a member of your
         # company yet.
         customer_name: nil,
-        # The email address to create this invoice for. This is required if you want to
-        # create an invoice for a user who does not have a member of your company yet.
-        email_address: nil,
-        # The member ID to create this invoice for. Include this if you want to create an
-        # invoice for an existing member. If you do not have a member ID, you must provide
-        # an email_address and customer_name.
-        member_id: nil,
         # The payment token ID to use for this invoice. If using charge_automatically, you
         # must provide a payment_token.
         payment_token_id: nil,
-        # The properties of the product to create for this invoice. Include this if you
-        # want to create an invoice for a new product.
-        product: nil,
-        # The product ID to create this invoice for. Include this if you want to create an
-        # invoice for an existing product.
-        product_id: nil,
         request_options: {}
       )
       end

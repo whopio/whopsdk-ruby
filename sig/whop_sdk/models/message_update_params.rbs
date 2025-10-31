@@ -2,7 +2,7 @@ module WhopSDK
   module Models
     type message_update_params =
       {
-        attachments: ::Array[WhopSDK::MessageUpdateParams::Attachment]?,
+        attachments: ::Array[WhopSDK::Models::MessageUpdateParams::attachment]?,
         content: String?,
         is_pinned: bool?
       }
@@ -12,36 +12,54 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor attachments: ::Array[WhopSDK::MessageUpdateParams::Attachment]?
+      attr_accessor attachments: ::Array[WhopSDK::Models::MessageUpdateParams::attachment]?
 
       attr_accessor content: String?
 
       attr_accessor is_pinned: bool?
 
       def initialize: (
-        ?attachments: ::Array[WhopSDK::MessageUpdateParams::Attachment]?,
+        ?attachments: ::Array[WhopSDK::Models::MessageUpdateParams::attachment]?,
         ?content: String?,
         ?is_pinned: bool?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        attachments: ::Array[WhopSDK::MessageUpdateParams::Attachment]?,
+        attachments: ::Array[WhopSDK::Models::MessageUpdateParams::attachment]?,
         content: String?,
         is_pinned: bool?,
         request_options: WhopSDK::RequestOptions
       }
 
-      type attachment = { id: String?, direct_upload_id: String? }
+      type attachment =
+        WhopSDK::MessageUpdateParams::Attachment::DirectUploadID
+        | WhopSDK::MessageUpdateParams::Attachment::ID
 
-      class Attachment < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String?
+      module Attachment
+        extend WhopSDK::Internal::Type::Union
 
-        attr_accessor direct_upload_id: String?
+        type direct_upload_id = { direct_upload_id: String }
 
-        def initialize: (?id: String?, ?direct_upload_id: String?) -> void
+        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor direct_upload_id: String
 
-        def to_hash: -> { id: String?, direct_upload_id: String? }
+          def initialize: (direct_upload_id: String) -> void
+
+          def to_hash: -> { direct_upload_id: String }
+        end
+
+        type id = { id: String }
+
+        class ID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
+
+        def self?.variants: -> ::Array[WhopSDK::Models::MessageUpdateParams::attachment]
       end
     end
   end

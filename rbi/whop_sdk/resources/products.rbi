@@ -114,7 +114,12 @@ module WhopSDK
         params(
           id: String,
           banner_image:
-            T.nilable(WhopSDK::ProductUpdateParams::BannerImage::OrHash),
+            T.nilable(
+              T.any(
+                WhopSDK::ProductUpdateParams::BannerImage::DirectUploadID::OrHash,
+                WhopSDK::ProductUpdateParams::BannerImage::ID::OrHash
+              )
+            ),
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           collect_shipping_address: T.nilable(T::Boolean),
           custom_cta: T.nilable(WhopSDK::CustomCta::OrSymbol),

@@ -12,15 +12,15 @@ module WhopSDK
       # - `access_pass:create`
       # - `access_pass:update`
       #
-      # @overload create(affiliate_code: nil, metadata: nil, plan: nil, plan_id: nil, redirect_url: nil, request_options: {})
+      # @overload create(plan:, plan_id:, affiliate_code: nil, metadata: nil, redirect_url: nil, request_options: {})
+      #
+      # @param plan [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan] Pass this object to create a new plan for this checkout configuration
+      #
+      # @param plan_id [String] The ID of the plan to use for the checkout configuration
       #
       # @param affiliate_code [String, nil] The affiliate code to use for the checkout configuration
       #
       # @param metadata [Hash{Symbol=>Object}, nil] The metadata to use for the checkout configuration
-      #
-      # @param plan [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan, nil] Pass this object to create a new plan for this checkout configuration
-      #
-      # @param plan_id [String, nil] The ID of the plan to use for the checkout configuration
       #
       # @param redirect_url [String, nil] The URL to redirect the user to after the checkout configuration is created
       #
@@ -29,7 +29,7 @@ module WhopSDK
       # @return [WhopSDK::Models::CheckoutConfiguration]
       #
       # @see WhopSDK::Models::CheckoutConfigurationCreateParams
-      def create(params = {})
+      def create(params)
         parsed, options = WhopSDK::CheckoutConfigurationCreateParams.dump_request(params)
         @client.request(
           method: :post,

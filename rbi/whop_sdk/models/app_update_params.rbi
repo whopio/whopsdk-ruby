@@ -36,13 +36,17 @@ module WhopSDK
       attr_accessor :experience_path
 
       # The icon for the app
-      sig { returns(T.nilable(WhopSDK::AppUpdateParams::Icon)) }
-      attr_reader :icon
-
       sig do
-        params(icon: T.nilable(WhopSDK::AppUpdateParams::Icon::OrHash)).void
+        returns(
+          T.nilable(
+            T.any(
+              WhopSDK::AppUpdateParams::Icon::DirectUploadID,
+              WhopSDK::AppUpdateParams::Icon::ID
+            )
+          )
+        )
       end
-      attr_writer :icon
+      attr_accessor :icon
 
       # The name of the app
       sig { returns(T.nilable(String)) }
@@ -68,7 +72,13 @@ module WhopSDK
           description: T.nilable(String),
           discover_path: T.nilable(String),
           experience_path: T.nilable(String),
-          icon: T.nilable(WhopSDK::AppUpdateParams::Icon::OrHash),
+          icon:
+            T.nilable(
+              T.any(
+                WhopSDK::AppUpdateParams::Icon::DirectUploadID::OrHash,
+                WhopSDK::AppUpdateParams::Icon::ID::OrHash
+              )
+            ),
           name: T.nilable(String),
           required_scopes:
             T.nilable(
@@ -112,7 +122,13 @@ module WhopSDK
             description: T.nilable(String),
             discover_path: T.nilable(String),
             experience_path: T.nilable(String),
-            icon: T.nilable(WhopSDK::AppUpdateParams::Icon),
+            icon:
+              T.nilable(
+                T.any(
+                  WhopSDK::AppUpdateParams::Icon::DirectUploadID,
+                  WhopSDK::AppUpdateParams::Icon::ID
+                )
+              ),
             name: T.nilable(String),
             required_scopes:
               T.nilable(
@@ -126,49 +142,82 @@ module WhopSDK
       def to_hash
       end
 
-      class Icon < WhopSDK::Internal::Type::BaseModel
-        OrHash =
+      # The icon for the app
+      module Icon
+        extend WhopSDK::Internal::Type::Union
+
+        Variants =
           T.type_alias do
-            T.any(WhopSDK::AppUpdateParams::Icon, WhopSDK::Internal::AnyHash)
+            T.any(
+              WhopSDK::AppUpdateParams::Icon::DirectUploadID,
+              WhopSDK::AppUpdateParams::Icon::ID
+            )
           end
 
-        # The ID of an existing attachment object. Use this when updating a resource and
-        # keeping a subset of the attachments. Don't use this unless you know what you're
-        # doing.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :id
+        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::AppUpdateParams::Icon::DirectUploadID,
+                WhopSDK::Internal::AnyHash
+              )
+            end
 
-        # This ID should be used the first time you upload an attachment. It is the ID of
-        # the direct upload that was created when uploading the file to S3 via the
-        # mediaDirectUpload mutation.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :direct_upload_id
-
-        # The icon for the app
-        sig do
-          params(
-            id: T.nilable(String),
-            direct_upload_id: T.nilable(String)
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The ID of an existing attachment object. Use this when updating a resource and
-          # keeping a subset of the attachments. Don't use this unless you know what you're
-          # doing.
-          id: nil,
           # This ID should be used the first time you upload an attachment. It is the ID of
           # the direct upload that was created when uploading the file to S3 via the
           # mediaDirectUpload mutation.
-          direct_upload_id: nil
-        )
+          sig { returns(String) }
+          attr_accessor :direct_upload_id
+
+          # Input for an attachment
+          sig { params(direct_upload_id: String).returns(T.attached_class) }
+          def self.new(
+            # This ID should be used the first time you upload an attachment. It is the ID of
+            # the direct upload that was created when uploading the file to S3 via the
+            # mediaDirectUpload mutation.
+            direct_upload_id:
+          )
+          end
+
+          sig { override.returns({ direct_upload_id: String }) }
+          def to_hash
+          end
+        end
+
+        class ID < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::AppUpdateParams::Icon::ID,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The ID of an existing attachment object. Use this when updating a resource and
+          # keeping a subset of the attachments. Don't use this unless you know what you're
+          # doing.
+          sig { returns(String) }
+          attr_accessor :id
+
+          # Input for an attachment
+          sig { params(id: String).returns(T.attached_class) }
+          def self.new(
+            # The ID of an existing attachment object. Use this when updating a resource and
+            # keeping a subset of the attachments. Don't use this unless you know what you're
+            # doing.
+            id:
+          )
+          end
+
+          sig { override.returns({ id: String }) }
+          def to_hash
+          end
         end
 
         sig do
-          override.returns(
-            { id: T.nilable(String), direct_upload_id: T.nilable(String) }
-          )
+          override.returns(T::Array[WhopSDK::AppUpdateParams::Icon::Variants])
         end
-        def to_hash
+        def self.variants
         end
       end
 

@@ -10,7 +10,11 @@ module WhopSDK
       # - `developer:manage_builds`
       sig do
         params(
-          attachment: WhopSDK::AppBuildCreateParams::Attachment::OrHash,
+          attachment:
+            T.any(
+              WhopSDK::AppBuildCreateParams::Attachment::DirectUploadID::OrHash,
+              WhopSDK::AppBuildCreateParams::Attachment::ID::OrHash
+            ),
           checksum: String,
           platform: WhopSDK::AppBuildPlatforms::OrSymbol,
           app_id: T.nilable(String),

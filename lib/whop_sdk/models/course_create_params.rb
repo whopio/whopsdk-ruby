@@ -49,7 +49,7 @@ module WhopSDK
       #   The thumbnail for the course in png, jpeg, or gif format
       #
       #   @return [WhopSDK::Models::CourseCreateParams::Thumbnail, nil]
-      optional :thumbnail, -> { WhopSDK::CourseCreateParams::Thumbnail }, nil?: true
+      optional :thumbnail, -> { WhopSDK::CourseCreateParams::Thumbnail }
 
       # @!method initialize(experience_id:, title:, certificate_after_completion_enabled: nil, cover_image: nil, require_completing_lessons_in_order: nil, tagline: nil, thumbnail: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
@@ -67,7 +67,7 @@ module WhopSDK
       #
       #   @param tagline [String, nil] The tagline of the course
       #
-      #   @param thumbnail [WhopSDK::Models::CourseCreateParams::Thumbnail, nil] The thumbnail for the course in png, jpeg, or gif format
+      #   @param thumbnail [WhopSDK::Models::CourseCreateParams::Thumbnail] The thumbnail for the course in png, jpeg, or gif format
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 

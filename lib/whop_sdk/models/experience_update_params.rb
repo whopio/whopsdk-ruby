@@ -17,7 +17,7 @@ module WhopSDK
       #   The logo for the experience
       #
       #   @return [WhopSDK::Models::ExperienceUpdateParams::Logo, nil]
-      optional :logo, -> { WhopSDK::ExperienceUpdateParams::Logo }, nil?: true
+      optional :logo, -> { WhopSDK::ExperienceUpdateParams::Logo }
 
       # @!attribute name
       #   The name of the experience.
@@ -40,7 +40,7 @@ module WhopSDK
       # @!method initialize(access_level: nil, logo: nil, name: nil, order: nil, section_id: nil, request_options: {})
       #   @param access_level [Symbol, WhopSDK::Models::ExperienceUpdateParams::AccessLevel, nil] The different access levels for experiences (PUBLIC IS NEVER USED ANYMORE).
       #
-      #   @param logo [WhopSDK::Models::ExperienceUpdateParams::Logo, nil] The logo for the experience
+      #   @param logo [WhopSDK::Models::ExperienceUpdateParams::Logo] The logo for the experience
       #
       #   @param name [String, nil] The name of the experience.
       #

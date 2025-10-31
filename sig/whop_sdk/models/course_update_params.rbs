@@ -9,7 +9,7 @@ module WhopSDK
         language: WhopSDK::Models::languages?,
         require_completing_lessons_in_order: bool?,
         tagline: String?,
-        thumbnail: WhopSDK::CourseUpdateParams::Thumbnail?,
+        thumbnail: WhopSDK::CourseUpdateParams::Thumbnail,
         title: String?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -32,7 +32,11 @@ module WhopSDK
 
       attr_accessor tagline: String?
 
-      attr_accessor thumbnail: WhopSDK::CourseUpdateParams::Thumbnail?
+      attr_reader thumbnail: WhopSDK::CourseUpdateParams::Thumbnail?
+
+      def thumbnail=: (
+        WhopSDK::CourseUpdateParams::Thumbnail
+      ) -> WhopSDK::CourseUpdateParams::Thumbnail
 
       attr_accessor title: String?
 
@@ -44,7 +48,7 @@ module WhopSDK
         ?language: WhopSDK::Models::languages?,
         ?require_completing_lessons_in_order: bool?,
         ?tagline: String?,
-        ?thumbnail: WhopSDK::CourseUpdateParams::Thumbnail?,
+        ?thumbnail: WhopSDK::CourseUpdateParams::Thumbnail,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
@@ -57,7 +61,7 @@ module WhopSDK
         language: WhopSDK::Models::languages?,
         require_completing_lessons_in_order: bool?,
         tagline: String?,
-        thumbnail: WhopSDK::CourseUpdateParams::Thumbnail?,
+        thumbnail: WhopSDK::CourseUpdateParams::Thumbnail,
         title: String?,
         request_options: WhopSDK::RequestOptions
       }

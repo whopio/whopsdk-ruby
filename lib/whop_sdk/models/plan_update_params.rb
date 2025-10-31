@@ -43,7 +43,7 @@ module WhopSDK
       #   An image for the plan. This will be visible on the product page to customers.
       #
       #   @return [WhopSDK::Models::PlanUpdateParams::Image, nil]
-      optional :image, -> { WhopSDK::PlanUpdateParams::Image }, nil?: true
+      optional :image, -> { WhopSDK::PlanUpdateParams::Image }
 
       # @!attribute initial_price
       #   An additional amount charged upon first purchase.
@@ -143,7 +143,7 @@ module WhopSDK
       #
       #   @param expiration_days [Integer, nil] The interval at which the plan charges (expiration plans).
       #
-      #   @param image [WhopSDK::Models::PlanUpdateParams::Image, nil] An image for the plan. This will be visible on the product page to customers.
+      #   @param image [WhopSDK::Models::PlanUpdateParams::Image] An image for the plan. This will be visible on the product page to customers.
       #
       #   @param initial_price [Float, nil] An additional amount charged upon first purchase.
       #

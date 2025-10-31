@@ -39,9 +39,7 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::AppUpdateParams::Icon)) }
       attr_reader :icon
 
-      sig do
-        params(icon: T.nilable(WhopSDK::AppUpdateParams::Icon::OrHash)).void
-      end
+      sig { params(icon: WhopSDK::AppUpdateParams::Icon::OrHash).void }
       attr_writer :icon
 
       # The name of the app
@@ -68,7 +66,7 @@ module WhopSDK
           description: T.nilable(String),
           discover_path: T.nilable(String),
           experience_path: T.nilable(String),
-          icon: T.nilable(WhopSDK::AppUpdateParams::Icon::OrHash),
+          icon: WhopSDK::AppUpdateParams::Icon::OrHash,
           name: T.nilable(String),
           required_scopes:
             T.nilable(
@@ -112,7 +110,7 @@ module WhopSDK
             description: T.nilable(String),
             discover_path: T.nilable(String),
             experience_path: T.nilable(String),
-            icon: T.nilable(WhopSDK::AppUpdateParams::Icon),
+            icon: WhopSDK::AppUpdateParams::Icon,
             name: T.nilable(String),
             required_scopes:
               T.nilable(

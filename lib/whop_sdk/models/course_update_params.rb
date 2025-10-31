@@ -57,7 +57,7 @@ module WhopSDK
       #   The thumbnail for the course in png, jpeg, or gif format
       #
       #   @return [WhopSDK::Models::CourseUpdateParams::Thumbnail, nil]
-      optional :thumbnail, -> { WhopSDK::CourseUpdateParams::Thumbnail }, nil?: true
+      optional :thumbnail, -> { WhopSDK::CourseUpdateParams::Thumbnail }
 
       # @!attribute title
       #   The title of the course
@@ -83,7 +83,7 @@ module WhopSDK
       #
       #   @param tagline [String, nil] A short tagline for the course
       #
-      #   @param thumbnail [WhopSDK::Models::CourseUpdateParams::Thumbnail, nil] The thumbnail for the course in png, jpeg, or gif format
+      #   @param thumbnail [WhopSDK::Models::CourseUpdateParams::Thumbnail] The thumbnail for the course in png, jpeg, or gif format
       #
       #   @param title [String, nil] The title of the course
       #

@@ -7,7 +7,7 @@ module WhopSDK
         custom_fields: ::Array[WhopSDK::PlanUpdateParams::CustomField]?,
         description: String?,
         expiration_days: Integer?,
-        image: WhopSDK::PlanUpdateParams::Image?,
+        image: WhopSDK::PlanUpdateParams::Image,
         initial_price: Float?,
         internal_notes: String?,
         offer_cancel_discount: bool?,
@@ -38,7 +38,11 @@ module WhopSDK
 
       attr_accessor expiration_days: Integer?
 
-      attr_accessor image: WhopSDK::PlanUpdateParams::Image?
+      attr_reader image: WhopSDK::PlanUpdateParams::Image?
+
+      def image=: (
+        WhopSDK::PlanUpdateParams::Image
+      ) -> WhopSDK::PlanUpdateParams::Image
 
       attr_accessor initial_price: Float?
 
@@ -72,7 +76,7 @@ module WhopSDK
         ?custom_fields: ::Array[WhopSDK::PlanUpdateParams::CustomField]?,
         ?description: String?,
         ?expiration_days: Integer?,
-        ?image: WhopSDK::PlanUpdateParams::Image?,
+        ?image: WhopSDK::PlanUpdateParams::Image,
         ?initial_price: Float?,
         ?internal_notes: String?,
         ?offer_cancel_discount: bool?,
@@ -95,7 +99,7 @@ module WhopSDK
         custom_fields: ::Array[WhopSDK::PlanUpdateParams::CustomField]?,
         description: String?,
         expiration_days: Integer?,
-        image: WhopSDK::PlanUpdateParams::Image?,
+        image: WhopSDK::PlanUpdateParams::Image,
         initial_price: Float?,
         internal_notes: String?,
         offer_cancel_discount: bool?,

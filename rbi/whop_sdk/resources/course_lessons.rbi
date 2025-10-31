@@ -72,8 +72,7 @@ module WhopSDK
           content: T.nilable(String),
           days_from_course_start_until_unlock: T.nilable(Integer),
           lesson_type: T.nilable(WhopSDK::LessonTypes::OrSymbol),
-          main_pdf:
-            T.nilable(WhopSDK::CourseLessonUpdateParams::MainPdf::OrHash),
+          main_pdf: WhopSDK::CourseLessonUpdateParams::MainPdf::OrHash,
           max_attempts: T.nilable(Integer),
           mux_asset_id: T.nilable(String),
           title: T.nilable(String),

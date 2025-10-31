@@ -62,7 +62,7 @@ module WhopSDK
       #
       # @param access_level [Symbol, WhopSDK::Models::ExperienceUpdateParams::AccessLevel, nil] The different access levels for experiences (PUBLIC IS NEVER USED ANYMORE).
       #
-      # @param logo [WhopSDK::Models::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID, WhopSDK::Models::ExperienceUpdateParams::Logo::AttachmentInputWithID, nil] The logo for the experience
+      # @param logo [WhopSDK::Models::ExperienceUpdateParams::Logo, nil] The logo for the experience
       #
       # @param name [String, nil] The name of the experience.
       #

@@ -13,23 +13,24 @@ module WhopSDK
       # - `access_pass:update`
       sig do
         params(
-          plan: WhopSDK::CheckoutConfigurationCreateParams::Plan::OrHash,
-          plan_id: String,
           affiliate_code: T.nilable(String),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
+          plan:
+            T.nilable(WhopSDK::CheckoutConfigurationCreateParams::Plan::OrHash),
+          plan_id: T.nilable(String),
           redirect_url: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::CheckoutConfiguration)
       end
       def create(
-        # Pass this object to create a new plan for this checkout configuration
-        plan:,
-        # The ID of the plan to use for the checkout configuration
-        plan_id:,
         # The affiliate code to use for the checkout configuration
         affiliate_code: nil,
         # The metadata to use for the checkout configuration
         metadata: nil,
+        # Pass this object to create a new plan for this checkout configuration
+        plan: nil,
+        # The ID of the plan to use for the checkout configuration
+        plan_id: nil,
         # The URL to redirect the user to after the checkout configuration is created
         redirect_url: nil,
         request_options: {}

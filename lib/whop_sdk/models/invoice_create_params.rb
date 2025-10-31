@@ -26,26 +26,11 @@ module WhopSDK
       #   @return [Time]
       required :due_date, Time
 
-      # @!attribute member_id
-      #   The member ID to create this invoice for. Include this if you want to create an
-      #   invoice for an existing member. If you do not have a member ID, you must provide
-      #   an email_address and customer_name.
-      #
-      #   @return [String]
-      required :member_id, String
-
       # @!attribute plan
       #   The properties of the plan to create for this invoice.
       #
       #   @return [WhopSDK::Models::InvoiceCreateParams::Plan]
       required :plan, -> { WhopSDK::InvoiceCreateParams::Plan }
-
-      # @!attribute product
-      #   The properties of the product to create for this invoice. Include this if you
-      #   want to create an invoice for a new product.
-      #
-      #   @return [WhopSDK::Models::InvoiceCreateParams::Product]
-      required :product, -> { WhopSDK::InvoiceCreateParams::Product }
 
       # @!attribute charge_buyer_fee
       #   Whether or not to charge the customer a buyer fee.
@@ -61,6 +46,21 @@ module WhopSDK
       #   @return [String, nil]
       optional :customer_name, String, nil?: true
 
+      # @!attribute email_address
+      #   The email address to create this invoice for. This is required if you want to
+      #   create an invoice for a user who does not have a member of your company yet.
+      #
+      #   @return [String, nil]
+      optional :email_address, String, nil?: true
+
+      # @!attribute member_id
+      #   The member ID to create this invoice for. Include this if you want to create an
+      #   invoice for an existing member. If you do not have a member ID, you must provide
+      #   an email_address and customer_name.
+      #
+      #   @return [String, nil]
+      optional :member_id, String, nil?: true
+
       # @!attribute payment_token_id
       #   The payment token ID to use for this invoice. If using charge_automatically, you
       #   must provide a payment_token.
@@ -68,21 +68,21 @@ module WhopSDK
       #   @return [String, nil]
       optional :payment_token_id, String, nil?: true
 
-      # @!attribute email_address
-      #   The email address to create this invoice for. This is required if you want to
-      #   create an invoice for a user who does not have a member of your company yet.
+      # @!attribute product
+      #   The properties of the product to create for this invoice. Include this if you
+      #   want to create an invoice for a new product.
       #
-      #   @return [String]
-      required :email_address, String
+      #   @return [WhopSDK::Models::InvoiceCreateParams::Product, nil]
+      optional :product, -> { WhopSDK::InvoiceCreateParams::Product }, nil?: true
 
       # @!attribute product_id
       #   The product ID to create this invoice for. Include this if you want to create an
       #   invoice for an existing product.
       #
-      #   @return [String]
-      required :product_id, String
+      #   @return [String, nil]
+      optional :product_id, String, nil?: true
 
-      # @!method initialize(collection_method:, company_id:, due_date:, member_id:, plan:, product:, email_address:, product_id:, charge_buyer_fee: nil, customer_name: nil, payment_token_id: nil, request_options: {})
+      # @!method initialize(collection_method:, company_id:, due_date:, plan:, charge_buyer_fee: nil, customer_name: nil, email_address: nil, member_id: nil, payment_token_id: nil, product: nil, product_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::InvoiceCreateParams} for more details.
       #
@@ -92,21 +92,21 @@ module WhopSDK
       #
       #   @param due_date [Time] The date the invoice is due, if applicable.
       #
-      #   @param member_id [String] The member ID to create this invoice for. Include this if you want to create an
-      #
       #   @param plan [WhopSDK::Models::InvoiceCreateParams::Plan] The properties of the plan to create for this invoice.
-      #
-      #   @param product [WhopSDK::Models::InvoiceCreateParams::Product] The properties of the product to create for this invoice. Include this if you wa
-      #
-      #   @param email_address [String] The email address to create this invoice for. This is required if you want to cr
-      #
-      #   @param product_id [String] The product ID to create this invoice for. Include this if you want to create an
       #
       #   @param charge_buyer_fee [Boolean, nil] Whether or not to charge the customer a buyer fee.
       #
       #   @param customer_name [String, nil] The name of the customer to create this invoice for. This is required if you wan
       #
+      #   @param email_address [String, nil] The email address to create this invoice for. This is required if you want to cr
+      #
+      #   @param member_id [String, nil] The member ID to create this invoice for. Include this if you want to create an
+      #
       #   @param payment_token_id [String, nil] The payment token ID to use for this invoice. If using charge_automatically, you
+      #
+      #   @param product [WhopSDK::Models::InvoiceCreateParams::Product, nil] The properties of the product to create for this invoice. Include this if you wa
+      #
+      #   @param product_id [String, nil] The product ID to create this invoice for. Include this if you want to create an
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
@@ -170,23 +170,11 @@ module WhopSDK
         #   @return [Float, nil]
         optional :renewal_price, Float, nil?: true
 
-        # @!attribute stock
-        #   The number of units available for purchase.
-        #
-        #   @return [Integer, nil]
-        optional :stock, Integer, nil?: true
-
         # @!attribute trial_period_days
         #   The number of free trial days added before a renewal plan.
         #
         #   @return [Integer, nil]
         optional :trial_period_days, Integer, nil?: true
-
-        # @!attribute unlimited_stock
-        #   Limits/doesn't limit the number of units available for purchase.
-        #
-        #   @return [Boolean, nil]
-        optional :unlimited_stock, WhopSDK::Internal::Type::Boolean, nil?: true
 
         # @!attribute visibility
         #   Visibility of a resource
@@ -194,7 +182,7 @@ module WhopSDK
         #   @return [Symbol, WhopSDK::Models::Visibility, nil]
         optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-        # @!method initialize(billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil)
+        # @!method initialize(billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, plan_type: nil, release_method: nil, renewal_price: nil, trial_period_days: nil, visibility: nil)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::InvoiceCreateParams::Plan} for more details.
         #
@@ -218,11 +206,7 @@ module WhopSDK
         #
         #   @param renewal_price [Float, nil] The amount the customer is charged every billing period. Use only if a recurring
         #
-        #   @param stock [Integer, nil] The number of units available for purchase.
-        #
         #   @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
-        #
-        #   @param unlimited_stock [Boolean, nil] Limits/doesn't limit the number of units available for purchase.
         #
         #   @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
 

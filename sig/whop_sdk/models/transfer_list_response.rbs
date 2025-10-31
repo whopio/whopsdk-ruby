@@ -8,6 +8,7 @@ module WhopSDK
         currency: WhopSDK::Models::currency,
         destination_ledger_account_id: String,
         fee_amount: Float?,
+        metadata: ::Hash[Symbol, top]?,
         notes: String?,
         origin_ledger_account_id: String
       }
@@ -25,6 +26,8 @@ module WhopSDK
 
       attr_accessor fee_amount: Float?
 
+      attr_accessor metadata: ::Hash[Symbol, top]?
+
       attr_accessor notes: String?
 
       attr_accessor origin_ledger_account_id: String
@@ -36,6 +39,7 @@ module WhopSDK
         currency: WhopSDK::Models::currency,
         destination_ledger_account_id: String,
         fee_amount: Float?,
+        metadata: ::Hash[Symbol, top]?,
         notes: String?,
         origin_ledger_account_id: String
       ) -> void
@@ -47,6 +51,7 @@ module WhopSDK
         currency: WhopSDK::Models::currency,
         destination_ledger_account_id: String,
         fee_amount: Float?,
+        metadata: ::Hash[Symbol, top]?,
         notes: String?,
         origin_ledger_account_id: String
       }

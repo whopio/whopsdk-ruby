@@ -2,7 +2,7 @@ module WhopSDK
   module Models
     type product_update_params =
       {
-        banner_image: WhopSDK::Models::ProductUpdateParams::banner_image?,
+        banner_image: WhopSDK::ProductUpdateParams::BannerImage?,
         business_type: WhopSDK::Models::business_types?,
         collect_shipping_address: bool?,
         custom_cta: WhopSDK::Models::custom_cta?,
@@ -28,7 +28,7 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor banner_image: WhopSDK::Models::ProductUpdateParams::banner_image?
+      attr_accessor banner_image: WhopSDK::ProductUpdateParams::BannerImage?
 
       attr_accessor business_type: WhopSDK::Models::business_types?
 
@@ -67,7 +67,7 @@ module WhopSDK
       attr_accessor visibility: WhopSDK::Models::visibility?
 
       def initialize: (
-        ?banner_image: WhopSDK::Models::ProductUpdateParams::banner_image?,
+        ?banner_image: WhopSDK::ProductUpdateParams::BannerImage?,
         ?business_type: WhopSDK::Models::business_types?,
         ?collect_shipping_address: bool?,
         ?custom_cta: WhopSDK::Models::custom_cta?,
@@ -90,7 +90,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
-        banner_image: WhopSDK::Models::ProductUpdateParams::banner_image?,
+        banner_image: WhopSDK::ProductUpdateParams::BannerImage?,
         business_type: WhopSDK::Models::business_types?,
         collect_shipping_address: bool?,
         custom_cta: WhopSDK::Models::custom_cta?,
@@ -112,35 +112,16 @@ module WhopSDK
         request_options: WhopSDK::RequestOptions
       }
 
-      type banner_image =
-        WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID
-        | WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithID
+      type banner_image = { id: String?, direct_upload_id: String? }
 
-      module BannerImage
-        extend WhopSDK::Internal::Type::Union
+      class BannerImage < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String?
 
-        type attachment_input_with_direct_upload_id =
-          { direct_upload_id: String }
+        attr_accessor direct_upload_id: String?
 
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          attr_accessor direct_upload_id: String
+        def initialize: (?id: String?, ?direct_upload_id: String?) -> void
 
-          def initialize: (direct_upload_id: String) -> void
-
-          def to_hash: -> { direct_upload_id: String }
-        end
-
-        type attachment_input_with_id = { id: String }
-
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          def initialize: (id: String) -> void
-
-          def to_hash: -> { id: String }
-        end
-
-        def self?.variants: -> ::Array[WhopSDK::Models::ProductUpdateParams::banner_image]
+        def to_hash: -> { id: String?, direct_upload_id: String? }
       end
 
       type store_page_config = { custom_cta: String?, show_price: bool? }

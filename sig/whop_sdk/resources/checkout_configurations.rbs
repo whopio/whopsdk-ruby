@@ -2,10 +2,10 @@ module WhopSDK
   module Resources
     class CheckoutConfigurations
       def create: (
-        plan: WhopSDK::CheckoutConfigurationCreateParams::Plan,
-        plan_id: String,
         ?affiliate_code: String?,
         ?metadata: ::Hash[Symbol, top]?,
+        ?plan: WhopSDK::CheckoutConfigurationCreateParams::Plan?,
+        ?plan_id: String?,
         ?redirect_url: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::CheckoutConfiguration

@@ -48,8 +48,8 @@ module WhopSDK
       # @!attribute thumbnail
       #   The thumbnail for the course in png, jpeg, or gif format
       #
-      #   @return [WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithID, nil]
-      optional :thumbnail, union: -> { WhopSDK::CourseCreateParams::Thumbnail }, nil?: true
+      #   @return [WhopSDK::Models::CourseCreateParams::Thumbnail, nil]
+      optional :thumbnail, -> { WhopSDK::CourseCreateParams::Thumbnail }, nil?: true
 
       # @!method initialize(experience_id:, title:, certificate_after_completion_enabled: nil, cover_image: nil, require_completing_lessons_in_order: nil, tagline: nil, thumbnail: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
@@ -67,60 +67,36 @@ module WhopSDK
       #
       #   @param tagline [String, nil] The tagline of the course
       #
-      #   @param thumbnail [WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithID, nil] The thumbnail for the course in png, jpeg, or gif format
+      #   @param thumbnail [WhopSDK::Models::CourseCreateParams::Thumbnail, nil] The thumbnail for the course in png, jpeg, or gif format
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      # The thumbnail for the course in png, jpeg, or gif format
-      module Thumbnail
-        extend WhopSDK::Internal::Type::Union
+      class Thumbnail < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The ID of an existing attachment object. Use this when updating a resource and
+        #   keeping a subset of the attachments. Don't use this unless you know what you're
+        #   doing.
+        #
+        #   @return [String, nil]
+        optional :id, String, nil?: true
 
-        # Input for an attachment
-        variant -> { WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID }
+        # @!attribute direct_upload_id
+        #   This ID should be used the first time you upload an attachment. It is the ID of
+        #   the direct upload that was created when uploading the file to S3 via the
+        #   mediaDirectUpload mutation.
+        #
+        #   @return [String, nil]
+        optional :direct_upload_id, String, nil?: true
 
-        # Input for an attachment
-        variant -> { WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithID }
-
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          # @!attribute direct_upload_id
-          #   This ID should be used the first time you upload an attachment. It is the ID of
-          #   the direct upload that was created when uploading the file to S3 via the
-          #   mediaDirectUpload mutation.
-          #
-          #   @return [String]
-          required :direct_upload_id, String
-
-          # @!method initialize(direct_upload_id:)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID}
-          #   for more details.
-          #
-          #   Input for an attachment
-          #
-          #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
-        end
-
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #   The ID of an existing attachment object. Use this when updating a resource and
-          #   keeping a subset of the attachments. Don't use this unless you know what you're
-          #   doing.
-          #
-          #   @return [String]
-          required :id, String
-
-          # @!method initialize(id:)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithID} for more
-          #   details.
-          #
-          #   Input for an attachment
-          #
-          #   @param id [String] The ID of an existing attachment object. Use this when updating a resource and k
-        end
-
-        # @!method self.variants
-        #   @return [Array(WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithID)]
+        # @!method initialize(id: nil, direct_upload_id: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::CourseCreateParams::Thumbnail} for more details.
+        #
+        #   The thumbnail for the course in png, jpeg, or gif format
+        #
+        #   @param id [String, nil] The ID of an existing attachment object. Use this when updating a resource and k
+        #
+        #   @param direct_upload_id [String, nil] This ID should be used the first time you upload an attachment. It is the ID of
       end
     end
   end

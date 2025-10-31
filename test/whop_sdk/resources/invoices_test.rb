@@ -11,9 +11,7 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
         collection_method: :send_invoice,
         company_id: "biz_xxxxxxxxxxxxxx",
         due_date: "2023-12-01T05:00:00.401Z",
-        member_id: "mber_xxxxxxxxxxxxx",
-        plan: {},
-        product: {title: "title"}
+        plan: {}
       )
 
     assert_pattern do

@@ -13,7 +13,7 @@ module WhopSDK
       # - `invoice:create`
       # - `plan:basic:read`
       #
-      # @overload create(collection_method:, company_id:, due_date:, member_id:, plan:, product:, email_address:, product_id:, charge_buyer_fee: nil, customer_name: nil, payment_token_id: nil, request_options: {})
+      # @overload create(collection_method:, company_id:, due_date:, plan:, charge_buyer_fee: nil, customer_name: nil, email_address: nil, member_id: nil, payment_token_id: nil, product: nil, product_id: nil, request_options: {})
       #
       # @param collection_method [Symbol, WhopSDK::Models::CollectionMethod] The method of collection for this invoice. If using charge_automatically, you mu
       #
@@ -21,21 +21,21 @@ module WhopSDK
       #
       # @param due_date [Time] The date the invoice is due, if applicable.
       #
-      # @param member_id [String] The member ID to create this invoice for. Include this if you want to create an
-      #
       # @param plan [WhopSDK::Models::InvoiceCreateParams::Plan] The properties of the plan to create for this invoice.
-      #
-      # @param product [WhopSDK::Models::InvoiceCreateParams::Product] The properties of the product to create for this invoice. Include this if you wa
-      #
-      # @param email_address [String] The email address to create this invoice for. This is required if you want to cr
-      #
-      # @param product_id [String] The product ID to create this invoice for. Include this if you want to create an
       #
       # @param charge_buyer_fee [Boolean, nil] Whether or not to charge the customer a buyer fee.
       #
       # @param customer_name [String, nil] The name of the customer to create this invoice for. This is required if you wan
       #
+      # @param email_address [String, nil] The email address to create this invoice for. This is required if you want to cr
+      #
+      # @param member_id [String, nil] The member ID to create this invoice for. Include this if you want to create an
+      #
       # @param payment_token_id [String, nil] The payment token ID to use for this invoice. If using charge_automatically, you
+      #
+      # @param product [WhopSDK::Models::InvoiceCreateParams::Product, nil] The properties of the product to create for this invoice. Include this if you wa
+      #
+      # @param product_id [String, nil] The product ID to create this invoice for. Include this if you want to create an
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

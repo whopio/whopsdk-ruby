@@ -13,16 +13,7 @@ module WhopSDK
 
       # The attachments for this post
       sig do
-        returns(
-          T.nilable(
-            T::Array[
-              T.any(
-                WhopSDK::ForumPostUpdateParams::Attachment::AttachmentInputWithDirectUploadID,
-                WhopSDK::ForumPostUpdateParams::Attachment::AttachmentInputWithID
-              )
-            ]
-          )
-        )
+        returns(T.nilable(T::Array[WhopSDK::ForumPostUpdateParams::Attachment]))
       end
       attr_accessor :attachments
 
@@ -43,12 +34,7 @@ module WhopSDK
         params(
           attachments:
             T.nilable(
-              T::Array[
-                T.any(
-                  WhopSDK::ForumPostUpdateParams::Attachment::AttachmentInputWithDirectUploadID::OrHash,
-                  WhopSDK::ForumPostUpdateParams::Attachment::AttachmentInputWithID::OrHash
-                )
-              ]
+              T::Array[WhopSDK::ForumPostUpdateParams::Attachment::OrHash]
             ),
           content: T.nilable(String),
           is_pinned: T.nilable(T::Boolean),
@@ -74,14 +60,7 @@ module WhopSDK
         override.returns(
           {
             attachments:
-              T.nilable(
-                T::Array[
-                  T.any(
-                    WhopSDK::ForumPostUpdateParams::Attachment::AttachmentInputWithDirectUploadID,
-                    WhopSDK::ForumPostUpdateParams::Attachment::AttachmentInputWithID
-                  )
-                ]
-              ),
+              T.nilable(T::Array[WhopSDK::ForumPostUpdateParams::Attachment]),
             content: T.nilable(String),
             is_pinned: T.nilable(T::Boolean),
             title: T.nilable(String),
@@ -92,84 +71,52 @@ module WhopSDK
       def to_hash
       end
 
-      # Input for an attachment
-      module Attachment
-        extend WhopSDK::Internal::Type::Union
-
-        Variants =
+      class Attachment < WhopSDK::Internal::Type::BaseModel
+        OrHash =
           T.type_alias do
             T.any(
-              WhopSDK::ForumPostUpdateParams::Attachment::AttachmentInputWithDirectUploadID,
-              WhopSDK::ForumPostUpdateParams::Attachment::AttachmentInputWithID
+              WhopSDK::ForumPostUpdateParams::Attachment,
+              WhopSDK::Internal::AnyHash
             )
           end
 
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                WhopSDK::ForumPostUpdateParams::Attachment::AttachmentInputWithDirectUploadID,
-                WhopSDK::Internal::AnyHash
-              )
-            end
+        # The ID of an existing attachment object. Use this when updating a resource and
+        # keeping a subset of the attachments. Don't use this unless you know what you're
+        # doing.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :id
 
-          # This ID should be used the first time you upload an attachment. It is the ID of
-          # the direct upload that was created when uploading the file to S3 via the
-          # mediaDirectUpload mutation.
-          sig { returns(String) }
-          attr_accessor :direct_upload_id
+        # This ID should be used the first time you upload an attachment. It is the ID of
+        # the direct upload that was created when uploading the file to S3 via the
+        # mediaDirectUpload mutation.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :direct_upload_id
 
-          # Input for an attachment
-          sig { params(direct_upload_id: String).returns(T.attached_class) }
-          def self.new(
-            # This ID should be used the first time you upload an attachment. It is the ID of
-            # the direct upload that was created when uploading the file to S3 via the
-            # mediaDirectUpload mutation.
-            direct_upload_id:
-          )
-          end
-
-          sig { override.returns({ direct_upload_id: String }) }
-          def to_hash
-          end
+        # Input for an attachment
+        sig do
+          params(
+            id: T.nilable(String),
+            direct_upload_id: T.nilable(String)
+          ).returns(T.attached_class)
         end
-
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                WhopSDK::ForumPostUpdateParams::Attachment::AttachmentInputWithID,
-                WhopSDK::Internal::AnyHash
-              )
-            end
-
+        def self.new(
           # The ID of an existing attachment object. Use this when updating a resource and
           # keeping a subset of the attachments. Don't use this unless you know what you're
           # doing.
-          sig { returns(String) }
-          attr_accessor :id
-
-          # Input for an attachment
-          sig { params(id: String).returns(T.attached_class) }
-          def self.new(
-            # The ID of an existing attachment object. Use this when updating a resource and
-            # keeping a subset of the attachments. Don't use this unless you know what you're
-            # doing.
-            id:
-          )
-          end
-
-          sig { override.returns({ id: String }) }
-          def to_hash
-          end
+          id: nil,
+          # This ID should be used the first time you upload an attachment. It is the ID of
+          # the direct upload that was created when uploading the file to S3 via the
+          # mediaDirectUpload mutation.
+          direct_upload_id: nil
+        )
         end
 
         sig do
           override.returns(
-            T::Array[WhopSDK::ForumPostUpdateParams::Attachment::Variants]
+            { id: T.nilable(String), direct_upload_id: T.nilable(String) }
           )
         end
-        def self.variants
+        def to_hash
         end
       end
     end

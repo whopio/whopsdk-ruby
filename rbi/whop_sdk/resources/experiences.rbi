@@ -46,13 +46,7 @@ module WhopSDK
           id: String,
           access_level:
             T.nilable(WhopSDK::ExperienceUpdateParams::AccessLevel::OrSymbol),
-          logo:
-            T.nilable(
-              T.any(
-                WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithID::OrHash
-              )
-            ),
+          logo: T.nilable(WhopSDK::ExperienceUpdateParams::Logo::OrHash),
           name: T.nilable(String),
           order: T.nilable(String),
           section_id: T.nilable(String),

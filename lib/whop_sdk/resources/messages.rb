@@ -15,7 +15,7 @@ module WhopSDK
       #
       # @param content [String] The content of the message in Markdown format.
       #
-      # @param attachments [Array<WhopSDK::Models::MessageCreateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::MessageCreateParams::Attachment::AttachmentInputWithID>, nil] The attachments for this message, such as videos or images.
+      # @param attachments [Array<WhopSDK::Models::MessageCreateParams::Attachment>, nil] The attachments for this message, such as videos or images.
       #
       # @param poll [WhopSDK::Models::MessageCreateParams::Poll, nil] The poll for this message
       #
@@ -64,7 +64,7 @@ module WhopSDK
       #
       # @param id [String]
       #
-      # @param attachments [Array<WhopSDK::Models::MessageUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::MessageUpdateParams::Attachment::AttachmentInputWithID>, nil] The attachments for this message
+      # @param attachments [Array<WhopSDK::Models::MessageUpdateParams::Attachment>, nil] The attachments for this message
       #
       # @param content [String, nil] The content of the message in Markdown format
       #

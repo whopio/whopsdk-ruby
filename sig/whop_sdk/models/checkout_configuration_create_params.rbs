@@ -51,7 +51,7 @@ module WhopSDK
           description: String?,
           expiration_days: Integer?,
           force_create_new_plan: bool?,
-          image: WhopSDK::CheckoutConfigurationCreateParams::Plan::Image,
+          image: WhopSDK::CheckoutConfigurationCreateParams::Plan::Image?,
           initial_price: Float?,
           internal_notes: String?,
           override_tax_type: WhopSDK::Models::tax_type?,
@@ -81,11 +81,7 @@ module WhopSDK
 
         attr_accessor force_create_new_plan: bool?
 
-        attr_reader image: WhopSDK::CheckoutConfigurationCreateParams::Plan::Image?
-
-        def image=: (
-          WhopSDK::CheckoutConfigurationCreateParams::Plan::Image
-        ) -> WhopSDK::CheckoutConfigurationCreateParams::Plan::Image
+        attr_accessor image: WhopSDK::CheckoutConfigurationCreateParams::Plan::Image?
 
         attr_accessor initial_price: Float?
 
@@ -119,7 +115,7 @@ module WhopSDK
           ?description: String?,
           ?expiration_days: Integer?,
           ?force_create_new_plan: bool?,
-          ?image: WhopSDK::CheckoutConfigurationCreateParams::Plan::Image,
+          ?image: WhopSDK::CheckoutConfigurationCreateParams::Plan::Image?,
           ?initial_price: Float?,
           ?internal_notes: String?,
           ?override_tax_type: WhopSDK::Models::tax_type?,
@@ -142,7 +138,7 @@ module WhopSDK
           description: String?,
           expiration_days: Integer?,
           force_create_new_plan: bool?,
-          image: WhopSDK::CheckoutConfigurationCreateParams::Plan::Image,
+          image: WhopSDK::CheckoutConfigurationCreateParams::Plan::Image?,
           initial_price: Float?,
           internal_notes: String?,
           override_tax_type: WhopSDK::Models::tax_type?,

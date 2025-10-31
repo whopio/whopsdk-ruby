@@ -47,7 +47,7 @@ module WhopSDK
       #   The icon for the app
       #
       #   @return [WhopSDK::Models::AppUpdateParams::Icon, nil]
-      optional :icon, -> { WhopSDK::AppUpdateParams::Icon }
+      optional :icon, -> { WhopSDK::AppUpdateParams::Icon }, nil?: true
 
       # @!attribute name
       #   The name of the app
@@ -82,7 +82,7 @@ module WhopSDK
       #
       #   @param experience_path [String, nil] The path for the hub view of the app
       #
-      #   @param icon [WhopSDK::Models::AppUpdateParams::Icon] The icon for the app
+      #   @param icon [WhopSDK::Models::AppUpdateParams::Icon, nil] The icon for the app
       #
       #   @param name [String, nil] The name of the app
       #

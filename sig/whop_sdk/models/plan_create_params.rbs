@@ -9,7 +9,7 @@ module WhopSDK
         custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?,
         description: String?,
         expiration_days: Integer?,
-        image: WhopSDK::PlanCreateParams::Image,
+        image: WhopSDK::PlanCreateParams::Image?,
         initial_price: Float?,
         internal_notes: String?,
         override_tax_type: WhopSDK::Models::tax_type?,
@@ -45,11 +45,7 @@ module WhopSDK
 
       attr_accessor expiration_days: Integer?
 
-      attr_reader image: WhopSDK::PlanCreateParams::Image?
-
-      def image=: (
-        WhopSDK::PlanCreateParams::Image
-      ) -> WhopSDK::PlanCreateParams::Image
+      attr_accessor image: WhopSDK::PlanCreateParams::Image?
 
       attr_accessor initial_price: Float?
 
@@ -87,7 +83,7 @@ module WhopSDK
         ?custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?,
         ?description: String?,
         ?expiration_days: Integer?,
-        ?image: WhopSDK::PlanCreateParams::Image,
+        ?image: WhopSDK::PlanCreateParams::Image?,
         ?initial_price: Float?,
         ?internal_notes: String?,
         ?override_tax_type: WhopSDK::Models::tax_type?,
@@ -113,7 +109,7 @@ module WhopSDK
         custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?,
         description: String?,
         expiration_days: Integer?,
-        image: WhopSDK::PlanCreateParams::Image,
+        image: WhopSDK::PlanCreateParams::Image?,
         initial_price: Float?,
         internal_notes: String?,
         override_tax_type: WhopSDK::Models::tax_type?,

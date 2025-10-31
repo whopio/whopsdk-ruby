@@ -23,7 +23,7 @@ module WhopSDK
         ?content: String?,
         ?days_from_course_start_until_unlock: Integer?,
         ?lesson_type: WhopSDK::Models::lesson_types?,
-        ?main_pdf: WhopSDK::CourseLessonUpdateParams::MainPdf,
+        ?main_pdf: WhopSDK::CourseLessonUpdateParams::MainPdf?,
         ?max_attempts: Integer?,
         ?mux_asset_id: String?,
         ?title: String?,

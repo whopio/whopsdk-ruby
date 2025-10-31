@@ -57,7 +57,7 @@ module WhopSDK
           description: T.nilable(String),
           discover_path: T.nilable(String),
           experience_path: T.nilable(String),
-          icon: WhopSDK::AppUpdateParams::Icon::OrHash,
+          icon: T.nilable(WhopSDK::AppUpdateParams::Icon::OrHash),
           name: T.nilable(String),
           required_scopes:
             T.nilable(

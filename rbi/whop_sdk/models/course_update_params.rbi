@@ -46,7 +46,9 @@ module WhopSDK
       attr_reader :thumbnail
 
       sig do
-        params(thumbnail: WhopSDK::CourseUpdateParams::Thumbnail::OrHash).void
+        params(
+          thumbnail: T.nilable(WhopSDK::CourseUpdateParams::Thumbnail::OrHash)
+        ).void
       end
       attr_writer :thumbnail
 
@@ -64,7 +66,7 @@ module WhopSDK
           language: T.nilable(WhopSDK::Languages::OrSymbol),
           require_completing_lessons_in_order: T.nilable(T::Boolean),
           tagline: T.nilable(String),
-          thumbnail: WhopSDK::CourseUpdateParams::Thumbnail::OrHash,
+          thumbnail: T.nilable(WhopSDK::CourseUpdateParams::Thumbnail::OrHash),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -104,7 +106,7 @@ module WhopSDK
             language: T.nilable(WhopSDK::Languages::OrSymbol),
             require_completing_lessons_in_order: T.nilable(T::Boolean),
             tagline: T.nilable(String),
-            thumbnail: WhopSDK::CourseUpdateParams::Thumbnail,
+            thumbnail: T.nilable(WhopSDK::CourseUpdateParams::Thumbnail),
             title: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }

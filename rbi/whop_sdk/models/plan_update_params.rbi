@@ -37,7 +37,9 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::PlanUpdateParams::Image)) }
       attr_reader :image
 
-      sig { params(image: WhopSDK::PlanUpdateParams::Image::OrHash).void }
+      sig do
+        params(image: T.nilable(WhopSDK::PlanUpdateParams::Image::OrHash)).void
+      end
       attr_writer :image
 
       # An additional amount charged upon first purchase.
@@ -118,7 +120,7 @@ module WhopSDK
             T.nilable(T::Array[WhopSDK::PlanUpdateParams::CustomField::OrHash]),
           description: T.nilable(String),
           expiration_days: T.nilable(Integer),
-          image: WhopSDK::PlanUpdateParams::Image::OrHash,
+          image: T.nilable(WhopSDK::PlanUpdateParams::Image::OrHash),
           initial_price: T.nilable(Float),
           internal_notes: T.nilable(String),
           offer_cancel_discount: T.nilable(T::Boolean),
@@ -194,7 +196,7 @@ module WhopSDK
               T.nilable(T::Array[WhopSDK::PlanUpdateParams::CustomField]),
             description: T.nilable(String),
             expiration_days: T.nilable(Integer),
-            image: WhopSDK::PlanUpdateParams::Image,
+            image: T.nilable(WhopSDK::PlanUpdateParams::Image),
             initial_price: T.nilable(Float),
             internal_notes: T.nilable(String),
             offer_cancel_discount: T.nilable(T::Boolean),

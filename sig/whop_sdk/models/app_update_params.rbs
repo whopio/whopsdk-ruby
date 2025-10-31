@@ -8,7 +8,7 @@ module WhopSDK
         description: String?,
         discover_path: String?,
         experience_path: String?,
-        icon: WhopSDK::AppUpdateParams::Icon,
+        icon: WhopSDK::AppUpdateParams::Icon?,
         name: String?,
         required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
         status: WhopSDK::Models::app_statuses?
@@ -31,11 +31,7 @@ module WhopSDK
 
       attr_accessor experience_path: String?
 
-      attr_reader icon: WhopSDK::AppUpdateParams::Icon?
-
-      def icon=: (
-        WhopSDK::AppUpdateParams::Icon
-      ) -> WhopSDK::AppUpdateParams::Icon
+      attr_accessor icon: WhopSDK::AppUpdateParams::Icon?
 
       attr_accessor name: String?
 
@@ -50,7 +46,7 @@ module WhopSDK
         ?description: String?,
         ?discover_path: String?,
         ?experience_path: String?,
-        ?icon: WhopSDK::AppUpdateParams::Icon,
+        ?icon: WhopSDK::AppUpdateParams::Icon?,
         ?name: String?,
         ?required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
         ?status: WhopSDK::Models::app_statuses?,
@@ -64,7 +60,7 @@ module WhopSDK
         description: String?,
         discover_path: String?,
         experience_path: String?,
-        icon: WhopSDK::AppUpdateParams::Icon,
+        icon: WhopSDK::AppUpdateParams::Icon?,
         name: String?,
         required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
         status: WhopSDK::Models::app_statuses?,

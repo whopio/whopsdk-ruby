@@ -67,23 +67,13 @@ module WhopSDK
             ),
           attachments:
             T.nilable(
-              T::Array[
-                T.any(
-                  WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID::OrHash,
-                  WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithID::OrHash
-                )
-              ]
+              T::Array[WhopSDK::CourseLessonUpdateParams::Attachment::OrHash]
             ),
           content: T.nilable(String),
           days_from_course_start_until_unlock: T.nilable(Integer),
           lesson_type: T.nilable(WhopSDK::LessonTypes::OrSymbol),
           main_pdf:
-            T.nilable(
-              T.any(
-                WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID::OrHash
-              )
-            ),
+            T.nilable(WhopSDK::CourseLessonUpdateParams::MainPdf::OrHash),
           max_attempts: T.nilable(Integer),
           mux_asset_id: T.nilable(String),
           title: T.nilable(String),

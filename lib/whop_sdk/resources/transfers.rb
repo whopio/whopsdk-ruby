@@ -12,7 +12,7 @@ module WhopSDK
       #
       # - `payout:transfer_funds`
       #
-      # @overload create(amount:, currency:, destination_id:, origin_id:, idempotence_key: nil, notes: nil, request_options: {})
+      # @overload create(amount:, currency:, destination_id:, origin_id:, idempotence_key: nil, metadata: nil, notes: nil, request_options: {})
       #
       # @param amount [Float] The amount to withdraw
       #
@@ -23,6 +23,8 @@ module WhopSDK
       # @param origin_id [String] The ID of the origin account which will send the funds (either a User ID, Compan
       #
       # @param idempotence_key [String, nil] A unique key to ensure idempotence. Use a UUID or similar.
+      #
+      # @param metadata [Hash{Symbol=>Object}, nil] A hash of metadata to attach to the transfer.
       #
       # @param notes [String, nil] Notes for the transfer. Maximum of 50 characters.
       #

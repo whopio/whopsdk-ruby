@@ -111,7 +111,7 @@ module WhopSDK
       #
       # @param id [String]
       #
-      # @param banner_image [WhopSDK::Models::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID, WhopSDK::Models::ProductUpdateParams::BannerImage::AttachmentInputWithID, nil] A banner image for the product in png, jpeg format
+      # @param banner_image [WhopSDK::Models::ProductUpdateParams::BannerImage, nil] A banner image for the product in png, jpeg format
       #
       # @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #

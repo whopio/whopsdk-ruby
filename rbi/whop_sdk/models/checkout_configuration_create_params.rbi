@@ -14,17 +14,6 @@ module WhopSDK
           )
         end
 
-      # Pass this object to create a new plan for this checkout configuration
-      sig { returns(WhopSDK::CheckoutConfigurationCreateParams::Plan) }
-      attr_reader :plan
-
-      sig do
-        params(
-          plan: WhopSDK::CheckoutConfigurationCreateParams::Plan::OrHash
-        ).void
-      end
-      attr_writer :plan
-
       # The affiliate code to use for the checkout configuration
       sig { returns(T.nilable(String)) }
       attr_accessor :affiliate_code
@@ -33,33 +22,48 @@ module WhopSDK
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
+      # Pass this object to create a new plan for this checkout configuration
+      sig do
+        returns(T.nilable(WhopSDK::CheckoutConfigurationCreateParams::Plan))
+      end
+      attr_reader :plan
+
+      sig do
+        params(
+          plan:
+            T.nilable(WhopSDK::CheckoutConfigurationCreateParams::Plan::OrHash)
+        ).void
+      end
+      attr_writer :plan
+
+      # The ID of the plan to use for the checkout configuration
+      sig { returns(T.nilable(String)) }
+      attr_accessor :plan_id
+
       # The URL to redirect the user to after the checkout configuration is created
       sig { returns(T.nilable(String)) }
       attr_accessor :redirect_url
 
-      # The ID of the plan to use for the checkout configuration
-      sig { returns(String) }
-      attr_accessor :plan_id
-
       sig do
         params(
-          plan: WhopSDK::CheckoutConfigurationCreateParams::Plan::OrHash,
-          plan_id: String,
           affiliate_code: T.nilable(String),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
+          plan:
+            T.nilable(WhopSDK::CheckoutConfigurationCreateParams::Plan::OrHash),
+          plan_id: T.nilable(String),
           redirect_url: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # Pass this object to create a new plan for this checkout configuration
-        plan:,
-        # The ID of the plan to use for the checkout configuration
-        plan_id:,
         # The affiliate code to use for the checkout configuration
         affiliate_code: nil,
         # The metadata to use for the checkout configuration
         metadata: nil,
+        # Pass this object to create a new plan for this checkout configuration
+        plan: nil,
+        # The ID of the plan to use for the checkout configuration
+        plan_id: nil,
         # The URL to redirect the user to after the checkout configuration is created
         redirect_url: nil,
         request_options: {}
@@ -69,11 +73,11 @@ module WhopSDK
       sig do
         override.returns(
           {
-            plan: WhopSDK::CheckoutConfigurationCreateParams::Plan,
             affiliate_code: T.nilable(String),
             metadata: T.nilable(T::Hash[Symbol, T.anything]),
+            plan: T.nilable(WhopSDK::CheckoutConfigurationCreateParams::Plan),
+            plan_id: T.nilable(String),
             redirect_url: T.nilable(String),
-            plan_id: String,
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -130,15 +134,20 @@ module WhopSDK
         # An image for the plan. This will be visible on the product page to customers.
         sig do
           returns(
-            T.nilable(
-              T.any(
-                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID,
-                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID
-              )
-            )
+            T.nilable(WhopSDK::CheckoutConfigurationCreateParams::Plan::Image)
           )
         end
-        attr_accessor :image
+        attr_reader :image
+
+        sig do
+          params(
+            image:
+              T.nilable(
+                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::OrHash
+              )
+          ).void
+        end
+        attr_writer :image
 
         # An additional amount charged upon first purchase.
         sig { returns(T.nilable(Float)) }
@@ -238,10 +247,7 @@ module WhopSDK
             force_create_new_plan: T.nilable(T::Boolean),
             image:
               T.nilable(
-                T.any(
-                  WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID::OrHash,
-                  WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID::OrHash
-                )
+                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::OrHash
               ),
             initial_price: T.nilable(Float),
             internal_notes: T.nilable(String),
@@ -328,10 +334,7 @@ module WhopSDK
               force_create_new_plan: T.nilable(T::Boolean),
               image:
                 T.nilable(
-                  T.any(
-                    WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID,
-                    WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID
-                  )
+                  WhopSDK::CheckoutConfigurationCreateParams::Plan::Image
                 ),
               initial_price: T.nilable(Float),
               internal_notes: T.nilable(String),
@@ -432,86 +435,52 @@ module WhopSDK
           end
         end
 
-        # An image for the plan. This will be visible on the product page to customers.
-        module Image
-          extend WhopSDK::Internal::Type::Union
-
-          Variants =
+        class Image < WhopSDK::Internal::Type::BaseModel
+          OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID,
-                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID
+                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image,
+                WhopSDK::Internal::AnyHash
               )
             end
 
-          class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-            OrHash =
-              T.type_alias do
-                T.any(
-                  WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID,
-                  WhopSDK::Internal::AnyHash
-                )
-              end
+          # The ID of an existing attachment object. Use this when updating a resource and
+          # keeping a subset of the attachments. Don't use this unless you know what you're
+          # doing.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :id
 
-            # This ID should be used the first time you upload an attachment. It is the ID of
-            # the direct upload that was created when uploading the file to S3 via the
-            # mediaDirectUpload mutation.
-            sig { returns(String) }
-            attr_accessor :direct_upload_id
+          # This ID should be used the first time you upload an attachment. It is the ID of
+          # the direct upload that was created when uploading the file to S3 via the
+          # mediaDirectUpload mutation.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :direct_upload_id
 
-            # Input for an attachment
-            sig { params(direct_upload_id: String).returns(T.attached_class) }
-            def self.new(
-              # This ID should be used the first time you upload an attachment. It is the ID of
-              # the direct upload that was created when uploading the file to S3 via the
-              # mediaDirectUpload mutation.
-              direct_upload_id:
-            )
-            end
-
-            sig { override.returns({ direct_upload_id: String }) }
-            def to_hash
-            end
+          # An image for the plan. This will be visible on the product page to customers.
+          sig do
+            params(
+              id: T.nilable(String),
+              direct_upload_id: T.nilable(String)
+            ).returns(T.attached_class)
           end
-
-          class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-            OrHash =
-              T.type_alias do
-                T.any(
-                  WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID,
-                  WhopSDK::Internal::AnyHash
-                )
-              end
-
+          def self.new(
             # The ID of an existing attachment object. Use this when updating a resource and
             # keeping a subset of the attachments. Don't use this unless you know what you're
             # doing.
-            sig { returns(String) }
-            attr_accessor :id
-
-            # Input for an attachment
-            sig { params(id: String).returns(T.attached_class) }
-            def self.new(
-              # The ID of an existing attachment object. Use this when updating a resource and
-              # keeping a subset of the attachments. Don't use this unless you know what you're
-              # doing.
-              id:
-            )
-            end
-
-            sig { override.returns({ id: String }) }
-            def to_hash
-            end
+            id: nil,
+            # This ID should be used the first time you upload an attachment. It is the ID of
+            # the direct upload that was created when uploading the file to S3 via the
+            # mediaDirectUpload mutation.
+            direct_upload_id: nil
+          )
           end
 
           sig do
             override.returns(
-              T::Array[
-                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::Variants
-              ]
+              { id: T.nilable(String), direct_upload_id: T.nilable(String) }
             )
           end
-          def self.variants
+          def to_hash
           end
         end
 

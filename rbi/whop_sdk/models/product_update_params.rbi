@@ -12,17 +12,16 @@ module WhopSDK
         end
 
       # A banner image for the product in png, jpeg format
+      sig { returns(T.nilable(WhopSDK::ProductUpdateParams::BannerImage)) }
+      attr_reader :banner_image
+
       sig do
-        returns(
-          T.nilable(
-            T.any(
-              WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID,
-              WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithID
-            )
-          )
-        )
+        params(
+          banner_image:
+            T.nilable(WhopSDK::ProductUpdateParams::BannerImage::OrHash)
+        ).void
       end
-      attr_accessor :banner_image
+      attr_writer :banner_image
 
       # The different business types a company can be.
       sig { returns(T.nilable(WhopSDK::BusinessTypes::OrSymbol)) }
@@ -109,12 +108,7 @@ module WhopSDK
       sig do
         params(
           banner_image:
-            T.nilable(
-              T.any(
-                WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithID::OrHash
-              )
-            ),
+            T.nilable(WhopSDK::ProductUpdateParams::BannerImage::OrHash),
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           collect_shipping_address: T.nilable(T::Boolean),
           custom_cta: T.nilable(WhopSDK::CustomCta::OrSymbol),
@@ -187,13 +181,7 @@ module WhopSDK
       sig do
         override.returns(
           {
-            banner_image:
-              T.nilable(
-                T.any(
-                  WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID,
-                  WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithID
-                )
-              ),
+            banner_image: T.nilable(WhopSDK::ProductUpdateParams::BannerImage),
             business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
             collect_shipping_address: T.nilable(T::Boolean),
             custom_cta: T.nilable(WhopSDK::CustomCta::OrSymbol),
@@ -222,84 +210,52 @@ module WhopSDK
       def to_hash
       end
 
-      # A banner image for the product in png, jpeg format
-      module BannerImage
-        extend WhopSDK::Internal::Type::Union
-
-        Variants =
+      class BannerImage < WhopSDK::Internal::Type::BaseModel
+        OrHash =
           T.type_alias do
             T.any(
-              WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID,
-              WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithID
+              WhopSDK::ProductUpdateParams::BannerImage,
+              WhopSDK::Internal::AnyHash
             )
           end
 
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID,
-                WhopSDK::Internal::AnyHash
-              )
-            end
+        # The ID of an existing attachment object. Use this when updating a resource and
+        # keeping a subset of the attachments. Don't use this unless you know what you're
+        # doing.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :id
 
-          # This ID should be used the first time you upload an attachment. It is the ID of
-          # the direct upload that was created when uploading the file to S3 via the
-          # mediaDirectUpload mutation.
-          sig { returns(String) }
-          attr_accessor :direct_upload_id
+        # This ID should be used the first time you upload an attachment. It is the ID of
+        # the direct upload that was created when uploading the file to S3 via the
+        # mediaDirectUpload mutation.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :direct_upload_id
 
-          # Input for an attachment
-          sig { params(direct_upload_id: String).returns(T.attached_class) }
-          def self.new(
-            # This ID should be used the first time you upload an attachment. It is the ID of
-            # the direct upload that was created when uploading the file to S3 via the
-            # mediaDirectUpload mutation.
-            direct_upload_id:
-          )
-          end
-
-          sig { override.returns({ direct_upload_id: String }) }
-          def to_hash
-          end
+        # A banner image for the product in png, jpeg format
+        sig do
+          params(
+            id: T.nilable(String),
+            direct_upload_id: T.nilable(String)
+          ).returns(T.attached_class)
         end
-
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithID,
-                WhopSDK::Internal::AnyHash
-              )
-            end
-
+        def self.new(
           # The ID of an existing attachment object. Use this when updating a resource and
           # keeping a subset of the attachments. Don't use this unless you know what you're
           # doing.
-          sig { returns(String) }
-          attr_accessor :id
-
-          # Input for an attachment
-          sig { params(id: String).returns(T.attached_class) }
-          def self.new(
-            # The ID of an existing attachment object. Use this when updating a resource and
-            # keeping a subset of the attachments. Don't use this unless you know what you're
-            # doing.
-            id:
-          )
-          end
-
-          sig { override.returns({ id: String }) }
-          def to_hash
-          end
+          id: nil,
+          # This ID should be used the first time you upload an attachment. It is the ID of
+          # the direct upload that was created when uploading the file to S3 via the
+          # mediaDirectUpload mutation.
+          direct_upload_id: nil
+        )
         end
 
         sig do
           override.returns(
-            T::Array[WhopSDK::ProductUpdateParams::BannerImage::Variants]
+            { id: T.nilable(String), direct_upload_id: T.nilable(String) }
           )
         end
-        def self.variants
+        def to_hash
         end
       end
 

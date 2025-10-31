@@ -39,13 +39,19 @@ module WhopSDK
       #   @return [String, nil]
       optional :idempotence_key, String, nil?: true
 
+      # @!attribute metadata
+      #   A hash of metadata to attach to the transfer.
+      #
+      #   @return [Hash{Symbol=>Object}, nil]
+      optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
       # @!attribute notes
       #   Notes for the transfer. Maximum of 50 characters.
       #
       #   @return [String, nil]
       optional :notes, String, nil?: true
 
-      # @!method initialize(amount:, currency:, destination_id:, origin_id:, idempotence_key: nil, notes: nil, request_options: {})
+      # @!method initialize(amount:, currency:, destination_id:, origin_id:, idempotence_key: nil, metadata: nil, notes: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::TransferCreateParams} for more details.
       #
@@ -58,6 +64,8 @@ module WhopSDK
       #   @param origin_id [String] The ID of the origin account which will send the funds (either a User ID, Compan
       #
       #   @param idempotence_key [String, nil] A unique key to ensure idempotence. Use a UUID or similar.
+      #
+      #   @param metadata [Hash{Symbol=>Object}, nil] A hash of metadata to attach to the transfer.
       #
       #   @param notes [String, nil] Notes for the transfer. Maximum of 50 characters.
       #

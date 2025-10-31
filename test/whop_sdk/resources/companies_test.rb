@@ -21,6 +21,7 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
         industry_type: WhopSDK::IndustryTypes | nil,
         logo: WhopSDK::Company::Logo | nil,
         member_count: Integer,
+        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
         owner_user: WhopSDK::Company::OwnerUser,
         published_reviews_count: Integer,
         route: String,

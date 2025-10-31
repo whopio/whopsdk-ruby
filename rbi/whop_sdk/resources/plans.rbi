@@ -20,13 +20,7 @@ module WhopSDK
             T.nilable(T::Array[WhopSDK::PlanCreateParams::CustomField::OrHash]),
           description: T.nilable(String),
           expiration_days: T.nilable(Integer),
-          image:
-            T.nilable(
-              T.any(
-                WhopSDK::PlanCreateParams::Image::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::PlanCreateParams::Image::AttachmentInputWithID::OrHash
-              )
-            ),
+          image: T.nilable(WhopSDK::PlanCreateParams::Image::OrHash),
           initial_price: T.nilable(Float),
           internal_notes: T.nilable(String),
           override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
@@ -133,13 +127,7 @@ module WhopSDK
             T.nilable(T::Array[WhopSDK::PlanUpdateParams::CustomField::OrHash]),
           description: T.nilable(String),
           expiration_days: T.nilable(Integer),
-          image:
-            T.nilable(
-              T.any(
-                WhopSDK::PlanUpdateParams::Image::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::PlanUpdateParams::Image::AttachmentInputWithID::OrHash
-              )
-            ),
+          image: T.nilable(WhopSDK::PlanUpdateParams::Image::OrHash),
           initial_price: T.nilable(Float),
           internal_notes: T.nilable(String),
           offer_cancel_discount: T.nilable(T::Boolean),

@@ -9,6 +9,7 @@ module WhopSDK
         industry_type: WhopSDK::Models::industry_types?,
         logo: WhopSDK::Company::Logo?,
         member_count: Integer,
+        metadata: ::Hash[Symbol, top]?,
         owner_user: WhopSDK::Company::OwnerUser,
         published_reviews_count: Integer,
         route: String,
@@ -33,6 +34,8 @@ module WhopSDK
 
       attr_accessor member_count: Integer
 
+      attr_accessor metadata: ::Hash[Symbol, top]?
+
       attr_accessor owner_user: WhopSDK::Company::OwnerUser
 
       attr_accessor published_reviews_count: Integer
@@ -55,6 +58,7 @@ module WhopSDK
         industry_type: WhopSDK::Models::industry_types?,
         logo: WhopSDK::Company::Logo?,
         member_count: Integer,
+        metadata: ::Hash[Symbol, top]?,
         owner_user: WhopSDK::Company::OwnerUser,
         published_reviews_count: Integer,
         route: String,
@@ -72,6 +76,7 @@ module WhopSDK
         industry_type: WhopSDK::Models::industry_types?,
         logo: WhopSDK::Company::Logo?,
         member_count: Integer,
+        metadata: ::Hash[Symbol, top]?,
         owner_user: WhopSDK::Company::OwnerUser,
         published_reviews_count: Integer,
         route: String,

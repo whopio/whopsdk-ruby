@@ -16,9 +16,9 @@ module WhopSDK
       # @!attribute attachments
       #   The attachments for this post
       #
-      #   @return [Array<WhopSDK::Models::ForumPostCreateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::ForumPostCreateParams::Attachment::AttachmentInputWithID>, nil]
+      #   @return [Array<WhopSDK::Models::ForumPostCreateParams::Attachment>, nil]
       optional :attachments,
-               -> { WhopSDK::Internal::Type::ArrayOf[union: WhopSDK::ForumPostCreateParams::Attachment] },
+               -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::ForumPostCreateParams::Attachment] },
                nil?: true
 
       # @!attribute content
@@ -80,7 +80,7 @@ module WhopSDK
       #
       #   @param experience_id [String] The experience to create this post in
       #
-      #   @param attachments [Array<WhopSDK::Models::ForumPostCreateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::ForumPostCreateParams::Attachment::AttachmentInputWithID>, nil] The attachments for this post
+      #   @param attachments [Array<WhopSDK::Models::ForumPostCreateParams::Attachment>, nil] The attachments for this post
       #
       #   @param content [String, nil] This is the main body of the post in Markdown format. Hidden if paywalled and us
       #
@@ -100,56 +100,32 @@ module WhopSDK
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      # Input for an attachment
-      module Attachment
-        extend WhopSDK::Internal::Type::Union
+      class Attachment < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The ID of an existing attachment object. Use this when updating a resource and
+        #   keeping a subset of the attachments. Don't use this unless you know what you're
+        #   doing.
+        #
+        #   @return [String, nil]
+        optional :id, String, nil?: true
 
-        # Input for an attachment
-        variant -> { WhopSDK::ForumPostCreateParams::Attachment::AttachmentInputWithDirectUploadID }
+        # @!attribute direct_upload_id
+        #   This ID should be used the first time you upload an attachment. It is the ID of
+        #   the direct upload that was created when uploading the file to S3 via the
+        #   mediaDirectUpload mutation.
+        #
+        #   @return [String, nil]
+        optional :direct_upload_id, String, nil?: true
 
-        # Input for an attachment
-        variant -> { WhopSDK::ForumPostCreateParams::Attachment::AttachmentInputWithID }
-
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          # @!attribute direct_upload_id
-          #   This ID should be used the first time you upload an attachment. It is the ID of
-          #   the direct upload that was created when uploading the file to S3 via the
-          #   mediaDirectUpload mutation.
-          #
-          #   @return [String]
-          required :direct_upload_id, String
-
-          # @!method initialize(direct_upload_id:)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::ForumPostCreateParams::Attachment::AttachmentInputWithDirectUploadID}
-          #   for more details.
-          #
-          #   Input for an attachment
-          #
-          #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
-        end
-
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #   The ID of an existing attachment object. Use this when updating a resource and
-          #   keeping a subset of the attachments. Don't use this unless you know what you're
-          #   doing.
-          #
-          #   @return [String]
-          required :id, String
-
-          # @!method initialize(id:)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::ForumPostCreateParams::Attachment::AttachmentInputWithID} for
-          #   more details.
-          #
-          #   Input for an attachment
-          #
-          #   @param id [String] The ID of an existing attachment object. Use this when updating a resource and k
-        end
-
-        # @!method self.variants
-        #   @return [Array(WhopSDK::Models::ForumPostCreateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::ForumPostCreateParams::Attachment::AttachmentInputWithID)]
+        # @!method initialize(id: nil, direct_upload_id: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::ForumPostCreateParams::Attachment} for more details.
+        #
+        #   Input for an attachment
+        #
+        #   @param id [String, nil] The ID of an existing attachment object. Use this when updating a resource and k
+        #
+        #   @param direct_upload_id [String, nil] This ID should be used the first time you upload an attachment. It is the ID of
       end
 
       class Poll < WhopSDK::Internal::Type::BaseModel

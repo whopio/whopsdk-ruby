@@ -109,6 +109,11 @@ module WhopSDK
       end
       attr_writer :membership
 
+      # The custom metadata stored on this payment. This will be copied the checkout
+      # configuration for which this payment was made
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      attr_accessor :metadata
+
       # The datetime the payment was paid
       sig { returns(T.nilable(Time)) }
       attr_accessor :paid_at
@@ -233,6 +238,7 @@ module WhopSDK
             T.nilable(WhopSDK::Models::PaymentListResponse::Member::OrHash),
           membership:
             T.nilable(WhopSDK::Models::PaymentListResponse::Membership::OrHash),
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
           paid_at: T.nilable(Time),
           payment_method_type: T.nilable(WhopSDK::PaymentMethodTypes::OrSymbol),
           plan: T.nilable(WhopSDK::Models::PaymentListResponse::Plan::OrHash),
@@ -284,6 +290,9 @@ module WhopSDK
         member:,
         # The membership attached to this payment.
         membership:,
+        # The custom metadata stored on this payment. This will be copied the checkout
+        # configuration for which this payment was made
+        metadata:,
         # The datetime the payment was paid
         paid_at:,
         # The different types of payment methods that can be used.
@@ -343,6 +352,7 @@ module WhopSDK
             member: T.nilable(WhopSDK::Models::PaymentListResponse::Member),
             membership:
               T.nilable(WhopSDK::Models::PaymentListResponse::Membership),
+            metadata: T.nilable(T::Hash[Symbol, T.anything]),
             paid_at: T.nilable(Time),
             payment_method_type:
               T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol),

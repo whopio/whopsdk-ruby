@@ -155,15 +155,16 @@ module WhopSDK
       end
 
       type image =
-        WhopSDK::PlanUpdateParams::Image::DirectUploadID
-        | WhopSDK::PlanUpdateParams::Image::ID
+        WhopSDK::PlanUpdateParams::Image::AttachmentInputWithDirectUploadID
+        | WhopSDK::PlanUpdateParams::Image::AttachmentInputWithID
 
       module Image
         extend WhopSDK::Internal::Type::Union
 
-        type direct_upload_id = { direct_upload_id: String }
+        type attachment_input_with_direct_upload_id =
+          { direct_upload_id: String }
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           attr_accessor direct_upload_id: String
 
           def initialize: (direct_upload_id: String) -> void
@@ -171,9 +172,9 @@ module WhopSDK
           def to_hash: -> { direct_upload_id: String }
         end
 
-        type id = { id: String }
+        type attachment_input_with_id = { id: String }
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           attr_accessor id: String
 
           def initialize: (id: String) -> void

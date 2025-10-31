@@ -54,7 +54,7 @@ module WhopSDK
       # @!attribute image
       #   An image for the plan. This will be visible on the product page to customers.
       #
-      #   @return [WhopSDK::Models::PlanCreateParams::Image::DirectUploadID, WhopSDK::Models::PlanCreateParams::Image::ID, nil]
+      #   @return [WhopSDK::Models::PlanCreateParams::Image::AttachmentInputWithDirectUploadID, WhopSDK::Models::PlanCreateParams::Image::AttachmentInputWithID, nil]
       optional :image, union: -> { WhopSDK::PlanCreateParams::Image }, nil?: true
 
       # @!attribute initial_price
@@ -168,7 +168,7 @@ module WhopSDK
       #
       #   @param expiration_days [Integer, nil] The interval at which the plan charges (expiration plans).
       #
-      #   @param image [WhopSDK::Models::PlanCreateParams::Image::DirectUploadID, WhopSDK::Models::PlanCreateParams::Image::ID, nil] An image for the plan. This will be visible on the product page to customers.
+      #   @param image [WhopSDK::Models::PlanCreateParams::Image::AttachmentInputWithDirectUploadID, WhopSDK::Models::PlanCreateParams::Image::AttachmentInputWithID, nil] An image for the plan. This will be visible on the product page to customers.
       #
       #   @param initial_price [Float, nil] An additional amount charged upon first purchase. Use only if a one time payment
       #
@@ -256,12 +256,12 @@ module WhopSDK
         extend WhopSDK::Internal::Type::Union
 
         # Input for an attachment
-        variant -> { WhopSDK::PlanCreateParams::Image::DirectUploadID }
+        variant -> { WhopSDK::PlanCreateParams::Image::AttachmentInputWithDirectUploadID }
 
         # Input for an attachment
-        variant -> { WhopSDK::PlanCreateParams::Image::ID }
+        variant -> { WhopSDK::PlanCreateParams::Image::AttachmentInputWithID }
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           # @!attribute direct_upload_id
           #   This ID should be used the first time you upload an attachment. It is the ID of
           #   the direct upload that was created when uploading the file to S3 via the
@@ -272,14 +272,15 @@ module WhopSDK
 
           # @!method initialize(direct_upload_id:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::PlanCreateParams::Image::DirectUploadID} for more details.
+          #   {WhopSDK::Models::PlanCreateParams::Image::AttachmentInputWithDirectUploadID}
+          #   for more details.
           #
           #   Input for an attachment
           #
           #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
         end
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
           #   The ID of an existing attachment object. Use this when updating a resource and
           #   keeping a subset of the attachments. Don't use this unless you know what you're
@@ -290,7 +291,8 @@ module WhopSDK
 
           # @!method initialize(id:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::PlanCreateParams::Image::ID} for more details.
+          #   {WhopSDK::Models::PlanCreateParams::Image::AttachmentInputWithID} for more
+          #   details.
           #
           #   Input for an attachment
           #
@@ -298,7 +300,7 @@ module WhopSDK
         end
 
         # @!method self.variants
-        #   @return [Array(WhopSDK::Models::PlanCreateParams::Image::DirectUploadID, WhopSDK::Models::PlanCreateParams::Image::ID)]
+        #   @return [Array(WhopSDK::Models::PlanCreateParams::Image::AttachmentInputWithDirectUploadID, WhopSDK::Models::PlanCreateParams::Image::AttachmentInputWithID)]
       end
 
       class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel

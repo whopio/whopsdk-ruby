@@ -38,8 +38,8 @@ module WhopSDK
         returns(
           T.nilable(
             T.any(
-              WhopSDK::PlanUpdateParams::Image::DirectUploadID,
-              WhopSDK::PlanUpdateParams::Image::ID
+              WhopSDK::PlanUpdateParams::Image::AttachmentInputWithDirectUploadID,
+              WhopSDK::PlanUpdateParams::Image::AttachmentInputWithID
             )
           )
         )
@@ -127,8 +127,8 @@ module WhopSDK
           image:
             T.nilable(
               T.any(
-                WhopSDK::PlanUpdateParams::Image::DirectUploadID::OrHash,
-                WhopSDK::PlanUpdateParams::Image::ID::OrHash
+                WhopSDK::PlanUpdateParams::Image::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::PlanUpdateParams::Image::AttachmentInputWithID::OrHash
               )
             ),
           initial_price: T.nilable(Float),
@@ -209,8 +209,8 @@ module WhopSDK
             image:
               T.nilable(
                 T.any(
-                  WhopSDK::PlanUpdateParams::Image::DirectUploadID,
-                  WhopSDK::PlanUpdateParams::Image::ID
+                  WhopSDK::PlanUpdateParams::Image::AttachmentInputWithDirectUploadID,
+                  WhopSDK::PlanUpdateParams::Image::AttachmentInputWithID
                 )
               ),
             initial_price: T.nilable(Float),
@@ -316,16 +316,16 @@ module WhopSDK
         Variants =
           T.type_alias do
             T.any(
-              WhopSDK::PlanUpdateParams::Image::DirectUploadID,
-              WhopSDK::PlanUpdateParams::Image::ID
+              WhopSDK::PlanUpdateParams::Image::AttachmentInputWithDirectUploadID,
+              WhopSDK::PlanUpdateParams::Image::AttachmentInputWithID
             )
           end
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::PlanUpdateParams::Image::DirectUploadID,
+                WhopSDK::PlanUpdateParams::Image::AttachmentInputWithDirectUploadID,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -351,11 +351,11 @@ module WhopSDK
           end
         end
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::PlanUpdateParams::Image::ID,
+                WhopSDK::PlanUpdateParams::Image::AttachmentInputWithID,
                 WhopSDK::Internal::AnyHash
               )
             end

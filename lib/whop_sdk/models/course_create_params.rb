@@ -48,7 +48,7 @@ module WhopSDK
       # @!attribute thumbnail
       #   The thumbnail for the course in png, jpeg, or gif format
       #
-      #   @return [WhopSDK::Models::CourseCreateParams::Thumbnail::DirectUploadID, WhopSDK::Models::CourseCreateParams::Thumbnail::ID, nil]
+      #   @return [WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithID, nil]
       optional :thumbnail, union: -> { WhopSDK::CourseCreateParams::Thumbnail }, nil?: true
 
       # @!method initialize(experience_id:, title:, certificate_after_completion_enabled: nil, cover_image: nil, require_completing_lessons_in_order: nil, tagline: nil, thumbnail: nil, request_options: {})
@@ -67,7 +67,7 @@ module WhopSDK
       #
       #   @param tagline [String, nil] The tagline of the course
       #
-      #   @param thumbnail [WhopSDK::Models::CourseCreateParams::Thumbnail::DirectUploadID, WhopSDK::Models::CourseCreateParams::Thumbnail::ID, nil] The thumbnail for the course in png, jpeg, or gif format
+      #   @param thumbnail [WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithID, nil] The thumbnail for the course in png, jpeg, or gif format
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
@@ -76,12 +76,12 @@ module WhopSDK
         extend WhopSDK::Internal::Type::Union
 
         # Input for an attachment
-        variant -> { WhopSDK::CourseCreateParams::Thumbnail::DirectUploadID }
+        variant -> { WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID }
 
         # Input for an attachment
-        variant -> { WhopSDK::CourseCreateParams::Thumbnail::ID }
+        variant -> { WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithID }
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           # @!attribute direct_upload_id
           #   This ID should be used the first time you upload an attachment. It is the ID of
           #   the direct upload that was created when uploading the file to S3 via the
@@ -92,15 +92,15 @@ module WhopSDK
 
           # @!method initialize(direct_upload_id:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::CourseCreateParams::Thumbnail::DirectUploadID} for more
-          #   details.
+          #   {WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID}
+          #   for more details.
           #
           #   Input for an attachment
           #
           #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
         end
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
           #   The ID of an existing attachment object. Use this when updating a resource and
           #   keeping a subset of the attachments. Don't use this unless you know what you're
@@ -111,7 +111,8 @@ module WhopSDK
 
           # @!method initialize(id:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::CourseCreateParams::Thumbnail::ID} for more details.
+          #   {WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithID} for more
+          #   details.
           #
           #   Input for an attachment
           #
@@ -119,7 +120,7 @@ module WhopSDK
         end
 
         # @!method self.variants
-        #   @return [Array(WhopSDK::Models::CourseCreateParams::Thumbnail::DirectUploadID, WhopSDK::Models::CourseCreateParams::Thumbnail::ID)]
+        #   @return [Array(WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithID)]
       end
     end
   end

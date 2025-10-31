@@ -17,8 +17,8 @@ module WhopSDK
       sig do
         returns(
           T.any(
-            WhopSDK::AppBuildCreateParams::Attachment::DirectUploadID,
-            WhopSDK::AppBuildCreateParams::Attachment::ID
+            WhopSDK::AppBuildCreateParams::Attachment::AttachmentInputWithDirectUploadID,
+            WhopSDK::AppBuildCreateParams::Attachment::AttachmentInputWithID
           )
         )
       end
@@ -48,8 +48,8 @@ module WhopSDK
         params(
           attachment:
             T.any(
-              WhopSDK::AppBuildCreateParams::Attachment::DirectUploadID::OrHash,
-              WhopSDK::AppBuildCreateParams::Attachment::ID::OrHash
+              WhopSDK::AppBuildCreateParams::Attachment::AttachmentInputWithDirectUploadID::OrHash,
+              WhopSDK::AppBuildCreateParams::Attachment::AttachmentInputWithID::OrHash
             ),
           checksum: String,
           platform: WhopSDK::AppBuildPlatforms::OrSymbol,
@@ -85,8 +85,8 @@ module WhopSDK
           {
             attachment:
               T.any(
-                WhopSDK::AppBuildCreateParams::Attachment::DirectUploadID,
-                WhopSDK::AppBuildCreateParams::Attachment::ID
+                WhopSDK::AppBuildCreateParams::Attachment::AttachmentInputWithDirectUploadID,
+                WhopSDK::AppBuildCreateParams::Attachment::AttachmentInputWithID
               ),
             checksum: String,
             platform: WhopSDK::AppBuildPlatforms::OrSymbol,
@@ -109,16 +109,16 @@ module WhopSDK
         Variants =
           T.type_alias do
             T.any(
-              WhopSDK::AppBuildCreateParams::Attachment::DirectUploadID,
-              WhopSDK::AppBuildCreateParams::Attachment::ID
+              WhopSDK::AppBuildCreateParams::Attachment::AttachmentInputWithDirectUploadID,
+              WhopSDK::AppBuildCreateParams::Attachment::AttachmentInputWithID
             )
           end
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::AppBuildCreateParams::Attachment::DirectUploadID,
+                WhopSDK::AppBuildCreateParams::Attachment::AttachmentInputWithDirectUploadID,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -144,11 +144,11 @@ module WhopSDK
           end
         end
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::AppBuildCreateParams::Attachment::ID,
+                WhopSDK::AppBuildCreateParams::Attachment::AttachmentInputWithID,
                 WhopSDK::Internal::AnyHash
               )
             end

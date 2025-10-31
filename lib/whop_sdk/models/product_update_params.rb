@@ -10,7 +10,7 @@ module WhopSDK
       # @!attribute banner_image
       #   A banner image for the product in png, jpeg format
       #
-      #   @return [WhopSDK::Models::ProductUpdateParams::BannerImage::DirectUploadID, WhopSDK::Models::ProductUpdateParams::BannerImage::ID, nil]
+      #   @return [WhopSDK::Models::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID, WhopSDK::Models::ProductUpdateParams::BannerImage::AttachmentInputWithID, nil]
       optional :banner_image, union: -> { WhopSDK::ProductUpdateParams::BannerImage }, nil?: true
 
       # @!attribute business_type
@@ -127,7 +127,7 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ProductUpdateParams} for more details.
       #
-      #   @param banner_image [WhopSDK::Models::ProductUpdateParams::BannerImage::DirectUploadID, WhopSDK::Models::ProductUpdateParams::BannerImage::ID, nil] A banner image for the product in png, jpeg format
+      #   @param banner_image [WhopSDK::Models::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID, WhopSDK::Models::ProductUpdateParams::BannerImage::AttachmentInputWithID, nil] A banner image for the product in png, jpeg format
       #
       #   @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #
@@ -173,12 +173,12 @@ module WhopSDK
         extend WhopSDK::Internal::Type::Union
 
         # Input for an attachment
-        variant -> { WhopSDK::ProductUpdateParams::BannerImage::DirectUploadID }
+        variant -> { WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID }
 
         # Input for an attachment
-        variant -> { WhopSDK::ProductUpdateParams::BannerImage::ID }
+        variant -> { WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithID }
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           # @!attribute direct_upload_id
           #   This ID should be used the first time you upload an attachment. It is the ID of
           #   the direct upload that was created when uploading the file to S3 via the
@@ -189,15 +189,15 @@ module WhopSDK
 
           # @!method initialize(direct_upload_id:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::ProductUpdateParams::BannerImage::DirectUploadID} for more
-          #   details.
+          #   {WhopSDK::Models::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID}
+          #   for more details.
           #
           #   Input for an attachment
           #
           #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
         end
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
           #   The ID of an existing attachment object. Use this when updating a resource and
           #   keeping a subset of the attachments. Don't use this unless you know what you're
@@ -208,7 +208,8 @@ module WhopSDK
 
           # @!method initialize(id:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::ProductUpdateParams::BannerImage::ID} for more details.
+          #   {WhopSDK::Models::ProductUpdateParams::BannerImage::AttachmentInputWithID} for
+          #   more details.
           #
           #   Input for an attachment
           #
@@ -216,7 +217,7 @@ module WhopSDK
         end
 
         # @!method self.variants
-        #   @return [Array(WhopSDK::Models::ProductUpdateParams::BannerImage::DirectUploadID, WhopSDK::Models::ProductUpdateParams::BannerImage::ID)]
+        #   @return [Array(WhopSDK::Models::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID, WhopSDK::Models::ProductUpdateParams::BannerImage::AttachmentInputWithID)]
       end
 
       class StorePageConfig < WhopSDK::Internal::Type::BaseModel

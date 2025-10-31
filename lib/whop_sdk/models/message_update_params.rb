@@ -10,7 +10,7 @@ module WhopSDK
       # @!attribute attachments
       #   The attachments for this message
       #
-      #   @return [Array<WhopSDK::Models::MessageUpdateParams::Attachment::DirectUploadID, WhopSDK::Models::MessageUpdateParams::Attachment::ID>, nil]
+      #   @return [Array<WhopSDK::Models::MessageUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::MessageUpdateParams::Attachment::AttachmentInputWithID>, nil]
       optional :attachments,
                -> { WhopSDK::Internal::Type::ArrayOf[union: WhopSDK::MessageUpdateParams::Attachment] },
                nil?: true
@@ -28,7 +28,7 @@ module WhopSDK
       optional :is_pinned, WhopSDK::Internal::Type::Boolean, nil?: true
 
       # @!method initialize(attachments: nil, content: nil, is_pinned: nil, request_options: {})
-      #   @param attachments [Array<WhopSDK::Models::MessageUpdateParams::Attachment::DirectUploadID, WhopSDK::Models::MessageUpdateParams::Attachment::ID>, nil] The attachments for this message
+      #   @param attachments [Array<WhopSDK::Models::MessageUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::MessageUpdateParams::Attachment::AttachmentInputWithID>, nil] The attachments for this message
       #
       #   @param content [String, nil] The content of the message in Markdown format
       #
@@ -41,12 +41,12 @@ module WhopSDK
         extend WhopSDK::Internal::Type::Union
 
         # Input for an attachment
-        variant -> { WhopSDK::MessageUpdateParams::Attachment::DirectUploadID }
+        variant -> { WhopSDK::MessageUpdateParams::Attachment::AttachmentInputWithDirectUploadID }
 
         # Input for an attachment
-        variant -> { WhopSDK::MessageUpdateParams::Attachment::ID }
+        variant -> { WhopSDK::MessageUpdateParams::Attachment::AttachmentInputWithID }
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           # @!attribute direct_upload_id
           #   This ID should be used the first time you upload an attachment. It is the ID of
           #   the direct upload that was created when uploading the file to S3 via the
@@ -57,15 +57,15 @@ module WhopSDK
 
           # @!method initialize(direct_upload_id:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::MessageUpdateParams::Attachment::DirectUploadID} for more
-          #   details.
+          #   {WhopSDK::Models::MessageUpdateParams::Attachment::AttachmentInputWithDirectUploadID}
+          #   for more details.
           #
           #   Input for an attachment
           #
           #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
         end
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
           #   The ID of an existing attachment object. Use this when updating a resource and
           #   keeping a subset of the attachments. Don't use this unless you know what you're
@@ -76,7 +76,8 @@ module WhopSDK
 
           # @!method initialize(id:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::MessageUpdateParams::Attachment::ID} for more details.
+          #   {WhopSDK::Models::MessageUpdateParams::Attachment::AttachmentInputWithID} for
+          #   more details.
           #
           #   Input for an attachment
           #
@@ -84,7 +85,7 @@ module WhopSDK
         end
 
         # @!method self.variants
-        #   @return [Array(WhopSDK::Models::MessageUpdateParams::Attachment::DirectUploadID, WhopSDK::Models::MessageUpdateParams::Attachment::ID)]
+        #   @return [Array(WhopSDK::Models::MessageUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::MessageUpdateParams::Attachment::AttachmentInputWithID)]
       end
     end
   end

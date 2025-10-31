@@ -17,8 +17,8 @@ module WhopSDK
           T.nilable(
             T::Array[
               T.any(
-                WhopSDK::MessageUpdateParams::Attachment::DirectUploadID,
-                WhopSDK::MessageUpdateParams::Attachment::ID
+                WhopSDK::MessageUpdateParams::Attachment::AttachmentInputWithDirectUploadID,
+                WhopSDK::MessageUpdateParams::Attachment::AttachmentInputWithID
               )
             ]
           )
@@ -40,8 +40,8 @@ module WhopSDK
             T.nilable(
               T::Array[
                 T.any(
-                  WhopSDK::MessageUpdateParams::Attachment::DirectUploadID::OrHash,
-                  WhopSDK::MessageUpdateParams::Attachment::ID::OrHash
+                  WhopSDK::MessageUpdateParams::Attachment::AttachmentInputWithDirectUploadID::OrHash,
+                  WhopSDK::MessageUpdateParams::Attachment::AttachmentInputWithID::OrHash
                 )
               ]
             ),
@@ -68,8 +68,8 @@ module WhopSDK
               T.nilable(
                 T::Array[
                   T.any(
-                    WhopSDK::MessageUpdateParams::Attachment::DirectUploadID,
-                    WhopSDK::MessageUpdateParams::Attachment::ID
+                    WhopSDK::MessageUpdateParams::Attachment::AttachmentInputWithDirectUploadID,
+                    WhopSDK::MessageUpdateParams::Attachment::AttachmentInputWithID
                   )
                 ]
               ),
@@ -89,16 +89,16 @@ module WhopSDK
         Variants =
           T.type_alias do
             T.any(
-              WhopSDK::MessageUpdateParams::Attachment::DirectUploadID,
-              WhopSDK::MessageUpdateParams::Attachment::ID
+              WhopSDK::MessageUpdateParams::Attachment::AttachmentInputWithDirectUploadID,
+              WhopSDK::MessageUpdateParams::Attachment::AttachmentInputWithID
             )
           end
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::MessageUpdateParams::Attachment::DirectUploadID,
+                WhopSDK::MessageUpdateParams::Attachment::AttachmentInputWithDirectUploadID,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -124,11 +124,11 @@ module WhopSDK
           end
         end
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::MessageUpdateParams::Attachment::ID,
+                WhopSDK::MessageUpdateParams::Attachment::AttachmentInputWithID,
                 WhopSDK::Internal::AnyHash
               )
             end

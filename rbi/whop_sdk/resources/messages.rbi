@@ -16,8 +16,8 @@ module WhopSDK
             T.nilable(
               T::Array[
                 T.any(
-                  WhopSDK::MessageCreateParams::Attachment::DirectUploadID::OrHash,
-                  WhopSDK::MessageCreateParams::Attachment::ID::OrHash
+                  WhopSDK::MessageCreateParams::Attachment::AttachmentInputWithDirectUploadID::OrHash,
+                  WhopSDK::MessageCreateParams::Attachment::AttachmentInputWithID::OrHash
                 )
               ]
             ),
@@ -60,8 +60,8 @@ module WhopSDK
             T.nilable(
               T::Array[
                 T.any(
-                  WhopSDK::MessageUpdateParams::Attachment::DirectUploadID::OrHash,
-                  WhopSDK::MessageUpdateParams::Attachment::ID::OrHash
+                  WhopSDK::MessageUpdateParams::Attachment::AttachmentInputWithDirectUploadID::OrHash,
+                  WhopSDK::MessageUpdateParams::Attachment::AttachmentInputWithID::OrHash
                 )
               ]
             ),

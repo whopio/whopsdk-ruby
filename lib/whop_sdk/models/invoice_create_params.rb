@@ -170,11 +170,23 @@ module WhopSDK
         #   @return [Float, nil]
         optional :renewal_price, Float, nil?: true
 
+        # @!attribute stock
+        #   The number of units available for purchase.
+        #
+        #   @return [Integer, nil]
+        optional :stock, Integer, nil?: true
+
         # @!attribute trial_period_days
         #   The number of free trial days added before a renewal plan.
         #
         #   @return [Integer, nil]
         optional :trial_period_days, Integer, nil?: true
+
+        # @!attribute unlimited_stock
+        #   Limits/doesn't limit the number of units available for purchase.
+        #
+        #   @return [Boolean, nil]
+        optional :unlimited_stock, WhopSDK::Internal::Type::Boolean, nil?: true
 
         # @!attribute visibility
         #   Visibility of a resource
@@ -182,7 +194,7 @@ module WhopSDK
         #   @return [Symbol, WhopSDK::Models::Visibility, nil]
         optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-        # @!method initialize(billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, plan_type: nil, release_method: nil, renewal_price: nil, trial_period_days: nil, visibility: nil)
+        # @!method initialize(billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::InvoiceCreateParams::Plan} for more details.
         #
@@ -206,7 +218,11 @@ module WhopSDK
         #
         #   @param renewal_price [Float, nil] The amount the customer is charged every billing period. Use only if a recurring
         #
+        #   @param stock [Integer, nil] The number of units available for purchase.
+        #
         #   @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
+        #
+        #   @param unlimited_stock [Boolean, nil] Limits/doesn't limit the number of units available for purchase.
         #
         #   @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
 

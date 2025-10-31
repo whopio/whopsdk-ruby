@@ -132,8 +132,8 @@ module WhopSDK
           returns(
             T.nilable(
               T.any(
-                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::DirectUploadID,
-                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::ID
+                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID,
+                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID
               )
             )
           )
@@ -239,8 +239,8 @@ module WhopSDK
             image:
               T.nilable(
                 T.any(
-                  WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::DirectUploadID::OrHash,
-                  WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::ID::OrHash
+                  WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID::OrHash,
+                  WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID::OrHash
                 )
               ),
             initial_price: T.nilable(Float),
@@ -329,8 +329,8 @@ module WhopSDK
               image:
                 T.nilable(
                   T.any(
-                    WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::DirectUploadID,
-                    WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::ID
+                    WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID,
+                    WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID
                   )
                 ),
               initial_price: T.nilable(Float),
@@ -439,16 +439,16 @@ module WhopSDK
           Variants =
             T.type_alias do
               T.any(
-                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::DirectUploadID,
-                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::ID
+                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID,
+                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID
               )
             end
 
-          class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+          class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::DirectUploadID,
+                  WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -474,11 +474,11 @@ module WhopSDK
             end
           end
 
-          class ID < WhopSDK::Internal::Type::BaseModel
+          class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::ID,
+                  WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID,
                   WhopSDK::Internal::AnyHash
                 )
               end

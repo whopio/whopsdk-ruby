@@ -69,8 +69,8 @@ module WhopSDK
             T.nilable(
               T::Array[
                 T.any(
-                  WhopSDK::CourseLessonUpdateParams::Attachment::DirectUploadID::OrHash,
-                  WhopSDK::CourseLessonUpdateParams::Attachment::ID::OrHash
+                  WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID::OrHash,
+                  WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithID::OrHash
                 )
               ]
             ),
@@ -80,8 +80,8 @@ module WhopSDK
           main_pdf:
             T.nilable(
               T.any(
-                WhopSDK::CourseLessonUpdateParams::MainPdf::DirectUploadID::OrHash,
-                WhopSDK::CourseLessonUpdateParams::MainPdf::ID::OrHash
+                WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID::OrHash
               )
             ),
           max_attempts: T.nilable(Integer),

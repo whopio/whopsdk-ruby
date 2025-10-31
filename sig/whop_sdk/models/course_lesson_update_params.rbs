@@ -133,15 +133,16 @@ module WhopSDK
         }
 
         type image =
-          WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::DirectUploadID
-          | WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::ID
+          WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID
+          | WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID
 
         module Image
           extend WhopSDK::Internal::Type::Union
 
-          type direct_upload_id = { direct_upload_id: String }
+          type attachment_input_with_direct_upload_id =
+            { direct_upload_id: String }
 
-          class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+          class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
             attr_accessor direct_upload_id: String
 
             def initialize: (direct_upload_id: String) -> void
@@ -149,9 +150,9 @@ module WhopSDK
             def to_hash: -> { direct_upload_id: String }
           end
 
-          type id = { id: String }
+          type attachment_input_with_id = { id: String }
 
-          class ID < WhopSDK::Internal::Type::BaseModel
+          class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
             attr_accessor id: String
 
             def initialize: (id: String) -> void
@@ -182,15 +183,16 @@ module WhopSDK
       end
 
       type attachment =
-        WhopSDK::CourseLessonUpdateParams::Attachment::DirectUploadID
-        | WhopSDK::CourseLessonUpdateParams::Attachment::ID
+        WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID
+        | WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithID
 
       module Attachment
         extend WhopSDK::Internal::Type::Union
 
-        type direct_upload_id = { direct_upload_id: String }
+        type attachment_input_with_direct_upload_id =
+          { direct_upload_id: String }
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           attr_accessor direct_upload_id: String
 
           def initialize: (direct_upload_id: String) -> void
@@ -198,9 +200,9 @@ module WhopSDK
           def to_hash: -> { direct_upload_id: String }
         end
 
-        type id = { id: String }
+        type attachment_input_with_id = { id: String }
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           attr_accessor id: String
 
           def initialize: (id: String) -> void
@@ -212,15 +214,16 @@ module WhopSDK
       end
 
       type main_pdf =
-        WhopSDK::CourseLessonUpdateParams::MainPdf::DirectUploadID
-        | WhopSDK::CourseLessonUpdateParams::MainPdf::ID
+        WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID
+        | WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID
 
       module MainPdf
         extend WhopSDK::Internal::Type::Union
 
-        type direct_upload_id = { direct_upload_id: String }
+        type attachment_input_with_direct_upload_id =
+          { direct_upload_id: String }
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           attr_accessor direct_upload_id: String
 
           def initialize: (direct_upload_id: String) -> void
@@ -228,9 +231,9 @@ module WhopSDK
           def to_hash: -> { direct_upload_id: String }
         end
 
-        type id = { id: String }
+        type attachment_input_with_id = { id: String }
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           attr_accessor id: String
 
           def initialize: (id: String) -> void

@@ -116,8 +116,8 @@ module WhopSDK
           banner_image:
             T.nilable(
               T.any(
-                WhopSDK::ProductUpdateParams::BannerImage::DirectUploadID::OrHash,
-                WhopSDK::ProductUpdateParams::BannerImage::ID::OrHash
+                WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithID::OrHash
               )
             ),
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),

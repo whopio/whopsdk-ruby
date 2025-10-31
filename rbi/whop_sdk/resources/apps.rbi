@@ -60,8 +60,8 @@ module WhopSDK
           icon:
             T.nilable(
               T.any(
-                WhopSDK::AppUpdateParams::Icon::DirectUploadID::OrHash,
-                WhopSDK::AppUpdateParams::Icon::ID::OrHash
+                WhopSDK::AppUpdateParams::Icon::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::AppUpdateParams::Icon::AttachmentInputWithID::OrHash
               )
             ),
           name: T.nilable(String),

@@ -49,8 +49,8 @@ module WhopSDK
           T.nilable(
             T::Array[
               T.any(
-                WhopSDK::CourseLessonUpdateParams::Attachment::DirectUploadID,
-                WhopSDK::CourseLessonUpdateParams::Attachment::ID
+                WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID,
+                WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithID
               )
             ]
           )
@@ -75,8 +75,8 @@ module WhopSDK
         returns(
           T.nilable(
             T.any(
-              WhopSDK::CourseLessonUpdateParams::MainPdf::DirectUploadID,
-              WhopSDK::CourseLessonUpdateParams::MainPdf::ID
+              WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID,
+              WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID
             )
           )
         )
@@ -116,8 +116,8 @@ module WhopSDK
             T.nilable(
               T::Array[
                 T.any(
-                  WhopSDK::CourseLessonUpdateParams::Attachment::DirectUploadID::OrHash,
-                  WhopSDK::CourseLessonUpdateParams::Attachment::ID::OrHash
+                  WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID::OrHash,
+                  WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithID::OrHash
                 )
               ]
             ),
@@ -127,8 +127,8 @@ module WhopSDK
           main_pdf:
             T.nilable(
               T.any(
-                WhopSDK::CourseLessonUpdateParams::MainPdf::DirectUploadID::OrHash,
-                WhopSDK::CourseLessonUpdateParams::MainPdf::ID::OrHash
+                WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID::OrHash
               )
             ),
           max_attempts: T.nilable(Integer),
@@ -183,8 +183,8 @@ module WhopSDK
               T.nilable(
                 T::Array[
                   T.any(
-                    WhopSDK::CourseLessonUpdateParams::Attachment::DirectUploadID,
-                    WhopSDK::CourseLessonUpdateParams::Attachment::ID
+                    WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID,
+                    WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithID
                   )
                 ]
               ),
@@ -194,8 +194,8 @@ module WhopSDK
             main_pdf:
               T.nilable(
                 T.any(
-                  WhopSDK::CourseLessonUpdateParams::MainPdf::DirectUploadID,
-                  WhopSDK::CourseLessonUpdateParams::MainPdf::ID
+                  WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID,
+                  WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID
                 )
               ),
             max_attempts: T.nilable(Integer),
@@ -288,8 +288,8 @@ module WhopSDK
           returns(
             T.nilable(
               T.any(
-                WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::DirectUploadID,
-                WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::ID
+                WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID,
+                WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID
               )
             )
           )
@@ -318,8 +318,8 @@ module WhopSDK
             image:
               T.nilable(
                 T.any(
-                  WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::DirectUploadID::OrHash,
-                  WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::ID::OrHash
+                  WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID::OrHash,
+                  WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID::OrHash
                 )
               ),
             options:
@@ -357,8 +357,8 @@ module WhopSDK
               image:
                 T.nilable(
                   T.any(
-                    WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::DirectUploadID,
-                    WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::ID
+                    WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID,
+                    WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID
                   )
                 ),
               options:
@@ -380,16 +380,16 @@ module WhopSDK
           Variants =
             T.type_alias do
               T.any(
-                WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::DirectUploadID,
-                WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::ID
+                WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID,
+                WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID
               )
             end
 
-          class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+          class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::DirectUploadID,
+                  WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -415,11 +415,11 @@ module WhopSDK
             end
           end
 
-          class ID < WhopSDK::Internal::Type::BaseModel
+          class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::ID,
+                  WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID,
                   WhopSDK::Internal::AnyHash
                 )
               end
@@ -518,16 +518,16 @@ module WhopSDK
         Variants =
           T.type_alias do
             T.any(
-              WhopSDK::CourseLessonUpdateParams::Attachment::DirectUploadID,
-              WhopSDK::CourseLessonUpdateParams::Attachment::ID
+              WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID,
+              WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithID
             )
           end
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::CourseLessonUpdateParams::Attachment::DirectUploadID,
+                WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -553,11 +553,11 @@ module WhopSDK
           end
         end
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::CourseLessonUpdateParams::Attachment::ID,
+                WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithID,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -599,16 +599,16 @@ module WhopSDK
         Variants =
           T.type_alias do
             T.any(
-              WhopSDK::CourseLessonUpdateParams::MainPdf::DirectUploadID,
-              WhopSDK::CourseLessonUpdateParams::MainPdf::ID
+              WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID,
+              WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID
             )
           end
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::CourseLessonUpdateParams::MainPdf::DirectUploadID,
+                WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -634,11 +634,11 @@ module WhopSDK
           end
         end
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::CourseLessonUpdateParams::MainPdf::ID,
+                WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID,
                 WhopSDK::Internal::AnyHash
               )
             end

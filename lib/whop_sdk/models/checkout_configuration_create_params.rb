@@ -101,7 +101,7 @@ module WhopSDK
         # @!attribute image
         #   An image for the plan. This will be visible on the product page to customers.
         #
-        #   @return [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::DirectUploadID, WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::ID, nil]
+        #   @return [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID, WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID, nil]
         optional :image, union: -> { WhopSDK::CheckoutConfigurationCreateParams::Plan::Image }, nil?: true
 
         # @!attribute initial_price
@@ -201,7 +201,7 @@ module WhopSDK
         #
         #   @param force_create_new_plan [Boolean, nil] Whether to force the creation of a new plan even if one with the same attributes
         #
-        #   @param image [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::DirectUploadID, WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::ID, nil] An image for the plan. This will be visible on the product page to customers.
+        #   @param image [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID, WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID, nil] An image for the plan. This will be visible on the product page to customers.
         #
         #   @param initial_price [Float, nil] An additional amount charged upon first purchase.
         #
@@ -285,12 +285,12 @@ module WhopSDK
           extend WhopSDK::Internal::Type::Union
 
           # Input for an attachment
-          variant -> { WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::DirectUploadID }
+          variant -> { WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID }
 
           # Input for an attachment
-          variant -> { WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::ID }
+          variant -> { WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID }
 
-          class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+          class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
             # @!attribute direct_upload_id
             #   This ID should be used the first time you upload an attachment. It is the ID of
             #   the direct upload that was created when uploading the file to S3 via the
@@ -301,7 +301,7 @@ module WhopSDK
 
             # @!method initialize(direct_upload_id:)
             #   Some parameter documentations has been truncated, see
-            #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::DirectUploadID}
+            #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID}
             #   for more details.
             #
             #   Input for an attachment
@@ -309,7 +309,7 @@ module WhopSDK
             #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
           end
 
-          class ID < WhopSDK::Internal::Type::BaseModel
+          class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
             # @!attribute id
             #   The ID of an existing attachment object. Use this when updating a resource and
             #   keeping a subset of the attachments. Don't use this unless you know what you're
@@ -320,8 +320,8 @@ module WhopSDK
 
             # @!method initialize(id:)
             #   Some parameter documentations has been truncated, see
-            #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::ID} for more
-            #   details.
+            #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID}
+            #   for more details.
             #
             #   Input for an attachment
             #
@@ -329,7 +329,7 @@ module WhopSDK
           end
 
           # @!method self.variants
-          #   @return [Array(WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::DirectUploadID, WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::ID)]
+          #   @return [Array(WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID, WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID)]
         end
 
         # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Plan#payment_method_configuration

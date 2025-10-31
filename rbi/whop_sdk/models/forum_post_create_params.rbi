@@ -21,8 +21,8 @@ module WhopSDK
           T.nilable(
             T::Array[
               T.any(
-                WhopSDK::ForumPostCreateParams::Attachment::DirectUploadID,
-                WhopSDK::ForumPostCreateParams::Attachment::ID
+                WhopSDK::ForumPostCreateParams::Attachment::AttachmentInputWithDirectUploadID,
+                WhopSDK::ForumPostCreateParams::Attachment::AttachmentInputWithID
               )
             ]
           )
@@ -81,8 +81,8 @@ module WhopSDK
             T.nilable(
               T::Array[
                 T.any(
-                  WhopSDK::ForumPostCreateParams::Attachment::DirectUploadID::OrHash,
-                  WhopSDK::ForumPostCreateParams::Attachment::ID::OrHash
+                  WhopSDK::ForumPostCreateParams::Attachment::AttachmentInputWithDirectUploadID::OrHash,
+                  WhopSDK::ForumPostCreateParams::Attachment::AttachmentInputWithID::OrHash
                 )
               ]
             ),
@@ -135,8 +135,8 @@ module WhopSDK
               T.nilable(
                 T::Array[
                   T.any(
-                    WhopSDK::ForumPostCreateParams::Attachment::DirectUploadID,
-                    WhopSDK::ForumPostCreateParams::Attachment::ID
+                    WhopSDK::ForumPostCreateParams::Attachment::AttachmentInputWithDirectUploadID,
+                    WhopSDK::ForumPostCreateParams::Attachment::AttachmentInputWithID
                   )
                 ]
               ),
@@ -162,16 +162,16 @@ module WhopSDK
         Variants =
           T.type_alias do
             T.any(
-              WhopSDK::ForumPostCreateParams::Attachment::DirectUploadID,
-              WhopSDK::ForumPostCreateParams::Attachment::ID
+              WhopSDK::ForumPostCreateParams::Attachment::AttachmentInputWithDirectUploadID,
+              WhopSDK::ForumPostCreateParams::Attachment::AttachmentInputWithID
             )
           end
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::ForumPostCreateParams::Attachment::DirectUploadID,
+                WhopSDK::ForumPostCreateParams::Attachment::AttachmentInputWithDirectUploadID,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -197,11 +197,11 @@ module WhopSDK
           end
         end
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::ForumPostCreateParams::Attachment::ID,
+                WhopSDK::ForumPostCreateParams::Attachment::AttachmentInputWithID,
                 WhopSDK::Internal::AnyHash
               )
             end

@@ -28,7 +28,7 @@ module WhopSDK
       #   General attachments for the lesson (PDFs, files, etc). Replaces all existing
       #   attachments.
       #
-      #   @return [Array<WhopSDK::Models::CourseLessonUpdateParams::Attachment::DirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::Attachment::ID>, nil]
+      #   @return [Array<WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithID>, nil]
       optional :attachments,
                -> { WhopSDK::Internal::Type::ArrayOf[union: WhopSDK::CourseLessonUpdateParams::Attachment] },
                nil?: true
@@ -54,7 +54,7 @@ module WhopSDK
       # @!attribute main_pdf
       #   The main PDF file for this lesson
       #
-      #   @return [WhopSDK::Models::CourseLessonUpdateParams::MainPdf::DirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::MainPdf::ID, nil]
+      #   @return [WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID, nil]
       optional :main_pdf, union: -> { WhopSDK::CourseLessonUpdateParams::MainPdf }, nil?: true
 
       # @!attribute max_attempts
@@ -90,7 +90,7 @@ module WhopSDK
       #
       #   @param assessment_questions [Array<WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion>, nil] Assessment questions for quiz/knowledge check lessons. Replaces all existing que
       #
-      #   @param attachments [Array<WhopSDK::Models::CourseLessonUpdateParams::Attachment::DirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::Attachment::ID>, nil] General attachments for the lesson (PDFs, files, etc). Replaces all existing att
+      #   @param attachments [Array<WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithID>, nil] General attachments for the lesson (PDFs, files, etc). Replaces all existing att
       #
       #   @param content [String, nil] The content of the lesson
       #
@@ -98,7 +98,7 @@ module WhopSDK
       #
       #   @param lesson_type [Symbol, WhopSDK::Models::LessonTypes, nil] The available types for a lesson
       #
-      #   @param main_pdf [WhopSDK::Models::CourseLessonUpdateParams::MainPdf::DirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::MainPdf::ID, nil] The main PDF file for this lesson
+      #   @param main_pdf [WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID, nil] The main PDF file for this lesson
       #
       #   @param max_attempts [Integer, nil] Maximum number of attempts allowed for assessments
       #
@@ -166,7 +166,7 @@ module WhopSDK
         # @!attribute image
         #   Optional image attachment for the question
         #
-        #   @return [WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::DirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::ID, nil]
+        #   @return [WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID, nil]
         optional :image,
                  union: -> {
                    WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image
@@ -198,7 +198,7 @@ module WhopSDK
         #
         #   @param id [String, nil] The ID of an existing question. If provided, the question will be updated. If no
         #
-        #   @param image [WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::DirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::ID, nil] Optional image attachment for the question
+        #   @param image [WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID, nil] Optional image attachment for the question
         #
         #   @param options [Array<WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Option>, nil] The answer options for multiple choice/select questions
 
@@ -209,12 +209,12 @@ module WhopSDK
           extend WhopSDK::Internal::Type::Union
 
           # Input for an attachment
-          variant -> { WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::DirectUploadID }
+          variant -> { WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID }
 
           # Input for an attachment
-          variant -> { WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::ID }
+          variant -> { WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID }
 
-          class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+          class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
             # @!attribute direct_upload_id
             #   This ID should be used the first time you upload an attachment. It is the ID of
             #   the direct upload that was created when uploading the file to S3 via the
@@ -225,7 +225,7 @@ module WhopSDK
 
             # @!method initialize(direct_upload_id:)
             #   Some parameter documentations has been truncated, see
-            #   {WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::DirectUploadID}
+            #   {WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID}
             #   for more details.
             #
             #   Input for an attachment
@@ -233,7 +233,7 @@ module WhopSDK
             #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
           end
 
-          class ID < WhopSDK::Internal::Type::BaseModel
+          class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
             # @!attribute id
             #   The ID of an existing attachment object. Use this when updating a resource and
             #   keeping a subset of the attachments. Don't use this unless you know what you're
@@ -244,8 +244,8 @@ module WhopSDK
 
             # @!method initialize(id:)
             #   Some parameter documentations has been truncated, see
-            #   {WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::ID} for
-            #   more details.
+            #   {WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID}
+            #   for more details.
             #
             #   Input for an attachment
             #
@@ -253,7 +253,7 @@ module WhopSDK
           end
 
           # @!method self.variants
-          #   @return [Array(WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::DirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::ID)]
+          #   @return [Array(WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID)]
         end
 
         class Option < WhopSDK::Internal::Type::BaseModel
@@ -296,12 +296,12 @@ module WhopSDK
         extend WhopSDK::Internal::Type::Union
 
         # Input for an attachment
-        variant -> { WhopSDK::CourseLessonUpdateParams::Attachment::DirectUploadID }
+        variant -> { WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID }
 
         # Input for an attachment
-        variant -> { WhopSDK::CourseLessonUpdateParams::Attachment::ID }
+        variant -> { WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithID }
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           # @!attribute direct_upload_id
           #   This ID should be used the first time you upload an attachment. It is the ID of
           #   the direct upload that was created when uploading the file to S3 via the
@@ -312,15 +312,15 @@ module WhopSDK
 
           # @!method initialize(direct_upload_id:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::CourseLessonUpdateParams::Attachment::DirectUploadID} for more
-          #   details.
+          #   {WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID}
+          #   for more details.
           #
           #   Input for an attachment
           #
           #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
         end
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
           #   The ID of an existing attachment object. Use this when updating a resource and
           #   keeping a subset of the attachments. Don't use this unless you know what you're
@@ -331,7 +331,8 @@ module WhopSDK
 
           # @!method initialize(id:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::CourseLessonUpdateParams::Attachment::ID} for more details.
+          #   {WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithID}
+          #   for more details.
           #
           #   Input for an attachment
           #
@@ -339,7 +340,7 @@ module WhopSDK
         end
 
         # @!method self.variants
-        #   @return [Array(WhopSDK::Models::CourseLessonUpdateParams::Attachment::DirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::Attachment::ID)]
+        #   @return [Array(WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithID)]
       end
 
       # The main PDF file for this lesson
@@ -347,12 +348,12 @@ module WhopSDK
         extend WhopSDK::Internal::Type::Union
 
         # Input for an attachment
-        variant -> { WhopSDK::CourseLessonUpdateParams::MainPdf::DirectUploadID }
+        variant -> { WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID }
 
         # Input for an attachment
-        variant -> { WhopSDK::CourseLessonUpdateParams::MainPdf::ID }
+        variant -> { WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID }
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           # @!attribute direct_upload_id
           #   This ID should be used the first time you upload an attachment. It is the ID of
           #   the direct upload that was created when uploading the file to S3 via the
@@ -363,15 +364,15 @@ module WhopSDK
 
           # @!method initialize(direct_upload_id:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::CourseLessonUpdateParams::MainPdf::DirectUploadID} for more
-          #   details.
+          #   {WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID}
+          #   for more details.
           #
           #   Input for an attachment
           #
           #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
         end
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
           #   The ID of an existing attachment object. Use this when updating a resource and
           #   keeping a subset of the attachments. Don't use this unless you know what you're
@@ -382,7 +383,8 @@ module WhopSDK
 
           # @!method initialize(id:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::CourseLessonUpdateParams::MainPdf::ID} for more details.
+          #   {WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID} for
+          #   more details.
           #
           #   Input for an attachment
           #
@@ -390,7 +392,7 @@ module WhopSDK
         end
 
         # @!method self.variants
-        #   @return [Array(WhopSDK::Models::CourseLessonUpdateParams::MainPdf::DirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::MainPdf::ID)]
+        #   @return [Array(WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID)]
       end
     end
   end

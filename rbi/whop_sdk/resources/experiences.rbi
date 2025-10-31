@@ -49,8 +49,8 @@ module WhopSDK
           logo:
             T.nilable(
               T.any(
-                WhopSDK::ExperienceUpdateParams::Logo::DirectUploadID::OrHash,
-                WhopSDK::ExperienceUpdateParams::Logo::ID::OrHash
+                WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithID::OrHash
               )
             ),
           name: T.nilable(String),

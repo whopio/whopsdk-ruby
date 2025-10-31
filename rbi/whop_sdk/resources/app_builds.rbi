@@ -12,8 +12,8 @@ module WhopSDK
         params(
           attachment:
             T.any(
-              WhopSDK::AppBuildCreateParams::Attachment::DirectUploadID::OrHash,
-              WhopSDK::AppBuildCreateParams::Attachment::ID::OrHash
+              WhopSDK::AppBuildCreateParams::Attachment::AttachmentInputWithDirectUploadID::OrHash,
+              WhopSDK::AppBuildCreateParams::Attachment::AttachmentInputWithID::OrHash
             ),
           checksum: String,
           platform: WhopSDK::AppBuildPlatforms::OrSymbol,

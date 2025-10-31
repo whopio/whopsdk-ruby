@@ -197,9 +197,17 @@ module WhopSDK
         sig { returns(T.nilable(Float)) }
         attr_accessor :renewal_price
 
+        # The number of units available for purchase.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :stock
+
         # The number of free trial days added before a renewal plan.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :trial_period_days
+
+        # Limits/doesn't limit the number of units available for purchase.
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_accessor :unlimited_stock
 
         # Visibility of a resource
         sig { returns(T.nilable(WhopSDK::Visibility::OrSymbol)) }
@@ -222,7 +230,9 @@ module WhopSDK
             plan_type: T.nilable(WhopSDK::PlanType::OrSymbol),
             release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
             renewal_price: T.nilable(Float),
+            stock: T.nilable(Integer),
             trial_period_days: T.nilable(Integer),
+            unlimited_stock: T.nilable(T::Boolean),
             visibility: T.nilable(WhopSDK::Visibility::OrSymbol)
           ).returns(T.attached_class)
         end
@@ -248,8 +258,12 @@ module WhopSDK
           # The amount the customer is charged every billing period. Use only if a recurring
           # payment. Provided as a number in dollars. Eg: 10.43 for $10.43
           renewal_price: nil,
+          # The number of units available for purchase.
+          stock: nil,
           # The number of free trial days added before a renewal plan.
           trial_period_days: nil,
+          # Limits/doesn't limit the number of units available for purchase.
+          unlimited_stock: nil,
           # Visibility of a resource
           visibility: nil
         )
@@ -270,7 +284,9 @@ module WhopSDK
               plan_type: T.nilable(WhopSDK::PlanType::OrSymbol),
               release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
               renewal_price: T.nilable(Float),
+              stock: T.nilable(Integer),
               trial_period_days: T.nilable(Integer),
+              unlimited_stock: T.nilable(T::Boolean),
               visibility: T.nilable(WhopSDK::Visibility::OrSymbol)
             }
           )

@@ -19,8 +19,8 @@ module WhopSDK
           thumbnail:
             T.nilable(
               T.any(
-                WhopSDK::CourseCreateParams::Thumbnail::DirectUploadID::OrHash,
-                WhopSDK::CourseCreateParams::Thumbnail::ID::OrHash
+                WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithID::OrHash
               )
             ),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -80,8 +80,8 @@ module WhopSDK
           thumbnail:
             T.nilable(
               T.any(
-                WhopSDK::CourseUpdateParams::Thumbnail::DirectUploadID::OrHash,
-                WhopSDK::CourseUpdateParams::Thumbnail::ID::OrHash
+                WhopSDK::CourseUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::CourseUpdateParams::Thumbnail::AttachmentInputWithID::OrHash
               )
             ),
           title: T.nilable(String),

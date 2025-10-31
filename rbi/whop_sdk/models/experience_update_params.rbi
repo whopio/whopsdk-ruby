@@ -24,8 +24,8 @@ module WhopSDK
         returns(
           T.nilable(
             T.any(
-              WhopSDK::ExperienceUpdateParams::Logo::DirectUploadID,
-              WhopSDK::ExperienceUpdateParams::Logo::ID
+              WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID,
+              WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithID
             )
           )
         )
@@ -51,8 +51,8 @@ module WhopSDK
           logo:
             T.nilable(
               T.any(
-                WhopSDK::ExperienceUpdateParams::Logo::DirectUploadID::OrHash,
-                WhopSDK::ExperienceUpdateParams::Logo::ID::OrHash
+                WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithID::OrHash
               )
             ),
           name: T.nilable(String),
@@ -84,8 +84,8 @@ module WhopSDK
             logo:
               T.nilable(
                 T.any(
-                  WhopSDK::ExperienceUpdateParams::Logo::DirectUploadID,
-                  WhopSDK::ExperienceUpdateParams::Logo::ID
+                  WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID,
+                  WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithID
                 )
               ),
             name: T.nilable(String),
@@ -135,16 +135,16 @@ module WhopSDK
         Variants =
           T.type_alias do
             T.any(
-              WhopSDK::ExperienceUpdateParams::Logo::DirectUploadID,
-              WhopSDK::ExperienceUpdateParams::Logo::ID
+              WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID,
+              WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithID
             )
           end
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::ExperienceUpdateParams::Logo::DirectUploadID,
+                WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -170,11 +170,11 @@ module WhopSDK
           end
         end
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::ExperienceUpdateParams::Logo::ID,
+                WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithID,
                 WhopSDK::Internal::AnyHash
               )
             end

@@ -15,8 +15,8 @@ module WhopSDK
             T.nilable(
               T::Array[
                 T.any(
-                  WhopSDK::ForumPostCreateParams::Attachment::DirectUploadID::OrHash,
-                  WhopSDK::ForumPostCreateParams::Attachment::ID::OrHash
+                  WhopSDK::ForumPostCreateParams::Attachment::AttachmentInputWithDirectUploadID::OrHash,
+                  WhopSDK::ForumPostCreateParams::Attachment::AttachmentInputWithID::OrHash
                 )
               ]
             ),
@@ -83,8 +83,8 @@ module WhopSDK
             T.nilable(
               T::Array[
                 T.any(
-                  WhopSDK::ForumPostUpdateParams::Attachment::DirectUploadID::OrHash,
-                  WhopSDK::ForumPostUpdateParams::Attachment::ID::OrHash
+                  WhopSDK::ForumPostUpdateParams::Attachment::AttachmentInputWithDirectUploadID::OrHash,
+                  WhopSDK::ForumPostUpdateParams::Attachment::AttachmentInputWithID::OrHash
                 )
               ]
             ),

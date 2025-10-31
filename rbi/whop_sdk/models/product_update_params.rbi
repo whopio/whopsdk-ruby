@@ -16,8 +16,8 @@ module WhopSDK
         returns(
           T.nilable(
             T.any(
-              WhopSDK::ProductUpdateParams::BannerImage::DirectUploadID,
-              WhopSDK::ProductUpdateParams::BannerImage::ID
+              WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID,
+              WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithID
             )
           )
         )
@@ -111,8 +111,8 @@ module WhopSDK
           banner_image:
             T.nilable(
               T.any(
-                WhopSDK::ProductUpdateParams::BannerImage::DirectUploadID::OrHash,
-                WhopSDK::ProductUpdateParams::BannerImage::ID::OrHash
+                WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithID::OrHash
               )
             ),
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
@@ -190,8 +190,8 @@ module WhopSDK
             banner_image:
               T.nilable(
                 T.any(
-                  WhopSDK::ProductUpdateParams::BannerImage::DirectUploadID,
-                  WhopSDK::ProductUpdateParams::BannerImage::ID
+                  WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID,
+                  WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithID
                 )
               ),
             business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
@@ -229,16 +229,16 @@ module WhopSDK
         Variants =
           T.type_alias do
             T.any(
-              WhopSDK::ProductUpdateParams::BannerImage::DirectUploadID,
-              WhopSDK::ProductUpdateParams::BannerImage::ID
+              WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID,
+              WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithID
             )
           end
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::ProductUpdateParams::BannerImage::DirectUploadID,
+                WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -264,11 +264,11 @@ module WhopSDK
           end
         end
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::ProductUpdateParams::BannerImage::ID,
+                WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithID,
                 WhopSDK::Internal::AnyHash
               )
             end

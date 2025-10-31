@@ -16,7 +16,7 @@ module WhopSDK
       # @!attribute attachments
       #   The attachments for this post
       #
-      #   @return [Array<WhopSDK::Models::ForumPostCreateParams::Attachment::DirectUploadID, WhopSDK::Models::ForumPostCreateParams::Attachment::ID>, nil]
+      #   @return [Array<WhopSDK::Models::ForumPostCreateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::ForumPostCreateParams::Attachment::AttachmentInputWithID>, nil]
       optional :attachments,
                -> { WhopSDK::Internal::Type::ArrayOf[union: WhopSDK::ForumPostCreateParams::Attachment] },
                nil?: true
@@ -80,7 +80,7 @@ module WhopSDK
       #
       #   @param experience_id [String] The experience to create this post in
       #
-      #   @param attachments [Array<WhopSDK::Models::ForumPostCreateParams::Attachment::DirectUploadID, WhopSDK::Models::ForumPostCreateParams::Attachment::ID>, nil] The attachments for this post
+      #   @param attachments [Array<WhopSDK::Models::ForumPostCreateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::ForumPostCreateParams::Attachment::AttachmentInputWithID>, nil] The attachments for this post
       #
       #   @param content [String, nil] This is the main body of the post in Markdown format. Hidden if paywalled and us
       #
@@ -105,12 +105,12 @@ module WhopSDK
         extend WhopSDK::Internal::Type::Union
 
         # Input for an attachment
-        variant -> { WhopSDK::ForumPostCreateParams::Attachment::DirectUploadID }
+        variant -> { WhopSDK::ForumPostCreateParams::Attachment::AttachmentInputWithDirectUploadID }
 
         # Input for an attachment
-        variant -> { WhopSDK::ForumPostCreateParams::Attachment::ID }
+        variant -> { WhopSDK::ForumPostCreateParams::Attachment::AttachmentInputWithID }
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           # @!attribute direct_upload_id
           #   This ID should be used the first time you upload an attachment. It is the ID of
           #   the direct upload that was created when uploading the file to S3 via the
@@ -121,15 +121,15 @@ module WhopSDK
 
           # @!method initialize(direct_upload_id:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::ForumPostCreateParams::Attachment::DirectUploadID} for more
-          #   details.
+          #   {WhopSDK::Models::ForumPostCreateParams::Attachment::AttachmentInputWithDirectUploadID}
+          #   for more details.
           #
           #   Input for an attachment
           #
           #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
         end
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
           #   The ID of an existing attachment object. Use this when updating a resource and
           #   keeping a subset of the attachments. Don't use this unless you know what you're
@@ -140,7 +140,8 @@ module WhopSDK
 
           # @!method initialize(id:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::ForumPostCreateParams::Attachment::ID} for more details.
+          #   {WhopSDK::Models::ForumPostCreateParams::Attachment::AttachmentInputWithID} for
+          #   more details.
           #
           #   Input for an attachment
           #
@@ -148,7 +149,7 @@ module WhopSDK
         end
 
         # @!method self.variants
-        #   @return [Array(WhopSDK::Models::ForumPostCreateParams::Attachment::DirectUploadID, WhopSDK::Models::ForumPostCreateParams::Attachment::ID)]
+        #   @return [Array(WhopSDK::Models::ForumPostCreateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::ForumPostCreateParams::Attachment::AttachmentInputWithID)]
       end
 
       class Poll < WhopSDK::Internal::Type::BaseModel

@@ -46,7 +46,7 @@ module WhopSDK
       # @!attribute icon
       #   The icon for the app
       #
-      #   @return [WhopSDK::Models::AppUpdateParams::Icon::DirectUploadID, WhopSDK::Models::AppUpdateParams::Icon::ID, nil]
+      #   @return [WhopSDK::Models::AppUpdateParams::Icon::AttachmentInputWithDirectUploadID, WhopSDK::Models::AppUpdateParams::Icon::AttachmentInputWithID, nil]
       optional :icon, union: -> { WhopSDK::AppUpdateParams::Icon }, nil?: true
 
       # @!attribute name
@@ -82,7 +82,7 @@ module WhopSDK
       #
       #   @param experience_path [String, nil] The path for the hub view of the app
       #
-      #   @param icon [WhopSDK::Models::AppUpdateParams::Icon::DirectUploadID, WhopSDK::Models::AppUpdateParams::Icon::ID, nil] The icon for the app
+      #   @param icon [WhopSDK::Models::AppUpdateParams::Icon::AttachmentInputWithDirectUploadID, WhopSDK::Models::AppUpdateParams::Icon::AttachmentInputWithID, nil] The icon for the app
       #
       #   @param name [String, nil] The name of the app
       #
@@ -97,12 +97,12 @@ module WhopSDK
         extend WhopSDK::Internal::Type::Union
 
         # Input for an attachment
-        variant -> { WhopSDK::AppUpdateParams::Icon::DirectUploadID }
+        variant -> { WhopSDK::AppUpdateParams::Icon::AttachmentInputWithDirectUploadID }
 
         # Input for an attachment
-        variant -> { WhopSDK::AppUpdateParams::Icon::ID }
+        variant -> { WhopSDK::AppUpdateParams::Icon::AttachmentInputWithID }
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           # @!attribute direct_upload_id
           #   This ID should be used the first time you upload an attachment. It is the ID of
           #   the direct upload that was created when uploading the file to S3 via the
@@ -113,14 +113,15 @@ module WhopSDK
 
           # @!method initialize(direct_upload_id:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::AppUpdateParams::Icon::DirectUploadID} for more details.
+          #   {WhopSDK::Models::AppUpdateParams::Icon::AttachmentInputWithDirectUploadID} for
+          #   more details.
           #
           #   Input for an attachment
           #
           #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
         end
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
           #   The ID of an existing attachment object. Use this when updating a resource and
           #   keeping a subset of the attachments. Don't use this unless you know what you're
@@ -131,7 +132,8 @@ module WhopSDK
 
           # @!method initialize(id:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::AppUpdateParams::Icon::ID} for more details.
+          #   {WhopSDK::Models::AppUpdateParams::Icon::AttachmentInputWithID} for more
+          #   details.
           #
           #   Input for an attachment
           #
@@ -139,7 +141,7 @@ module WhopSDK
         end
 
         # @!method self.variants
-        #   @return [Array(WhopSDK::Models::AppUpdateParams::Icon::DirectUploadID, WhopSDK::Models::AppUpdateParams::Icon::ID)]
+        #   @return [Array(WhopSDK::Models::AppUpdateParams::Icon::AttachmentInputWithDirectUploadID, WhopSDK::Models::AppUpdateParams::Icon::AttachmentInputWithID)]
       end
 
       # These are the scopes an app can request on behalf of a user

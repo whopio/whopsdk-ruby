@@ -42,8 +42,8 @@ module WhopSDK
         returns(
           T.nilable(
             T.any(
-              WhopSDK::CourseCreateParams::Thumbnail::DirectUploadID,
-              WhopSDK::CourseCreateParams::Thumbnail::ID
+              WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID,
+              WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithID
             )
           )
         )
@@ -61,8 +61,8 @@ module WhopSDK
           thumbnail:
             T.nilable(
               T.any(
-                WhopSDK::CourseCreateParams::Thumbnail::DirectUploadID::OrHash,
-                WhopSDK::CourseCreateParams::Thumbnail::ID::OrHash
+                WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithID::OrHash
               )
             ),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -101,8 +101,8 @@ module WhopSDK
             thumbnail:
               T.nilable(
                 T.any(
-                  WhopSDK::CourseCreateParams::Thumbnail::DirectUploadID,
-                  WhopSDK::CourseCreateParams::Thumbnail::ID
+                  WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID,
+                  WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithID
                 )
               ),
             request_options: WhopSDK::RequestOptions
@@ -119,16 +119,16 @@ module WhopSDK
         Variants =
           T.type_alias do
             T.any(
-              WhopSDK::CourseCreateParams::Thumbnail::DirectUploadID,
-              WhopSDK::CourseCreateParams::Thumbnail::ID
+              WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID,
+              WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithID
             )
           end
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::CourseCreateParams::Thumbnail::DirectUploadID,
+                WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -154,11 +154,11 @@ module WhopSDK
           end
         end
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::CourseCreateParams::Thumbnail::ID,
+                WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithID,
                 WhopSDK::Internal::AnyHash
               )
             end

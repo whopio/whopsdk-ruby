@@ -16,7 +16,7 @@ module WhopSDK
       # @!attribute logo
       #   The logo for the experience
       #
-      #   @return [WhopSDK::Models::ExperienceUpdateParams::Logo::DirectUploadID, WhopSDK::Models::ExperienceUpdateParams::Logo::ID, nil]
+      #   @return [WhopSDK::Models::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID, WhopSDK::Models::ExperienceUpdateParams::Logo::AttachmentInputWithID, nil]
       optional :logo, union: -> { WhopSDK::ExperienceUpdateParams::Logo }, nil?: true
 
       # @!attribute name
@@ -40,7 +40,7 @@ module WhopSDK
       # @!method initialize(access_level: nil, logo: nil, name: nil, order: nil, section_id: nil, request_options: {})
       #   @param access_level [Symbol, WhopSDK::Models::ExperienceUpdateParams::AccessLevel, nil] The different access levels for experiences (PUBLIC IS NEVER USED ANYMORE).
       #
-      #   @param logo [WhopSDK::Models::ExperienceUpdateParams::Logo::DirectUploadID, WhopSDK::Models::ExperienceUpdateParams::Logo::ID, nil] The logo for the experience
+      #   @param logo [WhopSDK::Models::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID, WhopSDK::Models::ExperienceUpdateParams::Logo::AttachmentInputWithID, nil] The logo for the experience
       #
       #   @param name [String, nil] The name of the experience.
       #
@@ -66,12 +66,12 @@ module WhopSDK
         extend WhopSDK::Internal::Type::Union
 
         # Input for an attachment
-        variant -> { WhopSDK::ExperienceUpdateParams::Logo::DirectUploadID }
+        variant -> { WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID }
 
         # Input for an attachment
-        variant -> { WhopSDK::ExperienceUpdateParams::Logo::ID }
+        variant -> { WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithID }
 
-        class DirectUploadID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
           # @!attribute direct_upload_id
           #   This ID should be used the first time you upload an attachment. It is the ID of
           #   the direct upload that was created when uploading the file to S3 via the
@@ -82,15 +82,15 @@ module WhopSDK
 
           # @!method initialize(direct_upload_id:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::ExperienceUpdateParams::Logo::DirectUploadID} for more
-          #   details.
+          #   {WhopSDK::Models::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID}
+          #   for more details.
           #
           #   Input for an attachment
           #
           #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
         end
 
-        class ID < WhopSDK::Internal::Type::BaseModel
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
           #   The ID of an existing attachment object. Use this when updating a resource and
           #   keeping a subset of the attachments. Don't use this unless you know what you're
@@ -101,7 +101,8 @@ module WhopSDK
 
           # @!method initialize(id:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::ExperienceUpdateParams::Logo::ID} for more details.
+          #   {WhopSDK::Models::ExperienceUpdateParams::Logo::AttachmentInputWithID} for more
+          #   details.
           #
           #   Input for an attachment
           #
@@ -109,7 +110,7 @@ module WhopSDK
         end
 
         # @!method self.variants
-        #   @return [Array(WhopSDK::Models::ExperienceUpdateParams::Logo::DirectUploadID, WhopSDK::Models::ExperienceUpdateParams::Logo::ID)]
+        #   @return [Array(WhopSDK::Models::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID, WhopSDK::Models::ExperienceUpdateParams::Logo::AttachmentInputWithID)]
       end
     end
   end

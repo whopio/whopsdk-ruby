@@ -42,15 +42,17 @@ module WhopSDK
       attr_accessor :tagline
 
       # The thumbnail for the course in png, jpeg, or gif format
-      sig { returns(T.nilable(WhopSDK::CourseUpdateParams::Thumbnail)) }
-      attr_reader :thumbnail
-
       sig do
-        params(
-          thumbnail: T.nilable(WhopSDK::CourseUpdateParams::Thumbnail::OrHash)
-        ).void
+        returns(
+          T.nilable(
+            T.any(
+              WhopSDK::CourseUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID,
+              WhopSDK::CourseUpdateParams::Thumbnail::AttachmentInputWithID
+            )
+          )
+        )
       end
-      attr_writer :thumbnail
+      attr_accessor :thumbnail
 
       # The title of the course
       sig { returns(T.nilable(String)) }
@@ -66,7 +68,13 @@ module WhopSDK
           language: T.nilable(WhopSDK::Languages::OrSymbol),
           require_completing_lessons_in_order: T.nilable(T::Boolean),
           tagline: T.nilable(String),
-          thumbnail: T.nilable(WhopSDK::CourseUpdateParams::Thumbnail::OrHash),
+          thumbnail:
+            T.nilable(
+              T.any(
+                WhopSDK::CourseUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::CourseUpdateParams::Thumbnail::AttachmentInputWithID::OrHash
+              )
+            ),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -106,7 +114,13 @@ module WhopSDK
             language: T.nilable(WhopSDK::Languages::OrSymbol),
             require_completing_lessons_in_order: T.nilable(T::Boolean),
             tagline: T.nilable(String),
-            thumbnail: T.nilable(WhopSDK::CourseUpdateParams::Thumbnail),
+            thumbnail:
+              T.nilable(
+                T.any(
+                  WhopSDK::CourseUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID,
+                  WhopSDK::CourseUpdateParams::Thumbnail::AttachmentInputWithID
+                )
+              ),
             title: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }
@@ -240,52 +254,84 @@ module WhopSDK
         end
       end
 
-      class Thumbnail < WhopSDK::Internal::Type::BaseModel
-        OrHash =
+      # The thumbnail for the course in png, jpeg, or gif format
+      module Thumbnail
+        extend WhopSDK::Internal::Type::Union
+
+        Variants =
           T.type_alias do
             T.any(
-              WhopSDK::CourseUpdateParams::Thumbnail,
-              WhopSDK::Internal::AnyHash
+              WhopSDK::CourseUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID,
+              WhopSDK::CourseUpdateParams::Thumbnail::AttachmentInputWithID
             )
           end
 
-        # The ID of an existing attachment object. Use this when updating a resource and
-        # keeping a subset of the attachments. Don't use this unless you know what you're
-        # doing.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :id
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::CourseUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID,
+                WhopSDK::Internal::AnyHash
+              )
+            end
 
-        # This ID should be used the first time you upload an attachment. It is the ID of
-        # the direct upload that was created when uploading the file to S3 via the
-        # mediaDirectUpload mutation.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :direct_upload_id
-
-        # The thumbnail for the course in png, jpeg, or gif format
-        sig do
-          params(
-            id: T.nilable(String),
-            direct_upload_id: T.nilable(String)
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The ID of an existing attachment object. Use this when updating a resource and
-          # keeping a subset of the attachments. Don't use this unless you know what you're
-          # doing.
-          id: nil,
           # This ID should be used the first time you upload an attachment. It is the ID of
           # the direct upload that was created when uploading the file to S3 via the
           # mediaDirectUpload mutation.
-          direct_upload_id: nil
-        )
+          sig { returns(String) }
+          attr_accessor :direct_upload_id
+
+          # Input for an attachment
+          sig { params(direct_upload_id: String).returns(T.attached_class) }
+          def self.new(
+            # This ID should be used the first time you upload an attachment. It is the ID of
+            # the direct upload that was created when uploading the file to S3 via the
+            # mediaDirectUpload mutation.
+            direct_upload_id:
+          )
+          end
+
+          sig { override.returns({ direct_upload_id: String }) }
+          def to_hash
+          end
+        end
+
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::CourseUpdateParams::Thumbnail::AttachmentInputWithID,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The ID of an existing attachment object. Use this when updating a resource and
+          # keeping a subset of the attachments. Don't use this unless you know what you're
+          # doing.
+          sig { returns(String) }
+          attr_accessor :id
+
+          # Input for an attachment
+          sig { params(id: String).returns(T.attached_class) }
+          def self.new(
+            # The ID of an existing attachment object. Use this when updating a resource and
+            # keeping a subset of the attachments. Don't use this unless you know what you're
+            # doing.
+            id:
+          )
+          end
+
+          sig { override.returns({ id: String }) }
+          def to_hash
+          end
         end
 
         sig do
           override.returns(
-            { id: T.nilable(String), direct_upload_id: T.nilable(String) }
+            T::Array[WhopSDK::CourseUpdateParams::Thumbnail::Variants]
           )
         end
-        def to_hash
+        def self.variants
         end
       end
     end

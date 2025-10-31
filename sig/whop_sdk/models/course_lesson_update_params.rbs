@@ -4,11 +4,11 @@ module WhopSDK
       {
         assessment_completion_requirement: WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement?,
         assessment_questions: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion]?,
-        attachments: ::Array[WhopSDK::CourseLessonUpdateParams::Attachment]?,
+        attachments: ::Array[WhopSDK::Models::CourseLessonUpdateParams::attachment]?,
         content: String?,
         days_from_course_start_until_unlock: Integer?,
         lesson_type: WhopSDK::Models::lesson_types?,
-        main_pdf: WhopSDK::CourseLessonUpdateParams::MainPdf?,
+        main_pdf: WhopSDK::Models::CourseLessonUpdateParams::main_pdf?,
         max_attempts: Integer?,
         mux_asset_id: String?,
         title: String?,
@@ -24,7 +24,7 @@ module WhopSDK
 
       attr_accessor assessment_questions: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion]?
 
-      attr_accessor attachments: ::Array[WhopSDK::CourseLessonUpdateParams::Attachment]?
+      attr_accessor attachments: ::Array[WhopSDK::Models::CourseLessonUpdateParams::attachment]?
 
       attr_accessor content: String?
 
@@ -32,7 +32,7 @@ module WhopSDK
 
       attr_accessor lesson_type: WhopSDK::Models::lesson_types?
 
-      attr_accessor main_pdf: WhopSDK::CourseLessonUpdateParams::MainPdf?
+      attr_accessor main_pdf: WhopSDK::Models::CourseLessonUpdateParams::main_pdf?
 
       attr_accessor max_attempts: Integer?
 
@@ -45,11 +45,11 @@ module WhopSDK
       def initialize: (
         ?assessment_completion_requirement: WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement?,
         ?assessment_questions: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion]?,
-        ?attachments: ::Array[WhopSDK::CourseLessonUpdateParams::Attachment]?,
+        ?attachments: ::Array[WhopSDK::Models::CourseLessonUpdateParams::attachment]?,
         ?content: String?,
         ?days_from_course_start_until_unlock: Integer?,
         ?lesson_type: WhopSDK::Models::lesson_types?,
-        ?main_pdf: WhopSDK::CourseLessonUpdateParams::MainPdf?,
+        ?main_pdf: WhopSDK::Models::CourseLessonUpdateParams::main_pdf?,
         ?max_attempts: Integer?,
         ?mux_asset_id: String?,
         ?title: String?,
@@ -60,11 +60,11 @@ module WhopSDK
       def to_hash: -> {
         assessment_completion_requirement: WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement?,
         assessment_questions: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion]?,
-        attachments: ::Array[WhopSDK::CourseLessonUpdateParams::Attachment]?,
+        attachments: ::Array[WhopSDK::Models::CourseLessonUpdateParams::attachment]?,
         content: String?,
         days_from_course_start_until_unlock: Integer?,
         lesson_type: WhopSDK::Models::lesson_types?,
-        main_pdf: WhopSDK::CourseLessonUpdateParams::MainPdf?,
+        main_pdf: WhopSDK::Models::CourseLessonUpdateParams::main_pdf?,
         max_attempts: Integer?,
         mux_asset_id: String?,
         title: String?,
@@ -97,7 +97,7 @@ module WhopSDK
           question_text: String,
           question_type: WhopSDK::Models::assessment_question_types,
           id: String?,
-          image: WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image?,
+          image: WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::image?,
           options: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Option]?
         }
 
@@ -110,7 +110,7 @@ module WhopSDK
 
         attr_accessor id: String?
 
-        attr_accessor image: WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image?
+        attr_accessor image: WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::image?
 
         attr_accessor options: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Option]?
 
@@ -119,7 +119,7 @@ module WhopSDK
           question_text: String,
           question_type: WhopSDK::Models::assessment_question_types,
           ?id: String?,
-          ?image: WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image?,
+          ?image: WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::image?,
           ?options: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Option]?
         ) -> void
 
@@ -128,20 +128,39 @@ module WhopSDK
           question_text: String,
           question_type: WhopSDK::Models::assessment_question_types,
           id: String?,
-          image: WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image?,
+          image: WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::image?,
           options: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Option]?
         }
 
-        type image = { id: String?, direct_upload_id: String? }
+        type image =
+          WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID
+          | WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID
 
-        class Image < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String?
+        module Image
+          extend WhopSDK::Internal::Type::Union
 
-          attr_accessor direct_upload_id: String?
+          type attachment_input_with_direct_upload_id =
+            { direct_upload_id: String }
 
-          def initialize: (?id: String?, ?direct_upload_id: String?) -> void
+          class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
+            attr_accessor direct_upload_id: String
 
-          def to_hash: -> { id: String?, direct_upload_id: String? }
+            def initialize: (direct_upload_id: String) -> void
+
+            def to_hash: -> { direct_upload_id: String }
+          end
+
+          type attachment_input_with_id = { id: String }
+
+          class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            def initialize: (id: String) -> void
+
+            def to_hash: -> { id: String }
+          end
+
+          def self?.variants: -> ::Array[WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::image]
         end
 
         type option = { is_correct: bool, option_text: String, id: String? }
@@ -163,28 +182,66 @@ module WhopSDK
         end
       end
 
-      type attachment = { id: String?, direct_upload_id: String? }
+      type attachment =
+        WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID
+        | WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithID
 
-      class Attachment < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String?
+      module Attachment
+        extend WhopSDK::Internal::Type::Union
 
-        attr_accessor direct_upload_id: String?
+        type attachment_input_with_direct_upload_id =
+          { direct_upload_id: String }
 
-        def initialize: (?id: String?, ?direct_upload_id: String?) -> void
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor direct_upload_id: String
 
-        def to_hash: -> { id: String?, direct_upload_id: String? }
+          def initialize: (direct_upload_id: String) -> void
+
+          def to_hash: -> { direct_upload_id: String }
+        end
+
+        type attachment_input_with_id = { id: String }
+
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
+
+        def self?.variants: -> ::Array[WhopSDK::Models::CourseLessonUpdateParams::attachment]
       end
 
-      type main_pdf = { id: String?, direct_upload_id: String? }
+      type main_pdf =
+        WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID
+        | WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID
 
-      class MainPdf < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String?
+      module MainPdf
+        extend WhopSDK::Internal::Type::Union
 
-        attr_accessor direct_upload_id: String?
+        type attachment_input_with_direct_upload_id =
+          { direct_upload_id: String }
 
-        def initialize: (?id: String?, ?direct_upload_id: String?) -> void
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor direct_upload_id: String
 
-        def to_hash: -> { id: String?, direct_upload_id: String? }
+          def initialize: (direct_upload_id: String) -> void
+
+          def to_hash: -> { direct_upload_id: String }
+        end
+
+        type attachment_input_with_id = { id: String }
+
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
+
+        def self?.variants: -> ::Array[WhopSDK::Models::CourseLessonUpdateParams::main_pdf]
       end
     end
   end

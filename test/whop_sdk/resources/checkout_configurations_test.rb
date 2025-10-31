@@ -3,10 +3,10 @@
 require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::ResourceTest
-  def test_create
+  def test_create_required_params
     skip("Prism tests are disabled")
 
-    response = @whop.checkout_configurations.create
+    response = @whop.checkout_configurations.create(plan: {company_id: "biz_xxxxxxxxxxxxxx"})
 
     assert_pattern do
       response => WhopSDK::CheckoutConfiguration

@@ -8,7 +8,7 @@ module WhopSDK
         ?cover_image: String?,
         ?require_completing_lessons_in_order: bool?,
         ?tagline: String?,
-        ?thumbnail: WhopSDK::CourseCreateParams::Thumbnail?,
+        ?thumbnail: WhopSDK::CourseCreateParams::Thumbnail,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Course
 
@@ -26,7 +26,7 @@ module WhopSDK
         ?language: WhopSDK::Models::languages?,
         ?require_completing_lessons_in_order: bool?,
         ?tagline: String?,
-        ?thumbnail: WhopSDK::CourseUpdateParams::Thumbnail?,
+        ?thumbnail: WhopSDK::CourseUpdateParams::Thumbnail,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Course

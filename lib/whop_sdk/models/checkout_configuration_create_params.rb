@@ -102,7 +102,7 @@ module WhopSDK
         #   An image for the plan. This will be visible on the product page to customers.
         #
         #   @return [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image, nil]
-        optional :image, -> { WhopSDK::CheckoutConfigurationCreateParams::Plan::Image }, nil?: true
+        optional :image, -> { WhopSDK::CheckoutConfigurationCreateParams::Plan::Image }
 
         # @!attribute initial_price
         #   An additional amount charged upon first purchase.
@@ -201,7 +201,7 @@ module WhopSDK
         #
         #   @param force_create_new_plan [Boolean, nil] Whether to force the creation of a new plan even if one with the same attributes
         #
-        #   @param image [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image, nil] An image for the plan. This will be visible on the product page to customers.
+        #   @param image [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image] An image for the plan. This will be visible on the product page to customers.
         #
         #   @param initial_price [Float, nil] An additional amount charged upon first purchase.
         #

@@ -55,7 +55,7 @@ module WhopSDK
       #   The main PDF file for this lesson
       #
       #   @return [WhopSDK::Models::CourseLessonUpdateParams::MainPdf, nil]
-      optional :main_pdf, -> { WhopSDK::CourseLessonUpdateParams::MainPdf }, nil?: true
+      optional :main_pdf, -> { WhopSDK::CourseLessonUpdateParams::MainPdf }
 
       # @!attribute max_attempts
       #   Maximum number of attempts allowed for assessments
@@ -98,7 +98,7 @@ module WhopSDK
       #
       #   @param lesson_type [Symbol, WhopSDK::Models::LessonTypes, nil] The available types for a lesson
       #
-      #   @param main_pdf [WhopSDK::Models::CourseLessonUpdateParams::MainPdf, nil] The main PDF file for this lesson
+      #   @param main_pdf [WhopSDK::Models::CourseLessonUpdateParams::MainPdf] The main PDF file for this lesson
       #
       #   @param max_attempts [Integer, nil] Maximum number of attempts allowed for assessments
       #
@@ -167,7 +167,7 @@ module WhopSDK
         #   Optional image attachment for the question
         #
         #   @return [WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image, nil]
-        optional :image, -> { WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image }, nil?: true
+        optional :image, -> { WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image }
 
         # @!attribute options
         #   The answer options for multiple choice/select questions
@@ -194,7 +194,7 @@ module WhopSDK
         #
         #   @param id [String, nil] The ID of an existing question. If provided, the question will be updated. If no
         #
-        #   @param image [WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image, nil] Optional image attachment for the question
+        #   @param image [WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image] Optional image attachment for the question
         #
         #   @param options [Array<WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Option>, nil] The answer options for multiple choice/select questions
 

@@ -8,7 +8,7 @@ module WhopSDK
         content: String?,
         days_from_course_start_until_unlock: Integer?,
         lesson_type: WhopSDK::Models::lesson_types?,
-        main_pdf: WhopSDK::CourseLessonUpdateParams::MainPdf?,
+        main_pdf: WhopSDK::CourseLessonUpdateParams::MainPdf,
         max_attempts: Integer?,
         mux_asset_id: String?,
         title: String?,
@@ -32,7 +32,11 @@ module WhopSDK
 
       attr_accessor lesson_type: WhopSDK::Models::lesson_types?
 
-      attr_accessor main_pdf: WhopSDK::CourseLessonUpdateParams::MainPdf?
+      attr_reader main_pdf: WhopSDK::CourseLessonUpdateParams::MainPdf?
+
+      def main_pdf=: (
+        WhopSDK::CourseLessonUpdateParams::MainPdf
+      ) -> WhopSDK::CourseLessonUpdateParams::MainPdf
 
       attr_accessor max_attempts: Integer?
 
@@ -49,7 +53,7 @@ module WhopSDK
         ?content: String?,
         ?days_from_course_start_until_unlock: Integer?,
         ?lesson_type: WhopSDK::Models::lesson_types?,
-        ?main_pdf: WhopSDK::CourseLessonUpdateParams::MainPdf?,
+        ?main_pdf: WhopSDK::CourseLessonUpdateParams::MainPdf,
         ?max_attempts: Integer?,
         ?mux_asset_id: String?,
         ?title: String?,
@@ -64,7 +68,7 @@ module WhopSDK
         content: String?,
         days_from_course_start_until_unlock: Integer?,
         lesson_type: WhopSDK::Models::lesson_types?,
-        main_pdf: WhopSDK::CourseLessonUpdateParams::MainPdf?,
+        main_pdf: WhopSDK::CourseLessonUpdateParams::MainPdf,
         max_attempts: Integer?,
         mux_asset_id: String?,
         title: String?,
@@ -97,7 +101,7 @@ module WhopSDK
           question_text: String,
           question_type: WhopSDK::Models::assessment_question_types,
           id: String?,
-          image: WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image?,
+          image: WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image,
           options: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Option]?
         }
 
@@ -110,7 +114,11 @@ module WhopSDK
 
         attr_accessor id: String?
 
-        attr_accessor image: WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image?
+        attr_reader image: WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image?
+
+        def image=: (
+          WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image
+        ) -> WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image
 
         attr_accessor options: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Option]?
 
@@ -119,7 +127,7 @@ module WhopSDK
           question_text: String,
           question_type: WhopSDK::Models::assessment_question_types,
           ?id: String?,
-          ?image: WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image?,
+          ?image: WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image,
           ?options: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Option]?
         ) -> void
 
@@ -128,7 +136,7 @@ module WhopSDK
           question_text: String,
           question_type: WhopSDK::Models::assessment_question_types,
           id: String?,
-          image: WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image?,
+          image: WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image,
           options: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Option]?
         }
 

@@ -85,7 +85,7 @@ module WhopSDK
       #
       # @param lesson_type [Symbol, WhopSDK::Models::LessonTypes, nil] The available types for a lesson
       #
-      # @param main_pdf [WhopSDK::Models::CourseLessonUpdateParams::MainPdf, nil] The main PDF file for this lesson
+      # @param main_pdf [WhopSDK::Models::CourseLessonUpdateParams::MainPdf] The main PDF file for this lesson
       #
       # @param max_attempts [Integer, nil] Maximum number of attempts allowed for assessments
       #

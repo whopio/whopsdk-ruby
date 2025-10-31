@@ -11,7 +11,7 @@ module WhopSDK
       #   A banner image for the product in png, jpeg format
       #
       #   @return [WhopSDK::Models::ProductUpdateParams::BannerImage, nil]
-      optional :banner_image, -> { WhopSDK::ProductUpdateParams::BannerImage }, nil?: true
+      optional :banner_image, -> { WhopSDK::ProductUpdateParams::BannerImage }
 
       # @!attribute business_type
       #   The different business types a company can be.
@@ -127,7 +127,7 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ProductUpdateParams} for more details.
       #
-      #   @param banner_image [WhopSDK::Models::ProductUpdateParams::BannerImage, nil] A banner image for the product in png, jpeg format
+      #   @param banner_image [WhopSDK::Models::ProductUpdateParams::BannerImage] A banner image for the product in png, jpeg format
       #
       #   @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #

@@ -23,11 +23,7 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::ExperienceUpdateParams::Logo)) }
       attr_reader :logo
 
-      sig do
-        params(
-          logo: T.nilable(WhopSDK::ExperienceUpdateParams::Logo::OrHash)
-        ).void
-      end
+      sig { params(logo: WhopSDK::ExperienceUpdateParams::Logo::OrHash).void }
       attr_writer :logo
 
       # The name of the experience.
@@ -46,7 +42,7 @@ module WhopSDK
         params(
           access_level:
             T.nilable(WhopSDK::ExperienceUpdateParams::AccessLevel::OrSymbol),
-          logo: T.nilable(WhopSDK::ExperienceUpdateParams::Logo::OrHash),
+          logo: WhopSDK::ExperienceUpdateParams::Logo::OrHash,
           name: T.nilable(String),
           order: T.nilable(String),
           section_id: T.nilable(String),
@@ -73,7 +69,7 @@ module WhopSDK
           {
             access_level:
               T.nilable(WhopSDK::ExperienceUpdateParams::AccessLevel::OrSymbol),
-            logo: T.nilable(WhopSDK::ExperienceUpdateParams::Logo),
+            logo: WhopSDK::ExperienceUpdateParams::Logo,
             name: T.nilable(String),
             order: T.nilable(String),
             section_id: T.nilable(String),

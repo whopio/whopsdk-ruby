@@ -69,8 +69,7 @@ module WhopSDK
 
       sig do
         params(
-          main_pdf:
-            T.nilable(WhopSDK::CourseLessonUpdateParams::MainPdf::OrHash)
+          main_pdf: WhopSDK::CourseLessonUpdateParams::MainPdf::OrHash
         ).void
       end
       attr_writer :main_pdf
@@ -111,8 +110,7 @@ module WhopSDK
           content: T.nilable(String),
           days_from_course_start_until_unlock: T.nilable(Integer),
           lesson_type: T.nilable(WhopSDK::LessonTypes::OrSymbol),
-          main_pdf:
-            T.nilable(WhopSDK::CourseLessonUpdateParams::MainPdf::OrHash),
+          main_pdf: WhopSDK::CourseLessonUpdateParams::MainPdf::OrHash,
           max_attempts: T.nilable(Integer),
           mux_asset_id: T.nilable(String),
           title: T.nilable(String),
@@ -168,7 +166,7 @@ module WhopSDK
             content: T.nilable(String),
             days_from_course_start_until_unlock: T.nilable(Integer),
             lesson_type: T.nilable(WhopSDK::LessonTypes::OrSymbol),
-            main_pdf: T.nilable(WhopSDK::CourseLessonUpdateParams::MainPdf),
+            main_pdf: WhopSDK::CourseLessonUpdateParams::MainPdf,
             max_attempts: T.nilable(Integer),
             mux_asset_id: T.nilable(String),
             title: T.nilable(String),
@@ -267,9 +265,7 @@ module WhopSDK
         sig do
           params(
             image:
-              T.nilable(
-                WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::OrHash
-              )
+              WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::OrHash
           ).void
         end
         attr_writer :image
@@ -294,9 +290,7 @@ module WhopSDK
             question_type: WhopSDK::AssessmentQuestionTypes::OrSymbol,
             id: T.nilable(String),
             image:
-              T.nilable(
-                WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::OrHash
-              ),
+              WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::OrHash,
             options:
               T.nilable(
                 T::Array[
@@ -330,9 +324,7 @@ module WhopSDK
               question_type: WhopSDK::AssessmentQuestionTypes::OrSymbol,
               id: T.nilable(String),
               image:
-                T.nilable(
-                  WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image
-                ),
+                WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image,
               options:
                 T.nilable(
                   T::Array[

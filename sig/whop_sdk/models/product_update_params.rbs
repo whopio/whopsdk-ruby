@@ -2,7 +2,7 @@ module WhopSDK
   module Models
     type product_update_params =
       {
-        banner_image: WhopSDK::ProductUpdateParams::BannerImage?,
+        banner_image: WhopSDK::ProductUpdateParams::BannerImage,
         business_type: WhopSDK::Models::business_types?,
         collect_shipping_address: bool?,
         custom_cta: WhopSDK::Models::custom_cta?,
@@ -28,7 +28,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor banner_image: WhopSDK::ProductUpdateParams::BannerImage?
+      attr_reader banner_image: WhopSDK::ProductUpdateParams::BannerImage?
+
+      def banner_image=: (
+        WhopSDK::ProductUpdateParams::BannerImage
+      ) -> WhopSDK::ProductUpdateParams::BannerImage
 
       attr_accessor business_type: WhopSDK::Models::business_types?
 
@@ -67,7 +71,7 @@ module WhopSDK
       attr_accessor visibility: WhopSDK::Models::visibility?
 
       def initialize: (
-        ?banner_image: WhopSDK::ProductUpdateParams::BannerImage?,
+        ?banner_image: WhopSDK::ProductUpdateParams::BannerImage,
         ?business_type: WhopSDK::Models::business_types?,
         ?collect_shipping_address: bool?,
         ?custom_cta: WhopSDK::Models::custom_cta?,
@@ -90,7 +94,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
-        banner_image: WhopSDK::ProductUpdateParams::BannerImage?,
+        banner_image: WhopSDK::ProductUpdateParams::BannerImage,
         business_type: WhopSDK::Models::business_types?,
         collect_shipping_address: bool?,
         custom_cta: WhopSDK::Models::custom_cta?,

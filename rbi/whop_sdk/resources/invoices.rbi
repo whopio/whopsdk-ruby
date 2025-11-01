@@ -23,7 +23,7 @@ module WhopSDK
           customer_name: T.nilable(String),
           payment_token_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::InvoiceCreateResponse)
+        ).returns(WhopSDK::Invoice)
       end
       def create(
         # The method of collection for this invoice. If using charge_automatically, you

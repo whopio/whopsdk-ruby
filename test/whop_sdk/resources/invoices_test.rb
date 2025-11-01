@@ -17,13 +17,20 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
       )
 
     assert_pattern do
-      response => WhopSDK::Models::InvoiceCreateResponse
+      response => WhopSDK::Invoice
     end
 
     assert_pattern do
       response => {
-        checkout_job_id: String | nil,
-        invoice: WhopSDK::Invoice
+        id: String,
+        created_at: Time,
+        current_plan: WhopSDK::Invoice::CurrentPlan,
+        due_date: Time | nil,
+        email_address: String | nil,
+        fetch_invoice_token: String,
+        number: String,
+        status: WhopSDK::InvoiceStatus,
+        user: WhopSDK::Invoice::User | nil
       }
     end
   end

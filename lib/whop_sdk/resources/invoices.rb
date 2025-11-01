@@ -39,7 +39,7 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::InvoiceCreateResponse]
+      # @return [WhopSDK::Models::Invoice]
       #
       # @see WhopSDK::Models::InvoiceCreateParams
       def create(params)
@@ -48,7 +48,7 @@ module WhopSDK
           method: :post,
           path: "invoices",
           body: parsed,
-          model: WhopSDK::Models::InvoiceCreateResponse,
+          model: WhopSDK::Invoice,
           options: options
         )
       end

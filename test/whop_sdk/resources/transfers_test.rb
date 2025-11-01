@@ -27,6 +27,7 @@ class WhopSDK::Test::Resources::TransfersTest < WhopSDK::Test::ResourceTest
         destination: WhopSDK::Transfer::Destination,
         destination_ledger_account_id: String,
         fee_amount: Float | nil,
+        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
         notes: String | nil,
         origin: WhopSDK::Transfer::Origin,
         origin_ledger_account_id: String
@@ -52,6 +53,7 @@ class WhopSDK::Test::Resources::TransfersTest < WhopSDK::Test::ResourceTest
         destination: WhopSDK::Transfer::Destination,
         destination_ledger_account_id: String,
         fee_amount: Float | nil,
+        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
         notes: String | nil,
         origin: WhopSDK::Transfer::Origin,
         origin_ledger_account_id: String
@@ -83,6 +85,7 @@ class WhopSDK::Test::Resources::TransfersTest < WhopSDK::Test::ResourceTest
         currency: WhopSDK::Currency,
         destination_ledger_account_id: String,
         fee_amount: Float | nil,
+        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
         notes: String | nil,
         origin_ledger_account_id: String
       }

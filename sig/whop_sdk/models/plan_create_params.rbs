@@ -9,10 +9,11 @@ module WhopSDK
         custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?,
         description: String?,
         expiration_days: Integer?,
-        image: WhopSDK::PlanCreateParams::Image?,
+        image: WhopSDK::Models::PlanCreateParams::image?,
         initial_price: Float?,
         internal_notes: String?,
         override_tax_type: WhopSDK::Models::tax_type?,
+        payment_method_configuration: WhopSDK::PlanCreateParams::PaymentMethodConfiguration?,
         plan_type: WhopSDK::Models::plan_type?,
         release_method: WhopSDK::Models::release_method?,
         renewal_price: Float?,
@@ -44,13 +45,15 @@ module WhopSDK
 
       attr_accessor expiration_days: Integer?
 
-      attr_accessor image: WhopSDK::PlanCreateParams::Image?
+      attr_accessor image: WhopSDK::Models::PlanCreateParams::image?
 
       attr_accessor initial_price: Float?
 
       attr_accessor internal_notes: String?
 
       attr_accessor override_tax_type: WhopSDK::Models::tax_type?
+
+      attr_accessor payment_method_configuration: WhopSDK::PlanCreateParams::PaymentMethodConfiguration?
 
       attr_accessor plan_type: WhopSDK::Models::plan_type?
 
@@ -80,10 +83,11 @@ module WhopSDK
         ?custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?,
         ?description: String?,
         ?expiration_days: Integer?,
-        ?image: WhopSDK::PlanCreateParams::Image?,
+        ?image: WhopSDK::Models::PlanCreateParams::image?,
         ?initial_price: Float?,
         ?internal_notes: String?,
         ?override_tax_type: WhopSDK::Models::tax_type?,
+        ?payment_method_configuration: WhopSDK::PlanCreateParams::PaymentMethodConfiguration?,
         ?plan_type: WhopSDK::Models::plan_type?,
         ?release_method: WhopSDK::Models::release_method?,
         ?renewal_price: Float?,
@@ -105,10 +109,11 @@ module WhopSDK
         custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?,
         description: String?,
         expiration_days: Integer?,
-        image: WhopSDK::PlanCreateParams::Image?,
+        image: WhopSDK::Models::PlanCreateParams::image?,
         initial_price: Float?,
         internal_notes: String?,
         override_tax_type: WhopSDK::Models::tax_type?,
+        payment_method_configuration: WhopSDK::PlanCreateParams::PaymentMethodConfiguration?,
         plan_type: WhopSDK::Models::plan_type?,
         release_method: WhopSDK::Models::release_method?,
         renewal_price: Float?,
@@ -164,16 +169,62 @@ module WhopSDK
         }
       end
 
-      type image = { id: String?, direct_upload_id: String? }
+      type image =
+        WhopSDK::PlanCreateParams::Image::AttachmentInputWithDirectUploadID
+        | WhopSDK::PlanCreateParams::Image::AttachmentInputWithID
 
-      class Image < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String?
+      module Image
+        extend WhopSDK::Internal::Type::Union
 
-        attr_accessor direct_upload_id: String?
+        type attachment_input_with_direct_upload_id =
+          { direct_upload_id: String }
 
-        def initialize: (?id: String?, ?direct_upload_id: String?) -> void
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor direct_upload_id: String
 
-        def to_hash: -> { id: String?, direct_upload_id: String? }
+          def initialize: (direct_upload_id: String) -> void
+
+          def to_hash: -> { direct_upload_id: String }
+        end
+
+        type attachment_input_with_id = { id: String }
+
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
+
+        def self?.variants: -> ::Array[WhopSDK::Models::PlanCreateParams::image]
+      end
+
+      type payment_method_configuration =
+        {
+          disabled: ::Array[WhopSDK::Models::payment_method_types],
+          enabled: ::Array[WhopSDK::Models::payment_method_types],
+          include_platform_defaults: bool
+        }
+
+      class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+        attr_accessor disabled: ::Array[WhopSDK::Models::payment_method_types]
+
+        attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
+
+        attr_accessor include_platform_defaults: bool
+
+        def initialize: (
+          disabled: ::Array[WhopSDK::Models::payment_method_types],
+          enabled: ::Array[WhopSDK::Models::payment_method_types],
+          include_platform_defaults: bool
+        ) -> void
+
+        def to_hash: -> {
+          disabled: ::Array[WhopSDK::Models::payment_method_types],
+          enabled: ::Array[WhopSDK::Models::payment_method_types],
+          include_platform_defaults: bool
+        }
       end
     end
   end

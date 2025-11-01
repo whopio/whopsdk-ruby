@@ -2,7 +2,7 @@ module WhopSDK
   module Models
     type app_build_create_params =
       {
-        attachment: WhopSDK::AppBuildCreateParams::Attachment,
+        attachment: WhopSDK::Models::AppBuildCreateParams::attachment,
         checksum: String,
         platform: WhopSDK::Models::app_build_platforms,
         app_id: String?,
@@ -14,7 +14,7 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor attachment: WhopSDK::AppBuildCreateParams::Attachment
+      attr_accessor attachment: WhopSDK::Models::AppBuildCreateParams::attachment
 
       attr_accessor checksum: String
 
@@ -25,7 +25,7 @@ module WhopSDK
       attr_accessor supported_app_view_types: ::Array[WhopSDK::Models::app_view_type]?
 
       def initialize: (
-        attachment: WhopSDK::AppBuildCreateParams::Attachment,
+        attachment: WhopSDK::Models::AppBuildCreateParams::attachment,
         checksum: String,
         platform: WhopSDK::Models::app_build_platforms,
         ?app_id: String?,
@@ -34,7 +34,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
-        attachment: WhopSDK::AppBuildCreateParams::Attachment,
+        attachment: WhopSDK::Models::AppBuildCreateParams::attachment,
         checksum: String,
         platform: WhopSDK::Models::app_build_platforms,
         app_id: String?,
@@ -42,16 +42,35 @@ module WhopSDK
         request_options: WhopSDK::RequestOptions
       }
 
-      type attachment = { id: String?, direct_upload_id: String? }
+      type attachment =
+        WhopSDK::AppBuildCreateParams::Attachment::AttachmentInputWithDirectUploadID
+        | WhopSDK::AppBuildCreateParams::Attachment::AttachmentInputWithID
 
-      class Attachment < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String?
+      module Attachment
+        extend WhopSDK::Internal::Type::Union
 
-        attr_accessor direct_upload_id: String?
+        type attachment_input_with_direct_upload_id =
+          { direct_upload_id: String }
 
-        def initialize: (?id: String?, ?direct_upload_id: String?) -> void
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor direct_upload_id: String
 
-        def to_hash: -> { id: String?, direct_upload_id: String? }
+          def initialize: (direct_upload_id: String) -> void
+
+          def to_hash: -> { direct_upload_id: String }
+        end
+
+        type attachment_input_with_id = { id: String }
+
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
+
+        def self?.variants: -> ::Array[WhopSDK::Models::AppBuildCreateParams::attachment]
       end
     end
   end

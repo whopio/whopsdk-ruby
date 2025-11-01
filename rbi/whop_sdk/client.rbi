@@ -107,6 +107,9 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::Reviews) }
     attr_reader :reviews
 
+    sig { returns(WhopSDK::Resources::CourseStudents) }
+    attr_reader :course_students
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

@@ -69,7 +69,7 @@ module WhopSDK
       type assessment_question =
         {
           id: String,
-          correct_answer: String,
+          correct_answer: String?,
           created_at: Time,
           image: WhopSDK::Lesson::AssessmentQuestion::Image?,
           options: ::Array[WhopSDK::Lesson::AssessmentQuestion::Option],
@@ -81,7 +81,7 @@ module WhopSDK
       class AssessmentQuestion < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
-        attr_accessor correct_answer: String
+        attr_accessor correct_answer: String?
 
         attr_accessor created_at: Time
 
@@ -97,7 +97,7 @@ module WhopSDK
 
         def initialize: (
           id: String,
-          correct_answer: String,
+          correct_answer: String?,
           created_at: Time,
           image: WhopSDK::Lesson::AssessmentQuestion::Image?,
           options: ::Array[WhopSDK::Lesson::AssessmentQuestion::Option],
@@ -108,7 +108,7 @@ module WhopSDK
 
         def to_hash: -> {
           id: String,
-          correct_answer: String,
+          correct_answer: String?,
           created_at: Time,
           image: WhopSDK::Lesson::AssessmentQuestion::Image?,
           options: ::Array[WhopSDK::Lesson::AssessmentQuestion::Option],
@@ -145,12 +145,12 @@ module WhopSDK
         end
 
         type option =
-          { id: String, is_correct: bool, option_text: String, order: Integer }
+          { id: String, is_correct: bool?, option_text: String, order: Integer }
 
         class Option < WhopSDK::Internal::Type::BaseModel
           attr_accessor id: String
 
-          attr_accessor is_correct: bool
+          attr_accessor is_correct: bool?
 
           attr_accessor option_text: String
 
@@ -158,14 +158,14 @@ module WhopSDK
 
           def initialize: (
             id: String,
-            is_correct: bool,
+            is_correct: bool?,
             option_text: String,
             order: Integer
           ) -> void
 
           def to_hash: -> {
             id: String,
-            is_correct: bool,
+            is_correct: bool?,
             option_text: String,
             order: Integer
           }

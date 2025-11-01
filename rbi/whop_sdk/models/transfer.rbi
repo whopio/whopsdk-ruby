@@ -34,6 +34,10 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :fee_amount
 
+      # A hash of metadata attached to the transfer
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      attr_accessor :metadata
+
       # The notes of the credit transaction transfer
       sig { returns(T.nilable(String)) }
       attr_accessor :notes
@@ -62,6 +66,7 @@ module WhopSDK
             ),
           destination_ledger_account_id: String,
           fee_amount: T.nilable(Float),
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
           notes: T.nilable(String),
           origin:
             T.nilable(
@@ -88,6 +93,8 @@ module WhopSDK
         destination_ledger_account_id:,
         # The decimal fee of the credit transaction transfer
         fee_amount:,
+        # A hash of metadata attached to the transfer
+        metadata:,
         # The notes of the credit transaction transfer
         notes:,
         # The sender of the credit transaction transfer
@@ -107,6 +114,7 @@ module WhopSDK
             destination: T.nilable(WhopSDK::Transfer::Destination::Variants),
             destination_ledger_account_id: String,
             fee_amount: T.nilable(Float),
+            metadata: T.nilable(T::Hash[Symbol, T.anything]),
             notes: T.nilable(String),
             origin: T.nilable(WhopSDK::Transfer::Origin::Variants),
             origin_ledger_account_id: String

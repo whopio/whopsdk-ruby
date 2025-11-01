@@ -55,6 +55,10 @@ module WhopSDK
       sig do
         params(
           id: String,
+          assessment_completion_requirement:
+            T.nilable(
+              WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement::OrHash
+            ),
           assessment_questions:
             T.nilable(
               T::Array[
@@ -63,13 +67,24 @@ module WhopSDK
             ),
           attachments:
             T.nilable(
-              T::Array[WhopSDK::CourseLessonUpdateParams::Attachment::OrHash]
+              T::Array[
+                T.any(
+                  WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID::OrHash,
+                  WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithID::OrHash
+                )
+              ]
             ),
           content: T.nilable(String),
           days_from_course_start_until_unlock: T.nilable(Integer),
           lesson_type: T.nilable(WhopSDK::LessonTypes::OrSymbol),
           main_pdf:
-            T.nilable(WhopSDK::CourseLessonUpdateParams::MainPdf::OrHash),
+            T.nilable(
+              T.any(
+                WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID::OrHash
+              )
+            ),
+          max_attempts: T.nilable(Integer),
           mux_asset_id: T.nilable(String),
           title: T.nilable(String),
           visibility: T.nilable(WhopSDK::LessonVisibilities::OrSymbol),
@@ -78,6 +93,8 @@ module WhopSDK
       end
       def update(
         id,
+        # Completion requirements for quiz/knowledge check lessons
+        assessment_completion_requirement: nil,
         # Assessment questions for quiz/knowledge check lessons. Replaces all existing
         # questions.
         assessment_questions: nil,
@@ -92,6 +109,8 @@ module WhopSDK
         lesson_type: nil,
         # The main PDF file for this lesson
         main_pdf: nil,
+        # Maximum number of attempts allowed for assessments
+        max_attempts: nil,
         # The ID of the Mux asset to attach to this lesson for video lessons
         mux_asset_id: nil,
         # The title of the lesson

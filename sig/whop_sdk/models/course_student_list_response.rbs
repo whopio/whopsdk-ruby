@@ -1,0 +1,64 @@
+module WhopSDK
+  module Models
+    type course_student_list_response =
+      {
+        id: String,
+        completed_lessons_count: Integer,
+        completion_rate: Float,
+        first_interaction_at: Time,
+        last_interaction_at: Time,
+        total_lessons_count: Integer,
+        user: WhopSDK::Models::CourseStudentListResponse::User
+      }
+
+    class CourseStudentListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor completed_lessons_count: Integer
+
+      attr_accessor completion_rate: Float
+
+      attr_accessor first_interaction_at: Time
+
+      attr_accessor last_interaction_at: Time
+
+      attr_accessor total_lessons_count: Integer
+
+      attr_accessor user: WhopSDK::Models::CourseStudentListResponse::User
+
+      def initialize: (
+        id: String,
+        completed_lessons_count: Integer,
+        completion_rate: Float,
+        first_interaction_at: Time,
+        last_interaction_at: Time,
+        total_lessons_count: Integer,
+        user: WhopSDK::Models::CourseStudentListResponse::User
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        completed_lessons_count: Integer,
+        completion_rate: Float,
+        first_interaction_at: Time,
+        last_interaction_at: Time,
+        total_lessons_count: Integer,
+        user: WhopSDK::Models::CourseStudentListResponse::User
+      }
+
+      type user = { id: String, name: String?, username: String }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
+      end
+    end
+  end
+end

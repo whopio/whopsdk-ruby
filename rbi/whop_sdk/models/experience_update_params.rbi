@@ -20,15 +20,17 @@ module WhopSDK
       attr_accessor :access_level
 
       # The logo for the experience
-      sig { returns(T.nilable(WhopSDK::ExperienceUpdateParams::Logo)) }
-      attr_reader :logo
-
       sig do
-        params(
-          logo: T.nilable(WhopSDK::ExperienceUpdateParams::Logo::OrHash)
-        ).void
+        returns(
+          T.nilable(
+            T.any(
+              WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID,
+              WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithID
+            )
+          )
+        )
       end
-      attr_writer :logo
+      attr_accessor :logo
 
       # The name of the experience.
       sig { returns(T.nilable(String)) }
@@ -46,7 +48,13 @@ module WhopSDK
         params(
           access_level:
             T.nilable(WhopSDK::ExperienceUpdateParams::AccessLevel::OrSymbol),
-          logo: T.nilable(WhopSDK::ExperienceUpdateParams::Logo::OrHash),
+          logo:
+            T.nilable(
+              T.any(
+                WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithID::OrHash
+              )
+            ),
           name: T.nilable(String),
           order: T.nilable(String),
           section_id: T.nilable(String),
@@ -73,7 +81,13 @@ module WhopSDK
           {
             access_level:
               T.nilable(WhopSDK::ExperienceUpdateParams::AccessLevel::OrSymbol),
-            logo: T.nilable(WhopSDK::ExperienceUpdateParams::Logo),
+            logo:
+              T.nilable(
+                T.any(
+                  WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID,
+                  WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithID
+                )
+              ),
             name: T.nilable(String),
             order: T.nilable(String),
             section_id: T.nilable(String),
@@ -114,52 +128,84 @@ module WhopSDK
         end
       end
 
-      class Logo < WhopSDK::Internal::Type::BaseModel
-        OrHash =
+      # The logo for the experience
+      module Logo
+        extend WhopSDK::Internal::Type::Union
+
+        Variants =
           T.type_alias do
             T.any(
-              WhopSDK::ExperienceUpdateParams::Logo,
-              WhopSDK::Internal::AnyHash
+              WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID,
+              WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithID
             )
           end
 
-        # The ID of an existing attachment object. Use this when updating a resource and
-        # keeping a subset of the attachments. Don't use this unless you know what you're
-        # doing.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :id
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID,
+                WhopSDK::Internal::AnyHash
+              )
+            end
 
-        # This ID should be used the first time you upload an attachment. It is the ID of
-        # the direct upload that was created when uploading the file to S3 via the
-        # mediaDirectUpload mutation.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :direct_upload_id
-
-        # The logo for the experience
-        sig do
-          params(
-            id: T.nilable(String),
-            direct_upload_id: T.nilable(String)
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The ID of an existing attachment object. Use this when updating a resource and
-          # keeping a subset of the attachments. Don't use this unless you know what you're
-          # doing.
-          id: nil,
           # This ID should be used the first time you upload an attachment. It is the ID of
           # the direct upload that was created when uploading the file to S3 via the
           # mediaDirectUpload mutation.
-          direct_upload_id: nil
-        )
+          sig { returns(String) }
+          attr_accessor :direct_upload_id
+
+          # Input for an attachment
+          sig { params(direct_upload_id: String).returns(T.attached_class) }
+          def self.new(
+            # This ID should be used the first time you upload an attachment. It is the ID of
+            # the direct upload that was created when uploading the file to S3 via the
+            # mediaDirectUpload mutation.
+            direct_upload_id:
+          )
+          end
+
+          sig { override.returns({ direct_upload_id: String }) }
+          def to_hash
+          end
+        end
+
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithID,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The ID of an existing attachment object. Use this when updating a resource and
+          # keeping a subset of the attachments. Don't use this unless you know what you're
+          # doing.
+          sig { returns(String) }
+          attr_accessor :id
+
+          # Input for an attachment
+          sig { params(id: String).returns(T.attached_class) }
+          def self.new(
+            # The ID of an existing attachment object. Use this when updating a resource and
+            # keeping a subset of the attachments. Don't use this unless you know what you're
+            # doing.
+            id:
+          )
+          end
+
+          sig { override.returns({ id: String }) }
+          def to_hash
+          end
         end
 
         sig do
           override.returns(
-            { id: T.nilable(String), direct_upload_id: T.nilable(String) }
+            T::Array[WhopSDK::ExperienceUpdateParams::Logo::Variants]
           )
         end
-        def to_hash
+        def self.variants
         end
       end
     end

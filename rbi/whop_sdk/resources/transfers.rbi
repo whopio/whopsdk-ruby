@@ -15,6 +15,7 @@ module WhopSDK
           destination_id: String,
           origin_id: String,
           idempotence_key: T.nilable(String),
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
           notes: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Transfer)
@@ -32,6 +33,8 @@ module WhopSDK
         origin_id:,
         # A unique key to ensure idempotence. Use a UUID or similar.
         idempotence_key: nil,
+        # A hash of metadata to attach to the transfer.
+        metadata: nil,
         # Notes for the transfer. Maximum of 50 characters.
         notes: nil,
         request_options: {}

@@ -3,7 +3,7 @@ module WhopSDK
     type experience_update_params =
       {
         access_level: WhopSDK::Models::ExperienceUpdateParams::access_level?,
-        logo: WhopSDK::ExperienceUpdateParams::Logo?,
+        logo: WhopSDK::Models::ExperienceUpdateParams::logo?,
         name: String?,
         order: String?,
         section_id: String?
@@ -16,7 +16,7 @@ module WhopSDK
 
       attr_accessor access_level: WhopSDK::Models::ExperienceUpdateParams::access_level?
 
-      attr_accessor logo: WhopSDK::ExperienceUpdateParams::Logo?
+      attr_accessor logo: WhopSDK::Models::ExperienceUpdateParams::logo?
 
       attr_accessor name: String?
 
@@ -26,7 +26,7 @@ module WhopSDK
 
       def initialize: (
         ?access_level: WhopSDK::Models::ExperienceUpdateParams::access_level?,
-        ?logo: WhopSDK::ExperienceUpdateParams::Logo?,
+        ?logo: WhopSDK::Models::ExperienceUpdateParams::logo?,
         ?name: String?,
         ?order: String?,
         ?section_id: String?,
@@ -35,7 +35,7 @@ module WhopSDK
 
       def to_hash: -> {
         access_level: WhopSDK::Models::ExperienceUpdateParams::access_level?,
-        logo: WhopSDK::ExperienceUpdateParams::Logo?,
+        logo: WhopSDK::Models::ExperienceUpdateParams::logo?,
         name: String?,
         order: String?,
         section_id: String?,
@@ -53,16 +53,35 @@ module WhopSDK
         def self?.values: -> ::Array[WhopSDK::Models::ExperienceUpdateParams::access_level]
       end
 
-      type logo = { id: String?, direct_upload_id: String? }
+      type logo =
+        WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID
+        | WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithID
 
-      class Logo < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String?
+      module Logo
+        extend WhopSDK::Internal::Type::Union
 
-        attr_accessor direct_upload_id: String?
+        type attachment_input_with_direct_upload_id =
+          { direct_upload_id: String }
 
-        def initialize: (?id: String?, ?direct_upload_id: String?) -> void
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor direct_upload_id: String
 
-        def to_hash: -> { id: String?, direct_upload_id: String? }
+          def initialize: (direct_upload_id: String) -> void
+
+          def to_hash: -> { direct_upload_id: String }
+        end
+
+        type attachment_input_with_id = { id: String }
+
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
+
+        def self?.variants: -> ::Array[WhopSDK::Models::ExperienceUpdateParams::logo]
       end
     end
   end

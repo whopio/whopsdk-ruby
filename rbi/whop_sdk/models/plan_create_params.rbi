@@ -42,13 +42,17 @@ module WhopSDK
       attr_accessor :expiration_days
 
       # An image for the plan. This will be visible on the product page to customers.
-      sig { returns(T.nilable(WhopSDK::PlanCreateParams::Image)) }
-      attr_reader :image
-
       sig do
-        params(image: T.nilable(WhopSDK::PlanCreateParams::Image::OrHash)).void
+        returns(
+          T.nilable(
+            T.any(
+              WhopSDK::PlanCreateParams::Image::AttachmentInputWithDirectUploadID,
+              WhopSDK::PlanCreateParams::Image::AttachmentInputWithID
+            )
+          )
+        )
       end
-      attr_writer :image
+      attr_accessor :image
 
       # An additional amount charged upon first purchase. Use only if a one time payment
       # OR you want to charge an additional amount on top of the renewal price. Provided
@@ -64,6 +68,25 @@ module WhopSDK
       # up)
       sig { returns(T.nilable(WhopSDK::TaxType::OrSymbol)) }
       attr_accessor :override_tax_type
+
+      # The explicit payment method configuration for the plan. If not provided, the
+      # platform or company's defaults will apply.
+      sig do
+        returns(
+          T.nilable(WhopSDK::PlanCreateParams::PaymentMethodConfiguration)
+        )
+      end
+      attr_reader :payment_method_configuration
+
+      sig do
+        params(
+          payment_method_configuration:
+            T.nilable(
+              WhopSDK::PlanCreateParams::PaymentMethodConfiguration::OrHash
+            )
+        ).void
+      end
+      attr_writer :payment_method_configuration
 
       # The type of plan that can be attached to an access pass
       sig { returns(T.nilable(WhopSDK::PlanType::OrSymbol)) }
@@ -118,10 +141,20 @@ module WhopSDK
             T.nilable(T::Array[WhopSDK::PlanCreateParams::CustomField::OrHash]),
           description: T.nilable(String),
           expiration_days: T.nilable(Integer),
-          image: T.nilable(WhopSDK::PlanCreateParams::Image::OrHash),
+          image:
+            T.nilable(
+              T.any(
+                WhopSDK::PlanCreateParams::Image::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::PlanCreateParams::Image::AttachmentInputWithID::OrHash
+              )
+            ),
           initial_price: T.nilable(Float),
           internal_notes: T.nilable(String),
           override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
+          payment_method_configuration:
+            T.nilable(
+              WhopSDK::PlanCreateParams::PaymentMethodConfiguration::OrHash
+            ),
           plan_type: T.nilable(WhopSDK::PlanType::OrSymbol),
           release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
           renewal_price: T.nilable(Float),
@@ -161,6 +194,9 @@ module WhopSDK
         # Whether or not the tax is included in a plan's price (or if it hasn't been set
         # up)
         override_tax_type: nil,
+        # The explicit payment method configuration for the plan. If not provided, the
+        # platform or company's defaults will apply.
+        payment_method_configuration: nil,
         # The type of plan that can be attached to an access pass
         plan_type: nil,
         # The methods of how a plan can be released.
@@ -199,10 +235,18 @@ module WhopSDK
               T.nilable(T::Array[WhopSDK::PlanCreateParams::CustomField]),
             description: T.nilable(String),
             expiration_days: T.nilable(Integer),
-            image: T.nilable(WhopSDK::PlanCreateParams::Image),
+            image:
+              T.nilable(
+                T.any(
+                  WhopSDK::PlanCreateParams::Image::AttachmentInputWithDirectUploadID,
+                  WhopSDK::PlanCreateParams::Image::AttachmentInputWithID
+                )
+              ),
             initial_price: T.nilable(Float),
             internal_notes: T.nilable(String),
             override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
+            payment_method_configuration:
+              T.nilable(WhopSDK::PlanCreateParams::PaymentMethodConfiguration),
             plan_type: T.nilable(WhopSDK::PlanType::OrSymbol),
             release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
             renewal_price: T.nilable(Float),
@@ -295,46 +339,144 @@ module WhopSDK
         end
       end
 
-      class Image < WhopSDK::Internal::Type::BaseModel
-        OrHash =
+      # An image for the plan. This will be visible on the product page to customers.
+      module Image
+        extend WhopSDK::Internal::Type::Union
+
+        Variants =
           T.type_alias do
-            T.any(WhopSDK::PlanCreateParams::Image, WhopSDK::Internal::AnyHash)
+            T.any(
+              WhopSDK::PlanCreateParams::Image::AttachmentInputWithDirectUploadID,
+              WhopSDK::PlanCreateParams::Image::AttachmentInputWithID
+            )
           end
 
-        # The ID of an existing attachment object. Use this when updating a resource and
-        # keeping a subset of the attachments. Don't use this unless you know what you're
-        # doing.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :id
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::PlanCreateParams::Image::AttachmentInputWithDirectUploadID,
+                WhopSDK::Internal::AnyHash
+              )
+            end
 
-        # This ID should be used the first time you upload an attachment. It is the ID of
-        # the direct upload that was created when uploading the file to S3 via the
-        # mediaDirectUpload mutation.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :direct_upload_id
-
-        # An image for the plan. This will be visible on the product page to customers.
-        sig do
-          params(
-            id: T.nilable(String),
-            direct_upload_id: T.nilable(String)
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The ID of an existing attachment object. Use this when updating a resource and
-          # keeping a subset of the attachments. Don't use this unless you know what you're
-          # doing.
-          id: nil,
           # This ID should be used the first time you upload an attachment. It is the ID of
           # the direct upload that was created when uploading the file to S3 via the
           # mediaDirectUpload mutation.
-          direct_upload_id: nil
+          sig { returns(String) }
+          attr_accessor :direct_upload_id
+
+          # Input for an attachment
+          sig { params(direct_upload_id: String).returns(T.attached_class) }
+          def self.new(
+            # This ID should be used the first time you upload an attachment. It is the ID of
+            # the direct upload that was created when uploading the file to S3 via the
+            # mediaDirectUpload mutation.
+            direct_upload_id:
+          )
+          end
+
+          sig { override.returns({ direct_upload_id: String }) }
+          def to_hash
+          end
+        end
+
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::PlanCreateParams::Image::AttachmentInputWithID,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The ID of an existing attachment object. Use this when updating a resource and
+          # keeping a subset of the attachments. Don't use this unless you know what you're
+          # doing.
+          sig { returns(String) }
+          attr_accessor :id
+
+          # Input for an attachment
+          sig { params(id: String).returns(T.attached_class) }
+          def self.new(
+            # The ID of an existing attachment object. Use this when updating a resource and
+            # keeping a subset of the attachments. Don't use this unless you know what you're
+            # doing.
+            id:
+          )
+          end
+
+          sig { override.returns({ id: String }) }
+          def to_hash
+          end
+        end
+
+        sig do
+          override.returns(T::Array[WhopSDK::PlanCreateParams::Image::Variants])
+        end
+        def self.variants
+        end
+      end
+
+      class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::PlanCreateParams::PaymentMethodConfiguration,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # An array of payment method identifiers that are explicitly disabled. Only
+        # applies if the include_platform_defaults is true.
+        sig { returns(T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]) }
+        attr_accessor :disabled
+
+        # An array of payment method identifiers that are explicitly enabled. This means
+        # these payment methods will be shown on checkout. Example use case is to only
+        # enable a specific payment method like cashapp, or extending the platform
+        # defaults with additional methods.
+        sig { returns(T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]) }
+        attr_accessor :enabled
+
+        # Whether Whop's platform default payment method enablement settings are included
+        # in this configuration. The full list of default payment methods can be found in
+        # the documentation at docs.whop.com/payments.
+        sig { returns(T::Boolean) }
+        attr_accessor :include_platform_defaults
+
+        # The explicit payment method configuration for the plan. If not provided, the
+        # platform or company's defaults will apply.
+        sig do
+          params(
+            disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+            enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+            include_platform_defaults: T::Boolean
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # An array of payment method identifiers that are explicitly disabled. Only
+          # applies if the include_platform_defaults is true.
+          disabled:,
+          # An array of payment method identifiers that are explicitly enabled. This means
+          # these payment methods will be shown on checkout. Example use case is to only
+          # enable a specific payment method like cashapp, or extending the platform
+          # defaults with additional methods.
+          enabled:,
+          # Whether Whop's platform default payment method enablement settings are included
+          # in this configuration. The full list of default payment methods can be found in
+          # the documentation at docs.whop.com/payments.
+          include_platform_defaults:
         )
         end
 
         sig do
           override.returns(
-            { id: T.nilable(String), direct_upload_id: T.nilable(String) }
+            {
+              disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+              enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+              include_platform_defaults: T::Boolean
+            }
           )
         end
         def to_hash

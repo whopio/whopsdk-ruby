@@ -136,8 +136,9 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The correct answer for the question. Used for short answer questions
-        sig { returns(String) }
+        # The correct answer for the question. Used for short answer questions. Only
+        # visible to admins (users with courses:update permission)
+        sig { returns(T.nilable(String)) }
         attr_accessor :correct_answer
 
         # When the question was created
@@ -175,7 +176,7 @@ module WhopSDK
         sig do
           params(
             id: String,
-            correct_answer: String,
+            correct_answer: T.nilable(String),
             created_at: Time,
             image:
               T.nilable(WhopSDK::Lesson::AssessmentQuestion::Image::OrHash),
@@ -189,7 +190,8 @@ module WhopSDK
         def self.new(
           # The ID of the assessment question
           id:,
-          # The correct answer for the question. Used for short answer questions
+          # The correct answer for the question. Used for short answer questions. Only
+          # visible to admins (users with courses:update permission)
           correct_answer:,
           # When the question was created
           created_at:,
@@ -210,7 +212,7 @@ module WhopSDK
           override.returns(
             {
               id: String,
-              correct_answer: String,
+              correct_answer: T.nilable(String),
               created_at: Time,
               image: T.nilable(WhopSDK::Lesson::AssessmentQuestion::Image),
               options: T::Array[WhopSDK::Lesson::AssessmentQuestion::Option],
@@ -298,8 +300,9 @@ module WhopSDK
           sig { returns(String) }
           attr_accessor :id
 
-          # Whether this option is a correct answer
-          sig { returns(T::Boolean) }
+          # Whether this option is a correct answer. Only visible to admins (users with
+          # courses:update permission)
+          sig { returns(T.nilable(T::Boolean)) }
           attr_accessor :is_correct
 
           # The text of the answer option
@@ -314,7 +317,7 @@ module WhopSDK
           sig do
             params(
               id: String,
-              is_correct: T::Boolean,
+              is_correct: T.nilable(T::Boolean),
               option_text: String,
               order: Integer
             ).returns(T.attached_class)
@@ -322,7 +325,8 @@ module WhopSDK
           def self.new(
             # The ID of the assessment question option
             id:,
-            # Whether this option is a correct answer
+            # Whether this option is a correct answer. Only visible to admins (users with
+            # courses:update permission)
             is_correct:,
             # The text of the answer option
             option_text:,
@@ -335,7 +339,7 @@ module WhopSDK
             override.returns(
               {
                 id: String,
-                is_correct: T::Boolean,
+                is_correct: T.nilable(T::Boolean),
                 option_text: String,
                 order: Integer
               }

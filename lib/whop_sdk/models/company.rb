@@ -45,6 +45,13 @@ module WhopSDK
       #   @return [Integer]
       required :member_count, Integer
 
+      # @!attribute metadata
+      #   A key-value store of data for the account, created/updated by the platform that
+      #   made the account.
+      #
+      #   @return [Hash{Symbol=>Object}, nil]
+      required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
       # @!attribute owner_user
       #   The user who owns this company
       #
@@ -87,7 +94,10 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, business_type:, created_at:, description:, industry_type:, logo:, member_count:, owner_user:, published_reviews_count:, route:, social_links:, title:, updated_at:, verified:)
+      # @!method initialize(id:, business_type:, created_at:, description:, industry_type:, logo:, member_count:, metadata:, owner_user:, published_reviews_count:, route:, social_links:, title:, updated_at:, verified:)
+      #   Some parameter documentations has been truncated, see {WhopSDK::Models::Company}
+      #   for more details.
+      #
       #   An object representing a (sanitized) company.
       #
       #   @param id [String] The ID (tag) of the company.
@@ -103,6 +113,8 @@ module WhopSDK
       #   @param logo [WhopSDK::Models::Company::Logo, nil] The company's logo.
       #
       #   @param member_count [Integer] The number of members in the company.
+      #
+      #   @param metadata [Hash{Symbol=>Object}, nil] A key-value store of data for the account, created/updated by the platform that
       #
       #   @param owner_user [WhopSDK::Models::Company::OwnerUser] The user who owns this company
       #

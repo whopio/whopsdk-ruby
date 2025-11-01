@@ -70,6 +70,14 @@ module WhopSDK
       #   @return [Integer, nil]
       required :member_count, Integer, nil?: true
 
+      # @!attribute payment_method_configuration
+      #   The explicit payment method configuration for the plan, if any.
+      #
+      #   @return [WhopSDK::Models::PlanListResponse::PaymentMethodConfiguration, nil]
+      required :payment_method_configuration,
+               -> { WhopSDK::Models::PlanListResponse::PaymentMethodConfiguration },
+               nil?: true
+
       # @!attribute plan_type
       #   Indicates if the plan is a one time payment or recurring.
       #
@@ -136,7 +144,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility]
       required :visibility, enum: -> { WhopSDK::Visibility }
 
-      # @!method initialize(id:, billing_period:, company:, created_at:, currency:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, plan_type:, product:, purchase_url:, release_method:, renewal_price:, stock:, title:, trial_period_days:, unlimited_stock:, updated_at:, visibility:)
+      # @!method initialize(id:, billing_period:, company:, created_at:, currency:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, payment_method_configuration:, plan_type:, product:, purchase_url:, release_method:, renewal_price:, stock:, title:, trial_period_days:, unlimited_stock:, updated_at:, visibility:)
       #   An object representing a (sanitized) plan of an access pass.
       #
       #   @param id [String] The internal ID of the plan.
@@ -160,6 +168,8 @@ module WhopSDK
       #   @param invoice [WhopSDK::Models::PlanListResponse::Invoice, nil] The invoice associated with this plan.
       #
       #   @param member_count [Integer, nil] The number of members for the plan.
+      #
+      #   @param payment_method_configuration [WhopSDK::Models::PlanListResponse::PaymentMethodConfiguration, nil] The explicit payment method configuration for the plan, if any.
       #
       #   @param plan_type [Symbol, WhopSDK::Models::PlanType] Indicates if the plan is a one time payment or recurring.
       #
@@ -217,6 +227,46 @@ module WhopSDK
         #   The invoice associated with this plan.
         #
         #   @param id [String] The ID of the invoice.
+      end
+
+      # @see WhopSDK::Models::PlanListResponse#payment_method_configuration
+      class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+        # @!attribute disabled
+        #   An array of payment method identifiers that are explicitly disabled. Only
+        #   applies if the include_platform_defaults is true.
+        #
+        #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
+        required :disabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+
+        # @!attribute enabled
+        #   An array of payment method identifiers that are explicitly enabled. This means
+        #   these payment methods will be shown on checkout. Example use case is to only
+        #   enable a specific payment method like cashapp, or extending the platform
+        #   defaults with additional methods.
+        #
+        #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
+        required :enabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+
+        # @!attribute include_platform_defaults
+        #   Whether Whop's platform default payment method enablement settings are included
+        #   in this configuration. The full list of default payment methods can be found in
+        #   the documentation at docs.whop.com/payments.
+        #
+        #   @return [Boolean]
+        required :include_platform_defaults, WhopSDK::Internal::Type::Boolean
+
+        # @!method initialize(disabled:, enabled:, include_platform_defaults:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::PlanListResponse::PaymentMethodConfiguration} for more
+        #   details.
+        #
+        #   The explicit payment method configuration for the plan, if any.
+        #
+        #   @param disabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly disabled. Only applie
+        #
+        #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
+        #
+        #   @param include_platform_defaults [Boolean] Whether Whop's platform default payment method enablement settings are included
       end
 
       # @see WhopSDK::Models::PlanListResponse#product

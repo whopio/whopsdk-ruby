@@ -100,10 +100,12 @@ module WhopSDK
         T.let(:id_bank_transfer, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       DEMO_PAY = T.let(:demo_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       SHOP_PAY = T.let(:shop_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
-      APPLE = T.let(:apple, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       SEZZLE = T.let(:sezzle, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       COINBASE = T.let(:coinbase, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       SPLITIT = T.let(:splitit, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      PLATFORM_BALANCE =
+        T.let(:platform_balance, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      APPLE = T.let(:apple, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       UNKNOWN = T.let(:unknown, WhopSDK::PaymentMethodTypes::TaggedSymbol)
 
       sig do

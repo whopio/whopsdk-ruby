@@ -3,7 +3,7 @@ module WhopSDK
     class ForumPosts
       def create: (
         experience_id: String,
-        ?attachments: ::Array[WhopSDK::ForumPostCreateParams::Attachment]?,
+        ?attachments: ::Array[WhopSDK::Models::ForumPostCreateParams::attachment]?,
         ?content: String?,
         ?is_mention: bool?,
         ?parent_id: String?,
@@ -22,7 +22,7 @@ module WhopSDK
 
       def update: (
         String id,
-        ?attachments: ::Array[WhopSDK::ForumPostUpdateParams::Attachment]?,
+        ?attachments: ::Array[WhopSDK::Models::ForumPostUpdateParams::attachment]?,
         ?content: String?,
         ?is_pinned: bool?,
         ?title: String?,

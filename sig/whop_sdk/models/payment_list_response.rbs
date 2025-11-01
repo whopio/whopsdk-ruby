@@ -17,6 +17,7 @@ module WhopSDK
         last_payment_attempt: Time?,
         member: WhopSDK::Models::PaymentListResponse::Member?,
         membership: WhopSDK::Models::PaymentListResponse::Membership?,
+        metadata: ::Hash[Symbol, top]?,
         paid_at: Time?,
         payment_method_type: WhopSDK::Models::payment_method_types?,
         plan: WhopSDK::Models::PaymentListResponse::Plan?,
@@ -66,6 +67,8 @@ module WhopSDK
 
       attr_accessor membership: WhopSDK::Models::PaymentListResponse::Membership?
 
+      attr_accessor metadata: ::Hash[Symbol, top]?
+
       attr_accessor paid_at: Time?
 
       attr_accessor payment_method_type: WhopSDK::Models::payment_method_types?
@@ -114,6 +117,7 @@ module WhopSDK
         last_payment_attempt: Time?,
         member: WhopSDK::Models::PaymentListResponse::Member?,
         membership: WhopSDK::Models::PaymentListResponse::Membership?,
+        metadata: ::Hash[Symbol, top]?,
         paid_at: Time?,
         payment_method_type: WhopSDK::Models::payment_method_types?,
         plan: WhopSDK::Models::PaymentListResponse::Plan?,
@@ -148,6 +152,7 @@ module WhopSDK
         last_payment_attempt: Time?,
         member: WhopSDK::Models::PaymentListResponse::Member?,
         membership: WhopSDK::Models::PaymentListResponse::Membership?,
+        metadata: ::Hash[Symbol, top]?,
         paid_at: Time?,
         payment_method_type: WhopSDK::Models::payment_method_types?,
         plan: WhopSDK::Models::PaymentListResponse::Plan?,

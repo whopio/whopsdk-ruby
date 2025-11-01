@@ -37,6 +37,11 @@ module WhopSDK
       sig { returns(Integer) }
       attr_accessor :member_count
 
+      # A key-value store of data for the account, created/updated by the platform that
+      # made the account.
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      attr_accessor :metadata
+
       # The user who owns this company
       sig { returns(WhopSDK::Company::OwnerUser) }
       attr_reader :owner_user
@@ -78,6 +83,7 @@ module WhopSDK
           industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           logo: T.nilable(WhopSDK::Company::Logo::OrHash),
           member_count: Integer,
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
           owner_user: WhopSDK::Company::OwnerUser::OrHash,
           published_reviews_count: Integer,
           route: String,
@@ -102,6 +108,9 @@ module WhopSDK
         logo:,
         # The number of members in the company.
         member_count:,
+        # A key-value store of data for the account, created/updated by the platform that
+        # made the account.
+        metadata:,
         # The user who owns this company
         owner_user:,
         # The number of reviews that have been published for the company.
@@ -129,6 +138,7 @@ module WhopSDK
             industry_type: T.nilable(WhopSDK::IndustryTypes::TaggedSymbol),
             logo: T.nilable(WhopSDK::Company::Logo),
             member_count: Integer,
+            metadata: T.nilable(T::Hash[Symbol, T.anything]),
             owner_user: WhopSDK::Company::OwnerUser,
             published_reviews_count: Integer,
             route: String,

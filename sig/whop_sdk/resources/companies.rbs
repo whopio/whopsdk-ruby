@@ -1,10 +1,28 @@
 module WhopSDK
   module Resources
     class Companies
+      def create: (
+        email: String,
+        parent_company_id: String,
+        title: String,
+        ?metadata: ::Hash[Symbol, top]?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Company
+
       def retrieve: (
         String id,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Company
+
+      def list: (
+        parent_company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?direction: WhopSDK::Models::direction?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::CompanyListResponse]
 
       def initialize: (client: WhopSDK::Client) -> void
     end

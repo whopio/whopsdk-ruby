@@ -14,7 +14,7 @@ module WhopSDK
         ?customer_name: String?,
         ?payment_token_id: String?,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::InvoiceCreateResponse
+      ) -> WhopSDK::Invoice
 
       def retrieve: (
         String id,

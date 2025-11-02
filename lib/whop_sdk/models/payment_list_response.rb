@@ -94,6 +94,13 @@ module WhopSDK
       #   @return [WhopSDK::Models::PaymentListResponse::Membership, nil]
       required :membership, -> { WhopSDK::Models::PaymentListResponse::Membership }, nil?: true
 
+      # @!attribute metadata
+      #   The custom metadata stored on this payment. This will be copied the checkout
+      #   configuration for which this payment was made
+      #
+      #   @return [Hash{Symbol=>Object}, nil]
+      required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
       # @!attribute paid_at
       #   The datetime the payment was paid
       #
@@ -194,7 +201,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, company:, created_at:, currency:, dispute_alerted_at:, failure_message:, last_payment_attempt:, member:, membership:, paid_at:, payment_method_type:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, status:, substatus:, subtotal:, total:, usd_total:, user:, voidable:)
+      # @!method initialize(id:, amount_after_fees:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, company:, created_at:, currency:, dispute_alerted_at:, failure_message:, last_payment_attempt:, member:, membership:, metadata:, paid_at:, payment_method_type:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, status:, substatus:, subtotal:, total:, usd_total:, user:, voidable:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentListResponse} for more details.
       #
@@ -229,6 +236,8 @@ module WhopSDK
       #   @param member [WhopSDK::Models::PaymentListResponse::Member, nil] The member attached to this payment.
       #
       #   @param membership [WhopSDK::Models::PaymentListResponse::Membership, nil] The membership attached to this payment.
+      #
+      #   @param metadata [Hash{Symbol=>Object}, nil] The custom metadata stored on this payment. This will be copied the checkout con
       #
       #   @param paid_at [Time, nil] The datetime the payment was paid
       #

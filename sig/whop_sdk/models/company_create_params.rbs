@@ -1,0 +1,41 @@
+module WhopSDK
+  module Models
+    type company_create_params =
+      {
+        email: String,
+        parent_company_id: String,
+        title: String,
+        metadata: ::Hash[Symbol, top]?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class CompanyCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor email: String
+
+      attr_accessor parent_company_id: String
+
+      attr_accessor title: String
+
+      attr_accessor metadata: ::Hash[Symbol, top]?
+
+      def initialize: (
+        email: String,
+        parent_company_id: String,
+        title: String,
+        ?metadata: ::Hash[Symbol, top]?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        email: String,
+        parent_company_id: String,
+        title: String,
+        metadata: ::Hash[Symbol, top]?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

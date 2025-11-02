@@ -14,7 +14,7 @@ module WhopSDK
       # - `access_pass:basic:read`
       # - `plan:basic:read`
       #
-      # @overload create(company_id:, product_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
+      # @overload create(company_id:, product_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
       #
       # @param company_id [String] The company the plan should be created for.
       #
@@ -30,13 +30,15 @@ module WhopSDK
       #
       # @param expiration_days [Integer, nil] The interval at which the plan charges (expiration plans).
       #
-      # @param image [WhopSDK::Models::PlanCreateParams::Image, nil] An image for the plan. This will be visible on the product page to customers.
+      # @param image [WhopSDK::Models::PlanCreateParams::Image::AttachmentInputWithDirectUploadID, WhopSDK::Models::PlanCreateParams::Image::AttachmentInputWithID, nil] An image for the plan. This will be visible on the product page to customers.
       #
       # @param initial_price [Float, nil] An additional amount charged upon first purchase. Use only if a one time payment
       #
       # @param internal_notes [String, nil] A personal description or notes section for the business.
       #
       # @param override_tax_type [Symbol, WhopSDK::Models::TaxType, nil] Whether or not the tax is included in a plan's price (or if it hasn't been set u
+      #
+      # @param payment_method_configuration [WhopSDK::Models::PlanCreateParams::PaymentMethodConfiguration, nil] The explicit payment method configuration for the plan. If not provided, the pla
       #
       # @param plan_type [Symbol, WhopSDK::Models::PlanType, nil] The type of plan that can be attached to an access pass
       #
@@ -102,7 +104,7 @@ module WhopSDK
       # - `access_pass:basic:read`
       # - `plan:basic:read`
       #
-      # @overload update(id, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, offer_cancel_discount: nil, override_tax_type: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
+      # @overload update(id, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, offer_cancel_discount: nil, override_tax_type: nil, payment_method_configuration: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
       #
       # @param id [String]
       #
@@ -116,7 +118,7 @@ module WhopSDK
       #
       # @param expiration_days [Integer, nil] The interval at which the plan charges (expiration plans).
       #
-      # @param image [WhopSDK::Models::PlanUpdateParams::Image, nil] An image for the plan. This will be visible on the product page to customers.
+      # @param image [WhopSDK::Models::PlanUpdateParams::Image::AttachmentInputWithDirectUploadID, WhopSDK::Models::PlanUpdateParams::Image::AttachmentInputWithID, nil] An image for the plan. This will be visible on the product page to customers.
       #
       # @param initial_price [Float, nil] An additional amount charged upon first purchase.
       #
@@ -125,6 +127,8 @@ module WhopSDK
       # @param offer_cancel_discount [Boolean, nil] Whether or not to offer a discount to cancel a subscription.
       #
       # @param override_tax_type [Symbol, WhopSDK::Models::TaxType, nil] Whether or not the tax is included in a plan's price (or if it hasn't been set u
+      #
+      # @param payment_method_configuration [WhopSDK::Models::PlanUpdateParams::PaymentMethodConfiguration, nil] The explicit payment method configuration for the plan. If sent as null, the cus
       #
       # @param renewal_price [Float, nil] The amount the customer is charged every billing period.
       #

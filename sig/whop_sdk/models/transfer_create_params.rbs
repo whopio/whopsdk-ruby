@@ -7,6 +7,7 @@ module WhopSDK
         destination_id: String,
         origin_id: String,
         idempotence_key: String?,
+        metadata: ::Hash[Symbol, top]?,
         notes: String?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -25,6 +26,8 @@ module WhopSDK
 
       attr_accessor idempotence_key: String?
 
+      attr_accessor metadata: ::Hash[Symbol, top]?
+
       attr_accessor notes: String?
 
       def initialize: (
@@ -33,6 +36,7 @@ module WhopSDK
         destination_id: String,
         origin_id: String,
         ?idempotence_key: String?,
+        ?metadata: ::Hash[Symbol, top]?,
         ?notes: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
@@ -43,6 +47,7 @@ module WhopSDK
         destination_id: String,
         origin_id: String,
         idempotence_key: String?,
+        metadata: ::Hash[Symbol, top]?,
         notes: String?,
         request_options: WhopSDK::RequestOptions
       }

@@ -24,12 +24,28 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :due_date
 
+      # The member ID to create this invoice for. Include this if you want to create an
+      # invoice for an existing member. If you do not have a member ID, you must provide
+      # an email_address and customer_name.
+      sig { returns(String) }
+      attr_accessor :member_id
+
       # The properties of the plan to create for this invoice.
       sig { returns(WhopSDK::InvoiceCreateParams::Plan) }
       attr_reader :plan
 
       sig { params(plan: WhopSDK::InvoiceCreateParams::Plan::OrHash).void }
       attr_writer :plan
+
+      # The properties of the product to create for this invoice. Include this if you
+      # want to create an invoice for a new product.
+      sig { returns(WhopSDK::InvoiceCreateParams::Product) }
+      attr_reader :product
+
+      sig do
+        params(product: WhopSDK::InvoiceCreateParams::Product::OrHash).void
+      end
+      attr_writer :product
 
       # Whether or not to charge the customer a buyer fee.
       sig { returns(T.nilable(T::Boolean)) }
@@ -41,37 +57,19 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :customer_name
 
-      # The email address to create this invoice for. This is required if you want to
-      # create an invoice for a user who does not have a member of your company yet.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :email_address
-
-      # The member ID to create this invoice for. Include this if you want to create an
-      # invoice for an existing member. If you do not have a member ID, you must provide
-      # an email_address and customer_name.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :member_id
-
       # The payment token ID to use for this invoice. If using charge_automatically, you
       # must provide a payment_token.
       sig { returns(T.nilable(String)) }
       attr_accessor :payment_token_id
 
-      # The properties of the product to create for this invoice. Include this if you
-      # want to create an invoice for a new product.
-      sig { returns(T.nilable(WhopSDK::InvoiceCreateParams::Product)) }
-      attr_reader :product
-
-      sig do
-        params(
-          product: T.nilable(WhopSDK::InvoiceCreateParams::Product::OrHash)
-        ).void
-      end
-      attr_writer :product
+      # The email address to create this invoice for. This is required if you want to
+      # create an invoice for a user who does not have a member of your company yet.
+      sig { returns(String) }
+      attr_accessor :email_address
 
       # The product ID to create this invoice for. Include this if you want to create an
       # invoice for an existing product.
-      sig { returns(T.nilable(String)) }
+      sig { returns(String) }
       attr_accessor :product_id
 
       sig do
@@ -79,14 +77,14 @@ module WhopSDK
           collection_method: WhopSDK::CollectionMethod::OrSymbol,
           company_id: String,
           due_date: Time,
+          member_id: String,
           plan: WhopSDK::InvoiceCreateParams::Plan::OrHash,
+          product: WhopSDK::InvoiceCreateParams::Product::OrHash,
+          email_address: String,
+          product_id: String,
           charge_buyer_fee: T.nilable(T::Boolean),
           customer_name: T.nilable(String),
-          email_address: T.nilable(String),
-          member_id: T.nilable(String),
           payment_token_id: T.nilable(String),
-          product: T.nilable(WhopSDK::InvoiceCreateParams::Product::OrHash),
-          product_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -98,30 +96,30 @@ module WhopSDK
         company_id:,
         # The date the invoice is due, if applicable.
         due_date:,
+        # The member ID to create this invoice for. Include this if you want to create an
+        # invoice for an existing member. If you do not have a member ID, you must provide
+        # an email_address and customer_name.
+        member_id:,
         # The properties of the plan to create for this invoice.
         plan:,
+        # The properties of the product to create for this invoice. Include this if you
+        # want to create an invoice for a new product.
+        product:,
+        # The email address to create this invoice for. This is required if you want to
+        # create an invoice for a user who does not have a member of your company yet.
+        email_address:,
+        # The product ID to create this invoice for. Include this if you want to create an
+        # invoice for an existing product.
+        product_id:,
         # Whether or not to charge the customer a buyer fee.
         charge_buyer_fee: nil,
         # The name of the customer to create this invoice for. This is required if you
         # want to create an invoice for a customer who does not have a member of your
         # company yet.
         customer_name: nil,
-        # The email address to create this invoice for. This is required if you want to
-        # create an invoice for a user who does not have a member of your company yet.
-        email_address: nil,
-        # The member ID to create this invoice for. Include this if you want to create an
-        # invoice for an existing member. If you do not have a member ID, you must provide
-        # an email_address and customer_name.
-        member_id: nil,
         # The payment token ID to use for this invoice. If using charge_automatically, you
         # must provide a payment_token.
         payment_token_id: nil,
-        # The properties of the product to create for this invoice. Include this if you
-        # want to create an invoice for a new product.
-        product: nil,
-        # The product ID to create this invoice for. Include this if you want to create an
-        # invoice for an existing product.
-        product_id: nil,
         request_options: {}
       )
       end
@@ -132,14 +130,14 @@ module WhopSDK
             collection_method: WhopSDK::CollectionMethod::OrSymbol,
             company_id: String,
             due_date: Time,
+            member_id: String,
             plan: WhopSDK::InvoiceCreateParams::Plan,
+            product: WhopSDK::InvoiceCreateParams::Product,
             charge_buyer_fee: T.nilable(T::Boolean),
             customer_name: T.nilable(String),
-            email_address: T.nilable(String),
-            member_id: T.nilable(String),
             payment_token_id: T.nilable(String),
-            product: T.nilable(WhopSDK::InvoiceCreateParams::Product),
-            product_id: T.nilable(String),
+            email_address: String,
+            product_id: String,
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -199,9 +197,17 @@ module WhopSDK
         sig { returns(T.nilable(Float)) }
         attr_accessor :renewal_price
 
+        # The number of units available for purchase.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :stock
+
         # The number of free trial days added before a renewal plan.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :trial_period_days
+
+        # Limits/doesn't limit the number of units available for purchase.
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_accessor :unlimited_stock
 
         # Visibility of a resource
         sig { returns(T.nilable(WhopSDK::Visibility::OrSymbol)) }
@@ -224,7 +230,9 @@ module WhopSDK
             plan_type: T.nilable(WhopSDK::PlanType::OrSymbol),
             release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
             renewal_price: T.nilable(Float),
+            stock: T.nilable(Integer),
             trial_period_days: T.nilable(Integer),
+            unlimited_stock: T.nilable(T::Boolean),
             visibility: T.nilable(WhopSDK::Visibility::OrSymbol)
           ).returns(T.attached_class)
         end
@@ -250,8 +258,12 @@ module WhopSDK
           # The amount the customer is charged every billing period. Use only if a recurring
           # payment. Provided as a number in dollars. Eg: 10.43 for $10.43
           renewal_price: nil,
+          # The number of units available for purchase.
+          stock: nil,
           # The number of free trial days added before a renewal plan.
           trial_period_days: nil,
+          # Limits/doesn't limit the number of units available for purchase.
+          unlimited_stock: nil,
           # Visibility of a resource
           visibility: nil
         )
@@ -272,7 +284,9 @@ module WhopSDK
               plan_type: T.nilable(WhopSDK::PlanType::OrSymbol),
               release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
               renewal_price: T.nilable(Float),
+              stock: T.nilable(Integer),
               trial_period_days: T.nilable(Integer),
+              unlimited_stock: T.nilable(T::Boolean),
               visibility: T.nilable(WhopSDK::Visibility::OrSymbol)
             }
           )

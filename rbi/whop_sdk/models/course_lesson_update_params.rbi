@@ -11,6 +11,26 @@ module WhopSDK
           T.any(WhopSDK::CourseLessonUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
+      # Completion requirements for quiz/knowledge check lessons
+      sig do
+        returns(
+          T.nilable(
+            WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement
+          )
+        )
+      end
+      attr_reader :assessment_completion_requirement
+
+      sig do
+        params(
+          assessment_completion_requirement:
+            T.nilable(
+              WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement::OrHash
+            )
+        ).void
+      end
+      attr_writer :assessment_completion_requirement
+
       # Assessment questions for quiz/knowledge check lessons. Replaces all existing
       # questions.
       sig do
@@ -26,7 +46,14 @@ module WhopSDK
       # attachments.
       sig do
         returns(
-          T.nilable(T::Array[WhopSDK::CourseLessonUpdateParams::Attachment])
+          T.nilable(
+            T::Array[
+              T.any(
+                WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID,
+                WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithID
+              )
+            ]
+          )
         )
       end
       attr_accessor :attachments
@@ -44,16 +71,21 @@ module WhopSDK
       attr_accessor :lesson_type
 
       # The main PDF file for this lesson
-      sig { returns(T.nilable(WhopSDK::CourseLessonUpdateParams::MainPdf)) }
-      attr_reader :main_pdf
-
       sig do
-        params(
-          main_pdf:
-            T.nilable(WhopSDK::CourseLessonUpdateParams::MainPdf::OrHash)
-        ).void
+        returns(
+          T.nilable(
+            T.any(
+              WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID,
+              WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID
+            )
+          )
+        )
       end
-      attr_writer :main_pdf
+      attr_accessor :main_pdf
+
+      # Maximum number of attempts allowed for assessments
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :max_attempts
 
       # The ID of the Mux asset to attach to this lesson for video lessons
       sig { returns(T.nilable(String)) }
@@ -70,6 +102,10 @@ module WhopSDK
 
       sig do
         params(
+          assessment_completion_requirement:
+            T.nilable(
+              WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement::OrHash
+            ),
           assessment_questions:
             T.nilable(
               T::Array[
@@ -78,13 +114,24 @@ module WhopSDK
             ),
           attachments:
             T.nilable(
-              T::Array[WhopSDK::CourseLessonUpdateParams::Attachment::OrHash]
+              T::Array[
+                T.any(
+                  WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID::OrHash,
+                  WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithID::OrHash
+                )
+              ]
             ),
           content: T.nilable(String),
           days_from_course_start_until_unlock: T.nilable(Integer),
           lesson_type: T.nilable(WhopSDK::LessonTypes::OrSymbol),
           main_pdf:
-            T.nilable(WhopSDK::CourseLessonUpdateParams::MainPdf::OrHash),
+            T.nilable(
+              T.any(
+                WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID::OrHash
+              )
+            ),
+          max_attempts: T.nilable(Integer),
           mux_asset_id: T.nilable(String),
           title: T.nilable(String),
           visibility: T.nilable(WhopSDK::LessonVisibilities::OrSymbol),
@@ -92,6 +139,8 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        # Completion requirements for quiz/knowledge check lessons
+        assessment_completion_requirement: nil,
         # Assessment questions for quiz/knowledge check lessons. Replaces all existing
         # questions.
         assessment_questions: nil,
@@ -106,6 +155,8 @@ module WhopSDK
         lesson_type: nil,
         # The main PDF file for this lesson
         main_pdf: nil,
+        # Maximum number of attempts allowed for assessments
+        max_attempts: nil,
         # The ID of the Mux asset to attach to this lesson for video lessons
         mux_asset_id: nil,
         # The title of the lesson
@@ -120,18 +171,34 @@ module WhopSDK
       sig do
         override.returns(
           {
+            assessment_completion_requirement:
+              T.nilable(
+                WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement
+              ),
             assessment_questions:
               T.nilable(
                 T::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion]
               ),
             attachments:
               T.nilable(
-                T::Array[WhopSDK::CourseLessonUpdateParams::Attachment]
+                T::Array[
+                  T.any(
+                    WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID,
+                    WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithID
+                  )
+                ]
               ),
             content: T.nilable(String),
             days_from_course_start_until_unlock: T.nilable(Integer),
             lesson_type: T.nilable(WhopSDK::LessonTypes::OrSymbol),
-            main_pdf: T.nilable(WhopSDK::CourseLessonUpdateParams::MainPdf),
+            main_pdf:
+              T.nilable(
+                T.any(
+                  WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID,
+                  WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID
+                )
+              ),
+            max_attempts: T.nilable(Integer),
             mux_asset_id: T.nilable(String),
             title: T.nilable(String),
             visibility: T.nilable(WhopSDK::LessonVisibilities::OrSymbol),
@@ -140,6 +207,54 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      class AssessmentCompletionRequirement < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The minimum grade percentage required to pass (0-100). Cannot be set together
+        # with minimum_questions_correct.
+        sig { returns(T.nilable(Float)) }
+        attr_accessor :minimum_grade_percent
+
+        # The minimum number of questions that must be answered correctly. Cannot be set
+        # together with minimum_grade_percent.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :minimum_questions_correct
+
+        # Completion requirements for quiz/knowledge check lessons
+        sig do
+          params(
+            minimum_grade_percent: T.nilable(Float),
+            minimum_questions_correct: T.nilable(Integer)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The minimum grade percentage required to pass (0-100). Cannot be set together
+          # with minimum_questions_correct.
+          minimum_grade_percent: nil,
+          # The minimum number of questions that must be answered correctly. Cannot be set
+          # together with minimum_grade_percent.
+          minimum_questions_correct: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              minimum_grade_percent: T.nilable(Float),
+              minimum_questions_correct: T.nilable(Integer)
+            }
+          )
+        end
+        def to_hash
+        end
       end
 
       class AssessmentQuestion < WhopSDK::Internal::Type::BaseModel
@@ -172,21 +287,14 @@ module WhopSDK
         sig do
           returns(
             T.nilable(
-              WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image
+              T.any(
+                WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID,
+                WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID
+              )
             )
           )
         end
-        attr_reader :image
-
-        sig do
-          params(
-            image:
-              T.nilable(
-                WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::OrHash
-              )
-          ).void
-        end
-        attr_writer :image
+        attr_accessor :image
 
         # The answer options for multiple choice/select questions
         sig do
@@ -209,7 +317,10 @@ module WhopSDK
             id: T.nilable(String),
             image:
               T.nilable(
-                WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::OrHash
+                T.any(
+                  WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID::OrHash,
+                  WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID::OrHash
+                )
               ),
             options:
               T.nilable(
@@ -245,7 +356,10 @@ module WhopSDK
               id: T.nilable(String),
               image:
                 T.nilable(
-                  WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image
+                  T.any(
+                    WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID,
+                    WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID
+                  )
                 ),
               options:
                 T.nilable(
@@ -259,52 +373,86 @@ module WhopSDK
         def to_hash
         end
 
-        class Image < WhopSDK::Internal::Type::BaseModel
-          OrHash =
+        # Optional image attachment for the question
+        module Image
+          extend WhopSDK::Internal::Type::Union
+
+          Variants =
             T.type_alias do
               T.any(
-                WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image,
-                WhopSDK::Internal::AnyHash
+                WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID,
+                WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID
               )
             end
 
-          # The ID of an existing attachment object. Use this when updating a resource and
-          # keeping a subset of the attachments. Don't use this unless you know what you're
-          # doing.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :id
+          class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
 
-          # This ID should be used the first time you upload an attachment. It is the ID of
-          # the direct upload that was created when uploading the file to S3 via the
-          # mediaDirectUpload mutation.
-          sig { returns(T.nilable(String)) }
-          attr_accessor :direct_upload_id
-
-          # Optional image attachment for the question
-          sig do
-            params(
-              id: T.nilable(String),
-              direct_upload_id: T.nilable(String)
-            ).returns(T.attached_class)
-          end
-          def self.new(
-            # The ID of an existing attachment object. Use this when updating a resource and
-            # keeping a subset of the attachments. Don't use this unless you know what you're
-            # doing.
-            id: nil,
             # This ID should be used the first time you upload an attachment. It is the ID of
             # the direct upload that was created when uploading the file to S3 via the
             # mediaDirectUpload mutation.
-            direct_upload_id: nil
-          )
+            sig { returns(String) }
+            attr_accessor :direct_upload_id
+
+            # Input for an attachment
+            sig { params(direct_upload_id: String).returns(T.attached_class) }
+            def self.new(
+              # This ID should be used the first time you upload an attachment. It is the ID of
+              # the direct upload that was created when uploading the file to S3 via the
+              # mediaDirectUpload mutation.
+              direct_upload_id:
+            )
+            end
+
+            sig { override.returns({ direct_upload_id: String }) }
+            def to_hash
+            end
+          end
+
+          class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The ID of an existing attachment object. Use this when updating a resource and
+            # keeping a subset of the attachments. Don't use this unless you know what you're
+            # doing.
+            sig { returns(String) }
+            attr_accessor :id
+
+            # Input for an attachment
+            sig { params(id: String).returns(T.attached_class) }
+            def self.new(
+              # The ID of an existing attachment object. Use this when updating a resource and
+              # keeping a subset of the attachments. Don't use this unless you know what you're
+              # doing.
+              id:
+            )
+            end
+
+            sig { override.returns({ id: String }) }
+            def to_hash
+            end
           end
 
           sig do
             override.returns(
-              { id: T.nilable(String), direct_upload_id: T.nilable(String) }
+              T::Array[
+                WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::Variants
+              ]
             )
           end
-          def to_hash
+          def self.variants
           end
         end
 
@@ -363,101 +511,165 @@ module WhopSDK
         end
       end
 
-      class Attachment < WhopSDK::Internal::Type::BaseModel
-        OrHash =
+      # Input for an attachment
+      module Attachment
+        extend WhopSDK::Internal::Type::Union
+
+        Variants =
           T.type_alias do
             T.any(
-              WhopSDK::CourseLessonUpdateParams::Attachment,
-              WhopSDK::Internal::AnyHash
+              WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID,
+              WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithID
             )
           end
 
-        # The ID of an existing attachment object. Use this when updating a resource and
-        # keeping a subset of the attachments. Don't use this unless you know what you're
-        # doing.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :id
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID,
+                WhopSDK::Internal::AnyHash
+              )
+            end
 
-        # This ID should be used the first time you upload an attachment. It is the ID of
-        # the direct upload that was created when uploading the file to S3 via the
-        # mediaDirectUpload mutation.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :direct_upload_id
-
-        # Input for an attachment
-        sig do
-          params(
-            id: T.nilable(String),
-            direct_upload_id: T.nilable(String)
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The ID of an existing attachment object. Use this when updating a resource and
-          # keeping a subset of the attachments. Don't use this unless you know what you're
-          # doing.
-          id: nil,
           # This ID should be used the first time you upload an attachment. It is the ID of
           # the direct upload that was created when uploading the file to S3 via the
           # mediaDirectUpload mutation.
-          direct_upload_id: nil
-        )
+          sig { returns(String) }
+          attr_accessor :direct_upload_id
+
+          # Input for an attachment
+          sig { params(direct_upload_id: String).returns(T.attached_class) }
+          def self.new(
+            # This ID should be used the first time you upload an attachment. It is the ID of
+            # the direct upload that was created when uploading the file to S3 via the
+            # mediaDirectUpload mutation.
+            direct_upload_id:
+          )
+          end
+
+          sig { override.returns({ direct_upload_id: String }) }
+          def to_hash
+          end
+        end
+
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithID,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The ID of an existing attachment object. Use this when updating a resource and
+          # keeping a subset of the attachments. Don't use this unless you know what you're
+          # doing.
+          sig { returns(String) }
+          attr_accessor :id
+
+          # Input for an attachment
+          sig { params(id: String).returns(T.attached_class) }
+          def self.new(
+            # The ID of an existing attachment object. Use this when updating a resource and
+            # keeping a subset of the attachments. Don't use this unless you know what you're
+            # doing.
+            id:
+          )
+          end
+
+          sig { override.returns({ id: String }) }
+          def to_hash
+          end
         end
 
         sig do
           override.returns(
-            { id: T.nilable(String), direct_upload_id: T.nilable(String) }
+            T::Array[WhopSDK::CourseLessonUpdateParams::Attachment::Variants]
           )
         end
-        def to_hash
+        def self.variants
         end
       end
 
-      class MainPdf < WhopSDK::Internal::Type::BaseModel
-        OrHash =
+      # The main PDF file for this lesson
+      module MainPdf
+        extend WhopSDK::Internal::Type::Union
+
+        Variants =
           T.type_alias do
             T.any(
-              WhopSDK::CourseLessonUpdateParams::MainPdf,
-              WhopSDK::Internal::AnyHash
+              WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID,
+              WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID
             )
           end
 
-        # The ID of an existing attachment object. Use this when updating a resource and
-        # keeping a subset of the attachments. Don't use this unless you know what you're
-        # doing.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :id
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID,
+                WhopSDK::Internal::AnyHash
+              )
+            end
 
-        # This ID should be used the first time you upload an attachment. It is the ID of
-        # the direct upload that was created when uploading the file to S3 via the
-        # mediaDirectUpload mutation.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :direct_upload_id
-
-        # The main PDF file for this lesson
-        sig do
-          params(
-            id: T.nilable(String),
-            direct_upload_id: T.nilable(String)
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The ID of an existing attachment object. Use this when updating a resource and
-          # keeping a subset of the attachments. Don't use this unless you know what you're
-          # doing.
-          id: nil,
           # This ID should be used the first time you upload an attachment. It is the ID of
           # the direct upload that was created when uploading the file to S3 via the
           # mediaDirectUpload mutation.
-          direct_upload_id: nil
-        )
+          sig { returns(String) }
+          attr_accessor :direct_upload_id
+
+          # Input for an attachment
+          sig { params(direct_upload_id: String).returns(T.attached_class) }
+          def self.new(
+            # This ID should be used the first time you upload an attachment. It is the ID of
+            # the direct upload that was created when uploading the file to S3 via the
+            # mediaDirectUpload mutation.
+            direct_upload_id:
+          )
+          end
+
+          sig { override.returns({ direct_upload_id: String }) }
+          def to_hash
+          end
+        end
+
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The ID of an existing attachment object. Use this when updating a resource and
+          # keeping a subset of the attachments. Don't use this unless you know what you're
+          # doing.
+          sig { returns(String) }
+          attr_accessor :id
+
+          # Input for an attachment
+          sig { params(id: String).returns(T.attached_class) }
+          def self.new(
+            # The ID of an existing attachment object. Use this when updating a resource and
+            # keeping a subset of the attachments. Don't use this unless you know what you're
+            # doing.
+            id:
+          )
+          end
+
+          sig { override.returns({ id: String }) }
+          def to_hash
+          end
         end
 
         sig do
           override.returns(
-            { id: T.nilable(String), direct_upload_id: T.nilable(String) }
+            T::Array[WhopSDK::CourseLessonUpdateParams::MainPdf::Variants]
           )
         end
-        def to_hash
+        def self.variants
         end
       end
     end

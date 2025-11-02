@@ -7,8 +7,8 @@ module WhopSDK
       #
       # Required permissions:
       #
-      # - `course_lesson_interaction:read`
       # - `courses:read`
+      # - `course_analytics:read`
       sig do
         params(
           id: String,
@@ -22,8 +22,8 @@ module WhopSDK
       #
       # Required permissions:
       #
-      # - `course_lesson_interaction:read`
       # - `courses:read`
+      # - `course_analytics:read`
       sig do
         params(
           after: T.nilable(String),

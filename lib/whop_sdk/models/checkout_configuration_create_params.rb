@@ -7,6 +7,12 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute plan
+      #   Pass this object to create a new plan for this checkout configuration
+      #
+      #   @return [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan]
+      required :plan, -> { WhopSDK::CheckoutConfigurationCreateParams::Plan }
+
       # @!attribute affiliate_code
       #   The affiliate code to use for the checkout configuration
       #
@@ -19,32 +25,26 @@ module WhopSDK
       #   @return [Hash{Symbol=>Object}, nil]
       optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
-      # @!attribute plan
-      #   Pass this object to create a new plan for this checkout configuration
-      #
-      #   @return [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan, nil]
-      optional :plan, -> { WhopSDK::CheckoutConfigurationCreateParams::Plan }, nil?: true
-
-      # @!attribute plan_id
-      #   The ID of the plan to use for the checkout configuration
-      #
-      #   @return [String, nil]
-      optional :plan_id, String, nil?: true
-
       # @!attribute redirect_url
       #   The URL to redirect the user to after the checkout configuration is created
       #
       #   @return [String, nil]
       optional :redirect_url, String, nil?: true
 
-      # @!method initialize(affiliate_code: nil, metadata: nil, plan: nil, plan_id: nil, redirect_url: nil, request_options: {})
+      # @!attribute plan_id
+      #   The ID of the plan to use for the checkout configuration
+      #
+      #   @return [String]
+      required :plan_id, String
+
+      # @!method initialize(plan:, plan_id:, affiliate_code: nil, metadata: nil, redirect_url: nil, request_options: {})
+      #   @param plan [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan] Pass this object to create a new plan for this checkout configuration
+      #
+      #   @param plan_id [String] The ID of the plan to use for the checkout configuration
+      #
       #   @param affiliate_code [String, nil] The affiliate code to use for the checkout configuration
       #
       #   @param metadata [Hash{Symbol=>Object}, nil] The metadata to use for the checkout configuration
-      #
-      #   @param plan [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan, nil] Pass this object to create a new plan for this checkout configuration
-      #
-      #   @param plan_id [String, nil] The ID of the plan to use for the checkout configuration
       #
       #   @param redirect_url [String, nil] The URL to redirect the user to after the checkout configuration is created
       #
@@ -101,8 +101,8 @@ module WhopSDK
         # @!attribute image
         #   An image for the plan. This will be visible on the product page to customers.
         #
-        #   @return [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image, nil]
-        optional :image, -> { WhopSDK::CheckoutConfigurationCreateParams::Plan::Image }, nil?: true
+        #   @return [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID, WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID, nil]
+        optional :image, union: -> { WhopSDK::CheckoutConfigurationCreateParams::Plan::Image }, nil?: true
 
         # @!attribute initial_price
         #   An additional amount charged upon first purchase.
@@ -122,6 +122,15 @@ module WhopSDK
         #
         #   @return [Symbol, WhopSDK::Models::TaxType, nil]
         optional :override_tax_type, enum: -> { WhopSDK::TaxType }, nil?: true
+
+        # @!attribute payment_method_configuration
+        #   The explicit payment method configuration for the plan. If not provided, the
+        #   platform or company's defaults will apply.
+        #
+        #   @return [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::PaymentMethodConfiguration, nil]
+        optional :payment_method_configuration,
+                 -> { WhopSDK::CheckoutConfigurationCreateParams::Plan::PaymentMethodConfiguration },
+                 nil?: true
 
         # @!attribute plan_type
         #   The type of plan that can be attached to an access pass
@@ -172,7 +181,7 @@ module WhopSDK
         #   @return [Symbol, WhopSDK::Models::Visibility, nil]
         optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-        # @!method initialize(company_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, force_create_new_plan: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, plan_type: nil, product: nil, product_id: nil, release_method: nil, renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil)
+        # @!method initialize(company_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, force_create_new_plan: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, product: nil, product_id: nil, release_method: nil, renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan} for more details.
         #
@@ -192,13 +201,15 @@ module WhopSDK
         #
         #   @param force_create_new_plan [Boolean, nil] Whether to force the creation of a new plan even if one with the same attributes
         #
-        #   @param image [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image, nil] An image for the plan. This will be visible on the product page to customers.
+        #   @param image [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID, WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID, nil] An image for the plan. This will be visible on the product page to customers.
         #
         #   @param initial_price [Float, nil] An additional amount charged upon first purchase.
         #
         #   @param internal_notes [String, nil] A personal description or notes section for the business.
         #
         #   @param override_tax_type [Symbol, WhopSDK::Models::TaxType, nil] Whether or not the tax is included in a plan's price (or if it hasn't been set u
+        #
+        #   @param payment_method_configuration [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::PaymentMethodConfiguration, nil] The explicit payment method configuration for the plan. If not provided, the pla
         #
         #   @param plan_type [Symbol, WhopSDK::Models::PlanType, nil] The type of plan that can be attached to an access pass
         #
@@ -267,34 +278,99 @@ module WhopSDK
           #   @param field_type [Symbol, :text] The type of the custom field.
         end
 
+        # An image for the plan. This will be visible on the product page to customers.
+        #
         # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Plan#image
-        class Image < WhopSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #   The ID of an existing attachment object. Use this when updating a resource and
-          #   keeping a subset of the attachments. Don't use this unless you know what you're
-          #   doing.
-          #
-          #   @return [String, nil]
-          optional :id, String, nil?: true
+        module Image
+          extend WhopSDK::Internal::Type::Union
 
-          # @!attribute direct_upload_id
-          #   This ID should be used the first time you upload an attachment. It is the ID of
-          #   the direct upload that was created when uploading the file to S3 via the
-          #   mediaDirectUpload mutation.
-          #
-          #   @return [String, nil]
-          optional :direct_upload_id, String, nil?: true
+          # Input for an attachment
+          variant -> { WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID }
 
-          # @!method initialize(id: nil, direct_upload_id: nil)
+          # Input for an attachment
+          variant -> { WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID }
+
+          class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
+            # @!attribute direct_upload_id
+            #   This ID should be used the first time you upload an attachment. It is the ID of
+            #   the direct upload that was created when uploading the file to S3 via the
+            #   mediaDirectUpload mutation.
+            #
+            #   @return [String]
+            required :direct_upload_id, String
+
+            # @!method initialize(direct_upload_id:)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID}
+            #   for more details.
+            #
+            #   Input for an attachment
+            #
+            #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
+          end
+
+          class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
+            # @!attribute id
+            #   The ID of an existing attachment object. Use this when updating a resource and
+            #   keeping a subset of the attachments. Don't use this unless you know what you're
+            #   doing.
+            #
+            #   @return [String]
+            required :id, String
+
+            # @!method initialize(id:)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID}
+            #   for more details.
+            #
+            #   Input for an attachment
+            #
+            #   @param id [String] The ID of an existing attachment object. Use this when updating a resource and k
+          end
+
+          # @!method self.variants
+          #   @return [Array(WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID, WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID)]
+        end
+
+        # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Plan#payment_method_configuration
+        class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+          # @!attribute disabled
+          #   An array of payment method identifiers that are explicitly disabled. Only
+          #   applies if the include_platform_defaults is true.
+          #
+          #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
+          required :disabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+
+          # @!attribute enabled
+          #   An array of payment method identifiers that are explicitly enabled. This means
+          #   these payment methods will be shown on checkout. Example use case is to only
+          #   enable a specific payment method like cashapp, or extending the platform
+          #   defaults with additional methods.
+          #
+          #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
+          required :enabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+
+          # @!attribute include_platform_defaults
+          #   Whether Whop's platform default payment method enablement settings are included
+          #   in this configuration. The full list of default payment methods can be found in
+          #   the documentation at docs.whop.com/payments.
+          #
+          #   @return [Boolean]
+          required :include_platform_defaults, WhopSDK::Internal::Type::Boolean
+
+          # @!method initialize(disabled:, enabled:, include_platform_defaults:)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image} for more
-          #   details.
+          #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::PaymentMethodConfiguration}
+          #   for more details.
           #
-          #   An image for the plan. This will be visible on the product page to customers.
+          #   The explicit payment method configuration for the plan. If not provided, the
+          #   platform or company's defaults will apply.
           #
-          #   @param id [String, nil] The ID of an existing attachment object. Use this when updating a resource and k
+          #   @param disabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly disabled. Only applie
           #
-          #   @param direct_upload_id [String, nil] This ID should be used the first time you upload an attachment. It is the ID of
+          #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
+          #
+          #   @param include_platform_defaults [Boolean] Whether Whop's platform default payment method enablement settings are included
         end
 
         # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Plan#product

@@ -7,8 +7,8 @@ module WhopSDK
       #
       # Required permissions:
       #
-      # - `course_lesson_interaction:read`
       # - `courses:read`
+      # - `course_analytics:read`
       #
       # @overload retrieve(id, request_options: {})
       #
@@ -31,8 +31,8 @@ module WhopSDK
       #
       # Required permissions:
       #
-      # - `course_lesson_interaction:read`
       # - `courses:read`
+      # - `course_analytics:read`
       #
       # @overload list(after: nil, before: nil, completed: nil, course_id: nil, first: nil, last: nil, lesson_id: nil, user_id: nil, request_options: {})
       #

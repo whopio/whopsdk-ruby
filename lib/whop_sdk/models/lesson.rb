@@ -108,10 +108,11 @@ module WhopSDK
         required :id, String
 
         # @!attribute correct_answer
-        #   The correct answer for the question. Used for short answer questions
+        #   The correct answer for the question. Used for short answer questions. Only
+        #   visible to admins (users with courses:update permission)
         #
-        #   @return [String]
-        required :correct_answer, String
+        #   @return [String, nil]
+        required :correct_answer, String, nil?: true
 
         # @!attribute created_at
         #   When the question was created
@@ -150,11 +151,14 @@ module WhopSDK
         required :question_type, enum: -> { WhopSDK::AssessmentQuestionTypes }
 
         # @!method initialize(id:, correct_answer:, created_at:, image:, options:, order:, question_text:, question_type:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Lesson::AssessmentQuestion} for more details.
+        #
         #   An assessment question in a course quiz or knowledge check
         #
         #   @param id [String] The ID of the assessment question
         #
-        #   @param correct_answer [String] The correct answer for the question. Used for short answer questions
+        #   @param correct_answer [String, nil] The correct answer for the question. Used for short answer questions. Only visib
         #
         #   @param created_at [Time] When the question was created
         #
@@ -218,10 +222,11 @@ module WhopSDK
           required :id, String
 
           # @!attribute is_correct
-          #   Whether this option is a correct answer
+          #   Whether this option is a correct answer. Only visible to admins (users with
+          #   courses:update permission)
           #
-          #   @return [Boolean]
-          required :is_correct, WhopSDK::Internal::Type::Boolean
+          #   @return [Boolean, nil]
+          required :is_correct, WhopSDK::Internal::Type::Boolean, nil?: true
 
           # @!attribute option_text
           #   The text of the answer option
@@ -236,11 +241,14 @@ module WhopSDK
           required :order, Integer
 
           # @!method initialize(id:, is_correct:, option_text:, order:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::Lesson::AssessmentQuestion::Option} for more details.
+          #
           #   An answer option for a multiple choice or multiple select assessment question
           #
           #   @param id [String] The ID of the assessment question option
           #
-          #   @param is_correct [Boolean] Whether this option is a correct answer
+          #   @param is_correct [Boolean, nil] Whether this option is a correct answer. Only visible to admins (users with cour
           #
           #   @param option_text [String] The text of the answer option
           #

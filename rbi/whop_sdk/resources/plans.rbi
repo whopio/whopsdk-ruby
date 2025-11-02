@@ -20,10 +20,20 @@ module WhopSDK
             T.nilable(T::Array[WhopSDK::PlanCreateParams::CustomField::OrHash]),
           description: T.nilable(String),
           expiration_days: T.nilable(Integer),
-          image: T.nilable(WhopSDK::PlanCreateParams::Image::OrHash),
+          image:
+            T.nilable(
+              T.any(
+                WhopSDK::PlanCreateParams::Image::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::PlanCreateParams::Image::AttachmentInputWithID::OrHash
+              )
+            ),
           initial_price: T.nilable(Float),
           internal_notes: T.nilable(String),
           override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
+          payment_method_configuration:
+            T.nilable(
+              WhopSDK::PlanCreateParams::PaymentMethodConfiguration::OrHash
+            ),
           plan_type: T.nilable(WhopSDK::PlanType::OrSymbol),
           release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
           renewal_price: T.nilable(Float),
@@ -63,6 +73,9 @@ module WhopSDK
         # Whether or not the tax is included in a plan's price (or if it hasn't been set
         # up)
         override_tax_type: nil,
+        # The explicit payment method configuration for the plan. If not provided, the
+        # platform or company's defaults will apply.
+        payment_method_configuration: nil,
         # The type of plan that can be attached to an access pass
         plan_type: nil,
         # The methods of how a plan can be released.
@@ -120,11 +133,21 @@ module WhopSDK
             T.nilable(T::Array[WhopSDK::PlanUpdateParams::CustomField::OrHash]),
           description: T.nilable(String),
           expiration_days: T.nilable(Integer),
-          image: T.nilable(WhopSDK::PlanUpdateParams::Image::OrHash),
+          image:
+            T.nilable(
+              T.any(
+                WhopSDK::PlanUpdateParams::Image::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::PlanUpdateParams::Image::AttachmentInputWithID::OrHash
+              )
+            ),
           initial_price: T.nilable(Float),
           internal_notes: T.nilable(String),
           offer_cancel_discount: T.nilable(T::Boolean),
           override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
+          payment_method_configuration:
+            T.nilable(
+              WhopSDK::PlanUpdateParams::PaymentMethodConfiguration::OrHash
+            ),
           renewal_price: T.nilable(Float),
           stock: T.nilable(Integer),
           strike_through_initial_price: T.nilable(Float),
@@ -159,6 +182,9 @@ module WhopSDK
         # Whether or not the tax is included in a plan's price (or if it hasn't been set
         # up)
         override_tax_type: nil,
+        # The explicit payment method configuration for the plan. If sent as null, the
+        # custom configuration will be removed.
+        payment_method_configuration: nil,
         # The amount the customer is charged every billing period.
         renewal_price: nil,
         # The number of units available for purchase.

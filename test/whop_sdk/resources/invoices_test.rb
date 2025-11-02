@@ -11,17 +11,26 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
         collection_method: :send_invoice,
         company_id: "biz_xxxxxxxxxxxxxx",
         due_date: "2023-12-01T05:00:00.401Z",
-        plan: {}
+        member_id: "mber_xxxxxxxxxxxxx",
+        plan: {},
+        product: {title: "title"}
       )
 
     assert_pattern do
-      response => WhopSDK::Models::InvoiceCreateResponse
+      response => WhopSDK::Invoice
     end
 
     assert_pattern do
       response => {
-        checkout_job_id: String | nil,
-        invoice: WhopSDK::Invoice
+        id: String,
+        created_at: Time,
+        current_plan: WhopSDK::Invoice::CurrentPlan,
+        due_date: Time | nil,
+        email_address: String | nil,
+        fetch_invoice_token: String,
+        number: String,
+        status: WhopSDK::InvoiceStatus,
+        user: WhopSDK::Invoice::User | nil
       }
     end
   end

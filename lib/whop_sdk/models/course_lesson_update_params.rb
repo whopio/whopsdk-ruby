@@ -7,6 +7,14 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute assessment_completion_requirement
+      #   Completion requirements for quiz/knowledge check lessons
+      #
+      #   @return [WhopSDK::Models::CourseLessonUpdateParams::AssessmentCompletionRequirement, nil]
+      optional :assessment_completion_requirement,
+               -> { WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement },
+               nil?: true
+
       # @!attribute assessment_questions
       #   Assessment questions for quiz/knowledge check lessons. Replaces all existing
       #   questions.
@@ -20,9 +28,9 @@ module WhopSDK
       #   General attachments for the lesson (PDFs, files, etc). Replaces all existing
       #   attachments.
       #
-      #   @return [Array<WhopSDK::Models::CourseLessonUpdateParams::Attachment>, nil]
+      #   @return [Array<WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithID>, nil]
       optional :attachments,
-               -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::CourseLessonUpdateParams::Attachment] },
+               -> { WhopSDK::Internal::Type::ArrayOf[union: WhopSDK::CourseLessonUpdateParams::Attachment] },
                nil?: true
 
       # @!attribute content
@@ -46,8 +54,14 @@ module WhopSDK
       # @!attribute main_pdf
       #   The main PDF file for this lesson
       #
-      #   @return [WhopSDK::Models::CourseLessonUpdateParams::MainPdf, nil]
-      optional :main_pdf, -> { WhopSDK::CourseLessonUpdateParams::MainPdf }, nil?: true
+      #   @return [WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID, nil]
+      optional :main_pdf, union: -> { WhopSDK::CourseLessonUpdateParams::MainPdf }, nil?: true
+
+      # @!attribute max_attempts
+      #   Maximum number of attempts allowed for assessments
+      #
+      #   @return [Integer, nil]
+      optional :max_attempts, Integer, nil?: true
 
       # @!attribute mux_asset_id
       #   The ID of the Mux asset to attach to this lesson for video lessons
@@ -68,13 +82,15 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::LessonVisibilities, nil]
       optional :visibility, enum: -> { WhopSDK::LessonVisibilities }, nil?: true
 
-      # @!method initialize(assessment_questions: nil, attachments: nil, content: nil, days_from_course_start_until_unlock: nil, lesson_type: nil, main_pdf: nil, mux_asset_id: nil, title: nil, visibility: nil, request_options: {})
+      # @!method initialize(assessment_completion_requirement: nil, assessment_questions: nil, attachments: nil, content: nil, days_from_course_start_until_unlock: nil, lesson_type: nil, main_pdf: nil, max_attempts: nil, mux_asset_id: nil, title: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CourseLessonUpdateParams} for more details.
       #
+      #   @param assessment_completion_requirement [WhopSDK::Models::CourseLessonUpdateParams::AssessmentCompletionRequirement, nil] Completion requirements for quiz/knowledge check lessons
+      #
       #   @param assessment_questions [Array<WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion>, nil] Assessment questions for quiz/knowledge check lessons. Replaces all existing que
       #
-      #   @param attachments [Array<WhopSDK::Models::CourseLessonUpdateParams::Attachment>, nil] General attachments for the lesson (PDFs, files, etc). Replaces all existing att
+      #   @param attachments [Array<WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithID>, nil] General attachments for the lesson (PDFs, files, etc). Replaces all existing att
       #
       #   @param content [String, nil] The content of the lesson
       #
@@ -82,7 +98,9 @@ module WhopSDK
       #
       #   @param lesson_type [Symbol, WhopSDK::Models::LessonTypes, nil] The available types for a lesson
       #
-      #   @param main_pdf [WhopSDK::Models::CourseLessonUpdateParams::MainPdf, nil] The main PDF file for this lesson
+      #   @param main_pdf [WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID, nil] The main PDF file for this lesson
+      #
+      #   @param max_attempts [Integer, nil] Maximum number of attempts allowed for assessments
       #
       #   @param mux_asset_id [String, nil] The ID of the Mux asset to attach to this lesson for video lessons
       #
@@ -91,6 +109,33 @@ module WhopSDK
       #   @param visibility [Symbol, WhopSDK::Models::LessonVisibilities, nil] The available visibilities for a lesson. Determines how / whether a lesson is vi
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      class AssessmentCompletionRequirement < WhopSDK::Internal::Type::BaseModel
+        # @!attribute minimum_grade_percent
+        #   The minimum grade percentage required to pass (0-100). Cannot be set together
+        #   with minimum_questions_correct.
+        #
+        #   @return [Float, nil]
+        optional :minimum_grade_percent, Float, nil?: true
+
+        # @!attribute minimum_questions_correct
+        #   The minimum number of questions that must be answered correctly. Cannot be set
+        #   together with minimum_grade_percent.
+        #
+        #   @return [Integer, nil]
+        optional :minimum_questions_correct, Integer, nil?: true
+
+        # @!method initialize(minimum_grade_percent: nil, minimum_questions_correct: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::CourseLessonUpdateParams::AssessmentCompletionRequirement} for
+        #   more details.
+        #
+        #   Completion requirements for quiz/knowledge check lessons
+        #
+        #   @param minimum_grade_percent [Float, nil] The minimum grade percentage required to pass (0-100). Cannot be set together wi
+        #
+        #   @param minimum_questions_correct [Integer, nil] The minimum number of questions that must be answered correctly. Cannot be set t
+      end
 
       class AssessmentQuestion < WhopSDK::Internal::Type::BaseModel
         # @!attribute correct_answer
@@ -121,8 +166,12 @@ module WhopSDK
         # @!attribute image
         #   Optional image attachment for the question
         #
-        #   @return [WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image, nil]
-        optional :image, -> { WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image }, nil?: true
+        #   @return [WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID, nil]
+        optional :image,
+                 union: -> {
+                   WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image
+                 },
+                 nil?: true
 
         # @!attribute options
         #   The answer options for multiple choice/select questions
@@ -149,38 +198,62 @@ module WhopSDK
         #
         #   @param id [String, nil] The ID of an existing question. If provided, the question will be updated. If no
         #
-        #   @param image [WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image, nil] Optional image attachment for the question
+        #   @param image [WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID, nil] Optional image attachment for the question
         #
         #   @param options [Array<WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Option>, nil] The answer options for multiple choice/select questions
 
+        # Optional image attachment for the question
+        #
         # @see WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion#image
-        class Image < WhopSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #   The ID of an existing attachment object. Use this when updating a resource and
-          #   keeping a subset of the attachments. Don't use this unless you know what you're
-          #   doing.
-          #
-          #   @return [String, nil]
-          optional :id, String, nil?: true
+        module Image
+          extend WhopSDK::Internal::Type::Union
 
-          # @!attribute direct_upload_id
-          #   This ID should be used the first time you upload an attachment. It is the ID of
-          #   the direct upload that was created when uploading the file to S3 via the
-          #   mediaDirectUpload mutation.
-          #
-          #   @return [String, nil]
-          optional :direct_upload_id, String, nil?: true
+          # Input for an attachment
+          variant -> { WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID }
 
-          # @!method initialize(id: nil, direct_upload_id: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image} for more
-          #   details.
-          #
-          #   Optional image attachment for the question
-          #
-          #   @param id [String, nil] The ID of an existing attachment object. Use this when updating a resource and k
-          #
-          #   @param direct_upload_id [String, nil] This ID should be used the first time you upload an attachment. It is the ID of
+          # Input for an attachment
+          variant -> { WhopSDK::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID }
+
+          class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
+            # @!attribute direct_upload_id
+            #   This ID should be used the first time you upload an attachment. It is the ID of
+            #   the direct upload that was created when uploading the file to S3 via the
+            #   mediaDirectUpload mutation.
+            #
+            #   @return [String]
+            required :direct_upload_id, String
+
+            # @!method initialize(direct_upload_id:)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID}
+            #   for more details.
+            #
+            #   Input for an attachment
+            #
+            #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
+          end
+
+          class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
+            # @!attribute id
+            #   The ID of an existing attachment object. Use this when updating a resource and
+            #   keeping a subset of the attachments. Don't use this unless you know what you're
+            #   doing.
+            #
+            #   @return [String]
+            required :id, String
+
+            # @!method initialize(id:)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID}
+            #   for more details.
+            #
+            #   Input for an attachment
+            #
+            #   @param id [String] The ID of an existing attachment object. Use this when updating a resource and k
+          end
+
+          # @!method self.variants
+          #   @return [Array(WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion::Image::AttachmentInputWithID)]
         end
 
         class Option < WhopSDK::Internal::Type::BaseModel
@@ -218,60 +291,108 @@ module WhopSDK
         end
       end
 
-      class Attachment < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The ID of an existing attachment object. Use this when updating a resource and
-        #   keeping a subset of the attachments. Don't use this unless you know what you're
-        #   doing.
-        #
-        #   @return [String, nil]
-        optional :id, String, nil?: true
+      # Input for an attachment
+      module Attachment
+        extend WhopSDK::Internal::Type::Union
 
-        # @!attribute direct_upload_id
-        #   This ID should be used the first time you upload an attachment. It is the ID of
-        #   the direct upload that was created when uploading the file to S3 via the
-        #   mediaDirectUpload mutation.
-        #
-        #   @return [String, nil]
-        optional :direct_upload_id, String, nil?: true
+        # Input for an attachment
+        variant -> { WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID }
 
-        # @!method initialize(id: nil, direct_upload_id: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::CourseLessonUpdateParams::Attachment} for more details.
-        #
-        #   Input for an attachment
-        #
-        #   @param id [String, nil] The ID of an existing attachment object. Use this when updating a resource and k
-        #
-        #   @param direct_upload_id [String, nil] This ID should be used the first time you upload an attachment. It is the ID of
+        # Input for an attachment
+        variant -> { WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithID }
+
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
+          # @!attribute direct_upload_id
+          #   This ID should be used the first time you upload an attachment. It is the ID of
+          #   the direct upload that was created when uploading the file to S3 via the
+          #   mediaDirectUpload mutation.
+          #
+          #   @return [String]
+          required :direct_upload_id, String
+
+          # @!method initialize(direct_upload_id:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID}
+          #   for more details.
+          #
+          #   Input for an attachment
+          #
+          #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
+        end
+
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
+          # @!attribute id
+          #   The ID of an existing attachment object. Use this when updating a resource and
+          #   keeping a subset of the attachments. Don't use this unless you know what you're
+          #   doing.
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!method initialize(id:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithID}
+          #   for more details.
+          #
+          #   Input for an attachment
+          #
+          #   @param id [String] The ID of an existing attachment object. Use this when updating a resource and k
+        end
+
+        # @!method self.variants
+        #   @return [Array(WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithID)]
       end
 
-      class MainPdf < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The ID of an existing attachment object. Use this when updating a resource and
-        #   keeping a subset of the attachments. Don't use this unless you know what you're
-        #   doing.
-        #
-        #   @return [String, nil]
-        optional :id, String, nil?: true
+      # The main PDF file for this lesson
+      module MainPdf
+        extend WhopSDK::Internal::Type::Union
 
-        # @!attribute direct_upload_id
-        #   This ID should be used the first time you upload an attachment. It is the ID of
-        #   the direct upload that was created when uploading the file to S3 via the
-        #   mediaDirectUpload mutation.
-        #
-        #   @return [String, nil]
-        optional :direct_upload_id, String, nil?: true
+        # Input for an attachment
+        variant -> { WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID }
 
-        # @!method initialize(id: nil, direct_upload_id: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::CourseLessonUpdateParams::MainPdf} for more details.
-        #
-        #   The main PDF file for this lesson
-        #
-        #   @param id [String, nil] The ID of an existing attachment object. Use this when updating a resource and k
-        #
-        #   @param direct_upload_id [String, nil] This ID should be used the first time you upload an attachment. It is the ID of
+        # Input for an attachment
+        variant -> { WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID }
+
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
+          # @!attribute direct_upload_id
+          #   This ID should be used the first time you upload an attachment. It is the ID of
+          #   the direct upload that was created when uploading the file to S3 via the
+          #   mediaDirectUpload mutation.
+          #
+          #   @return [String]
+          required :direct_upload_id, String
+
+          # @!method initialize(direct_upload_id:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID}
+          #   for more details.
+          #
+          #   Input for an attachment
+          #
+          #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
+        end
+
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
+          # @!attribute id
+          #   The ID of an existing attachment object. Use this when updating a resource and
+          #   keeping a subset of the attachments. Don't use this unless you know what you're
+          #   doing.
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!method initialize(id:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID} for
+          #   more details.
+          #
+          #   Input for an attachment
+          #
+          #   @param id [String] The ID of an existing attachment object. Use this when updating a resource and k
+        end
+
+        # @!method self.variants
+        #   @return [Array(WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID)]
       end
     end
   end

@@ -69,13 +69,15 @@ module WhopSDK
       #
       # - `courses:update`
       #
-      # @overload update(id, assessment_questions: nil, attachments: nil, content: nil, days_from_course_start_until_unlock: nil, lesson_type: nil, main_pdf: nil, mux_asset_id: nil, title: nil, visibility: nil, request_options: {})
+      # @overload update(id, assessment_completion_requirement: nil, assessment_questions: nil, attachments: nil, content: nil, days_from_course_start_until_unlock: nil, lesson_type: nil, main_pdf: nil, max_attempts: nil, mux_asset_id: nil, title: nil, visibility: nil, request_options: {})
       #
       # @param id [String]
       #
+      # @param assessment_completion_requirement [WhopSDK::Models::CourseLessonUpdateParams::AssessmentCompletionRequirement, nil] Completion requirements for quiz/knowledge check lessons
+      #
       # @param assessment_questions [Array<WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion>, nil] Assessment questions for quiz/knowledge check lessons. Replaces all existing que
       #
-      # @param attachments [Array<WhopSDK::Models::CourseLessonUpdateParams::Attachment>, nil] General attachments for the lesson (PDFs, files, etc). Replaces all existing att
+      # @param attachments [Array<WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithID>, nil] General attachments for the lesson (PDFs, files, etc). Replaces all existing att
       #
       # @param content [String, nil] The content of the lesson
       #
@@ -83,7 +85,9 @@ module WhopSDK
       #
       # @param lesson_type [Symbol, WhopSDK::Models::LessonTypes, nil] The available types for a lesson
       #
-      # @param main_pdf [WhopSDK::Models::CourseLessonUpdateParams::MainPdf, nil] The main PDF file for this lesson
+      # @param main_pdf [WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID, nil] The main PDF file for this lesson
+      #
+      # @param max_attempts [Integer, nil] Maximum number of attempts allowed for assessments
       #
       # @param mux_asset_id [String, nil] The ID of the Mux asset to attach to this lesson for video lessons
       #

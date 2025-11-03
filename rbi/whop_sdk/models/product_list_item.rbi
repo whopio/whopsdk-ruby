@@ -62,7 +62,7 @@ module WhopSDK
       sig { returns(WhopSDK::Visibility::TaggedSymbol) }
       attr_accessor :visibility
 
-      # An object representing a (sanitized) access pass.
+      # Represents a product on whop. Use products to sell anything on the platform.
       sig do
         params(
           id: String,

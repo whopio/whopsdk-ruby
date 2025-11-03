@@ -174,7 +174,7 @@ module WhopSDK
         end
         attr_writer :payment_method_configuration
 
-        # The type of plan that can be attached to an access pass
+        # The type of plan that can be attached to a product
         sig { returns(T.nilable(WhopSDK::PlanType::OrSymbol)) }
         attr_accessor :plan_type
 
@@ -291,7 +291,7 @@ module WhopSDK
           # The explicit payment method configuration for the plan. If not provided, the
           # platform or company's defaults will apply.
           payment_method_configuration: nil,
-          # The type of plan that can be attached to an access pass
+          # The type of plan that can be attached to a product
           plan_type: nil,
           # Pass this object to create a new product for this plan. We will use the product
           # external identifier to find or create an existing product.
@@ -621,7 +621,7 @@ module WhopSDK
           sig { returns(T.nilable(Float)) }
           attr_accessor :global_affiliate_percentage
 
-          # The different statuses of the global affiliate program for an access pass.
+          # The different statuses of the global affiliate program for a product.
           sig { returns(T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol)) }
           attr_accessor :global_affiliate_status
 
@@ -689,7 +689,7 @@ module WhopSDK
             description: nil,
             # The percentage of the revenue that goes to the global affiliate program.
             global_affiliate_percentage: nil,
-            # The different statuses of the global affiliate program for an access pass.
+            # The different statuses of the global affiliate program for a product.
             global_affiliate_status: nil,
             # The headline of the product.
             headline: nil,

@@ -152,7 +152,7 @@ module WhopSDK
         optional :internal_notes, String, nil?: true
 
         # @!attribute plan_type
-        #   The type of plan that can be attached to an access pass
+        #   The type of plan that can be attached to a product
         #
         #   @return [Symbol, WhopSDK::Models::PlanType, nil]
         optional :plan_type, enum: -> { WhopSDK::PlanType }, nil?: true
@@ -212,7 +212,7 @@ module WhopSDK
         #
         #   @param internal_notes [String, nil] A personal description or notes section for the business.
         #
-        #   @param plan_type [Symbol, WhopSDK::Models::PlanType, nil] The type of plan that can be attached to an access pass
+        #   @param plan_type [Symbol, WhopSDK::Models::PlanType, nil] The type of plan that can be attached to a product
         #
         #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod, nil] The methods of how a plan can be released.
         #

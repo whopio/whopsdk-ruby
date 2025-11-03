@@ -13,9 +13,9 @@ module WhopSDK
       attr_accessor :id
 
       # The access level of the product member. If its admin, the member is an
-      # authorized user of the access pass. If its customer, the member has a valid
-      # membership to the access pass. If its no_access, the member does not have access
-      # to the access pass.
+      # authorized user of the company. If its customer, the member has a valid
+      # membership to any product on the company. If its no_access, the member does not
+      # have access to the product.
       sig { returns(WhopSDK::AccessLevel::TaggedSymbol) }
       attr_accessor :access_level
 
@@ -85,9 +85,9 @@ module WhopSDK
         # The ID of the member
         id:,
         # The access level of the product member. If its admin, the member is an
-        # authorized user of the access pass. If its customer, the member has a valid
-        # membership to the access pass. If its no_access, the member does not have access
-        # to the access pass.
+        # authorized user of the company. If its customer, the member has a valid
+        # membership to any product on the company. If its no_access, the member does not
+        # have access to the product.
         access_level:,
         # When the member was created
         created_at:,

@@ -94,7 +94,7 @@ module WhopSDK
       required :plan_type, enum: -> { WhopSDK::PlanType }
 
       # @!attribute product
-      #   The access pass for the plan.
+      #   The product that this plan belongs to.
       #
       #   @return [WhopSDK::Models::Plan::Product, nil]
       required :product, -> { WhopSDK::Plan::Product }, nil?: true
@@ -160,7 +160,9 @@ module WhopSDK
       required :visibility, enum: -> { WhopSDK::Visibility }
 
       # @!method initialize(id:, billing_period:, collect_tax:, company:, created_at:, currency:, custom_fields:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, payment_method_configuration:, plan_type:, product:, purchase_url:, release_method:, renewal_price:, stock:, tax_type:, title:, trial_period_days:, unlimited_stock:, updated_at:, visibility:)
-      #   An object representing a (sanitized) plan of an access pass.
+      #   A plan for an product. Plans define the core parameters that define a checkout
+      #   and payment on whop. Use plans to create different ways to price your products
+      #   (Eg renewal / one_time)
       #
       #   @param id [String] The internal ID of the plan.
       #
@@ -192,7 +194,7 @@ module WhopSDK
       #
       #   @param plan_type [Symbol, WhopSDK::Models::PlanType] Indicates if the plan is a one time payment or recurring.
       #
-      #   @param product [WhopSDK::Models::Plan::Product, nil] The access pass for the plan.
+      #   @param product [WhopSDK::Models::Plan::Product, nil] The product that this plan belongs to.
       #
       #   @param purchase_url [String] The direct link to purchase the product.
       #
@@ -357,7 +359,7 @@ module WhopSDK
         required :title, String
 
         # @!method initialize(id:, title:)
-        #   The access pass for the plan.
+        #   The product that this plan belongs to.
         #
         #   @param id [String] The internal ID of the public product.
         #

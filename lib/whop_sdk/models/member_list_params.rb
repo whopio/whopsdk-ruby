@@ -14,16 +14,10 @@ module WhopSDK
       required :company_id, String
 
       # @!attribute access_level
-      #   The access level a given user (or company) has to an access pass or company.
+      #   The access level a given user (or company) has to a product or company.
       #
       #   @return [Symbol, WhopSDK::Models::AccessLevel, nil]
       optional :access_level, enum: -> { WhopSDK::AccessLevel }, nil?: true
-
-      # @!attribute access_pass_ids
-      #   The access pass IDs to filter the members by
-      #
-      #   @return [Array<String>, nil]
-      optional :access_pass_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
 
       # @!attribute after
       #   Returns the elements in the list that come after the specified cursor.
@@ -87,6 +81,12 @@ module WhopSDK
       #   @return [Array<String>, nil]
       optional :plan_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
 
+      # @!attribute product_ids
+      #   The product IDs to filter the members by
+      #
+      #   @return [Array<String>, nil]
+      optional :product_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
+
       # @!attribute promo_code_ids
       #   The promo code IDs to filter the members by
       #
@@ -112,15 +112,13 @@ module WhopSDK
       #   @return [Array<String>, nil]
       optional :user_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
 
-      # @!method initialize(company_id:, access_level: nil, access_pass_ids: nil, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, most_recent_actions: nil, order: nil, plan_ids: nil, promo_code_ids: nil, query: nil, statuses: nil, user_ids: nil, request_options: {})
+      # @!method initialize(company_id:, access_level: nil, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, most_recent_actions: nil, order: nil, plan_ids: nil, product_ids: nil, promo_code_ids: nil, query: nil, statuses: nil, user_ids: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::MemberListParams} for more details.
       #
       #   @param company_id [String] The ID of the company to list members for
       #
-      #   @param access_level [Symbol, WhopSDK::Models::AccessLevel, nil] The access level a given user (or company) has to an access pass or company.
-      #
-      #   @param access_pass_ids [Array<String>, nil] The access pass IDs to filter the members by
+      #   @param access_level [Symbol, WhopSDK::Models::AccessLevel, nil] The access level a given user (or company) has to a product or company.
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -141,6 +139,8 @@ module WhopSDK
       #   @param order [Symbol, WhopSDK::Models::MemberListParams::Order, nil] Which columns can be used to sort.
       #
       #   @param plan_ids [Array<String>, nil] The plan IDs to filter the members by
+      #
+      #   @param product_ids [Array<String>, nil] The product IDs to filter the members by
       #
       #   @param promo_code_ids [Array<String>, nil] The promo code IDs to filter the members by
       #

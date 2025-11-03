@@ -25,17 +25,19 @@ module WhopSDK
       #   @return [String, nil]
       optional :before, String, nil?: true
 
+      # @!attribute collection_methods
+      #   Filter invoices by their collection method
+      #
+      #   @return [Array<Symbol, WhopSDK::Models::CollectionMethod>, nil]
+      optional :collection_methods,
+               -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::CollectionMethod] },
+               nil?: true
+
       # @!attribute direction
       #   The direction of the sort.
       #
       #   @return [Symbol, WhopSDK::Models::Direction, nil]
       optional :direction, enum: -> { WhopSDK::Direction }, nil?: true
-
-      # @!attribute filters
-      #   The filters to apply to the invoices
-      #
-      #   @return [WhopSDK::Models::InvoiceListParams::Filters, nil]
-      optional :filters, -> { WhopSDK::InvoiceListParams::Filters }, nil?: true
 
       # @!attribute first
       #   Returns the first _n_ elements from the list.
@@ -55,16 +57,28 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::InvoiceListParams::Order, nil]
       optional :order, enum: -> { WhopSDK::InvoiceListParams::Order }, nil?: true
 
-      # @!method initialize(company_id:, after: nil, before: nil, direction: nil, filters: nil, first: nil, last: nil, order: nil, request_options: {})
+      # @!attribute product_ids
+      #   Return only invoices created for these specific product ids
+      #
+      #   @return [Array<String>, nil]
+      optional :product_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
+
+      # @!attribute statuses
+      #   The statuses to filter the invoices by
+      #
+      #   @return [Array<Symbol, WhopSDK::Models::InvoiceStatus>, nil]
+      optional :statuses, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::InvoiceStatus] }, nil?: true
+
+      # @!method initialize(company_id:, after: nil, before: nil, collection_methods: nil, direction: nil, first: nil, last: nil, order: nil, product_ids: nil, statuses: nil, request_options: {})
       #   @param company_id [String] The ID of the company to list invoices for
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      #   @param collection_methods [Array<Symbol, WhopSDK::Models::CollectionMethod>, nil] Filter invoices by their collection method
       #
-      #   @param filters [WhopSDK::Models::InvoiceListParams::Filters, nil] The filters to apply to the invoices
+      #   @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
       #   @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
@@ -72,38 +86,11 @@ module WhopSDK
       #
       #   @param order [Symbol, WhopSDK::Models::InvoiceListParams::Order, nil] Which columns can be used to sort.
       #
+      #   @param product_ids [Array<String>, nil] Return only invoices created for these specific product ids
+      #
+      #   @param statuses [Array<Symbol, WhopSDK::Models::InvoiceStatus>, nil] The statuses to filter the invoices by
+      #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
-
-      class Filters < WhopSDK::Internal::Type::BaseModel
-        # @!attribute access_pass_ids
-        #   The access pass IDs to filter the invoices by
-        #
-        #   @return [Array<String>, nil]
-        optional :access_pass_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
-
-        # @!attribute collection_methods
-        #   The collection methods to filter the invoices by
-        #
-        #   @return [Array<Symbol, WhopSDK::Models::CollectionMethod>, nil]
-        optional :collection_methods,
-                 -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::CollectionMethod] },
-                 nil?: true
-
-        # @!attribute statuses
-        #   The statuses to filter the invoices by
-        #
-        #   @return [Array<Symbol, WhopSDK::Models::InvoiceStatus>, nil]
-        optional :statuses, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::InvoiceStatus] }, nil?: true
-
-        # @!method initialize(access_pass_ids: nil, collection_methods: nil, statuses: nil)
-        #   The filters to apply to the invoices
-        #
-        #   @param access_pass_ids [Array<String>, nil] The access pass IDs to filter the invoices by
-        #
-        #   @param collection_methods [Array<Symbol, WhopSDK::Models::CollectionMethod>, nil] The collection methods to filter the invoices by
-        #
-        #   @param statuses [Array<Symbol, WhopSDK::Models::InvoiceStatus>, nil] The statuses to filter the invoices by
-      end
 
       # Which columns can be used to sort.
       module Order

@@ -4,7 +4,6 @@ module WhopSDK
       {
         company_id: String,
         access_level: WhopSDK::Models::access_level?,
-        access_pass_ids: ::Array[String]?,
         after: String?,
         before: String?,
         created_after: Time?,
@@ -15,6 +14,7 @@ module WhopSDK
         most_recent_actions: ::Array[WhopSDK::Models::member_most_recent_actions]?,
         order: WhopSDK::Models::MemberListParams::order?,
         plan_ids: ::Array[String]?,
+        product_ids: ::Array[String]?,
         promo_code_ids: ::Array[String]?,
         query: String?,
         statuses: ::Array[WhopSDK::Models::member_statuses]?,
@@ -29,8 +29,6 @@ module WhopSDK
       attr_accessor company_id: String
 
       attr_accessor access_level: WhopSDK::Models::access_level?
-
-      attr_accessor access_pass_ids: ::Array[String]?
 
       attr_accessor after: String?
 
@@ -52,6 +50,8 @@ module WhopSDK
 
       attr_accessor plan_ids: ::Array[String]?
 
+      attr_accessor product_ids: ::Array[String]?
+
       attr_accessor promo_code_ids: ::Array[String]?
 
       attr_accessor query: String?
@@ -63,7 +63,6 @@ module WhopSDK
       def initialize: (
         company_id: String,
         ?access_level: WhopSDK::Models::access_level?,
-        ?access_pass_ids: ::Array[String]?,
         ?after: String?,
         ?before: String?,
         ?created_after: Time?,
@@ -74,6 +73,7 @@ module WhopSDK
         ?most_recent_actions: ::Array[WhopSDK::Models::member_most_recent_actions]?,
         ?order: WhopSDK::Models::MemberListParams::order?,
         ?plan_ids: ::Array[String]?,
+        ?product_ids: ::Array[String]?,
         ?promo_code_ids: ::Array[String]?,
         ?query: String?,
         ?statuses: ::Array[WhopSDK::Models::member_statuses]?,
@@ -84,7 +84,6 @@ module WhopSDK
       def to_hash: -> {
         company_id: String,
         access_level: WhopSDK::Models::access_level?,
-        access_pass_ids: ::Array[String]?,
         after: String?,
         before: String?,
         created_after: Time?,
@@ -95,6 +94,7 @@ module WhopSDK
         most_recent_actions: ::Array[WhopSDK::Models::member_most_recent_actions]?,
         order: WhopSDK::Models::MemberListParams::order?,
         plan_ids: ::Array[String]?,
+        product_ids: ::Array[String]?,
         promo_code_ids: ::Array[String]?,
         query: String?,
         statuses: ::Array[WhopSDK::Models::member_statuses]?,

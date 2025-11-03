@@ -90,7 +90,7 @@ module WhopSDK
       sig { returns(WhopSDK::PlanType::TaggedSymbol) }
       attr_accessor :plan_type
 
-      # The access pass for the plan.
+      # The product that this plan belongs to.
       sig { returns(T.nilable(WhopSDK::Models::PlanListResponse::Product)) }
       attr_reader :product
 
@@ -137,7 +137,9 @@ module WhopSDK
       sig { returns(WhopSDK::Visibility::TaggedSymbol) }
       attr_accessor :visibility
 
-      # An object representing a (sanitized) plan of an access pass.
+      # A plan for an product. Plans define the core parameters that define a checkout
+      # and payment on whop. Use plans to create different ways to price your products
+      # (Eg renewal / one_time)
       sig do
         params(
           id: String,
@@ -198,7 +200,7 @@ module WhopSDK
         payment_method_configuration:,
         # Indicates if the plan is a one time payment or recurring.
         plan_type:,
-        # The access pass for the plan.
+        # The product that this plan belongs to.
         product:,
         # The direct link to purchase the product.
         purchase_url:,
@@ -395,7 +397,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :title
 
-        # The access pass for the plan.
+        # The product that this plan belongs to.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
           # The internal ID of the public product.

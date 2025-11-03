@@ -2,7 +2,8 @@
 
 module WhopSDK
   module Models
-    # The different types an access pass can be.
+    # The different types an product can be. Only use 'regular'. The rest are for
+    # internal use
     module AccessPassType
       extend WhopSDK::Internal::Type::Enum
 

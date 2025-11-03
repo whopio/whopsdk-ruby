@@ -36,7 +36,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::SupportChannel)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the support channel to fetch
+        id,
+        request_options: {}
+      )
       end
 
       # Lists chat channels inside a company

@@ -114,7 +114,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Plan)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the plan
+        id,
+        request_options: {}
+      )
       end
 
       # Update an existing Plan
@@ -160,6 +164,7 @@ module WhopSDK
         ).returns(WhopSDK::Plan)
       end
       def update(
+        # The ID
         id,
         # The interval at which the plan charges (renewal plans).
         billing_period: nil,
@@ -270,7 +275,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T::Boolean)
       end
-      def delete(id, request_options: {})
+      def delete(
+        # The ID of the plan to delete.
+        id,
+        request_options: {}
+      )
       end
 
       # @api private

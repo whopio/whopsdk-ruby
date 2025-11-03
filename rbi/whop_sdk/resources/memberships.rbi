@@ -14,7 +14,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Membership)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the membership or a license key
+        id,
+        request_options: {}
+      )
       end
 
       # Update a membership
@@ -31,6 +35,7 @@ module WhopSDK
         ).returns(WhopSDK::Membership)
       end
       def update(
+        # The ID of the membership.
         id,
         # The metadata to update the membership with.
         metadata: nil,
@@ -121,6 +126,7 @@ module WhopSDK
         ).returns(WhopSDK::Membership)
       end
       def cancel(
+        # The ID of the membership.
         id,
         # The mode of cancellation for a membership
         cancellation_mode: nil,
@@ -142,6 +148,7 @@ module WhopSDK
         ).returns(WhopSDK::Membership)
       end
       def pause(
+        # The ID of the membership you want to pause.
         id,
         # Whether to void past_due payments associated with the membership to prevent
         # future payment attempts.
@@ -162,7 +169,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Membership)
       end
-      def resume(id, request_options: {})
+      def resume(
+        # The ID of the membership you want to resume.
+        id,
+        request_options: {}
+      )
       end
 
       # @api private

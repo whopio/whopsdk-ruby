@@ -12,7 +12,8 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the entry
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::Entry]
@@ -81,7 +82,8 @@ module WhopSDK
       #
       # @overload approve(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the entry to approve.
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::EntryApproveResponse]
@@ -106,7 +108,8 @@ module WhopSDK
       #
       # @overload deny(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the entry
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::Entry]

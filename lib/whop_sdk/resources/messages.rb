@@ -43,7 +43,8 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the message
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::Message]
@@ -62,7 +63,7 @@ module WhopSDK
       #
       # @overload update(id, attachments: nil, content: nil, is_pinned: nil, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the message to update
       #
       # @param attachments [Array<WhopSDK::Models::MessageUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::MessageUpdateParams::Attachment::AttachmentInputWithID>, nil] The attachments for this message
       #

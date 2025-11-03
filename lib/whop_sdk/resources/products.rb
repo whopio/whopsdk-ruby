@@ -82,7 +82,8 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID or route of the product
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::Product]
@@ -109,7 +110,7 @@ module WhopSDK
       #
       # @overload update(id, banner_image: nil, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID (tag) of the product
       #
       # @param banner_image [WhopSDK::Models::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID, WhopSDK::Models::ProductUpdateParams::BannerImage::AttachmentInputWithID, nil] A banner image for the product in png, jpeg format
       #
@@ -217,7 +218,8 @@ module WhopSDK
       #
       # @overload delete(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The internal ID (tag) of the product to delete.
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Boolean]

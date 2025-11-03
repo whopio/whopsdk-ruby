@@ -14,7 +14,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Forum)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the forum to fetch, it can be an experience ID or a forum ID
+        id,
+        request_options: {}
+      )
       end
 
       # Updates a forum
@@ -33,6 +37,7 @@ module WhopSDK
         ).returns(WhopSDK::Forum)
       end
       def update(
+        # Experience ID (exp\_\*) or Forum external ID
         id,
         # Email notification preference option for a forum feed
         email_notification_preference: nil,

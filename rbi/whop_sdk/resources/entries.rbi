@@ -15,7 +15,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Entry)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the entry
+        id,
+        request_options: {}
+      )
       end
 
       # Lists entries for a company
@@ -77,7 +81,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::EntryApproveResponse)
       end
-      def approve(id, request_options: {})
+      def approve(
+        # The ID of the entry to approve.
+        id,
+        request_options: {}
+      )
       end
 
       # Deny an entry
@@ -93,7 +101,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Entry)
       end
-      def deny(id, request_options: {})
+      def deny(
+        # The ID of the entry
+        id,
+        request_options: {}
+      )
       end
 
       # @api private

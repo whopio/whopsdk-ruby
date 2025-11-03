@@ -39,7 +39,8 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the chapter
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::CourseChapter]
@@ -62,7 +63,7 @@ module WhopSDK
       #
       # @overload update(id, title:, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the chapter to update
       #
       # @param title [String] The title of the chapter
       #
@@ -125,7 +126,8 @@ module WhopSDK
       #
       # @overload delete(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the chapter to delete
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Boolean]

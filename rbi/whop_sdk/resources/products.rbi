@@ -101,7 +101,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Product)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID or route of the product
+        id,
+        request_options: {}
+      )
       end
 
       # Updates an existing Product
@@ -145,6 +149,7 @@ module WhopSDK
         ).returns(WhopSDK::Product)
       end
       def update(
+        # The ID (tag) of the product
         id,
         # A banner image for the product in png, jpeg format
         banner_image: nil,
@@ -244,7 +249,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T::Boolean)
       end
-      def delete(id, request_options: {})
+      def delete(
+        # The internal ID (tag) of the product to delete.
+        id,
+        request_options: {}
+      )
       end
 
       # @api private

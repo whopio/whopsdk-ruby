@@ -72,7 +72,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::ForumPost)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the forum post
+        id,
+        request_options: {}
+      )
       end
 
       # Update an existing forum post
@@ -95,6 +99,7 @@ module WhopSDK
         ).returns(WhopSDK::ForumPost)
       end
       def update(
+        # The ID of the forum post to update
         id,
         # The attachments for this post
         attachments: nil,

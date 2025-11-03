@@ -45,7 +45,8 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the lesson
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::Lesson]
@@ -71,7 +72,7 @@ module WhopSDK
       #
       # @overload update(id, assessment_completion_requirement: nil, assessment_questions: nil, attachments: nil, content: nil, days_from_course_start_until_unlock: nil, lesson_type: nil, main_pdf: nil, max_attempts: nil, mux_asset_id: nil, title: nil, visibility: nil, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the lesson to update
       #
       # @param assessment_completion_requirement [WhopSDK::Models::CourseLessonUpdateParams::AssessmentCompletionRequirement, nil] Completion requirements for quiz/knowledge check lessons
       #
@@ -156,7 +157,8 @@ module WhopSDK
       #
       # @overload delete(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the lesson to delete
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Boolean]

@@ -52,7 +52,8 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the course
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::Course]
@@ -78,7 +79,7 @@ module WhopSDK
       #
       # @overload update(id, certificate_after_completion_enabled: nil, chapters: nil, cover_image: nil, description: nil, language: nil, require_completing_lessons_in_order: nil, tagline: nil, thumbnail: nil, title: nil, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the course to update
       #
       # @param certificate_after_completion_enabled [Boolean, nil] Whether the course will award its students a PDF certificate after completing al
       #
@@ -159,7 +160,8 @@ module WhopSDK
       #
       # @overload delete(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the course to delete
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Boolean]

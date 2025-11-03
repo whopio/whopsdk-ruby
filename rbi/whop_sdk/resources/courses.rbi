@@ -58,7 +58,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Course)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the course
+        id,
+        request_options: {}
+      )
       end
 
       # Updates a course
@@ -89,6 +93,7 @@ module WhopSDK
         ).returns(WhopSDK::Course)
       end
       def update(
+        # The ID of the course to update
         id,
         # Whether the course will award its students a PDF certificate after completing
         # all lessons
@@ -160,7 +165,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T::Boolean)
       end
-      def delete(id, request_options: {})
+      def delete(
+        # The ID of the course to delete
+        id,
+        request_options: {}
+      )
       end
 
       # @api private

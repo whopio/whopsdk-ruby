@@ -17,7 +17,8 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the payment
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::Payment]
@@ -109,7 +110,7 @@ module WhopSDK
       #
       # @overload refund(id, partial_amount: nil, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the payment you want to update or take action upon.
       #
       # @param partial_amount [Float, nil] An amount if the refund is supposed to be partial.
       #
@@ -143,7 +144,8 @@ module WhopSDK
       #
       # @overload retry_(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the payment
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::Payment]
@@ -172,7 +174,8 @@ module WhopSDK
       #
       # @overload void(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the payment you want to void.
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::Payment]

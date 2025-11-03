@@ -15,7 +15,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::CourseStudentRetrieveResponse)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the course student interaction
+        id,
+        request_options: {}
+      )
       end
 
       # Lists students for a course

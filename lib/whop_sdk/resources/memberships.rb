@@ -11,7 +11,8 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the membership or a license key
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::Membership]
@@ -35,7 +36,7 @@ module WhopSDK
       #
       # @overload update(id, metadata: nil, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the membership.
       #
       # @param metadata [Hash{Symbol=>Object}, nil] The metadata to update the membership with.
       #
@@ -120,7 +121,7 @@ module WhopSDK
       #
       # @overload cancel(id, cancellation_mode: nil, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the membership.
       #
       # @param cancellation_mode [Symbol, WhopSDK::Models::MembershipCancelParams::CancellationMode, nil] The mode of cancellation for a membership
       #
@@ -152,7 +153,7 @@ module WhopSDK
       #
       # @overload pause(id, void_payments: nil, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the membership you want to pause.
       #
       # @param void_payments [Boolean, nil] Whether to void past_due payments associated with the membership to prevent futu
       #
@@ -181,7 +182,8 @@ module WhopSDK
       #
       # @overload resume(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the membership you want to resume.
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::Membership]

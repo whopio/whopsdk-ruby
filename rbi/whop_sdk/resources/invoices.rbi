@@ -73,7 +73,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Invoice)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the invoice or a token
+        id,
+        request_options: {}
+      )
       end
 
       # Lists invoices
@@ -134,7 +138,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T::Boolean)
       end
-      def void(id, request_options: {})
+      def void(
+        # The ID of the invoice to void
+        id,
+        request_options: {}
+      )
       end
 
       # @api private

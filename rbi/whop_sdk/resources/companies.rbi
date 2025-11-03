@@ -42,7 +42,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Company)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID or route of the company
+        id,
+        request_options: {}
+      )
       end
 
       # Lists companies the current user has access to

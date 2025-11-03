@@ -44,7 +44,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Lesson)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the lesson
+        id,
+        request_options: {}
+      )
       end
 
       # Updates a course lesson
@@ -92,6 +96,7 @@ module WhopSDK
         ).returns(WhopSDK::Lesson)
       end
       def update(
+        # The ID of the lesson to update
         id,
         # Completion requirements for quiz/knowledge check lessons
         assessment_completion_requirement: nil,
@@ -170,7 +175,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T::Boolean)
       end
-      def delete(id, request_options: {})
+      def delete(
+        # The ID of the lesson to delete
+        id,
+        request_options: {}
+      )
       end
 
       # @api private

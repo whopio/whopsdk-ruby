@@ -35,7 +35,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Experience)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the experience
+        id,
+        request_options: {}
+      )
       end
 
       # Required permissions:
@@ -60,6 +64,7 @@ module WhopSDK
         ).returns(WhopSDK::Experience)
       end
       def update(
+        # The id of the experience to update.
         id,
         # The different access levels for experiences (PUBLIC IS NEVER USED ANYMORE).
         access_level: nil,
@@ -122,7 +127,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T::Boolean)
       end
-      def delete(id, request_options: {})
+      def delete(
+        # The internal ID of the experience to delete.
+        id,
+        request_options: {}
+      )
       end
 
       # Adds an experience to an product, making it accessible to the product's
@@ -139,6 +148,7 @@ module WhopSDK
         ).returns(WhopSDK::Experience)
       end
       def attach(
+        # The ID of the Experience to be added to an Access Pass.
         id,
         # The ID of the Access Pass to add the Experience to.
         product_id:,
@@ -160,6 +170,7 @@ module WhopSDK
         ).returns(WhopSDK::Experience)
       end
       def detach(
+        # The ID of the Experience to be added to an Access Pass.
         id,
         # The ID of the Access Pass to add the Experience to.
         product_id:,
@@ -185,6 +196,7 @@ module WhopSDK
         ).returns(WhopSDK::Experience)
       end
       def duplicate(
+        # The ID of the experience to duplicate
         id,
         # The name of the new experience
         name: nil,

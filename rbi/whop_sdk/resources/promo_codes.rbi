@@ -79,7 +79,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::PromoCode)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the promo code to retrieve
+        id,
+        request_options: {}
+      )
       end
 
       # Lists promo codes for a company
@@ -135,7 +139,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T::Boolean)
       end
-      def delete(id, request_options: {})
+      def delete(
+        # The internal ID of the promo code to archive.
+        id,
+        request_options: {}
+      )
       end
 
       # @api private

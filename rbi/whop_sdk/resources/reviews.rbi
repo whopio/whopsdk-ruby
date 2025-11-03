@@ -10,7 +10,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::ReviewRetrieveResponse)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the review
+        id,
+        request_options: {}
+      )
       end
 
       # List all reviews

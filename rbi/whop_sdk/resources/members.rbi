@@ -16,7 +16,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::MemberRetrieveResponse)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the member
+        id,
+        request_options: {}
+      )
       end
 
       # List the members of a company

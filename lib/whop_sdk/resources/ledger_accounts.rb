@@ -3,7 +3,10 @@
 module WhopSDK
   module Resources
     class LedgerAccounts
-      # Retrieves a ledger account by ID
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::LedgerAccountRetrieveParams} for more details.
+      #
+      # Retrieves a ledger account by its ID, company ID or user ID
       #
       # Required permissions:
       #
@@ -11,7 +14,8 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] Either a User ID, Company ID, or LedgerAccount ID (user_xxx, biz_xxx, or ldgr_xx
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::LedgerAccountRetrieveResponse]

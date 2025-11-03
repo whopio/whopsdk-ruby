@@ -14,7 +14,12 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::ChatChannel)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the chat channel to fetch, it can be an experience ID or a chat
+        # channel ID
+        id,
+        request_options: {}
+      )
       end
 
       # Updates a chat channel
@@ -35,6 +40,8 @@ module WhopSDK
         ).returns(WhopSDK::ChatChannel)
       end
       def update(
+        # The ID of the chat channel to update. Can be an experience ID or a chat feed
+        # external ID.
         id,
         # Whether media uploads are banned in this chat
         ban_media: nil,

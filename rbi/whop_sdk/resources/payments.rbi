@@ -20,7 +20,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Payment)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the payment
+        id,
+        request_options: {}
+      )
       end
 
       # Lists payments
@@ -115,6 +119,7 @@ module WhopSDK
         ).returns(WhopSDK::Payment)
       end
       def refund(
+        # The ID of the payment you want to update or take action upon.
         id,
         # An amount if the refund is supposed to be partial.
         partial_amount: nil,
@@ -139,7 +144,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Payment)
       end
-      def retry_(id, request_options: {})
+      def retry_(
+        # The ID of the payment
+        id,
+        request_options: {}
+      )
       end
 
       # Voids a payment
@@ -159,7 +168,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Payment)
       end
-      def void(id, request_options: {})
+      def void(
+        # The ID of the payment you want to void.
+        id,
+        request_options: {}
+      )
       end
 
       # @api private

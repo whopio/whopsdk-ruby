@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class LedgerAccounts
-      # Retrieves a ledger account by ID
+      # Retrieves a ledger account by its ID, company ID or user ID
       #
       # Required permissions:
       #
@@ -14,7 +14,12 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::LedgerAccountRetrieveResponse)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # Either a User ID, Company ID, or LedgerAccount ID (user_xxx, biz_xxx, or
+        # ldgr_xxx)
+        id,
+        request_options: {}
+      )
       end
 
       # @api private

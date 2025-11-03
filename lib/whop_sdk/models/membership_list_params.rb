@@ -7,12 +7,6 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute access_pass_ids
-      #   The access pass IDs to filter the memberships by
-      #
-      #   @return [Array<String>, nil]
-      optional :access_pass_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
-
       # @!attribute after
       #   Returns the elements in the list that come after the specified cursor.
       #
@@ -81,6 +75,12 @@ module WhopSDK
       #   @return [Array<String>, nil]
       optional :plan_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
 
+      # @!attribute product_ids
+      #   The product IDs to filter the memberships by
+      #
+      #   @return [Array<String>, nil]
+      optional :product_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
+
       # @!attribute promo_code_ids
       #   The promo code IDs to filter the memberships by
       #
@@ -99,9 +99,7 @@ module WhopSDK
       #   @return [Array<String>, nil]
       optional :user_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
 
-      # @!method initialize(access_pass_ids: nil, after: nil, before: nil, cancel_options: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_ids: nil, promo_code_ids: nil, statuses: nil, user_ids: nil, request_options: {})
-      #   @param access_pass_ids [Array<String>, nil] The access pass IDs to filter the memberships by
-      #
+      # @!method initialize(after: nil, before: nil, cancel_options: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, promo_code_ids: nil, statuses: nil, user_ids: nil, request_options: {})
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
@@ -123,6 +121,8 @@ module WhopSDK
       #   @param order [Symbol, WhopSDK::Models::MembershipListParams::Order, nil] Which columns can be used to sort.
       #
       #   @param plan_ids [Array<String>, nil] The plan IDs to filter the memberships by
+      #
+      #   @param product_ids [Array<String>, nil] The product IDs to filter the memberships by
       #
       #   @param promo_code_ids [Array<String>, nil] The promo code IDs to filter the memberships by
       #

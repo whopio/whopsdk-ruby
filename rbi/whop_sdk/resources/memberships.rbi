@@ -45,7 +45,6 @@ module WhopSDK
       # - `member:basic:read`
       sig do
         params(
-          access_pass_ids: T.nilable(T::Array[String]),
           after: T.nilable(String),
           before: T.nilable(String),
           cancel_options:
@@ -60,6 +59,7 @@ module WhopSDK
           last: T.nilable(Integer),
           order: T.nilable(WhopSDK::MembershipListParams::Order::OrSymbol),
           plan_ids: T.nilable(T::Array[String]),
+          product_ids: T.nilable(T::Array[String]),
           promo_code_ids: T.nilable(T::Array[String]),
           statuses: T.nilable(T::Array[WhopSDK::MembershipStatus::OrSymbol]),
           user_ids: T.nilable(T::Array[String]),
@@ -69,8 +69,6 @@ module WhopSDK
         )
       end
       def list(
-        # The access pass IDs to filter the memberships by
-        access_pass_ids: nil,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
@@ -93,6 +91,8 @@ module WhopSDK
         order: nil,
         # The plan IDs to filter the memberships by
         plan_ids: nil,
+        # The product IDs to filter the memberships by
+        product_ids: nil,
         # The promo code IDs to filter the memberships by
         promo_code_ids: nil,
         # The membership status to filter the memberships by

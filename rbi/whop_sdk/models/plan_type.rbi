@@ -2,7 +2,7 @@
 
 module WhopSDK
   module Models
-    # The type of plan that can be attached to an access pass
+    # The type of plan that can be attached to a product
     module PlanType
       extend WhopSDK::Internal::Type::Enum
 

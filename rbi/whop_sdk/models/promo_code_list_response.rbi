@@ -56,7 +56,7 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :one_per_customer
 
-      # The access pass associated with the promo code.
+      # The product this promo code applies to
       sig do
         returns(T.nilable(WhopSDK::Models::PromoCodeListResponse::Product))
       end
@@ -142,7 +142,7 @@ module WhopSDK
         new_users_only:,
         # Restricts promo use to only be applied once per customer.
         one_per_customer:,
-        # The access pass associated with the promo code.
+        # The product this promo code applies to
         product:,
         # The number of months the promo is applied for.
         promo_duration_months:,
@@ -203,7 +203,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :title
 
-        # The access pass associated with the promo code.
+        # The product this promo code applies to
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
           # The internal ID of the public product.

@@ -25,7 +25,7 @@ module WhopSDK
       sig { params(plan: T.nilable(WhopSDK::Entry::Plan::OrHash)).void }
       attr_writer :plan
 
-      # The access pass tied to this entry, if there is one.
+      # The product tied to this entry, if there is one.
       sig { returns(T.nilable(WhopSDK::Entry::Product)) }
       attr_reader :product
 
@@ -65,7 +65,7 @@ module WhopSDK
         custom_field_responses:,
         # The waitlist plan the entry if for.
         plan:,
-        # The access pass tied to this entry, if there is one.
+        # The product tied to this entry, if there is one.
         product:,
         # The status of the entry.
         status:,
@@ -172,7 +172,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :title
 
-        # The access pass tied to this entry, if there is one.
+        # The product tied to this entry, if there is one.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
           # The internal ID of the public product.

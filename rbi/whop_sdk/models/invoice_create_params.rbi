@@ -184,7 +184,7 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :internal_notes
 
-        # The type of plan that can be attached to an access pass
+        # The type of plan that can be attached to a product
         sig { returns(T.nilable(WhopSDK::PlanType::OrSymbol)) }
         attr_accessor :plan_type
 
@@ -251,7 +251,7 @@ module WhopSDK
           initial_price: nil,
           # A personal description or notes section for the business.
           internal_notes: nil,
-          # The type of plan that can be attached to an access pass
+          # The type of plan that can be attached to a product
           plan_type: nil,
           # The methods of how a plan can be released.
           release_method: nil,

@@ -2,7 +2,7 @@
 
 module WhopSDK
   module Models
-    # The access level a given user (or company) has to an access pass or company.
+    # The access level a given user (or company) has to a product or company.
     module AccessLevel
       extend WhopSDK::Internal::Type::Enum
 

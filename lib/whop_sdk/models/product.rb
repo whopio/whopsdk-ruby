@@ -155,7 +155,7 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Product}
       #   for more details.
       #
-      #   An object representing a (sanitized) access pass.
+      #   Represents a product on whop. Use products to sell anything on the platform.
       #
       #   @param id [String] The internal ID of the public product.
       #

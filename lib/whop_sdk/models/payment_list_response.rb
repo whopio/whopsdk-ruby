@@ -120,7 +120,7 @@ module WhopSDK
       required :plan, -> { WhopSDK::Models::PaymentListResponse::Plan }, nil?: true
 
       # @!attribute product
-      #   The access pass attached to this payment.
+      #   The product this payment was made for
       #
       #   @return [WhopSDK::Models::PaymentListResponse::Product, nil]
       required :product, -> { WhopSDK::Models::PaymentListResponse::Product }, nil?: true
@@ -245,7 +245,7 @@ module WhopSDK
       #
       #   @param plan [WhopSDK::Models::PaymentListResponse::Plan, nil] The plan attached to this payment.
       #
-      #   @param product [WhopSDK::Models::PaymentListResponse::Product, nil] The access pass attached to this payment.
+      #   @param product [WhopSDK::Models::PaymentListResponse::Product, nil] The product this payment was made for
       #
       #   @param promo_code [WhopSDK::Models::PaymentListResponse::PromoCode, nil] The promo code used for this payment.
       #
@@ -442,7 +442,7 @@ module WhopSDK
         required :title, String
 
         # @!method initialize(id:, route:, title:)
-        #   The access pass attached to this payment.
+        #   The product this payment was made for
         #
         #   @param id [String] The internal ID of the public product.
         #

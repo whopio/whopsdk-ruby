@@ -54,7 +54,7 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :global_affiliate_percentage
 
-      # The different statuses of the global affiliate program for an access pass.
+      # The different statuses of the global affiliate program for a product.
       sig { returns(T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol)) }
       attr_accessor :global_affiliate_status
 
@@ -70,7 +70,7 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :member_affiliate_percentage
 
-      # The different statuses of the global affiliate program for an access pass.
+      # The different statuses of the global affiliate program for a product.
       sig { returns(T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol)) }
       attr_accessor :member_affiliate_status
 
@@ -158,7 +158,7 @@ module WhopSDK
         description: nil,
         # The percentage of the revenue that goes to the global affiliate program.
         global_affiliate_percentage: nil,
-        # The different statuses of the global affiliate program for an access pass.
+        # The different statuses of the global affiliate program for a product.
         global_affiliate_status: nil,
         # The headline of the product.
         headline: nil,
@@ -166,7 +166,7 @@ module WhopSDK
         industry_type: nil,
         # The percentage of the revenue that goes to the member affiliate program.
         member_affiliate_percentage: nil,
-        # The different statuses of the global affiliate program for an access pass.
+        # The different statuses of the global affiliate program for a product.
         member_affiliate_status: nil,
         # The ID of the product tax code to apply to this product.
         product_tax_code_id: nil,

@@ -104,7 +104,7 @@ module WhopSDK
       sig { params(plan: T.nilable(WhopSDK::Payment::Plan::OrHash)).void }
       attr_writer :plan
 
-      # The access pass attached to this payment.
+      # The product this payment was made for
       sig { returns(T.nilable(WhopSDK::Payment::Product)) }
       attr_reader :product
 
@@ -248,7 +248,7 @@ module WhopSDK
         payment_method_type:,
         # The plan attached to this payment.
         plan:,
-        # The access pass attached to this payment.
+        # The product this payment was made for
         product:,
         # The promo code used for this payment.
         promo_code:,
@@ -553,7 +553,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :title
 
-        # The access pass attached to this payment.
+        # The product this payment was made for
         sig do
           params(id: String, route: String, title: String).returns(
             T.attached_class

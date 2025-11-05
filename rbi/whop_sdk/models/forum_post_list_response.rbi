@@ -11,7 +11,7 @@ module WhopSDK
           )
         end
 
-      # The unique identifier for the entity
+      # The unique identifier of the resource.
       sig { returns(String) }
       attr_accessor :id
 
@@ -87,7 +87,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier for the entity
+        # The unique identifier of the resource.
         id:,
         # The amount of comments on this post
         comment_count:,

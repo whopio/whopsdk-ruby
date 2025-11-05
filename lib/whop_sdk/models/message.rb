@@ -4,7 +4,7 @@ module WhopSDK
   module Models
     class Message < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier for the entity
+      #   The unique identifier of the resource.
       #
       #   @return [String]
       required :id, String
@@ -84,7 +84,7 @@ module WhopSDK
       # @!method initialize(id:, content:, created_at:, is_edited:, is_pinned:, message_type:, poll:, poll_votes:, reaction_counts:, replying_to_message_id:, updated_at:, user:, view_count:)
       #   Represents a message in a DM channel
       #
-      #   @param id [String] The unique identifier for the entity
+      #   @param id [String] The unique identifier of the resource.
       #
       #   @param content [String, nil] The content of the message in Markdown format
       #

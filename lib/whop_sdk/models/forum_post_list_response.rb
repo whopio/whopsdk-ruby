@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::ForumPosts#list
     class ForumPostListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier for the entity
+      #   The unique identifier of the resource.
       #
       #   @return [String]
       required :id, String
@@ -85,7 +85,7 @@ module WhopSDK
       # @!method initialize(id:, comment_count:, content:, created_at:, is_edited:, is_pinned:, is_poster_admin:, like_count:, parent_id:, title:, updated_at:, user:, view_count:)
       #   Represents a post in forum
       #
-      #   @param id [String] The unique identifier for the entity
+      #   @param id [String] The unique identifier of the resource.
       #
       #   @param comment_count [Integer] The amount of comments on this post
       #

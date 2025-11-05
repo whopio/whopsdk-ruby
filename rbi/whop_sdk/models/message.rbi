@@ -6,7 +6,7 @@ module WhopSDK
       OrHash =
         T.type_alias { T.any(WhopSDK::Message, WhopSDK::Internal::AnyHash) }
 
-      # The unique identifier for the entity
+      # The unique identifier of the resource.
       sig { returns(String) }
       attr_accessor :id
 
@@ -83,7 +83,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier for the entity
+        # The unique identifier of the resource.
         id:,
         # The content of the message in Markdown format
         content:,

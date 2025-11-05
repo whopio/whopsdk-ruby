@@ -90,6 +90,7 @@ module WhopSDK
       SPLITIT = :splitit
       PLATFORM_BALANCE = :platform_balance
       APPLE = :apple
+      AFTERPAY = :afterpay
       UNKNOWN = :unknown
 
       # @!method self.values

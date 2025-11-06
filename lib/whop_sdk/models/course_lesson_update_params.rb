@@ -45,6 +45,18 @@ module WhopSDK
       #   @return [Integer, nil]
       optional :days_from_course_start_until_unlock, Integer, nil?: true
 
+      # @!attribute embed_id
+      #   ID for the embed (YouTube video ID or Loom share ID)
+      #
+      #   @return [String, nil]
+      optional :embed_id, String, nil?: true
+
+      # @!attribute embed_type
+      #   The type of embed for a lesson
+      #
+      #   @return [Symbol, WhopSDK::Models::CourseLessonUpdateParams::EmbedType, nil]
+      optional :embed_type, enum: -> { WhopSDK::CourseLessonUpdateParams::EmbedType }, nil?: true
+
       # @!attribute lesson_type
       #   The available types for a lesson
       #
@@ -69,6 +81,12 @@ module WhopSDK
       #   @return [String, nil]
       optional :mux_asset_id, String, nil?: true
 
+      # @!attribute thumbnail
+      #   The thumbnail for the lesson in png, jpeg, or gif format
+      #
+      #   @return [WhopSDK::Models::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithID, nil]
+      optional :thumbnail, union: -> { WhopSDK::CourseLessonUpdateParams::Thumbnail }, nil?: true
+
       # @!attribute title
       #   The title of the lesson
       #
@@ -82,7 +100,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::LessonVisibilities, nil]
       optional :visibility, enum: -> { WhopSDK::LessonVisibilities }, nil?: true
 
-      # @!method initialize(assessment_completion_requirement: nil, assessment_questions: nil, attachments: nil, content: nil, days_from_course_start_until_unlock: nil, lesson_type: nil, main_pdf: nil, max_attempts: nil, mux_asset_id: nil, title: nil, visibility: nil, request_options: {})
+      # @!method initialize(assessment_completion_requirement: nil, assessment_questions: nil, attachments: nil, content: nil, days_from_course_start_until_unlock: nil, embed_id: nil, embed_type: nil, lesson_type: nil, main_pdf: nil, max_attempts: nil, mux_asset_id: nil, thumbnail: nil, title: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CourseLessonUpdateParams} for more details.
       #
@@ -96,6 +114,10 @@ module WhopSDK
       #
       #   @param days_from_course_start_until_unlock [Integer, nil] Days from course start until unlock
       #
+      #   @param embed_id [String, nil] ID for the embed (YouTube video ID or Loom share ID)
+      #
+      #   @param embed_type [Symbol, WhopSDK::Models::CourseLessonUpdateParams::EmbedType, nil] The type of embed for a lesson
+      #
       #   @param lesson_type [Symbol, WhopSDK::Models::LessonTypes, nil] The available types for a lesson
       #
       #   @param main_pdf [WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID, nil] The main PDF file for this lesson
@@ -103,6 +125,8 @@ module WhopSDK
       #   @param max_attempts [Integer, nil] Maximum number of attempts allowed for assessments
       #
       #   @param mux_asset_id [String, nil] The ID of the Mux asset to attach to this lesson for video lessons
+      #
+      #   @param thumbnail [WhopSDK::Models::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithID, nil] The thumbnail for the lesson in png, jpeg, or gif format
       #
       #   @param title [String, nil] The title of the lesson
       #
@@ -343,6 +367,17 @@ module WhopSDK
         #   @return [Array(WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithID)]
       end
 
+      # The type of embed for a lesson
+      module EmbedType
+        extend WhopSDK::Internal::Type::Enum
+
+        YOUTUBE = :youtube
+        LOOM = :loom
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
       # The main PDF file for this lesson
       module MainPdf
         extend WhopSDK::Internal::Type::Union
@@ -393,6 +428,58 @@ module WhopSDK
 
         # @!method self.variants
         #   @return [Array(WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID)]
+      end
+
+      # The thumbnail for the lesson in png, jpeg, or gif format
+      module Thumbnail
+        extend WhopSDK::Internal::Type::Union
+
+        # Input for an attachment
+        variant -> { WhopSDK::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID }
+
+        # Input for an attachment
+        variant -> { WhopSDK::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithID }
+
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
+          # @!attribute direct_upload_id
+          #   This ID should be used the first time you upload an attachment. It is the ID of
+          #   the direct upload that was created when uploading the file to S3 via the
+          #   mediaDirectUpload mutation.
+          #
+          #   @return [String]
+          required :direct_upload_id, String
+
+          # @!method initialize(direct_upload_id:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID}
+          #   for more details.
+          #
+          #   Input for an attachment
+          #
+          #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
+        end
+
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
+          # @!attribute id
+          #   The ID of an existing attachment object. Use this when updating a resource and
+          #   keeping a subset of the attachments. Don't use this unless you know what you're
+          #   doing.
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!method initialize(id:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithID}
+          #   for more details.
+          #
+          #   Input for an attachment
+          #
+          #   @param id [String] The ID of an existing attachment object. Use this when updating a resource and k
+        end
+
+        # @!method self.variants
+        #   @return [Array(WhopSDK::Models::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithID)]
       end
     end
   end

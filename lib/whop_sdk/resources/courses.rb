@@ -12,7 +12,7 @@ module WhopSDK
       #
       # - `courses:update`
       #
-      # @overload create(experience_id:, title:, certificate_after_completion_enabled: nil, cover_image: nil, require_completing_lessons_in_order: nil, tagline: nil, thumbnail: nil, request_options: {})
+      # @overload create(experience_id:, title:, certificate_after_completion_enabled: nil, cover_image: nil, order: nil, require_completing_lessons_in_order: nil, tagline: nil, thumbnail: nil, visibility: nil, request_options: {})
       #
       # @param experience_id [String] The ID of the experience to create the course in
       #
@@ -22,11 +22,15 @@ module WhopSDK
       #
       # @param cover_image [String, nil] The cover image URL of the course
       #
+      # @param order [String, nil] The decimal order position of the course within its experience. If not provided,
+      #
       # @param require_completing_lessons_in_order [Boolean, nil] Whether the course requires students to complete the previous lesson before movi
       #
       # @param tagline [String, nil] The tagline of the course
       #
       # @param thumbnail [WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithID, nil] The thumbnail for the course in png, jpeg, or gif format
+      #
+      # @param visibility [Symbol, WhopSDK::Models::CourseCreateParams::Visibility, nil] The available visibilities for a course. Determines how / whether a course is vi
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -77,7 +81,7 @@ module WhopSDK
       #
       # - `courses:update`
       #
-      # @overload update(id, certificate_after_completion_enabled: nil, chapters: nil, cover_image: nil, description: nil, language: nil, require_completing_lessons_in_order: nil, tagline: nil, thumbnail: nil, title: nil, request_options: {})
+      # @overload update(id, certificate_after_completion_enabled: nil, chapters: nil, cover_image: nil, description: nil, language: nil, order: nil, require_completing_lessons_in_order: nil, tagline: nil, thumbnail: nil, title: nil, visibility: nil, request_options: {})
       #
       # @param id [String] The ID of the course to update
       #
@@ -91,6 +95,8 @@ module WhopSDK
       #
       # @param language [Symbol, WhopSDK::Models::Languages, nil] The available languages for a course
       #
+      # @param order [String, nil] The decimal order position of the course within its experience. Use fractional v
+      #
       # @param require_completing_lessons_in_order [Boolean, nil] Whether the course requires students to complete the previous lesson before movi
       #
       # @param tagline [String, nil] A short tagline for the course
@@ -98,6 +104,8 @@ module WhopSDK
       # @param thumbnail [WhopSDK::Models::CourseUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseUpdateParams::Thumbnail::AttachmentInputWithID, nil] The thumbnail for the course in png, jpeg, or gif format
       #
       # @param title [String, nil] The title of the course
+      #
+      # @param visibility [Symbol, WhopSDK::Models::CourseUpdateParams::Visibility, nil] The available visibilities for a course. Determines how / whether a course is vi
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

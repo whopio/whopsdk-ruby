@@ -36,6 +36,12 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Languages]
       required :language, enum: -> { WhopSDK::Languages }
 
+      # @!attribute order
+      #   The order of the course within its experience
+      #
+      #   @return [String]
+      required :order, String
+
       # @!attribute require_completing_lessons_in_order
       #   Whether the course requires students to complete the previous lesson before
       #   moving on to the next one
@@ -67,7 +73,14 @@ module WhopSDK
       #   @return [Time]
       required :updated_at, Time
 
-      # @!method initialize(id:, certificate_after_completion_enabled:, created_at:, description:, language:, require_completing_lessons_in_order:, tagline:, thumbnail:, title:, updated_at:)
+      # @!attribute visibility
+      #   The visibility of the course. Determines how / whether this course is visible to
+      #   users.
+      #
+      #   @return [Symbol, WhopSDK::Models::CourseListResponse::Visibility]
+      required :visibility, enum: -> { WhopSDK::Models::CourseListResponse::Visibility }
+
+      # @!method initialize(id:, certificate_after_completion_enabled:, created_at:, description:, language:, order:, require_completing_lessons_in_order:, tagline:, thumbnail:, title:, updated_at:, visibility:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CourseListResponse} for more details.
       #
@@ -83,6 +96,8 @@ module WhopSDK
       #
       #   @param language [Symbol, WhopSDK::Models::Languages] The language spoken in the video content of the course, used to generate closed
       #
+      #   @param order [String] The order of the course within its experience
+      #
       #   @param require_completing_lessons_in_order [Boolean] Whether the course requires students to complete the previous lesson before movi
       #
       #   @param tagline [String, nil] A short tagline for the course. It is displayed under the course title in the UI
@@ -92,6 +107,8 @@ module WhopSDK
       #   @param title [String, nil] The title of the course
       #
       #   @param updated_at [Time] The timestamp of when the course was last updated
+      #
+      #   @param visibility [Symbol, WhopSDK::Models::CourseListResponse::Visibility] The visibility of the course. Determines how / whether this course is visible to
 
       # @see WhopSDK::Models::CourseListResponse#thumbnail
       class Thumbnail < WhopSDK::Internal::Type::BaseModel
@@ -142,6 +159,20 @@ module WhopSDK
         #   @param optimized_url [String, nil] This is the URL you use to render optimized attachments on the client. This shou
         #
         #   @param source_url [String, nil] The original URL of the attachment, such as a direct link to S3. This should nev
+      end
+
+      # The visibility of the course. Determines how / whether this course is visible to
+      # users.
+      #
+      # @see WhopSDK::Models::CourseListResponse#visibility
+      module Visibility
+        extend WhopSDK::Internal::Type::Enum
+
+        VISIBLE = :visible
+        HIDDEN = :hidden
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

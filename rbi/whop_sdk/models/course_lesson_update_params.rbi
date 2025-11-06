@@ -66,6 +66,18 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :days_from_course_start_until_unlock
 
+      # ID for the embed (YouTube video ID or Loom share ID)
+      sig { returns(T.nilable(String)) }
+      attr_accessor :embed_id
+
+      # The type of embed for a lesson
+      sig do
+        returns(
+          T.nilable(WhopSDK::CourseLessonUpdateParams::EmbedType::OrSymbol)
+        )
+      end
+      attr_accessor :embed_type
+
       # The available types for a lesson
       sig { returns(T.nilable(WhopSDK::LessonTypes::OrSymbol)) }
       attr_accessor :lesson_type
@@ -90,6 +102,19 @@ module WhopSDK
       # The ID of the Mux asset to attach to this lesson for video lessons
       sig { returns(T.nilable(String)) }
       attr_accessor :mux_asset_id
+
+      # The thumbnail for the lesson in png, jpeg, or gif format
+      sig do
+        returns(
+          T.nilable(
+            T.any(
+              WhopSDK::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID,
+              WhopSDK::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithID
+            )
+          )
+        )
+      end
+      attr_accessor :thumbnail
 
       # The title of the lesson
       sig { returns(T.nilable(String)) }
@@ -123,6 +148,9 @@ module WhopSDK
             ),
           content: T.nilable(String),
           days_from_course_start_until_unlock: T.nilable(Integer),
+          embed_id: T.nilable(String),
+          embed_type:
+            T.nilable(WhopSDK::CourseLessonUpdateParams::EmbedType::OrSymbol),
           lesson_type: T.nilable(WhopSDK::LessonTypes::OrSymbol),
           main_pdf:
             T.nilable(
@@ -133,6 +161,13 @@ module WhopSDK
             ),
           max_attempts: T.nilable(Integer),
           mux_asset_id: T.nilable(String),
+          thumbnail:
+            T.nilable(
+              T.any(
+                WhopSDK::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithID::OrHash
+              )
+            ),
           title: T.nilable(String),
           visibility: T.nilable(WhopSDK::LessonVisibilities::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -151,6 +186,10 @@ module WhopSDK
         content: nil,
         # Days from course start until unlock
         days_from_course_start_until_unlock: nil,
+        # ID for the embed (YouTube video ID or Loom share ID)
+        embed_id: nil,
+        # The type of embed for a lesson
+        embed_type: nil,
         # The available types for a lesson
         lesson_type: nil,
         # The main PDF file for this lesson
@@ -159,6 +198,8 @@ module WhopSDK
         max_attempts: nil,
         # The ID of the Mux asset to attach to this lesson for video lessons
         mux_asset_id: nil,
+        # The thumbnail for the lesson in png, jpeg, or gif format
+        thumbnail: nil,
         # The title of the lesson
         title: nil,
         # The available visibilities for a lesson. Determines how / whether a lesson is
@@ -190,6 +231,9 @@ module WhopSDK
               ),
             content: T.nilable(String),
             days_from_course_start_until_unlock: T.nilable(Integer),
+            embed_id: T.nilable(String),
+            embed_type:
+              T.nilable(WhopSDK::CourseLessonUpdateParams::EmbedType::OrSymbol),
             lesson_type: T.nilable(WhopSDK::LessonTypes::OrSymbol),
             main_pdf:
               T.nilable(
@@ -200,6 +244,13 @@ module WhopSDK
               ),
             max_attempts: T.nilable(Integer),
             mux_asset_id: T.nilable(String),
+            thumbnail:
+              T.nilable(
+                T.any(
+                  WhopSDK::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID,
+                  WhopSDK::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithID
+                )
+              ),
             title: T.nilable(String),
             visibility: T.nilable(WhopSDK::LessonVisibilities::OrSymbol),
             request_options: WhopSDK::RequestOptions
@@ -592,6 +643,36 @@ module WhopSDK
         end
       end
 
+      # The type of embed for a lesson
+      module EmbedType
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::CourseLessonUpdateParams::EmbedType)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        YOUTUBE =
+          T.let(
+            :youtube,
+            WhopSDK::CourseLessonUpdateParams::EmbedType::TaggedSymbol
+          )
+        LOOM =
+          T.let(
+            :loom,
+            WhopSDK::CourseLessonUpdateParams::EmbedType::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::CourseLessonUpdateParams::EmbedType::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
       # The main PDF file for this lesson
       module MainPdf
         extend WhopSDK::Internal::Type::Union
@@ -667,6 +748,87 @@ module WhopSDK
         sig do
           override.returns(
             T::Array[WhopSDK::CourseLessonUpdateParams::MainPdf::Variants]
+          )
+        end
+        def self.variants
+        end
+      end
+
+      # The thumbnail for the lesson in png, jpeg, or gif format
+      module Thumbnail
+        extend WhopSDK::Internal::Type::Union
+
+        Variants =
+          T.type_alias do
+            T.any(
+              WhopSDK::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID,
+              WhopSDK::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithID
+            )
+          end
+
+        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # This ID should be used the first time you upload an attachment. It is the ID of
+          # the direct upload that was created when uploading the file to S3 via the
+          # mediaDirectUpload mutation.
+          sig { returns(String) }
+          attr_accessor :direct_upload_id
+
+          # Input for an attachment
+          sig { params(direct_upload_id: String).returns(T.attached_class) }
+          def self.new(
+            # This ID should be used the first time you upload an attachment. It is the ID of
+            # the direct upload that was created when uploading the file to S3 via the
+            # mediaDirectUpload mutation.
+            direct_upload_id:
+          )
+          end
+
+          sig { override.returns({ direct_upload_id: String }) }
+          def to_hash
+          end
+        end
+
+        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithID,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The ID of an existing attachment object. Use this when updating a resource and
+          # keeping a subset of the attachments. Don't use this unless you know what you're
+          # doing.
+          sig { returns(String) }
+          attr_accessor :id
+
+          # Input for an attachment
+          sig { params(id: String).returns(T.attached_class) }
+          def self.new(
+            # The ID of an existing attachment object. Use this when updating a resource and
+            # keeping a subset of the attachments. Don't use this unless you know what you're
+            # doing.
+            id:
+          )
+          end
+
+          sig { override.returns({ id: String }) }
+          def to_hash
+          end
+        end
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::CourseLessonUpdateParams::Thumbnail::Variants]
           )
         end
         def self.variants

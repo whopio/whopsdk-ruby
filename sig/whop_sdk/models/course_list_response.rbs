@@ -7,11 +7,13 @@ module WhopSDK
         created_at: Time,
         description: String?,
         language: WhopSDK::Models::languages,
+        order: String,
         require_completing_lessons_in_order: bool,
         tagline: String?,
         thumbnail: WhopSDK::Models::CourseListResponse::Thumbnail?,
         title: String?,
-        updated_at: Time
+        updated_at: Time,
+        visibility: WhopSDK::Models::CourseListResponse::visibility
       }
 
     class CourseListResponse < WhopSDK::Internal::Type::BaseModel
@@ -25,6 +27,8 @@ module WhopSDK
 
       attr_accessor language: WhopSDK::Models::languages
 
+      attr_accessor order: String
+
       attr_accessor require_completing_lessons_in_order: bool
 
       attr_accessor tagline: String?
@@ -35,17 +39,21 @@ module WhopSDK
 
       attr_accessor updated_at: Time
 
+      attr_accessor visibility: WhopSDK::Models::CourseListResponse::visibility
+
       def initialize: (
         id: String,
         certificate_after_completion_enabled: bool?,
         created_at: Time,
         description: String?,
         language: WhopSDK::Models::languages,
+        order: String,
         require_completing_lessons_in_order: bool,
         tagline: String?,
         thumbnail: WhopSDK::Models::CourseListResponse::Thumbnail?,
         title: String?,
-        updated_at: Time
+        updated_at: Time,
+        visibility: WhopSDK::Models::CourseListResponse::visibility
       ) -> void
 
       def to_hash: -> {
@@ -54,11 +62,13 @@ module WhopSDK
         created_at: Time,
         description: String?,
         language: WhopSDK::Models::languages,
+        order: String,
         require_completing_lessons_in_order: bool,
         tagline: String?,
         thumbnail: WhopSDK::Models::CourseListResponse::Thumbnail?,
         title: String?,
-        updated_at: Time
+        updated_at: Time,
+        visibility: WhopSDK::Models::CourseListResponse::visibility
       }
 
       type thumbnail =
@@ -96,6 +106,17 @@ module WhopSDK
           optimized_url: String?,
           source_url: String?
         }
+      end
+
+      type visibility = :visible | :hidden
+
+      module Visibility
+        extend WhopSDK::Internal::Type::Enum
+
+        VISIBLE: :visible
+        HIDDEN: :hidden
+
+        def self?.values: -> ::Array[WhopSDK::Models::CourseListResponse::visibility]
       end
     end
   end

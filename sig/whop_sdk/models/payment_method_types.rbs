@@ -85,7 +85,6 @@ module WhopSDK
       | :splitit
       | :platform_balance
       | :apple
-      | :afterpay
       | :unknown
 
     module PaymentMethodTypes
@@ -175,7 +174,6 @@ module WhopSDK
       SPLITIT: :splitit
       PLATFORM_BALANCE: :platform_balance
       APPLE: :apple
-      AFTERPAY: :afterpay
       UNKNOWN: :unknown
 
       def self?.values: -> ::Array[WhopSDK::Models::payment_method_types]

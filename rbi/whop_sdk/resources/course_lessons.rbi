@@ -14,6 +14,16 @@ module WhopSDK
           lesson_type: WhopSDK::LessonTypes::OrSymbol,
           content: T.nilable(String),
           days_from_course_start_until_unlock: T.nilable(Integer),
+          embed_id: T.nilable(String),
+          embed_type:
+            T.nilable(WhopSDK::CourseLessonCreateParams::EmbedType::OrSymbol),
+          thumbnail:
+            T.nilable(
+              T.any(
+                WhopSDK::CourseLessonCreateParams::Thumbnail::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::CourseLessonCreateParams::Thumbnail::AttachmentInputWithID::OrHash
+              )
+            ),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Lesson)
@@ -27,6 +37,12 @@ module WhopSDK
         content: nil,
         # Days from course start until unlock
         days_from_course_start_until_unlock: nil,
+        # ID for the embed (YouTube video ID or Loom share ID)
+        embed_id: nil,
+        # The type of embed for a lesson
+        embed_type: nil,
+        # The thumbnail for the lesson in png, jpeg, or gif format
+        thumbnail: nil,
         # The title of the lesson
         title: nil,
         request_options: {}
@@ -80,6 +96,9 @@ module WhopSDK
             ),
           content: T.nilable(String),
           days_from_course_start_until_unlock: T.nilable(Integer),
+          embed_id: T.nilable(String),
+          embed_type:
+            T.nilable(WhopSDK::CourseLessonUpdateParams::EmbedType::OrSymbol),
           lesson_type: T.nilable(WhopSDK::LessonTypes::OrSymbol),
           main_pdf:
             T.nilable(
@@ -90,6 +109,13 @@ module WhopSDK
             ),
           max_attempts: T.nilable(Integer),
           mux_asset_id: T.nilable(String),
+          thumbnail:
+            T.nilable(
+              T.any(
+                WhopSDK::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithID::OrHash
+              )
+            ),
           title: T.nilable(String),
           visibility: T.nilable(WhopSDK::LessonVisibilities::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -110,6 +136,10 @@ module WhopSDK
         content: nil,
         # Days from course start until unlock
         days_from_course_start_until_unlock: nil,
+        # ID for the embed (YouTube video ID or Loom share ID)
+        embed_id: nil,
+        # The type of embed for a lesson
+        embed_type: nil,
         # The available types for a lesson
         lesson_type: nil,
         # The main PDF file for this lesson
@@ -118,6 +148,8 @@ module WhopSDK
         max_attempts: nil,
         # The ID of the Mux asset to attach to this lesson for video lessons
         mux_asset_id: nil,
+        # The thumbnail for the lesson in png, jpeg, or gif format
+        thumbnail: nil,
         # The title of the lesson
         title: nil,
         # The available visibilities for a lesson. Determines how / whether a lesson is

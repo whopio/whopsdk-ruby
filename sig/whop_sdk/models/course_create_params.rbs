@@ -6,9 +6,11 @@ module WhopSDK
         title: String,
         certificate_after_completion_enabled: bool?,
         cover_image: String?,
+        order: String?,
         require_completing_lessons_in_order: bool?,
         tagline: String?,
-        thumbnail: WhopSDK::Models::CourseCreateParams::thumbnail?
+        thumbnail: WhopSDK::Models::CourseCreateParams::thumbnail?,
+        visibility: WhopSDK::Models::CourseCreateParams::visibility?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -24,20 +26,26 @@ module WhopSDK
 
       attr_accessor cover_image: String?
 
+      attr_accessor order: String?
+
       attr_accessor require_completing_lessons_in_order: bool?
 
       attr_accessor tagline: String?
 
       attr_accessor thumbnail: WhopSDK::Models::CourseCreateParams::thumbnail?
 
+      attr_accessor visibility: WhopSDK::Models::CourseCreateParams::visibility?
+
       def initialize: (
         experience_id: String,
         title: String,
         ?certificate_after_completion_enabled: bool?,
         ?cover_image: String?,
+        ?order: String?,
         ?require_completing_lessons_in_order: bool?,
         ?tagline: String?,
         ?thumbnail: WhopSDK::Models::CourseCreateParams::thumbnail?,
+        ?visibility: WhopSDK::Models::CourseCreateParams::visibility?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -46,9 +54,11 @@ module WhopSDK
         title: String,
         certificate_after_completion_enabled: bool?,
         cover_image: String?,
+        order: String?,
         require_completing_lessons_in_order: bool?,
         tagline: String?,
         thumbnail: WhopSDK::Models::CourseCreateParams::thumbnail?,
+        visibility: WhopSDK::Models::CourseCreateParams::visibility?,
         request_options: WhopSDK::RequestOptions
       }
 
@@ -81,6 +91,17 @@ module WhopSDK
         end
 
         def self?.variants: -> ::Array[WhopSDK::Models::CourseCreateParams::thumbnail]
+      end
+
+      type visibility = :visible | :hidden
+
+      module Visibility
+        extend WhopSDK::Internal::Type::Enum
+
+        VISIBLE: :visible
+        HIDDEN: :hidden
+
+        def self?.values: -> ::Array[WhopSDK::Models::CourseCreateParams::visibility]
       end
     end
   end

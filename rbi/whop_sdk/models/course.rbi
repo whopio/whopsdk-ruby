@@ -32,6 +32,10 @@ module WhopSDK
       sig { returns(WhopSDK::Languages::TaggedSymbol) }
       attr_accessor :language
 
+      # The order of the course within its experience
+      sig { returns(String) }
+      attr_accessor :order
+
       # Whether the course requires students to complete the previous lesson before
       # moving on to the next one
       sig { returns(T::Boolean) }
@@ -58,6 +62,11 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :updated_at
 
+      # The visibility of the course. Determines how / whether this course is visible to
+      # users.
+      sig { returns(WhopSDK::Course::Visibility::TaggedSymbol) }
+      attr_accessor :visibility
+
       # A course from the courses app
       sig do
         params(
@@ -67,11 +76,13 @@ module WhopSDK
           created_at: Time,
           description: T.nilable(String),
           language: WhopSDK::Languages::OrSymbol,
+          order: String,
           require_completing_lessons_in_order: T::Boolean,
           tagline: T.nilable(String),
           thumbnail: T.nilable(WhopSDK::Course::Thumbnail::OrHash),
           title: T.nilable(String),
-          updated_at: Time
+          updated_at: Time,
+          visibility: WhopSDK::Course::Visibility::OrSymbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -89,6 +100,8 @@ module WhopSDK
         # The language spoken in the video content of the course, used to generate closed
         # captions in the right language
         language:,
+        # The order of the course within its experience
+        order:,
         # Whether the course requires students to complete the previous lesson before
         # moving on to the next one
         require_completing_lessons_in_order:,
@@ -99,7 +112,10 @@ module WhopSDK
         # The title of the course
         title:,
         # The timestamp of when the course was last updated
-        updated_at:
+        updated_at:,
+        # The visibility of the course. Determines how / whether this course is visible to
+        # users.
+        visibility:
       )
       end
 
@@ -112,11 +128,13 @@ module WhopSDK
             created_at: Time,
             description: T.nilable(String),
             language: WhopSDK::Languages::TaggedSymbol,
+            order: String,
             require_completing_lessons_in_order: T::Boolean,
             tagline: T.nilable(String),
             thumbnail: T.nilable(WhopSDK::Course::Thumbnail),
             title: T.nilable(String),
-            updated_at: Time
+            updated_at: Time,
+            visibility: WhopSDK::Course::Visibility::TaggedSymbol
           }
         )
       end
@@ -306,6 +324,25 @@ module WhopSDK
           )
         end
         def to_hash
+        end
+      end
+
+      # The visibility of the course. Determines how / whether this course is visible to
+      # users.
+      module Visibility
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::Course::Visibility) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        VISIBLE = T.let(:visible, WhopSDK::Course::Visibility::TaggedSymbol)
+        HIDDEN = T.let(:hidden, WhopSDK::Course::Visibility::TaggedSymbol)
+
+        sig do
+          override.returns(T::Array[WhopSDK::Course::Visibility::TaggedSymbol])
+        end
+        def self.values
         end
       end
     end

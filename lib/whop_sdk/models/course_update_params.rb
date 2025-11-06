@@ -40,6 +40,13 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Languages, nil]
       optional :language, enum: -> { WhopSDK::Languages }, nil?: true
 
+      # @!attribute order
+      #   The decimal order position of the course within its experience. Use fractional
+      #   values (e.g., 1.5) to place between existing courses.
+      #
+      #   @return [String, nil]
+      optional :order, String, nil?: true
+
       # @!attribute require_completing_lessons_in_order
       #   Whether the course requires students to complete the previous lesson before
       #   moving on to the next one
@@ -65,7 +72,14 @@ module WhopSDK
       #   @return [String, nil]
       optional :title, String, nil?: true
 
-      # @!method initialize(certificate_after_completion_enabled: nil, chapters: nil, cover_image: nil, description: nil, language: nil, require_completing_lessons_in_order: nil, tagline: nil, thumbnail: nil, title: nil, request_options: {})
+      # @!attribute visibility
+      #   The available visibilities for a course. Determines how / whether a course is
+      #   visible to users.
+      #
+      #   @return [Symbol, WhopSDK::Models::CourseUpdateParams::Visibility, nil]
+      optional :visibility, enum: -> { WhopSDK::CourseUpdateParams::Visibility }, nil?: true
+
+      # @!method initialize(certificate_after_completion_enabled: nil, chapters: nil, cover_image: nil, description: nil, language: nil, order: nil, require_completing_lessons_in_order: nil, tagline: nil, thumbnail: nil, title: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CourseUpdateParams} for more details.
       #
@@ -79,6 +93,8 @@ module WhopSDK
       #
       #   @param language [Symbol, WhopSDK::Models::Languages, nil] The available languages for a course
       #
+      #   @param order [String, nil] The decimal order position of the course within its experience. Use fractional v
+      #
       #   @param require_completing_lessons_in_order [Boolean, nil] Whether the course requires students to complete the previous lesson before movi
       #
       #   @param tagline [String, nil] A short tagline for the course
@@ -86,6 +102,8 @@ module WhopSDK
       #   @param thumbnail [WhopSDK::Models::CourseUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseUpdateParams::Thumbnail::AttachmentInputWithID, nil] The thumbnail for the course in png, jpeg, or gif format
       #
       #   @param title [String, nil] The title of the course
+      #
+      #   @param visibility [Symbol, WhopSDK::Models::CourseUpdateParams::Visibility, nil] The available visibilities for a course. Determines how / whether a course is vi
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
@@ -215,6 +233,18 @@ module WhopSDK
 
         # @!method self.variants
         #   @return [Array(WhopSDK::Models::CourseUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseUpdateParams::Thumbnail::AttachmentInputWithID)]
+      end
+
+      # The available visibilities for a course. Determines how / whether a course is
+      # visible to users.
+      module Visibility
+        extend WhopSDK::Internal::Type::Enum
+
+        VISIBLE = :visible
+        HIDDEN = :hidden
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

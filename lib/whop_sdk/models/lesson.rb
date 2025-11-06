@@ -35,6 +35,18 @@ module WhopSDK
       #   @return [Integer, nil]
       required :days_from_course_start_until_unlock, Integer, nil?: true
 
+      # @!attribute embed_id
+      #   ID for the embed (YouTube video ID or Loom share ID)
+      #
+      #   @return [String, nil]
+      required :embed_id, String, nil?: true
+
+      # @!attribute embed_type
+      #   The type of embed for a lesson
+      #
+      #   @return [Symbol, WhopSDK::Models::Lesson::EmbedType, nil]
+      required :embed_type, enum: -> { WhopSDK::Lesson::EmbedType }, nil?: true
+
       # @!attribute lesson_type
       #   The type of the lesson (text, video, pdf, multi, quiz, knowledge_check)
       #
@@ -52,6 +64,12 @@ module WhopSDK
       #
       #   @return [Integer]
       required :order, Integer
+
+      # @!attribute thumbnail
+      #   The thumbnail for the lesson
+      #
+      #   @return [WhopSDK::Models::Lesson::Thumbnail, nil]
+      required :thumbnail, -> { WhopSDK::Lesson::Thumbnail }, nil?: true
 
       # @!attribute title
       #   The title of the lesson
@@ -72,7 +90,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::LessonVisibilities]
       required :visibility, enum: -> { WhopSDK::LessonVisibilities }
 
-      # @!method initialize(id:, assessment_questions:, attachments:, content:, days_from_course_start_until_unlock:, lesson_type:, main_pdf:, order:, title:, video_asset:, visibility:)
+      # @!method initialize(id:, assessment_questions:, attachments:, content:, days_from_course_start_until_unlock:, embed_id:, embed_type:, lesson_type:, main_pdf:, order:, thumbnail:, title:, video_asset:, visibility:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Lesson}
       #   for more details.
       #
@@ -88,11 +106,17 @@ module WhopSDK
       #
       #   @param days_from_course_start_until_unlock [Integer, nil] Number of days from course start until the lesson is unlocked
       #
+      #   @param embed_id [String, nil] ID for the embed (YouTube video ID or Loom share ID)
+      #
+      #   @param embed_type [Symbol, WhopSDK::Models::Lesson::EmbedType, nil] The type of embed for a lesson
+      #
       #   @param lesson_type [Symbol, WhopSDK::Models::LessonTypes] The type of the lesson (text, video, pdf, multi, quiz, knowledge_check)
       #
       #   @param main_pdf [WhopSDK::Models::Lesson::MainPdf, nil] The main PDF file for this lesson
       #
       #   @param order [Integer] The order of the lesson within its chapter
+      #
+      #   @param thumbnail [WhopSDK::Models::Lesson::Thumbnail, nil] The thumbnail for the lesson
       #
       #   @param title [String] The title of the lesson
       #
@@ -297,6 +321,19 @@ module WhopSDK
         #   @param url [String, nil] This is the URL you use to render optimized attachments on the client. This shou
       end
 
+      # The type of embed for a lesson
+      #
+      # @see WhopSDK::Models::Lesson#embed_type
+      module EmbedType
+        extend WhopSDK::Internal::Type::Enum
+
+        YOUTUBE = :youtube
+        LOOM = :loom
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
       # @see WhopSDK::Models::Lesson#main_pdf
       class MainPdf < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
@@ -335,6 +372,24 @@ module WhopSDK
         #   @param content_type [String, nil] The attachment's content type (e.g., image/jpg, video/mp4)
         #
         #   @param filename [String, nil] The name of the file
+        #
+        #   @param url [String, nil] This is the URL you use to render optimized attachments on the client. This shou
+      end
+
+      # @see WhopSDK::Models::Lesson#thumbnail
+      class Thumbnail < WhopSDK::Internal::Type::BaseModel
+        # @!attribute url
+        #   This is the URL you use to render optimized attachments on the client. This
+        #   should be used for apps.
+        #
+        #   @return [String, nil]
+        required :url, String, nil?: true
+
+        # @!method initialize(url:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Lesson::Thumbnail} for more details.
+        #
+        #   The thumbnail for the lesson
         #
         #   @param url [String, nil] This is the URL you use to render optimized attachments on the client. This shou
       end

@@ -63,8 +63,8 @@ module WhopSDK
       #   The available visibilities for a course. Determines how / whether a course is
       #   visible to users.
       #
-      #   @return [Symbol, WhopSDK::Models::CourseCreateParams::Visibility, nil]
-      optional :visibility, enum: -> { WhopSDK::CourseCreateParams::Visibility }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::CourseVisibilities, nil]
+      optional :visibility, enum: -> { WhopSDK::CourseVisibilities }, nil?: true
 
       # @!method initialize(experience_id:, title:, certificate_after_completion_enabled: nil, cover_image: nil, order: nil, require_completing_lessons_in_order: nil, tagline: nil, thumbnail: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
@@ -86,7 +86,7 @@ module WhopSDK
       #
       #   @param thumbnail [WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithID, nil] The thumbnail for the course in png, jpeg, or gif format
       #
-      #   @param visibility [Symbol, WhopSDK::Models::CourseCreateParams::Visibility, nil] The available visibilities for a course. Determines how / whether a course is vi
+      #   @param visibility [Symbol, WhopSDK::Models::CourseVisibilities, nil] The available visibilities for a course. Determines how / whether a course is vi
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
@@ -140,18 +140,6 @@ module WhopSDK
 
         # @!method self.variants
         #   @return [Array(WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithID)]
-      end
-
-      # The available visibilities for a course. Determines how / whether a course is
-      # visible to users.
-      module Visibility
-        extend WhopSDK::Internal::Type::Enum
-
-        VISIBLE = :visible
-        HIDDEN = :hidden
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
     end
   end

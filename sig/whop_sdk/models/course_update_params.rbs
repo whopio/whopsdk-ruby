@@ -12,7 +12,7 @@ module WhopSDK
         tagline: String?,
         thumbnail: WhopSDK::Models::CourseUpdateParams::thumbnail?,
         title: String?,
-        visibility: WhopSDK::Models::CourseUpdateParams::visibility?
+        visibility: WhopSDK::Models::course_visibilities?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -40,7 +40,7 @@ module WhopSDK
 
       attr_accessor title: String?
 
-      attr_accessor visibility: WhopSDK::Models::CourseUpdateParams::visibility?
+      attr_accessor visibility: WhopSDK::Models::course_visibilities?
 
       def initialize: (
         ?certificate_after_completion_enabled: bool?,
@@ -53,7 +53,7 @@ module WhopSDK
         ?tagline: String?,
         ?thumbnail: WhopSDK::Models::CourseUpdateParams::thumbnail?,
         ?title: String?,
-        ?visibility: WhopSDK::Models::CourseUpdateParams::visibility?,
+        ?visibility: WhopSDK::Models::course_visibilities?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -68,7 +68,7 @@ module WhopSDK
         tagline: String?,
         thumbnail: WhopSDK::Models::CourseUpdateParams::thumbnail?,
         title: String?,
-        visibility: WhopSDK::Models::CourseUpdateParams::visibility?,
+        visibility: WhopSDK::Models::course_visibilities?,
         request_options: WhopSDK::RequestOptions
       }
 
@@ -160,17 +160,6 @@ module WhopSDK
         end
 
         def self?.variants: -> ::Array[WhopSDK::Models::CourseUpdateParams::thumbnail]
-      end
-
-      type visibility = :visible | :hidden
-
-      module Visibility
-        extend WhopSDK::Internal::Type::Enum
-
-        VISIBLE: :visible
-        HIDDEN: :hidden
-
-        def self?.values: -> ::Array[WhopSDK::Models::CourseUpdateParams::visibility]
       end
     end
   end

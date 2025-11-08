@@ -13,7 +13,7 @@ module WhopSDK
         thumbnail: WhopSDK::Models::CourseListResponse::Thumbnail?,
         title: String?,
         updated_at: Time,
-        visibility: WhopSDK::Models::CourseListResponse::visibility
+        visibility: WhopSDK::Models::course_visibilities
       }
 
     class CourseListResponse < WhopSDK::Internal::Type::BaseModel
@@ -39,7 +39,7 @@ module WhopSDK
 
       attr_accessor updated_at: Time
 
-      attr_accessor visibility: WhopSDK::Models::CourseListResponse::visibility
+      attr_accessor visibility: WhopSDK::Models::course_visibilities
 
       def initialize: (
         id: String,
@@ -53,7 +53,7 @@ module WhopSDK
         thumbnail: WhopSDK::Models::CourseListResponse::Thumbnail?,
         title: String?,
         updated_at: Time,
-        visibility: WhopSDK::Models::CourseListResponse::visibility
+        visibility: WhopSDK::Models::course_visibilities
       ) -> void
 
       def to_hash: -> {
@@ -68,7 +68,7 @@ module WhopSDK
         thumbnail: WhopSDK::Models::CourseListResponse::Thumbnail?,
         title: String?,
         updated_at: Time,
-        visibility: WhopSDK::Models::CourseListResponse::visibility
+        visibility: WhopSDK::Models::course_visibilities
       }
 
       type thumbnail =
@@ -106,17 +106,6 @@ module WhopSDK
           optimized_url: String?,
           source_url: String?
         }
-      end
-
-      type visibility = :visible | :hidden
-
-      module Visibility
-        extend WhopSDK::Internal::Type::Enum
-
-        VISIBLE: :visible
-        HIDDEN: :hidden
-
-        def self?.values: -> ::Array[WhopSDK::Models::CourseListResponse::visibility]
       end
     end
   end

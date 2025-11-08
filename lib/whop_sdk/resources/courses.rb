@@ -30,7 +30,7 @@ module WhopSDK
       #
       # @param thumbnail [WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseCreateParams::Thumbnail::AttachmentInputWithID, nil] The thumbnail for the course in png, jpeg, or gif format
       #
-      # @param visibility [Symbol, WhopSDK::Models::CourseCreateParams::Visibility, nil] The available visibilities for a course. Determines how / whether a course is vi
+      # @param visibility [Symbol, WhopSDK::Models::CourseVisibilities, nil] The available visibilities for a course. Determines how / whether a course is vi
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -105,7 +105,7 @@ module WhopSDK
       #
       # @param title [String, nil] The title of the course
       #
-      # @param visibility [Symbol, WhopSDK::Models::CourseUpdateParams::Visibility, nil] The available visibilities for a course. Determines how / whether a course is vi
+      # @param visibility [Symbol, WhopSDK::Models::CourseVisibilities, nil] The available visibilities for a course. Determines how / whether a course is vi
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

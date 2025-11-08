@@ -26,7 +26,7 @@ class WhopSDK::Test::Resources::CoursesTest < WhopSDK::Test::ResourceTest
         thumbnail: WhopSDK::Course::Thumbnail | nil,
         title: String | nil,
         updated_at: Time,
-        visibility: WhopSDK::Course::Visibility
+        visibility: WhopSDK::CourseVisibilities
       }
     end
   end
@@ -54,7 +54,7 @@ class WhopSDK::Test::Resources::CoursesTest < WhopSDK::Test::ResourceTest
         thumbnail: WhopSDK::Course::Thumbnail | nil,
         title: String | nil,
         updated_at: Time,
-        visibility: WhopSDK::Course::Visibility
+        visibility: WhopSDK::CourseVisibilities
       }
     end
   end
@@ -82,7 +82,7 @@ class WhopSDK::Test::Resources::CoursesTest < WhopSDK::Test::ResourceTest
         thumbnail: WhopSDK::Course::Thumbnail | nil,
         title: String | nil,
         updated_at: Time,
-        visibility: WhopSDK::Course::Visibility
+        visibility: WhopSDK::CourseVisibilities
       }
     end
   end
@@ -116,7 +116,7 @@ class WhopSDK::Test::Resources::CoursesTest < WhopSDK::Test::ResourceTest
         thumbnail: WhopSDK::Models::CourseListResponse::Thumbnail | nil,
         title: String | nil,
         updated_at: Time,
-        visibility: WhopSDK::Models::CourseListResponse::Visibility
+        visibility: WhopSDK::CourseVisibilities
       }
     end
   end

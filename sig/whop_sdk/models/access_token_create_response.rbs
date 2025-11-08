@@ -1,0 +1,15 @@
+module WhopSDK
+  module Models
+    type access_token_create_response = { token: String, expires_at: Time }
+
+    class AccessTokenCreateResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor token: String
+
+      attr_accessor expires_at: Time
+
+      def initialize: (token: String, expires_at: Time) -> void
+
+      def to_hash: -> { token: String, expires_at: Time }
+    end
+  end
+end

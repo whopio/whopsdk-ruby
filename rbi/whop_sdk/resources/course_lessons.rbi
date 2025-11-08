@@ -15,8 +15,7 @@ module WhopSDK
           content: T.nilable(String),
           days_from_course_start_until_unlock: T.nilable(Integer),
           embed_id: T.nilable(String),
-          embed_type:
-            T.nilable(WhopSDK::CourseLessonCreateParams::EmbedType::OrSymbol),
+          embed_type: T.nilable(WhopSDK::EmbedType::OrSymbol),
           thumbnail:
             T.nilable(
               T.any(
@@ -97,8 +96,7 @@ module WhopSDK
           content: T.nilable(String),
           days_from_course_start_until_unlock: T.nilable(Integer),
           embed_id: T.nilable(String),
-          embed_type:
-            T.nilable(WhopSDK::CourseLessonUpdateParams::EmbedType::OrSymbol),
+          embed_type: T.nilable(WhopSDK::EmbedType::OrSymbol),
           lesson_type: T.nilable(WhopSDK::LessonTypes::OrSymbol),
           main_pdf:
             T.nilable(

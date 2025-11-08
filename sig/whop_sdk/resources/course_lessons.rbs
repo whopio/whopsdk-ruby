@@ -7,7 +7,7 @@ module WhopSDK
         ?content: String?,
         ?days_from_course_start_until_unlock: Integer?,
         ?embed_id: String?,
-        ?embed_type: WhopSDK::Models::CourseLessonCreateParams::embed_type?,
+        ?embed_type: WhopSDK::Models::embed_type?,
         ?thumbnail: WhopSDK::Models::CourseLessonCreateParams::thumbnail?,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
@@ -26,7 +26,7 @@ module WhopSDK
         ?content: String?,
         ?days_from_course_start_until_unlock: Integer?,
         ?embed_id: String?,
-        ?embed_type: WhopSDK::Models::CourseLessonUpdateParams::embed_type?,
+        ?embed_type: WhopSDK::Models::embed_type?,
         ?lesson_type: WhopSDK::Models::lesson_types?,
         ?main_pdf: WhopSDK::Models::CourseLessonUpdateParams::main_pdf?,
         ?max_attempts: Integer?,

@@ -1,0 +1,14 @@
+module WhopSDK
+  module Models
+    type embed_type = :youtube | :loom
+
+    module EmbedType
+      extend WhopSDK::Internal::Type::Enum
+
+      YOUTUBE: :youtube
+      LOOM: :loom
+
+      def self?.values: -> ::Array[WhopSDK::Models::embed_type]
+    end
+  end
+end

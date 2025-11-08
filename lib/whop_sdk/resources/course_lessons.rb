@@ -21,7 +21,7 @@ module WhopSDK
       #
       # @param embed_id [String, nil] ID for the embed (YouTube video ID or Loom share ID)
       #
-      # @param embed_type [Symbol, WhopSDK::Models::CourseLessonCreateParams::EmbedType, nil] The type of embed for a lesson
+      # @param embed_type [Symbol, WhopSDK::Models::EmbedType, nil] The type of embed for a lesson
       #
       # @param thumbnail [WhopSDK::Models::CourseLessonCreateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonCreateParams::Thumbnail::AttachmentInputWithID, nil] The thumbnail for the lesson in png, jpeg, or gif format
       #
@@ -92,7 +92,7 @@ module WhopSDK
       #
       # @param embed_id [String, nil] ID for the embed (YouTube video ID or Loom share ID)
       #
-      # @param embed_type [Symbol, WhopSDK::Models::CourseLessonUpdateParams::EmbedType, nil] The type of embed for a lesson
+      # @param embed_type [Symbol, WhopSDK::Models::EmbedType, nil] The type of embed for a lesson
       #
       # @param lesson_type [Symbol, WhopSDK::Models::LessonTypes, nil] The available types for a lesson
       #

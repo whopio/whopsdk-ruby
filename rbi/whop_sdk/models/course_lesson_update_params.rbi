@@ -71,11 +71,7 @@ module WhopSDK
       attr_accessor :embed_id
 
       # The type of embed for a lesson
-      sig do
-        returns(
-          T.nilable(WhopSDK::CourseLessonUpdateParams::EmbedType::OrSymbol)
-        )
-      end
+      sig { returns(T.nilable(WhopSDK::EmbedType::OrSymbol)) }
       attr_accessor :embed_type
 
       # The available types for a lesson
@@ -149,8 +145,7 @@ module WhopSDK
           content: T.nilable(String),
           days_from_course_start_until_unlock: T.nilable(Integer),
           embed_id: T.nilable(String),
-          embed_type:
-            T.nilable(WhopSDK::CourseLessonUpdateParams::EmbedType::OrSymbol),
+          embed_type: T.nilable(WhopSDK::EmbedType::OrSymbol),
           lesson_type: T.nilable(WhopSDK::LessonTypes::OrSymbol),
           main_pdf:
             T.nilable(
@@ -232,8 +227,7 @@ module WhopSDK
             content: T.nilable(String),
             days_from_course_start_until_unlock: T.nilable(Integer),
             embed_id: T.nilable(String),
-            embed_type:
-              T.nilable(WhopSDK::CourseLessonUpdateParams::EmbedType::OrSymbol),
+            embed_type: T.nilable(WhopSDK::EmbedType::OrSymbol),
             lesson_type: T.nilable(WhopSDK::LessonTypes::OrSymbol),
             main_pdf:
               T.nilable(
@@ -640,36 +634,6 @@ module WhopSDK
           )
         end
         def self.variants
-        end
-      end
-
-      # The type of embed for a lesson
-      module EmbedType
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::CourseLessonUpdateParams::EmbedType)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        YOUTUBE =
-          T.let(
-            :youtube,
-            WhopSDK::CourseLessonUpdateParams::EmbedType::TaggedSymbol
-          )
-        LOOM =
-          T.let(
-            :loom,
-            WhopSDK::CourseLessonUpdateParams::EmbedType::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[WhopSDK::CourseLessonUpdateParams::EmbedType::TaggedSymbol]
-          )
-        end
-        def self.values
         end
       end
 

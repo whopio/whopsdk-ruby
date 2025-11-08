@@ -65,9 +65,7 @@ module WhopSDK
 
       # The available visibilities for a course. Determines how / whether a course is
       # visible to users.
-      sig do
-        returns(T.nilable(WhopSDK::CourseUpdateParams::Visibility::OrSymbol))
-      end
+      sig { returns(T.nilable(WhopSDK::CourseVisibilities::OrSymbol)) }
       attr_accessor :visibility
 
       sig do
@@ -89,8 +87,7 @@ module WhopSDK
               )
             ),
           title: T.nilable(String),
-          visibility:
-            T.nilable(WhopSDK::CourseUpdateParams::Visibility::OrSymbol),
+          visibility: T.nilable(WhopSDK::CourseVisibilities::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -144,8 +141,7 @@ module WhopSDK
                 )
               ),
             title: T.nilable(String),
-            visibility:
-              T.nilable(WhopSDK::CourseUpdateParams::Visibility::OrSymbol),
+            visibility: T.nilable(WhopSDK::CourseVisibilities::OrSymbol),
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -356,31 +352,6 @@ module WhopSDK
           )
         end
         def self.variants
-        end
-      end
-
-      # The available visibilities for a course. Determines how / whether a course is
-      # visible to users.
-      module Visibility
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::CourseUpdateParams::Visibility)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        VISIBLE =
-          T.let(:visible, WhopSDK::CourseUpdateParams::Visibility::TaggedSymbol)
-        HIDDEN =
-          T.let(:hidden, WhopSDK::CourseUpdateParams::Visibility::TaggedSymbol)
-
-        sig do
-          override.returns(
-            T::Array[WhopSDK::CourseUpdateParams::Visibility::TaggedSymbol]
-          )
-        end
-        def self.values
         end
       end
     end

@@ -8,7 +8,7 @@ module WhopSDK
         content: String?,
         days_from_course_start_until_unlock: Integer?,
         embed_id: String?,
-        embed_type: WhopSDK::Models::CourseLessonUpdateParams::embed_type?,
+        embed_type: WhopSDK::Models::embed_type?,
         lesson_type: WhopSDK::Models::lesson_types?,
         main_pdf: WhopSDK::Models::CourseLessonUpdateParams::main_pdf?,
         max_attempts: Integer?,
@@ -35,7 +35,7 @@ module WhopSDK
 
       attr_accessor embed_id: String?
 
-      attr_accessor embed_type: WhopSDK::Models::CourseLessonUpdateParams::embed_type?
+      attr_accessor embed_type: WhopSDK::Models::embed_type?
 
       attr_accessor lesson_type: WhopSDK::Models::lesson_types?
 
@@ -58,7 +58,7 @@ module WhopSDK
         ?content: String?,
         ?days_from_course_start_until_unlock: Integer?,
         ?embed_id: String?,
-        ?embed_type: WhopSDK::Models::CourseLessonUpdateParams::embed_type?,
+        ?embed_type: WhopSDK::Models::embed_type?,
         ?lesson_type: WhopSDK::Models::lesson_types?,
         ?main_pdf: WhopSDK::Models::CourseLessonUpdateParams::main_pdf?,
         ?max_attempts: Integer?,
@@ -76,7 +76,7 @@ module WhopSDK
         content: String?,
         days_from_course_start_until_unlock: Integer?,
         embed_id: String?,
-        embed_type: WhopSDK::Models::CourseLessonUpdateParams::embed_type?,
+        embed_type: WhopSDK::Models::embed_type?,
         lesson_type: WhopSDK::Models::lesson_types?,
         main_pdf: WhopSDK::Models::CourseLessonUpdateParams::main_pdf?,
         max_attempts: Integer?,
@@ -226,17 +226,6 @@ module WhopSDK
         end
 
         def self?.variants: -> ::Array[WhopSDK::Models::CourseLessonUpdateParams::attachment]
-      end
-
-      type embed_type = :youtube | :loom
-
-      module EmbedType
-        extend WhopSDK::Internal::Type::Enum
-
-        YOUTUBE: :youtube
-        LOOM: :loom
-
-        def self?.values: -> ::Array[WhopSDK::Models::CourseLessonUpdateParams::embed_type]
       end
 
       type main_pdf =

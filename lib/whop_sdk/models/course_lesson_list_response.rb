@@ -31,8 +31,8 @@ module WhopSDK
       # @!attribute embed_type
       #   The type of embed for a lesson
       #
-      #   @return [Symbol, WhopSDK::Models::CourseLessonListResponse::EmbedType, nil]
-      required :embed_type, enum: -> { WhopSDK::Models::CourseLessonListResponse::EmbedType }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::EmbedType, nil]
+      required :embed_type, enum: -> { WhopSDK::EmbedType }, nil?: true
 
       # @!attribute lesson_type
       #   The type of the lesson (text, video, pdf, multi, quiz, knowledge_check)
@@ -79,7 +79,7 @@ module WhopSDK
       #
       #   @param embed_id [String, nil] ID for the embed (YouTube video ID or Loom share ID)
       #
-      #   @param embed_type [Symbol, WhopSDK::Models::CourseLessonListResponse::EmbedType, nil] The type of embed for a lesson
+      #   @param embed_type [Symbol, WhopSDK::Models::EmbedType, nil] The type of embed for a lesson
       #
       #   @param lesson_type [Symbol, WhopSDK::Models::LessonTypes] The type of the lesson (text, video, pdf, multi, quiz, knowledge_check)
       #
@@ -90,19 +90,6 @@ module WhopSDK
       #   @param title [String] The title of the lesson
       #
       #   @param visibility [Symbol, WhopSDK::Models::LessonVisibilities] The visibility of the lesson. Determines how / whether this lesson is visible to
-
-      # The type of embed for a lesson
-      #
-      # @see WhopSDK::Models::CourseLessonListResponse#embed_type
-      module EmbedType
-        extend WhopSDK::Internal::Type::Enum
-
-        YOUTUBE = :youtube
-        LOOM = :loom
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
 
       # @see WhopSDK::Models::CourseLessonListResponse#thumbnail
       class Thumbnail < WhopSDK::Internal::Type::BaseModel

@@ -32,11 +32,7 @@ module WhopSDK
       attr_accessor :embed_id
 
       # The type of embed for a lesson
-      sig do
-        returns(
-          T.nilable(WhopSDK::CourseLessonCreateParams::EmbedType::OrSymbol)
-        )
-      end
+      sig { returns(T.nilable(WhopSDK::EmbedType::OrSymbol)) }
       attr_accessor :embed_type
 
       # The thumbnail for the lesson in png, jpeg, or gif format
@@ -63,8 +59,7 @@ module WhopSDK
           content: T.nilable(String),
           days_from_course_start_until_unlock: T.nilable(Integer),
           embed_id: T.nilable(String),
-          embed_type:
-            T.nilable(WhopSDK::CourseLessonCreateParams::EmbedType::OrSymbol),
+          embed_type: T.nilable(WhopSDK::EmbedType::OrSymbol),
           thumbnail:
             T.nilable(
               T.any(
@@ -105,8 +100,7 @@ module WhopSDK
             content: T.nilable(String),
             days_from_course_start_until_unlock: T.nilable(Integer),
             embed_id: T.nilable(String),
-            embed_type:
-              T.nilable(WhopSDK::CourseLessonCreateParams::EmbedType::OrSymbol),
+            embed_type: T.nilable(WhopSDK::EmbedType::OrSymbol),
             thumbnail:
               T.nilable(
                 T.any(
@@ -120,36 +114,6 @@ module WhopSDK
         )
       end
       def to_hash
-      end
-
-      # The type of embed for a lesson
-      module EmbedType
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::CourseLessonCreateParams::EmbedType)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        YOUTUBE =
-          T.let(
-            :youtube,
-            WhopSDK::CourseLessonCreateParams::EmbedType::TaggedSymbol
-          )
-        LOOM =
-          T.let(
-            :loom,
-            WhopSDK::CourseLessonCreateParams::EmbedType::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[WhopSDK::CourseLessonCreateParams::EmbedType::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
       end
 
       # The thumbnail for the lesson in png, jpeg, or gif format

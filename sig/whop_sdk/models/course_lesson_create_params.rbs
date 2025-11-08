@@ -7,7 +7,7 @@ module WhopSDK
         content: String?,
         days_from_course_start_until_unlock: Integer?,
         embed_id: String?,
-        embed_type: WhopSDK::Models::CourseLessonCreateParams::embed_type?,
+        embed_type: WhopSDK::Models::embed_type?,
         thumbnail: WhopSDK::Models::CourseLessonCreateParams::thumbnail?,
         title: String?
       }
@@ -27,7 +27,7 @@ module WhopSDK
 
       attr_accessor embed_id: String?
 
-      attr_accessor embed_type: WhopSDK::Models::CourseLessonCreateParams::embed_type?
+      attr_accessor embed_type: WhopSDK::Models::embed_type?
 
       attr_accessor thumbnail: WhopSDK::Models::CourseLessonCreateParams::thumbnail?
 
@@ -39,7 +39,7 @@ module WhopSDK
         ?content: String?,
         ?days_from_course_start_until_unlock: Integer?,
         ?embed_id: String?,
-        ?embed_type: WhopSDK::Models::CourseLessonCreateParams::embed_type?,
+        ?embed_type: WhopSDK::Models::embed_type?,
         ?thumbnail: WhopSDK::Models::CourseLessonCreateParams::thumbnail?,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
@@ -51,22 +51,11 @@ module WhopSDK
         content: String?,
         days_from_course_start_until_unlock: Integer?,
         embed_id: String?,
-        embed_type: WhopSDK::Models::CourseLessonCreateParams::embed_type?,
+        embed_type: WhopSDK::Models::embed_type?,
         thumbnail: WhopSDK::Models::CourseLessonCreateParams::thumbnail?,
         title: String?,
         request_options: WhopSDK::RequestOptions
       }
-
-      type embed_type = :youtube | :loom
-
-      module EmbedType
-        extend WhopSDK::Internal::Type::Enum
-
-        YOUTUBE: :youtube
-        LOOM: :loom
-
-        def self?.values: -> ::Array[WhopSDK::Models::CourseLessonCreateParams::embed_type]
-      end
 
       type thumbnail =
         WhopSDK::CourseLessonCreateParams::Thumbnail::AttachmentInputWithDirectUploadID

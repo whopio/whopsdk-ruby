@@ -83,8 +83,8 @@ module WhopSDK
       #   The visibility of the course. Determines how / whether this course is visible to
       #   users.
       #
-      #   @return [Symbol, WhopSDK::Models::Course::Visibility]
-      required :visibility, enum: -> { WhopSDK::Course::Visibility }
+      #   @return [Symbol, WhopSDK::Models::CourseVisibilities]
+      required :visibility, enum: -> { WhopSDK::CourseVisibilities }
 
       # @!method initialize(id:, certificate_after_completion_enabled:, chapters:, created_at:, description:, language:, order:, require_completing_lessons_in_order:, tagline:, thumbnail:, title:, updated_at:, visibility:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Course}
@@ -116,7 +116,7 @@ module WhopSDK
       #
       #   @param updated_at [Time] The timestamp of when the course was last updated
       #
-      #   @param visibility [Symbol, WhopSDK::Models::Course::Visibility] The visibility of the course. Determines how / whether this course is visible to
+      #   @param visibility [Symbol, WhopSDK::Models::CourseVisibilities] The visibility of the course. Determines how / whether this course is visible to
 
       class Chapter < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
@@ -241,20 +241,6 @@ module WhopSDK
         #   @param optimized_url [String, nil] This is the URL you use to render optimized attachments on the client. This shou
         #
         #   @param source_url [String, nil] The original URL of the attachment, such as a direct link to S3. This should nev
-      end
-
-      # The visibility of the course. Determines how / whether this course is visible to
-      # users.
-      #
-      # @see WhopSDK::Models::Course#visibility
-      module Visibility
-        extend WhopSDK::Internal::Type::Enum
-
-        VISIBLE = :visible
-        HIDDEN = :hidden
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
     end
   end

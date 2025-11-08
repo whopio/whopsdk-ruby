@@ -65,9 +65,7 @@ module WhopSDK
 
       # The visibility of the course. Determines how / whether this course is visible to
       # users.
-      sig do
-        returns(WhopSDK::Models::CourseListResponse::Visibility::TaggedSymbol)
-      end
+      sig { returns(WhopSDK::CourseVisibilities::TaggedSymbol) }
       attr_accessor :visibility
 
       # A course from the courses app
@@ -85,7 +83,7 @@ module WhopSDK
             T.nilable(WhopSDK::Models::CourseListResponse::Thumbnail::OrHash),
           title: T.nilable(String),
           updated_at: Time,
-          visibility: WhopSDK::Models::CourseListResponse::Visibility::OrSymbol
+          visibility: WhopSDK::CourseVisibilities::OrSymbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -135,8 +133,7 @@ module WhopSDK
               T.nilable(WhopSDK::Models::CourseListResponse::Thumbnail),
             title: T.nilable(String),
             updated_at: Time,
-            visibility:
-              WhopSDK::Models::CourseListResponse::Visibility::TaggedSymbol
+            visibility: WhopSDK::CourseVisibilities::TaggedSymbol
           }
         )
       end
@@ -212,39 +209,6 @@ module WhopSDK
           )
         end
         def to_hash
-        end
-      end
-
-      # The visibility of the course. Determines how / whether this course is visible to
-      # users.
-      module Visibility
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::Models::CourseListResponse::Visibility)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        VISIBLE =
-          T.let(
-            :visible,
-            WhopSDK::Models::CourseListResponse::Visibility::TaggedSymbol
-          )
-        HIDDEN =
-          T.let(
-            :hidden,
-            WhopSDK::Models::CourseListResponse::Visibility::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::Models::CourseListResponse::Visibility::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
         end
       end
     end

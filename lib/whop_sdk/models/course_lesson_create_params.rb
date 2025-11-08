@@ -40,8 +40,8 @@ module WhopSDK
       # @!attribute embed_type
       #   The type of embed for a lesson
       #
-      #   @return [Symbol, WhopSDK::Models::CourseLessonCreateParams::EmbedType, nil]
-      optional :embed_type, enum: -> { WhopSDK::CourseLessonCreateParams::EmbedType }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::EmbedType, nil]
+      optional :embed_type, enum: -> { WhopSDK::EmbedType }, nil?: true
 
       # @!attribute thumbnail
       #   The thumbnail for the lesson in png, jpeg, or gif format
@@ -66,24 +66,13 @@ module WhopSDK
       #
       #   @param embed_id [String, nil] ID for the embed (YouTube video ID or Loom share ID)
       #
-      #   @param embed_type [Symbol, WhopSDK::Models::CourseLessonCreateParams::EmbedType, nil] The type of embed for a lesson
+      #   @param embed_type [Symbol, WhopSDK::Models::EmbedType, nil] The type of embed for a lesson
       #
       #   @param thumbnail [WhopSDK::Models::CourseLessonCreateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonCreateParams::Thumbnail::AttachmentInputWithID, nil] The thumbnail for the lesson in png, jpeg, or gif format
       #
       #   @param title [String, nil] The title of the lesson
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
-
-      # The type of embed for a lesson
-      module EmbedType
-        extend WhopSDK::Internal::Type::Enum
-
-        YOUTUBE = :youtube
-        LOOM = :loom
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
 
       # The thumbnail for the lesson in png, jpeg, or gif format
       module Thumbnail

@@ -76,8 +76,8 @@ module WhopSDK
       #   The available visibilities for a course. Determines how / whether a course is
       #   visible to users.
       #
-      #   @return [Symbol, WhopSDK::Models::CourseUpdateParams::Visibility, nil]
-      optional :visibility, enum: -> { WhopSDK::CourseUpdateParams::Visibility }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::CourseVisibilities, nil]
+      optional :visibility, enum: -> { WhopSDK::CourseVisibilities }, nil?: true
 
       # @!method initialize(certificate_after_completion_enabled: nil, chapters: nil, cover_image: nil, description: nil, language: nil, order: nil, require_completing_lessons_in_order: nil, tagline: nil, thumbnail: nil, title: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
@@ -103,7 +103,7 @@ module WhopSDK
       #
       #   @param title [String, nil] The title of the course
       #
-      #   @param visibility [Symbol, WhopSDK::Models::CourseUpdateParams::Visibility, nil] The available visibilities for a course. Determines how / whether a course is vi
+      #   @param visibility [Symbol, WhopSDK::Models::CourseVisibilities, nil] The available visibilities for a course. Determines how / whether a course is vi
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
@@ -233,18 +233,6 @@ module WhopSDK
 
         # @!method self.variants
         #   @return [Array(WhopSDK::Models::CourseUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseUpdateParams::Thumbnail::AttachmentInputWithID)]
-      end
-
-      # The available visibilities for a course. Determines how / whether a course is
-      # visible to users.
-      module Visibility
-        extend WhopSDK::Internal::Type::Enum
-
-        VISIBLE = :visible
-        HIDDEN = :hidden
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
     end
   end

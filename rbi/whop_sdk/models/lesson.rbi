@@ -31,7 +31,7 @@ module WhopSDK
       attr_accessor :embed_id
 
       # The type of embed for a lesson
-      sig { returns(T.nilable(WhopSDK::Lesson::EmbedType::TaggedSymbol)) }
+      sig { returns(T.nilable(WhopSDK::EmbedType::TaggedSymbol)) }
       attr_accessor :embed_type
 
       # The type of the lesson (text, video, pdf, multi, quiz, knowledge_check)
@@ -86,7 +86,7 @@ module WhopSDK
           content: T.nilable(String),
           days_from_course_start_until_unlock: T.nilable(Integer),
           embed_id: T.nilable(String),
-          embed_type: T.nilable(WhopSDK::Lesson::EmbedType::OrSymbol),
+          embed_type: T.nilable(WhopSDK::EmbedType::OrSymbol),
           lesson_type: WhopSDK::LessonTypes::OrSymbol,
           main_pdf: T.nilable(WhopSDK::Lesson::MainPdf::OrHash),
           order: Integer,
@@ -138,7 +138,7 @@ module WhopSDK
             content: T.nilable(String),
             days_from_course_start_until_unlock: T.nilable(Integer),
             embed_id: T.nilable(String),
-            embed_type: T.nilable(WhopSDK::Lesson::EmbedType::TaggedSymbol),
+            embed_type: T.nilable(WhopSDK::EmbedType::TaggedSymbol),
             lesson_type: WhopSDK::LessonTypes::TaggedSymbol,
             main_pdf: T.nilable(WhopSDK::Lesson::MainPdf),
             order: Integer,
@@ -435,24 +435,6 @@ module WhopSDK
           )
         end
         def to_hash
-        end
-      end
-
-      # The type of embed for a lesson
-      module EmbedType
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, WhopSDK::Lesson::EmbedType) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        YOUTUBE = T.let(:youtube, WhopSDK::Lesson::EmbedType::TaggedSymbol)
-        LOOM = T.let(:loom, WhopSDK::Lesson::EmbedType::TaggedSymbol)
-
-        sig do
-          override.returns(T::Array[WhopSDK::Lesson::EmbedType::TaggedSymbol])
-        end
-        def self.values
         end
       end
 

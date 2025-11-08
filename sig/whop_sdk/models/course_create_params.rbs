@@ -10,7 +10,7 @@ module WhopSDK
         require_completing_lessons_in_order: bool?,
         tagline: String?,
         thumbnail: WhopSDK::Models::CourseCreateParams::thumbnail?,
-        visibility: WhopSDK::Models::CourseCreateParams::visibility?
+        visibility: WhopSDK::Models::course_visibilities?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -34,7 +34,7 @@ module WhopSDK
 
       attr_accessor thumbnail: WhopSDK::Models::CourseCreateParams::thumbnail?
 
-      attr_accessor visibility: WhopSDK::Models::CourseCreateParams::visibility?
+      attr_accessor visibility: WhopSDK::Models::course_visibilities?
 
       def initialize: (
         experience_id: String,
@@ -45,7 +45,7 @@ module WhopSDK
         ?require_completing_lessons_in_order: bool?,
         ?tagline: String?,
         ?thumbnail: WhopSDK::Models::CourseCreateParams::thumbnail?,
-        ?visibility: WhopSDK::Models::CourseCreateParams::visibility?,
+        ?visibility: WhopSDK::Models::course_visibilities?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -58,7 +58,7 @@ module WhopSDK
         require_completing_lessons_in_order: bool?,
         tagline: String?,
         thumbnail: WhopSDK::Models::CourseCreateParams::thumbnail?,
-        visibility: WhopSDK::Models::CourseCreateParams::visibility?,
+        visibility: WhopSDK::Models::course_visibilities?,
         request_options: WhopSDK::RequestOptions
       }
 
@@ -91,17 +91,6 @@ module WhopSDK
         end
 
         def self?.variants: -> ::Array[WhopSDK::Models::CourseCreateParams::thumbnail]
-      end
-
-      type visibility = :visible | :hidden
-
-      module Visibility
-        extend WhopSDK::Internal::Type::Enum
-
-        VISIBLE: :visible
-        HIDDEN: :hidden
-
-        def self?.values: -> ::Array[WhopSDK::Models::CourseCreateParams::visibility]
       end
     end
   end

@@ -54,8 +54,8 @@ module WhopSDK
       # @!attribute embed_type
       #   The type of embed for a lesson
       #
-      #   @return [Symbol, WhopSDK::Models::CourseLessonUpdateParams::EmbedType, nil]
-      optional :embed_type, enum: -> { WhopSDK::CourseLessonUpdateParams::EmbedType }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::EmbedType, nil]
+      optional :embed_type, enum: -> { WhopSDK::EmbedType }, nil?: true
 
       # @!attribute lesson_type
       #   The available types for a lesson
@@ -116,7 +116,7 @@ module WhopSDK
       #
       #   @param embed_id [String, nil] ID for the embed (YouTube video ID or Loom share ID)
       #
-      #   @param embed_type [Symbol, WhopSDK::Models::CourseLessonUpdateParams::EmbedType, nil] The type of embed for a lesson
+      #   @param embed_type [Symbol, WhopSDK::Models::EmbedType, nil] The type of embed for a lesson
       #
       #   @param lesson_type [Symbol, WhopSDK::Models::LessonTypes, nil] The available types for a lesson
       #
@@ -365,17 +365,6 @@ module WhopSDK
 
         # @!method self.variants
         #   @return [Array(WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithID)]
-      end
-
-      # The type of embed for a lesson
-      module EmbedType
-        extend WhopSDK::Internal::Type::Enum
-
-        YOUTUBE = :youtube
-        LOOM = :loom
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
 
       # The main PDF file for this lesson

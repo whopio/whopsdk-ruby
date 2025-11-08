@@ -24,8 +24,7 @@ module WhopSDK
                 WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithID::OrHash
               )
             ),
-          visibility:
-            T.nilable(WhopSDK::CourseCreateParams::Visibility::OrSymbol),
+          visibility: T.nilable(WhopSDK::CourseVisibilities::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Course)
       end
@@ -100,8 +99,7 @@ module WhopSDK
               )
             ),
           title: T.nilable(String),
-          visibility:
-            T.nilable(WhopSDK::CourseUpdateParams::Visibility::OrSymbol),
+          visibility: T.nilable(WhopSDK::CourseVisibilities::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Course)
       end

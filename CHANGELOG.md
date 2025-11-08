@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.0.5 (2025-11-08)
+
+Full Changelog: [v0.0.4...v0.0.5](https://github.com/whopio/whopsdk-ruby/compare/v0.0.4...v0.0.5)
+
+### Features
+
+* **api:** api update ([004569d](https://github.com/whopio/whopsdk-ruby/commit/004569d4a072e5601649fa95ac7ef94e2899ff27))
+* **api:** api update ([9d6bd6c](https://github.com/whopio/whopsdk-ruby/commit/9d6bd6cc2175d40a88de394eab0c46d419b959a3))
+* **api:** api update ([b3c2d9f](https://github.com/whopio/whopsdk-ruby/commit/b3c2d9fc0e1e4a3bf25dc220d347bd44e07e5583))
+* **api:** api update ([d7313ca](https://github.com/whopio/whopsdk-ruby/commit/d7313cac52bdc1dcc76d1154418c97c24b84d381))
+* **api:** api update ([02d0ec1](https://github.com/whopio/whopsdk-ruby/commit/02d0ec11a555f7d5a16827c4b6d9c4010ef14bd2))
+* **api:** api update ([9995686](https://github.com/whopio/whopsdk-ruby/commit/9995686b5552d60a39f8523d7c0052cf5b1acfd5))
+* **api:** api update ([53eb5c1](https://github.com/whopio/whopsdk-ruby/commit/53eb5c18cb24f630d6353fa7c1281fc97d7c5292))
+* **api:** manual updates ([55961b2](https://github.com/whopio/whopsdk-ruby/commit/55961b26868a3df976aa07393fff947df5fdebe7))
+
+
+### Bug Fixes
+
+* better thread safety via early initializing SSL store during HTTP client creation ([80ee4a2](https://github.com/whopio/whopsdk-ruby/commit/80ee4a25aac1e217cfdfac3443280f23391a5afa))
+
+
+### Chores
+
+* bump dependency version and update sorbet types ([70e8094](https://github.com/whopio/whopsdk-ruby/commit/70e8094874d1701d0162b92d1a788abcb3ea4335))
+
 ## 0.0.4 (2025-11-02)
 
 Full Changelog: [v0.0.3...v0.0.4](https://github.com/whopio/whopsdk-ruby/compare/v0.0.3...v0.0.4)

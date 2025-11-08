@@ -6,15 +6,16 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::AccessTokenCreateParams} for more details.
       #
-      # Creates an access token for a user
+      # Creates an access token for a user to access a specific resource. These access
+      # tokens are designed to be used with Whop's embedded components.
       #
       # @overload create(scoped_actions:, target_resource_id:, target_resource_type:, expires_at: nil, request_options: {})
       #
-      # @param scoped_actions [Array<String>] Array of desired scoped actions for the access token.
+      # @param scoped_actions [Array<String>] Array of desired scoped actions for the access token. This list must be a subset
       #
-      # @param target_resource_id [String] The ID of the target resource (Company or User) for which the access token is be
+      # @param target_resource_id [String] The ID of the target resource (Company, User, etc.) for which the access token i
       #
-      # @param target_resource_type [Symbol, WhopSDK::Models::AccessTokenCreateParams::TargetResourceType] The type of the target resource (Company or User).
+      # @param target_resource_type [Symbol, WhopSDK::Models::AccessTokenCreateParams::TargetResourceType] The type of the target resource (company, user, product, experience, etc.).
       #
       # @param expires_at [Time, nil] The expiration timestamp for the access token. If not provided, a default expira
       #

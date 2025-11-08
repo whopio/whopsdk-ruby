@@ -11,23 +11,25 @@ module WhopSDK
           T.any(WhopSDK::AccessTokenCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # Array of desired scoped actions for the access token.
+      # Array of desired scoped actions for the access token. This list must be a subset
+      # of the API keys's existing permissions. Otherwise, an error will be raised.
       sig { returns(T::Array[String]) }
       attr_accessor :scoped_actions
 
-      # The ID of the target resource (Company or User) for which the access token is
-      # being created.
+      # The ID of the target resource (Company, User, etc.) for which the access token
+      # is being created.
       sig { returns(String) }
       attr_accessor :target_resource_id
 
-      # The type of the target resource (Company or User).
+      # The type of the target resource (company, user, product, experience, etc.).
       sig do
         returns(WhopSDK::AccessTokenCreateParams::TargetResourceType::OrSymbol)
       end
       attr_accessor :target_resource_type
 
       # The expiration timestamp for the access token. If not provided, a default
-      # expiration time will be used.
+      # expiration time of 1 hour will be used. The expiration can be set to a maximum
+      # of 3 hours from the current time.
       sig { returns(T.nilable(Time)) }
       attr_accessor :expires_at
 
@@ -42,15 +44,17 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # Array of desired scoped actions for the access token.
+        # Array of desired scoped actions for the access token. This list must be a subset
+        # of the API keys's existing permissions. Otherwise, an error will be raised.
         scoped_actions:,
-        # The ID of the target resource (Company or User) for which the access token is
-        # being created.
+        # The ID of the target resource (Company, User, etc.) for which the access token
+        # is being created.
         target_resource_id:,
-        # The type of the target resource (Company or User).
+        # The type of the target resource (company, user, product, experience, etc.).
         target_resource_type:,
         # The expiration timestamp for the access token. If not provided, a default
-        # expiration time will be used.
+        # expiration time of 1 hour will be used. The expiration can be set to a maximum
+        # of 3 hours from the current time.
         expires_at: nil,
         request_options: {}
       )
@@ -71,7 +75,7 @@ module WhopSDK
       def to_hash
       end
 
-      # The type of the target resource (Company or User).
+      # The type of the target resource (company, user, product, experience, etc.).
       module TargetResourceType
         extend WhopSDK::Internal::Type::Enum
 

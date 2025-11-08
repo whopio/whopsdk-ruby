@@ -14,6 +14,7 @@ module WhopSDK
           title: String,
           certificate_after_completion_enabled: T.nilable(T::Boolean),
           cover_image: T.nilable(String),
+          order: T.nilable(String),
           require_completing_lessons_in_order: T.nilable(T::Boolean),
           tagline: T.nilable(String),
           thumbnail:
@@ -23,6 +24,7 @@ module WhopSDK
                 WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithID::OrHash
               )
             ),
+          visibility: T.nilable(WhopSDK::CourseVisibilities::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Course)
       end
@@ -36,6 +38,10 @@ module WhopSDK
         certificate_after_completion_enabled: nil,
         # The cover image URL of the course
         cover_image: nil,
+        # The decimal order position of the course within its experience. If not provided,
+        # it will be set to the next sequential order. Use fractional values (e.g., 1.5)
+        # to place between existing courses.
+        order: nil,
         # Whether the course requires students to complete the previous lesson before
         # moving on to the next one
         require_completing_lessons_in_order: nil,
@@ -43,6 +49,9 @@ module WhopSDK
         tagline: nil,
         # The thumbnail for the course in png, jpeg, or gif format
         thumbnail: nil,
+        # The available visibilities for a course. Determines how / whether a course is
+        # visible to users.
+        visibility: nil,
         request_options: {}
       )
       end
@@ -58,7 +67,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Course)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the course
+        id,
+        request_options: {}
+      )
       end
 
       # Updates a course
@@ -75,6 +88,7 @@ module WhopSDK
           cover_image: T.nilable(String),
           description: T.nilable(String),
           language: T.nilable(WhopSDK::Languages::OrSymbol),
+          order: T.nilable(String),
           require_completing_lessons_in_order: T.nilable(T::Boolean),
           tagline: T.nilable(String),
           thumbnail:
@@ -85,10 +99,12 @@ module WhopSDK
               )
             ),
           title: T.nilable(String),
+          visibility: T.nilable(WhopSDK::CourseVisibilities::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Course)
       end
       def update(
+        # The ID of the course to update
         id,
         # Whether the course will award its students a PDF certificate after completing
         # all lessons
@@ -101,6 +117,9 @@ module WhopSDK
         description: nil,
         # The available languages for a course
         language: nil,
+        # The decimal order position of the course within its experience. Use fractional
+        # values (e.g., 1.5) to place between existing courses.
+        order: nil,
         # Whether the course requires students to complete the previous lesson before
         # moving on to the next one
         require_completing_lessons_in_order: nil,
@@ -110,6 +129,9 @@ module WhopSDK
         thumbnail: nil,
         # The title of the course
         title: nil,
+        # The available visibilities for a course. Determines how / whether a course is
+        # visible to users.
+        visibility: nil,
         request_options: {}
       )
       end
@@ -160,7 +182,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T::Boolean)
       end
-      def delete(id, request_options: {})
+      def delete(
+        # The ID of the course to delete
+        id,
+        request_options: {}
+      )
       end
 
       # @api private

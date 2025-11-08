@@ -14,7 +14,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Membership)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the membership or a license key
+        id,
+        request_options: {}
+      )
       end
 
       # Update a membership
@@ -31,6 +35,7 @@ module WhopSDK
         ).returns(WhopSDK::Membership)
       end
       def update(
+        # The ID of the membership.
         id,
         # The metadata to update the membership with.
         metadata: nil,
@@ -45,7 +50,6 @@ module WhopSDK
       # - `member:basic:read`
       sig do
         params(
-          access_pass_ids: T.nilable(T::Array[String]),
           after: T.nilable(String),
           before: T.nilable(String),
           cancel_options:
@@ -60,6 +64,7 @@ module WhopSDK
           last: T.nilable(Integer),
           order: T.nilable(WhopSDK::MembershipListParams::Order::OrSymbol),
           plan_ids: T.nilable(T::Array[String]),
+          product_ids: T.nilable(T::Array[String]),
           promo_code_ids: T.nilable(T::Array[String]),
           statuses: T.nilable(T::Array[WhopSDK::MembershipStatus::OrSymbol]),
           user_ids: T.nilable(T::Array[String]),
@@ -69,8 +74,6 @@ module WhopSDK
         )
       end
       def list(
-        # The access pass IDs to filter the memberships by
-        access_pass_ids: nil,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
@@ -93,6 +96,8 @@ module WhopSDK
         order: nil,
         # The plan IDs to filter the memberships by
         plan_ids: nil,
+        # The product IDs to filter the memberships by
+        product_ids: nil,
         # The promo code IDs to filter the memberships by
         promo_code_ids: nil,
         # The membership status to filter the memberships by
@@ -121,6 +126,7 @@ module WhopSDK
         ).returns(WhopSDK::Membership)
       end
       def cancel(
+        # The ID of the membership.
         id,
         # The mode of cancellation for a membership
         cancellation_mode: nil,
@@ -142,6 +148,7 @@ module WhopSDK
         ).returns(WhopSDK::Membership)
       end
       def pause(
+        # The ID of the membership you want to pause.
         id,
         # Whether to void past_due payments associated with the membership to prevent
         # future payment attempts.
@@ -162,7 +169,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Membership)
       end
-      def resume(id, request_options: {})
+      def resume(
+        # The ID of the membership you want to resume.
+        id,
+        request_options: {}
+      )
       end
 
       # @api private

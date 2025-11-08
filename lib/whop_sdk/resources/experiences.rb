@@ -37,7 +37,8 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the experience
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::Experience]
@@ -58,7 +59,7 @@ module WhopSDK
       #
       # @overload update(id, access_level: nil, logo: nil, name: nil, order: nil, section_id: nil, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The id of the experience to update.
       #
       # @param access_level [Symbol, WhopSDK::Models::ExperienceUpdateParams::AccessLevel, nil] The different access levels for experiences (PUBLIC IS NEVER USED ANYMORE).
       #
@@ -131,7 +132,8 @@ module WhopSDK
       #
       # @overload delete(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The internal ID of the experience to delete.
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Boolean]
@@ -155,7 +157,7 @@ module WhopSDK
       #
       # @overload attach(id, product_id:, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the Experience to be added to an Access Pass.
       #
       # @param product_id [String] The ID of the Access Pass to add the Experience to.
       #
@@ -184,7 +186,7 @@ module WhopSDK
       #
       # @overload detach(id, product_id:, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the Experience to be added to an Access Pass.
       #
       # @param product_id [String] The ID of the Access Pass to add the Experience to.
       #
@@ -217,7 +219,7 @@ module WhopSDK
       #
       # @overload duplicate(id, name: nil, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the experience to duplicate
       #
       # @param name [String, nil] The name of the new experience
       #

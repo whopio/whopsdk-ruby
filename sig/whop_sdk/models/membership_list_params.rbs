@@ -2,7 +2,6 @@ module WhopSDK
   module Models
     type membership_list_params =
       {
-        access_pass_ids: ::Array[String]?,
         after: String?,
         before: String?,
         cancel_options: ::Array[WhopSDK::Models::MembershipListParams::cancel_option]?,
@@ -14,6 +13,7 @@ module WhopSDK
         last: Integer?,
         order: WhopSDK::Models::MembershipListParams::order?,
         plan_ids: ::Array[String]?,
+        product_ids: ::Array[String]?,
         promo_code_ids: ::Array[String]?,
         statuses: ::Array[WhopSDK::Models::membership_status]?,
         user_ids: ::Array[String]?
@@ -23,8 +23,6 @@ module WhopSDK
     class MembershipListParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
-
-      attr_accessor access_pass_ids: ::Array[String]?
 
       attr_accessor after: String?
 
@@ -48,6 +46,8 @@ module WhopSDK
 
       attr_accessor plan_ids: ::Array[String]?
 
+      attr_accessor product_ids: ::Array[String]?
+
       attr_accessor promo_code_ids: ::Array[String]?
 
       attr_accessor statuses: ::Array[WhopSDK::Models::membership_status]?
@@ -55,7 +55,6 @@ module WhopSDK
       attr_accessor user_ids: ::Array[String]?
 
       def initialize: (
-        ?access_pass_ids: ::Array[String]?,
         ?after: String?,
         ?before: String?,
         ?cancel_options: ::Array[WhopSDK::Models::MembershipListParams::cancel_option]?,
@@ -67,6 +66,7 @@ module WhopSDK
         ?last: Integer?,
         ?order: WhopSDK::Models::MembershipListParams::order?,
         ?plan_ids: ::Array[String]?,
+        ?product_ids: ::Array[String]?,
         ?promo_code_ids: ::Array[String]?,
         ?statuses: ::Array[WhopSDK::Models::membership_status]?,
         ?user_ids: ::Array[String]?,
@@ -74,7 +74,6 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
-        access_pass_ids: ::Array[String]?,
         after: String?,
         before: String?,
         cancel_options: ::Array[WhopSDK::Models::MembershipListParams::cancel_option]?,
@@ -86,6 +85,7 @@ module WhopSDK
         last: Integer?,
         order: WhopSDK::Models::MembershipListParams::order?,
         plan_ids: ::Array[String]?,
+        product_ids: ::Array[String]?,
         promo_code_ids: ::Array[String]?,
         statuses: ::Array[WhopSDK::Models::membership_status]?,
         user_ids: ::Array[String]?,

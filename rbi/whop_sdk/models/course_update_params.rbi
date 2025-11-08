@@ -32,6 +32,11 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::Languages::OrSymbol)) }
       attr_accessor :language
 
+      # The decimal order position of the course within its experience. Use fractional
+      # values (e.g., 1.5) to place between existing courses.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :order
+
       # Whether the course requires students to complete the previous lesson before
       # moving on to the next one
       sig { returns(T.nilable(T::Boolean)) }
@@ -58,6 +63,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
+      # The available visibilities for a course. Determines how / whether a course is
+      # visible to users.
+      sig { returns(T.nilable(WhopSDK::CourseVisibilities::OrSymbol)) }
+      attr_accessor :visibility
+
       sig do
         params(
           certificate_after_completion_enabled: T.nilable(T::Boolean),
@@ -66,6 +76,7 @@ module WhopSDK
           cover_image: T.nilable(String),
           description: T.nilable(String),
           language: T.nilable(WhopSDK::Languages::OrSymbol),
+          order: T.nilable(String),
           require_completing_lessons_in_order: T.nilable(T::Boolean),
           tagline: T.nilable(String),
           thumbnail:
@@ -76,6 +87,7 @@ module WhopSDK
               )
             ),
           title: T.nilable(String),
+          visibility: T.nilable(WhopSDK::CourseVisibilities::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -91,6 +103,9 @@ module WhopSDK
         description: nil,
         # The available languages for a course
         language: nil,
+        # The decimal order position of the course within its experience. Use fractional
+        # values (e.g., 1.5) to place between existing courses.
+        order: nil,
         # Whether the course requires students to complete the previous lesson before
         # moving on to the next one
         require_completing_lessons_in_order: nil,
@@ -100,6 +115,9 @@ module WhopSDK
         thumbnail: nil,
         # The title of the course
         title: nil,
+        # The available visibilities for a course. Determines how / whether a course is
+        # visible to users.
+        visibility: nil,
         request_options: {}
       )
       end
@@ -112,6 +130,7 @@ module WhopSDK
             cover_image: T.nilable(String),
             description: T.nilable(String),
             language: T.nilable(WhopSDK::Languages::OrSymbol),
+            order: T.nilable(String),
             require_completing_lessons_in_order: T.nilable(T::Boolean),
             tagline: T.nilable(String),
             thumbnail:
@@ -122,6 +141,7 @@ module WhopSDK
                 )
               ),
             title: T.nilable(String),
+            visibility: T.nilable(WhopSDK::CourseVisibilities::OrSymbol),
             request_options: WhopSDK::RequestOptions
           }
         )

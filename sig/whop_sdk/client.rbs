@@ -74,6 +74,8 @@ module WhopSDK
 
     attr_reader course_students: WhopSDK::Resources::CourseStudents
 
+    attr_reader access_tokens: WhopSDK::Resources::AccessTokens
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

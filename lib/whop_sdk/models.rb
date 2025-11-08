@@ -43,6 +43,8 @@ module WhopSDK
 
   AccessPassType = WhopSDK::Models::AccessPassType
 
+  AccessTokenCreateParams = WhopSDK::Models::AccessTokenCreateParams
+
   App = WhopSDK::Models::App
 
   AppBuild = WhopSDK::Models::AppBuild
@@ -160,6 +162,8 @@ module WhopSDK
 
   CourseUpdateParams = WhopSDK::Models::CourseUpdateParams
 
+  CourseVisibilities = WhopSDK::Models::CourseVisibilities
+
   Currency = WhopSDK::Models::Currency
 
   CustomCta = WhopSDK::Models::CustomCta
@@ -169,6 +173,8 @@ module WhopSDK
   DmsPostTypes = WhopSDK::Models::DmsPostTypes
 
   EmailNotificationPreferences = WhopSDK::Models::EmailNotificationPreferences
+
+  EmbedType = WhopSDK::Models::EmbedType
 
   Entry = WhopSDK::Models::Entry
 

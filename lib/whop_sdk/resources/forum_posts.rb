@@ -58,7 +58,8 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the forum post
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::ForumPost]
@@ -80,7 +81,7 @@ module WhopSDK
       #
       # @overload update(id, attachments: nil, content: nil, is_pinned: nil, title: nil, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the forum post to update
       #
       # @param attachments [Array<WhopSDK::Models::ForumPostUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::ForumPostUpdateParams::Attachment::AttachmentInputWithID>, nil] The attachments for this post
       #

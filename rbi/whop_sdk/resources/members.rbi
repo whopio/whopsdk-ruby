@@ -16,7 +16,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::MemberRetrieveResponse)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the member
+        id,
+        request_options: {}
+      )
       end
 
       # List the members of a company
@@ -30,7 +34,6 @@ module WhopSDK
         params(
           company_id: String,
           access_level: T.nilable(WhopSDK::AccessLevel::OrSymbol),
-          access_pass_ids: T.nilable(T::Array[String]),
           after: T.nilable(String),
           before: T.nilable(String),
           created_after: T.nilable(Time),
@@ -42,6 +45,7 @@ module WhopSDK
             T.nilable(T::Array[WhopSDK::MemberMostRecentActions::OrSymbol]),
           order: T.nilable(WhopSDK::MemberListParams::Order::OrSymbol),
           plan_ids: T.nilable(T::Array[String]),
+          product_ids: T.nilable(T::Array[String]),
           promo_code_ids: T.nilable(T::Array[String]),
           query: T.nilable(String),
           statuses: T.nilable(T::Array[WhopSDK::MemberStatuses::OrSymbol]),
@@ -54,10 +58,8 @@ module WhopSDK
       def list(
         # The ID of the company to list members for
         company_id:,
-        # The access level a given user (or company) has to an access pass or company.
+        # The access level a given user (or company) has to a product or company.
         access_level: nil,
-        # The access pass IDs to filter the members by
-        access_pass_ids: nil,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
@@ -78,6 +80,8 @@ module WhopSDK
         order: nil,
         # The plan IDs to filter the members by
         plan_ids: nil,
+        # The product IDs to filter the members by
+        product_ids: nil,
         # The promo code IDs to filter the members by
         promo_code_ids: nil,
         # The name, username, or email to filter the members by. The email filter will

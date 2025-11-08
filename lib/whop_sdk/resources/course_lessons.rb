@@ -9,7 +9,7 @@ module WhopSDK
       #
       # - `courses:update`
       #
-      # @overload create(chapter_id:, lesson_type:, content: nil, days_from_course_start_until_unlock: nil, title: nil, request_options: {})
+      # @overload create(chapter_id:, lesson_type:, content: nil, days_from_course_start_until_unlock: nil, embed_id: nil, embed_type: nil, thumbnail: nil, title: nil, request_options: {})
       #
       # @param chapter_id [String] The ID of the chapter to create the lesson in
       #
@@ -18,6 +18,12 @@ module WhopSDK
       # @param content [String, nil] The content of the lesson
       #
       # @param days_from_course_start_until_unlock [Integer, nil] Days from course start until unlock
+      #
+      # @param embed_id [String, nil] ID for the embed (YouTube video ID or Loom share ID)
+      #
+      # @param embed_type [Symbol, WhopSDK::Models::EmbedType, nil] The type of embed for a lesson
+      #
+      # @param thumbnail [WhopSDK::Models::CourseLessonCreateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonCreateParams::Thumbnail::AttachmentInputWithID, nil] The thumbnail for the lesson in png, jpeg, or gif format
       #
       # @param title [String, nil] The title of the lesson
       #
@@ -45,7 +51,8 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the lesson
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::Lesson]
@@ -69,9 +76,9 @@ module WhopSDK
       #
       # - `courses:update`
       #
-      # @overload update(id, assessment_completion_requirement: nil, assessment_questions: nil, attachments: nil, content: nil, days_from_course_start_until_unlock: nil, lesson_type: nil, main_pdf: nil, max_attempts: nil, mux_asset_id: nil, title: nil, visibility: nil, request_options: {})
+      # @overload update(id, assessment_completion_requirement: nil, assessment_questions: nil, attachments: nil, content: nil, days_from_course_start_until_unlock: nil, embed_id: nil, embed_type: nil, lesson_type: nil, main_pdf: nil, max_attempts: nil, mux_asset_id: nil, thumbnail: nil, title: nil, visibility: nil, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the lesson to update
       #
       # @param assessment_completion_requirement [WhopSDK::Models::CourseLessonUpdateParams::AssessmentCompletionRequirement, nil] Completion requirements for quiz/knowledge check lessons
       #
@@ -83,6 +90,10 @@ module WhopSDK
       #
       # @param days_from_course_start_until_unlock [Integer, nil] Days from course start until unlock
       #
+      # @param embed_id [String, nil] ID for the embed (YouTube video ID or Loom share ID)
+      #
+      # @param embed_type [Symbol, WhopSDK::Models::EmbedType, nil] The type of embed for a lesson
+      #
       # @param lesson_type [Symbol, WhopSDK::Models::LessonTypes, nil] The available types for a lesson
       #
       # @param main_pdf [WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID, nil] The main PDF file for this lesson
@@ -90,6 +101,8 @@ module WhopSDK
       # @param max_attempts [Integer, nil] Maximum number of attempts allowed for assessments
       #
       # @param mux_asset_id [String, nil] The ID of the Mux asset to attach to this lesson for video lessons
+      #
+      # @param thumbnail [WhopSDK::Models::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithID, nil] The thumbnail for the lesson in png, jpeg, or gif format
       #
       # @param title [String, nil] The title of the lesson
       #
@@ -156,7 +169,8 @@ module WhopSDK
       #
       # @overload delete(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the lesson to delete
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Boolean]

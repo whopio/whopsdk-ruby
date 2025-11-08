@@ -7,10 +7,12 @@ module WhopSDK
         cover_image: String?,
         description: String?,
         language: WhopSDK::Models::languages?,
+        order: String?,
         require_completing_lessons_in_order: bool?,
         tagline: String?,
         thumbnail: WhopSDK::Models::CourseUpdateParams::thumbnail?,
-        title: String?
+        title: String?,
+        visibility: WhopSDK::Models::course_visibilities?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -28,6 +30,8 @@ module WhopSDK
 
       attr_accessor language: WhopSDK::Models::languages?
 
+      attr_accessor order: String?
+
       attr_accessor require_completing_lessons_in_order: bool?
 
       attr_accessor tagline: String?
@@ -36,16 +40,20 @@ module WhopSDK
 
       attr_accessor title: String?
 
+      attr_accessor visibility: WhopSDK::Models::course_visibilities?
+
       def initialize: (
         ?certificate_after_completion_enabled: bool?,
         ?chapters: ::Array[WhopSDK::CourseUpdateParams::Chapter]?,
         ?cover_image: String?,
         ?description: String?,
         ?language: WhopSDK::Models::languages?,
+        ?order: String?,
         ?require_completing_lessons_in_order: bool?,
         ?tagline: String?,
         ?thumbnail: WhopSDK::Models::CourseUpdateParams::thumbnail?,
         ?title: String?,
+        ?visibility: WhopSDK::Models::course_visibilities?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -55,10 +63,12 @@ module WhopSDK
         cover_image: String?,
         description: String?,
         language: WhopSDK::Models::languages?,
+        order: String?,
         require_completing_lessons_in_order: bool?,
         tagline: String?,
         thumbnail: WhopSDK::Models::CourseUpdateParams::thumbnail?,
         title: String?,
+        visibility: WhopSDK::Models::course_visibilities?,
         request_options: WhopSDK::RequestOptions
       }
 

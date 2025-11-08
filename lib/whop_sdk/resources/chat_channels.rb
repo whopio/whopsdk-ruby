@@ -3,6 +3,9 @@
 module WhopSDK
   module Resources
     class ChatChannels
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::ChatChannelRetrieveParams} for more details.
+      #
       # Retrieves a chat channel
       #
       # Required permissions:
@@ -11,7 +14,8 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the chat channel to fetch, it can be an experience ID or a chat channe
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::ChatChannel]
@@ -26,6 +30,9 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::ChatChannelUpdateParams} for more details.
+      #
       # Updates a chat channel
       #
       # Required permissions:
@@ -34,7 +41,7 @@ module WhopSDK
       #
       # @overload update(id, ban_media: nil, ban_urls: nil, banned_words: nil, user_posts_cooldown_seconds: nil, who_can_post: nil, who_can_react: nil, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the chat channel to update. Can be an experience ID or a chat feed ext
       #
       # @param ban_media [Boolean, nil] Whether media uploads are banned in this chat
       #

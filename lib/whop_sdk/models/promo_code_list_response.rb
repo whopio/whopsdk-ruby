@@ -72,7 +72,7 @@ module WhopSDK
       required :one_per_customer, WhopSDK::Internal::Type::Boolean
 
       # @!attribute product
-      #   The access pass associated with the promo code.
+      #   The product this promo code applies to
       #
       #   @return [WhopSDK::Models::PromoCodeListResponse::Product, nil]
       required :product, -> { WhopSDK::Models::PromoCodeListResponse::Product }, nil?: true
@@ -141,7 +141,7 @@ module WhopSDK
       #
       #   @param one_per_customer [Boolean] Restricts promo use to only be applied once per customer.
       #
-      #   @param product [WhopSDK::Models::PromoCodeListResponse::Product, nil] The access pass associated with the promo code.
+      #   @param product [WhopSDK::Models::PromoCodeListResponse::Product, nil] The product this promo code applies to
       #
       #   @param promo_duration_months [Integer, nil] The number of months the promo is applied for.
       #
@@ -170,7 +170,7 @@ module WhopSDK
         required :title, String
 
         # @!method initialize(id:, title:)
-        #   The access pass associated with the promo code.
+        #   The product this promo code applies to
         #
         #   @param id [String] The internal ID of the public product.
         #

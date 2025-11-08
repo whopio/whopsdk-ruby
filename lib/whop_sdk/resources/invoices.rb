@@ -62,7 +62,8 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the invoice or a token
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::Invoice]
@@ -84,7 +85,7 @@ module WhopSDK
       # - `invoice:basic:read`
       # - `plan:basic:read`
       #
-      # @overload list(company_id:, after: nil, before: nil, direction: nil, filters: nil, first: nil, last: nil, order: nil, request_options: {})
+      # @overload list(company_id:, after: nil, before: nil, collection_methods: nil, direction: nil, first: nil, last: nil, order: nil, product_ids: nil, statuses: nil, request_options: {})
       #
       # @param company_id [String] The ID of the company to list invoices for
       #
@@ -92,15 +93,19 @@ module WhopSDK
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      # @param collection_methods [Array<Symbol, WhopSDK::Models::CollectionMethod>, nil] Filter invoices by their collection method
       #
-      # @param filters [WhopSDK::Models::InvoiceListParams::Filters, nil] The filters to apply to the invoices
+      # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
       # @param order [Symbol, WhopSDK::Models::InvoiceListParams::Order, nil] Which columns can be used to sort.
+      #
+      # @param product_ids [Array<String>, nil] Return only invoices created for these specific product ids
+      #
+      # @param statuses [Array<Symbol, WhopSDK::Models::InvoiceStatus>, nil] The statuses to filter the invoices by
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -127,7 +132,8 @@ module WhopSDK
       #
       # @overload void(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the invoice to void
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Boolean]

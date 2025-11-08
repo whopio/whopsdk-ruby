@@ -40,7 +40,7 @@ module WhopSDK
       #
       # @param payment_method_configuration [WhopSDK::Models::PlanCreateParams::PaymentMethodConfiguration, nil] The explicit payment method configuration for the plan. If not provided, the pla
       #
-      # @param plan_type [Symbol, WhopSDK::Models::PlanType, nil] The type of plan that can be attached to an access pass
+      # @param plan_type [Symbol, WhopSDK::Models::PlanType, nil] The type of plan that can be attached to a product
       #
       # @param release_method [Symbol, WhopSDK::Models::ReleaseMethod, nil] The methods of how a plan can be released.
       #
@@ -78,7 +78,8 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the plan
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::Plan]
@@ -106,7 +107,7 @@ module WhopSDK
       #
       # @overload update(id, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, offer_cancel_discount: nil, override_tax_type: nil, payment_method_configuration: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID
       #
       # @param billing_period [Integer, nil] The interval at which the plan charges (renewal plans).
       #
@@ -217,7 +218,8 @@ module WhopSDK
       #
       # @overload delete(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the plan to delete.
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Boolean]

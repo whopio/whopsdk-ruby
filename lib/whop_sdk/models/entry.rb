@@ -30,7 +30,7 @@ module WhopSDK
       required :plan, -> { WhopSDK::Entry::Plan }, nil?: true
 
       # @!attribute product
-      #   The access pass tied to this entry, if there is one.
+      #   The product tied to this entry, if there is one.
       #
       #   @return [WhopSDK::Models::Entry::Product, nil]
       required :product, -> { WhopSDK::Entry::Product }, nil?: true
@@ -58,7 +58,7 @@ module WhopSDK
       #
       #   @param plan [WhopSDK::Models::Entry::Plan, nil] The waitlist plan the entry if for.
       #
-      #   @param product [WhopSDK::Models::Entry::Product, nil] The access pass tied to this entry, if there is one.
+      #   @param product [WhopSDK::Models::Entry::Product, nil] The product tied to this entry, if there is one.
       #
       #   @param status [Symbol, WhopSDK::Models::EntryStatus] The status of the entry.
       #
@@ -122,7 +122,7 @@ module WhopSDK
         required :title, String
 
         # @!method initialize(id:, title:)
-        #   The access pass tied to this entry, if there is one.
+        #   The product tied to this entry, if there is one.
         #
         #   @param id [String] The internal ID of the public product.
         #

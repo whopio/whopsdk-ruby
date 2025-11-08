@@ -11,7 +11,8 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the membership or a license key
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::Membership]
@@ -35,7 +36,7 @@ module WhopSDK
       #
       # @overload update(id, metadata: nil, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the membership.
       #
       # @param metadata [Hash{Symbol=>Object}, nil] The metadata to update the membership with.
       #
@@ -61,9 +62,7 @@ module WhopSDK
       #
       # - `member:basic:read`
       #
-      # @overload list(access_pass_ids: nil, after: nil, before: nil, cancel_options: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_ids: nil, promo_code_ids: nil, statuses: nil, user_ids: nil, request_options: {})
-      #
-      # @param access_pass_ids [Array<String>, nil] The access pass IDs to filter the memberships by
+      # @overload list(after: nil, before: nil, cancel_options: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, promo_code_ids: nil, statuses: nil, user_ids: nil, request_options: {})
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -86,6 +85,8 @@ module WhopSDK
       # @param order [Symbol, WhopSDK::Models::MembershipListParams::Order, nil] Which columns can be used to sort.
       #
       # @param plan_ids [Array<String>, nil] The plan IDs to filter the memberships by
+      #
+      # @param product_ids [Array<String>, nil] The product IDs to filter the memberships by
       #
       # @param promo_code_ids [Array<String>, nil] The promo code IDs to filter the memberships by
       #
@@ -120,7 +121,7 @@ module WhopSDK
       #
       # @overload cancel(id, cancellation_mode: nil, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the membership.
       #
       # @param cancellation_mode [Symbol, WhopSDK::Models::MembershipCancelParams::CancellationMode, nil] The mode of cancellation for a membership
       #
@@ -152,7 +153,7 @@ module WhopSDK
       #
       # @overload pause(id, void_payments: nil, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the membership you want to pause.
       #
       # @param void_payments [Boolean, nil] Whether to void past_due payments associated with the membership to prevent futu
       #
@@ -181,7 +182,8 @@ module WhopSDK
       #
       # @overload resume(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the membership you want to resume.
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::Membership]

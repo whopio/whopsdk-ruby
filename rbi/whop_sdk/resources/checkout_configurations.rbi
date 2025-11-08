@@ -47,7 +47,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::CheckoutConfiguration)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the checkout configuration
+        id,
+        request_options: {}
+      )
       end
 
       # Lists checkout configurations

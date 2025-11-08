@@ -115,6 +115,9 @@ module WhopSDK
     # @return [WhopSDK::Resources::CourseStudents]
     attr_reader :course_students
 
+    # @return [WhopSDK::Resources::AccessTokens]
+    attr_reader :access_tokens
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -205,6 +208,7 @@ module WhopSDK
       @course_lessons = WhopSDK::Resources::CourseLessons.new(client: self)
       @reviews = WhopSDK::Resources::Reviews.new(client: self)
       @course_students = WhopSDK::Resources::CourseStudents.new(client: self)
+      @access_tokens = WhopSDK::Resources::AccessTokens.new(client: self)
     end
 
     # Verifies a Whop user token

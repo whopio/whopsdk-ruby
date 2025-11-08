@@ -133,7 +133,7 @@ module WhopSDK
                  nil?: true
 
         # @!attribute plan_type
-        #   The type of plan that can be attached to an access pass
+        #   The type of plan that can be attached to a product
         #
         #   @return [Symbol, WhopSDK::Models::PlanType, nil]
         optional :plan_type, enum: -> { WhopSDK::PlanType }, nil?: true
@@ -211,7 +211,7 @@ module WhopSDK
         #
         #   @param payment_method_configuration [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::PaymentMethodConfiguration, nil] The explicit payment method configuration for the plan. If not provided, the pla
         #
-        #   @param plan_type [Symbol, WhopSDK::Models::PlanType, nil] The type of plan that can be attached to an access pass
+        #   @param plan_type [Symbol, WhopSDK::Models::PlanType, nil] The type of plan that can be attached to a product
         #
         #   @param product [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Product, nil] Pass this object to create a new product for this plan. We will use the product
         #
@@ -422,7 +422,7 @@ module WhopSDK
           optional :global_affiliate_percentage, Float, nil?: true
 
           # @!attribute global_affiliate_status
-          #   The different statuses of the global affiliate program for an access pass.
+          #   The different statuses of the global affiliate program for a product.
           #
           #   @return [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil]
           optional :global_affiliate_status, enum: -> { WhopSDK::GlobalAffiliateStatus }, nil?: true
@@ -486,7 +486,7 @@ module WhopSDK
           #
           #   @param global_affiliate_percentage [Float, nil] The percentage of the revenue that goes to the global affiliate program.
           #
-          #   @param global_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for an access pass.
+          #   @param global_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for a product.
           #
           #   @param headline [String, nil] The headline of the product.
           #

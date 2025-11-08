@@ -39,7 +39,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::App)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the app
+        id,
+        request_options: {}
+      )
       end
 
       # Update an existing App
@@ -74,6 +78,7 @@ module WhopSDK
         ).returns(WhopSDK::App)
       end
       def update(
+        # The ID of the app
         id,
         # The description of the app for the app store in-depth app view.
         app_store_description: nil,

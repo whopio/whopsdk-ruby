@@ -26,6 +26,14 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :days_from_course_start_until_unlock
 
+      # ID for the embed (YouTube video ID or Loom share ID)
+      sig { returns(T.nilable(String)) }
+      attr_accessor :embed_id
+
+      # The type of embed for a lesson
+      sig { returns(T.nilable(WhopSDK::EmbedType::TaggedSymbol)) }
+      attr_accessor :embed_type
+
       # The type of the lesson (text, video, pdf, multi, quiz, knowledge_check)
       sig { returns(WhopSDK::LessonTypes::TaggedSymbol) }
       attr_accessor :lesson_type
@@ -40,6 +48,15 @@ module WhopSDK
       # The order of the lesson within its chapter
       sig { returns(Integer) }
       attr_accessor :order
+
+      # The thumbnail for the lesson
+      sig { returns(T.nilable(WhopSDK::Lesson::Thumbnail)) }
+      attr_reader :thumbnail
+
+      sig do
+        params(thumbnail: T.nilable(WhopSDK::Lesson::Thumbnail::OrHash)).void
+      end
+      attr_writer :thumbnail
 
       # The title of the lesson
       sig { returns(String) }
@@ -68,9 +85,12 @@ module WhopSDK
           attachments: T::Array[WhopSDK::Lesson::Attachment::OrHash],
           content: T.nilable(String),
           days_from_course_start_until_unlock: T.nilable(Integer),
+          embed_id: T.nilable(String),
+          embed_type: T.nilable(WhopSDK::EmbedType::OrSymbol),
           lesson_type: WhopSDK::LessonTypes::OrSymbol,
           main_pdf: T.nilable(WhopSDK::Lesson::MainPdf::OrHash),
           order: Integer,
+          thumbnail: T.nilable(WhopSDK::Lesson::Thumbnail::OrHash),
           title: String,
           video_asset: T.nilable(WhopSDK::Lesson::VideoAsset::OrHash),
           visibility: WhopSDK::LessonVisibilities::OrSymbol
@@ -87,12 +107,18 @@ module WhopSDK
         content:,
         # Number of days from course start until the lesson is unlocked
         days_from_course_start_until_unlock:,
+        # ID for the embed (YouTube video ID or Loom share ID)
+        embed_id:,
+        # The type of embed for a lesson
+        embed_type:,
         # The type of the lesson (text, video, pdf, multi, quiz, knowledge_check)
         lesson_type:,
         # The main PDF file for this lesson
         main_pdf:,
         # The order of the lesson within its chapter
         order:,
+        # The thumbnail for the lesson
+        thumbnail:,
         # The title of the lesson
         title:,
         # The associated Mux asset for video lessons
@@ -111,9 +137,12 @@ module WhopSDK
             attachments: T::Array[WhopSDK::Lesson::Attachment],
             content: T.nilable(String),
             days_from_course_start_until_unlock: T.nilable(Integer),
+            embed_id: T.nilable(String),
+            embed_type: T.nilable(WhopSDK::EmbedType::TaggedSymbol),
             lesson_type: WhopSDK::LessonTypes::TaggedSymbol,
             main_pdf: T.nilable(WhopSDK::Lesson::MainPdf),
             order: Integer,
+            thumbnail: T.nilable(WhopSDK::Lesson::Thumbnail),
             title: String,
             video_asset: T.nilable(WhopSDK::Lesson::VideoAsset),
             visibility: WhopSDK::LessonVisibilities::TaggedSymbol
@@ -464,6 +493,31 @@ module WhopSDK
             }
           )
         end
+        def to_hash
+        end
+      end
+
+      class Thumbnail < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Lesson::Thumbnail, WhopSDK::Internal::AnyHash)
+          end
+
+        # This is the URL you use to render optimized attachments on the client. This
+        # should be used for apps.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :url
+
+        # The thumbnail for the lesson
+        sig { params(url: T.nilable(String)).returns(T.attached_class) }
+        def self.new(
+          # This is the URL you use to render optimized attachments on the client. This
+          # should be used for apps.
+          url:
+        )
+        end
+
+        sig { override.returns({ url: T.nilable(String) }) }
         def to_hash
         end
       end

@@ -11,7 +11,8 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the forum to fetch, it can be an experience ID or a forum ID
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::Forum]
@@ -34,7 +35,7 @@ module WhopSDK
       #
       # @overload update(id, email_notification_preference: nil, who_can_comment: nil, who_can_post: nil, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] Experience ID (exp\_\*) or Forum external ID
       #
       # @param email_notification_preference [Symbol, WhopSDK::Models::EmailNotificationPreferences, nil] Email notification preference option for a forum feed
       #

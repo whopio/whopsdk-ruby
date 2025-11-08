@@ -8,11 +8,13 @@ module WhopSDK
         created_at: Time,
         description: String?,
         language: WhopSDK::Models::languages,
+        order: String,
         require_completing_lessons_in_order: bool,
         tagline: String?,
         thumbnail: WhopSDK::Course::Thumbnail?,
         title: String?,
-        updated_at: Time
+        updated_at: Time,
+        visibility: WhopSDK::Models::course_visibilities
       }
 
     class Course < WhopSDK::Internal::Type::BaseModel
@@ -28,6 +30,8 @@ module WhopSDK
 
       attr_accessor language: WhopSDK::Models::languages
 
+      attr_accessor order: String
+
       attr_accessor require_completing_lessons_in_order: bool
 
       attr_accessor tagline: String?
@@ -38,6 +42,8 @@ module WhopSDK
 
       attr_accessor updated_at: Time
 
+      attr_accessor visibility: WhopSDK::Models::course_visibilities
+
       def initialize: (
         id: String,
         certificate_after_completion_enabled: bool?,
@@ -45,11 +51,13 @@ module WhopSDK
         created_at: Time,
         description: String?,
         language: WhopSDK::Models::languages,
+        order: String,
         require_completing_lessons_in_order: bool,
         tagline: String?,
         thumbnail: WhopSDK::Course::Thumbnail?,
         title: String?,
-        updated_at: Time
+        updated_at: Time,
+        visibility: WhopSDK::Models::course_visibilities
       ) -> void
 
       def to_hash: -> {
@@ -59,11 +67,13 @@ module WhopSDK
         created_at: Time,
         description: String?,
         language: WhopSDK::Models::languages,
+        order: String,
         require_completing_lessons_in_order: bool,
         tagline: String?,
         thumbnail: WhopSDK::Course::Thumbnail?,
         title: String?,
-        updated_at: Time
+        updated_at: Time,
+        visibility: WhopSDK::Models::course_visibilities
       }
 
       type chapter =

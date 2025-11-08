@@ -88,7 +88,7 @@ module WhopSDK
       end
       attr_writer :payment_method_configuration
 
-      # The type of plan that can be attached to an access pass
+      # The type of plan that can be attached to a product
       sig { returns(T.nilable(WhopSDK::PlanType::OrSymbol)) }
       attr_accessor :plan_type
 
@@ -197,7 +197,7 @@ module WhopSDK
         # The explicit payment method configuration for the plan. If not provided, the
         # platform or company's defaults will apply.
         payment_method_configuration: nil,
-        # The type of plan that can be attached to an access pass
+        # The type of plan that can be attached to a product
         plan_type: nil,
         # The methods of how a plan can be released.
         release_method: nil,

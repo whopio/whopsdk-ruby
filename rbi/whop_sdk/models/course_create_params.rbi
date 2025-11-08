@@ -28,6 +28,12 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :cover_image
 
+      # The decimal order position of the course within its experience. If not provided,
+      # it will be set to the next sequential order. Use fractional values (e.g., 1.5)
+      # to place between existing courses.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :order
+
       # Whether the course requires students to complete the previous lesson before
       # moving on to the next one
       sig { returns(T.nilable(T::Boolean)) }
@@ -50,12 +56,18 @@ module WhopSDK
       end
       attr_accessor :thumbnail
 
+      # The available visibilities for a course. Determines how / whether a course is
+      # visible to users.
+      sig { returns(T.nilable(WhopSDK::CourseVisibilities::OrSymbol)) }
+      attr_accessor :visibility
+
       sig do
         params(
           experience_id: String,
           title: String,
           certificate_after_completion_enabled: T.nilable(T::Boolean),
           cover_image: T.nilable(String),
+          order: T.nilable(String),
           require_completing_lessons_in_order: T.nilable(T::Boolean),
           tagline: T.nilable(String),
           thumbnail:
@@ -65,6 +77,7 @@ module WhopSDK
                 WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithID::OrHash
               )
             ),
+          visibility: T.nilable(WhopSDK::CourseVisibilities::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -78,6 +91,10 @@ module WhopSDK
         certificate_after_completion_enabled: nil,
         # The cover image URL of the course
         cover_image: nil,
+        # The decimal order position of the course within its experience. If not provided,
+        # it will be set to the next sequential order. Use fractional values (e.g., 1.5)
+        # to place between existing courses.
+        order: nil,
         # Whether the course requires students to complete the previous lesson before
         # moving on to the next one
         require_completing_lessons_in_order: nil,
@@ -85,6 +102,9 @@ module WhopSDK
         tagline: nil,
         # The thumbnail for the course in png, jpeg, or gif format
         thumbnail: nil,
+        # The available visibilities for a course. Determines how / whether a course is
+        # visible to users.
+        visibility: nil,
         request_options: {}
       )
       end
@@ -96,6 +116,7 @@ module WhopSDK
             title: String,
             certificate_after_completion_enabled: T.nilable(T::Boolean),
             cover_image: T.nilable(String),
+            order: T.nilable(String),
             require_completing_lessons_in_order: T.nilable(T::Boolean),
             tagline: T.nilable(String),
             thumbnail:
@@ -105,6 +126,7 @@ module WhopSDK
                   WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithID
                 )
               ),
+            visibility: T.nilable(WhopSDK::CourseVisibilities::OrSymbol),
             request_options: WhopSDK::RequestOptions
           }
         )

@@ -2,7 +2,7 @@
 
 module WhopSDK
   module Models
-    # The different statuses of the global affiliate program for an access pass.
+    # The different statuses of the global affiliate program for a product.
     module GlobalAffiliateStatus
       extend WhopSDK::Internal::Type::Enum
 

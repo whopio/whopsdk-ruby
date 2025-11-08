@@ -5,8 +5,11 @@ module WhopSDK
         id: String,
         content: String?,
         days_from_course_start_until_unlock: Integer?,
+        embed_id: String?,
+        embed_type: WhopSDK::Models::embed_type?,
         lesson_type: WhopSDK::Models::lesson_types,
         order: Integer,
+        thumbnail: WhopSDK::Models::CourseLessonListResponse::Thumbnail?,
         title: String,
         visibility: WhopSDK::Models::lesson_visibilities
       }
@@ -18,9 +21,15 @@ module WhopSDK
 
       attr_accessor days_from_course_start_until_unlock: Integer?
 
+      attr_accessor embed_id: String?
+
+      attr_accessor embed_type: WhopSDK::Models::embed_type?
+
       attr_accessor lesson_type: WhopSDK::Models::lesson_types
 
       attr_accessor order: Integer
+
+      attr_accessor thumbnail: WhopSDK::Models::CourseLessonListResponse::Thumbnail?
 
       attr_accessor title: String
 
@@ -30,8 +39,11 @@ module WhopSDK
         id: String,
         content: String?,
         days_from_course_start_until_unlock: Integer?,
+        embed_id: String?,
+        embed_type: WhopSDK::Models::embed_type?,
         lesson_type: WhopSDK::Models::lesson_types,
         order: Integer,
+        thumbnail: WhopSDK::Models::CourseLessonListResponse::Thumbnail?,
         title: String,
         visibility: WhopSDK::Models::lesson_visibilities
       ) -> void
@@ -40,11 +52,24 @@ module WhopSDK
         id: String,
         content: String?,
         days_from_course_start_until_unlock: Integer?,
+        embed_id: String?,
+        embed_type: WhopSDK::Models::embed_type?,
         lesson_type: WhopSDK::Models::lesson_types,
         order: Integer,
+        thumbnail: WhopSDK::Models::CourseLessonListResponse::Thumbnail?,
         title: String,
         visibility: WhopSDK::Models::lesson_visibilities
       }
+
+      type thumbnail = { url: String? }
+
+      class Thumbnail < WhopSDK::Internal::Type::BaseModel
+        attr_accessor url: String?
+
+        def initialize: (url: String?) -> void
+
+        def to_hash: -> { url: String? }
+      end
     end
   end
 end

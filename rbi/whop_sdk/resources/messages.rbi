@@ -49,7 +49,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Message)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the message
+        id,
+        request_options: {}
+      )
       end
 
       # Updates an existing message
@@ -71,6 +75,7 @@ module WhopSDK
         ).returns(WhopSDK::Message)
       end
       def update(
+        # The ID of the message to update
         id,
         # The attachments for this message
         attachments: nil,

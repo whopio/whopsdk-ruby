@@ -58,7 +58,7 @@ module WhopSDK
       optional :global_affiliate_percentage, Float, nil?: true
 
       # @!attribute global_affiliate_status
-      #   The different statuses of the global affiliate program for an access pass.
+      #   The different statuses of the global affiliate program for a product.
       #
       #   @return [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil]
       optional :global_affiliate_status, enum: -> { WhopSDK::GlobalAffiliateStatus }, nil?: true
@@ -82,7 +82,7 @@ module WhopSDK
       optional :member_affiliate_percentage, Float, nil?: true
 
       # @!attribute member_affiliate_status
-      #   The different statuses of the global affiliate program for an access pass.
+      #   The different statuses of the global affiliate program for a product.
       #
       #   @return [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil]
       optional :member_affiliate_status, enum: -> { WhopSDK::GlobalAffiliateStatus }, nil?: true
@@ -144,7 +144,7 @@ module WhopSDK
       #
       #   @param global_affiliate_percentage [Float, nil] The percentage of the revenue that goes to the global affiliate program.
       #
-      #   @param global_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for an access pass.
+      #   @param global_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for a product.
       #
       #   @param headline [String, nil] The headline of the product.
       #
@@ -152,7 +152,7 @@ module WhopSDK
       #
       #   @param member_affiliate_percentage [Float, nil] The percentage of the revenue that goes to the member affiliate program.
       #
-      #   @param member_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for an access pass.
+      #   @param member_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for a product.
       #
       #   @param product_tax_code_id [String, nil] The ID of the product tax code to apply to this product.
       #

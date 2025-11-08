@@ -73,7 +73,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Invoice)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the invoice or a token
+        id,
+        request_options: {}
+      )
       end
 
       # Lists invoices
@@ -87,11 +91,14 @@ module WhopSDK
           company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
+          collection_methods:
+            T.nilable(T::Array[WhopSDK::CollectionMethod::OrSymbol]),
           direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          filters: T.nilable(WhopSDK::InvoiceListParams::Filters::OrHash),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           order: T.nilable(WhopSDK::InvoiceListParams::Order::OrSymbol),
+          product_ids: T.nilable(T::Array[String]),
+          statuses: T.nilable(T::Array[WhopSDK::InvoiceStatus::OrSymbol]),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Internal::CursorPage[WhopSDK::InvoiceListItem])
       end
@@ -102,16 +109,20 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
+        # Filter invoices by their collection method
+        collection_methods: nil,
         # The direction of the sort.
         direction: nil,
-        # The filters to apply to the invoices
-        filters: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
         # Which columns can be used to sort.
         order: nil,
+        # Return only invoices created for these specific product ids
+        product_ids: nil,
+        # The statuses to filter the invoices by
+        statuses: nil,
         request_options: {}
       )
       end
@@ -127,7 +138,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T::Boolean)
       end
-      def void(id, request_options: {})
+      def void(
+        # The ID of the invoice to void
+        id,
+        request_options: {}
+      )
       end
 
       # @api private

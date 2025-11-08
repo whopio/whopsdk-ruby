@@ -46,10 +46,9 @@ module WhopSDK
       required :order, String, nil?: true
 
       # @!attribute products
-      #   The access passes that are associated with this experience. This should not be
-      #   used unless you are trying to list all access passes the experience has, for
-      #   some reason. You probably don't want to use this though and should be using
-      #   accessPass.
+      #   The products that this experience is attached to. This defines which set of
+      #   customers have access and can view this experience. If empty, this experience is
+      #   only visible to authorized users of the company
       #
       #   @return [Array<WhopSDK::Models::Experience::Product>]
       required :products, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Experience::Product] }
@@ -74,7 +73,7 @@ module WhopSDK
       #
       #   @param order [String, nil] The order of the experience in the section
       #
-      #   @param products [Array<WhopSDK::Models::Experience::Product>] The access passes that are associated with this experience. This should not be u
+      #   @param products [Array<WhopSDK::Models::Experience::Product>] The products that this experience is attached to. This defines which set of cust
 
       # @see WhopSDK::Models::Experience#app
       class App < WhopSDK::Internal::Type::BaseModel
@@ -197,7 +196,7 @@ module WhopSDK
         required :title, String
 
         # @!method initialize(id:, route:, title:)
-        #   An object representing a (sanitized) access pass.
+        #   Represents a product on whop. Use products to sell anything on the platform.
         #
         #   @param id [String] The internal ID of the public product.
         #

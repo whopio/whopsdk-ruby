@@ -76,7 +76,7 @@ module WhopSDK
         # The explicit payment method configuration for the plan. If not provided, the
         # platform or company's defaults will apply.
         payment_method_configuration: nil,
-        # The type of plan that can be attached to an access pass
+        # The type of plan that can be attached to a product
         plan_type: nil,
         # The methods of how a plan can be released.
         release_method: nil,
@@ -114,7 +114,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Plan)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the plan
+        id,
+        request_options: {}
+      )
       end
 
       # Update an existing Plan
@@ -160,6 +164,7 @@ module WhopSDK
         ).returns(WhopSDK::Plan)
       end
       def update(
+        # The ID
         id,
         # The interval at which the plan charges (renewal plans).
         billing_period: nil,
@@ -270,7 +275,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T::Boolean)
       end
-      def delete(id, request_options: {})
+      def delete(
+        # The ID of the plan to delete.
+        id,
+        request_options: {}
+      )
       end
 
       # @api private

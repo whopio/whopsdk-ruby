@@ -20,11 +20,13 @@ class WhopSDK::Test::Resources::CoursesTest < WhopSDK::Test::ResourceTest
         created_at: Time,
         description: String | nil,
         language: WhopSDK::Languages,
+        order: String,
         require_completing_lessons_in_order: WhopSDK::Internal::Type::Boolean,
         tagline: String | nil,
         thumbnail: WhopSDK::Course::Thumbnail | nil,
         title: String | nil,
-        updated_at: Time
+        updated_at: Time,
+        visibility: WhopSDK::CourseVisibilities
       }
     end
   end
@@ -46,11 +48,13 @@ class WhopSDK::Test::Resources::CoursesTest < WhopSDK::Test::ResourceTest
         created_at: Time,
         description: String | nil,
         language: WhopSDK::Languages,
+        order: String,
         require_completing_lessons_in_order: WhopSDK::Internal::Type::Boolean,
         tagline: String | nil,
         thumbnail: WhopSDK::Course::Thumbnail | nil,
         title: String | nil,
-        updated_at: Time
+        updated_at: Time,
+        visibility: WhopSDK::CourseVisibilities
       }
     end
   end
@@ -72,11 +76,13 @@ class WhopSDK::Test::Resources::CoursesTest < WhopSDK::Test::ResourceTest
         created_at: Time,
         description: String | nil,
         language: WhopSDK::Languages,
+        order: String,
         require_completing_lessons_in_order: WhopSDK::Internal::Type::Boolean,
         tagline: String | nil,
         thumbnail: WhopSDK::Course::Thumbnail | nil,
         title: String | nil,
-        updated_at: Time
+        updated_at: Time,
+        visibility: WhopSDK::CourseVisibilities
       }
     end
   end
@@ -104,11 +110,13 @@ class WhopSDK::Test::Resources::CoursesTest < WhopSDK::Test::ResourceTest
         created_at: Time,
         description: String | nil,
         language: WhopSDK::Languages,
+        order: String,
         require_completing_lessons_in_order: WhopSDK::Internal::Type::Boolean,
         tagline: String | nil,
         thumbnail: WhopSDK::Models::CourseListResponse::Thumbnail | nil,
         title: String | nil,
-        updated_at: Time
+        updated_at: Time,
+        visibility: WhopSDK::CourseVisibilities
       }
     end
   end

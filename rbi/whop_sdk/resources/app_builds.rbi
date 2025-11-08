@@ -55,7 +55,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::AppBuild)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the app build
+        id,
+        request_options: {}
+      )
       end
 
       # Lists app builds for an app
@@ -107,7 +111,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::AppBuild)
       end
-      def promote(id, request_options: {})
+      def promote(
+        # The ID of the app build to promote.
+        id,
+        request_options: {}
+      )
       end
 
       # @api private

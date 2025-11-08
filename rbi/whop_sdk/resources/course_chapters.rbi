@@ -35,7 +35,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::CourseChapter)
       end
-      def retrieve(id, request_options: {})
+      def retrieve(
+        # The ID of the chapter
+        id,
+        request_options: {}
+      )
       end
 
       # Updates a course chapter
@@ -51,6 +55,7 @@ module WhopSDK
         ).returns(WhopSDK::CourseChapter)
       end
       def update(
+        # The ID of the chapter to update
         id,
         # The title of the chapter
         title:,
@@ -103,7 +108,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T::Boolean)
       end
-      def delete(id, request_options: {})
+      def delete(
+        # The ID of the chapter to delete
+        id,
+        request_options: {}
+      )
       end
 
       # @api private

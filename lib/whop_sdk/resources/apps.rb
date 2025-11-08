@@ -36,7 +36,8 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the app
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::App]
@@ -60,7 +61,7 @@ module WhopSDK
       #
       # @overload update(id, app_store_description: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, required_scopes: nil, status: nil, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] The ID of the app
       #
       # @param app_store_description [String, nil] The description of the app for the app store in-depth app view.
       #

@@ -14,7 +14,9 @@ module WhopSDK
     sig { returns(String) }
     attr_reader :api_key
 
-    sig { returns(String) }
+    # When using the SDK in app mode pass this parameter to allow verifying user
+    # tokens
+    sig { returns(T.nilable(String)) }
     attr_reader :app_id
 
     sig { returns(WhopSDK::Resources::Apps) }
@@ -113,6 +115,9 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::AccessTokens) }
     attr_reader :access_tokens
 
+    sig { returns(WhopSDK::Resources::Notifications) }
+    attr_reader :notifications
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers
@@ -134,7 +139,8 @@ module WhopSDK
       # The app API key from an app from the /dashboard/developer page Defaults to
       # `ENV["WHOP_API_KEY"]`
       api_key: ENV["WHOP_API_KEY"],
-      # Defaults to `ENV["WHOP_APP_ID"]`
+      # When using the SDK in app mode pass this parameter to allow verifying user
+      # tokens Defaults to `ENV["WHOP_APP_ID"]`
       app_id: ENV["WHOP_APP_ID"],
       # Override the default base URL for the API, e.g.,
       # `"https://api.example.com/v2/"`. Defaults to `ENV["WHOP_BASE_URL"]`

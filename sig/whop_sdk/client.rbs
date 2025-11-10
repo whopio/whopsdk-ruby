@@ -78,6 +78,8 @@ module WhopSDK
 
     attr_reader notifications: WhopSDK::Resources::Notifications
 
+    attr_reader disputes: WhopSDK::Resources::Disputes
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

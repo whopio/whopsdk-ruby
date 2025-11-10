@@ -229,6 +229,9 @@ module WhopSDK
     # @raise [StandardError] If verification fails
     def verify_user_token!(token_or_headers, **opts)
       opts[:app_id] ||= app_id
+      unless opts[:app_id]
+        raise StandardError, "You must set app_id in the Whop client if you want to verify user tokens"
+      end
       Helpers::VerifyUserToken.verify_user_token!(token_or_headers, **opts)
     end
 

@@ -118,6 +118,9 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::Notifications) }
     attr_reader :notifications
 
+    sig { returns(WhopSDK::Resources::Disputes) }
+    attr_reader :disputes
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

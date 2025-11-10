@@ -1,0 +1,501 @@
+module WhopSDK
+  module Models
+    type dispute_created_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::DisputeCreatedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"dispute.created"
+      }
+
+    class DisputeCreatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor data: WhopSDK::DisputeCreatedWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"dispute.created"
+
+      def initialize: (
+        id: String,
+        data: WhopSDK::DisputeCreatedWebhookEvent::Data,
+        timestamp: Time,
+        ?api_version: :v1,
+        ?type: :"dispute.created"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::DisputeCreatedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"dispute.created"
+      }
+
+      type data =
+        {
+          id: String,
+          access_activity_log: String?,
+          amount: Float,
+          billing_address: String?,
+          cancellation_policy_attachment: WhopSDK::DisputeCreatedWebhookEvent::Data::CancellationPolicyAttachment?,
+          cancellation_policy_disclosure: String?,
+          company: WhopSDK::DisputeCreatedWebhookEvent::Data::Company?,
+          created_at: Time?,
+          currency: WhopSDK::Models::currency,
+          customer_communication_attachment: WhopSDK::DisputeCreatedWebhookEvent::Data::CustomerCommunicationAttachment?,
+          customer_email_address: String?,
+          customer_name: String?,
+          editable: bool?,
+          needs_response_by: Time?,
+          notes: String?,
+          payment: WhopSDK::DisputeCreatedWebhookEvent::Data::Payment?,
+          plan: WhopSDK::DisputeCreatedWebhookEvent::Data::Plan?,
+          product: WhopSDK::DisputeCreatedWebhookEvent::Data::Product?,
+          product_description: String?,
+          reason: String?,
+          refund_policy_attachment: WhopSDK::DisputeCreatedWebhookEvent::Data::RefundPolicyAttachment?,
+          refund_policy_disclosure: String?,
+          refund_refusal_explanation: String?,
+          service_date: String?,
+          status: WhopSDK::Models::DisputeCreatedWebhookEvent::Data::status,
+          uncategorized_attachment: WhopSDK::DisputeCreatedWebhookEvent::Data::UncategorizedAttachment?,
+          visa_rdr: bool
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor access_activity_log: String?
+
+        attr_accessor amount: Float
+
+        attr_accessor billing_address: String?
+
+        attr_accessor cancellation_policy_attachment: WhopSDK::DisputeCreatedWebhookEvent::Data::CancellationPolicyAttachment?
+
+        attr_accessor cancellation_policy_disclosure: String?
+
+        attr_accessor company: WhopSDK::DisputeCreatedWebhookEvent::Data::Company?
+
+        attr_accessor created_at: Time?
+
+        attr_accessor currency: WhopSDK::Models::currency
+
+        attr_accessor customer_communication_attachment: WhopSDK::DisputeCreatedWebhookEvent::Data::CustomerCommunicationAttachment?
+
+        attr_accessor customer_email_address: String?
+
+        attr_accessor customer_name: String?
+
+        attr_accessor editable: bool?
+
+        attr_accessor needs_response_by: Time?
+
+        attr_accessor notes: String?
+
+        attr_accessor payment: WhopSDK::DisputeCreatedWebhookEvent::Data::Payment?
+
+        attr_accessor plan: WhopSDK::DisputeCreatedWebhookEvent::Data::Plan?
+
+        attr_accessor product: WhopSDK::DisputeCreatedWebhookEvent::Data::Product?
+
+        attr_accessor product_description: String?
+
+        attr_accessor reason: String?
+
+        attr_accessor refund_policy_attachment: WhopSDK::DisputeCreatedWebhookEvent::Data::RefundPolicyAttachment?
+
+        attr_accessor refund_policy_disclosure: String?
+
+        attr_accessor refund_refusal_explanation: String?
+
+        attr_accessor service_date: String?
+
+        attr_accessor status: WhopSDK::Models::DisputeCreatedWebhookEvent::Data::status
+
+        attr_accessor uncategorized_attachment: WhopSDK::DisputeCreatedWebhookEvent::Data::UncategorizedAttachment?
+
+        attr_accessor visa_rdr: bool
+
+        def initialize: (
+          id: String,
+          access_activity_log: String?,
+          amount: Float,
+          billing_address: String?,
+          cancellation_policy_attachment: WhopSDK::DisputeCreatedWebhookEvent::Data::CancellationPolicyAttachment?,
+          cancellation_policy_disclosure: String?,
+          company: WhopSDK::DisputeCreatedWebhookEvent::Data::Company?,
+          created_at: Time?,
+          currency: WhopSDK::Models::currency,
+          customer_communication_attachment: WhopSDK::DisputeCreatedWebhookEvent::Data::CustomerCommunicationAttachment?,
+          customer_email_address: String?,
+          customer_name: String?,
+          editable: bool?,
+          needs_response_by: Time?,
+          notes: String?,
+          payment: WhopSDK::DisputeCreatedWebhookEvent::Data::Payment?,
+          plan: WhopSDK::DisputeCreatedWebhookEvent::Data::Plan?,
+          product: WhopSDK::DisputeCreatedWebhookEvent::Data::Product?,
+          product_description: String?,
+          reason: String?,
+          refund_policy_attachment: WhopSDK::DisputeCreatedWebhookEvent::Data::RefundPolicyAttachment?,
+          refund_policy_disclosure: String?,
+          refund_refusal_explanation: String?,
+          service_date: String?,
+          status: WhopSDK::Models::DisputeCreatedWebhookEvent::Data::status,
+          uncategorized_attachment: WhopSDK::DisputeCreatedWebhookEvent::Data::UncategorizedAttachment?,
+          visa_rdr: bool
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          access_activity_log: String?,
+          amount: Float,
+          billing_address: String?,
+          cancellation_policy_attachment: WhopSDK::DisputeCreatedWebhookEvent::Data::CancellationPolicyAttachment?,
+          cancellation_policy_disclosure: String?,
+          company: WhopSDK::DisputeCreatedWebhookEvent::Data::Company?,
+          created_at: Time?,
+          currency: WhopSDK::Models::currency,
+          customer_communication_attachment: WhopSDK::DisputeCreatedWebhookEvent::Data::CustomerCommunicationAttachment?,
+          customer_email_address: String?,
+          customer_name: String?,
+          editable: bool?,
+          needs_response_by: Time?,
+          notes: String?,
+          payment: WhopSDK::DisputeCreatedWebhookEvent::Data::Payment?,
+          plan: WhopSDK::DisputeCreatedWebhookEvent::Data::Plan?,
+          product: WhopSDK::DisputeCreatedWebhookEvent::Data::Product?,
+          product_description: String?,
+          reason: String?,
+          refund_policy_attachment: WhopSDK::DisputeCreatedWebhookEvent::Data::RefundPolicyAttachment?,
+          refund_policy_disclosure: String?,
+          refund_refusal_explanation: String?,
+          service_date: String?,
+          status: WhopSDK::Models::DisputeCreatedWebhookEvent::Data::status,
+          uncategorized_attachment: WhopSDK::DisputeCreatedWebhookEvent::Data::UncategorizedAttachment?,
+          visa_rdr: bool
+        }
+
+        type cancellation_policy_attachment =
+          { id: String, content_type: String?, filename: String?, url: String? }
+
+        class CancellationPolicyAttachment < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor content_type: String?
+
+          attr_accessor filename: String?
+
+          attr_accessor url: String?
+
+          def initialize: (
+            id: String,
+            content_type: String?,
+            filename: String?,
+            url: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            content_type: String?,
+            filename: String?,
+            url: String?
+          }
+        end
+
+        type company = { id: String, title: String }
+
+        class Company < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor title: String
+
+          def initialize: (id: String, title: String) -> void
+
+          def to_hash: -> { id: String, title: String }
+        end
+
+        type customer_communication_attachment =
+          { id: String, content_type: String?, filename: String?, url: String? }
+
+        class CustomerCommunicationAttachment < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor content_type: String?
+
+          attr_accessor filename: String?
+
+          attr_accessor url: String?
+
+          def initialize: (
+            id: String,
+            content_type: String?,
+            filename: String?,
+            url: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            content_type: String?,
+            filename: String?,
+            url: String?
+          }
+        end
+
+        type payment =
+          {
+            id: String,
+            billing_reason: WhopSDK::Models::billing_reasons?,
+            card_brand: WhopSDK::Models::card_brands?,
+            :card_last4 => String?,
+            created_at: Time,
+            currency: WhopSDK::Models::currency?,
+            dispute_alerted_at: Time?,
+            member: WhopSDK::DisputeCreatedWebhookEvent::Data::Payment::Member?,
+            membership: WhopSDK::DisputeCreatedWebhookEvent::Data::Payment::Membership?,
+            paid_at: Time?,
+            payment_method_type: WhopSDK::Models::payment_method_types?,
+            subtotal: Float?,
+            total: Float?,
+            usd_total: Float?,
+            user: WhopSDK::DisputeCreatedWebhookEvent::Data::Payment::User?
+          }
+
+        class Payment < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor billing_reason: WhopSDK::Models::billing_reasons?
+
+          attr_accessor card_brand: WhopSDK::Models::card_brands?
+
+          attr_accessor card_last4: String?
+
+          attr_accessor created_at: Time
+
+          attr_accessor currency: WhopSDK::Models::currency?
+
+          attr_accessor dispute_alerted_at: Time?
+
+          attr_accessor member: WhopSDK::DisputeCreatedWebhookEvent::Data::Payment::Member?
+
+          attr_accessor membership: WhopSDK::DisputeCreatedWebhookEvent::Data::Payment::Membership?
+
+          attr_accessor paid_at: Time?
+
+          attr_accessor payment_method_type: WhopSDK::Models::payment_method_types?
+
+          attr_accessor subtotal: Float?
+
+          attr_accessor total: Float?
+
+          attr_accessor usd_total: Float?
+
+          attr_accessor user: WhopSDK::DisputeCreatedWebhookEvent::Data::Payment::User?
+
+          def initialize: (
+            id: String,
+            billing_reason: WhopSDK::Models::billing_reasons?,
+            card_brand: WhopSDK::Models::card_brands?,
+            card_last4: String?,
+            created_at: Time,
+            currency: WhopSDK::Models::currency?,
+            dispute_alerted_at: Time?,
+            member: WhopSDK::DisputeCreatedWebhookEvent::Data::Payment::Member?,
+            membership: WhopSDK::DisputeCreatedWebhookEvent::Data::Payment::Membership?,
+            paid_at: Time?,
+            payment_method_type: WhopSDK::Models::payment_method_types?,
+            subtotal: Float?,
+            total: Float?,
+            usd_total: Float?,
+            user: WhopSDK::DisputeCreatedWebhookEvent::Data::Payment::User?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            billing_reason: WhopSDK::Models::billing_reasons?,
+            card_brand: WhopSDK::Models::card_brands?,
+            :card_last4 => String?,
+            created_at: Time,
+            currency: WhopSDK::Models::currency?,
+            dispute_alerted_at: Time?,
+            member: WhopSDK::DisputeCreatedWebhookEvent::Data::Payment::Member?,
+            membership: WhopSDK::DisputeCreatedWebhookEvent::Data::Payment::Membership?,
+            paid_at: Time?,
+            payment_method_type: WhopSDK::Models::payment_method_types?,
+            subtotal: Float?,
+            total: Float?,
+            usd_total: Float?,
+            user: WhopSDK::DisputeCreatedWebhookEvent::Data::Payment::User?
+          }
+
+          type member = { id: String, phone: String? }
+
+          class Member < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor phone: String?
+
+            def initialize: (id: String, phone: String?) -> void
+
+            def to_hash: -> { id: String, phone: String? }
+          end
+
+          type membership =
+            { id: String, status: WhopSDK::Models::membership_status }
+
+          class Membership < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor status: WhopSDK::Models::membership_status
+
+            def initialize: (
+              id: String,
+              status: WhopSDK::Models::membership_status
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              status: WhopSDK::Models::membership_status
+            }
+          end
+
+          type user =
+            { id: String, email: String?, name: String?, username: String }
+
+          class User < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor email: String?
+
+            attr_accessor name: String?
+
+            attr_accessor username: String
+
+            def initialize: (
+              id: String,
+              email: String?,
+              name: String?,
+              username: String
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              email: String?,
+              name: String?,
+              username: String
+            }
+          end
+        end
+
+        type plan = { id: String }
+
+        class Plan < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
+
+        type product = { id: String, title: String }
+
+        class Product < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor title: String
+
+          def initialize: (id: String, title: String) -> void
+
+          def to_hash: -> { id: String, title: String }
+        end
+
+        type refund_policy_attachment =
+          { id: String, content_type: String?, filename: String?, url: String? }
+
+        class RefundPolicyAttachment < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor content_type: String?
+
+          attr_accessor filename: String?
+
+          attr_accessor url: String?
+
+          def initialize: (
+            id: String,
+            content_type: String?,
+            filename: String?,
+            url: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            content_type: String?,
+            filename: String?,
+            url: String?
+          }
+        end
+
+        type status =
+          :warning_needs_response
+          | :warning_under_review
+          | :warning_closed
+          | :needs_response
+          | :under_review
+          | :won
+          | :lost
+          | :closed
+          | :other
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          WARNING_NEEDS_RESPONSE: :warning_needs_response
+          WARNING_UNDER_REVIEW: :warning_under_review
+          WARNING_CLOSED: :warning_closed
+          NEEDS_RESPONSE: :needs_response
+          UNDER_REVIEW: :under_review
+          WON: :won
+          LOST: :lost
+          CLOSED: :closed
+          OTHER: :other
+
+          def self?.values: -> ::Array[WhopSDK::Models::DisputeCreatedWebhookEvent::Data::status]
+        end
+
+        type uncategorized_attachment =
+          { id: String, content_type: String?, filename: String?, url: String? }
+
+        class UncategorizedAttachment < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor content_type: String?
+
+          attr_accessor filename: String?
+
+          attr_accessor url: String?
+
+          def initialize: (
+            id: String,
+            content_type: String?,
+            filename: String?,
+            url: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            content_type: String?,
+            filename: String?,
+            url: String?
+          }
+        end
+      end
+    end
+  end
+end

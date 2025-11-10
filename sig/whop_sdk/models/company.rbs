@@ -145,6 +145,7 @@ module WhopSDK
           | :linkedin
           | :twitch
           | :website
+          | :custom
 
         module Website
           extend WhopSDK::Internal::Type::Enum
@@ -157,6 +158,7 @@ module WhopSDK
           LINKEDIN: :linkedin
           TWITCH: :twitch
           WEBSITE: :website
+          CUSTOM: :custom
 
           def self?.values: -> ::Array[WhopSDK::Models::Company::SocialLink::website]
         end

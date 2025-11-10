@@ -37,8 +37,7 @@ class WhopSDKTest < Minitest::Test
   def test_client_default_request_default_retry_attempts
     stub_request(:get, "http://localhost/payments").with(query: hash_including({})).to_return_json(status: 500, body: {})
 
-    whop =
-      WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key", app_id: "app_xxxxxxxxxxxxxx")
+    whop = WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(WhopSDK::Errors::InternalServerError) do
       whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
@@ -50,13 +49,7 @@ class WhopSDKTest < Minitest::Test
   def test_client_given_request_default_retry_attempts
     stub_request(:get, "http://localhost/payments").with(query: hash_including({})).to_return_json(status: 500, body: {})
 
-    whop =
-      WhopSDK::Client.new(
-        base_url: "http://localhost",
-        api_key: "My API Key",
-        app_id: "app_xxxxxxxxxxxxxx",
-        max_retries: 3
-      )
+    whop = WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
 
     assert_raises(WhopSDK::Errors::InternalServerError) do
       whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
@@ -68,8 +61,7 @@ class WhopSDKTest < Minitest::Test
   def test_client_default_request_given_retry_attempts
     stub_request(:get, "http://localhost/payments").with(query: hash_including({})).to_return_json(status: 500, body: {})
 
-    whop =
-      WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key", app_id: "app_xxxxxxxxxxxxxx")
+    whop = WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(WhopSDK::Errors::InternalServerError) do
       whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx", request_options: {max_retries: 3})
@@ -81,13 +73,7 @@ class WhopSDKTest < Minitest::Test
   def test_client_given_request_given_retry_attempts
     stub_request(:get, "http://localhost/payments").with(query: hash_including({})).to_return_json(status: 500, body: {})
 
-    whop =
-      WhopSDK::Client.new(
-        base_url: "http://localhost",
-        api_key: "My API Key",
-        app_id: "app_xxxxxxxxxxxxxx",
-        max_retries: 3
-      )
+    whop = WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
 
     assert_raises(WhopSDK::Errors::InternalServerError) do
       whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx", request_options: {max_retries: 4})
@@ -103,13 +89,7 @@ class WhopSDKTest < Minitest::Test
       body: {}
     )
 
-    whop =
-      WhopSDK::Client.new(
-        base_url: "http://localhost",
-        api_key: "My API Key",
-        app_id: "app_xxxxxxxxxxxxxx",
-        max_retries: 1
-      )
+    whop = WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
     assert_raises(WhopSDK::Errors::InternalServerError) do
       whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
@@ -126,13 +106,7 @@ class WhopSDKTest < Minitest::Test
       body: {}
     )
 
-    whop =
-      WhopSDK::Client.new(
-        base_url: "http://localhost",
-        api_key: "My API Key",
-        app_id: "app_xxxxxxxxxxxxxx",
-        max_retries: 1
-      )
+    whop = WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
     assert_raises(WhopSDK::Errors::InternalServerError) do
       Thread.current.thread_variable_set(:time_now, Time.now)
@@ -151,13 +125,7 @@ class WhopSDKTest < Minitest::Test
       body: {}
     )
 
-    whop =
-      WhopSDK::Client.new(
-        base_url: "http://localhost",
-        api_key: "My API Key",
-        app_id: "app_xxxxxxxxxxxxxx",
-        max_retries: 1
-      )
+    whop = WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
     assert_raises(WhopSDK::Errors::InternalServerError) do
       whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
@@ -170,8 +138,7 @@ class WhopSDKTest < Minitest::Test
   def test_retry_count_header
     stub_request(:get, "http://localhost/payments").with(query: hash_including({})).to_return_json(status: 500, body: {})
 
-    whop =
-      WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key", app_id: "app_xxxxxxxxxxxxxx")
+    whop = WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(WhopSDK::Errors::InternalServerError) do
       whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
@@ -185,8 +152,7 @@ class WhopSDKTest < Minitest::Test
   def test_omit_retry_count_header
     stub_request(:get, "http://localhost/payments").with(query: hash_including({})).to_return_json(status: 500, body: {})
 
-    whop =
-      WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key", app_id: "app_xxxxxxxxxxxxxx")
+    whop = WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(WhopSDK::Errors::InternalServerError) do
       whop.payments.list(
@@ -203,8 +169,7 @@ class WhopSDKTest < Minitest::Test
   def test_overwrite_retry_count_header
     stub_request(:get, "http://localhost/payments").with(query: hash_including({})).to_return_json(status: 500, body: {})
 
-    whop =
-      WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key", app_id: "app_xxxxxxxxxxxxxx")
+    whop = WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(WhopSDK::Errors::InternalServerError) do
       whop.payments.list(
@@ -227,8 +192,7 @@ class WhopSDKTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    whop =
-      WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key", app_id: "app_xxxxxxxxxxxxxx")
+    whop = WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(WhopSDK::Errors::APIConnectionError) do
       whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx", request_options: {extra_headers: {}})
@@ -257,8 +221,7 @@ class WhopSDKTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    whop =
-      WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key", app_id: "app_xxxxxxxxxxxxxx")
+    whop = WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(WhopSDK::Errors::APIConnectionError) do
       whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx", request_options: {extra_headers: {}})
@@ -282,8 +245,7 @@ class WhopSDKTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    whop =
-      WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key", app_id: "app_xxxxxxxxxxxxxx")
+    whop = WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(WhopSDK::Errors::APIConnectionError) do
       whop.payments.list(
@@ -313,8 +275,7 @@ class WhopSDKTest < Minitest::Test
       headers: {"location" => "https://example.com/redirected"}
     )
 
-    whop =
-      WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key", app_id: "app_xxxxxxxxxxxxxx")
+    whop = WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(WhopSDK::Errors::APIConnectionError) do
       whop.payments.list(
@@ -332,8 +293,7 @@ class WhopSDKTest < Minitest::Test
   def test_default_headers
     stub_request(:get, "http://localhost/payments").with(query: hash_including({})).to_return_json(status: 200, body: {})
 
-    whop =
-      WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key", app_id: "app_xxxxxxxxxxxxxx")
+    whop = WhopSDK::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
 

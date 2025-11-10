@@ -10,7 +10,7 @@ module WhopSDK
 
     attr_reader api_key: String
 
-    attr_reader app_id: String
+    attr_reader app_id: String?
 
     attr_reader apps: WhopSDK::Resources::Apps
 
@@ -75,6 +75,8 @@ module WhopSDK
     attr_reader course_students: WhopSDK::Resources::CourseStudents
 
     attr_reader access_tokens: WhopSDK::Resources::AccessTokens
+
+    attr_reader notifications: WhopSDK::Resources::Notifications
 
     private def auth_headers: -> ::Hash[String, String]
 

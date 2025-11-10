@@ -267,6 +267,8 @@ module WhopSDK
 
   class MessageUpdateParams = WhopSDK::Models::MessageUpdateParams
 
+  class NotificationCreateParams = WhopSDK::Models::NotificationCreateParams
+
   class PageInfo = WhopSDK::Models::PageInfo
 
   class Payment = WhopSDK::Models::Payment

@@ -1,0 +1,19 @@
+module WhopSDK
+  module Resources
+    class Notifications
+      def create: (
+        company_id: String,
+        content: String,
+        title: String,
+        experience_id: String,
+        ?icon_user_id: String?,
+        ?rest_path: String?,
+        ?subtitle: String?,
+        ?user_ids: ::Array[String]?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::NotificationCreateResponse
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

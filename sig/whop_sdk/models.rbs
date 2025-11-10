@@ -129,6 +129,10 @@ module WhopSDK
 
   module Direction = WhopSDK::Models::Direction
 
+  class DisputeCreatedWebhookEvent = WhopSDK::Models::DisputeCreatedWebhookEvent
+
+  class DisputeUpdatedWebhookEvent = WhopSDK::Models::DisputeUpdatedWebhookEvent
+
   module DmsPostTypes = WhopSDK::Models::DmsPostTypes
 
   module EmailNotificationPreferences = WhopSDK::Models::EmailNotificationPreferences

@@ -220,6 +220,7 @@ module WhopSDK
           LINKEDIN = :linkedin
           TWITCH = :twitch
           WEBSITE = :website
+          CUSTOM = :custom
 
           # @!method self.values
           #   @return [Array<Symbol>]

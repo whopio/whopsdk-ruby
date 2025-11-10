@@ -302,6 +302,8 @@ module WhopSDK
             T.let(:twitch, WhopSDK::Company::SocialLink::Website::TaggedSymbol)
           WEBSITE =
             T.let(:website, WhopSDK::Company::SocialLink::Website::TaggedSymbol)
+          CUSTOM =
+            T.let(:custom, WhopSDK::Company::SocialLink::Website::TaggedSymbol)
 
           sig do
             override.returns(

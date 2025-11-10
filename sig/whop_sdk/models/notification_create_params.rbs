@@ -1,0 +1,61 @@
+module WhopSDK
+  module Models
+    type notification_create_params =
+      {
+        company_id: String,
+        content: String,
+        title: String,
+        icon_user_id: String?,
+        rest_path: String?,
+        subtitle: String?,
+        user_ids: ::Array[String]?,
+        experience_id: String
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class NotificationCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor content: String
+
+      attr_accessor title: String
+
+      attr_accessor icon_user_id: String?
+
+      attr_accessor rest_path: String?
+
+      attr_accessor subtitle: String?
+
+      attr_accessor user_ids: ::Array[String]?
+
+      attr_accessor experience_id: String
+
+      def initialize: (
+        company_id: String,
+        content: String,
+        title: String,
+        experience_id: String,
+        ?icon_user_id: String?,
+        ?rest_path: String?,
+        ?subtitle: String?,
+        ?user_ids: ::Array[String]?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        content: String,
+        title: String,
+        icon_user_id: String?,
+        rest_path: String?,
+        subtitle: String?,
+        user_ids: ::Array[String]?,
+        experience_id: String,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

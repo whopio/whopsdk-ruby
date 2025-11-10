@@ -19,7 +19,9 @@ module WhopSDK
     # @return [String]
     attr_reader :api_key
 
-    # @return [String]
+    # When using the SDK in app mode pass this parameter to allow verifying user
+    # tokens
+    # @return [String, nil]
     attr_reader :app_id
 
     # @return [WhopSDK::Resources::Apps]
@@ -118,6 +120,12 @@ module WhopSDK
     # @return [WhopSDK::Resources::AccessTokens]
     attr_reader :access_tokens
 
+    # @return [WhopSDK::Resources::Notifications]
+    attr_reader :notifications
+
+    # @return [WhopSDK::Resources::Disputes]
+    attr_reader :disputes
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -132,7 +140,8 @@ module WhopSDK
     # @param api_key [String, nil] The app API key from an app from the /dashboard/developer page Defaults to
     # `ENV["WHOP_API_KEY"]`
     #
-    # @param app_id [String, nil] Defaults to `ENV["WHOP_APP_ID"]`
+    # @param app_id [String, nil] When using the SDK in app mode pass this parameter to allow verifying user
+    # tokens Defaults to `ENV["WHOP_APP_ID"]`
     #
     # @param base_url [String, nil] Override the default base URL for the API, e.g.,
     # `"https://api.example.com/v2/"`. Defaults to `ENV["WHOP_BASE_URL"]`
@@ -155,15 +164,12 @@ module WhopSDK
     )
       base_url ||= "https://api.whop.com/api/v1"
 
-      if app_id.nil?
-        raise ArgumentError.new("app_id is required, and can be set via environ: \"WHOP_APP_ID\"")
-      end
       if api_key.nil?
         raise ArgumentError.new("api_key is required, and can be set via environ: \"WHOP_API_KEY\"")
       end
 
       headers = {
-        "x-whop-app-id" => (@app_id = app_id.to_s)
+        "x-whop-app-id" => (@app_id = app_id&.to_s)
       }
 
       @api_key = api_key.to_s
@@ -209,6 +215,8 @@ module WhopSDK
       @reviews = WhopSDK::Resources::Reviews.new(client: self)
       @course_students = WhopSDK::Resources::CourseStudents.new(client: self)
       @access_tokens = WhopSDK::Resources::AccessTokens.new(client: self)
+      @notifications = WhopSDK::Resources::Notifications.new(client: self)
+      @disputes = WhopSDK::Resources::Disputes.new(client: self)
     end
 
     # Verifies a Whop user token
@@ -221,6 +229,9 @@ module WhopSDK
     # @raise [StandardError] If verification fails
     def verify_user_token!(token_or_headers, **opts)
       opts[:app_id] ||= app_id
+      unless opts[:app_id]
+        raise StandardError, "You must set app_id in the Whop client if you want to verify user tokens"
+      end
       Helpers::VerifyUserToken.verify_user_token!(token_or_headers, **opts)
     end
 

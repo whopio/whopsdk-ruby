@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.0.6 (2025-11-10)
+
+Full Changelog: [v0.0.5...v0.0.6](https://github.com/whopio/whopsdk-ruby/compare/v0.0.5...v0.0.6)
+
+### Features
+
+* **api:** api update ([40bd47a](https://github.com/whopio/whopsdk-ruby/commit/40bd47ab707c869f865202b879d2818a1365c785))
+* **api:** manual updates ([59f44e4](https://github.com/whopio/whopsdk-ruby/commit/59f44e454e7c1727a1d8566b316f7e61e98ce00b))
+* **api:** manual updates ([f4dcf3a](https://github.com/whopio/whopsdk-ruby/commit/f4dcf3a5be316eaa0452b4786c7c986c75a3d8b2))
+
+
+### Bug Fixes
+
+* **api:** allow optional app id in constructor ([#4](https://github.com/whopio/whopsdk-ruby/issues/4)) ([7e6bd87](https://github.com/whopio/whopsdk-ruby/commit/7e6bd873a73acb9f76c24a51945f94fb0eb65d13))
+
 ## 0.0.5 (2025-11-08)
 
 Full Changelog: [v0.0.4...v0.0.5](https://github.com/whopio/whopsdk-ruby/compare/v0.0.4...v0.0.5)

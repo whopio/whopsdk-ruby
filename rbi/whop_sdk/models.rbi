@@ -138,6 +138,22 @@ module WhopSDK
 
   Direction = WhopSDK::Models::Direction
 
+  Dispute = WhopSDK::Models::Dispute
+
+  DisputeCreatedWebhookEvent = WhopSDK::Models::DisputeCreatedWebhookEvent
+
+  DisputeListParams = WhopSDK::Models::DisputeListParams
+
+  DisputeRetrieveParams = WhopSDK::Models::DisputeRetrieveParams
+
+  DisputeStatuses = WhopSDK::Models::DisputeStatuses
+
+  DisputeSubmitEvidenceParams = WhopSDK::Models::DisputeSubmitEvidenceParams
+
+  DisputeUpdatedWebhookEvent = WhopSDK::Models::DisputeUpdatedWebhookEvent
+
+  DisputeUpdateEvidenceParams = WhopSDK::Models::DisputeUpdateEvidenceParams
+
   DmsPostTypes = WhopSDK::Models::DmsPostTypes
 
   EmailNotificationPreferences = WhopSDK::Models::EmailNotificationPreferences
@@ -277,6 +293,8 @@ module WhopSDK
   MessageRetrieveParams = WhopSDK::Models::MessageRetrieveParams
 
   MessageUpdateParams = WhopSDK::Models::MessageUpdateParams
+
+  NotificationCreateParams = WhopSDK::Models::NotificationCreateParams
 
   PageInfo = WhopSDK::Models::PageInfo
 

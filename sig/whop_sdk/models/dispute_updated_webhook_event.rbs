@@ -1,0 +1,40 @@
+module WhopSDK
+  module Models
+    type dispute_updated_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::Dispute,
+        timestamp: Time,
+        type: :"dispute.updated"
+      }
+
+    class DisputeUpdatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor data: WhopSDK::Dispute
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"dispute.updated"
+
+      def initialize: (
+        id: String,
+        data: WhopSDK::Dispute,
+        timestamp: Time,
+        ?api_version: :v1,
+        ?type: :"dispute.updated"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::Dispute,
+        timestamp: Time,
+        type: :"dispute.updated"
+      }
+    end
+  end
+end

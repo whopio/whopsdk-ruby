@@ -1,0 +1,124 @@
+module WhopSDK
+  module Models
+    type dispute_list_response =
+      {
+        id: String,
+        amount: Float,
+        company: WhopSDK::Models::DisputeListResponse::Company?,
+        created_at: Time?,
+        currency: WhopSDK::Models::currency,
+        editable: bool?,
+        needs_response_by: Time?,
+        payment: WhopSDK::Models::DisputeListResponse::Payment?,
+        plan: WhopSDK::Models::DisputeListResponse::Plan?,
+        product: WhopSDK::Models::DisputeListResponse::Product?,
+        reason: String?,
+        status: WhopSDK::Models::dispute_statuses,
+        visa_rdr: bool
+      }
+
+    class DisputeListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor amount: Float
+
+      attr_accessor company: WhopSDK::Models::DisputeListResponse::Company?
+
+      attr_accessor created_at: Time?
+
+      attr_accessor currency: WhopSDK::Models::currency
+
+      attr_accessor editable: bool?
+
+      attr_accessor needs_response_by: Time?
+
+      attr_accessor payment: WhopSDK::Models::DisputeListResponse::Payment?
+
+      attr_accessor plan: WhopSDK::Models::DisputeListResponse::Plan?
+
+      attr_accessor product: WhopSDK::Models::DisputeListResponse::Product?
+
+      attr_accessor reason: String?
+
+      attr_accessor status: WhopSDK::Models::dispute_statuses
+
+      attr_accessor visa_rdr: bool
+
+      def initialize: (
+        id: String,
+        amount: Float,
+        company: WhopSDK::Models::DisputeListResponse::Company?,
+        created_at: Time?,
+        currency: WhopSDK::Models::currency,
+        editable: bool?,
+        needs_response_by: Time?,
+        payment: WhopSDK::Models::DisputeListResponse::Payment?,
+        plan: WhopSDK::Models::DisputeListResponse::Plan?,
+        product: WhopSDK::Models::DisputeListResponse::Product?,
+        reason: String?,
+        status: WhopSDK::Models::dispute_statuses,
+        visa_rdr: bool
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        amount: Float,
+        company: WhopSDK::Models::DisputeListResponse::Company?,
+        created_at: Time?,
+        currency: WhopSDK::Models::currency,
+        editable: bool?,
+        needs_response_by: Time?,
+        payment: WhopSDK::Models::DisputeListResponse::Payment?,
+        plan: WhopSDK::Models::DisputeListResponse::Plan?,
+        product: WhopSDK::Models::DisputeListResponse::Product?,
+        reason: String?,
+        status: WhopSDK::Models::dispute_statuses,
+        visa_rdr: bool
+      }
+
+      type company = { id: String, title: String }
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type payment = { id: String }
+
+      class Payment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type plan = { id: String }
+
+      class Plan < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type product = { id: String, title: String }
+
+      class Product < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+    end
+  end
+end

@@ -45,8 +45,8 @@ module WhopSDK
       type plan =
         {
           company_id: String,
+          currency: WhopSDK::Models::currency,
           billing_period: Integer?,
-          currency: WhopSDK::Models::currency?,
           custom_fields: ::Array[WhopSDK::CheckoutConfigurationCreateParams::Plan::CustomField]?,
           description: String?,
           expiration_days: Integer?,
@@ -69,9 +69,9 @@ module WhopSDK
       class Plan < WhopSDK::Internal::Type::BaseModel
         attr_accessor company_id: String
 
-        attr_accessor billing_period: Integer?
+        attr_accessor currency: WhopSDK::Models::currency
 
-        attr_accessor currency: WhopSDK::Models::currency?
+        attr_accessor billing_period: Integer?
 
         attr_accessor custom_fields: ::Array[WhopSDK::CheckoutConfigurationCreateParams::Plan::CustomField]?
 
@@ -109,8 +109,8 @@ module WhopSDK
 
         def initialize: (
           company_id: String,
+          currency: WhopSDK::Models::currency,
           ?billing_period: Integer?,
-          ?currency: WhopSDK::Models::currency?,
           ?custom_fields: ::Array[WhopSDK::CheckoutConfigurationCreateParams::Plan::CustomField]?,
           ?description: String?,
           ?expiration_days: Integer?,
@@ -132,8 +132,8 @@ module WhopSDK
 
         def to_hash: -> {
           company_id: String,
+          currency: WhopSDK::Models::currency,
           billing_period: Integer?,
-          currency: WhopSDK::Models::currency?,
           custom_fields: ::Array[WhopSDK::CheckoutConfigurationCreateParams::Plan::CustomField]?,
           description: String?,
           expiration_days: Integer?,

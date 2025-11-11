@@ -6,7 +6,7 @@ module WhopSDK
         carrier: WhopSDK::Models::shipment_carrier,
         created_at: Time,
         delivery_estimate: Time?,
-        payment: WhopSDK::Models::ShipmentListResponse::Payment,
+        payment: WhopSDK::Models::ShipmentListResponse::Payment?,
         service: String?,
         status: WhopSDK::Models::shipment_status,
         substatus: WhopSDK::Models::shipment_substatus?,
@@ -23,7 +23,7 @@ module WhopSDK
 
       attr_accessor delivery_estimate: Time?
 
-      attr_accessor payment: WhopSDK::Models::ShipmentListResponse::Payment
+      attr_accessor payment: WhopSDK::Models::ShipmentListResponse::Payment?
 
       attr_accessor service: String?
 
@@ -40,7 +40,7 @@ module WhopSDK
         carrier: WhopSDK::Models::shipment_carrier,
         created_at: Time,
         delivery_estimate: Time?,
-        payment: WhopSDK::Models::ShipmentListResponse::Payment,
+        payment: WhopSDK::Models::ShipmentListResponse::Payment?,
         service: String?,
         status: WhopSDK::Models::shipment_status,
         substatus: WhopSDK::Models::shipment_substatus?,
@@ -53,7 +53,7 @@ module WhopSDK
         carrier: WhopSDK::Models::shipment_carrier,
         created_at: Time,
         delivery_estimate: Time?,
-        payment: WhopSDK::Models::ShipmentListResponse::Payment,
+        payment: WhopSDK::Models::ShipmentListResponse::Payment?,
         service: String?,
         status: WhopSDK::Models::shipment_status,
         substatus: WhopSDK::Models::shipment_substatus?,

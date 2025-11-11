@@ -28,12 +28,13 @@ module WhopSDK
       attr_accessor :delivery_estimate
 
       # The payment of the shipment
-      sig { returns(WhopSDK::Models::ShipmentListResponse::Payment) }
+      sig { returns(T.nilable(WhopSDK::Models::ShipmentListResponse::Payment)) }
       attr_reader :payment
 
       sig do
         params(
-          payment: WhopSDK::Models::ShipmentListResponse::Payment::OrHash
+          payment:
+            T.nilable(WhopSDK::Models::ShipmentListResponse::Payment::OrHash)
         ).void
       end
       attr_writer :payment
@@ -65,7 +66,8 @@ module WhopSDK
           carrier: WhopSDK::ShipmentCarrier::OrSymbol,
           created_at: Time,
           delivery_estimate: T.nilable(Time),
-          payment: WhopSDK::Models::ShipmentListResponse::Payment::OrHash,
+          payment:
+            T.nilable(WhopSDK::Models::ShipmentListResponse::Payment::OrHash),
           service: T.nilable(String),
           status: WhopSDK::ShipmentStatus::OrSymbol,
           substatus: T.nilable(WhopSDK::ShipmentSubstatus::OrSymbol),
@@ -104,7 +106,7 @@ module WhopSDK
             carrier: WhopSDK::ShipmentCarrier::TaggedSymbol,
             created_at: Time,
             delivery_estimate: T.nilable(Time),
-            payment: WhopSDK::Models::ShipmentListResponse::Payment,
+            payment: T.nilable(WhopSDK::Models::ShipmentListResponse::Payment),
             service: T.nilable(String),
             status: WhopSDK::ShipmentStatus::TaggedSymbol,
             substatus: T.nilable(WhopSDK::ShipmentSubstatus::TaggedSymbol),

@@ -90,6 +90,7 @@ module WhopSDK
       UZS = :uzs
       RUB = :rub
       BTC = :btc
+      CNY = :cny
 
       # @!method self.values
       #   @return [Array<Symbol>]

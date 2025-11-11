@@ -94,13 +94,13 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :company_id
 
+        # The respective currency identifier for the plan.
+        sig { returns(WhopSDK::Currency::OrSymbol) }
+        attr_accessor :currency
+
         # The interval at which the plan charges (renewal plans).
         sig { returns(T.nilable(Integer)) }
         attr_accessor :billing_period
-
-        # The available currencies on the platform
-        sig { returns(T.nilable(WhopSDK::Currency::OrSymbol)) }
-        attr_accessor :currency
 
         # An array of custom field objects.
         sig do
@@ -225,8 +225,8 @@ module WhopSDK
         sig do
           params(
             company_id: String,
+            currency: WhopSDK::Currency::OrSymbol,
             billing_period: T.nilable(Integer),
-            currency: T.nilable(WhopSDK::Currency::OrSymbol),
             custom_fields:
               T.nilable(
                 T::Array[
@@ -266,10 +266,10 @@ module WhopSDK
         def self.new(
           # The company the plan should be created for.
           company_id:,
+          # The respective currency identifier for the plan.
+          currency:,
           # The interval at which the plan charges (renewal plans).
           billing_period: nil,
-          # The available currencies on the platform
-          currency: nil,
           # An array of custom field objects.
           custom_fields: nil,
           # The description of the plan.
@@ -315,8 +315,8 @@ module WhopSDK
           override.returns(
             {
               company_id: String,
+              currency: WhopSDK::Currency::OrSymbol,
               billing_period: T.nilable(Integer),
-              currency: T.nilable(WhopSDK::Currency::OrSymbol),
               custom_fields:
                 T.nilable(
                   T::Array[

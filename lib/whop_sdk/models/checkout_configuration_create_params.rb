@@ -57,17 +57,17 @@ module WhopSDK
         #   @return [String]
         required :company_id, String
 
+        # @!attribute currency
+        #   The respective currency identifier for the plan.
+        #
+        #   @return [Symbol, WhopSDK::Models::Currency]
+        required :currency, enum: -> { WhopSDK::Currency }
+
         # @!attribute billing_period
         #   The interval at which the plan charges (renewal plans).
         #
         #   @return [Integer, nil]
         optional :billing_period, Integer, nil?: true
-
-        # @!attribute currency
-        #   The available currencies on the platform
-        #
-        #   @return [Symbol, WhopSDK::Models::Currency, nil]
-        optional :currency, enum: -> { WhopSDK::Currency }, nil?: true
 
         # @!attribute custom_fields
         #   An array of custom field objects.
@@ -181,7 +181,7 @@ module WhopSDK
         #   @return [Symbol, WhopSDK::Models::Visibility, nil]
         optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-        # @!method initialize(company_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, force_create_new_plan: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, product: nil, product_id: nil, release_method: nil, renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil)
+        # @!method initialize(company_id:, currency:, billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, force_create_new_plan: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, product: nil, product_id: nil, release_method: nil, renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan} for more details.
         #
@@ -189,9 +189,9 @@ module WhopSDK
         #
         #   @param company_id [String] The company the plan should be created for.
         #
-        #   @param billing_period [Integer, nil] The interval at which the plan charges (renewal plans).
+        #   @param currency [Symbol, WhopSDK::Models::Currency] The respective currency identifier for the plan.
         #
-        #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
+        #   @param billing_period [Integer, nil] The interval at which the plan charges (renewal plans).
         #
         #   @param custom_fields [Array<WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::CustomField>, nil] An array of custom field objects.
         #

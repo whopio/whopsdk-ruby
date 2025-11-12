@@ -8,8 +8,10 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute scoped_actions
-      #   Array of desired scoped actions for the access token. This list must be a subset
-      #   of the API keys's existing permissions. Otherwise, an error will be raised.
+      #   Array of desired scoped actions for the access token. If sent as an empty array,
+      #   all permissions from the API key making the request will be available on the
+      #   token. If sending an explicit list, they must be a subset of the API keys's
+      #   existing permissions. Otherwise, an error will be raised.
       #
       #   @return [Array<String>]
       required :scoped_actions, WhopSDK::Internal::Type::ArrayOf[String]
@@ -39,7 +41,7 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AccessTokenCreateParams} for more details.
       #
-      #   @param scoped_actions [Array<String>] Array of desired scoped actions for the access token. This list must be a subset
+      #   @param scoped_actions [Array<String>] Array of desired scoped actions for the access token. If sent as an empty array,
       #
       #   @param target_resource_id [String] The ID of the target resource (Company, User, etc.) for which the access token i
       #

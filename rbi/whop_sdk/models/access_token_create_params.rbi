@@ -11,8 +11,10 @@ module WhopSDK
           T.any(WhopSDK::AccessTokenCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # Array of desired scoped actions for the access token. This list must be a subset
-      # of the API keys's existing permissions. Otherwise, an error will be raised.
+      # Array of desired scoped actions for the access token. If sent as an empty array,
+      # all permissions from the API key making the request will be available on the
+      # token. If sending an explicit list, they must be a subset of the API keys's
+      # existing permissions. Otherwise, an error will be raised.
       sig { returns(T::Array[String]) }
       attr_accessor :scoped_actions
 
@@ -44,8 +46,10 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # Array of desired scoped actions for the access token. This list must be a subset
-        # of the API keys's existing permissions. Otherwise, an error will be raised.
+        # Array of desired scoped actions for the access token. If sent as an empty array,
+        # all permissions from the API key making the request will be available on the
+        # token. If sending an explicit list, they must be a subset of the API keys's
+        # existing permissions. Otherwise, an error will be raised.
         scoped_actions:,
         # The ID of the target resource (Company, User, etc.) for which the access token
         # is being created.

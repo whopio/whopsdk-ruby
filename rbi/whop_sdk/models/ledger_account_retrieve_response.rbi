@@ -216,6 +216,11 @@ module WhopSDK
             :pending,
             WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
           )
+        PENDING_AI_REVIEW =
+          T.let(
+            :pending_ai_review,
+            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
+          )
         APPROVED =
           T.let(
             :approved,

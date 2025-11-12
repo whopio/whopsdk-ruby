@@ -11,7 +11,7 @@ module WhopSDK
       #
       # @overload create(scoped_actions:, target_resource_id:, target_resource_type:, expires_at: nil, request_options: {})
       #
-      # @param scoped_actions [Array<String>] Array of desired scoped actions for the access token. This list must be a subset
+      # @param scoped_actions [Array<String>] Array of desired scoped actions for the access token. If sent as an empty array,
       #
       # @param target_resource_id [String] The ID of the target resource (Company, User, etc.) for which the access token i
       #

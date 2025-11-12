@@ -12,7 +12,7 @@ module WhopSDK
       #
       # - `forum:post:create`
       #
-      # @overload create(experience_id:, attachments: nil, content: nil, is_mention: nil, parent_id: nil, paywall_amount: nil, paywall_currency: nil, pinned: nil, poll: nil, title: nil, request_options: {})
+      # @overload create(experience_id:, attachments: nil, content: nil, is_mention: nil, parent_id: nil, paywall_amount: nil, paywall_currency: nil, pinned: nil, poll: nil, title: nil, visibility: nil, request_options: {})
       #
       # @param experience_id [String] The experience to create this post in
       #
@@ -33,6 +33,8 @@ module WhopSDK
       # @param poll [WhopSDK::Models::ForumPostCreateParams::Poll, nil] The poll for this post
       #
       # @param title [String, nil] The title of the post. Only visible if paywalled.
+      #
+      # @param visibility [Symbol, WhopSDK::Models::ForumPostCreateParams::Visibility, nil] The visibility types for forum posts
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -79,7 +81,7 @@ module WhopSDK
       #
       # Update an existing forum post
       #
-      # @overload update(id, attachments: nil, content: nil, is_pinned: nil, title: nil, request_options: {})
+      # @overload update(id, attachments: nil, content: nil, is_pinned: nil, title: nil, visibility: nil, request_options: {})
       #
       # @param id [String] The ID of the forum post to update
       #
@@ -90,6 +92,8 @@ module WhopSDK
       # @param is_pinned [Boolean, nil] Whether the post is pinned. You can only pin a top level posts (not comments).
       #
       # @param title [String, nil] The title of the post. Only visible if paywalled.
+      #
+      # @param visibility [Symbol, WhopSDK::Models::ForumPostUpdateParams::Visibility, nil] The visibility types for forum posts
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

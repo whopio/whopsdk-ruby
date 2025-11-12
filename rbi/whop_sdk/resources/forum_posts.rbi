@@ -28,6 +28,8 @@ module WhopSDK
           pinned: T.nilable(T::Boolean),
           poll: T.nilable(WhopSDK::ForumPostCreateParams::Poll::OrHash),
           title: T.nilable(String),
+          visibility:
+            T.nilable(WhopSDK::ForumPostCreateParams::Visibility::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::ForumPost)
       end
@@ -57,6 +59,8 @@ module WhopSDK
         poll: nil,
         # The title of the post. Only visible if paywalled.
         title: nil,
+        # The visibility types for forum posts
+        visibility: nil,
         request_options: {}
       )
       end
@@ -95,6 +99,8 @@ module WhopSDK
           content: T.nilable(String),
           is_pinned: T.nilable(T::Boolean),
           title: T.nilable(String),
+          visibility:
+            T.nilable(WhopSDK::ForumPostUpdateParams::Visibility::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::ForumPost)
       end
@@ -110,6 +116,8 @@ module WhopSDK
         is_pinned: nil,
         # The title of the post. Only visible if paywalled.
         title: nil,
+        # The visibility types for forum posts
+        visibility: nil,
         request_options: {}
       )
       end

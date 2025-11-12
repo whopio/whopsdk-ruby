@@ -11,7 +11,8 @@ module WhopSDK
         paywall_currency: WhopSDK::Models::currency?,
         pinned: bool?,
         poll: WhopSDK::ForumPostCreateParams::Poll?,
-        title: String?
+        title: String?,
+        visibility: WhopSDK::Models::ForumPostCreateParams::visibility?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -39,6 +40,8 @@ module WhopSDK
 
       attr_accessor title: String?
 
+      attr_accessor visibility: WhopSDK::Models::ForumPostCreateParams::visibility?
+
       def initialize: (
         experience_id: String,
         ?attachments: ::Array[WhopSDK::Models::ForumPostCreateParams::attachment]?,
@@ -50,6 +53,7 @@ module WhopSDK
         ?pinned: bool?,
         ?poll: WhopSDK::ForumPostCreateParams::Poll?,
         ?title: String?,
+        ?visibility: WhopSDK::Models::ForumPostCreateParams::visibility?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -64,6 +68,7 @@ module WhopSDK
         pinned: bool?,
         poll: WhopSDK::ForumPostCreateParams::Poll?,
         title: String?,
+        visibility: WhopSDK::Models::ForumPostCreateParams::visibility?,
         request_options: WhopSDK::RequestOptions
       }
 
@@ -123,6 +128,17 @@ module WhopSDK
 
           def to_hash: -> { id: String, text: String }
         end
+      end
+
+      type visibility = :members_only | :globally_visible
+
+      module Visibility
+        extend WhopSDK::Internal::Type::Enum
+
+        MEMBERS_ONLY: :members_only
+        GLOBALLY_VISIBLE: :globally_visible
+
+        def self?.values: -> ::Array[WhopSDK::Models::ForumPostCreateParams::visibility]
       end
     end
   end

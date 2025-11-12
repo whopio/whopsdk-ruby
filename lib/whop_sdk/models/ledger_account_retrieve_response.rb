@@ -112,6 +112,7 @@ module WhopSDK
         extend WhopSDK::Internal::Type::Enum
 
         PENDING = :pending
+        PENDING_AI_REVIEW = :pending_ai_review
         APPROVED = :approved
         RESERVES_IMPOSED = :reserves_imposed
         SUSPENDED = :suspended

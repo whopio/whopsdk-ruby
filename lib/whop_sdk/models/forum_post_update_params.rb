@@ -34,7 +34,13 @@ module WhopSDK
       #   @return [String, nil]
       optional :title, String, nil?: true
 
-      # @!method initialize(attachments: nil, content: nil, is_pinned: nil, title: nil, request_options: {})
+      # @!attribute visibility
+      #   The visibility types for forum posts
+      #
+      #   @return [Symbol, WhopSDK::Models::ForumPostUpdateParams::Visibility, nil]
+      optional :visibility, enum: -> { WhopSDK::ForumPostUpdateParams::Visibility }, nil?: true
+
+      # @!method initialize(attachments: nil, content: nil, is_pinned: nil, title: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ForumPostUpdateParams} for more details.
       #
@@ -45,6 +51,8 @@ module WhopSDK
       #   @param is_pinned [Boolean, nil] Whether the post is pinned. You can only pin a top level posts (not comments).
       #
       #   @param title [String, nil] The title of the post. Only visible if paywalled.
+      #
+      #   @param visibility [Symbol, WhopSDK::Models::ForumPostUpdateParams::Visibility, nil] The visibility types for forum posts
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
@@ -98,6 +106,17 @@ module WhopSDK
 
         # @!method self.variants
         #   @return [Array(WhopSDK::Models::ForumPostUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::ForumPostUpdateParams::Attachment::AttachmentInputWithID)]
+      end
+
+      # The visibility types for forum posts
+      module Visibility
+        extend WhopSDK::Internal::Type::Enum
+
+        MEMBERS_ONLY = :members_only
+        GLOBALLY_VISIBLE = :globally_visible
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

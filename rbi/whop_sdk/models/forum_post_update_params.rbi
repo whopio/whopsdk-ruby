@@ -39,6 +39,12 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
+      # The visibility types for forum posts
+      sig do
+        returns(T.nilable(WhopSDK::ForumPostUpdateParams::Visibility::OrSymbol))
+      end
+      attr_accessor :visibility
+
       sig do
         params(
           attachments:
@@ -53,6 +59,8 @@ module WhopSDK
           content: T.nilable(String),
           is_pinned: T.nilable(T::Boolean),
           title: T.nilable(String),
+          visibility:
+            T.nilable(WhopSDK::ForumPostUpdateParams::Visibility::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -66,6 +74,8 @@ module WhopSDK
         is_pinned: nil,
         # The title of the post. Only visible if paywalled.
         title: nil,
+        # The visibility types for forum posts
+        visibility: nil,
         request_options: {}
       )
       end
@@ -85,6 +95,8 @@ module WhopSDK
             content: T.nilable(String),
             is_pinned: T.nilable(T::Boolean),
             title: T.nilable(String),
+            visibility:
+              T.nilable(WhopSDK::ForumPostUpdateParams::Visibility::OrSymbol),
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -170,6 +182,36 @@ module WhopSDK
           )
         end
         def self.variants
+        end
+      end
+
+      # The visibility types for forum posts
+      module Visibility
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::ForumPostUpdateParams::Visibility)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        MEMBERS_ONLY =
+          T.let(
+            :members_only,
+            WhopSDK::ForumPostUpdateParams::Visibility::TaggedSymbol
+          )
+        GLOBALLY_VISIBLE =
+          T.let(
+            :globally_visible,
+            WhopSDK::ForumPostUpdateParams::Visibility::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::ForumPostUpdateParams::Visibility::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
     end

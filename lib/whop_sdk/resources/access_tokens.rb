@@ -6,18 +6,20 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::AccessTokenCreateParams} for more details.
       #
-      # Creates an access token for a user to access a specific resource. These access
-      # tokens are designed to be used with Whop's embedded components.
+      # Create a short-lived access token to authenticate API requests on behalf of a
+      # Company or User. This token should be used with Whop's web and mobile embedded
+      # components. You must provide either a company_id or a user_id argument, but not
+      # both.
       #
-      # @overload create(scoped_actions:, target_resource_id:, target_resource_type:, expires_at: nil, request_options: {})
+      # @overload create(company_id:, user_id:, expires_at: nil, scoped_actions: nil, request_options: {})
       #
-      # @param scoped_actions [Array<String>] Array of desired scoped actions for the access token. If sent as an empty array,
+      # @param company_id [String] The ID of the Company to generate the token for. The API key must have permissio
       #
-      # @param target_resource_id [String] The ID of the target resource (Company, User, etc.) for which the access token i
-      #
-      # @param target_resource_type [Symbol, WhopSDK::Models::AccessTokenCreateParams::TargetResourceType] The type of the target resource (company, user, product, experience, etc.).
+      # @param user_id [String] The ID of the User to generate the token for. The API key must have permission t
       #
       # @param expires_at [Time, nil] The expiration timestamp for the access token. If not provided, a default expira
+      #
+      # @param scoped_actions [Array<String>, nil] Array of desired scoped actions for the access token. If sent as an empty array
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

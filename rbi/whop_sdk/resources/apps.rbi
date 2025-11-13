@@ -56,6 +56,7 @@ module WhopSDK
         params(
           id: String,
           app_store_description: T.nilable(String),
+          app_type: T.nilable(WhopSDK::AppUpdateParams::AppType::OrSymbol),
           base_url: T.nilable(String),
           dashboard_path: T.nilable(String),
           description: T.nilable(String),
@@ -82,6 +83,8 @@ module WhopSDK
         id,
         # The description of the app for the app store in-depth app view.
         app_store_description: nil,
+        # The type of end-user an app is built for
+        app_type: nil,
         # The base production url of the app
         base_url: nil,
         # The path for the dashboard view of the app

@@ -15,6 +15,10 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :app_store_description
 
+      # The type of end-user an app is built for
+      sig { returns(T.nilable(WhopSDK::AppUpdateParams::AppType::OrSymbol)) }
+      attr_accessor :app_type
+
       # The base production url of the app
       sig { returns(T.nilable(String)) }
       attr_accessor :base_url
@@ -67,6 +71,7 @@ module WhopSDK
       sig do
         params(
           app_store_description: T.nilable(String),
+          app_type: T.nilable(WhopSDK::AppUpdateParams::AppType::OrSymbol),
           base_url: T.nilable(String),
           dashboard_path: T.nilable(String),
           description: T.nilable(String),
@@ -91,6 +96,8 @@ module WhopSDK
       def self.new(
         # The description of the app for the app store in-depth app view.
         app_store_description: nil,
+        # The type of end-user an app is built for
+        app_type: nil,
         # The base production url of the app
         base_url: nil,
         # The path for the dashboard view of the app
@@ -117,6 +124,7 @@ module WhopSDK
         override.returns(
           {
             app_store_description: T.nilable(String),
+            app_type: T.nilable(WhopSDK::AppUpdateParams::AppType::OrSymbol),
             base_url: T.nilable(String),
             dashboard_path: T.nilable(String),
             description: T.nilable(String),
@@ -140,6 +148,32 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      # The type of end-user an app is built for
+      module AppType
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::AppUpdateParams::AppType) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        B2B_APP =
+          T.let(:b2b_app, WhopSDK::AppUpdateParams::AppType::TaggedSymbol)
+        B2C_APP =
+          T.let(:b2c_app, WhopSDK::AppUpdateParams::AppType::TaggedSymbol)
+        COMPANY_APP =
+          T.let(:company_app, WhopSDK::AppUpdateParams::AppType::TaggedSymbol)
+        COMPONENT =
+          T.let(:component, WhopSDK::AppUpdateParams::AppType::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::AppUpdateParams::AppType::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
 
       # The icon for the app

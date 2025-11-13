@@ -3,6 +3,7 @@ module WhopSDK
     type app_update_params =
       {
         app_store_description: String?,
+        app_type: WhopSDK::Models::AppUpdateParams::app_type?,
         base_url: String?,
         dashboard_path: String?,
         description: String?,
@@ -20,6 +21,8 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       attr_accessor app_store_description: String?
+
+      attr_accessor app_type: WhopSDK::Models::AppUpdateParams::app_type?
 
       attr_accessor base_url: String?
 
@@ -41,6 +44,7 @@ module WhopSDK
 
       def initialize: (
         ?app_store_description: String?,
+        ?app_type: WhopSDK::Models::AppUpdateParams::app_type?,
         ?base_url: String?,
         ?dashboard_path: String?,
         ?description: String?,
@@ -55,6 +59,7 @@ module WhopSDK
 
       def to_hash: -> {
         app_store_description: String?,
+        app_type: WhopSDK::Models::AppUpdateParams::app_type?,
         base_url: String?,
         dashboard_path: String?,
         description: String?,
@@ -66,6 +71,19 @@ module WhopSDK
         status: WhopSDK::Models::app_statuses?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type app_type = :b2b_app | :b2c_app | :company_app | :component
+
+      module AppType
+        extend WhopSDK::Internal::Type::Enum
+
+        B2B_APP: :b2b_app
+        B2C_APP: :b2c_app
+        COMPANY_APP: :company_app
+        COMPONENT: :component
+
+        def self?.values: -> ::Array[WhopSDK::Models::AppUpdateParams::app_type]
+      end
 
       type icon =
         WhopSDK::AppUpdateParams::Icon::AttachmentInputWithDirectUploadID

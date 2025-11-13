@@ -13,6 +13,12 @@ module WhopSDK
       #   @return [String, nil]
       optional :app_store_description, String, nil?: true
 
+      # @!attribute app_type
+      #   The type of end-user an app is built for
+      #
+      #   @return [Symbol, WhopSDK::Models::AppUpdateParams::AppType, nil]
+      optional :app_type, enum: -> { WhopSDK::AppUpdateParams::AppType }, nil?: true
+
       # @!attribute base_url
       #   The base production url of the app
       #
@@ -69,8 +75,10 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::AppStatuses, nil]
       optional :status, enum: -> { WhopSDK::AppStatuses }, nil?: true
 
-      # @!method initialize(app_store_description: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, required_scopes: nil, status: nil, request_options: {})
+      # @!method initialize(app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, required_scopes: nil, status: nil, request_options: {})
       #   @param app_store_description [String, nil] The description of the app for the app store in-depth app view.
+      #
+      #   @param app_type [Symbol, WhopSDK::Models::AppUpdateParams::AppType, nil] The type of end-user an app is built for
       #
       #   @param base_url [String, nil] The base production url of the app
       #
@@ -91,6 +99,19 @@ module WhopSDK
       #   @param status [Symbol, WhopSDK::Models::AppStatuses, nil] The status of an experience interface
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      # The type of end-user an app is built for
+      module AppType
+        extend WhopSDK::Internal::Type::Enum
+
+        B2B_APP = :b2b_app
+        B2C_APP = :b2c_app
+        COMPANY_APP = :company_app
+        COMPONENT = :component
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
 
       # The icon for the app
       module Icon

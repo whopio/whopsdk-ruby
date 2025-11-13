@@ -59,11 +59,13 @@ module WhopSDK
       # - `developer:update_app`
       # - `developer:manage_api_key`
       #
-      # @overload update(id, app_store_description: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, required_scopes: nil, status: nil, request_options: {})
+      # @overload update(id, app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, required_scopes: nil, status: nil, request_options: {})
       #
       # @param id [String] The ID of the app
       #
       # @param app_store_description [String, nil] The description of the app for the app store in-depth app view.
+      #
+      # @param app_type [Symbol, WhopSDK::Models::AppUpdateParams::AppType, nil] The type of end-user an app is built for
       #
       # @param base_url [String, nil] The base production url of the app
       #

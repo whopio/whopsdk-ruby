@@ -16,6 +16,7 @@ module WhopSDK
       | :rupay
       | :jcbrupay
       | :elo
+      | :maestro
       | :unknown
 
     module CardBrands
@@ -36,6 +37,7 @@ module WhopSDK
       RUPAY: :rupay
       JCBRUPAY: :jcbrupay
       ELO: :elo
+      MAESTRO: :maestro
       UNKNOWN: :unknown
 
       def self?.values: -> ::Array[WhopSDK::Models::card_brands]

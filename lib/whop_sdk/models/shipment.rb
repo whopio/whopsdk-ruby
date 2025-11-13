@@ -30,8 +30,8 @@ module WhopSDK
       # @!attribute payment
       #   The payment of the shipment
       #
-      #   @return [WhopSDK::Models::Shipment::Payment]
-      required :payment, -> { WhopSDK::Shipment::Payment }
+      #   @return [WhopSDK::Models::Shipment::Payment, nil]
+      required :payment, -> { WhopSDK::Shipment::Payment }, nil?: true
 
       # @!attribute service
       #   The service of the shipment
@@ -74,7 +74,7 @@ module WhopSDK
       #
       #   @param delivery_estimate [Time, nil] The delivery estimate of the shipment
       #
-      #   @param payment [WhopSDK::Models::Shipment::Payment] The payment of the shipment
+      #   @param payment [WhopSDK::Models::Shipment::Payment, nil] The payment of the shipment
       #
       #   @param service [String, nil] The service of the shipment
       #

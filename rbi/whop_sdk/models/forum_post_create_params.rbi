@@ -74,6 +74,12 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
+      # The visibility types for forum posts
+      sig do
+        returns(T.nilable(WhopSDK::ForumPostCreateParams::Visibility::OrSymbol))
+      end
+      attr_accessor :visibility
+
       sig do
         params(
           experience_id: String,
@@ -94,6 +100,8 @@ module WhopSDK
           pinned: T.nilable(T::Boolean),
           poll: T.nilable(WhopSDK::ForumPostCreateParams::Poll::OrHash),
           title: T.nilable(String),
+          visibility:
+            T.nilable(WhopSDK::ForumPostCreateParams::Visibility::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -123,6 +131,8 @@ module WhopSDK
         poll: nil,
         # The title of the post. Only visible if paywalled.
         title: nil,
+        # The visibility types for forum posts
+        visibility: nil,
         request_options: {}
       )
       end
@@ -148,6 +158,8 @@ module WhopSDK
             pinned: T.nilable(T::Boolean),
             poll: T.nilable(WhopSDK::ForumPostCreateParams::Poll),
             title: T.nilable(String),
+            visibility:
+              T.nilable(WhopSDK::ForumPostCreateParams::Visibility::OrSymbol),
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -300,6 +312,36 @@ module WhopSDK
           sig { override.returns({ id: String, text: String }) }
           def to_hash
           end
+        end
+      end
+
+      # The visibility types for forum posts
+      module Visibility
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::ForumPostCreateParams::Visibility)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        MEMBERS_ONLY =
+          T.let(
+            :members_only,
+            WhopSDK::ForumPostCreateParams::Visibility::TaggedSymbol
+          )
+        GLOBALLY_VISIBLE =
+          T.let(
+            :globally_visible,
+            WhopSDK::ForumPostCreateParams::Visibility::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::ForumPostCreateParams::Visibility::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
     end

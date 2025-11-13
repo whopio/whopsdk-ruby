@@ -25,6 +25,7 @@ module WhopSDK
       RUPAY = T.let(:rupay, WhopSDK::CardBrands::TaggedSymbol)
       JCBRUPAY = T.let(:jcbrupay, WhopSDK::CardBrands::TaggedSymbol)
       ELO = T.let(:elo, WhopSDK::CardBrands::TaggedSymbol)
+      MAESTRO = T.let(:maestro, WhopSDK::CardBrands::TaggedSymbol)
       UNKNOWN = T.let(:unknown, WhopSDK::CardBrands::TaggedSymbol)
 
       sig { override.returns(T::Array[WhopSDK::CardBrands::TaggedSymbol]) }

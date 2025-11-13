@@ -21,6 +21,7 @@ module WhopSDK
       RUPAY = :rupay
       JCBRUPAY = :jcbrupay
       ELO = :elo
+      MAESTRO = :maestro
       UNKNOWN = :unknown
 
       # @!method self.values

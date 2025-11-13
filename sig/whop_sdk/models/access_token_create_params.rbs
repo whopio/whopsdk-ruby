@@ -2,10 +2,10 @@ module WhopSDK
   module Models
     type access_token_create_params =
       {
-        scoped_actions: ::Array[String],
-        target_resource_id: String,
-        target_resource_type: WhopSDK::Models::AccessTokenCreateParams::target_resource_type,
-        expires_at: Time?
+        company_id: String,
+        expires_at: Time?,
+        scoped_actions: ::Array[String]?,
+        user_id: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -13,44 +13,29 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor scoped_actions: ::Array[String]
-
-      attr_accessor target_resource_id: String
-
-      attr_accessor target_resource_type: WhopSDK::Models::AccessTokenCreateParams::target_resource_type
+      attr_accessor company_id: String
 
       attr_accessor expires_at: Time?
 
+      attr_accessor scoped_actions: ::Array[String]?
+
+      attr_accessor user_id: String
+
       def initialize: (
-        scoped_actions: ::Array[String],
-        target_resource_id: String,
-        target_resource_type: WhopSDK::Models::AccessTokenCreateParams::target_resource_type,
+        company_id: String,
+        user_id: String,
         ?expires_at: Time?,
+        ?scoped_actions: ::Array[String]?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        scoped_actions: ::Array[String],
-        target_resource_id: String,
-        target_resource_type: WhopSDK::Models::AccessTokenCreateParams::target_resource_type,
+        company_id: String,
         expires_at: Time?,
+        scoped_actions: ::Array[String]?,
+        user_id: String,
         request_options: WhopSDK::RequestOptions
       }
-
-      type target_resource_type =
-        :company | :product | :experience | :app | :user
-
-      module TargetResourceType
-        extend WhopSDK::Internal::Type::Enum
-
-        COMPANY: :company
-        PRODUCT: :product
-        EXPERIENCE: :experience
-        APP: :app
-        USER: :user
-
-        def self?.values: -> ::Array[WhopSDK::Models::AccessTokenCreateParams::target_resource_type]
-      end
     end
   end
 end

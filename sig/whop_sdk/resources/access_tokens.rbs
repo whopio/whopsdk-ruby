@@ -2,10 +2,10 @@ module WhopSDK
   module Resources
     class AccessTokens
       def create: (
-        scoped_actions: ::Array[String],
-        target_resource_id: String,
-        target_resource_type: WhopSDK::Models::AccessTokenCreateParams::target_resource_type,
+        company_id: String,
+        user_id: String,
         ?expires_at: Time?,
+        ?scoped_actions: ::Array[String]?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::AccessTokenCreateResponse
 

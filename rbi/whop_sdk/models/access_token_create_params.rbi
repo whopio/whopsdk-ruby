@@ -11,23 +11,11 @@ module WhopSDK
           T.any(WhopSDK::AccessTokenCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # Array of desired scoped actions for the access token. If sent as an empty array,
-      # all permissions from the API key making the request will be available on the
-      # token. If sending an explicit list, they must be a subset of the API keys's
-      # existing permissions. Otherwise, an error will be raised.
-      sig { returns(T::Array[String]) }
-      attr_accessor :scoped_actions
-
-      # The ID of the target resource (Company, User, etc.) for which the access token
-      # is being created.
+      # The ID of the Company to generate the token for. The API key must have
+      # permission to access this Company, such as the being the company the API key
+      # belongs to or a sub-merchant of it
       sig { returns(String) }
-      attr_accessor :target_resource_id
-
-      # The type of the target resource (company, user, product, experience, etc.).
-      sig do
-        returns(WhopSDK::AccessTokenCreateParams::TargetResourceType::OrSymbol)
-      end
-      attr_accessor :target_resource_type
+      attr_accessor :company_id
 
       # The expiration timestamp for the access token. If not provided, a default
       # expiration time of 1 hour will be used. The expiration can be set to a maximum
@@ -35,31 +23,44 @@ module WhopSDK
       sig { returns(T.nilable(Time)) }
       attr_accessor :expires_at
 
+      # Array of desired scoped actions for the access token. If sent as an empty array
+      # or not provided, all permissions from the API key making the request will be
+      # available on the token. If sending an explicit list, they must be a subset of
+      # the API keys's existing permissions. Otherwise, an error will be raised.
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_accessor :scoped_actions
+
+      # The ID of the User to generate the token for. The API key must have permission
+      # to access this User.
+      sig { returns(String) }
+      attr_accessor :user_id
+
       sig do
         params(
-          scoped_actions: T::Array[String],
-          target_resource_id: String,
-          target_resource_type:
-            WhopSDK::AccessTokenCreateParams::TargetResourceType::OrSymbol,
+          company_id: String,
+          user_id: String,
           expires_at: T.nilable(Time),
+          scoped_actions: T.nilable(T::Array[String]),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # Array of desired scoped actions for the access token. If sent as an empty array,
-        # all permissions from the API key making the request will be available on the
-        # token. If sending an explicit list, they must be a subset of the API keys's
-        # existing permissions. Otherwise, an error will be raised.
-        scoped_actions:,
-        # The ID of the target resource (Company, User, etc.) for which the access token
-        # is being created.
-        target_resource_id:,
-        # The type of the target resource (company, user, product, experience, etc.).
-        target_resource_type:,
+        # The ID of the Company to generate the token for. The API key must have
+        # permission to access this Company, such as the being the company the API key
+        # belongs to or a sub-merchant of it
+        company_id:,
+        # The ID of the User to generate the token for. The API key must have permission
+        # to access this User.
+        user_id:,
         # The expiration timestamp for the access token. If not provided, a default
         # expiration time of 1 hour will be used. The expiration can be set to a maximum
         # of 3 hours from the current time.
         expires_at: nil,
+        # Array of desired scoped actions for the access token. If sent as an empty array
+        # or not provided, all permissions from the API key making the request will be
+        # available on the token. If sending an explicit list, they must be a subset of
+        # the API keys's existing permissions. Otherwise, an error will be raised.
+        scoped_actions: nil,
         request_options: {}
       )
       end
@@ -67,63 +68,15 @@ module WhopSDK
       sig do
         override.returns(
           {
-            scoped_actions: T::Array[String],
-            target_resource_id: String,
-            target_resource_type:
-              WhopSDK::AccessTokenCreateParams::TargetResourceType::OrSymbol,
+            company_id: String,
             expires_at: T.nilable(Time),
+            scoped_actions: T.nilable(T::Array[String]),
+            user_id: String,
             request_options: WhopSDK::RequestOptions
           }
         )
       end
       def to_hash
-      end
-
-      # The type of the target resource (company, user, product, experience, etc.).
-      module TargetResourceType
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::AccessTokenCreateParams::TargetResourceType)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        COMPANY =
-          T.let(
-            :company,
-            WhopSDK::AccessTokenCreateParams::TargetResourceType::TaggedSymbol
-          )
-        PRODUCT =
-          T.let(
-            :product,
-            WhopSDK::AccessTokenCreateParams::TargetResourceType::TaggedSymbol
-          )
-        EXPERIENCE =
-          T.let(
-            :experience,
-            WhopSDK::AccessTokenCreateParams::TargetResourceType::TaggedSymbol
-          )
-        APP =
-          T.let(
-            :app,
-            WhopSDK::AccessTokenCreateParams::TargetResourceType::TaggedSymbol
-          )
-        USER =
-          T.let(
-            :user,
-            WhopSDK::AccessTokenCreateParams::TargetResourceType::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::AccessTokenCreateParams::TargetResourceType::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
-        end
       end
     end
   end

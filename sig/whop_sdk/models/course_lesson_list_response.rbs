@@ -4,6 +4,7 @@ module WhopSDK
       {
         id: String,
         content: String?,
+        created_at: Time,
         days_from_course_start_until_unlock: Integer?,
         embed_id: String?,
         embed_type: WhopSDK::Models::embed_type?,
@@ -18,6 +19,8 @@ module WhopSDK
       attr_accessor id: String
 
       attr_accessor content: String?
+
+      attr_accessor created_at: Time
 
       attr_accessor days_from_course_start_until_unlock: Integer?
 
@@ -38,6 +41,7 @@ module WhopSDK
       def initialize: (
         id: String,
         content: String?,
+        created_at: Time,
         days_from_course_start_until_unlock: Integer?,
         embed_id: String?,
         embed_type: WhopSDK::Models::embed_type?,
@@ -51,6 +55,7 @@ module WhopSDK
       def to_hash: -> {
         id: String,
         content: String?,
+        created_at: Time,
         days_from_course_start_until_unlock: Integer?,
         embed_id: String?,
         embed_type: WhopSDK::Models::embed_type?,

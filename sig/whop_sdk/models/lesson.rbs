@@ -6,6 +6,7 @@ module WhopSDK
         assessment_questions: ::Array[WhopSDK::Lesson::AssessmentQuestion],
         attachments: ::Array[WhopSDK::Lesson::Attachment],
         content: String?,
+        created_at: Time,
         days_from_course_start_until_unlock: Integer?,
         embed_id: String?,
         embed_type: WhopSDK::Models::embed_type?,
@@ -26,6 +27,8 @@ module WhopSDK
       attr_accessor attachments: ::Array[WhopSDK::Lesson::Attachment]
 
       attr_accessor content: String?
+
+      attr_accessor created_at: Time
 
       attr_accessor days_from_course_start_until_unlock: Integer?
 
@@ -52,6 +55,7 @@ module WhopSDK
         assessment_questions: ::Array[WhopSDK::Lesson::AssessmentQuestion],
         attachments: ::Array[WhopSDK::Lesson::Attachment],
         content: String?,
+        created_at: Time,
         days_from_course_start_until_unlock: Integer?,
         embed_id: String?,
         embed_type: WhopSDK::Models::embed_type?,
@@ -69,6 +73,7 @@ module WhopSDK
         assessment_questions: ::Array[WhopSDK::Lesson::AssessmentQuestion],
         attachments: ::Array[WhopSDK::Lesson::Attachment],
         content: String?,
+        created_at: Time,
         days_from_course_start_until_unlock: Integer?,
         embed_id: String?,
         embed_type: WhopSDK::Models::embed_type?,

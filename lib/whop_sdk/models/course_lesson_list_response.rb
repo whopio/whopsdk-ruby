@@ -16,6 +16,12 @@ module WhopSDK
       #   @return [String, nil]
       required :content, String, nil?: true
 
+      # @!attribute created_at
+      #   The timestamp of when the lesson was created
+      #
+      #   @return [Time]
+      required :created_at, Time
+
       # @!attribute days_from_course_start_until_unlock
       #   Number of days from course start until the lesson is unlocked
       #
@@ -65,7 +71,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::LessonVisibilities]
       required :visibility, enum: -> { WhopSDK::LessonVisibilities }
 
-      # @!method initialize(id:, content:, days_from_course_start_until_unlock:, embed_id:, embed_type:, lesson_type:, order:, thumbnail:, title:, visibility:)
+      # @!method initialize(id:, content:, created_at:, days_from_course_start_until_unlock:, embed_id:, embed_type:, lesson_type:, order:, thumbnail:, title:, visibility:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CourseLessonListResponse} for more details.
       #
@@ -74,6 +80,8 @@ module WhopSDK
       #   @param id [String] The ID of the lesson
       #
       #   @param content [String, nil] The content of the lesson
+      #
+      #   @param created_at [Time] The timestamp of when the lesson was created
       #
       #   @param days_from_course_start_until_unlock [Integer, nil] Number of days from course start until the lesson is unlocked
       #

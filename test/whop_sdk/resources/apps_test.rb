@@ -16,6 +16,7 @@ class WhopSDK::Test::Resources::AppsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         api_key: WhopSDK::App::APIKey | nil,
+        app_type: WhopSDK::AppType,
         base_url: String | nil,
         company: WhopSDK::App::Company,
         creator: WhopSDK::App::Creator,
@@ -47,6 +48,7 @@ class WhopSDK::Test::Resources::AppsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         api_key: WhopSDK::App::APIKey | nil,
+        app_type: WhopSDK::AppType,
         base_url: String | nil,
         company: WhopSDK::App::Company,
         creator: WhopSDK::App::Creator,
@@ -78,6 +80,7 @@ class WhopSDK::Test::Resources::AppsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         api_key: WhopSDK::App::APIKey | nil,
+        app_type: WhopSDK::AppType,
         base_url: String | nil,
         company: WhopSDK::App::Company,
         creator: WhopSDK::App::Creator,
@@ -115,6 +118,7 @@ class WhopSDK::Test::Resources::AppsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
+        app_type: WhopSDK::AppType,
         base_url: String | nil,
         company: WhopSDK::Models::AppListResponse::Company,
         creator: WhopSDK::Models::AppListResponse::Creator,

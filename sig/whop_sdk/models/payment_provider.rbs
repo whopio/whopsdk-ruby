@@ -1,0 +1,28 @@
+module WhopSDK
+  module Models
+    type payment_provider =
+      :stripe
+      | :coinbase
+      | :paypal
+      | :apple
+      | :sezzle
+      | :splitit
+      | :platform_balance
+      | :multi_psp
+
+    module PaymentProvider
+      extend WhopSDK::Internal::Type::Enum
+
+      STRIPE: :stripe
+      COINBASE: :coinbase
+      PAYPAL: :paypal
+      APPLE: :apple
+      SEZZLE: :sezzle
+      SPLITIT: :splitit
+      PLATFORM_BALANCE: :platform_balance
+      MULTI_PSP: :multi_psp
+
+      def self?.values: -> ::Array[WhopSDK::Models::payment_provider]
+    end
+  end
+end

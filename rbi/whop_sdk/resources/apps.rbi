@@ -56,7 +56,7 @@ module WhopSDK
         params(
           id: String,
           app_store_description: T.nilable(String),
-          app_type: T.nilable(WhopSDK::AppUpdateParams::AppType::OrSymbol),
+          app_type: T.nilable(WhopSDK::AppType::OrSymbol),
           base_url: T.nilable(String),
           dashboard_path: T.nilable(String),
           description: T.nilable(String),
@@ -111,7 +111,7 @@ module WhopSDK
       sig do
         params(
           after: T.nilable(String),
-          app_type: T.nilable(WhopSDK::AppListParams::AppType::OrSymbol),
+          app_type: T.nilable(WhopSDK::AppType::OrSymbol),
           before: T.nilable(String),
           company_id: T.nilable(String),
           direction: T.nilable(WhopSDK::Direction::OrSymbol),

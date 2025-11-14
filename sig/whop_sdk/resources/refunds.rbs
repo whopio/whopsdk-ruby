@@ -1,0 +1,22 @@
+module WhopSDK
+  module Resources
+    class Refunds
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::RefundRetrieveResponse
+
+      def list: (
+        payment_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?direction: WhopSDK::Models::direction?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::RefundListResponse]
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

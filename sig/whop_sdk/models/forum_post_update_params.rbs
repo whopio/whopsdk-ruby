@@ -6,7 +6,7 @@ module WhopSDK
         content: String?,
         is_pinned: bool?,
         title: String?,
-        visibility: WhopSDK::Models::ForumPostUpdateParams::visibility?
+        visibility: WhopSDK::Models::forum_post_visibility_type?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -22,14 +22,14 @@ module WhopSDK
 
       attr_accessor title: String?
 
-      attr_accessor visibility: WhopSDK::Models::ForumPostUpdateParams::visibility?
+      attr_accessor visibility: WhopSDK::Models::forum_post_visibility_type?
 
       def initialize: (
         ?attachments: ::Array[WhopSDK::Models::ForumPostUpdateParams::attachment]?,
         ?content: String?,
         ?is_pinned: bool?,
         ?title: String?,
-        ?visibility: WhopSDK::Models::ForumPostUpdateParams::visibility?,
+        ?visibility: WhopSDK::Models::forum_post_visibility_type?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -38,7 +38,7 @@ module WhopSDK
         content: String?,
         is_pinned: bool?,
         title: String?,
-        visibility: WhopSDK::Models::ForumPostUpdateParams::visibility?,
+        visibility: WhopSDK::Models::forum_post_visibility_type?,
         request_options: WhopSDK::RequestOptions
       }
 
@@ -71,17 +71,6 @@ module WhopSDK
         end
 
         def self?.variants: -> ::Array[WhopSDK::Models::ForumPostUpdateParams::attachment]
-      end
-
-      type visibility = :members_only | :globally_visible
-
-      module Visibility
-        extend WhopSDK::Internal::Type::Enum
-
-        MEMBERS_ONLY: :members_only
-        GLOBALLY_VISIBLE: :globally_visible
-
-        def self?.values: -> ::Array[WhopSDK::Models::ForumPostUpdateParams::visibility]
       end
     end
   end

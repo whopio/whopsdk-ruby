@@ -79,8 +79,8 @@ module WhopSDK
         # @!attribute provider
         #   The provider of the refund.
         #
-        #   @return [Symbol, WhopSDK::Models::RefundCreatedWebhookEvent::Data::Provider]
-        required :provider, enum: -> { WhopSDK::RefundCreatedWebhookEvent::Data::Provider }
+        #   @return [Symbol, WhopSDK::Models::PaymentProvider]
+        required :provider, enum: -> { WhopSDK::PaymentProvider }
 
         # @!attribute provider_created_at
         #   The time the refund was created by the provider.
@@ -91,20 +91,14 @@ module WhopSDK
         # @!attribute reference_status
         #   The status of the refund reference.
         #
-        #   @return [Symbol, WhopSDK::Models::RefundCreatedWebhookEvent::Data::ReferenceStatus, nil]
-        required :reference_status,
-                 enum: -> { WhopSDK::RefundCreatedWebhookEvent::Data::ReferenceStatus },
-                 nil?: true
+        #   @return [Symbol, WhopSDK::Models::RefundReferenceStatus, nil]
+        required :reference_status, enum: -> { WhopSDK::RefundReferenceStatus }, nil?: true
 
         # @!attribute reference_type
         #   The type of refund reference that was made available by the payment provider.
         #
-        #   @return [Symbol, WhopSDK::Models::RefundCreatedWebhookEvent::Data::ReferenceType, nil]
-        required :reference_type,
-                 enum: -> {
-                   WhopSDK::RefundCreatedWebhookEvent::Data::ReferenceType
-                 },
-                 nil?: true
+        #   @return [Symbol, WhopSDK::Models::RefundReferenceType, nil]
+        required :reference_type, enum: -> { WhopSDK::RefundReferenceType }, nil?: true
 
         # @!attribute reference_value
         #   The value of the reference.
@@ -115,8 +109,8 @@ module WhopSDK
         # @!attribute status
         #   The status of the refund.
         #
-        #   @return [Symbol, WhopSDK::Models::RefundCreatedWebhookEvent::Data::Status]
-        required :status, enum: -> { WhopSDK::RefundCreatedWebhookEvent::Data::Status }
+        #   @return [Symbol, WhopSDK::Models::RefundStatus]
+        required :status, enum: -> { WhopSDK::RefundStatus }
 
         # @!method initialize(id:, amount:, created_at:, currency:, payment:, provider:, provider_created_at:, reference_status:, reference_type:, reference_value:, status:)
         #   An object representing a refund made on a payment.
@@ -131,17 +125,17 @@ module WhopSDK
         #
         #   @param payment [WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment, nil] The payment associated with the refund.
         #
-        #   @param provider [Symbol, WhopSDK::Models::RefundCreatedWebhookEvent::Data::Provider] The provider of the refund.
+        #   @param provider [Symbol, WhopSDK::Models::PaymentProvider] The provider of the refund.
         #
         #   @param provider_created_at [Time, nil] The time the refund was created by the provider.
         #
-        #   @param reference_status [Symbol, WhopSDK::Models::RefundCreatedWebhookEvent::Data::ReferenceStatus, nil] The status of the refund reference.
+        #   @param reference_status [Symbol, WhopSDK::Models::RefundReferenceStatus, nil] The status of the refund reference.
         #
-        #   @param reference_type [Symbol, WhopSDK::Models::RefundCreatedWebhookEvent::Data::ReferenceType, nil] The type of refund reference that was made available by the payment provider.
+        #   @param reference_type [Symbol, WhopSDK::Models::RefundReferenceType, nil] The type of refund reference that was made available by the payment provider.
         #
         #   @param reference_value [String, nil] The value of the reference.
         #
-        #   @param status [Symbol, WhopSDK::Models::RefundCreatedWebhookEvent::Data::Status] The status of the refund.
+        #   @param status [Symbol, WhopSDK::Models::RefundStatus] The status of the refund.
 
         # @see WhopSDK::Models::RefundCreatedWebhookEvent::Data#payment
         class Payment < WhopSDK::Internal::Type::BaseModel
@@ -353,69 +347,6 @@ module WhopSDK
             #
             #   @param username [String] The username of the user from their Whop account.
           end
-        end
-
-        # The provider of the refund.
-        #
-        # @see WhopSDK::Models::RefundCreatedWebhookEvent::Data#provider
-        module Provider
-          extend WhopSDK::Internal::Type::Enum
-
-          STRIPE = :stripe
-          COINBASE = :coinbase
-          PAYPAL = :paypal
-          APPLE = :apple
-          SEZZLE = :sezzle
-          SPLITIT = :splitit
-          PLATFORM_BALANCE = :platform_balance
-          MULTI_PSP = :multi_psp
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-
-        # The status of the refund reference.
-        #
-        # @see WhopSDK::Models::RefundCreatedWebhookEvent::Data#reference_status
-        module ReferenceStatus
-          extend WhopSDK::Internal::Type::Enum
-
-          AVAILABLE = :available
-          PENDING = :pending
-          UNAVAILABLE = :unavailable
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-
-        # The type of refund reference that was made available by the payment provider.
-        #
-        # @see WhopSDK::Models::RefundCreatedWebhookEvent::Data#reference_type
-        module ReferenceType
-          extend WhopSDK::Internal::Type::Enum
-
-          ACQUIRER_REFERENCE_NUMBER = :acquirer_reference_number
-          RETRIEVAL_REFERENCE_NUMBER = :retrieval_reference_number
-          SYSTEM_TRACE_AUDIT_NUMBER = :system_trace_audit_number
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-
-        # The status of the refund.
-        #
-        # @see WhopSDK::Models::RefundCreatedWebhookEvent::Data#status
-        module Status
-          extend WhopSDK::Internal::Type::Enum
-
-          PENDING = :pending
-          REQUIRES_ACTION = :requires_action
-          SUCCEEDED = :succeeded
-          FAILED = :failed
-          CANCELED = :canceled
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
         end
       end
     end

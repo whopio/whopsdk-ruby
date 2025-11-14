@@ -65,7 +65,7 @@ module WhopSDK
       #
       # @param app_store_description [String, nil] The description of the app for the app store in-depth app view.
       #
-      # @param app_type [Symbol, WhopSDK::Models::AppUpdateParams::AppType, nil] The type of end-user an app is built for
+      # @param app_type [Symbol, WhopSDK::Models::AppType, nil] The type of end-user an app is built for
       #
       # @param base_url [String, nil] The base production url of the app
       #
@@ -110,7 +110,7 @@ module WhopSDK
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
-      # @param app_type [Symbol, WhopSDK::Models::AppListParams::AppType, nil] The type of end-user an app is built for
+      # @param app_type [Symbol, WhopSDK::Models::AppType, nil] The type of end-user an app is built for
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #

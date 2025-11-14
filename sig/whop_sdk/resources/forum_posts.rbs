@@ -12,7 +12,7 @@ module WhopSDK
         ?pinned: bool?,
         ?poll: WhopSDK::ForumPostCreateParams::Poll?,
         ?title: String?,
-        ?visibility: WhopSDK::Models::ForumPostCreateParams::visibility?,
+        ?visibility: WhopSDK::Models::forum_post_visibility_type?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::ForumPost
 
@@ -27,7 +27,7 @@ module WhopSDK
         ?content: String?,
         ?is_pinned: bool?,
         ?title: String?,
-        ?visibility: WhopSDK::Models::ForumPostUpdateParams::visibility?,
+        ?visibility: WhopSDK::Models::forum_post_visibility_type?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::ForumPost
 

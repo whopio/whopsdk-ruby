@@ -1,0 +1,15 @@
+module WhopSDK
+  module Models
+    type refund_reference_status = :available | :pending | :unavailable
+
+    module RefundReferenceStatus
+      extend WhopSDK::Internal::Type::Enum
+
+      AVAILABLE: :available
+      PENDING: :pending
+      UNAVAILABLE: :unavailable
+
+      def self?.values: -> ::Array[WhopSDK::Models::refund_reference_status]
+    end
+  end
+end

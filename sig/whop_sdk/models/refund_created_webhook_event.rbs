@@ -43,12 +43,12 @@ module WhopSDK
           created_at: Time,
           currency: WhopSDK::Models::currency,
           payment: WhopSDK::RefundCreatedWebhookEvent::Data::Payment?,
-          provider: WhopSDK::Models::RefundCreatedWebhookEvent::Data::provider,
+          provider: WhopSDK::Models::payment_provider,
           provider_created_at: Time?,
-          reference_status: WhopSDK::Models::RefundCreatedWebhookEvent::Data::reference_status?,
-          reference_type: WhopSDK::Models::RefundCreatedWebhookEvent::Data::reference_type?,
+          reference_status: WhopSDK::Models::refund_reference_status?,
+          reference_type: WhopSDK::Models::refund_reference_type?,
           reference_value: String?,
-          status: WhopSDK::Models::RefundCreatedWebhookEvent::Data::status
+          status: WhopSDK::Models::refund_status
         }
 
       class Data < WhopSDK::Internal::Type::BaseModel
@@ -62,17 +62,17 @@ module WhopSDK
 
         attr_accessor payment: WhopSDK::RefundCreatedWebhookEvent::Data::Payment?
 
-        attr_accessor provider: WhopSDK::Models::RefundCreatedWebhookEvent::Data::provider
+        attr_accessor provider: WhopSDK::Models::payment_provider
 
         attr_accessor provider_created_at: Time?
 
-        attr_accessor reference_status: WhopSDK::Models::RefundCreatedWebhookEvent::Data::reference_status?
+        attr_accessor reference_status: WhopSDK::Models::refund_reference_status?
 
-        attr_accessor reference_type: WhopSDK::Models::RefundCreatedWebhookEvent::Data::reference_type?
+        attr_accessor reference_type: WhopSDK::Models::refund_reference_type?
 
         attr_accessor reference_value: String?
 
-        attr_accessor status: WhopSDK::Models::RefundCreatedWebhookEvent::Data::status
+        attr_accessor status: WhopSDK::Models::refund_status
 
         def initialize: (
           id: String,
@@ -80,12 +80,12 @@ module WhopSDK
           created_at: Time,
           currency: WhopSDK::Models::currency,
           payment: WhopSDK::RefundCreatedWebhookEvent::Data::Payment?,
-          provider: WhopSDK::Models::RefundCreatedWebhookEvent::Data::provider,
+          provider: WhopSDK::Models::payment_provider,
           provider_created_at: Time?,
-          reference_status: WhopSDK::Models::RefundCreatedWebhookEvent::Data::reference_status?,
-          reference_type: WhopSDK::Models::RefundCreatedWebhookEvent::Data::reference_type?,
+          reference_status: WhopSDK::Models::refund_reference_status?,
+          reference_type: WhopSDK::Models::refund_reference_type?,
           reference_value: String?,
-          status: WhopSDK::Models::RefundCreatedWebhookEvent::Data::status
+          status: WhopSDK::Models::refund_status
         ) -> void
 
         def to_hash: -> {
@@ -94,12 +94,12 @@ module WhopSDK
           created_at: Time,
           currency: WhopSDK::Models::currency,
           payment: WhopSDK::RefundCreatedWebhookEvent::Data::Payment?,
-          provider: WhopSDK::Models::RefundCreatedWebhookEvent::Data::provider,
+          provider: WhopSDK::Models::payment_provider,
           provider_created_at: Time?,
-          reference_status: WhopSDK::Models::RefundCreatedWebhookEvent::Data::reference_status?,
-          reference_type: WhopSDK::Models::RefundCreatedWebhookEvent::Data::reference_type?,
+          reference_status: WhopSDK::Models::refund_reference_status?,
+          reference_type: WhopSDK::Models::refund_reference_type?,
           reference_value: String?,
-          status: WhopSDK::Models::RefundCreatedWebhookEvent::Data::status
+          status: WhopSDK::Models::refund_status
         }
 
         type payment =
@@ -245,73 +245,6 @@ module WhopSDK
               username: String
             }
           end
-        end
-
-        type provider =
-          :stripe
-          | :coinbase
-          | :paypal
-          | :apple
-          | :sezzle
-          | :splitit
-          | :platform_balance
-          | :multi_psp
-
-        module Provider
-          extend WhopSDK::Internal::Type::Enum
-
-          STRIPE: :stripe
-          COINBASE: :coinbase
-          PAYPAL: :paypal
-          APPLE: :apple
-          SEZZLE: :sezzle
-          SPLITIT: :splitit
-          PLATFORM_BALANCE: :platform_balance
-          MULTI_PSP: :multi_psp
-
-          def self?.values: -> ::Array[WhopSDK::Models::RefundCreatedWebhookEvent::Data::provider]
-        end
-
-        type reference_status = :available | :pending | :unavailable
-
-        module ReferenceStatus
-          extend WhopSDK::Internal::Type::Enum
-
-          AVAILABLE: :available
-          PENDING: :pending
-          UNAVAILABLE: :unavailable
-
-          def self?.values: -> ::Array[WhopSDK::Models::RefundCreatedWebhookEvent::Data::reference_status]
-        end
-
-        type reference_type =
-          :acquirer_reference_number
-          | :retrieval_reference_number
-          | :system_trace_audit_number
-
-        module ReferenceType
-          extend WhopSDK::Internal::Type::Enum
-
-          ACQUIRER_REFERENCE_NUMBER: :acquirer_reference_number
-          RETRIEVAL_REFERENCE_NUMBER: :retrieval_reference_number
-          SYSTEM_TRACE_AUDIT_NUMBER: :system_trace_audit_number
-
-          def self?.values: -> ::Array[WhopSDK::Models::RefundCreatedWebhookEvent::Data::reference_type]
-        end
-
-        type status =
-          :pending | :requires_action | :succeeded | :failed | :canceled
-
-        module Status
-          extend WhopSDK::Internal::Type::Enum
-
-          PENDING: :pending
-          REQUIRES_ACTION: :requires_action
-          SUCCEEDED: :succeeded
-          FAILED: :failed
-          CANCELED: :canceled
-
-          def self?.values: -> ::Array[WhopSDK::Models::RefundCreatedWebhookEvent::Data::status]
         end
       end
     end

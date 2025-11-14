@@ -16,7 +16,7 @@ module WhopSDK
       def update: (
         String id,
         ?app_store_description: String?,
-        ?app_type: WhopSDK::Models::AppUpdateParams::app_type?,
+        ?app_type: WhopSDK::Models::app_type?,
         ?base_url: String?,
         ?dashboard_path: String?,
         ?description: String?,
@@ -31,7 +31,7 @@ module WhopSDK
 
       def list: (
         ?after: String?,
-        ?app_type: WhopSDK::Models::AppListParams::app_type?,
+        ?app_type: WhopSDK::Models::app_type?,
         ?before: String?,
         ?company_id: String?,
         ?direction: WhopSDK::Models::direction?,

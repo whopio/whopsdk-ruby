@@ -16,8 +16,8 @@ module WhopSDK
       # @!attribute app_type
       #   The type of end-user an app is built for
       #
-      #   @return [Symbol, WhopSDK::Models::AppListParams::AppType, nil]
-      optional :app_type, enum: -> { WhopSDK::AppListParams::AppType }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::AppType, nil]
+      optional :app_type, enum: -> { WhopSDK::AppType }, nil?: true
 
       # @!attribute before
       #   Returns the elements in the list that come before the specified cursor.
@@ -80,7 +80,7 @@ module WhopSDK
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
-      #   @param app_type [Symbol, WhopSDK::Models::AppListParams::AppType, nil] The type of end-user an app is built for
+      #   @param app_type [Symbol, WhopSDK::Models::AppType, nil] The type of end-user an app is built for
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
@@ -101,19 +101,6 @@ module WhopSDK
       #   @param view_type [Symbol, WhopSDK::Models::AppViewType, nil] The different types of an app view
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
-
-      # The type of end-user an app is built for
-      module AppType
-        extend WhopSDK::Internal::Type::Enum
-
-        B2B_APP = :b2b_app
-        B2C_APP = :b2c_app
-        COMPANY_APP = :company_app
-        COMPONENT = :component
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
 
       # The order to fetch the apps in for discovery.
       module Order

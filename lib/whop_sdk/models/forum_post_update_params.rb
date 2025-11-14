@@ -37,8 +37,8 @@ module WhopSDK
       # @!attribute visibility
       #   The visibility types for forum posts
       #
-      #   @return [Symbol, WhopSDK::Models::ForumPostUpdateParams::Visibility, nil]
-      optional :visibility, enum: -> { WhopSDK::ForumPostUpdateParams::Visibility }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::ForumPostVisibilityType, nil]
+      optional :visibility, enum: -> { WhopSDK::ForumPostVisibilityType }, nil?: true
 
       # @!method initialize(attachments: nil, content: nil, is_pinned: nil, title: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
@@ -52,7 +52,7 @@ module WhopSDK
       #
       #   @param title [String, nil] The title of the post. Only visible if paywalled.
       #
-      #   @param visibility [Symbol, WhopSDK::Models::ForumPostUpdateParams::Visibility, nil] The visibility types for forum posts
+      #   @param visibility [Symbol, WhopSDK::Models::ForumPostVisibilityType, nil] The visibility types for forum posts
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
@@ -106,17 +106,6 @@ module WhopSDK
 
         # @!method self.variants
         #   @return [Array(WhopSDK::Models::ForumPostUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::ForumPostUpdateParams::Attachment::AttachmentInputWithID)]
-      end
-
-      # The visibility types for forum posts
-      module Visibility
-        extend WhopSDK::Internal::Type::Enum
-
-        MEMBERS_ONLY = :members_only
-        GLOBALLY_VISIBLE = :globally_visible
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
     end
   end

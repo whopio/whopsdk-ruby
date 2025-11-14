@@ -1,0 +1,423 @@
+# frozen_string_literal: true
+
+module WhopSDK
+  module Models
+    class RefundUpdatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      # @!attribute id
+      #   A unique ID for every single webhook request
+      #
+      #   @return [String]
+      required :id, String
+
+      # @!attribute api_version
+      #   The API version for this webhook
+      #
+      #   @return [Symbol, :v1]
+      required :api_version, const: :v1
+
+      # @!attribute data
+      #   An object representing a refund made on a payment.
+      #
+      #   @return [WhopSDK::Models::RefundUpdatedWebhookEvent::Data]
+      required :data, -> { WhopSDK::RefundUpdatedWebhookEvent::Data }
+
+      # @!attribute timestamp
+      #   The timestamp in ISO 8601 format that the webhook was sent at on the server
+      #
+      #   @return [Time]
+      required :timestamp, Time
+
+      # @!attribute type
+      #   The webhook event type
+      #
+      #   @return [Symbol, :"refund.updated"]
+      required :type, const: :"refund.updated"
+
+      # @!method initialize(id:, data:, timestamp:, api_version: :v1, type: :"refund.updated")
+      #   @param id [String] A unique ID for every single webhook request
+      #
+      #   @param data [WhopSDK::Models::RefundUpdatedWebhookEvent::Data] An object representing a refund made on a payment.
+      #
+      #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
+      #
+      #   @param api_version [Symbol, :v1] The API version for this webhook
+      #
+      #   @param type [Symbol, :"refund.updated"] The webhook event type
+
+      # @see WhopSDK::Models::RefundUpdatedWebhookEvent#data
+      class Data < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The ID of the refund.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute amount
+        #   The amount of the refund.
+        #
+        #   @return [Float]
+        required :amount, Float
+
+        # @!attribute created_at
+        #   The time the refund was created.
+        #
+        #   @return [Time]
+        required :created_at, Time
+
+        # @!attribute currency
+        #   The currency of the refund.
+        #
+        #   @return [Symbol, WhopSDK::Models::Currency]
+        required :currency, enum: -> { WhopSDK::Currency }
+
+        # @!attribute payment
+        #   The payment associated with the refund.
+        #
+        #   @return [WhopSDK::Models::RefundUpdatedWebhookEvent::Data::Payment, nil]
+        required :payment, -> { WhopSDK::RefundUpdatedWebhookEvent::Data::Payment }, nil?: true
+
+        # @!attribute provider
+        #   The provider of the refund.
+        #
+        #   @return [Symbol, WhopSDK::Models::RefundUpdatedWebhookEvent::Data::Provider]
+        required :provider, enum: -> { WhopSDK::RefundUpdatedWebhookEvent::Data::Provider }
+
+        # @!attribute provider_created_at
+        #   The time the refund was created by the provider.
+        #
+        #   @return [Time, nil]
+        required :provider_created_at, Time, nil?: true
+
+        # @!attribute reference_status
+        #   The status of the refund reference.
+        #
+        #   @return [Symbol, WhopSDK::Models::RefundUpdatedWebhookEvent::Data::ReferenceStatus, nil]
+        required :reference_status,
+                 enum: -> { WhopSDK::RefundUpdatedWebhookEvent::Data::ReferenceStatus },
+                 nil?: true
+
+        # @!attribute reference_type
+        #   The type of refund reference that was made available by the payment provider.
+        #
+        #   @return [Symbol, WhopSDK::Models::RefundUpdatedWebhookEvent::Data::ReferenceType, nil]
+        required :reference_type,
+                 enum: -> {
+                   WhopSDK::RefundUpdatedWebhookEvent::Data::ReferenceType
+                 },
+                 nil?: true
+
+        # @!attribute reference_value
+        #   The value of the reference.
+        #
+        #   @return [String, nil]
+        required :reference_value, String, nil?: true
+
+        # @!attribute status
+        #   The status of the refund.
+        #
+        #   @return [Symbol, WhopSDK::Models::RefundUpdatedWebhookEvent::Data::Status]
+        required :status, enum: -> { WhopSDK::RefundUpdatedWebhookEvent::Data::Status }
+
+        # @!method initialize(id:, amount:, created_at:, currency:, payment:, provider:, provider_created_at:, reference_status:, reference_type:, reference_value:, status:)
+        #   An object representing a refund made on a payment.
+        #
+        #   @param id [String] The ID of the refund.
+        #
+        #   @param amount [Float] The amount of the refund.
+        #
+        #   @param created_at [Time] The time the refund was created.
+        #
+        #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the refund.
+        #
+        #   @param payment [WhopSDK::Models::RefundUpdatedWebhookEvent::Data::Payment, nil] The payment associated with the refund.
+        #
+        #   @param provider [Symbol, WhopSDK::Models::RefundUpdatedWebhookEvent::Data::Provider] The provider of the refund.
+        #
+        #   @param provider_created_at [Time, nil] The time the refund was created by the provider.
+        #
+        #   @param reference_status [Symbol, WhopSDK::Models::RefundUpdatedWebhookEvent::Data::ReferenceStatus, nil] The status of the refund reference.
+        #
+        #   @param reference_type [Symbol, WhopSDK::Models::RefundUpdatedWebhookEvent::Data::ReferenceType, nil] The type of refund reference that was made available by the payment provider.
+        #
+        #   @param reference_value [String, nil] The value of the reference.
+        #
+        #   @param status [Symbol, WhopSDK::Models::RefundUpdatedWebhookEvent::Data::Status] The status of the refund.
+
+        # @see WhopSDK::Models::RefundUpdatedWebhookEvent::Data#payment
+        class Payment < WhopSDK::Internal::Type::BaseModel
+          # @!attribute id
+          #   The payment ID
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!attribute billing_reason
+          #   The reason why a specific payment was billed
+          #
+          #   @return [Symbol, WhopSDK::Models::BillingReasons, nil]
+          required :billing_reason, enum: -> { WhopSDK::BillingReasons }, nil?: true
+
+          # @!attribute card_brand
+          #   Possible card brands that a payment token can have
+          #
+          #   @return [Symbol, WhopSDK::Models::CardBrands, nil]
+          required :card_brand, enum: -> { WhopSDK::CardBrands }, nil?: true
+
+          # @!attribute card_last4
+          #   The last 4 digits of the card used to make the payment.
+          #
+          #   @return [String, nil]
+          required :card_last4, String, nil?: true
+
+          # @!attribute created_at
+          #   The datetime the payment was created
+          #
+          #   @return [Time]
+          required :created_at, Time
+
+          # @!attribute currency
+          #   The available currencies on the platform
+          #
+          #   @return [Symbol, WhopSDK::Models::Currency, nil]
+          required :currency, enum: -> { WhopSDK::Currency }, nil?: true
+
+          # @!attribute dispute_alerted_at
+          #   When an alert came in that this transaction will be disputed
+          #
+          #   @return [Time, nil]
+          required :dispute_alerted_at, Time, nil?: true
+
+          # @!attribute member
+          #   The member attached to this payment.
+          #
+          #   @return [WhopSDK::Models::RefundUpdatedWebhookEvent::Data::Payment::Member, nil]
+          required :member, -> { WhopSDK::RefundUpdatedWebhookEvent::Data::Payment::Member }, nil?: true
+
+          # @!attribute membership
+          #   The membership attached to this payment.
+          #
+          #   @return [WhopSDK::Models::RefundUpdatedWebhookEvent::Data::Payment::Membership, nil]
+          required :membership,
+                   -> {
+                     WhopSDK::RefundUpdatedWebhookEvent::Data::Payment::Membership
+                   },
+                   nil?: true
+
+          # @!attribute paid_at
+          #   The datetime the payment was paid
+          #
+          #   @return [Time, nil]
+          required :paid_at, Time, nil?: true
+
+          # @!attribute payment_method_type
+          #   The different types of payment methods that can be used.
+          #
+          #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes, nil]
+          required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }, nil?: true
+
+          # @!attribute subtotal
+          #   The subtotal to show to the creator (excluding buyer fees).
+          #
+          #   @return [Float, nil]
+          required :subtotal, Float, nil?: true
+
+          # @!attribute total
+          #   The total to show to the creator (excluding buyer fees).
+          #
+          #   @return [Float, nil]
+          required :total, Float, nil?: true
+
+          # @!attribute usd_total
+          #   The total in USD to show to the creator (excluding buyer fees).
+          #
+          #   @return [Float, nil]
+          required :usd_total, Float, nil?: true
+
+          # @!attribute user
+          #   The user that made this payment.
+          #
+          #   @return [WhopSDK::Models::RefundUpdatedWebhookEvent::Data::Payment::User, nil]
+          required :user, -> { WhopSDK::RefundUpdatedWebhookEvent::Data::Payment::User }, nil?: true
+
+          # @!method initialize(id:, billing_reason:, card_brand:, card_last4:, created_at:, currency:, dispute_alerted_at:, member:, membership:, paid_at:, payment_method_type:, subtotal:, total:, usd_total:, user:)
+          #   The payment associated with the refund.
+          #
+          #   @param id [String] The payment ID
+          #
+          #   @param billing_reason [Symbol, WhopSDK::Models::BillingReasons, nil] The reason why a specific payment was billed
+          #
+          #   @param card_brand [Symbol, WhopSDK::Models::CardBrands, nil] Possible card brands that a payment token can have
+          #
+          #   @param card_last4 [String, nil] The last 4 digits of the card used to make the payment.
+          #
+          #   @param created_at [Time] The datetime the payment was created
+          #
+          #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
+          #
+          #   @param dispute_alerted_at [Time, nil] When an alert came in that this transaction will be disputed
+          #
+          #   @param member [WhopSDK::Models::RefundUpdatedWebhookEvent::Data::Payment::Member, nil] The member attached to this payment.
+          #
+          #   @param membership [WhopSDK::Models::RefundUpdatedWebhookEvent::Data::Payment::Membership, nil] The membership attached to this payment.
+          #
+          #   @param paid_at [Time, nil] The datetime the payment was paid
+          #
+          #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes, nil] The different types of payment methods that can be used.
+          #
+          #   @param subtotal [Float, nil] The subtotal to show to the creator (excluding buyer fees).
+          #
+          #   @param total [Float, nil] The total to show to the creator (excluding buyer fees).
+          #
+          #   @param usd_total [Float, nil] The total in USD to show to the creator (excluding buyer fees).
+          #
+          #   @param user [WhopSDK::Models::RefundUpdatedWebhookEvent::Data::Payment::User, nil] The user that made this payment.
+
+          # @see WhopSDK::Models::RefundUpdatedWebhookEvent::Data::Payment#member
+          class Member < WhopSDK::Internal::Type::BaseModel
+            # @!attribute id
+            #   The ID of the member
+            #
+            #   @return [String]
+            required :id, String
+
+            # @!attribute phone
+            #   The phone number for the member, if available.
+            #
+            #   @return [String, nil]
+            required :phone, String, nil?: true
+
+            # @!method initialize(id:, phone:)
+            #   The member attached to this payment.
+            #
+            #   @param id [String] The ID of the member
+            #
+            #   @param phone [String, nil] The phone number for the member, if available.
+          end
+
+          # @see WhopSDK::Models::RefundUpdatedWebhookEvent::Data::Payment#membership
+          class Membership < WhopSDK::Internal::Type::BaseModel
+            # @!attribute id
+            #   The internal ID of the membership.
+            #
+            #   @return [String]
+            required :id, String
+
+            # @!attribute status
+            #   The state of the membership.
+            #
+            #   @return [Symbol, WhopSDK::Models::MembershipStatus]
+            required :status, enum: -> { WhopSDK::MembershipStatus }
+
+            # @!method initialize(id:, status:)
+            #   The membership attached to this payment.
+            #
+            #   @param id [String] The internal ID of the membership.
+            #
+            #   @param status [Symbol, WhopSDK::Models::MembershipStatus] The state of the membership.
+          end
+
+          # @see WhopSDK::Models::RefundUpdatedWebhookEvent::Data::Payment#user
+          class User < WhopSDK::Internal::Type::BaseModel
+            # @!attribute id
+            #   The internal ID of the user.
+            #
+            #   @return [String]
+            required :id, String
+
+            # @!attribute email
+            #   The email of the user
+            #
+            #   @return [String, nil]
+            required :email, String, nil?: true
+
+            # @!attribute name
+            #   The name of the user from their Whop account.
+            #
+            #   @return [String, nil]
+            required :name, String, nil?: true
+
+            # @!attribute username
+            #   The username of the user from their Whop account.
+            #
+            #   @return [String]
+            required :username, String
+
+            # @!method initialize(id:, email:, name:, username:)
+            #   The user that made this payment.
+            #
+            #   @param id [String] The internal ID of the user.
+            #
+            #   @param email [String, nil] The email of the user
+            #
+            #   @param name [String, nil] The name of the user from their Whop account.
+            #
+            #   @param username [String] The username of the user from their Whop account.
+          end
+        end
+
+        # The provider of the refund.
+        #
+        # @see WhopSDK::Models::RefundUpdatedWebhookEvent::Data#provider
+        module Provider
+          extend WhopSDK::Internal::Type::Enum
+
+          STRIPE = :stripe
+          COINBASE = :coinbase
+          PAYPAL = :paypal
+          APPLE = :apple
+          SEZZLE = :sezzle
+          SPLITIT = :splitit
+          PLATFORM_BALANCE = :platform_balance
+          MULTI_PSP = :multi_psp
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # The status of the refund reference.
+        #
+        # @see WhopSDK::Models::RefundUpdatedWebhookEvent::Data#reference_status
+        module ReferenceStatus
+          extend WhopSDK::Internal::Type::Enum
+
+          AVAILABLE = :available
+          PENDING = :pending
+          UNAVAILABLE = :unavailable
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # The type of refund reference that was made available by the payment provider.
+        #
+        # @see WhopSDK::Models::RefundUpdatedWebhookEvent::Data#reference_type
+        module ReferenceType
+          extend WhopSDK::Internal::Type::Enum
+
+          ACQUIRER_REFERENCE_NUMBER = :acquirer_reference_number
+          RETRIEVAL_REFERENCE_NUMBER = :retrieval_reference_number
+          SYSTEM_TRACE_AUDIT_NUMBER = :system_trace_audit_number
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # The status of the refund.
+        #
+        # @see WhopSDK::Models::RefundUpdatedWebhookEvent::Data#status
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          PENDING = :pending
+          REQUIRES_ACTION = :requires_action
+          SUCCEEDED = :succeeded
+          FAILED = :failed
+          CANCELED = :canceled
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
+    end
+  end
+end

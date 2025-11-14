@@ -361,6 +361,10 @@ module WhopSDK
 
   module ReceiptStatus = WhopSDK::Models::ReceiptStatus
 
+  class RefundCreatedWebhookEvent = WhopSDK::Models::RefundCreatedWebhookEvent
+
+  class RefundUpdatedWebhookEvent = WhopSDK::Models::RefundUpdatedWebhookEvent
+
   module ReleaseMethod = WhopSDK::Models::ReleaseMethod
 
   class ReviewListParams = WhopSDK::Models::ReviewListParams

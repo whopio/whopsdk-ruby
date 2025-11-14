@@ -28,8 +28,7 @@ module WhopSDK
           pinned: T.nilable(T::Boolean),
           poll: T.nilable(WhopSDK::ForumPostCreateParams::Poll::OrHash),
           title: T.nilable(String),
-          visibility:
-            T.nilable(WhopSDK::ForumPostCreateParams::Visibility::OrSymbol),
+          visibility: T.nilable(WhopSDK::ForumPostVisibilityType::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::ForumPost)
       end
@@ -99,8 +98,7 @@ module WhopSDK
           content: T.nilable(String),
           is_pinned: T.nilable(T::Boolean),
           title: T.nilable(String),
-          visibility:
-            T.nilable(WhopSDK::ForumPostUpdateParams::Visibility::OrSymbol),
+          visibility: T.nilable(WhopSDK::ForumPostVisibilityType::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::ForumPost)
       end

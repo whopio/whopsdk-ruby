@@ -3,7 +3,7 @@ module WhopSDK
     type app_list_params =
       {
         after: String?,
-        app_type: WhopSDK::Models::AppListParams::app_type?,
+        app_type: WhopSDK::Models::app_type?,
         before: String?,
         company_id: String?,
         direction: WhopSDK::Models::direction?,
@@ -22,7 +22,7 @@ module WhopSDK
 
       attr_accessor after: String?
 
-      attr_accessor app_type: WhopSDK::Models::AppListParams::app_type?
+      attr_accessor app_type: WhopSDK::Models::app_type?
 
       attr_accessor before: String?
 
@@ -44,7 +44,7 @@ module WhopSDK
 
       def initialize: (
         ?after: String?,
-        ?app_type: WhopSDK::Models::AppListParams::app_type?,
+        ?app_type: WhopSDK::Models::app_type?,
         ?before: String?,
         ?company_id: String?,
         ?direction: WhopSDK::Models::direction?,
@@ -59,7 +59,7 @@ module WhopSDK
 
       def to_hash: -> {
         after: String?,
-        app_type: WhopSDK::Models::AppListParams::app_type?,
+        app_type: WhopSDK::Models::app_type?,
         before: String?,
         company_id: String?,
         direction: WhopSDK::Models::direction?,
@@ -71,19 +71,6 @@ module WhopSDK
         view_type: WhopSDK::Models::app_view_type?,
         request_options: WhopSDK::RequestOptions
       }
-
-      type app_type = :b2b_app | :b2c_app | :company_app | :component
-
-      module AppType
-        extend WhopSDK::Internal::Type::Enum
-
-        B2B_APP: :b2b_app
-        B2C_APP: :b2c_app
-        COMPANY_APP: :company_app
-        COMPONENT: :component
-
-        def self?.values: -> ::Array[WhopSDK::Models::AppListParams::app_type]
-      end
 
       type order =
         :discoverable_at

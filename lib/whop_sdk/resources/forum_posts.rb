@@ -34,7 +34,7 @@ module WhopSDK
       #
       # @param title [String, nil] The title of the post. Only visible if paywalled.
       #
-      # @param visibility [Symbol, WhopSDK::Models::ForumPostCreateParams::Visibility, nil] The visibility types for forum posts
+      # @param visibility [Symbol, WhopSDK::Models::ForumPostVisibilityType, nil] The visibility types for forum posts
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -93,7 +93,7 @@ module WhopSDK
       #
       # @param title [String, nil] The title of the post. Only visible if paywalled.
       #
-      # @param visibility [Symbol, WhopSDK::Models::ForumPostUpdateParams::Visibility, nil] The visibility types for forum posts
+      # @param visibility [Symbol, WhopSDK::Models::ForumPostVisibilityType, nil] The visibility types for forum posts
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -226,10 +226,10 @@ Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::E
 
 ```ruby
 # :b2b_app
-puts(WhopSDK::AppUpdateParams::AppType::B2B_APP)
+puts(WhopSDK::AppType::B2B_APP)
 
-# Revealed type: `T.all(WhopSDK::AppUpdateParams::AppType, Symbol)`
-T.reveal_type(WhopSDK::AppUpdateParams::AppType::B2B_APP)
+# Revealed type: `T.all(WhopSDK::AppType, Symbol)`
+T.reveal_type(WhopSDK::AppType::B2B_APP)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
@@ -237,7 +237,7 @@ Enum parameters have a "relaxed" type, so you can either pass in enum constants 
 ```ruby
 # Using the enum constants preserves the tagged type information:
 whop.apps.update(
-  app_type: WhopSDK::AppUpdateParams::AppType::B2B_APP,
+  app_type: WhopSDK::AppType::B2B_APP,
   # …
 )
 

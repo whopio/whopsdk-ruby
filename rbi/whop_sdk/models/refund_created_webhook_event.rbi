@@ -112,11 +112,7 @@ module WhopSDK
         attr_writer :payment
 
         # The provider of the refund.
-        sig do
-          returns(
-            WhopSDK::RefundCreatedWebhookEvent::Data::Provider::TaggedSymbol
-          )
-        end
+        sig { returns(WhopSDK::PaymentProvider::TaggedSymbol) }
         attr_accessor :provider
 
         # The time the refund was created by the provider.
@@ -124,23 +120,11 @@ module WhopSDK
         attr_accessor :provider_created_at
 
         # The status of the refund reference.
-        sig do
-          returns(
-            T.nilable(
-              WhopSDK::RefundCreatedWebhookEvent::Data::ReferenceStatus::TaggedSymbol
-            )
-          )
-        end
+        sig { returns(T.nilable(WhopSDK::RefundReferenceStatus::TaggedSymbol)) }
         attr_accessor :reference_status
 
         # The type of refund reference that was made available by the payment provider.
-        sig do
-          returns(
-            T.nilable(
-              WhopSDK::RefundCreatedWebhookEvent::Data::ReferenceType::TaggedSymbol
-            )
-          )
-        end
+        sig { returns(T.nilable(WhopSDK::RefundReferenceType::TaggedSymbol)) }
         attr_accessor :reference_type
 
         # The value of the reference.
@@ -148,11 +132,7 @@ module WhopSDK
         attr_accessor :reference_value
 
         # The status of the refund.
-        sig do
-          returns(
-            WhopSDK::RefundCreatedWebhookEvent::Data::Status::TaggedSymbol
-          )
-        end
+        sig { returns(WhopSDK::RefundStatus::TaggedSymbol) }
         attr_accessor :status
 
         # An object representing a refund made on a payment.
@@ -166,19 +146,13 @@ module WhopSDK
               T.nilable(
                 WhopSDK::RefundCreatedWebhookEvent::Data::Payment::OrHash
               ),
-            provider:
-              WhopSDK::RefundCreatedWebhookEvent::Data::Provider::OrSymbol,
+            provider: WhopSDK::PaymentProvider::OrSymbol,
             provider_created_at: T.nilable(Time),
             reference_status:
-              T.nilable(
-                WhopSDK::RefundCreatedWebhookEvent::Data::ReferenceStatus::OrSymbol
-              ),
-            reference_type:
-              T.nilable(
-                WhopSDK::RefundCreatedWebhookEvent::Data::ReferenceType::OrSymbol
-              ),
+              T.nilable(WhopSDK::RefundReferenceStatus::OrSymbol),
+            reference_type: T.nilable(WhopSDK::RefundReferenceType::OrSymbol),
             reference_value: T.nilable(String),
-            status: WhopSDK::RefundCreatedWebhookEvent::Data::Status::OrSymbol
+            status: WhopSDK::RefundStatus::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(
@@ -216,20 +190,14 @@ module WhopSDK
               currency: WhopSDK::Currency::TaggedSymbol,
               payment:
                 T.nilable(WhopSDK::RefundCreatedWebhookEvent::Data::Payment),
-              provider:
-                WhopSDK::RefundCreatedWebhookEvent::Data::Provider::TaggedSymbol,
+              provider: WhopSDK::PaymentProvider::TaggedSymbol,
               provider_created_at: T.nilable(Time),
               reference_status:
-                T.nilable(
-                  WhopSDK::RefundCreatedWebhookEvent::Data::ReferenceStatus::TaggedSymbol
-                ),
+                T.nilable(WhopSDK::RefundReferenceStatus::TaggedSymbol),
               reference_type:
-                T.nilable(
-                  WhopSDK::RefundCreatedWebhookEvent::Data::ReferenceType::TaggedSymbol
-                ),
+                T.nilable(WhopSDK::RefundReferenceType::TaggedSymbol),
               reference_value: T.nilable(String),
-              status:
-                WhopSDK::RefundCreatedWebhookEvent::Data::Status::TaggedSymbol
+              status: WhopSDK::RefundStatus::TaggedSymbol
             }
           )
         end
@@ -585,195 +553,6 @@ module WhopSDK
             end
             def to_hash
             end
-          end
-        end
-
-        # The provider of the refund.
-        module Provider
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, WhopSDK::RefundCreatedWebhookEvent::Data::Provider)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          STRIPE =
-            T.let(
-              :stripe,
-              WhopSDK::RefundCreatedWebhookEvent::Data::Provider::TaggedSymbol
-            )
-          COINBASE =
-            T.let(
-              :coinbase,
-              WhopSDK::RefundCreatedWebhookEvent::Data::Provider::TaggedSymbol
-            )
-          PAYPAL =
-            T.let(
-              :paypal,
-              WhopSDK::RefundCreatedWebhookEvent::Data::Provider::TaggedSymbol
-            )
-          APPLE =
-            T.let(
-              :apple,
-              WhopSDK::RefundCreatedWebhookEvent::Data::Provider::TaggedSymbol
-            )
-          SEZZLE =
-            T.let(
-              :sezzle,
-              WhopSDK::RefundCreatedWebhookEvent::Data::Provider::TaggedSymbol
-            )
-          SPLITIT =
-            T.let(
-              :splitit,
-              WhopSDK::RefundCreatedWebhookEvent::Data::Provider::TaggedSymbol
-            )
-          PLATFORM_BALANCE =
-            T.let(
-              :platform_balance,
-              WhopSDK::RefundCreatedWebhookEvent::Data::Provider::TaggedSymbol
-            )
-          MULTI_PSP =
-            T.let(
-              :multi_psp,
-              WhopSDK::RefundCreatedWebhookEvent::Data::Provider::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                WhopSDK::RefundCreatedWebhookEvent::Data::Provider::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
-        end
-
-        # The status of the refund reference.
-        module ReferenceStatus
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                WhopSDK::RefundCreatedWebhookEvent::Data::ReferenceStatus
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          AVAILABLE =
-            T.let(
-              :available,
-              WhopSDK::RefundCreatedWebhookEvent::Data::ReferenceStatus::TaggedSymbol
-            )
-          PENDING =
-            T.let(
-              :pending,
-              WhopSDK::RefundCreatedWebhookEvent::Data::ReferenceStatus::TaggedSymbol
-            )
-          UNAVAILABLE =
-            T.let(
-              :unavailable,
-              WhopSDK::RefundCreatedWebhookEvent::Data::ReferenceStatus::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                WhopSDK::RefundCreatedWebhookEvent::Data::ReferenceStatus::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
-        end
-
-        # The type of refund reference that was made available by the payment provider.
-        module ReferenceType
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                WhopSDK::RefundCreatedWebhookEvent::Data::ReferenceType
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          ACQUIRER_REFERENCE_NUMBER =
-            T.let(
-              :acquirer_reference_number,
-              WhopSDK::RefundCreatedWebhookEvent::Data::ReferenceType::TaggedSymbol
-            )
-          RETRIEVAL_REFERENCE_NUMBER =
-            T.let(
-              :retrieval_reference_number,
-              WhopSDK::RefundCreatedWebhookEvent::Data::ReferenceType::TaggedSymbol
-            )
-          SYSTEM_TRACE_AUDIT_NUMBER =
-            T.let(
-              :system_trace_audit_number,
-              WhopSDK::RefundCreatedWebhookEvent::Data::ReferenceType::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                WhopSDK::RefundCreatedWebhookEvent::Data::ReferenceType::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
-        end
-
-        # The status of the refund.
-        module Status
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, WhopSDK::RefundCreatedWebhookEvent::Data::Status)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          PENDING =
-            T.let(
-              :pending,
-              WhopSDK::RefundCreatedWebhookEvent::Data::Status::TaggedSymbol
-            )
-          REQUIRES_ACTION =
-            T.let(
-              :requires_action,
-              WhopSDK::RefundCreatedWebhookEvent::Data::Status::TaggedSymbol
-            )
-          SUCCEEDED =
-            T.let(
-              :succeeded,
-              WhopSDK::RefundCreatedWebhookEvent::Data::Status::TaggedSymbol
-            )
-          FAILED =
-            T.let(
-              :failed,
-              WhopSDK::RefundCreatedWebhookEvent::Data::Status::TaggedSymbol
-            )
-          CANCELED =
-            T.let(
-              :canceled,
-              WhopSDK::RefundCreatedWebhookEvent::Data::Status::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                WhopSDK::RefundCreatedWebhookEvent::Data::Status::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
           end
         end
       end

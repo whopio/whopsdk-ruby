@@ -126,6 +126,9 @@ module WhopSDK
     # @return [WhopSDK::Resources::Disputes]
     attr_reader :disputes
 
+    # @return [WhopSDK::Resources::Refunds]
+    attr_reader :refunds
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -217,6 +220,7 @@ module WhopSDK
       @access_tokens = WhopSDK::Resources::AccessTokens.new(client: self)
       @notifications = WhopSDK::Resources::Notifications.new(client: self)
       @disputes = WhopSDK::Resources::Disputes.new(client: self)
+      @refunds = WhopSDK::Resources::Refunds.new(client: self)
     end
   end
 end

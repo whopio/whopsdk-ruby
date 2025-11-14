@@ -1,0 +1,80 @@
+module WhopSDK
+  module Models
+    type refund_list_response =
+      {
+        id: String,
+        amount: Float,
+        created_at: Time,
+        currency: WhopSDK::Models::currency,
+        payment: WhopSDK::Models::RefundListResponse::Payment?,
+        provider: WhopSDK::Models::payment_provider,
+        provider_created_at: Time?,
+        reference_status: WhopSDK::Models::refund_reference_status?,
+        reference_type: WhopSDK::Models::refund_reference_type?,
+        reference_value: String?,
+        status: WhopSDK::Models::refund_status
+      }
+
+    class RefundListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor amount: Float
+
+      attr_accessor created_at: Time
+
+      attr_accessor currency: WhopSDK::Models::currency
+
+      attr_accessor payment: WhopSDK::Models::RefundListResponse::Payment?
+
+      attr_accessor provider: WhopSDK::Models::payment_provider
+
+      attr_accessor provider_created_at: Time?
+
+      attr_accessor reference_status: WhopSDK::Models::refund_reference_status?
+
+      attr_accessor reference_type: WhopSDK::Models::refund_reference_type?
+
+      attr_accessor reference_value: String?
+
+      attr_accessor status: WhopSDK::Models::refund_status
+
+      def initialize: (
+        id: String,
+        amount: Float,
+        created_at: Time,
+        currency: WhopSDK::Models::currency,
+        payment: WhopSDK::Models::RefundListResponse::Payment?,
+        provider: WhopSDK::Models::payment_provider,
+        provider_created_at: Time?,
+        reference_status: WhopSDK::Models::refund_reference_status?,
+        reference_type: WhopSDK::Models::refund_reference_type?,
+        reference_value: String?,
+        status: WhopSDK::Models::refund_status
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        amount: Float,
+        created_at: Time,
+        currency: WhopSDK::Models::currency,
+        payment: WhopSDK::Models::RefundListResponse::Payment?,
+        provider: WhopSDK::Models::payment_provider,
+        provider_created_at: Time?,
+        reference_status: WhopSDK::Models::refund_reference_status?,
+        reference_type: WhopSDK::Models::refund_reference_type?,
+        reference_value: String?,
+        status: WhopSDK::Models::refund_status
+      }
+
+      type payment = { id: String }
+
+      class Payment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+    end
+  end
+end

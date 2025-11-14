@@ -69,6 +69,8 @@ module WhopSDK
 
   AppStatuses = WhopSDK::Models::AppStatuses
 
+  AppType = WhopSDK::Models::AppType
+
   AppUpdateParams = WhopSDK::Models::AppUpdateParams
 
   AppViewType = WhopSDK::Models::AppViewType
@@ -244,6 +246,8 @@ module WhopSDK
 
   ForumPostUpdateParams = WhopSDK::Models::ForumPostUpdateParams
 
+  ForumPostVisibilityType = WhopSDK::Models::ForumPostVisibilityType
+
   ForumRetrieveParams = WhopSDK::Models::ForumRetrieveParams
 
   ForumUpdateParams = WhopSDK::Models::ForumUpdateParams
@@ -338,6 +342,8 @@ module WhopSDK
 
   PaymentPendingWebhookEvent = WhopSDK::Models::PaymentPendingWebhookEvent
 
+  PaymentProvider = WhopSDK::Models::PaymentProvider
+
   PaymentRefundParams = WhopSDK::Models::PaymentRefundParams
 
   PaymentRetrieveParams = WhopSDK::Models::PaymentRetrieveParams
@@ -403,6 +409,16 @@ module WhopSDK
   ReceiptStatus = WhopSDK::Models::ReceiptStatus
 
   RefundCreatedWebhookEvent = WhopSDK::Models::RefundCreatedWebhookEvent
+
+  RefundListParams = WhopSDK::Models::RefundListParams
+
+  RefundReferenceStatus = WhopSDK::Models::RefundReferenceStatus
+
+  RefundReferenceType = WhopSDK::Models::RefundReferenceType
+
+  RefundRetrieveParams = WhopSDK::Models::RefundRetrieveParams
+
+  RefundStatus = WhopSDK::Models::RefundStatus
 
   RefundUpdatedWebhookEvent = WhopSDK::Models::RefundUpdatedWebhookEvent
 

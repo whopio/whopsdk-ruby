@@ -442,7 +442,7 @@ module WhopSDK
         #   app => {
         #     id: id,
         #     api_key: api_key,
-        #     base_url: base_url
+        #     app_type: app_type
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)

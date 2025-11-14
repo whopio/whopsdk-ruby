@@ -15,6 +15,12 @@ module WhopSDK
       #   @return [WhopSDK::Models::App::APIKey, nil]
       required :api_key, -> { WhopSDK::App::APIKey }, nil?: true
 
+      # @!attribute app_type
+      #   The type of end-user an app is built for
+      #
+      #   @return [Symbol, WhopSDK::Models::AppType]
+      required :app_type, enum: -> { WhopSDK::AppType }
+
       # @!attribute base_url
       #   The base url of the app
       #
@@ -112,7 +118,7 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, api_key:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, icon:, name:, requested_permissions:, stats:, status:, verified:)
+      # @!method initialize(id:, api_key:, app_type:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, icon:, name:, requested_permissions:, stats:, status:, verified:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::App} for
       #   more details.
       #
@@ -121,6 +127,8 @@ module WhopSDK
       #   @param id [String] The ID of the app
       #
       #   @param api_key [WhopSDK::Models::App::APIKey, nil] The API key for the app
+      #
+      #   @param app_type [Symbol, WhopSDK::Models::AppType] The type of end-user an app is built for
       #
       #   @param base_url [String, nil] The base url of the app
       #

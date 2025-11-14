@@ -106,9 +106,11 @@ module WhopSDK
       #
       # Fetches a list of apps
       #
-      # @overload list(after: nil, before: nil, company_id: nil, direction: nil, first: nil, last: nil, order: nil, query: nil, verified_apps_only: nil, view_type: nil, request_options: {})
+      # @overload list(after: nil, app_type: nil, before: nil, company_id: nil, direction: nil, first: nil, last: nil, order: nil, query: nil, verified_apps_only: nil, view_type: nil, request_options: {})
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      #
+      # @param app_type [Symbol, WhopSDK::Models::AppListParams::AppType, nil] The type of end-user an app is built for
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #

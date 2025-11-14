@@ -15,6 +15,10 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :after
 
+      # The type of end-user an app is built for
+      sig { returns(T.nilable(WhopSDK::AppListParams::AppType::OrSymbol)) }
+      attr_accessor :app_type
+
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_accessor :before
@@ -55,6 +59,7 @@ module WhopSDK
       sig do
         params(
           after: T.nilable(String),
+          app_type: T.nilable(WhopSDK::AppListParams::AppType::OrSymbol),
           before: T.nilable(String),
           company_id: T.nilable(String),
           direction: T.nilable(WhopSDK::Direction::OrSymbol),
@@ -70,6 +75,8 @@ module WhopSDK
       def self.new(
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
+        # The type of end-user an app is built for
+        app_type: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
         # The ID of the company to filter apps by
@@ -97,6 +104,7 @@ module WhopSDK
         override.returns(
           {
             after: T.nilable(String),
+            app_type: T.nilable(WhopSDK::AppListParams::AppType::OrSymbol),
             before: T.nilable(String),
             company_id: T.nilable(String),
             direction: T.nilable(WhopSDK::Direction::OrSymbol),
@@ -111,6 +119,30 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      # The type of end-user an app is built for
+      module AppType
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::AppListParams::AppType) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        B2B_APP = T.let(:b2b_app, WhopSDK::AppListParams::AppType::TaggedSymbol)
+        B2C_APP = T.let(:b2c_app, WhopSDK::AppListParams::AppType::TaggedSymbol)
+        COMPANY_APP =
+          T.let(:company_app, WhopSDK::AppListParams::AppType::TaggedSymbol)
+        COMPONENT =
+          T.let(:component, WhopSDK::AppListParams::AppType::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::AppListParams::AppType::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
 
       # The order to fetch the apps in for discovery.

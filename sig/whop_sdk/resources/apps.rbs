@@ -31,6 +31,7 @@ module WhopSDK
 
       def list: (
         ?after: String?,
+        ?app_type: WhopSDK::Models::AppListParams::app_type?,
         ?before: String?,
         ?company_id: String?,
         ?direction: WhopSDK::Models::direction?,

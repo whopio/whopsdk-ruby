@@ -111,6 +111,7 @@ module WhopSDK
       sig do
         params(
           after: T.nilable(String),
+          app_type: T.nilable(WhopSDK::AppListParams::AppType::OrSymbol),
           before: T.nilable(String),
           company_id: T.nilable(String),
           direction: T.nilable(WhopSDK::Direction::OrSymbol),
@@ -128,6 +129,8 @@ module WhopSDK
       def list(
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
+        # The type of end-user an app is built for
+        app_type: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
         # The ID of the company to filter apps by

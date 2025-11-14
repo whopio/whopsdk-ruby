@@ -19,6 +19,10 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :content
 
+      # The timestamp of when the lesson was created
+      sig { returns(Time) }
+      attr_accessor :created_at
+
       # Number of days from course start until the lesson is unlocked
       sig { returns(T.nilable(Integer)) }
       attr_accessor :days_from_course_start_until_unlock
@@ -69,6 +73,7 @@ module WhopSDK
         params(
           id: String,
           content: T.nilable(String),
+          created_at: Time,
           days_from_course_start_until_unlock: T.nilable(Integer),
           embed_id: T.nilable(String),
           embed_type: T.nilable(WhopSDK::EmbedType::OrSymbol),
@@ -87,6 +92,8 @@ module WhopSDK
         id:,
         # The content of the lesson
         content:,
+        # The timestamp of when the lesson was created
+        created_at:,
         # Number of days from course start until the lesson is unlocked
         days_from_course_start_until_unlock:,
         # ID for the embed (YouTube video ID or Loom share ID)
@@ -112,6 +119,7 @@ module WhopSDK
           {
             id: String,
             content: T.nilable(String),
+            created_at: Time,
             days_from_course_start_until_unlock: T.nilable(Integer),
             embed_id: T.nilable(String),
             embed_type: T.nilable(WhopSDK::EmbedType::TaggedSymbol),

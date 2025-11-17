@@ -403,20 +403,114 @@ module WhopSDK
         #   @return [String, nil]
         required :asset_id, String, nil?: true
 
+        # @!attribute audio_only
+        #   Whether this asset contains only audio
+        #
+        #   @return [Boolean]
+        required :audio_only, WhopSDK::Internal::Type::Boolean
+
+        # @!attribute created_at
+        #   The time at which the Mux asset was created
+        #
+        #   @return [Time]
+        required :created_at, Time
+
+        # @!attribute duration_seconds
+        #   The duration of the video in seconds
+        #
+        #   @return [Integer, nil]
+        required :duration_seconds, Integer, nil?: true
+
+        # @!attribute finished_uploading_at
+        #   The time at which the video finished uploading
+        #
+        #   @return [Time, nil]
+        required :finished_uploading_at, Time, nil?: true
+
         # @!attribute playback_id
         #   The public playback ID of the Mux asset
         #
         #   @return [String, nil]
         required :playback_id, String, nil?: true
 
-        # @!method initialize(id:, asset_id:, playback_id:)
+        # @!attribute signed_playback_id
+        #   The signed playback ID of the Mux asset
+        #
+        #   @return [String, nil]
+        required :signed_playback_id, String, nil?: true
+
+        # @!attribute signed_storyboard_playback_token
+        #   The signed storyboard playback token of the Mux asset
+        #
+        #   @return [String, nil]
+        required :signed_storyboard_playback_token, String, nil?: true
+
+        # @!attribute signed_thumbnail_playback_token
+        #   The signed thumbnail playback token of the Mux asset
+        #
+        #   @return [String, nil]
+        required :signed_thumbnail_playback_token, String, nil?: true
+
+        # @!attribute signed_video_playback_token
+        #   The signed video playback token of the Mux asset
+        #
+        #   @return [String, nil]
+        required :signed_video_playback_token, String, nil?: true
+
+        # @!attribute status
+        #   The status of the Mux asset
+        #
+        #   @return [Symbol, WhopSDK::Models::Lesson::VideoAsset::Status]
+        required :status, enum: -> { WhopSDK::Lesson::VideoAsset::Status }
+
+        # @!attribute updated_at
+        #   The time at which the Mux asset was last updated
+        #
+        #   @return [Time]
+        required :updated_at, Time
+
+        # @!method initialize(id:, asset_id:, audio_only:, created_at:, duration_seconds:, finished_uploading_at:, playback_id:, signed_playback_id:, signed_storyboard_playback_token:, signed_thumbnail_playback_token:, signed_video_playback_token:, status:, updated_at:)
         #   The associated Mux asset for video lessons
         #
         #   @param id [String] The ID of the Mux asset
         #
         #   @param asset_id [String, nil] The Mux-provided ID of the asset
         #
+        #   @param audio_only [Boolean] Whether this asset contains only audio
+        #
+        #   @param created_at [Time] The time at which the Mux asset was created
+        #
+        #   @param duration_seconds [Integer, nil] The duration of the video in seconds
+        #
+        #   @param finished_uploading_at [Time, nil] The time at which the video finished uploading
+        #
         #   @param playback_id [String, nil] The public playback ID of the Mux asset
+        #
+        #   @param signed_playback_id [String, nil] The signed playback ID of the Mux asset
+        #
+        #   @param signed_storyboard_playback_token [String, nil] The signed storyboard playback token of the Mux asset
+        #
+        #   @param signed_thumbnail_playback_token [String, nil] The signed thumbnail playback token of the Mux asset
+        #
+        #   @param signed_video_playback_token [String, nil] The signed video playback token of the Mux asset
+        #
+        #   @param status [Symbol, WhopSDK::Models::Lesson::VideoAsset::Status] The status of the Mux asset
+        #
+        #   @param updated_at [Time] The time at which the Mux asset was last updated
+
+        # The status of the Mux asset
+        #
+        # @see WhopSDK::Models::Lesson::VideoAsset#status
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          UPLOADING = :uploading
+          CREATED = :created
+          READY = :ready
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
     end
   end

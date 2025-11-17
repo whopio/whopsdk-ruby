@@ -17,6 +17,10 @@ module WhopSDK
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :certificate_after_completion_enabled
 
+      # The URL of the course's cover image, which is shown in course preview cards
+      sig { returns(T.nilable(String)) }
+      attr_accessor :cover_image
+
       # The timestamp of when the course was created
       sig { returns(Time) }
       attr_accessor :created_at
@@ -73,6 +77,7 @@ module WhopSDK
         params(
           id: String,
           certificate_after_completion_enabled: T.nilable(T::Boolean),
+          cover_image: T.nilable(String),
           created_at: Time,
           description: T.nilable(String),
           language: WhopSDK::Languages::OrSymbol,
@@ -92,6 +97,8 @@ module WhopSDK
         # Whether the course will award its students a PDF certificate after completing
         # all lessons
         certificate_after_completion_enabled:,
+        # The URL of the course's cover image, which is shown in course preview cards
+        cover_image:,
         # The timestamp of when the course was created
         created_at:,
         # A short description of the course
@@ -123,6 +130,7 @@ module WhopSDK
           {
             id: String,
             certificate_after_completion_enabled: T.nilable(T::Boolean),
+            cover_image: T.nilable(String),
             created_at: Time,
             description: T.nilable(String),
             language: WhopSDK::Languages::TaggedSymbol,

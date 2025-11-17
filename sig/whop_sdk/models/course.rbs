@@ -5,6 +5,7 @@ module WhopSDK
         id: String,
         certificate_after_completion_enabled: bool?,
         chapters: ::Array[WhopSDK::Course::Chapter],
+        cover_image: String?,
         created_at: Time,
         description: String?,
         language: WhopSDK::Models::languages,
@@ -23,6 +24,8 @@ module WhopSDK
       attr_accessor certificate_after_completion_enabled: bool?
 
       attr_accessor chapters: ::Array[WhopSDK::Course::Chapter]
+
+      attr_accessor cover_image: String?
 
       attr_accessor created_at: Time
 
@@ -48,6 +51,7 @@ module WhopSDK
         id: String,
         certificate_after_completion_enabled: bool?,
         chapters: ::Array[WhopSDK::Course::Chapter],
+        cover_image: String?,
         created_at: Time,
         description: String?,
         language: WhopSDK::Models::languages,
@@ -64,6 +68,7 @@ module WhopSDK
         id: String,
         certificate_after_completion_enabled: bool?,
         chapters: ::Array[WhopSDK::Course::Chapter],
+        cover_image: String?,
         created_at: Time,
         description: String?,
         language: WhopSDK::Models::languages,

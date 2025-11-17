@@ -544,16 +544,66 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :asset_id
 
+        # Whether this asset contains only audio
+        sig { returns(T::Boolean) }
+        attr_accessor :audio_only
+
+        # The time at which the Mux asset was created
+        sig { returns(Time) }
+        attr_accessor :created_at
+
+        # The duration of the video in seconds
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :duration_seconds
+
+        # The time at which the video finished uploading
+        sig { returns(T.nilable(Time)) }
+        attr_accessor :finished_uploading_at
+
         # The public playback ID of the Mux asset
         sig { returns(T.nilable(String)) }
         attr_accessor :playback_id
+
+        # The signed playback ID of the Mux asset
+        sig { returns(T.nilable(String)) }
+        attr_accessor :signed_playback_id
+
+        # The signed storyboard playback token of the Mux asset
+        sig { returns(T.nilable(String)) }
+        attr_accessor :signed_storyboard_playback_token
+
+        # The signed thumbnail playback token of the Mux asset
+        sig { returns(T.nilable(String)) }
+        attr_accessor :signed_thumbnail_playback_token
+
+        # The signed video playback token of the Mux asset
+        sig { returns(T.nilable(String)) }
+        attr_accessor :signed_video_playback_token
+
+        # The status of the Mux asset
+        sig { returns(WhopSDK::Lesson::VideoAsset::Status::TaggedSymbol) }
+        attr_accessor :status
+
+        # The time at which the Mux asset was last updated
+        sig { returns(Time) }
+        attr_accessor :updated_at
 
         # The associated Mux asset for video lessons
         sig do
           params(
             id: String,
             asset_id: T.nilable(String),
-            playback_id: T.nilable(String)
+            audio_only: T::Boolean,
+            created_at: Time,
+            duration_seconds: T.nilable(Integer),
+            finished_uploading_at: T.nilable(Time),
+            playback_id: T.nilable(String),
+            signed_playback_id: T.nilable(String),
+            signed_storyboard_playback_token: T.nilable(String),
+            signed_thumbnail_playback_token: T.nilable(String),
+            signed_video_playback_token: T.nilable(String),
+            status: WhopSDK::Lesson::VideoAsset::Status::OrSymbol,
+            updated_at: Time
           ).returns(T.attached_class)
         end
         def self.new(
@@ -561,8 +611,28 @@ module WhopSDK
           id:,
           # The Mux-provided ID of the asset
           asset_id:,
+          # Whether this asset contains only audio
+          audio_only:,
+          # The time at which the Mux asset was created
+          created_at:,
+          # The duration of the video in seconds
+          duration_seconds:,
+          # The time at which the video finished uploading
+          finished_uploading_at:,
           # The public playback ID of the Mux asset
-          playback_id:
+          playback_id:,
+          # The signed playback ID of the Mux asset
+          signed_playback_id:,
+          # The signed storyboard playback token of the Mux asset
+          signed_storyboard_playback_token:,
+          # The signed thumbnail playback token of the Mux asset
+          signed_thumbnail_playback_token:,
+          # The signed video playback token of the Mux asset
+          signed_video_playback_token:,
+          # The status of the Mux asset
+          status:,
+          # The time at which the Mux asset was last updated
+          updated_at:
         )
         end
 
@@ -571,11 +641,45 @@ module WhopSDK
             {
               id: String,
               asset_id: T.nilable(String),
-              playback_id: T.nilable(String)
+              audio_only: T::Boolean,
+              created_at: Time,
+              duration_seconds: T.nilable(Integer),
+              finished_uploading_at: T.nilable(Time),
+              playback_id: T.nilable(String),
+              signed_playback_id: T.nilable(String),
+              signed_storyboard_playback_token: T.nilable(String),
+              signed_thumbnail_playback_token: T.nilable(String),
+              signed_video_playback_token: T.nilable(String),
+              status: WhopSDK::Lesson::VideoAsset::Status::TaggedSymbol,
+              updated_at: Time
             }
           )
         end
         def to_hash
+        end
+
+        # The status of the Mux asset
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias { T.all(Symbol, WhopSDK::Lesson::VideoAsset::Status) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          UPLOADING =
+            T.let(:uploading, WhopSDK::Lesson::VideoAsset::Status::TaggedSymbol)
+          CREATED =
+            T.let(:created, WhopSDK::Lesson::VideoAsset::Status::TaggedSymbol)
+          READY =
+            T.let(:ready, WhopSDK::Lesson::VideoAsset::Status::TaggedSymbol)
+
+          sig do
+            override.returns(
+              T::Array[WhopSDK::Lesson::VideoAsset::Status::TaggedSymbol]
+            )
+          end
+          def self.values
+          end
         end
       end
     end

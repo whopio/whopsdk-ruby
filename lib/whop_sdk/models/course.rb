@@ -23,6 +23,12 @@ module WhopSDK
       #   @return [Array<WhopSDK::Models::Course::Chapter>]
       required :chapters, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Course::Chapter] }
 
+      # @!attribute cover_image
+      #   The URL of the course's cover image, which is shown in course preview cards
+      #
+      #   @return [String, nil]
+      required :cover_image, String, nil?: true
+
       # @!attribute created_at
       #   The timestamp of when the course was created
       #
@@ -86,7 +92,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::CourseVisibilities]
       required :visibility, enum: -> { WhopSDK::CourseVisibilities }
 
-      # @!method initialize(id:, certificate_after_completion_enabled:, chapters:, created_at:, description:, language:, order:, require_completing_lessons_in_order:, tagline:, thumbnail:, title:, updated_at:, visibility:)
+      # @!method initialize(id:, certificate_after_completion_enabled:, chapters:, cover_image:, created_at:, description:, language:, order:, require_completing_lessons_in_order:, tagline:, thumbnail:, title:, updated_at:, visibility:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Course}
       #   for more details.
       #
@@ -97,6 +103,8 @@ module WhopSDK
       #   @param certificate_after_completion_enabled [Boolean, nil] Whether the course will award its students a PDF certificate after completing al
       #
       #   @param chapters [Array<WhopSDK::Models::Course::Chapter>] The chapters in this course
+      #
+      #   @param cover_image [String, nil] The URL of the course's cover image, which is shown in course preview cards
       #
       #   @param created_at [Time] The timestamp of when the course was created
       #

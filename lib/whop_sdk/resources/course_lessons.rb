@@ -185,6 +185,70 @@ module WhopSDK
         )
       end
 
+      # Marks a course lesson as completed
+      #
+      # @overload mark_as_completed(lesson_id, request_options: {})
+      #
+      # @param lesson_id [String] The ID of the lesson to mark as completed
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Boolean]
+      #
+      # @see WhopSDK::Models::CourseLessonMarkAsCompletedParams
+      def mark_as_completed(lesson_id, params = {})
+        @client.request(
+          method: :post,
+          path: ["course_lessons/%1$s/mark_as_completed", lesson_id],
+          model: WhopSDK::Internal::Type::Boolean,
+          options: params[:request_options]
+        )
+      end
+
+      # Starts a course lesson
+      #
+      # @overload start(lesson_id, request_options: {})
+      #
+      # @param lesson_id [String] The ID of the lesson being started
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Boolean]
+      #
+      # @see WhopSDK::Models::CourseLessonStartParams
+      def start(lesson_id, params = {})
+        @client.request(
+          method: :post,
+          path: ["course_lessons/%1$s/start", lesson_id],
+          model: WhopSDK::Internal::Type::Boolean,
+          options: params[:request_options]
+        )
+      end
+
+      # Submits answers for a course assessment
+      #
+      # @overload submit_assessment(lesson_id, answers:, request_options: {})
+      #
+      # @param lesson_id [String] The ID of the lesson (quiz or knowledge check) to submit answers for
+      #
+      # @param answers [Array<WhopSDK::Models::CourseLessonSubmitAssessmentParams::Answer>] The answers to the assessment questions
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::CourseLessonSubmitAssessmentResponse]
+      #
+      # @see WhopSDK::Models::CourseLessonSubmitAssessmentParams
+      def submit_assessment(lesson_id, params)
+        parsed, options = WhopSDK::CourseLessonSubmitAssessmentParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: ["course_lessons/%1$s/submit_assessment", lesson_id],
+          body: parsed,
+          model: WhopSDK::Models::CourseLessonSubmitAssessmentResponse,
+          options: options
+        )
+      end
+
       # @api private
       #
       # @param client [WhopSDK::Client]

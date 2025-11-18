@@ -135,4 +135,50 @@ class WhopSDK::Test::Resources::CourseLessonsTest < WhopSDK::Test::ResourceTest
       response => WhopSDK::Internal::Type::Boolean
     end
   end
+
+  def test_mark_as_completed
+    skip("Prism tests are disabled")
+
+    response = @whop.course_lessons.mark_as_completed("lesson_id")
+
+    assert_pattern do
+      response => WhopSDK::Internal::Type::Boolean
+    end
+  end
+
+  def test_start
+    skip("Prism tests are disabled")
+
+    response = @whop.course_lessons.start("lesson_id")
+
+    assert_pattern do
+      response => WhopSDK::Internal::Type::Boolean
+    end
+  end
+
+  def test_submit_assessment_required_params
+    skip("Prism tests are disabled")
+
+    response = @whop.course_lessons.submit_assessment("lesson_id", answers: [{question_id: "question_id"}])
+
+    assert_pattern do
+      response => WhopSDK::Models::CourseLessonSubmitAssessmentResponse
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        created_at: Time,
+        lesson: WhopSDK::Models::CourseLessonSubmitAssessmentResponse::Lesson,
+        result_correct: Integer,
+        result_grade: Float,
+        result_graded_questions: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),
+        result_passing_grade: WhopSDK::Internal::Type::Boolean,
+        result_question_count: Integer,
+        score_percent: Float,
+        updated_at: Time,
+        user: WhopSDK::Models::CourseLessonSubmitAssessmentResponse::User
+      }
+    end
+  end
 end

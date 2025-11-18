@@ -1,0 +1,5 @@
+module WhopSDK
+  module Models
+    CourseLessonStartResponse: WhopSDK::Internal::Type::Converter
+  end
+end

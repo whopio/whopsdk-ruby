@@ -150,7 +150,13 @@ module WhopSDK
 
   CourseLessonListParams = WhopSDK::Models::CourseLessonListParams
 
+  CourseLessonMarkAsCompletedParams = WhopSDK::Models::CourseLessonMarkAsCompletedParams
+
   CourseLessonRetrieveParams = WhopSDK::Models::CourseLessonRetrieveParams
+
+  CourseLessonStartParams = WhopSDK::Models::CourseLessonStartParams
+
+  CourseLessonSubmitAssessmentParams = WhopSDK::Models::CourseLessonSubmitAssessmentParams
 
   CourseLessonUpdateParams = WhopSDK::Models::CourseLessonUpdateParams
 

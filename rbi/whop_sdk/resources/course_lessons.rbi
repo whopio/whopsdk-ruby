@@ -212,6 +212,54 @@ module WhopSDK
       )
       end
 
+      # Marks a course lesson as completed
+      sig do
+        params(
+          lesson_id: String,
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(T::Boolean)
+      end
+      def mark_as_completed(
+        # The ID of the lesson to mark as completed
+        lesson_id,
+        request_options: {}
+      )
+      end
+
+      # Starts a course lesson
+      sig do
+        params(
+          lesson_id: String,
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(T::Boolean)
+      end
+      def start(
+        # The ID of the lesson being started
+        lesson_id,
+        request_options: {}
+      )
+      end
+
+      # Submits answers for a course assessment
+      sig do
+        params(
+          lesson_id: String,
+          answers:
+            T::Array[
+              WhopSDK::CourseLessonSubmitAssessmentParams::Answer::OrHash
+            ],
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::Models::CourseLessonSubmitAssessmentResponse)
+      end
+      def submit_assessment(
+        # The ID of the lesson (quiz or knowledge check) to submit answers for
+        lesson_id,
+        # The answers to the assessment questions
+        answers:,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: WhopSDK::Client).returns(T.attached_class) }
       def self.new(client:)

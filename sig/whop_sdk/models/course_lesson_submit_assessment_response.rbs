@@ -1,0 +1,96 @@
+module WhopSDK
+  module Models
+    type course_lesson_submit_assessment_response =
+      {
+        id: String,
+        created_at: Time,
+        lesson: WhopSDK::Models::CourseLessonSubmitAssessmentResponse::Lesson,
+        result_correct: Integer,
+        result_grade: Float,
+        result_graded_questions: ::Hash[Symbol, top],
+        result_passing_grade: bool,
+        result_question_count: Integer,
+        score_percent: Float,
+        updated_at: Time,
+        user: WhopSDK::Models::CourseLessonSubmitAssessmentResponse::User
+      }
+
+    class CourseLessonSubmitAssessmentResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor lesson: WhopSDK::Models::CourseLessonSubmitAssessmentResponse::Lesson
+
+      attr_accessor result_correct: Integer
+
+      attr_accessor result_grade: Float
+
+      attr_accessor result_graded_questions: ::Hash[Symbol, top]
+
+      attr_accessor result_passing_grade: bool
+
+      attr_accessor result_question_count: Integer
+
+      attr_accessor score_percent: Float
+
+      attr_accessor updated_at: Time
+
+      attr_accessor user: WhopSDK::Models::CourseLessonSubmitAssessmentResponse::User
+
+      def initialize: (
+        id: String,
+        created_at: Time,
+        lesson: WhopSDK::Models::CourseLessonSubmitAssessmentResponse::Lesson,
+        result_correct: Integer,
+        result_grade: Float,
+        result_graded_questions: ::Hash[Symbol, top],
+        result_passing_grade: bool,
+        result_question_count: Integer,
+        score_percent: Float,
+        updated_at: Time,
+        user: WhopSDK::Models::CourseLessonSubmitAssessmentResponse::User
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        lesson: WhopSDK::Models::CourseLessonSubmitAssessmentResponse::Lesson,
+        result_correct: Integer,
+        result_grade: Float,
+        result_graded_questions: ::Hash[Symbol, top],
+        result_passing_grade: bool,
+        result_question_count: Integer,
+        score_percent: Float,
+        updated_at: Time,
+        user: WhopSDK::Models::CourseLessonSubmitAssessmentResponse::User
+      }
+
+      type lesson = { id: String, title: String }
+
+      class Lesson < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type user = { id: String, name: String?, username: String }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
+      end
+    end
+  end
+end

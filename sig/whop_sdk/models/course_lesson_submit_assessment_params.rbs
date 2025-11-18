@@ -1,0 +1,51 @@
+module WhopSDK
+  module Models
+    type course_lesson_submit_assessment_params =
+      { answers: ::Array[WhopSDK::CourseLessonSubmitAssessmentParams::Answer] }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class CourseLessonSubmitAssessmentParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor answers: ::Array[WhopSDK::CourseLessonSubmitAssessmentParams::Answer]
+
+      def initialize: (
+        answers: ::Array[WhopSDK::CourseLessonSubmitAssessmentParams::Answer],
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        answers: ::Array[WhopSDK::CourseLessonSubmitAssessmentParams::Answer],
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type answer =
+        {
+          question_id: String,
+          answer_text: String?,
+          selected_option_ids: ::Array[String]?
+        }
+
+      class Answer < WhopSDK::Internal::Type::BaseModel
+        attr_accessor question_id: String
+
+        attr_accessor answer_text: String?
+
+        attr_accessor selected_option_ids: ::Array[String]?
+
+        def initialize: (
+          question_id: String,
+          ?answer_text: String?,
+          ?selected_option_ids: ::Array[String]?
+        ) -> void
+
+        def to_hash: -> {
+          question_id: String,
+          answer_text: String?,
+          selected_option_ids: ::Array[String]?
+        }
+      end
+    end
+  end
+end

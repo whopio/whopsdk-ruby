@@ -5,6 +5,8 @@ module WhopSDK
         plan: WhopSDK::CheckoutConfigurationCreateParams::Plan,
         affiliate_code: String?,
         metadata: ::Hash[Symbol, top]?,
+        mode: WhopSDK::Models::CheckoutConfigurationCreateParams::mode?,
+        payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration?,
         redirect_url: String?,
         plan_id: String
       }
@@ -20,6 +22,10 @@ module WhopSDK
 
       attr_accessor metadata: ::Hash[Symbol, top]?
 
+      attr_accessor mode: WhopSDK::Models::CheckoutConfigurationCreateParams::mode?
+
+      attr_accessor payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration?
+
       attr_accessor redirect_url: String?
 
       attr_accessor plan_id: String
@@ -29,6 +35,8 @@ module WhopSDK
         plan_id: String,
         ?affiliate_code: String?,
         ?metadata: ::Hash[Symbol, top]?,
+        ?mode: WhopSDK::Models::CheckoutConfigurationCreateParams::mode?,
+        ?payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration?,
         ?redirect_url: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
@@ -37,6 +45,8 @@ module WhopSDK
         plan: WhopSDK::CheckoutConfigurationCreateParams::Plan,
         affiliate_code: String?,
         metadata: ::Hash[Symbol, top]?,
+        mode: WhopSDK::Models::CheckoutConfigurationCreateParams::mode?,
+        payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration?,
         redirect_url: String?,
         plan_id: String,
         request_options: WhopSDK::RequestOptions
@@ -334,6 +344,44 @@ module WhopSDK
             visibility: WhopSDK::Models::visibility?
           }
         end
+      end
+
+      type mode = :payment | :setup
+
+      module Mode
+        extend WhopSDK::Internal::Type::Enum
+
+        PAYMENT: :payment
+        SETUP: :setup
+
+        def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfigurationCreateParams::mode]
+      end
+
+      type payment_method_configuration =
+        {
+          disabled: ::Array[WhopSDK::Models::payment_method_types],
+          enabled: ::Array[WhopSDK::Models::payment_method_types],
+          include_platform_defaults: bool
+        }
+
+      class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+        attr_accessor disabled: ::Array[WhopSDK::Models::payment_method_types]
+
+        attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
+
+        attr_accessor include_platform_defaults: bool
+
+        def initialize: (
+          disabled: ::Array[WhopSDK::Models::payment_method_types],
+          enabled: ::Array[WhopSDK::Models::payment_method_types],
+          include_platform_defaults: bool
+        ) -> void
+
+        def to_hash: -> {
+          disabled: ::Array[WhopSDK::Models::payment_method_types],
+          enabled: ::Array[WhopSDK::Models::payment_method_types],
+          include_platform_defaults: bool
+        }
       end
     end
   end

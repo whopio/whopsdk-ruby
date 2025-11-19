@@ -17,8 +17,8 @@ class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::Reso
         id: String,
         affiliate_code: String | nil,
         company_id: String,
-        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),
-        plan: WhopSDK::CheckoutConfiguration::Plan,
+        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
+        plan: WhopSDK::CheckoutConfiguration::Plan | nil,
         purchase_url: String,
         redirect_url: String | nil
       }
@@ -39,8 +39,8 @@ class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::Reso
         id: String,
         affiliate_code: String | nil,
         company_id: String,
-        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),
-        plan: WhopSDK::CheckoutConfiguration::Plan,
+        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
+        plan: WhopSDK::CheckoutConfiguration::Plan | nil,
         purchase_url: String,
         redirect_url: String | nil
       }
@@ -68,8 +68,8 @@ class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::Reso
         id: String,
         affiliate_code: String | nil,
         company_id: String,
-        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),
-        plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan,
+        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
+        plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan | nil,
         purchase_url: String,
         redirect_url: String | nil
       }

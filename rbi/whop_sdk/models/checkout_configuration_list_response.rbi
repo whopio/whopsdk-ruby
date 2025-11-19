@@ -24,16 +24,23 @@ module WhopSDK
       attr_accessor :company_id
 
       # The metadata to use for the checkout configuration
-      sig { returns(T::Hash[Symbol, T.anything]) }
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
       # The plan to use for the checkout configuration
-      sig { returns(WhopSDK::Models::CheckoutConfigurationListResponse::Plan) }
+      sig do
+        returns(
+          T.nilable(WhopSDK::Models::CheckoutConfigurationListResponse::Plan)
+        )
+      end
       attr_reader :plan
 
       sig do
         params(
-          plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan::OrHash
+          plan:
+            T.nilable(
+              WhopSDK::Models::CheckoutConfigurationListResponse::Plan::OrHash
+            )
         ).void
       end
       attr_writer :plan
@@ -57,9 +64,11 @@ module WhopSDK
           id: String,
           affiliate_code: T.nilable(String),
           company_id: String,
-          metadata: T::Hash[Symbol, T.anything],
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
           plan:
-            WhopSDK::Models::CheckoutConfigurationListResponse::Plan::OrHash,
+            T.nilable(
+              WhopSDK::Models::CheckoutConfigurationListResponse::Plan::OrHash
+            ),
           purchase_url: String,
           redirect_url: T.nilable(String)
         ).returns(T.attached_class)
@@ -89,8 +98,11 @@ module WhopSDK
             id: String,
             affiliate_code: T.nilable(String),
             company_id: String,
-            metadata: T::Hash[Symbol, T.anything],
-            plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan,
+            metadata: T.nilable(T::Hash[Symbol, T.anything]),
+            plan:
+              T.nilable(
+                WhopSDK::Models::CheckoutConfigurationListResponse::Plan
+              ),
             purchase_url: String,
             redirect_url: T.nilable(String)
           }

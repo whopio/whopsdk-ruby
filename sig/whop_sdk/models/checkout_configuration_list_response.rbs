@@ -5,8 +5,8 @@ module WhopSDK
         id: String,
         affiliate_code: String?,
         company_id: String,
-        metadata: ::Hash[Symbol, top],
-        plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan,
+        metadata: ::Hash[Symbol, top]?,
+        plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan?,
         purchase_url: String,
         redirect_url: String?
       }
@@ -18,9 +18,9 @@ module WhopSDK
 
       attr_accessor company_id: String
 
-      attr_accessor metadata: ::Hash[Symbol, top]
+      attr_accessor metadata: ::Hash[Symbol, top]?
 
-      attr_accessor plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan
+      attr_accessor plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan?
 
       attr_accessor purchase_url: String
 
@@ -30,8 +30,8 @@ module WhopSDK
         id: String,
         affiliate_code: String?,
         company_id: String,
-        metadata: ::Hash[Symbol, top],
-        plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan,
+        metadata: ::Hash[Symbol, top]?,
+        plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan?,
         purchase_url: String,
         redirect_url: String?
       ) -> void
@@ -40,8 +40,8 @@ module WhopSDK
         id: String,
         affiliate_code: String?,
         company_id: String,
-        metadata: ::Hash[Symbol, top],
-        plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan,
+        metadata: ::Hash[Symbol, top]?,
+        plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan?,
         purchase_url: String,
         redirect_url: String?
       }

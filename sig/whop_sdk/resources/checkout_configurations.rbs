@@ -4,11 +4,12 @@ module WhopSDK
       def create: (
         plan: WhopSDK::CheckoutConfigurationCreateParams::Plan,
         plan_id: String,
+        company_id: String,
         ?affiliate_code: String?,
         ?metadata: ::Hash[Symbol, top]?,
-        ?mode: WhopSDK::Models::CheckoutConfigurationCreateParams::mode?,
         ?payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration?,
         ?redirect_url: String?,
+        ?mode: :setup,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::CheckoutConfiguration
 

@@ -33,12 +33,7 @@ module WhopSDK
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
-      # The different modes a checkout can be set to.
-      sig do
-        returns(
-          T.nilable(WhopSDK::CheckoutConfigurationCreateParams::Mode::OrSymbol)
-        )
-      end
+      sig { returns(Symbol) }
       attr_accessor :mode
 
       # This currently only works for configurations made in 'setup' mode. The explicit
@@ -71,21 +66,24 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :plan_id
 
+      # The ID of the company for which to generate the checkout configuration. Only
+      # required in setup mode.
+      sig { returns(String) }
+      attr_accessor :company_id
+
       sig do
         params(
           plan: WhopSDK::CheckoutConfigurationCreateParams::Plan::OrHash,
           plan_id: String,
+          company_id: String,
           affiliate_code: T.nilable(String),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
-          mode:
-            T.nilable(
-              WhopSDK::CheckoutConfigurationCreateParams::Mode::OrSymbol
-            ),
           payment_method_configuration:
             T.nilable(
               WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration::OrHash
             ),
           redirect_url: T.nilable(String),
+          mode: Symbol,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -94,18 +92,20 @@ module WhopSDK
         plan:,
         # The ID of the plan to use for the checkout configuration
         plan_id:,
+        # The ID of the company for which to generate the checkout configuration. Only
+        # required in setup mode.
+        company_id:,
         # The affiliate code to use for the checkout configuration
         affiliate_code: nil,
         # The metadata to use for the checkout configuration
         metadata: nil,
-        # The different modes a checkout can be set to.
-        mode: nil,
         # This currently only works for configurations made in 'setup' mode. The explicit
         # payment method configuration for the checkout session. If not provided, the
         # platform or company's defaults will apply.
         payment_method_configuration: nil,
         # The URL to redirect the user to after the checkout configuration is created
         redirect_url: nil,
+        mode: :setup,
         request_options: {}
       )
       end
@@ -116,16 +116,14 @@ module WhopSDK
             plan: WhopSDK::CheckoutConfigurationCreateParams::Plan,
             affiliate_code: T.nilable(String),
             metadata: T.nilable(T::Hash[Symbol, T.anything]),
-            mode:
-              T.nilable(
-                WhopSDK::CheckoutConfigurationCreateParams::Mode::OrSymbol
-              ),
+            mode: Symbol,
             payment_method_configuration:
               T.nilable(
                 WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration
               ),
             redirect_url: T.nilable(String),
             plan_id: String,
+            company_id: String,
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -781,38 +779,6 @@ module WhopSDK
           end
           def to_hash
           end
-        end
-      end
-
-      # The different modes a checkout can be set to.
-      module Mode
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::CheckoutConfigurationCreateParams::Mode)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        PAYMENT =
-          T.let(
-            :payment,
-            WhopSDK::CheckoutConfigurationCreateParams::Mode::TaggedSymbol
-          )
-        SETUP =
-          T.let(
-            :setup,
-            WhopSDK::CheckoutConfigurationCreateParams::Mode::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::CheckoutConfigurationCreateParams::Mode::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
         end
       end
 

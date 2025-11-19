@@ -16,21 +16,23 @@ module WhopSDK
       # - `access_pass:update`
       # - `checkout_configuration:basic:read`
       #
-      # @overload create(plan:, plan_id:, affiliate_code: nil, metadata: nil, mode: nil, payment_method_configuration: nil, redirect_url: nil, request_options: {})
+      # @overload create(plan:, plan_id:, company_id:, affiliate_code: nil, metadata: nil, payment_method_configuration: nil, redirect_url: nil, mode: :setup, request_options: {})
       #
       # @param plan [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan] Pass this object to create a new plan for this checkout configuration
       #
       # @param plan_id [String] The ID of the plan to use for the checkout configuration
       #
+      # @param company_id [String] The ID of the company for which to generate the checkout configuration. Only req
+      #
       # @param affiliate_code [String, nil] The affiliate code to use for the checkout configuration
       #
       # @param metadata [Hash{Symbol=>Object}, nil] The metadata to use for the checkout configuration
       #
-      # @param mode [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Mode, nil] The different modes a checkout can be set to.
-      #
       # @param payment_method_configuration [WhopSDK::Models::CheckoutConfigurationCreateParams::PaymentMethodConfiguration, nil] This currently only works for configurations made in 'setup' mode. The explicit
       #
       # @param redirect_url [String, nil] The URL to redirect the user to after the checkout configuration is created
+      #
+      # @param mode [Symbol, :setup]
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

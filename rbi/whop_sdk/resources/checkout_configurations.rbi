@@ -16,17 +16,15 @@ module WhopSDK
         params(
           plan: WhopSDK::CheckoutConfigurationCreateParams::Plan::OrHash,
           plan_id: String,
+          company_id: String,
           affiliate_code: T.nilable(String),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
-          mode:
-            T.nilable(
-              WhopSDK::CheckoutConfigurationCreateParams::Mode::OrSymbol
-            ),
           payment_method_configuration:
             T.nilable(
               WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration::OrHash
             ),
           redirect_url: T.nilable(String),
+          mode: Symbol,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::CheckoutConfiguration)
       end
@@ -35,18 +33,20 @@ module WhopSDK
         plan:,
         # The ID of the plan to use for the checkout configuration
         plan_id:,
+        # The ID of the company for which to generate the checkout configuration. Only
+        # required in setup mode.
+        company_id:,
         # The affiliate code to use for the checkout configuration
         affiliate_code: nil,
         # The metadata to use for the checkout configuration
         metadata: nil,
-        # The different modes a checkout can be set to.
-        mode: nil,
         # This currently only works for configurations made in 'setup' mode. The explicit
         # payment method configuration for the checkout session. If not provided, the
         # platform or company's defaults will apply.
         payment_method_configuration: nil,
         # The URL to redirect the user to after the checkout configuration is created
         redirect_url: nil,
+        mode: :setup,
         request_options: {}
       )
       end

@@ -18,6 +18,8 @@ class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::Reso
         affiliate_code: String | nil,
         company_id: String,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
+        mode: WhopSDK::CheckoutConfiguration::Mode,
+        payment_method_configuration: WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration | nil,
         plan: WhopSDK::CheckoutConfiguration::Plan | nil,
         purchase_url: String,
         redirect_url: String | nil
@@ -40,6 +42,8 @@ class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::Reso
         affiliate_code: String | nil,
         company_id: String,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
+        mode: WhopSDK::CheckoutConfiguration::Mode,
+        payment_method_configuration: WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration | nil,
         plan: WhopSDK::CheckoutConfiguration::Plan | nil,
         purchase_url: String,
         redirect_url: String | nil
@@ -69,6 +73,8 @@ class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::Reso
         affiliate_code: String | nil,
         company_id: String,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
+        mode: WhopSDK::Models::CheckoutConfigurationListResponse::Mode,
+        payment_method_configuration: WhopSDK::Models::CheckoutConfigurationListResponse::PaymentMethodConfiguration | nil,
         plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan | nil,
         purchase_url: String,
         redirect_url: String | nil

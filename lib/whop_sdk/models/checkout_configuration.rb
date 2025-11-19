@@ -24,14 +24,14 @@ module WhopSDK
       # @!attribute metadata
       #   The metadata to use for the checkout configuration
       #
-      #   @return [Hash{Symbol=>Object}]
-      required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]
+      #   @return [Hash{Symbol=>Object}, nil]
+      required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
       # @!attribute plan
       #   The plan to use for the checkout configuration
       #
-      #   @return [WhopSDK::Models::CheckoutConfiguration::Plan]
-      required :plan, -> { WhopSDK::CheckoutConfiguration::Plan }
+      #   @return [WhopSDK::Models::CheckoutConfiguration::Plan, nil]
+      required :plan, -> { WhopSDK::CheckoutConfiguration::Plan }, nil?: true
 
       # @!attribute purchase_url
       #   A URL you can send to customers to complete a checkout. It looks like
@@ -61,9 +61,9 @@ module WhopSDK
       #
       #   @param company_id [String] The ID of the company to use for the checkout configuration
       #
-      #   @param metadata [Hash{Symbol=>Object}] The metadata to use for the checkout configuration
+      #   @param metadata [Hash{Symbol=>Object}, nil] The metadata to use for the checkout configuration
       #
-      #   @param plan [WhopSDK::Models::CheckoutConfiguration::Plan] The plan to use for the checkout configuration
+      #   @param plan [WhopSDK::Models::CheckoutConfiguration::Plan, nil] The plan to use for the checkout configuration
       #
       #   @param purchase_url [String] A URL you can send to customers to complete a checkout. It looks like `/checkout
       #

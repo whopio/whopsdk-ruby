@@ -6,6 +6,8 @@ module WhopSDK
         plan_id: String,
         ?affiliate_code: String?,
         ?metadata: ::Hash[Symbol, top]?,
+        ?mode: WhopSDK::Models::CheckoutConfigurationCreateParams::mode?,
+        ?payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration?,
         ?redirect_url: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::CheckoutConfiguration

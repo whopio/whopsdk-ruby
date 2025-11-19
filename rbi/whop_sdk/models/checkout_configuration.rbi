@@ -21,14 +21,18 @@ module WhopSDK
       attr_accessor :company_id
 
       # The metadata to use for the checkout configuration
-      sig { returns(T::Hash[Symbol, T.anything]) }
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
       # The plan to use for the checkout configuration
-      sig { returns(WhopSDK::CheckoutConfiguration::Plan) }
+      sig { returns(T.nilable(WhopSDK::CheckoutConfiguration::Plan)) }
       attr_reader :plan
 
-      sig { params(plan: WhopSDK::CheckoutConfiguration::Plan::OrHash).void }
+      sig do
+        params(
+          plan: T.nilable(WhopSDK::CheckoutConfiguration::Plan::OrHash)
+        ).void
+      end
       attr_writer :plan
 
       # A URL you can send to customers to complete a checkout. It looks like
@@ -50,8 +54,8 @@ module WhopSDK
           id: String,
           affiliate_code: T.nilable(String),
           company_id: String,
-          metadata: T::Hash[Symbol, T.anything],
-          plan: WhopSDK::CheckoutConfiguration::Plan::OrHash,
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
+          plan: T.nilable(WhopSDK::CheckoutConfiguration::Plan::OrHash),
           purchase_url: String,
           redirect_url: T.nilable(String)
         ).returns(T.attached_class)
@@ -81,8 +85,8 @@ module WhopSDK
             id: String,
             affiliate_code: T.nilable(String),
             company_id: String,
-            metadata: T::Hash[Symbol, T.anything],
-            plan: WhopSDK::CheckoutConfiguration::Plan,
+            metadata: T.nilable(T::Hash[Symbol, T.anything]),
+            plan: T.nilable(WhopSDK::CheckoutConfiguration::Plan),
             purchase_url: String,
             redirect_url: T.nilable(String)
           }

@@ -25,7 +25,7 @@ module WhopSDK
       attr_accessor :metadata
 
       # The mode of the checkout session.
-      sig { returns(WhopSDK::CheckoutConfiguration::Mode::TaggedSymbol) }
+      sig { returns(WhopSDK::CheckoutModes::TaggedSymbol) }
       attr_accessor :mode
 
       # The explicit payment method configuration for the session, if any. This
@@ -79,7 +79,7 @@ module WhopSDK
           affiliate_code: T.nilable(String),
           company_id: String,
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
-          mode: WhopSDK::CheckoutConfiguration::Mode::OrSymbol,
+          mode: WhopSDK::CheckoutModes::OrSymbol,
           payment_method_configuration:
             T.nilable(
               WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration::OrHash
@@ -121,7 +121,7 @@ module WhopSDK
             affiliate_code: T.nilable(String),
             company_id: String,
             metadata: T.nilable(T::Hash[Symbol, T.anything]),
-            mode: WhopSDK::CheckoutConfiguration::Mode::TaggedSymbol,
+            mode: WhopSDK::CheckoutModes::TaggedSymbol,
             payment_method_configuration:
               T.nilable(
                 WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration
@@ -133,28 +133,6 @@ module WhopSDK
         )
       end
       def to_hash
-      end
-
-      # The mode of the checkout session.
-      module Mode
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, WhopSDK::CheckoutConfiguration::Mode) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        PAYMENT =
-          T.let(:payment, WhopSDK::CheckoutConfiguration::Mode::TaggedSymbol)
-        SETUP =
-          T.let(:setup, WhopSDK::CheckoutConfiguration::Mode::TaggedSymbol)
-
-        sig do
-          override.returns(
-            T::Array[WhopSDK::CheckoutConfiguration::Mode::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
       end
 
       class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel

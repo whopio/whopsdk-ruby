@@ -82,6 +82,8 @@ module WhopSDK
 
     attr_reader refunds: WhopSDK::Resources::Refunds
 
+    attr_reader withdrawals: WhopSDK::Resources::Withdrawals
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

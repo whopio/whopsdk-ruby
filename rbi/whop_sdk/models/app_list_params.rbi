@@ -15,6 +15,10 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :after
 
+      # The type of end-user an app is built for
+      sig { returns(T.nilable(WhopSDK::AppType::OrSymbol)) }
+      attr_accessor :app_type
+
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_accessor :before
@@ -55,6 +59,7 @@ module WhopSDK
       sig do
         params(
           after: T.nilable(String),
+          app_type: T.nilable(WhopSDK::AppType::OrSymbol),
           before: T.nilable(String),
           company_id: T.nilable(String),
           direction: T.nilable(WhopSDK::Direction::OrSymbol),
@@ -70,6 +75,8 @@ module WhopSDK
       def self.new(
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
+        # The type of end-user an app is built for
+        app_type: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
         # The ID of the company to filter apps by
@@ -97,6 +104,7 @@ module WhopSDK
         override.returns(
           {
             after: T.nilable(String),
+            app_type: T.nilable(WhopSDK::AppType::OrSymbol),
             before: T.nilable(String),
             company_id: T.nilable(String),
             direction: T.nilable(WhopSDK::Direction::OrSymbol),

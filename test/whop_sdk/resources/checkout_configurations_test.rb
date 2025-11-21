@@ -6,7 +6,7 @@ class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::Reso
   def test_create_required_params
     skip("Prism tests are disabled")
 
-    response = @whop.checkout_configurations.create(plan: {company_id: "biz_xxxxxxxxxxxxxx", currency: :usd})
+    response = @whop.checkout_configurations.create(company_id: "biz_xxxxxxxxxxxxxx", mode: :setup)
 
     assert_pattern do
       response => WhopSDK::CheckoutConfiguration
@@ -17,8 +17,10 @@ class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::Reso
         id: String,
         affiliate_code: String | nil,
         company_id: String,
-        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),
-        plan: WhopSDK::CheckoutConfiguration::Plan,
+        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
+        mode: WhopSDK::CheckoutModes,
+        payment_method_configuration: WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration | nil,
+        plan: WhopSDK::CheckoutConfiguration::Plan | nil,
         purchase_url: String,
         redirect_url: String | nil
       }
@@ -39,8 +41,10 @@ class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::Reso
         id: String,
         affiliate_code: String | nil,
         company_id: String,
-        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),
-        plan: WhopSDK::CheckoutConfiguration::Plan,
+        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
+        mode: WhopSDK::CheckoutModes,
+        payment_method_configuration: WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration | nil,
+        plan: WhopSDK::CheckoutConfiguration::Plan | nil,
         purchase_url: String,
         redirect_url: String | nil
       }
@@ -68,8 +72,10 @@ class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::Reso
         id: String,
         affiliate_code: String | nil,
         company_id: String,
-        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),
-        plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan,
+        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
+        mode: WhopSDK::CheckoutModes,
+        payment_method_configuration: WhopSDK::Models::CheckoutConfigurationListResponse::PaymentMethodConfiguration | nil,
+        plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan | nil,
         purchase_url: String,
         redirect_url: String | nil
       }

@@ -24,14 +24,30 @@ module WhopSDK
       # @!attribute metadata
       #   The metadata to use for the checkout configuration
       #
-      #   @return [Hash{Symbol=>Object}]
-      required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]
+      #   @return [Hash{Symbol=>Object}, nil]
+      required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
+      # @!attribute mode
+      #   The mode of the checkout session.
+      #
+      #   @return [Symbol, WhopSDK::Models::CheckoutModes]
+      required :mode, enum: -> { WhopSDK::CheckoutModes }
+
+      # @!attribute payment_method_configuration
+      #   The explicit payment method configuration for the session, if any. This
+      #   currently only works in 'setup' mode. Use the plan's
+      #   payment_method_configuration for payment method.
+      #
+      #   @return [WhopSDK::Models::CheckoutConfiguration::PaymentMethodConfiguration, nil]
+      required :payment_method_configuration,
+               -> { WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration },
+               nil?: true
 
       # @!attribute plan
       #   The plan to use for the checkout configuration
       #
-      #   @return [WhopSDK::Models::CheckoutConfiguration::Plan]
-      required :plan, -> { WhopSDK::CheckoutConfiguration::Plan }
+      #   @return [WhopSDK::Models::CheckoutConfiguration::Plan, nil]
+      required :plan, -> { WhopSDK::CheckoutConfiguration::Plan }, nil?: true
 
       # @!attribute purchase_url
       #   A URL you can send to customers to complete a checkout. It looks like
@@ -46,7 +62,7 @@ module WhopSDK
       #   @return [String, nil]
       required :redirect_url, String, nil?: true
 
-      # @!method initialize(id:, affiliate_code:, company_id:, metadata:, plan:, purchase_url:, redirect_url:)
+      # @!method initialize(id:, affiliate_code:, company_id:, metadata:, mode:, payment_method_configuration:, plan:, purchase_url:, redirect_url:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CheckoutConfiguration} for more details.
       #
@@ -61,13 +77,59 @@ module WhopSDK
       #
       #   @param company_id [String] The ID of the company to use for the checkout configuration
       #
-      #   @param metadata [Hash{Symbol=>Object}] The metadata to use for the checkout configuration
+      #   @param metadata [Hash{Symbol=>Object}, nil] The metadata to use for the checkout configuration
       #
-      #   @param plan [WhopSDK::Models::CheckoutConfiguration::Plan] The plan to use for the checkout configuration
+      #   @param mode [Symbol, WhopSDK::Models::CheckoutModes] The mode of the checkout session.
+      #
+      #   @param payment_method_configuration [WhopSDK::Models::CheckoutConfiguration::PaymentMethodConfiguration, nil] The explicit payment method configuration for the session, if any. This currentl
+      #
+      #   @param plan [WhopSDK::Models::CheckoutConfiguration::Plan, nil] The plan to use for the checkout configuration
       #
       #   @param purchase_url [String] A URL you can send to customers to complete a checkout. It looks like `/checkout
       #
       #   @param redirect_url [String, nil] The URL to redirect the user to after the checkout configuration is created
+
+      # @see WhopSDK::Models::CheckoutConfiguration#payment_method_configuration
+      class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+        # @!attribute disabled
+        #   An array of payment method identifiers that are explicitly disabled. Only
+        #   applies if the include_platform_defaults is true.
+        #
+        #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
+        required :disabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+
+        # @!attribute enabled
+        #   An array of payment method identifiers that are explicitly enabled. This means
+        #   these payment methods will be shown on checkout. Example use case is to only
+        #   enable a specific payment method like cashapp, or extending the platform
+        #   defaults with additional methods.
+        #
+        #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
+        required :enabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+
+        # @!attribute include_platform_defaults
+        #   Whether Whop's platform default payment method enablement settings are included
+        #   in this configuration. The full list of default payment methods can be found in
+        #   the documentation at docs.whop.com/payments.
+        #
+        #   @return [Boolean]
+        required :include_platform_defaults, WhopSDK::Internal::Type::Boolean
+
+        # @!method initialize(disabled:, enabled:, include_platform_defaults:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::CheckoutConfiguration::PaymentMethodConfiguration} for more
+        #   details.
+        #
+        #   The explicit payment method configuration for the session, if any. This
+        #   currently only works in 'setup' mode. Use the plan's
+        #   payment_method_configuration for payment method.
+        #
+        #   @param disabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly disabled. Only applie
+        #
+        #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
+        #
+        #   @param include_platform_defaults [Boolean] Whether Whop's platform default payment method enablement settings are included
+      end
 
       # @see WhopSDK::Models::CheckoutConfiguration#plan
       class Plan < WhopSDK::Internal::Type::BaseModel

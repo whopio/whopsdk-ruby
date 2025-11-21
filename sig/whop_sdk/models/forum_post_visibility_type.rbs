@@ -1,0 +1,14 @@
+module WhopSDK
+  module Models
+    type forum_post_visibility_type = :members_only | :globally_visible
+
+    module ForumPostVisibilityType
+      extend WhopSDK::Internal::Type::Enum
+
+      MEMBERS_ONLY: :members_only
+      GLOBALLY_VISIBLE: :globally_visible
+
+      def self?.values: -> ::Array[WhopSDK::Models::forum_post_visibility_type]
+    end
+  end
+end

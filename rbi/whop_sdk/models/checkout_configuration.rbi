@@ -21,14 +21,42 @@ module WhopSDK
       attr_accessor :company_id
 
       # The metadata to use for the checkout configuration
-      sig { returns(T::Hash[Symbol, T.anything]) }
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
+      # The mode of the checkout session.
+      sig { returns(WhopSDK::CheckoutModes::TaggedSymbol) }
+      attr_accessor :mode
+
+      # The explicit payment method configuration for the session, if any. This
+      # currently only works in 'setup' mode. Use the plan's
+      # payment_method_configuration for payment method.
+      sig do
+        returns(
+          T.nilable(WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration)
+        )
+      end
+      attr_reader :payment_method_configuration
+
+      sig do
+        params(
+          payment_method_configuration:
+            T.nilable(
+              WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration::OrHash
+            )
+        ).void
+      end
+      attr_writer :payment_method_configuration
+
       # The plan to use for the checkout configuration
-      sig { returns(WhopSDK::CheckoutConfiguration::Plan) }
+      sig { returns(T.nilable(WhopSDK::CheckoutConfiguration::Plan)) }
       attr_reader :plan
 
-      sig { params(plan: WhopSDK::CheckoutConfiguration::Plan::OrHash).void }
+      sig do
+        params(
+          plan: T.nilable(WhopSDK::CheckoutConfiguration::Plan::OrHash)
+        ).void
+      end
       attr_writer :plan
 
       # A URL you can send to customers to complete a checkout. It looks like
@@ -50,8 +78,13 @@ module WhopSDK
           id: String,
           affiliate_code: T.nilable(String),
           company_id: String,
-          metadata: T::Hash[Symbol, T.anything],
-          plan: WhopSDK::CheckoutConfiguration::Plan::OrHash,
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
+          mode: WhopSDK::CheckoutModes::OrSymbol,
+          payment_method_configuration:
+            T.nilable(
+              WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration::OrHash
+            ),
+          plan: T.nilable(WhopSDK::CheckoutConfiguration::Plan::OrHash),
           purchase_url: String,
           redirect_url: T.nilable(String)
         ).returns(T.attached_class)
@@ -65,6 +98,12 @@ module WhopSDK
         company_id:,
         # The metadata to use for the checkout configuration
         metadata:,
+        # The mode of the checkout session.
+        mode:,
+        # The explicit payment method configuration for the session, if any. This
+        # currently only works in 'setup' mode. Use the plan's
+        # payment_method_configuration for payment method.
+        payment_method_configuration:,
         # The plan to use for the checkout configuration
         plan:,
         # A URL you can send to customers to complete a checkout. It looks like
@@ -81,14 +120,85 @@ module WhopSDK
             id: String,
             affiliate_code: T.nilable(String),
             company_id: String,
-            metadata: T::Hash[Symbol, T.anything],
-            plan: WhopSDK::CheckoutConfiguration::Plan,
+            metadata: T.nilable(T::Hash[Symbol, T.anything]),
+            mode: WhopSDK::CheckoutModes::TaggedSymbol,
+            payment_method_configuration:
+              T.nilable(
+                WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration
+              ),
+            plan: T.nilable(WhopSDK::CheckoutConfiguration::Plan),
             purchase_url: String,
             redirect_url: T.nilable(String)
           }
         )
       end
       def to_hash
+      end
+
+      class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # An array of payment method identifiers that are explicitly disabled. Only
+        # applies if the include_platform_defaults is true.
+        sig { returns(T::Array[WhopSDK::PaymentMethodTypes::TaggedSymbol]) }
+        attr_accessor :disabled
+
+        # An array of payment method identifiers that are explicitly enabled. This means
+        # these payment methods will be shown on checkout. Example use case is to only
+        # enable a specific payment method like cashapp, or extending the platform
+        # defaults with additional methods.
+        sig { returns(T::Array[WhopSDK::PaymentMethodTypes::TaggedSymbol]) }
+        attr_accessor :enabled
+
+        # Whether Whop's platform default payment method enablement settings are included
+        # in this configuration. The full list of default payment methods can be found in
+        # the documentation at docs.whop.com/payments.
+        sig { returns(T::Boolean) }
+        attr_accessor :include_platform_defaults
+
+        # The explicit payment method configuration for the session, if any. This
+        # currently only works in 'setup' mode. Use the plan's
+        # payment_method_configuration for payment method.
+        sig do
+          params(
+            disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+            enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+            include_platform_defaults: T::Boolean
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # An array of payment method identifiers that are explicitly disabled. Only
+          # applies if the include_platform_defaults is true.
+          disabled:,
+          # An array of payment method identifiers that are explicitly enabled. This means
+          # these payment methods will be shown on checkout. Example use case is to only
+          # enable a specific payment method like cashapp, or extending the platform
+          # defaults with additional methods.
+          enabled:,
+          # Whether Whop's platform default payment method enablement settings are included
+          # in this configuration. The full list of default payment methods can be found in
+          # the documentation at docs.whop.com/payments.
+          include_platform_defaults:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              disabled: T::Array[WhopSDK::PaymentMethodTypes::TaggedSymbol],
+              enabled: T::Array[WhopSDK::PaymentMethodTypes::TaggedSymbol],
+              include_platform_defaults: T::Boolean
+            }
+          )
+        end
+        def to_hash
+        end
       end
 
       class Plan < WhopSDK::Internal::Type::BaseModel

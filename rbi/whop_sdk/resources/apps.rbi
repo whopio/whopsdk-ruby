@@ -56,6 +56,7 @@ module WhopSDK
         params(
           id: String,
           app_store_description: T.nilable(String),
+          app_type: T.nilable(WhopSDK::AppType::OrSymbol),
           base_url: T.nilable(String),
           dashboard_path: T.nilable(String),
           description: T.nilable(String),
@@ -82,6 +83,8 @@ module WhopSDK
         id,
         # The description of the app for the app store in-depth app view.
         app_store_description: nil,
+        # The type of end-user an app is built for
+        app_type: nil,
         # The base production url of the app
         base_url: nil,
         # The path for the dashboard view of the app
@@ -108,6 +111,7 @@ module WhopSDK
       sig do
         params(
           after: T.nilable(String),
+          app_type: T.nilable(WhopSDK::AppType::OrSymbol),
           before: T.nilable(String),
           company_id: T.nilable(String),
           direction: T.nilable(WhopSDK::Direction::OrSymbol),
@@ -125,6 +129,8 @@ module WhopSDK
       def list(
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
+        # The type of end-user an app is built for
+        app_type: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
         # The ID of the company to filter apps by

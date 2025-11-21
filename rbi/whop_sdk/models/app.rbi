@@ -16,6 +16,10 @@ module WhopSDK
       sig { params(api_key: T.nilable(WhopSDK::App::APIKey::OrHash)).void }
       attr_writer :api_key
 
+      # The type of end-user an app is built for
+      sig { returns(WhopSDK::AppType::TaggedSymbol) }
+      attr_accessor :app_type
+
       # The base url of the app
       sig { returns(T.nilable(String)) }
       attr_accessor :base_url
@@ -101,6 +105,7 @@ module WhopSDK
         params(
           id: String,
           api_key: T.nilable(WhopSDK::App::APIKey::OrHash),
+          app_type: WhopSDK::AppType::OrSymbol,
           base_url: T.nilable(String),
           company: WhopSDK::App::Company::OrHash,
           creator: WhopSDK::App::Creator::OrHash,
@@ -123,6 +128,8 @@ module WhopSDK
         id:,
         # The API key for the app
         api_key:,
+        # The type of end-user an app is built for
+        app_type:,
         # The base url of the app
         base_url:,
         # The company that owns the app
@@ -171,6 +178,7 @@ module WhopSDK
           {
             id: String,
             api_key: T.nilable(WhopSDK::App::APIKey),
+            app_type: WhopSDK::AppType::TaggedSymbol,
             base_url: T.nilable(String),
             company: WhopSDK::App::Company,
             creator: WhopSDK::App::Creator,

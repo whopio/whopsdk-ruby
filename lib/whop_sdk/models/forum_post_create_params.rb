@@ -77,8 +77,8 @@ module WhopSDK
       # @!attribute visibility
       #   The visibility types for forum posts
       #
-      #   @return [Symbol, WhopSDK::Models::ForumPostCreateParams::Visibility, nil]
-      optional :visibility, enum: -> { WhopSDK::ForumPostCreateParams::Visibility }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::ForumPostVisibilityType, nil]
+      optional :visibility, enum: -> { WhopSDK::ForumPostVisibilityType }, nil?: true
 
       # @!method initialize(experience_id:, attachments: nil, content: nil, is_mention: nil, parent_id: nil, paywall_amount: nil, paywall_currency: nil, pinned: nil, poll: nil, title: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
@@ -104,7 +104,7 @@ module WhopSDK
       #
       #   @param title [String, nil] The title of the post. Only visible if paywalled.
       #
-      #   @param visibility [Symbol, WhopSDK::Models::ForumPostCreateParams::Visibility, nil] The visibility types for forum posts
+      #   @param visibility [Symbol, WhopSDK::Models::ForumPostVisibilityType, nil] The visibility types for forum posts
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
@@ -192,17 +192,6 @@ module WhopSDK
           #
           #   @param text [String] The text of the poll option
         end
-      end
-
-      # The visibility types for forum posts
-      module Visibility
-        extend WhopSDK::Internal::Type::Enum
-
-        MEMBERS_ONLY = :members_only
-        GLOBALLY_VISIBLE = :globally_visible
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
     end
   end

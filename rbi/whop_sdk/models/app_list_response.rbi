@@ -12,6 +12,10 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
+      # The type of end-user an app is built for
+      sig { returns(WhopSDK::AppType::TaggedSymbol) }
+      attr_accessor :app_type
+
       # The base url of the app
       sig { returns(T.nilable(String)) }
       attr_accessor :base_url
@@ -92,6 +96,7 @@ module WhopSDK
       sig do
         params(
           id: String,
+          app_type: WhopSDK::AppType::OrSymbol,
           base_url: T.nilable(String),
           company: WhopSDK::Models::AppListResponse::Company::OrHash,
           creator: WhopSDK::Models::AppListResponse::Creator::OrHash,
@@ -109,6 +114,8 @@ module WhopSDK
       def self.new(
         # The ID of the app
         id:,
+        # The type of end-user an app is built for
+        app_type:,
         # The base url of the app
         base_url:,
         # The company that owns the app
@@ -151,6 +158,7 @@ module WhopSDK
         override.returns(
           {
             id: String,
+            app_type: WhopSDK::AppType::TaggedSymbol,
             base_url: T.nilable(String),
             company: WhopSDK::Models::AppListResponse::Company,
             creator: WhopSDK::Models::AppListResponse::Creator,

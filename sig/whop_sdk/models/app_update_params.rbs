@@ -3,6 +3,7 @@ module WhopSDK
     type app_update_params =
       {
         app_store_description: String?,
+        app_type: WhopSDK::Models::app_type?,
         base_url: String?,
         dashboard_path: String?,
         description: String?,
@@ -20,6 +21,8 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       attr_accessor app_store_description: String?
+
+      attr_accessor app_type: WhopSDK::Models::app_type?
 
       attr_accessor base_url: String?
 
@@ -41,6 +44,7 @@ module WhopSDK
 
       def initialize: (
         ?app_store_description: String?,
+        ?app_type: WhopSDK::Models::app_type?,
         ?base_url: String?,
         ?dashboard_path: String?,
         ?description: String?,
@@ -55,6 +59,7 @@ module WhopSDK
 
       def to_hash: -> {
         app_store_description: String?,
+        app_type: WhopSDK::Models::app_type?,
         base_url: String?,
         dashboard_path: String?,
         description: String?,

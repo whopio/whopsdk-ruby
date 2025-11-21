@@ -13,6 +13,12 @@ module WhopSDK
       #   @return [String, nil]
       optional :after, String, nil?: true
 
+      # @!attribute app_type
+      #   The type of end-user an app is built for
+      #
+      #   @return [Symbol, WhopSDK::Models::AppType, nil]
+      optional :app_type, enum: -> { WhopSDK::AppType }, nil?: true
+
       # @!attribute before
       #   Returns the elements in the list that come before the specified cursor.
       #
@@ -68,11 +74,13 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::AppViewType, nil]
       optional :view_type, enum: -> { WhopSDK::AppViewType }, nil?: true
 
-      # @!method initialize(after: nil, before: nil, company_id: nil, direction: nil, first: nil, last: nil, order: nil, query: nil, verified_apps_only: nil, view_type: nil, request_options: {})
+      # @!method initialize(after: nil, app_type: nil, before: nil, company_id: nil, direction: nil, first: nil, last: nil, order: nil, query: nil, verified_apps_only: nil, view_type: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AppListParams} for more details.
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      #
+      #   @param app_type [Symbol, WhopSDK::Models::AppType, nil] The type of end-user an app is built for
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #

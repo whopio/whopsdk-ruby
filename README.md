@@ -17,7 +17,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "whop_sdk", "~> 0.0.7"
+gem "whop_sdk", "~> 0.0.8"
 ```
 
 <!-- x-release-please-end -->
@@ -225,11 +225,11 @@ whop.payments.list(**params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :live
-puts(WhopSDK::AppStatuses::LIVE)
+# :b2b_app
+puts(WhopSDK::AppType::B2B_APP)
 
-# Revealed type: `T.all(WhopSDK::AppStatuses, Symbol)`
-T.reveal_type(WhopSDK::AppStatuses::LIVE)
+# Revealed type: `T.all(WhopSDK::AppType, Symbol)`
+T.reveal_type(WhopSDK::AppType::B2B_APP)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
@@ -237,13 +237,13 @@ Enum parameters have a "relaxed" type, so you can either pass in enum constants 
 ```ruby
 # Using the enum constants preserves the tagged type information:
 whop.apps.update(
-  status: WhopSDK::AppStatuses::LIVE,
+  app_type: WhopSDK::AppType::B2B_APP,
   # …
 )
 
 # Literal values are also permissible:
 whop.apps.update(
-  status: :live,
+  app_type: :b2b_app,
   # …
 )
 ```

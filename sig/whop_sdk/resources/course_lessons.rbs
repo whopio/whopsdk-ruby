@@ -49,6 +49,22 @@ module WhopSDK
 
       def delete: (String id, ?request_options: WhopSDK::request_opts) -> bool
 
+      def mark_as_completed: (
+        String lesson_id,
+        ?request_options: WhopSDK::request_opts
+      ) -> bool
+
+      def start: (
+        String lesson_id,
+        ?request_options: WhopSDK::request_opts
+      ) -> bool
+
+      def submit_assessment: (
+        String lesson_id,
+        answers: ::Array[WhopSDK::CourseLessonSubmitAssessmentParams::Answer],
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::CourseLessonSubmitAssessmentResponse
+
       def initialize: (client: WhopSDK::Client) -> void
     end
   end

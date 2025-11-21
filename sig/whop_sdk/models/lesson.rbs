@@ -6,6 +6,7 @@ module WhopSDK
         assessment_questions: ::Array[WhopSDK::Lesson::AssessmentQuestion],
         attachments: ::Array[WhopSDK::Lesson::Attachment],
         content: String?,
+        created_at: Time,
         days_from_course_start_until_unlock: Integer?,
         embed_id: String?,
         embed_type: WhopSDK::Models::embed_type?,
@@ -26,6 +27,8 @@ module WhopSDK
       attr_accessor attachments: ::Array[WhopSDK::Lesson::Attachment]
 
       attr_accessor content: String?
+
+      attr_accessor created_at: Time
 
       attr_accessor days_from_course_start_until_unlock: Integer?
 
@@ -52,6 +55,7 @@ module WhopSDK
         assessment_questions: ::Array[WhopSDK::Lesson::AssessmentQuestion],
         attachments: ::Array[WhopSDK::Lesson::Attachment],
         content: String?,
+        created_at: Time,
         days_from_course_start_until_unlock: Integer?,
         embed_id: String?,
         embed_type: WhopSDK::Models::embed_type?,
@@ -69,6 +73,7 @@ module WhopSDK
         assessment_questions: ::Array[WhopSDK::Lesson::AssessmentQuestion],
         attachments: ::Array[WhopSDK::Lesson::Attachment],
         content: String?,
+        created_at: Time,
         days_from_course_start_until_unlock: Integer?,
         embed_id: String?,
         embed_type: WhopSDK::Models::embed_type?,
@@ -251,22 +256,93 @@ module WhopSDK
         def to_hash: -> { url: String? }
       end
 
-      type video_asset = { id: String, asset_id: String?, playback_id: String? }
+      type video_asset =
+        {
+          id: String,
+          asset_id: String?,
+          audio_only: bool,
+          created_at: Time,
+          duration_seconds: Integer?,
+          finished_uploading_at: Time?,
+          playback_id: String?,
+          signed_playback_id: String?,
+          signed_storyboard_playback_token: String?,
+          signed_thumbnail_playback_token: String?,
+          signed_video_playback_token: String?,
+          status: WhopSDK::Models::Lesson::VideoAsset::status,
+          updated_at: Time
+        }
 
       class VideoAsset < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor asset_id: String?
 
+        attr_accessor audio_only: bool
+
+        attr_accessor created_at: Time
+
+        attr_accessor duration_seconds: Integer?
+
+        attr_accessor finished_uploading_at: Time?
+
         attr_accessor playback_id: String?
+
+        attr_accessor signed_playback_id: String?
+
+        attr_accessor signed_storyboard_playback_token: String?
+
+        attr_accessor signed_thumbnail_playback_token: String?
+
+        attr_accessor signed_video_playback_token: String?
+
+        attr_accessor status: WhopSDK::Models::Lesson::VideoAsset::status
+
+        attr_accessor updated_at: Time
 
         def initialize: (
           id: String,
           asset_id: String?,
-          playback_id: String?
+          audio_only: bool,
+          created_at: Time,
+          duration_seconds: Integer?,
+          finished_uploading_at: Time?,
+          playback_id: String?,
+          signed_playback_id: String?,
+          signed_storyboard_playback_token: String?,
+          signed_thumbnail_playback_token: String?,
+          signed_video_playback_token: String?,
+          status: WhopSDK::Models::Lesson::VideoAsset::status,
+          updated_at: Time
         ) -> void
 
-        def to_hash: -> { id: String, asset_id: String?, playback_id: String? }
+        def to_hash: -> {
+          id: String,
+          asset_id: String?,
+          audio_only: bool,
+          created_at: Time,
+          duration_seconds: Integer?,
+          finished_uploading_at: Time?,
+          playback_id: String?,
+          signed_playback_id: String?,
+          signed_storyboard_playback_token: String?,
+          signed_thumbnail_playback_token: String?,
+          signed_video_playback_token: String?,
+          status: WhopSDK::Models::Lesson::VideoAsset::status,
+          updated_at: Time
+        }
+
+        type status = :uploading | :created | :ready
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          UPLOADING: :uploading
+          CREATED: :created
+          READY: :ready
+
+          def self?.values: -> ::Array[WhopSDK::Models::Lesson::VideoAsset::status]
+        end
       end
     end
   end

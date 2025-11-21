@@ -19,6 +19,10 @@ module WhopSDK
       sig { returns(T::Array[WhopSDK::Course::Chapter]) }
       attr_accessor :chapters
 
+      # The URL of the course's cover image, which is shown in course preview cards
+      sig { returns(T.nilable(String)) }
+      attr_accessor :cover_image
+
       # The timestamp of when the course was created
       sig { returns(Time) }
       attr_accessor :created_at
@@ -73,6 +77,7 @@ module WhopSDK
           id: String,
           certificate_after_completion_enabled: T.nilable(T::Boolean),
           chapters: T::Array[WhopSDK::Course::Chapter::OrHash],
+          cover_image: T.nilable(String),
           created_at: Time,
           description: T.nilable(String),
           language: WhopSDK::Languages::OrSymbol,
@@ -93,6 +98,8 @@ module WhopSDK
         certificate_after_completion_enabled:,
         # The chapters in this course
         chapters:,
+        # The URL of the course's cover image, which is shown in course preview cards
+        cover_image:,
         # The timestamp of when the course was created
         created_at:,
         # A short description of the course
@@ -125,6 +132,7 @@ module WhopSDK
             id: String,
             certificate_after_completion_enabled: T.nilable(T::Boolean),
             chapters: T::Array[WhopSDK::Course::Chapter],
+            cover_image: T.nilable(String),
             created_at: Time,
             description: T.nilable(String),
             language: WhopSDK::Languages::TaggedSymbol,

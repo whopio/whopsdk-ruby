@@ -25,6 +25,21 @@ module WhopSDK
       #   @return [Hash{Symbol=>Object}, nil]
       optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
+      # @!attribute mode
+      #
+      #   @return [Symbol, :setup]
+      required :mode, const: :setup
+
+      # @!attribute payment_method_configuration
+      #   This currently only works for configurations made in 'setup' mode. The explicit
+      #   payment method configuration for the checkout session. If not provided, the
+      #   platform or company's defaults will apply.
+      #
+      #   @return [WhopSDK::Models::CheckoutConfigurationCreateParams::PaymentMethodConfiguration, nil]
+      optional :payment_method_configuration,
+               -> { WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration },
+               nil?: true
+
       # @!attribute redirect_url
       #   The URL to redirect the user to after the checkout configuration is created
       #
@@ -37,16 +52,32 @@ module WhopSDK
       #   @return [String]
       required :plan_id, String
 
-      # @!method initialize(plan:, plan_id:, affiliate_code: nil, metadata: nil, redirect_url: nil, request_options: {})
+      # @!attribute company_id
+      #   The ID of the company for which to generate the checkout configuration. Only
+      #   required in setup mode.
+      #
+      #   @return [String]
+      required :company_id, String
+
+      # @!method initialize(plan:, plan_id:, company_id:, affiliate_code: nil, metadata: nil, payment_method_configuration: nil, redirect_url: nil, mode: :setup, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::CheckoutConfigurationCreateParams} for more details.
+      #
       #   @param plan [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan] Pass this object to create a new plan for this checkout configuration
       #
       #   @param plan_id [String] The ID of the plan to use for the checkout configuration
+      #
+      #   @param company_id [String] The ID of the company for which to generate the checkout configuration. Only req
       #
       #   @param affiliate_code [String, nil] The affiliate code to use for the checkout configuration
       #
       #   @param metadata [Hash{Symbol=>Object}, nil] The metadata to use for the checkout configuration
       #
+      #   @param payment_method_configuration [WhopSDK::Models::CheckoutConfigurationCreateParams::PaymentMethodConfiguration, nil] This currently only works for configurations made in 'setup' mode. The explicit
+      #
       #   @param redirect_url [String, nil] The URL to redirect the user to after the checkout configuration is created
+      #
+      #   @param mode [Symbol, :setup]
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
@@ -500,6 +531,47 @@ module WhopSDK
           #
           #   @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
         end
+      end
+
+      class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+        # @!attribute disabled
+        #   An array of payment method identifiers that are explicitly disabled. Only
+        #   applies if the include_platform_defaults is true.
+        #
+        #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
+        required :disabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+
+        # @!attribute enabled
+        #   An array of payment method identifiers that are explicitly enabled. This means
+        #   these payment methods will be shown on checkout. Example use case is to only
+        #   enable a specific payment method like cashapp, or extending the platform
+        #   defaults with additional methods.
+        #
+        #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
+        required :enabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+
+        # @!attribute include_platform_defaults
+        #   Whether Whop's platform default payment method enablement settings are included
+        #   in this configuration. The full list of default payment methods can be found in
+        #   the documentation at docs.whop.com/payments.
+        #
+        #   @return [Boolean]
+        required :include_platform_defaults, WhopSDK::Internal::Type::Boolean
+
+        # @!method initialize(disabled:, enabled:, include_platform_defaults:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::CheckoutConfigurationCreateParams::PaymentMethodConfiguration}
+        #   for more details.
+        #
+        #   This currently only works for configurations made in 'setup' mode. The explicit
+        #   payment method configuration for the checkout session. If not provided, the
+        #   platform or company's defaults will apply.
+        #
+        #   @param disabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly disabled. Only applie
+        #
+        #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
+        #
+        #   @param include_platform_defaults [Boolean] Whether Whop's platform default payment method enablement settings are included
       end
     end
   end

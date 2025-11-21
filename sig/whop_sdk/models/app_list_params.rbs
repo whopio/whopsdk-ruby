@@ -3,6 +3,7 @@ module WhopSDK
     type app_list_params =
       {
         after: String?,
+        app_type: WhopSDK::Models::app_type?,
         before: String?,
         company_id: String?,
         direction: WhopSDK::Models::direction?,
@@ -20,6 +21,8 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       attr_accessor after: String?
+
+      attr_accessor app_type: WhopSDK::Models::app_type?
 
       attr_accessor before: String?
 
@@ -41,6 +44,7 @@ module WhopSDK
 
       def initialize: (
         ?after: String?,
+        ?app_type: WhopSDK::Models::app_type?,
         ?before: String?,
         ?company_id: String?,
         ?direction: WhopSDK::Models::direction?,
@@ -55,6 +59,7 @@ module WhopSDK
 
       def to_hash: -> {
         after: String?,
+        app_type: WhopSDK::Models::app_type?,
         before: String?,
         company_id: String?,
         direction: WhopSDK::Models::direction?,

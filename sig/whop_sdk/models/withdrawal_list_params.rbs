@@ -1,0 +1,61 @@
+module WhopSDK
+  module Models
+    type withdrawal_list_params =
+      {
+        company_id: String,
+        after: String?,
+        before: String?,
+        created_after: Time?,
+        created_before: Time?,
+        direction: WhopSDK::Models::direction?,
+        first: Integer?,
+        last: Integer?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class WithdrawalListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor created_after: Time?
+
+      attr_accessor created_before: Time?
+
+      attr_accessor direction: WhopSDK::Models::direction?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      def initialize: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?created_after: Time?,
+        ?created_before: Time?,
+        ?direction: WhopSDK::Models::direction?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        after: String?,
+        before: String?,
+        created_after: Time?,
+        created_before: Time?,
+        direction: WhopSDK::Models::direction?,
+        first: Integer?,
+        last: Integer?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

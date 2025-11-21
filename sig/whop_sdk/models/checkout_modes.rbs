@@ -1,0 +1,14 @@
+module WhopSDK
+  module Models
+    type checkout_modes = :payment | :setup
+
+    module CheckoutModes
+      extend WhopSDK::Internal::Type::Enum
+
+      PAYMENT: :payment
+      SETUP: :setup
+
+      def self?.values: -> ::Array[WhopSDK::Models::checkout_modes]
+    end
+  end
+end

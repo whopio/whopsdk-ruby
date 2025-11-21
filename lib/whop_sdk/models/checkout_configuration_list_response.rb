@@ -31,8 +31,8 @@ module WhopSDK
       # @!attribute mode
       #   The mode of the checkout session.
       #
-      #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationListResponse::Mode]
-      required :mode, enum: -> { WhopSDK::Models::CheckoutConfigurationListResponse::Mode }
+      #   @return [Symbol, WhopSDK::Models::CheckoutModes]
+      required :mode, enum: -> { WhopSDK::CheckoutModes }
 
       # @!attribute payment_method_configuration
       #   The explicit payment method configuration for the session, if any. This
@@ -80,7 +80,7 @@ module WhopSDK
       #
       #   @param metadata [Hash{Symbol=>Object}, nil] The metadata to use for the checkout configuration
       #
-      #   @param mode [Symbol, WhopSDK::Models::CheckoutConfigurationListResponse::Mode] The mode of the checkout session.
+      #   @param mode [Symbol, WhopSDK::Models::CheckoutModes] The mode of the checkout session.
       #
       #   @param payment_method_configuration [WhopSDK::Models::CheckoutConfigurationListResponse::PaymentMethodConfiguration, nil] The explicit payment method configuration for the session, if any. This currentl
       #
@@ -89,19 +89,6 @@ module WhopSDK
       #   @param purchase_url [String] A URL you can send to customers to complete a checkout. It looks like `/checkout
       #
       #   @param redirect_url [String, nil] The URL to redirect the user to after the checkout configuration is created
-
-      # The mode of the checkout session.
-      #
-      # @see WhopSDK::Models::CheckoutConfigurationListResponse#mode
-      module Mode
-        extend WhopSDK::Internal::Type::Enum
-
-        PAYMENT = :payment
-        SETUP = :setup
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
 
       # @see WhopSDK::Models::CheckoutConfigurationListResponse#payment_method_configuration
       class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel

@@ -1,0 +1,14 @@
+module WhopSDK
+  module Models
+    type withdrawal_fee_types = :exclusive | :inclusive
+
+    module WithdrawalFeeTypes
+      extend WhopSDK::Internal::Type::Enum
+
+      EXCLUSIVE: :exclusive
+      INCLUSIVE: :inclusive
+
+      def self?.values: -> ::Array[WhopSDK::Models::withdrawal_fee_types]
+    end
+  end
+end

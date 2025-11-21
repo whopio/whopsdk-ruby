@@ -124,6 +124,9 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::Refunds) }
     attr_reader :refunds
 
+    sig { returns(WhopSDK::Resources::Withdrawals) }
+    attr_reader :withdrawals
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

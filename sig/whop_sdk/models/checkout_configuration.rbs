@@ -6,7 +6,7 @@ module WhopSDK
         affiliate_code: String?,
         company_id: String,
         metadata: ::Hash[Symbol, top]?,
-        mode: WhopSDK::Models::CheckoutConfiguration::mode,
+        mode: WhopSDK::Models::checkout_modes,
         payment_method_configuration: WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration?,
         plan: WhopSDK::CheckoutConfiguration::Plan?,
         purchase_url: String,
@@ -22,7 +22,7 @@ module WhopSDK
 
       attr_accessor metadata: ::Hash[Symbol, top]?
 
-      attr_accessor mode: WhopSDK::Models::CheckoutConfiguration::mode
+      attr_accessor mode: WhopSDK::Models::checkout_modes
 
       attr_accessor payment_method_configuration: WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration?
 
@@ -37,7 +37,7 @@ module WhopSDK
         affiliate_code: String?,
         company_id: String,
         metadata: ::Hash[Symbol, top]?,
-        mode: WhopSDK::Models::CheckoutConfiguration::mode,
+        mode: WhopSDK::Models::checkout_modes,
         payment_method_configuration: WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration?,
         plan: WhopSDK::CheckoutConfiguration::Plan?,
         purchase_url: String,
@@ -49,23 +49,12 @@ module WhopSDK
         affiliate_code: String?,
         company_id: String,
         metadata: ::Hash[Symbol, top]?,
-        mode: WhopSDK::Models::CheckoutConfiguration::mode,
+        mode: WhopSDK::Models::checkout_modes,
         payment_method_configuration: WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration?,
         plan: WhopSDK::CheckoutConfiguration::Plan?,
         purchase_url: String,
         redirect_url: String?
       }
-
-      type mode = :payment | :setup
-
-      module Mode
-        extend WhopSDK::Internal::Type::Enum
-
-        PAYMENT: :payment
-        SETUP: :setup
-
-        def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfiguration::mode]
-      end
 
       type payment_method_configuration =
         {

@@ -70,6 +70,8 @@ module WhopSDK
   CheckoutConfigurationRetrieveParams =
     WhopSDK::Models::CheckoutConfigurationRetrieveParams
 
+  CheckoutModes = WhopSDK::Models::CheckoutModes
+
   CollectionMethod = WhopSDK::Models::CollectionMethod
 
   Company = WhopSDK::Models::Company
@@ -459,4 +461,16 @@ module WhopSDK
   WhoCanPostTypes = WhopSDK::Models::WhoCanPostTypes
 
   WhoCanReact = WhopSDK::Models::WhoCanReact
+
+  WithdrawalFeeTypes = WhopSDK::Models::WithdrawalFeeTypes
+
+  WithdrawalListParams = WhopSDK::Models::WithdrawalListParams
+
+  WithdrawalRetrieveParams = WhopSDK::Models::WithdrawalRetrieveParams
+
+  WithdrawalSpeeds = WhopSDK::Models::WithdrawalSpeeds
+
+  WithdrawalStatus = WhopSDK::Models::WithdrawalStatus
+
+  WithdrawalTypes = WhopSDK::Models::WithdrawalTypes
 end

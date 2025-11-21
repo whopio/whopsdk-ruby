@@ -1,0 +1,26 @@
+module WhopSDK
+  module Models
+    type withdrawal_status =
+      :requested
+      | :awaiting_payment
+      | :in_transit
+      | :completed
+      | :failed
+      | :canceled
+      | :denied
+
+    module WithdrawalStatus
+      extend WhopSDK::Internal::Type::Enum
+
+      REQUESTED: :requested
+      AWAITING_PAYMENT: :awaiting_payment
+      IN_TRANSIT: :in_transit
+      COMPLETED: :completed
+      FAILED: :failed
+      CANCELED: :canceled
+      DENIED: :denied
+
+      def self?.values: -> ::Array[WhopSDK::Models::withdrawal_status]
+    end
+  end
+end

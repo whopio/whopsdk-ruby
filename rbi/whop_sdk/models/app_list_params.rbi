@@ -136,6 +136,11 @@ module WhopSDK
             :total_installs_last_30_days,
             WhopSDK::AppListParams::Order::TaggedSymbol
           )
+        TOTAL_INSTALLS_LAST_7_DAYS =
+          T.let(
+            :total_installs_last_7_days,
+            WhopSDK::AppListParams::Order::TaggedSymbol
+          )
         TIME_SPENT =
           T.let(:time_spent, WhopSDK::AppListParams::Order::TaggedSymbol)
         TIME_SPENT_LAST_24_HOURS =

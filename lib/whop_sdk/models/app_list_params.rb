@@ -108,6 +108,7 @@ module WhopSDK
 
         DISCOVERABLE_AT = :discoverable_at
         TOTAL_INSTALLS_LAST_30_DAYS = :total_installs_last_30_days
+        TOTAL_INSTALLS_LAST_7_DAYS = :total_installs_last_7_days
         TIME_SPENT = :time_spent
         TIME_SPENT_LAST_24_HOURS = :time_spent_last_24_hours
         DAILY_ACTIVE_USERS = :daily_active_users

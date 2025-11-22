@@ -90,6 +90,7 @@ module WhopSDK
       SPLITIT = :splitit
       PLATFORM_BALANCE = :platform_balance
       APPLE = :apple
+      VENMO = :venmo
       UNKNOWN = :unknown
 
       # @!method self.values

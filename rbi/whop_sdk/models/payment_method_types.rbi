@@ -106,6 +106,7 @@ module WhopSDK
       PLATFORM_BALANCE =
         T.let(:platform_balance, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       APPLE = T.let(:apple, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      VENMO = T.let(:venmo, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       UNKNOWN = T.let(:unknown, WhopSDK::PaymentMethodTypes::TaggedSymbol)
 
       sig do

@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0 (2025-11-22)
+
+Full Changelog: [v0.0.8...v0.1.0](https://github.com/whopio/whopsdk-ruby/compare/v0.0.8...v0.1.0)
+
+### Features
+
+* **api:** api update ([cb2a10b](https://github.com/whopio/whopsdk-ruby/commit/cb2a10bf8cf75a57e4714c1af3d8687e9fd0a45f))
+
+
+### Chores
+
+* explicitly require "base64" gem ([07c9cd7](https://github.com/whopio/whopsdk-ruby/commit/07c9cd76d730e34b7170f5ebdb0596dc0c978155))
+
 ## 0.0.8 (2025-11-21)
 
 Full Changelog: [v0.0.7...v0.0.8](https://github.com/whopio/whopsdk-ruby/compare/v0.0.7...v0.0.8)

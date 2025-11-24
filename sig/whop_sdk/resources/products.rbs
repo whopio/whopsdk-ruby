@@ -33,7 +33,6 @@ module WhopSDK
 
       def update: (
         String id,
-        ?banner_image: WhopSDK::Models::ProductUpdateParams::banner_image?,
         ?business_type: WhopSDK::Models::business_types?,
         ?collect_shipping_address: bool?,
         ?custom_cta: WhopSDK::Models::custom_cta?,

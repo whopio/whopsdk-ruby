@@ -18,8 +18,6 @@ module WhopSDK
         release_method: WhopSDK::Models::release_method?,
         renewal_price: Float?,
         stock: Integer?,
-        strike_through_initial_price: Float?,
-        strike_through_renewal_price: Float?,
         title: String?,
         trial_period_days: Integer?,
         unlimited_stock: bool?,
@@ -63,10 +61,6 @@ module WhopSDK
 
       attr_accessor stock: Integer?
 
-      attr_accessor strike_through_initial_price: Float?
-
-      attr_accessor strike_through_renewal_price: Float?
-
       attr_accessor title: String?
 
       attr_accessor trial_period_days: Integer?
@@ -92,8 +86,6 @@ module WhopSDK
         ?release_method: WhopSDK::Models::release_method?,
         ?renewal_price: Float?,
         ?stock: Integer?,
-        ?strike_through_initial_price: Float?,
-        ?strike_through_renewal_price: Float?,
         ?title: String?,
         ?trial_period_days: Integer?,
         ?unlimited_stock: bool?,
@@ -118,8 +110,6 @@ module WhopSDK
         release_method: WhopSDK::Models::release_method?,
         renewal_price: Float?,
         stock: Integer?,
-        strike_through_initial_price: Float?,
-        strike_through_renewal_price: Float?,
         title: String?,
         trial_period_days: Integer?,
         unlimited_stock: bool?,

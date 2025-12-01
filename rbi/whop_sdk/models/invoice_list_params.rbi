@@ -27,6 +27,14 @@ module WhopSDK
       sig { returns(T.nilable(T::Array[WhopSDK::CollectionMethod::OrSymbol])) }
       attr_accessor :collection_methods
 
+      # The minimum creation date to filter by
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :created_after
+
+      # The maximum creation date to filter by
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :created_before
+
       # The direction of the sort.
       sig { returns(T.nilable(WhopSDK::Direction::OrSymbol)) }
       attr_accessor :direction
@@ -58,6 +66,8 @@ module WhopSDK
           before: T.nilable(String),
           collection_methods:
             T.nilable(T::Array[WhopSDK::CollectionMethod::OrSymbol]),
+          created_after: T.nilable(Time),
+          created_before: T.nilable(Time),
           direction: T.nilable(WhopSDK::Direction::OrSymbol),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
@@ -76,6 +86,10 @@ module WhopSDK
         before: nil,
         # Filter invoices by their collection method
         collection_methods: nil,
+        # The minimum creation date to filter by
+        created_after: nil,
+        # The maximum creation date to filter by
+        created_before: nil,
         # The direction of the sort.
         direction: nil,
         # Returns the first _n_ elements from the list.
@@ -100,6 +114,8 @@ module WhopSDK
             before: T.nilable(String),
             collection_methods:
               T.nilable(T::Array[WhopSDK::CollectionMethod::OrSymbol]),
+            created_after: T.nilable(Time),
+            created_before: T.nilable(Time),
             direction: T.nilable(WhopSDK::Direction::OrSymbol),
             first: T.nilable(Integer),
             last: T.nilable(Integer),

@@ -19,6 +19,18 @@ module WhopSDK
       #   @return [String, nil]
       optional :before, String, nil?: true
 
+      # @!attribute created_after
+      #   The minimum creation date to filter by
+      #
+      #   @return [Time, nil]
+      optional :created_after, Time, nil?: true
+
+      # @!attribute created_before
+      #   The maximum creation date to filter by
+      #
+      #   @return [Time, nil]
+      optional :created_before, Time, nil?: true
+
       # @!attribute destination_id
       #   Filter transfers to only those that were sent to this destination account.
       #   (user_xxx, biz_xxx, ldgr_xxx)
@@ -57,13 +69,17 @@ module WhopSDK
       #   @return [String, nil]
       optional :origin_id, String, nil?: true
 
-      # @!method initialize(after: nil, before: nil, destination_id: nil, direction: nil, first: nil, last: nil, order: nil, origin_id: nil, request_options: {})
+      # @!method initialize(after: nil, before: nil, created_after: nil, created_before: nil, destination_id: nil, direction: nil, first: nil, last: nil, order: nil, origin_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::TransferListParams} for more details.
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      #   @param created_after [Time, nil] The minimum creation date to filter by
+      #
+      #   @param created_before [Time, nil] The maximum creation date to filter by
       #
       #   @param destination_id [String, nil] Filter transfers to only those that were sent to this destination account. (user
       #

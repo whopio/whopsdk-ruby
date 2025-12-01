@@ -68,6 +68,8 @@ module WhopSDK
         params(
           after: T.nilable(String),
           before: T.nilable(String),
+          created_after: T.nilable(Time),
+          created_before: T.nilable(Time),
           destination_id: T.nilable(String),
           direction: T.nilable(WhopSDK::Direction::OrSymbol),
           first: T.nilable(Integer),
@@ -84,6 +86,10 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
+        # The minimum creation date to filter by
+        created_after: nil,
+        # The maximum creation date to filter by
+        created_before: nil,
         # Filter transfers to only those that were sent to this destination account.
         # (user_xxx, biz_xxx, ldgr_xxx)
         destination_id: nil,

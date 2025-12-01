@@ -1,0 +1,52 @@
+module WhopSDK
+  module Models
+    type account_link_create_params =
+      {
+        company_id: String,
+        refresh_url: String,
+        return_url: String,
+        use_case: WhopSDK::Models::AccountLinkCreateParams::use_case
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class AccountLinkCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor refresh_url: String
+
+      attr_accessor return_url: String
+
+      attr_accessor use_case: WhopSDK::Models::AccountLinkCreateParams::use_case
+
+      def initialize: (
+        company_id: String,
+        refresh_url: String,
+        return_url: String,
+        use_case: WhopSDK::Models::AccountLinkCreateParams::use_case,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        refresh_url: String,
+        return_url: String,
+        use_case: WhopSDK::Models::AccountLinkCreateParams::use_case,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type use_case = :account_onboarding | :payouts_portal
+
+      module UseCase
+        extend WhopSDK::Internal::Type::Enum
+
+        ACCOUNT_ONBOARDING: :account_onboarding
+        PAYOUTS_PORTAL: :payouts_portal
+
+        def self?.values: -> ::Array[WhopSDK::Models::AccountLinkCreateParams::use_case]
+      end
+    end
+  end
+end

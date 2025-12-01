@@ -14,7 +14,7 @@ module WhopSDK
       # - `access_pass:basic:read`
       # - `plan:basic:read`
       #
-      # @overload create(company_id:, product_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
+      # @overload create(company_id:, product_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
       #
       # @param company_id [String] The company the plan should be created for.
       #
@@ -28,7 +28,7 @@ module WhopSDK
       #
       # @param description [String, nil] The description of the plan.
       #
-      # @param expiration_days [Integer, nil] The interval at which the plan charges (expiration plans).
+      # @param expiration_days [Integer, nil] The interval at which the plan expires and revokes access (expiration plans).
       #
       # @param image [WhopSDK::Models::PlanCreateParams::Image::AttachmentInputWithDirectUploadID, WhopSDK::Models::PlanCreateParams::Image::AttachmentInputWithID, nil] An image for the plan. This will be visible on the product page to customers.
       #
@@ -47,10 +47,6 @@ module WhopSDK
       # @param renewal_price [Float, nil] The amount the customer is charged every billing period. Use only if a recurring
       #
       # @param stock [Integer, nil] The number of units available for purchase.
-      #
-      # @param strike_through_initial_price [Float, nil] The price to display with a strikethrough for the initial price. Provided as a n
-      #
-      # @param strike_through_renewal_price [Float, nil] The price to display with a strikethrough for the renewal price. Provided as a n
       #
       # @param title [String, nil] The title of the plan. This will be visible on the product page to customers.
       #
@@ -169,13 +165,17 @@ module WhopSDK
       #
       # - `plan:basic:read`
       #
-      # @overload list(company_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, order: nil, plan_types: nil, product_ids: nil, release_methods: nil, visibilities: nil, request_options: {})
+      # @overload list(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_types: nil, product_ids: nil, release_methods: nil, visibilities: nil, request_options: {})
       #
       # @param company_id [String] The ID of the company
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      # @param created_after [Time, nil] The minimum creation date to filter by
+      #
+      # @param created_before [Time, nil] The maximum creation date to filter by
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #

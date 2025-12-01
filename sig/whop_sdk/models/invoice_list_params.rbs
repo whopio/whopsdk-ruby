@@ -6,6 +6,8 @@ module WhopSDK
         after: String?,
         before: String?,
         collection_methods: ::Array[WhopSDK::Models::collection_method]?,
+        created_after: Time?,
+        created_before: Time?,
         direction: WhopSDK::Models::direction?,
         first: Integer?,
         last: Integer?,
@@ -27,6 +29,10 @@ module WhopSDK
 
       attr_accessor collection_methods: ::Array[WhopSDK::Models::collection_method]?
 
+      attr_accessor created_after: Time?
+
+      attr_accessor created_before: Time?
+
       attr_accessor direction: WhopSDK::Models::direction?
 
       attr_accessor first: Integer?
@@ -44,6 +50,8 @@ module WhopSDK
         ?after: String?,
         ?before: String?,
         ?collection_methods: ::Array[WhopSDK::Models::collection_method]?,
+        ?created_after: Time?,
+        ?created_before: Time?,
         ?direction: WhopSDK::Models::direction?,
         ?first: Integer?,
         ?last: Integer?,
@@ -58,6 +66,8 @@ module WhopSDK
         after: String?,
         before: String?,
         collection_methods: ::Array[WhopSDK::Models::collection_method]?,
+        created_after: Time?,
+        created_before: Time?,
         direction: WhopSDK::Models::direction?,
         first: Integer?,
         last: Integer?,

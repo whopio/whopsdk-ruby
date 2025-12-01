@@ -29,6 +29,8 @@ module WhopSDK
         ?after: String?,
         ?app_id: String?,
         ?before: String?,
+        ?created_after: Time?,
+        ?created_before: Time?,
         ?first: Integer?,
         ?last: Integer?,
         ?product_id: String?,

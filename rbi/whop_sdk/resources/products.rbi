@@ -117,13 +117,6 @@ module WhopSDK
       sig do
         params(
           id: String,
-          banner_image:
-            T.nilable(
-              T.any(
-                WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::ProductUpdateParams::BannerImage::AttachmentInputWithID::OrHash
-              )
-            ),
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           collect_shipping_address: T.nilable(T::Boolean),
           custom_cta: T.nilable(WhopSDK::CustomCta::OrSymbol),
@@ -151,8 +144,6 @@ module WhopSDK
       def update(
         # The ID (tag) of the product
         id,
-        # A banner image for the product in png, jpeg format
-        banner_image: nil,
         # The different business types a company can be.
         business_type: nil,
         # Whether or not to collect shipping information at checkout from the customer.
@@ -205,6 +196,8 @@ module WhopSDK
           company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
+          created_after: T.nilable(Time),
+          created_before: T.nilable(Time),
           direction: T.nilable(WhopSDK::Direction::OrSymbol),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
@@ -222,6 +215,10 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
+        # The minimum creation date to filter by
+        created_after: nil,
+        # The maximum creation date to filter by
+        created_before: nil,
         # The direction of the sort.
         direction: nil,
         # Returns the first _n_ elements from the list.

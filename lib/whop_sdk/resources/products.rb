@@ -108,11 +108,9 @@ module WhopSDK
       # - `access_pass:update`
       # - `access_pass:basic:read`
       #
-      # @overload update(id, banner_image: nil, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
+      # @overload update(id, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
       #
       # @param id [String] The ID (tag) of the product
-      #
-      # @param banner_image [WhopSDK::Models::ProductUpdateParams::BannerImage::AttachmentInputWithDirectUploadID, WhopSDK::Models::ProductUpdateParams::BannerImage::AttachmentInputWithID, nil] A banner image for the product in png, jpeg format
       #
       # @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #
@@ -173,13 +171,17 @@ module WhopSDK
       #
       # - `access_pass:basic:read`
       #
-      # @overload list(company_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, order: nil, product_types: nil, visibilities: nil, request_options: {})
+      # @overload list(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, product_types: nil, visibilities: nil, request_options: {})
       #
       # @param company_id [String] The ID of the company to filter products by
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      # @param created_after [Time, nil] The minimum creation date to filter by
+      #
+      # @param created_before [Time, nil] The maximum creation date to filter by
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #

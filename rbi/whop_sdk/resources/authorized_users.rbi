@@ -33,6 +33,8 @@ module WhopSDK
           company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
+          created_after: T.nilable(Time),
+          created_before: T.nilable(Time),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           role: T.nilable(WhopSDK::AuthorizedUserRoles::OrSymbol),
@@ -51,6 +53,10 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
+        # The minimum creation date to filter by
+        created_after: nil,
+        # The maximum creation date to filter by
+        created_before: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.

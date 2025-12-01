@@ -46,7 +46,7 @@ module WhopSDK
       optional :description, String, nil?: true
 
       # @!attribute expiration_days
-      #   The interval at which the plan charges (expiration plans).
+      #   The interval at which the plan expires and revokes access (expiration plans).
       #
       #   @return [Integer, nil]
       optional :expiration_days, Integer, nil?: true
@@ -112,20 +112,6 @@ module WhopSDK
       #   @return [Integer, nil]
       optional :stock, Integer, nil?: true
 
-      # @!attribute strike_through_initial_price
-      #   The price to display with a strikethrough for the initial price. Provided as a
-      #   number in dollars. Eg: 19.99 for $19.99
-      #
-      #   @return [Float, nil]
-      optional :strike_through_initial_price, Float, nil?: true
-
-      # @!attribute strike_through_renewal_price
-      #   The price to display with a strikethrough for the renewal price. Provided as a
-      #   number in dollars. Eg: 19.99 for $19.99
-      #
-      #   @return [Float, nil]
-      optional :strike_through_renewal_price, Float, nil?: true
-
       # @!attribute title
       #   The title of the plan. This will be visible on the product page to customers.
       #
@@ -150,7 +136,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility, nil]
       optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-      # @!method initialize(company_id:, product_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
+      # @!method initialize(company_id:, product_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PlanCreateParams} for more details.
       #
@@ -166,7 +152,7 @@ module WhopSDK
       #
       #   @param description [String, nil] The description of the plan.
       #
-      #   @param expiration_days [Integer, nil] The interval at which the plan charges (expiration plans).
+      #   @param expiration_days [Integer, nil] The interval at which the plan expires and revokes access (expiration plans).
       #
       #   @param image [WhopSDK::Models::PlanCreateParams::Image::AttachmentInputWithDirectUploadID, WhopSDK::Models::PlanCreateParams::Image::AttachmentInputWithID, nil] An image for the plan. This will be visible on the product page to customers.
       #
@@ -185,10 +171,6 @@ module WhopSDK
       #   @param renewal_price [Float, nil] The amount the customer is charged every billing period. Use only if a recurring
       #
       #   @param stock [Integer, nil] The number of units available for purchase.
-      #
-      #   @param strike_through_initial_price [Float, nil] The price to display with a strikethrough for the initial price. Provided as a n
-      #
-      #   @param strike_through_renewal_price [Float, nil] The price to display with a strikethrough for the renewal price. Provided as a n
       #
       #   @param title [String, nil] The title of the plan. This will be visible on the product page to customers.
       #

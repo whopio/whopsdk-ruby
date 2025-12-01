@@ -1,0 +1,15 @@
+module WhopSDK
+  module Models
+    type account_link_create_response = { expires_at: Time, url: String }
+
+    class AccountLinkCreateResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor expires_at: Time
+
+      attr_accessor url: String
+
+      def initialize: (expires_at: Time, url: String) -> void
+
+      def to_hash: -> { expires_at: Time, url: String }
+    end
+  end
+end

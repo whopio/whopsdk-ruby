@@ -38,8 +38,6 @@ module WhopSDK
           release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
           renewal_price: T.nilable(Float),
           stock: T.nilable(Integer),
-          strike_through_initial_price: T.nilable(Float),
-          strike_through_renewal_price: T.nilable(Float),
           title: T.nilable(String),
           trial_period_days: T.nilable(Integer),
           unlimited_stock: T.nilable(T::Boolean),
@@ -60,7 +58,7 @@ module WhopSDK
         custom_fields: nil,
         # The description of the plan.
         description: nil,
-        # The interval at which the plan charges (expiration plans).
+        # The interval at which the plan expires and revokes access (expiration plans).
         expiration_days: nil,
         # An image for the plan. This will be visible on the product page to customers.
         image: nil,
@@ -85,12 +83,6 @@ module WhopSDK
         renewal_price: nil,
         # The number of units available for purchase.
         stock: nil,
-        # The price to display with a strikethrough for the initial price. Provided as a
-        # number in dollars. Eg: 19.99 for $19.99
-        strike_through_initial_price: nil,
-        # The price to display with a strikethrough for the renewal price. Provided as a
-        # number in dollars. Eg: 19.99 for $19.99
-        strike_through_renewal_price: nil,
         # The title of the plan. This will be visible on the product page to customers.
         title: nil,
         # The number of free trial days added before a renewal plan.
@@ -222,6 +214,8 @@ module WhopSDK
           company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
+          created_after: T.nilable(Time),
+          created_before: T.nilable(Time),
           direction: T.nilable(WhopSDK::Direction::OrSymbol),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
@@ -244,6 +238,10 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
+        # The minimum creation date to filter by
+        created_after: nil,
+        # The maximum creation date to filter by
+        created_before: nil,
         # The direction of the sort.
         direction: nil,
         # Returns the first _n_ elements from the list.

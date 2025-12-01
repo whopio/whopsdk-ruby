@@ -27,6 +27,14 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
+      # The minimum creation date to filter by
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :created_after
+
+      # The maximum creation date to filter by
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :created_before
+
       # Returns the first _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :first
@@ -45,6 +53,8 @@ module WhopSDK
           after: T.nilable(String),
           app_id: T.nilable(String),
           before: T.nilable(String),
+          created_after: T.nilable(Time),
+          created_before: T.nilable(Time),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           product_id: T.nilable(String),
@@ -60,6 +70,10 @@ module WhopSDK
         app_id: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
+        # The minimum creation date to filter by
+        created_after: nil,
+        # The maximum creation date to filter by
+        created_before: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
@@ -77,6 +91,8 @@ module WhopSDK
             after: T.nilable(String),
             app_id: T.nilable(String),
             before: T.nilable(String),
+            created_after: T.nilable(Time),
+            created_before: T.nilable(Time),
             first: T.nilable(Integer),
             last: T.nilable(Integer),
             product_id: T.nilable(String),

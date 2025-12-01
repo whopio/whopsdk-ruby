@@ -25,6 +25,18 @@ module WhopSDK
       #   @return [String, nil]
       optional :before, String, nil?: true
 
+      # @!attribute created_after
+      #   The minimum creation date to filter by
+      #
+      #   @return [Time, nil]
+      optional :created_after, Time, nil?: true
+
+      # @!attribute created_before
+      #   The maximum creation date to filter by
+      #
+      #   @return [Time, nil]
+      optional :created_before, Time, nil?: true
+
       # @!attribute direction
       #   The direction of the sort.
       #
@@ -49,12 +61,16 @@ module WhopSDK
       #   @return [String, nil]
       optional :plan_id, String, nil?: true
 
-      # @!method initialize(company_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, plan_id: nil, request_options: {})
+      # @!method initialize(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, plan_id: nil, request_options: {})
       #   @param company_id [String] The ID of the company to list checkout configurations for
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      #   @param created_after [Time, nil] The minimum creation date to filter by
+      #
+      #   @param created_before [Time, nil] The maximum creation date to filter by
       #
       #   @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #

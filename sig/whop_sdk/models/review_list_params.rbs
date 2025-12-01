@@ -5,6 +5,8 @@ module WhopSDK
         product_id: String,
         after: String?,
         before: String?,
+        created_after: Time?,
+        created_before: Time?,
         first: Integer?,
         last: Integer?,
         max_stars: Integer?,
@@ -22,6 +24,10 @@ module WhopSDK
 
       attr_accessor before: String?
 
+      attr_accessor created_after: Time?
+
+      attr_accessor created_before: Time?
+
       attr_accessor first: Integer?
 
       attr_accessor last: Integer?
@@ -34,6 +40,8 @@ module WhopSDK
         product_id: String,
         ?after: String?,
         ?before: String?,
+        ?created_after: Time?,
+        ?created_before: Time?,
         ?first: Integer?,
         ?last: Integer?,
         ?max_stars: Integer?,
@@ -45,6 +53,8 @@ module WhopSDK
         product_id: String,
         after: String?,
         before: String?,
+        created_after: Time?,
+        created_before: Time?,
         first: Integer?,
         last: Integer?,
         max_stars: Integer?,

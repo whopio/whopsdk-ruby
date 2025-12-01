@@ -66,13 +66,17 @@ module WhopSDK
       #
       # - `company:basic:read`
       #
-      # @overload list(parent_company_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, request_options: {})
+      # @overload list(parent_company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, request_options: {})
       #
       # @param parent_company_id [String] The ID of the parent company to list sub companies for
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      # @param created_after [Time, nil] The minimum creation date to filter by
+      #
+      # @param created_before [Time, nil] The maximum creation date to filter by
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #

@@ -4,6 +4,8 @@ module WhopSDK
       {
         after: String?,
         before: String?,
+        created_after: Time?,
+        created_before: Time?,
         destination_id: String?,
         direction: WhopSDK::Models::direction?,
         first: Integer?,
@@ -21,6 +23,10 @@ module WhopSDK
 
       attr_accessor before: String?
 
+      attr_accessor created_after: Time?
+
+      attr_accessor created_before: Time?
+
       attr_accessor destination_id: String?
 
       attr_accessor direction: WhopSDK::Models::direction?
@@ -36,6 +42,8 @@ module WhopSDK
       def initialize: (
         ?after: String?,
         ?before: String?,
+        ?created_after: Time?,
+        ?created_before: Time?,
         ?destination_id: String?,
         ?direction: WhopSDK::Models::direction?,
         ?first: Integer?,
@@ -48,6 +56,8 @@ module WhopSDK
       def to_hash: -> {
         after: String?,
         before: String?,
+        created_after: Time?,
+        created_before: Time?,
         destination_id: String?,
         direction: WhopSDK::Models::direction?,
         first: Integer?,

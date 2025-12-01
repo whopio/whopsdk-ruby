@@ -25,13 +25,17 @@ module WhopSDK
 
       # List all reviews
       #
-      # @overload list(product_id:, after: nil, before: nil, first: nil, last: nil, max_stars: nil, min_stars: nil, request_options: {})
+      # @overload list(product_id:, after: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, max_stars: nil, min_stars: nil, request_options: {})
       #
       # @param product_id [String] The ID of the product
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      # @param created_after [Time, nil] The minimum creation date to filter by
+      #
+      # @param created_before [Time, nil] The maximum creation date to filter by
       #
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
       #

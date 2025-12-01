@@ -44,13 +44,17 @@ module WhopSDK
       # - `company:basic:read`
       # - `payment:basic:read`
       #
-      # @overload list(company_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, request_options: {})
+      # @overload list(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, request_options: {})
       #
       # @param company_id [String] The ID of the company to list disputes for
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      # @param created_after [Time, nil] The minimum creation date to filter by
+      #
+      # @param created_before [Time, nil] The maximum creation date to filter by
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #

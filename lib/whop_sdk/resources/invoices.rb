@@ -85,7 +85,7 @@ module WhopSDK
       # - `invoice:basic:read`
       # - `plan:basic:read`
       #
-      # @overload list(company_id:, after: nil, before: nil, collection_methods: nil, direction: nil, first: nil, last: nil, order: nil, product_ids: nil, statuses: nil, request_options: {})
+      # @overload list(company_id:, after: nil, before: nil, collection_methods: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, product_ids: nil, statuses: nil, request_options: {})
       #
       # @param company_id [String] The ID of the company to list invoices for
       #
@@ -94,6 +94,10 @@ module WhopSDK
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
       # @param collection_methods [Array<Symbol, WhopSDK::Models::CollectionMethod>, nil] Filter invoices by their collection method
+      #
+      # @param created_after [Time, nil] The minimum creation date to filter by
+      #
+      # @param created_before [Time, nil] The maximum creation date to filter by
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #

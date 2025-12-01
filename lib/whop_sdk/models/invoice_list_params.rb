@@ -33,6 +33,18 @@ module WhopSDK
                -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::CollectionMethod] },
                nil?: true
 
+      # @!attribute created_after
+      #   The minimum creation date to filter by
+      #
+      #   @return [Time, nil]
+      optional :created_after, Time, nil?: true
+
+      # @!attribute created_before
+      #   The maximum creation date to filter by
+      #
+      #   @return [Time, nil]
+      optional :created_before, Time, nil?: true
+
       # @!attribute direction
       #   The direction of the sort.
       #
@@ -69,7 +81,7 @@ module WhopSDK
       #   @return [Array<Symbol, WhopSDK::Models::InvoiceStatus>, nil]
       optional :statuses, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::InvoiceStatus] }, nil?: true
 
-      # @!method initialize(company_id:, after: nil, before: nil, collection_methods: nil, direction: nil, first: nil, last: nil, order: nil, product_ids: nil, statuses: nil, request_options: {})
+      # @!method initialize(company_id:, after: nil, before: nil, collection_methods: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, product_ids: nil, statuses: nil, request_options: {})
       #   @param company_id [String] The ID of the company to list invoices for
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
@@ -77,6 +89,10 @@ module WhopSDK
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
       #   @param collection_methods [Array<Symbol, WhopSDK::Models::CollectionMethod>, nil] Filter invoices by their collection method
+      #
+      #   @param created_after [Time, nil] The minimum creation date to filter by
+      #
+      #   @param created_before [Time, nil] The maximum creation date to filter by
       #
       #   @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #

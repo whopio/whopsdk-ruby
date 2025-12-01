@@ -26,6 +26,8 @@ module WhopSDK
         ?after: String?,
         ?before: String?,
         ?collection_methods: ::Array[WhopSDK::Models::collection_method]?,
+        ?created_after: Time?,
+        ?created_before: Time?,
         ?direction: WhopSDK::Models::direction?,
         ?first: Integer?,
         ?last: Integer?,

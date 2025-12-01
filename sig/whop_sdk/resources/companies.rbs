@@ -18,6 +18,8 @@ module WhopSDK
         parent_company_id: String,
         ?after: String?,
         ?before: String?,
+        ?created_after: Time?,
+        ?created_before: Time?,
         ?direction: WhopSDK::Models::direction?,
         ?first: Integer?,
         ?last: Integer?,

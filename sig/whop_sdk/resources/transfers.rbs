@@ -20,6 +20,8 @@ module WhopSDK
       def list: (
         ?after: String?,
         ?before: String?,
+        ?created_after: Time?,
+        ?created_before: Time?,
         ?destination_id: String?,
         ?direction: WhopSDK::Models::direction?,
         ?first: Integer?,

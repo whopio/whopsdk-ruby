@@ -77,11 +77,15 @@ module WhopSDK
       #
       # - `payout:transfer:read`
       #
-      # @overload list(after: nil, before: nil, destination_id: nil, direction: nil, first: nil, last: nil, order: nil, origin_id: nil, request_options: {})
+      # @overload list(after: nil, before: nil, created_after: nil, created_before: nil, destination_id: nil, direction: nil, first: nil, last: nil, order: nil, origin_id: nil, request_options: {})
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      # @param created_after [Time, nil] The minimum creation date to filter by
+      #
+      # @param created_before [Time, nil] The maximum creation date to filter by
       #
       # @param destination_id [String, nil] Filter transfers to only those that were sent to this destination account. (user
       #

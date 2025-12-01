@@ -132,6 +132,9 @@ module WhopSDK
     # @return [WhopSDK::Resources::Withdrawals]
     attr_reader :withdrawals
 
+    # @return [WhopSDK::Resources::AccountLinks]
+    attr_reader :account_links
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -225,6 +228,7 @@ module WhopSDK
       @disputes = WhopSDK::Resources::Disputes.new(client: self)
       @refunds = WhopSDK::Resources::Refunds.new(client: self)
       @withdrawals = WhopSDK::Resources::Withdrawals.new(client: self)
+      @account_links = WhopSDK::Resources::AccountLinks.new(client: self)
     end
 
     # Verifies a Whop user token

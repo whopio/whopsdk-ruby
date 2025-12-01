@@ -5,6 +5,8 @@ module WhopSDK
 
   class AccessTokenCreateParams = WhopSDK::Models::AccessTokenCreateParams
 
+  class AccountLinkCreateParams = WhopSDK::Models::AccountLinkCreateParams
+
   class App = WhopSDK::Models::App
 
   class AppBuild = WhopSDK::Models::AppBuild

@@ -1,0 +1,15 @@
+module WhopSDK
+  module Resources
+    class AccountLinks
+      def create: (
+        company_id: String,
+        refresh_url: String,
+        return_url: String,
+        use_case: WhopSDK::Models::AccountLinkCreateParams::use_case,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::AccountLinkCreateResponse
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

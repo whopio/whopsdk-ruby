@@ -399,6 +399,12 @@ module WhopSDK
 
   module ReviewStatus = WhopSDK::Models::ReviewStatus
 
+  class SetupIntentCanceledWebhookEvent = WhopSDK::Models::SetupIntentCanceledWebhookEvent
+
+  class SetupIntentRequiresActionWebhookEvent = WhopSDK::Models::SetupIntentRequiresActionWebhookEvent
+
+  class SetupIntentSucceededWebhookEvent = WhopSDK::Models::SetupIntentSucceededWebhookEvent
+
   class Shipment = WhopSDK::Models::Shipment
 
   module ShipmentCarrier = WhopSDK::Models::ShipmentCarrier

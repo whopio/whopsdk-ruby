@@ -5,6 +5,7 @@ module WhopSDK
         attachment: WhopSDK::Models::AppBuildCreateParams::attachment,
         checksum: String,
         platform: WhopSDK::Models::app_build_platforms,
+        ?ai_prompt_id: String?,
         ?app_id: String?,
         ?supported_app_view_types: ::Array[WhopSDK::Models::app_view_type]?,
         ?request_options: WhopSDK::request_opts

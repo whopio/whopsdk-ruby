@@ -1,0 +1,243 @@
+module WhopSDK
+  module Models
+    type setup_intent_requires_action_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data,
+        timestamp: Time,
+        type: :"setup_intent.requires_action"
+      }
+
+    class SetupIntentRequiresActionWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor data: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"setup_intent.requires_action"
+
+      def initialize: (
+        id: String,
+        data: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data,
+        timestamp: Time,
+        ?api_version: :v1,
+        ?type: :"setup_intent.requires_action"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data,
+        timestamp: Time,
+        type: :"setup_intent.requires_action"
+      }
+
+      type data =
+        {
+          id: String,
+          checkout_configuration: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::CheckoutConfiguration?,
+          company: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::Company?,
+          created_at: Time,
+          error_message: String?,
+          member: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::Member?,
+          metadata: ::Hash[Symbol, top]?,
+          payment_token: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::PaymentToken?,
+          status: WhopSDK::Models::SetupIntentRequiresActionWebhookEvent::Data::status
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor checkout_configuration: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::CheckoutConfiguration?
+
+        attr_accessor company: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::Company?
+
+        attr_accessor created_at: Time
+
+        attr_accessor error_message: String?
+
+        attr_accessor member: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::Member?
+
+        attr_accessor metadata: ::Hash[Symbol, top]?
+
+        attr_accessor payment_token: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::PaymentToken?
+
+        attr_accessor status: WhopSDK::Models::SetupIntentRequiresActionWebhookEvent::Data::status
+
+        def initialize: (
+          id: String,
+          checkout_configuration: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::CheckoutConfiguration?,
+          company: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::Company?,
+          created_at: Time,
+          error_message: String?,
+          member: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::Member?,
+          metadata: ::Hash[Symbol, top]?,
+          payment_token: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::PaymentToken?,
+          status: WhopSDK::Models::SetupIntentRequiresActionWebhookEvent::Data::status
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          checkout_configuration: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::CheckoutConfiguration?,
+          company: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::Company?,
+          created_at: Time,
+          error_message: String?,
+          member: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::Member?,
+          metadata: ::Hash[Symbol, top]?,
+          payment_token: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::PaymentToken?,
+          status: WhopSDK::Models::SetupIntentRequiresActionWebhookEvent::Data::status
+        }
+
+        type checkout_configuration = { id: String }
+
+        class CheckoutConfiguration < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
+
+        type company = { id: String }
+
+        class Company < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
+
+        type member =
+          {
+            id: String,
+            user: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::Member::User?
+          }
+
+        class Member < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor user: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::Member::User?
+
+          def initialize: (
+            id: String,
+            user: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::Member::User?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            user: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::Member::User?
+          }
+
+          type user =
+            { id: String, email: String?, name: String?, username: String }
+
+          class User < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor email: String?
+
+            attr_accessor name: String?
+
+            attr_accessor username: String
+
+            def initialize: (
+              id: String,
+              email: String?,
+              name: String?,
+              username: String
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              email: String?,
+              name: String?,
+              username: String
+            }
+          end
+        end
+
+        type payment_token =
+          {
+            id: String,
+            card: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::PaymentToken::Card?,
+            created_at: Time,
+            payment_method_type: WhopSDK::Models::payment_method_types
+          }
+
+        class PaymentToken < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor card: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::PaymentToken::Card?
+
+          attr_accessor created_at: Time
+
+          attr_accessor payment_method_type: WhopSDK::Models::payment_method_types
+
+          def initialize: (
+            id: String,
+            card: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::PaymentToken::Card?,
+            created_at: Time,
+            payment_method_type: WhopSDK::Models::payment_method_types
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            card: WhopSDK::SetupIntentRequiresActionWebhookEvent::Data::PaymentToken::Card?,
+            created_at: Time,
+            payment_method_type: WhopSDK::Models::payment_method_types
+          }
+
+          type card =
+            {
+              brand: WhopSDK::Models::card_brands?,
+              exp_month: Integer?,
+              exp_year: Integer?,
+              :last4 => String?
+            }
+
+          class Card < WhopSDK::Internal::Type::BaseModel
+            attr_accessor brand: WhopSDK::Models::card_brands?
+
+            attr_accessor exp_month: Integer?
+
+            attr_accessor exp_year: Integer?
+
+            attr_accessor last4: String?
+
+            def initialize: (
+              brand: WhopSDK::Models::card_brands?,
+              exp_month: Integer?,
+              exp_year: Integer?,
+              last4: String?
+            ) -> void
+
+            def to_hash: -> {
+              brand: WhopSDK::Models::card_brands?,
+              exp_month: Integer?,
+              exp_year: Integer?,
+              :last4 => String?
+            }
+          end
+        end
+
+        type status = :processing | :succeeded | :canceled | :requires_action
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          PROCESSING: :processing
+          SUCCEEDED: :succeeded
+          CANCELED: :canceled
+          REQUIRES_ACTION: :requires_action
+
+          def self?.values: -> ::Array[WhopSDK::Models::SetupIntentRequiresActionWebhookEvent::Data::status]
+        end
+      end
+    end
+  end
+end

@@ -13,6 +13,9 @@ module WhopSDK
       | WhopSDK::EntryApprovedWebhookEvent
       | WhopSDK::EntryDeniedWebhookEvent
       | WhopSDK::EntryDeletedWebhookEvent
+      | WhopSDK::SetupIntentRequiresActionWebhookEvent
+      | WhopSDK::SetupIntentSucceededWebhookEvent
+      | WhopSDK::SetupIntentCanceledWebhookEvent
       | WhopSDK::CourseLessonInteractionCompletedWebhookEvent
       | WhopSDK::PaymentSucceededWebhookEvent
       | WhopSDK::PaymentFailedWebhookEvent

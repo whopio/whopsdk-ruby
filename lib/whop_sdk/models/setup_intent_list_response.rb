@@ -48,11 +48,11 @@ module WhopSDK
       #   @return [Hash{Symbol=>Object}, nil]
       required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
-      # @!attribute payment_token
-      #   The payment token created during the setup, if available.
+      # @!attribute payment_method
+      #   The payment method created during the setup, if available.
       #
-      #   @return [WhopSDK::Models::SetupIntentListResponse::PaymentToken, nil]
-      required :payment_token, -> { WhopSDK::Models::SetupIntentListResponse::PaymentToken }, nil?: true
+      #   @return [WhopSDK::Models::SetupIntentListResponse::PaymentMethod, nil]
+      required :payment_method, -> { WhopSDK::Models::SetupIntentListResponse::PaymentMethod }, nil?: true
 
       # @!attribute status
       #   The status of the setup intent
@@ -60,7 +60,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::SetupIntentStatus]
       required :status, enum: -> { WhopSDK::SetupIntentStatus }
 
-      # @!method initialize(id:, checkout_configuration:, company:, created_at:, error_message:, member:, metadata:, payment_token:, status:)
+      # @!method initialize(id:, checkout_configuration:, company:, created_at:, error_message:, member:, metadata:, payment_method:, status:)
       #   An object representing a setup intent, which is a flow for allowing a customer
       #   to add a payment method to their account without making a purchase.
       #
@@ -78,7 +78,7 @@ module WhopSDK
       #
       #   @param metadata [Hash{Symbol=>Object}, nil] The metadata associated with the setup intent
       #
-      #   @param payment_token [WhopSDK::Models::SetupIntentListResponse::PaymentToken, nil] The payment token created during the setup, if available.
+      #   @param payment_method [WhopSDK::Models::SetupIntentListResponse::PaymentMethod, nil] The payment method created during the setup, if available.
       #
       #   @param status [Symbol, WhopSDK::Models::SetupIntentStatus] The status of the setup intent
 
@@ -170,48 +170,47 @@ module WhopSDK
         end
       end
 
-      # @see WhopSDK::Models::SetupIntentListResponse#payment_token
-      class PaymentToken < WhopSDK::Internal::Type::BaseModel
+      # @see WhopSDK::Models::SetupIntentListResponse#payment_method
+      class PaymentMethod < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the payment token
+        #   The ID of the payment method
         #
         #   @return [String]
         required :id, String
 
         # @!attribute card
-        #   The card data associated with the payment token, if its a debit or credit card
-        #   token.
+        #   The card data associated with the payment method, if its a debit or credit card.
         #
-        #   @return [WhopSDK::Models::SetupIntentListResponse::PaymentToken::Card, nil]
-        required :card, -> { WhopSDK::Models::SetupIntentListResponse::PaymentToken::Card }, nil?: true
+        #   @return [WhopSDK::Models::SetupIntentListResponse::PaymentMethod::Card, nil]
+        required :card, -> { WhopSDK::Models::SetupIntentListResponse::PaymentMethod::Card }, nil?: true
 
         # @!attribute created_at
-        #   The date and time the payment token was created
+        #   The date and time the payment method was created
         #
         #   @return [Time]
         required :created_at, Time
 
         # @!attribute payment_method_type
-        #   The payment method type of the payment token
+        #   The payment method type of the payment method
         #
         #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes]
         required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }
 
         # @!method initialize(id:, card:, created_at:, payment_method_type:)
         #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::SetupIntentListResponse::PaymentToken} for more details.
+        #   {WhopSDK::Models::SetupIntentListResponse::PaymentMethod} for more details.
         #
-        #   The payment token created during the setup, if available.
+        #   The payment method created during the setup, if available.
         #
-        #   @param id [String] The ID of the payment token
+        #   @param id [String] The ID of the payment method
         #
-        #   @param card [WhopSDK::Models::SetupIntentListResponse::PaymentToken::Card, nil] The card data associated with the payment token, if its a debit or credit card t
+        #   @param card [WhopSDK::Models::SetupIntentListResponse::PaymentMethod::Card, nil] The card data associated with the payment method, if its a debit or credit card.
         #
-        #   @param created_at [Time] The date and time the payment token was created
+        #   @param created_at [Time] The date and time the payment method was created
         #
-        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The payment method type of the payment token
+        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The payment method type of the payment method
 
-        # @see WhopSDK::Models::SetupIntentListResponse::PaymentToken#card
+        # @see WhopSDK::Models::SetupIntentListResponse::PaymentMethod#card
         class Card < WhopSDK::Internal::Type::BaseModel
           # @!attribute brand
           #   Possible card brands that a payment token can have
@@ -238,8 +237,7 @@ module WhopSDK
           required :last4, String, nil?: true
 
           # @!method initialize(brand:, exp_month:, exp_year:, last4:)
-          #   The card data associated with the payment token, if its a debit or credit card
-          #   token.
+          #   The card data associated with the payment method, if its a debit or credit card.
           #
           #   @param brand [Symbol, WhopSDK::Models::CardBrands, nil] Possible card brands that a payment token can have
           #

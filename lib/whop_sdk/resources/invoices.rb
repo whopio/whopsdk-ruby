@@ -13,7 +13,7 @@ module WhopSDK
       # - `invoice:create`
       # - `plan:basic:read`
       #
-      # @overload create(collection_method:, company_id:, due_date:, member_id:, plan:, product:, email_address:, product_id:, charge_buyer_fee: nil, customer_name: nil, payment_token_id: nil, request_options: {})
+      # @overload create(collection_method:, company_id:, due_date:, member_id:, plan:, product:, email_address:, product_id:, charge_buyer_fee: nil, customer_name: nil, payment_method_id: nil, payment_token_id: nil, request_options: {})
       #
       # @param collection_method [Symbol, WhopSDK::Models::CollectionMethod] The method of collection for this invoice. If using charge_automatically, you mu
       #
@@ -34,6 +34,8 @@ module WhopSDK
       # @param charge_buyer_fee [Boolean, nil] Whether or not to charge the customer a buyer fee.
       #
       # @param customer_name [String, nil] The name of the customer to create this invoice for. This is required if you wan
+      #
+      # @param payment_method_id [String, nil] The payment method ID to use for this invoice. If using charge_automatically, yo
       #
       # @param payment_token_id [String, nil] The payment token ID to use for this invoice. If using charge_automatically, you
       #

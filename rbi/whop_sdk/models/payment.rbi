@@ -93,20 +93,20 @@ module WhopSDK
       sig { returns(T.nilable(Time)) }
       attr_accessor :paid_at
 
-      # The different types of payment methods that can be used.
-      sig { returns(T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol)) }
-      attr_accessor :payment_method_type
-
-      # The payment token used for the payment, if available.
-      sig { returns(T.nilable(WhopSDK::Payment::PaymentToken)) }
-      attr_reader :payment_token
+      # The payment method used for the payment, if available.
+      sig { returns(T.nilable(WhopSDK::Payment::PaymentMethod)) }
+      attr_reader :payment_method
 
       sig do
         params(
-          payment_token: T.nilable(WhopSDK::Payment::PaymentToken::OrHash)
+          payment_method: T.nilable(WhopSDK::Payment::PaymentMethod::OrHash)
         ).void
       end
-      attr_writer :payment_token
+      attr_writer :payment_method
+
+      # The different types of payment methods that can be used.
+      sig { returns(T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol)) }
+      attr_accessor :payment_method_type
 
       # The plan attached to this payment.
       sig { returns(T.nilable(WhopSDK::Payment::Plan)) }
@@ -202,8 +202,8 @@ module WhopSDK
           membership: T.nilable(WhopSDK::Payment::Membership::OrHash),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
           paid_at: T.nilable(Time),
+          payment_method: T.nilable(WhopSDK::Payment::PaymentMethod::OrHash),
           payment_method_type: T.nilable(WhopSDK::PaymentMethodTypes::OrSymbol),
-          payment_token: T.nilable(WhopSDK::Payment::PaymentToken::OrHash),
           plan: T.nilable(WhopSDK::Payment::Plan::OrHash),
           product: T.nilable(WhopSDK::Payment::Product::OrHash),
           promo_code: T.nilable(WhopSDK::Payment::PromoCode::OrHash),
@@ -256,10 +256,10 @@ module WhopSDK
         metadata:,
         # The datetime the payment was paid
         paid_at:,
+        # The payment method used for the payment, if available.
+        payment_method:,
         # The different types of payment methods that can be used.
         payment_method_type:,
-        # The payment token used for the payment, if available.
-        payment_token:,
         # The plan attached to this payment.
         plan:,
         # The product this payment was made for
@@ -315,9 +315,9 @@ module WhopSDK
             membership: T.nilable(WhopSDK::Payment::Membership),
             metadata: T.nilable(T::Hash[Symbol, T.anything]),
             paid_at: T.nilable(Time),
+            payment_method: T.nilable(WhopSDK::Payment::PaymentMethod),
             payment_method_type:
               T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol),
-            payment_token: T.nilable(WhopSDK::Payment::PaymentToken),
             plan: T.nilable(WhopSDK::Payment::Plan),
             product: T.nilable(WhopSDK::Payment::Product),
             promo_code: T.nilable(WhopSDK::Payment::PromoCode),
@@ -527,54 +527,52 @@ module WhopSDK
         end
       end
 
-      class PaymentToken < WhopSDK::Internal::Type::BaseModel
+      class PaymentMethod < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(WhopSDK::Payment::PaymentToken, WhopSDK::Internal::AnyHash)
+            T.any(WhopSDK::Payment::PaymentMethod, WhopSDK::Internal::AnyHash)
           end
 
-        # The ID of the payment token
+        # The ID of the payment method
         sig { returns(String) }
         attr_accessor :id
 
-        # The card data associated with the payment token, if its a debit or credit card
-        # token.
-        sig { returns(T.nilable(WhopSDK::Payment::PaymentToken::Card)) }
+        # The card data associated with the payment method, if its a debit or credit card.
+        sig { returns(T.nilable(WhopSDK::Payment::PaymentMethod::Card)) }
         attr_reader :card
 
         sig do
           params(
-            card: T.nilable(WhopSDK::Payment::PaymentToken::Card::OrHash)
+            card: T.nilable(WhopSDK::Payment::PaymentMethod::Card::OrHash)
           ).void
         end
         attr_writer :card
 
-        # The date and time the payment token was created
+        # The date and time the payment method was created
         sig { returns(Time) }
         attr_accessor :created_at
 
-        # The payment method type of the payment token
+        # The payment method type of the payment method
         sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
         attr_accessor :payment_method_type
 
-        # The payment token used for the payment, if available.
+        # The payment method used for the payment, if available.
         sig do
           params(
             id: String,
-            card: T.nilable(WhopSDK::Payment::PaymentToken::Card::OrHash),
+            card: T.nilable(WhopSDK::Payment::PaymentMethod::Card::OrHash),
             created_at: Time,
             payment_method_type: WhopSDK::PaymentMethodTypes::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the payment token
+          # The ID of the payment method
           id:,
-          # The card data associated with the payment token, if its a debit or credit card
-          # token.
+          # The card data associated with the payment method, if its a debit or credit card.
           card:,
-          # The date and time the payment token was created
+          # The date and time the payment method was created
           created_at:,
-          # The payment method type of the payment token
+          # The payment method type of the payment method
           payment_method_type:
         )
         end
@@ -583,7 +581,7 @@ module WhopSDK
           override.returns(
             {
               id: String,
-              card: T.nilable(WhopSDK::Payment::PaymentToken::Card),
+              card: T.nilable(WhopSDK::Payment::PaymentMethod::Card),
               created_at: Time,
               payment_method_type: WhopSDK::PaymentMethodTypes::TaggedSymbol
             }
@@ -596,7 +594,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::Payment::PaymentToken::Card,
+                WhopSDK::Payment::PaymentMethod::Card,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -617,8 +615,7 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :last4
 
-          # The card data associated with the payment token, if its a debit or credit card
-          # token.
+          # The card data associated with the payment method, if its a debit or credit card.
           sig do
             params(
               brand: T.nilable(WhopSDK::CardBrands::OrSymbol),

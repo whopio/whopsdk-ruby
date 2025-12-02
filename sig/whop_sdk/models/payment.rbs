@@ -19,8 +19,8 @@ module WhopSDK
         membership: WhopSDK::Payment::Membership?,
         metadata: ::Hash[Symbol, top]?,
         paid_at: Time?,
+        payment_method: WhopSDK::Payment::PaymentMethod?,
         payment_method_type: WhopSDK::Models::payment_method_types?,
-        payment_token: WhopSDK::Payment::PaymentToken?,
         plan: WhopSDK::Payment::Plan?,
         product: WhopSDK::Payment::Product?,
         promo_code: WhopSDK::Payment::PromoCode?,
@@ -72,9 +72,9 @@ module WhopSDK
 
       attr_accessor paid_at: Time?
 
-      attr_accessor payment_method_type: WhopSDK::Models::payment_method_types?
+      attr_accessor payment_method: WhopSDK::Payment::PaymentMethod?
 
-      attr_accessor payment_token: WhopSDK::Payment::PaymentToken?
+      attr_accessor payment_method_type: WhopSDK::Models::payment_method_types?
 
       attr_accessor plan: WhopSDK::Payment::Plan?
 
@@ -122,8 +122,8 @@ module WhopSDK
         membership: WhopSDK::Payment::Membership?,
         metadata: ::Hash[Symbol, top]?,
         paid_at: Time?,
+        payment_method: WhopSDK::Payment::PaymentMethod?,
         payment_method_type: WhopSDK::Models::payment_method_types?,
-        payment_token: WhopSDK::Payment::PaymentToken?,
         plan: WhopSDK::Payment::Plan?,
         product: WhopSDK::Payment::Product?,
         promo_code: WhopSDK::Payment::PromoCode?,
@@ -158,8 +158,8 @@ module WhopSDK
         membership: WhopSDK::Payment::Membership?,
         metadata: ::Hash[Symbol, top]?,
         paid_at: Time?,
+        payment_method: WhopSDK::Payment::PaymentMethod?,
         payment_method_type: WhopSDK::Models::payment_method_types?,
-        payment_token: WhopSDK::Payment::PaymentToken?,
         plan: WhopSDK::Payment::Plan?,
         product: WhopSDK::Payment::Product?,
         promo_code: WhopSDK::Payment::PromoCode?,
@@ -268,18 +268,18 @@ module WhopSDK
         }
       end
 
-      type payment_token =
+      type payment_method =
         {
           id: String,
-          card: WhopSDK::Payment::PaymentToken::Card?,
+          card: WhopSDK::Payment::PaymentMethod::Card?,
           created_at: Time,
           payment_method_type: WhopSDK::Models::payment_method_types
         }
 
-      class PaymentToken < WhopSDK::Internal::Type::BaseModel
+      class PaymentMethod < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
-        attr_accessor card: WhopSDK::Payment::PaymentToken::Card?
+        attr_accessor card: WhopSDK::Payment::PaymentMethod::Card?
 
         attr_accessor created_at: Time
 
@@ -287,14 +287,14 @@ module WhopSDK
 
         def initialize: (
           id: String,
-          card: WhopSDK::Payment::PaymentToken::Card?,
+          card: WhopSDK::Payment::PaymentMethod::Card?,
           created_at: Time,
           payment_method_type: WhopSDK::Models::payment_method_types
         ) -> void
 
         def to_hash: -> {
           id: String,
-          card: WhopSDK::Payment::PaymentToken::Card?,
+          card: WhopSDK::Payment::PaymentMethod::Card?,
           created_at: Time,
           payment_method_type: WhopSDK::Models::payment_method_types
         }

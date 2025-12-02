@@ -21,6 +21,7 @@ module WhopSDK
           product_id: String,
           charge_buyer_fee: T.nilable(T::Boolean),
           customer_name: T.nilable(String),
+          payment_method_id: T.nilable(String),
           payment_token_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Invoice)
@@ -54,6 +55,9 @@ module WhopSDK
         # want to create an invoice for a customer who does not have a member of your
         # company yet.
         customer_name: nil,
+        # The payment method ID to use for this invoice. If using charge_automatically,
+        # you must provide a payment_method_id.
+        payment_method_id: nil,
         # The payment token ID to use for this invoice. If using charge_automatically, you
         # must provide a payment_token.
         payment_token_id: nil,

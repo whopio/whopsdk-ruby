@@ -21,7 +21,7 @@ class WhopSDK::Test::Resources::SetupIntentsTest < WhopSDK::Test::ResourceTest
         error_message: String | nil,
         member: WhopSDK::SetupIntent::Member | nil,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        payment_token: WhopSDK::SetupIntent::PaymentToken | nil,
+        payment_method: WhopSDK::SetupIntent::PaymentMethod | nil,
         status: WhopSDK::SetupIntentStatus
       }
     end
@@ -52,7 +52,7 @@ class WhopSDK::Test::Resources::SetupIntentsTest < WhopSDK::Test::ResourceTest
         error_message: String | nil,
         member: WhopSDK::Models::SetupIntentListResponse::Member | nil,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        payment_token: WhopSDK::Models::SetupIntentListResponse::PaymentToken | nil,
+        payment_method: WhopSDK::Models::SetupIntentListResponse::PaymentMethod | nil,
         status: WhopSDK::SetupIntentStatus
       }
     end

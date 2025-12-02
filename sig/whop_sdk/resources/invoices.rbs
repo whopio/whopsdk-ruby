@@ -12,6 +12,7 @@ module WhopSDK
         product_id: String,
         ?charge_buyer_fee: bool?,
         ?customer_name: String?,
+        ?payment_method_id: String?,
         ?payment_token_id: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Invoice

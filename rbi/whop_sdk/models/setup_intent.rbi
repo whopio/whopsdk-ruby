@@ -52,16 +52,16 @@ module WhopSDK
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
-      # The payment token created during the setup, if available.
-      sig { returns(T.nilable(WhopSDK::SetupIntent::PaymentToken)) }
-      attr_reader :payment_token
+      # The payment method created during the setup, if available.
+      sig { returns(T.nilable(WhopSDK::SetupIntent::PaymentMethod)) }
+      attr_reader :payment_method
 
       sig do
         params(
-          payment_token: T.nilable(WhopSDK::SetupIntent::PaymentToken::OrHash)
+          payment_method: T.nilable(WhopSDK::SetupIntent::PaymentMethod::OrHash)
         ).void
       end
-      attr_writer :payment_token
+      attr_writer :payment_method
 
       # The status of the setup intent
       sig { returns(WhopSDK::SetupIntentStatus::TaggedSymbol) }
@@ -79,7 +79,8 @@ module WhopSDK
           error_message: T.nilable(String),
           member: T.nilable(WhopSDK::SetupIntent::Member::OrHash),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
-          payment_token: T.nilable(WhopSDK::SetupIntent::PaymentToken::OrHash),
+          payment_method:
+            T.nilable(WhopSDK::SetupIntent::PaymentMethod::OrHash),
           status: WhopSDK::SetupIntentStatus::OrSymbol
         ).returns(T.attached_class)
       end
@@ -98,8 +99,8 @@ module WhopSDK
         member:,
         # The metadata associated with the setup intent
         metadata:,
-        # The payment token created during the setup, if available.
-        payment_token:,
+        # The payment method created during the setup, if available.
+        payment_method:,
         # The status of the setup intent
         status:
       )
@@ -116,7 +117,7 @@ module WhopSDK
             error_message: T.nilable(String),
             member: T.nilable(WhopSDK::SetupIntent::Member),
             metadata: T.nilable(T::Hash[Symbol, T.anything]),
-            payment_token: T.nilable(WhopSDK::SetupIntent::PaymentToken),
+            payment_method: T.nilable(WhopSDK::SetupIntent::PaymentMethod),
             status: WhopSDK::SetupIntentStatus::TaggedSymbol
           }
         )
@@ -278,57 +279,55 @@ module WhopSDK
         end
       end
 
-      class PaymentToken < WhopSDK::Internal::Type::BaseModel
+      class PaymentMethod < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              WhopSDK::SetupIntent::PaymentToken,
+              WhopSDK::SetupIntent::PaymentMethod,
               WhopSDK::Internal::AnyHash
             )
           end
 
-        # The ID of the payment token
+        # The ID of the payment method
         sig { returns(String) }
         attr_accessor :id
 
-        # The card data associated with the payment token, if its a debit or credit card
-        # token.
-        sig { returns(T.nilable(WhopSDK::SetupIntent::PaymentToken::Card)) }
+        # The card data associated with the payment method, if its a debit or credit card.
+        sig { returns(T.nilable(WhopSDK::SetupIntent::PaymentMethod::Card)) }
         attr_reader :card
 
         sig do
           params(
-            card: T.nilable(WhopSDK::SetupIntent::PaymentToken::Card::OrHash)
+            card: T.nilable(WhopSDK::SetupIntent::PaymentMethod::Card::OrHash)
           ).void
         end
         attr_writer :card
 
-        # The date and time the payment token was created
+        # The date and time the payment method was created
         sig { returns(Time) }
         attr_accessor :created_at
 
-        # The payment method type of the payment token
+        # The payment method type of the payment method
         sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
         attr_accessor :payment_method_type
 
-        # The payment token created during the setup, if available.
+        # The payment method created during the setup, if available.
         sig do
           params(
             id: String,
-            card: T.nilable(WhopSDK::SetupIntent::PaymentToken::Card::OrHash),
+            card: T.nilable(WhopSDK::SetupIntent::PaymentMethod::Card::OrHash),
             created_at: Time,
             payment_method_type: WhopSDK::PaymentMethodTypes::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the payment token
+          # The ID of the payment method
           id:,
-          # The card data associated with the payment token, if its a debit or credit card
-          # token.
+          # The card data associated with the payment method, if its a debit or credit card.
           card:,
-          # The date and time the payment token was created
+          # The date and time the payment method was created
           created_at:,
-          # The payment method type of the payment token
+          # The payment method type of the payment method
           payment_method_type:
         )
         end
@@ -337,7 +336,7 @@ module WhopSDK
           override.returns(
             {
               id: String,
-              card: T.nilable(WhopSDK::SetupIntent::PaymentToken::Card),
+              card: T.nilable(WhopSDK::SetupIntent::PaymentMethod::Card),
               created_at: Time,
               payment_method_type: WhopSDK::PaymentMethodTypes::TaggedSymbol
             }
@@ -350,7 +349,7 @@ module WhopSDK
           OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::SetupIntent::PaymentToken::Card,
+                WhopSDK::SetupIntent::PaymentMethod::Card,
                 WhopSDK::Internal::AnyHash
               )
             end
@@ -371,8 +370,7 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :last4
 
-          # The card data associated with the payment token, if its a debit or credit card
-          # token.
+          # The card data associated with the payment method, if its a debit or credit card.
           sig do
             params(
               brand: T.nilable(WhopSDK::CardBrands::OrSymbol),

@@ -9,7 +9,7 @@ module WhopSDK
         error_message: String?,
         member: WhopSDK::SetupIntent::Member?,
         metadata: ::Hash[Symbol, top]?,
-        payment_token: WhopSDK::SetupIntent::PaymentToken?,
+        payment_method: WhopSDK::SetupIntent::PaymentMethod?,
         status: WhopSDK::Models::setup_intent_status
       }
 
@@ -28,7 +28,7 @@ module WhopSDK
 
       attr_accessor metadata: ::Hash[Symbol, top]?
 
-      attr_accessor payment_token: WhopSDK::SetupIntent::PaymentToken?
+      attr_accessor payment_method: WhopSDK::SetupIntent::PaymentMethod?
 
       attr_accessor status: WhopSDK::Models::setup_intent_status
 
@@ -40,7 +40,7 @@ module WhopSDK
         error_message: String?,
         member: WhopSDK::SetupIntent::Member?,
         metadata: ::Hash[Symbol, top]?,
-        payment_token: WhopSDK::SetupIntent::PaymentToken?,
+        payment_method: WhopSDK::SetupIntent::PaymentMethod?,
         status: WhopSDK::Models::setup_intent_status
       ) -> void
 
@@ -52,7 +52,7 @@ module WhopSDK
         error_message: String?,
         member: WhopSDK::SetupIntent::Member?,
         metadata: ::Hash[Symbol, top]?,
-        payment_token: WhopSDK::SetupIntent::PaymentToken?,
+        payment_method: WhopSDK::SetupIntent::PaymentMethod?,
         status: WhopSDK::Models::setup_intent_status
       }
 
@@ -121,18 +121,18 @@ module WhopSDK
         end
       end
 
-      type payment_token =
+      type payment_method =
         {
           id: String,
-          card: WhopSDK::SetupIntent::PaymentToken::Card?,
+          card: WhopSDK::SetupIntent::PaymentMethod::Card?,
           created_at: Time,
           payment_method_type: WhopSDK::Models::payment_method_types
         }
 
-      class PaymentToken < WhopSDK::Internal::Type::BaseModel
+      class PaymentMethod < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
-        attr_accessor card: WhopSDK::SetupIntent::PaymentToken::Card?
+        attr_accessor card: WhopSDK::SetupIntent::PaymentMethod::Card?
 
         attr_accessor created_at: Time
 
@@ -140,14 +140,14 @@ module WhopSDK
 
         def initialize: (
           id: String,
-          card: WhopSDK::SetupIntent::PaymentToken::Card?,
+          card: WhopSDK::SetupIntent::PaymentMethod::Card?,
           created_at: Time,
           payment_method_type: WhopSDK::Models::payment_method_types
         ) -> void
 
         def to_hash: -> {
           id: String,
-          card: WhopSDK::SetupIntent::PaymentToken::Card?,
+          card: WhopSDK::SetupIntent::PaymentMethod::Card?,
           created_at: Time,
           payment_method_type: WhopSDK::Models::payment_method_types
         }

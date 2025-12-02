@@ -323,10 +323,6 @@ module WhopSDK
 
   class PaymentSucceededWebhookEvent = WhopSDK::Models::PaymentSucceededWebhookEvent
 
-  class PaymentTokenListParams = WhopSDK::Models::PaymentTokenListParams
-
-  class PaymentTokenRetrieveParams = WhopSDK::Models::PaymentTokenRetrieveParams
-
   class PaymentVoidParams = WhopSDK::Models::PaymentVoidParams
 
   class Plan = WhopSDK::Models::Plan

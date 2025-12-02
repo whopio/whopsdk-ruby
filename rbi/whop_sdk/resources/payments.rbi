@@ -3,9 +3,11 @@
 module WhopSDK
   module Resources
     class Payments
-      # Creates a payment. This endpoint will respond with a payment object immediately,
-      # but the payment is processed asynchronously in the background. Use webhooks to
-      # be notified when the payment succeeds or fails.
+      # Charge an existing member off-session using one of their stored payment methods.
+      # You can provide an existing plan, or create a new one in-line. This endpoint
+      # will respond with a payment object immediately, but the payment is processed
+      # asynchronously in the background. Use webhooks to be notified when the payment
+      # succeeds or fails.
       #
       # Required permissions:
       #
@@ -23,7 +25,7 @@ module WhopSDK
         params(
           company_id: String,
           member_id: String,
-          payment_token_id: String,
+          payment_method_id: String,
           plan: WhopSDK::PaymentCreateParams::Plan::OrHash,
           plan_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
@@ -34,9 +36,9 @@ module WhopSDK
         company_id:,
         # The ID of the member to create the payment for.
         member_id:,
-        # The ID of the payment token to use for the payment. It must be connected to the
+        # The ID of the payment method to use for the payment. It must be connected to the
         # Member being charged.
-        payment_token_id:,
+        payment_method_id:,
         # Pass this object to create a new plan for this payment
         plan:,
         # An ID of an existing plan to use for the payment.

@@ -135,6 +135,12 @@ module WhopSDK
     # @return [WhopSDK::Resources::AccountLinks]
     attr_reader :account_links
 
+    # @return [WhopSDK::Resources::SetupIntents]
+    attr_reader :setup_intents
+
+    # @return [WhopSDK::Resources::PaymentTokens]
+    attr_reader :payment_tokens
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -229,6 +235,8 @@ module WhopSDK
       @refunds = WhopSDK::Resources::Refunds.new(client: self)
       @withdrawals = WhopSDK::Resources::Withdrawals.new(client: self)
       @account_links = WhopSDK::Resources::AccountLinks.new(client: self)
+      @setup_intents = WhopSDK::Resources::SetupIntents.new(client: self)
+      @payment_tokens = WhopSDK::Resources::PaymentTokens.new(client: self)
     end
   end
 end

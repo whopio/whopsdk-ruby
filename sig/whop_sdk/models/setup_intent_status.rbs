@@ -1,0 +1,17 @@
+module WhopSDK
+  module Models
+    type setup_intent_status =
+      :processing | :succeeded | :canceled | :requires_action
+
+    module SetupIntentStatus
+      extend WhopSDK::Internal::Type::Enum
+
+      PROCESSING: :processing
+      SUCCEEDED: :succeeded
+      CANCELED: :canceled
+      REQUIRES_ACTION: :requires_action
+
+      def self?.values: -> ::Array[WhopSDK::Models::setup_intent_status]
+    end
+  end
+end

@@ -3,6 +3,54 @@
 module WhopSDK
   module Resources
     class Payments
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::PaymentCreateParams} for more details.
+      #
+      # Creates a payment. This endpoint will respond with a payment object immediately,
+      # but the payment is processed asynchronously in the background. Use webhooks to
+      # be notified when the payment succeeds or fails.
+      #
+      # Required permissions:
+      #
+      # - `payment:charge`
+      # - `plan:create`
+      # - `access_pass:create`
+      # - `access_pass:update`
+      # - `plan:basic:read`
+      # - `access_pass:basic:read`
+      # - `member:email:read`
+      # - `member:basic:read`
+      # - `member:phone:read`
+      # - `promo_code:basic:read`
+      #
+      # @overload create(company_id:, member_id:, payment_token_id:, plan:, plan_id:, request_options: {})
+      #
+      # @param company_id [String] The ID of the company to create the payment for.
+      #
+      # @param member_id [String] The ID of the member to create the payment for.
+      #
+      # @param payment_token_id [String] The ID of the payment token to use for the payment. It must be connected to the
+      #
+      # @param plan [WhopSDK::Models::PaymentCreateParams::Plan] Pass this object to create a new plan for this payment
+      #
+      # @param plan_id [String] An ID of an existing plan to use for the payment.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::Payment]
+      #
+      # @see WhopSDK::Models::PaymentCreateParams
+      def create(params)
+        parsed, options = WhopSDK::PaymentCreateParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: "payments",
+          body: parsed,
+          model: WhopSDK::Payment,
+          options: options
+        )
+      end
+
       # Retrieves a payment by ID
       #
       # Required permissions:

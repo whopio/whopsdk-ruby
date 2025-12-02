@@ -1,0 +1,23 @@
+module WhopSDK
+  module Models
+    type payment_token_retrieve_params =
+      { member_id: String } & WhopSDK::Internal::Type::request_parameters
+
+    class PaymentTokenRetrieveParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor member_id: String
+
+      def initialize: (
+        member_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        member_id: String,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

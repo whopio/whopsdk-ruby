@@ -316,6 +316,8 @@ module WhopSDK
 
   Payment = WhopSDK::Models::Payment
 
+  PaymentCreateParams = WhopSDK::Models::PaymentCreateParams
+
   PaymentFailedWebhookEvent = WhopSDK::Models::PaymentFailedWebhookEvent
 
   PaymentListParams = WhopSDK::Models::PaymentListParams
@@ -333,6 +335,10 @@ module WhopSDK
   PaymentRetryParams = WhopSDK::Models::PaymentRetryParams
 
   PaymentSucceededWebhookEvent = WhopSDK::Models::PaymentSucceededWebhookEvent
+
+  PaymentTokenListParams = WhopSDK::Models::PaymentTokenListParams
+
+  PaymentTokenRetrieveParams = WhopSDK::Models::PaymentTokenRetrieveParams
 
   PaymentVoidParams = WhopSDK::Models::PaymentVoidParams
 
@@ -412,11 +418,19 @@ module WhopSDK
 
   ReviewStatus = WhopSDK::Models::ReviewStatus
 
+  SetupIntent = WhopSDK::Models::SetupIntent
+
   SetupIntentCanceledWebhookEvent =
     WhopSDK::Models::SetupIntentCanceledWebhookEvent
 
+  SetupIntentListParams = WhopSDK::Models::SetupIntentListParams
+
   SetupIntentRequiresActionWebhookEvent =
     WhopSDK::Models::SetupIntentRequiresActionWebhookEvent
+
+  SetupIntentRetrieveParams = WhopSDK::Models::SetupIntentRetrieveParams
+
+  SetupIntentStatus = WhopSDK::Models::SetupIntentStatus
 
   SetupIntentSucceededWebhookEvent =
     WhopSDK::Models::SetupIntentSucceededWebhookEvent

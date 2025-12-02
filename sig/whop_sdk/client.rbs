@@ -86,6 +86,10 @@ module WhopSDK
 
     attr_reader account_links: WhopSDK::Resources::AccountLinks
 
+    attr_reader setup_intents: WhopSDK::Resources::SetupIntents
+
+    attr_reader payment_tokens: WhopSDK::Resources::PaymentTokens
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

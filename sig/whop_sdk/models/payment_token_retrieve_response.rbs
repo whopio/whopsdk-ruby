@@ -1,0 +1,67 @@
+module WhopSDK
+  module Models
+    type payment_token_retrieve_response =
+      {
+        id: String,
+        card: WhopSDK::Models::PaymentTokenRetrieveResponse::Card?,
+        created_at: Time,
+        payment_method_type: WhopSDK::Models::payment_method_types
+      }
+
+    class PaymentTokenRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor card: WhopSDK::Models::PaymentTokenRetrieveResponse::Card?
+
+      attr_accessor created_at: Time
+
+      attr_accessor payment_method_type: WhopSDK::Models::payment_method_types
+
+      def initialize: (
+        id: String,
+        card: WhopSDK::Models::PaymentTokenRetrieveResponse::Card?,
+        created_at: Time,
+        payment_method_type: WhopSDK::Models::payment_method_types
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        card: WhopSDK::Models::PaymentTokenRetrieveResponse::Card?,
+        created_at: Time,
+        payment_method_type: WhopSDK::Models::payment_method_types
+      }
+
+      type card =
+        {
+          brand: WhopSDK::Models::card_brands?,
+          exp_month: Integer?,
+          exp_year: Integer?,
+          :last4 => String?
+        }
+
+      class Card < WhopSDK::Internal::Type::BaseModel
+        attr_accessor brand: WhopSDK::Models::card_brands?
+
+        attr_accessor exp_month: Integer?
+
+        attr_accessor exp_year: Integer?
+
+        attr_accessor last4: String?
+
+        def initialize: (
+          brand: WhopSDK::Models::card_brands?,
+          exp_month: Integer?,
+          exp_year: Integer?,
+          last4: String?
+        ) -> void
+
+        def to_hash: -> {
+          brand: WhopSDK::Models::card_brands?,
+          exp_month: Integer?,
+          exp_year: Integer?,
+          :last4 => String?
+        }
+      end
+    end
+  end
+end

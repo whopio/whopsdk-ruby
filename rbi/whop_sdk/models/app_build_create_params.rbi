@@ -34,6 +34,10 @@ module WhopSDK
       sig { returns(WhopSDK::AppBuildPlatforms::OrSymbol) }
       attr_accessor :platform
 
+      # The id of the ai prompt that created this build
+      sig { returns(T.nilable(String)) }
+      attr_accessor :ai_prompt_id
+
       # The ID of the app to create a build for. By default the current app from the api
       # key is used.
       sig { returns(T.nilable(String)) }
@@ -53,6 +57,7 @@ module WhopSDK
             ),
           checksum: String,
           platform: WhopSDK::AppBuildPlatforms::OrSymbol,
+          ai_prompt_id: T.nilable(String),
           app_id: T.nilable(String),
           supported_app_view_types:
             T.nilable(T::Array[WhopSDK::AppViewType::OrSymbol]),
@@ -70,6 +75,8 @@ module WhopSDK
         checksum:,
         # The platform of the app build (ios, android, web)
         platform:,
+        # The id of the ai prompt that created this build
+        ai_prompt_id: nil,
         # The ID of the app to create a build for. By default the current app from the api
         # key is used.
         app_id: nil,
@@ -90,6 +97,7 @@ module WhopSDK
               ),
             checksum: String,
             platform: WhopSDK::AppBuildPlatforms::OrSymbol,
+            ai_prompt_id: T.nilable(String),
             app_id: T.nilable(String),
             supported_app_view_types:
               T.nilable(T::Array[WhopSDK::AppViewType::OrSymbol]),

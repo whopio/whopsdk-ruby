@@ -1,0 +1,15 @@
+module WhopSDK
+  module Models
+    type setup_intent_retrieve_params =
+      {  } & WhopSDK::Internal::Type::request_parameters
+
+    class SetupIntentRetrieveParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      def initialize: (?request_options: WhopSDK::request_opts) -> void
+
+      def to_hash: -> { request_options: WhopSDK::RequestOptions }
+    end
+  end
+end

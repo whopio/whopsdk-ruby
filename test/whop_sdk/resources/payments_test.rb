@@ -3,6 +3,60 @@
 require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
+  def test_create_required_params
+    skip("Prism tests are disabled")
+
+    response =
+      @whop.payments.create(
+        company_id: "biz_xxxxxxxxxxxxxx",
+        member_id: "mber_xxxxxxxxxxxxx",
+        payment_token_id: "payt_xxxxxxxxxxxxx",
+        plan: {currency: :usd}
+      )
+
+    assert_pattern do
+      response => WhopSDK::Payment
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        amount_after_fees: Float,
+        auto_refunded: WhopSDK::Internal::Type::Boolean,
+        billing_address: WhopSDK::Payment::BillingAddress | nil,
+        billing_reason: WhopSDK::BillingReasons | nil,
+        card_brand: WhopSDK::CardBrands | nil,
+        card_last4: String | nil,
+        company: WhopSDK::Payment::Company | nil,
+        created_at: Time,
+        currency: WhopSDK::Currency | nil,
+        dispute_alerted_at: Time | nil,
+        failure_message: String | nil,
+        last_payment_attempt: Time | nil,
+        member: WhopSDK::Payment::Member | nil,
+        membership: WhopSDK::Payment::Membership | nil,
+        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
+        paid_at: Time | nil,
+        payment_method_type: WhopSDK::PaymentMethodTypes | nil,
+        payment_token: WhopSDK::Payment::PaymentToken | nil,
+        plan: WhopSDK::Payment::Plan | nil,
+        product: WhopSDK::Payment::Product | nil,
+        promo_code: WhopSDK::Payment::PromoCode | nil,
+        refundable: WhopSDK::Internal::Type::Boolean,
+        refunded_amount: Float | nil,
+        refunded_at: Time | nil,
+        retryable: WhopSDK::Internal::Type::Boolean,
+        status: WhopSDK::ReceiptStatus | nil,
+        substatus: WhopSDK::FriendlyReceiptStatus,
+        subtotal: Float | nil,
+        total: Float | nil,
+        usd_total: Float | nil,
+        user: WhopSDK::Payment::User | nil,
+        voidable: WhopSDK::Internal::Type::Boolean
+      }
+    end
+  end
+
   def test_retrieve
     skip("Prism tests are disabled")
 
@@ -32,6 +86,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
         paid_at: Time | nil,
         payment_method_type: WhopSDK::PaymentMethodTypes | nil,
+        payment_token: WhopSDK::Payment::PaymentToken | nil,
         plan: WhopSDK::Payment::Plan | nil,
         product: WhopSDK::Payment::Product | nil,
         promo_code: WhopSDK::Payment::PromoCode | nil,
@@ -86,6 +141,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
         paid_at: Time | nil,
         payment_method_type: WhopSDK::PaymentMethodTypes | nil,
+        payment_token: WhopSDK::Models::PaymentListResponse::PaymentToken | nil,
         plan: WhopSDK::Models::PaymentListResponse::Plan | nil,
         product: WhopSDK::Models::PaymentListResponse::Product | nil,
         promo_code: WhopSDK::Models::PaymentListResponse::PromoCode | nil,
@@ -133,6 +189,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
         paid_at: Time | nil,
         payment_method_type: WhopSDK::PaymentMethodTypes | nil,
+        payment_token: WhopSDK::Payment::PaymentToken | nil,
         plan: WhopSDK::Payment::Plan | nil,
         product: WhopSDK::Payment::Product | nil,
         promo_code: WhopSDK::Payment::PromoCode | nil,
@@ -180,6 +237,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
         paid_at: Time | nil,
         payment_method_type: WhopSDK::PaymentMethodTypes | nil,
+        payment_token: WhopSDK::Payment::PaymentToken | nil,
         plan: WhopSDK::Payment::Plan | nil,
         product: WhopSDK::Payment::Product | nil,
         promo_code: WhopSDK::Payment::PromoCode | nil,
@@ -227,6 +285,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
         paid_at: Time | nil,
         payment_method_type: WhopSDK::PaymentMethodTypes | nil,
+        payment_token: WhopSDK::Payment::PaymentToken | nil,
         plan: WhopSDK::Payment::Plan | nil,
         product: WhopSDK::Payment::Product | nil,
         promo_code: WhopSDK::Payment::PromoCode | nil,

@@ -130,6 +130,12 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::AccountLinks) }
     attr_reader :account_links
 
+    sig { returns(WhopSDK::Resources::SetupIntents) }
+    attr_reader :setup_intents
+
+    sig { returns(WhopSDK::Resources::PaymentTokens) }
+    attr_reader :payment_tokens
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

@@ -1,0 +1,25 @@
+module WhopSDK
+  module Resources
+    class PaymentTokens
+      def retrieve: (
+        String id,
+        member_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::PaymentTokenRetrieveResponse
+
+      def list: (
+        member_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?created_after: Time?,
+        ?created_before: Time?,
+        ?direction: WhopSDK::Models::direction?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::PaymentTokenListResponse]
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

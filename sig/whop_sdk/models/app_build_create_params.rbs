@@ -5,6 +5,7 @@ module WhopSDK
         attachment: WhopSDK::Models::AppBuildCreateParams::attachment,
         checksum: String,
         platform: WhopSDK::Models::app_build_platforms,
+        ai_prompt_id: String?,
         app_id: String?,
         supported_app_view_types: ::Array[WhopSDK::Models::app_view_type]?
       }
@@ -20,6 +21,8 @@ module WhopSDK
 
       attr_accessor platform: WhopSDK::Models::app_build_platforms
 
+      attr_accessor ai_prompt_id: String?
+
       attr_accessor app_id: String?
 
       attr_accessor supported_app_view_types: ::Array[WhopSDK::Models::app_view_type]?
@@ -28,6 +31,7 @@ module WhopSDK
         attachment: WhopSDK::Models::AppBuildCreateParams::attachment,
         checksum: String,
         platform: WhopSDK::Models::app_build_platforms,
+        ?ai_prompt_id: String?,
         ?app_id: String?,
         ?supported_app_view_types: ::Array[WhopSDK::Models::app_view_type]?,
         ?request_options: WhopSDK::request_opts
@@ -37,6 +41,7 @@ module WhopSDK
         attachment: WhopSDK::Models::AppBuildCreateParams::attachment,
         checksum: String,
         platform: WhopSDK::Models::app_build_platforms,
+        ai_prompt_id: String?,
         app_id: String?,
         supported_app_view_types: ::Array[WhopSDK::Models::app_view_type]?,
         request_options: WhopSDK::RequestOptions

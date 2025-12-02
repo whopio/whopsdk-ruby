@@ -3,6 +3,48 @@
 module WhopSDK
   module Resources
     class Payments
+      # Creates a payment. This endpoint will respond with a payment object immediately,
+      # but the payment is processed asynchronously in the background. Use webhooks to
+      # be notified when the payment succeeds or fails.
+      #
+      # Required permissions:
+      #
+      # - `payment:charge`
+      # - `plan:create`
+      # - `access_pass:create`
+      # - `access_pass:update`
+      # - `plan:basic:read`
+      # - `access_pass:basic:read`
+      # - `member:email:read`
+      # - `member:basic:read`
+      # - `member:phone:read`
+      # - `promo_code:basic:read`
+      sig do
+        params(
+          company_id: String,
+          member_id: String,
+          payment_token_id: String,
+          plan: WhopSDK::PaymentCreateParams::Plan::OrHash,
+          plan_id: String,
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::Payment)
+      end
+      def create(
+        # The ID of the company to create the payment for.
+        company_id:,
+        # The ID of the member to create the payment for.
+        member_id:,
+        # The ID of the payment token to use for the payment. It must be connected to the
+        # Member being charged.
+        payment_token_id:,
+        # Pass this object to create a new plan for this payment
+        plan:,
+        # An ID of an existing plan to use for the payment.
+        plan_id:,
+        request_options: {}
+      )
+      end
+
       # Retrieves a payment by ID
       #
       # Required permissions:

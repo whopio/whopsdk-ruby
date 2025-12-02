@@ -1,0 +1,193 @@
+module WhopSDK
+  module Models
+    type setup_intent_list_response =
+      {
+        id: String,
+        checkout_configuration: WhopSDK::Models::SetupIntentListResponse::CheckoutConfiguration?,
+        company: WhopSDK::Models::SetupIntentListResponse::Company?,
+        created_at: Time,
+        error_message: String?,
+        member: WhopSDK::Models::SetupIntentListResponse::Member?,
+        metadata: ::Hash[Symbol, top]?,
+        payment_token: WhopSDK::Models::SetupIntentListResponse::PaymentToken?,
+        status: WhopSDK::Models::setup_intent_status
+      }
+
+    class SetupIntentListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor checkout_configuration: WhopSDK::Models::SetupIntentListResponse::CheckoutConfiguration?
+
+      attr_accessor company: WhopSDK::Models::SetupIntentListResponse::Company?
+
+      attr_accessor created_at: Time
+
+      attr_accessor error_message: String?
+
+      attr_accessor member: WhopSDK::Models::SetupIntentListResponse::Member?
+
+      attr_accessor metadata: ::Hash[Symbol, top]?
+
+      attr_accessor payment_token: WhopSDK::Models::SetupIntentListResponse::PaymentToken?
+
+      attr_accessor status: WhopSDK::Models::setup_intent_status
+
+      def initialize: (
+        id: String,
+        checkout_configuration: WhopSDK::Models::SetupIntentListResponse::CheckoutConfiguration?,
+        company: WhopSDK::Models::SetupIntentListResponse::Company?,
+        created_at: Time,
+        error_message: String?,
+        member: WhopSDK::Models::SetupIntentListResponse::Member?,
+        metadata: ::Hash[Symbol, top]?,
+        payment_token: WhopSDK::Models::SetupIntentListResponse::PaymentToken?,
+        status: WhopSDK::Models::setup_intent_status
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        checkout_configuration: WhopSDK::Models::SetupIntentListResponse::CheckoutConfiguration?,
+        company: WhopSDK::Models::SetupIntentListResponse::Company?,
+        created_at: Time,
+        error_message: String?,
+        member: WhopSDK::Models::SetupIntentListResponse::Member?,
+        metadata: ::Hash[Symbol, top]?,
+        payment_token: WhopSDK::Models::SetupIntentListResponse::PaymentToken?,
+        status: WhopSDK::Models::setup_intent_status
+      }
+
+      type checkout_configuration = { id: String }
+
+      class CheckoutConfiguration < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type company = { id: String }
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type member =
+        {
+          id: String,
+          user: WhopSDK::Models::SetupIntentListResponse::Member::User?
+        }
+
+      class Member < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor user: WhopSDK::Models::SetupIntentListResponse::Member::User?
+
+        def initialize: (
+          id: String,
+          user: WhopSDK::Models::SetupIntentListResponse::Member::User?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          user: WhopSDK::Models::SetupIntentListResponse::Member::User?
+        }
+
+        type user =
+          { id: String, email: String?, name: String?, username: String }
+
+        class User < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor email: String?
+
+          attr_accessor name: String?
+
+          attr_accessor username: String
+
+          def initialize: (
+            id: String,
+            email: String?,
+            name: String?,
+            username: String
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            email: String?,
+            name: String?,
+            username: String
+          }
+        end
+      end
+
+      type payment_token =
+        {
+          id: String,
+          card: WhopSDK::Models::SetupIntentListResponse::PaymentToken::Card?,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types
+        }
+
+      class PaymentToken < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor card: WhopSDK::Models::SetupIntentListResponse::PaymentToken::Card?
+
+        attr_accessor created_at: Time
+
+        attr_accessor payment_method_type: WhopSDK::Models::payment_method_types
+
+        def initialize: (
+          id: String,
+          card: WhopSDK::Models::SetupIntentListResponse::PaymentToken::Card?,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          card: WhopSDK::Models::SetupIntentListResponse::PaymentToken::Card?,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types
+        }
+
+        type card =
+          {
+            brand: WhopSDK::Models::card_brands?,
+            exp_month: Integer?,
+            exp_year: Integer?,
+            :last4 => String?
+          }
+
+        class Card < WhopSDK::Internal::Type::BaseModel
+          attr_accessor brand: WhopSDK::Models::card_brands?
+
+          attr_accessor exp_month: Integer?
+
+          attr_accessor exp_year: Integer?
+
+          attr_accessor last4: String?
+
+          def initialize: (
+            brand: WhopSDK::Models::card_brands?,
+            exp_month: Integer?,
+            exp_year: Integer?,
+            last4: String?
+          ) -> void
+
+          def to_hash: -> {
+            brand: WhopSDK::Models::card_brands?,
+            exp_month: Integer?,
+            exp_year: Integer?,
+            :last4 => String?
+          }
+        end
+      end
+    end
+  end
+end

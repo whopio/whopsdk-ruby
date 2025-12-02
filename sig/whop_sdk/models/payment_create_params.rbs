@@ -1,0 +1,210 @@
+module WhopSDK
+  module Models
+    type payment_create_params =
+      {
+        company_id: String,
+        member_id: String,
+        payment_token_id: String,
+        plan: WhopSDK::PaymentCreateParams::Plan,
+        plan_id: String
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class PaymentCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor member_id: String
+
+      attr_accessor payment_token_id: String
+
+      attr_accessor plan: WhopSDK::PaymentCreateParams::Plan
+
+      attr_accessor plan_id: String
+
+      def initialize: (
+        company_id: String,
+        member_id: String,
+        payment_token_id: String,
+        plan: WhopSDK::PaymentCreateParams::Plan,
+        plan_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        member_id: String,
+        payment_token_id: String,
+        plan: WhopSDK::PaymentCreateParams::Plan,
+        plan_id: String,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type plan =
+        {
+          currency: WhopSDK::Models::currency,
+          billing_period: Integer?,
+          description: String?,
+          expiration_days: Integer?,
+          force_create_new_plan: bool?,
+          initial_price: Float?,
+          internal_notes: String?,
+          plan_type: WhopSDK::Models::plan_type?,
+          product: WhopSDK::PaymentCreateParams::Plan::Product?,
+          product_id: String?,
+          renewal_price: Float?,
+          title: String?,
+          trial_period_days: Integer?,
+          visibility: WhopSDK::Models::visibility?
+        }
+
+      class Plan < WhopSDK::Internal::Type::BaseModel
+        attr_accessor currency: WhopSDK::Models::currency
+
+        attr_accessor billing_period: Integer?
+
+        attr_accessor description: String?
+
+        attr_accessor expiration_days: Integer?
+
+        attr_accessor force_create_new_plan: bool?
+
+        attr_accessor initial_price: Float?
+
+        attr_accessor internal_notes: String?
+
+        attr_accessor plan_type: WhopSDK::Models::plan_type?
+
+        attr_accessor product: WhopSDK::PaymentCreateParams::Plan::Product?
+
+        attr_accessor product_id: String?
+
+        attr_accessor renewal_price: Float?
+
+        attr_accessor title: String?
+
+        attr_accessor trial_period_days: Integer?
+
+        attr_accessor visibility: WhopSDK::Models::visibility?
+
+        def initialize: (
+          currency: WhopSDK::Models::currency,
+          ?billing_period: Integer?,
+          ?description: String?,
+          ?expiration_days: Integer?,
+          ?force_create_new_plan: bool?,
+          ?initial_price: Float?,
+          ?internal_notes: String?,
+          ?plan_type: WhopSDK::Models::plan_type?,
+          ?product: WhopSDK::PaymentCreateParams::Plan::Product?,
+          ?product_id: String?,
+          ?renewal_price: Float?,
+          ?title: String?,
+          ?trial_period_days: Integer?,
+          ?visibility: WhopSDK::Models::visibility?
+        ) -> void
+
+        def to_hash: -> {
+          currency: WhopSDK::Models::currency,
+          billing_period: Integer?,
+          description: String?,
+          expiration_days: Integer?,
+          force_create_new_plan: bool?,
+          initial_price: Float?,
+          internal_notes: String?,
+          plan_type: WhopSDK::Models::plan_type?,
+          product: WhopSDK::PaymentCreateParams::Plan::Product?,
+          product_id: String?,
+          renewal_price: Float?,
+          title: String?,
+          trial_period_days: Integer?,
+          visibility: WhopSDK::Models::visibility?
+        }
+
+        type product =
+          {
+            external_identifier: String,
+            title: String,
+            business_type: WhopSDK::Models::business_types?,
+            collect_shipping_address: bool?,
+            custom_statement_descriptor: String?,
+            description: String?,
+            global_affiliate_percentage: Float?,
+            global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
+            headline: String?,
+            industry_type: WhopSDK::Models::industry_types?,
+            product_tax_code_id: String?,
+            redirect_purchase_url: String?,
+            route: String?,
+            visibility: WhopSDK::Models::visibility?
+          }
+
+        class Product < WhopSDK::Internal::Type::BaseModel
+          attr_accessor external_identifier: String
+
+          attr_accessor title: String
+
+          attr_accessor business_type: WhopSDK::Models::business_types?
+
+          attr_accessor collect_shipping_address: bool?
+
+          attr_accessor custom_statement_descriptor: String?
+
+          attr_accessor description: String?
+
+          attr_accessor global_affiliate_percentage: Float?
+
+          attr_accessor global_affiliate_status: WhopSDK::Models::global_affiliate_status?
+
+          attr_accessor headline: String?
+
+          attr_accessor industry_type: WhopSDK::Models::industry_types?
+
+          attr_accessor product_tax_code_id: String?
+
+          attr_accessor redirect_purchase_url: String?
+
+          attr_accessor route: String?
+
+          attr_accessor visibility: WhopSDK::Models::visibility?
+
+          def initialize: (
+            external_identifier: String,
+            title: String,
+            ?business_type: WhopSDK::Models::business_types?,
+            ?collect_shipping_address: bool?,
+            ?custom_statement_descriptor: String?,
+            ?description: String?,
+            ?global_affiliate_percentage: Float?,
+            ?global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
+            ?headline: String?,
+            ?industry_type: WhopSDK::Models::industry_types?,
+            ?product_tax_code_id: String?,
+            ?redirect_purchase_url: String?,
+            ?route: String?,
+            ?visibility: WhopSDK::Models::visibility?
+          ) -> void
+
+          def to_hash: -> {
+            external_identifier: String,
+            title: String,
+            business_type: WhopSDK::Models::business_types?,
+            collect_shipping_address: bool?,
+            custom_statement_descriptor: String?,
+            description: String?,
+            global_affiliate_percentage: Float?,
+            global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
+            headline: String?,
+            industry_type: WhopSDK::Models::industry_types?,
+            product_tax_code_id: String?,
+            redirect_purchase_url: String?,
+            route: String?,
+            visibility: WhopSDK::Models::visibility?
+          }
+        end
+      end
+    end
+  end
+end

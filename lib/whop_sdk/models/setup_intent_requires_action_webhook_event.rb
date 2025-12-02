@@ -1,0 +1,52 @@
+# frozen_string_literal: true
+
+module WhopSDK
+  module Models
+    class SetupIntentRequiresActionWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      # @!attribute id
+      #   A unique ID for every single webhook request
+      #
+      #   @return [String]
+      required :id, String
+
+      # @!attribute api_version
+      #   The API version for this webhook
+      #
+      #   @return [Symbol, :v1]
+      required :api_version, const: :v1
+
+      # @!attribute data
+      #   An object representing a setup intent, which is a flow for allowing a customer
+      #   to add a payment method to their account without making a purchase.
+      #
+      #   @return [WhopSDK::Models::SetupIntent]
+      required :data, -> { WhopSDK::SetupIntent }
+
+      # @!attribute timestamp
+      #   The timestamp in ISO 8601 format that the webhook was sent at on the server
+      #
+      #   @return [Time]
+      required :timestamp, Time
+
+      # @!attribute type
+      #   The webhook event type
+      #
+      #   @return [Symbol, :"setup_intent.requires_action"]
+      required :type, const: :"setup_intent.requires_action"
+
+      # @!method initialize(id:, data:, timestamp:, api_version: :v1, type: :"setup_intent.requires_action")
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::SetupIntentRequiresActionWebhookEvent} for more details.
+      #
+      #   @param id [String] A unique ID for every single webhook request
+      #
+      #   @param data [WhopSDK::Models::SetupIntent] An object representing a setup intent, which is a flow for allowing a customer t
+      #
+      #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
+      #
+      #   @param api_version [Symbol, :v1] The API version for this webhook
+      #
+      #   @param type [Symbol, :"setup_intent.requires_action"] The webhook event type
+    end
+  end
+end

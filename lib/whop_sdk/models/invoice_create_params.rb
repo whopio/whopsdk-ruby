@@ -61,6 +61,13 @@ module WhopSDK
       #   @return [String, nil]
       optional :customer_name, String, nil?: true
 
+      # @!attribute payment_method_id
+      #   The payment method ID to use for this invoice. If using charge_automatically,
+      #   you must provide a payment_method_id.
+      #
+      #   @return [String, nil]
+      optional :payment_method_id, String, nil?: true
+
       # @!attribute payment_token_id
       #   The payment token ID to use for this invoice. If using charge_automatically, you
       #   must provide a payment_token.
@@ -82,7 +89,7 @@ module WhopSDK
       #   @return [String]
       required :product_id, String
 
-      # @!method initialize(collection_method:, company_id:, due_date:, member_id:, plan:, product:, email_address:, product_id:, charge_buyer_fee: nil, customer_name: nil, payment_token_id: nil, request_options: {})
+      # @!method initialize(collection_method:, company_id:, due_date:, member_id:, plan:, product:, email_address:, product_id:, charge_buyer_fee: nil, customer_name: nil, payment_method_id: nil, payment_token_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::InvoiceCreateParams} for more details.
       #
@@ -105,6 +112,8 @@ module WhopSDK
       #   @param charge_buyer_fee [Boolean, nil] Whether or not to charge the customer a buyer fee.
       #
       #   @param customer_name [String, nil] The name of the customer to create this invoice for. This is required if you wan
+      #
+      #   @param payment_method_id [String, nil] The payment method ID to use for this invoice. If using charge_automatically, yo
       #
       #   @param payment_token_id [String, nil] The payment token ID to use for this invoice. If using charge_automatically, you
       #

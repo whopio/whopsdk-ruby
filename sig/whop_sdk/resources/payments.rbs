@@ -4,7 +4,7 @@ module WhopSDK
       def create: (
         company_id: String,
         member_id: String,
-        payment_token_id: String,
+        payment_method_id: String,
         plan: WhopSDK::PaymentCreateParams::Plan,
         plan_id: String,
         ?request_options: WhopSDK::request_opts

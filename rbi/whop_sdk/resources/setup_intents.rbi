@@ -3,7 +3,11 @@
 module WhopSDK
   module Resources
     class SetupIntents
-      # Retrieves a Setup Intent by ID
+      # A setup intent is an object used to securely collect and store a member’s
+      # payment method for future use without charging them immediately. It handles
+      # authentication steps up front so future off-session payments can be completed
+      # smoothly. This ensures the payment method is verified and ready for later
+      # billing.
       #
       # Required permissions:
       #
@@ -23,7 +27,11 @@ module WhopSDK
       )
       end
 
-      # Lists Setup Intents
+      # A setup intent is an object used to securely collect and store a member’s
+      # payment method for future use without charging them immediately. It handles
+      # authentication steps up front so future off-session payments can be completed
+      # smoothly. This ensures the payment method is verified and ready for later
+      # billing.
       #
       # Required permissions:
       #

@@ -6,9 +6,11 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::PaymentCreateParams} for more details.
       #
-      # Creates a payment. This endpoint will respond with a payment object immediately,
-      # but the payment is processed asynchronously in the background. Use webhooks to
-      # be notified when the payment succeeds or fails.
+      # Charge an existing member off-session using one of their stored payment methods.
+      # You can provide an existing plan, or create a new one in-line. This endpoint
+      # will respond with a payment object immediately, but the payment is processed
+      # asynchronously in the background. Use webhooks to be notified when the payment
+      # succeeds or fails.
       #
       # Required permissions:
       #
@@ -23,13 +25,13 @@ module WhopSDK
       # - `member:phone:read`
       # - `promo_code:basic:read`
       #
-      # @overload create(company_id:, member_id:, payment_token_id:, plan:, plan_id:, request_options: {})
+      # @overload create(company_id:, member_id:, payment_method_id:, plan:, plan_id:, request_options: {})
       #
       # @param company_id [String] The ID of the company to create the payment for.
       #
       # @param member_id [String] The ID of the member to create the payment for.
       #
-      # @param payment_token_id [String] The ID of the payment token to use for the payment. It must be connected to the
+      # @param payment_method_id [String] The ID of the payment method to use for the payment. It must be connected to the
       #
       # @param plan [WhopSDK::Models::PaymentCreateParams::Plan] Pass this object to create a new plan for this payment
       #

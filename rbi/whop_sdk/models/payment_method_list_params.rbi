@@ -2,16 +2,16 @@
 
 module WhopSDK
   module Models
-    class PaymentTokenListParams < WhopSDK::Internal::Type::BaseModel
+    class PaymentMethodListParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(WhopSDK::PaymentTokenListParams, WhopSDK::Internal::AnyHash)
+          T.any(WhopSDK::PaymentMethodListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the Member to list payment tokens for
+      # The ID of the Member to list payment methods for
       sig { returns(String) }
       attr_accessor :member_id
 
@@ -57,7 +57,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the Member to list payment tokens for
+        # The ID of the Member to list payment methods for
         member_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,

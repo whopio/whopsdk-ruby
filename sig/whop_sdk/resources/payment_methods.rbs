@@ -1,11 +1,11 @@
 module WhopSDK
   module Resources
-    class PaymentTokens
+    class PaymentMethods
       def retrieve: (
         String id,
         member_id: String,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::PaymentTokenRetrieveResponse
+      ) -> WhopSDK::Models::PaymentMethodRetrieveResponse
 
       def list: (
         member_id: String,
@@ -17,7 +17,7 @@ module WhopSDK
         ?first: Integer?,
         ?last: Integer?,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::PaymentTokenListResponse]
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::PaymentMethodListResponse]
 
       def initialize: (client: WhopSDK::Client) -> void
     end

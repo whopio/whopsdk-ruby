@@ -1,17 +1,17 @@
 module WhopSDK
   module Models
-    type payment_token_list_response =
+    type payment_method_list_response =
       {
         id: String,
-        card: WhopSDK::Models::PaymentTokenListResponse::Card?,
+        card: WhopSDK::Models::PaymentMethodListResponse::Card?,
         created_at: Time,
         payment_method_type: WhopSDK::Models::payment_method_types
       }
 
-    class PaymentTokenListResponse < WhopSDK::Internal::Type::BaseModel
+    class PaymentMethodListResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor card: WhopSDK::Models::PaymentTokenListResponse::Card?
+      attr_accessor card: WhopSDK::Models::PaymentMethodListResponse::Card?
 
       attr_accessor created_at: Time
 
@@ -19,14 +19,14 @@ module WhopSDK
 
       def initialize: (
         id: String,
-        card: WhopSDK::Models::PaymentTokenListResponse::Card?,
+        card: WhopSDK::Models::PaymentMethodListResponse::Card?,
         created_at: Time,
         payment_method_type: WhopSDK::Models::payment_method_types
       ) -> void
 
       def to_hash: -> {
         id: String,
-        card: WhopSDK::Models::PaymentTokenListResponse::Card?,
+        card: WhopSDK::Models::PaymentMethodListResponse::Card?,
         created_at: Time,
         payment_method_type: WhopSDK::Models::payment_method_types
       }

@@ -2,20 +2,20 @@
 
 require_relative "../test_helper"
 
-class WhopSDK::Test::Resources::PaymentTokensTest < WhopSDK::Test::ResourceTest
+class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
   def test_retrieve_required_params
     skip("Prism tests are disabled")
 
-    response = @whop.payment_tokens.retrieve("payt_xxxxxxxxxxxxx", member_id: "mber_xxxxxxxxxxxxx")
+    response = @whop.payment_methods.retrieve("payt_xxxxxxxxxxxxx", member_id: "mber_xxxxxxxxxxxxx")
 
     assert_pattern do
-      response => WhopSDK::Models::PaymentTokenRetrieveResponse
+      response => WhopSDK::Models::PaymentMethodRetrieveResponse
     end
 
     assert_pattern do
       response => {
         id: String,
-        card: WhopSDK::Models::PaymentTokenRetrieveResponse::Card | nil,
+        card: WhopSDK::Models::PaymentMethodRetrieveResponse::Card | nil,
         created_at: Time,
         payment_method_type: WhopSDK::PaymentMethodTypes
       }
@@ -25,7 +25,7 @@ class WhopSDK::Test::Resources::PaymentTokensTest < WhopSDK::Test::ResourceTest
   def test_list_required_params
     skip("Prism tests are disabled")
 
-    response = @whop.payment_tokens.list(member_id: "mber_xxxxxxxxxxxxx")
+    response = @whop.payment_methods.list(member_id: "mber_xxxxxxxxxxxxx")
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage
@@ -35,13 +35,13 @@ class WhopSDK::Test::Resources::PaymentTokensTest < WhopSDK::Test::ResourceTest
     return if row.nil?
 
     assert_pattern do
-      row => WhopSDK::Models::PaymentTokenListResponse
+      row => WhopSDK::Models::PaymentMethodListResponse
     end
 
     assert_pattern do
       row => {
         id: String,
-        card: WhopSDK::Models::PaymentTokenListResponse::Card | nil,
+        card: WhopSDK::Models::PaymentMethodListResponse::Card | nil,
         created_at: Time,
         payment_method_type: WhopSDK::PaymentMethodTypes
       }

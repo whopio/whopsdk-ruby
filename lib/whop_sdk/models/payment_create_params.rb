@@ -19,12 +19,12 @@ module WhopSDK
       #   @return [String]
       required :member_id, String
 
-      # @!attribute payment_token_id
-      #   The ID of the payment token to use for the payment. It must be connected to the
+      # @!attribute payment_method_id
+      #   The ID of the payment method to use for the payment. It must be connected to the
       #   Member being charged.
       #
       #   @return [String]
-      required :payment_token_id, String
+      required :payment_method_id, String
 
       # @!attribute plan
       #   Pass this object to create a new plan for this payment
@@ -38,7 +38,7 @@ module WhopSDK
       #   @return [String]
       required :plan_id, String
 
-      # @!method initialize(company_id:, member_id:, payment_token_id:, plan:, plan_id:, request_options: {})
+      # @!method initialize(company_id:, member_id:, payment_method_id:, plan:, plan_id:, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentCreateParams} for more details.
       #
@@ -46,7 +46,7 @@ module WhopSDK
       #
       #   @param member_id [String] The ID of the member to create the payment for.
       #
-      #   @param payment_token_id [String] The ID of the payment token to use for the payment. It must be connected to the
+      #   @param payment_method_id [String] The ID of the payment method to use for the payment. It must be connected to the
       #
       #   @param plan [WhopSDK::Models::PaymentCreateParams::Plan] Pass this object to create a new plan for this payment
       #

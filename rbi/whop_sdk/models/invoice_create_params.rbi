@@ -57,6 +57,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :customer_name
 
+      # The payment method ID to use for this invoice. If using charge_automatically,
+      # you must provide a payment_method_id.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :payment_method_id
+
       # The payment token ID to use for this invoice. If using charge_automatically, you
       # must provide a payment_token.
       sig { returns(T.nilable(String)) }
@@ -84,6 +89,7 @@ module WhopSDK
           product_id: String,
           charge_buyer_fee: T.nilable(T::Boolean),
           customer_name: T.nilable(String),
+          payment_method_id: T.nilable(String),
           payment_token_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -117,6 +123,9 @@ module WhopSDK
         # want to create an invoice for a customer who does not have a member of your
         # company yet.
         customer_name: nil,
+        # The payment method ID to use for this invoice. If using charge_automatically,
+        # you must provide a payment_method_id.
+        payment_method_id: nil,
         # The payment token ID to use for this invoice. If using charge_automatically, you
         # must provide a payment_token.
         payment_token_id: nil,
@@ -135,6 +144,7 @@ module WhopSDK
             product: WhopSDK::InvoiceCreateParams::Product,
             charge_buyer_fee: T.nilable(T::Boolean),
             customer_name: T.nilable(String),
+            payment_method_id: T.nilable(String),
             payment_token_id: T.nilable(String),
             email_address: String,
             product_id: String,

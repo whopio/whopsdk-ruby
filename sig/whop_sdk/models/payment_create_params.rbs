@@ -4,7 +4,7 @@ module WhopSDK
       {
         company_id: String,
         member_id: String,
-        payment_token_id: String,
+        payment_method_id: String,
         plan: WhopSDK::PaymentCreateParams::Plan,
         plan_id: String
       }
@@ -18,7 +18,7 @@ module WhopSDK
 
       attr_accessor member_id: String
 
-      attr_accessor payment_token_id: String
+      attr_accessor payment_method_id: String
 
       attr_accessor plan: WhopSDK::PaymentCreateParams::Plan
 
@@ -27,7 +27,7 @@ module WhopSDK
       def initialize: (
         company_id: String,
         member_id: String,
-        payment_token_id: String,
+        payment_method_id: String,
         plan: WhopSDK::PaymentCreateParams::Plan,
         plan_id: String,
         ?request_options: WhopSDK::request_opts
@@ -36,7 +36,7 @@ module WhopSDK
       def to_hash: -> {
         company_id: String,
         member_id: String,
-        payment_token_id: String,
+        payment_method_id: String,
         plan: WhopSDK::PaymentCreateParams::Plan,
         plan_id: String,
         request_options: WhopSDK::RequestOptions

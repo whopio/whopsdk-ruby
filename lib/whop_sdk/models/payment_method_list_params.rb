@@ -2,13 +2,13 @@
 
 module WhopSDK
   module Models
-    # @see WhopSDK::Resources::PaymentTokens#list
-    class PaymentTokenListParams < WhopSDK::Internal::Type::BaseModel
+    # @see WhopSDK::Resources::PaymentMethods#list
+    class PaymentMethodListParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute member_id
-      #   The ID of the Member to list payment tokens for
+      #   The ID of the Member to list payment methods for
       #
       #   @return [String]
       required :member_id, String
@@ -56,7 +56,7 @@ module WhopSDK
       optional :last, Integer, nil?: true
 
       # @!method initialize(member_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, request_options: {})
-      #   @param member_id [String] The ID of the Member to list payment tokens for
+      #   @param member_id [String] The ID of the Member to list payment methods for
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #

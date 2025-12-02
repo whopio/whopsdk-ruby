@@ -2,8 +2,12 @@
 
 module WhopSDK
   module Resources
-    class PaymentTokens
-      # Retrieves a PaymentToken by ID
+    class PaymentMethods
+      # A payment method is a stored representation of how a customer intends to pay,
+      # such as a card, bank account, or digital wallet. It holds the necessary billing
+      # details and can be attached to a member for future one-time or recurring
+      # charges. This lets you reuse the same payment credentials across multiple
+      # payments.
       #
       # Required permissions:
       #
@@ -13,18 +17,22 @@ module WhopSDK
           id: String,
           member_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::PaymentTokenRetrieveResponse)
+        ).returns(WhopSDK::Models::PaymentMethodRetrieveResponse)
       end
       def retrieve(
-        # The ID of the PaymentToken
+        # The ID of the PaymentMethod
         id,
-        # The ID of the Member associated with the PaymentToken
+        # The ID of the Member associated with the PaymentMethod
         member_id:,
         request_options: {}
       )
       end
 
-      # Lists PaymentTokens
+      # A payment method is a stored representation of how a customer intends to pay,
+      # such as a card, bank account, or digital wallet. It holds the necessary billing
+      # details and can be attached to a member for future one-time or recurring
+      # charges. This lets you reuse the same payment credentials across multiple
+      # payments.
       #
       # Required permissions:
       #
@@ -42,12 +50,12 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[
-            WhopSDK::Models::PaymentTokenListResponse
+            WhopSDK::Models::PaymentMethodListResponse
           ]
         )
       end
       def list(
-        # The ID of the Member to list payment tokens for
+        # The ID of the Member to list payment methods for
         member_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,

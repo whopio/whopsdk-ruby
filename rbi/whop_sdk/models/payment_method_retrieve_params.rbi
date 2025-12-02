@@ -2,16 +2,19 @@
 
 module WhopSDK
   module Models
-    class PaymentTokenRetrieveParams < WhopSDK::Internal::Type::BaseModel
+    class PaymentMethodRetrieveParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(WhopSDK::PaymentTokenRetrieveParams, WhopSDK::Internal::AnyHash)
+          T.any(
+            WhopSDK::PaymentMethodRetrieveParams,
+            WhopSDK::Internal::AnyHash
+          )
         end
 
-      # The ID of the Member associated with the PaymentToken
+      # The ID of the Member associated with the PaymentMethod
       sig { returns(String) }
       attr_accessor :member_id
 
@@ -22,7 +25,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the Member associated with the PaymentToken
+        # The ID of the Member associated with the PaymentMethod
         member_id:,
         request_options: {}
       )

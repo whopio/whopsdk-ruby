@@ -2,8 +2,12 @@
 
 module WhopSDK
   module Resources
-    class PaymentTokens
-      # Retrieves a PaymentToken by ID
+    class PaymentMethods
+      # A payment method is a stored representation of how a customer intends to pay,
+      # such as a card, bank account, or digital wallet. It holds the necessary billing
+      # details and can be attached to a member for future one-time or recurring
+      # charges. This lets you reuse the same payment credentials across multiple
+      # payments.
       #
       # Required permissions:
       #
@@ -11,27 +15,31 @@ module WhopSDK
       #
       # @overload retrieve(id, member_id:, request_options: {})
       #
-      # @param id [String] The ID of the PaymentToken
+      # @param id [String] The ID of the PaymentMethod
       #
-      # @param member_id [String] The ID of the Member associated with the PaymentToken
+      # @param member_id [String] The ID of the Member associated with the PaymentMethod
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::PaymentTokenRetrieveResponse]
+      # @return [WhopSDK::Models::PaymentMethodRetrieveResponse]
       #
-      # @see WhopSDK::Models::PaymentTokenRetrieveParams
+      # @see WhopSDK::Models::PaymentMethodRetrieveParams
       def retrieve(id, params)
-        parsed, options = WhopSDK::PaymentTokenRetrieveParams.dump_request(params)
+        parsed, options = WhopSDK::PaymentMethodRetrieveParams.dump_request(params)
         @client.request(
           method: :get,
-          path: ["payment_tokens/%1$s", id],
+          path: ["payment_methods/%1$s", id],
           query: parsed,
-          model: WhopSDK::Models::PaymentTokenRetrieveResponse,
+          model: WhopSDK::Models::PaymentMethodRetrieveResponse,
           options: options
         )
       end
 
-      # Lists PaymentTokens
+      # A payment method is a stored representation of how a customer intends to pay,
+      # such as a card, bank account, or digital wallet. It holds the necessary billing
+      # details and can be attached to a member for future one-time or recurring
+      # charges. This lets you reuse the same payment credentials across multiple
+      # payments.
       #
       # Required permissions:
       #
@@ -39,7 +47,7 @@ module WhopSDK
       #
       # @overload list(member_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, request_options: {})
       #
-      # @param member_id [String] The ID of the Member to list payment tokens for
+      # @param member_id [String] The ID of the Member to list payment methods for
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -57,17 +65,17 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::PaymentTokenListResponse>]
+      # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::PaymentMethodListResponse>]
       #
-      # @see WhopSDK::Models::PaymentTokenListParams
+      # @see WhopSDK::Models::PaymentMethodListParams
       def list(params)
-        parsed, options = WhopSDK::PaymentTokenListParams.dump_request(params)
+        parsed, options = WhopSDK::PaymentMethodListParams.dump_request(params)
         @client.request(
           method: :get,
-          path: "payment_tokens",
+          path: "payment_methods",
           query: parsed,
           page: WhopSDK::Internal::CursorPage,
-          model: WhopSDK::Models::PaymentTokenListResponse,
+          model: WhopSDK::Models::PaymentMethodListResponse,
           options: options
         )
       end

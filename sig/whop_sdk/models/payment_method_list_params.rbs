@@ -1,6 +1,6 @@
 module WhopSDK
   module Models
-    type payment_token_list_params =
+    type payment_method_list_params =
       {
         member_id: String,
         after: String?,
@@ -13,7 +13,7 @@ module WhopSDK
       }
       & WhopSDK::Internal::Type::request_parameters
 
-    class PaymentTokenListParams < WhopSDK::Internal::Type::BaseModel
+    class PaymentMethodListParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 

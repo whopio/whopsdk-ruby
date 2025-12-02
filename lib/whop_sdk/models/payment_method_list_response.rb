@@ -2,48 +2,48 @@
 
 module WhopSDK
   module Models
-    # @see WhopSDK::Resources::PaymentTokens#retrieve
-    class PaymentTokenRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+    # @see WhopSDK::Resources::PaymentMethods#list
+    class PaymentMethodListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the payment token
+      #   The ID of the payment method
       #
       #   @return [String]
       required :id, String
 
       # @!attribute card
-      #   The card data associated with the payment token, if its a debit or credit card
-      #   token.
+      #   The card data associated with the payment method, if its a debit or credit card.
       #
-      #   @return [WhopSDK::Models::PaymentTokenRetrieveResponse::Card, nil]
-      required :card, -> { WhopSDK::Models::PaymentTokenRetrieveResponse::Card }, nil?: true
+      #   @return [WhopSDK::Models::PaymentMethodListResponse::Card, nil]
+      required :card, -> { WhopSDK::Models::PaymentMethodListResponse::Card }, nil?: true
 
       # @!attribute created_at
-      #   The date and time the payment token was created
+      #   The date and time the payment method was created
       #
       #   @return [Time]
       required :created_at, Time
 
       # @!attribute payment_method_type
-      #   The payment method type of the payment token
+      #   The payment method type of the payment method
       #
       #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes]
       required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }
 
       # @!method initialize(id:, card:, created_at:, payment_method_type:)
       #   Some parameter documentations has been truncated, see
-      #   {WhopSDK::Models::PaymentTokenRetrieveResponse} for more details.
+      #   {WhopSDK::Models::PaymentMethodListResponse} for more details.
       #
-      #   A payment token used to process payments.
+      #   A stored payment method used to process payments. This could be a credit/debit
+      #   card, bank account, PayPal wallet, etc.
       #
-      #   @param id [String] The ID of the payment token
+      #   @param id [String] The ID of the payment method
       #
-      #   @param card [WhopSDK::Models::PaymentTokenRetrieveResponse::Card, nil] The card data associated with the payment token, if its a debit or credit card t
+      #   @param card [WhopSDK::Models::PaymentMethodListResponse::Card, nil] The card data associated with the payment method, if its a debit or credit card.
       #
-      #   @param created_at [Time] The date and time the payment token was created
+      #   @param created_at [Time] The date and time the payment method was created
       #
-      #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The payment method type of the payment token
+      #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The payment method type of the payment method
 
-      # @see WhopSDK::Models::PaymentTokenRetrieveResponse#card
+      # @see WhopSDK::Models::PaymentMethodListResponse#card
       class Card < WhopSDK::Internal::Type::BaseModel
         # @!attribute brand
         #   Possible card brands that a payment token can have
@@ -70,8 +70,7 @@ module WhopSDK
         required :last4, String, nil?: true
 
         # @!method initialize(brand:, exp_month:, exp_year:, last4:)
-        #   The card data associated with the payment token, if its a debit or credit card
-        #   token.
+        #   The card data associated with the payment method, if its a debit or credit card.
         #
         #   @param brand [Symbol, WhopSDK::Models::CardBrands, nil] Possible card brands that a payment token can have
         #

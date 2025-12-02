@@ -5,47 +5,50 @@ module WhopSDK
     module UnwrapWebhookEvent
       extend WhopSDK::Internal::Type::Union
 
-      variant -> { WhopSDK::InvoiceCreatedWebhookEvent }
+      discriminator :type
 
-      variant -> { WhopSDK::InvoicePaidWebhookEvent }
+      variant :"invoice.created", -> { WhopSDK::InvoiceCreatedWebhookEvent }
 
-      variant -> { WhopSDK::InvoicePastDueWebhookEvent }
+      variant :"invoice.paid", -> { WhopSDK::InvoicePaidWebhookEvent }
 
-      variant -> { WhopSDK::InvoiceVoidedWebhookEvent }
+      variant :"invoice.past_due", -> { WhopSDK::InvoicePastDueWebhookEvent }
 
-      variant -> { WhopSDK::MembershipActivatedWebhookEvent }
+      variant :"invoice.voided", -> { WhopSDK::InvoiceVoidedWebhookEvent }
 
-      variant -> { WhopSDK::MembershipDeactivatedWebhookEvent }
+      variant :"membership.activated", -> { WhopSDK::MembershipActivatedWebhookEvent }
 
-      variant -> { WhopSDK::EntryCreatedWebhookEvent }
+      variant :"membership.deactivated", -> { WhopSDK::MembershipDeactivatedWebhookEvent }
 
-      variant -> { WhopSDK::EntryApprovedWebhookEvent }
+      variant :"entry.created", -> { WhopSDK::EntryCreatedWebhookEvent }
 
-      variant -> { WhopSDK::EntryDeniedWebhookEvent }
+      variant :"entry.approved", -> { WhopSDK::EntryApprovedWebhookEvent }
 
-      variant -> { WhopSDK::EntryDeletedWebhookEvent }
+      variant :"entry.denied", -> { WhopSDK::EntryDeniedWebhookEvent }
 
-      variant -> { WhopSDK::SetupIntentRequiresActionWebhookEvent }
+      variant :"entry.deleted", -> { WhopSDK::EntryDeletedWebhookEvent }
 
-      variant -> { WhopSDK::SetupIntentSucceededWebhookEvent }
+      variant :"setup_intent.requires_action", -> { WhopSDK::SetupIntentRequiresActionWebhookEvent }
 
-      variant -> { WhopSDK::SetupIntentCanceledWebhookEvent }
+      variant :"setup_intent.succeeded", -> { WhopSDK::SetupIntentSucceededWebhookEvent }
 
-      variant -> { WhopSDK::CourseLessonInteractionCompletedWebhookEvent }
+      variant :"setup_intent.canceled", -> { WhopSDK::SetupIntentCanceledWebhookEvent }
 
-      variant -> { WhopSDK::PaymentSucceededWebhookEvent }
+      variant :"course_lesson_interaction.completed",
+              -> { WhopSDK::CourseLessonInteractionCompletedWebhookEvent }
 
-      variant -> { WhopSDK::PaymentFailedWebhookEvent }
+      variant :"payment.succeeded", -> { WhopSDK::PaymentSucceededWebhookEvent }
 
-      variant -> { WhopSDK::PaymentPendingWebhookEvent }
+      variant :"payment.failed", -> { WhopSDK::PaymentFailedWebhookEvent }
 
-      variant -> { WhopSDK::DisputeCreatedWebhookEvent }
+      variant :"payment.pending", -> { WhopSDK::PaymentPendingWebhookEvent }
 
-      variant -> { WhopSDK::DisputeUpdatedWebhookEvent }
+      variant :"dispute.created", -> { WhopSDK::DisputeCreatedWebhookEvent }
 
-      variant -> { WhopSDK::RefundCreatedWebhookEvent }
+      variant :"dispute.updated", -> { WhopSDK::DisputeUpdatedWebhookEvent }
 
-      variant -> { WhopSDK::RefundUpdatedWebhookEvent }
+      variant :"refund.created", -> { WhopSDK::RefundCreatedWebhookEvent }
+
+      variant :"refund.updated", -> { WhopSDK::RefundUpdatedWebhookEvent }
 
       # @!method self.variants
       #   @return [Array(WhopSDK::Models::InvoiceCreatedWebhookEvent, WhopSDK::Models::InvoicePaidWebhookEvent, WhopSDK::Models::InvoicePastDueWebhookEvent, WhopSDK::Models::InvoiceVoidedWebhookEvent, WhopSDK::Models::MembershipActivatedWebhookEvent, WhopSDK::Models::MembershipDeactivatedWebhookEvent, WhopSDK::Models::EntryCreatedWebhookEvent, WhopSDK::Models::EntryApprovedWebhookEvent, WhopSDK::Models::EntryDeniedWebhookEvent, WhopSDK::Models::EntryDeletedWebhookEvent, WhopSDK::Models::SetupIntentRequiresActionWebhookEvent, WhopSDK::Models::SetupIntentSucceededWebhookEvent, WhopSDK::Models::SetupIntentCanceledWebhookEvent, WhopSDK::Models::CourseLessonInteractionCompletedWebhookEvent, WhopSDK::Models::PaymentSucceededWebhookEvent, WhopSDK::Models::PaymentFailedWebhookEvent, WhopSDK::Models::PaymentPendingWebhookEvent, WhopSDK::Models::DisputeCreatedWebhookEvent, WhopSDK::Models::DisputeUpdatedWebhookEvent, WhopSDK::Models::RefundCreatedWebhookEvent, WhopSDK::Models::RefundUpdatedWebhookEvent)]

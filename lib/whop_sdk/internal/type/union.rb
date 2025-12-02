@@ -17,6 +17,18 @@ module WhopSDK
       #   else
       #     puts(unwrap_webhook_event)
       #   end
+      #
+      # @example
+      #   case unwrap_webhook_event
+      #   in {type: :"invoice.created", id: id, api_version: api_version, data: data}
+      #     puts(id)
+      #   in {type: :"invoice.paid", id: id, api_version: api_version, data: data}
+      #     puts(api_version)
+      #   in {type: :"invoice.past_due", id: id, api_version: api_version, data: data}
+      #     puts(data)
+      #   else
+      #     puts(unwrap_webhook_event)
+      #   end
       module Union
         include WhopSDK::Internal::Type::Converter
         include WhopSDK::Internal::Util::SorbetRuntimeSupport

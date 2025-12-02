@@ -1,7 +1,0 @@
-module WhopSDK
-  module Resources
-    class PaymentTokens
-      def initialize: (client: WhopSDK::Client) -> void
-    end
-  end
-end

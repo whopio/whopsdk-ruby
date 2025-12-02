@@ -133,8 +133,8 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::SetupIntents) }
     attr_reader :setup_intents
 
-    sig { returns(WhopSDK::Resources::PaymentTokens) }
-    attr_reader :payment_tokens
+    sig { returns(WhopSDK::Resources::PaymentMethods) }
+    attr_reader :payment_methods
 
     # @api private
     sig { override.returns(T::Hash[String, String]) }

@@ -322,6 +322,10 @@ module WhopSDK
 
   PaymentListParams = WhopSDK::Models::PaymentListParams
 
+  PaymentMethodListParams = WhopSDK::Models::PaymentMethodListParams
+
+  PaymentMethodRetrieveParams = WhopSDK::Models::PaymentMethodRetrieveParams
+
   PaymentMethodTypes = WhopSDK::Models::PaymentMethodTypes
 
   PaymentPendingWebhookEvent = WhopSDK::Models::PaymentPendingWebhookEvent

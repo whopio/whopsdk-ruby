@@ -1,0 +1,91 @@
+# frozen_string_literal: true
+
+module WhopSDK
+  module Resources
+    class PaymentMethods
+      # A payment method is a stored representation of how a customer intends to pay,
+      # such as a card, bank account, or digital wallet. It holds the necessary billing
+      # details and can be attached to a member for future one-time or recurring
+      # charges. This lets you reuse the same payment credentials across multiple
+      # payments.
+      #
+      # Required permissions:
+      #
+      # - `member:payment_methods:read`
+      #
+      # @overload retrieve(id, member_id:, request_options: {})
+      #
+      # @param id [String] The ID of the PaymentMethod
+      #
+      # @param member_id [String] The ID of the Member associated with the PaymentMethod
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::PaymentMethodRetrieveResponse]
+      #
+      # @see WhopSDK::Models::PaymentMethodRetrieveParams
+      def retrieve(id, params)
+        parsed, options = WhopSDK::PaymentMethodRetrieveParams.dump_request(params)
+        @client.request(
+          method: :get,
+          path: ["payment_methods/%1$s", id],
+          query: parsed,
+          model: WhopSDK::Models::PaymentMethodRetrieveResponse,
+          options: options
+        )
+      end
+
+      # A payment method is a stored representation of how a customer intends to pay,
+      # such as a card, bank account, or digital wallet. It holds the necessary billing
+      # details and can be attached to a member for future one-time or recurring
+      # charges. This lets you reuse the same payment credentials across multiple
+      # payments.
+      #
+      # Required permissions:
+      #
+      # - `member:payment_methods:read`
+      #
+      # @overload list(member_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, request_options: {})
+      #
+      # @param member_id [String] The ID of the Member to list payment methods for
+      #
+      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      #
+      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      # @param created_after [Time, nil] The minimum creation date to filter by
+      #
+      # @param created_before [Time, nil] The maximum creation date to filter by
+      #
+      # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      #
+      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      #
+      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::PaymentMethodListResponse>]
+      #
+      # @see WhopSDK::Models::PaymentMethodListParams
+      def list(params)
+        parsed, options = WhopSDK::PaymentMethodListParams.dump_request(params)
+        @client.request(
+          method: :get,
+          path: "payment_methods",
+          query: parsed,
+          page: WhopSDK::Internal::CursorPage,
+          model: WhopSDK::Models::PaymentMethodListResponse,
+          options: options
+        )
+      end
+
+      # @api private
+      #
+      # @param client [WhopSDK::Client]
+      def initialize(client:)
+        @client = client
+      end
+    end
+  end
+end

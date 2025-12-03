@@ -14,7 +14,7 @@ module WhopSDK
       required :company_id, String
 
       # @!attribute title
-      #   The title of the product.
+      #   The title of the product. It must be max 40 characters.
       #
       #   @return [String]
       required :title, String
@@ -143,7 +143,7 @@ module WhopSDK
       #
       #   @param company_id [String] The ID of the company to create the product for.
       #
-      #   @param title [String] The title of the product.
+      #   @param title [String] The title of the product. It must be max 40 characters.
       #
       #   @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #

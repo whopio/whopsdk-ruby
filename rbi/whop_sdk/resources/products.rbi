@@ -44,7 +44,7 @@ module WhopSDK
       def create(
         # The ID of the company to create the product for.
         company_id:,
-        # The title of the product.
+        # The title of the product. It must be max 40 characters.
         title:,
         # The different business types a company can be.
         business_type: nil,

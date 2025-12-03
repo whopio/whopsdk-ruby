@@ -259,6 +259,10 @@ module WhopSDK
         sig { returns(T.nilable(Float)) }
         attr_accessor :renewal_price
 
+        # The number of payments required before pausing the subscription.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :split_pay_required_payments
+
         # The title of the plan. This will be visible on the product page to customers.
         sig { returns(T.nilable(String)) }
         attr_accessor :title
@@ -308,6 +312,7 @@ module WhopSDK
             product_id: T.nilable(String),
             release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
             renewal_price: T.nilable(Float),
+            split_pay_required_payments: T.nilable(Integer),
             title: T.nilable(String),
             trial_period_days: T.nilable(Integer),
             visibility: T.nilable(WhopSDK::Visibility::OrSymbol)
@@ -352,6 +357,8 @@ module WhopSDK
           release_method: nil,
           # The amount the customer is charged every billing period.
           renewal_price: nil,
+          # The number of payments required before pausing the subscription.
+          split_pay_required_payments: nil,
           # The title of the plan. This will be visible on the product page to customers.
           title: nil,
           # The number of free trial days added before a renewal plan.
@@ -398,6 +405,7 @@ module WhopSDK
               product_id: T.nilable(String),
               release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
               renewal_price: T.nilable(Float),
+              split_pay_required_payments: T.nilable(Integer),
               title: T.nilable(String),
               trial_period_days: T.nilable(Integer),
               visibility: T.nilable(WhopSDK::Visibility::OrSymbol)

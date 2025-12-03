@@ -1,0 +1,334 @@
+module WhopSDK
+  module Models
+    type withdrawal_updated_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::WithdrawalUpdatedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"withdrawal.updated"
+      }
+
+    class WithdrawalUpdatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor data: WhopSDK::WithdrawalUpdatedWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"withdrawal.updated"
+
+      def initialize: (
+        id: String,
+        data: WhopSDK::WithdrawalUpdatedWebhookEvent::Data,
+        timestamp: Time,
+        ?api_version: :v1,
+        ?type: :"withdrawal.updated"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::WithdrawalUpdatedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"withdrawal.updated"
+      }
+
+      type data =
+        {
+          id: String,
+          amount: Float,
+          created_at: Time,
+          currency: WhopSDK::Models::currency,
+          fee_amount: Float,
+          fee_type: WhopSDK::Models::withdrawal_fee_types?,
+          latest_payout: WhopSDK::WithdrawalUpdatedWebhookEvent::Data::LatestPayout?,
+          payout_token: WhopSDK::WithdrawalUpdatedWebhookEvent::Data::PayoutToken?,
+          speed: WhopSDK::Models::withdrawal_speeds,
+          status: WhopSDK::Models::withdrawal_status,
+          withdrawal_type: WhopSDK::Models::withdrawal_types
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor amount: Float
+
+        attr_accessor created_at: Time
+
+        attr_accessor currency: WhopSDK::Models::currency
+
+        attr_accessor fee_amount: Float
+
+        attr_accessor fee_type: WhopSDK::Models::withdrawal_fee_types?
+
+        attr_accessor latest_payout: WhopSDK::WithdrawalUpdatedWebhookEvent::Data::LatestPayout?
+
+        attr_accessor payout_token: WhopSDK::WithdrawalUpdatedWebhookEvent::Data::PayoutToken?
+
+        attr_accessor speed: WhopSDK::Models::withdrawal_speeds
+
+        attr_accessor status: WhopSDK::Models::withdrawal_status
+
+        attr_accessor withdrawal_type: WhopSDK::Models::withdrawal_types
+
+        def initialize: (
+          id: String,
+          amount: Float,
+          created_at: Time,
+          currency: WhopSDK::Models::currency,
+          fee_amount: Float,
+          fee_type: WhopSDK::Models::withdrawal_fee_types?,
+          latest_payout: WhopSDK::WithdrawalUpdatedWebhookEvent::Data::LatestPayout?,
+          payout_token: WhopSDK::WithdrawalUpdatedWebhookEvent::Data::PayoutToken?,
+          speed: WhopSDK::Models::withdrawal_speeds,
+          status: WhopSDK::Models::withdrawal_status,
+          withdrawal_type: WhopSDK::Models::withdrawal_types
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          amount: Float,
+          created_at: Time,
+          currency: WhopSDK::Models::currency,
+          fee_amount: Float,
+          fee_type: WhopSDK::Models::withdrawal_fee_types?,
+          latest_payout: WhopSDK::WithdrawalUpdatedWebhookEvent::Data::LatestPayout?,
+          payout_token: WhopSDK::WithdrawalUpdatedWebhookEvent::Data::PayoutToken?,
+          speed: WhopSDK::Models::withdrawal_speeds,
+          status: WhopSDK::Models::withdrawal_status,
+          withdrawal_type: WhopSDK::Models::withdrawal_types
+        }
+
+        type latest_payout =
+          {
+            id: String,
+            created_at: Time,
+            error_code: WhopSDK::Models::WithdrawalUpdatedWebhookEvent::Data::LatestPayout::error_code?,
+            error_message: String?,
+            estimated_availability: Time?,
+            payer_name: String?,
+            status: WhopSDK::Models::WithdrawalUpdatedWebhookEvent::Data::LatestPayout::status,
+            trace_code: String?
+          }
+
+        class LatestPayout < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor created_at: Time
+
+          attr_accessor error_code: WhopSDK::Models::WithdrawalUpdatedWebhookEvent::Data::LatestPayout::error_code?
+
+          attr_accessor error_message: String?
+
+          attr_accessor estimated_availability: Time?
+
+          attr_accessor payer_name: String?
+
+          attr_accessor status: WhopSDK::Models::WithdrawalUpdatedWebhookEvent::Data::LatestPayout::status
+
+          attr_accessor trace_code: String?
+
+          def initialize: (
+            id: String,
+            created_at: Time,
+            error_code: WhopSDK::Models::WithdrawalUpdatedWebhookEvent::Data::LatestPayout::error_code?,
+            error_message: String?,
+            estimated_availability: Time?,
+            payer_name: String?,
+            status: WhopSDK::Models::WithdrawalUpdatedWebhookEvent::Data::LatestPayout::status,
+            trace_code: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            created_at: Time,
+            error_code: WhopSDK::Models::WithdrawalUpdatedWebhookEvent::Data::LatestPayout::error_code?,
+            error_message: String?,
+            estimated_availability: Time?,
+            payer_name: String?,
+            status: WhopSDK::Models::WithdrawalUpdatedWebhookEvent::Data::LatestPayout::status,
+            trace_code: String?
+          }
+
+          type error_code =
+            :account_closed
+            | :account_does_not_exist
+            | :account_information_invalid
+            | :account_number_invalid_region
+            | :account_frozen
+            | :account_lookup_failed
+            | :account_not_found
+            | :amount_out_of_bounds
+            | :attributes_not_validated
+            | :b2b_payments_prohibited
+            | :bank_statement_required
+            | :compliance_review
+            | :currency_not_supported
+            | :deposit_canceled
+            | :deposit_failed
+            | :deposit_rejected
+            | :destination_unavailable
+            | :exceeded_account_limit
+            | :expired_quote
+            | :generic_payout_error
+            | :technical_problem
+            | :identification_number_invalid
+            | :invalid_account_number
+            | :invalid_bank_code
+            | :invalid_beneficiary
+            | :invalid_branch_number
+            | :invalid_branch_code
+            | :invalid_phone_number
+            | :invalid_routing_number
+            | :invalid_swift_code
+            | :invalid_company_details
+            | :manual_cancelation
+            | :misc_error
+            | :missing_city_and_country
+            | :missing_phone_number
+            | :missing_remittance_info
+            | :payee_name_invalid
+            | :receiving_account_locked
+            | :rejected_by_compliance
+            | :rtp_not_supported
+            | :non_transaction_account
+            | :source_token_insufficient_funds
+            | :ssn_invalid
+            | :wallet_screenshot_required
+            | :unsupported_region
+
+          module ErrorCode
+            extend WhopSDK::Internal::Type::Enum
+
+            ACCOUNT_CLOSED: :account_closed
+            ACCOUNT_DOES_NOT_EXIST: :account_does_not_exist
+            ACCOUNT_INFORMATION_INVALID: :account_information_invalid
+            ACCOUNT_NUMBER_INVALID_REGION: :account_number_invalid_region
+            ACCOUNT_FROZEN: :account_frozen
+            ACCOUNT_LOOKUP_FAILED: :account_lookup_failed
+            ACCOUNT_NOT_FOUND: :account_not_found
+            AMOUNT_OUT_OF_BOUNDS: :amount_out_of_bounds
+            ATTRIBUTES_NOT_VALIDATED: :attributes_not_validated
+            B2B_PAYMENTS_PROHIBITED: :b2b_payments_prohibited
+            BANK_STATEMENT_REQUIRED: :bank_statement_required
+            COMPLIANCE_REVIEW: :compliance_review
+            CURRENCY_NOT_SUPPORTED: :currency_not_supported
+            DEPOSIT_CANCELED: :deposit_canceled
+            DEPOSIT_FAILED: :deposit_failed
+            DEPOSIT_REJECTED: :deposit_rejected
+            DESTINATION_UNAVAILABLE: :destination_unavailable
+            EXCEEDED_ACCOUNT_LIMIT: :exceeded_account_limit
+            EXPIRED_QUOTE: :expired_quote
+            GENERIC_PAYOUT_ERROR: :generic_payout_error
+            TECHNICAL_PROBLEM: :technical_problem
+            IDENTIFICATION_NUMBER_INVALID: :identification_number_invalid
+            INVALID_ACCOUNT_NUMBER: :invalid_account_number
+            INVALID_BANK_CODE: :invalid_bank_code
+            INVALID_BENEFICIARY: :invalid_beneficiary
+            INVALID_BRANCH_NUMBER: :invalid_branch_number
+            INVALID_BRANCH_CODE: :invalid_branch_code
+            INVALID_PHONE_NUMBER: :invalid_phone_number
+            INVALID_ROUTING_NUMBER: :invalid_routing_number
+            INVALID_SWIFT_CODE: :invalid_swift_code
+            INVALID_COMPANY_DETAILS: :invalid_company_details
+            MANUAL_CANCELATION: :manual_cancelation
+            MISC_ERROR: :misc_error
+            MISSING_CITY_AND_COUNTRY: :missing_city_and_country
+            MISSING_PHONE_NUMBER: :missing_phone_number
+            MISSING_REMITTANCE_INFO: :missing_remittance_info
+            PAYEE_NAME_INVALID: :payee_name_invalid
+            RECEIVING_ACCOUNT_LOCKED: :receiving_account_locked
+            REJECTED_BY_COMPLIANCE: :rejected_by_compliance
+            RTP_NOT_SUPPORTED: :rtp_not_supported
+            NON_TRANSACTION_ACCOUNT: :non_transaction_account
+            SOURCE_TOKEN_INSUFFICIENT_FUNDS: :source_token_insufficient_funds
+            SSN_INVALID: :ssn_invalid
+            WALLET_SCREENSHOT_REQUIRED: :wallet_screenshot_required
+            UNSUPPORTED_REGION: :unsupported_region
+
+            def self?.values: -> ::Array[WhopSDK::Models::WithdrawalUpdatedWebhookEvent::Data::LatestPayout::error_code]
+          end
+
+          type status =
+            :scheduled
+            | :pending
+            | :processing
+            | :completed
+            | :canceled
+            | :ready_for_pickup
+            | :hold
+            | :error
+            | :expired
+
+          module Status
+            extend WhopSDK::Internal::Type::Enum
+
+            SCHEDULED: :scheduled
+            PENDING: :pending
+            PROCESSING: :processing
+            COMPLETED: :completed
+            CANCELED: :canceled
+            READY_FOR_PICKUP: :ready_for_pickup
+            HOLD: :hold
+            ERROR: :error
+            EXPIRED: :expired
+
+            def self?.values: -> ::Array[WhopSDK::Models::WithdrawalUpdatedWebhookEvent::Data::LatestPayout::status]
+          end
+        end
+
+        type payout_token =
+          {
+            id: String,
+            created_at: Time,
+            destination_currency_code: String,
+            nickname: String?,
+            status: WhopSDK::Models::WithdrawalUpdatedWebhookEvent::Data::PayoutToken::status
+          }
+
+        class PayoutToken < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor created_at: Time
+
+          attr_accessor destination_currency_code: String
+
+          attr_accessor nickname: String?
+
+          attr_accessor status: WhopSDK::Models::WithdrawalUpdatedWebhookEvent::Data::PayoutToken::status
+
+          def initialize: (
+            id: String,
+            created_at: Time,
+            destination_currency_code: String,
+            nickname: String?,
+            status: WhopSDK::Models::WithdrawalUpdatedWebhookEvent::Data::PayoutToken::status
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            created_at: Time,
+            destination_currency_code: String,
+            nickname: String?,
+            status: WhopSDK::Models::WithdrawalUpdatedWebhookEvent::Data::PayoutToken::status
+          }
+
+          type status = :created | :active | :broken
+
+          module Status
+            extend WhopSDK::Internal::Type::Enum
+
+            CREATED: :created
+            ACTIVE: :active
+            BROKEN: :broken
+
+            def self?.values: -> ::Array[WhopSDK::Models::WithdrawalUpdatedWebhookEvent::Data::PayoutToken::status]
+          end
+        end
+      end
+    end
+  end
+end

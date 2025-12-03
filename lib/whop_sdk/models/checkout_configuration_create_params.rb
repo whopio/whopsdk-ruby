@@ -194,6 +194,12 @@ module WhopSDK
         #   @return [Float, nil]
         optional :renewal_price, Float, nil?: true
 
+        # @!attribute split_pay_required_payments
+        #   The number of payments required before pausing the subscription.
+        #
+        #   @return [Integer, nil]
+        optional :split_pay_required_payments, Integer, nil?: true
+
         # @!attribute title
         #   The title of the plan. This will be visible on the product page to customers.
         #
@@ -212,7 +218,7 @@ module WhopSDK
         #   @return [Symbol, WhopSDK::Models::Visibility, nil]
         optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-        # @!method initialize(company_id:, currency:, billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, force_create_new_plan: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, product: nil, product_id: nil, release_method: nil, renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil)
+        # @!method initialize(company_id:, currency:, billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, force_create_new_plan: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, product: nil, product_id: nil, release_method: nil, renewal_price: nil, split_pay_required_payments: nil, title: nil, trial_period_days: nil, visibility: nil)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan} for more details.
         #
@@ -251,6 +257,8 @@ module WhopSDK
         #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod, nil] The methods of how a plan can be released.
         #
         #   @param renewal_price [Float, nil] The amount the customer is charged every billing period.
+        #
+        #   @param split_pay_required_payments [Integer, nil] The number of payments required before pausing the subscription.
         #
         #   @param title [String, nil] The title of the plan. This will be visible on the product page to customers.
         #

@@ -17,6 +17,7 @@ module WhopSDK
         ?plan_type: WhopSDK::Models::plan_type?,
         ?release_method: WhopSDK::Models::release_method?,
         ?renewal_price: Float?,
+        ?split_pay_required_payments: Integer?,
         ?stock: Integer?,
         ?title: String?,
         ?trial_period_days: Integer?,

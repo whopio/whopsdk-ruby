@@ -21,6 +21,7 @@ module WhopSDK
         purchase_url: String,
         release_method: WhopSDK::Models::release_method,
         renewal_price: Float,
+        split_pay_required_payments: Integer?,
         stock: Integer?,
         tax_type: WhopSDK::Models::tax_type,
         title: String?,
@@ -69,6 +70,8 @@ module WhopSDK
 
       attr_accessor renewal_price: Float
 
+      attr_accessor split_pay_required_payments: Integer?
+
       attr_accessor stock: Integer?
 
       attr_accessor tax_type: WhopSDK::Models::tax_type
@@ -103,6 +106,7 @@ module WhopSDK
         purchase_url: String,
         release_method: WhopSDK::Models::release_method,
         renewal_price: Float,
+        split_pay_required_payments: Integer?,
         stock: Integer?,
         tax_type: WhopSDK::Models::tax_type,
         title: String?,
@@ -132,6 +136,7 @@ module WhopSDK
         purchase_url: String,
         release_method: WhopSDK::Models::release_method,
         renewal_price: Float,
+        split_pay_required_payments: Integer?,
         stock: Integer?,
         tax_type: WhopSDK::Models::tax_type,
         title: String?,

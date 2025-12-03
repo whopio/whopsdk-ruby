@@ -18,12 +18,16 @@ class WhopSDK::Test::Resources::WithdrawalsTest < WhopSDK::Test::ResourceTest
         amount: Float,
         created_at: Time,
         currency: WhopSDK::Currency,
+        error_code: WhopSDK::Models::WithdrawalRetrieveResponse::ErrorCode | nil,
+        error_message: String | nil,
+        estimated_availability: Time | nil,
         fee_amount: Float,
         fee_type: WhopSDK::WithdrawalFeeTypes | nil,
-        latest_payout: WhopSDK::Models::WithdrawalRetrieveResponse::LatestPayout | nil,
+        ledger_account: WhopSDK::Models::WithdrawalRetrieveResponse::LedgerAccount,
         payout_token: WhopSDK::Models::WithdrawalRetrieveResponse::PayoutToken | nil,
         speed: WhopSDK::WithdrawalSpeeds,
         status: WhopSDK::WithdrawalStatus,
+        trace_code: String | nil,
         withdrawal_type: WhopSDK::WithdrawalTypes
       }
     end

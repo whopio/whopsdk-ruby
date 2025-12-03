@@ -19,6 +19,8 @@ module WhopSDK
             WhopSDK::SetupIntentRequiresActionWebhookEvent,
             WhopSDK::SetupIntentSucceededWebhookEvent,
             WhopSDK::SetupIntentCanceledWebhookEvent,
+            WhopSDK::WithdrawalCreatedWebhookEvent,
+            WhopSDK::WithdrawalUpdatedWebhookEvent,
             WhopSDK::CourseLessonInteractionCompletedWebhookEvent,
             WhopSDK::PaymentSucceededWebhookEvent,
             WhopSDK::PaymentFailedWebhookEvent,

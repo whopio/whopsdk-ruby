@@ -108,6 +108,12 @@ module WhopSDK
       #   @return [Float]
       required :renewal_price, Float
 
+      # @!attribute split_pay_required_payments
+      #   The number of payments required before pausing the subscription.
+      #
+      #   @return [Integer, nil]
+      required :split_pay_required_payments, Integer, nil?: true
+
       # @!attribute stock
       #   The number of units available for purchase. Only displayed to authorized actors
       #
@@ -144,7 +150,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility]
       required :visibility, enum: -> { WhopSDK::Visibility }
 
-      # @!method initialize(id:, billing_period:, company:, created_at:, currency:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, payment_method_configuration:, plan_type:, product:, purchase_url:, release_method:, renewal_price:, stock:, title:, trial_period_days:, unlimited_stock:, updated_at:, visibility:)
+      # @!method initialize(id:, billing_period:, company:, created_at:, currency:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, payment_method_configuration:, plan_type:, product:, purchase_url:, release_method:, renewal_price:, split_pay_required_payments:, stock:, title:, trial_period_days:, unlimited_stock:, updated_at:, visibility:)
       #   A plan for an product. Plans define the core parameters that define a checkout
       #   and payment on whop. Use plans to create different ways to price your products
       #   (Eg renewal / one_time)
@@ -182,6 +188,8 @@ module WhopSDK
       #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod] This is the release method the business uses to sell this plan.
       #
       #   @param renewal_price [Float] The price a person has to pay for a plan on the renewal purchase.
+      #
+      #   @param split_pay_required_payments [Integer, nil] The number of payments required before pausing the subscription.
       #
       #   @param stock [Integer, nil] The number of units available for purchase. Only displayed to authorized actors
       #

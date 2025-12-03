@@ -98,6 +98,10 @@ module WhopSDK
       sig { returns(Float) }
       attr_accessor :renewal_price
 
+      # The number of payments required before pausing the subscription.
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :split_pay_required_payments
+
       # The number of units available for purchase. Only displayed to authorized actors
       sig { returns(T.nilable(Integer)) }
       attr_accessor :stock
@@ -151,6 +155,7 @@ module WhopSDK
           purchase_url: String,
           release_method: WhopSDK::ReleaseMethod::OrSymbol,
           renewal_price: Float,
+          split_pay_required_payments: T.nilable(Integer),
           stock: T.nilable(Integer),
           tax_type: WhopSDK::TaxType::OrSymbol,
           title: T.nilable(String),
@@ -199,6 +204,8 @@ module WhopSDK
         release_method:,
         # The price a person has to pay for a plan on the renewal purchase.
         renewal_price:,
+        # The number of payments required before pausing the subscription.
+        split_pay_required_payments:,
         # The number of units available for purchase. Only displayed to authorized actors
         stock:,
         # The tax type for the plan.
@@ -239,6 +246,7 @@ module WhopSDK
             purchase_url: String,
             release_method: WhopSDK::ReleaseMethod::TaggedSymbol,
             renewal_price: Float,
+            split_pay_required_payments: T.nilable(Integer),
             stock: T.nilable(Integer),
             tax_type: WhopSDK::TaxType::TaggedSymbol,
             title: T.nilable(String),

@@ -471,6 +471,8 @@ module WhopSDK
 
   module WhoCanReact = WhopSDK::Models::WhoCanReact
 
+  class WithdrawalCreatedWebhookEvent = WhopSDK::Models::WithdrawalCreatedWebhookEvent
+
   module WithdrawalFeeTypes = WhopSDK::Models::WithdrawalFeeTypes
 
   class WithdrawalListParams = WhopSDK::Models::WithdrawalListParams
@@ -482,4 +484,6 @@ module WhopSDK
   module WithdrawalStatus = WhopSDK::Models::WithdrawalStatus
 
   module WithdrawalTypes = WhopSDK::Models::WithdrawalTypes
+
+  class WithdrawalUpdatedWebhookEvent = WhopSDK::Models::WithdrawalUpdatedWebhookEvent
 end

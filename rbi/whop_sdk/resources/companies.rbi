@@ -49,6 +49,38 @@ module WhopSDK
       )
       end
 
+      # Update an existing company. Either a regular company, platform company, or one
+      # of a platform's connected accounts
+      #
+      # Required permissions:
+      #
+      # - `company:update`
+      # - `company:basic:read`
+      sig do
+        params(
+          id: String,
+          logo:
+            T.nilable(
+              T.any(
+                WhopSDK::CompanyUpdateParams::Logo::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::CompanyUpdateParams::Logo::AttachmentInputWithID::OrHash
+              )
+            ),
+          title: T.nilable(String),
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::Company)
+      end
+      def update(
+        # The ID of the company to update
+        id,
+        # The logo for the company in png, jpeg, or gif format
+        logo: nil,
+        # The title of the company
+        title: nil,
+        request_options: {}
+      )
+      end
+
       # Lists companies the current user has access to
       #
       # Required permissions:

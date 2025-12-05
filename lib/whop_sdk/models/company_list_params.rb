@@ -8,7 +8,7 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute parent_company_id
-      #   The ID of the parent company to list sub companies for
+      #   The ID of the parent company to list connected accounts for
       #
       #   @return [String]
       required :parent_company_id, String
@@ -56,7 +56,7 @@ module WhopSDK
       optional :last, Integer, nil?: true
 
       # @!method initialize(parent_company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, request_options: {})
-      #   @param parent_company_id [String] The ID of the parent company to list sub companies for
+      #   @param parent_company_id [String] The ID of the parent company to list connected accounts for
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #

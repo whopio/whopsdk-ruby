@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class Companies
-      # Create a new sub company for your platform
+      # Create a new connected account for your platform
       #
       # Required permissions:
       #
@@ -70,7 +70,7 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the parent company to list sub companies for
+        # The ID of the parent company to list connected accounts for
         parent_company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,

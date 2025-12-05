@@ -84,6 +84,8 @@ module WhopSDK
 
   CompanyRetrieveParams = WhopSDK::Models::CompanyRetrieveParams
 
+  CompanyUpdateParams = WhopSDK::Models::CompanyUpdateParams
+
   Course = WhopSDK::Models::Course
 
   CourseChapter = WhopSDK::Models::CourseChapter

@@ -63,6 +63,36 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
     end
   end
 
+  def test_update
+    skip("Prism tests are disabled")
+
+    response = @whop.companies.update("biz_xxxxxxxxxxxxxx")
+
+    assert_pattern do
+      response => WhopSDK::Company
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        business_type: WhopSDK::BusinessTypes | nil,
+        created_at: Time,
+        description: String | nil,
+        industry_type: WhopSDK::IndustryTypes | nil,
+        logo: WhopSDK::Company::Logo | nil,
+        member_count: Integer,
+        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
+        owner_user: WhopSDK::Company::OwnerUser,
+        published_reviews_count: Integer,
+        route: String,
+        social_links: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Company::SocialLink]),
+        title: String,
+        updated_at: Time,
+        verified: WhopSDK::Internal::Type::Boolean
+      }
+    end
+  end
+
   def test_list_required_params
     skip("Prism tests are disabled")
 

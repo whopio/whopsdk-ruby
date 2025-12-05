@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::CompanyListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the parent company to list sub companies for
+      # The ID of the parent company to list connected accounts for
       sig { returns(String) }
       attr_accessor :parent_company_id
 
@@ -57,7 +57,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the parent company to list sub companies for
+        # The ID of the parent company to list connected accounts for
         parent_company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,

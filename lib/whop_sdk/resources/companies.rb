@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class Companies
-      # Create a new sub company for your platform
+      # Create a new connected account for your platform
       #
       # Required permissions:
       #
@@ -60,6 +60,38 @@ module WhopSDK
         )
       end
 
+      # Update an existing company. Either a regular company, platform company, or one
+      # of a platform's connected accounts
+      #
+      # Required permissions:
+      #
+      # - `company:update`
+      # - `company:basic:read`
+      #
+      # @overload update(id, logo: nil, title: nil, request_options: {})
+      #
+      # @param id [String] The ID of the company to update
+      #
+      # @param logo [WhopSDK::Models::CompanyUpdateParams::Logo::AttachmentInputWithDirectUploadID, WhopSDK::Models::CompanyUpdateParams::Logo::AttachmentInputWithID, nil] The logo for the company in png, jpeg, or gif format
+      #
+      # @param title [String, nil] The title of the company
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::Company]
+      #
+      # @see WhopSDK::Models::CompanyUpdateParams
+      def update(id, params = {})
+        parsed, options = WhopSDK::CompanyUpdateParams.dump_request(params)
+        @client.request(
+          method: :patch,
+          path: ["companies/%1$s", id],
+          body: parsed,
+          model: WhopSDK::Company,
+          options: options
+        )
+      end
+
       # Lists companies the current user has access to
       #
       # Required permissions:
@@ -68,7 +100,7 @@ module WhopSDK
       #
       # @overload list(parent_company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, request_options: {})
       #
-      # @param parent_company_id [String] The ID of the parent company to list sub companies for
+      # @param parent_company_id [String] The ID of the parent company to list connected accounts for
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #

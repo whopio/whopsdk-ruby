@@ -27,12 +27,20 @@ module WhopSDK
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
+      # Whether Whop sends transactional emails to customers on behalf of this company.
+      # Includes: order confirmations, payment failures, refund notifications, upcoming
+      # renewals, and membership cancelations/expirations. When disabled, the platform
+      # is responsible for handling these communications.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :send_customer_emails
+
       sig do
         params(
           email: String,
           parent_company_id: String,
           title: String,
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
+          send_customer_emails: T.nilable(T::Boolean),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -45,6 +53,11 @@ module WhopSDK
         title:,
         # Additional metadata for the account
         metadata: nil,
+        # Whether Whop sends transactional emails to customers on behalf of this company.
+        # Includes: order confirmations, payment failures, refund notifications, upcoming
+        # renewals, and membership cancelations/expirations. When disabled, the platform
+        # is responsible for handling these communications.
+        send_customer_emails: nil,
         request_options: {}
       )
       end
@@ -56,6 +69,7 @@ module WhopSDK
             parent_company_id: String,
             title: String,
             metadata: T.nilable(T::Hash[Symbol, T.anything]),
+            send_customer_emails: T.nilable(T::Boolean),
             request_options: WhopSDK::RequestOptions
           }
         )

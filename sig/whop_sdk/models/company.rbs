@@ -13,6 +13,7 @@ module WhopSDK
         owner_user: WhopSDK::Company::OwnerUser,
         published_reviews_count: Integer,
         route: String,
+        send_customer_emails: bool,
         social_links: ::Array[WhopSDK::Company::SocialLink],
         title: String,
         updated_at: Time,
@@ -42,6 +43,8 @@ module WhopSDK
 
       attr_accessor route: String
 
+      attr_accessor send_customer_emails: bool
+
       attr_accessor social_links: ::Array[WhopSDK::Company::SocialLink]
 
       attr_accessor title: String
@@ -62,6 +65,7 @@ module WhopSDK
         owner_user: WhopSDK::Company::OwnerUser,
         published_reviews_count: Integer,
         route: String,
+        send_customer_emails: bool,
         social_links: ::Array[WhopSDK::Company::SocialLink],
         title: String,
         updated_at: Time,
@@ -80,6 +84,7 @@ module WhopSDK
         owner_user: WhopSDK::Company::OwnerUser,
         published_reviews_count: Integer,
         route: String,
+        send_customer_emails: bool,
         social_links: ::Array[WhopSDK::Company::SocialLink],
         title: String,
         updated_at: Time,

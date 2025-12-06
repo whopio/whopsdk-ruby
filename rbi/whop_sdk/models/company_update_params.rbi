@@ -24,6 +24,13 @@ module WhopSDK
       end
       attr_accessor :logo
 
+      # Whether Whop sends transactional emails to customers on behalf of this company.
+      # Includes: order confirmations, payment failures, refund notifications, upcoming
+      # renewals, and membership cancelations/expirations. When disabled, the platform
+      # is responsible for handling these communications.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :send_customer_emails
+
       # The title of the company
       sig { returns(T.nilable(String)) }
       attr_accessor :title
@@ -37,6 +44,7 @@ module WhopSDK
                 WhopSDK::CompanyUpdateParams::Logo::AttachmentInputWithID::OrHash
               )
             ),
+          send_customer_emails: T.nilable(T::Boolean),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -44,6 +52,11 @@ module WhopSDK
       def self.new(
         # The logo for the company in png, jpeg, or gif format
         logo: nil,
+        # Whether Whop sends transactional emails to customers on behalf of this company.
+        # Includes: order confirmations, payment failures, refund notifications, upcoming
+        # renewals, and membership cancelations/expirations. When disabled, the platform
+        # is responsible for handling these communications.
+        send_customer_emails: nil,
         # The title of the company
         title: nil,
         request_options: {}
@@ -60,6 +73,7 @@ module WhopSDK
                   WhopSDK::CompanyUpdateParams::Logo::AttachmentInputWithID
                 )
               ),
+            send_customer_emails: T.nilable(T::Boolean),
             title: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }

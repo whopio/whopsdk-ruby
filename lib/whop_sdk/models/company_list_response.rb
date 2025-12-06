@@ -71,6 +71,12 @@ module WhopSDK
       #   @return [String]
       required :route, String
 
+      # @!attribute send_customer_emails
+      #   Whether Whop sends transactional emails to customers on behalf of this company.
+      #
+      #   @return [Boolean]
+      required :send_customer_emails, WhopSDK::Internal::Type::Boolean
+
       # @!attribute title
       #   The title of the company.
       #
@@ -89,7 +95,7 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, business_type:, created_at:, description:, industry_type:, logo:, member_count:, metadata:, owner_user:, published_reviews_count:, route:, title:, updated_at:, verified:)
+      # @!method initialize(id:, business_type:, created_at:, description:, industry_type:, logo:, member_count:, metadata:, owner_user:, published_reviews_count:, route:, send_customer_emails:, title:, updated_at:, verified:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CompanyListResponse} for more details.
       #
@@ -116,6 +122,8 @@ module WhopSDK
       #   @param published_reviews_count [Integer] The number of reviews that have been published for the company.
       #
       #   @param route [String] The slug/route of the company on the Whop site.
+      #
+      #   @param send_customer_emails [Boolean] Whether Whop sends transactional emails to customers on behalf of this company.
       #
       #   @param title [String] The title of the company.
       #

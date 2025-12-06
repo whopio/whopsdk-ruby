@@ -1,7 +1,11 @@
 module WhopSDK
   module Models
     type company_update_params =
-      { logo: WhopSDK::Models::CompanyUpdateParams::logo?, title: String? }
+      {
+        logo: WhopSDK::Models::CompanyUpdateParams::logo?,
+        send_customer_emails: bool?,
+        title: String?
+      }
       & WhopSDK::Internal::Type::request_parameters
 
     class CompanyUpdateParams < WhopSDK::Internal::Type::BaseModel
@@ -10,16 +14,20 @@ module WhopSDK
 
       attr_accessor logo: WhopSDK::Models::CompanyUpdateParams::logo?
 
+      attr_accessor send_customer_emails: bool?
+
       attr_accessor title: String?
 
       def initialize: (
         ?logo: WhopSDK::Models::CompanyUpdateParams::logo?,
+        ?send_customer_emails: bool?,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         logo: WhopSDK::Models::CompanyUpdateParams::logo?,
+        send_customer_emails: bool?,
         title: String?,
         request_options: WhopSDK::RequestOptions
       }

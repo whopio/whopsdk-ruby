@@ -13,14 +13,28 @@ module WhopSDK
       #   @return [WhopSDK::Models::CompanyUpdateParams::Logo::AttachmentInputWithDirectUploadID, WhopSDK::Models::CompanyUpdateParams::Logo::AttachmentInputWithID, nil]
       optional :logo, union: -> { WhopSDK::CompanyUpdateParams::Logo }, nil?: true
 
+      # @!attribute send_customer_emails
+      #   Whether Whop sends transactional emails to customers on behalf of this company.
+      #   Includes: order confirmations, payment failures, refund notifications, upcoming
+      #   renewals, and membership cancelations/expirations. When disabled, the platform
+      #   is responsible for handling these communications.
+      #
+      #   @return [Boolean, nil]
+      optional :send_customer_emails, WhopSDK::Internal::Type::Boolean, nil?: true
+
       # @!attribute title
       #   The title of the company
       #
       #   @return [String, nil]
       optional :title, String, nil?: true
 
-      # @!method initialize(logo: nil, title: nil, request_options: {})
+      # @!method initialize(logo: nil, send_customer_emails: nil, title: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::CompanyUpdateParams} for more details.
+      #
       #   @param logo [WhopSDK::Models::CompanyUpdateParams::Logo::AttachmentInputWithDirectUploadID, WhopSDK::Models::CompanyUpdateParams::Logo::AttachmentInputWithID, nil] The logo for the company in png, jpeg, or gif format
+      #
+      #   @param send_customer_emails [Boolean, nil] Whether Whop sends transactional emails to customers on behalf of this company.
       #
       #   @param title [String, nil] The title of the company
       #

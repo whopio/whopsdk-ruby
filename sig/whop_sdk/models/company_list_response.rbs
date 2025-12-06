@@ -13,6 +13,7 @@ module WhopSDK
         owner_user: WhopSDK::Models::CompanyListResponse::OwnerUser,
         published_reviews_count: Integer,
         route: String,
+        send_customer_emails: bool,
         title: String,
         updated_at: Time,
         verified: bool
@@ -41,6 +42,8 @@ module WhopSDK
 
       attr_accessor route: String
 
+      attr_accessor send_customer_emails: bool
+
       attr_accessor title: String
 
       attr_accessor updated_at: Time
@@ -59,6 +62,7 @@ module WhopSDK
         owner_user: WhopSDK::Models::CompanyListResponse::OwnerUser,
         published_reviews_count: Integer,
         route: String,
+        send_customer_emails: bool,
         title: String,
         updated_at: Time,
         verified: bool
@@ -76,6 +80,7 @@ module WhopSDK
         owner_user: WhopSDK::Models::CompanyListResponse::OwnerUser,
         published_reviews_count: Integer,
         route: String,
+        send_customer_emails: bool,
         title: String,
         updated_at: Time,
         verified: bool

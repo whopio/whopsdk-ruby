@@ -5,7 +5,8 @@ module WhopSDK
         email: String,
         parent_company_id: String,
         title: String,
-        metadata: ::Hash[Symbol, top]?
+        metadata: ::Hash[Symbol, top]?,
+        send_customer_emails: bool?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -21,11 +22,14 @@ module WhopSDK
 
       attr_accessor metadata: ::Hash[Symbol, top]?
 
+      attr_accessor send_customer_emails: bool?
+
       def initialize: (
         email: String,
         parent_company_id: String,
         title: String,
         ?metadata: ::Hash[Symbol, top]?,
+        ?send_customer_emails: bool?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -34,6 +38,7 @@ module WhopSDK
         parent_company_id: String,
         title: String,
         metadata: ::Hash[Symbol, top]?,
+        send_customer_emails: bool?,
         request_options: WhopSDK::RequestOptions
       }
     end

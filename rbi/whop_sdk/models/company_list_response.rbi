@@ -70,6 +70,10 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :route
 
+      # Whether Whop sends transactional emails to customers on behalf of this company.
+      sig { returns(T::Boolean) }
+      attr_accessor :send_customer_emails
+
       # The title of the company.
       sig { returns(String) }
       attr_accessor :title
@@ -96,6 +100,7 @@ module WhopSDK
           owner_user: WhopSDK::Models::CompanyListResponse::OwnerUser::OrHash,
           published_reviews_count: Integer,
           route: String,
+          send_customer_emails: T::Boolean,
           title: String,
           updated_at: Time,
           verified: T::Boolean
@@ -125,6 +130,8 @@ module WhopSDK
         published_reviews_count:,
         # The slug/route of the company on the Whop site.
         route:,
+        # Whether Whop sends transactional emails to customers on behalf of this company.
+        send_customer_emails:,
         # The title of the company.
         title:,
         # The time the company was last updated.
@@ -148,6 +155,7 @@ module WhopSDK
             owner_user: WhopSDK::Models::CompanyListResponse::OwnerUser,
             published_reviews_count: Integer,
             route: String,
+            send_customer_emails: T::Boolean,
             title: String,
             updated_at: Time,
             verified: T::Boolean

@@ -15,6 +15,7 @@ module WhopSDK
           parent_company_id: String,
           title: String,
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
+          send_customer_emails: T.nilable(T::Boolean),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Company)
       end
@@ -27,6 +28,11 @@ module WhopSDK
         title:,
         # Additional metadata for the account
         metadata: nil,
+        # Whether Whop sends transactional emails to customers on behalf of this company.
+        # Includes: order confirmations, payment failures, refund notifications, upcoming
+        # renewals, and membership cancelations/expirations. When disabled, the platform
+        # is responsible for handling these communications. This is defaulted to true.
+        send_customer_emails: nil,
         request_options: {}
       )
       end
@@ -66,6 +72,7 @@ module WhopSDK
                 WhopSDK::CompanyUpdateParams::Logo::AttachmentInputWithID::OrHash
               )
             ),
+          send_customer_emails: T.nilable(T::Boolean),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Company)
@@ -75,6 +82,11 @@ module WhopSDK
         id,
         # The logo for the company in png, jpeg, or gif format
         logo: nil,
+        # Whether Whop sends transactional emails to customers on behalf of this company.
+        # Includes: order confirmations, payment failures, refund notifications, upcoming
+        # renewals, and membership cancelations/expirations. When disabled, the platform
+        # is responsible for handling these communications.
+        send_customer_emails: nil,
         # The title of the company
         title: nil,
         request_options: {}

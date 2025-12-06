@@ -41,6 +41,14 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::WithdrawalFeeTypes, nil]
       required :fee_type, enum: -> { WhopSDK::WithdrawalFeeTypes }, nil?: true
 
+      # @!attribute markup_fee
+      #   The markup fee that was charged for the withdrawal. This is in the same currency
+      #   as the withdrawal amount. This only applies to platform accounts using Whop
+      #   Rails.
+      #
+      #   @return [Float]
+      required :markup_fee, Float
+
       # @!attribute speed
       #   The speed of the withdrawal.
       #
@@ -59,7 +67,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::WithdrawalTypes]
       required :withdrawal_type, enum: -> { WhopSDK::WithdrawalTypes }
 
-      # @!method initialize(id:, amount:, created_at:, currency:, fee_amount:, fee_type:, speed:, status:, withdrawal_type:)
+      # @!method initialize(id:, amount:, created_at:, currency:, fee_amount:, fee_type:, markup_fee:, speed:, status:, withdrawal_type:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::WithdrawalListResponse} for more details.
       #
@@ -76,6 +84,8 @@ module WhopSDK
       #   @param fee_amount [Float] The fee amount that was charged for the withdrawal. This is in the same currency
       #
       #   @param fee_type [Symbol, WhopSDK::Models::WithdrawalFeeTypes, nil] The different fee types for a withdrawal.
+      #
+      #   @param markup_fee [Float] The markup fee that was charged for the withdrawal. This is in the same currency
       #
       #   @param speed [Symbol, WhopSDK::Models::WithdrawalSpeeds] The speed of the withdrawal.
       #

@@ -139,6 +139,12 @@ module WhopSDK
         end
         attr_writer :ledger_account
 
+        # The markup fee that was charged for the withdrawal. This is in the same currency
+        # as the withdrawal amount. This only applies to platform accounts using Whop
+        # Rails.
+        sig { returns(Float) }
+        attr_accessor :markup_fee
+
         # The payout token used for the withdrawal, if applicable.
         sig do
           returns(
@@ -191,6 +197,7 @@ module WhopSDK
             fee_type: T.nilable(WhopSDK::WithdrawalFeeTypes::OrSymbol),
             ledger_account:
               WhopSDK::WithdrawalCreatedWebhookEvent::Data::LedgerAccount::OrHash,
+            markup_fee: Float,
             payout_token:
               T.nilable(
                 WhopSDK::WithdrawalCreatedWebhookEvent::Data::PayoutToken::OrHash
@@ -223,6 +230,10 @@ module WhopSDK
           fee_type:,
           # The ledger account associated with the withdrawal.
           ledger_account:,
+          # The markup fee that was charged for the withdrawal. This is in the same currency
+          # as the withdrawal amount. This only applies to platform accounts using Whop
+          # Rails.
+          markup_fee:,
           # The payout token used for the withdrawal, if applicable.
           payout_token:,
           # The speed of the withdrawal.
@@ -254,6 +265,7 @@ module WhopSDK
               fee_type: T.nilable(WhopSDK::WithdrawalFeeTypes::TaggedSymbol),
               ledger_account:
                 WhopSDK::WithdrawalCreatedWebhookEvent::Data::LedgerAccount,
+              markup_fee: Float,
               payout_token:
                 T.nilable(
                   WhopSDK::WithdrawalCreatedWebhookEvent::Data::PayoutToken

@@ -12,6 +12,7 @@ module WhopSDK
         fee_amount: Float,
         fee_type: WhopSDK::Models::withdrawal_fee_types?,
         ledger_account: WhopSDK::Models::WithdrawalRetrieveResponse::LedgerAccount,
+        markup_fee: Float,
         payout_token: WhopSDK::Models::WithdrawalRetrieveResponse::PayoutToken?,
         speed: WhopSDK::Models::withdrawal_speeds,
         status: WhopSDK::Models::withdrawal_status,
@@ -40,6 +41,8 @@ module WhopSDK
 
       attr_accessor ledger_account: WhopSDK::Models::WithdrawalRetrieveResponse::LedgerAccount
 
+      attr_accessor markup_fee: Float
+
       attr_accessor payout_token: WhopSDK::Models::WithdrawalRetrieveResponse::PayoutToken?
 
       attr_accessor speed: WhopSDK::Models::withdrawal_speeds
@@ -61,6 +64,7 @@ module WhopSDK
         fee_amount: Float,
         fee_type: WhopSDK::Models::withdrawal_fee_types?,
         ledger_account: WhopSDK::Models::WithdrawalRetrieveResponse::LedgerAccount,
+        markup_fee: Float,
         payout_token: WhopSDK::Models::WithdrawalRetrieveResponse::PayoutToken?,
         speed: WhopSDK::Models::withdrawal_speeds,
         status: WhopSDK::Models::withdrawal_status,
@@ -79,6 +83,7 @@ module WhopSDK
         fee_amount: Float,
         fee_type: WhopSDK::Models::withdrawal_fee_types?,
         ledger_account: WhopSDK::Models::WithdrawalRetrieveResponse::LedgerAccount,
+        markup_fee: Float,
         payout_token: WhopSDK::Models::WithdrawalRetrieveResponse::PayoutToken?,
         speed: WhopSDK::Models::withdrawal_speeds,
         status: WhopSDK::Models::withdrawal_status,

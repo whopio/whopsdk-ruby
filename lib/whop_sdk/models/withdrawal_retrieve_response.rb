@@ -65,6 +65,14 @@ module WhopSDK
       #   @return [WhopSDK::Models::WithdrawalRetrieveResponse::LedgerAccount]
       required :ledger_account, -> { WhopSDK::Models::WithdrawalRetrieveResponse::LedgerAccount }
 
+      # @!attribute markup_fee
+      #   The markup fee that was charged for the withdrawal. This is in the same currency
+      #   as the withdrawal amount. This only applies to platform accounts using Whop
+      #   Rails.
+      #
+      #   @return [Float]
+      required :markup_fee, Float
+
       # @!attribute payout_token
       #   The payout token used for the withdrawal, if applicable.
       #
@@ -96,7 +104,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::WithdrawalTypes]
       required :withdrawal_type, enum: -> { WhopSDK::WithdrawalTypes }
 
-      # @!method initialize(id:, amount:, created_at:, currency:, error_code:, error_message:, estimated_availability:, fee_amount:, fee_type:, ledger_account:, payout_token:, speed:, status:, trace_code:, withdrawal_type:)
+      # @!method initialize(id:, amount:, created_at:, currency:, error_code:, error_message:, estimated_availability:, fee_amount:, fee_type:, ledger_account:, markup_fee:, payout_token:, speed:, status:, trace_code:, withdrawal_type:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::WithdrawalRetrieveResponse} for more details.
       #
@@ -121,6 +129,8 @@ module WhopSDK
       #   @param fee_type [Symbol, WhopSDK::Models::WithdrawalFeeTypes, nil] The different fee types for a withdrawal.
       #
       #   @param ledger_account [WhopSDK::Models::WithdrawalRetrieveResponse::LedgerAccount] The ledger account associated with the withdrawal.
+      #
+      #   @param markup_fee [Float] The markup fee that was charged for the withdrawal. This is in the same currency
       #
       #   @param payout_token [WhopSDK::Models::WithdrawalRetrieveResponse::PayoutToken, nil] The payout token used for the withdrawal, if applicable.
       #

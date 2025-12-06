@@ -24,6 +24,7 @@ class WhopSDK::Test::Resources::WithdrawalsTest < WhopSDK::Test::ResourceTest
         fee_amount: Float,
         fee_type: WhopSDK::WithdrawalFeeTypes | nil,
         ledger_account: WhopSDK::Models::WithdrawalRetrieveResponse::LedgerAccount,
+        markup_fee: Float,
         payout_token: WhopSDK::Models::WithdrawalRetrieveResponse::PayoutToken | nil,
         speed: WhopSDK::WithdrawalSpeeds,
         status: WhopSDK::WithdrawalStatus,
@@ -57,6 +58,7 @@ class WhopSDK::Test::Resources::WithdrawalsTest < WhopSDK::Test::ResourceTest
         currency: WhopSDK::Currency,
         fee_amount: Float,
         fee_type: WhopSDK::WithdrawalFeeTypes | nil,
+        markup_fee: Float,
         speed: WhopSDK::WithdrawalSpeeds,
         status: WhopSDK::WithdrawalStatus,
         withdrawal_type: WhopSDK::WithdrawalTypes

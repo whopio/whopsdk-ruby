@@ -8,6 +8,7 @@ module WhopSDK
         currency: WhopSDK::Models::currency,
         fee_amount: Float,
         fee_type: WhopSDK::Models::withdrawal_fee_types?,
+        markup_fee: Float,
         speed: WhopSDK::Models::withdrawal_speeds,
         status: WhopSDK::Models::withdrawal_status,
         withdrawal_type: WhopSDK::Models::withdrawal_types
@@ -26,6 +27,8 @@ module WhopSDK
 
       attr_accessor fee_type: WhopSDK::Models::withdrawal_fee_types?
 
+      attr_accessor markup_fee: Float
+
       attr_accessor speed: WhopSDK::Models::withdrawal_speeds
 
       attr_accessor status: WhopSDK::Models::withdrawal_status
@@ -39,6 +42,7 @@ module WhopSDK
         currency: WhopSDK::Models::currency,
         fee_amount: Float,
         fee_type: WhopSDK::Models::withdrawal_fee_types?,
+        markup_fee: Float,
         speed: WhopSDK::Models::withdrawal_speeds,
         status: WhopSDK::Models::withdrawal_status,
         withdrawal_type: WhopSDK::Models::withdrawal_types
@@ -51,6 +55,7 @@ module WhopSDK
         currency: WhopSDK::Models::currency,
         fee_amount: Float,
         fee_type: WhopSDK::Models::withdrawal_fee_types?,
+        markup_fee: Float,
         speed: WhopSDK::Models::withdrawal_speeds,
         status: WhopSDK::Models::withdrawal_status,
         withdrawal_type: WhopSDK::Models::withdrawal_types

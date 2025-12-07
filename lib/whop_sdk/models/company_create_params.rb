@@ -31,7 +31,19 @@ module WhopSDK
       #   @return [Hash{Symbol=>Object}, nil]
       optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
-      # @!method initialize(email:, parent_company_id:, title:, metadata: nil, request_options: {})
+      # @!attribute send_customer_emails
+      #   Whether Whop sends transactional emails to customers on behalf of this company.
+      #   Includes: order confirmations, payment failures, refund notifications, upcoming
+      #   renewals, and membership cancelations/expirations. When disabled, the platform
+      #   is responsible for handling these communications. This is defaulted to true.
+      #
+      #   @return [Boolean, nil]
+      optional :send_customer_emails, WhopSDK::Internal::Type::Boolean, nil?: true
+
+      # @!method initialize(email:, parent_company_id:, title:, metadata: nil, send_customer_emails: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::CompanyCreateParams} for more details.
+      #
       #   @param email [String] The email of the user who the company will belong to.
       #
       #   @param parent_company_id [String] The company ID of the platform creating this company.
@@ -39,6 +51,8 @@ module WhopSDK
       #   @param title [String] The name of the company being created.
       #
       #   @param metadata [Hash{Symbol=>Object}, nil] Additional metadata for the account
+      #
+      #   @param send_customer_emails [Boolean, nil] Whether Whop sends transactional emails to customers on behalf of this company.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

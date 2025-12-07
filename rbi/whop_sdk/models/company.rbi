@@ -57,6 +57,10 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :route
 
+      # Whether Whop sends transactional emails to customers on behalf of this company.
+      sig { returns(T::Boolean) }
+      attr_accessor :send_customer_emails
+
       # The social media accounts of the company
       sig { returns(T::Array[WhopSDK::Company::SocialLink]) }
       attr_accessor :social_links
@@ -87,6 +91,7 @@ module WhopSDK
           owner_user: WhopSDK::Company::OwnerUser::OrHash,
           published_reviews_count: Integer,
           route: String,
+          send_customer_emails: T::Boolean,
           social_links: T::Array[WhopSDK::Company::SocialLink::OrHash],
           title: String,
           updated_at: Time,
@@ -117,6 +122,8 @@ module WhopSDK
         published_reviews_count:,
         # The slug/route of the company on the Whop site.
         route:,
+        # Whether Whop sends transactional emails to customers on behalf of this company.
+        send_customer_emails:,
         # The social media accounts of the company
         social_links:,
         # The title of the company.
@@ -142,6 +149,7 @@ module WhopSDK
             owner_user: WhopSDK::Company::OwnerUser,
             published_reviews_count: Integer,
             route: String,
+            send_customer_emails: T::Boolean,
             social_links: T::Array[WhopSDK::Company::SocialLink],
             title: String,
             updated_at: Time,

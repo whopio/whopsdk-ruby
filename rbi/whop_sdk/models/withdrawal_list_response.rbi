@@ -36,6 +36,12 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::WithdrawalFeeTypes::TaggedSymbol)) }
       attr_accessor :fee_type
 
+      # The markup fee that was charged for the withdrawal. This is in the same currency
+      # as the withdrawal amount. This only applies to platform accounts using Whop
+      # Rails.
+      sig { returns(Float) }
+      attr_accessor :markup_fee
+
       # The speed of the withdrawal.
       sig { returns(WhopSDK::WithdrawalSpeeds::TaggedSymbol) }
       attr_accessor :speed
@@ -57,6 +63,7 @@ module WhopSDK
           currency: WhopSDK::Currency::OrSymbol,
           fee_amount: Float,
           fee_type: T.nilable(WhopSDK::WithdrawalFeeTypes::OrSymbol),
+          markup_fee: Float,
           speed: WhopSDK::WithdrawalSpeeds::OrSymbol,
           status: WhopSDK::WithdrawalStatus::OrSymbol,
           withdrawal_type: WhopSDK::WithdrawalTypes::OrSymbol
@@ -76,6 +83,10 @@ module WhopSDK
         fee_amount:,
         # The different fee types for a withdrawal.
         fee_type:,
+        # The markup fee that was charged for the withdrawal. This is in the same currency
+        # as the withdrawal amount. This only applies to platform accounts using Whop
+        # Rails.
+        markup_fee:,
         # The speed of the withdrawal.
         speed:,
         # Status of the withdrawal.
@@ -94,6 +105,7 @@ module WhopSDK
             currency: WhopSDK::Currency::TaggedSymbol,
             fee_amount: Float,
             fee_type: T.nilable(WhopSDK::WithdrawalFeeTypes::TaggedSymbol),
+            markup_fee: Float,
             speed: WhopSDK::WithdrawalSpeeds::TaggedSymbol,
             status: WhopSDK::WithdrawalStatus::TaggedSymbol,
             withdrawal_type: WhopSDK::WithdrawalTypes::TaggedSymbol

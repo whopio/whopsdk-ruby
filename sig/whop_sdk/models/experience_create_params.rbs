@@ -1,7 +1,13 @@
 module WhopSDK
   module Models
     type experience_create_params =
-      { app_id: String, company_id: String, name: String?, section_id: String? }
+      {
+        app_id: String,
+        company_id: String,
+        is_public: bool?,
+        name: String?,
+        section_id: String?
+      }
       & WhopSDK::Internal::Type::request_parameters
 
     class ExperienceCreateParams < WhopSDK::Internal::Type::BaseModel
@@ -12,6 +18,8 @@ module WhopSDK
 
       attr_accessor company_id: String
 
+      attr_accessor is_public: bool?
+
       attr_accessor name: String?
 
       attr_accessor section_id: String?
@@ -19,6 +27,7 @@ module WhopSDK
       def initialize: (
         app_id: String,
         company_id: String,
+        ?is_public: bool?,
         ?name: String?,
         ?section_id: String?,
         ?request_options: WhopSDK::request_opts
@@ -27,6 +36,7 @@ module WhopSDK
       def to_hash: -> {
         app_id: String,
         company_id: String,
+        is_public: bool?,
         name: String?,
         section_id: String?,
         request_options: WhopSDK::RequestOptions

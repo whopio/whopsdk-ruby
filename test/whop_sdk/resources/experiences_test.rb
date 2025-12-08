@@ -19,6 +19,7 @@ class WhopSDK::Test::Resources::ExperiencesTest < WhopSDK::Test::ResourceTest
         company: WhopSDK::Experience::Company,
         created_at: Time,
         image: WhopSDK::Experience::Image | nil,
+        is_public: WhopSDK::Internal::Type::Boolean,
         name: String,
         order: String | nil,
         products: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Experience::Product])
@@ -42,6 +43,7 @@ class WhopSDK::Test::Resources::ExperiencesTest < WhopSDK::Test::ResourceTest
         company: WhopSDK::Experience::Company,
         created_at: Time,
         image: WhopSDK::Experience::Image | nil,
+        is_public: WhopSDK::Internal::Type::Boolean,
         name: String,
         order: String | nil,
         products: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Experience::Product])
@@ -65,6 +67,7 @@ class WhopSDK::Test::Resources::ExperiencesTest < WhopSDK::Test::ResourceTest
         company: WhopSDK::Experience::Company,
         created_at: Time,
         image: WhopSDK::Experience::Image | nil,
+        is_public: WhopSDK::Internal::Type::Boolean,
         name: String,
         order: String | nil,
         products: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Experience::Product])
@@ -95,6 +98,7 @@ class WhopSDK::Test::Resources::ExperiencesTest < WhopSDK::Test::ResourceTest
         company: WhopSDK::Models::ExperienceListResponse::Company,
         created_at: Time,
         image: WhopSDK::Models::ExperienceListResponse::Image | nil,
+        is_public: WhopSDK::Internal::Type::Boolean,
         name: String,
         order: String | nil
       }
@@ -127,6 +131,7 @@ class WhopSDK::Test::Resources::ExperiencesTest < WhopSDK::Test::ResourceTest
         company: WhopSDK::Experience::Company,
         created_at: Time,
         image: WhopSDK::Experience::Image | nil,
+        is_public: WhopSDK::Internal::Type::Boolean,
         name: String,
         order: String | nil,
         products: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Experience::Product])
@@ -150,6 +155,7 @@ class WhopSDK::Test::Resources::ExperiencesTest < WhopSDK::Test::ResourceTest
         company: WhopSDK::Experience::Company,
         created_at: Time,
         image: WhopSDK::Experience::Image | nil,
+        is_public: WhopSDK::Internal::Type::Boolean,
         name: String,
         order: String | nil,
         products: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Experience::Product])
@@ -173,6 +179,7 @@ class WhopSDK::Test::Resources::ExperiencesTest < WhopSDK::Test::ResourceTest
         company: WhopSDK::Experience::Company,
         created_at: Time,
         image: WhopSDK::Experience::Image | nil,
+        is_public: WhopSDK::Internal::Type::Boolean,
         name: String,
         order: String | nil,
         products: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Experience::Product])

@@ -4,6 +4,7 @@ module WhopSDK
       def create: (
         app_id: String,
         company_id: String,
+        ?is_public: bool?,
         ?name: String?,
         ?section_id: String?,
         ?request_options: WhopSDK::request_opts
@@ -17,6 +18,7 @@ module WhopSDK
       def update: (
         String id,
         ?access_level: WhopSDK::Models::ExperienceUpdateParams::access_level?,
+        ?is_public: bool?,
         ?logo: WhopSDK::Models::ExperienceUpdateParams::logo?,
         ?name: String?,
         ?order: String?,

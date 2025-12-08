@@ -19,6 +19,10 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :company_id
 
+      # Whether the experience is publicly accessible
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :is_public
+
       # The name of the experience
       sig { returns(T.nilable(String)) }
       attr_accessor :name
@@ -31,6 +35,7 @@ module WhopSDK
         params(
           app_id: String,
           company_id: String,
+          is_public: T.nilable(T::Boolean),
           name: T.nilable(String),
           section_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -41,6 +46,8 @@ module WhopSDK
         app_id:,
         # The ID of the company to create the experience for
         company_id:,
+        # Whether the experience is publicly accessible
+        is_public: nil,
         # The name of the experience
         name: nil,
         # The ID of the section to create the experience in
@@ -54,6 +61,7 @@ module WhopSDK
           {
             app_id: String,
             company_id: String,
+            is_public: T.nilable(T::Boolean),
             name: T.nilable(String),
             section_id: T.nilable(String),
             request_options: WhopSDK::RequestOptions

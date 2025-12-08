@@ -16,7 +16,7 @@ module WhopSDK
       # - `access_pass:update`
       # - `checkout_configuration:basic:read`
       #
-      # @overload create(plan:, plan_id:, company_id:, affiliate_code: nil, metadata: nil, payment_method_configuration: nil, redirect_url: nil, mode: :setup, request_options: {})
+      # @overload create(plan:, plan_id:, company_id:, affiliate_code: nil, currency: nil, metadata: nil, payment_method_configuration: nil, redirect_url: nil, mode: :setup, request_options: {})
       #
       # @param plan [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan] Pass this object to create a new plan for this checkout configuration
       #
@@ -25,6 +25,8 @@ module WhopSDK
       # @param company_id [String] The ID of the company for which to generate the checkout configuration. Only req
       #
       # @param affiliate_code [String, nil] The affiliate code to use for the checkout configuration
+      #
+      # @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #
       # @param metadata [Hash{Symbol=>Object}, nil] The metadata to use for the checkout configuration
       #

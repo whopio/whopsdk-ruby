@@ -5,6 +5,7 @@ module WhopSDK
         id: String,
         affiliate_code: String?,
         company_id: String,
+        currency: WhopSDK::Models::currency?,
         metadata: ::Hash[Symbol, top]?,
         mode: WhopSDK::Models::checkout_modes,
         payment_method_configuration: WhopSDK::Models::CheckoutConfigurationListResponse::PaymentMethodConfiguration?,
@@ -19,6 +20,8 @@ module WhopSDK
       attr_accessor affiliate_code: String?
 
       attr_accessor company_id: String
+
+      attr_accessor currency: WhopSDK::Models::currency?
 
       attr_accessor metadata: ::Hash[Symbol, top]?
 
@@ -36,6 +39,7 @@ module WhopSDK
         id: String,
         affiliate_code: String?,
         company_id: String,
+        currency: WhopSDK::Models::currency?,
         metadata: ::Hash[Symbol, top]?,
         mode: WhopSDK::Models::checkout_modes,
         payment_method_configuration: WhopSDK::Models::CheckoutConfigurationListResponse::PaymentMethodConfiguration?,
@@ -48,6 +52,7 @@ module WhopSDK
         id: String,
         affiliate_code: String?,
         company_id: String,
+        currency: WhopSDK::Models::currency?,
         metadata: ::Hash[Symbol, top]?,
         mode: WhopSDK::Models::checkout_modes,
         payment_method_configuration: WhopSDK::Models::CheckoutConfigurationListResponse::PaymentMethodConfiguration?,

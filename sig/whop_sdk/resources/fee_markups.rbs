@@ -1,0 +1,28 @@
+module WhopSDK
+  module Resources
+    class FeeMarkups
+      def create: (
+        company_id: String,
+        fee_type: WhopSDK::Models::fee_markup_type,
+        ?fixed_fee_usd: Float?,
+        ?metadata: ::Hash[Symbol, top]?,
+        ?notes: String?,
+        ?percentage_fee: Float?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::FeeMarkupCreateResponse
+
+      def list: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::FeeMarkupListResponse]
+
+      def delete: (String id, ?request_options: WhopSDK::request_opts) -> bool
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

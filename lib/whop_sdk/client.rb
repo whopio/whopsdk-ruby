@@ -141,6 +141,9 @@ module WhopSDK
     # @return [WhopSDK::Resources::PaymentMethods]
     attr_reader :payment_methods
 
+    # @return [WhopSDK::Resources::FeeMarkups]
+    attr_reader :fee_markups
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -237,6 +240,7 @@ module WhopSDK
       @account_links = WhopSDK::Resources::AccountLinks.new(client: self)
       @setup_intents = WhopSDK::Resources::SetupIntents.new(client: self)
       @payment_methods = WhopSDK::Resources::PaymentMethods.new(client: self)
+      @fee_markups = WhopSDK::Resources::FeeMarkups.new(client: self)
     end
   end
 end

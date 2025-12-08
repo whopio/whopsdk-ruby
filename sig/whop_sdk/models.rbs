@@ -203,6 +203,14 @@ module WhopSDK
 
   class ExperienceUpdateParams = WhopSDK::Models::ExperienceUpdateParams
 
+  class FeeMarkupCreateParams = WhopSDK::Models::FeeMarkupCreateParams
+
+  class FeeMarkupDeleteParams = WhopSDK::Models::FeeMarkupDeleteParams
+
+  class FeeMarkupListParams = WhopSDK::Models::FeeMarkupListParams
+
+  module FeeMarkupType = WhopSDK::Models::FeeMarkupType
+
   class Forum = WhopSDK::Models::Forum
 
   class ForumListParams = WhopSDK::Models::ForumListParams

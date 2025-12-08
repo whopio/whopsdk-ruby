@@ -3,6 +3,7 @@ module WhopSDK
     type experience_update_params =
       {
         access_level: WhopSDK::Models::ExperienceUpdateParams::access_level?,
+        is_public: bool?,
         logo: WhopSDK::Models::ExperienceUpdateParams::logo?,
         name: String?,
         order: String?,
@@ -16,6 +17,8 @@ module WhopSDK
 
       attr_accessor access_level: WhopSDK::Models::ExperienceUpdateParams::access_level?
 
+      attr_accessor is_public: bool?
+
       attr_accessor logo: WhopSDK::Models::ExperienceUpdateParams::logo?
 
       attr_accessor name: String?
@@ -26,6 +29,7 @@ module WhopSDK
 
       def initialize: (
         ?access_level: WhopSDK::Models::ExperienceUpdateParams::access_level?,
+        ?is_public: bool?,
         ?logo: WhopSDK::Models::ExperienceUpdateParams::logo?,
         ?name: String?,
         ?order: String?,
@@ -35,6 +39,7 @@ module WhopSDK
 
       def to_hash: -> {
         access_level: WhopSDK::Models::ExperienceUpdateParams::access_level?,
+        is_public: bool?,
         logo: WhopSDK::Models::ExperienceUpdateParams::logo?,
         name: String?,
         order: String?,

@@ -34,6 +34,12 @@ module WhopSDK
       #   @return [WhopSDK::Models::ExperienceListResponse::Image, nil]
       required :image, -> { WhopSDK::Models::ExperienceListResponse::Image }, nil?: true
 
+      # @!attribute is_public
+      #   Whether the experience is visible to the public
+      #
+      #   @return [Boolean]
+      required :is_public, WhopSDK::Internal::Type::Boolean
+
       # @!attribute name
       #   The written name of the description.
       #
@@ -46,7 +52,7 @@ module WhopSDK
       #   @return [String, nil]
       required :order, String, nil?: true
 
-      # @!method initialize(id:, app:, company:, created_at:, image:, name:, order:)
+      # @!method initialize(id:, app:, company:, created_at:, image:, is_public:, name:, order:)
       #   An object representing an experience belonging to a company.
       #
       #   @param id [String] The unique ID representing this experience
@@ -58,6 +64,8 @@ module WhopSDK
       #   @param created_at [Time] The timestamp of when this experience was created.
       #
       #   @param image [WhopSDK::Models::ExperienceListResponse::Image, nil] The logo for the experience.
+      #
+      #   @param is_public [Boolean] Whether the experience is visible to the public
       #
       #   @param name [String] The written name of the description.
       #

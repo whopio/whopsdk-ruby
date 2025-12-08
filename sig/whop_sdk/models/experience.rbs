@@ -7,6 +7,7 @@ module WhopSDK
         company: WhopSDK::Experience::Company,
         created_at: Time,
         image: WhopSDK::Experience::Image?,
+        is_public: bool,
         name: String,
         order: String?,
         products: ::Array[WhopSDK::Experience::Product]
@@ -23,6 +24,8 @@ module WhopSDK
 
       attr_accessor image: WhopSDK::Experience::Image?
 
+      attr_accessor is_public: bool
+
       attr_accessor name: String
 
       attr_accessor order: String?
@@ -35,6 +38,7 @@ module WhopSDK
         company: WhopSDK::Experience::Company,
         created_at: Time,
         image: WhopSDK::Experience::Image?,
+        is_public: bool,
         name: String,
         order: String?,
         products: ::Array[WhopSDK::Experience::Product]
@@ -46,6 +50,7 @@ module WhopSDK
         company: WhopSDK::Experience::Company,
         created_at: Time,
         image: WhopSDK::Experience::Image?,
+        is_public: bool,
         name: String,
         order: String?,
         products: ::Array[WhopSDK::Experience::Product]

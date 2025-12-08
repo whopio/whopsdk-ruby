@@ -35,6 +35,10 @@ module WhopSDK
       sig { params(image: T.nilable(WhopSDK::Experience::Image::OrHash)).void }
       attr_writer :image
 
+      # Whether the experience is visible to the public
+      sig { returns(T::Boolean) }
+      attr_accessor :is_public
+
       # The written name of the description.
       sig { returns(String) }
       attr_accessor :name
@@ -57,6 +61,7 @@ module WhopSDK
           company: WhopSDK::Experience::Company::OrHash,
           created_at: Time,
           image: T.nilable(WhopSDK::Experience::Image::OrHash),
+          is_public: T::Boolean,
           name: String,
           order: T.nilable(String),
           products: T::Array[WhopSDK::Experience::Product::OrHash]
@@ -73,6 +78,8 @@ module WhopSDK
         created_at:,
         # The logo for the experience.
         image:,
+        # Whether the experience is visible to the public
+        is_public:,
         # The written name of the description.
         name:,
         # The order of the experience in the section
@@ -92,6 +99,7 @@ module WhopSDK
             company: WhopSDK::Experience::Company,
             created_at: Time,
             image: T.nilable(WhopSDK::Experience::Image),
+            is_public: T::Boolean,
             name: String,
             order: T.nilable(String),
             products: T::Array[WhopSDK::Experience::Product]

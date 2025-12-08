@@ -10,6 +10,7 @@ module WhopSDK
         params(
           app_id: String,
           company_id: String,
+          is_public: T.nilable(T::Boolean),
           name: T.nilable(String),
           section_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -20,6 +21,8 @@ module WhopSDK
         app_id:,
         # The ID of the company to create the experience for
         company_id:,
+        # Whether the experience is publicly accessible
+        is_public: nil,
         # The name of the experience
         name: nil,
         # The ID of the section to create the experience in
@@ -50,6 +53,7 @@ module WhopSDK
           id: String,
           access_level:
             T.nilable(WhopSDK::ExperienceUpdateParams::AccessLevel::OrSymbol),
+          is_public: T.nilable(T::Boolean),
           logo:
             T.nilable(
               T.any(
@@ -68,6 +72,8 @@ module WhopSDK
         id,
         # The different access levels for experiences (PUBLIC IS NEVER USED ANYMORE).
         access_level: nil,
+        # Whether the experience is publicly accessible.
+        is_public: nil,
         # The logo for the experience
         logo: nil,
         # The name of the experience.

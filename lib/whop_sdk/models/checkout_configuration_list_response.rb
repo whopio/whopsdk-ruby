@@ -22,6 +22,12 @@ module WhopSDK
       #   @return [String]
       required :company_id, String
 
+      # @!attribute currency
+      #   The available currencies on the platform
+      #
+      #   @return [Symbol, WhopSDK::Models::Currency, nil]
+      required :currency, enum: -> { WhopSDK::Currency }, nil?: true
+
       # @!attribute metadata
       #   The metadata to use for the checkout configuration
       #
@@ -63,7 +69,7 @@ module WhopSDK
       #   @return [String, nil]
       required :redirect_url, String, nil?: true
 
-      # @!method initialize(id:, affiliate_code:, company_id:, metadata:, mode:, payment_method_configuration:, plan:, purchase_url:, redirect_url:)
+      # @!method initialize(id:, affiliate_code:, company_id:, currency:, metadata:, mode:, payment_method_configuration:, plan:, purchase_url:, redirect_url:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CheckoutConfigurationListResponse} for more details.
       #
@@ -77,6 +83,8 @@ module WhopSDK
       #   @param affiliate_code [String, nil] The affiliate code to use for the checkout configuration
       #
       #   @param company_id [String] The ID of the company to use for the checkout configuration
+      #
+      #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #
       #   @param metadata [Hash{Symbol=>Object}, nil] The metadata to use for the checkout configuration
       #

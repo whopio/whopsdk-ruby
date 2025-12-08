@@ -20,6 +20,10 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :company_id
 
+      # The available currencies on the platform
+      sig { returns(T.nilable(WhopSDK::Currency::TaggedSymbol)) }
+      attr_accessor :currency
+
       # The metadata to use for the checkout configuration
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
@@ -78,6 +82,7 @@ module WhopSDK
           id: String,
           affiliate_code: T.nilable(String),
           company_id: String,
+          currency: T.nilable(WhopSDK::Currency::OrSymbol),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
           mode: WhopSDK::CheckoutModes::OrSymbol,
           payment_method_configuration:
@@ -96,6 +101,8 @@ module WhopSDK
         affiliate_code:,
         # The ID of the company to use for the checkout configuration
         company_id:,
+        # The available currencies on the platform
+        currency:,
         # The metadata to use for the checkout configuration
         metadata:,
         # The mode of the checkout session.
@@ -120,6 +127,7 @@ module WhopSDK
             id: String,
             affiliate_code: T.nilable(String),
             company_id: String,
+            currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
             metadata: T.nilable(T::Hash[Symbol, T.anything]),
             mode: WhopSDK::CheckoutModes::TaggedSymbol,
             payment_method_configuration:

@@ -4,6 +4,7 @@ module WhopSDK
       {
         plan: WhopSDK::CheckoutConfigurationCreateParams::Plan,
         affiliate_code: String?,
+        currency: WhopSDK::Models::currency?,
         metadata: ::Hash[Symbol, top]?,
         mode: :setup,
         payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration?,
@@ -20,6 +21,8 @@ module WhopSDK
       attr_accessor plan: WhopSDK::CheckoutConfigurationCreateParams::Plan
 
       attr_accessor affiliate_code: String?
+
+      attr_accessor currency: WhopSDK::Models::currency?
 
       attr_accessor metadata: ::Hash[Symbol, top]?
 
@@ -38,6 +41,7 @@ module WhopSDK
         plan_id: String,
         company_id: String,
         ?affiliate_code: String?,
+        ?currency: WhopSDK::Models::currency?,
         ?metadata: ::Hash[Symbol, top]?,
         ?payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration?,
         ?redirect_url: String?,
@@ -48,6 +52,7 @@ module WhopSDK
       def to_hash: -> {
         plan: WhopSDK::CheckoutConfigurationCreateParams::Plan,
         affiliate_code: String?,
+        currency: WhopSDK::Models::currency?,
         metadata: ::Hash[Symbol, top]?,
         mode: :setup,
         payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration?,

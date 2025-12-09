@@ -244,6 +244,14 @@ module WhopSDK
 
   ExperienceUpdateParams = WhopSDK::Models::ExperienceUpdateParams
 
+  FeeMarkupCreateParams = WhopSDK::Models::FeeMarkupCreateParams
+
+  FeeMarkupDeleteParams = WhopSDK::Models::FeeMarkupDeleteParams
+
+  FeeMarkupListParams = WhopSDK::Models::FeeMarkupListParams
+
+  FeeMarkupType = WhopSDK::Models::FeeMarkupType
+
   Forum = WhopSDK::Models::Forum
 
   ForumListParams = WhopSDK::Models::ForumListParams

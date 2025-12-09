@@ -18,6 +18,7 @@ module WhopSDK
           plan_id: String,
           company_id: String,
           affiliate_code: T.nilable(String),
+          currency: T.nilable(WhopSDK::Currency::OrSymbol),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
           payment_method_configuration:
             T.nilable(
@@ -38,6 +39,8 @@ module WhopSDK
         company_id:,
         # The affiliate code to use for the checkout configuration
         affiliate_code: nil,
+        # The available currencies on the platform
+        currency: nil,
         # The metadata to use for the checkout configuration
         metadata: nil,
         # This currently only works for configurations made in 'setup' mode. The explicit

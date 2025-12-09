@@ -1,0 +1,51 @@
+module WhopSDK
+  module Models
+    type fee_markup_create_params =
+      {
+        company_id: String,
+        fee_type: WhopSDK::Models::fee_markup_type,
+        fixed_fee_usd: Float?,
+        metadata: ::Hash[Symbol, top]?,
+        notes: String?,
+        percentage_fee: Float?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class FeeMarkupCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor fee_type: WhopSDK::Models::fee_markup_type
+
+      attr_accessor fixed_fee_usd: Float?
+
+      attr_accessor metadata: ::Hash[Symbol, top]?
+
+      attr_accessor notes: String?
+
+      attr_accessor percentage_fee: Float?
+
+      def initialize: (
+        company_id: String,
+        fee_type: WhopSDK::Models::fee_markup_type,
+        ?fixed_fee_usd: Float?,
+        ?metadata: ::Hash[Symbol, top]?,
+        ?notes: String?,
+        ?percentage_fee: Float?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        fee_type: WhopSDK::Models::fee_markup_type,
+        fixed_fee_usd: Float?,
+        metadata: ::Hash[Symbol, top]?,
+        notes: String?,
+        percentage_fee: Float?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

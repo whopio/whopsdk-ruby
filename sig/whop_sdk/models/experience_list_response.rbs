@@ -7,6 +7,7 @@ module WhopSDK
         company: WhopSDK::Models::ExperienceListResponse::Company,
         created_at: Time,
         image: WhopSDK::Models::ExperienceListResponse::Image?,
+        is_public: bool,
         name: String,
         order: String?
       }
@@ -22,6 +23,8 @@ module WhopSDK
 
       attr_accessor image: WhopSDK::Models::ExperienceListResponse::Image?
 
+      attr_accessor is_public: bool
+
       attr_accessor name: String
 
       attr_accessor order: String?
@@ -32,6 +35,7 @@ module WhopSDK
         company: WhopSDK::Models::ExperienceListResponse::Company,
         created_at: Time,
         image: WhopSDK::Models::ExperienceListResponse::Image?,
+        is_public: bool,
         name: String,
         order: String?
       ) -> void
@@ -42,6 +46,7 @@ module WhopSDK
         company: WhopSDK::Models::ExperienceListResponse::Company,
         created_at: Time,
         image: WhopSDK::Models::ExperienceListResponse::Image?,
+        is_public: bool,
         name: String,
         order: String?
       }

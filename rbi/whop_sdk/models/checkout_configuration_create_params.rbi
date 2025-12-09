@@ -29,6 +29,10 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :affiliate_code
 
+      # The available currencies on the platform
+      sig { returns(T.nilable(WhopSDK::Currency::OrSymbol)) }
+      attr_accessor :currency
+
       # The metadata to use for the checkout configuration
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
@@ -77,6 +81,7 @@ module WhopSDK
           plan_id: String,
           company_id: String,
           affiliate_code: T.nilable(String),
+          currency: T.nilable(WhopSDK::Currency::OrSymbol),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
           payment_method_configuration:
             T.nilable(
@@ -97,6 +102,8 @@ module WhopSDK
         company_id:,
         # The affiliate code to use for the checkout configuration
         affiliate_code: nil,
+        # The available currencies on the platform
+        currency: nil,
         # The metadata to use for the checkout configuration
         metadata: nil,
         # This currently only works for configurations made in 'setup' mode. The explicit
@@ -115,6 +122,7 @@ module WhopSDK
           {
             plan: WhopSDK::CheckoutConfigurationCreateParams::Plan,
             affiliate_code: T.nilable(String),
+            currency: T.nilable(WhopSDK::Currency::OrSymbol),
             metadata: T.nilable(T::Hash[Symbol, T.anything]),
             mode: Symbol,
             payment_method_configuration:

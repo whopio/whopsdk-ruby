@@ -13,6 +13,12 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::ExperienceUpdateParams::AccessLevel, nil]
       optional :access_level, enum: -> { WhopSDK::ExperienceUpdateParams::AccessLevel }, nil?: true
 
+      # @!attribute is_public
+      #   Whether the experience is publicly accessible.
+      #
+      #   @return [Boolean, nil]
+      optional :is_public, WhopSDK::Internal::Type::Boolean, nil?: true
+
       # @!attribute logo
       #   The logo for the experience
       #
@@ -37,8 +43,10 @@ module WhopSDK
       #   @return [String, nil]
       optional :section_id, String, nil?: true
 
-      # @!method initialize(access_level: nil, logo: nil, name: nil, order: nil, section_id: nil, request_options: {})
+      # @!method initialize(access_level: nil, is_public: nil, logo: nil, name: nil, order: nil, section_id: nil, request_options: {})
       #   @param access_level [Symbol, WhopSDK::Models::ExperienceUpdateParams::AccessLevel, nil] The different access levels for experiences (PUBLIC IS NEVER USED ANYMORE).
+      #
+      #   @param is_public [Boolean, nil] Whether the experience is publicly accessible.
       #
       #   @param logo [WhopSDK::Models::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID, WhopSDK::Models::ExperienceUpdateParams::Logo::AttachmentInputWithID, nil] The logo for the experience
       #

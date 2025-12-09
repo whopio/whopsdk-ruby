@@ -7,11 +7,13 @@ module WhopSDK
       #
       # - `experience:create`
       #
-      # @overload create(app_id:, company_id:, name: nil, section_id: nil, request_options: {})
+      # @overload create(app_id:, company_id:, is_public: nil, name: nil, section_id: nil, request_options: {})
       #
       # @param app_id [String] The ID of the app to create the experience for
       #
       # @param company_id [String] The ID of the company to create the experience for
+      #
+      # @param is_public [Boolean, nil] Whether the experience is publicly accessible
       #
       # @param name [String, nil] The name of the experience
       #
@@ -57,11 +59,13 @@ module WhopSDK
       #
       # - `experience:update`
       #
-      # @overload update(id, access_level: nil, logo: nil, name: nil, order: nil, section_id: nil, request_options: {})
+      # @overload update(id, access_level: nil, is_public: nil, logo: nil, name: nil, order: nil, section_id: nil, request_options: {})
       #
       # @param id [String] The id of the experience to update.
       #
       # @param access_level [Symbol, WhopSDK::Models::ExperienceUpdateParams::AccessLevel, nil] The different access levels for experiences (PUBLIC IS NEVER USED ANYMORE).
+      #
+      # @param is_public [Boolean, nil] Whether the experience is publicly accessible.
       #
       # @param logo [WhopSDK::Models::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID, WhopSDK::Models::ExperienceUpdateParams::Logo::AttachmentInputWithID, nil] The logo for the experience
       #

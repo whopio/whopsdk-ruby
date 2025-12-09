@@ -19,6 +19,10 @@ module WhopSDK
       end
       attr_accessor :access_level
 
+      # Whether the experience is publicly accessible.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :is_public
+
       # The logo for the experience
       sig do
         returns(
@@ -48,6 +52,7 @@ module WhopSDK
         params(
           access_level:
             T.nilable(WhopSDK::ExperienceUpdateParams::AccessLevel::OrSymbol),
+          is_public: T.nilable(T::Boolean),
           logo:
             T.nilable(
               T.any(
@@ -64,6 +69,8 @@ module WhopSDK
       def self.new(
         # The different access levels for experiences (PUBLIC IS NEVER USED ANYMORE).
         access_level: nil,
+        # Whether the experience is publicly accessible.
+        is_public: nil,
         # The logo for the experience
         logo: nil,
         # The name of the experience.
@@ -81,6 +88,7 @@ module WhopSDK
           {
             access_level:
               T.nilable(WhopSDK::ExperienceUpdateParams::AccessLevel::OrSymbol),
+            is_public: T.nilable(T::Boolean),
             logo:
               T.nilable(
                 T.any(

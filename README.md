@@ -17,7 +17,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "whop_sdk", "~> 0.0.14"
+gem "whop_sdk", "~> 0.0.15"
 ```
 
 <!-- x-release-please-end -->

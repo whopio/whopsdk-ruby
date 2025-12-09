@@ -3,6 +3,7 @@ module WhopSDK
     type payment_method_list_response =
       {
         id: String,
+        bank: WhopSDK::Models::PaymentMethodListResponse::Bank?,
         card: WhopSDK::Models::PaymentMethodListResponse::Card?,
         created_at: Time,
         payment_method_type: WhopSDK::Models::payment_method_types
@@ -10,6 +11,8 @@ module WhopSDK
 
     class PaymentMethodListResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor bank: WhopSDK::Models::PaymentMethodListResponse::Bank?
 
       attr_accessor card: WhopSDK::Models::PaymentMethodListResponse::Card?
 
@@ -19,6 +22,7 @@ module WhopSDK
 
       def initialize: (
         id: String,
+        bank: WhopSDK::Models::PaymentMethodListResponse::Bank?,
         card: WhopSDK::Models::PaymentMethodListResponse::Card?,
         created_at: Time,
         payment_method_type: WhopSDK::Models::payment_method_types
@@ -26,10 +30,33 @@ module WhopSDK
 
       def to_hash: -> {
         id: String,
+        bank: WhopSDK::Models::PaymentMethodListResponse::Bank?,
         card: WhopSDK::Models::PaymentMethodListResponse::Card?,
         created_at: Time,
         payment_method_type: WhopSDK::Models::payment_method_types
       }
+
+      type bank = { account_type: String, bank_name: String, :last4 => String }
+
+      class Bank < WhopSDK::Internal::Type::BaseModel
+        attr_accessor account_type: String
+
+        attr_accessor bank_name: String
+
+        attr_accessor last4: String
+
+        def initialize: (
+          account_type: String,
+          bank_name: String,
+          last4: String
+        ) -> void
+
+        def to_hash: -> {
+          account_type: String,
+          bank_name: String,
+          :last4 => String
+        }
+      end
 
       type card =
         {

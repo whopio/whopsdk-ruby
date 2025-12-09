@@ -15,6 +15,23 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
+      # The bank account data associated with the payment method, if it's a bank
+      # account.
+      sig do
+        returns(T.nilable(WhopSDK::Models::PaymentMethodRetrieveResponse::Bank))
+      end
+      attr_reader :bank
+
+      sig do
+        params(
+          bank:
+            T.nilable(
+              WhopSDK::Models::PaymentMethodRetrieveResponse::Bank::OrHash
+            )
+        ).void
+      end
+      attr_writer :bank
+
       # The card data associated with the payment method, if its a debit or credit card.
       sig do
         returns(T.nilable(WhopSDK::Models::PaymentMethodRetrieveResponse::Card))
@@ -44,6 +61,10 @@ module WhopSDK
       sig do
         params(
           id: String,
+          bank:
+            T.nilable(
+              WhopSDK::Models::PaymentMethodRetrieveResponse::Bank::OrHash
+            ),
           card:
             T.nilable(
               WhopSDK::Models::PaymentMethodRetrieveResponse::Card::OrHash
@@ -55,6 +76,9 @@ module WhopSDK
       def self.new(
         # The ID of the payment method
         id:,
+        # The bank account data associated with the payment method, if it's a bank
+        # account.
+        bank:,
         # The card data associated with the payment method, if its a debit or credit card.
         card:,
         # The date and time the payment method was created
@@ -68,6 +92,8 @@ module WhopSDK
         override.returns(
           {
             id: String,
+            bank:
+              T.nilable(WhopSDK::Models::PaymentMethodRetrieveResponse::Bank),
             card:
               T.nilable(WhopSDK::Models::PaymentMethodRetrieveResponse::Card),
             created_at: Time,
@@ -76,6 +102,55 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      class Bank < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Models::PaymentMethodRetrieveResponse::Bank,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The type of account
+        sig { returns(String) }
+        attr_accessor :account_type
+
+        # The name of the bank
+        sig { returns(String) }
+        attr_accessor :bank_name
+
+        # The last 4 digits of the account number
+        sig { returns(String) }
+        attr_accessor :last4
+
+        # The bank account data associated with the payment method, if it's a bank
+        # account.
+        sig do
+          params(
+            account_type: String,
+            bank_name: String,
+            last4: String
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The type of account
+          account_type:,
+          # The name of the bank
+          bank_name:,
+          # The last 4 digits of the account number
+          last4:
+        )
+        end
+
+        sig do
+          override.returns(
+            { account_type: String, bank_name: String, last4: String }
+          )
+        end
+        def to_hash
+        end
       end
 
       class Card < WhopSDK::Internal::Type::BaseModel

@@ -15,6 +15,7 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        bank: WhopSDK::Models::PaymentMethodRetrieveResponse::Bank | nil,
         card: WhopSDK::Models::PaymentMethodRetrieveResponse::Card | nil,
         created_at: Time,
         payment_method_type: WhopSDK::PaymentMethodTypes
@@ -41,6 +42,7 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
+        bank: WhopSDK::Models::PaymentMethodListResponse::Bank | nil,
         card: WhopSDK::Models::PaymentMethodListResponse::Card | nil,
         created_at: Time,
         payment_method_type: WhopSDK::PaymentMethodTypes

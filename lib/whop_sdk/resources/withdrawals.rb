@@ -8,6 +8,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `payout:withdrawal:read`
+      # - `payout:destination:read`
       #
       # @overload retrieve(id, request_options: {})
       #

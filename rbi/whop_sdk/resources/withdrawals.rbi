@@ -8,6 +8,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `payout:withdrawal:read`
+      # - `payout:destination:read`
       sig do
         params(
           id: String,

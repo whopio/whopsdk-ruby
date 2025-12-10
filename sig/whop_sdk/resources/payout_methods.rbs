@@ -1,0 +1,16 @@
+module WhopSDK
+  module Resources
+    class PayoutMethods
+      def list: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::PayoutMethodListResponse]
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

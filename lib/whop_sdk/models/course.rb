@@ -181,13 +181,25 @@ module WhopSDK
           #   @return [Integer]
           required :order, Integer
 
+          # @!attribute thumbnail
+          #   The thumbnail for the lesson
+          #
+          #   @return [WhopSDK::Models::Course::Chapter::Lesson::Thumbnail, nil]
+          required :thumbnail, -> { WhopSDK::Course::Chapter::Lesson::Thumbnail }, nil?: true
+
           # @!attribute title
           #   The title of the lesson
           #
           #   @return [String]
           required :title, String
 
-          # @!method initialize(id:, lesson_type:, order:, title:)
+          # @!attribute video_asset
+          #   The associated Mux asset for video lessons
+          #
+          #   @return [WhopSDK::Models::Course::Chapter::Lesson::VideoAsset, nil]
+          required :video_asset, -> { WhopSDK::Course::Chapter::Lesson::VideoAsset }, nil?: true
+
+          # @!method initialize(id:, lesson_type:, order:, thumbnail:, title:, video_asset:)
           #   A lesson from the courses app
           #
           #   @param id [String] The ID of the lesson
@@ -196,7 +208,51 @@ module WhopSDK
           #
           #   @param order [Integer] The order of the lesson within its chapter
           #
+          #   @param thumbnail [WhopSDK::Models::Course::Chapter::Lesson::Thumbnail, nil] The thumbnail for the lesson
+          #
           #   @param title [String] The title of the lesson
+          #
+          #   @param video_asset [WhopSDK::Models::Course::Chapter::Lesson::VideoAsset, nil] The associated Mux asset for video lessons
+
+          # @see WhopSDK::Models::Course::Chapter::Lesson#thumbnail
+          class Thumbnail < WhopSDK::Internal::Type::BaseModel
+            # @!attribute url
+            #   This is the URL you use to render optimized attachments on the client. This
+            #   should be used for apps.
+            #
+            #   @return [String, nil]
+            required :url, String, nil?: true
+
+            # @!method initialize(url:)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::Course::Chapter::Lesson::Thumbnail} for more details.
+            #
+            #   The thumbnail for the lesson
+            #
+            #   @param url [String, nil] This is the URL you use to render optimized attachments on the client. This shou
+          end
+
+          # @see WhopSDK::Models::Course::Chapter::Lesson#video_asset
+          class VideoAsset < WhopSDK::Internal::Type::BaseModel
+            # @!attribute duration_seconds
+            #   The duration of the video in seconds
+            #
+            #   @return [Integer, nil]
+            required :duration_seconds, Integer, nil?: true
+
+            # @!attribute signed_thumbnail_playback_token
+            #   The signed thumbnail playback token of the Mux asset
+            #
+            #   @return [String, nil]
+            required :signed_thumbnail_playback_token, String, nil?: true
+
+            # @!method initialize(duration_seconds:, signed_thumbnail_playback_token:)
+            #   The associated Mux asset for video lessons
+            #
+            #   @param duration_seconds [Integer, nil] The duration of the video in seconds
+            #
+            #   @param signed_thumbnail_playback_token [String, nil] The signed thumbnail playback token of the Mux asset
+          end
         end
       end
 

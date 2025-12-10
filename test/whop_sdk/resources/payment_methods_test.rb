@@ -13,12 +13,31 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
     end
 
     assert_pattern do
-      response => {
+      case response
+      in WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod
+      in WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod
+      in WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod
+      end
+    end
+
+    assert_pattern do
+      case response
+      in {typename: :BasePaymentMethod, id: String, created_at: Time, payment_method_type: WhopSDK::PaymentMethodTypes}
+      in {
+        typename: :CardPaymentMethod,
         id: String,
-        card: WhopSDK::Models::PaymentMethodRetrieveResponse::Card | nil,
+        card: WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod::Card,
         created_at: Time,
         payment_method_type: WhopSDK::PaymentMethodTypes
       }
+      in {
+        typename: :UsBankAccountPaymentMethod,
+        id: String,
+        created_at: Time,
+        payment_method_type: WhopSDK::PaymentMethodTypes,
+        us_bank_account: WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::UsBankAccount
+      }
+      end
     end
   end
 
@@ -39,12 +58,31 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
     end
 
     assert_pattern do
-      row => {
+      case row
+      in WhopSDK::Models::PaymentMethodListResponse::BasePaymentMethod
+      in WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod
+      in WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod
+      end
+    end
+
+    assert_pattern do
+      case row
+      in {typename: :BasePaymentMethod, id: String, created_at: Time, payment_method_type: WhopSDK::PaymentMethodTypes}
+      in {
+        typename: :CardPaymentMethod,
         id: String,
-        card: WhopSDK::Models::PaymentMethodListResponse::Card | nil,
+        card: WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card,
         created_at: Time,
         payment_method_type: WhopSDK::PaymentMethodTypes
       }
+      in {
+        typename: :UsBankAccountPaymentMethod,
+        id: String,
+        created_at: Time,
+        payment_method_type: WhopSDK::PaymentMethodTypes,
+        us_bank_account: WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod::UsBankAccount
+      }
+      end
     end
   end
 end

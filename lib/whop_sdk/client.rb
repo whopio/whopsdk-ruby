@@ -144,6 +144,9 @@ module WhopSDK
     # @return [WhopSDK::Resources::FeeMarkups]
     attr_reader :fee_markups
 
+    # @return [WhopSDK::Resources::PayoutMethods]
+    attr_reader :payout_methods
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -241,6 +244,7 @@ module WhopSDK
       @setup_intents = WhopSDK::Resources::SetupIntents.new(client: self)
       @payment_methods = WhopSDK::Resources::PaymentMethods.new(client: self)
       @fee_markups = WhopSDK::Resources::FeeMarkups.new(client: self)
+      @payout_methods = WhopSDK::Resources::PayoutMethods.new(client: self)
     end
 
     # Verifies a Whop user token

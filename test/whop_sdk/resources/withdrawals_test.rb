@@ -3,6 +3,37 @@
 require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::WithdrawalsTest < WhopSDK::Test::ResourceTest
+  def test_create_required_params
+    skip("Prism tests are disabled")
+
+    response = @whop.withdrawals.create(amount: 6.9, company_id: "biz_xxxxxxxxxxxxxx", currency: :usd)
+
+    assert_pattern do
+      response => WhopSDK::Models::WithdrawalCreateResponse
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        amount: Float,
+        created_at: Time,
+        currency: WhopSDK::Currency,
+        error_code: WhopSDK::Models::WithdrawalCreateResponse::ErrorCode | nil,
+        error_message: String | nil,
+        estimated_availability: Time | nil,
+        fee_amount: Float,
+        fee_type: WhopSDK::WithdrawalFeeTypes | nil,
+        ledger_account: WhopSDK::Models::WithdrawalCreateResponse::LedgerAccount,
+        markup_fee: Float,
+        payout_token: WhopSDK::Models::WithdrawalCreateResponse::PayoutToken | nil,
+        speed: WhopSDK::WithdrawalSpeeds,
+        status: WhopSDK::WithdrawalStatus,
+        trace_code: String | nil,
+        withdrawal_type: WhopSDK::WithdrawalTypes
+      }
+    end
+  end
+
   def test_retrieve
     skip("Prism tests are disabled")
 

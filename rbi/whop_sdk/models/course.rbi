@@ -226,9 +226,37 @@ module WhopSDK
           sig { returns(Integer) }
           attr_accessor :order
 
+          # The thumbnail for the lesson
+          sig do
+            returns(T.nilable(WhopSDK::Course::Chapter::Lesson::Thumbnail))
+          end
+          attr_reader :thumbnail
+
+          sig do
+            params(
+              thumbnail:
+                T.nilable(WhopSDK::Course::Chapter::Lesson::Thumbnail::OrHash)
+            ).void
+          end
+          attr_writer :thumbnail
+
           # The title of the lesson
           sig { returns(String) }
           attr_accessor :title
+
+          # The associated Mux asset for video lessons
+          sig do
+            returns(T.nilable(WhopSDK::Course::Chapter::Lesson::VideoAsset))
+          end
+          attr_reader :video_asset
+
+          sig do
+            params(
+              video_asset:
+                T.nilable(WhopSDK::Course::Chapter::Lesson::VideoAsset::OrHash)
+            ).void
+          end
+          attr_writer :video_asset
 
           # A lesson from the courses app
           sig do
@@ -236,7 +264,11 @@ module WhopSDK
               id: String,
               lesson_type: WhopSDK::LessonTypes::OrSymbol,
               order: Integer,
-              title: String
+              thumbnail:
+                T.nilable(WhopSDK::Course::Chapter::Lesson::Thumbnail::OrHash),
+              title: String,
+              video_asset:
+                T.nilable(WhopSDK::Course::Chapter::Lesson::VideoAsset::OrHash)
             ).returns(T.attached_class)
           end
           def self.new(
@@ -246,8 +278,12 @@ module WhopSDK
             lesson_type:,
             # The order of the lesson within its chapter
             order:,
+            # The thumbnail for the lesson
+            thumbnail:,
             # The title of the lesson
-            title:
+            title:,
+            # The associated Mux asset for video lessons
+            video_asset:
           )
           end
 
@@ -257,11 +293,87 @@ module WhopSDK
                 id: String,
                 lesson_type: WhopSDK::LessonTypes::TaggedSymbol,
                 order: Integer,
-                title: String
+                thumbnail:
+                  T.nilable(WhopSDK::Course::Chapter::Lesson::Thumbnail),
+                title: String,
+                video_asset:
+                  T.nilable(WhopSDK::Course::Chapter::Lesson::VideoAsset)
               }
             )
           end
           def to_hash
+          end
+
+          class Thumbnail < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::Course::Chapter::Lesson::Thumbnail,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # This is the URL you use to render optimized attachments on the client. This
+            # should be used for apps.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :url
+
+            # The thumbnail for the lesson
+            sig { params(url: T.nilable(String)).returns(T.attached_class) }
+            def self.new(
+              # This is the URL you use to render optimized attachments on the client. This
+              # should be used for apps.
+              url:
+            )
+            end
+
+            sig { override.returns({ url: T.nilable(String) }) }
+            def to_hash
+            end
+          end
+
+          class VideoAsset < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::Course::Chapter::Lesson::VideoAsset,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The duration of the video in seconds
+            sig { returns(T.nilable(Integer)) }
+            attr_accessor :duration_seconds
+
+            # The signed thumbnail playback token of the Mux asset
+            sig { returns(T.nilable(String)) }
+            attr_accessor :signed_thumbnail_playback_token
+
+            # The associated Mux asset for video lessons
+            sig do
+              params(
+                duration_seconds: T.nilable(Integer),
+                signed_thumbnail_playback_token: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The duration of the video in seconds
+              duration_seconds:,
+              # The signed thumbnail playback token of the Mux asset
+              signed_thumbnail_playback_token:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  duration_seconds: T.nilable(Integer),
+                  signed_thumbnail_playback_token: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
           end
         end
       end

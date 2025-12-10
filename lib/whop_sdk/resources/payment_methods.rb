@@ -21,7 +21,7 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::PaymentMethodRetrieveResponse]
+      # @return [WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod]
       #
       # @see WhopSDK::Models::PaymentMethodRetrieveParams
       def retrieve(id, params)
@@ -65,7 +65,7 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::PaymentMethodListResponse>]
+      # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::PaymentMethodListResponse::BasePaymentMethod, WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod>]
       #
       # @see WhopSDK::Models::PaymentMethodListParams
       def list(params)

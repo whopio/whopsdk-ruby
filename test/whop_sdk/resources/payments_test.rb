@@ -160,6 +160,32 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
     end
   end
 
+  def test_list_fees
+    skip("Prism tests are disabled")
+
+    response = @whop.payments.list_fees("pay_xxxxxxxxxxxxxx")
+
+    assert_pattern do
+      response => WhopSDK::Internal::CursorPage
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => WhopSDK::Models::PaymentListFeesResponse
+    end
+
+    assert_pattern do
+      row => {
+        amount: Float,
+        currency: WhopSDK::Currency,
+        name: String,
+        type: WhopSDK::Models::PaymentListFeesResponse::Type
+      }
+    end
+  end
+
   def test_refund
     skip("Prism tests are disabled")
 

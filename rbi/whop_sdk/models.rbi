@@ -330,6 +330,8 @@ module WhopSDK
 
   PaymentFailedWebhookEvent = WhopSDK::Models::PaymentFailedWebhookEvent
 
+  PaymentListFeesParams = WhopSDK::Models::PaymentListFeesParams
+
   PaymentListParams = WhopSDK::Models::PaymentListParams
 
   PaymentMethodListParams = WhopSDK::Models::PaymentMethodListParams
@@ -351,6 +353,8 @@ module WhopSDK
   PaymentSucceededWebhookEvent = WhopSDK::Models::PaymentSucceededWebhookEvent
 
   PaymentVoidParams = WhopSDK::Models::PaymentVoidParams
+
+  PayoutMethodListParams = WhopSDK::Models::PayoutMethodListParams
 
   Plan = WhopSDK::Models::Plan
 
@@ -498,6 +502,8 @@ module WhopSDK
   WhoCanReact = WhopSDK::Models::WhoCanReact
 
   WithdrawalCreatedWebhookEvent = WhopSDK::Models::WithdrawalCreatedWebhookEvent
+
+  WithdrawalCreateParams = WhopSDK::Models::WithdrawalCreateParams
 
   WithdrawalFeeTypes = WhopSDK::Models::WithdrawalFeeTypes
 

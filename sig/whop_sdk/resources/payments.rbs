@@ -35,6 +35,15 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::PaymentListResponse]
 
+      def list_fees: (
+        String id,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::PaymentListFeesResponse]
+
       def refund: (
         String id,
         ?partial_amount: Float?,

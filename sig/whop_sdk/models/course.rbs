@@ -117,7 +117,9 @@ module WhopSDK
             id: String,
             lesson_type: WhopSDK::Models::lesson_types,
             order: Integer,
-            title: String
+            thumbnail: WhopSDK::Course::Chapter::Lesson::Thumbnail?,
+            title: String,
+            video_asset: WhopSDK::Course::Chapter::Lesson::VideoAsset?
           }
 
         class Lesson < WhopSDK::Internal::Type::BaseModel
@@ -127,21 +129,61 @@ module WhopSDK
 
           attr_accessor order: Integer
 
+          attr_accessor thumbnail: WhopSDK::Course::Chapter::Lesson::Thumbnail?
+
           attr_accessor title: String
+
+          attr_accessor video_asset: WhopSDK::Course::Chapter::Lesson::VideoAsset?
 
           def initialize: (
             id: String,
             lesson_type: WhopSDK::Models::lesson_types,
             order: Integer,
-            title: String
+            thumbnail: WhopSDK::Course::Chapter::Lesson::Thumbnail?,
+            title: String,
+            video_asset: WhopSDK::Course::Chapter::Lesson::VideoAsset?
           ) -> void
 
           def to_hash: -> {
             id: String,
             lesson_type: WhopSDK::Models::lesson_types,
             order: Integer,
-            title: String
+            thumbnail: WhopSDK::Course::Chapter::Lesson::Thumbnail?,
+            title: String,
+            video_asset: WhopSDK::Course::Chapter::Lesson::VideoAsset?
           }
+
+          type thumbnail = { url: String? }
+
+          class Thumbnail < WhopSDK::Internal::Type::BaseModel
+            attr_accessor url: String?
+
+            def initialize: (url: String?) -> void
+
+            def to_hash: -> { url: String? }
+          end
+
+          type video_asset =
+            {
+              duration_seconds: Integer?,
+              signed_thumbnail_playback_token: String?
+            }
+
+          class VideoAsset < WhopSDK::Internal::Type::BaseModel
+            attr_accessor duration_seconds: Integer?
+
+            attr_accessor signed_thumbnail_playback_token: String?
+
+            def initialize: (
+              duration_seconds: Integer?,
+              signed_thumbnail_playback_token: String?
+            ) -> void
+
+            def to_hash: -> {
+              duration_seconds: Integer?,
+              signed_thumbnail_playback_token: String?
+            }
+          end
         end
       end
 

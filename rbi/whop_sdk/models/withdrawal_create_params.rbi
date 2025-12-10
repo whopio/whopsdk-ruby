@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::WithdrawalCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The amount to withdraw
+      # The amount to withdraw in the specified currency
       sig { returns(Float) }
       attr_accessor :amount
 
@@ -23,7 +23,7 @@ module WhopSDK
       sig { returns(WhopSDK::Currency::OrSymbol) }
       attr_accessor :currency
 
-      # The ID of the payout token to use for the withdrawal.
+      # The ID of the payout method to use for the withdrawal.
       sig { returns(T.nilable(String)) }
       attr_accessor :payout_method_id
 
@@ -37,13 +37,13 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The amount to withdraw
+        # The amount to withdraw in the specified currency
         amount:,
         # The ID of the company to withdraw from.
         company_id:,
         # The currency that is being withdrawn.
         currency:,
-        # The ID of the payout token to use for the withdrawal.
+        # The ID of the payout method to use for the withdrawal.
         payout_method_id: nil,
         request_options: {}
       )

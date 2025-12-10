@@ -19,13 +19,13 @@ module WhopSDK
         ).returns(WhopSDK::Models::WithdrawalCreateResponse)
       end
       def create(
-        # The amount to withdraw
+        # The amount to withdraw in the specified currency
         amount:,
         # The ID of the company to withdraw from.
         company_id:,
         # The currency that is being withdrawn.
         currency:,
-        # The ID of the payout token to use for the withdrawal.
+        # The ID of the payout method to use for the withdrawal.
         payout_method_id: nil,
         request_options: {}
       )

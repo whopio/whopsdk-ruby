@@ -12,13 +12,13 @@ module WhopSDK
       #
       # @overload create(amount:, company_id:, currency:, payout_method_id: nil, request_options: {})
       #
-      # @param amount [Float] The amount to withdraw
+      # @param amount [Float] The amount to withdraw in the specified currency
       #
       # @param company_id [String] The ID of the company to withdraw from.
       #
       # @param currency [Symbol, WhopSDK::Models::Currency] The currency that is being withdrawn.
       #
-      # @param payout_method_id [String, nil] The ID of the payout token to use for the withdrawal.
+      # @param payout_method_id [String, nil] The ID of the payout method to use for the withdrawal.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -139,6 +139,9 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::FeeMarkups) }
     attr_reader :fee_markups
 
+    sig { returns(WhopSDK::Resources::PayoutMethods) }
+    attr_reader :payout_methods
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

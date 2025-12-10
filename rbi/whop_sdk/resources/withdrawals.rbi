@@ -3,6 +3,34 @@
 module WhopSDK
   module Resources
     class Withdrawals
+      # Creates a withdrawal request for a ledger account
+      #
+      # Required permissions:
+      #
+      # - `payout:withdraw_funds`
+      # - `payout:destination:read`
+      sig do
+        params(
+          amount: Float,
+          company_id: String,
+          currency: WhopSDK::Currency::OrSymbol,
+          payout_method_id: T.nilable(String),
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::Models::WithdrawalCreateResponse)
+      end
+      def create(
+        # The amount to withdraw
+        amount:,
+        # The ID of the company to withdraw from.
+        company_id:,
+        # The currency that is being withdrawn.
+        currency:,
+        # The ID of the payout token to use for the withdrawal.
+        payout_method_id: nil,
+        request_options: {}
+      )
+      end
+
       # Retrieves a withdrawal by ID
       #
       # Required permissions:

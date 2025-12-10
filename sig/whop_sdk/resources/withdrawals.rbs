@@ -1,6 +1,14 @@
 module WhopSDK
   module Resources
     class Withdrawals
+      def create: (
+        amount: Float,
+        company_id: String,
+        currency: WhopSDK::Models::currency,
+        ?payout_method_id: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::WithdrawalCreateResponse
+
       def retrieve: (
         String id,
         ?request_options: WhopSDK::request_opts

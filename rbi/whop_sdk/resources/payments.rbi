@@ -144,6 +144,40 @@ module WhopSDK
       )
       end
 
+      # Lists fees for a payment
+      #
+      # Required permissions:
+      #
+      # - `payment:basic:read`
+      sig do
+        params(
+          id: String,
+          after: T.nilable(String),
+          before: T.nilable(String),
+          first: T.nilable(Integer),
+          last: T.nilable(Integer),
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(
+          WhopSDK::Internal::CursorPage[
+            WhopSDK::Models::PaymentListFeesResponse
+          ]
+        )
+      end
+      def list_fees(
+        # The ID of the payment to list fees for
+        id,
+        # Returns the elements in the list that come after the specified cursor.
+        after: nil,
+        # Returns the elements in the list that come before the specified cursor.
+        before: nil,
+        # Returns the first _n_ elements from the list.
+        first: nil,
+        # Returns the last _n_ elements from the list.
+        last: nil,
+        request_options: {}
+      )
+      end
+
       # Refunds a payment
       #
       # Required permissions:

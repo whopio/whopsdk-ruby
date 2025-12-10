@@ -146,6 +146,41 @@ module WhopSDK
         )
       end
 
+      # Lists fees for a payment
+      #
+      # Required permissions:
+      #
+      # - `payment:basic:read`
+      #
+      # @overload list_fees(id, after: nil, before: nil, first: nil, last: nil, request_options: {})
+      #
+      # @param id [String] The ID of the payment to list fees for
+      #
+      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      #
+      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      #
+      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::PaymentListFeesResponse>]
+      #
+      # @see WhopSDK::Models::PaymentListFeesParams
+      def list_fees(id, params = {})
+        parsed, options = WhopSDK::PaymentListFeesParams.dump_request(params)
+        @client.request(
+          method: :get,
+          path: ["payments/%1$s/fees", id],
+          query: parsed,
+          page: WhopSDK::Internal::CursorPage,
+          model: WhopSDK::Models::PaymentListFeesResponse,
+          options: options
+        )
+      end
+
       # Refunds a payment
       #
       # Required permissions:

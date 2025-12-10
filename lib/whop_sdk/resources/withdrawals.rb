@@ -3,6 +3,39 @@
 module WhopSDK
   module Resources
     class Withdrawals
+      # Creates a withdrawal request for a ledger account
+      #
+      # Required permissions:
+      #
+      # - `payout:withdraw_funds`
+      # - `payout:destination:read`
+      #
+      # @overload create(amount:, company_id:, currency:, payout_method_id: nil, request_options: {})
+      #
+      # @param amount [Float] The amount to withdraw
+      #
+      # @param company_id [String] The ID of the company to withdraw from.
+      #
+      # @param currency [Symbol, WhopSDK::Models::Currency] The currency that is being withdrawn.
+      #
+      # @param payout_method_id [String, nil] The ID of the payout token to use for the withdrawal.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::WithdrawalCreateResponse]
+      #
+      # @see WhopSDK::Models::WithdrawalCreateParams
+      def create(params)
+        parsed, options = WhopSDK::WithdrawalCreateParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: "withdrawals",
+          body: parsed,
+          model: WhopSDK::Models::WithdrawalCreateResponse,
+          options: options
+        )
+      end
+
       # Retrieves a withdrawal by ID
       #
       # Required permissions:

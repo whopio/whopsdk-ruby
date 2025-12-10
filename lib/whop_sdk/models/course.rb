@@ -240,16 +240,24 @@ module WhopSDK
             #   @return [Integer, nil]
             required :duration_seconds, Integer, nil?: true
 
+            # @!attribute signed_playback_id
+            #   The signed playback ID of the Mux asset
+            #
+            #   @return [String, nil]
+            required :signed_playback_id, String, nil?: true
+
             # @!attribute signed_thumbnail_playback_token
             #   The signed thumbnail playback token of the Mux asset
             #
             #   @return [String, nil]
             required :signed_thumbnail_playback_token, String, nil?: true
 
-            # @!method initialize(duration_seconds:, signed_thumbnail_playback_token:)
+            # @!method initialize(duration_seconds:, signed_playback_id:, signed_thumbnail_playback_token:)
             #   The associated Mux asset for video lessons
             #
             #   @param duration_seconds [Integer, nil] The duration of the video in seconds
+            #
+            #   @param signed_playback_id [String, nil] The signed playback ID of the Mux asset
             #
             #   @param signed_thumbnail_playback_token [String, nil] The signed thumbnail playback token of the Mux asset
           end

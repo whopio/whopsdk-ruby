@@ -45,13 +45,21 @@ module WhopSDK
                enum: -> { WhopSDK::Models::LedgerAccountRetrieveResponse::PaymentsApprovalStatus },
                nil?: true
 
+      # @!attribute payout_account_details
+      #   The payout account associated with the LedgerAccount, if any.
+      #
+      #   @return [WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails, nil]
+      required :payout_account_details,
+               -> { WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails },
+               nil?: true
+
       # @!attribute transfer_fee
       #   The fee for transfers, if applicable.
       #
       #   @return [Float, nil]
       required :transfer_fee, Float, nil?: true
 
-      # @!method initialize(id:, balances:, ledger_account_audit_status:, ledger_type:, owner:, payments_approval_status:, transfer_fee:)
+      # @!method initialize(id:, balances:, ledger_account_audit_status:, ledger_type:, owner:, payments_approval_status:, payout_account_details:, transfer_fee:)
       #   Represents a LedgerAccount.
       #
       #   @param id [String] The ID of the LedgerAccount.
@@ -65,6 +73,8 @@ module WhopSDK
       #   @param owner [WhopSDK::Models::LedgerAccountRetrieveResponse::Owner::User, WhopSDK::Models::LedgerAccountRetrieveResponse::Owner::Company, nil] The owner of the ledger account.
       #
       #   @param payments_approval_status [Symbol, WhopSDK::Models::LedgerAccountRetrieveResponse::PaymentsApprovalStatus, nil] The different approval statuses an account can have.
+      #
+      #   @param payout_account_details [WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails, nil] The payout account associated with the LedgerAccount, if any.
       #
       #   @param transfer_fee [Float, nil] The fee for transfers, if applicable.
 
@@ -246,6 +256,132 @@ module WhopSDK
 
         # @!method self.values
         #   @return [Array<Symbol>]
+      end
+
+      # @see WhopSDK::Models::LedgerAccountRetrieveResponse#payout_account_details
+      class PayoutAccountDetails < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   Unique identifier for the object
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute address
+        #   The physical address associated with this payout account
+        #
+        #   @return [WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Address, nil]
+        required :address,
+                 -> { WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Address },
+                 nil?: true
+
+        # @!attribute business_name
+        #   The company's legal name
+        #
+        #   @return [String, nil]
+        required :business_name, String, nil?: true
+
+        # @!attribute business_representative
+        #   The business representative for this payout account
+        #
+        #   @return [WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative, nil]
+        required :business_representative,
+                 -> { WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative },
+                 nil?: true
+
+        # @!method initialize(id:, address:, business_name:, business_representative:)
+        #   The payout account associated with the LedgerAccount, if any.
+        #
+        #   @param id [String] Unique identifier for the object
+        #
+        #   @param address [WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Address, nil] The physical address associated with this payout account
+        #
+        #   @param business_name [String, nil] The company's legal name
+        #
+        #   @param business_representative [WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative, nil] The business representative for this payout account
+
+        # @see WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails#address
+        class Address < WhopSDK::Internal::Type::BaseModel
+          # @!attribute city
+          #   The city of the address.
+          #
+          #   @return [String, nil]
+          required :city, String, nil?: true
+
+          # @!attribute country
+          #   The country of the address.
+          #
+          #   @return [String, nil]
+          required :country, String, nil?: true
+
+          # @!attribute line1
+          #   The line 1 of the address.
+          #
+          #   @return [String, nil]
+          required :line1, String, nil?: true
+
+          # @!attribute line2
+          #   The line 2 of the address.
+          #
+          #   @return [String, nil]
+          required :line2, String, nil?: true
+
+          # @!attribute postal_code
+          #   The postal code of the address.
+          #
+          #   @return [String, nil]
+          required :postal_code, String, nil?: true
+
+          # @!attribute state
+          #   The state of the address.
+          #
+          #   @return [String, nil]
+          required :state, String, nil?: true
+
+          # @!method initialize(city:, country:, line1:, line2:, postal_code:, state:)
+          #   The physical address associated with this payout account
+          #
+          #   @param city [String, nil] The city of the address.
+          #
+          #   @param country [String, nil] The country of the address.
+          #
+          #   @param line1 [String, nil] The line 1 of the address.
+          #
+          #   @param line2 [String, nil] The line 2 of the address.
+          #
+          #   @param postal_code [String, nil] The postal code of the address.
+          #
+          #   @param state [String, nil] The state of the address.
+        end
+
+        # @see WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails#business_representative
+        class BusinessRepresentative < WhopSDK::Internal::Type::BaseModel
+          # @!attribute first_name
+          #   The first name of the business representative.
+          #
+          #   @return [String, nil]
+          required :first_name, String, nil?: true
+
+          # @!attribute last_name
+          #   The last name of the business representative.
+          #
+          #   @return [String, nil]
+          required :last_name, String, nil?: true
+
+          # @!attribute middle_name
+          #   The middle name of the business representative.
+          #
+          #   @return [String, nil]
+          required :middle_name, String, nil?: true
+
+          # @!method initialize(first_name:, last_name:, middle_name:)
+          #   The business representative for this payout account
+          #
+          #   @param first_name [String, nil] The first name of the business representative.
+          #
+          #   @param last_name [String, nil] The last name of the business representative.
+          #
+          #   @param middle_name [String, nil] The middle name of the business representative.
+        end
       end
     end
   end

@@ -11,6 +11,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `company:balance:read`
+      # - `payout:account:read`
       #
       # @overload retrieve(id, request_options: {})
       #

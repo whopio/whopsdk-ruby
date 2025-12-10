@@ -187,22 +187,75 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
+        # The chapter this lesson belongs to
+        sig { returns(WhopSDK::CourseLessonInteraction::Lesson::Chapter) }
+        attr_reader :chapter
+
+        sig do
+          params(
+            chapter: WhopSDK::CourseLessonInteraction::Lesson::Chapter::OrHash
+          ).void
+        end
+        attr_writer :chapter
+
         # The title of the lesson
         sig { returns(String) }
         attr_accessor :title
 
         # The lesson this interaction is for
-        sig { params(id: String, title: String).returns(T.attached_class) }
+        sig do
+          params(
+            id: String,
+            chapter: WhopSDK::CourseLessonInteraction::Lesson::Chapter::OrHash,
+            title: String
+          ).returns(T.attached_class)
+        end
         def self.new(
           # The ID of the lesson
           id:,
+          # The chapter this lesson belongs to
+          chapter:,
           # The title of the lesson
           title:
         )
         end
 
-        sig { override.returns({ id: String, title: String }) }
+        sig do
+          override.returns(
+            {
+              id: String,
+              chapter: WhopSDK::CourseLessonInteraction::Lesson::Chapter,
+              title: String
+            }
+          )
+        end
         def to_hash
+        end
+
+        class Chapter < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::CourseLessonInteraction::Lesson::Chapter,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The ID of the chapter. Looks like chap_XXX
+          sig { returns(String) }
+          attr_accessor :id
+
+          # The chapter this lesson belongs to
+          sig { params(id: String).returns(T.attached_class) }
+          def self.new(
+            # The ID of the chapter. Looks like chap_XXX
+            id:
+          )
+          end
+
+          sig { override.returns({ id: String }) }
+          def to_hash
+          end
         end
       end
 

@@ -54,18 +54,40 @@ module WhopSDK
         #   @return [String]
         required :id, String
 
+        # @!attribute chapter
+        #   The chapter this lesson belongs to
+        #
+        #   @return [WhopSDK::Models::CourseLessonInteractionListItem::Lesson::Chapter]
+        required :chapter, -> { WhopSDK::CourseLessonInteractionListItem::Lesson::Chapter }
+
         # @!attribute title
         #   The title of the lesson
         #
         #   @return [String]
         required :title, String
 
-        # @!method initialize(id:, title:)
+        # @!method initialize(id:, chapter:, title:)
         #   The lesson this interaction is for
         #
         #   @param id [String] The ID of the lesson
         #
+        #   @param chapter [WhopSDK::Models::CourseLessonInteractionListItem::Lesson::Chapter] The chapter this lesson belongs to
+        #
         #   @param title [String] The title of the lesson
+
+        # @see WhopSDK::Models::CourseLessonInteractionListItem::Lesson#chapter
+        class Chapter < WhopSDK::Internal::Type::BaseModel
+          # @!attribute id
+          #   The ID of the chapter. Looks like chap_XXX
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!method initialize(id:)
+          #   The chapter this lesson belongs to
+          #
+          #   @param id [String] The ID of the chapter. Looks like chap_XXX
+        end
       end
 
       # @see WhopSDK::Models::CourseLessonInteractionListItem#user

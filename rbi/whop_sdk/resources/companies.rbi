@@ -65,6 +65,13 @@ module WhopSDK
       sig do
         params(
           id: String,
+          banner_image:
+            T.nilable(
+              T.any(
+                WhopSDK::CompanyUpdateParams::BannerImage::AttachmentInputWithDirectUploadID::OrHash,
+                WhopSDK::CompanyUpdateParams::BannerImage::AttachmentInputWithID::OrHash
+              )
+            ),
           logo:
             T.nilable(
               T.any(
@@ -80,6 +87,8 @@ module WhopSDK
       def update(
         # The ID of the company to update
         id,
+        # The banner image for the company in png or jpeg format
+        banner_image: nil,
         # The logo for the company in png, jpeg, or gif format
         logo: nil,
         # Whether Whop sends transactional emails to customers on behalf of this company.

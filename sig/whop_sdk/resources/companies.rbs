@@ -17,6 +17,7 @@ module WhopSDK
 
       def update: (
         String id,
+        ?banner_image: WhopSDK::Models::CompanyUpdateParams::banner_image?,
         ?logo: WhopSDK::Models::CompanyUpdateParams::logo?,
         ?send_customer_emails: bool?,
         ?title: String?,

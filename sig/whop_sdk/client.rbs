@@ -92,6 +92,8 @@ module WhopSDK
 
     attr_reader fee_markups: WhopSDK::Resources::FeeMarkups
 
+    attr_reader payout_methods: WhopSDK::Resources::PayoutMethods
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

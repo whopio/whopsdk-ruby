@@ -10,13 +10,6 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
-      # @!attribute bank
-      #   The bank account data associated with the payment method, if it's a bank
-      #   account.
-      #
-      #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::Bank, nil]
-      required :bank, -> { WhopSDK::Models::PaymentMethodRetrieveResponse::Bank }, nil?: true
-
       # @!attribute card
       #   The card data associated with the payment method, if its a debit or credit card.
       #
@@ -35,7 +28,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes]
       required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }
 
-      # @!method initialize(id:, bank:, card:, created_at:, payment_method_type:)
+      # @!method initialize(id:, card:, created_at:, payment_method_type:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentMethodRetrieveResponse} for more details.
       #
@@ -44,44 +37,11 @@ module WhopSDK
       #
       #   @param id [String] The ID of the payment method
       #
-      #   @param bank [WhopSDK::Models::PaymentMethodRetrieveResponse::Bank, nil] The bank account data associated with the payment method, if it's a bank account
-      #
       #   @param card [WhopSDK::Models::PaymentMethodRetrieveResponse::Card, nil] The card data associated with the payment method, if its a debit or credit card.
       #
       #   @param created_at [Time] The date and time the payment method was created
       #
       #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The payment method type of the payment method
-
-      # @see WhopSDK::Models::PaymentMethodRetrieveResponse#bank
-      class Bank < WhopSDK::Internal::Type::BaseModel
-        # @!attribute account_type
-        #   The type of account
-        #
-        #   @return [String]
-        required :account_type, String
-
-        # @!attribute bank_name
-        #   The name of the bank
-        #
-        #   @return [String]
-        required :bank_name, String
-
-        # @!attribute last4
-        #   The last 4 digits of the account number
-        #
-        #   @return [String]
-        required :last4, String
-
-        # @!method initialize(account_type:, bank_name:, last4:)
-        #   The bank account data associated with the payment method, if it's a bank
-        #   account.
-        #
-        #   @param account_type [String] The type of account
-        #
-        #   @param bank_name [String] The name of the bank
-        #
-        #   @param last4 [String] The last 4 digits of the account number
-      end
 
       # @see WhopSDK::Models::PaymentMethodRetrieveResponse#card
       class Card < WhopSDK::Internal::Type::BaseModel

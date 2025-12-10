@@ -36,16 +36,41 @@ module WhopSDK
         user: WhopSDK::CourseLessonInteractionListItem::User
       }
 
-      type lesson = { id: String, title: String }
+      type lesson =
+        {
+          id: String,
+          chapter: WhopSDK::CourseLessonInteractionListItem::Lesson::Chapter,
+          title: String
+        }
 
       class Lesson < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
+        attr_accessor chapter: WhopSDK::CourseLessonInteractionListItem::Lesson::Chapter
+
         attr_accessor title: String
 
-        def initialize: (id: String, title: String) -> void
+        def initialize: (
+          id: String,
+          chapter: WhopSDK::CourseLessonInteractionListItem::Lesson::Chapter,
+          title: String
+        ) -> void
 
-        def to_hash: -> { id: String, title: String }
+        def to_hash: -> {
+          id: String,
+          chapter: WhopSDK::CourseLessonInteractionListItem::Lesson::Chapter,
+          title: String
+        }
+
+        type chapter = { id: String }
+
+        class Chapter < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
       end
 
       type user = { id: String, name: String?, username: String }

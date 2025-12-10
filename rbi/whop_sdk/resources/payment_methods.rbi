@@ -17,7 +17,7 @@ module WhopSDK
           id: String,
           member_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::PaymentMethodRetrieveResponse)
+        ).returns(WhopSDK::Models::PaymentMethodRetrieveResponse::Variants)
       end
       def retrieve(
         # The ID of the PaymentMethod
@@ -50,7 +50,7 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[
-            WhopSDK::Models::PaymentMethodListResponse
+            WhopSDK::Models::PaymentMethodListResponse::Variants
           ]
         )
       end

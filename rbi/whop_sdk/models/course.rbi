@@ -345,6 +345,10 @@ module WhopSDK
             sig { returns(T.nilable(Integer)) }
             attr_accessor :duration_seconds
 
+            # The signed playback ID of the Mux asset
+            sig { returns(T.nilable(String)) }
+            attr_accessor :signed_playback_id
+
             # The signed thumbnail playback token of the Mux asset
             sig { returns(T.nilable(String)) }
             attr_accessor :signed_thumbnail_playback_token
@@ -353,12 +357,15 @@ module WhopSDK
             sig do
               params(
                 duration_seconds: T.nilable(Integer),
+                signed_playback_id: T.nilable(String),
                 signed_thumbnail_playback_token: T.nilable(String)
               ).returns(T.attached_class)
             end
             def self.new(
               # The duration of the video in seconds
               duration_seconds:,
+              # The signed playback ID of the Mux asset
+              signed_playback_id:,
               # The signed thumbnail playback token of the Mux asset
               signed_thumbnail_playback_token:
             )
@@ -368,6 +375,7 @@ module WhopSDK
               override.returns(
                 {
                   duration_seconds: T.nilable(Integer),
+                  signed_playback_id: T.nilable(String),
                   signed_thumbnail_playback_token: T.nilable(String)
                 }
               )

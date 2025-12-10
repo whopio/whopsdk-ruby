@@ -166,21 +166,26 @@ module WhopSDK
           type video_asset =
             {
               duration_seconds: Integer?,
+              signed_playback_id: String?,
               signed_thumbnail_playback_token: String?
             }
 
           class VideoAsset < WhopSDK::Internal::Type::BaseModel
             attr_accessor duration_seconds: Integer?
 
+            attr_accessor signed_playback_id: String?
+
             attr_accessor signed_thumbnail_playback_token: String?
 
             def initialize: (
               duration_seconds: Integer?,
+              signed_playback_id: String?,
               signed_thumbnail_playback_token: String?
             ) -> void
 
             def to_hash: -> {
               duration_seconds: Integer?,
+              signed_playback_id: String?,
               signed_thumbnail_playback_token: String?
             }
           end

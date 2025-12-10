@@ -1,67 +1,175 @@
 module WhopSDK
   module Models
     type payment_method_list_response =
-      {
-        id: String,
-        card: WhopSDK::Models::PaymentMethodListResponse::Card?,
-        created_at: Time,
-        payment_method_type: WhopSDK::Models::payment_method_types
-      }
+      WhopSDK::Models::PaymentMethodListResponse::BasePaymentMethod
+      | WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod
+      | WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod
 
-    class PaymentMethodListResponse < WhopSDK::Internal::Type::BaseModel
-      attr_accessor id: String
+    module PaymentMethodListResponse
+      extend WhopSDK::Internal::Type::Union
 
-      attr_accessor card: WhopSDK::Models::PaymentMethodListResponse::Card?
-
-      attr_accessor created_at: Time
-
-      attr_accessor payment_method_type: WhopSDK::Models::payment_method_types
-
-      def initialize: (
-        id: String,
-        card: WhopSDK::Models::PaymentMethodListResponse::Card?,
-        created_at: Time,
-        payment_method_type: WhopSDK::Models::payment_method_types
-      ) -> void
-
-      def to_hash: -> {
-        id: String,
-        card: WhopSDK::Models::PaymentMethodListResponse::Card?,
-        created_at: Time,
-        payment_method_type: WhopSDK::Models::payment_method_types
-      }
-
-      type card =
+      type base_payment_method =
         {
-          brand: WhopSDK::Models::card_brands?,
-          exp_month: Integer?,
-          exp_year: Integer?,
-          :last4 => String?
+          id: String,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          typename: :BasePaymentMethod
         }
 
-      class Card < WhopSDK::Internal::Type::BaseModel
-        attr_accessor brand: WhopSDK::Models::card_brands?
+      class BasePaymentMethod < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
 
-        attr_accessor exp_month: Integer?
+        attr_accessor created_at: Time
 
-        attr_accessor exp_year: Integer?
+        attr_accessor payment_method_type: WhopSDK::Models::payment_method_types
 
-        attr_accessor last4: String?
+        attr_accessor typename: :BasePaymentMethod
 
         def initialize: (
-          brand: WhopSDK::Models::card_brands?,
-          exp_month: Integer?,
-          exp_year: Integer?,
-          last4: String?
+          id: String,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          ?typename: :BasePaymentMethod
         ) -> void
 
         def to_hash: -> {
-          brand: WhopSDK::Models::card_brands?,
-          exp_month: Integer?,
-          exp_year: Integer?,
-          :last4 => String?
+          id: String,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          typename: :BasePaymentMethod
         }
       end
+
+      type card_payment_method =
+        {
+          id: String,
+          card: WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          typename: :CardPaymentMethod
+        }
+
+      class CardPaymentMethod < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor card: WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card
+
+        attr_accessor created_at: Time
+
+        attr_accessor payment_method_type: WhopSDK::Models::payment_method_types
+
+        attr_accessor typename: :CardPaymentMethod
+
+        def initialize: (
+          id: String,
+          card: WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          ?typename: :CardPaymentMethod
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          card: WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          typename: :CardPaymentMethod
+        }
+
+        type card =
+          {
+            brand: WhopSDK::Models::card_brands?,
+            exp_month: Integer?,
+            exp_year: Integer?,
+            :last4 => String?
+          }
+
+        class Card < WhopSDK::Internal::Type::BaseModel
+          attr_accessor brand: WhopSDK::Models::card_brands?
+
+          attr_accessor exp_month: Integer?
+
+          attr_accessor exp_year: Integer?
+
+          attr_accessor last4: String?
+
+          def initialize: (
+            brand: WhopSDK::Models::card_brands?,
+            exp_month: Integer?,
+            exp_year: Integer?,
+            last4: String?
+          ) -> void
+
+          def to_hash: -> {
+            brand: WhopSDK::Models::card_brands?,
+            exp_month: Integer?,
+            exp_year: Integer?,
+            :last4 => String?
+          }
+        end
+      end
+
+      type us_bank_account_payment_method =
+        {
+          id: String,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          typename: :UsBankAccountPaymentMethod,
+          us_bank_account: WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod::UsBankAccount
+        }
+
+      class UsBankAccountPaymentMethod < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor payment_method_type: WhopSDK::Models::payment_method_types
+
+        attr_accessor typename: :UsBankAccountPaymentMethod
+
+        attr_accessor us_bank_account: WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod::UsBankAccount
+
+        def initialize: (
+          id: String,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          us_bank_account: WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod::UsBankAccount,
+          ?typename: :UsBankAccountPaymentMethod
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          typename: :UsBankAccountPaymentMethod,
+          us_bank_account: WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod::UsBankAccount
+        }
+
+        type us_bank_account =
+          { account_type: String, bank_name: String, :last4 => String }
+
+        class UsBankAccount < WhopSDK::Internal::Type::BaseModel
+          attr_accessor account_type: String
+
+          attr_accessor bank_name: String
+
+          attr_accessor last4: String
+
+          def initialize: (
+            account_type: String,
+            bank_name: String,
+            last4: String
+          ) -> void
+
+          def to_hash: -> {
+            account_type: String,
+            bank_name: String,
+            :last4 => String
+          }
+        end
+      end
+
+      def self?.variants: -> ::Array[WhopSDK::Models::payment_method_list_response]
     end
   end
 end

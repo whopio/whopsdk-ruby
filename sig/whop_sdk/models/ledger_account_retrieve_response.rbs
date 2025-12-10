@@ -8,6 +8,7 @@ module WhopSDK
         ledger_type: WhopSDK::Models::LedgerAccountRetrieveResponse::ledger_type,
         owner: WhopSDK::Models::LedgerAccountRetrieveResponse::owner?,
         payments_approval_status: WhopSDK::Models::LedgerAccountRetrieveResponse::payments_approval_status?,
+        payout_account_details: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails?,
         transfer_fee: Float?
       }
 
@@ -24,6 +25,8 @@ module WhopSDK
 
       attr_accessor payments_approval_status: WhopSDK::Models::LedgerAccountRetrieveResponse::payments_approval_status?
 
+      attr_accessor payout_account_details: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails?
+
       attr_accessor transfer_fee: Float?
 
       def initialize: (
@@ -33,6 +36,7 @@ module WhopSDK
         ledger_type: WhopSDK::Models::LedgerAccountRetrieveResponse::ledger_type,
         owner: WhopSDK::Models::LedgerAccountRetrieveResponse::owner?,
         payments_approval_status: WhopSDK::Models::LedgerAccountRetrieveResponse::payments_approval_status?,
+        payout_account_details: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails?,
         transfer_fee: Float?
       ) -> void
 
@@ -43,6 +47,7 @@ module WhopSDK
         ledger_type: WhopSDK::Models::LedgerAccountRetrieveResponse::ledger_type,
         owner: WhopSDK::Models::LedgerAccountRetrieveResponse::owner?,
         payments_approval_status: WhopSDK::Models::LedgerAccountRetrieveResponse::payments_approval_status?,
+        payout_account_details: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails?,
         transfer_fee: Float?
       }
 
@@ -198,6 +203,103 @@ module WhopSDK
         REJECTED: :rejected
 
         def self?.values: -> ::Array[WhopSDK::Models::LedgerAccountRetrieveResponse::payments_approval_status]
+      end
+
+      type payout_account_details =
+        {
+          id: String,
+          address: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Address?,
+          business_name: String?,
+          business_representative: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative?
+        }
+
+      class PayoutAccountDetails < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor address: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Address?
+
+        attr_accessor business_name: String?
+
+        attr_accessor business_representative: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative?
+
+        def initialize: (
+          id: String,
+          address: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Address?,
+          business_name: String?,
+          business_representative: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          address: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Address?,
+          business_name: String?,
+          business_representative: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative?
+        }
+
+        type address =
+          {
+            city: String?,
+            country: String?,
+            :line1 => String?,
+            :line2 => String?,
+            postal_code: String?,
+            state: String?
+          }
+
+        class Address < WhopSDK::Internal::Type::BaseModel
+          attr_accessor city: String?
+
+          attr_accessor country: String?
+
+          attr_accessor line1: String?
+
+          attr_accessor line2: String?
+
+          attr_accessor postal_code: String?
+
+          attr_accessor state: String?
+
+          def initialize: (
+            city: String?,
+            country: String?,
+            line1: String?,
+            line2: String?,
+            postal_code: String?,
+            state: String?
+          ) -> void
+
+          def to_hash: -> {
+            city: String?,
+            country: String?,
+            :line1 => String?,
+            :line2 => String?,
+            postal_code: String?,
+            state: String?
+          }
+        end
+
+        type business_representative =
+          { first_name: String?, last_name: String?, middle_name: String? }
+
+        class BusinessRepresentative < WhopSDK::Internal::Type::BaseModel
+          attr_accessor first_name: String?
+
+          attr_accessor last_name: String?
+
+          attr_accessor middle_name: String?
+
+          def initialize: (
+            first_name: String?,
+            last_name: String?,
+            middle_name: String?
+          ) -> void
+
+          def to_hash: -> {
+            first_name: String?,
+            last_name: String?,
+            middle_name: String?
+          }
+        end
       end
     end
   end

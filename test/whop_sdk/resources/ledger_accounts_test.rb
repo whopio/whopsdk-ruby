@@ -20,6 +20,7 @@ class WhopSDK::Test::Resources::LedgerAccountsTest < WhopSDK::Test::ResourceTest
         ledger_type: WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerType,
         owner: WhopSDK::Models::LedgerAccountRetrieveResponse::Owner,
         payments_approval_status: WhopSDK::Models::LedgerAccountRetrieveResponse::PaymentsApprovalStatus | nil,
+        payout_account_details: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails | nil,
         transfer_fee: Float | nil
       }
     end

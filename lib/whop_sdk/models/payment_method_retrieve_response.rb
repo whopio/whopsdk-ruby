@@ -20,6 +20,16 @@ module WhopSDK
       variant :UsBankAccountPaymentMethod,
               -> { WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod }
 
+      # The Cash App details for the payment method
+      variant :CashappPaymentMethod, -> { WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod }
+
+      # The iDEAL details for the payment method
+      variant :IdealPaymentMethod, -> { WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod }
+
+      # The SEPA Direct Debit details for the payment method
+      variant :SepaDebitPaymentMethod,
+              -> { WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod }
+
       class BasePaymentMethod < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
         #   The ID of the payment method
@@ -216,8 +226,226 @@ module WhopSDK
         end
       end
 
+      class CashappPaymentMethod < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The ID of the payment method
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute cashapp
+        #   The Cash App details associated with this payment method
+        #
+        #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Cashapp]
+        required :cashapp, -> { WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Cashapp }
+
+        # @!attribute created_at
+        #   When the payment method was created
+        #
+        #   @return [Time]
+        required :created_at, Time
+
+        # @!attribute payment_method_type
+        #   The type of the payment method
+        #
+        #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes]
+        required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }
+
+        # @!attribute typename
+        #   The typename of this object
+        #
+        #   @return [Symbol, :CashappPaymentMethod]
+        required :typename, const: :CashappPaymentMethod
+
+        # @!method initialize(id:, cashapp:, created_at:, payment_method_type:, typename: :CashappPaymentMethod)
+        #   The Cash App details for the payment method
+        #
+        #   @param id [String] The ID of the payment method
+        #
+        #   @param cashapp [WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Cashapp] The Cash App details associated with this payment method
+        #
+        #   @param created_at [Time] When the payment method was created
+        #
+        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of the payment method
+        #
+        #   @param typename [Symbol, :CashappPaymentMethod] The typename of this object
+
+        # @see WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod#cashapp
+        class Cashapp < WhopSDK::Internal::Type::BaseModel
+          # @!attribute buyer_id
+          #   A unique and immutable identifier assigned by Cash App to every buyer.
+          #
+          #   @return [String, nil]
+          required :buyer_id, String, nil?: true
+
+          # @!attribute cashtag
+          #   A public identifier for buyers using Cash App.
+          #
+          #   @return [String, nil]
+          required :cashtag, String, nil?: true
+
+          # @!method initialize(buyer_id:, cashtag:)
+          #   The Cash App details associated with this payment method
+          #
+          #   @param buyer_id [String, nil] A unique and immutable identifier assigned by Cash App to every buyer.
+          #
+          #   @param cashtag [String, nil] A public identifier for buyers using Cash App.
+        end
+      end
+
+      class IdealPaymentMethod < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The ID of the payment method
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute created_at
+        #   When the payment method was created
+        #
+        #   @return [Time]
+        required :created_at, Time
+
+        # @!attribute ideal
+        #   The iDEAL details associated with this payment method
+        #
+        #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Ideal]
+        required :ideal, -> { WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Ideal }
+
+        # @!attribute payment_method_type
+        #   The type of the payment method
+        #
+        #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes]
+        required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }
+
+        # @!attribute typename
+        #   The typename of this object
+        #
+        #   @return [Symbol, :IdealPaymentMethod]
+        required :typename, const: :IdealPaymentMethod
+
+        # @!method initialize(id:, created_at:, ideal:, payment_method_type:, typename: :IdealPaymentMethod)
+        #   The iDEAL details for the payment method
+        #
+        #   @param id [String] The ID of the payment method
+        #
+        #   @param created_at [Time] When the payment method was created
+        #
+        #   @param ideal [WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Ideal] The iDEAL details associated with this payment method
+        #
+        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of the payment method
+        #
+        #   @param typename [Symbol, :IdealPaymentMethod] The typename of this object
+
+        # @see WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod#ideal
+        class Ideal < WhopSDK::Internal::Type::BaseModel
+          # @!attribute bank
+          #   The customer's bank.
+          #
+          #   @return [String, nil]
+          required :bank, String, nil?: true
+
+          # @!attribute bic
+          #   The Bank Identifier Code of the customer's bank.
+          #
+          #   @return [String, nil]
+          required :bic, String, nil?: true
+
+          # @!method initialize(bank:, bic:)
+          #   The iDEAL details associated with this payment method
+          #
+          #   @param bank [String, nil] The customer's bank.
+          #
+          #   @param bic [String, nil] The Bank Identifier Code of the customer's bank.
+        end
+      end
+
+      class SepaDebitPaymentMethod < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The ID of the payment method
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute created_at
+        #   When the payment method was created
+        #
+        #   @return [Time]
+        required :created_at, Time
+
+        # @!attribute payment_method_type
+        #   The type of the payment method
+        #
+        #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes]
+        required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }
+
+        # @!attribute sepa_debit
+        #   The SEPA Direct Debit details associated with this payment method
+        #
+        #   @return [WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::SepaDebit]
+        required :sepa_debit,
+                 -> { WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::SepaDebit }
+
+        # @!attribute typename
+        #   The typename of this object
+        #
+        #   @return [Symbol, :SepaDebitPaymentMethod]
+        required :typename, const: :SepaDebitPaymentMethod
+
+        # @!method initialize(id:, created_at:, payment_method_type:, sepa_debit:, typename: :SepaDebitPaymentMethod)
+        #   The SEPA Direct Debit details for the payment method
+        #
+        #   @param id [String] The ID of the payment method
+        #
+        #   @param created_at [Time] When the payment method was created
+        #
+        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of the payment method
+        #
+        #   @param sepa_debit [WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::SepaDebit] The SEPA Direct Debit details associated with this payment method
+        #
+        #   @param typename [Symbol, :SepaDebitPaymentMethod] The typename of this object
+
+        # @see WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod#sepa_debit
+        class SepaDebit < WhopSDK::Internal::Type::BaseModel
+          # @!attribute bank_code
+          #   Bank code of the bank associated with the account.
+          #
+          #   @return [String, nil]
+          required :bank_code, String, nil?: true
+
+          # @!attribute branch_code
+          #   Branch code of the bank associated with the account.
+          #
+          #   @return [String, nil]
+          required :branch_code, String, nil?: true
+
+          # @!attribute country
+          #   Two-letter ISO code representing the country the bank account is located in.
+          #
+          #   @return [String, nil]
+          required :country, String, nil?: true
+
+          # @!attribute last4
+          #   Last four digits of the IBAN.
+          #
+          #   @return [String, nil]
+          required :last4, String, nil?: true
+
+          # @!method initialize(bank_code:, branch_code:, country:, last4:)
+          #   The SEPA Direct Debit details associated with this payment method
+          #
+          #   @param bank_code [String, nil] Bank code of the bank associated with the account.
+          #
+          #   @param branch_code [String, nil] Branch code of the bank associated with the account.
+          #
+          #   @param country [String, nil] Two-letter ISO code representing the country the bank account is located in.
+          #
+          #   @param last4 [String, nil] Last four digits of the IBAN.
+        end
+      end
+
       # @!method self.variants
-      #   @return [Array(WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod)]
+      #   @return [Array(WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod)]
     end
   end
 end

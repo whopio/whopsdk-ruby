@@ -4,6 +4,9 @@ module WhopSDK
       WhopSDK::Models::PaymentMethodListResponse::BasePaymentMethod
       | WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod
       | WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod
+      | WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod
+      | WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod
+      | WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod
 
     module PaymentMethodListResponse
       extend WhopSDK::Internal::Type::Union
@@ -165,6 +168,173 @@ module WhopSDK
             account_type: String,
             bank_name: String,
             :last4 => String
+          }
+        end
+      end
+
+      type cashapp_payment_method =
+        {
+          id: String,
+          cashapp: WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod::Cashapp,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          typename: :CashappPaymentMethod
+        }
+
+      class CashappPaymentMethod < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor cashapp: WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod::Cashapp
+
+        attr_accessor created_at: Time
+
+        attr_accessor payment_method_type: WhopSDK::Models::payment_method_types
+
+        attr_accessor typename: :CashappPaymentMethod
+
+        def initialize: (
+          id: String,
+          cashapp: WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod::Cashapp,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          ?typename: :CashappPaymentMethod
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          cashapp: WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod::Cashapp,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          typename: :CashappPaymentMethod
+        }
+
+        type cashapp = { buyer_id: String?, cashtag: String? }
+
+        class Cashapp < WhopSDK::Internal::Type::BaseModel
+          attr_accessor buyer_id: String?
+
+          attr_accessor cashtag: String?
+
+          def initialize: (buyer_id: String?, cashtag: String?) -> void
+
+          def to_hash: -> { buyer_id: String?, cashtag: String? }
+        end
+      end
+
+      type ideal_payment_method =
+        {
+          id: String,
+          created_at: Time,
+          ideal: WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod::Ideal,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          typename: :IdealPaymentMethod
+        }
+
+      class IdealPaymentMethod < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor ideal: WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod::Ideal
+
+        attr_accessor payment_method_type: WhopSDK::Models::payment_method_types
+
+        attr_accessor typename: :IdealPaymentMethod
+
+        def initialize: (
+          id: String,
+          created_at: Time,
+          ideal: WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod::Ideal,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          ?typename: :IdealPaymentMethod
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: Time,
+          ideal: WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod::Ideal,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          typename: :IdealPaymentMethod
+        }
+
+        type ideal = { bank: String?, bic: String? }
+
+        class Ideal < WhopSDK::Internal::Type::BaseModel
+          attr_accessor bank: String?
+
+          attr_accessor bic: String?
+
+          def initialize: (bank: String?, bic: String?) -> void
+
+          def to_hash: -> { bank: String?, bic: String? }
+        end
+      end
+
+      type sepa_debit_payment_method =
+        {
+          id: String,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          sepa_debit: WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod::SepaDebit,
+          typename: :SepaDebitPaymentMethod
+        }
+
+      class SepaDebitPaymentMethod < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor payment_method_type: WhopSDK::Models::payment_method_types
+
+        attr_accessor sepa_debit: WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod::SepaDebit
+
+        attr_accessor typename: :SepaDebitPaymentMethod
+
+        def initialize: (
+          id: String,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          sepa_debit: WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod::SepaDebit,
+          ?typename: :SepaDebitPaymentMethod
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: Time,
+          payment_method_type: WhopSDK::Models::payment_method_types,
+          sepa_debit: WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod::SepaDebit,
+          typename: :SepaDebitPaymentMethod
+        }
+
+        type sepa_debit =
+          {
+            bank_code: String?,
+            branch_code: String?,
+            country: String?,
+            :last4 => String?
+          }
+
+        class SepaDebit < WhopSDK::Internal::Type::BaseModel
+          attr_accessor bank_code: String?
+
+          attr_accessor branch_code: String?
+
+          attr_accessor country: String?
+
+          attr_accessor last4: String?
+
+          def initialize: (
+            bank_code: String?,
+            branch_code: String?,
+            country: String?,
+            last4: String?
+          ) -> void
+
+          def to_hash: -> {
+            bank_code: String?,
+            branch_code: String?,
+            country: String?,
+            :last4 => String?
           }
         end
       end

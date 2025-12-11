@@ -8,6 +8,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `company:balance:read`
+      # - `payout:account:read`
       sig do
         params(
           id: String,

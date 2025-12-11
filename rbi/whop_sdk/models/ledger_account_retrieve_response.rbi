@@ -61,6 +61,26 @@ module WhopSDK
       end
       attr_accessor :payments_approval_status
 
+      # The payout account associated with the LedgerAccount, if any.
+      sig do
+        returns(
+          T.nilable(
+            WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails
+          )
+        )
+      end
+      attr_reader :payout_account_details
+
+      sig do
+        params(
+          payout_account_details:
+            T.nilable(
+              WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::OrHash
+            )
+        ).void
+      end
+      attr_writer :payout_account_details
+
       # The fee for transfers, if applicable.
       sig { returns(T.nilable(Float)) }
       attr_accessor :transfer_fee
@@ -90,6 +110,10 @@ module WhopSDK
             T.nilable(
               WhopSDK::Models::LedgerAccountRetrieveResponse::PaymentsApprovalStatus::OrSymbol
             ),
+          payout_account_details:
+            T.nilable(
+              WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::OrHash
+            ),
           transfer_fee: T.nilable(Float)
         ).returns(T.attached_class)
       end
@@ -106,6 +130,8 @@ module WhopSDK
         owner:,
         # The different approval statuses an account can have.
         payments_approval_status:,
+        # The payout account associated with the LedgerAccount, if any.
+        payout_account_details:,
         # The fee for transfers, if applicable.
         transfer_fee:
       )
@@ -130,6 +156,10 @@ module WhopSDK
             payments_approval_status:
               T.nilable(
                 WhopSDK::Models::LedgerAccountRetrieveResponse::PaymentsApprovalStatus::TaggedSymbol
+              ),
+            payout_account_details:
+              T.nilable(
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails
               ),
             transfer_fee: T.nilable(Float)
           }
@@ -500,6 +530,238 @@ module WhopSDK
           )
         end
         def self.values
+        end
+      end
+
+      class PayoutAccountDetails < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # Unique identifier for the object
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The physical address associated with this payout account
+        sig do
+          returns(
+            T.nilable(
+              WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Address
+            )
+          )
+        end
+        attr_reader :address
+
+        sig do
+          params(
+            address:
+              T.nilable(
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Address::OrHash
+              )
+          ).void
+        end
+        attr_writer :address
+
+        # The company's legal name
+        sig { returns(T.nilable(String)) }
+        attr_accessor :business_name
+
+        # The business representative for this payout account
+        sig do
+          returns(
+            T.nilable(
+              WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative
+            )
+          )
+        end
+        attr_reader :business_representative
+
+        sig do
+          params(
+            business_representative:
+              T.nilable(
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative::OrHash
+              )
+          ).void
+        end
+        attr_writer :business_representative
+
+        # The payout account associated with the LedgerAccount, if any.
+        sig do
+          params(
+            id: String,
+            address:
+              T.nilable(
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Address::OrHash
+              ),
+            business_name: T.nilable(String),
+            business_representative:
+              T.nilable(
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative::OrHash
+              )
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Unique identifier for the object
+          id:,
+          # The physical address associated with this payout account
+          address:,
+          # The company's legal name
+          business_name:,
+          # The business representative for this payout account
+          business_representative:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              address:
+                T.nilable(
+                  WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Address
+                ),
+              business_name: T.nilable(String),
+              business_representative:
+                T.nilable(
+                  WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative
+                )
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class Address < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Address,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The city of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :city
+
+          # The country of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :country
+
+          # The line 1 of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :line1
+
+          # The line 2 of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :line2
+
+          # The postal code of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :postal_code
+
+          # The state of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :state
+
+          # The physical address associated with this payout account
+          sig do
+            params(
+              city: T.nilable(String),
+              country: T.nilable(String),
+              line1: T.nilable(String),
+              line2: T.nilable(String),
+              postal_code: T.nilable(String),
+              state: T.nilable(String)
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The city of the address.
+            city:,
+            # The country of the address.
+            country:,
+            # The line 1 of the address.
+            line1:,
+            # The line 2 of the address.
+            line2:,
+            # The postal code of the address.
+            postal_code:,
+            # The state of the address.
+            state:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                city: T.nilable(String),
+                country: T.nilable(String),
+                line1: T.nilable(String),
+                line2: T.nilable(String),
+                postal_code: T.nilable(String),
+                state: T.nilable(String)
+              }
+            )
+          end
+          def to_hash
+          end
+        end
+
+        class BusinessRepresentative < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The first name of the business representative.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :first_name
+
+          # The last name of the business representative.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :last_name
+
+          # The middle name of the business representative.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :middle_name
+
+          # The business representative for this payout account
+          sig do
+            params(
+              first_name: T.nilable(String),
+              last_name: T.nilable(String),
+              middle_name: T.nilable(String)
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The first name of the business representative.
+            first_name:,
+            # The last name of the business representative.
+            last_name:,
+            # The middle name of the business representative.
+            middle_name:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                first_name: T.nilable(String),
+                last_name: T.nilable(String),
+                middle_name: T.nilable(String)
+              }
+            )
+          end
+          def to_hash
+          end
         end
       end
     end

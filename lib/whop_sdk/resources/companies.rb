@@ -76,9 +76,11 @@ module WhopSDK
       # - `company:update`
       # - `company:basic:read`
       #
-      # @overload update(id, logo: nil, send_customer_emails: nil, title: nil, request_options: {})
+      # @overload update(id, banner_image: nil, logo: nil, send_customer_emails: nil, title: nil, request_options: {})
       #
       # @param id [String] The ID of the company to update
+      #
+      # @param banner_image [WhopSDK::Models::CompanyUpdateParams::BannerImage::AttachmentInputWithDirectUploadID, WhopSDK::Models::CompanyUpdateParams::BannerImage::AttachmentInputWithID, nil] The banner image for the company in png or jpeg format
       #
       # @param logo [WhopSDK::Models::CompanyUpdateParams::Logo::AttachmentInputWithDirectUploadID, WhopSDK::Models::CompanyUpdateParams::Logo::AttachmentInputWithID, nil] The logo for the company in png, jpeg, or gif format
       #

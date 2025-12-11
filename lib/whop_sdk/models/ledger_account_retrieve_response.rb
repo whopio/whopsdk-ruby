@@ -288,7 +288,13 @@ module WhopSDK
                  -> { WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative },
                  nil?: true
 
-        # @!method initialize(id:, address:, business_name:, business_representative:)
+        # @!attribute phone
+        #   The business representative's phone
+        #
+        #   @return [String, nil]
+        required :phone, String, nil?: true
+
+        # @!method initialize(id:, address:, business_name:, business_representative:, phone:)
         #   The payout account associated with the LedgerAccount, if any.
         #
         #   @param id [String] Unique identifier for the object
@@ -298,6 +304,8 @@ module WhopSDK
         #   @param business_name [String, nil] The company's legal name
         #
         #   @param business_representative [WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative, nil] The business representative for this payout account
+        #
+        #   @param phone [String, nil] The business representative's phone
 
         # @see WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails#address
         class Address < WhopSDK::Internal::Type::BaseModel

@@ -17,6 +17,9 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
       in WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod
       in WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod
       in WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod
+      in WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod
+      in WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod
+      in WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod
       end
     end
 
@@ -36,6 +39,27 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
         created_at: Time,
         payment_method_type: WhopSDK::PaymentMethodTypes,
         us_bank_account: WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod::UsBankAccount
+      }
+      in {
+        typename: :CashappPaymentMethod,
+        id: String,
+        cashapp: WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod::Cashapp,
+        created_at: Time,
+        payment_method_type: WhopSDK::PaymentMethodTypes
+      }
+      in {
+        typename: :IdealPaymentMethod,
+        id: String,
+        created_at: Time,
+        ideal: WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod::Ideal,
+        payment_method_type: WhopSDK::PaymentMethodTypes
+      }
+      in {
+        typename: :SepaDebitPaymentMethod,
+        id: String,
+        created_at: Time,
+        payment_method_type: WhopSDK::PaymentMethodTypes,
+        sepa_debit: WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod::SepaDebit
       }
       end
     end
@@ -62,6 +86,9 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
       in WhopSDK::Models::PaymentMethodListResponse::BasePaymentMethod
       in WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod
       in WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod
+      in WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod
+      in WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod
+      in WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod
       end
     end
 
@@ -81,6 +108,27 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
         created_at: Time,
         payment_method_type: WhopSDK::PaymentMethodTypes,
         us_bank_account: WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod::UsBankAccount
+      }
+      in {
+        typename: :CashappPaymentMethod,
+        id: String,
+        cashapp: WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod::Cashapp,
+        created_at: Time,
+        payment_method_type: WhopSDK::PaymentMethodTypes
+      }
+      in {
+        typename: :IdealPaymentMethod,
+        id: String,
+        created_at: Time,
+        ideal: WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod::Ideal,
+        payment_method_type: WhopSDK::PaymentMethodTypes
+      }
+      in {
+        typename: :SepaDebitPaymentMethod,
+        id: String,
+        created_at: Time,
+        payment_method_type: WhopSDK::PaymentMethodTypes,
+        sepa_debit: WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod::SepaDebit
       }
       end
     end

@@ -211,6 +211,7 @@ module WhopSDK
           address: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Address?,
           business_name: String?,
           business_representative: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative?,
+          email: String?,
           phone: String?
         }
 
@@ -223,6 +224,8 @@ module WhopSDK
 
         attr_accessor business_representative: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative?
 
+        attr_accessor email: String?
+
         attr_accessor phone: String?
 
         def initialize: (
@@ -230,6 +233,7 @@ module WhopSDK
           address: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Address?,
           business_name: String?,
           business_representative: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative?,
+          email: String?,
           phone: String?
         ) -> void
 
@@ -238,6 +242,7 @@ module WhopSDK
           address: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Address?,
           business_name: String?,
           business_representative: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative?,
+          email: String?,
           phone: String?
         }
 
@@ -284,9 +289,16 @@ module WhopSDK
         end
 
         type business_representative =
-          { first_name: String?, last_name: String?, middle_name: String? }
+          {
+            date_of_birth: String?,
+            first_name: String?,
+            last_name: String?,
+            middle_name: String?
+          }
 
         class BusinessRepresentative < WhopSDK::Internal::Type::BaseModel
+          attr_accessor date_of_birth: String?
+
           attr_accessor first_name: String?
 
           attr_accessor last_name: String?
@@ -294,12 +306,14 @@ module WhopSDK
           attr_accessor middle_name: String?
 
           def initialize: (
+            date_of_birth: String?,
             first_name: String?,
             last_name: String?,
             middle_name: String?
           ) -> void
 
           def to_hash: -> {
+            date_of_birth: String?,
             first_name: String?,
             last_name: String?,
             middle_name: String?

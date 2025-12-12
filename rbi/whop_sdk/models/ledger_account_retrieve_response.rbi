@@ -590,6 +590,10 @@ module WhopSDK
         end
         attr_writer :business_representative
 
+        # The email address of the representative
+        sig { returns(T.nilable(String)) }
+        attr_accessor :email
+
         # The business representative's phone
         sig { returns(T.nilable(String)) }
         attr_accessor :phone
@@ -607,6 +611,7 @@ module WhopSDK
               T.nilable(
                 WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative::OrHash
               ),
+            email: T.nilable(String),
             phone: T.nilable(String)
           ).returns(T.attached_class)
         end
@@ -619,6 +624,8 @@ module WhopSDK
           business_name:,
           # The business representative for this payout account
           business_representative:,
+          # The email address of the representative
+          email:,
           # The business representative's phone
           phone:
         )
@@ -637,6 +644,7 @@ module WhopSDK
                 T.nilable(
                   WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative
                 ),
+              email: T.nilable(String),
               phone: T.nilable(String)
             }
           )
@@ -729,6 +737,11 @@ module WhopSDK
               )
             end
 
+          # The date of birth of the business representative in ISO 8601 format
+          # (YYYY-MM-DD).
+          sig { returns(T.nilable(String)) }
+          attr_accessor :date_of_birth
+
           # The first name of the business representative.
           sig { returns(T.nilable(String)) }
           attr_accessor :first_name
@@ -744,12 +757,16 @@ module WhopSDK
           # The business representative for this payout account
           sig do
             params(
+              date_of_birth: T.nilable(String),
               first_name: T.nilable(String),
               last_name: T.nilable(String),
               middle_name: T.nilable(String)
             ).returns(T.attached_class)
           end
           def self.new(
+            # The date of birth of the business representative in ISO 8601 format
+            # (YYYY-MM-DD).
+            date_of_birth:,
             # The first name of the business representative.
             first_name:,
             # The last name of the business representative.
@@ -762,6 +779,7 @@ module WhopSDK
           sig do
             override.returns(
               {
+                date_of_birth: T.nilable(String),
                 first_name: T.nilable(String),
                 last_name: T.nilable(String),
                 middle_name: T.nilable(String)

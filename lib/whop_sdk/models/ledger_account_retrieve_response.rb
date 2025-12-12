@@ -288,13 +288,19 @@ module WhopSDK
                  -> { WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative },
                  nil?: true
 
+        # @!attribute email
+        #   The email address of the representative
+        #
+        #   @return [String, nil]
+        required :email, String, nil?: true
+
         # @!attribute phone
         #   The business representative's phone
         #
         #   @return [String, nil]
         required :phone, String, nil?: true
 
-        # @!method initialize(id:, address:, business_name:, business_representative:, phone:)
+        # @!method initialize(id:, address:, business_name:, business_representative:, email:, phone:)
         #   The payout account associated with the LedgerAccount, if any.
         #
         #   @param id [String] Unique identifier for the object
@@ -304,6 +310,8 @@ module WhopSDK
         #   @param business_name [String, nil] The company's legal name
         #
         #   @param business_representative [WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative, nil] The business representative for this payout account
+        #
+        #   @param email [String, nil] The email address of the representative
         #
         #   @param phone [String, nil] The business representative's phone
 
@@ -363,6 +371,13 @@ module WhopSDK
 
         # @see WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails#business_representative
         class BusinessRepresentative < WhopSDK::Internal::Type::BaseModel
+          # @!attribute date_of_birth
+          #   The date of birth of the business representative in ISO 8601 format
+          #   (YYYY-MM-DD).
+          #
+          #   @return [String, nil]
+          required :date_of_birth, String, nil?: true
+
           # @!attribute first_name
           #   The first name of the business representative.
           #
@@ -381,8 +396,14 @@ module WhopSDK
           #   @return [String, nil]
           required :middle_name, String, nil?: true
 
-          # @!method initialize(first_name:, last_name:, middle_name:)
+          # @!method initialize(date_of_birth:, first_name:, last_name:, middle_name:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative}
+          #   for more details.
+          #
           #   The business representative for this payout account
+          #
+          #   @param date_of_birth [String, nil] The date of birth of the business representative in ISO 8601 format (YYYY-MM-DD)
           #
           #   @param first_name [String, nil] The first name of the business representative.
           #

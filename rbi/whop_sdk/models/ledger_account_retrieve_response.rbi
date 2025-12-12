@@ -590,6 +590,10 @@ module WhopSDK
         end
         attr_writer :business_representative
 
+        # The business representative's phone
+        sig { returns(T.nilable(String)) }
+        attr_accessor :phone
+
         # The payout account associated with the LedgerAccount, if any.
         sig do
           params(
@@ -602,7 +606,8 @@ module WhopSDK
             business_representative:
               T.nilable(
                 WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative::OrHash
-              )
+              ),
+            phone: T.nilable(String)
           ).returns(T.attached_class)
         end
         def self.new(
@@ -613,7 +618,9 @@ module WhopSDK
           # The company's legal name
           business_name:,
           # The business representative for this payout account
-          business_representative:
+          business_representative:,
+          # The business representative's phone
+          phone:
         )
         end
 
@@ -629,7 +636,8 @@ module WhopSDK
               business_representative:
                 T.nilable(
                   WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative
-                )
+                ),
+              phone: T.nilable(String)
             }
           )
         end

@@ -156,6 +156,12 @@ module WhopSDK
         sig { returns(WhopSDK::Currency::OrSymbol) }
         attr_accessor :currency
 
+        # The application fee amount collected by the platform from this connected
+        # account. Must be less than the total payment amount. Only valid for connected
+        # accounts with a parent company.
+        sig { returns(T.nilable(Float)) }
+        attr_accessor :application_fee_amount
+
         # The interval at which the plan charges (renewal plans).
         sig { returns(T.nilable(Integer)) }
         attr_accessor :billing_period
@@ -288,6 +294,7 @@ module WhopSDK
           params(
             company_id: String,
             currency: WhopSDK::Currency::OrSymbol,
+            application_fee_amount: T.nilable(Float),
             billing_period: T.nilable(Integer),
             custom_fields:
               T.nilable(
@@ -331,6 +338,10 @@ module WhopSDK
           company_id:,
           # The respective currency identifier for the plan.
           currency:,
+          # The application fee amount collected by the platform from this connected
+          # account. Must be less than the total payment amount. Only valid for connected
+          # accounts with a parent company.
+          application_fee_amount: nil,
           # The interval at which the plan charges (renewal plans).
           billing_period: nil,
           # An array of custom field objects.
@@ -381,6 +392,7 @@ module WhopSDK
             {
               company_id: String,
               currency: WhopSDK::Currency::OrSymbol,
+              application_fee_amount: T.nilable(Float),
               billing_period: T.nilable(Integer),
               custom_fields:
                 T.nilable(

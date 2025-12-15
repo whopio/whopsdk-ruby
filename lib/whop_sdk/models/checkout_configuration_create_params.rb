@@ -102,6 +102,14 @@ module WhopSDK
         #   @return [Symbol, WhopSDK::Models::Currency]
         required :currency, enum: -> { WhopSDK::Currency }
 
+        # @!attribute application_fee_amount
+        #   The application fee amount collected by the platform from this connected
+        #   account. Must be less than the total payment amount. Only valid for connected
+        #   accounts with a parent company.
+        #
+        #   @return [Float, nil]
+        optional :application_fee_amount, Float, nil?: true
+
         # @!attribute billing_period
         #   The interval at which the plan charges (renewal plans).
         #
@@ -226,7 +234,7 @@ module WhopSDK
         #   @return [Symbol, WhopSDK::Models::Visibility, nil]
         optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-        # @!method initialize(company_id:, currency:, billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, force_create_new_plan: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, product: nil, product_id: nil, release_method: nil, renewal_price: nil, split_pay_required_payments: nil, title: nil, trial_period_days: nil, visibility: nil)
+        # @!method initialize(company_id:, currency:, application_fee_amount: nil, billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, force_create_new_plan: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, product: nil, product_id: nil, release_method: nil, renewal_price: nil, split_pay_required_payments: nil, title: nil, trial_period_days: nil, visibility: nil)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan} for more details.
         #
@@ -235,6 +243,8 @@ module WhopSDK
         #   @param company_id [String] The company the plan should be created for.
         #
         #   @param currency [Symbol, WhopSDK::Models::Currency] The respective currency identifier for the plan.
+        #
+        #   @param application_fee_amount [Float, nil] The application fee amount collected by the platform from this connected account
         #
         #   @param billing_period [Integer, nil] The interval at which the plan charges (renewal plans).
         #

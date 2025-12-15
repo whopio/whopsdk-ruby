@@ -66,6 +66,7 @@ module WhopSDK
         {
           company_id: String,
           currency: WhopSDK::Models::currency,
+          application_fee_amount: Float?,
           billing_period: Integer?,
           custom_fields: ::Array[WhopSDK::CheckoutConfigurationCreateParams::Plan::CustomField]?,
           description: String?,
@@ -91,6 +92,8 @@ module WhopSDK
         attr_accessor company_id: String
 
         attr_accessor currency: WhopSDK::Models::currency
+
+        attr_accessor application_fee_amount: Float?
 
         attr_accessor billing_period: Integer?
 
@@ -133,6 +136,7 @@ module WhopSDK
         def initialize: (
           company_id: String,
           currency: WhopSDK::Models::currency,
+          ?application_fee_amount: Float?,
           ?billing_period: Integer?,
           ?custom_fields: ::Array[WhopSDK::CheckoutConfigurationCreateParams::Plan::CustomField]?,
           ?description: String?,
@@ -157,6 +161,7 @@ module WhopSDK
         def to_hash: -> {
           company_id: String,
           currency: WhopSDK::Models::currency,
+          application_fee_amount: Float?,
           billing_period: Integer?,
           custom_fields: ::Array[WhopSDK::CheckoutConfigurationCreateParams::Plan::CustomField]?,
           description: String?,

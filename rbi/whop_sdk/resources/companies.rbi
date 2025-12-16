@@ -14,6 +14,8 @@ module WhopSDK
           email: String,
           parent_company_id: String,
           title: String,
+          business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
+          industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
           send_customer_emails: T.nilable(T::Boolean),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -26,6 +28,10 @@ module WhopSDK
         parent_company_id:,
         # The name of the company being created.
         title:,
+        # The different business types a company can be.
+        business_type: nil,
+        # The different industry types a company can be in.
+        industry_type: nil,
         # Additional metadata for the account
         metadata: nil,
         # Whether Whop sends transactional emails to customers on behalf of this company.
@@ -72,6 +78,8 @@ module WhopSDK
                 WhopSDK::CompanyUpdateParams::BannerImage::AttachmentInputWithID::OrHash
               )
             ),
+          business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
+          industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           logo:
             T.nilable(
               T.any(
@@ -89,6 +97,10 @@ module WhopSDK
         id,
         # The banner image for the company in png or jpeg format
         banner_image: nil,
+        # The different business types a company can be.
+        business_type: nil,
+        # The different industry types a company can be in.
+        industry_type: nil,
         # The logo for the company in png, jpeg, or gif format
         logo: nil,
         # Whether Whop sends transactional emails to customers on behalf of this company.

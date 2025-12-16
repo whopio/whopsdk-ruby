@@ -3,6 +3,8 @@ module WhopSDK
     type company_update_params =
       {
         banner_image: WhopSDK::Models::CompanyUpdateParams::banner_image?,
+        business_type: WhopSDK::Models::business_types?,
+        industry_type: WhopSDK::Models::industry_types?,
         logo: WhopSDK::Models::CompanyUpdateParams::logo?,
         send_customer_emails: bool?,
         title: String?
@@ -15,6 +17,10 @@ module WhopSDK
 
       attr_accessor banner_image: WhopSDK::Models::CompanyUpdateParams::banner_image?
 
+      attr_accessor business_type: WhopSDK::Models::business_types?
+
+      attr_accessor industry_type: WhopSDK::Models::industry_types?
+
       attr_accessor logo: WhopSDK::Models::CompanyUpdateParams::logo?
 
       attr_accessor send_customer_emails: bool?
@@ -23,6 +29,8 @@ module WhopSDK
 
       def initialize: (
         ?banner_image: WhopSDK::Models::CompanyUpdateParams::banner_image?,
+        ?business_type: WhopSDK::Models::business_types?,
+        ?industry_type: WhopSDK::Models::industry_types?,
         ?logo: WhopSDK::Models::CompanyUpdateParams::logo?,
         ?send_customer_emails: bool?,
         ?title: String?,
@@ -31,6 +39,8 @@ module WhopSDK
 
       def to_hash: -> {
         banner_image: WhopSDK::Models::CompanyUpdateParams::banner_image?,
+        business_type: WhopSDK::Models::business_types?,
+        industry_type: WhopSDK::Models::industry_types?,
         logo: WhopSDK::Models::CompanyUpdateParams::logo?,
         send_customer_emails: bool?,
         title: String?,

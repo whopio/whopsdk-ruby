@@ -23,6 +23,14 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :title
 
+      # The different business types a company can be.
+      sig { returns(T.nilable(WhopSDK::BusinessTypes::OrSymbol)) }
+      attr_accessor :business_type
+
+      # The different industry types a company can be in.
+      sig { returns(T.nilable(WhopSDK::IndustryTypes::OrSymbol)) }
+      attr_accessor :industry_type
+
       # Additional metadata for the account
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
@@ -39,6 +47,8 @@ module WhopSDK
           email: String,
           parent_company_id: String,
           title: String,
+          business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
+          industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
           send_customer_emails: T.nilable(T::Boolean),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -51,6 +61,10 @@ module WhopSDK
         parent_company_id:,
         # The name of the company being created.
         title:,
+        # The different business types a company can be.
+        business_type: nil,
+        # The different industry types a company can be in.
+        industry_type: nil,
         # Additional metadata for the account
         metadata: nil,
         # Whether Whop sends transactional emails to customers on behalf of this company.
@@ -68,6 +82,8 @@ module WhopSDK
             email: String,
             parent_company_id: String,
             title: String,
+            business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
+            industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
             metadata: T.nilable(T::Hash[Symbol, T.anything]),
             send_customer_emails: T.nilable(T::Boolean),
             request_options: WhopSDK::RequestOptions

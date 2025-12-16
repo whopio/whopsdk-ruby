@@ -5,6 +5,8 @@ module WhopSDK
         email: String,
         parent_company_id: String,
         title: String,
+        ?business_type: WhopSDK::Models::business_types?,
+        ?industry_type: WhopSDK::Models::industry_types?,
         ?metadata: ::Hash[Symbol, top]?,
         ?send_customer_emails: bool?,
         ?request_options: WhopSDK::request_opts
@@ -18,6 +20,8 @@ module WhopSDK
       def update: (
         String id,
         ?banner_image: WhopSDK::Models::CompanyUpdateParams::banner_image?,
+        ?business_type: WhopSDK::Models::business_types?,
+        ?industry_type: WhopSDK::Models::industry_types?,
         ?logo: WhopSDK::Models::CompanyUpdateParams::logo?,
         ?send_customer_emails: bool?,
         ?title: String?,

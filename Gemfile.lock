@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    whop_sdk (0.0.19)
+    whop_sdk (0.0.20)
       connection_pool
       jwt
       openssl

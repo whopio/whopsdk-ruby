@@ -25,6 +25,18 @@ module WhopSDK
       #   @return [String]
       required :title, String
 
+      # @!attribute business_type
+      #   The different business types a company can be.
+      #
+      #   @return [Symbol, WhopSDK::Models::BusinessTypes, nil]
+      optional :business_type, enum: -> { WhopSDK::BusinessTypes }, nil?: true
+
+      # @!attribute industry_type
+      #   The different industry types a company can be in.
+      #
+      #   @return [Symbol, WhopSDK::Models::IndustryTypes, nil]
+      optional :industry_type, enum: -> { WhopSDK::IndustryTypes }, nil?: true
+
       # @!attribute metadata
       #   Additional metadata for the account
       #
@@ -40,7 +52,7 @@ module WhopSDK
       #   @return [Boolean, nil]
       optional :send_customer_emails, WhopSDK::Internal::Type::Boolean, nil?: true
 
-      # @!method initialize(email:, parent_company_id:, title:, metadata: nil, send_customer_emails: nil, request_options: {})
+      # @!method initialize(email:, parent_company_id:, title:, business_type: nil, industry_type: nil, metadata: nil, send_customer_emails: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CompanyCreateParams} for more details.
       #
@@ -49,6 +61,10 @@ module WhopSDK
       #   @param parent_company_id [String] The company ID of the platform creating this company.
       #
       #   @param title [String] The name of the company being created.
+      #
+      #   @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
+      #
+      #   @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
       #   @param metadata [Hash{Symbol=>Object}, nil] Additional metadata for the account
       #

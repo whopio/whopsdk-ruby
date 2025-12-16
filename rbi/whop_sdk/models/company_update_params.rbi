@@ -24,6 +24,14 @@ module WhopSDK
       end
       attr_accessor :banner_image
 
+      # The different business types a company can be.
+      sig { returns(T.nilable(WhopSDK::BusinessTypes::OrSymbol)) }
+      attr_accessor :business_type
+
+      # The different industry types a company can be in.
+      sig { returns(T.nilable(WhopSDK::IndustryTypes::OrSymbol)) }
+      attr_accessor :industry_type
+
       # The logo for the company in png, jpeg, or gif format
       sig do
         returns(
@@ -57,6 +65,8 @@ module WhopSDK
                 WhopSDK::CompanyUpdateParams::BannerImage::AttachmentInputWithID::OrHash
               )
             ),
+          business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
+          industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           logo:
             T.nilable(
               T.any(
@@ -72,6 +82,10 @@ module WhopSDK
       def self.new(
         # The banner image for the company in png or jpeg format
         banner_image: nil,
+        # The different business types a company can be.
+        business_type: nil,
+        # The different industry types a company can be in.
+        industry_type: nil,
         # The logo for the company in png, jpeg, or gif format
         logo: nil,
         # Whether Whop sends transactional emails to customers on behalf of this company.
@@ -95,6 +109,8 @@ module WhopSDK
                   WhopSDK::CompanyUpdateParams::BannerImage::AttachmentInputWithID
                 )
               ),
+            business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
+            industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
             logo:
               T.nilable(
                 T.any(

@@ -13,13 +13,17 @@ module WhopSDK
       # - `company:create_child`
       # - `company:basic:read`
       #
-      # @overload create(email:, parent_company_id:, title:, metadata: nil, send_customer_emails: nil, request_options: {})
+      # @overload create(email:, parent_company_id:, title:, business_type: nil, industry_type: nil, metadata: nil, send_customer_emails: nil, request_options: {})
       #
       # @param email [String] The email of the user who the company will belong to.
       #
       # @param parent_company_id [String] The company ID of the platform creating this company.
       #
       # @param title [String] The name of the company being created.
+      #
+      # @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
+      #
+      # @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
       # @param metadata [Hash{Symbol=>Object}, nil] Additional metadata for the account
       #
@@ -76,11 +80,15 @@ module WhopSDK
       # - `company:update`
       # - `company:basic:read`
       #
-      # @overload update(id, banner_image: nil, logo: nil, send_customer_emails: nil, title: nil, request_options: {})
+      # @overload update(id, banner_image: nil, business_type: nil, industry_type: nil, logo: nil, send_customer_emails: nil, title: nil, request_options: {})
       #
       # @param id [String] The ID of the company to update
       #
       # @param banner_image [WhopSDK::Models::CompanyUpdateParams::BannerImage::AttachmentInputWithDirectUploadID, WhopSDK::Models::CompanyUpdateParams::BannerImage::AttachmentInputWithID, nil] The banner image for the company in png or jpeg format
+      #
+      # @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
+      #
+      # @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
       # @param logo [WhopSDK::Models::CompanyUpdateParams::Logo::AttachmentInputWithDirectUploadID, WhopSDK::Models::CompanyUpdateParams::Logo::AttachmentInputWithID, nil] The logo for the company in png, jpeg, or gif format
       #

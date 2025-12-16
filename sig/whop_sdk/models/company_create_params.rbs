@@ -5,6 +5,8 @@ module WhopSDK
         email: String,
         parent_company_id: String,
         title: String,
+        business_type: WhopSDK::Models::business_types?,
+        industry_type: WhopSDK::Models::industry_types?,
         metadata: ::Hash[Symbol, top]?,
         send_customer_emails: bool?
       }
@@ -20,6 +22,10 @@ module WhopSDK
 
       attr_accessor title: String
 
+      attr_accessor business_type: WhopSDK::Models::business_types?
+
+      attr_accessor industry_type: WhopSDK::Models::industry_types?
+
       attr_accessor metadata: ::Hash[Symbol, top]?
 
       attr_accessor send_customer_emails: bool?
@@ -28,6 +34,8 @@ module WhopSDK
         email: String,
         parent_company_id: String,
         title: String,
+        ?business_type: WhopSDK::Models::business_types?,
+        ?industry_type: WhopSDK::Models::industry_types?,
         ?metadata: ::Hash[Symbol, top]?,
         ?send_customer_emails: bool?,
         ?request_options: WhopSDK::request_opts
@@ -37,6 +45,8 @@ module WhopSDK
         email: String,
         parent_company_id: String,
         title: String,
+        business_type: WhopSDK::Models::business_types?,
+        industry_type: WhopSDK::Models::industry_types?,
         metadata: ::Hash[Symbol, top]?,
         send_customer_emails: bool?,
         request_options: WhopSDK::RequestOptions

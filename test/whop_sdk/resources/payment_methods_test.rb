@@ -3,10 +3,10 @@
 require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
-  def test_retrieve_required_params
+  def test_retrieve
     skip("Prism tests are disabled")
 
-    response = @whop.payment_methods.retrieve("payt_xxxxxxxxxxxxx", member_id: "mber_xxxxxxxxxxxxx")
+    response = @whop.payment_methods.retrieve("payt_xxxxxxxxxxxxx")
 
     assert_pattern do
       response => WhopSDK::Models::PaymentMethodRetrieveResponse
@@ -65,10 +65,10 @@ class WhopSDK::Test::Resources::PaymentMethodsTest < WhopSDK::Test::ResourceTest
     end
   end
 
-  def test_list_required_params
+  def test_list
     skip("Prism tests are disabled")
 
-    response = @whop.payment_methods.list(member_id: "mber_xxxxxxxxxxxxx")
+    response = @whop.payment_methods.list
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage

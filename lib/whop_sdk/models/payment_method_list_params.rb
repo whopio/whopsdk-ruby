@@ -7,12 +7,6 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute member_id
-      #   The ID of the Member to list payment methods for
-      #
-      #   @return [String]
-      required :member_id, String
-
       # @!attribute after
       #   Returns the elements in the list that come after the specified cursor.
       #
@@ -24,6 +18,12 @@ module WhopSDK
       #
       #   @return [String, nil]
       optional :before, String, nil?: true
+
+      # @!attribute company_id
+      #   The ID of the Company. Provide either this or member_id (not both).
+      #
+      #   @return [String, nil]
+      optional :company_id, String, nil?: true
 
       # @!attribute created_after
       #   The minimum creation date to filter by
@@ -55,12 +55,18 @@ module WhopSDK
       #   @return [Integer, nil]
       optional :last, Integer, nil?: true
 
-      # @!method initialize(member_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, request_options: {})
-      #   @param member_id [String] The ID of the Member to list payment methods for
+      # @!attribute member_id
+      #   The ID of the Member to list payment methods for
       #
+      #   @return [String, nil]
+      optional :member_id, String, nil?: true
+
+      # @!method initialize(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, member_id: nil, request_options: {})
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      #   @param company_id [String, nil] The ID of the Company. Provide either this or member_id (not both).
       #
       #   @param created_after [Time, nil] The minimum creation date to filter by
       #
@@ -71,6 +77,8 @@ module WhopSDK
       #   @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #
+      #   @param member_id [String, nil] The ID of the Member to list payment methods for
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

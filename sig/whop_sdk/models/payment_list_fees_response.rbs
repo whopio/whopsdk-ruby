@@ -62,6 +62,7 @@ module WhopSDK
         | :three_ds_fixed_fee
         | :billing_percentage_fee
         | :revshare_percentage_fee
+        | :application_fee
 
       module Type
         extend WhopSDK::Internal::Type::Enum
@@ -96,6 +97,7 @@ module WhopSDK
         THREE_DS_FIXED_FEE: :three_ds_fixed_fee
         BILLING_PERCENTAGE_FEE: :billing_percentage_fee
         REVSHARE_PERCENTAGE_FEE: :revshare_percentage_fee
+        APPLICATION_FEE: :application_fee
 
         def self?.values: -> ::Array[WhopSDK::Models::PaymentListFeesResponse::type_]
       end

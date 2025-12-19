@@ -223,6 +223,11 @@ module WhopSDK
             :revshare_percentage_fee,
             WhopSDK::Models::PaymentListFeesResponse::Type::TaggedSymbol
           )
+        APPLICATION_FEE =
+          T.let(
+            :application_fee,
+            WhopSDK::Models::PaymentListFeesResponse::Type::TaggedSymbol
+          )
 
         sig do
           override.returns(

@@ -7,6 +7,7 @@ module WhopSDK
         payment_method_id: String,
         plan: WhopSDK::PaymentCreateParams::Plan,
         plan_id: String,
+        ?metadata: ::Hash[Symbol, top]?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Payment
 

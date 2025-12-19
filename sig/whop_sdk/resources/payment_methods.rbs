@@ -3,19 +3,21 @@ module WhopSDK
     class PaymentMethods
       def retrieve: (
         String id,
-        member_id: String,
+        ?company_id: String?,
+        ?member_id: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::payment_method_retrieve_response
 
       def list: (
-        member_id: String,
         ?after: String?,
         ?before: String?,
+        ?company_id: String?,
         ?created_after: Time?,
         ?created_before: Time?,
         ?direction: WhopSDK::Models::direction?,
         ?first: Integer?,
         ?last: Integer?,
+        ?member_id: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::payment_method_list_response]
 

@@ -7,24 +7,26 @@ module WhopSDK
       # such as a card, bank account, or digital wallet. It holds the necessary billing
       # details and can be attached to a member for future one-time or recurring
       # charges. This lets you reuse the same payment credentials across multiple
-      # payments.
+      # payments. You must provide exactly one of company_id or member_id.
       #
       # Required permissions:
       #
       # - `member:payment_methods:read`
       #
-      # @overload retrieve(id, member_id:, request_options: {})
+      # @overload retrieve(id, company_id: nil, member_id: nil, request_options: {})
       #
       # @param id [String] The ID of the PaymentMethod
       #
-      # @param member_id [String] The ID of the Member associated with the PaymentMethod
+      # @param company_id [String, nil] The ID of the Company. Provide either this or member_id (not both).
+      #
+      # @param member_id [String, nil] The ID of the Member. Provide either this or company_id (not both).
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::PaymentMethodRetrieveResponse::BasePaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::CardPaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::UsBankAccountPaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::CashappPaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::IdealPaymentMethod, WhopSDK::Models::PaymentMethodRetrieveResponse::SepaDebitPaymentMethod]
       #
       # @see WhopSDK::Models::PaymentMethodRetrieveParams
-      def retrieve(id, params)
+      def retrieve(id, params = {})
         parsed, options = WhopSDK::PaymentMethodRetrieveParams.dump_request(params)
         @client.request(
           method: :get,
@@ -45,13 +47,13 @@ module WhopSDK
       #
       # - `member:payment_methods:read`
       #
-      # @overload list(member_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, request_options: {})
-      #
-      # @param member_id [String] The ID of the Member to list payment methods for
+      # @overload list(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, member_id: nil, request_options: {})
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      # @param company_id [String, nil] The ID of the Company. Provide either this or member_id (not both).
       #
       # @param created_after [Time, nil] The minimum creation date to filter by
       #
@@ -63,12 +65,14 @@ module WhopSDK
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
+      # @param member_id [String, nil] The ID of the Member to list payment methods for
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::PaymentMethodListResponse::BasePaymentMethod, WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod, WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod>]
       #
       # @see WhopSDK::Models::PaymentMethodListParams
-      def list(params)
+      def list(params = {})
         parsed, options = WhopSDK::PaymentMethodListParams.dump_request(params)
         @client.request(
           method: :get,

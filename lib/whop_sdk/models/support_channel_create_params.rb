@@ -14,7 +14,7 @@ module WhopSDK
       required :company_id, String
 
       # @!attribute user_id
-      #   The ID of the user to create the support chat for
+      #   The ID (user_xxx) or username of the user to create the support chat for
       #
       #   @return [String]
       required :user_id, String
@@ -22,7 +22,7 @@ module WhopSDK
       # @!method initialize(company_id:, user_id:, request_options: {})
       #   @param company_id [String] The ID of the company to create the support chat in
       #
-      #   @param user_id [String] The ID of the user to create the support chat for
+      #   @param user_id [String] The ID (user_xxx) or username of the user to create the support chat for
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

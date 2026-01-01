@@ -41,6 +41,7 @@ module WhopSDK
           id: String,
           currency: String,
           destination: WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination?,
+          is_default: bool,
           nickname: String?
         }
 
@@ -51,12 +52,15 @@ module WhopSDK
 
         attr_accessor destination: WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination?
 
+        attr_accessor is_default: bool
+
         attr_accessor nickname: String?
 
         def initialize: (
           id: String,
           currency: String,
           destination: WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination?,
+          is_default: bool,
           nickname: String?
         ) -> void
 
@@ -64,6 +68,7 @@ module WhopSDK
           id: String,
           currency: String,
           destination: WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination?,
+          is_default: bool,
           nickname: String?
         }
 

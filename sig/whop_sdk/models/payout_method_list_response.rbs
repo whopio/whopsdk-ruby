@@ -5,6 +5,7 @@ module WhopSDK
         id: String,
         currency: String,
         destination: WhopSDK::Models::PayoutMethodListResponse::Destination?,
+        is_default: bool,
         nickname: String?
       }
 
@@ -15,12 +16,15 @@ module WhopSDK
 
       attr_accessor destination: WhopSDK::Models::PayoutMethodListResponse::Destination?
 
+      attr_accessor is_default: bool
+
       attr_accessor nickname: String?
 
       def initialize: (
         id: String,
         currency: String,
         destination: WhopSDK::Models::PayoutMethodListResponse::Destination?,
+        is_default: bool,
         nickname: String?
       ) -> void
 
@@ -28,6 +32,7 @@ module WhopSDK
         id: String,
         currency: String,
         destination: WhopSDK::Models::PayoutMethodListResponse::Destination?,
+        is_default: bool,
         nickname: String?
       }
 

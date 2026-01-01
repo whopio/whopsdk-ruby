@@ -24,6 +24,7 @@ class WhopSDK::Test::Resources::PayoutMethodsTest < WhopSDK::Test::ResourceTest
         id: String,
         currency: String,
         destination: WhopSDK::Models::PayoutMethodListResponse::Destination | nil,
+        is_default: WhopSDK::Internal::Type::Boolean,
         nickname: String | nil
       }
     end

@@ -65,6 +65,12 @@ module WhopSDK
         #   @return [WhopSDK::Models::PayoutMethodCreatedWebhookEvent::Data::Destination, nil]
         required :destination, -> { WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination }, nil?: true
 
+        # @!attribute is_default
+        #   Whether this payout token is the default for the payout account
+        #
+        #   @return [Boolean]
+        required :is_default, WhopSDK::Internal::Type::Boolean
+
         # @!attribute nickname
         #   An optional nickname for the payout token to help the user identify it. This is
         #   not used by the provider and is only for the user's reference.
@@ -72,7 +78,7 @@ module WhopSDK
         #   @return [String, nil]
         required :nickname, String, nil?: true
 
-        # @!method initialize(id:, currency:, destination:, nickname:)
+        # @!method initialize(id:, currency:, destination:, is_default:, nickname:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::PayoutMethodCreatedWebhookEvent::Data} for more details.
         #
@@ -83,6 +89,8 @@ module WhopSDK
         #   @param currency [String] The currency code of the payout destination. This is the currency that payouts w
         #
         #   @param destination [WhopSDK::Models::PayoutMethodCreatedWebhookEvent::Data::Destination, nil] The payout destination associated with the payout token
+        #
+        #   @param is_default [Boolean] Whether this payout token is the default for the payout account
         #
         #   @param nickname [String, nil] An optional nickname for the payout token to help the user identify it. This is
 

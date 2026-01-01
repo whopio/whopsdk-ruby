@@ -113,6 +113,10 @@ module WhopSDK
         end
         attr_writer :destination
 
+        # Whether this payout token is the default for the payout account
+        sig { returns(T::Boolean) }
+        attr_accessor :is_default
+
         # An optional nickname for the payout token to help the user identify it. This is
         # not used by the provider and is only for the user's reference.
         sig { returns(T.nilable(String)) }
@@ -127,6 +131,7 @@ module WhopSDK
               T.nilable(
                 WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination::OrHash
               ),
+            is_default: T::Boolean,
             nickname: T.nilable(String)
           ).returns(T.attached_class)
         end
@@ -138,6 +143,8 @@ module WhopSDK
           currency:,
           # The payout destination associated with the payout token
           destination:,
+          # Whether this payout token is the default for the payout account
+          is_default:,
           # An optional nickname for the payout token to help the user identify it. This is
           # not used by the provider and is only for the user's reference.
           nickname:
@@ -153,6 +160,7 @@ module WhopSDK
                 T.nilable(
                   WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination
                 ),
+              is_default: T::Boolean,
               nickname: T.nilable(String)
             }
           )

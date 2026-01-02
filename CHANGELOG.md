@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.1.0 (2026-01-02)
+
+Full Changelog: [v0.0.20...v0.1.0](https://github.com/whopio/whopsdk-ruby/compare/v0.0.20...v0.1.0)
+
+### Features
+
+* **api:** api update ([7b79b5e](https://github.com/whopio/whopsdk-ruby/commit/7b79b5ecb10e297b2b40c6e9bcd8710486738370))
+* **api:** api update ([6b01cd6](https://github.com/whopio/whopsdk-ruby/commit/6b01cd6184c20f7b58f6b290afce78daf4fcb4ef))
+* **api:** api update ([f6a40eb](https://github.com/whopio/whopsdk-ruby/commit/f6a40eb1748db6b849c3857c8dd80ea2c2ce2402))
+* **api:** api update ([131ef7d](https://github.com/whopio/whopsdk-ruby/commit/131ef7d9396af31afbbc4cedb3f62835453cd4ca))
+* **api:** api update ([789ca6d](https://github.com/whopio/whopsdk-ruby/commit/789ca6d43533a22f94370de9c05c4ecf9714a044))
+* **api:** api update ([d165256](https://github.com/whopio/whopsdk-ruby/commit/d16525653fc3bb992650b120b2b63f3bac07dd77))
+* **api:** api update ([fe37424](https://github.com/whopio/whopsdk-ruby/commit/fe37424c5fd9a258bea07a1c003148ab6fbd02bd))
+* **api:** api update ([43788a0](https://github.com/whopio/whopsdk-ruby/commit/43788a0bdefecbcd1bea6393fb6959cf082a1b44))
+* **api:** api update ([72d8b00](https://github.com/whopio/whopsdk-ruby/commit/72d8b0022e186f3e9e3235fb95cbbe353e3a73a9))
+
+
+### Bug Fixes
+
+* calling `break` out of streams should be instantaneous ([7503ef5](https://github.com/whopio/whopsdk-ruby/commit/7503ef5800775d0c158500da07554f6f4e3e8d95))
+* issue where json.parse errors when receiving HTTP 204 with nobody ([919e4e1](https://github.com/whopio/whopsdk-ruby/commit/919e4e1a8a9dcada6957cbf07884c5cba26663fa))
+
 ## 0.0.20 (2025-12-16)
 
 Full Changelog: [v0.0.19...v0.0.20](https://github.com/whopio/whopsdk-ruby/compare/v0.0.19...v0.0.20)

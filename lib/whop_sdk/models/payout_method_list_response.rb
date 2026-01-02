@@ -10,6 +10,12 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
+      # @!attribute company
+      #   The company associated with the payout token
+      #
+      #   @return [WhopSDK::Models::PayoutMethodListResponse::Company, nil]
+      required :company, -> { WhopSDK::Models::PayoutMethodListResponse::Company }, nil?: true
+
       # @!attribute currency
       #   The currency code of the payout destination. This is the currency that payouts
       #   will be made in for this token.
@@ -23,6 +29,12 @@ module WhopSDK
       #   @return [WhopSDK::Models::PayoutMethodListResponse::Destination, nil]
       required :destination, -> { WhopSDK::Models::PayoutMethodListResponse::Destination }, nil?: true
 
+      # @!attribute is_default
+      #   Whether this payout token is the default for the payout account
+      #
+      #   @return [Boolean]
+      required :is_default, WhopSDK::Internal::Type::Boolean
+
       # @!attribute nickname
       #   An optional nickname for the payout token to help the user identify it. This is
       #   not used by the provider and is only for the user's reference.
@@ -30,7 +42,7 @@ module WhopSDK
       #   @return [String, nil]
       required :nickname, String, nil?: true
 
-      # @!method initialize(id:, currency:, destination:, nickname:)
+      # @!method initialize(id:, company:, currency:, destination:, is_default:, nickname:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PayoutMethodListResponse} for more details.
       #
@@ -38,11 +50,29 @@ module WhopSDK
       #
       #   @param id [String] The ID of the payout token
       #
+      #   @param company [WhopSDK::Models::PayoutMethodListResponse::Company, nil] The company associated with the payout token
+      #
       #   @param currency [String] The currency code of the payout destination. This is the currency that payouts w
       #
       #   @param destination [WhopSDK::Models::PayoutMethodListResponse::Destination, nil] The payout destination associated with the payout token
       #
+      #   @param is_default [Boolean] Whether this payout token is the default for the payout account
+      #
       #   @param nickname [String, nil] An optional nickname for the payout token to help the user identify it. This is
+
+      # @see WhopSDK::Models::PayoutMethodListResponse#company
+      class Company < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The ID (tag) of the company.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!method initialize(id:)
+        #   The company associated with the payout token
+        #
+        #   @param id [String] The ID (tag) of the company.
+      end
 
       # @see WhopSDK::Models::PayoutMethodListResponse#destination
       class Destination < WhopSDK::Internal::Type::BaseModel

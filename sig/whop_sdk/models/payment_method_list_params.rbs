@@ -2,14 +2,15 @@ module WhopSDK
   module Models
     type payment_method_list_params =
       {
-        member_id: String,
         after: String?,
         before: String?,
+        company_id: String?,
         created_after: Time?,
         created_before: Time?,
         direction: WhopSDK::Models::direction?,
         first: Integer?,
-        last: Integer?
+        last: Integer?,
+        member_id: String?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -17,11 +18,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor member_id: String
-
       attr_accessor after: String?
 
       attr_accessor before: String?
+
+      attr_accessor company_id: String?
 
       attr_accessor created_after: Time?
 
@@ -33,27 +34,31 @@ module WhopSDK
 
       attr_accessor last: Integer?
 
+      attr_accessor member_id: String?
+
       def initialize: (
-        member_id: String,
         ?after: String?,
         ?before: String?,
+        ?company_id: String?,
         ?created_after: Time?,
         ?created_before: Time?,
         ?direction: WhopSDK::Models::direction?,
         ?first: Integer?,
         ?last: Integer?,
+        ?member_id: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        member_id: String,
         after: String?,
         before: String?,
+        company_id: String?,
         created_after: Time?,
         created_before: Time?,
         direction: WhopSDK::Models::direction?,
         first: Integer?,
         last: Integer?,
+        member_id: String?,
         request_options: WhopSDK::RequestOptions
       }
     end

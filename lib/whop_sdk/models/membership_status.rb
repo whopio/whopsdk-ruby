@@ -14,6 +14,7 @@ module WhopSDK
       EXPIRED = :expired
       UNRESOLVED = :unresolved
       DRAFTED = :drafted
+      CANCELING = :canceling
 
       # @!method self.values
       #   @return [Array<Symbol>]

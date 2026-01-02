@@ -94,8 +94,8 @@ module WhopSDK
       required :membership, -> { WhopSDK::Payment::Membership }, nil?: true
 
       # @!attribute metadata
-      #   The custom metadata stored on this payment. This will be copied the checkout
-      #   configuration for which this payment was made
+      #   The custom metadata stored on this payment. This will be copied over to the
+      #   checkout configuration for which this payment was made
       #
       #   @return [Hash{Symbol=>Object}, nil]
       required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
@@ -242,7 +242,7 @@ module WhopSDK
       #
       #   @param membership [WhopSDK::Models::Payment::Membership, nil] The membership attached to this payment.
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] The custom metadata stored on this payment. This will be copied the checkout con
+      #   @param metadata [Hash{Symbol=>Object}, nil] The custom metadata stored on this payment. This will be copied over to the chec
       #
       #   @param paid_at [Time, nil] The datetime the payment was paid
       #

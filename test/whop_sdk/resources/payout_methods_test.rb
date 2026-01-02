@@ -22,8 +22,10 @@ class WhopSDK::Test::Resources::PayoutMethodsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
+        company: WhopSDK::Models::PayoutMethodListResponse::Company | nil,
         currency: String,
         destination: WhopSDK::Models::PayoutMethodListResponse::Destination | nil,
+        is_default: WhopSDK::Internal::Type::Boolean,
         nickname: String | nil
       }
     end

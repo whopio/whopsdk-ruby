@@ -15,7 +15,7 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :company_id
 
-      # The ID of the user to create the support chat for
+      # The ID (user_xxx) or username of the user to create the support chat for
       sig { returns(String) }
       attr_accessor :user_id
 
@@ -29,7 +29,7 @@ module WhopSDK
       def self.new(
         # The ID of the company to create the support chat in
         company_id:,
-        # The ID of the user to create the support chat for
+        # The ID (user_xxx) or username of the user to create the support chat for
         user_id:,
         request_options: {}
       )

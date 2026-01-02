@@ -6,6 +6,7 @@ module WhopSDK
         member_id: String,
         payment_method_id: String,
         plan: WhopSDK::PaymentCreateParams::Plan,
+        metadata: ::Hash[Symbol, top]?,
         plan_id: String
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -22,6 +23,8 @@ module WhopSDK
 
       attr_accessor plan: WhopSDK::PaymentCreateParams::Plan
 
+      attr_accessor metadata: ::Hash[Symbol, top]?
+
       attr_accessor plan_id: String
 
       def initialize: (
@@ -30,6 +33,7 @@ module WhopSDK
         payment_method_id: String,
         plan: WhopSDK::PaymentCreateParams::Plan,
         plan_id: String,
+        ?metadata: ::Hash[Symbol, top]?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -38,6 +42,7 @@ module WhopSDK
         member_id: String,
         payment_method_id: String,
         plan: WhopSDK::PaymentCreateParams::Plan,
+        metadata: ::Hash[Symbol, top]?,
         plan_id: String,
         request_options: WhopSDK::RequestOptions
       }

@@ -25,7 +25,7 @@ module WhopSDK
       # - `member:phone:read`
       # - `promo_code:basic:read`
       #
-      # @overload create(company_id:, member_id:, payment_method_id:, plan:, plan_id:, request_options: {})
+      # @overload create(company_id:, member_id:, payment_method_id:, plan:, plan_id:, metadata: nil, request_options: {})
       #
       # @param company_id [String] The ID of the company to create the payment for.
       #
@@ -36,6 +36,8 @@ module WhopSDK
       # @param plan [WhopSDK::Models::PaymentCreateParams::Plan] Pass this object to create a new plan for this payment
       #
       # @param plan_id [String] An ID of an existing plan to use for the payment.
+      #
+      # @param metadata [Hash{Symbol=>Object}, nil] Custom metadata to attach to the payment.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

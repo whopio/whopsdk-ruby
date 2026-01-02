@@ -17,6 +17,7 @@ module WhopSDK
       EXPIRED = T.let(:expired, WhopSDK::MembershipStatus::TaggedSymbol)
       UNRESOLVED = T.let(:unresolved, WhopSDK::MembershipStatus::TaggedSymbol)
       DRAFTED = T.let(:drafted, WhopSDK::MembershipStatus::TaggedSymbol)
+      CANCELING = T.let(:canceling, WhopSDK::MembershipStatus::TaggedSymbol)
 
       sig do
         override.returns(T::Array[WhopSDK::MembershipStatus::TaggedSymbol])

@@ -75,6 +75,7 @@ module WhopSDK
         THREE_DS_FIXED_FEE = :three_ds_fixed_fee
         BILLING_PERCENTAGE_FEE = :billing_percentage_fee
         REVSHARE_PERCENTAGE_FEE = :revshare_percentage_fee
+        APPLICATION_FEE = :application_fee
 
         # @!method self.values
         #   @return [Array<Symbol>]

@@ -31,6 +31,10 @@ module WhopSDK
       sig { params(plan: WhopSDK::PaymentCreateParams::Plan::OrHash).void }
       attr_writer :plan
 
+      # Custom metadata to attach to the payment.
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      attr_accessor :metadata
+
       # An ID of an existing plan to use for the payment.
       sig { returns(String) }
       attr_accessor :plan_id
@@ -42,6 +46,7 @@ module WhopSDK
           payment_method_id: String,
           plan: WhopSDK::PaymentCreateParams::Plan::OrHash,
           plan_id: String,
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -57,6 +62,8 @@ module WhopSDK
         plan:,
         # An ID of an existing plan to use for the payment.
         plan_id:,
+        # Custom metadata to attach to the payment.
+        metadata: nil,
         request_options: {}
       )
       end
@@ -68,6 +75,7 @@ module WhopSDK
             member_id: String,
             payment_method_id: String,
             plan: WhopSDK::PaymentCreateParams::Plan,
+            metadata: T.nilable(T::Hash[Symbol, T.anything]),
             plan_id: String,
             request_options: WhopSDK::RequestOptions
           }

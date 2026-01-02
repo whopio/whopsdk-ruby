@@ -88,6 +88,24 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
+        # The company associated with the payout token
+        sig do
+          returns(
+            T.nilable(WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Company)
+          )
+        end
+        attr_reader :company
+
+        sig do
+          params(
+            company:
+              T.nilable(
+                WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Company::OrHash
+              )
+          ).void
+        end
+        attr_writer :company
+
         # The currency code of the payout destination. This is the currency that payouts
         # will be made in for this token.
         sig { returns(String) }
@@ -126,6 +144,10 @@ module WhopSDK
         sig do
           params(
             id: String,
+            company:
+              T.nilable(
+                WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Company::OrHash
+              ),
             currency: String,
             destination:
               T.nilable(
@@ -138,6 +160,8 @@ module WhopSDK
         def self.new(
           # The ID of the payout token
           id:,
+          # The company associated with the payout token
+          company:,
           # The currency code of the payout destination. This is the currency that payouts
           # will be made in for this token.
           currency:,
@@ -155,6 +179,10 @@ module WhopSDK
           override.returns(
             {
               id: String,
+              company:
+                T.nilable(
+                  WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Company
+                ),
               currency: String,
               destination:
                 T.nilable(
@@ -166,6 +194,32 @@ module WhopSDK
           )
         end
         def to_hash
+        end
+
+        class Company < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Company,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The ID (tag) of the company.
+          sig { returns(String) }
+          attr_accessor :id
+
+          # The company associated with the payout token
+          sig { params(id: String).returns(T.attached_class) }
+          def self.new(
+            # The ID (tag) of the company.
+            id:
+          )
+          end
+
+          sig { override.returns({ id: String }) }
+          def to_hash
+          end
         end
 
         class Destination < WhopSDK::Internal::Type::BaseModel

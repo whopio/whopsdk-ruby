@@ -3,6 +3,7 @@ module WhopSDK
     type payout_method_list_response =
       {
         id: String,
+        company: WhopSDK::Models::PayoutMethodListResponse::Company?,
         currency: String,
         destination: WhopSDK::Models::PayoutMethodListResponse::Destination?,
         is_default: bool,
@@ -11,6 +12,8 @@ module WhopSDK
 
     class PayoutMethodListResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor company: WhopSDK::Models::PayoutMethodListResponse::Company?
 
       attr_accessor currency: String
 
@@ -22,6 +25,7 @@ module WhopSDK
 
       def initialize: (
         id: String,
+        company: WhopSDK::Models::PayoutMethodListResponse::Company?,
         currency: String,
         destination: WhopSDK::Models::PayoutMethodListResponse::Destination?,
         is_default: bool,
@@ -30,11 +34,22 @@ module WhopSDK
 
       def to_hash: -> {
         id: String,
+        company: WhopSDK::Models::PayoutMethodListResponse::Company?,
         currency: String,
         destination: WhopSDK::Models::PayoutMethodListResponse::Destination?,
         is_default: bool,
         nickname: String?
       }
+
+      type company = { id: String }
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
 
       type destination =
         {

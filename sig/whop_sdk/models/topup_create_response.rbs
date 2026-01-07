@@ -1,0 +1,50 @@
+module WhopSDK
+  module Models
+    type topup_create_response =
+      {
+        id: String,
+        created_at: Time,
+        currency: WhopSDK::Models::currency?,
+        failure_message: String?,
+        paid_at: Time?,
+        status: WhopSDK::Models::receipt_status?,
+        total: Float?
+      }
+
+    class TopupCreateResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor currency: WhopSDK::Models::currency?
+
+      attr_accessor failure_message: String?
+
+      attr_accessor paid_at: Time?
+
+      attr_accessor status: WhopSDK::Models::receipt_status?
+
+      attr_accessor total: Float?
+
+      def initialize: (
+        id: String,
+        created_at: Time,
+        currency: WhopSDK::Models::currency?,
+        failure_message: String?,
+        paid_at: Time?,
+        status: WhopSDK::Models::receipt_status?,
+        total: Float?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        currency: WhopSDK::Models::currency?,
+        failure_message: String?,
+        paid_at: Time?,
+        status: WhopSDK::Models::receipt_status?,
+        total: Float?
+      }
+    end
+  end
+end

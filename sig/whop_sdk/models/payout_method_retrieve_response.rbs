@@ -1,0 +1,103 @@
+module WhopSDK
+  module Models
+    type payout_method_retrieve_response =
+      {
+        id: String,
+        company: WhopSDK::Models::PayoutMethodRetrieveResponse::Company?,
+        currency: String,
+        destination: WhopSDK::Models::PayoutMethodRetrieveResponse::Destination?,
+        is_default: bool,
+        nickname: String?
+      }
+
+    class PayoutMethodRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor company: WhopSDK::Models::PayoutMethodRetrieveResponse::Company?
+
+      attr_accessor currency: String
+
+      attr_accessor destination: WhopSDK::Models::PayoutMethodRetrieveResponse::Destination?
+
+      attr_accessor is_default: bool
+
+      attr_accessor nickname: String?
+
+      def initialize: (
+        id: String,
+        company: WhopSDK::Models::PayoutMethodRetrieveResponse::Company?,
+        currency: String,
+        destination: WhopSDK::Models::PayoutMethodRetrieveResponse::Destination?,
+        is_default: bool,
+        nickname: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        company: WhopSDK::Models::PayoutMethodRetrieveResponse::Company?,
+        currency: String,
+        destination: WhopSDK::Models::PayoutMethodRetrieveResponse::Destination?,
+        is_default: bool,
+        nickname: String?
+      }
+
+      type company = { id: String }
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type destination =
+        {
+          category: WhopSDK::Models::PayoutMethodRetrieveResponse::Destination::category,
+          country_code: String,
+          name: String
+        }
+
+      class Destination < WhopSDK::Internal::Type::BaseModel
+        attr_accessor category: WhopSDK::Models::PayoutMethodRetrieveResponse::Destination::category
+
+        attr_accessor country_code: String
+
+        attr_accessor name: String
+
+        def initialize: (
+          category: WhopSDK::Models::PayoutMethodRetrieveResponse::Destination::category,
+          country_code: String,
+          name: String
+        ) -> void
+
+        def to_hash: -> {
+          category: WhopSDK::Models::PayoutMethodRetrieveResponse::Destination::category,
+          country_code: String,
+          name: String
+        }
+
+        type category =
+          :crypto
+          | :rtp
+          | :next_day_bank
+          | :bank_wire
+          | :digital_wallet
+          | :unknown
+
+        module Category
+          extend WhopSDK::Internal::Type::Enum
+
+          CRYPTO: :crypto
+          RTP: :rtp
+          NEXT_DAY_BANK: :next_day_bank
+          BANK_WIRE: :bank_wire
+          DIGITAL_WALLET: :digital_wallet
+          UNKNOWN: :unknown
+
+          def self?.values: -> ::Array[WhopSDK::Models::PayoutMethodRetrieveResponse::Destination::category]
+        end
+      end
+    end
+  end
+end

@@ -261,6 +261,14 @@ module WhopSDK
 
   module Languages = WhopSDK::Models::Languages
 
+  class LeadCreateParams = WhopSDK::Models::LeadCreateParams
+
+  class LeadListParams = WhopSDK::Models::LeadListParams
+
+  class LeadRetrieveParams = WhopSDK::Models::LeadRetrieveParams
+
+  class LeadUpdateParams = WhopSDK::Models::LeadUpdateParams
+
   class LedgerAccountRetrieveParams = WhopSDK::Models::LedgerAccountRetrieveParams
 
   class Lesson = WhopSDK::Models::Lesson
@@ -278,6 +286,8 @@ module WhopSDK
   class Membership = WhopSDK::Models::Membership
 
   class MembershipActivatedWebhookEvent = WhopSDK::Models::MembershipActivatedWebhookEvent
+
+  class MembershipCancelAtPeriodEndChangedWebhookEvent = WhopSDK::Models::MembershipCancelAtPeriodEndChangedWebhookEvent
 
   class MembershipCancelParams = WhopSDK::Models::MembershipCancelParams
 
@@ -343,7 +353,11 @@ module WhopSDK
 
   class PaymentVoidParams = WhopSDK::Models::PaymentVoidParams
 
+  class PayoutMethodCreatedWebhookEvent = WhopSDK::Models::PayoutMethodCreatedWebhookEvent
+
   class PayoutMethodListParams = WhopSDK::Models::PayoutMethodListParams
+
+  class PayoutMethodRetrieveParams = WhopSDK::Models::PayoutMethodRetrieveParams
 
   class Plan = WhopSDK::Models::Plan
 
@@ -459,6 +473,8 @@ module WhopSDK
 
   module TaxType = WhopSDK::Models::TaxType
 
+  class TopupCreateParams = WhopSDK::Models::TopupCreateParams
+
   class Transfer = WhopSDK::Models::Transfer
 
   class TransferCreateParams = WhopSDK::Models::TransferCreateParams
@@ -472,6 +488,10 @@ module WhopSDK
   class UserCheckAccessParams = WhopSDK::Models::UserCheckAccessParams
 
   class UserRetrieveParams = WhopSDK::Models::UserRetrieveParams
+
+  class VerificationRetrieveParams = WhopSDK::Models::VerificationRetrieveParams
+
+  class VerificationSucceededWebhookEvent = WhopSDK::Models::VerificationSucceededWebhookEvent
 
   module Visibility = WhopSDK::Models::Visibility
 

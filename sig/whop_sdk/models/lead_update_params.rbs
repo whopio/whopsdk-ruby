@@ -1,0 +1,28 @@
+module WhopSDK
+  module Models
+    type lead_update_params =
+      { metadata: ::Hash[Symbol, top]?, referrer: String? }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class LeadUpdateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor metadata: ::Hash[Symbol, top]?
+
+      attr_accessor referrer: String?
+
+      def initialize: (
+        ?metadata: ::Hash[Symbol, top]?,
+        ?referrer: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        metadata: ::Hash[Symbol, top]?,
+        referrer: String?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

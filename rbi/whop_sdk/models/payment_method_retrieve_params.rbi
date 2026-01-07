@@ -14,26 +14,37 @@ module WhopSDK
           )
         end
 
-      # The ID of the Member associated with the PaymentMethod
-      sig { returns(String) }
+      # The ID of the Company. Provide either this or member_id (not both).
+      sig { returns(T.nilable(String)) }
+      attr_accessor :company_id
+
+      # The ID of the Member. Provide either this or company_id (not both).
+      sig { returns(T.nilable(String)) }
       attr_accessor :member_id
 
       sig do
         params(
-          member_id: String,
+          company_id: T.nilable(String),
+          member_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the Member associated with the PaymentMethod
-        member_id:,
+        # The ID of the Company. Provide either this or member_id (not both).
+        company_id: nil,
+        # The ID of the Member. Provide either this or company_id (not both).
+        member_id: nil,
         request_options: {}
       )
       end
 
       sig do
         override.returns(
-          { member_id: String, request_options: WhopSDK::RequestOptions }
+          {
+            company_id: T.nilable(String),
+            member_id: T.nilable(String),
+            request_options: WhopSDK::RequestOptions
+          }
         )
       end
       def to_hash

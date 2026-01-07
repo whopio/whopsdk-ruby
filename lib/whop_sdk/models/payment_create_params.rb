@@ -32,13 +32,19 @@ module WhopSDK
       #   @return [WhopSDK::Models::PaymentCreateParams::Plan]
       required :plan, -> { WhopSDK::PaymentCreateParams::Plan }
 
+      # @!attribute metadata
+      #   Custom metadata to attach to the payment.
+      #
+      #   @return [Hash{Symbol=>Object}, nil]
+      optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
       # @!attribute plan_id
       #   An ID of an existing plan to use for the payment.
       #
       #   @return [String]
       required :plan_id, String
 
-      # @!method initialize(company_id:, member_id:, payment_method_id:, plan:, plan_id:, request_options: {})
+      # @!method initialize(company_id:, member_id:, payment_method_id:, plan:, plan_id:, metadata: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentCreateParams} for more details.
       #
@@ -51,6 +57,8 @@ module WhopSDK
       #   @param plan [WhopSDK::Models::PaymentCreateParams::Plan] Pass this object to create a new plan for this payment
       #
       #   @param plan_id [String] An ID of an existing plan to use for the payment.
+      #
+      #   @param metadata [Hash{Symbol=>Object}, nil] Custom metadata to attach to the payment.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 

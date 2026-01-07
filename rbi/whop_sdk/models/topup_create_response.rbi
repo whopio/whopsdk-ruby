@@ -1,0 +1,89 @@
+# typed: strong
+
+module WhopSDK
+  module Models
+    class TopupCreateResponse < WhopSDK::Internal::Type::BaseModel
+      OrHash =
+        T.type_alias do
+          T.any(
+            WhopSDK::Models::TopupCreateResponse,
+            WhopSDK::Internal::AnyHash
+          )
+        end
+
+      # The payment ID
+      sig { returns(String) }
+      attr_accessor :id
+
+      # The datetime the payment was created
+      sig { returns(Time) }
+      attr_accessor :created_at
+
+      # The available currencies on the platform
+      sig { returns(T.nilable(WhopSDK::Currency::TaggedSymbol)) }
+      attr_accessor :currency
+
+      # If the payment failed, the reason for the failure.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :failure_message
+
+      # The datetime the payment was paid
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :paid_at
+
+      # The status of a receipt
+      sig { returns(T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol)) }
+      attr_accessor :status
+
+      # The total to show to the creator (excluding buyer fees).
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :total
+
+      # An object representing a receipt for a membership.
+      sig do
+        params(
+          id: String,
+          created_at: Time,
+          currency: T.nilable(WhopSDK::Currency::OrSymbol),
+          failure_message: T.nilable(String),
+          paid_at: T.nilable(Time),
+          status: T.nilable(WhopSDK::ReceiptStatus::OrSymbol),
+          total: T.nilable(Float)
+        ).returns(T.attached_class)
+      end
+      def self.new(
+        # The payment ID
+        id:,
+        # The datetime the payment was created
+        created_at:,
+        # The available currencies on the platform
+        currency:,
+        # If the payment failed, the reason for the failure.
+        failure_message:,
+        # The datetime the payment was paid
+        paid_at:,
+        # The status of a receipt
+        status:,
+        # The total to show to the creator (excluding buyer fees).
+        total:
+      )
+      end
+
+      sig do
+        override.returns(
+          {
+            id: String,
+            created_at: Time,
+            currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
+            failure_message: T.nilable(String),
+            paid_at: T.nilable(Time),
+            status: T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol),
+            total: T.nilable(Float)
+          }
+        )
+      end
+      def to_hash
+      end
+    end
+  end
+end

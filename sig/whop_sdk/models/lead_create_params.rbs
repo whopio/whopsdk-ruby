@@ -1,0 +1,46 @@
+module WhopSDK
+  module Models
+    type lead_create_params =
+      {
+        company_id: String,
+        metadata: ::Hash[Symbol, top]?,
+        product_id: String?,
+        referrer: String?,
+        user_id: String?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class LeadCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor metadata: ::Hash[Symbol, top]?
+
+      attr_accessor product_id: String?
+
+      attr_accessor referrer: String?
+
+      attr_accessor user_id: String?
+
+      def initialize: (
+        company_id: String,
+        ?metadata: ::Hash[Symbol, top]?,
+        ?product_id: String?,
+        ?referrer: String?,
+        ?user_id: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        metadata: ::Hash[Symbol, top]?,
+        product_id: String?,
+        referrer: String?,
+        user_id: String?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

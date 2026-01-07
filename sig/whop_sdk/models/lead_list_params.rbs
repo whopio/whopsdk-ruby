@@ -1,0 +1,61 @@
+module WhopSDK
+  module Models
+    type lead_list_params =
+      {
+        company_id: String,
+        after: String?,
+        before: String?,
+        created_after: Time?,
+        created_before: Time?,
+        first: Integer?,
+        last: Integer?,
+        product_ids: ::Array[String]?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class LeadListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor created_after: Time?
+
+      attr_accessor created_before: Time?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      attr_accessor product_ids: ::Array[String]?
+
+      def initialize: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?created_after: Time?,
+        ?created_before: Time?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?product_ids: ::Array[String]?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        after: String?,
+        before: String?,
+        created_after: Time?,
+        created_before: Time?,
+        first: Integer?,
+        last: Integer?,
+        product_ids: ::Array[String]?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

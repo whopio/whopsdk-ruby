@@ -28,6 +28,7 @@ module WhopSDK
           payment_method_id: String,
           plan: WhopSDK::PaymentCreateParams::Plan::OrHash,
           plan_id: String,
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Payment)
       end
@@ -43,6 +44,8 @@ module WhopSDK
         plan:,
         # An ID of an existing plan to use for the payment.
         plan_id:,
+        # Custom metadata to attach to the payment.
+        metadata: nil,
         request_options: {}
       )
       end

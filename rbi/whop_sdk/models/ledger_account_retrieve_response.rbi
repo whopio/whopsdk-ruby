@@ -594,6 +594,26 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :email
 
+        # The latest verification for the connected account.
+        sig do
+          returns(
+            T.nilable(
+              WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification
+            )
+          )
+        end
+        attr_reader :latest_verification
+
+        sig do
+          params(
+            latest_verification:
+              T.nilable(
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::OrHash
+              )
+          ).void
+        end
+        attr_writer :latest_verification
+
         # The business representative's phone
         sig { returns(T.nilable(String)) }
         attr_accessor :phone
@@ -612,6 +632,10 @@ module WhopSDK
                 WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative::OrHash
               ),
             email: T.nilable(String),
+            latest_verification:
+              T.nilable(
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::OrHash
+              ),
             phone: T.nilable(String)
           ).returns(T.attached_class)
         end
@@ -626,6 +650,8 @@ module WhopSDK
           business_representative:,
           # The email address of the representative
           email:,
+          # The latest verification for the connected account.
+          latest_verification:,
           # The business representative's phone
           phone:
         )
@@ -645,6 +671,10 @@ module WhopSDK
                   WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative
                 ),
               email: T.nilable(String),
+              latest_verification:
+                T.nilable(
+                  WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification
+                ),
               phone: T.nilable(String)
             }
           )
@@ -787,6 +817,294 @@ module WhopSDK
             )
           end
           def to_hash
+          end
+        end
+
+        class LatestVerification < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # A unique identifier for the verification.
+          sig { returns(String) }
+          attr_accessor :id
+
+          # An error code for a verification attempt.
+          sig do
+            returns(
+              T.nilable(
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+              )
+            )
+          end
+          attr_accessor :last_error_code
+
+          # The last error reason that occurred during the verification.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :last_error_reason
+
+          # The status of the verification.
+          sig do
+            returns(
+              WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::Status::TaggedSymbol
+            )
+          end
+          attr_accessor :status
+
+          # The latest verification for the connected account.
+          sig do
+            params(
+              id: String,
+              last_error_code:
+                T.nilable(
+                  WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::OrSymbol
+                ),
+              last_error_reason: T.nilable(String),
+              status:
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::Status::OrSymbol
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # A unique identifier for the verification.
+            id:,
+            # An error code for a verification attempt.
+            last_error_code:,
+            # The last error reason that occurred during the verification.
+            last_error_reason:,
+            # The status of the verification.
+            status:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                id: String,
+                last_error_code:
+                  T.nilable(
+                    WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+                  ),
+                last_error_reason: T.nilable(String),
+                status:
+                  WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::Status::TaggedSymbol
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # An error code for a verification attempt.
+          module LastErrorCode
+            extend WhopSDK::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            ABANDONED =
+              T.let(
+                :abandoned,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+              )
+            CONSENT_DECLINED =
+              T.let(
+                :consent_declined,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+              )
+            COUNTRY_NOT_SUPPORTED =
+              T.let(
+                :country_not_supported,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+              )
+            DEVICE_NOT_SUPPORTED =
+              T.let(
+                :device_not_supported,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+              )
+            DOCUMENT_EXPIRED =
+              T.let(
+                :document_expired,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+              )
+            DOCUMENT_TYPE_NOT_SUPPORTED =
+              T.let(
+                :document_type_not_supported,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+              )
+            DOCUMENT_UNVERIFIED_OTHER =
+              T.let(
+                :document_unverified_other,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+              )
+            EMAIL_UNVERIFIED_OTHER =
+              T.let(
+                :email_unverified_other,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+              )
+            EMAIL_VERIFICATION_DECLINED =
+              T.let(
+                :email_verification_declined,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+              )
+            ID_NUMBER_INSUFFICIENT_DOCUMENT_DATA =
+              T.let(
+                :id_number_insufficient_document_data,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+              )
+            ID_NUMBER_MISMATCH =
+              T.let(
+                :id_number_mismatch,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+              )
+            ID_NUMBER_UNVERIFIED_OTHER =
+              T.let(
+                :id_number_unverified_other,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+              )
+            PHONE_UNVERIFIED_OTHER =
+              T.let(
+                :phone_unverified_other,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+              )
+            PHONE_VERIFICATION_DECLINED =
+              T.let(
+                :phone_verification_declined,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+              )
+            SELFIE_DOCUMENT_MISSING_PHOTO =
+              T.let(
+                :selfie_document_missing_photo,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+              )
+            SELFIE_FACE_MISMATCH =
+              T.let(
+                :selfie_face_mismatch,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+              )
+            SELFIE_MANIPULATED =
+              T.let(
+                :selfie_manipulated,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+              )
+            SELFIE_UNVERIFIED_OTHER =
+              T.let(
+                :selfie_unverified_other,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+              )
+            UNDER_SUPPORTED_AGE =
+              T.let(
+                :under_supported_age,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::LastErrorCode::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          # The status of the verification.
+          module Status
+            extend WhopSDK::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::Status
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            REQUIRES_INPUT =
+              T.let(
+                :requires_input,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::Status::TaggedSymbol
+              )
+            PROCESSING =
+              T.let(
+                :processing,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::Status::TaggedSymbol
+              )
+            VERIFIED =
+              T.let(
+                :verified,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::Status::TaggedSymbol
+              )
+            CANCELED =
+              T.let(
+                :canceled,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::Status::TaggedSymbol
+              )
+            CREATED =
+              T.let(
+                :created,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::Status::TaggedSymbol
+              )
+            STARTED =
+              T.let(
+                :started,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::Status::TaggedSymbol
+              )
+            SUBMITTED =
+              T.let(
+                :submitted,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::Status::TaggedSymbol
+              )
+            APPROVED =
+              T.let(
+                :approved,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::Status::TaggedSymbol
+              )
+            DECLINED =
+              T.let(
+                :declined,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::Status::TaggedSymbol
+              )
+            RESUBMISSION_REQUESTED =
+              T.let(
+                :resubmission_requested,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::Status::TaggedSymbol
+              )
+            EXPIRED =
+              T.let(
+                :expired,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::Status::TaggedSymbol
+              )
+            ABANDONED =
+              T.let(
+                :abandoned,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::Status::TaggedSymbol
+              )
+            REVIEW =
+              T.let(
+                :review,
+                WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::Status::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::Status::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
         end
       end

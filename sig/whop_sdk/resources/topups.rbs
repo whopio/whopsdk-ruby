@@ -1,0 +1,15 @@
+module WhopSDK
+  module Resources
+    class Topups
+      def create: (
+        amount: Float,
+        company_id: String,
+        currency: WhopSDK::Models::currency,
+        payment_method_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::TopupCreateResponse
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

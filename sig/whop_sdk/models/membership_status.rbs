@@ -9,6 +9,7 @@ module WhopSDK
       | :expired
       | :unresolved
       | :drafted
+      | :canceling
 
     module MembershipStatus
       extend WhopSDK::Internal::Type::Enum
@@ -21,6 +22,7 @@ module WhopSDK
       EXPIRED: :expired
       UNRESOLVED: :unresolved
       DRAFTED: :drafted
+      CANCELING: :canceling
 
       def self?.values: -> ::Array[WhopSDK::Models::membership_status]
     end

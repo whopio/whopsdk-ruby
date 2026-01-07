@@ -84,8 +84,8 @@ module WhopSDK
       end
       attr_writer :membership
 
-      # The custom metadata stored on this payment. This will be copied the checkout
-      # configuration for which this payment was made
+      # The custom metadata stored on this payment. This will be copied over to the
+      # checkout configuration for which this payment was made
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
@@ -251,8 +251,8 @@ module WhopSDK
         member:,
         # The membership attached to this payment.
         membership:,
-        # The custom metadata stored on this payment. This will be copied the checkout
-        # configuration for which this payment was made
+        # The custom metadata stored on this payment. This will be copied over to the
+        # checkout configuration for which this payment was made
         metadata:,
         # The datetime the payment was paid
         paid_at:,

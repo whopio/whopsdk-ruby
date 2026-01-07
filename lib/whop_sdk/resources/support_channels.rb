@@ -14,7 +14,7 @@ module WhopSDK
       #
       # @param company_id [String] The ID of the company to create the support chat in
       #
-      # @param user_id [String] The ID of the user to create the support chat for
+      # @param user_id [String] The ID (user_xxx) or username of the user to create the support chat for
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

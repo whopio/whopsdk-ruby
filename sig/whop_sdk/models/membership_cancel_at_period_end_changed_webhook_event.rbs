@@ -1,0 +1,40 @@
+module WhopSDK
+  module Models
+    type membership_cancel_at_period_end_changed_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::Membership,
+        timestamp: Time,
+        type: :"membership.cancel_at_period_end_changed"
+      }
+
+    class MembershipCancelAtPeriodEndChangedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor data: WhopSDK::Membership
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"membership.cancel_at_period_end_changed"
+
+      def initialize: (
+        id: String,
+        data: WhopSDK::Membership,
+        timestamp: Time,
+        ?api_version: :v1,
+        ?type: :"membership.cancel_at_period_end_changed"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::Membership,
+        timestamp: Time,
+        type: :"membership.cancel_at_period_end_changed"
+      }
+    end
+  end
+end

@@ -27,6 +27,7 @@ module WhopSDK
       | WhopSDK::DisputeUpdatedWebhookEvent
       | WhopSDK::RefundCreatedWebhookEvent
       | WhopSDK::RefundUpdatedWebhookEvent
+      | WhopSDK::MembershipCancelAtPeriodEndChangedWebhookEvent
 
     module UnwrapWebhookEvent
       extend WhopSDK::Internal::Type::Union

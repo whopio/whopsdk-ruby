@@ -1,0 +1,40 @@
+module WhopSDK
+  module Resources
+    class Leads
+      def create: (
+        company_id: String,
+        ?metadata: ::Hash[Symbol, top]?,
+        ?product_id: String?,
+        ?referrer: String?,
+        ?user_id: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::LeadCreateResponse
+
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::LeadRetrieveResponse
+
+      def update: (
+        String id,
+        ?metadata: ::Hash[Symbol, top]?,
+        ?referrer: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::LeadUpdateResponse
+
+      def list: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?created_after: Time?,
+        ?created_before: Time?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?product_ids: ::Array[String]?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::LeadListResponse]
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

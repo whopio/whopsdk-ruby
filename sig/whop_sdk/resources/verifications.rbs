@@ -1,0 +1,12 @@
+module WhopSDK
+  module Resources
+    class Verifications
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::VerificationRetrieveResponse
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

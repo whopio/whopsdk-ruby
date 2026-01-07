@@ -147,6 +147,15 @@ module WhopSDK
     # @return [WhopSDK::Resources::PayoutMethods]
     attr_reader :payout_methods
 
+    # @return [WhopSDK::Resources::Verifications]
+    attr_reader :verifications
+
+    # @return [WhopSDK::Resources::Leads]
+    attr_reader :leads
+
+    # @return [WhopSDK::Resources::Topups]
+    attr_reader :topups
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -245,6 +254,9 @@ module WhopSDK
       @payment_methods = WhopSDK::Resources::PaymentMethods.new(client: self)
       @fee_markups = WhopSDK::Resources::FeeMarkups.new(client: self)
       @payout_methods = WhopSDK::Resources::PayoutMethods.new(client: self)
+      @verifications = WhopSDK::Resources::Verifications.new(client: self)
+      @leads = WhopSDK::Resources::Leads.new(client: self)
+      @topups = WhopSDK::Resources::Topups.new(client: self)
     end
   end
 end

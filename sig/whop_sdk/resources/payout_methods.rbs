@@ -1,6 +1,11 @@
 module WhopSDK
   module Resources
     class PayoutMethods
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::PayoutMethodRetrieveResponse
+
       def list: (
         company_id: String,
         ?after: String?,

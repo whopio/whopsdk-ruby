@@ -1,0 +1,41 @@
+module WhopSDK
+  module Models
+    type topup_create_params =
+      {
+        amount: Float,
+        company_id: String,
+        currency: WhopSDK::Models::currency,
+        payment_method_id: String
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class TopupCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor amount: Float
+
+      attr_accessor company_id: String
+
+      attr_accessor currency: WhopSDK::Models::currency
+
+      attr_accessor payment_method_id: String
+
+      def initialize: (
+        amount: Float,
+        company_id: String,
+        currency: WhopSDK::Models::currency,
+        payment_method_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        amount: Float,
+        company_id: String,
+        currency: WhopSDK::Models::currency,
+        payment_method_id: String,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

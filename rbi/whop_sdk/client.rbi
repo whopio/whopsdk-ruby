@@ -142,6 +142,15 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::PayoutMethods) }
     attr_reader :payout_methods
 
+    sig { returns(WhopSDK::Resources::Verifications) }
+    attr_reader :verifications
+
+    sig { returns(WhopSDK::Resources::Leads) }
+    attr_reader :leads
+
+    sig { returns(WhopSDK::Resources::Topups) }
+    attr_reader :topups
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

@@ -3,6 +3,24 @@
 module WhopSDK
   module Resources
     class PayoutMethods
+      # Retrieves a payout method by ID
+      #
+      # Required permissions:
+      #
+      # - `payout:destination:read`
+      sig do
+        params(
+          id: String,
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::Models::PayoutMethodRetrieveResponse)
+      end
+      def retrieve(
+        # The ID of the payout method
+        id,
+        request_options: {}
+      )
+      end
+
       # Lists payout destinations for a company
       #
       # Required permissions:

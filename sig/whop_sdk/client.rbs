@@ -94,6 +94,12 @@ module WhopSDK
 
     attr_reader payout_methods: WhopSDK::Resources::PayoutMethods
 
+    attr_reader verifications: WhopSDK::Resources::Verifications
+
+    attr_reader leads: WhopSDK::Resources::Leads
+
+    attr_reader topups: WhopSDK::Resources::Topups
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

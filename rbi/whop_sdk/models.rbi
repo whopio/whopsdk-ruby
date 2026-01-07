@@ -492,6 +492,9 @@ module WhopSDK
 
   UserRetrieveParams = WhopSDK::Models::UserRetrieveParams
 
+  VerificationSucceededWebhookEvent =
+    WhopSDK::Models::VerificationSucceededWebhookEvent
+
   Visibility = WhopSDK::Models::Visibility
 
   VisibilityFilter = WhopSDK::Models::VisibilityFilter

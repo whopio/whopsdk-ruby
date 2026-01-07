@@ -25,6 +25,7 @@ module WhopSDK
             WhopSDK::WithdrawalUpdatedWebhookEvent,
             WhopSDK::CourseLessonInteractionCompletedWebhookEvent,
             WhopSDK::PayoutMethodCreatedWebhookEvent,
+            WhopSDK::VerificationSucceededWebhookEvent,
             WhopSDK::PaymentCreatedWebhookEvent,
             WhopSDK::PaymentSucceededWebhookEvent,
             WhopSDK::PaymentFailedWebhookEvent,

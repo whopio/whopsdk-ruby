@@ -279,6 +279,8 @@ module WhopSDK
 
   class MembershipActivatedWebhookEvent = WhopSDK::Models::MembershipActivatedWebhookEvent
 
+  class MembershipCancelAtPeriodEndChangedWebhookEvent = WhopSDK::Models::MembershipCancelAtPeriodEndChangedWebhookEvent
+
   class MembershipCancelParams = WhopSDK::Models::MembershipCancelParams
 
   class MembershipDeactivatedWebhookEvent = WhopSDK::Models::MembershipDeactivatedWebhookEvent

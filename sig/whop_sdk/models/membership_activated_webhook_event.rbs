@@ -6,7 +6,8 @@ module WhopSDK
         api_version: :v1,
         data: WhopSDK::Membership,
         timestamp: Time,
-        type: :"membership.activated"
+        type: :"membership.activated",
+        company_id: String?
       }
 
     class MembershipActivatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
@@ -20,10 +21,13 @@ module WhopSDK
 
       attr_accessor type: :"membership.activated"
 
+      attr_accessor company_id: String?
+
       def initialize: (
         id: String,
         data: WhopSDK::Membership,
         timestamp: Time,
+        ?company_id: String?,
         ?api_version: :v1,
         ?type: :"membership.activated"
       ) -> void
@@ -33,7 +37,8 @@ module WhopSDK
         api_version: :v1,
         data: WhopSDK::Membership,
         timestamp: Time,
-        type: :"membership.activated"
+        type: :"membership.activated",
+        company_id: String?
       }
     end
   end

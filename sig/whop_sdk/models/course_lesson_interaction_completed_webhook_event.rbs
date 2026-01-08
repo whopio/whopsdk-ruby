@@ -6,7 +6,8 @@ module WhopSDK
         api_version: :v1,
         data: WhopSDK::CourseLessonInteraction,
         timestamp: Time,
-        type: :"course_lesson_interaction.completed"
+        type: :"course_lesson_interaction.completed",
+        company_id: String?
       }
 
     class CourseLessonInteractionCompletedWebhookEvent < WhopSDK::Internal::Type::BaseModel
@@ -20,10 +21,13 @@ module WhopSDK
 
       attr_accessor type: :"course_lesson_interaction.completed"
 
+      attr_accessor company_id: String?
+
       def initialize: (
         id: String,
         data: WhopSDK::CourseLessonInteraction,
         timestamp: Time,
+        ?company_id: String?,
         ?api_version: :v1,
         ?type: :"course_lesson_interaction.completed"
       ) -> void
@@ -33,7 +37,8 @@ module WhopSDK
         api_version: :v1,
         data: WhopSDK::CourseLessonInteraction,
         timestamp: Time,
-        type: :"course_lesson_interaction.completed"
+        type: :"course_lesson_interaction.completed",
+        company_id: String?
       }
     end
   end

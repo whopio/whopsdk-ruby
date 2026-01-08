@@ -33,12 +33,20 @@ module WhopSDK
       #   @return [Symbol, :"invoice.voided"]
       required :type, const: :"invoice.voided"
 
-      # @!method initialize(id:, data:, timestamp:, api_version: :v1, type: :"invoice.voided")
+      # @!attribute company_id
+      #   The company ID that this webhook event is associated with
+      #
+      #   @return [String, nil]
+      optional :company_id, String, nil?: true
+
+      # @!method initialize(id:, data:, timestamp:, company_id: nil, api_version: :v1, type: :"invoice.voided")
       #   @param id [String] A unique ID for every single webhook request
       #
       #   @param data [WhopSDK::Models::Invoice] A statement that defines an amount due by a customer.
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
+      #
+      #   @param company_id [String, nil] The company ID that this webhook event is associated with
       #
       #   @param api_version [Symbol, :v1] The API version for this webhook
       #

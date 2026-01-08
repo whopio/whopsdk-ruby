@@ -6,7 +6,8 @@ module WhopSDK
         api_version: :v1,
         data: WhopSDK::Entry,
         timestamp: Time,
-        type: :"entry.deleted"
+        type: :"entry.deleted",
+        company_id: String?
       }
 
     class EntryDeletedWebhookEvent < WhopSDK::Internal::Type::BaseModel
@@ -20,10 +21,13 @@ module WhopSDK
 
       attr_accessor type: :"entry.deleted"
 
+      attr_accessor company_id: String?
+
       def initialize: (
         id: String,
         data: WhopSDK::Entry,
         timestamp: Time,
+        ?company_id: String?,
         ?api_version: :v1,
         ?type: :"entry.deleted"
       ) -> void
@@ -33,7 +37,8 @@ module WhopSDK
         api_version: :v1,
         data: WhopSDK::Entry,
         timestamp: Time,
-        type: :"entry.deleted"
+        type: :"entry.deleted",
+        company_id: String?
       }
     end
   end

@@ -6,7 +6,8 @@ module WhopSDK
         api_version: :v1,
         data: WhopSDK::SetupIntent,
         timestamp: Time,
-        type: :"setup_intent.succeeded"
+        type: :"setup_intent.succeeded",
+        company_id: String?
       }
 
     class SetupIntentSucceededWebhookEvent < WhopSDK::Internal::Type::BaseModel
@@ -20,10 +21,13 @@ module WhopSDK
 
       attr_accessor type: :"setup_intent.succeeded"
 
+      attr_accessor company_id: String?
+
       def initialize: (
         id: String,
         data: WhopSDK::SetupIntent,
         timestamp: Time,
+        ?company_id: String?,
         ?api_version: :v1,
         ?type: :"setup_intent.succeeded"
       ) -> void
@@ -33,7 +37,8 @@ module WhopSDK
         api_version: :v1,
         data: WhopSDK::SetupIntent,
         timestamp: Time,
-        type: :"setup_intent.succeeded"
+        type: :"setup_intent.succeeded",
+        company_id: String?
       }
     end
   end

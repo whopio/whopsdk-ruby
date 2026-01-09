@@ -1,6 +1,42 @@
 module WhopSDK
   module Resources
     class Webhooks
+      def create: (
+        url: String,
+        ?api_version: WhopSDK::Models::WebhookCreateParams::api_version?,
+        ?child_resource_events: bool?,
+        ?enabled: bool?,
+        ?events: ::Array[WhopSDK::Models::WebhookCreateParams::event]?,
+        ?resource_id: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::WebhookCreateResponse
+
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::WebhookRetrieveResponse
+
+      def update: (
+        String id,
+        ?api_version: WhopSDK::Models::WebhookUpdateParams::api_version?,
+        ?child_resource_events: bool?,
+        ?enabled: bool?,
+        ?events: ::Array[WhopSDK::Models::WebhookUpdateParams::event]?,
+        ?url: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::WebhookUpdateResponse
+
+      def list: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::WebhookListResponse]
+
+      def delete: (String id, ?request_options: WhopSDK::request_opts) -> bool
+
       def unwrap: (
         String payload
       ) -> (WhopSDK::InvoiceCreatedWebhookEvent

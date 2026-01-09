@@ -1,0 +1,198 @@
+module WhopSDK
+  module Models
+    type webhook_retrieve_response =
+      {
+        id: String,
+        api_version: WhopSDK::Models::WebhookRetrieveResponse::api_version,
+        child_resource_events: bool,
+        created_at: Time,
+        enabled: bool,
+        events: ::Array[WhopSDK::Models::WebhookRetrieveResponse::event],
+        resource_id: String,
+        testable_events: ::Array[WhopSDK::Models::WebhookRetrieveResponse::testable_event],
+        url: String
+      }
+
+    class WebhookRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: WhopSDK::Models::WebhookRetrieveResponse::api_version
+
+      attr_accessor child_resource_events: bool
+
+      attr_accessor created_at: Time
+
+      attr_accessor enabled: bool
+
+      attr_accessor events: ::Array[WhopSDK::Models::WebhookRetrieveResponse::event]
+
+      attr_accessor resource_id: String
+
+      attr_accessor testable_events: ::Array[WhopSDK::Models::WebhookRetrieveResponse::testable_event]
+
+      attr_accessor url: String
+
+      def initialize: (
+        id: String,
+        api_version: WhopSDK::Models::WebhookRetrieveResponse::api_version,
+        child_resource_events: bool,
+        created_at: Time,
+        enabled: bool,
+        events: ::Array[WhopSDK::Models::WebhookRetrieveResponse::event],
+        resource_id: String,
+        testable_events: ::Array[WhopSDK::Models::WebhookRetrieveResponse::testable_event],
+        url: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: WhopSDK::Models::WebhookRetrieveResponse::api_version,
+        child_resource_events: bool,
+        created_at: Time,
+        enabled: bool,
+        events: ::Array[WhopSDK::Models::WebhookRetrieveResponse::event],
+        resource_id: String,
+        testable_events: ::Array[WhopSDK::Models::WebhookRetrieveResponse::testable_event],
+        url: String
+      }
+
+      type api_version = :v1 | :v2 | :v5
+
+      module APIVersion
+        extend WhopSDK::Internal::Type::Enum
+
+        V1: :v1
+        V2: :v2
+        V5: :v5
+
+        def self?.values: -> ::Array[WhopSDK::Models::WebhookRetrieveResponse::api_version]
+      end
+
+      type event =
+        :"invoice.created"
+        | :"invoice.paid"
+        | :"invoice.past_due"
+        | :"invoice.voided"
+        | :"membership.activated"
+        | :"membership.deactivated"
+        | :"entry.created"
+        | :"entry.approved"
+        | :"entry.denied"
+        | :"entry.deleted"
+        | :"setup_intent.requires_action"
+        | :"setup_intent.succeeded"
+        | :"setup_intent.canceled"
+        | :"withdrawal.created"
+        | :"withdrawal.updated"
+        | :"course_lesson_interaction.completed"
+        | :"payout_method.created"
+        | :"verification.succeeded"
+        | :"payment.created"
+        | :"payment.succeeded"
+        | :"payment.failed"
+        | :"payment.pending"
+        | :"dispute.created"
+        | :"dispute.updated"
+        | :"refund.created"
+        | :"refund.updated"
+        | :"membership.cancel_at_period_end_changed"
+
+      module Event
+        extend WhopSDK::Internal::Type::Enum
+
+        INVOICE_CREATED: :"invoice.created"
+        INVOICE_PAID: :"invoice.paid"
+        INVOICE_PAST_DUE: :"invoice.past_due"
+        INVOICE_VOIDED: :"invoice.voided"
+        MEMBERSHIP_ACTIVATED: :"membership.activated"
+        MEMBERSHIP_DEACTIVATED: :"membership.deactivated"
+        ENTRY_CREATED: :"entry.created"
+        ENTRY_APPROVED: :"entry.approved"
+        ENTRY_DENIED: :"entry.denied"
+        ENTRY_DELETED: :"entry.deleted"
+        SETUP_INTENT_REQUIRES_ACTION: :"setup_intent.requires_action"
+        SETUP_INTENT_SUCCEEDED: :"setup_intent.succeeded"
+        SETUP_INTENT_CANCELED: :"setup_intent.canceled"
+        WITHDRAWAL_CREATED: :"withdrawal.created"
+        WITHDRAWAL_UPDATED: :"withdrawal.updated"
+        COURSE_LESSON_INTERACTION_COMPLETED: :"course_lesson_interaction.completed"
+        PAYOUT_METHOD_CREATED: :"payout_method.created"
+        VERIFICATION_SUCCEEDED: :"verification.succeeded"
+        PAYMENT_CREATED: :"payment.created"
+        PAYMENT_SUCCEEDED: :"payment.succeeded"
+        PAYMENT_FAILED: :"payment.failed"
+        PAYMENT_PENDING: :"payment.pending"
+        DISPUTE_CREATED: :"dispute.created"
+        DISPUTE_UPDATED: :"dispute.updated"
+        REFUND_CREATED: :"refund.created"
+        REFUND_UPDATED: :"refund.updated"
+        MEMBERSHIP_CANCEL_AT_PERIOD_END_CHANGED: :"membership.cancel_at_period_end_changed"
+
+        def self?.values: -> ::Array[WhopSDK::Models::WebhookRetrieveResponse::event]
+      end
+
+      type testable_event =
+        :"invoice.created"
+        | :"invoice.paid"
+        | :"invoice.past_due"
+        | :"invoice.voided"
+        | :"membership.activated"
+        | :"membership.deactivated"
+        | :"entry.created"
+        | :"entry.approved"
+        | :"entry.denied"
+        | :"entry.deleted"
+        | :"setup_intent.requires_action"
+        | :"setup_intent.succeeded"
+        | :"setup_intent.canceled"
+        | :"withdrawal.created"
+        | :"withdrawal.updated"
+        | :"course_lesson_interaction.completed"
+        | :"payout_method.created"
+        | :"verification.succeeded"
+        | :"payment.created"
+        | :"payment.succeeded"
+        | :"payment.failed"
+        | :"payment.pending"
+        | :"dispute.created"
+        | :"dispute.updated"
+        | :"refund.created"
+        | :"refund.updated"
+        | :"membership.cancel_at_period_end_changed"
+
+      module TestableEvent
+        extend WhopSDK::Internal::Type::Enum
+
+        INVOICE_CREATED: :"invoice.created"
+        INVOICE_PAID: :"invoice.paid"
+        INVOICE_PAST_DUE: :"invoice.past_due"
+        INVOICE_VOIDED: :"invoice.voided"
+        MEMBERSHIP_ACTIVATED: :"membership.activated"
+        MEMBERSHIP_DEACTIVATED: :"membership.deactivated"
+        ENTRY_CREATED: :"entry.created"
+        ENTRY_APPROVED: :"entry.approved"
+        ENTRY_DENIED: :"entry.denied"
+        ENTRY_DELETED: :"entry.deleted"
+        SETUP_INTENT_REQUIRES_ACTION: :"setup_intent.requires_action"
+        SETUP_INTENT_SUCCEEDED: :"setup_intent.succeeded"
+        SETUP_INTENT_CANCELED: :"setup_intent.canceled"
+        WITHDRAWAL_CREATED: :"withdrawal.created"
+        WITHDRAWAL_UPDATED: :"withdrawal.updated"
+        COURSE_LESSON_INTERACTION_COMPLETED: :"course_lesson_interaction.completed"
+        PAYOUT_METHOD_CREATED: :"payout_method.created"
+        VERIFICATION_SUCCEEDED: :"verification.succeeded"
+        PAYMENT_CREATED: :"payment.created"
+        PAYMENT_SUCCEEDED: :"payment.succeeded"
+        PAYMENT_FAILED: :"payment.failed"
+        PAYMENT_PENDING: :"payment.pending"
+        DISPUTE_CREATED: :"dispute.created"
+        DISPUTE_UPDATED: :"dispute.updated"
+        REFUND_CREATED: :"refund.created"
+        REFUND_UPDATED: :"refund.updated"
+        MEMBERSHIP_CANCEL_AT_PERIOD_END_CHANGED: :"membership.cancel_at_period_end_changed"
+
+        def self?.values: -> ::Array[WhopSDK::Models::WebhookRetrieveResponse::testable_event]
+      end
+    end
+  end
+end

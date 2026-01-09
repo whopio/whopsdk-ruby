@@ -156,6 +156,9 @@ module WhopSDK
     # @return [WhopSDK::Resources::Topups]
     attr_reader :topups
 
+    # @return [WhopSDK::Resources::Files]
+    attr_reader :files
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -257,6 +260,7 @@ module WhopSDK
       @verifications = WhopSDK::Resources::Verifications.new(client: self)
       @leads = WhopSDK::Resources::Leads.new(client: self)
       @topups = WhopSDK::Resources::Topups.new(client: self)
+      @files = WhopSDK::Resources::Files.new(client: self)
     end
   end
 end

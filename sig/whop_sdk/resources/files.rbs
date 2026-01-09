@@ -1,0 +1,17 @@
+module WhopSDK
+  module Resources
+    class Files
+      def create: (
+        filename: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::FileCreateResponse
+
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::FileRetrieveResponse
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

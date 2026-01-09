@@ -252,6 +252,10 @@ module WhopSDK
 
   FeeMarkupType = WhopSDK::Models::FeeMarkupType
 
+  FileCreateParams = WhopSDK::Models::FileCreateParams
+
+  FileRetrieveParams = WhopSDK::Models::FileRetrieveParams
+
   Forum = WhopSDK::Models::Forum
 
   ForumListParams = WhopSDK::Models::ForumListParams
@@ -539,7 +543,17 @@ module WhopSDK
 
   VisibilityFilter = WhopSDK::Models::VisibilityFilter
 
+  WebhookCreateParams = WhopSDK::Models::WebhookCreateParams
+
+  WebhookDeleteParams = WhopSDK::Models::WebhookDeleteParams
+
+  WebhookListParams = WhopSDK::Models::WebhookListParams
+
+  WebhookRetrieveParams = WhopSDK::Models::WebhookRetrieveParams
+
   WebhookUnwrapParams = WhopSDK::Models::WebhookUnwrapParams
+
+  WebhookUpdateParams = WhopSDK::Models::WebhookUpdateParams
 
   WhoCanCommentTypes = WhopSDK::Models::WhoCanCommentTypes
 

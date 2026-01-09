@@ -23,7 +23,7 @@ module WhopSDK
       #
       # @param embed_type [Symbol, WhopSDK::Models::EmbedType, nil] The type of embed for a lesson
       #
-      # @param thumbnail [WhopSDK::Models::CourseLessonCreateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonCreateParams::Thumbnail::AttachmentInputWithID, nil] The thumbnail for the lesson in png, jpeg, or gif format
+      # @param thumbnail [WhopSDK::Models::CourseLessonCreateParams::Thumbnail, nil] The thumbnail for the lesson in png, jpeg, or gif format
       #
       # @param title [String, nil] The title of the lesson
       #
@@ -84,7 +84,7 @@ module WhopSDK
       #
       # @param assessment_questions [Array<WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion>, nil] Assessment questions for quiz/knowledge check lessons. Replaces all existing que
       #
-      # @param attachments [Array<WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::Attachment::AttachmentInputWithID>, nil] General attachments for the lesson (PDFs, files, etc). Replaces all existing att
+      # @param attachments [Array<WhopSDK::Models::CourseLessonUpdateParams::Attachment>, nil] General attachments for the lesson (PDFs, files, etc). Replaces all existing att
       #
       # @param content [String, nil] The content of the lesson
       #
@@ -96,13 +96,13 @@ module WhopSDK
       #
       # @param lesson_type [Symbol, WhopSDK::Models::LessonTypes, nil] The available types for a lesson
       #
-      # @param main_pdf [WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID, nil] The main PDF file for this lesson
+      # @param main_pdf [WhopSDK::Models::CourseLessonUpdateParams::MainPdf, nil] The main PDF file for this lesson
       #
       # @param max_attempts [Integer, nil] Maximum number of attempts allowed for assessments
       #
       # @param mux_asset_id [String, nil] The ID of the Mux asset to attach to this lesson for video lessons
       #
-      # @param thumbnail [WhopSDK::Models::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithID, nil] The thumbnail for the lesson in png, jpeg, or gif format
+      # @param thumbnail [WhopSDK::Models::CourseLessonUpdateParams::Thumbnail, nil] The thumbnail for the lesson in png, jpeg, or gif format
       #
       # @param title [String, nil] The title of the lesson
       #

@@ -11,6 +11,7 @@ module WhopSDK
           app_id: String,
           company_id: String,
           is_public: T.nilable(T::Boolean),
+          logo: T.nilable(WhopSDK::ExperienceCreateParams::Logo::OrHash),
           name: T.nilable(String),
           section_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -23,6 +24,8 @@ module WhopSDK
         company_id:,
         # Whether the experience is publicly accessible
         is_public: nil,
+        # The logo for the experience
+        logo: nil,
         # The name of the experience
         name: nil,
         # The ID of the section to create the experience in
@@ -54,13 +57,7 @@ module WhopSDK
           access_level:
             T.nilable(WhopSDK::ExperienceUpdateParams::AccessLevel::OrSymbol),
           is_public: T.nilable(T::Boolean),
-          logo:
-            T.nilable(
-              T.any(
-                WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::ExperienceUpdateParams::Logo::AttachmentInputWithID::OrHash
-              )
-            ),
+          logo: T.nilable(WhopSDK::ExperienceUpdateParams::Logo::OrHash),
           name: T.nilable(String),
           order: T.nilable(String),
           section_id: T.nilable(String),

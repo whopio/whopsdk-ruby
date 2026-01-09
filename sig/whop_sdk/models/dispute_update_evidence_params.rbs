@@ -4,18 +4,18 @@ module WhopSDK
       {
         access_activity_log: String?,
         billing_address: String?,
-        cancellation_policy_attachment: WhopSDK::Models::DisputeUpdateEvidenceParams::cancellation_policy_attachment?,
+        cancellation_policy_attachment: WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment?,
         cancellation_policy_disclosure: String?,
-        customer_communication_attachment: WhopSDK::Models::DisputeUpdateEvidenceParams::customer_communication_attachment?,
+        customer_communication_attachment: WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment?,
         customer_email_address: String?,
         customer_name: String?,
         notes: String?,
         product_description: String?,
-        refund_policy_attachment: WhopSDK::Models::DisputeUpdateEvidenceParams::refund_policy_attachment?,
+        refund_policy_attachment: WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment?,
         refund_policy_disclosure: String?,
         refund_refusal_explanation: String?,
         service_date: String?,
-        uncategorized_attachment: WhopSDK::Models::DisputeUpdateEvidenceParams::uncategorized_attachment?
+        uncategorized_attachment: WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -27,11 +27,11 @@ module WhopSDK
 
       attr_accessor billing_address: String?
 
-      attr_accessor cancellation_policy_attachment: WhopSDK::Models::DisputeUpdateEvidenceParams::cancellation_policy_attachment?
+      attr_accessor cancellation_policy_attachment: WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment?
 
       attr_accessor cancellation_policy_disclosure: String?
 
-      attr_accessor customer_communication_attachment: WhopSDK::Models::DisputeUpdateEvidenceParams::customer_communication_attachment?
+      attr_accessor customer_communication_attachment: WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment?
 
       attr_accessor customer_email_address: String?
 
@@ -41,7 +41,7 @@ module WhopSDK
 
       attr_accessor product_description: String?
 
-      attr_accessor refund_policy_attachment: WhopSDK::Models::DisputeUpdateEvidenceParams::refund_policy_attachment?
+      attr_accessor refund_policy_attachment: WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment?
 
       attr_accessor refund_policy_disclosure: String?
 
@@ -49,166 +49,82 @@ module WhopSDK
 
       attr_accessor service_date: String?
 
-      attr_accessor uncategorized_attachment: WhopSDK::Models::DisputeUpdateEvidenceParams::uncategorized_attachment?
+      attr_accessor uncategorized_attachment: WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment?
 
       def initialize: (
         ?access_activity_log: String?,
         ?billing_address: String?,
-        ?cancellation_policy_attachment: WhopSDK::Models::DisputeUpdateEvidenceParams::cancellation_policy_attachment?,
+        ?cancellation_policy_attachment: WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment?,
         ?cancellation_policy_disclosure: String?,
-        ?customer_communication_attachment: WhopSDK::Models::DisputeUpdateEvidenceParams::customer_communication_attachment?,
+        ?customer_communication_attachment: WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment?,
         ?customer_email_address: String?,
         ?customer_name: String?,
         ?notes: String?,
         ?product_description: String?,
-        ?refund_policy_attachment: WhopSDK::Models::DisputeUpdateEvidenceParams::refund_policy_attachment?,
+        ?refund_policy_attachment: WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment?,
         ?refund_policy_disclosure: String?,
         ?refund_refusal_explanation: String?,
         ?service_date: String?,
-        ?uncategorized_attachment: WhopSDK::Models::DisputeUpdateEvidenceParams::uncategorized_attachment?,
+        ?uncategorized_attachment: WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         access_activity_log: String?,
         billing_address: String?,
-        cancellation_policy_attachment: WhopSDK::Models::DisputeUpdateEvidenceParams::cancellation_policy_attachment?,
+        cancellation_policy_attachment: WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment?,
         cancellation_policy_disclosure: String?,
-        customer_communication_attachment: WhopSDK::Models::DisputeUpdateEvidenceParams::customer_communication_attachment?,
+        customer_communication_attachment: WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment?,
         customer_email_address: String?,
         customer_name: String?,
         notes: String?,
         product_description: String?,
-        refund_policy_attachment: WhopSDK::Models::DisputeUpdateEvidenceParams::refund_policy_attachment?,
+        refund_policy_attachment: WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment?,
         refund_policy_disclosure: String?,
         refund_refusal_explanation: String?,
         service_date: String?,
-        uncategorized_attachment: WhopSDK::Models::DisputeUpdateEvidenceParams::uncategorized_attachment?,
+        uncategorized_attachment: WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment?,
         request_options: WhopSDK::RequestOptions
       }
 
-      type cancellation_policy_attachment =
-        WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment::AttachmentInputWithDirectUploadID
-        | WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment::AttachmentInputWithID
+      type cancellation_policy_attachment = { id: String }
 
-      module CancellationPolicyAttachment
-        extend WhopSDK::Internal::Type::Union
+      class CancellationPolicyAttachment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
 
-        type attachment_input_with_direct_upload_id =
-          { direct_upload_id: String }
+        def initialize: (id: String) -> void
 
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          attr_accessor direct_upload_id: String
-
-          def initialize: (direct_upload_id: String) -> void
-
-          def to_hash: -> { direct_upload_id: String }
-        end
-
-        type attachment_input_with_id = { id: String }
-
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          def initialize: (id: String) -> void
-
-          def to_hash: -> { id: String }
-        end
-
-        def self?.variants: -> ::Array[WhopSDK::Models::DisputeUpdateEvidenceParams::cancellation_policy_attachment]
+        def to_hash: -> { id: String }
       end
 
-      type customer_communication_attachment =
-        WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment::AttachmentInputWithDirectUploadID
-        | WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment::AttachmentInputWithID
+      type customer_communication_attachment = { id: String }
 
-      module CustomerCommunicationAttachment
-        extend WhopSDK::Internal::Type::Union
+      class CustomerCommunicationAttachment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
 
-        type attachment_input_with_direct_upload_id =
-          { direct_upload_id: String }
+        def initialize: (id: String) -> void
 
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          attr_accessor direct_upload_id: String
-
-          def initialize: (direct_upload_id: String) -> void
-
-          def to_hash: -> { direct_upload_id: String }
-        end
-
-        type attachment_input_with_id = { id: String }
-
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          def initialize: (id: String) -> void
-
-          def to_hash: -> { id: String }
-        end
-
-        def self?.variants: -> ::Array[WhopSDK::Models::DisputeUpdateEvidenceParams::customer_communication_attachment]
+        def to_hash: -> { id: String }
       end
 
-      type refund_policy_attachment =
-        WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment::AttachmentInputWithDirectUploadID
-        | WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment::AttachmentInputWithID
+      type refund_policy_attachment = { id: String }
 
-      module RefundPolicyAttachment
-        extend WhopSDK::Internal::Type::Union
+      class RefundPolicyAttachment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
 
-        type attachment_input_with_direct_upload_id =
-          { direct_upload_id: String }
+        def initialize: (id: String) -> void
 
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          attr_accessor direct_upload_id: String
-
-          def initialize: (direct_upload_id: String) -> void
-
-          def to_hash: -> { direct_upload_id: String }
-        end
-
-        type attachment_input_with_id = { id: String }
-
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          def initialize: (id: String) -> void
-
-          def to_hash: -> { id: String }
-        end
-
-        def self?.variants: -> ::Array[WhopSDK::Models::DisputeUpdateEvidenceParams::refund_policy_attachment]
+        def to_hash: -> { id: String }
       end
 
-      type uncategorized_attachment =
-        WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment::AttachmentInputWithDirectUploadID
-        | WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment::AttachmentInputWithID
+      type uncategorized_attachment = { id: String }
 
-      module UncategorizedAttachment
-        extend WhopSDK::Internal::Type::Union
+      class UncategorizedAttachment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
 
-        type attachment_input_with_direct_upload_id =
-          { direct_upload_id: String }
+        def initialize: (id: String) -> void
 
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          attr_accessor direct_upload_id: String
-
-          def initialize: (direct_upload_id: String) -> void
-
-          def to_hash: -> { direct_upload_id: String }
-        end
-
-        type attachment_input_with_id = { id: String }
-
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          def initialize: (id: String) -> void
-
-          def to_hash: -> { id: String }
-        end
-
-        def self?.variants: -> ::Array[WhopSDK::Models::DisputeUpdateEvidenceParams::uncategorized_attachment]
+        def to_hash: -> { id: String }
       end
     end
   end

@@ -17,6 +17,22 @@ module WhopSDK
       | :jcbrupay
       | :elo
       | :maestro
+      | :tarjeta_naranja
+      | :cirrus
+      | :nspk_mir
+      | :verve
+      | :ebt
+      | :private_label
+      | :local_brand
+      | :uatp
+      | :wexcard
+      | :uzcard
+      | :meeza
+      | :hrg_store_card
+      | :girocard
+      | :fuel_card
+      | :dankort
+      | :carnet
       | :unknown
 
     module CardBrands
@@ -38,6 +54,22 @@ module WhopSDK
       JCBRUPAY: :jcbrupay
       ELO: :elo
       MAESTRO: :maestro
+      TARJETA_NARANJA: :tarjeta_naranja
+      CIRRUS: :cirrus
+      NSPK_MIR: :nspk_mir
+      VERVE: :verve
+      EBT: :ebt
+      PRIVATE_LABEL: :private_label
+      LOCAL_BRAND: :local_brand
+      UATP: :uatp
+      WEXCARD: :wexcard
+      UZCARD: :uzcard
+      MEEZA: :meeza
+      HRG_STORE_CARD: :hrg_store_card
+      GIROCARD: :girocard
+      FUEL_CARD: :fuel_card
+      DANKORT: :dankort
+      CARNET: :carnet
       UNKNOWN: :unknown
 
       def self?.values: -> ::Array[WhopSDK::Models::card_brands]

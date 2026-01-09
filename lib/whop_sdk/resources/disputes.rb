@@ -135,11 +135,11 @@ module WhopSDK
       #
       # @param billing_address [String, nil] The billing address of the user from their payment details.
       #
-      # @param cancellation_policy_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::CancellationPolicyAttachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::DisputeUpdateEvidenceParams::CancellationPolicyAttachment::AttachmentInputWithID, nil] A file containing the cancellation policy from the company.
+      # @param cancellation_policy_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::CancellationPolicyAttachment, nil] A file containing the cancellation policy from the company.
       #
       # @param cancellation_policy_disclosure [String, nil] A cancellation policy disclosure from the company.
       #
-      # @param customer_communication_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment::AttachmentInputWithID, nil] A file containing the customer communication from the company (An image).
+      # @param customer_communication_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment, nil] A file containing the customer communication from the company (An image).
       #
       # @param customer_email_address [String, nil] The email of the customer from their payment details.
       #
@@ -149,7 +149,7 @@ module WhopSDK
       #
       # @param product_description [String, nil] The description of the product from the company.
       #
-      # @param refund_policy_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::RefundPolicyAttachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::DisputeUpdateEvidenceParams::RefundPolicyAttachment::AttachmentInputWithID, nil] A file containing the refund policy from the company.
+      # @param refund_policy_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::RefundPolicyAttachment, nil] A file containing the refund policy from the company.
       #
       # @param refund_policy_disclosure [String, nil] A refund policy disclosure from the company.
       #
@@ -157,7 +157,7 @@ module WhopSDK
       #
       # @param service_date [String, nil] When the product was delivered by the company.
       #
-      # @param uncategorized_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::UncategorizedAttachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::DisputeUpdateEvidenceParams::UncategorizedAttachment::AttachmentInputWithID, nil] A file that does not fit in the other categories.
+      # @param uncategorized_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::UncategorizedAttachment, nil] A file that does not fit in the other categories.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

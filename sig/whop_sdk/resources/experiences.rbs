@@ -5,6 +5,7 @@ module WhopSDK
         app_id: String,
         company_id: String,
         ?is_public: bool?,
+        ?logo: WhopSDK::ExperienceCreateParams::Logo?,
         ?name: String?,
         ?section_id: String?,
         ?request_options: WhopSDK::request_opts
@@ -19,7 +20,7 @@ module WhopSDK
         String id,
         ?access_level: WhopSDK::Models::ExperienceUpdateParams::access_level?,
         ?is_public: bool?,
-        ?logo: WhopSDK::Models::ExperienceUpdateParams::logo?,
+        ?logo: WhopSDK::ExperienceUpdateParams::Logo?,
         ?name: String?,
         ?order: String?,
         ?section_id: String?,

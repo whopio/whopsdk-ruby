@@ -27,18 +27,18 @@ module WhopSDK
         String id,
         ?access_activity_log: String?,
         ?billing_address: String?,
-        ?cancellation_policy_attachment: WhopSDK::Models::DisputeUpdateEvidenceParams::cancellation_policy_attachment?,
+        ?cancellation_policy_attachment: WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment?,
         ?cancellation_policy_disclosure: String?,
-        ?customer_communication_attachment: WhopSDK::Models::DisputeUpdateEvidenceParams::customer_communication_attachment?,
+        ?customer_communication_attachment: WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment?,
         ?customer_email_address: String?,
         ?customer_name: String?,
         ?notes: String?,
         ?product_description: String?,
-        ?refund_policy_attachment: WhopSDK::Models::DisputeUpdateEvidenceParams::refund_policy_attachment?,
+        ?refund_policy_attachment: WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment?,
         ?refund_policy_disclosure: String?,
         ?refund_refusal_explanation: String?,
         ?service_date: String?,
-        ?uncategorized_attachment: WhopSDK::Models::DisputeUpdateEvidenceParams::uncategorized_attachment?,
+        ?uncategorized_attachment: WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Dispute
 

@@ -17,12 +17,7 @@ module WhopSDK
           embed_id: T.nilable(String),
           embed_type: T.nilable(WhopSDK::EmbedType::OrSymbol),
           thumbnail:
-            T.nilable(
-              T.any(
-                WhopSDK::CourseLessonCreateParams::Thumbnail::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::CourseLessonCreateParams::Thumbnail::AttachmentInputWithID::OrHash
-              )
-            ),
+            T.nilable(WhopSDK::CourseLessonCreateParams::Thumbnail::OrHash),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Lesson)
@@ -86,12 +81,7 @@ module WhopSDK
             ),
           attachments:
             T.nilable(
-              T::Array[
-                T.any(
-                  WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithDirectUploadID::OrHash,
-                  WhopSDK::CourseLessonUpdateParams::Attachment::AttachmentInputWithID::OrHash
-                )
-              ]
+              T::Array[WhopSDK::CourseLessonUpdateParams::Attachment::OrHash]
             ),
           content: T.nilable(String),
           days_from_course_start_until_unlock: T.nilable(Integer),
@@ -99,21 +89,11 @@ module WhopSDK
           embed_type: T.nilable(WhopSDK::EmbedType::OrSymbol),
           lesson_type: T.nilable(WhopSDK::LessonTypes::OrSymbol),
           main_pdf:
-            T.nilable(
-              T.any(
-                WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::CourseLessonUpdateParams::MainPdf::AttachmentInputWithID::OrHash
-              )
-            ),
+            T.nilable(WhopSDK::CourseLessonUpdateParams::MainPdf::OrHash),
           max_attempts: T.nilable(Integer),
           mux_asset_id: T.nilable(String),
           thumbnail:
-            T.nilable(
-              T.any(
-                WhopSDK::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::CourseLessonUpdateParams::Thumbnail::AttachmentInputWithID::OrHash
-              )
-            ),
+            T.nilable(WhopSDK::CourseLessonUpdateParams::Thumbnail::OrHash),
           title: T.nilable(String),
           visibility: T.nilable(WhopSDK::LessonVisibilities::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash

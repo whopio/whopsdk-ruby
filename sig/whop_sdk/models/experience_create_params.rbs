@@ -5,6 +5,7 @@ module WhopSDK
         app_id: String,
         company_id: String,
         is_public: bool?,
+        logo: WhopSDK::ExperienceCreateParams::Logo?,
         name: String?,
         section_id: String?
       }
@@ -20,6 +21,8 @@ module WhopSDK
 
       attr_accessor is_public: bool?
 
+      attr_accessor logo: WhopSDK::ExperienceCreateParams::Logo?
+
       attr_accessor name: String?
 
       attr_accessor section_id: String?
@@ -28,6 +31,7 @@ module WhopSDK
         app_id: String,
         company_id: String,
         ?is_public: bool?,
+        ?logo: WhopSDK::ExperienceCreateParams::Logo?,
         ?name: String?,
         ?section_id: String?,
         ?request_options: WhopSDK::request_opts
@@ -37,10 +41,21 @@ module WhopSDK
         app_id: String,
         company_id: String,
         is_public: bool?,
+        logo: WhopSDK::ExperienceCreateParams::Logo?,
         name: String?,
         section_id: String?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type logo = { id: String }
+
+      class Logo < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
     end
   end
 end

@@ -5,11 +5,10 @@ module WhopSDK
         experience_id: String,
         title: String,
         certificate_after_completion_enabled: bool?,
-        cover_image: String?,
         order: String?,
         require_completing_lessons_in_order: bool?,
         tagline: String?,
-        thumbnail: WhopSDK::Models::CourseCreateParams::thumbnail?,
+        thumbnail: WhopSDK::CourseCreateParams::Thumbnail?,
         visibility: WhopSDK::Models::course_visibilities?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -24,15 +23,13 @@ module WhopSDK
 
       attr_accessor certificate_after_completion_enabled: bool?
 
-      attr_accessor cover_image: String?
-
       attr_accessor order: String?
 
       attr_accessor require_completing_lessons_in_order: bool?
 
       attr_accessor tagline: String?
 
-      attr_accessor thumbnail: WhopSDK::Models::CourseCreateParams::thumbnail?
+      attr_accessor thumbnail: WhopSDK::CourseCreateParams::Thumbnail?
 
       attr_accessor visibility: WhopSDK::Models::course_visibilities?
 
@@ -40,11 +37,10 @@ module WhopSDK
         experience_id: String,
         title: String,
         ?certificate_after_completion_enabled: bool?,
-        ?cover_image: String?,
         ?order: String?,
         ?require_completing_lessons_in_order: bool?,
         ?tagline: String?,
-        ?thumbnail: WhopSDK::Models::CourseCreateParams::thumbnail?,
+        ?thumbnail: WhopSDK::CourseCreateParams::Thumbnail?,
         ?visibility: WhopSDK::Models::course_visibilities?,
         ?request_options: WhopSDK::request_opts
       ) -> void
@@ -53,44 +49,22 @@ module WhopSDK
         experience_id: String,
         title: String,
         certificate_after_completion_enabled: bool?,
-        cover_image: String?,
         order: String?,
         require_completing_lessons_in_order: bool?,
         tagline: String?,
-        thumbnail: WhopSDK::Models::CourseCreateParams::thumbnail?,
+        thumbnail: WhopSDK::CourseCreateParams::Thumbnail?,
         visibility: WhopSDK::Models::course_visibilities?,
         request_options: WhopSDK::RequestOptions
       }
 
-      type thumbnail =
-        WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID
-        | WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithID
+      type thumbnail = { id: String }
 
-      module Thumbnail
-        extend WhopSDK::Internal::Type::Union
+      class Thumbnail < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
 
-        type attachment_input_with_direct_upload_id =
-          { direct_upload_id: String }
+        def initialize: (id: String) -> void
 
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          attr_accessor direct_upload_id: String
-
-          def initialize: (direct_upload_id: String) -> void
-
-          def to_hash: -> { direct_upload_id: String }
-        end
-
-        type attachment_input_with_id = { id: String }
-
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          def initialize: (id: String) -> void
-
-          def to_hash: -> { id: String }
-        end
-
-        def self?.variants: -> ::Array[WhopSDK::Models::CourseCreateParams::thumbnail]
+        def to_hash: -> { id: String }
       end
     end
   end

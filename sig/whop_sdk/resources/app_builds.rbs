@@ -2,7 +2,7 @@ module WhopSDK
   module Resources
     class AppBuilds
       def create: (
-        attachment: WhopSDK::Models::AppBuildCreateParams::attachment,
+        attachment: WhopSDK::AppBuildCreateParams::Attachment,
         checksum: String,
         platform: WhopSDK::Models::app_build_platforms,
         ?ai_prompt_id: String?,

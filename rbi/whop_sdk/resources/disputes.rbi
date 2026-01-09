@@ -119,18 +119,12 @@ module WhopSDK
           billing_address: T.nilable(String),
           cancellation_policy_attachment:
             T.nilable(
-              T.any(
-                WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment::AttachmentInputWithID::OrHash
-              )
+              WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment::OrHash
             ),
           cancellation_policy_disclosure: T.nilable(String),
           customer_communication_attachment:
             T.nilable(
-              T.any(
-                WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment::AttachmentInputWithID::OrHash
-              )
+              WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment::OrHash
             ),
           customer_email_address: T.nilable(String),
           customer_name: T.nilable(String),
@@ -138,20 +132,14 @@ module WhopSDK
           product_description: T.nilable(String),
           refund_policy_attachment:
             T.nilable(
-              T.any(
-                WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment::AttachmentInputWithID::OrHash
-              )
+              WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment::OrHash
             ),
           refund_policy_disclosure: T.nilable(String),
           refund_refusal_explanation: T.nilable(String),
           service_date: T.nilable(String),
           uncategorized_attachment:
             T.nilable(
-              T.any(
-                WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment::AttachmentInputWithID::OrHash
-              )
+              WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment::OrHash
             ),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Dispute)

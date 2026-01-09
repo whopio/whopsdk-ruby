@@ -13,12 +13,7 @@ module WhopSDK
           experience_id: String,
           attachments:
             T.nilable(
-              T::Array[
-                T.any(
-                  WhopSDK::ForumPostCreateParams::Attachment::AttachmentInputWithDirectUploadID::OrHash,
-                  WhopSDK::ForumPostCreateParams::Attachment::AttachmentInputWithID::OrHash
-                )
-              ]
+              T::Array[WhopSDK::ForumPostCreateParams::Attachment::OrHash]
             ),
           content: T.nilable(String),
           is_mention: T.nilable(T::Boolean),
@@ -88,12 +83,7 @@ module WhopSDK
           id: String,
           attachments:
             T.nilable(
-              T::Array[
-                T.any(
-                  WhopSDK::ForumPostUpdateParams::Attachment::AttachmentInputWithDirectUploadID::OrHash,
-                  WhopSDK::ForumPostUpdateParams::Attachment::AttachmentInputWithID::OrHash
-                )
-              ]
+              T::Array[WhopSDK::ForumPostUpdateParams::Attachment::OrHash]
             ),
           content: T.nilable(String),
           is_pinned: T.nilable(T::Boolean),

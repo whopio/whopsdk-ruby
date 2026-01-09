@@ -5,6 +5,7 @@ module WhopSDK
         company_id: String,
         name: String,
         ?base_url: String?,
+        ?icon: WhopSDK::AppCreateParams::Icon?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::App
 
@@ -22,7 +23,7 @@ module WhopSDK
         ?description: String?,
         ?discover_path: String?,
         ?experience_path: String?,
-        ?icon: WhopSDK::Models::AppUpdateParams::icon?,
+        ?icon: WhopSDK::AppUpdateParams::Icon?,
         ?name: String?,
         ?required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
         ?status: WhopSDK::Models::app_statuses?,

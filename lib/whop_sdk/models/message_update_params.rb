@@ -10,9 +10,9 @@ module WhopSDK
       # @!attribute attachments
       #   The attachments for this message
       #
-      #   @return [Array<WhopSDK::Models::MessageUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::MessageUpdateParams::Attachment::AttachmentInputWithID>, nil]
+      #   @return [Array<WhopSDK::Models::MessageUpdateParams::Attachment>, nil]
       optional :attachments,
-               -> { WhopSDK::Internal::Type::ArrayOf[union: WhopSDK::MessageUpdateParams::Attachment] },
+               -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::MessageUpdateParams::Attachment] },
                nil?: true
 
       # @!attribute content
@@ -28,7 +28,7 @@ module WhopSDK
       optional :is_pinned, WhopSDK::Internal::Type::Boolean, nil?: true
 
       # @!method initialize(attachments: nil, content: nil, is_pinned: nil, request_options: {})
-      #   @param attachments [Array<WhopSDK::Models::MessageUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::MessageUpdateParams::Attachment::AttachmentInputWithID>, nil] The attachments for this message
+      #   @param attachments [Array<WhopSDK::Models::MessageUpdateParams::Attachment>, nil] The attachments for this message
       #
       #   @param content [String, nil] The content of the message in Markdown format
       #
@@ -36,56 +36,17 @@ module WhopSDK
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      # Input for an attachment
-      module Attachment
-        extend WhopSDK::Internal::Type::Union
+      class Attachment < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The ID of an existing file object.
+        #
+        #   @return [String]
+        required :id, String
 
-        # Input for an attachment
-        variant -> { WhopSDK::MessageUpdateParams::Attachment::AttachmentInputWithDirectUploadID }
-
-        # Input for an attachment
-        variant -> { WhopSDK::MessageUpdateParams::Attachment::AttachmentInputWithID }
-
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          # @!attribute direct_upload_id
-          #   This ID should be used the first time you upload an attachment. It is the ID of
-          #   the direct upload that was created when uploading the file to S3 via the
-          #   mediaDirectUpload mutation.
-          #
-          #   @return [String]
-          required :direct_upload_id, String
-
-          # @!method initialize(direct_upload_id:)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::MessageUpdateParams::Attachment::AttachmentInputWithDirectUploadID}
-          #   for more details.
-          #
-          #   Input for an attachment
-          #
-          #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
-        end
-
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #   The ID of an existing attachment object. Use this when updating a resource and
-          #   keeping a subset of the attachments. Don't use this unless you know what you're
-          #   doing.
-          #
-          #   @return [String]
-          required :id, String
-
-          # @!method initialize(id:)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::MessageUpdateParams::Attachment::AttachmentInputWithID} for
-          #   more details.
-          #
-          #   Input for an attachment
-          #
-          #   @param id [String] The ID of an existing attachment object. Use this when updating a resource and k
-        end
-
-        # @!method self.variants
-        #   @return [Array(WhopSDK::Models::MessageUpdateParams::Attachment::AttachmentInputWithDirectUploadID, WhopSDK::Models::MessageUpdateParams::Attachment::AttachmentInputWithID)]
+        # @!method initialize(id:)
+        #   Input for an attachment
+        #
+        #   @param id [String] The ID of an existing file object.
       end
     end
   end

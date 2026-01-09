@@ -7,13 +7,15 @@ module WhopSDK
       #
       # - `experience:create`
       #
-      # @overload create(app_id:, company_id:, is_public: nil, name: nil, section_id: nil, request_options: {})
+      # @overload create(app_id:, company_id:, is_public: nil, logo: nil, name: nil, section_id: nil, request_options: {})
       #
       # @param app_id [String] The ID of the app to create the experience for
       #
       # @param company_id [String] The ID of the company to create the experience for
       #
       # @param is_public [Boolean, nil] Whether the experience is publicly accessible
+      #
+      # @param logo [WhopSDK::Models::ExperienceCreateParams::Logo, nil] The logo for the experience
       #
       # @param name [String, nil] The name of the experience
       #
@@ -67,7 +69,7 @@ module WhopSDK
       #
       # @param is_public [Boolean, nil] Whether the experience is publicly accessible.
       #
-      # @param logo [WhopSDK::Models::ExperienceUpdateParams::Logo::AttachmentInputWithDirectUploadID, WhopSDK::Models::ExperienceUpdateParams::Logo::AttachmentInputWithID, nil] The logo for the experience
+      # @param logo [WhopSDK::Models::ExperienceUpdateParams::Logo, nil] The logo for the experience
       #
       # @param name [String, nil] The name of the experience.
       #

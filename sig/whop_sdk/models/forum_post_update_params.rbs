@@ -2,7 +2,7 @@ module WhopSDK
   module Models
     type forum_post_update_params =
       {
-        attachments: ::Array[WhopSDK::Models::ForumPostUpdateParams::attachment]?,
+        attachments: ::Array[WhopSDK::ForumPostUpdateParams::Attachment]?,
         content: String?,
         is_pinned: bool?,
         title: String?,
@@ -14,7 +14,7 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor attachments: ::Array[WhopSDK::Models::ForumPostUpdateParams::attachment]?
+      attr_accessor attachments: ::Array[WhopSDK::ForumPostUpdateParams::Attachment]?
 
       attr_accessor content: String?
 
@@ -25,7 +25,7 @@ module WhopSDK
       attr_accessor visibility: WhopSDK::Models::forum_post_visibility_type?
 
       def initialize: (
-        ?attachments: ::Array[WhopSDK::Models::ForumPostUpdateParams::attachment]?,
+        ?attachments: ::Array[WhopSDK::ForumPostUpdateParams::Attachment]?,
         ?content: String?,
         ?is_pinned: bool?,
         ?title: String?,
@@ -34,7 +34,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
-        attachments: ::Array[WhopSDK::Models::ForumPostUpdateParams::attachment]?,
+        attachments: ::Array[WhopSDK::ForumPostUpdateParams::Attachment]?,
         content: String?,
         is_pinned: bool?,
         title: String?,
@@ -42,35 +42,14 @@ module WhopSDK
         request_options: WhopSDK::RequestOptions
       }
 
-      type attachment =
-        WhopSDK::ForumPostUpdateParams::Attachment::AttachmentInputWithDirectUploadID
-        | WhopSDK::ForumPostUpdateParams::Attachment::AttachmentInputWithID
+      type attachment = { id: String }
 
-      module Attachment
-        extend WhopSDK::Internal::Type::Union
+      class Attachment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
 
-        type attachment_input_with_direct_upload_id =
-          { direct_upload_id: String }
+        def initialize: (id: String) -> void
 
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          attr_accessor direct_upload_id: String
-
-          def initialize: (direct_upload_id: String) -> void
-
-          def to_hash: -> { direct_upload_id: String }
-        end
-
-        type attachment_input_with_id = { id: String }
-
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          def initialize: (id: String) -> void
-
-          def to_hash: -> { id: String }
-        end
-
-        def self?.variants: -> ::Array[WhopSDK::Models::ForumPostUpdateParams::attachment]
+        def to_hash: -> { id: String }
       end
     end
   end

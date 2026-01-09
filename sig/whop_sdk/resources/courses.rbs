@@ -5,11 +5,10 @@ module WhopSDK
         experience_id: String,
         title: String,
         ?certificate_after_completion_enabled: bool?,
-        ?cover_image: String?,
         ?order: String?,
         ?require_completing_lessons_in_order: bool?,
         ?tagline: String?,
-        ?thumbnail: WhopSDK::Models::CourseCreateParams::thumbnail?,
+        ?thumbnail: WhopSDK::CourseCreateParams::Thumbnail?,
         ?visibility: WhopSDK::Models::course_visibilities?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Course
@@ -23,13 +22,12 @@ module WhopSDK
         String id,
         ?certificate_after_completion_enabled: bool?,
         ?chapters: ::Array[WhopSDK::CourseUpdateParams::Chapter]?,
-        ?cover_image: String?,
         ?description: String?,
         ?language: WhopSDK::Models::languages?,
         ?order: String?,
         ?require_completing_lessons_in_order: bool?,
         ?tagline: String?,
-        ?thumbnail: WhopSDK::Models::CourseUpdateParams::thumbnail?,
+        ?thumbnail: WhopSDK::CourseUpdateParams::Thumbnail?,
         ?title: String?,
         ?visibility: WhopSDK::Models::course_visibilities?,
         ?request_options: WhopSDK::request_opts

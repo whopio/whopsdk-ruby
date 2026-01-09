@@ -72,7 +72,7 @@ module WhopSDK
           description: String?,
           expiration_days: Integer?,
           force_create_new_plan: bool?,
-          image: WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::image?,
+          image: WhopSDK::CheckoutConfigurationCreateParams::Plan::Image?,
           initial_price: Float?,
           internal_notes: String?,
           override_tax_type: WhopSDK::Models::tax_type?,
@@ -105,7 +105,7 @@ module WhopSDK
 
         attr_accessor force_create_new_plan: bool?
 
-        attr_accessor image: WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::image?
+        attr_accessor image: WhopSDK::CheckoutConfigurationCreateParams::Plan::Image?
 
         attr_accessor initial_price: Float?
 
@@ -142,7 +142,7 @@ module WhopSDK
           ?description: String?,
           ?expiration_days: Integer?,
           ?force_create_new_plan: bool?,
-          ?image: WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::image?,
+          ?image: WhopSDK::CheckoutConfigurationCreateParams::Plan::Image?,
           ?initial_price: Float?,
           ?internal_notes: String?,
           ?override_tax_type: WhopSDK::Models::tax_type?,
@@ -167,7 +167,7 @@ module WhopSDK
           description: String?,
           expiration_days: Integer?,
           force_create_new_plan: bool?,
-          image: WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::image?,
+          image: WhopSDK::CheckoutConfigurationCreateParams::Plan::Image?,
           initial_price: Float?,
           internal_notes: String?,
           override_tax_type: WhopSDK::Models::tax_type?,
@@ -225,35 +225,14 @@ module WhopSDK
           }
         end
 
-        type image =
-          WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID
-          | WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID
+        type image = { id: String }
 
-        module Image
-          extend WhopSDK::Internal::Type::Union
+        class Image < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
 
-          type attachment_input_with_direct_upload_id =
-            { direct_upload_id: String }
+          def initialize: (id: String) -> void
 
-          class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-            attr_accessor direct_upload_id: String
-
-            def initialize: (direct_upload_id: String) -> void
-
-            def to_hash: -> { direct_upload_id: String }
-          end
-
-          type attachment_input_with_id = { id: String }
-
-          class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-            attr_accessor id: String
-
-            def initialize: (id: String) -> void
-
-            def to_hash: -> { id: String }
-          end
-
-          def self?.variants: -> ::Array[WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::image]
+          def to_hash: -> { id: String }
         end
 
         type payment_method_configuration =

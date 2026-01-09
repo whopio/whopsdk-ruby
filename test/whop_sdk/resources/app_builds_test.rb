@@ -6,12 +6,7 @@ class WhopSDK::Test::Resources::AppBuildsTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
     skip("Prism tests are disabled")
 
-    response =
-      @whop.app_builds.create(
-        attachment: {direct_upload_id: "direct_upload_id"},
-        checksum: "checksum",
-        platform: :ios
-      )
+    response = @whop.app_builds.create(attachment: {id: "id"}, checksum: "checksum", platform: :ios)
 
     assert_pattern do
       response => WhopSDK::AppBuild

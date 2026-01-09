@@ -8,7 +8,7 @@ module WhopSDK
         ?days_from_course_start_until_unlock: Integer?,
         ?embed_id: String?,
         ?embed_type: WhopSDK::Models::embed_type?,
-        ?thumbnail: WhopSDK::Models::CourseLessonCreateParams::thumbnail?,
+        ?thumbnail: WhopSDK::CourseLessonCreateParams::Thumbnail?,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Lesson
@@ -22,16 +22,16 @@ module WhopSDK
         String id,
         ?assessment_completion_requirement: WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement?,
         ?assessment_questions: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion]?,
-        ?attachments: ::Array[WhopSDK::Models::CourseLessonUpdateParams::attachment]?,
+        ?attachments: ::Array[WhopSDK::CourseLessonUpdateParams::Attachment]?,
         ?content: String?,
         ?days_from_course_start_until_unlock: Integer?,
         ?embed_id: String?,
         ?embed_type: WhopSDK::Models::embed_type?,
         ?lesson_type: WhopSDK::Models::lesson_types?,
-        ?main_pdf: WhopSDK::Models::CourseLessonUpdateParams::main_pdf?,
+        ?main_pdf: WhopSDK::CourseLessonUpdateParams::MainPdf?,
         ?max_attempts: Integer?,
         ?mux_asset_id: String?,
-        ?thumbnail: WhopSDK::Models::CourseLessonUpdateParams::thumbnail?,
+        ?thumbnail: WhopSDK::CourseLessonUpdateParams::Thumbnail?,
         ?title: String?,
         ?visibility: WhopSDK::Models::lesson_visibilities?,
         ?request_options: WhopSDK::request_opts

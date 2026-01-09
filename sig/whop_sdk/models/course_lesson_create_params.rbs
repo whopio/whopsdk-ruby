@@ -8,7 +8,7 @@ module WhopSDK
         days_from_course_start_until_unlock: Integer?,
         embed_id: String?,
         embed_type: WhopSDK::Models::embed_type?,
-        thumbnail: WhopSDK::Models::CourseLessonCreateParams::thumbnail?,
+        thumbnail: WhopSDK::CourseLessonCreateParams::Thumbnail?,
         title: String?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -29,7 +29,7 @@ module WhopSDK
 
       attr_accessor embed_type: WhopSDK::Models::embed_type?
 
-      attr_accessor thumbnail: WhopSDK::Models::CourseLessonCreateParams::thumbnail?
+      attr_accessor thumbnail: WhopSDK::CourseLessonCreateParams::Thumbnail?
 
       attr_accessor title: String?
 
@@ -40,7 +40,7 @@ module WhopSDK
         ?days_from_course_start_until_unlock: Integer?,
         ?embed_id: String?,
         ?embed_type: WhopSDK::Models::embed_type?,
-        ?thumbnail: WhopSDK::Models::CourseLessonCreateParams::thumbnail?,
+        ?thumbnail: WhopSDK::CourseLessonCreateParams::Thumbnail?,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
@@ -52,40 +52,19 @@ module WhopSDK
         days_from_course_start_until_unlock: Integer?,
         embed_id: String?,
         embed_type: WhopSDK::Models::embed_type?,
-        thumbnail: WhopSDK::Models::CourseLessonCreateParams::thumbnail?,
+        thumbnail: WhopSDK::CourseLessonCreateParams::Thumbnail?,
         title: String?,
         request_options: WhopSDK::RequestOptions
       }
 
-      type thumbnail =
-        WhopSDK::CourseLessonCreateParams::Thumbnail::AttachmentInputWithDirectUploadID
-        | WhopSDK::CourseLessonCreateParams::Thumbnail::AttachmentInputWithID
+      type thumbnail = { id: String }
 
-      module Thumbnail
-        extend WhopSDK::Internal::Type::Union
+      class Thumbnail < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
 
-        type attachment_input_with_direct_upload_id =
-          { direct_upload_id: String }
+        def initialize: (id: String) -> void
 
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          attr_accessor direct_upload_id: String
-
-          def initialize: (direct_upload_id: String) -> void
-
-          def to_hash: -> { direct_upload_id: String }
-        end
-
-        type attachment_input_with_id = { id: String }
-
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          def initialize: (id: String) -> void
-
-          def to_hash: -> { id: String }
-        end
-
-        def self?.variants: -> ::Array[WhopSDK::Models::CourseLessonCreateParams::thumbnail]
+        def to_hash: -> { id: String }
       end
     end
   end

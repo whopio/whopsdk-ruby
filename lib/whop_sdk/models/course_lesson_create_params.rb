@@ -46,8 +46,8 @@ module WhopSDK
       # @!attribute thumbnail
       #   The thumbnail for the lesson in png, jpeg, or gif format
       #
-      #   @return [WhopSDK::Models::CourseLessonCreateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonCreateParams::Thumbnail::AttachmentInputWithID, nil]
-      optional :thumbnail, union: -> { WhopSDK::CourseLessonCreateParams::Thumbnail }, nil?: true
+      #   @return [WhopSDK::Models::CourseLessonCreateParams::Thumbnail, nil]
+      optional :thumbnail, -> { WhopSDK::CourseLessonCreateParams::Thumbnail }, nil?: true
 
       # @!attribute title
       #   The title of the lesson
@@ -68,62 +68,23 @@ module WhopSDK
       #
       #   @param embed_type [Symbol, WhopSDK::Models::EmbedType, nil] The type of embed for a lesson
       #
-      #   @param thumbnail [WhopSDK::Models::CourseLessonCreateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonCreateParams::Thumbnail::AttachmentInputWithID, nil] The thumbnail for the lesson in png, jpeg, or gif format
+      #   @param thumbnail [WhopSDK::Models::CourseLessonCreateParams::Thumbnail, nil] The thumbnail for the lesson in png, jpeg, or gif format
       #
       #   @param title [String, nil] The title of the lesson
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      # The thumbnail for the lesson in png, jpeg, or gif format
-      module Thumbnail
-        extend WhopSDK::Internal::Type::Union
+      class Thumbnail < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The ID of an existing file object.
+        #
+        #   @return [String]
+        required :id, String
 
-        # Input for an attachment
-        variant -> { WhopSDK::CourseLessonCreateParams::Thumbnail::AttachmentInputWithDirectUploadID }
-
-        # Input for an attachment
-        variant -> { WhopSDK::CourseLessonCreateParams::Thumbnail::AttachmentInputWithID }
-
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          # @!attribute direct_upload_id
-          #   This ID should be used the first time you upload an attachment. It is the ID of
-          #   the direct upload that was created when uploading the file to S3 via the
-          #   mediaDirectUpload mutation.
-          #
-          #   @return [String]
-          required :direct_upload_id, String
-
-          # @!method initialize(direct_upload_id:)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::CourseLessonCreateParams::Thumbnail::AttachmentInputWithDirectUploadID}
-          #   for more details.
-          #
-          #   Input for an attachment
-          #
-          #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
-        end
-
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #   The ID of an existing attachment object. Use this when updating a resource and
-          #   keeping a subset of the attachments. Don't use this unless you know what you're
-          #   doing.
-          #
-          #   @return [String]
-          required :id, String
-
-          # @!method initialize(id:)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::CourseLessonCreateParams::Thumbnail::AttachmentInputWithID}
-          #   for more details.
-          #
-          #   Input for an attachment
-          #
-          #   @param id [String] The ID of an existing attachment object. Use this when updating a resource and k
-        end
-
-        # @!method self.variants
-        #   @return [Array(WhopSDK::Models::CourseLessonCreateParams::Thumbnail::AttachmentInputWithDirectUploadID, WhopSDK::Models::CourseLessonCreateParams::Thumbnail::AttachmentInputWithID)]
+        # @!method initialize(id:)
+        #   The thumbnail for the lesson in png, jpeg, or gif format
+        #
+        #   @param id [String] The ID of an existing file object.
       end
     end
   end

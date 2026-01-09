@@ -10,13 +10,15 @@ module WhopSDK
       # - `developer:create_app`
       # - `developer:manage_api_key`
       #
-      # @overload create(company_id:, name:, base_url: nil, request_options: {})
+      # @overload create(company_id:, name:, base_url: nil, icon: nil, request_options: {})
       #
       # @param company_id [String] The ID of the company to create the app for
       #
       # @param name [String] The name of the app to be created
       #
       # @param base_url [String, nil] The base URL of the app to be created
+      #
+      # @param icon [WhopSDK::Models::AppCreateParams::Icon, nil] The icon for the app in png, jpeg, or gif format
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -77,7 +79,7 @@ module WhopSDK
       #
       # @param experience_path [String, nil] The path for the hub view of the app
       #
-      # @param icon [WhopSDK::Models::AppUpdateParams::Icon::AttachmentInputWithDirectUploadID, WhopSDK::Models::AppUpdateParams::Icon::AttachmentInputWithID, nil] The icon for the app
+      # @param icon [WhopSDK::Models::AppUpdateParams::Icon, nil] The icon for the app
       #
       # @param name [String, nil] The name of the app
       #

@@ -16,6 +16,7 @@ module WhopSDK
           title: String,
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
+          logo: T.nilable(WhopSDK::CompanyCreateParams::Logo::OrHash),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
           send_customer_emails: T.nilable(T::Boolean),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -32,6 +33,8 @@ module WhopSDK
         business_type: nil,
         # The different industry types a company can be in.
         industry_type: nil,
+        # The logo for the company in png, jpeg, or gif format
+        logo: nil,
         # Additional metadata for the account
         metadata: nil,
         # Whether Whop sends transactional emails to customers on behalf of this company.
@@ -72,21 +75,10 @@ module WhopSDK
         params(
           id: String,
           banner_image:
-            T.nilable(
-              T.any(
-                WhopSDK::CompanyUpdateParams::BannerImage::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::CompanyUpdateParams::BannerImage::AttachmentInputWithID::OrHash
-              )
-            ),
+            T.nilable(WhopSDK::CompanyUpdateParams::BannerImage::OrHash),
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
-          logo:
-            T.nilable(
-              T.any(
-                WhopSDK::CompanyUpdateParams::Logo::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::CompanyUpdateParams::Logo::AttachmentInputWithID::OrHash
-              )
-            ),
+          logo: T.nilable(WhopSDK::CompanyUpdateParams::Logo::OrHash),
           send_customer_emails: T.nilable(T::Boolean),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash

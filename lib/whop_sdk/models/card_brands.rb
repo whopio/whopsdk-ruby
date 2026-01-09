@@ -22,6 +22,22 @@ module WhopSDK
       JCBRUPAY = :jcbrupay
       ELO = :elo
       MAESTRO = :maestro
+      TARJETA_NARANJA = :tarjeta_naranja
+      CIRRUS = :cirrus
+      NSPK_MIR = :nspk_mir
+      VERVE = :verve
+      EBT = :ebt
+      PRIVATE_LABEL = :private_label
+      LOCAL_BRAND = :local_brand
+      UATP = :uatp
+      WEXCARD = :wexcard
+      UZCARD = :uzcard
+      MEEZA = :meeza
+      HRG_STORE_CARD = :hrg_store_card
+      GIROCARD = :girocard
+      FUEL_CARD = :fuel_card
+      DANKORT = :dankort
+      CARNET = :carnet
       UNKNOWN = :unknown
 
       # @!method self.values

@@ -29,6 +29,7 @@ module WhopSDK
             ),
           initial_price: T.nilable(Float),
           internal_notes: T.nilable(String),
+          legacy_payment_method_controls: T.nilable(T::Boolean),
           override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
           payment_method_configuration:
             T.nilable(
@@ -69,6 +70,8 @@ module WhopSDK
         initial_price: nil,
         # A personal description or notes section for the business.
         internal_notes: nil,
+        # Whether this plan uses legacy payment method controls
+        legacy_payment_method_controls: nil,
         # Whether or not the tax is included in a plan's price (or if it hasn't been set
         # up)
         override_tax_type: nil,
@@ -141,6 +144,7 @@ module WhopSDK
             ),
           initial_price: T.nilable(Float),
           internal_notes: T.nilable(String),
+          legacy_payment_method_controls: T.nilable(T::Boolean),
           offer_cancel_discount: T.nilable(T::Boolean),
           override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
           payment_method_configuration:
@@ -177,6 +181,8 @@ module WhopSDK
         initial_price: nil,
         # A personal description or notes section for the business.
         internal_notes: nil,
+        # Whether this plan uses legacy payment method controls
+        legacy_payment_method_controls: nil,
         # Whether or not to offer a discount to cancel a subscription.
         offer_cancel_discount: nil,
         # Whether or not the tax is included in a plan's price (or if it hasn't been set

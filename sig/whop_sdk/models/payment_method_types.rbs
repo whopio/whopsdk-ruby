@@ -1,35 +1,34 @@
 module WhopSDK
   module Models
     type payment_method_types =
-      :acss_debit
-      | :affirm
-      | :afterpay_clearpay
+      :afterpay_clearpay
       | :alipay
-      | :alma
       | :amazon_pay
       | :apple_pay
-      | :au_becs_debit
-      | :bacs_debit
       | :bancontact
-      | :billie
-      | :blik
-      | :boleto
       | :card
       | :cashapp
       | :crypto
-      | :eps
-      | :fpx
-      | :giropay
       | :google_pay
-      | :grabpay
       | :ideal
-      | :kakao_pay
       | :klarna
-      | :konbini
-      | :kr_card
-      | :link
       | :mobilepay
+      | :sepa_debit
+      | :swish
+      | :twint
+      | :us_bank_account
+      | :zip
+      | :vipps
+      | :paypal
+      | :sezzle
+      | :coinbase
+      | :splitit
+      | :platform_balance
+      | :apple
+      | :venmo
+      | :affirm
       | :multibanco
+      | :wechat_pay
       | :naver_pay
       | :nz_bank_account
       | :oxxo
@@ -42,13 +41,22 @@ module WhopSDK
       | :revolut_pay
       | :samsung_pay
       | :satispay
-      | :sepa_debit
       | :sofort
-      | :swish
-      | :twint
-      | :us_bank_account
-      | :wechat_pay
-      | :zip
+      | :konbini
+      | :kr_card
+      | :link
+      | :grabpay
+      | :kakao_pay
+      | :billie
+      | :blik
+      | :boleto
+      | :eps
+      | :fpx
+      | :giropay
+      | :acss_debit
+      | :alma
+      | :au_becs_debit
+      | :bacs_debit
       | :bizum
       | :capchase_pay
       | :kriya
@@ -57,7 +65,6 @@ module WhopSDK
       | :paypay
       | :sequra
       | :scalapay
-      | :vipps
       | :custom
       | :customer_balance
       | :gopay
@@ -67,7 +74,6 @@ module WhopSDK
       | :ng_card
       | :ng_market
       | :ng_ussd
-      | :paypal
       | :payto
       | :qris
       | :rechnung
@@ -80,46 +86,39 @@ module WhopSDK
       | :id_bank_transfer
       | :demo_pay
       | :shop_pay
-      | :sezzle
-      | :coinbase
-      | :splitit
-      | :platform_balance
-      | :apple
-      | :venmo
       | :unknown
 
     module PaymentMethodTypes
       extend WhopSDK::Internal::Type::Enum
 
-      ACSS_DEBIT: :acss_debit
-      AFFIRM: :affirm
       AFTERPAY_CLEARPAY: :afterpay_clearpay
       ALIPAY: :alipay
-      ALMA: :alma
       AMAZON_PAY: :amazon_pay
       APPLE_PAY: :apple_pay
-      AU_BECS_DEBIT: :au_becs_debit
-      BACS_DEBIT: :bacs_debit
       BANCONTACT: :bancontact
-      BILLIE: :billie
-      BLIK: :blik
-      BOLETO: :boleto
       CARD: :card
       CASHAPP: :cashapp
       CRYPTO: :crypto
-      EPS: :eps
-      FPX: :fpx
-      GIROPAY: :giropay
       GOOGLE_PAY: :google_pay
-      GRABPAY: :grabpay
       IDEAL: :ideal
-      KAKAO_PAY: :kakao_pay
       KLARNA: :klarna
-      KONBINI: :konbini
-      KR_CARD: :kr_card
-      LINK: :link
       MOBILEPAY: :mobilepay
+      SEPA_DEBIT: :sepa_debit
+      SWISH: :swish
+      TWINT: :twint
+      US_BANK_ACCOUNT: :us_bank_account
+      ZIP: :zip
+      VIPPS: :vipps
+      PAYPAL: :paypal
+      SEZZLE: :sezzle
+      COINBASE: :coinbase
+      SPLITIT: :splitit
+      PLATFORM_BALANCE: :platform_balance
+      APPLE: :apple
+      VENMO: :venmo
+      AFFIRM: :affirm
       MULTIBANCO: :multibanco
+      WECHAT_PAY: :wechat_pay
       NAVER_PAY: :naver_pay
       NZ_BANK_ACCOUNT: :nz_bank_account
       OXXO: :oxxo
@@ -132,13 +131,22 @@ module WhopSDK
       REVOLUT_PAY: :revolut_pay
       SAMSUNG_PAY: :samsung_pay
       SATISPAY: :satispay
-      SEPA_DEBIT: :sepa_debit
       SOFORT: :sofort
-      SWISH: :swish
-      TWINT: :twint
-      US_BANK_ACCOUNT: :us_bank_account
-      WECHAT_PAY: :wechat_pay
-      ZIP: :zip
+      KONBINI: :konbini
+      KR_CARD: :kr_card
+      LINK: :link
+      GRABPAY: :grabpay
+      KAKAO_PAY: :kakao_pay
+      BILLIE: :billie
+      BLIK: :blik
+      BOLETO: :boleto
+      EPS: :eps
+      FPX: :fpx
+      GIROPAY: :giropay
+      ACSS_DEBIT: :acss_debit
+      ALMA: :alma
+      AU_BECS_DEBIT: :au_becs_debit
+      BACS_DEBIT: :bacs_debit
       BIZUM: :bizum
       CAPCHASE_PAY: :capchase_pay
       KRIYA: :kriya
@@ -147,7 +155,6 @@ module WhopSDK
       PAYPAY: :paypay
       SEQURA: :sequra
       SCALAPAY: :scalapay
-      VIPPS: :vipps
       CUSTOM: :custom
       CUSTOMER_BALANCE: :customer_balance
       GOPAY: :gopay
@@ -157,7 +164,6 @@ module WhopSDK
       NG_CARD: :ng_card
       NG_MARKET: :ng_market
       NG_USSD: :ng_ussd
-      PAYPAL: :paypal
       PAYTO: :payto
       QRIS: :qris
       RECHNUNG: :rechnung
@@ -170,12 +176,6 @@ module WhopSDK
       ID_BANK_TRANSFER: :id_bank_transfer
       DEMO_PAY: :demo_pay
       SHOP_PAY: :shop_pay
-      SEZZLE: :sezzle
-      COINBASE: :coinbase
-      SPLITIT: :splitit
-      PLATFORM_BALANCE: :platform_balance
-      APPLE: :apple
-      VENMO: :venmo
       UNKNOWN: :unknown
 
       def self?.values: -> ::Array[WhopSDK::Models::payment_method_types]

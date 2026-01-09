@@ -31,11 +31,16 @@ module WhopSDK
       sig { returns(Symbol) }
       attr_accessor :type
 
+      # The company ID that this webhook event is associated with
+      sig { returns(T.nilable(String)) }
+      attr_accessor :company_id
+
       sig do
         params(
           id: String,
           data: WhopSDK::Invoice::OrHash,
           timestamp: Time,
+          company_id: T.nilable(String),
           api_version: Symbol,
           type: Symbol
         ).returns(T.attached_class)
@@ -47,6 +52,8 @@ module WhopSDK
         data:,
         # The timestamp in ISO 8601 format that the webhook was sent at on the server
         timestamp:,
+        # The company ID that this webhook event is associated with
+        company_id: nil,
         # The API version for this webhook
         api_version: :v1,
         # The webhook event type
@@ -61,7 +68,8 @@ module WhopSDK
             api_version: Symbol,
             data: WhopSDK::Invoice,
             timestamp: Time,
-            type: Symbol
+            type: Symbol,
+            company_id: T.nilable(String)
           }
         )
       end

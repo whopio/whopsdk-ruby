@@ -6,7 +6,8 @@ module WhopSDK
         api_version: :v1,
         data: WhopSDK::Payment,
         timestamp: Time,
-        type: :"payment.created"
+        type: :"payment.created",
+        company_id: String?
       }
 
     class PaymentCreatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
@@ -20,10 +21,13 @@ module WhopSDK
 
       attr_accessor type: :"payment.created"
 
+      attr_accessor company_id: String?
+
       def initialize: (
         id: String,
         data: WhopSDK::Payment,
         timestamp: Time,
+        ?company_id: String?,
         ?api_version: :v1,
         ?type: :"payment.created"
       ) -> void
@@ -33,7 +37,8 @@ module WhopSDK
         api_version: :v1,
         data: WhopSDK::Payment,
         timestamp: Time,
-        type: :"payment.created"
+        type: :"payment.created",
+        company_id: String?
       }
     end
   end

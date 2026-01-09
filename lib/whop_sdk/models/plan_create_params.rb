@@ -71,6 +71,12 @@ module WhopSDK
       #   @return [String, nil]
       optional :internal_notes, String, nil?: true
 
+      # @!attribute legacy_payment_method_controls
+      #   Whether this plan uses legacy payment method controls
+      #
+      #   @return [Boolean, nil]
+      optional :legacy_payment_method_controls, WhopSDK::Internal::Type::Boolean, nil?: true
+
       # @!attribute override_tax_type
       #   Whether or not the tax is included in a plan's price (or if it hasn't been set
       #   up)
@@ -142,7 +148,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility, nil]
       optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-      # @!method initialize(company_id:, product_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, split_pay_required_payments: nil, stock: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
+      # @!method initialize(company_id:, product_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, split_pay_required_payments: nil, stock: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PlanCreateParams} for more details.
       #
@@ -165,6 +171,8 @@ module WhopSDK
       #   @param initial_price [Float, nil] An additional amount charged upon first purchase. Use only if a one time payment
       #
       #   @param internal_notes [String, nil] A personal description or notes section for the business.
+      #
+      #   @param legacy_payment_method_controls [Boolean, nil] Whether this plan uses legacy payment method controls
       #
       #   @param override_tax_type [Symbol, WhopSDK::Models::TaxType, nil] Whether or not the tax is included in a plan's price (or if it hasn't been set u
       #

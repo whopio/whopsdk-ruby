@@ -151,6 +151,9 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::Topups) }
     attr_reader :topups
 
+    sig { returns(WhopSDK::Resources::Files) }
+    attr_reader :files
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

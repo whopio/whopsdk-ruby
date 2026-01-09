@@ -100,6 +100,8 @@ module WhopSDK
 
     attr_reader topups: WhopSDK::Resources::Topups
 
+    attr_reader files: WhopSDK::Resources::Files
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

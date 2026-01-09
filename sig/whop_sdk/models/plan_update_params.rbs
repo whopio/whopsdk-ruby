@@ -10,6 +10,7 @@ module WhopSDK
         image: WhopSDK::Models::PlanUpdateParams::image?,
         initial_price: Float?,
         internal_notes: String?,
+        legacy_payment_method_controls: bool?,
         offer_cancel_discount: bool?,
         override_tax_type: WhopSDK::Models::tax_type?,
         payment_method_configuration: WhopSDK::PlanUpdateParams::PaymentMethodConfiguration?,
@@ -44,6 +45,8 @@ module WhopSDK
 
       attr_accessor internal_notes: String?
 
+      attr_accessor legacy_payment_method_controls: bool?
+
       attr_accessor offer_cancel_discount: bool?
 
       attr_accessor override_tax_type: WhopSDK::Models::tax_type?
@@ -75,6 +78,7 @@ module WhopSDK
         ?image: WhopSDK::Models::PlanUpdateParams::image?,
         ?initial_price: Float?,
         ?internal_notes: String?,
+        ?legacy_payment_method_controls: bool?,
         ?offer_cancel_discount: bool?,
         ?override_tax_type: WhopSDK::Models::tax_type?,
         ?payment_method_configuration: WhopSDK::PlanUpdateParams::PaymentMethodConfiguration?,
@@ -98,6 +102,7 @@ module WhopSDK
         image: WhopSDK::Models::PlanUpdateParams::image?,
         initial_price: Float?,
         internal_notes: String?,
+        legacy_payment_method_controls: bool?,
         offer_cancel_discount: bool?,
         override_tax_type: WhopSDK::Models::tax_type?,
         payment_method_configuration: WhopSDK::PlanUpdateParams::PaymentMethodConfiguration?,

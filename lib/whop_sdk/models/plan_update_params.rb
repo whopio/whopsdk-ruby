@@ -57,6 +57,12 @@ module WhopSDK
       #   @return [String, nil]
       optional :internal_notes, String, nil?: true
 
+      # @!attribute legacy_payment_method_controls
+      #   Whether this plan uses legacy payment method controls
+      #
+      #   @return [Boolean, nil]
+      optional :legacy_payment_method_controls, WhopSDK::Internal::Type::Boolean, nil?: true
+
       # @!attribute offer_cancel_discount
       #   Whether or not to offer a discount to cancel a subscription.
       #
@@ -129,7 +135,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility, nil]
       optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-      # @!method initialize(billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, offer_cancel_discount: nil, override_tax_type: nil, payment_method_configuration: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
+      # @!method initialize(billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, offer_cancel_discount: nil, override_tax_type: nil, payment_method_configuration: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PlanUpdateParams} for more details.
       #
@@ -148,6 +154,8 @@ module WhopSDK
       #   @param initial_price [Float, nil] An additional amount charged upon first purchase.
       #
       #   @param internal_notes [String, nil] A personal description or notes section for the business.
+      #
+      #   @param legacy_payment_method_controls [Boolean, nil] Whether this plan uses legacy payment method controls
       #
       #   @param offer_cancel_discount [Boolean, nil] Whether or not to offer a discount to cancel a subscription.
       #

@@ -1,0 +1,23 @@
+module WhopSDK
+  module Models
+    type file_create_params =
+      { filename: String } & WhopSDK::Internal::Type::request_parameters
+
+    class FileCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor filename: String
+
+      def initialize: (
+        filename: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        filename: String,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

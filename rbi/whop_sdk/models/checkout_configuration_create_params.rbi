@@ -282,6 +282,10 @@ module WhopSDK
         sig { returns(T.nilable(Integer)) }
         attr_accessor :split_pay_required_payments
 
+        # The number of units available for purchase. If not provided, stock is unlimited.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :stock
+
         # The title of the plan. This will be visible on the product page to customers.
         sig { returns(T.nilable(String)) }
         attr_accessor :title
@@ -330,6 +334,7 @@ module WhopSDK
             release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
             renewal_price: T.nilable(Float),
             split_pay_required_payments: T.nilable(Integer),
+            stock: T.nilable(Integer),
             title: T.nilable(String),
             trial_period_days: T.nilable(Integer),
             visibility: T.nilable(WhopSDK::Visibility::OrSymbol)
@@ -380,6 +385,8 @@ module WhopSDK
           renewal_price: nil,
           # The number of payments required before pausing the subscription.
           split_pay_required_payments: nil,
+          # The number of units available for purchase. If not provided, stock is unlimited.
+          stock: nil,
           # The title of the plan. This will be visible on the product page to customers.
           title: nil,
           # The number of free trial days added before a renewal plan.
@@ -425,6 +432,7 @@ module WhopSDK
               release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
               renewal_price: T.nilable(Float),
               split_pay_required_payments: T.nilable(Integer),
+              stock: T.nilable(Integer),
               title: T.nilable(String),
               trial_period_days: T.nilable(Integer),
               visibility: T.nilable(WhopSDK::Visibility::OrSymbol)

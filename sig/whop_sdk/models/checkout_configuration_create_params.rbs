@@ -83,6 +83,7 @@ module WhopSDK
           release_method: WhopSDK::Models::release_method?,
           renewal_price: Float?,
           split_pay_required_payments: Integer?,
+          stock: Integer?,
           title: String?,
           trial_period_days: Integer?,
           visibility: WhopSDK::Models::visibility?
@@ -127,6 +128,8 @@ module WhopSDK
 
         attr_accessor split_pay_required_payments: Integer?
 
+        attr_accessor stock: Integer?
+
         attr_accessor title: String?
 
         attr_accessor trial_period_days: Integer?
@@ -153,6 +156,7 @@ module WhopSDK
           ?release_method: WhopSDK::Models::release_method?,
           ?renewal_price: Float?,
           ?split_pay_required_payments: Integer?,
+          ?stock: Integer?,
           ?title: String?,
           ?trial_period_days: Integer?,
           ?visibility: WhopSDK::Models::visibility?
@@ -178,6 +182,7 @@ module WhopSDK
           release_method: WhopSDK::Models::release_method?,
           renewal_price: Float?,
           split_pay_required_payments: Integer?,
+          stock: Integer?,
           title: String?,
           trial_period_days: Integer?,
           visibility: WhopSDK::Models::visibility?

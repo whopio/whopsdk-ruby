@@ -216,6 +216,12 @@ module WhopSDK
         #   @return [Integer, nil]
         optional :split_pay_required_payments, Integer, nil?: true
 
+        # @!attribute stock
+        #   The number of units available for purchase. If not provided, stock is unlimited.
+        #
+        #   @return [Integer, nil]
+        optional :stock, Integer, nil?: true
+
         # @!attribute title
         #   The title of the plan. This will be visible on the product page to customers.
         #
@@ -234,7 +240,7 @@ module WhopSDK
         #   @return [Symbol, WhopSDK::Models::Visibility, nil]
         optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-        # @!method initialize(company_id:, currency:, application_fee_amount: nil, billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, force_create_new_plan: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, product: nil, product_id: nil, release_method: nil, renewal_price: nil, split_pay_required_payments: nil, title: nil, trial_period_days: nil, visibility: nil)
+        # @!method initialize(company_id:, currency:, application_fee_amount: nil, billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, force_create_new_plan: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, product: nil, product_id: nil, release_method: nil, renewal_price: nil, split_pay_required_payments: nil, stock: nil, title: nil, trial_period_days: nil, visibility: nil)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan} for more details.
         #
@@ -277,6 +283,8 @@ module WhopSDK
         #   @param renewal_price [Float, nil] The amount the customer is charged every billing period.
         #
         #   @param split_pay_required_payments [Integer, nil] The number of payments required before pausing the subscription.
+        #
+        #   @param stock [Integer, nil] The number of units available for purchase. If not provided, stock is unlimited.
         #
         #   @param title [String, nil] The title of the plan. This will be visible on the product page to customers.
         #

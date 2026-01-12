@@ -16,8 +16,7 @@ module WhopSDK
         payout_token: WhopSDK::Models::WithdrawalCreateResponse::PayoutToken?,
         speed: WhopSDK::Models::withdrawal_speeds,
         status: WhopSDK::Models::withdrawal_status,
-        trace_code: String?,
-        withdrawal_type: WhopSDK::Models::withdrawal_types
+        trace_code: String?
       }
 
     class WithdrawalCreateResponse < WhopSDK::Internal::Type::BaseModel
@@ -51,8 +50,6 @@ module WhopSDK
 
       attr_accessor trace_code: String?
 
-      attr_accessor withdrawal_type: WhopSDK::Models::withdrawal_types
-
       def initialize: (
         id: String,
         amount: Float,
@@ -68,8 +65,7 @@ module WhopSDK
         payout_token: WhopSDK::Models::WithdrawalCreateResponse::PayoutToken?,
         speed: WhopSDK::Models::withdrawal_speeds,
         status: WhopSDK::Models::withdrawal_status,
-        trace_code: String?,
-        withdrawal_type: WhopSDK::Models::withdrawal_types
+        trace_code: String?
       ) -> void
 
       def to_hash: -> {
@@ -87,8 +83,7 @@ module WhopSDK
         payout_token: WhopSDK::Models::WithdrawalCreateResponse::PayoutToken?,
         speed: WhopSDK::Models::withdrawal_speeds,
         status: WhopSDK::Models::withdrawal_status,
-        trace_code: String?,
-        withdrawal_type: WhopSDK::Models::withdrawal_types
+        trace_code: String?
       }
 
       type error_code =

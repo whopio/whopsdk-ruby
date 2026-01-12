@@ -16,6 +16,7 @@ class WhopSDK::Test::Resources::PayoutMethodsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         company: WhopSDK::Models::PayoutMethodRetrieveResponse::Company | nil,
+        created_at: Time,
         currency: String,
         destination: WhopSDK::Models::PayoutMethodRetrieveResponse::Destination | nil,
         is_default: WhopSDK::Internal::Type::Boolean,
@@ -44,6 +45,7 @@ class WhopSDK::Test::Resources::PayoutMethodsTest < WhopSDK::Test::ResourceTest
       row => {
         id: String,
         company: WhopSDK::Models::PayoutMethodListResponse::Company | nil,
+        created_at: Time,
         currency: String,
         destination: WhopSDK::Models::PayoutMethodListResponse::Destination | nil,
         is_default: WhopSDK::Internal::Type::Boolean,

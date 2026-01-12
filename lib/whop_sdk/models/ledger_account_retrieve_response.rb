@@ -17,14 +17,6 @@ module WhopSDK
       required :balances,
                -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::LedgerAccountRetrieveResponse::Balance] }
 
-      # @!attribute ledger_account_audit_status
-      #   The different statuses a LedgerAccountAudit can be
-      #
-      #   @return [Symbol, WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus, nil]
-      required :ledger_account_audit_status,
-               enum: -> { WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus },
-               nil?: true
-
       # @!attribute ledger_type
       #   The type of ledger account.
       #
@@ -59,14 +51,12 @@ module WhopSDK
       #   @return [Float, nil]
       required :transfer_fee, Float, nil?: true
 
-      # @!method initialize(id:, balances:, ledger_account_audit_status:, ledger_type:, owner:, payments_approval_status:, payout_account_details:, transfer_fee:)
+      # @!method initialize(id:, balances:, ledger_type:, owner:, payments_approval_status:, payout_account_details:, transfer_fee:)
       #   Represents a LedgerAccount.
       #
       #   @param id [String] The ID of the LedgerAccount.
       #
       #   @param balances [Array<WhopSDK::Models::LedgerAccountRetrieveResponse::Balance>] The balances associated with the account.
-      #
-      #   @param ledger_account_audit_status [Symbol, WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus, nil] The different statuses a LedgerAccountAudit can be
       #
       #   @param ledger_type [Symbol, WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerType] The type of ledger account.
       #
@@ -113,29 +103,6 @@ module WhopSDK
         #   @param pending_balance [Float] The amount of the balance that is pending.
         #
         #   @param reserve_balance [Float] The amount of the balance that is reserved.
-      end
-
-      # The different statuses a LedgerAccountAudit can be
-      #
-      # @see WhopSDK::Models::LedgerAccountRetrieveResponse#ledger_account_audit_status
-      module LedgerAccountAuditStatus
-        extend WhopSDK::Internal::Type::Enum
-
-        PENDING = :pending
-        PENDING_AI_REVIEW = :pending_ai_review
-        APPROVED = :approved
-        RESERVES_IMPOSED = :reserves_imposed
-        SUSPENDED = :suspended
-        IGNORED = :ignored
-        REJECTED = :rejected
-        REQUESTED_MORE_INFORMATION = :requested_more_information
-        INFORMATION_SUBMITTED = :information_submitted
-        REQUESTED_TOS_VIOLATION_CORRECTION = :requested_tos_violation_correction
-        CLAWBACK_ATTEMPTED = :clawback_attempted
-        AWAITING_SALES_REVIEW = :awaiting_sales_review
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
 
       # The type of ledger account.

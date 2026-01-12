@@ -61,13 +61,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::WithdrawalStatus]
       required :status, enum: -> { WhopSDK::WithdrawalStatus }
 
-      # @!attribute withdrawal_type
-      #   The type of withdrawal.
-      #
-      #   @return [Symbol, WhopSDK::Models::WithdrawalTypes]
-      required :withdrawal_type, enum: -> { WhopSDK::WithdrawalTypes }
-
-      # @!method initialize(id:, amount:, created_at:, currency:, fee_amount:, fee_type:, markup_fee:, speed:, status:, withdrawal_type:)
+      # @!method initialize(id:, amount:, created_at:, currency:, fee_amount:, fee_type:, markup_fee:, speed:, status:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::WithdrawalListResponse} for more details.
       #
@@ -90,8 +84,6 @@ module WhopSDK
       #   @param speed [Symbol, WhopSDK::Models::WithdrawalSpeeds] The speed of the withdrawal.
       #
       #   @param status [Symbol, WhopSDK::Models::WithdrawalStatus] Status of the withdrawal.
-      #
-      #   @param withdrawal_type [Symbol, WhopSDK::Models::WithdrawalTypes] The type of withdrawal.
     end
   end
 end

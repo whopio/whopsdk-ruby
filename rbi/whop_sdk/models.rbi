@@ -554,7 +554,5 @@ module WhopSDK
 
   WithdrawalStatus = WhopSDK::Models::WithdrawalStatus
 
-  WithdrawalTypes = WhopSDK::Models::WithdrawalTypes
-
   WithdrawalUpdatedWebhookEvent = WhopSDK::Models::WithdrawalUpdatedWebhookEvent
 end

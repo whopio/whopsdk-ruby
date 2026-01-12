@@ -148,13 +148,7 @@ module WhopSDK
         #   @return [String, nil]
         required :trace_code, String, nil?: true
 
-        # @!attribute withdrawal_type
-        #   The type of withdrawal.
-        #
-        #   @return [Symbol, WhopSDK::Models::WithdrawalTypes]
-        required :withdrawal_type, enum: -> { WhopSDK::WithdrawalTypes }
-
-        # @!method initialize(id:, amount:, created_at:, currency:, error_code:, error_message:, estimated_availability:, fee_amount:, fee_type:, ledger_account:, markup_fee:, payout_token:, speed:, status:, trace_code:, withdrawal_type:)
+        # @!method initialize(id:, amount:, created_at:, currency:, error_code:, error_message:, estimated_availability:, fee_amount:, fee_type:, ledger_account:, markup_fee:, payout_token:, speed:, status:, trace_code:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::WithdrawalUpdatedWebhookEvent::Data} for more details.
         #
@@ -189,8 +183,6 @@ module WhopSDK
         #   @param status [Symbol, WhopSDK::Models::WithdrawalStatus] Status of the withdrawal.
         #
         #   @param trace_code [String, nil] The trace code for the payout, if applicable. Provided on ACH transactions when
-        #
-        #   @param withdrawal_type [Symbol, WhopSDK::Models::WithdrawalTypes] The type of withdrawal.
 
         # The different error codes a payout can be in.
         #

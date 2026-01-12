@@ -33,6 +33,10 @@ module WhopSDK
       end
       attr_writer :company
 
+      # The date and time the payout token was created
+      sig { returns(Time) }
+      attr_accessor :created_at
+
       # The currency code of the payout destination. This is the currency that payouts
       # will be made in for this token.
       sig { returns(String) }
@@ -73,6 +77,7 @@ module WhopSDK
             T.nilable(
               WhopSDK::Models::PayoutMethodRetrieveResponse::Company::OrHash
             ),
+          created_at: Time,
           currency: String,
           destination:
             T.nilable(
@@ -87,6 +92,8 @@ module WhopSDK
         id:,
         # The company associated with the payout token
         company:,
+        # The date and time the payout token was created
+        created_at:,
         # The currency code of the payout destination. This is the currency that payouts
         # will be made in for this token.
         currency:,
@@ -106,6 +113,7 @@ module WhopSDK
             id: String,
             company:
               T.nilable(WhopSDK::Models::PayoutMethodRetrieveResponse::Company),
+            created_at: Time,
             currency: String,
             destination:
               T.nilable(

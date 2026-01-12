@@ -16,6 +16,12 @@ module WhopSDK
       #   @return [WhopSDK::Models::PayoutMethodRetrieveResponse::Company, nil]
       required :company, -> { WhopSDK::Models::PayoutMethodRetrieveResponse::Company }, nil?: true
 
+      # @!attribute created_at
+      #   The date and time the payout token was created
+      #
+      #   @return [Time]
+      required :created_at, Time
+
       # @!attribute currency
       #   The currency code of the payout destination. This is the currency that payouts
       #   will be made in for this token.
@@ -42,7 +48,7 @@ module WhopSDK
       #   @return [String, nil]
       required :nickname, String, nil?: true
 
-      # @!method initialize(id:, company:, currency:, destination:, is_default:, nickname:)
+      # @!method initialize(id:, company:, created_at:, currency:, destination:, is_default:, nickname:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PayoutMethodRetrieveResponse} for more details.
       #
@@ -51,6 +57,8 @@ module WhopSDK
       #   @param id [String] The ID of the payout token
       #
       #   @param company [WhopSDK::Models::PayoutMethodRetrieveResponse::Company, nil] The company associated with the payout token
+      #
+      #   @param created_at [Time] The date and time the payout token was created
       #
       #   @param currency [String] The currency code of the payout destination. This is the currency that payouts w
       #

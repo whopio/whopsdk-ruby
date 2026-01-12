@@ -16,7 +16,6 @@ class WhopSDK::Test::Resources::LedgerAccountsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         balances: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::LedgerAccountRetrieveResponse::Balance]),
-        ledger_account_audit_status: WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus | nil,
         ledger_type: WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerType,
         owner: WhopSDK::Models::LedgerAccountRetrieveResponse::Owner,
         payments_approval_status: WhopSDK::Models::LedgerAccountRetrieveResponse::PaymentsApprovalStatus | nil,

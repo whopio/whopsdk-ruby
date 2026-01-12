@@ -50,10 +50,6 @@ module WhopSDK
       sig { returns(WhopSDK::WithdrawalStatus::TaggedSymbol) }
       attr_accessor :status
 
-      # The type of withdrawal.
-      sig { returns(WhopSDK::WithdrawalTypes::TaggedSymbol) }
-      attr_accessor :withdrawal_type
-
       # A withdrawal request.
       sig do
         params(
@@ -65,8 +61,7 @@ module WhopSDK
           fee_type: T.nilable(WhopSDK::WithdrawalFeeTypes::OrSymbol),
           markup_fee: Float,
           speed: WhopSDK::WithdrawalSpeeds::OrSymbol,
-          status: WhopSDK::WithdrawalStatus::OrSymbol,
-          withdrawal_type: WhopSDK::WithdrawalTypes::OrSymbol
+          status: WhopSDK::WithdrawalStatus::OrSymbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -90,9 +85,7 @@ module WhopSDK
         # The speed of the withdrawal.
         speed:,
         # Status of the withdrawal.
-        status:,
-        # The type of withdrawal.
-        withdrawal_type:
+        status:
       )
       end
 
@@ -107,8 +100,7 @@ module WhopSDK
             fee_type: T.nilable(WhopSDK::WithdrawalFeeTypes::TaggedSymbol),
             markup_fee: Float,
             speed: WhopSDK::WithdrawalSpeeds::TaggedSymbol,
-            status: WhopSDK::WithdrawalStatus::TaggedSymbol,
-            withdrawal_type: WhopSDK::WithdrawalTypes::TaggedSymbol
+            status: WhopSDK::WithdrawalStatus::TaggedSymbol
           }
         )
       end

@@ -339,6 +339,11 @@ module WhopSDK
             :invalid_beneficiary,
             WhopSDK::Models::WithdrawalRetrieveResponse::ErrorCode::TaggedSymbol
           )
+        INVALID_MAILING_ADDRESS =
+          T.let(
+            :invalid_mailing_address,
+            WhopSDK::Models::WithdrawalRetrieveResponse::ErrorCode::TaggedSymbol
+          )
         INVALID_BRANCH_NUMBER =
           T.let(
             :invalid_branch_number,

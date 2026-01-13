@@ -165,6 +165,7 @@ module WhopSDK
         INVALID_ACCOUNT_NUMBER = :invalid_account_number
         INVALID_BANK_CODE = :invalid_bank_code
         INVALID_BENEFICIARY = :invalid_beneficiary
+        INVALID_MAILING_ADDRESS = :invalid_mailing_address
         INVALID_BRANCH_NUMBER = :invalid_branch_number
         INVALID_BRANCH_CODE = :invalid_branch_code
         INVALID_PHONE_NUMBER = :invalid_phone_number

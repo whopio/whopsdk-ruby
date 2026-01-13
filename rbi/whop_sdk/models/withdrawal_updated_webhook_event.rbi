@@ -418,6 +418,11 @@ module WhopSDK
               :invalid_beneficiary,
               WhopSDK::WithdrawalUpdatedWebhookEvent::Data::ErrorCode::TaggedSymbol
             )
+          INVALID_MAILING_ADDRESS =
+            T.let(
+              :invalid_mailing_address,
+              WhopSDK::WithdrawalUpdatedWebhookEvent::Data::ErrorCode::TaggedSymbol
+            )
           INVALID_BRANCH_NUMBER =
             T.let(
               :invalid_branch_number,

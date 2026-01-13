@@ -5,7 +5,8 @@ module WhopSDK
         amount: Float,
         company_id: String,
         currency: WhopSDK::Models::currency,
-        payout_method_id: String?
+        payout_method_id: String?,
+        statement_descriptor: String?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -21,11 +22,14 @@ module WhopSDK
 
       attr_accessor payout_method_id: String?
 
+      attr_accessor statement_descriptor: String?
+
       def initialize: (
         amount: Float,
         company_id: String,
         currency: WhopSDK::Models::currency,
         ?payout_method_id: String?,
+        ?statement_descriptor: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -34,6 +38,7 @@ module WhopSDK
         company_id: String,
         currency: WhopSDK::Models::currency,
         payout_method_id: String?,
+        statement_descriptor: String?,
         request_options: WhopSDK::RequestOptions
       }
     end

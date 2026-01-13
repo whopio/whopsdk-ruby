@@ -8,6 +8,10 @@ module WhopSDK
       #
       # Queues a notification to be sent to users in an experience or company team
       #
+      # Required permissions:
+      #
+      # - `notification:create`
+      #
       # @overload create(company_id:, content:, title:, experience_id:, icon_user_id: nil, rest_path: nil, subtitle: nil, user_ids: nil, request_options: {})
       #
       # @param company_id [String] The id of the company to target. Only team members of this company will receive

@@ -15,6 +15,7 @@ module WhopSDK
           company_id: String,
           currency: WhopSDK::Currency::OrSymbol,
           payout_method_id: T.nilable(String),
+          statement_descriptor: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::WithdrawalCreateResponse)
       end
@@ -27,6 +28,9 @@ module WhopSDK
         currency:,
         # The ID of the payout method to use for the withdrawal.
         payout_method_id: nil,
+        # Custom statement descriptor for the withdrawal. Must be between 5 and 22
+        # characters and contain only alphanumeric characters.
+        statement_descriptor: nil,
         request_options: {}
       )
       end

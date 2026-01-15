@@ -52,6 +52,12 @@ module WhopSDK
       #   @return [String, nil]
       optional :redirect_url, String, nil?: true
 
+      # @!attribute source_url
+      #   The URL of the page where the checkout is being initiated from.
+      #
+      #   @return [String, nil]
+      optional :source_url, String, nil?: true
+
       # @!attribute plan_id
       #   The ID of the plan to use for the checkout configuration
       #
@@ -65,7 +71,7 @@ module WhopSDK
       #   @return [String]
       required :company_id, String
 
-      # @!method initialize(plan:, plan_id:, company_id:, affiliate_code: nil, currency: nil, metadata: nil, payment_method_configuration: nil, redirect_url: nil, mode: :setup, request_options: {})
+      # @!method initialize(plan:, plan_id:, company_id:, affiliate_code: nil, currency: nil, metadata: nil, payment_method_configuration: nil, redirect_url: nil, source_url: nil, mode: :setup, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CheckoutConfigurationCreateParams} for more details.
       #
@@ -84,6 +90,8 @@ module WhopSDK
       #   @param payment_method_configuration [WhopSDK::Models::CheckoutConfigurationCreateParams::PaymentMethodConfiguration, nil] This currently only works for configurations made in 'setup' mode. The explicit
       #
       #   @param redirect_url [String, nil] The URL to redirect the user to after the checkout configuration is created
+      #
+      #   @param source_url [String, nil] The URL of the page where the checkout is being initiated from.
       #
       #   @param mode [Symbol, :setup]
       #

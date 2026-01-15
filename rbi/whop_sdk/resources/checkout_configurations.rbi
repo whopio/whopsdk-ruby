@@ -25,6 +25,7 @@ module WhopSDK
               WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration::OrHash
             ),
           redirect_url: T.nilable(String),
+          source_url: T.nilable(String),
           mode: Symbol,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::CheckoutConfiguration)
@@ -49,6 +50,8 @@ module WhopSDK
         payment_method_configuration: nil,
         # The URL to redirect the user to after the checkout configuration is created
         redirect_url: nil,
+        # The URL of the page where the checkout is being initiated from.
+        source_url: nil,
         mode: :setup,
         request_options: {}
       )

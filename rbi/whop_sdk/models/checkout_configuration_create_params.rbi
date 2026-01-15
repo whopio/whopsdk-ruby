@@ -66,6 +66,10 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :redirect_url
 
+      # The URL of the page where the checkout is being initiated from.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :source_url
+
       # The ID of the plan to use for the checkout configuration
       sig { returns(String) }
       attr_accessor :plan_id
@@ -88,6 +92,7 @@ module WhopSDK
               WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration::OrHash
             ),
           redirect_url: T.nilable(String),
+          source_url: T.nilable(String),
           mode: Symbol,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -112,6 +117,8 @@ module WhopSDK
         payment_method_configuration: nil,
         # The URL to redirect the user to after the checkout configuration is created
         redirect_url: nil,
+        # The URL of the page where the checkout is being initiated from.
+        source_url: nil,
         mode: :setup,
         request_options: {}
       )
@@ -130,6 +137,7 @@ module WhopSDK
                 WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration
               ),
             redirect_url: T.nilable(String),
+            source_url: T.nilable(String),
             plan_id: String,
             company_id: String,
             request_options: WhopSDK::RequestOptions

@@ -31,6 +31,12 @@ module WhopSDK
       #   @return [String, nil]
       optional :payout_method_id, String, nil?: true
 
+      # @!attribute platform_covers_fees
+      #   Whether the platform covers the payout fees instead of the connected account.
+      #
+      #   @return [Boolean, nil]
+      optional :platform_covers_fees, WhopSDK::Internal::Type::Boolean, nil?: true
+
       # @!attribute statement_descriptor
       #   Custom statement descriptor for the withdrawal. Must be between 5 and 22
       #   characters and contain only alphanumeric characters.
@@ -38,7 +44,7 @@ module WhopSDK
       #   @return [String, nil]
       optional :statement_descriptor, String, nil?: true
 
-      # @!method initialize(amount:, company_id:, currency:, payout_method_id: nil, statement_descriptor: nil, request_options: {})
+      # @!method initialize(amount:, company_id:, currency:, payout_method_id: nil, platform_covers_fees: nil, statement_descriptor: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::WithdrawalCreateParams} for more details.
       #
@@ -49,6 +55,8 @@ module WhopSDK
       #   @param currency [Symbol, WhopSDK::Models::Currency] The currency that is being withdrawn.
       #
       #   @param payout_method_id [String, nil] The ID of the payout method to use for the withdrawal.
+      #
+      #   @param platform_covers_fees [Boolean, nil] Whether the platform covers the payout fees instead of the connected account.
       #
       #   @param statement_descriptor [String, nil] Custom statement descriptor for the withdrawal. Must be between 5 and 22 charact
       #

@@ -112,6 +112,11 @@ module WhopSDK
         TIME_SPENT = :time_spent
         TIME_SPENT_LAST_24_HOURS = :time_spent_last_24_hours
         DAILY_ACTIVE_USERS = :daily_active_users
+        AI_PROMPT_COUNT = :ai_prompt_count
+        TOTAL_AI_COST_USD = :total_ai_cost_usd
+        TOTAL_AI_TOKENS = :total_ai_tokens
+        LAST_AI_PROMPT_AT = :last_ai_prompt_at
+        AI_AVERAGE_RATING = :ai_average_rating
 
         # @!method self.values
         #   @return [Array<Symbol>]

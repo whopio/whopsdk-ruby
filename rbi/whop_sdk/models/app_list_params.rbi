@@ -153,6 +153,16 @@ module WhopSDK
             :daily_active_users,
             WhopSDK::AppListParams::Order::TaggedSymbol
           )
+        AI_PROMPT_COUNT =
+          T.let(:ai_prompt_count, WhopSDK::AppListParams::Order::TaggedSymbol)
+        TOTAL_AI_COST_USD =
+          T.let(:total_ai_cost_usd, WhopSDK::AppListParams::Order::TaggedSymbol)
+        TOTAL_AI_TOKENS =
+          T.let(:total_ai_tokens, WhopSDK::AppListParams::Order::TaggedSymbol)
+        LAST_AI_PROMPT_AT =
+          T.let(:last_ai_prompt_at, WhopSDK::AppListParams::Order::TaggedSymbol)
+        AI_AVERAGE_RATING =
+          T.let(:ai_average_rating, WhopSDK::AppListParams::Order::TaggedSymbol)
 
         sig do
           override.returns(

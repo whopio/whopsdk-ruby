@@ -27,6 +27,10 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :payout_method_id
 
+      # Whether the platform covers the payout fees instead of the connected account.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :platform_covers_fees
+
       # Custom statement descriptor for the withdrawal. Must be between 5 and 22
       # characters and contain only alphanumeric characters.
       sig { returns(T.nilable(String)) }
@@ -38,6 +42,7 @@ module WhopSDK
           company_id: String,
           currency: WhopSDK::Currency::OrSymbol,
           payout_method_id: T.nilable(String),
+          platform_covers_fees: T.nilable(T::Boolean),
           statement_descriptor: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -51,6 +56,8 @@ module WhopSDK
         currency:,
         # The ID of the payout method to use for the withdrawal.
         payout_method_id: nil,
+        # Whether the platform covers the payout fees instead of the connected account.
+        platform_covers_fees: nil,
         # Custom statement descriptor for the withdrawal. Must be between 5 and 22
         # characters and contain only alphanumeric characters.
         statement_descriptor: nil,
@@ -65,6 +72,7 @@ module WhopSDK
             company_id: String,
             currency: WhopSDK::Currency::OrSymbol,
             payout_method_id: T.nilable(String),
+            platform_covers_fees: T.nilable(T::Boolean),
             statement_descriptor: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }

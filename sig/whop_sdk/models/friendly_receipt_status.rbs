@@ -1,58 +1,58 @@
 module WhopSDK
   module Models
     type friendly_receipt_status =
-      :drafted
-      | :succeeded
-      | :incomplete
-      | :refunded
+      :succeeded
+      | :failed
+      | :past_due
+      | :canceled
       | :price_too_low
       | :uncollectible
-      | :canceled
-      | :partially_refunded
-      | :failed
-      | :open_dispute
-      | :past_due
+      | :refunded
       | :auto_refunded
-      | :dispute_warning
-      | :unresolved
+      | :partially_refunded
       | :open_resolution
-      | :pending
+      | :dispute_warning
+      | :open_dispute
       | :dispute_needs_response
       | :dispute_warning_needs_response
       | :dispute_under_review
       | :dispute_warning_under_review
-      | :dispute_lost
       | :dispute_won
+      | :dispute_lost
       | :dispute_closed
       | :dispute_warning_closed
+      | :drafted
+      | :incomplete
+      | :unresolved
+      | :pending
 
     module FriendlyReceiptStatus
       extend WhopSDK::Internal::Type::Enum
 
-      DRAFTED: :drafted
       SUCCEEDED: :succeeded
-      INCOMPLETE: :incomplete
-      REFUNDED: :refunded
+      FAILED: :failed
+      PAST_DUE: :past_due
+      CANCELED: :canceled
       PRICE_TOO_LOW: :price_too_low
       UNCOLLECTIBLE: :uncollectible
-      CANCELED: :canceled
-      PARTIALLY_REFUNDED: :partially_refunded
-      FAILED: :failed
-      OPEN_DISPUTE: :open_dispute
-      PAST_DUE: :past_due
+      REFUNDED: :refunded
       AUTO_REFUNDED: :auto_refunded
-      DISPUTE_WARNING: :dispute_warning
-      UNRESOLVED: :unresolved
+      PARTIALLY_REFUNDED: :partially_refunded
       OPEN_RESOLUTION: :open_resolution
-      PENDING: :pending
+      DISPUTE_WARNING: :dispute_warning
+      OPEN_DISPUTE: :open_dispute
       DISPUTE_NEEDS_RESPONSE: :dispute_needs_response
       DISPUTE_WARNING_NEEDS_RESPONSE: :dispute_warning_needs_response
       DISPUTE_UNDER_REVIEW: :dispute_under_review
       DISPUTE_WARNING_UNDER_REVIEW: :dispute_warning_under_review
-      DISPUTE_LOST: :dispute_lost
       DISPUTE_WON: :dispute_won
+      DISPUTE_LOST: :dispute_lost
       DISPUTE_CLOSED: :dispute_closed
       DISPUTE_WARNING_CLOSED: :dispute_warning_closed
+      DRAFTED: :drafted
+      INCOMPLETE: :incomplete
+      UNRESOLVED: :unresolved
+      PENDING: :pending
 
       def self?.values: -> ::Array[WhopSDK::Models::friendly_receipt_status]
     end

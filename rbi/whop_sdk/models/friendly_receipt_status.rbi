@@ -10,32 +10,26 @@ module WhopSDK
         T.type_alias { T.all(Symbol, WhopSDK::FriendlyReceiptStatus) }
       OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-      DRAFTED = T.let(:drafted, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
       SUCCEEDED =
         T.let(:succeeded, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
-      INCOMPLETE =
-        T.let(:incomplete, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
-      REFUNDED = T.let(:refunded, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
+      FAILED = T.let(:failed, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
+      PAST_DUE = T.let(:past_due, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
+      CANCELED = T.let(:canceled, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
       PRICE_TOO_LOW =
         T.let(:price_too_low, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
       UNCOLLECTIBLE =
         T.let(:uncollectible, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
-      CANCELED = T.let(:canceled, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
-      PARTIALLY_REFUNDED =
-        T.let(:partially_refunded, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
-      FAILED = T.let(:failed, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
-      OPEN_DISPUTE =
-        T.let(:open_dispute, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
-      PAST_DUE = T.let(:past_due, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
+      REFUNDED = T.let(:refunded, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
       AUTO_REFUNDED =
         T.let(:auto_refunded, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
-      DISPUTE_WARNING =
-        T.let(:dispute_warning, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
-      UNRESOLVED =
-        T.let(:unresolved, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
+      PARTIALLY_REFUNDED =
+        T.let(:partially_refunded, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
       OPEN_RESOLUTION =
         T.let(:open_resolution, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
-      PENDING = T.let(:pending, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
+      DISPUTE_WARNING =
+        T.let(:dispute_warning, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
+      OPEN_DISPUTE =
+        T.let(:open_dispute, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
       DISPUTE_NEEDS_RESPONSE =
         T.let(
           :dispute_needs_response,
@@ -56,10 +50,10 @@ module WhopSDK
           :dispute_warning_under_review,
           WhopSDK::FriendlyReceiptStatus::TaggedSymbol
         )
-      DISPUTE_LOST =
-        T.let(:dispute_lost, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
       DISPUTE_WON =
         T.let(:dispute_won, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
+      DISPUTE_LOST =
+        T.let(:dispute_lost, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
       DISPUTE_CLOSED =
         T.let(:dispute_closed, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
       DISPUTE_WARNING_CLOSED =
@@ -67,6 +61,12 @@ module WhopSDK
           :dispute_warning_closed,
           WhopSDK::FriendlyReceiptStatus::TaggedSymbol
         )
+      DRAFTED = T.let(:drafted, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
+      INCOMPLETE =
+        T.let(:incomplete, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
+      UNRESOLVED =
+        T.let(:unresolved, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
+      PENDING = T.let(:pending, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
 
       sig do
         override.returns(T::Array[WhopSDK::FriendlyReceiptStatus::TaggedSymbol])

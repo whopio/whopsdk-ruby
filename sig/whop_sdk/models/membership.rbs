@@ -9,6 +9,7 @@ module WhopSDK
         company: WhopSDK::Membership::Company,
         created_at: Time,
         currency: WhopSDK::Models::currency?,
+        custom_field_responses: ::Array[WhopSDK::Membership::CustomFieldResponse],
         license_key: String?,
         manage_url: String?,
         member: WhopSDK::Membership::Member?,
@@ -38,6 +39,8 @@ module WhopSDK
       attr_accessor created_at: Time
 
       attr_accessor currency: WhopSDK::Models::currency?
+
+      attr_accessor custom_field_responses: ::Array[WhopSDK::Membership::CustomFieldResponse]
 
       attr_accessor license_key: String?
 
@@ -73,6 +76,7 @@ module WhopSDK
         company: WhopSDK::Membership::Company,
         created_at: Time,
         currency: WhopSDK::Models::currency?,
+        custom_field_responses: ::Array[WhopSDK::Membership::CustomFieldResponse],
         license_key: String?,
         manage_url: String?,
         member: WhopSDK::Membership::Member?,
@@ -96,6 +100,7 @@ module WhopSDK
         company: WhopSDK::Membership::Company,
         created_at: Time,
         currency: WhopSDK::Models::currency?,
+        custom_field_responses: ::Array[WhopSDK::Membership::CustomFieldResponse],
         license_key: String?,
         manage_url: String?,
         member: WhopSDK::Membership::Member?,
@@ -121,6 +126,21 @@ module WhopSDK
         def initialize: (id: String, title: String) -> void
 
         def to_hash: -> { id: String, title: String }
+      end
+
+      type custom_field_response =
+        { id: String, answer: String, question: String }
+
+      class CustomFieldResponse < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor answer: String
+
+        attr_accessor question: String
+
+        def initialize: (id: String, answer: String, question: String) -> void
+
+        def to_hash: -> { id: String, answer: String, question: String }
       end
 
       type member = { id: String }
@@ -165,18 +185,31 @@ module WhopSDK
         def to_hash: -> { id: String }
       end
 
-      type user = { id: String, name: String?, username: String }
+      type user =
+        { id: String, email: String?, name: String?, username: String }
 
       class User < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
+
+        attr_accessor email: String?
 
         attr_accessor name: String?
 
         attr_accessor username: String
 
-        def initialize: (id: String, name: String?, username: String) -> void
+        def initialize: (
+          id: String,
+          email: String?,
+          name: String?,
+          username: String
+        ) -> void
 
-        def to_hash: -> { id: String, name: String?, username: String }
+        def to_hash: -> {
+          id: String,
+          email: String?,
+          name: String?,
+          username: String
+        }
       end
     end
   end

@@ -46,6 +46,13 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Currency, nil]
       required :currency, enum: -> { WhopSDK::Currency }, nil?: true
 
+      # @!attribute custom_field_responses
+      #   The responses to custom checkout questions for this membership.
+      #
+      #   @return [Array<WhopSDK::Models::Membership::CustomFieldResponse>]
+      required :custom_field_responses,
+               -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Membership::CustomFieldResponse] }
+
       # @!attribute license_key
       #   The license key for this Membership. This is only present if the membership
       #   grants access to an instance of the Whop Software app.
@@ -127,7 +134,7 @@ module WhopSDK
       #   @return [WhopSDK::Models::Membership::User, nil]
       required :user, -> { WhopSDK::Membership::User }, nil?: true
 
-      # @!method initialize(id:, cancel_at_period_end:, canceled_at:, cancellation_reason:, company:, created_at:, currency:, license_key:, manage_url:, member:, metadata:, payment_collection_paused:, plan:, product:, promo_code:, renewal_period_end:, renewal_period_start:, status:, updated_at:, user:)
+      # @!method initialize(id:, cancel_at_period_end:, canceled_at:, cancellation_reason:, company:, created_at:, currency:, custom_field_responses:, license_key:, manage_url:, member:, metadata:, payment_collection_paused:, plan:, product:, promo_code:, renewal_period_end:, renewal_period_start:, status:, updated_at:, user:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::Membership} for more details.
       #
@@ -147,6 +154,8 @@ module WhopSDK
       #   @param created_at [Time] The timestamp, in seconds, that this Membership was created at.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
+      #
+      #   @param custom_field_responses [Array<WhopSDK::Models::Membership::CustomFieldResponse>] The responses to custom checkout questions for this membership.
       #
       #   @param license_key [String, nil] The license key for this Membership. This is only present if the membership gran
       #
@@ -194,6 +203,35 @@ module WhopSDK
         #   @param id [String] The ID (tag) of the company.
         #
         #   @param title [String] The title of the company.
+      end
+
+      class CustomFieldResponse < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The ID of the custom field item
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute answer
+        #   The response a user gave to the specific question or field.
+        #
+        #   @return [String]
+        required :answer, String
+
+        # @!attribute question
+        #   The question asked by the custom field
+        #
+        #   @return [String]
+        required :question, String
+
+        # @!method initialize(id:, answer:, question:)
+        #   The response from a custom field on checkout
+        #
+        #   @param id [String] The ID of the custom field item
+        #
+        #   @param answer [String] The response a user gave to the specific question or field.
+        #
+        #   @param question [String] The question asked by the custom field
       end
 
       # @see WhopSDK::Models::Membership#member
@@ -268,6 +306,12 @@ module WhopSDK
         #   @return [String]
         required :id, String
 
+        # @!attribute email
+        #   The email of the user
+        #
+        #   @return [String, nil]
+        required :email, String, nil?: true
+
         # @!attribute name
         #   The name of the user from their Whop account.
         #
@@ -280,10 +324,12 @@ module WhopSDK
         #   @return [String]
         required :username, String
 
-        # @!method initialize(id:, name:, username:)
+        # @!method initialize(id:, email:, name:, username:)
         #   The user this membership belongs to
         #
         #   @param id [String] The internal ID of the user.
+        #
+        #   @param email [String, nil] The email of the user
         #
         #   @param name [String, nil] The name of the user from their Whop account.
         #

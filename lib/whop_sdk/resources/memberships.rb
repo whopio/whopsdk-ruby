@@ -8,6 +8,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `member:basic:read`
+      # - `member:email:read`
       #
       # @overload retrieve(id, request_options: {})
       #
@@ -32,6 +33,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `member:manage`
+      # - `member:email:read`
       # - `member:basic:read`
       #
       # @overload update(id, metadata: nil, request_options: {})
@@ -61,6 +63,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `member:basic:read`
+      # - `member:email:read`
       #
       # @overload list(after: nil, before: nil, cancel_options: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, promo_code_ids: nil, statuses: nil, user_ids: nil, request_options: {})
       #
@@ -117,6 +120,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `member:manage`
+      # - `member:email:read`
       # - `member:basic:read`
       #
       # @overload cancel(id, cancellation_mode: nil, request_options: {})
@@ -149,6 +153,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `member:manage`
+      # - `member:email:read`
       # - `member:basic:read`
       #
       # @overload pause(id, void_payments: nil, request_options: {})
@@ -178,6 +183,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `member:manage`
+      # - `member:email:read`
       # - `member:basic:read`
       #
       # @overload resume(id, request_options: {})

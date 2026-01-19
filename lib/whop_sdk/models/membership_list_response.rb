@@ -269,6 +269,12 @@ module WhopSDK
         #   @return [String]
         required :id, String
 
+        # @!attribute email
+        #   The email of the user
+        #
+        #   @return [String, nil]
+        required :email, String, nil?: true
+
         # @!attribute name
         #   The name of the user from their Whop account.
         #
@@ -281,10 +287,12 @@ module WhopSDK
         #   @return [String]
         required :username, String
 
-        # @!method initialize(id:, name:, username:)
+        # @!method initialize(id:, email:, name:, username:)
         #   The user this membership belongs to
         #
         #   @param id [String] The internal ID of the user.
+        #
+        #   @param email [String, nil] The email of the user
         #
         #   @param name [String, nil] The name of the user from their Whop account.
         #

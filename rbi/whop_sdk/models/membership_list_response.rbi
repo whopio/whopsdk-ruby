@@ -406,6 +406,10 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
+        # The email of the user
+        sig { returns(T.nilable(String)) }
+        attr_accessor :email
+
         # The name of the user from their Whop account.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
@@ -416,13 +420,18 @@ module WhopSDK
 
         # The user this membership belongs to
         sig do
-          params(id: String, name: T.nilable(String), username: String).returns(
-            T.attached_class
-          )
+          params(
+            id: String,
+            email: T.nilable(String),
+            name: T.nilable(String),
+            username: String
+          ).returns(T.attached_class)
         end
         def self.new(
           # The internal ID of the user.
           id:,
+          # The email of the user
+          email:,
           # The name of the user from their Whop account.
           name:,
           # The username of the user from their Whop account.
@@ -432,7 +441,12 @@ module WhopSDK
 
         sig do
           override.returns(
-            { id: String, name: T.nilable(String), username: String }
+            {
+              id: String,
+              email: T.nilable(String),
+              name: T.nilable(String),
+              username: String
+            }
           )
         end
         def to_hash

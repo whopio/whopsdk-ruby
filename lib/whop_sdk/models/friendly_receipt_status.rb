@@ -17,7 +17,6 @@ module WhopSDK
       PARTIALLY_REFUNDED = :partially_refunded
       OPEN_RESOLUTION = :open_resolution
       DISPUTE_WARNING = :dispute_warning
-      OPEN_DISPUTE = :open_dispute
       DISPUTE_NEEDS_RESPONSE = :dispute_needs_response
       DISPUTE_WARNING_NEEDS_RESPONSE = :dispute_warning_needs_response
       DISPUTE_UNDER_REVIEW = :dispute_under_review
@@ -30,6 +29,7 @@ module WhopSDK
       INCOMPLETE = :incomplete
       UNRESOLVED = :unresolved
       PENDING = :pending
+      OPEN_DISPUTE = :open_dispute
 
       # @!method self.values
       #   @return [Array<Symbol>]

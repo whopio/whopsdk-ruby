@@ -12,7 +12,6 @@ module WhopSDK
       | :partially_refunded
       | :open_resolution
       | :dispute_warning
-      | :open_dispute
       | :dispute_needs_response
       | :dispute_warning_needs_response
       | :dispute_under_review
@@ -25,6 +24,7 @@ module WhopSDK
       | :incomplete
       | :unresolved
       | :pending
+      | :open_dispute
 
     module FriendlyReceiptStatus
       extend WhopSDK::Internal::Type::Enum
@@ -40,7 +40,6 @@ module WhopSDK
       PARTIALLY_REFUNDED: :partially_refunded
       OPEN_RESOLUTION: :open_resolution
       DISPUTE_WARNING: :dispute_warning
-      OPEN_DISPUTE: :open_dispute
       DISPUTE_NEEDS_RESPONSE: :dispute_needs_response
       DISPUTE_WARNING_NEEDS_RESPONSE: :dispute_warning_needs_response
       DISPUTE_UNDER_REVIEW: :dispute_under_review
@@ -53,6 +52,7 @@ module WhopSDK
       INCOMPLETE: :incomplete
       UNRESOLVED: :unresolved
       PENDING: :pending
+      OPEN_DISPUTE: :open_dispute
 
       def self?.values: -> ::Array[WhopSDK::Models::friendly_receipt_status]
     end

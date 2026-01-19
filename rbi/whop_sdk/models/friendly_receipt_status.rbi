@@ -28,8 +28,6 @@ module WhopSDK
         T.let(:open_resolution, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
       DISPUTE_WARNING =
         T.let(:dispute_warning, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
-      OPEN_DISPUTE =
-        T.let(:open_dispute, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
       DISPUTE_NEEDS_RESPONSE =
         T.let(
           :dispute_needs_response,
@@ -67,6 +65,8 @@ module WhopSDK
       UNRESOLVED =
         T.let(:unresolved, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
       PENDING = T.let(:pending, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
+      OPEN_DISPUTE =
+        T.let(:open_dispute, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
 
       sig do
         override.returns(T::Array[WhopSDK::FriendlyReceiptStatus::TaggedSymbol])

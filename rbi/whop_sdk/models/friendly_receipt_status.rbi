@@ -25,8 +25,6 @@ module WhopSDK
         T.let(:auto_refunded, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
       PARTIALLY_REFUNDED =
         T.let(:partially_refunded, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
-      OPEN_RESOLUTION =
-        T.let(:open_resolution, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
       DISPUTE_WARNING =
         T.let(:dispute_warning, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
       DISPUTE_NEEDS_RESPONSE =
@@ -81,6 +79,8 @@ module WhopSDK
         T.let(:unresolved, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
       OPEN_DISPUTE =
         T.let(:open_dispute, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
+      OPEN_RESOLUTION =
+        T.let(:open_resolution, WhopSDK::FriendlyReceiptStatus::TaggedSymbol)
 
       sig do
         override.returns(T::Array[WhopSDK::FriendlyReceiptStatus::TaggedSymbol])

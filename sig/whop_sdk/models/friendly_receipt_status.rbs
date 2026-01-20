@@ -2,6 +2,7 @@ module WhopSDK
   module Models
     type friendly_receipt_status =
       :succeeded
+      | :pending
       | :failed
       | :past_due
       | :canceled
@@ -14,22 +15,26 @@ module WhopSDK
       | :dispute_warning
       | :dispute_needs_response
       | :dispute_warning_needs_response
+      | :resolution_needs_response
       | :dispute_under_review
       | :dispute_warning_under_review
+      | :resolution_under_review
       | :dispute_won
+      | :dispute_warning_closed
+      | :resolution_won
       | :dispute_lost
       | :dispute_closed
-      | :dispute_warning_closed
+      | :resolution_lost
       | :drafted
       | :incomplete
       | :unresolved
-      | :pending
       | :open_dispute
 
     module FriendlyReceiptStatus
       extend WhopSDK::Internal::Type::Enum
 
       SUCCEEDED: :succeeded
+      PENDING: :pending
       FAILED: :failed
       PAST_DUE: :past_due
       CANCELED: :canceled
@@ -42,16 +47,19 @@ module WhopSDK
       DISPUTE_WARNING: :dispute_warning
       DISPUTE_NEEDS_RESPONSE: :dispute_needs_response
       DISPUTE_WARNING_NEEDS_RESPONSE: :dispute_warning_needs_response
+      RESOLUTION_NEEDS_RESPONSE: :resolution_needs_response
       DISPUTE_UNDER_REVIEW: :dispute_under_review
       DISPUTE_WARNING_UNDER_REVIEW: :dispute_warning_under_review
+      RESOLUTION_UNDER_REVIEW: :resolution_under_review
       DISPUTE_WON: :dispute_won
+      DISPUTE_WARNING_CLOSED: :dispute_warning_closed
+      RESOLUTION_WON: :resolution_won
       DISPUTE_LOST: :dispute_lost
       DISPUTE_CLOSED: :dispute_closed
-      DISPUTE_WARNING_CLOSED: :dispute_warning_closed
+      RESOLUTION_LOST: :resolution_lost
       DRAFTED: :drafted
       INCOMPLETE: :incomplete
       UNRESOLVED: :unresolved
-      PENDING: :pending
       OPEN_DISPUTE: :open_dispute
 
       def self?.values: -> ::Array[WhopSDK::Models::friendly_receipt_status]

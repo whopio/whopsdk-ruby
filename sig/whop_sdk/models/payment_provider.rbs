@@ -9,6 +9,7 @@ module WhopSDK
       | :splitit
       | :platform_balance
       | :multi_psp
+      | :adyen
 
     module PaymentProvider
       extend WhopSDK::Internal::Type::Enum
@@ -21,6 +22,7 @@ module WhopSDK
       SPLITIT: :splitit
       PLATFORM_BALANCE: :platform_balance
       MULTI_PSP: :multi_psp
+      ADYEN: :adyen
 
       def self?.values: -> ::Array[WhopSDK::Models::payment_provider]
     end

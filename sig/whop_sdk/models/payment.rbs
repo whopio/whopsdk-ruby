@@ -18,9 +18,11 @@ module WhopSDK
         member: WhopSDK::Payment::Member?,
         membership: WhopSDK::Payment::Membership?,
         metadata: ::Hash[Symbol, top]?,
+        next_payment_attempt: Time?,
         paid_at: Time?,
         payment_method: WhopSDK::Payment::PaymentMethod?,
         payment_method_type: WhopSDK::Models::payment_method_types?,
+        payments_failed: Integer?,
         plan: WhopSDK::Payment::Plan?,
         product: WhopSDK::Payment::Product?,
         promo_code: WhopSDK::Payment::PromoCode?,
@@ -70,11 +72,15 @@ module WhopSDK
 
       attr_accessor metadata: ::Hash[Symbol, top]?
 
+      attr_accessor next_payment_attempt: Time?
+
       attr_accessor paid_at: Time?
 
       attr_accessor payment_method: WhopSDK::Payment::PaymentMethod?
 
       attr_accessor payment_method_type: WhopSDK::Models::payment_method_types?
+
+      attr_accessor payments_failed: Integer?
 
       attr_accessor plan: WhopSDK::Payment::Plan?
 
@@ -121,9 +127,11 @@ module WhopSDK
         member: WhopSDK::Payment::Member?,
         membership: WhopSDK::Payment::Membership?,
         metadata: ::Hash[Symbol, top]?,
+        next_payment_attempt: Time?,
         paid_at: Time?,
         payment_method: WhopSDK::Payment::PaymentMethod?,
         payment_method_type: WhopSDK::Models::payment_method_types?,
+        payments_failed: Integer?,
         plan: WhopSDK::Payment::Plan?,
         product: WhopSDK::Payment::Product?,
         promo_code: WhopSDK::Payment::PromoCode?,
@@ -157,9 +165,11 @@ module WhopSDK
         member: WhopSDK::Payment::Member?,
         membership: WhopSDK::Payment::Membership?,
         metadata: ::Hash[Symbol, top]?,
+        next_payment_attempt: Time?,
         paid_at: Time?,
         payment_method: WhopSDK::Payment::PaymentMethod?,
         payment_method_type: WhopSDK::Models::payment_method_types?,
+        payments_failed: Integer?,
         plan: WhopSDK::Payment::Plan?,
         product: WhopSDK::Payment::Product?,
         promo_code: WhopSDK::Payment::PromoCode?,

@@ -89,6 +89,10 @@ module WhopSDK
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
+      # The time of the next schedule payment retry.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :next_payment_attempt
+
       # The datetime the payment was paid
       sig { returns(T.nilable(Time)) }
       attr_accessor :paid_at
@@ -107,6 +111,10 @@ module WhopSDK
       # The different types of payment methods that can be used.
       sig { returns(T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol)) }
       attr_accessor :payment_method_type
+
+      # The number of failed payment attempts for the payment.
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :payments_failed
 
       # The plan attached to this payment.
       sig { returns(T.nilable(WhopSDK::Payment::Plan)) }
@@ -201,9 +209,11 @@ module WhopSDK
           member: T.nilable(WhopSDK::Payment::Member::OrHash),
           membership: T.nilable(WhopSDK::Payment::Membership::OrHash),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
+          next_payment_attempt: T.nilable(Time),
           paid_at: T.nilable(Time),
           payment_method: T.nilable(WhopSDK::Payment::PaymentMethod::OrHash),
           payment_method_type: T.nilable(WhopSDK::PaymentMethodTypes::OrSymbol),
+          payments_failed: T.nilable(Integer),
           plan: T.nilable(WhopSDK::Payment::Plan::OrHash),
           product: T.nilable(WhopSDK::Payment::Product::OrHash),
           promo_code: T.nilable(WhopSDK::Payment::PromoCode::OrHash),
@@ -254,12 +264,16 @@ module WhopSDK
         # The custom metadata stored on this payment. This will be copied over to the
         # checkout configuration for which this payment was made
         metadata:,
+        # The time of the next schedule payment retry.
+        next_payment_attempt:,
         # The datetime the payment was paid
         paid_at:,
         # The payment method used for the payment, if available.
         payment_method:,
         # The different types of payment methods that can be used.
         payment_method_type:,
+        # The number of failed payment attempts for the payment.
+        payments_failed:,
         # The plan attached to this payment.
         plan:,
         # The product this payment was made for
@@ -314,10 +328,12 @@ module WhopSDK
             member: T.nilable(WhopSDK::Payment::Member),
             membership: T.nilable(WhopSDK::Payment::Membership),
             metadata: T.nilable(T::Hash[Symbol, T.anything]),
+            next_payment_attempt: T.nilable(Time),
             paid_at: T.nilable(Time),
             payment_method: T.nilable(WhopSDK::Payment::PaymentMethod),
             payment_method_type:
               T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol),
+            payments_failed: T.nilable(Integer),
             plan: T.nilable(WhopSDK::Payment::Plan),
             product: T.nilable(WhopSDK::Payment::Product),
             promo_code: T.nilable(WhopSDK::Payment::PromoCode),

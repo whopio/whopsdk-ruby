@@ -16,6 +16,13 @@ module WhopSDK
       #   @return [Boolean]
       required :cancel_at_period_end, WhopSDK::Internal::Type::Boolean
 
+      # @!attribute cancel_option
+      #   The different reasons a user can choose for why they are canceling their
+      #   membership.
+      #
+      #   @return [Symbol, WhopSDK::Models::Membership::CancelOption, nil]
+      required :cancel_option, enum: -> { WhopSDK::Membership::CancelOption }, nil?: true
+
       # @!attribute canceled_at
       #   The epoch timestamp of when the customer initiated a cancellation.
       #
@@ -134,7 +141,7 @@ module WhopSDK
       #   @return [WhopSDK::Models::Membership::User, nil]
       required :user, -> { WhopSDK::Membership::User }, nil?: true
 
-      # @!method initialize(id:, cancel_at_period_end:, canceled_at:, cancellation_reason:, company:, created_at:, currency:, custom_field_responses:, license_key:, manage_url:, member:, metadata:, payment_collection_paused:, plan:, product:, promo_code:, renewal_period_end:, renewal_period_start:, status:, updated_at:, user:)
+      # @!method initialize(id:, cancel_at_period_end:, cancel_option:, canceled_at:, cancellation_reason:, company:, created_at:, currency:, custom_field_responses:, license_key:, manage_url:, member:, metadata:, payment_collection_paused:, plan:, product:, promo_code:, renewal_period_end:, renewal_period_start:, status:, updated_at:, user:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::Membership} for more details.
       #
@@ -144,6 +151,8 @@ module WhopSDK
       #   @param id [String] The ID of the membership
       #
       #   @param cancel_at_period_end [Boolean] Whether this Membership is set to cancel at the end of the current billing cycle
+      #
+      #   @param cancel_option [Symbol, WhopSDK::Models::Membership::CancelOption, nil] The different reasons a user can choose for why they are canceling their members
       #
       #   @param canceled_at [Time, nil] The epoch timestamp of when the customer initiated a cancellation.
       #
@@ -182,6 +191,25 @@ module WhopSDK
       #   @param updated_at [Time] A timestamp of when the membership was last updated
       #
       #   @param user [WhopSDK::Models::Membership::User, nil] The user this membership belongs to
+
+      # The different reasons a user can choose for why they are canceling their
+      # membership.
+      #
+      # @see WhopSDK::Models::Membership#cancel_option
+      module CancelOption
+        extend WhopSDK::Internal::Type::Enum
+
+        TOO_EXPENSIVE = :too_expensive
+        SWITCHING = :switching
+        MISSING_FEATURES = :missing_features
+        TECHNICAL_ISSUES = :technical_issues
+        BAD_EXPERIENCE = :bad_experience
+        OTHER = :other
+        TESTING = :testing
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
 
       # @see WhopSDK::Models::Membership#company
       class Company < WhopSDK::Internal::Type::BaseModel

@@ -20,6 +20,17 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :cancel_at_period_end
 
+      # The different reasons a user can choose for why they are canceling their
+      # membership.
+      sig do
+        returns(
+          T.nilable(
+            WhopSDK::Models::MembershipListResponse::CancelOption::TaggedSymbol
+          )
+        )
+      end
+      attr_accessor :cancel_option
+
       # The epoch timestamp of when the customer initiated a cancellation.
       sig { returns(T.nilable(Time)) }
       attr_accessor :canceled_at
@@ -149,6 +160,10 @@ module WhopSDK
         params(
           id: String,
           cancel_at_period_end: T::Boolean,
+          cancel_option:
+            T.nilable(
+              WhopSDK::Models::MembershipListResponse::CancelOption::OrSymbol
+            ),
           canceled_at: T.nilable(Time),
           cancellation_reason: T.nilable(String),
           company: WhopSDK::Models::MembershipListResponse::Company::OrHash,
@@ -179,6 +194,9 @@ module WhopSDK
         # Whether this Membership is set to cancel at the end of the current billing
         # cycle. Only applies for memberships that have a renewal plan.
         cancel_at_period_end:,
+        # The different reasons a user can choose for why they are canceling their
+        # membership.
+        cancel_option:,
         # The epoch timestamp of when the customer initiated a cancellation.
         canceled_at:,
         # The reason that the member canceled the membership (filled out by the member).
@@ -226,6 +244,10 @@ module WhopSDK
           {
             id: String,
             cancel_at_period_end: T::Boolean,
+            cancel_option:
+              T.nilable(
+                WhopSDK::Models::MembershipListResponse::CancelOption::TaggedSymbol
+              ),
             canceled_at: T.nilable(Time),
             cancellation_reason: T.nilable(String),
             company: WhopSDK::Models::MembershipListResponse::Company,
@@ -249,6 +271,64 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      # The different reasons a user can choose for why they are canceling their
+      # membership.
+      module CancelOption
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::Models::MembershipListResponse::CancelOption)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        TOO_EXPENSIVE =
+          T.let(
+            :too_expensive,
+            WhopSDK::Models::MembershipListResponse::CancelOption::TaggedSymbol
+          )
+        SWITCHING =
+          T.let(
+            :switching,
+            WhopSDK::Models::MembershipListResponse::CancelOption::TaggedSymbol
+          )
+        MISSING_FEATURES =
+          T.let(
+            :missing_features,
+            WhopSDK::Models::MembershipListResponse::CancelOption::TaggedSymbol
+          )
+        TECHNICAL_ISSUES =
+          T.let(
+            :technical_issues,
+            WhopSDK::Models::MembershipListResponse::CancelOption::TaggedSymbol
+          )
+        BAD_EXPERIENCE =
+          T.let(
+            :bad_experience,
+            WhopSDK::Models::MembershipListResponse::CancelOption::TaggedSymbol
+          )
+        OTHER =
+          T.let(
+            :other,
+            WhopSDK::Models::MembershipListResponse::CancelOption::TaggedSymbol
+          )
+        TESTING =
+          T.let(
+            :testing,
+            WhopSDK::Models::MembershipListResponse::CancelOption::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::Models::MembershipListResponse::CancelOption::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
       end
 
       class Company < WhopSDK::Internal::Type::BaseModel

@@ -96,6 +96,11 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
+        # A reference to identify the payout destination, such as the last 4 digits of an
+        # account number or an email address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :account_reference
+
         # The company associated with the payout token
         sig do
           returns(
@@ -143,6 +148,10 @@ module WhopSDK
         end
         attr_writer :destination
 
+        # The name of the bank or financial institution.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :institution_name
+
         # Whether this payout token is the default for the payout account
         sig { returns(T::Boolean) }
         attr_accessor :is_default
@@ -156,6 +165,7 @@ module WhopSDK
         sig do
           params(
             id: String,
+            account_reference: T.nilable(String),
             company:
               T.nilable(
                 WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Company::OrHash
@@ -166,6 +176,7 @@ module WhopSDK
               T.nilable(
                 WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination::OrHash
               ),
+            institution_name: T.nilable(String),
             is_default: T::Boolean,
             nickname: T.nilable(String)
           ).returns(T.attached_class)
@@ -173,6 +184,9 @@ module WhopSDK
         def self.new(
           # The ID of the payout token
           id:,
+          # A reference to identify the payout destination, such as the last 4 digits of an
+          # account number or an email address.
+          account_reference:,
           # The company associated with the payout token
           company:,
           # The date and time the payout token was created
@@ -182,6 +196,8 @@ module WhopSDK
           currency:,
           # The payout destination associated with the payout token
           destination:,
+          # The name of the bank or financial institution.
+          institution_name:,
           # Whether this payout token is the default for the payout account
           is_default:,
           # An optional nickname for the payout token to help the user identify it. This is
@@ -194,6 +210,7 @@ module WhopSDK
           override.returns(
             {
               id: String,
+              account_reference: T.nilable(String),
               company:
                 T.nilable(
                   WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Company
@@ -204,6 +221,7 @@ module WhopSDK
                 T.nilable(
                   WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination
                 ),
+              institution_name: T.nilable(String),
               is_default: T::Boolean,
               nickname: T.nilable(String)
             }

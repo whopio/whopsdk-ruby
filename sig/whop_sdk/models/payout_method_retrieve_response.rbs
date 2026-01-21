@@ -3,16 +3,20 @@ module WhopSDK
     type payout_method_retrieve_response =
       {
         id: String,
+        account_reference: String?,
         company: WhopSDK::Models::PayoutMethodRetrieveResponse::Company?,
         created_at: Time,
         currency: String,
         destination: WhopSDK::Models::PayoutMethodRetrieveResponse::Destination?,
+        institution_name: String?,
         is_default: bool,
         nickname: String?
       }
 
     class PayoutMethodRetrieveResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor account_reference: String?
 
       attr_accessor company: WhopSDK::Models::PayoutMethodRetrieveResponse::Company?
 
@@ -22,26 +26,32 @@ module WhopSDK
 
       attr_accessor destination: WhopSDK::Models::PayoutMethodRetrieveResponse::Destination?
 
+      attr_accessor institution_name: String?
+
       attr_accessor is_default: bool
 
       attr_accessor nickname: String?
 
       def initialize: (
         id: String,
+        account_reference: String?,
         company: WhopSDK::Models::PayoutMethodRetrieveResponse::Company?,
         created_at: Time,
         currency: String,
         destination: WhopSDK::Models::PayoutMethodRetrieveResponse::Destination?,
+        institution_name: String?,
         is_default: bool,
         nickname: String?
       ) -> void
 
       def to_hash: -> {
         id: String,
+        account_reference: String?,
         company: WhopSDK::Models::PayoutMethodRetrieveResponse::Company?,
         created_at: Time,
         currency: String,
         destination: WhopSDK::Models::PayoutMethodRetrieveResponse::Destination?,
+        institution_name: String?,
         is_default: bool,
         nickname: String?
       }

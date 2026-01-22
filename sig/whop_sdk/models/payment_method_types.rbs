@@ -1,181 +1,181 @@
 module WhopSDK
   module Models
     type payment_method_types =
-      :afterpay_clearpay
+      :acss_debit
+      | :affirm
+      | :afterpay_clearpay
       | :alipay
+      | :alma
       | :amazon_pay
+      | :apple
       | :apple_pay
+      | :au_becs_debit
+      | :bacs_debit
       | :bancontact
+      | :billie
+      | :bizum
+      | :blik
+      | :boleto
+      | :capchase_pay
       | :card
       | :cashapp
-      | :crypto
-      | :google_pay
-      | :ideal
-      | :klarna
-      | :mobilepay
-      | :sepa_debit
-      | :swish
-      | :twint
-      | :us_bank_account
-      | :zip
-      | :vipps
-      | :paypal
-      | :sezzle
       | :coinbase
-      | :splitit
-      | :platform_balance
-      | :apple
-      | :venmo
-      | :affirm
+      | :crypto
+      | :custom
+      | :customer_balance
+      | :demo_pay
+      | :eps
+      | :fpx
+      | :giropay
+      | :google_pay
+      | :gopay
+      | :grabpay
+      | :id_bank_transfer
+      | :ideal
+      | :kakao_pay
+      | :klarna
+      | :konbini
+      | :kr_card
+      | :kr_market
+      | :kriya
+      | :link
+      | :mb_way
+      | :mobilepay
+      | :mondu
       | :multibanco
-      | :wechat_pay
       | :naver_pay
+      | :netbanking
+      | :ng_bank
+      | :ng_bank_transfer
+      | :ng_card
+      | :ng_market
+      | :ng_ussd
+      | :ng_wallet
       | :nz_bank_account
       | :oxxo
       | :p24
       | :pay_by_bank
       | :payco
       | :paynow
+      | :paypal
+      | :paypay
+      | :payto
       | :pix
+      | :platform_balance
       | :promptpay
+      | :qris
+      | :rechnung
       | :revolut_pay
       | :samsung_pay
       | :satispay
-      | :sofort
-      | :konbini
-      | :kr_card
-      | :link
-      | :grabpay
-      | :kakao_pay
-      | :billie
-      | :blik
-      | :boleto
-      | :eps
-      | :fpx
-      | :giropay
-      | :acss_debit
-      | :alma
-      | :au_becs_debit
-      | :bacs_debit
-      | :bizum
-      | :capchase_pay
-      | :kriya
-      | :mondu
-      | :ng_wallet
-      | :paypay
-      | :sequra
       | :scalapay
-      | :custom
-      | :customer_balance
-      | :gopay
-      | :mb_way
-      | :ng_bank
-      | :ng_bank_transfer
-      | :ng_card
-      | :ng_market
-      | :ng_ussd
-      | :payto
-      | :qris
-      | :rechnung
-      | :south_korea_market
-      | :kr_market
-      | :shopeepay
-      | :upi
-      | :sunbit
-      | :netbanking
-      | :id_bank_transfer
-      | :demo_pay
+      | :sepa_debit
+      | :sequra
+      | :sezzle
       | :shop_pay
+      | :shopeepay
+      | :sofort
+      | :south_korea_market
+      | :splitit
+      | :sunbit
+      | :swish
+      | :twint
+      | :upi
+      | :us_bank_account
+      | :venmo
+      | :vipps
+      | :wechat_pay
+      | :zip
       | :unknown
 
     module PaymentMethodTypes
       extend WhopSDK::Internal::Type::Enum
 
+      ACSS_DEBIT: :acss_debit
+      AFFIRM: :affirm
       AFTERPAY_CLEARPAY: :afterpay_clearpay
       ALIPAY: :alipay
+      ALMA: :alma
       AMAZON_PAY: :amazon_pay
+      APPLE: :apple
       APPLE_PAY: :apple_pay
+      AU_BECS_DEBIT: :au_becs_debit
+      BACS_DEBIT: :bacs_debit
       BANCONTACT: :bancontact
+      BILLIE: :billie
+      BIZUM: :bizum
+      BLIK: :blik
+      BOLETO: :boleto
+      CAPCHASE_PAY: :capchase_pay
       CARD: :card
       CASHAPP: :cashapp
-      CRYPTO: :crypto
-      GOOGLE_PAY: :google_pay
-      IDEAL: :ideal
-      KLARNA: :klarna
-      MOBILEPAY: :mobilepay
-      SEPA_DEBIT: :sepa_debit
-      SWISH: :swish
-      TWINT: :twint
-      US_BANK_ACCOUNT: :us_bank_account
-      ZIP: :zip
-      VIPPS: :vipps
-      PAYPAL: :paypal
-      SEZZLE: :sezzle
       COINBASE: :coinbase
-      SPLITIT: :splitit
-      PLATFORM_BALANCE: :platform_balance
-      APPLE: :apple
-      VENMO: :venmo
-      AFFIRM: :affirm
+      CRYPTO: :crypto
+      CUSTOM: :custom
+      CUSTOMER_BALANCE: :customer_balance
+      DEMO_PAY: :demo_pay
+      EPS: :eps
+      FPX: :fpx
+      GIROPAY: :giropay
+      GOOGLE_PAY: :google_pay
+      GOPAY: :gopay
+      GRABPAY: :grabpay
+      ID_BANK_TRANSFER: :id_bank_transfer
+      IDEAL: :ideal
+      KAKAO_PAY: :kakao_pay
+      KLARNA: :klarna
+      KONBINI: :konbini
+      KR_CARD: :kr_card
+      KR_MARKET: :kr_market
+      KRIYA: :kriya
+      LINK: :link
+      MB_WAY: :mb_way
+      MOBILEPAY: :mobilepay
+      MONDU: :mondu
       MULTIBANCO: :multibanco
-      WECHAT_PAY: :wechat_pay
       NAVER_PAY: :naver_pay
+      NETBANKING: :netbanking
+      NG_BANK: :ng_bank
+      NG_BANK_TRANSFER: :ng_bank_transfer
+      NG_CARD: :ng_card
+      NG_MARKET: :ng_market
+      NG_USSD: :ng_ussd
+      NG_WALLET: :ng_wallet
       NZ_BANK_ACCOUNT: :nz_bank_account
       OXXO: :oxxo
       P24: :p24
       PAY_BY_BANK: :pay_by_bank
       PAYCO: :payco
       PAYNOW: :paynow
+      PAYPAL: :paypal
+      PAYPAY: :paypay
+      PAYTO: :payto
       PIX: :pix
+      PLATFORM_BALANCE: :platform_balance
       PROMPTPAY: :promptpay
+      QRIS: :qris
+      RECHNUNG: :rechnung
       REVOLUT_PAY: :revolut_pay
       SAMSUNG_PAY: :samsung_pay
       SATISPAY: :satispay
-      SOFORT: :sofort
-      KONBINI: :konbini
-      KR_CARD: :kr_card
-      LINK: :link
-      GRABPAY: :grabpay
-      KAKAO_PAY: :kakao_pay
-      BILLIE: :billie
-      BLIK: :blik
-      BOLETO: :boleto
-      EPS: :eps
-      FPX: :fpx
-      GIROPAY: :giropay
-      ACSS_DEBIT: :acss_debit
-      ALMA: :alma
-      AU_BECS_DEBIT: :au_becs_debit
-      BACS_DEBIT: :bacs_debit
-      BIZUM: :bizum
-      CAPCHASE_PAY: :capchase_pay
-      KRIYA: :kriya
-      MONDU: :mondu
-      NG_WALLET: :ng_wallet
-      PAYPAY: :paypay
-      SEQURA: :sequra
       SCALAPAY: :scalapay
-      CUSTOM: :custom
-      CUSTOMER_BALANCE: :customer_balance
-      GOPAY: :gopay
-      MB_WAY: :mb_way
-      NG_BANK: :ng_bank
-      NG_BANK_TRANSFER: :ng_bank_transfer
-      NG_CARD: :ng_card
-      NG_MARKET: :ng_market
-      NG_USSD: :ng_ussd
-      PAYTO: :payto
-      QRIS: :qris
-      RECHNUNG: :rechnung
-      SOUTH_KOREA_MARKET: :south_korea_market
-      KR_MARKET: :kr_market
-      SHOPEEPAY: :shopeepay
-      UPI: :upi
-      SUNBIT: :sunbit
-      NETBANKING: :netbanking
-      ID_BANK_TRANSFER: :id_bank_transfer
-      DEMO_PAY: :demo_pay
+      SEPA_DEBIT: :sepa_debit
+      SEQURA: :sequra
+      SEZZLE: :sezzle
       SHOP_PAY: :shop_pay
+      SHOPEEPAY: :shopeepay
+      SOFORT: :sofort
+      SOUTH_KOREA_MARKET: :south_korea_market
+      SPLITIT: :splitit
+      SUNBIT: :sunbit
+      SWISH: :swish
+      TWINT: :twint
+      UPI: :upi
+      US_BANK_ACCOUNT: :us_bank_account
+      VENMO: :venmo
+      VIPPS: :vipps
+      WECHAT_PAY: :wechat_pay
+      ZIP: :zip
       UNKNOWN: :unknown
 
       def self?.values: -> ::Array[WhopSDK::Models::payment_method_types]

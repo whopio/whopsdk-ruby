@@ -25,6 +25,12 @@ module WhopSDK
       #   @return [WhopSDK::Models::MemberRetrieveResponse::Company]
       required :company, -> { WhopSDK::Models::MemberRetrieveResponse::Company }
 
+      # @!attribute company_token_balance
+      #   The member's token balance for this company
+      #
+      #   @return [Float]
+      required :company_token_balance, Float
+
       # @!attribute created_at
       #   When the member was created
       #
@@ -79,7 +85,7 @@ module WhopSDK
       #   @return [WhopSDK::Models::MemberRetrieveResponse::User, nil]
       required :user, -> { WhopSDK::Models::MemberRetrieveResponse::User }, nil?: true
 
-      # @!method initialize(id:, access_level:, company:, created_at:, joined_at:, most_recent_action:, most_recent_action_at:, phone:, status:, updated_at:, usd_total_spent:, user:)
+      # @!method initialize(id:, access_level:, company:, company_token_balance:, created_at:, joined_at:, most_recent_action:, most_recent_action_at:, phone:, status:, updated_at:, usd_total_spent:, user:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::MemberRetrieveResponse} for more details.
       #
@@ -92,6 +98,8 @@ module WhopSDK
       #   @param access_level [Symbol, WhopSDK::Models::AccessLevel] The access level of the product member. If its admin, the member is an authorize
       #
       #   @param company [WhopSDK::Models::MemberRetrieveResponse::Company] The company for the member.
+      #
+      #   @param company_token_balance [Float] The member's token balance for this company
       #
       #   @param created_at [Time] When the member was created
       #

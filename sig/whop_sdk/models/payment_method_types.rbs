@@ -25,6 +25,7 @@ module WhopSDK
       | :customer_balance
       | :demo_pay
       | :eps
+      | :eu_bank_transfer
       | :fpx
       | :giropay
       | :google_pay
@@ -115,6 +116,7 @@ module WhopSDK
       CUSTOMER_BALANCE: :customer_balance
       DEMO_PAY: :demo_pay
       EPS: :eps
+      EU_BANK_TRANSFER: :eu_bank_transfer
       FPX: :fpx
       GIROPAY: :giropay
       GOOGLE_PAY: :google_pay

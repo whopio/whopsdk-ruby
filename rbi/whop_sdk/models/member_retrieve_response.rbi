@@ -33,6 +33,10 @@ module WhopSDK
       end
       attr_writer :company
 
+      # The member's token balance for this company
+      sig { returns(Float) }
+      attr_accessor :company_token_balance
+
       # When the member was created
       sig { returns(Time) }
       attr_accessor :created_at
@@ -84,6 +88,7 @@ module WhopSDK
           id: String,
           access_level: WhopSDK::AccessLevel::OrSymbol,
           company: WhopSDK::Models::MemberRetrieveResponse::Company::OrHash,
+          company_token_balance: Float,
           created_at: Time,
           joined_at: Time,
           most_recent_action:
@@ -106,6 +111,8 @@ module WhopSDK
         access_level:,
         # The company for the member.
         company:,
+        # The member's token balance for this company
+        company_token_balance:,
         # When the member was created
         created_at:,
         # When the member joined the company
@@ -133,6 +140,7 @@ module WhopSDK
             id: String,
             access_level: WhopSDK::AccessLevel::TaggedSymbol,
             company: WhopSDK::Models::MemberRetrieveResponse::Company,
+            company_token_balance: Float,
             created_at: Time,
             joined_at: Time,
             most_recent_action:

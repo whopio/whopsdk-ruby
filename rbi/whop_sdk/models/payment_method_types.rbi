@@ -37,6 +37,8 @@ module WhopSDK
         T.let(:customer_balance, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       DEMO_PAY = T.let(:demo_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       EPS = T.let(:eps, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      EU_BANK_TRANSFER =
+        T.let(:eu_bank_transfer, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       FPX = T.let(:fpx, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       GIROPAY = T.let(:giropay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       GOOGLE_PAY = T.let(:google_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)

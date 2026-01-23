@@ -19,6 +19,10 @@ module WhopSDK
       sig { returns(WhopSDK::AccessLevel::TaggedSymbol) }
       attr_accessor :access_level
 
+      # The member's token balance for this company
+      sig { returns(Float) }
+      attr_accessor :company_token_balance
+
       # When the member was created
       sig { returns(Time) }
       attr_accessor :created_at
@@ -69,6 +73,7 @@ module WhopSDK
         params(
           id: String,
           access_level: WhopSDK::AccessLevel::OrSymbol,
+          company_token_balance: Float,
           created_at: Time,
           joined_at: Time,
           most_recent_action:
@@ -89,6 +94,8 @@ module WhopSDK
         # membership to any product on the company. If its no_access, the member does not
         # have access to the product.
         access_level:,
+        # The member's token balance for this company
+        company_token_balance:,
         # When the member was created
         created_at:,
         # When the member joined the company
@@ -115,6 +122,7 @@ module WhopSDK
           {
             id: String,
             access_level: WhopSDK::AccessLevel::TaggedSymbol,
+            company_token_balance: Float,
             created_at: Time,
             joined_at: Time,
             most_recent_action:

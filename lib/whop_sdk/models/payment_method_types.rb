@@ -30,6 +30,7 @@ module WhopSDK
       CUSTOMER_BALANCE = :customer_balance
       DEMO_PAY = :demo_pay
       EPS = :eps
+      EU_BANK_TRANSFER = :eu_bank_transfer
       FPX = :fpx
       GIROPAY = :giropay
       GOOGLE_PAY = :google_pay

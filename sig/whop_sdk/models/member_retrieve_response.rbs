@@ -5,6 +5,7 @@ module WhopSDK
         id: String,
         access_level: WhopSDK::Models::access_level,
         company: WhopSDK::Models::MemberRetrieveResponse::Company,
+        company_token_balance: Float,
         created_at: Time,
         joined_at: Time,
         most_recent_action: WhopSDK::Models::member_most_recent_actions?,
@@ -22,6 +23,8 @@ module WhopSDK
       attr_accessor access_level: WhopSDK::Models::access_level
 
       attr_accessor company: WhopSDK::Models::MemberRetrieveResponse::Company
+
+      attr_accessor company_token_balance: Float
 
       attr_accessor created_at: Time
 
@@ -45,6 +48,7 @@ module WhopSDK
         id: String,
         access_level: WhopSDK::Models::access_level,
         company: WhopSDK::Models::MemberRetrieveResponse::Company,
+        company_token_balance: Float,
         created_at: Time,
         joined_at: Time,
         most_recent_action: WhopSDK::Models::member_most_recent_actions?,
@@ -60,6 +64,7 @@ module WhopSDK
         id: String,
         access_level: WhopSDK::Models::access_level,
         company: WhopSDK::Models::MemberRetrieveResponse::Company,
+        company_token_balance: Float,
         created_at: Time,
         joined_at: Time,
         most_recent_action: WhopSDK::Models::member_most_recent_actions?,

@@ -349,6 +349,8 @@ module WhopSDK
 
   MembershipStatus = WhopSDK::Models::MembershipStatus
 
+  MembershipUncancelParams = WhopSDK::Models::MembershipUncancelParams
+
   MembershipUpdateParams = WhopSDK::Models::MembershipUpdateParams
 
   MemberStatuses = WhopSDK::Models::MemberStatuses

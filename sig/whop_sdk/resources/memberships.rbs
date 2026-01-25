@@ -48,6 +48,11 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Membership
 
+      def uncancel: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Membership
+
       def initialize: (client: WhopSDK::Client) -> void
     end
   end

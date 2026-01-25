@@ -16,11 +16,13 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         cancel_at_period_end: WhopSDK::Internal::Type::Boolean,
+        cancel_option: WhopSDK::Membership::CancelOption | nil,
         canceled_at: Time | nil,
         cancellation_reason: String | nil,
         company: WhopSDK::Membership::Company,
         created_at: Time,
         currency: WhopSDK::Currency | nil,
+        custom_field_responses: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Membership::CustomFieldResponse]),
         license_key: String | nil,
         manage_url: String | nil,
         member: WhopSDK::Membership::Member | nil,
@@ -51,11 +53,13 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         cancel_at_period_end: WhopSDK::Internal::Type::Boolean,
+        cancel_option: WhopSDK::Membership::CancelOption | nil,
         canceled_at: Time | nil,
         cancellation_reason: String | nil,
         company: WhopSDK::Membership::Company,
         created_at: Time,
         currency: WhopSDK::Currency | nil,
+        custom_field_responses: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Membership::CustomFieldResponse]),
         license_key: String | nil,
         manage_url: String | nil,
         member: WhopSDK::Membership::Member | nil,
@@ -93,6 +97,7 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
       row => {
         id: String,
         cancel_at_period_end: WhopSDK::Internal::Type::Boolean,
+        cancel_option: WhopSDK::Models::MembershipListResponse::CancelOption | nil,
         canceled_at: Time | nil,
         cancellation_reason: String | nil,
         company: WhopSDK::Models::MembershipListResponse::Company,
@@ -128,11 +133,13 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         cancel_at_period_end: WhopSDK::Internal::Type::Boolean,
+        cancel_option: WhopSDK::Membership::CancelOption | nil,
         canceled_at: Time | nil,
         cancellation_reason: String | nil,
         company: WhopSDK::Membership::Company,
         created_at: Time,
         currency: WhopSDK::Currency | nil,
+        custom_field_responses: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Membership::CustomFieldResponse]),
         license_key: String | nil,
         manage_url: String | nil,
         member: WhopSDK::Membership::Member | nil,
@@ -163,11 +170,13 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         cancel_at_period_end: WhopSDK::Internal::Type::Boolean,
+        cancel_option: WhopSDK::Membership::CancelOption | nil,
         canceled_at: Time | nil,
         cancellation_reason: String | nil,
         company: WhopSDK::Membership::Company,
         created_at: Time,
         currency: WhopSDK::Currency | nil,
+        custom_field_responses: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Membership::CustomFieldResponse]),
         license_key: String | nil,
         manage_url: String | nil,
         member: WhopSDK::Membership::Member | nil,
@@ -198,11 +207,50 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         cancel_at_period_end: WhopSDK::Internal::Type::Boolean,
+        cancel_option: WhopSDK::Membership::CancelOption | nil,
         canceled_at: Time | nil,
         cancellation_reason: String | nil,
         company: WhopSDK::Membership::Company,
         created_at: Time,
         currency: WhopSDK::Currency | nil,
+        custom_field_responses: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Membership::CustomFieldResponse]),
+        license_key: String | nil,
+        manage_url: String | nil,
+        member: WhopSDK::Membership::Member | nil,
+        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),
+        payment_collection_paused: WhopSDK::Internal::Type::Boolean,
+        plan: WhopSDK::Membership::Plan,
+        product: WhopSDK::Membership::Product,
+        promo_code: WhopSDK::Membership::PromoCode | nil,
+        renewal_period_end: Time | nil,
+        renewal_period_start: Time | nil,
+        status: WhopSDK::MembershipStatus,
+        updated_at: Time,
+        user: WhopSDK::Membership::User | nil
+      }
+    end
+  end
+
+  def test_uncancel
+    skip("Prism tests are disabled")
+
+    response = @whop.memberships.uncancel("mem_xxxxxxxxxxxxxx")
+
+    assert_pattern do
+      response => WhopSDK::Membership
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        cancel_at_period_end: WhopSDK::Internal::Type::Boolean,
+        cancel_option: WhopSDK::Membership::CancelOption | nil,
+        canceled_at: Time | nil,
+        cancellation_reason: String | nil,
+        company: WhopSDK::Membership::Company,
+        created_at: Time,
+        currency: WhopSDK::Currency | nil,
+        custom_field_responses: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Membership::CustomFieldResponse]),
         license_key: String | nil,
         manage_url: String | nil,
         member: WhopSDK::Membership::Member | nil,

@@ -23,16 +23,6 @@ module WhopSDK
       end
       attr_accessor :balances
 
-      # The different statuses a LedgerAccountAudit can be
-      sig do
-        returns(
-          T.nilable(
-            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
-          )
-        )
-      end
-      attr_accessor :ledger_account_audit_status
-
       # The type of ledger account.
       sig do
         returns(
@@ -93,10 +83,6 @@ module WhopSDK
             T::Array[
               WhopSDK::Models::LedgerAccountRetrieveResponse::Balance::OrHash
             ],
-          ledger_account_audit_status:
-            T.nilable(
-              WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::OrSymbol
-            ),
           ledger_type:
             WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerType::OrSymbol,
           owner:
@@ -122,8 +108,6 @@ module WhopSDK
         id:,
         # The balances associated with the account.
         balances:,
-        # The different statuses a LedgerAccountAudit can be
-        ledger_account_audit_status:,
         # The type of ledger account.
         ledger_type:,
         # The owner of the ledger account.
@@ -143,10 +127,6 @@ module WhopSDK
             id: String,
             balances:
               T::Array[WhopSDK::Models::LedgerAccountRetrieveResponse::Balance],
-            ledger_account_audit_status:
-              T.nilable(
-                WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
-              ),
             ledger_type:
               WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerType::TaggedSymbol,
             owner:
@@ -225,91 +205,6 @@ module WhopSDK
           )
         end
         def to_hash
-        end
-      end
-
-      # The different statuses a LedgerAccountAudit can be
-      module LedgerAccountAuditStatus
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(
-              Symbol,
-              WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus
-            )
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        PENDING =
-          T.let(
-            :pending,
-            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
-          )
-        PENDING_AI_REVIEW =
-          T.let(
-            :pending_ai_review,
-            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
-          )
-        APPROVED =
-          T.let(
-            :approved,
-            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
-          )
-        RESERVES_IMPOSED =
-          T.let(
-            :reserves_imposed,
-            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
-          )
-        SUSPENDED =
-          T.let(
-            :suspended,
-            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
-          )
-        IGNORED =
-          T.let(
-            :ignored,
-            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
-          )
-        REJECTED =
-          T.let(
-            :rejected,
-            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
-          )
-        REQUESTED_MORE_INFORMATION =
-          T.let(
-            :requested_more_information,
-            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
-          )
-        INFORMATION_SUBMITTED =
-          T.let(
-            :information_submitted,
-            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
-          )
-        REQUESTED_TOS_VIOLATION_CORRECTION =
-          T.let(
-            :requested_tos_violation_correction,
-            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
-          )
-        CLAWBACK_ATTEMPTED =
-          T.let(
-            :clawback_attempted,
-            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
-          )
-        AWAITING_SALES_REVIEW =
-          T.let(
-            :awaiting_sales_review,
-            WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::Models::LedgerAccountRetrieveResponse::LedgerAccountAuditStatus::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
         end
       end
 

@@ -4,6 +4,10 @@ module WhopSDK
   module Resources
     class Notifications
       # Queues a notification to be sent to users in an experience or company team
+      #
+      # Required permissions:
+      #
+      # - `notification:create`
       sig do
         params(
           company_id: String,

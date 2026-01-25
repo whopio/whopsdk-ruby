@@ -307,6 +307,8 @@ module WhopSDK
 
   module MembershipStatus = WhopSDK::Models::MembershipStatus
 
+  class MembershipUncancelParams = WhopSDK::Models::MembershipUncancelParams
+
   class MembershipUpdateParams = WhopSDK::Models::MembershipUpdateParams
 
   module MemberStatuses = WhopSDK::Models::MemberStatuses
@@ -534,8 +536,6 @@ module WhopSDK
   module WithdrawalSpeeds = WhopSDK::Models::WithdrawalSpeeds
 
   module WithdrawalStatus = WhopSDK::Models::WithdrawalStatus
-
-  module WithdrawalTypes = WhopSDK::Models::WithdrawalTypes
 
   class WithdrawalUpdatedWebhookEvent = WhopSDK::Models::WithdrawalUpdatedWebhookEvent
 end

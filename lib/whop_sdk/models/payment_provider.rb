@@ -14,6 +14,7 @@ module WhopSDK
       SPLITIT = :splitit
       PLATFORM_BALANCE = :platform_balance
       MULTI_PSP = :multi_psp
+      ADYEN = :adyen
 
       # @!method self.values
       #   @return [Array<Symbol>]

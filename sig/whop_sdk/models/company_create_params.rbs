@@ -7,6 +7,7 @@ module WhopSDK
         title: String,
         business_type: WhopSDK::Models::business_types?,
         industry_type: WhopSDK::Models::industry_types?,
+        logo: WhopSDK::CompanyCreateParams::Logo?,
         metadata: ::Hash[Symbol, top]?,
         send_customer_emails: bool?
       }
@@ -26,6 +27,8 @@ module WhopSDK
 
       attr_accessor industry_type: WhopSDK::Models::industry_types?
 
+      attr_accessor logo: WhopSDK::CompanyCreateParams::Logo?
+
       attr_accessor metadata: ::Hash[Symbol, top]?
 
       attr_accessor send_customer_emails: bool?
@@ -36,6 +39,7 @@ module WhopSDK
         title: String,
         ?business_type: WhopSDK::Models::business_types?,
         ?industry_type: WhopSDK::Models::industry_types?,
+        ?logo: WhopSDK::CompanyCreateParams::Logo?,
         ?metadata: ::Hash[Symbol, top]?,
         ?send_customer_emails: bool?,
         ?request_options: WhopSDK::request_opts
@@ -47,10 +51,21 @@ module WhopSDK
         title: String,
         business_type: WhopSDK::Models::business_types?,
         industry_type: WhopSDK::Models::industry_types?,
+        logo: WhopSDK::CompanyCreateParams::Logo?,
         metadata: ::Hash[Symbol, top]?,
         send_customer_emails: bool?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type logo = { id: String }
+
+      class Logo < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
     end
   end
 end

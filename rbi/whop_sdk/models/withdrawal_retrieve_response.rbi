@@ -105,10 +105,6 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :trace_code
 
-      # The type of withdrawal.
-      sig { returns(WhopSDK::WithdrawalTypes::TaggedSymbol) }
-      attr_accessor :withdrawal_type
-
       # A withdrawal request.
       sig do
         params(
@@ -133,8 +129,7 @@ module WhopSDK
             ),
           speed: WhopSDK::WithdrawalSpeeds::OrSymbol,
           status: WhopSDK::WithdrawalStatus::OrSymbol,
-          trace_code: T.nilable(String),
-          withdrawal_type: WhopSDK::WithdrawalTypes::OrSymbol
+          trace_code: T.nilable(String)
         ).returns(T.attached_class)
       end
       def self.new(
@@ -171,9 +166,7 @@ module WhopSDK
         status:,
         # The trace code for the payout, if applicable. Provided on ACH transactions when
         # available.
-        trace_code:,
-        # The type of withdrawal.
-        withdrawal_type:
+        trace_code:
       )
       end
 
@@ -201,8 +194,7 @@ module WhopSDK
               ),
             speed: WhopSDK::WithdrawalSpeeds::TaggedSymbol,
             status: WhopSDK::WithdrawalStatus::TaggedSymbol,
-            trace_code: T.nilable(String),
-            withdrawal_type: WhopSDK::WithdrawalTypes::TaggedSymbol
+            trace_code: T.nilable(String)
           }
         )
       end
@@ -345,6 +337,11 @@ module WhopSDK
         INVALID_BENEFICIARY =
           T.let(
             :invalid_beneficiary,
+            WhopSDK::Models::WithdrawalRetrieveResponse::ErrorCode::TaggedSymbol
+          )
+        INVALID_MAILING_ADDRESS =
+          T.let(
+            :invalid_mailing_address,
             WhopSDK::Models::WithdrawalRetrieveResponse::ErrorCode::TaggedSymbol
           )
         INVALID_BRANCH_NUMBER =

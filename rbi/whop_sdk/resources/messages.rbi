@@ -14,12 +14,7 @@ module WhopSDK
           content: String,
           attachments:
             T.nilable(
-              T::Array[
-                T.any(
-                  WhopSDK::MessageCreateParams::Attachment::AttachmentInputWithDirectUploadID::OrHash,
-                  WhopSDK::MessageCreateParams::Attachment::AttachmentInputWithID::OrHash
-                )
-              ]
+              T::Array[WhopSDK::MessageCreateParams::Attachment::OrHash]
             ),
           poll: T.nilable(WhopSDK::MessageCreateParams::Poll::OrHash),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -62,12 +57,7 @@ module WhopSDK
           id: String,
           attachments:
             T.nilable(
-              T::Array[
-                T.any(
-                  WhopSDK::MessageUpdateParams::Attachment::AttachmentInputWithDirectUploadID::OrHash,
-                  WhopSDK::MessageUpdateParams::Attachment::AttachmentInputWithID::OrHash
-                )
-              ]
+              T::Array[WhopSDK::MessageUpdateParams::Attachment::OrHash]
             ),
           content: T.nilable(String),
           is_pinned: T.nilable(T::Boolean),

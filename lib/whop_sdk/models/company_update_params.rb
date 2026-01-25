@@ -10,8 +10,8 @@ module WhopSDK
       # @!attribute banner_image
       #   The banner image for the company in png or jpeg format
       #
-      #   @return [WhopSDK::Models::CompanyUpdateParams::BannerImage::AttachmentInputWithDirectUploadID, WhopSDK::Models::CompanyUpdateParams::BannerImage::AttachmentInputWithID, nil]
-      optional :banner_image, union: -> { WhopSDK::CompanyUpdateParams::BannerImage }, nil?: true
+      #   @return [WhopSDK::Models::CompanyUpdateParams::BannerImage, nil]
+      optional :banner_image, -> { WhopSDK::CompanyUpdateParams::BannerImage }, nil?: true
 
       # @!attribute business_type
       #   The different business types a company can be.
@@ -28,8 +28,8 @@ module WhopSDK
       # @!attribute logo
       #   The logo for the company in png, jpeg, or gif format
       #
-      #   @return [WhopSDK::Models::CompanyUpdateParams::Logo::AttachmentInputWithDirectUploadID, WhopSDK::Models::CompanyUpdateParams::Logo::AttachmentInputWithID, nil]
-      optional :logo, union: -> { WhopSDK::CompanyUpdateParams::Logo }, nil?: true
+      #   @return [WhopSDK::Models::CompanyUpdateParams::Logo, nil]
+      optional :logo, -> { WhopSDK::CompanyUpdateParams::Logo }, nil?: true
 
       # @!attribute send_customer_emails
       #   Whether Whop sends transactional emails to customers on behalf of this company.
@@ -50,13 +50,13 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CompanyUpdateParams} for more details.
       #
-      #   @param banner_image [WhopSDK::Models::CompanyUpdateParams::BannerImage::AttachmentInputWithDirectUploadID, WhopSDK::Models::CompanyUpdateParams::BannerImage::AttachmentInputWithID, nil] The banner image for the company in png or jpeg format
+      #   @param banner_image [WhopSDK::Models::CompanyUpdateParams::BannerImage, nil] The banner image for the company in png or jpeg format
       #
       #   @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #
       #   @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
-      #   @param logo [WhopSDK::Models::CompanyUpdateParams::Logo::AttachmentInputWithDirectUploadID, WhopSDK::Models::CompanyUpdateParams::Logo::AttachmentInputWithID, nil] The logo for the company in png, jpeg, or gif format
+      #   @param logo [WhopSDK::Models::CompanyUpdateParams::Logo, nil] The logo for the company in png, jpeg, or gif format
       #
       #   @param send_customer_emails [Boolean, nil] Whether Whop sends transactional emails to customers on behalf of this company.
       #
@@ -64,108 +64,30 @@ module WhopSDK
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      # The banner image for the company in png or jpeg format
-      module BannerImage
-        extend WhopSDK::Internal::Type::Union
+      class BannerImage < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The ID of an existing file object.
+        #
+        #   @return [String]
+        required :id, String
 
-        # Input for an attachment
-        variant -> { WhopSDK::CompanyUpdateParams::BannerImage::AttachmentInputWithDirectUploadID }
-
-        # Input for an attachment
-        variant -> { WhopSDK::CompanyUpdateParams::BannerImage::AttachmentInputWithID }
-
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          # @!attribute direct_upload_id
-          #   This ID should be used the first time you upload an attachment. It is the ID of
-          #   the direct upload that was created when uploading the file to S3 via the
-          #   mediaDirectUpload mutation.
-          #
-          #   @return [String]
-          required :direct_upload_id, String
-
-          # @!method initialize(direct_upload_id:)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::CompanyUpdateParams::BannerImage::AttachmentInputWithDirectUploadID}
-          #   for more details.
-          #
-          #   Input for an attachment
-          #
-          #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
-        end
-
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #   The ID of an existing attachment object. Use this when updating a resource and
-          #   keeping a subset of the attachments. Don't use this unless you know what you're
-          #   doing.
-          #
-          #   @return [String]
-          required :id, String
-
-          # @!method initialize(id:)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::CompanyUpdateParams::BannerImage::AttachmentInputWithID} for
-          #   more details.
-          #
-          #   Input for an attachment
-          #
-          #   @param id [String] The ID of an existing attachment object. Use this when updating a resource and k
-        end
-
-        # @!method self.variants
-        #   @return [Array(WhopSDK::Models::CompanyUpdateParams::BannerImage::AttachmentInputWithDirectUploadID, WhopSDK::Models::CompanyUpdateParams::BannerImage::AttachmentInputWithID)]
+        # @!method initialize(id:)
+        #   The banner image for the company in png or jpeg format
+        #
+        #   @param id [String] The ID of an existing file object.
       end
 
-      # The logo for the company in png, jpeg, or gif format
-      module Logo
-        extend WhopSDK::Internal::Type::Union
+      class Logo < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The ID of an existing file object.
+        #
+        #   @return [String]
+        required :id, String
 
-        # Input for an attachment
-        variant -> { WhopSDK::CompanyUpdateParams::Logo::AttachmentInputWithDirectUploadID }
-
-        # Input for an attachment
-        variant -> { WhopSDK::CompanyUpdateParams::Logo::AttachmentInputWithID }
-
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          # @!attribute direct_upload_id
-          #   This ID should be used the first time you upload an attachment. It is the ID of
-          #   the direct upload that was created when uploading the file to S3 via the
-          #   mediaDirectUpload mutation.
-          #
-          #   @return [String]
-          required :direct_upload_id, String
-
-          # @!method initialize(direct_upload_id:)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::CompanyUpdateParams::Logo::AttachmentInputWithDirectUploadID}
-          #   for more details.
-          #
-          #   Input for an attachment
-          #
-          #   @param direct_upload_id [String] This ID should be used the first time you upload an attachment. It is the ID of
-        end
-
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #   The ID of an existing attachment object. Use this when updating a resource and
-          #   keeping a subset of the attachments. Don't use this unless you know what you're
-          #   doing.
-          #
-          #   @return [String]
-          required :id, String
-
-          # @!method initialize(id:)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::CompanyUpdateParams::Logo::AttachmentInputWithID} for more
-          #   details.
-          #
-          #   Input for an attachment
-          #
-          #   @param id [String] The ID of an existing attachment object. Use this when updating a resource and k
-        end
-
-        # @!method self.variants
-        #   @return [Array(WhopSDK::Models::CompanyUpdateParams::Logo::AttachmentInputWithDirectUploadID, WhopSDK::Models::CompanyUpdateParams::Logo::AttachmentInputWithID)]
+        # @!method initialize(id:)
+        #   The logo for the company in png, jpeg, or gif format
+        #
+        #   @param id [String] The ID of an existing file object.
       end
     end
   end

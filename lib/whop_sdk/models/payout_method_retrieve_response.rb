@@ -10,11 +10,24 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
+      # @!attribute account_reference
+      #   A reference to identify the payout destination, such as the last 4 digits of an
+      #   account number or an email address.
+      #
+      #   @return [String, nil]
+      required :account_reference, String, nil?: true
+
       # @!attribute company
       #   The company associated with the payout token
       #
       #   @return [WhopSDK::Models::PayoutMethodRetrieveResponse::Company, nil]
       required :company, -> { WhopSDK::Models::PayoutMethodRetrieveResponse::Company }, nil?: true
+
+      # @!attribute created_at
+      #   The date and time the payout token was created
+      #
+      #   @return [Time]
+      required :created_at, Time
 
       # @!attribute currency
       #   The currency code of the payout destination. This is the currency that payouts
@@ -29,6 +42,12 @@ module WhopSDK
       #   @return [WhopSDK::Models::PayoutMethodRetrieveResponse::Destination, nil]
       required :destination, -> { WhopSDK::Models::PayoutMethodRetrieveResponse::Destination }, nil?: true
 
+      # @!attribute institution_name
+      #   The name of the bank or financial institution.
+      #
+      #   @return [String, nil]
+      required :institution_name, String, nil?: true
+
       # @!attribute is_default
       #   Whether this payout token is the default for the payout account
       #
@@ -42,7 +61,7 @@ module WhopSDK
       #   @return [String, nil]
       required :nickname, String, nil?: true
 
-      # @!method initialize(id:, company:, currency:, destination:, is_default:, nickname:)
+      # @!method initialize(id:, account_reference:, company:, created_at:, currency:, destination:, institution_name:, is_default:, nickname:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PayoutMethodRetrieveResponse} for more details.
       #
@@ -50,11 +69,17 @@ module WhopSDK
       #
       #   @param id [String] The ID of the payout token
       #
+      #   @param account_reference [String, nil] A reference to identify the payout destination, such as the last 4 digits of an
+      #
       #   @param company [WhopSDK::Models::PayoutMethodRetrieveResponse::Company, nil] The company associated with the payout token
+      #
+      #   @param created_at [Time] The date and time the payout token was created
       #
       #   @param currency [String] The currency code of the payout destination. This is the currency that payouts w
       #
       #   @param destination [WhopSDK::Models::PayoutMethodRetrieveResponse::Destination, nil] The payout destination associated with the payout token
+      #
+      #   @param institution_name [String, nil] The name of the bank or financial institution.
       #
       #   @param is_default [Boolean] Whether this payout token is the default for the payout account
       #

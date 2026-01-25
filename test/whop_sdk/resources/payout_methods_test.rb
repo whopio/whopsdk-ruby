@@ -15,9 +15,12 @@ class WhopSDK::Test::Resources::PayoutMethodsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        account_reference: String | nil,
         company: WhopSDK::Models::PayoutMethodRetrieveResponse::Company | nil,
+        created_at: Time,
         currency: String,
         destination: WhopSDK::Models::PayoutMethodRetrieveResponse::Destination | nil,
+        institution_name: String | nil,
         is_default: WhopSDK::Internal::Type::Boolean,
         nickname: String | nil
       }
@@ -43,9 +46,12 @@ class WhopSDK::Test::Resources::PayoutMethodsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
+        account_reference: String | nil,
         company: WhopSDK::Models::PayoutMethodListResponse::Company | nil,
+        created_at: Time,
         currency: String,
         destination: WhopSDK::Models::PayoutMethodListResponse::Destination | nil,
+        institution_name: String | nil,
         is_default: WhopSDK::Internal::Type::Boolean,
         nickname: String | nil
       }

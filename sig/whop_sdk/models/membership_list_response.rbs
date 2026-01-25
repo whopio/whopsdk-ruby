@@ -4,6 +4,7 @@ module WhopSDK
       {
         id: String,
         cancel_at_period_end: bool,
+        cancel_option: WhopSDK::Models::MembershipListResponse::cancel_option?,
         canceled_at: Time?,
         cancellation_reason: String?,
         company: WhopSDK::Models::MembershipListResponse::Company,
@@ -28,6 +29,8 @@ module WhopSDK
       attr_accessor id: String
 
       attr_accessor cancel_at_period_end: bool
+
+      attr_accessor cancel_option: WhopSDK::Models::MembershipListResponse::cancel_option?
 
       attr_accessor canceled_at: Time?
 
@@ -68,6 +71,7 @@ module WhopSDK
       def initialize: (
         id: String,
         cancel_at_period_end: bool,
+        cancel_option: WhopSDK::Models::MembershipListResponse::cancel_option?,
         canceled_at: Time?,
         cancellation_reason: String?,
         company: WhopSDK::Models::MembershipListResponse::Company,
@@ -91,6 +95,7 @@ module WhopSDK
       def to_hash: -> {
         id: String,
         cancel_at_period_end: bool,
+        cancel_option: WhopSDK::Models::MembershipListResponse::cancel_option?,
         canceled_at: Time?,
         cancellation_reason: String?,
         company: WhopSDK::Models::MembershipListResponse::Company,
@@ -110,6 +115,29 @@ module WhopSDK
         updated_at: Time,
         user: WhopSDK::Models::MembershipListResponse::User?
       }
+
+      type cancel_option =
+        :too_expensive
+        | :switching
+        | :missing_features
+        | :technical_issues
+        | :bad_experience
+        | :other
+        | :testing
+
+      module CancelOption
+        extend WhopSDK::Internal::Type::Enum
+
+        TOO_EXPENSIVE: :too_expensive
+        SWITCHING: :switching
+        MISSING_FEATURES: :missing_features
+        TECHNICAL_ISSUES: :technical_issues
+        BAD_EXPERIENCE: :bad_experience
+        OTHER: :other
+        TESTING: :testing
+
+        def self?.values: -> ::Array[WhopSDK::Models::MembershipListResponse::cancel_option]
+      end
 
       type company = { id: String, title: String }
 
@@ -165,18 +193,31 @@ module WhopSDK
         def to_hash: -> { id: String }
       end
 
-      type user = { id: String, name: String?, username: String }
+      type user =
+        { id: String, email: String?, name: String?, username: String }
 
       class User < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
+
+        attr_accessor email: String?
 
         attr_accessor name: String?
 
         attr_accessor username: String
 
-        def initialize: (id: String, name: String?, username: String) -> void
+        def initialize: (
+          id: String,
+          email: String?,
+          name: String?,
+          username: String
+        ) -> void
 
-        def to_hash: -> { id: String, name: String?, username: String }
+        def to_hash: -> {
+          id: String,
+          email: String?,
+          name: String?,
+          username: String
+        }
       end
     end
   end

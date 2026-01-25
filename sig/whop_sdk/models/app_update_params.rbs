@@ -9,7 +9,7 @@ module WhopSDK
         description: String?,
         discover_path: String?,
         experience_path: String?,
-        icon: WhopSDK::Models::AppUpdateParams::icon?,
+        icon: WhopSDK::AppUpdateParams::Icon?,
         name: String?,
         required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
         status: WhopSDK::Models::app_statuses?
@@ -34,7 +34,7 @@ module WhopSDK
 
       attr_accessor experience_path: String?
 
-      attr_accessor icon: WhopSDK::Models::AppUpdateParams::icon?
+      attr_accessor icon: WhopSDK::AppUpdateParams::Icon?
 
       attr_accessor name: String?
 
@@ -50,7 +50,7 @@ module WhopSDK
         ?description: String?,
         ?discover_path: String?,
         ?experience_path: String?,
-        ?icon: WhopSDK::Models::AppUpdateParams::icon?,
+        ?icon: WhopSDK::AppUpdateParams::Icon?,
         ?name: String?,
         ?required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
         ?status: WhopSDK::Models::app_statuses?,
@@ -65,42 +65,21 @@ module WhopSDK
         description: String?,
         discover_path: String?,
         experience_path: String?,
-        icon: WhopSDK::Models::AppUpdateParams::icon?,
+        icon: WhopSDK::AppUpdateParams::Icon?,
         name: String?,
         required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
         status: WhopSDK::Models::app_statuses?,
         request_options: WhopSDK::RequestOptions
       }
 
-      type icon =
-        WhopSDK::AppUpdateParams::Icon::AttachmentInputWithDirectUploadID
-        | WhopSDK::AppUpdateParams::Icon::AttachmentInputWithID
+      type icon = { id: String }
 
-      module Icon
-        extend WhopSDK::Internal::Type::Union
+      class Icon < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
 
-        type attachment_input_with_direct_upload_id =
-          { direct_upload_id: String }
+        def initialize: (id: String) -> void
 
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          attr_accessor direct_upload_id: String
-
-          def initialize: (direct_upload_id: String) -> void
-
-          def to_hash: -> { direct_upload_id: String }
-        end
-
-        type attachment_input_with_id = { id: String }
-
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          def initialize: (id: String) -> void
-
-          def to_hash: -> { id: String }
-        end
-
-        def self?.variants: -> ::Array[WhopSDK::Models::AppUpdateParams::icon]
+        def to_hash: -> { id: String }
       end
 
       type required_scope = :read_user

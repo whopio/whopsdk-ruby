@@ -44,9 +44,12 @@ module WhopSDK
       type data =
         {
           id: String,
+          account_reference: String?,
           company: WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Company?,
+          created_at: Time,
           currency: String,
           destination: WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination?,
+          institution_name: String?,
           is_default: bool,
           nickname: String?
         }
@@ -54,11 +57,17 @@ module WhopSDK
       class Data < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
+        attr_accessor account_reference: String?
+
         attr_accessor company: WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Company?
+
+        attr_accessor created_at: Time
 
         attr_accessor currency: String
 
         attr_accessor destination: WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination?
+
+        attr_accessor institution_name: String?
 
         attr_accessor is_default: bool
 
@@ -66,18 +75,24 @@ module WhopSDK
 
         def initialize: (
           id: String,
+          account_reference: String?,
           company: WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Company?,
+          created_at: Time,
           currency: String,
           destination: WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination?,
+          institution_name: String?,
           is_default: bool,
           nickname: String?
         ) -> void
 
         def to_hash: -> {
           id: String,
+          account_reference: String?,
           company: WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Company?,
+          created_at: Time,
           currency: String,
           destination: WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination?,
+          institution_name: String?,
           is_default: bool,
           nickname: String?
         }

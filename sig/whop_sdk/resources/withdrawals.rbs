@@ -6,6 +6,8 @@ module WhopSDK
         company_id: String,
         currency: WhopSDK::Models::currency,
         ?payout_method_id: String?,
+        ?platform_covers_fees: bool?,
+        ?statement_descriptor: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::WithdrawalCreateResponse
 

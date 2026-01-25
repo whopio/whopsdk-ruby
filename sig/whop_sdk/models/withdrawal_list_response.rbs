@@ -10,8 +10,7 @@ module WhopSDK
         fee_type: WhopSDK::Models::withdrawal_fee_types?,
         markup_fee: Float,
         speed: WhopSDK::Models::withdrawal_speeds,
-        status: WhopSDK::Models::withdrawal_status,
-        withdrawal_type: WhopSDK::Models::withdrawal_types
+        status: WhopSDK::Models::withdrawal_status
       }
 
     class WithdrawalListResponse < WhopSDK::Internal::Type::BaseModel
@@ -33,8 +32,6 @@ module WhopSDK
 
       attr_accessor status: WhopSDK::Models::withdrawal_status
 
-      attr_accessor withdrawal_type: WhopSDK::Models::withdrawal_types
-
       def initialize: (
         id: String,
         amount: Float,
@@ -44,8 +41,7 @@ module WhopSDK
         fee_type: WhopSDK::Models::withdrawal_fee_types?,
         markup_fee: Float,
         speed: WhopSDK::Models::withdrawal_speeds,
-        status: WhopSDK::Models::withdrawal_status,
-        withdrawal_type: WhopSDK::Models::withdrawal_types
+        status: WhopSDK::Models::withdrawal_status
       ) -> void
 
       def to_hash: -> {
@@ -57,8 +53,7 @@ module WhopSDK
         fee_type: WhopSDK::Models::withdrawal_fee_types?,
         markup_fee: Float,
         speed: WhopSDK::Models::withdrawal_speeds,
-        status: WhopSDK::Models::withdrawal_status,
-        withdrawal_type: WhopSDK::Models::withdrawal_types
+        status: WhopSDK::Models::withdrawal_status
       }
     end
   end

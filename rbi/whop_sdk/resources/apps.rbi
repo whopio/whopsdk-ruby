@@ -14,6 +14,7 @@ module WhopSDK
           company_id: String,
           name: String,
           base_url: T.nilable(String),
+          icon: T.nilable(WhopSDK::AppCreateParams::Icon::OrHash),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::App)
       end
@@ -24,6 +25,8 @@ module WhopSDK
         name:,
         # The base URL of the app to be created
         base_url: nil,
+        # The icon for the app in png, jpeg, or gif format
+        icon: nil,
         request_options: {}
       )
       end
@@ -62,13 +65,7 @@ module WhopSDK
           description: T.nilable(String),
           discover_path: T.nilable(String),
           experience_path: T.nilable(String),
-          icon:
-            T.nilable(
-              T.any(
-                WhopSDK::AppUpdateParams::Icon::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::AppUpdateParams::Icon::AttachmentInputWithID::OrHash
-              )
-            ),
+          icon: T.nilable(WhopSDK::AppUpdateParams::Icon::OrHash),
           name: T.nilable(String),
           required_scopes:
             T.nilable(

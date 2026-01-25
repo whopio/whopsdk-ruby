@@ -66,6 +66,10 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :redirect_url
 
+      # The URL of the page where the checkout is being initiated from.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :source_url
+
       # The ID of the plan to use for the checkout configuration
       sig { returns(String) }
       attr_accessor :plan_id
@@ -88,6 +92,7 @@ module WhopSDK
               WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration::OrHash
             ),
           redirect_url: T.nilable(String),
+          source_url: T.nilable(String),
           mode: Symbol,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -112,6 +117,8 @@ module WhopSDK
         payment_method_configuration: nil,
         # The URL to redirect the user to after the checkout configuration is created
         redirect_url: nil,
+        # The URL of the page where the checkout is being initiated from.
+        source_url: nil,
         mode: :setup,
         request_options: {}
       )
@@ -130,6 +137,7 @@ module WhopSDK
                 WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration
               ),
             redirect_url: T.nilable(String),
+            source_url: T.nilable(String),
             plan_id: String,
             company_id: String,
             request_options: WhopSDK::RequestOptions
@@ -194,15 +202,20 @@ module WhopSDK
         # An image for the plan. This will be visible on the product page to customers.
         sig do
           returns(
-            T.nilable(
-              T.any(
-                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID,
-                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID
-              )
-            )
+            T.nilable(WhopSDK::CheckoutConfigurationCreateParams::Plan::Image)
           )
         end
-        attr_accessor :image
+        attr_reader :image
+
+        sig do
+          params(
+            image:
+              T.nilable(
+                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::OrHash
+              )
+          ).void
+        end
+        attr_writer :image
 
         # An additional amount charged upon first purchase.
         sig { returns(T.nilable(Float)) }
@@ -277,6 +290,10 @@ module WhopSDK
         sig { returns(T.nilable(Integer)) }
         attr_accessor :split_pay_required_payments
 
+        # The number of units available for purchase. If not provided, stock is unlimited.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :stock
+
         # The title of the plan. This will be visible on the product page to customers.
         sig { returns(T.nilable(String)) }
         attr_accessor :title
@@ -307,10 +324,7 @@ module WhopSDK
             force_create_new_plan: T.nilable(T::Boolean),
             image:
               T.nilable(
-                T.any(
-                  WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID::OrHash,
-                  WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID::OrHash
-                )
+                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::OrHash
               ),
             initial_price: T.nilable(Float),
             internal_notes: T.nilable(String),
@@ -328,6 +342,7 @@ module WhopSDK
             release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
             renewal_price: T.nilable(Float),
             split_pay_required_payments: T.nilable(Integer),
+            stock: T.nilable(Integer),
             title: T.nilable(String),
             trial_period_days: T.nilable(Integer),
             visibility: T.nilable(WhopSDK::Visibility::OrSymbol)
@@ -378,6 +393,8 @@ module WhopSDK
           renewal_price: nil,
           # The number of payments required before pausing the subscription.
           split_pay_required_payments: nil,
+          # The number of units available for purchase. If not provided, stock is unlimited.
+          stock: nil,
           # The title of the plan. This will be visible on the product page to customers.
           title: nil,
           # The number of free trial days added before a renewal plan.
@@ -405,10 +422,7 @@ module WhopSDK
               force_create_new_plan: T.nilable(T::Boolean),
               image:
                 T.nilable(
-                  T.any(
-                    WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID,
-                    WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID
-                  )
+                  WhopSDK::CheckoutConfigurationCreateParams::Plan::Image
                 ),
               initial_price: T.nilable(Float),
               internal_notes: T.nilable(String),
@@ -426,6 +440,7 @@ module WhopSDK
               release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
               renewal_price: T.nilable(Float),
               split_pay_required_payments: T.nilable(Integer),
+              stock: T.nilable(Integer),
               title: T.nilable(String),
               trial_period_days: T.nilable(Integer),
               visibility: T.nilable(WhopSDK::Visibility::OrSymbol)
@@ -510,86 +525,29 @@ module WhopSDK
           end
         end
 
-        # An image for the plan. This will be visible on the product page to customers.
-        module Image
-          extend WhopSDK::Internal::Type::Union
-
-          Variants =
+        class Image < WhopSDK::Internal::Type::BaseModel
+          OrHash =
             T.type_alias do
               T.any(
-                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID,
-                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID
+                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image,
+                WhopSDK::Internal::AnyHash
               )
             end
 
-          class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-            OrHash =
-              T.type_alias do
-                T.any(
-                  WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithDirectUploadID,
-                  WhopSDK::Internal::AnyHash
-                )
-              end
+          # The ID of an existing file object.
+          sig { returns(String) }
+          attr_accessor :id
 
-            # This ID should be used the first time you upload an attachment. It is the ID of
-            # the direct upload that was created when uploading the file to S3 via the
-            # mediaDirectUpload mutation.
-            sig { returns(String) }
-            attr_accessor :direct_upload_id
-
-            # Input for an attachment
-            sig { params(direct_upload_id: String).returns(T.attached_class) }
-            def self.new(
-              # This ID should be used the first time you upload an attachment. It is the ID of
-              # the direct upload that was created when uploading the file to S3 via the
-              # mediaDirectUpload mutation.
-              direct_upload_id:
-            )
-            end
-
-            sig { override.returns({ direct_upload_id: String }) }
-            def to_hash
-            end
+          # An image for the plan. This will be visible on the product page to customers.
+          sig { params(id: String).returns(T.attached_class) }
+          def self.new(
+            # The ID of an existing file object.
+            id:
+          )
           end
 
-          class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-            OrHash =
-              T.type_alias do
-                T.any(
-                  WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::AttachmentInputWithID,
-                  WhopSDK::Internal::AnyHash
-                )
-              end
-
-            # The ID of an existing attachment object. Use this when updating a resource and
-            # keeping a subset of the attachments. Don't use this unless you know what you're
-            # doing.
-            sig { returns(String) }
-            attr_accessor :id
-
-            # Input for an attachment
-            sig { params(id: String).returns(T.attached_class) }
-            def self.new(
-              # The ID of an existing attachment object. Use this when updating a resource and
-              # keeping a subset of the attachments. Don't use this unless you know what you're
-              # doing.
-              id:
-            )
-            end
-
-            sig { override.returns({ id: String }) }
-            def to_hash
-            end
-          end
-
-          sig do
-            override.returns(
-              T::Array[
-                WhopSDK::CheckoutConfigurationCreateParams::Plan::Image::Variants
-              ]
-            )
-          end
-          def self.variants
+          sig { override.returns({ id: String }) }
+          def to_hash
           end
         end
 

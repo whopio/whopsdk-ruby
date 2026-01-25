@@ -13,17 +13,10 @@ module WhopSDK
           experience_id: String,
           title: String,
           certificate_after_completion_enabled: T.nilable(T::Boolean),
-          cover_image: T.nilable(String),
           order: T.nilable(String),
           require_completing_lessons_in_order: T.nilable(T::Boolean),
           tagline: T.nilable(String),
-          thumbnail:
-            T.nilable(
-              T.any(
-                WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::CourseCreateParams::Thumbnail::AttachmentInputWithID::OrHash
-              )
-            ),
+          thumbnail: T.nilable(WhopSDK::CourseCreateParams::Thumbnail::OrHash),
           visibility: T.nilable(WhopSDK::CourseVisibilities::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Course)
@@ -36,8 +29,6 @@ module WhopSDK
         # Whether the course will award its students a PDF certificate after completing
         # all lessons
         certificate_after_completion_enabled: nil,
-        # The cover image URL of the course
-        cover_image: nil,
         # The decimal order position of the course within its experience. If not provided,
         # it will be set to the next sequential order. Use fractional values (e.g., 1.5)
         # to place between existing courses.
@@ -85,19 +76,12 @@ module WhopSDK
           certificate_after_completion_enabled: T.nilable(T::Boolean),
           chapters:
             T.nilable(T::Array[WhopSDK::CourseUpdateParams::Chapter::OrHash]),
-          cover_image: T.nilable(String),
           description: T.nilable(String),
           language: T.nilable(WhopSDK::Languages::OrSymbol),
           order: T.nilable(String),
           require_completing_lessons_in_order: T.nilable(T::Boolean),
           tagline: T.nilable(String),
-          thumbnail:
-            T.nilable(
-              T.any(
-                WhopSDK::CourseUpdateParams::Thumbnail::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::CourseUpdateParams::Thumbnail::AttachmentInputWithID::OrHash
-              )
-            ),
+          thumbnail: T.nilable(WhopSDK::CourseUpdateParams::Thumbnail::OrHash),
           title: T.nilable(String),
           visibility: T.nilable(WhopSDK::CourseVisibilities::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -111,8 +95,6 @@ module WhopSDK
         certificate_after_completion_enabled: nil,
         # The chapters and lessons to update
         chapters: nil,
-        # The cover image URL of the course
-        cover_image: nil,
         # A short description of the course
         description: nil,
         # The available languages for a course

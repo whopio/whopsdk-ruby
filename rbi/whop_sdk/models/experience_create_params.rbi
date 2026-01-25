@@ -23,6 +23,17 @@ module WhopSDK
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :is_public
 
+      # The logo for the experience
+      sig { returns(T.nilable(WhopSDK::ExperienceCreateParams::Logo)) }
+      attr_reader :logo
+
+      sig do
+        params(
+          logo: T.nilable(WhopSDK::ExperienceCreateParams::Logo::OrHash)
+        ).void
+      end
+      attr_writer :logo
+
       # The name of the experience
       sig { returns(T.nilable(String)) }
       attr_accessor :name
@@ -36,6 +47,7 @@ module WhopSDK
           app_id: String,
           company_id: String,
           is_public: T.nilable(T::Boolean),
+          logo: T.nilable(WhopSDK::ExperienceCreateParams::Logo::OrHash),
           name: T.nilable(String),
           section_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -48,6 +60,8 @@ module WhopSDK
         company_id:,
         # Whether the experience is publicly accessible
         is_public: nil,
+        # The logo for the experience
+        logo: nil,
         # The name of the experience
         name: nil,
         # The ID of the section to create the experience in
@@ -62,6 +76,7 @@ module WhopSDK
             app_id: String,
             company_id: String,
             is_public: T.nilable(T::Boolean),
+            logo: T.nilable(WhopSDK::ExperienceCreateParams::Logo),
             name: T.nilable(String),
             section_id: T.nilable(String),
             request_options: WhopSDK::RequestOptions
@@ -69,6 +84,32 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      class Logo < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::ExperienceCreateParams::Logo,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The ID of an existing file object.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The logo for the experience
+        sig { params(id: String).returns(T.attached_class) }
+        def self.new(
+          # The ID of an existing file object.
+          id:
+        )
+        end
+
+        sig { override.returns({ id: String }) }
+        def to_hash
+        end
       end
     end
   end

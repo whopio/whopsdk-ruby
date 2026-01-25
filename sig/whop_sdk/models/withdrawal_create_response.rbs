@@ -16,8 +16,7 @@ module WhopSDK
         payout_token: WhopSDK::Models::WithdrawalCreateResponse::PayoutToken?,
         speed: WhopSDK::Models::withdrawal_speeds,
         status: WhopSDK::Models::withdrawal_status,
-        trace_code: String?,
-        withdrawal_type: WhopSDK::Models::withdrawal_types
+        trace_code: String?
       }
 
     class WithdrawalCreateResponse < WhopSDK::Internal::Type::BaseModel
@@ -51,8 +50,6 @@ module WhopSDK
 
       attr_accessor trace_code: String?
 
-      attr_accessor withdrawal_type: WhopSDK::Models::withdrawal_types
-
       def initialize: (
         id: String,
         amount: Float,
@@ -68,8 +65,7 @@ module WhopSDK
         payout_token: WhopSDK::Models::WithdrawalCreateResponse::PayoutToken?,
         speed: WhopSDK::Models::withdrawal_speeds,
         status: WhopSDK::Models::withdrawal_status,
-        trace_code: String?,
-        withdrawal_type: WhopSDK::Models::withdrawal_types
+        trace_code: String?
       ) -> void
 
       def to_hash: -> {
@@ -87,8 +83,7 @@ module WhopSDK
         payout_token: WhopSDK::Models::WithdrawalCreateResponse::PayoutToken?,
         speed: WhopSDK::Models::withdrawal_speeds,
         status: WhopSDK::Models::withdrawal_status,
-        trace_code: String?,
-        withdrawal_type: WhopSDK::Models::withdrawal_types
+        trace_code: String?
       }
 
       type error_code =
@@ -117,6 +112,7 @@ module WhopSDK
         | :invalid_account_number
         | :invalid_bank_code
         | :invalid_beneficiary
+        | :invalid_mailing_address
         | :invalid_branch_number
         | :invalid_branch_code
         | :invalid_phone_number
@@ -166,6 +162,7 @@ module WhopSDK
         INVALID_ACCOUNT_NUMBER: :invalid_account_number
         INVALID_BANK_CODE: :invalid_bank_code
         INVALID_BENEFICIARY: :invalid_beneficiary
+        INVALID_MAILING_ADDRESS: :invalid_mailing_address
         INVALID_BRANCH_NUMBER: :invalid_branch_number
         INVALID_BRANCH_CODE: :invalid_branch_code
         INVALID_PHONE_NUMBER: :invalid_phone_number

@@ -10,6 +10,7 @@ module WhopSDK
         ?metadata: ::Hash[Symbol, top]?,
         ?payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration?,
         ?redirect_url: String?,
+        ?source_url: String?,
         ?mode: :setup,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::CheckoutConfiguration

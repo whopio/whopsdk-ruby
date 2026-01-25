@@ -26,14 +26,21 @@ module WhopSDK
       sig do
         returns(
           T.nilable(
-            T.any(
-              WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment::AttachmentInputWithDirectUploadID,
-              WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment::AttachmentInputWithID
-            )
+            WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment
           )
         )
       end
-      attr_accessor :cancellation_policy_attachment
+      attr_reader :cancellation_policy_attachment
+
+      sig do
+        params(
+          cancellation_policy_attachment:
+            T.nilable(
+              WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment::OrHash
+            )
+        ).void
+      end
+      attr_writer :cancellation_policy_attachment
 
       # A cancellation policy disclosure from the company.
       sig { returns(T.nilable(String)) }
@@ -43,14 +50,21 @@ module WhopSDK
       sig do
         returns(
           T.nilable(
-            T.any(
-              WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment::AttachmentInputWithDirectUploadID,
-              WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment::AttachmentInputWithID
-            )
+            WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment
           )
         )
       end
-      attr_accessor :customer_communication_attachment
+      attr_reader :customer_communication_attachment
+
+      sig do
+        params(
+          customer_communication_attachment:
+            T.nilable(
+              WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment::OrHash
+            )
+        ).void
+      end
+      attr_writer :customer_communication_attachment
 
       # The email of the customer from their payment details.
       sig { returns(T.nilable(String)) }
@@ -72,14 +86,21 @@ module WhopSDK
       sig do
         returns(
           T.nilable(
-            T.any(
-              WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment::AttachmentInputWithDirectUploadID,
-              WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment::AttachmentInputWithID
-            )
+            WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment
           )
         )
       end
-      attr_accessor :refund_policy_attachment
+      attr_reader :refund_policy_attachment
+
+      sig do
+        params(
+          refund_policy_attachment:
+            T.nilable(
+              WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment::OrHash
+            )
+        ).void
+      end
+      attr_writer :refund_policy_attachment
 
       # A refund policy disclosure from the company.
       sig { returns(T.nilable(String)) }
@@ -97,14 +118,21 @@ module WhopSDK
       sig do
         returns(
           T.nilable(
-            T.any(
-              WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment::AttachmentInputWithDirectUploadID,
-              WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment::AttachmentInputWithID
-            )
+            WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment
           )
         )
       end
-      attr_accessor :uncategorized_attachment
+      attr_reader :uncategorized_attachment
+
+      sig do
+        params(
+          uncategorized_attachment:
+            T.nilable(
+              WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment::OrHash
+            )
+        ).void
+      end
+      attr_writer :uncategorized_attachment
 
       sig do
         params(
@@ -112,18 +140,12 @@ module WhopSDK
           billing_address: T.nilable(String),
           cancellation_policy_attachment:
             T.nilable(
-              T.any(
-                WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment::AttachmentInputWithID::OrHash
-              )
+              WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment::OrHash
             ),
           cancellation_policy_disclosure: T.nilable(String),
           customer_communication_attachment:
             T.nilable(
-              T.any(
-                WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment::AttachmentInputWithID::OrHash
-              )
+              WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment::OrHash
             ),
           customer_email_address: T.nilable(String),
           customer_name: T.nilable(String),
@@ -131,20 +153,14 @@ module WhopSDK
           product_description: T.nilable(String),
           refund_policy_attachment:
             T.nilable(
-              T.any(
-                WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment::AttachmentInputWithID::OrHash
-              )
+              WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment::OrHash
             ),
           refund_policy_disclosure: T.nilable(String),
           refund_refusal_explanation: T.nilable(String),
           service_date: T.nilable(String),
           uncategorized_attachment:
             T.nilable(
-              T.any(
-                WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment::AttachmentInputWithDirectUploadID::OrHash,
-                WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment::AttachmentInputWithID::OrHash
-              )
+              WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment::OrHash
             ),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -189,18 +205,12 @@ module WhopSDK
             billing_address: T.nilable(String),
             cancellation_policy_attachment:
               T.nilable(
-                T.any(
-                  WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment::AttachmentInputWithDirectUploadID,
-                  WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment::AttachmentInputWithID
-                )
+                WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment
               ),
             cancellation_policy_disclosure: T.nilable(String),
             customer_communication_attachment:
               T.nilable(
-                T.any(
-                  WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment::AttachmentInputWithDirectUploadID,
-                  WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment::AttachmentInputWithID
-                )
+                WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment
               ),
             customer_email_address: T.nilable(String),
             customer_name: T.nilable(String),
@@ -208,20 +218,14 @@ module WhopSDK
             product_description: T.nilable(String),
             refund_policy_attachment:
               T.nilable(
-                T.any(
-                  WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment::AttachmentInputWithDirectUploadID,
-                  WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment::AttachmentInputWithID
-                )
+                WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment
               ),
             refund_policy_disclosure: T.nilable(String),
             refund_refusal_explanation: T.nilable(String),
             service_date: T.nilable(String),
             uncategorized_attachment:
               T.nilable(
-                T.any(
-                  WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment::AttachmentInputWithDirectUploadID,
-                  WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment::AttachmentInputWithID
-                )
+                WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment
               ),
             request_options: WhopSDK::RequestOptions
           }
@@ -230,335 +234,107 @@ module WhopSDK
       def to_hash
       end
 
-      # A file containing the cancellation policy from the company.
-      module CancellationPolicyAttachment
-        extend WhopSDK::Internal::Type::Union
-
-        Variants =
+      class CancellationPolicyAttachment < WhopSDK::Internal::Type::BaseModel
+        OrHash =
           T.type_alias do
             T.any(
-              WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment::AttachmentInputWithDirectUploadID,
-              WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment::AttachmentInputWithID
+              WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment,
+              WhopSDK::Internal::AnyHash
             )
           end
 
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment::AttachmentInputWithDirectUploadID,
-                WhopSDK::Internal::AnyHash
-              )
-            end
+        # The ID of an existing file object.
+        sig { returns(String) }
+        attr_accessor :id
 
-          # This ID should be used the first time you upload an attachment. It is the ID of
-          # the direct upload that was created when uploading the file to S3 via the
-          # mediaDirectUpload mutation.
-          sig { returns(String) }
-          attr_accessor :direct_upload_id
-
-          # Input for an attachment
-          sig { params(direct_upload_id: String).returns(T.attached_class) }
-          def self.new(
-            # This ID should be used the first time you upload an attachment. It is the ID of
-            # the direct upload that was created when uploading the file to S3 via the
-            # mediaDirectUpload mutation.
-            direct_upload_id:
-          )
-          end
-
-          sig { override.returns({ direct_upload_id: String }) }
-          def to_hash
-          end
+        # A file containing the cancellation policy from the company.
+        sig { params(id: String).returns(T.attached_class) }
+        def self.new(
+          # The ID of an existing file object.
+          id:
+        )
         end
 
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment::AttachmentInputWithID,
-                WhopSDK::Internal::AnyHash
-              )
-            end
-
-          # The ID of an existing attachment object. Use this when updating a resource and
-          # keeping a subset of the attachments. Don't use this unless you know what you're
-          # doing.
-          sig { returns(String) }
-          attr_accessor :id
-
-          # Input for an attachment
-          sig { params(id: String).returns(T.attached_class) }
-          def self.new(
-            # The ID of an existing attachment object. Use this when updating a resource and
-            # keeping a subset of the attachments. Don't use this unless you know what you're
-            # doing.
-            id:
-          )
-          end
-
-          sig { override.returns({ id: String }) }
-          def to_hash
-          end
-        end
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment::Variants
-            ]
-          )
-        end
-        def self.variants
+        sig { override.returns({ id: String }) }
+        def to_hash
         end
       end
 
-      # A file containing the customer communication from the company (An image).
-      module CustomerCommunicationAttachment
-        extend WhopSDK::Internal::Type::Union
-
-        Variants =
+      class CustomerCommunicationAttachment < WhopSDK::Internal::Type::BaseModel
+        OrHash =
           T.type_alias do
             T.any(
-              WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment::AttachmentInputWithDirectUploadID,
-              WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment::AttachmentInputWithID
+              WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment,
+              WhopSDK::Internal::AnyHash
             )
           end
 
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment::AttachmentInputWithDirectUploadID,
-                WhopSDK::Internal::AnyHash
-              )
-            end
+        # The ID of an existing file object.
+        sig { returns(String) }
+        attr_accessor :id
 
-          # This ID should be used the first time you upload an attachment. It is the ID of
-          # the direct upload that was created when uploading the file to S3 via the
-          # mediaDirectUpload mutation.
-          sig { returns(String) }
-          attr_accessor :direct_upload_id
-
-          # Input for an attachment
-          sig { params(direct_upload_id: String).returns(T.attached_class) }
-          def self.new(
-            # This ID should be used the first time you upload an attachment. It is the ID of
-            # the direct upload that was created when uploading the file to S3 via the
-            # mediaDirectUpload mutation.
-            direct_upload_id:
-          )
-          end
-
-          sig { override.returns({ direct_upload_id: String }) }
-          def to_hash
-          end
+        # A file containing the customer communication from the company (An image).
+        sig { params(id: String).returns(T.attached_class) }
+        def self.new(
+          # The ID of an existing file object.
+          id:
+        )
         end
 
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment::AttachmentInputWithID,
-                WhopSDK::Internal::AnyHash
-              )
-            end
-
-          # The ID of an existing attachment object. Use this when updating a resource and
-          # keeping a subset of the attachments. Don't use this unless you know what you're
-          # doing.
-          sig { returns(String) }
-          attr_accessor :id
-
-          # Input for an attachment
-          sig { params(id: String).returns(T.attached_class) }
-          def self.new(
-            # The ID of an existing attachment object. Use this when updating a resource and
-            # keeping a subset of the attachments. Don't use this unless you know what you're
-            # doing.
-            id:
-          )
-          end
-
-          sig { override.returns({ id: String }) }
-          def to_hash
-          end
-        end
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment::Variants
-            ]
-          )
-        end
-        def self.variants
+        sig { override.returns({ id: String }) }
+        def to_hash
         end
       end
 
-      # A file containing the refund policy from the company.
-      module RefundPolicyAttachment
-        extend WhopSDK::Internal::Type::Union
-
-        Variants =
+      class RefundPolicyAttachment < WhopSDK::Internal::Type::BaseModel
+        OrHash =
           T.type_alias do
             T.any(
-              WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment::AttachmentInputWithDirectUploadID,
-              WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment::AttachmentInputWithID
+              WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment,
+              WhopSDK::Internal::AnyHash
             )
           end
 
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment::AttachmentInputWithDirectUploadID,
-                WhopSDK::Internal::AnyHash
-              )
-            end
+        # The ID of an existing file object.
+        sig { returns(String) }
+        attr_accessor :id
 
-          # This ID should be used the first time you upload an attachment. It is the ID of
-          # the direct upload that was created when uploading the file to S3 via the
-          # mediaDirectUpload mutation.
-          sig { returns(String) }
-          attr_accessor :direct_upload_id
-
-          # Input for an attachment
-          sig { params(direct_upload_id: String).returns(T.attached_class) }
-          def self.new(
-            # This ID should be used the first time you upload an attachment. It is the ID of
-            # the direct upload that was created when uploading the file to S3 via the
-            # mediaDirectUpload mutation.
-            direct_upload_id:
-          )
-          end
-
-          sig { override.returns({ direct_upload_id: String }) }
-          def to_hash
-          end
+        # A file containing the refund policy from the company.
+        sig { params(id: String).returns(T.attached_class) }
+        def self.new(
+          # The ID of an existing file object.
+          id:
+        )
         end
 
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment::AttachmentInputWithID,
-                WhopSDK::Internal::AnyHash
-              )
-            end
-
-          # The ID of an existing attachment object. Use this when updating a resource and
-          # keeping a subset of the attachments. Don't use this unless you know what you're
-          # doing.
-          sig { returns(String) }
-          attr_accessor :id
-
-          # Input for an attachment
-          sig { params(id: String).returns(T.attached_class) }
-          def self.new(
-            # The ID of an existing attachment object. Use this when updating a resource and
-            # keeping a subset of the attachments. Don't use this unless you know what you're
-            # doing.
-            id:
-          )
-          end
-
-          sig { override.returns({ id: String }) }
-          def to_hash
-          end
-        end
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::DisputeUpdateEvidenceParams::RefundPolicyAttachment::Variants
-            ]
-          )
-        end
-        def self.variants
+        sig { override.returns({ id: String }) }
+        def to_hash
         end
       end
 
-      # A file that does not fit in the other categories.
-      module UncategorizedAttachment
-        extend WhopSDK::Internal::Type::Union
-
-        Variants =
+      class UncategorizedAttachment < WhopSDK::Internal::Type::BaseModel
+        OrHash =
           T.type_alias do
             T.any(
-              WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment::AttachmentInputWithDirectUploadID,
-              WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment::AttachmentInputWithID
+              WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment,
+              WhopSDK::Internal::AnyHash
             )
           end
 
-        class AttachmentInputWithDirectUploadID < WhopSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment::AttachmentInputWithDirectUploadID,
-                WhopSDK::Internal::AnyHash
-              )
-            end
+        # The ID of an existing file object.
+        sig { returns(String) }
+        attr_accessor :id
 
-          # This ID should be used the first time you upload an attachment. It is the ID of
-          # the direct upload that was created when uploading the file to S3 via the
-          # mediaDirectUpload mutation.
-          sig { returns(String) }
-          attr_accessor :direct_upload_id
-
-          # Input for an attachment
-          sig { params(direct_upload_id: String).returns(T.attached_class) }
-          def self.new(
-            # This ID should be used the first time you upload an attachment. It is the ID of
-            # the direct upload that was created when uploading the file to S3 via the
-            # mediaDirectUpload mutation.
-            direct_upload_id:
-          )
-          end
-
-          sig { override.returns({ direct_upload_id: String }) }
-          def to_hash
-          end
+        # A file that does not fit in the other categories.
+        sig { params(id: String).returns(T.attached_class) }
+        def self.new(
+          # The ID of an existing file object.
+          id:
+        )
         end
 
-        class AttachmentInputWithID < WhopSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment::AttachmentInputWithID,
-                WhopSDK::Internal::AnyHash
-              )
-            end
-
-          # The ID of an existing attachment object. Use this when updating a resource and
-          # keeping a subset of the attachments. Don't use this unless you know what you're
-          # doing.
-          sig { returns(String) }
-          attr_accessor :id
-
-          # Input for an attachment
-          sig { params(id: String).returns(T.attached_class) }
-          def self.new(
-            # The ID of an existing attachment object. Use this when updating a resource and
-            # keeping a subset of the attachments. Don't use this unless you know what you're
-            # doing.
-            id:
-          )
-          end
-
-          sig { override.returns({ id: String }) }
-          def to_hash
-          end
-        end
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment::Variants
-            ]
-          )
-        end
-        def self.variants
+        sig { override.returns({ id: String }) }
+        def to_hash
         end
       end
     end

@@ -17,6 +17,7 @@ class WhopSDK::Test::Resources::MembersTest < WhopSDK::Test::ResourceTest
         id: String,
         access_level: WhopSDK::AccessLevel,
         company: WhopSDK::Models::MemberRetrieveResponse::Company,
+        company_token_balance: Float,
         created_at: Time,
         joined_at: Time,
         most_recent_action: WhopSDK::MemberMostRecentActions | nil,
@@ -50,6 +51,7 @@ class WhopSDK::Test::Resources::MembersTest < WhopSDK::Test::ResourceTest
       row => {
         id: String,
         access_level: WhopSDK::AccessLevel,
+        company_token_balance: Float,
         created_at: Time,
         joined_at: Time,
         most_recent_action: WhopSDK::MemberMostRecentActions | nil,

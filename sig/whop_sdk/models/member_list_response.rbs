@@ -4,6 +4,7 @@ module WhopSDK
       {
         id: String,
         access_level: WhopSDK::Models::access_level,
+        company_token_balance: Float,
         created_at: Time,
         joined_at: Time,
         most_recent_action: WhopSDK::Models::member_most_recent_actions?,
@@ -19,6 +20,8 @@ module WhopSDK
       attr_accessor id: String
 
       attr_accessor access_level: WhopSDK::Models::access_level
+
+      attr_accessor company_token_balance: Float
 
       attr_accessor created_at: Time
 
@@ -41,6 +44,7 @@ module WhopSDK
       def initialize: (
         id: String,
         access_level: WhopSDK::Models::access_level,
+        company_token_balance: Float,
         created_at: Time,
         joined_at: Time,
         most_recent_action: WhopSDK::Models::member_most_recent_actions?,
@@ -55,6 +59,7 @@ module WhopSDK
       def to_hash: -> {
         id: String,
         access_level: WhopSDK::Models::access_level,
+        company_token_balance: Float,
         created_at: Time,
         joined_at: Time,
         most_recent_action: WhopSDK::Models::member_most_recent_actions?,

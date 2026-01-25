@@ -101,6 +101,12 @@ module WhopSDK
       #   @return [Hash{Symbol=>Object}, nil]
       required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
+      # @!attribute next_payment_attempt
+      #   The time of the next schedule payment retry.
+      #
+      #   @return [Time, nil]
+      required :next_payment_attempt, Time, nil?: true
+
       # @!attribute paid_at
       #   The datetime the payment was paid
       #
@@ -118,6 +124,12 @@ module WhopSDK
       #
       #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes, nil]
       required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }, nil?: true
+
+      # @!attribute payments_failed
+      #   The number of failed payment attempts for the payment.
+      #
+      #   @return [Integer, nil]
+      required :payments_failed, Integer, nil?: true
 
       # @!attribute plan
       #   The plan attached to this payment.
@@ -207,7 +219,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, company:, created_at:, currency:, dispute_alerted_at:, failure_message:, last_payment_attempt:, member:, membership:, metadata:, paid_at:, payment_method:, payment_method_type:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, status:, substatus:, subtotal:, total:, usd_total:, user:, voidable:)
+      # @!method initialize(id:, amount_after_fees:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, company:, created_at:, currency:, dispute_alerted_at:, failure_message:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, status:, substatus:, subtotal:, total:, usd_total:, user:, voidable:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentListResponse} for more details.
       #
@@ -245,11 +257,15 @@ module WhopSDK
       #
       #   @param metadata [Hash{Symbol=>Object}, nil] The custom metadata stored on this payment. This will be copied over to the chec
       #
+      #   @param next_payment_attempt [Time, nil] The time of the next schedule payment retry.
+      #
       #   @param paid_at [Time, nil] The datetime the payment was paid
       #
       #   @param payment_method [WhopSDK::Models::PaymentListResponse::PaymentMethod, nil] The payment method used for the payment, if available.
       #
       #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes, nil] The different types of payment methods that can be used.
+      #
+      #   @param payments_failed [Integer, nil] The number of failed payment attempts for the payment.
       #
       #   @param plan [WhopSDK::Models::PaymentListResponse::Plan, nil] The plan attached to this payment.
       #

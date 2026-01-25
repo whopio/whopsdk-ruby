@@ -98,13 +98,7 @@ module WhopSDK
       #   @return [String, nil]
       required :trace_code, String, nil?: true
 
-      # @!attribute withdrawal_type
-      #   The type of withdrawal.
-      #
-      #   @return [Symbol, WhopSDK::Models::WithdrawalTypes]
-      required :withdrawal_type, enum: -> { WhopSDK::WithdrawalTypes }
-
-      # @!method initialize(id:, amount:, created_at:, currency:, error_code:, error_message:, estimated_availability:, fee_amount:, fee_type:, ledger_account:, markup_fee:, payout_token:, speed:, status:, trace_code:, withdrawal_type:)
+      # @!method initialize(id:, amount:, created_at:, currency:, error_code:, error_message:, estimated_availability:, fee_amount:, fee_type:, ledger_account:, markup_fee:, payout_token:, speed:, status:, trace_code:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::WithdrawalRetrieveResponse} for more details.
       #
@@ -139,8 +133,6 @@ module WhopSDK
       #   @param status [Symbol, WhopSDK::Models::WithdrawalStatus] Status of the withdrawal.
       #
       #   @param trace_code [String, nil] The trace code for the payout, if applicable. Provided on ACH transactions when
-      #
-      #   @param withdrawal_type [Symbol, WhopSDK::Models::WithdrawalTypes] The type of withdrawal.
 
       # The different error codes a payout can be in.
       #
@@ -173,6 +165,7 @@ module WhopSDK
         INVALID_ACCOUNT_NUMBER = :invalid_account_number
         INVALID_BANK_CODE = :invalid_bank_code
         INVALID_BENEFICIARY = :invalid_beneficiary
+        INVALID_MAILING_ADDRESS = :invalid_mailing_address
         INVALID_BRANCH_NUMBER = :invalid_branch_number
         INVALID_BRANCH_CODE = :invalid_branch_code
         INVALID_PHONE_NUMBER = :invalid_phone_number

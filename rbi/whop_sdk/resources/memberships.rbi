@@ -8,6 +8,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `member:basic:read`
+      # - `member:email:read`
       sig do
         params(
           id: String,
@@ -26,6 +27,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `member:manage`
+      # - `member:email:read`
       # - `member:basic:read`
       sig do
         params(
@@ -48,6 +50,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `member:basic:read`
+      # - `member:email:read`
       sig do
         params(
           after: T.nilable(String),
@@ -114,6 +117,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `member:manage`
+      # - `member:email:read`
       # - `member:basic:read`
       sig do
         params(
@@ -139,6 +143,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `member:manage`
+      # - `member:email:read`
       # - `member:basic:read`
       sig do
         params(
@@ -162,6 +167,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `member:manage`
+      # - `member:email:read`
       # - `member:basic:read`
       sig do
         params(
@@ -171,6 +177,26 @@ module WhopSDK
       end
       def resume(
         # The ID of the membership you want to resume.
+        id,
+        request_options: {}
+      )
+      end
+
+      # Uncancels a membership that was scheduled to cancel at period end
+      #
+      # Required permissions:
+      #
+      # - `member:manage`
+      # - `member:email:read`
+      # - `member:basic:read`
+      sig do
+        params(
+          id: String,
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::Membership)
+      end
+      def uncancel(
+        # The ID of the membership.
         id,
         request_options: {}
       )

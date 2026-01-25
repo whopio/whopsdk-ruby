@@ -15,6 +15,13 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :cancel_at_period_end
 
+      # The different reasons a user can choose for why they are canceling their
+      # membership.
+      sig do
+        returns(T.nilable(WhopSDK::Membership::CancelOption::TaggedSymbol))
+      end
+      attr_accessor :cancel_option
+
       # The epoch timestamp of when the customer initiated a cancellation.
       sig { returns(T.nilable(Time)) }
       attr_accessor :canceled_at
@@ -37,6 +44,10 @@ module WhopSDK
       # The available currencies on the platform
       sig { returns(T.nilable(WhopSDK::Currency::TaggedSymbol)) }
       attr_accessor :currency
+
+      # The responses to custom checkout questions for this membership.
+      sig { returns(T::Array[WhopSDK::Membership::CustomFieldResponse]) }
+      attr_accessor :custom_field_responses
 
       # The license key for this Membership. This is only present if the membership
       # grants access to an instance of the Whop Software app.
@@ -120,11 +131,14 @@ module WhopSDK
         params(
           id: String,
           cancel_at_period_end: T::Boolean,
+          cancel_option: T.nilable(WhopSDK::Membership::CancelOption::OrSymbol),
           canceled_at: T.nilable(Time),
           cancellation_reason: T.nilable(String),
           company: WhopSDK::Membership::Company::OrHash,
           created_at: Time,
           currency: T.nilable(WhopSDK::Currency::OrSymbol),
+          custom_field_responses:
+            T::Array[WhopSDK::Membership::CustomFieldResponse::OrHash],
           license_key: T.nilable(String),
           manage_url: T.nilable(String),
           member: T.nilable(WhopSDK::Membership::Member::OrHash),
@@ -146,6 +160,9 @@ module WhopSDK
         # Whether this Membership is set to cancel at the end of the current billing
         # cycle. Only applies for memberships that have a renewal plan.
         cancel_at_period_end:,
+        # The different reasons a user can choose for why they are canceling their
+        # membership.
+        cancel_option:,
         # The epoch timestamp of when the customer initiated a cancellation.
         canceled_at:,
         # The reason that the member canceled the membership (filled out by the member).
@@ -156,6 +173,8 @@ module WhopSDK
         created_at:,
         # The available currencies on the platform
         currency:,
+        # The responses to custom checkout questions for this membership.
+        custom_field_responses:,
         # The license key for this Membership. This is only present if the membership
         # grants access to an instance of the Whop Software app.
         license_key:,
@@ -193,11 +212,15 @@ module WhopSDK
           {
             id: String,
             cancel_at_period_end: T::Boolean,
+            cancel_option:
+              T.nilable(WhopSDK::Membership::CancelOption::TaggedSymbol),
             canceled_at: T.nilable(Time),
             cancellation_reason: T.nilable(String),
             company: WhopSDK::Membership::Company,
             created_at: Time,
             currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
+            custom_field_responses:
+              T::Array[WhopSDK::Membership::CustomFieldResponse],
             license_key: T.nilable(String),
             manage_url: T.nilable(String),
             member: T.nilable(WhopSDK::Membership::Member),
@@ -215,6 +238,47 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      # The different reasons a user can choose for why they are canceling their
+      # membership.
+      module CancelOption
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::Membership::CancelOption) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        TOO_EXPENSIVE =
+          T.let(:too_expensive, WhopSDK::Membership::CancelOption::TaggedSymbol)
+        SWITCHING =
+          T.let(:switching, WhopSDK::Membership::CancelOption::TaggedSymbol)
+        MISSING_FEATURES =
+          T.let(
+            :missing_features,
+            WhopSDK::Membership::CancelOption::TaggedSymbol
+          )
+        TECHNICAL_ISSUES =
+          T.let(
+            :technical_issues,
+            WhopSDK::Membership::CancelOption::TaggedSymbol
+          )
+        BAD_EXPERIENCE =
+          T.let(
+            :bad_experience,
+            WhopSDK::Membership::CancelOption::TaggedSymbol
+          )
+        OTHER = T.let(:other, WhopSDK::Membership::CancelOption::TaggedSymbol)
+        TESTING =
+          T.let(:testing, WhopSDK::Membership::CancelOption::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::Membership::CancelOption::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
 
       class Company < WhopSDK::Internal::Type::BaseModel
@@ -242,6 +306,50 @@ module WhopSDK
         end
 
         sig { override.returns({ id: String, title: String }) }
+        def to_hash
+        end
+      end
+
+      class CustomFieldResponse < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Membership::CustomFieldResponse,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The ID of the custom field item
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The response a user gave to the specific question or field.
+        sig { returns(String) }
+        attr_accessor :answer
+
+        # The question asked by the custom field
+        sig { returns(String) }
+        attr_accessor :question
+
+        # The response from a custom field on checkout
+        sig do
+          params(id: String, answer: String, question: String).returns(
+            T.attached_class
+          )
+        end
+        def self.new(
+          # The ID of the custom field item
+          id:,
+          # The response a user gave to the specific question or field.
+          answer:,
+          # The question asked by the custom field
+          question:
+        )
+        end
+
+        sig do
+          override.returns({ id: String, answer: String, question: String })
+        end
         def to_hash
         end
       end
@@ -354,6 +462,10 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
+        # The email of the user
+        sig { returns(T.nilable(String)) }
+        attr_accessor :email
+
         # The name of the user from their Whop account.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
@@ -364,13 +476,18 @@ module WhopSDK
 
         # The user this membership belongs to
         sig do
-          params(id: String, name: T.nilable(String), username: String).returns(
-            T.attached_class
-          )
+          params(
+            id: String,
+            email: T.nilable(String),
+            name: T.nilable(String),
+            username: String
+          ).returns(T.attached_class)
         end
         def self.new(
           # The internal ID of the user.
           id:,
+          # The email of the user
+          email:,
           # The name of the user from their Whop account.
           name:,
           # The username of the user from their Whop account.
@@ -380,7 +497,12 @@ module WhopSDK
 
         sig do
           override.returns(
-            { id: String, name: T.nilable(String), username: String }
+            {
+              id: String,
+              email: T.nilable(String),
+              name: T.nilable(String),
+              username: String
+            }
           )
         end
         def to_hash

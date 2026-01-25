@@ -26,6 +26,23 @@ module WhopSDK
       JCBRUPAY = T.let(:jcbrupay, WhopSDK::CardBrands::TaggedSymbol)
       ELO = T.let(:elo, WhopSDK::CardBrands::TaggedSymbol)
       MAESTRO = T.let(:maestro, WhopSDK::CardBrands::TaggedSymbol)
+      TARJETA_NARANJA =
+        T.let(:tarjeta_naranja, WhopSDK::CardBrands::TaggedSymbol)
+      CIRRUS = T.let(:cirrus, WhopSDK::CardBrands::TaggedSymbol)
+      NSPK_MIR = T.let(:nspk_mir, WhopSDK::CardBrands::TaggedSymbol)
+      VERVE = T.let(:verve, WhopSDK::CardBrands::TaggedSymbol)
+      EBT = T.let(:ebt, WhopSDK::CardBrands::TaggedSymbol)
+      PRIVATE_LABEL = T.let(:private_label, WhopSDK::CardBrands::TaggedSymbol)
+      LOCAL_BRAND = T.let(:local_brand, WhopSDK::CardBrands::TaggedSymbol)
+      UATP = T.let(:uatp, WhopSDK::CardBrands::TaggedSymbol)
+      WEXCARD = T.let(:wexcard, WhopSDK::CardBrands::TaggedSymbol)
+      UZCARD = T.let(:uzcard, WhopSDK::CardBrands::TaggedSymbol)
+      MEEZA = T.let(:meeza, WhopSDK::CardBrands::TaggedSymbol)
+      HRG_STORE_CARD = T.let(:hrg_store_card, WhopSDK::CardBrands::TaggedSymbol)
+      GIROCARD = T.let(:girocard, WhopSDK::CardBrands::TaggedSymbol)
+      FUEL_CARD = T.let(:fuel_card, WhopSDK::CardBrands::TaggedSymbol)
+      DANKORT = T.let(:dankort, WhopSDK::CardBrands::TaggedSymbol)
+      CARNET = T.let(:carnet, WhopSDK::CardBrands::TaggedSymbol)
       UNKNOWN = T.let(:unknown, WhopSDK::CardBrands::TaggedSymbol)
 
       sig { override.returns(T::Array[WhopSDK::CardBrands::TaggedSymbol]) }

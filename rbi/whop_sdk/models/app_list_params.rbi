@@ -129,6 +129,8 @@ module WhopSDK
           T.type_alias { T.all(Symbol, WhopSDK::AppListParams::Order) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
+        CREATED_AT =
+          T.let(:created_at, WhopSDK::AppListParams::Order::TaggedSymbol)
         DISCOVERABLE_AT =
           T.let(:discoverable_at, WhopSDK::AppListParams::Order::TaggedSymbol)
         TOTAL_INSTALLS_LAST_30_DAYS =

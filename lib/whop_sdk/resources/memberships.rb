@@ -204,6 +204,32 @@ module WhopSDK
         )
       end
 
+      # Uncancels a membership that was scheduled to cancel at period end
+      #
+      # Required permissions:
+      #
+      # - `member:manage`
+      # - `member:email:read`
+      # - `member:basic:read`
+      #
+      # @overload uncancel(id, request_options: {})
+      #
+      # @param id [String] The ID of the membership.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::Membership]
+      #
+      # @see WhopSDK::Models::MembershipUncancelParams
+      def uncancel(id, params = {})
+        @client.request(
+          method: :post,
+          path: ["memberships/%1$s/uncancel", id],
+          model: WhopSDK::Membership,
+          options: params[:request_options]
+        )
+      end
+
       # @api private
       #
       # @param client [WhopSDK::Client]

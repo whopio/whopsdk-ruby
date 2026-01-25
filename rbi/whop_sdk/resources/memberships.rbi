@@ -182,6 +182,26 @@ module WhopSDK
       )
       end
 
+      # Uncancels a membership that was scheduled to cancel at period end
+      #
+      # Required permissions:
+      #
+      # - `member:manage`
+      # - `member:email:read`
+      # - `member:basic:read`
+      sig do
+        params(
+          id: String,
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::Membership)
+      end
+      def uncancel(
+        # The ID of the membership.
+        id,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: WhopSDK::Client).returns(T.attached_class) }
       def self.new(client:)

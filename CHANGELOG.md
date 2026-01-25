@@ -1,5 +1,40 @@
 # Changelog
 
+## 0.0.24 (2026-01-25)
+
+Full Changelog: [v0.0.23...v0.0.24](https://github.com/whopio/whopsdk-ruby/compare/v0.0.23...v0.0.24)
+
+### Features
+
+* **api:** api update ([3f8895d](https://github.com/whopio/whopsdk-ruby/commit/3f8895d21e7f848239d7d5237dfe03c1c9bb40a5))
+* **api:** api update ([8c45d4d](https://github.com/whopio/whopsdk-ruby/commit/8c45d4dac11f2e932e5eb0f5c1332539256f6f64))
+* **api:** api update ([56c5958](https://github.com/whopio/whopsdk-ruby/commit/56c59586b405691fbb2c2673df015a6c4c6bac77))
+* **api:** api update ([575a5ca](https://github.com/whopio/whopsdk-ruby/commit/575a5ca14f1a3e9feb9203f2a51bc39bc8cfe149))
+* **api:** api update ([903a063](https://github.com/whopio/whopsdk-ruby/commit/903a0634fd7f585eee51454982dc27a08a0f0948))
+* **api:** api update ([72ec1cb](https://github.com/whopio/whopsdk-ruby/commit/72ec1cbe453d7cc8342d2996216780493833e4da))
+* **api:** api update ([2cf1fad](https://github.com/whopio/whopsdk-ruby/commit/2cf1fadbece71a34040e07c4323de0b4884cedc5))
+* **api:** api update ([c26ce69](https://github.com/whopio/whopsdk-ruby/commit/c26ce69644916463ef0a386090ef1e592f2ac07f))
+* **api:** api update ([d249eca](https://github.com/whopio/whopsdk-ruby/commit/d249eca80ddf15dee5653c08e3beef0835d41738))
+* **api:** api update ([dc41323](https://github.com/whopio/whopsdk-ruby/commit/dc4132327cf3e40421bf9f3caeb62323ec0d1ab2))
+* **api:** api update ([89df280](https://github.com/whopio/whopsdk-ruby/commit/89df280a85ad325ba5dd06ffffe7f5810590e92f))
+* **api:** api update ([4cafc17](https://github.com/whopio/whopsdk-ruby/commit/4cafc1725f1047d564d1560ce959b20bf5493aa2))
+* **api:** api update ([c9daa39](https://github.com/whopio/whopsdk-ruby/commit/c9daa39be528817b477fca8a6b460a31a39504e8))
+* **api:** api update ([71ef795](https://github.com/whopio/whopsdk-ruby/commit/71ef7957231d741348eeb7f10e42304a6f4e9ffb))
+* **api:** api update ([652a0be](https://github.com/whopio/whopsdk-ruby/commit/652a0bedb7dd68fd8e765228bbe9d251bf7c9f19))
+* **api:** api update ([cb282a1](https://github.com/whopio/whopsdk-ruby/commit/cb282a111add351df6dfa3fec0fb8a428344f9bf))
+* **api:** api update ([555ee4d](https://github.com/whopio/whopsdk-ruby/commit/555ee4d29583437178d523cead08eefb6690e178))
+* **api:** api update ([7aab597](https://github.com/whopio/whopsdk-ruby/commit/7aab597e000981c1cb8a3048b429fd68b075cc21))
+* **api:** api update ([49ad3d2](https://github.com/whopio/whopsdk-ruby/commit/49ad3d22688f431ccc5b327dd84b583591905300))
+* **api:** api update ([54634cf](https://github.com/whopio/whopsdk-ruby/commit/54634cf5c996c93e3c39ce69dcc646fedbceb473))
+* **api:** api update ([8a9cfc7](https://github.com/whopio/whopsdk-ruby/commit/8a9cfc7e1dc415b22d57e509b9227b0d60c88f9d))
+* **api:** manual updates ([fb65c56](https://github.com/whopio/whopsdk-ruby/commit/fb65c56b9fb542b2aec52bcf1b508ce49f5da572))
+
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([c27b1b0](https://github.com/whopio/whopsdk-ruby/commit/c27b1b08d527e42f390dd61d00716f12095b8026))
+* move `cgi` into dependencies for ruby 4 ([ea9feac](https://github.com/whopio/whopsdk-ruby/commit/ea9feac06b6b5b7e217cc62207993c5132348add))
+
 ## 0.0.23 (2026-01-09)
 
 Full Changelog: [v0.0.22...v0.0.23](https://github.com/whopio/whopsdk-ruby/compare/v0.0.22...v0.0.23)

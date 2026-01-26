@@ -47,6 +47,7 @@ module WhopSDK
       ID_BANK_TRANSFER =
         T.let(:id_bank_transfer, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       IDEAL = T.let(:ideal, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      INTERAC = T.let(:interac, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       KAKAO_PAY = T.let(:kakao_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       KLARNA = T.let(:klarna, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       KONBINI = T.let(:konbini, WhopSDK::PaymentMethodTypes::TaggedSymbol)

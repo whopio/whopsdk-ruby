@@ -33,7 +33,13 @@ module WhopSDK
       #   @return [WhopSDK::Models::MessageCreateParams::Poll, nil]
       optional :poll, -> { WhopSDK::MessageCreateParams::Poll }, nil?: true
 
-      # @!method initialize(channel_id:, content:, attachments: nil, poll: nil, request_options: {})
+      # @!attribute replying_to_message_id
+      #   The ID of the message this is replying to, if applicable.
+      #
+      #   @return [String, nil]
+      optional :replying_to_message_id, String, nil?: true
+
+      # @!method initialize(channel_id:, content:, attachments: nil, poll: nil, replying_to_message_id: nil, request_options: {})
       #   @param channel_id [String] The ID of the channel or experience to send to.
       #
       #   @param content [String] The content of the message in Markdown format.
@@ -41,6 +47,8 @@ module WhopSDK
       #   @param attachments [Array<WhopSDK::Models::MessageCreateParams::Attachment>, nil] The attachments for this message, such as videos or images.
       #
       #   @param poll [WhopSDK::Models::MessageCreateParams::Poll, nil] The poll for this message
+      #
+      #   @param replying_to_message_id [String, nil] The ID of the message this is replying to, if applicable.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 

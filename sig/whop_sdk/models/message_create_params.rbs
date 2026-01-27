@@ -5,7 +5,8 @@ module WhopSDK
         channel_id: String,
         content: String,
         attachments: ::Array[WhopSDK::MessageCreateParams::Attachment]?,
-        poll: WhopSDK::MessageCreateParams::Poll?
+        poll: WhopSDK::MessageCreateParams::Poll?,
+        replying_to_message_id: String?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -21,11 +22,14 @@ module WhopSDK
 
       attr_accessor poll: WhopSDK::MessageCreateParams::Poll?
 
+      attr_accessor replying_to_message_id: String?
+
       def initialize: (
         channel_id: String,
         content: String,
         ?attachments: ::Array[WhopSDK::MessageCreateParams::Attachment]?,
         ?poll: WhopSDK::MessageCreateParams::Poll?,
+        ?replying_to_message_id: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -34,6 +38,7 @@ module WhopSDK
         content: String,
         attachments: ::Array[WhopSDK::MessageCreateParams::Attachment]?,
         poll: WhopSDK::MessageCreateParams::Poll?,
+        replying_to_message_id: String?,
         request_options: WhopSDK::RequestOptions
       }
 

@@ -34,6 +34,10 @@ module WhopSDK
       end
       attr_writer :poll
 
+      # The ID of the message this is replying to, if applicable.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :replying_to_message_id
+
       sig do
         params(
           channel_id: String,
@@ -43,6 +47,7 @@ module WhopSDK
               T::Array[WhopSDK::MessageCreateParams::Attachment::OrHash]
             ),
           poll: T.nilable(WhopSDK::MessageCreateParams::Poll::OrHash),
+          replying_to_message_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -55,6 +60,8 @@ module WhopSDK
         attachments: nil,
         # The poll for this message
         poll: nil,
+        # The ID of the message this is replying to, if applicable.
+        replying_to_message_id: nil,
         request_options: {}
       )
       end
@@ -67,6 +74,7 @@ module WhopSDK
             attachments:
               T.nilable(T::Array[WhopSDK::MessageCreateParams::Attachment]),
             poll: T.nilable(WhopSDK::MessageCreateParams::Poll),
+            replying_to_message_id: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }
         )

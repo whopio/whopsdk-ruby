@@ -17,6 +17,7 @@ module WhopSDK
               T::Array[WhopSDK::MessageCreateParams::Attachment::OrHash]
             ),
           poll: T.nilable(WhopSDK::MessageCreateParams::Poll::OrHash),
+          replying_to_message_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Message)
       end
@@ -29,6 +30,8 @@ module WhopSDK
         attachments: nil,
         # The poll for this message
         poll: nil,
+        # The ID of the message this is replying to, if applicable.
+        replying_to_message_id: nil,
         request_options: {}
       )
       end

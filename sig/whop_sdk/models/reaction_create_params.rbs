@@ -1,7 +1,7 @@
 module WhopSDK
   module Models
     type reaction_create_params =
-      { resource_id: String, emoji: String? }
+      { resource_id: String, emoji: String?, poll_option_id: String? }
       & WhopSDK::Internal::Type::request_parameters
 
     class ReactionCreateParams < WhopSDK::Internal::Type::BaseModel
@@ -12,15 +12,19 @@ module WhopSDK
 
       attr_accessor emoji: String?
 
+      attr_accessor poll_option_id: String?
+
       def initialize: (
         resource_id: String,
         ?emoji: String?,
+        ?poll_option_id: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         resource_id: String,
         emoji: String?,
+        poll_option_id: String?,
         request_options: WhopSDK::RequestOptions
       }
     end

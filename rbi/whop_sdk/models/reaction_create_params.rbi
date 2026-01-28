@@ -20,10 +20,16 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :emoji
 
+      # The ID of the poll option to vote for. Only valid for messages or posts with
+      # polls.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :poll_option_id
+
       sig do
         params(
           resource_id: String,
           emoji: T.nilable(String),
+          poll_option_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -33,6 +39,9 @@ module WhopSDK
         # The emoji to react with (e.g., :heart: or '😀'). It will be ignored in forums,
         # as everything will be :heart:
         emoji: nil,
+        # The ID of the poll option to vote for. Only valid for messages or posts with
+        # polls.
+        poll_option_id: nil,
         request_options: {}
       )
       end
@@ -42,6 +51,7 @@ module WhopSDK
           {
             resource_id: String,
             emoji: T.nilable(String),
+            poll_option_id: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }
         )

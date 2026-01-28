@@ -12,11 +12,13 @@ module WhopSDK
       #
       # - `chat:read`
       #
-      # @overload create(resource_id:, emoji: nil, request_options: {})
+      # @overload create(resource_id:, emoji: nil, poll_option_id: nil, request_options: {})
       #
       # @param resource_id [String] The ID of the post or message to react to.
       #
       # @param emoji [String, nil] The emoji to react with (e.g., :heart: or '😀'). It will be ignored in forums, a
+      #
+      # @param poll_option_id [String, nil] The ID of the poll option to vote for. Only valid for messages or posts with pol
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

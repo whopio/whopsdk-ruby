@@ -4,6 +4,7 @@ module WhopSDK
       def create: (
         resource_id: String,
         ?emoji: String?,
+        ?poll_option_id: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Reaction
 

@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.0.25 (2026-01-29)
+
+Full Changelog: [v0.0.24...v0.0.25](https://github.com/whopio/whopsdk-ruby/compare/v0.0.24...v0.0.25)
+
+### Features
+
+* **api:** api update ([44184b5](https://github.com/whopio/whopsdk-ruby/commit/44184b56139c2b4843f0e8ed9175b6be9b9c81bd))
+* **api:** api update ([f5a8974](https://github.com/whopio/whopsdk-ruby/commit/f5a8974925764c0650da47ef456b8a16283477d8))
+* **api:** api update ([810edc1](https://github.com/whopio/whopsdk-ruby/commit/810edc1b45b05d50e106ba445253797509f5ace3))
+* **api:** api update ([6a9ad61](https://github.com/whopio/whopsdk-ruby/commit/6a9ad618f1b4cdc4197d250b4fb10a95d4fa5088))
+* **api:** manual updates ([7c26b23](https://github.com/whopio/whopsdk-ruby/commit/7c26b2393e9a36c4e42df81d1c15fc5569913a79))
+
+
+### Bug Fixes
+
+* **docs:** fix mcp installation instructions for remote servers ([b9e24d0](https://github.com/whopio/whopsdk-ruby/commit/b9e24d0a6fb0efa7370a94e5d5b4f9e2778de8d7))
+
 ## 0.0.24 (2026-01-25)
 
 Full Changelog: [v0.0.23...v0.0.24](https://github.com/whopio/whopsdk-ruby/compare/v0.0.23...v0.0.24)

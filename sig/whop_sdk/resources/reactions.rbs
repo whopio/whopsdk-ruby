@@ -22,6 +22,12 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::ReactionListResponse]
 
+      def delete: (
+        String id,
+        ?emoji: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> bool
+
       def initialize: (client: WhopSDK::Client) -> void
     end
   end

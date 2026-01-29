@@ -79,6 +79,28 @@ module WhopSDK
       )
       end
 
+      # Deletes a reaction
+      #
+      # Required permissions:
+      #
+      # - `chat:read`
+      sig do
+        params(
+          id: String,
+          emoji: T.nilable(String),
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(T::Boolean)
+      end
+      def delete(
+        # The ID of the reaction to remove or message / post to remove the reaction from.
+        # If the ID is from a message / post, you need to pass the emoji argument.
+        id,
+        # The emoji to remove (e.g., :heart: or '😀').
+        emoji: nil,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: WhopSDK::Client).returns(T.attached_class) }
       def self.new(client:)

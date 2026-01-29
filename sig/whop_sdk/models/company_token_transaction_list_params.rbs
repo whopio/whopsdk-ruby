@@ -1,0 +1,68 @@
+module WhopSDK
+  module Models
+    type company_token_transaction_list_params =
+      {
+        company_id: String,
+        after: String?,
+        before: String?,
+        first: Integer?,
+        last: Integer?,
+        transaction_type: WhopSDK::Models::CompanyTokenTransactionListParams::transaction_type?,
+        user_id: String?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class CompanyTokenTransactionListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      attr_accessor transaction_type: WhopSDK::Models::CompanyTokenTransactionListParams::transaction_type?
+
+      attr_accessor user_id: String?
+
+      def initialize: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?transaction_type: WhopSDK::Models::CompanyTokenTransactionListParams::transaction_type?,
+        ?user_id: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        after: String?,
+        before: String?,
+        first: Integer?,
+        last: Integer?,
+        transaction_type: WhopSDK::Models::CompanyTokenTransactionListParams::transaction_type?,
+        user_id: String?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type transaction_type = :add | :subtract | :transfer
+
+      module TransactionType
+        extend WhopSDK::Internal::Type::Enum
+
+        ADD: :add
+        SUBTRACT: :subtract
+        TRANSFER: :transfer
+
+        def self?.values: -> ::Array[WhopSDK::Models::CompanyTokenTransactionListParams::transaction_type]
+      end
+    end
+  end
+end

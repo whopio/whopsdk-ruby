@@ -121,4 +121,14 @@ class WhopSDK::Test::Resources::MessagesTest < WhopSDK::Test::ResourceTest
       }
     end
   end
+
+  def test_delete
+    skip("Prism tests are disabled")
+
+    response = @whop.messages.delete("id")
+
+    assert_pattern do
+      response => WhopSDK::Internal::Type::Boolean
+    end
+  end
 end

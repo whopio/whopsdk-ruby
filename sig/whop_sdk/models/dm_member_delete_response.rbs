@@ -1,0 +1,5 @@
+module WhopSDK
+  module Models
+    DmMemberDeleteResponse: WhopSDK::Internal::Type::Converter
+  end
+end

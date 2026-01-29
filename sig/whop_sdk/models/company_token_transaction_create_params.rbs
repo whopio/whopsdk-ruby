@@ -1,0 +1,56 @@
+module WhopSDK
+  module Models
+    type company_token_transaction_create_params =
+      {
+        amount: Float,
+        company_id: String,
+        destination_user_id: String,
+        transaction_type: :subtract,
+        user_id: String,
+        description: String?,
+        idempotency_key: String?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class CompanyTokenTransactionCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor amount: Float
+
+      attr_accessor company_id: String
+
+      attr_accessor destination_user_id: String
+
+      attr_accessor transaction_type: :subtract
+
+      attr_accessor user_id: String
+
+      attr_accessor description: String?
+
+      attr_accessor idempotency_key: String?
+
+      def initialize: (
+        amount: Float,
+        company_id: String,
+        destination_user_id: String,
+        user_id: String,
+        ?description: String?,
+        ?idempotency_key: String?,
+        ?transaction_type: :subtract,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        amount: Float,
+        company_id: String,
+        destination_user_id: String,
+        transaction_type: :subtract,
+        user_id: String,
+        description: String?,
+        idempotency_key: String?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

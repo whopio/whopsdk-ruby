@@ -47,6 +47,16 @@ module WhopSDK
 
   AccountLinkCreateParams = WhopSDK::Models::AccountLinkCreateParams
 
+  AIChatCreateParams = WhopSDK::Models::AIChatCreateParams
+
+  AIChatDeleteParams = WhopSDK::Models::AIChatDeleteParams
+
+  AIChatListParams = WhopSDK::Models::AIChatListParams
+
+  AIChatRetrieveParams = WhopSDK::Models::AIChatRetrieveParams
+
+  AIChatUpdateParams = WhopSDK::Models::AIChatUpdateParams
+
   App = WhopSDK::Models::App
 
   AppBuild = WhopSDK::Models::AppBuild
@@ -118,6 +128,12 @@ module WhopSDK
   CompanyListParams = WhopSDK::Models::CompanyListParams
 
   CompanyRetrieveParams = WhopSDK::Models::CompanyRetrieveParams
+
+  CompanyTokenTransactionCreateParams = WhopSDK::Models::CompanyTokenTransactionCreateParams
+
+  CompanyTokenTransactionListParams = WhopSDK::Models::CompanyTokenTransactionListParams
+
+  CompanyTokenTransactionRetrieveParams = WhopSDK::Models::CompanyTokenTransactionRetrieveParams
 
   CompanyUpdateParams = WhopSDK::Models::CompanyUpdateParams
 
@@ -199,6 +215,16 @@ module WhopSDK
   DisputeUpdatedWebhookEvent = WhopSDK::Models::DisputeUpdatedWebhookEvent
 
   DisputeUpdateEvidenceParams = WhopSDK::Models::DisputeUpdateEvidenceParams
+
+  DmMemberCreateParams = WhopSDK::Models::DmMemberCreateParams
+
+  DmMemberDeleteParams = WhopSDK::Models::DmMemberDeleteParams
+
+  DmMemberListParams = WhopSDK::Models::DmMemberListParams
+
+  DmMemberRetrieveParams = WhopSDK::Models::DmMemberRetrieveParams
+
+  DmMemberUpdateParams = WhopSDK::Models::DmMemberUpdateParams
 
   DmsPostTypes = WhopSDK::Models::DmsPostTypes
 
@@ -359,6 +385,8 @@ module WhopSDK
 
   MessageCreateParams = WhopSDK::Models::MessageCreateParams
 
+  MessageDeleteParams = WhopSDK::Models::MessageDeleteParams
+
   MessageListParams = WhopSDK::Models::MessageListParams
 
   MessageRetrieveParams = WhopSDK::Models::MessageRetrieveParams
@@ -454,6 +482,8 @@ module WhopSDK
   Reaction = WhopSDK::Models::Reaction
 
   ReactionCreateParams = WhopSDK::Models::ReactionCreateParams
+
+  ReactionDeleteParams = WhopSDK::Models::ReactionDeleteParams
 
   ReactionListParams = WhopSDK::Models::ReactionListParams
 

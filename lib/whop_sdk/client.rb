@@ -159,6 +159,15 @@ module WhopSDK
     # @return [WhopSDK::Resources::Files]
     attr_reader :files
 
+    # @return [WhopSDK::Resources::CompanyTokenTransactions]
+    attr_reader :company_token_transactions
+
+    # @return [WhopSDK::Resources::DmMembers]
+    attr_reader :dm_members
+
+    # @return [WhopSDK::Resources::AIChats]
+    attr_reader :ai_chats
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -261,6 +270,9 @@ module WhopSDK
       @leads = WhopSDK::Resources::Leads.new(client: self)
       @topups = WhopSDK::Resources::Topups.new(client: self)
       @files = WhopSDK::Resources::Files.new(client: self)
+      @company_token_transactions = WhopSDK::Resources::CompanyTokenTransactions.new(client: self)
+      @dm_members = WhopSDK::Resources::DmMembers.new(client: self)
+      @ai_chats = WhopSDK::Resources::AIChats.new(client: self)
     end
   end
 end

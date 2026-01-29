@@ -1,0 +1,33 @@
+module WhopSDK
+  module Resources
+    class AIChats
+      def create: (
+        ?title: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::AIChatCreateResponse
+
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::AIChatRetrieveResponse
+
+      def update: (
+        String id,
+        ?title: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::AIChatUpdateResponse
+
+      def list: (
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::AIChatListResponse]
+
+      def delete: (String id, ?request_options: WhopSDK::request_opts) -> bool
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

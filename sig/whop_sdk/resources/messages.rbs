@@ -33,6 +33,8 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::MessageListResponse]
 
+      def delete: (String id, ?request_options: WhopSDK::request_opts) -> bool
+
       def initialize: (client: WhopSDK::Client) -> void
     end
   end

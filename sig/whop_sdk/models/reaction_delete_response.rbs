@@ -1,0 +1,5 @@
+module WhopSDK
+  module Models
+    ReactionDeleteResponse: WhopSDK::Internal::Type::Converter
+  end
+end

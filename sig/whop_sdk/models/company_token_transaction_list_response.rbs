@@ -1,0 +1,115 @@
+module WhopSDK
+  module Models
+    type company_token_transaction_list_response =
+      {
+        id: String,
+        amount: Float,
+        company: WhopSDK::Models::CompanyTokenTransactionListResponse::Company,
+        created_at: Time,
+        description: String?,
+        idempotency_key: String?,
+        linked_transaction_id: String?,
+        member: WhopSDK::Models::CompanyTokenTransactionListResponse::Member,
+        transaction_type: WhopSDK::Models::CompanyTokenTransactionListResponse::transaction_type,
+        user: WhopSDK::Models::CompanyTokenTransactionListResponse::User
+      }
+
+    class CompanyTokenTransactionListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor amount: Float
+
+      attr_accessor company: WhopSDK::Models::CompanyTokenTransactionListResponse::Company
+
+      attr_accessor created_at: Time
+
+      attr_accessor description: String?
+
+      attr_accessor idempotency_key: String?
+
+      attr_accessor linked_transaction_id: String?
+
+      attr_accessor member: WhopSDK::Models::CompanyTokenTransactionListResponse::Member
+
+      attr_accessor transaction_type: WhopSDK::Models::CompanyTokenTransactionListResponse::transaction_type
+
+      attr_accessor user: WhopSDK::Models::CompanyTokenTransactionListResponse::User
+
+      def initialize: (
+        id: String,
+        amount: Float,
+        company: WhopSDK::Models::CompanyTokenTransactionListResponse::Company,
+        created_at: Time,
+        description: String?,
+        idempotency_key: String?,
+        linked_transaction_id: String?,
+        member: WhopSDK::Models::CompanyTokenTransactionListResponse::Member,
+        transaction_type: WhopSDK::Models::CompanyTokenTransactionListResponse::transaction_type,
+        user: WhopSDK::Models::CompanyTokenTransactionListResponse::User
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        amount: Float,
+        company: WhopSDK::Models::CompanyTokenTransactionListResponse::Company,
+        created_at: Time,
+        description: String?,
+        idempotency_key: String?,
+        linked_transaction_id: String?,
+        member: WhopSDK::Models::CompanyTokenTransactionListResponse::Member,
+        transaction_type: WhopSDK::Models::CompanyTokenTransactionListResponse::transaction_type,
+        user: WhopSDK::Models::CompanyTokenTransactionListResponse::User
+      }
+
+      type company = { id: String, route: String, title: String }
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor route: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, route: String, title: String) -> void
+
+        def to_hash: -> { id: String, route: String, title: String }
+      end
+
+      type member = { id: String }
+
+      class Member < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type transaction_type = :add | :subtract | :transfer
+
+      module TransactionType
+        extend WhopSDK::Internal::Type::Enum
+
+        ADD: :add
+        SUBTRACT: :subtract
+        TRANSFER: :transfer
+
+        def self?.values: -> ::Array[WhopSDK::Models::CompanyTokenTransactionListResponse::transaction_type]
+      end
+
+      type user = { id: String, name: String?, username: String }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
+      end
+    end
+  end
+end

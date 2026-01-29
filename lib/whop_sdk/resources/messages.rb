@@ -126,6 +126,30 @@ module WhopSDK
         )
       end
 
+      # Deletes a message
+      #
+      # Required permissions:
+      #
+      # - `chat:message:create`
+      #
+      # @overload delete(id, request_options: {})
+      #
+      # @param id [String] The ID of the message to delete
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Boolean]
+      #
+      # @see WhopSDK::Models::MessageDeleteParams
+      def delete(id, params = {})
+        @client.request(
+          method: :delete,
+          path: ["messages/%1$s", id],
+          model: WhopSDK::Internal::Type::Boolean,
+          options: params[:request_options]
+        )
+      end
+
       # @api private
       #
       # @param client [WhopSDK::Client]

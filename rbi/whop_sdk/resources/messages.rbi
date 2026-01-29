@@ -115,6 +115,24 @@ module WhopSDK
       )
       end
 
+      # Deletes a message
+      #
+      # Required permissions:
+      #
+      # - `chat:message:create`
+      sig do
+        params(
+          id: String,
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(T::Boolean)
+      end
+      def delete(
+        # The ID of the message to delete
+        id,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: WhopSDK::Client).returns(T.attached_class) }
       def self.new(client:)

@@ -12,11 +12,13 @@ module WhopSDK
       #
       # - `chat:read`
       #
-      # @overload create(resource_id:, emoji: nil, request_options: {})
+      # @overload create(resource_id:, emoji: nil, poll_option_id: nil, request_options: {})
       #
       # @param resource_id [String] The ID of the post or message to react to.
       #
       # @param emoji [String, nil] The emoji to react with (e.g., :heart: or '😀'). It will be ignored in forums, a
+      #
+      # @param poll_option_id [String, nil] The ID of the poll option to vote for. Only valid for messages or posts with pol
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -89,6 +91,37 @@ module WhopSDK
           query: parsed,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::ReactionListResponse,
+          options: options
+        )
+      end
+
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::ReactionDeleteParams} for more details.
+      #
+      # Deletes a reaction
+      #
+      # Required permissions:
+      #
+      # - `chat:read`
+      #
+      # @overload delete(id, emoji: nil, request_options: {})
+      #
+      # @param id [String] The ID of the reaction to remove or message / post to remove the reaction from.
+      #
+      # @param emoji [String, nil] The emoji to remove (e.g., :heart: or '😀').
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Boolean]
+      #
+      # @see WhopSDK::Models::ReactionDeleteParams
+      def delete(id, params = {})
+        parsed, options = WhopSDK::ReactionDeleteParams.dump_request(params)
+        @client.request(
+          method: :delete,
+          path: ["reactions/%1$s", id],
+          query: parsed,
+          model: WhopSDK::Internal::Type::Boolean,
           options: options
         )
       end

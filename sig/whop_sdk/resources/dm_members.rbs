@@ -1,0 +1,36 @@
+module WhopSDK
+  module Resources
+    class DmMembers
+      def create: (
+        channel_id: String,
+        user_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::DmMemberCreateResponse
+
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::DmMemberRetrieveResponse
+
+      def update: (
+        String id,
+        ?notification_preference: WhopSDK::Models::DmMemberUpdateParams::notification_preference?,
+        ?status: WhopSDK::Models::DmMemberUpdateParams::status?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::DmMemberUpdateResponse
+
+      def list: (
+        channel_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::DmMemberListResponse]
+
+      def delete: (String id, ?request_options: WhopSDK::request_opts) -> bool
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

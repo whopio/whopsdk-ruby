@@ -6,6 +6,7 @@ module WhopSDK
         content: String,
         ?attachments: ::Array[WhopSDK::MessageCreateParams::Attachment]?,
         ?poll: WhopSDK::MessageCreateParams::Poll?,
+        ?replying_to_message_id: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Message
 
@@ -31,6 +32,8 @@ module WhopSDK
         ?last: Integer?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::MessageListResponse]
+
+      def delete: (String id, ?request_options: WhopSDK::request_opts) -> bool
 
       def initialize: (client: WhopSDK::Client) -> void
     end

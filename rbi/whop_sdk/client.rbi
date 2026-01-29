@@ -154,6 +154,15 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::Files) }
     attr_reader :files
 
+    sig { returns(WhopSDK::Resources::CompanyTokenTransactions) }
+    attr_reader :company_token_transactions
+
+    sig { returns(WhopSDK::Resources::DmMembers) }
+    attr_reader :dm_members
+
+    sig { returns(WhopSDK::Resources::AIChats) }
+    attr_reader :ai_chats
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

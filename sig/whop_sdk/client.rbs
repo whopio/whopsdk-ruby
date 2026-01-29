@@ -102,6 +102,12 @@ module WhopSDK
 
     attr_reader files: WhopSDK::Resources::Files
 
+    attr_reader company_token_transactions: WhopSDK::Resources::CompanyTokenTransactions
+
+    attr_reader dm_members: WhopSDK::Resources::DmMembers
+
+    attr_reader ai_chats: WhopSDK::Resources::AIChats
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

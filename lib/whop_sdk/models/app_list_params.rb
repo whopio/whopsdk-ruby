@@ -106,6 +106,7 @@ module WhopSDK
       module Order
         extend WhopSDK::Internal::Type::Enum
 
+        CREATED_AT = :created_at
         DISCOVERABLE_AT = :discoverable_at
         TOTAL_INSTALLS_LAST_30_DAYS = :total_installs_last_30_days
         TOTAL_INSTALLS_LAST_7_DAYS = :total_installs_last_7_days

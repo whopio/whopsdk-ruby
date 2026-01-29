@@ -1,0 +1,5 @@
+module WhopSDK
+  module Models
+    AIChatDeleteResponse: WhopSDK::Internal::Type::Converter
+  end
+end

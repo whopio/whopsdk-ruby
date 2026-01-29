@@ -38,6 +38,7 @@ module WhopSDK
       GRABPAY = :grabpay
       ID_BANK_TRANSFER = :id_bank_transfer
       IDEAL = :ideal
+      INTERAC = :interac
       KAKAO_PAY = :kakao_pay
       KLARNA = :klarna
       KONBINI = :konbini

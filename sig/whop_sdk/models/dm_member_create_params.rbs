@@ -1,0 +1,28 @@
+module WhopSDK
+  module Models
+    type dm_member_create_params =
+      { channel_id: String, user_id: String }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class DmMemberCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor channel_id: String
+
+      attr_accessor user_id: String
+
+      def initialize: (
+        channel_id: String,
+        user_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        channel_id: String,
+        user_id: String,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

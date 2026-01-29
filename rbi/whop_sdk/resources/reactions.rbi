@@ -12,6 +12,7 @@ module WhopSDK
         params(
           resource_id: String,
           emoji: T.nilable(String),
+          poll_option_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Reaction)
       end
@@ -21,6 +22,9 @@ module WhopSDK
         # The emoji to react with (e.g., :heart: or '😀'). It will be ignored in forums,
         # as everything will be :heart:
         emoji: nil,
+        # The ID of the poll option to vote for. Only valid for messages or posts with
+        # polls.
+        poll_option_id: nil,
         request_options: {}
       )
       end
@@ -71,6 +75,28 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
+        request_options: {}
+      )
+      end
+
+      # Deletes a reaction
+      #
+      # Required permissions:
+      #
+      # - `chat:read`
+      sig do
+        params(
+          id: String,
+          emoji: T.nilable(String),
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(T::Boolean)
+      end
+      def delete(
+        # The ID of the reaction to remove or message / post to remove the reaction from.
+        # If the ID is from a message / post, you need to pass the emoji argument.
+        id,
+        # The emoji to remove (e.g., :heart: or '😀').
+        emoji: nil,
         request_options: {}
       )
       end

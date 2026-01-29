@@ -66,4 +66,14 @@ class WhopSDK::Test::Resources::ReactionsTest < WhopSDK::Test::ResourceTest
       }
     end
   end
+
+  def test_delete
+    skip("Prism tests are disabled")
+
+    response = @whop.reactions.delete("reac_xxxxxxxxxxxxxxxxxxxxxx")
+
+    assert_pattern do
+      response => WhopSDK::Internal::Type::Boolean
+    end
+  end
 end

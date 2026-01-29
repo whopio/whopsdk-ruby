@@ -9,7 +9,7 @@ module WhopSDK
       #
       # - `chat:message:create`
       #
-      # @overload create(channel_id:, content:, attachments: nil, poll: nil, request_options: {})
+      # @overload create(channel_id:, content:, attachments: nil, poll: nil, replying_to_message_id: nil, request_options: {})
       #
       # @param channel_id [String] The ID of the channel or experience to send to.
       #
@@ -18,6 +18,8 @@ module WhopSDK
       # @param attachments [Array<WhopSDK::Models::MessageCreateParams::Attachment>, nil] The attachments for this message, such as videos or images.
       #
       # @param poll [WhopSDK::Models::MessageCreateParams::Poll, nil] The poll for this message
+      #
+      # @param replying_to_message_id [String, nil] The ID of the message this is replying to, if applicable.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -121,6 +123,30 @@ module WhopSDK
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::MessageListResponse,
           options: options
+        )
+      end
+
+      # Deletes a message
+      #
+      # Required permissions:
+      #
+      # - `chat:message:create`
+      #
+      # @overload delete(id, request_options: {})
+      #
+      # @param id [String] The ID of the message to delete
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Boolean]
+      #
+      # @see WhopSDK::Models::MessageDeleteParams
+      def delete(id, params = {})
+        @client.request(
+          method: :delete,
+          path: ["messages/%1$s", id],
+          model: WhopSDK::Internal::Type::Boolean,
+          options: params[:request_options]
         )
       end
 

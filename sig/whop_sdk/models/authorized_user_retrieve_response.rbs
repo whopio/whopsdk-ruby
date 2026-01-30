@@ -3,6 +3,7 @@ module WhopSDK
     type authorized_user_retrieve_response =
       {
         id: String,
+        company: WhopSDK::Models::AuthorizedUserRetrieveResponse::Company,
         role: WhopSDK::Models::authorized_user_roles,
         user: WhopSDK::Models::AuthorizedUserRetrieveResponse::User
       }
@@ -10,21 +11,37 @@ module WhopSDK
     class AuthorizedUserRetrieveResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
+      attr_accessor company: WhopSDK::Models::AuthorizedUserRetrieveResponse::Company
+
       attr_accessor role: WhopSDK::Models::authorized_user_roles
 
       attr_accessor user: WhopSDK::Models::AuthorizedUserRetrieveResponse::User
 
       def initialize: (
         id: String,
+        company: WhopSDK::Models::AuthorizedUserRetrieveResponse::Company,
         role: WhopSDK::Models::authorized_user_roles,
         user: WhopSDK::Models::AuthorizedUserRetrieveResponse::User
       ) -> void
 
       def to_hash: -> {
         id: String,
+        company: WhopSDK::Models::AuthorizedUserRetrieveResponse::Company,
         role: WhopSDK::Models::authorized_user_roles,
         user: WhopSDK::Models::AuthorizedUserRetrieveResponse::User
       }
+
+      type company = { id: String, title: String }
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
 
       type user =
         { id: String, email: String?, name: String?, username: String }

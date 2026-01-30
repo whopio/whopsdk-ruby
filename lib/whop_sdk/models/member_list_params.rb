@@ -7,12 +7,6 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute company_id
-      #   The ID of the company to list members for
-      #
-      #   @return [String]
-      required :company_id, String
-
       # @!attribute access_level
       #   The access level a given user (or company) has to a product or company.
       #
@@ -30,6 +24,12 @@ module WhopSDK
       #
       #   @return [String, nil]
       optional :before, String, nil?: true
+
+      # @!attribute company_id
+      #   The ID of the company to list members for
+      #
+      #   @return [String, nil]
+      optional :company_id, String, nil?: true
 
       # @!attribute created_after
       #   The minimum creation date to filter by
@@ -112,17 +112,17 @@ module WhopSDK
       #   @return [Array<String>, nil]
       optional :user_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
 
-      # @!method initialize(company_id:, access_level: nil, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, most_recent_actions: nil, order: nil, plan_ids: nil, product_ids: nil, promo_code_ids: nil, query: nil, statuses: nil, user_ids: nil, request_options: {})
+      # @!method initialize(access_level: nil, after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, most_recent_actions: nil, order: nil, plan_ids: nil, product_ids: nil, promo_code_ids: nil, query: nil, statuses: nil, user_ids: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::MemberListParams} for more details.
-      #
-      #   @param company_id [String] The ID of the company to list members for
       #
       #   @param access_level [Symbol, WhopSDK::Models::AccessLevel, nil] The access level a given user (or company) has to a product or company.
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      #   @param company_id [String, nil] The ID of the company to list members for
       #
       #   @param created_after [Time, nil] The minimum creation date to filter by
       #

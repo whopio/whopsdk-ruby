@@ -10,6 +10,12 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
+      # @!attribute company
+      #   The company associated with the authorized user.
+      #
+      #   @return [WhopSDK::Models::AuthorizedUserRetrieveResponse::Company]
+      required :company, -> { WhopSDK::Models::AuthorizedUserRetrieveResponse::Company }
+
       # @!attribute role
       #   The role of the authorized user in the company.
       #
@@ -22,14 +28,38 @@ module WhopSDK
       #   @return [WhopSDK::Models::AuthorizedUserRetrieveResponse::User]
       required :user, -> { WhopSDK::Models::AuthorizedUserRetrieveResponse::User }
 
-      # @!method initialize(id:, role:, user:)
+      # @!method initialize(id:, company:, role:, user:)
       #   A user who has elevated security privileges for a company
       #
       #   @param id [String] A unique ID representing the authorized user object.
       #
+      #   @param company [WhopSDK::Models::AuthorizedUserRetrieveResponse::Company] The company associated with the authorized user.
+      #
       #   @param role [Symbol, WhopSDK::Models::AuthorizedUserRoles] The role of the authorized user in the company.
       #
       #   @param user [WhopSDK::Models::AuthorizedUserRetrieveResponse::User] The user associated with the authorized user.
+
+      # @see WhopSDK::Models::AuthorizedUserRetrieveResponse#company
+      class Company < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The ID (tag) of the company.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute title
+        #   The title of the company.
+        #
+        #   @return [String]
+        required :title, String
+
+        # @!method initialize(id:, title:)
+        #   The company associated with the authorized user.
+        #
+        #   @param id [String] The ID (tag) of the company.
+        #
+        #   @param title [String] The title of the company.
+      end
 
       # @see WhopSDK::Models::AuthorizedUserRetrieveResponse#user
       class User < WhopSDK::Internal::Type::BaseModel

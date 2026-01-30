@@ -40,15 +40,15 @@ module WhopSDK
       # - `member:email:read`
       # - `member:phone:read`
       #
-      # @overload list(company_id:, access_level: nil, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, most_recent_actions: nil, order: nil, plan_ids: nil, product_ids: nil, promo_code_ids: nil, query: nil, statuses: nil, user_ids: nil, request_options: {})
-      #
-      # @param company_id [String] The ID of the company to list members for
+      # @overload list(access_level: nil, after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, most_recent_actions: nil, order: nil, plan_ids: nil, product_ids: nil, promo_code_ids: nil, query: nil, statuses: nil, user_ids: nil, request_options: {})
       #
       # @param access_level [Symbol, WhopSDK::Models::AccessLevel, nil] The access level a given user (or company) has to a product or company.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      # @param company_id [String, nil] The ID of the company to list members for
       #
       # @param created_after [Time, nil] The minimum creation date to filter by
       #
@@ -81,7 +81,7 @@ module WhopSDK
       # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::MemberListResponse>]
       #
       # @see WhopSDK::Models::MemberListParams
-      def list(params)
+      def list(params = {})
         parsed, options = WhopSDK::MemberListParams.dump_request(params)
         @client.request(
           method: :get,

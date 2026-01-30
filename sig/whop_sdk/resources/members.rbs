@@ -7,10 +7,10 @@ module WhopSDK
       ) -> WhopSDK::Models::MemberRetrieveResponse
 
       def list: (
-        company_id: String,
         ?access_level: WhopSDK::Models::access_level?,
         ?after: String?,
         ?before: String?,
+        ?company_id: String?,
         ?created_after: Time?,
         ?created_before: Time?,
         ?direction: WhopSDK::Models::direction?,

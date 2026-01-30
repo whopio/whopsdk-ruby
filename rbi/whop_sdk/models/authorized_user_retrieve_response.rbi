@@ -15,6 +15,18 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
+      # The company associated with the authorized user.
+      sig { returns(WhopSDK::Models::AuthorizedUserRetrieveResponse::Company) }
+      attr_reader :company
+
+      sig do
+        params(
+          company:
+            WhopSDK::Models::AuthorizedUserRetrieveResponse::Company::OrHash
+        ).void
+      end
+      attr_writer :company
+
       # The role of the authorized user in the company.
       sig { returns(WhopSDK::AuthorizedUserRoles::TaggedSymbol) }
       attr_accessor :role
@@ -34,6 +46,8 @@ module WhopSDK
       sig do
         params(
           id: String,
+          company:
+            WhopSDK::Models::AuthorizedUserRetrieveResponse::Company::OrHash,
           role: WhopSDK::AuthorizedUserRoles::OrSymbol,
           user: WhopSDK::Models::AuthorizedUserRetrieveResponse::User::OrHash
         ).returns(T.attached_class)
@@ -41,6 +55,8 @@ module WhopSDK
       def self.new(
         # A unique ID representing the authorized user object.
         id:,
+        # The company associated with the authorized user.
+        company:,
         # The role of the authorized user in the company.
         role:,
         # The user associated with the authorized user.
@@ -52,12 +68,45 @@ module WhopSDK
         override.returns(
           {
             id: String,
+            company: WhopSDK::Models::AuthorizedUserRetrieveResponse::Company,
             role: WhopSDK::AuthorizedUserRoles::TaggedSymbol,
             user: WhopSDK::Models::AuthorizedUserRetrieveResponse::User
           }
         )
       end
       def to_hash
+      end
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Models::AuthorizedUserRetrieveResponse::Company,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The ID (tag) of the company.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The title of the company.
+        sig { returns(String) }
+        attr_accessor :title
+
+        # The company associated with the authorized user.
+        sig { params(id: String, title: String).returns(T.attached_class) }
+        def self.new(
+          # The ID (tag) of the company.
+          id:,
+          # The title of the company.
+          title:
+        )
+        end
+
+        sig { override.returns({ id: String, title: String }) }
+        def to_hash
+        end
       end
 
       class User < WhopSDK::Internal::Type::BaseModel

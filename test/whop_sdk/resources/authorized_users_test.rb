@@ -15,16 +15,17 @@ class WhopSDK::Test::Resources::AuthorizedUsersTest < WhopSDK::Test::ResourceTes
     assert_pattern do
       response => {
         id: String,
+        company: WhopSDK::Models::AuthorizedUserRetrieveResponse::Company,
         role: WhopSDK::AuthorizedUserRoles,
         user: WhopSDK::Models::AuthorizedUserRetrieveResponse::User
       }
     end
   end
 
-  def test_list_required_params
+  def test_list
     skip("Prism tests are disabled")
 
-    response = @whop.authorized_users.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.authorized_users.list
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage
@@ -40,6 +41,7 @@ class WhopSDK::Test::Resources::AuthorizedUsersTest < WhopSDK::Test::ResourceTes
     assert_pattern do
       row => {
         id: String,
+        company: WhopSDK::Models::AuthorizedUserListResponse::Company,
         role: WhopSDK::AuthorizedUserRoles,
         user: WhopSDK::Models::AuthorizedUserListResponse::User
       }

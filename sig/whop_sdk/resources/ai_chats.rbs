@@ -13,6 +13,7 @@ module WhopSDK
 
       def update: (
         String id,
+        ?current_company_id: String?,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::AIChat

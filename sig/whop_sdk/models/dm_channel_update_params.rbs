@@ -1,0 +1,23 @@
+module WhopSDK
+  module Models
+    type dm_channel_update_params =
+      { custom_name: String? } & WhopSDK::Internal::Type::request_parameters
+
+    class DmChannelUpdateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor custom_name: String?
+
+      def initialize: (
+        ?custom_name: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        custom_name: String?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

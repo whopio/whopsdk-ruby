@@ -9,19 +9,19 @@ class WhopSDK::Test::Resources::LeadsTest < WhopSDK::Test::ResourceTest
     response = @whop.leads.create(company_id: "biz_xxxxxxxxxxxxxx")
 
     assert_pattern do
-      response => WhopSDK::Models::LeadCreateResponse
+      response => WhopSDK::Lead
     end
 
     assert_pattern do
       response => {
         id: String,
         created_at: Time,
-        member: WhopSDK::Models::LeadCreateResponse::Member | nil,
+        member: WhopSDK::Lead::Member | nil,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        product: WhopSDK::Models::LeadCreateResponse::Product | nil,
+        product: WhopSDK::Lead::Product | nil,
         referrer: String | nil,
         updated_at: Time,
-        user: WhopSDK::Models::LeadCreateResponse::User
+        user: WhopSDK::Lead::User
       }
     end
   end
@@ -32,19 +32,19 @@ class WhopSDK::Test::Resources::LeadsTest < WhopSDK::Test::ResourceTest
     response = @whop.leads.retrieve("lead_xxxxxxxxxxxxx")
 
     assert_pattern do
-      response => WhopSDK::Models::LeadRetrieveResponse
+      response => WhopSDK::Lead
     end
 
     assert_pattern do
       response => {
         id: String,
         created_at: Time,
-        member: WhopSDK::Models::LeadRetrieveResponse::Member | nil,
+        member: WhopSDK::Lead::Member | nil,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        product: WhopSDK::Models::LeadRetrieveResponse::Product | nil,
+        product: WhopSDK::Lead::Product | nil,
         referrer: String | nil,
         updated_at: Time,
-        user: WhopSDK::Models::LeadRetrieveResponse::User
+        user: WhopSDK::Lead::User
       }
     end
   end
@@ -55,19 +55,19 @@ class WhopSDK::Test::Resources::LeadsTest < WhopSDK::Test::ResourceTest
     response = @whop.leads.update("lead_xxxxxxxxxxxxx")
 
     assert_pattern do
-      response => WhopSDK::Models::LeadUpdateResponse
+      response => WhopSDK::Lead
     end
 
     assert_pattern do
       response => {
         id: String,
         created_at: Time,
-        member: WhopSDK::Models::LeadUpdateResponse::Member | nil,
+        member: WhopSDK::Lead::Member | nil,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        product: WhopSDK::Models::LeadUpdateResponse::Product | nil,
+        product: WhopSDK::Lead::Product | nil,
         referrer: String | nil,
         updated_at: Time,
-        user: WhopSDK::Models::LeadUpdateResponse::User
+        user: WhopSDK::Lead::User
       }
     end
   end

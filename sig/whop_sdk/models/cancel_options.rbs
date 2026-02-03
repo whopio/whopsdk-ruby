@@ -1,0 +1,26 @@
+module WhopSDK
+  module Models
+    type cancel_options =
+      :too_expensive
+      | :switching
+      | :missing_features
+      | :technical_issues
+      | :bad_experience
+      | :other
+      | :testing
+
+    module CancelOptions
+      extend WhopSDK::Internal::Type::Enum
+
+      TOO_EXPENSIVE: :too_expensive
+      SWITCHING: :switching
+      MISSING_FEATURES: :missing_features
+      TECHNICAL_ISSUES: :technical_issues
+      BAD_EXPERIENCE: :bad_experience
+      OTHER: :other
+      TESTING: :testing
+
+      def self?.values: -> ::Array[WhopSDK::Models::cancel_options]
+    end
+  end
+end

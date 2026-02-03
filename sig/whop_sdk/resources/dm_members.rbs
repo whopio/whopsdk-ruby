@@ -5,19 +5,19 @@ module WhopSDK
         channel_id: String,
         user_id: String,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::DmMemberCreateResponse
+      ) -> WhopSDK::DmMember
 
       def retrieve: (
         String id,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::DmMemberRetrieveResponse
+      ) -> WhopSDK::DmMember
 
       def update: (
         String id,
-        ?notification_preference: WhopSDK::Models::DmMemberUpdateParams::notification_preference?,
-        ?status: WhopSDK::Models::DmMemberUpdateParams::status?,
+        ?notification_preference: WhopSDK::Models::dm_feed_member_notification_preferences?,
+        ?status: WhopSDK::Models::dm_feed_member_statuses?,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::DmMemberUpdateResponse
+      ) -> WhopSDK::DmMember
 
       def list: (
         channel_id: String,

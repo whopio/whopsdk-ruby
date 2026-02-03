@@ -1,0 +1,15 @@
+module WhopSDK
+  module Models
+    type dm_feed_member_notification_preferences = :all | :mentions | :none
+
+    module DmFeedMemberNotificationPreferences
+      extend WhopSDK::Internal::Type::Enum
+
+      ALL: :all
+      MENTIONS: :mentions
+      NONE: :none
+
+      def self?.values: -> ::Array[WhopSDK::Models::dm_feed_member_notification_preferences]
+    end
+  end
+end

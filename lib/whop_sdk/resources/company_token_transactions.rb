@@ -29,7 +29,7 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::CompanyTokenTransactionCreateResponse]
+      # @return [WhopSDK::Models::CompanyTokenTransaction]
       #
       # @see WhopSDK::Models::CompanyTokenTransactionCreateParams
       def create(params)
@@ -38,7 +38,7 @@ module WhopSDK
           method: :post,
           path: "company_token_transactions",
           body: parsed,
-          model: WhopSDK::Models::CompanyTokenTransactionCreateResponse,
+          model: WhopSDK::CompanyTokenTransaction,
           options: options
         )
       end
@@ -57,14 +57,14 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::CompanyTokenTransactionRetrieveResponse]
+      # @return [WhopSDK::Models::CompanyTokenTransaction]
       #
       # @see WhopSDK::Models::CompanyTokenTransactionRetrieveParams
       def retrieve(id, params = {})
         @client.request(
           method: :get,
           path: ["company_token_transactions/%1$s", id],
-          model: WhopSDK::Models::CompanyTokenTransactionRetrieveResponse,
+          model: WhopSDK::CompanyTokenTransaction,
           options: params[:request_options]
         )
       end
@@ -89,7 +89,7 @@ module WhopSDK
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param transaction_type [Symbol, WhopSDK::Models::CompanyTokenTransactionListParams::TransactionType, nil] The type of token transaction
+      # @param transaction_type [Symbol, WhopSDK::Models::BotTokenTransactionTypes, nil] The type of token transaction
       #
       # @param user_id [String, nil] Filter by user ID
       #

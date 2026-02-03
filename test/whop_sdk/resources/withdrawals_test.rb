@@ -9,7 +9,7 @@ class WhopSDK::Test::Resources::WithdrawalsTest < WhopSDK::Test::ResourceTest
     response = @whop.withdrawals.create(amount: 6.9, company_id: "biz_xxxxxxxxxxxxxx", currency: :usd)
 
     assert_pattern do
-      response => WhopSDK::Models::WithdrawalCreateResponse
+      response => WhopSDK::Withdrawal
     end
 
     assert_pattern do
@@ -18,14 +18,14 @@ class WhopSDK::Test::Resources::WithdrawalsTest < WhopSDK::Test::ResourceTest
         amount: Float,
         created_at: Time,
         currency: WhopSDK::Currency,
-        error_code: WhopSDK::Models::WithdrawalCreateResponse::ErrorCode | nil,
+        error_code: WhopSDK::Withdrawal::ErrorCode | nil,
         error_message: String | nil,
         estimated_availability: Time | nil,
         fee_amount: Float,
         fee_type: WhopSDK::WithdrawalFeeTypes | nil,
-        ledger_account: WhopSDK::Models::WithdrawalCreateResponse::LedgerAccount,
+        ledger_account: WhopSDK::Withdrawal::LedgerAccount,
         markup_fee: Float,
-        payout_token: WhopSDK::Models::WithdrawalCreateResponse::PayoutToken | nil,
+        payout_token: WhopSDK::Withdrawal::PayoutToken | nil,
         speed: WhopSDK::WithdrawalSpeeds,
         status: WhopSDK::WithdrawalStatus,
         trace_code: String | nil
@@ -39,7 +39,7 @@ class WhopSDK::Test::Resources::WithdrawalsTest < WhopSDK::Test::ResourceTest
     response = @whop.withdrawals.retrieve("wdrl_xxxxxxxxxxxxx")
 
     assert_pattern do
-      response => WhopSDK::Models::WithdrawalRetrieveResponse
+      response => WhopSDK::Withdrawal
     end
 
     assert_pattern do
@@ -48,14 +48,14 @@ class WhopSDK::Test::Resources::WithdrawalsTest < WhopSDK::Test::ResourceTest
         amount: Float,
         created_at: Time,
         currency: WhopSDK::Currency,
-        error_code: WhopSDK::Models::WithdrawalRetrieveResponse::ErrorCode | nil,
+        error_code: WhopSDK::Withdrawal::ErrorCode | nil,
         error_message: String | nil,
         estimated_availability: Time | nil,
         fee_amount: Float,
         fee_type: WhopSDK::WithdrawalFeeTypes | nil,
-        ledger_account: WhopSDK::Models::WithdrawalRetrieveResponse::LedgerAccount,
+        ledger_account: WhopSDK::Withdrawal::LedgerAccount,
         markup_fee: Float,
-        payout_token: WhopSDK::Models::WithdrawalRetrieveResponse::PayoutToken | nil,
+        payout_token: WhopSDK::Withdrawal::PayoutToken | nil,
         speed: WhopSDK::WithdrawalSpeeds,
         status: WhopSDK::WithdrawalStatus,
         trace_code: String | nil

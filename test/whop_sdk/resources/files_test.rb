@@ -19,7 +19,7 @@ class WhopSDK::Test::Resources::FilesTest < WhopSDK::Test::ResourceTest
         filename: String | nil,
         size: String | nil,
         upload_headers: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        upload_status: WhopSDK::Models::FileCreateResponse::UploadStatus,
+        upload_status: WhopSDK::UploadStatus,
         upload_url: String | nil,
         url: String | nil
       }
@@ -41,7 +41,7 @@ class WhopSDK::Test::Resources::FilesTest < WhopSDK::Test::ResourceTest
         content_type: String | nil,
         filename: String | nil,
         size: String | nil,
-        upload_status: WhopSDK::Models::FileRetrieveResponse::UploadStatus,
+        upload_status: WhopSDK::UploadStatus,
         url: String | nil
       }
     end

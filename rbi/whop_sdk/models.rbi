@@ -9,6 +9,8 @@ module WhopSDK
 
   AccountLinkCreateParams = WhopSDK::Models::AccountLinkCreateParams
 
+  AIChat = WhopSDK::Models::AIChat
+
   AIChatCreateParams = WhopSDK::Models::AIChatCreateParams
 
   AIChatDeleteParams = WhopSDK::Models::AIChatDeleteParams
@@ -18,6 +20,8 @@ module WhopSDK
   AIChatRetrieveParams = WhopSDK::Models::AIChatRetrieveParams
 
   AIChatUpdateParams = WhopSDK::Models::AIChatUpdateParams
+
+  APIVersion = WhopSDK::Models::APIVersion
 
   App = WhopSDK::Models::App
 
@@ -59,7 +63,11 @@ module WhopSDK
 
   BillingReasons = WhopSDK::Models::BillingReasons
 
+  BotTokenTransactionTypes = WhopSDK::Models::BotTokenTransactionTypes
+
   BusinessTypes = WhopSDK::Models::BusinessTypes
+
+  CancelOptions = WhopSDK::Models::CancelOptions
 
   CardBrands = WhopSDK::Models::CardBrands
 
@@ -93,6 +101,8 @@ module WhopSDK
   CompanyListParams = WhopSDK::Models::CompanyListParams
 
   CompanyRetrieveParams = WhopSDK::Models::CompanyRetrieveParams
+
+  CompanyTokenTransaction = WhopSDK::Models::CompanyTokenTransaction
 
   CompanyTokenTransactionCreateParams =
     WhopSDK::Models::CompanyTokenTransactionCreateParams
@@ -188,6 +198,25 @@ module WhopSDK
   DisputeUpdatedWebhookEvent = WhopSDK::Models::DisputeUpdatedWebhookEvent
 
   DisputeUpdateEvidenceParams = WhopSDK::Models::DisputeUpdateEvidenceParams
+
+  DmChannel = WhopSDK::Models::DmChannel
+
+  DmChannelCreateParams = WhopSDK::Models::DmChannelCreateParams
+
+  DmChannelDeleteParams = WhopSDK::Models::DmChannelDeleteParams
+
+  DmChannelListParams = WhopSDK::Models::DmChannelListParams
+
+  DmChannelRetrieveParams = WhopSDK::Models::DmChannelRetrieveParams
+
+  DmChannelUpdateParams = WhopSDK::Models::DmChannelUpdateParams
+
+  DmFeedMemberNotificationPreferences =
+    WhopSDK::Models::DmFeedMemberNotificationPreferences
+
+  DmFeedMemberStatuses = WhopSDK::Models::DmFeedMemberStatuses
+
+  DmMember = WhopSDK::Models::DmMember
 
   DmMemberCreateParams = WhopSDK::Models::DmMemberCreateParams
 
@@ -305,6 +334,8 @@ module WhopSDK
 
   Languages = WhopSDK::Models::Languages
 
+  Lead = WhopSDK::Models::Lead
+
   LeadCreateParams = WhopSDK::Models::LeadCreateParams
 
   LeadListParams = WhopSDK::Models::LeadListParams
@@ -403,6 +434,8 @@ module WhopSDK
   PaymentSucceededWebhookEvent = WhopSDK::Models::PaymentSucceededWebhookEvent
 
   PaymentVoidParams = WhopSDK::Models::PaymentVoidParams
+
+  PayoutDestinationCategory = WhopSDK::Models::PayoutDestinationCategory
 
   PayoutMethodCreatedWebhookEvent =
     WhopSDK::Models::PayoutMethodCreatedWebhookEvent
@@ -542,11 +575,17 @@ module WhopSDK
 
   UnwrapWebhookEvent = WhopSDK::Models::UnwrapWebhookEvent
 
+  UploadStatus = WhopSDK::Models::UploadStatus
+
   UserCheckAccessParams = WhopSDK::Models::UserCheckAccessParams
 
   UserRetrieveParams = WhopSDK::Models::UserRetrieveParams
 
+  VerificationErrorCode = WhopSDK::Models::VerificationErrorCode
+
   VerificationRetrieveParams = WhopSDK::Models::VerificationRetrieveParams
+
+  VerificationStatus = WhopSDK::Models::VerificationStatus
 
   VerificationSucceededWebhookEvent =
     WhopSDK::Models::VerificationSucceededWebhookEvent
@@ -555,9 +594,13 @@ module WhopSDK
 
   VisibilityFilter = WhopSDK::Models::VisibilityFilter
 
+  Webhook = WhopSDK::Models::Webhook
+
   WebhookCreateParams = WhopSDK::Models::WebhookCreateParams
 
   WebhookDeleteParams = WhopSDK::Models::WebhookDeleteParams
+
+  WebhookEvent = WhopSDK::Models::WebhookEvent
 
   WebhookListParams = WhopSDK::Models::WebhookListParams
 
@@ -574,6 +617,8 @@ module WhopSDK
   WhoCanPostTypes = WhopSDK::Models::WhoCanPostTypes
 
   WhoCanReact = WhopSDK::Models::WhoCanReact
+
+  Withdrawal = WhopSDK::Models::Withdrawal
 
   WithdrawalCreatedWebhookEvent = WhopSDK::Models::WithdrawalCreatedWebhookEvent
 

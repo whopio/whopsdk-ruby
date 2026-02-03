@@ -12,7 +12,7 @@ module WhopSDK
         params(
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::AIChatCreateResponse)
+        ).returns(WhopSDK::AIChat)
       end
       def create(
         # The title of the AI chat
@@ -26,7 +26,7 @@ module WhopSDK
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::AIChatRetrieveResponse)
+        ).returns(WhopSDK::AIChat)
       end
       def retrieve(
         # The ID of the AI chat
@@ -45,7 +45,7 @@ module WhopSDK
           id: String,
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::AIChatUpdateResponse)
+        ).returns(WhopSDK::AIChat)
       end
       def update(
         # The ID of the AI chat to update

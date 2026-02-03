@@ -1,0 +1,19 @@
+module WhopSDK
+  module Models
+    type payout_destination_category =
+      :crypto | :rtp | :next_day_bank | :bank_wire | :digital_wallet | :unknown
+
+    module PayoutDestinationCategory
+      extend WhopSDK::Internal::Type::Enum
+
+      CRYPTO: :crypto
+      RTP: :rtp
+      NEXT_DAY_BANK: :next_day_bank
+      BANK_WIRE: :bank_wire
+      DIGITAL_WALLET: :digital_wallet
+      UNKNOWN: :unknown
+
+      def self?.values: -> ::Array[WhopSDK::Models::payout_destination_category]
+    end
+  end
+end

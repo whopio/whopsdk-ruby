@@ -11,12 +11,10 @@ module WhopSDK
       sig do
         params(
           url: String,
-          api_version:
-            T.nilable(WhopSDK::WebhookCreateParams::APIVersion::OrSymbol),
+          api_version: T.nilable(WhopSDK::APIVersion::OrSymbol),
           child_resource_events: T.nilable(T::Boolean),
           enabled: T.nilable(T::Boolean),
-          events:
-            T.nilable(T::Array[WhopSDK::WebhookCreateParams::Event::OrSymbol]),
+          events: T.nilable(T::Array[WhopSDK::WebhookEvent::OrSymbol]),
           resource_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::WebhookCreateResponse)
@@ -49,7 +47,7 @@ module WhopSDK
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::WebhookRetrieveResponse)
+        ).returns(WhopSDK::Webhook)
       end
       def retrieve(
         # The ID of the webhook
@@ -66,15 +64,13 @@ module WhopSDK
       sig do
         params(
           id: String,
-          api_version:
-            T.nilable(WhopSDK::WebhookUpdateParams::APIVersion::OrSymbol),
+          api_version: T.nilable(WhopSDK::APIVersion::OrSymbol),
           child_resource_events: T.nilable(T::Boolean),
           enabled: T.nilable(T::Boolean),
-          events:
-            T.nilable(T::Array[WhopSDK::WebhookUpdateParams::Event::OrSymbol]),
+          events: T.nilable(T::Array[WhopSDK::WebhookEvent::OrSymbol]),
           url: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::WebhookUpdateResponse)
+        ).returns(WhopSDK::Webhook)
       end
       def update(
         # The ID of the Webhook to update

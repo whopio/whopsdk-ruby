@@ -26,8 +26,8 @@ module WhopSDK
       # @!attribute status
       #   The status of the membership (requested, accepted, rejected)
       #
-      #   @return [Symbol, WhopSDK::Models::DmMemberListResponse::Status]
-      required :status, enum: -> { WhopSDK::Models::DmMemberListResponse::Status }
+      #   @return [Symbol, WhopSDK::Models::DmFeedMemberStatuses]
+      required :status, enum: -> { WhopSDK::DmFeedMemberStatuses }
 
       # @!attribute user_id
       #   The ID of the user who is a member of the channel
@@ -47,25 +47,9 @@ module WhopSDK
       #
       #   @param last_viewed_at [String, nil] Timestamp when the member last viewed the channel (in milliseconds since Unix ep
       #
-      #   @param status [Symbol, WhopSDK::Models::DmMemberListResponse::Status] The status of the membership (requested, accepted, rejected)
+      #   @param status [Symbol, WhopSDK::Models::DmFeedMemberStatuses] The status of the membership (requested, accepted, rejected)
       #
       #   @param user_id [String] The ID of the user who is a member of the channel
-
-      # The status of the membership (requested, accepted, rejected)
-      #
-      # @see WhopSDK::Models::DmMemberListResponse#status
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        REQUESTED = :requested
-        ACCEPTED = :accepted
-        HIDDEN = :hidden
-        CLOSED = :closed
-        ARCHIVED = :archived
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
     end
   end
 end

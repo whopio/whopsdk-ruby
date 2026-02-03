@@ -29,7 +29,7 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::WithdrawalCreateResponse]
+      # @return [WhopSDK::Models::Withdrawal]
       #
       # @see WhopSDK::Models::WithdrawalCreateParams
       def create(params)
@@ -38,7 +38,7 @@ module WhopSDK
           method: :post,
           path: "withdrawals",
           body: parsed,
-          model: WhopSDK::Models::WithdrawalCreateResponse,
+          model: WhopSDK::Withdrawal,
           options: options
         )
       end
@@ -56,14 +56,14 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::WithdrawalRetrieveResponse]
+      # @return [WhopSDK::Models::Withdrawal]
       #
       # @see WhopSDK::Models::WithdrawalRetrieveParams
       def retrieve(id, params = {})
         @client.request(
           method: :get,
           path: ["withdrawals/%1$s", id],
-          model: WhopSDK::Models::WithdrawalRetrieveResponse,
+          model: WhopSDK::Withdrawal,
           options: params[:request_options]
         )
       end

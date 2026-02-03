@@ -266,11 +266,7 @@ module WhopSDK
             end
 
           # The category of the payout destination
-          sig do
-            returns(
-              WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination::Category::TaggedSymbol
-            )
-          end
+          sig { returns(WhopSDK::PayoutDestinationCategory::TaggedSymbol) }
           attr_accessor :category
 
           # The country code of the payout destination
@@ -284,8 +280,7 @@ module WhopSDK
           # The payout destination associated with the payout token
           sig do
             params(
-              category:
-                WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination::Category::OrSymbol,
+              category: WhopSDK::PayoutDestinationCategory::OrSymbol,
               country_code: String,
               name: String
             ).returns(T.attached_class)
@@ -303,69 +298,13 @@ module WhopSDK
           sig do
             override.returns(
               {
-                category:
-                  WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination::Category::TaggedSymbol,
+                category: WhopSDK::PayoutDestinationCategory::TaggedSymbol,
                 country_code: String,
                 name: String
               }
             )
           end
           def to_hash
-          end
-
-          # The category of the payout destination
-          module Category
-            extend WhopSDK::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination::Category
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            CRYPTO =
-              T.let(
-                :crypto,
-                WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination::Category::TaggedSymbol
-              )
-            RTP =
-              T.let(
-                :rtp,
-                WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination::Category::TaggedSymbol
-              )
-            NEXT_DAY_BANK =
-              T.let(
-                :next_day_bank,
-                WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination::Category::TaggedSymbol
-              )
-            BANK_WIRE =
-              T.let(
-                :bank_wire,
-                WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination::Category::TaggedSymbol
-              )
-            DIGITAL_WALLET =
-              T.let(
-                :digital_wallet,
-                WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination::Category::TaggedSymbol
-              )
-            UNKNOWN =
-              T.let(
-                :unknown,
-                WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination::Category::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  WhopSDK::PayoutMethodCreatedWebhookEvent::Data::Destination::Category::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
           end
         end
       end

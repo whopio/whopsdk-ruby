@@ -44,115 +44,33 @@ module WhopSDK
       type data =
         {
           id: String,
-          last_error_code: WhopSDK::Models::VerificationSucceededWebhookEvent::Data::last_error_code?,
+          last_error_code: WhopSDK::Models::verification_error_code?,
           last_error_reason: String?,
-          status: WhopSDK::Models::VerificationSucceededWebhookEvent::Data::status
+          status: WhopSDK::Models::verification_status
         }
 
       class Data < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
-        attr_accessor last_error_code: WhopSDK::Models::VerificationSucceededWebhookEvent::Data::last_error_code?
+        attr_accessor last_error_code: WhopSDK::Models::verification_error_code?
 
         attr_accessor last_error_reason: String?
 
-        attr_accessor status: WhopSDK::Models::VerificationSucceededWebhookEvent::Data::status
+        attr_accessor status: WhopSDK::Models::verification_status
 
         def initialize: (
           id: String,
-          last_error_code: WhopSDK::Models::VerificationSucceededWebhookEvent::Data::last_error_code?,
+          last_error_code: WhopSDK::Models::verification_error_code?,
           last_error_reason: String?,
-          status: WhopSDK::Models::VerificationSucceededWebhookEvent::Data::status
+          status: WhopSDK::Models::verification_status
         ) -> void
 
         def to_hash: -> {
           id: String,
-          last_error_code: WhopSDK::Models::VerificationSucceededWebhookEvent::Data::last_error_code?,
+          last_error_code: WhopSDK::Models::verification_error_code?,
           last_error_reason: String?,
-          status: WhopSDK::Models::VerificationSucceededWebhookEvent::Data::status
+          status: WhopSDK::Models::verification_status
         }
-
-        type last_error_code =
-          :abandoned
-          | :consent_declined
-          | :country_not_supported
-          | :device_not_supported
-          | :document_expired
-          | :document_type_not_supported
-          | :document_unverified_other
-          | :email_unverified_other
-          | :email_verification_declined
-          | :id_number_insufficient_document_data
-          | :id_number_mismatch
-          | :id_number_unverified_other
-          | :phone_unverified_other
-          | :phone_verification_declined
-          | :selfie_document_missing_photo
-          | :selfie_face_mismatch
-          | :selfie_manipulated
-          | :selfie_unverified_other
-          | :under_supported_age
-
-        module LastErrorCode
-          extend WhopSDK::Internal::Type::Enum
-
-          ABANDONED: :abandoned
-          CONSENT_DECLINED: :consent_declined
-          COUNTRY_NOT_SUPPORTED: :country_not_supported
-          DEVICE_NOT_SUPPORTED: :device_not_supported
-          DOCUMENT_EXPIRED: :document_expired
-          DOCUMENT_TYPE_NOT_SUPPORTED: :document_type_not_supported
-          DOCUMENT_UNVERIFIED_OTHER: :document_unverified_other
-          EMAIL_UNVERIFIED_OTHER: :email_unverified_other
-          EMAIL_VERIFICATION_DECLINED: :email_verification_declined
-          ID_NUMBER_INSUFFICIENT_DOCUMENT_DATA: :id_number_insufficient_document_data
-          ID_NUMBER_MISMATCH: :id_number_mismatch
-          ID_NUMBER_UNVERIFIED_OTHER: :id_number_unverified_other
-          PHONE_UNVERIFIED_OTHER: :phone_unverified_other
-          PHONE_VERIFICATION_DECLINED: :phone_verification_declined
-          SELFIE_DOCUMENT_MISSING_PHOTO: :selfie_document_missing_photo
-          SELFIE_FACE_MISMATCH: :selfie_face_mismatch
-          SELFIE_MANIPULATED: :selfie_manipulated
-          SELFIE_UNVERIFIED_OTHER: :selfie_unverified_other
-          UNDER_SUPPORTED_AGE: :under_supported_age
-
-          def self?.values: -> ::Array[WhopSDK::Models::VerificationSucceededWebhookEvent::Data::last_error_code]
-        end
-
-        type status =
-          :requires_input
-          | :processing
-          | :verified
-          | :canceled
-          | :created
-          | :started
-          | :submitted
-          | :approved
-          | :declined
-          | :resubmission_requested
-          | :expired
-          | :abandoned
-          | :review
-
-        module Status
-          extend WhopSDK::Internal::Type::Enum
-
-          REQUIRES_INPUT: :requires_input
-          PROCESSING: :processing
-          VERIFIED: :verified
-          CANCELED: :canceled
-          CREATED: :created
-          STARTED: :started
-          SUBMITTED: :submitted
-          APPROVED: :approved
-          DECLINED: :declined
-          RESUBMISSION_REQUESTED: :resubmission_requested
-          EXPIRED: :expired
-          ABANDONED: :abandoned
-          REVIEW: :review
-
-          def self?.values: -> ::Array[WhopSDK::Models::VerificationSucceededWebhookEvent::Data::status]
-        end
       end
     end
   end

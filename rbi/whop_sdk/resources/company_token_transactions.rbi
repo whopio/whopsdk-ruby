@@ -20,7 +20,7 @@ module WhopSDK
           idempotency_key: T.nilable(String),
           transaction_type: Symbol,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::CompanyTokenTransactionCreateResponse)
+        ).returns(WhopSDK::CompanyTokenTransaction)
       end
       def create(
         # The positive amount of tokens
@@ -51,7 +51,7 @@ module WhopSDK
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::CompanyTokenTransactionRetrieveResponse)
+        ).returns(WhopSDK::CompanyTokenTransaction)
       end
       def retrieve(
         # The ID of the transaction
@@ -75,9 +75,7 @@ module WhopSDK
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           transaction_type:
-            T.nilable(
-              WhopSDK::CompanyTokenTransactionListParams::TransactionType::OrSymbol
-            ),
+            T.nilable(WhopSDK::BotTokenTransactionTypes::OrSymbol),
           user_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(

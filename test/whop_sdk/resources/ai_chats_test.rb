@@ -9,7 +9,7 @@ class WhopSDK::Test::Resources::AIChatsTest < WhopSDK::Test::ResourceTest
     response = @whop.ai_chats.create
 
     assert_pattern do
-      response => WhopSDK::Models::AIChatCreateResponse
+      response => WhopSDK::AIChat
     end
 
     assert_pattern do
@@ -21,7 +21,7 @@ class WhopSDK::Test::Resources::AIChatsTest < WhopSDK::Test::ResourceTest
         message_count: Integer,
         title: String | nil,
         updated_at: Time,
-        user: WhopSDK::Models::AIChatCreateResponse::User
+        user: WhopSDK::AIChat::User
       }
     end
   end
@@ -32,7 +32,7 @@ class WhopSDK::Test::Resources::AIChatsTest < WhopSDK::Test::ResourceTest
     response = @whop.ai_chats.retrieve("aich_xxxxxxxxxxxxx")
 
     assert_pattern do
-      response => WhopSDK::Models::AIChatRetrieveResponse
+      response => WhopSDK::AIChat
     end
 
     assert_pattern do
@@ -44,7 +44,7 @@ class WhopSDK::Test::Resources::AIChatsTest < WhopSDK::Test::ResourceTest
         message_count: Integer,
         title: String | nil,
         updated_at: Time,
-        user: WhopSDK::Models::AIChatRetrieveResponse::User
+        user: WhopSDK::AIChat::User
       }
     end
   end
@@ -55,7 +55,7 @@ class WhopSDK::Test::Resources::AIChatsTest < WhopSDK::Test::ResourceTest
     response = @whop.ai_chats.update("aich_xxxxxxxxxxxxx")
 
     assert_pattern do
-      response => WhopSDK::Models::AIChatUpdateResponse
+      response => WhopSDK::AIChat
     end
 
     assert_pattern do
@@ -67,7 +67,7 @@ class WhopSDK::Test::Resources::AIChatsTest < WhopSDK::Test::ResourceTest
         message_count: Integer,
         title: String | nil,
         updated_at: Time,
-        user: WhopSDK::Models::AIChatUpdateResponse::User
+        user: WhopSDK::AIChat::User
       }
     end
   end

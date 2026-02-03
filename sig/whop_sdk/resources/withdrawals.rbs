@@ -9,12 +9,12 @@ module WhopSDK
         ?platform_covers_fees: bool?,
         ?statement_descriptor: String?,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::WithdrawalCreateResponse
+      ) -> WhopSDK::Withdrawal
 
       def retrieve: (
         String id,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::WithdrawalRetrieveResponse
+      ) -> WhopSDK::Withdrawal
 
       def list: (
         company_id: String,

@@ -25,9 +25,7 @@ module WhopSDK
       attr_accessor :last_viewed_at
 
       # The status of the membership (requested, accepted, rejected)
-      sig do
-        returns(WhopSDK::Models::DmMemberListResponse::Status::TaggedSymbol)
-      end
+      sig { returns(WhopSDK::DmFeedMemberStatuses::TaggedSymbol) }
       attr_accessor :status
 
       # The ID of the user who is a member of the channel
@@ -40,7 +38,7 @@ module WhopSDK
           id: String,
           channel_id: String,
           last_viewed_at: T.nilable(String),
-          status: WhopSDK::Models::DmMemberListResponse::Status::OrSymbol,
+          status: WhopSDK::DmFeedMemberStatuses::OrSymbol,
           user_id: String
         ).returns(T.attached_class)
       end
@@ -65,59 +63,12 @@ module WhopSDK
             id: String,
             channel_id: String,
             last_viewed_at: T.nilable(String),
-            status: WhopSDK::Models::DmMemberListResponse::Status::TaggedSymbol,
+            status: WhopSDK::DmFeedMemberStatuses::TaggedSymbol,
             user_id: String
           }
         )
       end
       def to_hash
-      end
-
-      # The status of the membership (requested, accepted, rejected)
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::Models::DmMemberListResponse::Status)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        REQUESTED =
-          T.let(
-            :requested,
-            WhopSDK::Models::DmMemberListResponse::Status::TaggedSymbol
-          )
-        ACCEPTED =
-          T.let(
-            :accepted,
-            WhopSDK::Models::DmMemberListResponse::Status::TaggedSymbol
-          )
-        HIDDEN =
-          T.let(
-            :hidden,
-            WhopSDK::Models::DmMemberListResponse::Status::TaggedSymbol
-          )
-        CLOSED =
-          T.let(
-            :closed,
-            WhopSDK::Models::DmMemberListResponse::Status::TaggedSymbol
-          )
-        ARCHIVED =
-          T.let(
-            :archived,
-            WhopSDK::Models::DmMemberListResponse::Status::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::Models::DmMemberListResponse::Status::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
-        end
       end
     end
   end

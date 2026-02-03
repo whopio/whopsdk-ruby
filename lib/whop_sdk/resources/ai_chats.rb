@@ -15,7 +15,7 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::AIChatCreateResponse]
+      # @return [WhopSDK::Models::AIChat]
       #
       # @see WhopSDK::Models::AIChatCreateParams
       def create(params = {})
@@ -24,7 +24,7 @@ module WhopSDK
           method: :post,
           path: "ai_chats",
           body: parsed,
-          model: WhopSDK::Models::AIChatCreateResponse,
+          model: WhopSDK::AIChat,
           options: options
         )
       end
@@ -37,14 +37,14 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::AIChatRetrieveResponse]
+      # @return [WhopSDK::Models::AIChat]
       #
       # @see WhopSDK::Models::AIChatRetrieveParams
       def retrieve(id, params = {})
         @client.request(
           method: :get,
           path: ["ai_chats/%1$s", id],
-          model: WhopSDK::Models::AIChatRetrieveResponse,
+          model: WhopSDK::AIChat,
           options: params[:request_options]
         )
       end
@@ -63,7 +63,7 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::AIChatUpdateResponse]
+      # @return [WhopSDK::Models::AIChat]
       #
       # @see WhopSDK::Models::AIChatUpdateParams
       def update(id, params = {})
@@ -72,7 +72,7 @@ module WhopSDK
           method: :patch,
           path: ["ai_chats/%1$s", id],
           body: parsed,
-          model: WhopSDK::Models::AIChatUpdateResponse,
+          model: WhopSDK::AIChat,
           options: options
         )
       end

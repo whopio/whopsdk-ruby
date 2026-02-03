@@ -14,6 +14,17 @@ module WhopSDK
       sig { returns(Float) }
       attr_accessor :amount_after_fees
 
+      # The application fee charged on this payment.
+      sig { returns(T.nilable(WhopSDK::Payment::ApplicationFee)) }
+      attr_reader :application_fee
+
+      sig do
+        params(
+          application_fee: T.nilable(WhopSDK::Payment::ApplicationFee::OrHash)
+        ).void
+      end
+      attr_writer :application_fee
+
       # Whether this payment was auto refunded or not
       sig { returns(T::Boolean) }
       attr_accessor :auto_refunded
@@ -195,6 +206,7 @@ module WhopSDK
         params(
           id: String,
           amount_after_fees: Float,
+          application_fee: T.nilable(WhopSDK::Payment::ApplicationFee::OrHash),
           auto_refunded: T::Boolean,
           billing_address: T.nilable(WhopSDK::Payment::BillingAddress::OrHash),
           billing_reason: T.nilable(WhopSDK::BillingReasons::OrSymbol),
@@ -235,6 +247,8 @@ module WhopSDK
         id:,
         # How much the payment is for after fees
         amount_after_fees:,
+        # The application fee charged on this payment.
+        application_fee:,
         # Whether this payment was auto refunded or not
         auto_refunded:,
         # The address of the user who made the payment.
@@ -314,6 +328,7 @@ module WhopSDK
           {
             id: String,
             amount_after_fees: Float,
+            application_fee: T.nilable(WhopSDK::Payment::ApplicationFee),
             auto_refunded: T::Boolean,
             billing_address: T.nilable(WhopSDK::Payment::BillingAddress),
             billing_reason: T.nilable(WhopSDK::BillingReasons::TaggedSymbol),
@@ -352,6 +367,79 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      class ApplicationFee < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Payment::ApplicationFee, WhopSDK::Internal::AnyHash)
+          end
+
+        # The unique identifier for the application fee.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The application fee amount.
+        sig { returns(Float) }
+        attr_accessor :amount
+
+        # The amount of the application fee that has been captured.
+        sig { returns(Float) }
+        attr_accessor :amount_captured
+
+        # The amount of the application fee that has been refunded.
+        sig { returns(Float) }
+        attr_accessor :amount_refunded
+
+        # When the application fee was created.
+        sig { returns(Time) }
+        attr_accessor :created_at
+
+        # The currency of the application fee.
+        sig { returns(WhopSDK::Currency::TaggedSymbol) }
+        attr_accessor :currency
+
+        # The application fee charged on this payment.
+        sig do
+          params(
+            id: String,
+            amount: Float,
+            amount_captured: Float,
+            amount_refunded: Float,
+            created_at: Time,
+            currency: WhopSDK::Currency::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The unique identifier for the application fee.
+          id:,
+          # The application fee amount.
+          amount:,
+          # The amount of the application fee that has been captured.
+          amount_captured:,
+          # The amount of the application fee that has been refunded.
+          amount_refunded:,
+          # When the application fee was created.
+          created_at:,
+          # The currency of the application fee.
+          currency:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              amount: Float,
+              amount_captured: Float,
+              amount_refunded: Float,
+              created_at: Time,
+              currency: WhopSDK::Currency::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
       end
 
       class BillingAddress < WhopSDK::Internal::Type::BaseModel

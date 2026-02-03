@@ -4,6 +4,7 @@ module WhopSDK
       {
         id: String,
         amount_after_fees: Float,
+        application_fee: WhopSDK::Payment::ApplicationFee?,
         auto_refunded: bool,
         billing_address: WhopSDK::Payment::BillingAddress?,
         billing_reason: WhopSDK::Models::billing_reasons?,
@@ -43,6 +44,8 @@ module WhopSDK
       attr_accessor id: String
 
       attr_accessor amount_after_fees: Float
+
+      attr_accessor application_fee: WhopSDK::Payment::ApplicationFee?
 
       attr_accessor auto_refunded: bool
 
@@ -113,6 +116,7 @@ module WhopSDK
       def initialize: (
         id: String,
         amount_after_fees: Float,
+        application_fee: WhopSDK::Payment::ApplicationFee?,
         auto_refunded: bool,
         billing_address: WhopSDK::Payment::BillingAddress?,
         billing_reason: WhopSDK::Models::billing_reasons?,
@@ -151,6 +155,7 @@ module WhopSDK
       def to_hash: -> {
         id: String,
         amount_after_fees: Float,
+        application_fee: WhopSDK::Payment::ApplicationFee?,
         auto_refunded: bool,
         billing_address: WhopSDK::Payment::BillingAddress?,
         billing_reason: WhopSDK::Models::billing_reasons?,
@@ -185,6 +190,48 @@ module WhopSDK
         user: WhopSDK::Payment::User?,
         voidable: bool
       }
+
+      type application_fee =
+        {
+          id: String,
+          amount: Float,
+          amount_captured: Float,
+          amount_refunded: Float,
+          created_at: Time,
+          currency: WhopSDK::Models::currency
+        }
+
+      class ApplicationFee < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor amount: Float
+
+        attr_accessor amount_captured: Float
+
+        attr_accessor amount_refunded: Float
+
+        attr_accessor created_at: Time
+
+        attr_accessor currency: WhopSDK::Models::currency
+
+        def initialize: (
+          id: String,
+          amount: Float,
+          amount_captured: Float,
+          amount_refunded: Float,
+          created_at: Time,
+          currency: WhopSDK::Models::currency
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          amount: Float,
+          amount_captured: Float,
+          amount_refunded: Float,
+          created_at: Time,
+          currency: WhopSDK::Models::currency
+        }
+      end
 
       type billing_address =
         {

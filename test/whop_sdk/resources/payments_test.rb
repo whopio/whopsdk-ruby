@@ -22,6 +22,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         amount_after_fees: Float,
+        application_fee: WhopSDK::Payment::ApplicationFee | nil,
         auto_refunded: WhopSDK::Internal::Type::Boolean,
         billing_address: WhopSDK::Payment::BillingAddress | nil,
         billing_reason: WhopSDK::BillingReasons | nil,
@@ -72,6 +73,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         amount_after_fees: Float,
+        application_fee: WhopSDK::Payment::ApplicationFee | nil,
         auto_refunded: WhopSDK::Internal::Type::Boolean,
         billing_address: WhopSDK::Payment::BillingAddress | nil,
         billing_reason: WhopSDK::BillingReasons | nil,
@@ -129,6 +131,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
       row => {
         id: String,
         amount_after_fees: Float,
+        application_fee: WhopSDK::Models::PaymentListResponse::ApplicationFee | nil,
         auto_refunded: WhopSDK::Internal::Type::Boolean,
         billing_address: WhopSDK::Models::PaymentListResponse::BillingAddress | nil,
         billing_reason: WhopSDK::BillingReasons | nil,
@@ -205,6 +208,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         amount_after_fees: Float,
+        application_fee: WhopSDK::Payment::ApplicationFee | nil,
         auto_refunded: WhopSDK::Internal::Type::Boolean,
         billing_address: WhopSDK::Payment::BillingAddress | nil,
         billing_reason: WhopSDK::BillingReasons | nil,
@@ -255,6 +259,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         amount_after_fees: Float,
+        application_fee: WhopSDK::Payment::ApplicationFee | nil,
         auto_refunded: WhopSDK::Internal::Type::Boolean,
         billing_address: WhopSDK::Payment::BillingAddress | nil,
         billing_reason: WhopSDK::BillingReasons | nil,
@@ -305,6 +310,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         amount_after_fees: Float,
+        application_fee: WhopSDK::Payment::ApplicationFee | nil,
         auto_refunded: WhopSDK::Internal::Type::Boolean,
         billing_address: WhopSDK::Payment::BillingAddress | nil,
         billing_reason: WhopSDK::BillingReasons | nil,

@@ -17,7 +17,7 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::DmMemberCreateResponse]
+      # @return [WhopSDK::Models::DmMember]
       #
       # @see WhopSDK::Models::DmMemberCreateParams
       def create(params)
@@ -26,7 +26,7 @@ module WhopSDK
           method: :post,
           path: "dm_members",
           body: parsed,
-          model: WhopSDK::Models::DmMemberCreateResponse,
+          model: WhopSDK::DmMember,
           options: options
         )
       end
@@ -43,14 +43,14 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::DmMemberRetrieveResponse]
+      # @return [WhopSDK::Models::DmMember]
       #
       # @see WhopSDK::Models::DmMemberRetrieveParams
       def retrieve(id, params = {})
         @client.request(
           method: :get,
           path: ["dm_members/%1$s", id],
-          model: WhopSDK::Models::DmMemberRetrieveResponse,
+          model: WhopSDK::DmMember,
           options: params[:request_options]
         )
       end
@@ -65,13 +65,13 @@ module WhopSDK
       #
       # @param id [String] The ID of the DM channel member to update
       #
-      # @param notification_preference [Symbol, WhopSDK::Models::DmMemberUpdateParams::NotificationPreference, nil] The notification preferences for a DMs feed member
+      # @param notification_preference [Symbol, WhopSDK::Models::DmFeedMemberNotificationPreferences, nil] The notification preferences for a DMs feed member
       #
-      # @param status [Symbol, WhopSDK::Models::DmMemberUpdateParams::Status, nil] The statuses of a DMs feed member
+      # @param status [Symbol, WhopSDK::Models::DmFeedMemberStatuses, nil] The statuses of a DMs feed member
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::DmMemberUpdateResponse]
+      # @return [WhopSDK::Models::DmMember]
       #
       # @see WhopSDK::Models::DmMemberUpdateParams
       def update(id, params = {})
@@ -80,7 +80,7 @@ module WhopSDK
           method: :patch,
           path: ["dm_members/%1$s", id],
           body: parsed,
-          model: WhopSDK::Models::DmMemberUpdateResponse,
+          model: WhopSDK::DmMember,
           options: options
         )
       end

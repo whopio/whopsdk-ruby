@@ -168,6 +168,9 @@ module WhopSDK
     # @return [WhopSDK::Resources::AIChats]
     attr_reader :ai_chats
 
+    # @return [WhopSDK::Resources::DmChannels]
+    attr_reader :dm_channels
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -273,6 +276,7 @@ module WhopSDK
       @company_token_transactions = WhopSDK::Resources::CompanyTokenTransactions.new(client: self)
       @dm_members = WhopSDK::Resources::DmMembers.new(client: self)
       @ai_chats = WhopSDK::Resources::AIChats.new(client: self)
+      @dm_channels = WhopSDK::Resources::DmChannels.new(client: self)
     end
   end
 end

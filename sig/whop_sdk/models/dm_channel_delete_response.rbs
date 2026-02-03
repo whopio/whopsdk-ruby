@@ -1,0 +1,5 @@
+module WhopSDK
+  module Models
+    DmChannelDeleteResponse: WhopSDK::Internal::Type::Converter
+  end
+end

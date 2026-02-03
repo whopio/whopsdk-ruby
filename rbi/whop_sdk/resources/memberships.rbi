@@ -55,10 +55,7 @@ module WhopSDK
         params(
           after: T.nilable(String),
           before: T.nilable(String),
-          cancel_options:
-            T.nilable(
-              T::Array[WhopSDK::MembershipListParams::CancelOption::OrSymbol]
-            ),
+          cancel_options: T.nilable(T::Array[WhopSDK::CancelOptions::OrSymbol]),
           company_id: T.nilable(String),
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),

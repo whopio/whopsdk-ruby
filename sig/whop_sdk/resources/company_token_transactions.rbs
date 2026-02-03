@@ -10,12 +10,12 @@ module WhopSDK
         ?idempotency_key: String?,
         ?transaction_type: :subtract,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::CompanyTokenTransactionCreateResponse
+      ) -> WhopSDK::CompanyTokenTransaction
 
       def retrieve: (
         String id,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::CompanyTokenTransactionRetrieveResponse
+      ) -> WhopSDK::CompanyTokenTransaction
 
       def list: (
         company_id: String,
@@ -23,7 +23,7 @@ module WhopSDK
         ?before: String?,
         ?first: Integer?,
         ?last: Integer?,
-        ?transaction_type: WhopSDK::Models::CompanyTokenTransactionListParams::transaction_type?,
+        ?transaction_type: WhopSDK::Models::bot_token_transaction_types?,
         ?user_id: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::CompanyTokenTransactionListResponse]

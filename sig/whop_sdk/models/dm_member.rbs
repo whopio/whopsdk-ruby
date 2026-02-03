@@ -1,0 +1,45 @@
+module WhopSDK
+  module Models
+    type dm_member =
+      {
+        id: String,
+        channel_id: String,
+        last_viewed_at: String?,
+        notification_preference: WhopSDK::Models::dm_feed_member_notification_preferences,
+        status: WhopSDK::Models::dm_feed_member_statuses,
+        user_id: String
+      }
+
+    class DmMember < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor channel_id: String
+
+      attr_accessor last_viewed_at: String?
+
+      attr_accessor notification_preference: WhopSDK::Models::dm_feed_member_notification_preferences
+
+      attr_accessor status: WhopSDK::Models::dm_feed_member_statuses
+
+      attr_accessor user_id: String
+
+      def initialize: (
+        id: String,
+        channel_id: String,
+        last_viewed_at: String?,
+        notification_preference: WhopSDK::Models::dm_feed_member_notification_preferences,
+        status: WhopSDK::Models::dm_feed_member_statuses,
+        user_id: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        channel_id: String,
+        last_viewed_at: String?,
+        notification_preference: WhopSDK::Models::dm_feed_member_notification_preferences,
+        status: WhopSDK::Models::dm_feed_member_statuses,
+        user_id: String
+      }
+    end
+  end
+end

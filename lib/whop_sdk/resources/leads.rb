@@ -29,18 +29,12 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::LeadCreateResponse]
+      # @return [WhopSDK::Models::Lead]
       #
       # @see WhopSDK::Models::LeadCreateParams
       def create(params)
         parsed, options = WhopSDK::LeadCreateParams.dump_request(params)
-        @client.request(
-          method: :post,
-          path: "leads",
-          body: parsed,
-          model: WhopSDK::Models::LeadCreateResponse,
-          options: options
-        )
+        @client.request(method: :post, path: "leads", body: parsed, model: WhopSDK::Lead, options: options)
       end
 
       # Retrieves a lead by ID
@@ -58,14 +52,14 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::LeadRetrieveResponse]
+      # @return [WhopSDK::Models::Lead]
       #
       # @see WhopSDK::Models::LeadRetrieveParams
       def retrieve(id, params = {})
         @client.request(
           method: :get,
           path: ["leads/%1$s", id],
-          model: WhopSDK::Models::LeadRetrieveResponse,
+          model: WhopSDK::Lead,
           options: params[:request_options]
         )
       end
@@ -89,7 +83,7 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::LeadUpdateResponse]
+      # @return [WhopSDK::Models::Lead]
       #
       # @see WhopSDK::Models::LeadUpdateParams
       def update(id, params = {})
@@ -98,7 +92,7 @@ module WhopSDK
           method: :patch,
           path: ["leads/%1$s", id],
           body: parsed,
-          model: WhopSDK::Models::LeadUpdateResponse,
+          model: WhopSDK::Lead,
           options: options
         )
       end

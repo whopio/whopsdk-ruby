@@ -1,0 +1,18 @@
+module WhopSDK
+  module Models
+    type dm_feed_member_statuses =
+      :requested | :accepted | :hidden | :closed | :archived
+
+    module DmFeedMemberStatuses
+      extend WhopSDK::Internal::Type::Enum
+
+      REQUESTED: :requested
+      ACCEPTED: :accepted
+      HIDDEN: :hidden
+      CLOSED: :closed
+      ARCHIVED: :archived
+
+      def self?.values: -> ::Array[WhopSDK::Models::dm_feed_member_statuses]
+    end
+  end
+end

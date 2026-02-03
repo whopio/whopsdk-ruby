@@ -22,9 +22,9 @@ module WhopSDK
       # @!attribute cancel_options
       #   The cancel options to filter the memberships by
       #
-      #   @return [Array<Symbol, WhopSDK::Models::MembershipListParams::CancelOption>, nil]
+      #   @return [Array<Symbol, WhopSDK::Models::CancelOptions>, nil]
       optional :cancel_options,
-               -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::MembershipListParams::CancelOption] },
+               -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::CancelOptions] },
                nil?: true
 
       # @!attribute company_id
@@ -104,7 +104,7 @@ module WhopSDK
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param cancel_options [Array<Symbol, WhopSDK::Models::MembershipListParams::CancelOption>, nil] The cancel options to filter the memberships by
+      #   @param cancel_options [Array<Symbol, WhopSDK::Models::CancelOptions>, nil] The cancel options to filter the memberships by
       #
       #   @param company_id [String, nil] The ID of the company to list memberships for
       #
@@ -131,23 +131,6 @@ module WhopSDK
       #   @param user_ids [Array<String>, nil] Only return memberships from these whop user ids
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
-
-      # The different reasons a user can choose for why they are canceling their
-      # membership.
-      module CancelOption
-        extend WhopSDK::Internal::Type::Enum
-
-        TOO_EXPENSIVE = :too_expensive
-        SWITCHING = :switching
-        MISSING_FEATURES = :missing_features
-        TECHNICAL_ISSUES = :technical_issues
-        BAD_EXPERIENCE = :bad_experience
-        OTHER = :other
-        TESTING = :testing
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
 
       # Which columns can be used to sort.
       module Order

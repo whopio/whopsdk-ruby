@@ -1,0 +1,60 @@
+module WhopSDK
+  module Models
+    type webhook =
+      {
+        id: String,
+        api_version: WhopSDK::Models::api_version,
+        child_resource_events: bool,
+        created_at: Time,
+        enabled: bool,
+        events: ::Array[WhopSDK::Models::webhook_event],
+        resource_id: String,
+        testable_events: ::Array[WhopSDK::Models::webhook_event],
+        url: String
+      }
+
+    class Webhook < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: WhopSDK::Models::api_version
+
+      attr_accessor child_resource_events: bool
+
+      attr_accessor created_at: Time
+
+      attr_accessor enabled: bool
+
+      attr_accessor events: ::Array[WhopSDK::Models::webhook_event]
+
+      attr_accessor resource_id: String
+
+      attr_accessor testable_events: ::Array[WhopSDK::Models::webhook_event]
+
+      attr_accessor url: String
+
+      def initialize: (
+        id: String,
+        api_version: WhopSDK::Models::api_version,
+        child_resource_events: bool,
+        created_at: Time,
+        enabled: bool,
+        events: ::Array[WhopSDK::Models::webhook_event],
+        resource_id: String,
+        testable_events: ::Array[WhopSDK::Models::webhook_event],
+        url: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: WhopSDK::Models::api_version,
+        child_resource_events: bool,
+        created_at: Time,
+        enabled: bool,
+        events: ::Array[WhopSDK::Models::webhook_event],
+        resource_id: String,
+        testable_events: ::Array[WhopSDK::Models::webhook_event],
+        url: String
+      }
+    end
+  end
+end

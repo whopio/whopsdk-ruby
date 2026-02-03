@@ -15,13 +15,13 @@ class WhopSDK::Test::Resources::WebhooksTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        api_version: WhopSDK::Models::WebhookCreateResponse::APIVersion,
+        api_version: WhopSDK::APIVersion,
         child_resource_events: WhopSDK::Internal::Type::Boolean,
         created_at: Time,
         enabled: WhopSDK::Internal::Type::Boolean,
-        events: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::Models::WebhookCreateResponse::Event]),
+        events: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::WebhookEvent]),
         resource_id: String,
-        testable_events: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::Models::WebhookCreateResponse::TestableEvent]),
+        testable_events: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::WebhookEvent]),
         url: String,
         webhook_secret: String
       }
@@ -34,19 +34,19 @@ class WhopSDK::Test::Resources::WebhooksTest < WhopSDK::Test::ResourceTest
     response = @whop.webhooks.retrieve("hook_xxxxxxxxxxxxx")
 
     assert_pattern do
-      response => WhopSDK::Models::WebhookRetrieveResponse
+      response => WhopSDK::Webhook
     end
 
     assert_pattern do
       response => {
         id: String,
-        api_version: WhopSDK::Models::WebhookRetrieveResponse::APIVersion,
+        api_version: WhopSDK::APIVersion,
         child_resource_events: WhopSDK::Internal::Type::Boolean,
         created_at: Time,
         enabled: WhopSDK::Internal::Type::Boolean,
-        events: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::Models::WebhookRetrieveResponse::Event]),
+        events: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::WebhookEvent]),
         resource_id: String,
-        testable_events: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::Models::WebhookRetrieveResponse::TestableEvent]),
+        testable_events: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::WebhookEvent]),
         url: String
       }
     end
@@ -58,19 +58,19 @@ class WhopSDK::Test::Resources::WebhooksTest < WhopSDK::Test::ResourceTest
     response = @whop.webhooks.update("hook_xxxxxxxxxxxxx")
 
     assert_pattern do
-      response => WhopSDK::Models::WebhookUpdateResponse
+      response => WhopSDK::Webhook
     end
 
     assert_pattern do
       response => {
         id: String,
-        api_version: WhopSDK::Models::WebhookUpdateResponse::APIVersion,
+        api_version: WhopSDK::APIVersion,
         child_resource_events: WhopSDK::Internal::Type::Boolean,
         created_at: Time,
         enabled: WhopSDK::Internal::Type::Boolean,
-        events: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::Models::WebhookUpdateResponse::Event]),
+        events: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::WebhookEvent]),
         resource_id: String,
-        testable_events: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::Models::WebhookUpdateResponse::TestableEvent]),
+        testable_events: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::WebhookEvent]),
         url: String
       }
     end
@@ -95,11 +95,11 @@ class WhopSDK::Test::Resources::WebhooksTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
-        api_version: WhopSDK::Models::WebhookListResponse::APIVersion,
+        api_version: WhopSDK::APIVersion,
         child_resource_events: WhopSDK::Internal::Type::Boolean,
         created_at: Time,
         enabled: WhopSDK::Internal::Type::Boolean,
-        events: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::Models::WebhookListResponse::Event]),
+        events: ^(WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::WebhookEvent]),
         url: String
       }
     end

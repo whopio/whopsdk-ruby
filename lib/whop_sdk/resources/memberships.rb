@@ -71,7 +71,7 @@ module WhopSDK
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param cancel_options [Array<Symbol, WhopSDK::Models::MembershipListParams::CancelOption>, nil] The cancel options to filter the memberships by
+      # @param cancel_options [Array<Symbol, WhopSDK::Models::CancelOptions>, nil] The cancel options to filter the memberships by
       #
       # @param company_id [String, nil] The ID of the company to list memberships for
       #

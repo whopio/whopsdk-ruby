@@ -6,7 +6,7 @@ module WhopSDK
         content_type: String?,
         filename: String?,
         size: String?,
-        upload_status: WhopSDK::Models::FileRetrieveResponse::upload_status,
+        upload_status: WhopSDK::Models::upload_status,
         url: String?
       }
 
@@ -19,7 +19,7 @@ module WhopSDK
 
       attr_accessor size: String?
 
-      attr_accessor upload_status: WhopSDK::Models::FileRetrieveResponse::upload_status
+      attr_accessor upload_status: WhopSDK::Models::upload_status
 
       attr_accessor url: String?
 
@@ -28,7 +28,7 @@ module WhopSDK
         content_type: String?,
         filename: String?,
         size: String?,
-        upload_status: WhopSDK::Models::FileRetrieveResponse::upload_status,
+        upload_status: WhopSDK::Models::upload_status,
         url: String?
       ) -> void
 
@@ -37,22 +37,9 @@ module WhopSDK
         content_type: String?,
         filename: String?,
         size: String?,
-        upload_status: WhopSDK::Models::FileRetrieveResponse::upload_status,
+        upload_status: WhopSDK::Models::upload_status,
         url: String?
       }
-
-      type upload_status = :pending | :processing | :ready | :failed
-
-      module UploadStatus
-        extend WhopSDK::Internal::Type::Enum
-
-        PENDING: :pending
-        PROCESSING: :processing
-        READY: :ready
-        FAILED: :failed
-
-        def self?.values: -> ::Array[WhopSDK::Models::FileRetrieveResponse::upload_status]
-      end
     end
   end
 end

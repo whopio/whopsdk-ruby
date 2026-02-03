@@ -16,13 +16,13 @@ module WhopSDK
       #
       # @param url [String] The URL to send the webhook to.
       #
-      # @param api_version [Symbol, WhopSDK::Models::WebhookCreateParams::APIVersion, nil] The different API versions
+      # @param api_version [Symbol, WhopSDK::Models::APIVersion, nil] The different API versions
       #
       # @param child_resource_events [Boolean, nil] Whether or not to send events for child resources. For example, if the webhook i
       #
       # @param enabled [Boolean, nil] Whether or not the webhook is enabled.
       #
-      # @param events [Array<Symbol, WhopSDK::Models::WebhookCreateParams::Event>, nil] The events to send the webhook for.
+      # @param events [Array<Symbol, WhopSDK::Models::WebhookEvent>, nil] The events to send the webhook for.
       #
       # @param resource_id [String, nil] The resource to create the webhook for. By default this will use current company
       #
@@ -54,14 +54,14 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::WebhookRetrieveResponse]
+      # @return [WhopSDK::Models::Webhook]
       #
       # @see WhopSDK::Models::WebhookRetrieveParams
       def retrieve(id, params = {})
         @client.request(
           method: :get,
           path: ["webhooks/%1$s", id],
-          model: WhopSDK::Models::WebhookRetrieveResponse,
+          model: WhopSDK::Webhook,
           options: params[:request_options]
         )
       end
@@ -76,19 +76,19 @@ module WhopSDK
       #
       # @param id [String] The ID of the Webhook to update
       #
-      # @param api_version [Symbol, WhopSDK::Models::WebhookUpdateParams::APIVersion, nil] The different API versions
+      # @param api_version [Symbol, WhopSDK::Models::APIVersion, nil] The different API versions
       #
       # @param child_resource_events [Boolean, nil] Whether or not to send events for child resources.
       #
       # @param enabled [Boolean, nil] Whether or not the webhook is enabled.
       #
-      # @param events [Array<Symbol, WhopSDK::Models::WebhookUpdateParams::Event>, nil] The events to send the webhook for.
+      # @param events [Array<Symbol, WhopSDK::Models::WebhookEvent>, nil] The events to send the webhook for.
       #
       # @param url [String, nil] The URL to send the webhook to.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::WebhookUpdateResponse]
+      # @return [WhopSDK::Models::Webhook]
       #
       # @see WhopSDK::Models::WebhookUpdateParams
       def update(id, params = {})
@@ -97,7 +97,7 @@ module WhopSDK
           method: :patch,
           path: ["webhooks/%1$s", id],
           body: parsed,
-          model: WhopSDK::Models::WebhookUpdateResponse,
+          model: WhopSDK::Webhook,
           options: options
         )
       end

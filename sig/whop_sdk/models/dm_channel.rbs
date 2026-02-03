@@ -1,0 +1,30 @@
+module WhopSDK
+  module Models
+    type dm_channel =
+      { id: String, created_at: String, last_message_at: Time?, name: String? }
+
+    class DmChannel < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: String
+
+      attr_accessor last_message_at: Time?
+
+      attr_accessor name: String?
+
+      def initialize: (
+        id: String,
+        created_at: String,
+        last_message_at: Time?,
+        name: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: String,
+        last_message_at: Time?,
+        name: String?
+      }
+    end
+  end
+end

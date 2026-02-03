@@ -1,0 +1,65 @@
+module WhopSDK
+  module Models
+    type ai_chat =
+      {
+        id: String,
+        blended_token_usage: String,
+        created_at: Time,
+        last_message_at: Time?,
+        message_count: Integer,
+        title: String?,
+        updated_at: Time,
+        user: WhopSDK::AIChat::User
+      }
+
+    class AIChat < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor blended_token_usage: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor last_message_at: Time?
+
+      attr_accessor message_count: Integer
+
+      attr_accessor title: String?
+
+      attr_accessor updated_at: Time
+
+      attr_accessor user: WhopSDK::AIChat::User
+
+      def initialize: (
+        id: String,
+        blended_token_usage: String,
+        created_at: Time,
+        last_message_at: Time?,
+        message_count: Integer,
+        title: String?,
+        updated_at: Time,
+        user: WhopSDK::AIChat::User
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        blended_token_usage: String,
+        created_at: Time,
+        last_message_at: Time?,
+        message_count: Integer,
+        title: String?,
+        updated_at: Time,
+        user: WhopSDK::AIChat::User
+      }
+
+      type user = { id: String }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+    end
+  end
+end

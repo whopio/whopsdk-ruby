@@ -20,13 +20,7 @@ module WhopSDK
       attr_accessor :before
 
       # The cancel options to filter the memberships by
-      sig do
-        returns(
-          T.nilable(
-            T::Array[WhopSDK::MembershipListParams::CancelOption::OrSymbol]
-          )
-        )
-      end
+      sig { returns(T.nilable(T::Array[WhopSDK::CancelOptions::OrSymbol])) }
       attr_accessor :cancel_options
 
       # The ID of the company to list memberships for
@@ -81,10 +75,7 @@ module WhopSDK
         params(
           after: T.nilable(String),
           before: T.nilable(String),
-          cancel_options:
-            T.nilable(
-              T::Array[WhopSDK::MembershipListParams::CancelOption::OrSymbol]
-            ),
+          cancel_options: T.nilable(T::Array[WhopSDK::CancelOptions::OrSymbol]),
           company_id: T.nilable(String),
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
@@ -141,9 +132,7 @@ module WhopSDK
             after: T.nilable(String),
             before: T.nilable(String),
             cancel_options:
-              T.nilable(
-                T::Array[WhopSDK::MembershipListParams::CancelOption::OrSymbol]
-              ),
+              T.nilable(T::Array[WhopSDK::CancelOptions::OrSymbol]),
             company_id: T.nilable(String),
             created_after: T.nilable(Time),
             created_before: T.nilable(Time),
@@ -161,62 +150,6 @@ module WhopSDK
         )
       end
       def to_hash
-      end
-
-      # The different reasons a user can choose for why they are canceling their
-      # membership.
-      module CancelOption
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::MembershipListParams::CancelOption)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        TOO_EXPENSIVE =
-          T.let(
-            :too_expensive,
-            WhopSDK::MembershipListParams::CancelOption::TaggedSymbol
-          )
-        SWITCHING =
-          T.let(
-            :switching,
-            WhopSDK::MembershipListParams::CancelOption::TaggedSymbol
-          )
-        MISSING_FEATURES =
-          T.let(
-            :missing_features,
-            WhopSDK::MembershipListParams::CancelOption::TaggedSymbol
-          )
-        TECHNICAL_ISSUES =
-          T.let(
-            :technical_issues,
-            WhopSDK::MembershipListParams::CancelOption::TaggedSymbol
-          )
-        BAD_EXPERIENCE =
-          T.let(
-            :bad_experience,
-            WhopSDK::MembershipListParams::CancelOption::TaggedSymbol
-          )
-        OTHER =
-          T.let(
-            :other,
-            WhopSDK::MembershipListParams::CancelOption::TaggedSymbol
-          )
-        TESTING =
-          T.let(
-            :testing,
-            WhopSDK::MembershipListParams::CancelOption::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[WhopSDK::MembershipListParams::CancelOption::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
       end
 
       # Which columns can be used to sort.

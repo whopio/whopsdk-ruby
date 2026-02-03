@@ -4,18 +4,18 @@ module WhopSDK
       def create: (
         ?title: String?,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::AIChatCreateResponse
+      ) -> WhopSDK::AIChat
 
       def retrieve: (
         String id,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::AIChatRetrieveResponse
+      ) -> WhopSDK::AIChat
 
       def update: (
         String id,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::AIChatUpdateResponse
+      ) -> WhopSDK::AIChat
 
       def list: (
         ?after: String?,

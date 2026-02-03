@@ -19,7 +19,7 @@ module WhopSDK
           referrer: T.nilable(String),
           user_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::LeadCreateResponse)
+        ).returns(WhopSDK::Lead)
       end
       def create(
         # The ID of the company to create a lead for.
@@ -49,7 +49,7 @@ module WhopSDK
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::LeadRetrieveResponse)
+        ).returns(WhopSDK::Lead)
       end
       def retrieve(
         # The ID of the lead
@@ -72,7 +72,7 @@ module WhopSDK
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
           referrer: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::LeadUpdateResponse)
+        ).returns(WhopSDK::Lead)
       end
       def update(
         # The ID of the lead to update.

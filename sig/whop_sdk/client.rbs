@@ -108,6 +108,8 @@ module WhopSDK
 
     attr_reader ai_chats: WhopSDK::Resources::AIChats
 
+    attr_reader dm_channels: WhopSDK::Resources::DmChannels
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

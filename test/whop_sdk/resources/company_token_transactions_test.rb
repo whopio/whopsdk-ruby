@@ -16,21 +16,21 @@ class WhopSDK::Test::Resources::CompanyTokenTransactionsTest < WhopSDK::Test::Re
       )
 
     assert_pattern do
-      response => WhopSDK::Models::CompanyTokenTransactionCreateResponse
+      response => WhopSDK::CompanyTokenTransaction
     end
 
     assert_pattern do
       response => {
         id: String,
         amount: Float,
-        company: WhopSDK::Models::CompanyTokenTransactionCreateResponse::Company,
+        company: WhopSDK::CompanyTokenTransaction::Company,
         created_at: Time,
         description: String | nil,
         idempotency_key: String | nil,
         linked_transaction_id: String | nil,
-        member: WhopSDK::Models::CompanyTokenTransactionCreateResponse::Member,
-        transaction_type: WhopSDK::Models::CompanyTokenTransactionCreateResponse::TransactionType,
-        user: WhopSDK::Models::CompanyTokenTransactionCreateResponse::User
+        member: WhopSDK::CompanyTokenTransaction::Member,
+        transaction_type: WhopSDK::BotTokenTransactionTypes,
+        user: WhopSDK::CompanyTokenTransaction::User
       }
     end
   end
@@ -41,21 +41,21 @@ class WhopSDK::Test::Resources::CompanyTokenTransactionsTest < WhopSDK::Test::Re
     response = @whop.company_token_transactions.retrieve("id")
 
     assert_pattern do
-      response => WhopSDK::Models::CompanyTokenTransactionRetrieveResponse
+      response => WhopSDK::CompanyTokenTransaction
     end
 
     assert_pattern do
       response => {
         id: String,
         amount: Float,
-        company: WhopSDK::Models::CompanyTokenTransactionRetrieveResponse::Company,
+        company: WhopSDK::CompanyTokenTransaction::Company,
         created_at: Time,
         description: String | nil,
         idempotency_key: String | nil,
         linked_transaction_id: String | nil,
-        member: WhopSDK::Models::CompanyTokenTransactionRetrieveResponse::Member,
-        transaction_type: WhopSDK::Models::CompanyTokenTransactionRetrieveResponse::TransactionType,
-        user: WhopSDK::Models::CompanyTokenTransactionRetrieveResponse::User
+        member: WhopSDK::CompanyTokenTransaction::Member,
+        transaction_type: WhopSDK::BotTokenTransactionTypes,
+        user: WhopSDK::CompanyTokenTransaction::User
       }
     end
   end
@@ -86,7 +86,7 @@ class WhopSDK::Test::Resources::CompanyTokenTransactionsTest < WhopSDK::Test::Re
         idempotency_key: String | nil,
         linked_transaction_id: String | nil,
         member: WhopSDK::Models::CompanyTokenTransactionListResponse::Member,
-        transaction_type: WhopSDK::Models::CompanyTokenTransactionListResponse::TransactionType,
+        transaction_type: WhopSDK::BotTokenTransactionTypes,
         user: WhopSDK::Models::CompanyTokenTransactionListResponse::User
       }
     end

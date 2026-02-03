@@ -13,7 +13,7 @@ module WhopSDK
           channel_id: String,
           user_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::DmMemberCreateResponse)
+        ).returns(WhopSDK::DmMember)
       end
       def create(
         # The ID of the DM channel to add the member to
@@ -33,7 +33,7 @@ module WhopSDK
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::DmMemberRetrieveResponse)
+        ).returns(WhopSDK::DmMember)
       end
       def retrieve(
         # The ID of the DM channel member
@@ -51,12 +51,10 @@ module WhopSDK
         params(
           id: String,
           notification_preference:
-            T.nilable(
-              WhopSDK::DmMemberUpdateParams::NotificationPreference::OrSymbol
-            ),
-          status: T.nilable(WhopSDK::DmMemberUpdateParams::Status::OrSymbol),
+            T.nilable(WhopSDK::DmFeedMemberNotificationPreferences::OrSymbol),
+          status: T.nilable(WhopSDK::DmFeedMemberStatuses::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::DmMemberUpdateResponse)
+        ).returns(WhopSDK::DmMember)
       end
       def update(
         # The ID of the DM channel member to update

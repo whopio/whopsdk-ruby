@@ -9,7 +9,7 @@ class WhopSDK::Test::Resources::DmMembersTest < WhopSDK::Test::ResourceTest
     response = @whop.dm_members.create(channel_id: "channel_id", user_id: "user_xxxxxxxxxxxxx")
 
     assert_pattern do
-      response => WhopSDK::Models::DmMemberCreateResponse
+      response => WhopSDK::DmMember
     end
 
     assert_pattern do
@@ -17,8 +17,8 @@ class WhopSDK::Test::Resources::DmMembersTest < WhopSDK::Test::ResourceTest
         id: String,
         channel_id: String,
         last_viewed_at: String | nil,
-        notification_preference: WhopSDK::Models::DmMemberCreateResponse::NotificationPreference,
-        status: WhopSDK::Models::DmMemberCreateResponse::Status,
+        notification_preference: WhopSDK::DmFeedMemberNotificationPreferences,
+        status: WhopSDK::DmFeedMemberStatuses,
         user_id: String
       }
     end
@@ -30,7 +30,7 @@ class WhopSDK::Test::Resources::DmMembersTest < WhopSDK::Test::ResourceTest
     response = @whop.dm_members.retrieve("id")
 
     assert_pattern do
-      response => WhopSDK::Models::DmMemberRetrieveResponse
+      response => WhopSDK::DmMember
     end
 
     assert_pattern do
@@ -38,8 +38,8 @@ class WhopSDK::Test::Resources::DmMembersTest < WhopSDK::Test::ResourceTest
         id: String,
         channel_id: String,
         last_viewed_at: String | nil,
-        notification_preference: WhopSDK::Models::DmMemberRetrieveResponse::NotificationPreference,
-        status: WhopSDK::Models::DmMemberRetrieveResponse::Status,
+        notification_preference: WhopSDK::DmFeedMemberNotificationPreferences,
+        status: WhopSDK::DmFeedMemberStatuses,
         user_id: String
       }
     end
@@ -51,7 +51,7 @@ class WhopSDK::Test::Resources::DmMembersTest < WhopSDK::Test::ResourceTest
     response = @whop.dm_members.update("id")
 
     assert_pattern do
-      response => WhopSDK::Models::DmMemberUpdateResponse
+      response => WhopSDK::DmMember
     end
 
     assert_pattern do
@@ -59,8 +59,8 @@ class WhopSDK::Test::Resources::DmMembersTest < WhopSDK::Test::ResourceTest
         id: String,
         channel_id: String,
         last_viewed_at: String | nil,
-        notification_preference: WhopSDK::Models::DmMemberUpdateResponse::NotificationPreference,
-        status: WhopSDK::Models::DmMemberUpdateResponse::Status,
+        notification_preference: WhopSDK::DmFeedMemberNotificationPreferences,
+        status: WhopSDK::DmFeedMemberStatuses,
         user_id: String
       }
     end
@@ -87,7 +87,7 @@ class WhopSDK::Test::Resources::DmMembersTest < WhopSDK::Test::ResourceTest
         id: String,
         channel_id: String,
         last_viewed_at: String | nil,
-        status: WhopSDK::Models::DmMemberListResponse::Status,
+        status: WhopSDK::DmFeedMemberStatuses,
         user_id: String
       }
     end

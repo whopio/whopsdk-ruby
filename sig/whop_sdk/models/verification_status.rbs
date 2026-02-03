@@ -1,0 +1,38 @@
+module WhopSDK
+  module Models
+    type verification_status =
+      :requires_input
+      | :processing
+      | :verified
+      | :canceled
+      | :created
+      | :started
+      | :submitted
+      | :approved
+      | :declined
+      | :resubmission_requested
+      | :expired
+      | :abandoned
+      | :review
+
+    module VerificationStatus
+      extend WhopSDK::Internal::Type::Enum
+
+      REQUIRES_INPUT: :requires_input
+      PROCESSING: :processing
+      VERIFIED: :verified
+      CANCELED: :canceled
+      CREATED: :created
+      STARTED: :started
+      SUBMITTED: :submitted
+      APPROVED: :approved
+      DECLINED: :declined
+      RESUBMISSION_REQUESTED: :resubmission_requested
+      EXPIRED: :expired
+      ABANDONED: :abandoned
+      REVIEW: :review
+
+      def self?.values: -> ::Array[WhopSDK::Models::verification_status]
+    end
+  end
+end

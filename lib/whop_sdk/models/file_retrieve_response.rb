@@ -31,8 +31,8 @@ module WhopSDK
       # @!attribute upload_status
       #   The upload status of the file
       #
-      #   @return [Symbol, WhopSDK::Models::FileRetrieveResponse::UploadStatus]
-      required :upload_status, enum: -> { WhopSDK::Models::FileRetrieveResponse::UploadStatus }
+      #   @return [Symbol, WhopSDK::Models::UploadStatus]
+      required :upload_status, enum: -> { WhopSDK::UploadStatus }
 
       # @!attribute url
       #   The URL to access the file
@@ -51,24 +51,9 @@ module WhopSDK
       #
       #   @param size [String, nil] The size of the file in bytes
       #
-      #   @param upload_status [Symbol, WhopSDK::Models::FileRetrieveResponse::UploadStatus] The upload status of the file
+      #   @param upload_status [Symbol, WhopSDK::Models::UploadStatus] The upload status of the file
       #
       #   @param url [String, nil] The URL to access the file
-
-      # The upload status of the file
-      #
-      # @see WhopSDK::Models::FileRetrieveResponse#upload_status
-      module UploadStatus
-        extend WhopSDK::Internal::Type::Enum
-
-        PENDING = :pending
-        PROCESSING = :processing
-        READY = :ready
-        FAILED = :failed
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
     end
   end
 end

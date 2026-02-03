@@ -68,50 +68,29 @@ module WhopSDK
 
       type destination =
         {
-          category: WhopSDK::Models::PayoutMethodRetrieveResponse::Destination::category,
+          category: WhopSDK::Models::payout_destination_category,
           country_code: String,
           name: String
         }
 
       class Destination < WhopSDK::Internal::Type::BaseModel
-        attr_accessor category: WhopSDK::Models::PayoutMethodRetrieveResponse::Destination::category
+        attr_accessor category: WhopSDK::Models::payout_destination_category
 
         attr_accessor country_code: String
 
         attr_accessor name: String
 
         def initialize: (
-          category: WhopSDK::Models::PayoutMethodRetrieveResponse::Destination::category,
+          category: WhopSDK::Models::payout_destination_category,
           country_code: String,
           name: String
         ) -> void
 
         def to_hash: -> {
-          category: WhopSDK::Models::PayoutMethodRetrieveResponse::Destination::category,
+          category: WhopSDK::Models::payout_destination_category,
           country_code: String,
           name: String
         }
-
-        type category =
-          :crypto
-          | :rtp
-          | :next_day_bank
-          | :bank_wire
-          | :digital_wallet
-          | :unknown
-
-        module Category
-          extend WhopSDK::Internal::Type::Enum
-
-          CRYPTO: :crypto
-          RTP: :rtp
-          NEXT_DAY_BANK: :next_day_bank
-          BANK_WIRE: :bank_wire
-          DIGITAL_WALLET: :digital_wallet
-          UNKNOWN: :unknown
-
-          def self?.values: -> ::Array[WhopSDK::Models::PayoutMethodRetrieveResponse::Destination::category]
-        end
       end
     end
   end

@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    whop_sdk (0.0.25)
+    whop_sdk (0.0.26)
       cgi
       connection_pool
       jwt

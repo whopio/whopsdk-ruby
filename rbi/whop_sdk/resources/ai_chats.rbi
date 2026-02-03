@@ -43,6 +43,7 @@ module WhopSDK
       sig do
         params(
           id: String,
+          current_company_id: T.nilable(String),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::AIChat)
@@ -50,6 +51,8 @@ module WhopSDK
       def update(
         # The ID of the AI chat to update
         id,
+        # The ID of the company to set as the current company in context for the AI chat
+        current_company_id: nil,
         # The new title for the AI chat
         title: nil,
         request_options: {}

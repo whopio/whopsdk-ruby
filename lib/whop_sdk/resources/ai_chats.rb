@@ -55,9 +55,11 @@ module WhopSDK
       #
       # - `ai_chat:update`
       #
-      # @overload update(id, title: nil, request_options: {})
+      # @overload update(id, current_company_id: nil, title: nil, request_options: {})
       #
       # @param id [String] The ID of the AI chat to update
+      #
+      # @param current_company_id [String, nil] The ID of the company to set as the current company in context for the AI chat
       #
       # @param title [String, nil] The new title for the AI chat
       #

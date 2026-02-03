@@ -1,20 +1,25 @@
 module WhopSDK
   module Models
     type ai_chat_update_params =
-      { title: String? } & WhopSDK::Internal::Type::request_parameters
+      { current_company_id: String?, title: String? }
+      & WhopSDK::Internal::Type::request_parameters
 
     class AIChatUpdateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      attr_accessor current_company_id: String?
+
       attr_accessor title: String?
 
       def initialize: (
+        ?current_company_id: String?,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
+        current_company_id: String?,
         title: String?,
         request_options: WhopSDK::RequestOptions
       }

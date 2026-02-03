@@ -1,0 +1,103 @@
+module WhopSDK
+  module Models
+    type company_token_transaction =
+      {
+        id: String,
+        amount: Float,
+        company: WhopSDK::CompanyTokenTransaction::Company,
+        created_at: Time,
+        description: String?,
+        idempotency_key: String?,
+        linked_transaction_id: String?,
+        member: WhopSDK::CompanyTokenTransaction::Member,
+        transaction_type: WhopSDK::Models::bot_token_transaction_types,
+        user: WhopSDK::CompanyTokenTransaction::User
+      }
+
+    class CompanyTokenTransaction < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor amount: Float
+
+      attr_accessor company: WhopSDK::CompanyTokenTransaction::Company
+
+      attr_accessor created_at: Time
+
+      attr_accessor description: String?
+
+      attr_accessor idempotency_key: String?
+
+      attr_accessor linked_transaction_id: String?
+
+      attr_accessor member: WhopSDK::CompanyTokenTransaction::Member
+
+      attr_accessor transaction_type: WhopSDK::Models::bot_token_transaction_types
+
+      attr_accessor user: WhopSDK::CompanyTokenTransaction::User
+
+      def initialize: (
+        id: String,
+        amount: Float,
+        company: WhopSDK::CompanyTokenTransaction::Company,
+        created_at: Time,
+        description: String?,
+        idempotency_key: String?,
+        linked_transaction_id: String?,
+        member: WhopSDK::CompanyTokenTransaction::Member,
+        transaction_type: WhopSDK::Models::bot_token_transaction_types,
+        user: WhopSDK::CompanyTokenTransaction::User
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        amount: Float,
+        company: WhopSDK::CompanyTokenTransaction::Company,
+        created_at: Time,
+        description: String?,
+        idempotency_key: String?,
+        linked_transaction_id: String?,
+        member: WhopSDK::CompanyTokenTransaction::Member,
+        transaction_type: WhopSDK::Models::bot_token_transaction_types,
+        user: WhopSDK::CompanyTokenTransaction::User
+      }
+
+      type company = { id: String, route: String, title: String }
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor route: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, route: String, title: String) -> void
+
+        def to_hash: -> { id: String, route: String, title: String }
+      end
+
+      type member = { id: String }
+
+      class Member < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type user = { id: String, name: String?, username: String }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
+      end
+    end
+  end
+end

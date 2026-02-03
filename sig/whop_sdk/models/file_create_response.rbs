@@ -7,7 +7,7 @@ module WhopSDK
         filename: String?,
         size: String?,
         upload_headers: ::Hash[Symbol, top]?,
-        upload_status: WhopSDK::Models::FileCreateResponse::upload_status,
+        upload_status: WhopSDK::Models::upload_status,
         upload_url: String?,
         url: String?
       }
@@ -23,7 +23,7 @@ module WhopSDK
 
       attr_accessor upload_headers: ::Hash[Symbol, top]?
 
-      attr_accessor upload_status: WhopSDK::Models::FileCreateResponse::upload_status
+      attr_accessor upload_status: WhopSDK::Models::upload_status
 
       attr_accessor upload_url: String?
 
@@ -35,7 +35,7 @@ module WhopSDK
         filename: String?,
         size: String?,
         upload_headers: ::Hash[Symbol, top]?,
-        upload_status: WhopSDK::Models::FileCreateResponse::upload_status,
+        upload_status: WhopSDK::Models::upload_status,
         upload_url: String?,
         url: String?
       ) -> void
@@ -46,23 +46,10 @@ module WhopSDK
         filename: String?,
         size: String?,
         upload_headers: ::Hash[Symbol, top]?,
-        upload_status: WhopSDK::Models::FileCreateResponse::upload_status,
+        upload_status: WhopSDK::Models::upload_status,
         upload_url: String?,
         url: String?
       }
-
-      type upload_status = :pending | :processing | :ready | :failed
-
-      module UploadStatus
-        extend WhopSDK::Internal::Type::Enum
-
-        PENDING: :pending
-        PROCESSING: :processing
-        READY: :ready
-        FAILED: :failed
-
-        def self?.values: -> ::Array[WhopSDK::Models::FileCreateResponse::upload_status]
-      end
     end
   end
 end

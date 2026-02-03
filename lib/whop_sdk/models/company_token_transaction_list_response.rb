@@ -55,9 +55,8 @@ module WhopSDK
       # @!attribute transaction_type
       #   The type of transaction
       #
-      #   @return [Symbol, WhopSDK::Models::CompanyTokenTransactionListResponse::TransactionType]
-      required :transaction_type,
-               enum: -> { WhopSDK::Models::CompanyTokenTransactionListResponse::TransactionType }
+      #   @return [Symbol, WhopSDK::Models::BotTokenTransactionTypes]
+      required :transaction_type, enum: -> { WhopSDK::BotTokenTransactionTypes }
 
       # @!attribute user
       #   The user whose balance changed
@@ -84,7 +83,7 @@ module WhopSDK
       #
       #   @param member [WhopSDK::Models::CompanyTokenTransactionListResponse::Member] The member
       #
-      #   @param transaction_type [Symbol, WhopSDK::Models::CompanyTokenTransactionListResponse::TransactionType] The type of transaction
+      #   @param transaction_type [Symbol, WhopSDK::Models::BotTokenTransactionTypes] The type of transaction
       #
       #   @param user [WhopSDK::Models::CompanyTokenTransactionListResponse::User] The user whose balance changed
 
@@ -130,20 +129,6 @@ module WhopSDK
         #   The member
         #
         #   @param id [String] The ID of the member
-      end
-
-      # The type of transaction
-      #
-      # @see WhopSDK::Models::CompanyTokenTransactionListResponse#transaction_type
-      module TransactionType
-        extend WhopSDK::Internal::Type::Enum
-
-        ADD = :add
-        SUBTRACT = :subtract
-        TRANSFER = :transfer
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
 
       # @see WhopSDK::Models::CompanyTokenTransactionListResponse#user

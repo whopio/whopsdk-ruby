@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.0.26 (2026-02-03)
+
+Full Changelog: [v0.0.25...v0.0.26](https://github.com/whopio/whopsdk-ruby/compare/v0.0.25...v0.0.26)
+
+### Features
+
+* **api:** api update ([f744e2e](https://github.com/whopio/whopsdk-ruby/commit/f744e2ea4784f2953df9acb4c83a0405b5aefcd7))
+* **api:** api update ([52101f1](https://github.com/whopio/whopsdk-ruby/commit/52101f12c04d82f01f0af510bf827aa6a457f54c))
+* **api:** manual updates ([d730b3c](https://github.com/whopio/whopsdk-ruby/commit/d730b3c044eb4c4dc4c1138f57c05325bc11ffd9))
+
+
+### Bug Fixes
+
+* **client:** always add content-length to post body, even when empty ([ab4f8ef](https://github.com/whopio/whopsdk-ruby/commit/ab4f8ef3f0ff4041d21758170752cac27eeaf0af))
+
 ## 0.0.25 (2026-01-29)
 
 Full Changelog: [v0.0.24...v0.0.25](https://github.com/whopio/whopsdk-ruby/compare/v0.0.24...v0.0.25)

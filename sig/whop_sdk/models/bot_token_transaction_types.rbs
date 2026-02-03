@@ -1,0 +1,15 @@
+module WhopSDK
+  module Models
+    type bot_token_transaction_types = :add | :subtract | :transfer
+
+    module BotTokenTransactionTypes
+      extend WhopSDK::Internal::Type::Enum
+
+      ADD: :add
+      SUBTRACT: :subtract
+      TRANSFER: :transfer
+
+      def self?.values: -> ::Array[WhopSDK::Models::bot_token_transaction_types]
+    end
+  end
+end

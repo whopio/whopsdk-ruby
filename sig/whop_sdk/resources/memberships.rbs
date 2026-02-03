@@ -15,7 +15,7 @@ module WhopSDK
       def list: (
         ?after: String?,
         ?before: String?,
-        ?cancel_options: ::Array[WhopSDK::Models::MembershipListParams::cancel_option]?,
+        ?cancel_options: ::Array[WhopSDK::Models::cancel_options]?,
         ?company_id: String?,
         ?created_after: Time?,
         ?created_before: Time?,

@@ -29,9 +29,7 @@ module WhopSDK
       attr_accessor :upload_headers
 
       # The upload status of the file
-      sig do
-        returns(WhopSDK::Models::FileCreateResponse::UploadStatus::TaggedSymbol)
-      end
+      sig { returns(WhopSDK::UploadStatus::TaggedSymbol) }
       attr_accessor :upload_status
 
       # The presigned URL to upload the file to (only on create)
@@ -50,8 +48,7 @@ module WhopSDK
           filename: T.nilable(String),
           size: T.nilable(String),
           upload_headers: T.nilable(T::Hash[Symbol, T.anything]),
-          upload_status:
-            WhopSDK::Models::FileCreateResponse::UploadStatus::OrSymbol,
+          upload_status: WhopSDK::UploadStatus::OrSymbol,
           upload_url: T.nilable(String),
           url: T.nilable(String)
         ).returns(T.attached_class)
@@ -84,56 +81,13 @@ module WhopSDK
             filename: T.nilable(String),
             size: T.nilable(String),
             upload_headers: T.nilable(T::Hash[Symbol, T.anything]),
-            upload_status:
-              WhopSDK::Models::FileCreateResponse::UploadStatus::TaggedSymbol,
+            upload_status: WhopSDK::UploadStatus::TaggedSymbol,
             upload_url: T.nilable(String),
             url: T.nilable(String)
           }
         )
       end
       def to_hash
-      end
-
-      # The upload status of the file
-      module UploadStatus
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::Models::FileCreateResponse::UploadStatus)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        PENDING =
-          T.let(
-            :pending,
-            WhopSDK::Models::FileCreateResponse::UploadStatus::TaggedSymbol
-          )
-        PROCESSING =
-          T.let(
-            :processing,
-            WhopSDK::Models::FileCreateResponse::UploadStatus::TaggedSymbol
-          )
-        READY =
-          T.let(
-            :ready,
-            WhopSDK::Models::FileCreateResponse::UploadStatus::TaggedSymbol
-          )
-        FAILED =
-          T.let(
-            :failed,
-            WhopSDK::Models::FileCreateResponse::UploadStatus::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::Models::FileCreateResponse::UploadStatus::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
-        end
       end
     end
   end

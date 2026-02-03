@@ -11,10 +11,6 @@ module WhopSDK
           T.any(WhopSDK::AuthorizedUserListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the company to list authorized users for
-      sig { returns(String) }
-      attr_accessor :company_id
-
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_accessor :after
@@ -22,6 +18,10 @@ module WhopSDK
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_accessor :before
+
+      # The ID of the company to list authorized users for
+      sig { returns(T.nilable(String)) }
+      attr_accessor :company_id
 
       # The minimum creation date to filter by
       sig { returns(T.nilable(Time)) }
@@ -49,9 +49,9 @@ module WhopSDK
 
       sig do
         params(
-          company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
+          company_id: T.nilable(String),
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
           first: T.nilable(Integer),
@@ -62,12 +62,12 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the company to list authorized users for
-        company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
+        # The ID of the company to list authorized users for
+        company_id: nil,
         # The minimum creation date to filter by
         created_after: nil,
         # The maximum creation date to filter by
@@ -87,9 +87,9 @@ module WhopSDK
       sig do
         override.returns(
           {
-            company_id: String,
             after: T.nilable(String),
             before: T.nilable(String),
+            company_id: T.nilable(String),
             created_after: T.nilable(Time),
             created_before: T.nilable(Time),
             first: T.nilable(Integer),

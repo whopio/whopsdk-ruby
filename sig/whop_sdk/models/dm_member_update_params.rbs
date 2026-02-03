@@ -2,8 +2,8 @@ module WhopSDK
   module Models
     type dm_member_update_params =
       {
-        notification_preference: WhopSDK::Models::DmMemberUpdateParams::notification_preference?,
-        status: WhopSDK::Models::DmMemberUpdateParams::status?
+        notification_preference: WhopSDK::Models::dm_feed_member_notification_preferences?,
+        status: WhopSDK::Models::dm_feed_member_statuses?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -11,47 +11,21 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor notification_preference: WhopSDK::Models::DmMemberUpdateParams::notification_preference?
+      attr_accessor notification_preference: WhopSDK::Models::dm_feed_member_notification_preferences?
 
-      attr_accessor status: WhopSDK::Models::DmMemberUpdateParams::status?
+      attr_accessor status: WhopSDK::Models::dm_feed_member_statuses?
 
       def initialize: (
-        ?notification_preference: WhopSDK::Models::DmMemberUpdateParams::notification_preference?,
-        ?status: WhopSDK::Models::DmMemberUpdateParams::status?,
+        ?notification_preference: WhopSDK::Models::dm_feed_member_notification_preferences?,
+        ?status: WhopSDK::Models::dm_feed_member_statuses?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        notification_preference: WhopSDK::Models::DmMemberUpdateParams::notification_preference?,
-        status: WhopSDK::Models::DmMemberUpdateParams::status?,
+        notification_preference: WhopSDK::Models::dm_feed_member_notification_preferences?,
+        status: WhopSDK::Models::dm_feed_member_statuses?,
         request_options: WhopSDK::RequestOptions
       }
-
-      type notification_preference = :all | :mentions | :none
-
-      module NotificationPreference
-        extend WhopSDK::Internal::Type::Enum
-
-        ALL: :all
-        MENTIONS: :mentions
-        NONE: :none
-
-        def self?.values: -> ::Array[WhopSDK::Models::DmMemberUpdateParams::notification_preference]
-      end
-
-      type status = :requested | :accepted | :hidden | :closed | :archived
-
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        REQUESTED: :requested
-        ACCEPTED: :accepted
-        HIDDEN: :hidden
-        CLOSED: :closed
-        ARCHIVED: :archived
-
-        def self?.values: -> ::Array[WhopSDK::Models::DmMemberUpdateParams::status]
-      end
     end
   end
 end

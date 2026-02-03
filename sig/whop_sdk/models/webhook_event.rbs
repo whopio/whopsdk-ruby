@@ -1,0 +1,66 @@
+module WhopSDK
+  module Models
+    type webhook_event =
+      :"invoice.created"
+      | :"invoice.paid"
+      | :"invoice.past_due"
+      | :"invoice.voided"
+      | :"membership.activated"
+      | :"membership.deactivated"
+      | :"entry.created"
+      | :"entry.approved"
+      | :"entry.denied"
+      | :"entry.deleted"
+      | :"setup_intent.requires_action"
+      | :"setup_intent.succeeded"
+      | :"setup_intent.canceled"
+      | :"withdrawal.created"
+      | :"withdrawal.updated"
+      | :"course_lesson_interaction.completed"
+      | :"payout_method.created"
+      | :"verification.succeeded"
+      | :"payment.created"
+      | :"payment.succeeded"
+      | :"payment.failed"
+      | :"payment.pending"
+      | :"dispute.created"
+      | :"dispute.updated"
+      | :"refund.created"
+      | :"refund.updated"
+      | :"membership.cancel_at_period_end_changed"
+
+    module WebhookEvent
+      extend WhopSDK::Internal::Type::Enum
+
+      INVOICE_CREATED: :"invoice.created"
+      INVOICE_PAID: :"invoice.paid"
+      INVOICE_PAST_DUE: :"invoice.past_due"
+      INVOICE_VOIDED: :"invoice.voided"
+      MEMBERSHIP_ACTIVATED: :"membership.activated"
+      MEMBERSHIP_DEACTIVATED: :"membership.deactivated"
+      ENTRY_CREATED: :"entry.created"
+      ENTRY_APPROVED: :"entry.approved"
+      ENTRY_DENIED: :"entry.denied"
+      ENTRY_DELETED: :"entry.deleted"
+      SETUP_INTENT_REQUIRES_ACTION: :"setup_intent.requires_action"
+      SETUP_INTENT_SUCCEEDED: :"setup_intent.succeeded"
+      SETUP_INTENT_CANCELED: :"setup_intent.canceled"
+      WITHDRAWAL_CREATED: :"withdrawal.created"
+      WITHDRAWAL_UPDATED: :"withdrawal.updated"
+      COURSE_LESSON_INTERACTION_COMPLETED: :"course_lesson_interaction.completed"
+      PAYOUT_METHOD_CREATED: :"payout_method.created"
+      VERIFICATION_SUCCEEDED: :"verification.succeeded"
+      PAYMENT_CREATED: :"payment.created"
+      PAYMENT_SUCCEEDED: :"payment.succeeded"
+      PAYMENT_FAILED: :"payment.failed"
+      PAYMENT_PENDING: :"payment.pending"
+      DISPUTE_CREATED: :"dispute.created"
+      DISPUTE_UPDATED: :"dispute.updated"
+      REFUND_CREATED: :"refund.created"
+      REFUND_UPDATED: :"refund.updated"
+      MEMBERSHIP_CANCEL_AT_PERIOD_END_CHANGED: :"membership.cancel_at_period_end_changed"
+
+      def self?.values: -> ::Array[WhopSDK::Models::webhook_event]
+    end
+  end
+end

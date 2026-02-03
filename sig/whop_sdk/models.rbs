@@ -7,6 +7,8 @@ module WhopSDK
 
   class AccountLinkCreateParams = WhopSDK::Models::AccountLinkCreateParams
 
+  class AIChat = WhopSDK::Models::AIChat
+
   class AIChatCreateParams = WhopSDK::Models::AIChatCreateParams
 
   class AIChatDeleteParams = WhopSDK::Models::AIChatDeleteParams
@@ -16,6 +18,8 @@ module WhopSDK
   class AIChatRetrieveParams = WhopSDK::Models::AIChatRetrieveParams
 
   class AIChatUpdateParams = WhopSDK::Models::AIChatUpdateParams
+
+  module APIVersion = WhopSDK::Models::APIVersion
 
   class App = WhopSDK::Models::App
 
@@ -57,7 +61,11 @@ module WhopSDK
 
   module BillingReasons = WhopSDK::Models::BillingReasons
 
+  module BotTokenTransactionTypes = WhopSDK::Models::BotTokenTransactionTypes
+
   module BusinessTypes = WhopSDK::Models::BusinessTypes
+
+  module CancelOptions = WhopSDK::Models::CancelOptions
 
   module CardBrands = WhopSDK::Models::CardBrands
 
@@ -88,6 +96,8 @@ module WhopSDK
   class CompanyListParams = WhopSDK::Models::CompanyListParams
 
   class CompanyRetrieveParams = WhopSDK::Models::CompanyRetrieveParams
+
+  class CompanyTokenTransaction = WhopSDK::Models::CompanyTokenTransaction
 
   class CompanyTokenTransactionCreateParams = WhopSDK::Models::CompanyTokenTransactionCreateParams
 
@@ -174,6 +184,24 @@ module WhopSDK
   class DisputeUpdatedWebhookEvent = WhopSDK::Models::DisputeUpdatedWebhookEvent
 
   class DisputeUpdateEvidenceParams = WhopSDK::Models::DisputeUpdateEvidenceParams
+
+  class DmChannel = WhopSDK::Models::DmChannel
+
+  class DmChannelCreateParams = WhopSDK::Models::DmChannelCreateParams
+
+  class DmChannelDeleteParams = WhopSDK::Models::DmChannelDeleteParams
+
+  class DmChannelListParams = WhopSDK::Models::DmChannelListParams
+
+  class DmChannelRetrieveParams = WhopSDK::Models::DmChannelRetrieveParams
+
+  class DmChannelUpdateParams = WhopSDK::Models::DmChannelUpdateParams
+
+  module DmFeedMemberNotificationPreferences = WhopSDK::Models::DmFeedMemberNotificationPreferences
+
+  module DmFeedMemberStatuses = WhopSDK::Models::DmFeedMemberStatuses
+
+  class DmMember = WhopSDK::Models::DmMember
 
   class DmMemberCreateParams = WhopSDK::Models::DmMemberCreateParams
 
@@ -291,6 +319,8 @@ module WhopSDK
 
   module Languages = WhopSDK::Models::Languages
 
+  class Lead = WhopSDK::Models::Lead
+
   class LeadCreateParams = WhopSDK::Models::LeadCreateParams
 
   class LeadListParams = WhopSDK::Models::LeadListParams
@@ -386,6 +416,8 @@ module WhopSDK
   class PaymentSucceededWebhookEvent = WhopSDK::Models::PaymentSucceededWebhookEvent
 
   class PaymentVoidParams = WhopSDK::Models::PaymentVoidParams
+
+  module PayoutDestinationCategory = WhopSDK::Models::PayoutDestinationCategory
 
   class PayoutMethodCreatedWebhookEvent = WhopSDK::Models::PayoutMethodCreatedWebhookEvent
 
@@ -521,11 +553,17 @@ module WhopSDK
 
   module UnwrapWebhookEvent = WhopSDK::Models::UnwrapWebhookEvent
 
+  module UploadStatus = WhopSDK::Models::UploadStatus
+
   class UserCheckAccessParams = WhopSDK::Models::UserCheckAccessParams
 
   class UserRetrieveParams = WhopSDK::Models::UserRetrieveParams
 
+  module VerificationErrorCode = WhopSDK::Models::VerificationErrorCode
+
   class VerificationRetrieveParams = WhopSDK::Models::VerificationRetrieveParams
+
+  module VerificationStatus = WhopSDK::Models::VerificationStatus
 
   class VerificationSucceededWebhookEvent = WhopSDK::Models::VerificationSucceededWebhookEvent
 
@@ -533,9 +571,13 @@ module WhopSDK
 
   module VisibilityFilter = WhopSDK::Models::VisibilityFilter
 
+  class Webhook = WhopSDK::Models::Webhook
+
   class WebhookCreateParams = WhopSDK::Models::WebhookCreateParams
 
   class WebhookDeleteParams = WhopSDK::Models::WebhookDeleteParams
+
+  module WebhookEvent = WhopSDK::Models::WebhookEvent
 
   class WebhookListParams = WhopSDK::Models::WebhookListParams
 
@@ -552,6 +594,8 @@ module WhopSDK
   module WhoCanPostTypes = WhopSDK::Models::WhoCanPostTypes
 
   module WhoCanReact = WhopSDK::Models::WhoCanReact
+
+  class Withdrawal = WhopSDK::Models::Withdrawal
 
   class WithdrawalCreatedWebhookEvent = WhopSDK::Models::WithdrawalCreatedWebhookEvent
 

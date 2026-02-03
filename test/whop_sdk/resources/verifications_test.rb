@@ -15,9 +15,9 @@ class WhopSDK::Test::Resources::VerificationsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        last_error_code: WhopSDK::Models::VerificationRetrieveResponse::LastErrorCode | nil,
+        last_error_code: WhopSDK::VerificationErrorCode | nil,
         last_error_reason: String | nil,
-        status: WhopSDK::Models::VerificationRetrieveResponse::Status
+        status: WhopSDK::VerificationStatus
       }
     end
   end

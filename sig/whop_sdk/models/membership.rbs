@@ -4,7 +4,7 @@ module WhopSDK
       {
         id: String,
         cancel_at_period_end: bool,
-        cancel_option: WhopSDK::Models::Membership::cancel_option?,
+        cancel_option: WhopSDK::Models::cancel_options?,
         canceled_at: Time?,
         cancellation_reason: String?,
         company: WhopSDK::Membership::Company,
@@ -31,7 +31,7 @@ module WhopSDK
 
       attr_accessor cancel_at_period_end: bool
 
-      attr_accessor cancel_option: WhopSDK::Models::Membership::cancel_option?
+      attr_accessor cancel_option: WhopSDK::Models::cancel_options?
 
       attr_accessor canceled_at: Time?
 
@@ -74,7 +74,7 @@ module WhopSDK
       def initialize: (
         id: String,
         cancel_at_period_end: bool,
-        cancel_option: WhopSDK::Models::Membership::cancel_option?,
+        cancel_option: WhopSDK::Models::cancel_options?,
         canceled_at: Time?,
         cancellation_reason: String?,
         company: WhopSDK::Membership::Company,
@@ -99,7 +99,7 @@ module WhopSDK
       def to_hash: -> {
         id: String,
         cancel_at_period_end: bool,
-        cancel_option: WhopSDK::Models::Membership::cancel_option?,
+        cancel_option: WhopSDK::Models::cancel_options?,
         canceled_at: Time?,
         cancellation_reason: String?,
         company: WhopSDK::Membership::Company,
@@ -120,29 +120,6 @@ module WhopSDK
         updated_at: Time,
         user: WhopSDK::Membership::User?
       }
-
-      type cancel_option =
-        :too_expensive
-        | :switching
-        | :missing_features
-        | :technical_issues
-        | :bad_experience
-        | :other
-        | :testing
-
-      module CancelOption
-        extend WhopSDK::Internal::Type::Enum
-
-        TOO_EXPENSIVE: :too_expensive
-        SWITCHING: :switching
-        MISSING_FEATURES: :missing_features
-        TECHNICAL_ISSUES: :technical_issues
-        BAD_EXPERIENCE: :bad_experience
-        OTHER: :other
-        TESTING: :testing
-
-        def self?.values: -> ::Array[WhopSDK::Models::Membership::cancel_option]
-      end
 
       type company = { id: String, title: String }
 

@@ -8,19 +8,19 @@ module WhopSDK
         ?referrer: String?,
         ?user_id: String?,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::LeadCreateResponse
+      ) -> WhopSDK::Lead
 
       def retrieve: (
         String id,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::LeadRetrieveResponse
+      ) -> WhopSDK::Lead
 
       def update: (
         String id,
         ?metadata: ::Hash[Symbol, top]?,
         ?referrer: String?,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::LeadUpdateResponse
+      ) -> WhopSDK::Lead
 
       def list: (
         company_id: String,

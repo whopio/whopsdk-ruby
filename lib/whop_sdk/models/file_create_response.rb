@@ -37,8 +37,8 @@ module WhopSDK
       # @!attribute upload_status
       #   The upload status of the file
       #
-      #   @return [Symbol, WhopSDK::Models::FileCreateResponse::UploadStatus]
-      required :upload_status, enum: -> { WhopSDK::Models::FileCreateResponse::UploadStatus }
+      #   @return [Symbol, WhopSDK::Models::UploadStatus]
+      required :upload_status, enum: -> { WhopSDK::UploadStatus }
 
       # @!attribute upload_url
       #   The presigned URL to upload the file to (only on create)
@@ -65,26 +65,11 @@ module WhopSDK
       #
       #   @param upload_headers [Hash{Symbol=>Object}, nil] Headers to include in the upload request (only on create)
       #
-      #   @param upload_status [Symbol, WhopSDK::Models::FileCreateResponse::UploadStatus] The upload status of the file
+      #   @param upload_status [Symbol, WhopSDK::Models::UploadStatus] The upload status of the file
       #
       #   @param upload_url [String, nil] The presigned URL to upload the file to (only on create)
       #
       #   @param url [String, nil] The URL to access the file
-
-      # The upload status of the file
-      #
-      # @see WhopSDK::Models::FileCreateResponse#upload_status
-      module UploadStatus
-        extend WhopSDK::Internal::Type::Enum
-
-        PENDING = :pending
-        PROCESSING = :processing
-        READY = :ready
-        FAILED = :failed
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
     end
   end
 end

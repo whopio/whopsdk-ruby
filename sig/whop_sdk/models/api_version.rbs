@@ -1,0 +1,15 @@
+module WhopSDK
+  module Models
+    type api_version = :v1 | :v2 | :v5
+
+    module APIVersion
+      extend WhopSDK::Internal::Type::Enum
+
+      V1: :v1
+      V2: :v2
+      V5: :v5
+
+      def self?.values: -> ::Array[WhopSDK::Models::api_version]
+    end
+  end
+end

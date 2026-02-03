@@ -16,7 +16,7 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         cancel_at_period_end: WhopSDK::Internal::Type::Boolean,
-        cancel_option: WhopSDK::Membership::CancelOption | nil,
+        cancel_option: WhopSDK::CancelOptions | nil,
         canceled_at: Time | nil,
         cancellation_reason: String | nil,
         company: WhopSDK::Membership::Company,
@@ -53,7 +53,7 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         cancel_at_period_end: WhopSDK::Internal::Type::Boolean,
-        cancel_option: WhopSDK::Membership::CancelOption | nil,
+        cancel_option: WhopSDK::CancelOptions | nil,
         canceled_at: Time | nil,
         cancellation_reason: String | nil,
         company: WhopSDK::Membership::Company,
@@ -97,7 +97,7 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
       row => {
         id: String,
         cancel_at_period_end: WhopSDK::Internal::Type::Boolean,
-        cancel_option: WhopSDK::Models::MembershipListResponse::CancelOption | nil,
+        cancel_option: WhopSDK::CancelOptions | nil,
         canceled_at: Time | nil,
         cancellation_reason: String | nil,
         company: WhopSDK::Models::MembershipListResponse::Company,
@@ -133,7 +133,7 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         cancel_at_period_end: WhopSDK::Internal::Type::Boolean,
-        cancel_option: WhopSDK::Membership::CancelOption | nil,
+        cancel_option: WhopSDK::CancelOptions | nil,
         canceled_at: Time | nil,
         cancellation_reason: String | nil,
         company: WhopSDK::Membership::Company,
@@ -170,7 +170,7 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         cancel_at_period_end: WhopSDK::Internal::Type::Boolean,
-        cancel_option: WhopSDK::Membership::CancelOption | nil,
+        cancel_option: WhopSDK::CancelOptions | nil,
         canceled_at: Time | nil,
         cancellation_reason: String | nil,
         company: WhopSDK::Membership::Company,
@@ -207,7 +207,7 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         cancel_at_period_end: WhopSDK::Internal::Type::Boolean,
-        cancel_option: WhopSDK::Membership::CancelOption | nil,
+        cancel_option: WhopSDK::CancelOptions | nil,
         canceled_at: Time | nil,
         cancellation_reason: String | nil,
         company: WhopSDK::Membership::Company,
@@ -244,7 +244,7 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         cancel_at_period_end: WhopSDK::Internal::Type::Boolean,
-        cancel_option: WhopSDK::Membership::CancelOption | nil,
+        cancel_option: WhopSDK::CancelOptions | nil,
         canceled_at: Time | nil,
         cancellation_reason: String | nil,
         company: WhopSDK::Membership::Company,

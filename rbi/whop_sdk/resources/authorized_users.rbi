@@ -30,9 +30,9 @@ module WhopSDK
       # - `member:email:read`
       sig do
         params(
-          company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
+          company_id: T.nilable(String),
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
           first: T.nilable(Integer),
@@ -47,12 +47,12 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the company to list authorized users for
-        company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
+        # The ID of the company to list authorized users for
+        company_id: nil,
         # The minimum creation date to filter by
         created_after: nil,
         # The maximum creation date to filter by

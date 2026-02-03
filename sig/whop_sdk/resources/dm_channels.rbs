@@ -1,0 +1,36 @@
+module WhopSDK
+  module Resources
+    class DmChannels
+      def create: (
+        with_user_ids: ::Array[String],
+        ?company_id: String?,
+        ?custom_name: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::DmChannel
+
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::DmChannel
+
+      def update: (
+        String id,
+        ?custom_name: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::DmChannel
+
+      def list: (
+        ?after: String?,
+        ?before: String?,
+        ?company_id: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::DmChannelListResponse]
+
+      def delete: (String id, ?request_options: WhopSDK::request_opts) -> bool
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

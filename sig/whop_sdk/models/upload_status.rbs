@@ -1,0 +1,16 @@
+module WhopSDK
+  module Models
+    type upload_status = :pending | :processing | :ready | :failed
+
+    module UploadStatus
+      extend WhopSDK::Internal::Type::Enum
+
+      PENDING: :pending
+      PROCESSING: :processing
+      READY: :ready
+      FAILED: :failed
+
+      def self?.values: -> ::Array[WhopSDK::Models::upload_status]
+    end
+  end
+end

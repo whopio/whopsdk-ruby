@@ -64,11 +64,7 @@ module WhopSDK
       attr_writer :member
 
       # The type of transaction
-      sig do
-        returns(
-          WhopSDK::Models::CompanyTokenTransactionListResponse::TransactionType::TaggedSymbol
-        )
-      end
+      sig { returns(WhopSDK::BotTokenTransactionTypes::TaggedSymbol) }
       attr_accessor :transaction_type
 
       # The user whose balance changed
@@ -98,8 +94,7 @@ module WhopSDK
           linked_transaction_id: T.nilable(String),
           member:
             WhopSDK::Models::CompanyTokenTransactionListResponse::Member::OrHash,
-          transaction_type:
-            WhopSDK::Models::CompanyTokenTransactionListResponse::TransactionType::OrSymbol,
+          transaction_type: WhopSDK::BotTokenTransactionTypes::OrSymbol,
           user:
             WhopSDK::Models::CompanyTokenTransactionListResponse::User::OrHash
         ).returns(T.attached_class)
@@ -141,8 +136,7 @@ module WhopSDK
             linked_transaction_id: T.nilable(String),
             member:
               WhopSDK::Models::CompanyTokenTransactionListResponse::Member,
-            transaction_type:
-              WhopSDK::Models::CompanyTokenTransactionListResponse::TransactionType::TaggedSymbol,
+            transaction_type: WhopSDK::BotTokenTransactionTypes::TaggedSymbol,
             user: WhopSDK::Models::CompanyTokenTransactionListResponse::User
           }
         )
@@ -215,46 +209,6 @@ module WhopSDK
 
         sig { override.returns({ id: String }) }
         def to_hash
-        end
-      end
-
-      # The type of transaction
-      module TransactionType
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(
-              Symbol,
-              WhopSDK::Models::CompanyTokenTransactionListResponse::TransactionType
-            )
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        ADD =
-          T.let(
-            :add,
-            WhopSDK::Models::CompanyTokenTransactionListResponse::TransactionType::TaggedSymbol
-          )
-        SUBTRACT =
-          T.let(
-            :subtract,
-            WhopSDK::Models::CompanyTokenTransactionListResponse::TransactionType::TaggedSymbol
-          )
-        TRANSFER =
-          T.let(
-            :transfer,
-            WhopSDK::Models::CompanyTokenTransactionListResponse::TransactionType::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::Models::CompanyTokenTransactionListResponse::TransactionType::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
         end
       end
 

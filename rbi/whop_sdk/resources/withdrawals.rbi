@@ -18,7 +18,7 @@ module WhopSDK
           platform_covers_fees: T.nilable(T::Boolean),
           statement_descriptor: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::WithdrawalCreateResponse)
+        ).returns(WhopSDK::Withdrawal)
       end
       def create(
         # The amount to withdraw in the specified currency
@@ -48,7 +48,7 @@ module WhopSDK
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::WithdrawalRetrieveResponse)
+        ).returns(WhopSDK::Withdrawal)
       end
       def retrieve(
         # The ID of the Withdrawal

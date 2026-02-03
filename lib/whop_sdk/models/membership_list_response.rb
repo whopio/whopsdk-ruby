@@ -21,8 +21,8 @@ module WhopSDK
       #   The different reasons a user can choose for why they are canceling their
       #   membership.
       #
-      #   @return [Symbol, WhopSDK::Models::MembershipListResponse::CancelOption, nil]
-      required :cancel_option, enum: -> { WhopSDK::Models::MembershipListResponse::CancelOption }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::CancelOptions, nil]
+      required :cancel_option, enum: -> { WhopSDK::CancelOptions }, nil?: true
 
       # @!attribute canceled_at
       #   The epoch timestamp of when the customer initiated a cancellation.
@@ -146,7 +146,7 @@ module WhopSDK
       #
       #   @param cancel_at_period_end [Boolean] Whether this Membership is set to cancel at the end of the current billing cycle
       #
-      #   @param cancel_option [Symbol, WhopSDK::Models::MembershipListResponse::CancelOption, nil] The different reasons a user can choose for why they are canceling their members
+      #   @param cancel_option [Symbol, WhopSDK::Models::CancelOptions, nil] The different reasons a user can choose for why they are canceling their members
       #
       #   @param canceled_at [Time, nil] The epoch timestamp of when the customer initiated a cancellation.
       #
@@ -183,25 +183,6 @@ module WhopSDK
       #   @param updated_at [Time] A timestamp of when the membership was last updated
       #
       #   @param user [WhopSDK::Models::MembershipListResponse::User, nil] The user this membership belongs to
-
-      # The different reasons a user can choose for why they are canceling their
-      # membership.
-      #
-      # @see WhopSDK::Models::MembershipListResponse#cancel_option
-      module CancelOption
-        extend WhopSDK::Internal::Type::Enum
-
-        TOO_EXPENSIVE = :too_expensive
-        SWITCHING = :switching
-        MISSING_FEATURES = :missing_features
-        TECHNICAL_ISSUES = :technical_issues
-        BAD_EXPERIENCE = :bad_experience
-        OTHER = :other
-        TESTING = :testing
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
 
       # @see WhopSDK::Models::MembershipListResponse#company
       class Company < WhopSDK::Internal::Type::BaseModel

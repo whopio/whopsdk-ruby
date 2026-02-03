@@ -104,8 +104,8 @@ module WhopSDK
         # @!attribute category
         #   The category of the payout destination
         #
-        #   @return [Symbol, WhopSDK::Models::PayoutMethodRetrieveResponse::Destination::Category]
-        required :category, enum: -> { WhopSDK::Models::PayoutMethodRetrieveResponse::Destination::Category }
+        #   @return [Symbol, WhopSDK::Models::PayoutDestinationCategory]
+        required :category, enum: -> { WhopSDK::PayoutDestinationCategory }
 
         # @!attribute country_code
         #   The country code of the payout destination
@@ -122,28 +122,11 @@ module WhopSDK
         # @!method initialize(category:, country_code:, name:)
         #   The payout destination associated with the payout token
         #
-        #   @param category [Symbol, WhopSDK::Models::PayoutMethodRetrieveResponse::Destination::Category] The category of the payout destination
+        #   @param category [Symbol, WhopSDK::Models::PayoutDestinationCategory] The category of the payout destination
         #
         #   @param country_code [String] The country code of the payout destination
         #
         #   @param name [String] The name of the payer associated with the payout destination
-
-        # The category of the payout destination
-        #
-        # @see WhopSDK::Models::PayoutMethodRetrieveResponse::Destination#category
-        module Category
-          extend WhopSDK::Internal::Type::Enum
-
-          CRYPTO = :crypto
-          RTP = :rtp
-          NEXT_DAY_BANK = :next_day_bank
-          BANK_WIRE = :bank_wire
-          DIGITAL_WALLET = :digital_wallet
-          UNKNOWN = :unknown
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
       end
     end
   end

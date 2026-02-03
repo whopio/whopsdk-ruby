@@ -15,6 +15,12 @@ module WhopSDK
       #   @return [Float]
       required :amount_after_fees, Float
 
+      # @!attribute application_fee
+      #   The application fee charged on this payment.
+      #
+      #   @return [WhopSDK::Models::Payment::ApplicationFee, nil]
+      required :application_fee, -> { WhopSDK::Payment::ApplicationFee }, nil?: true
+
       # @!attribute auto_refunded
       #   Whether this payment was auto refunded or not
       #
@@ -218,7 +224,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, company:, created_at:, currency:, dispute_alerted_at:, failure_message:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, status:, substatus:, subtotal:, total:, usd_total:, user:, voidable:)
+      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, company:, created_at:, currency:, dispute_alerted_at:, failure_message:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, status:, substatus:, subtotal:, total:, usd_total:, user:, voidable:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Payment}
       #   for more details.
       #
@@ -227,6 +233,8 @@ module WhopSDK
       #   @param id [String] The payment ID
       #
       #   @param amount_after_fees [Float] How much the payment is for after fees
+      #
+      #   @param application_fee [WhopSDK::Models::Payment::ApplicationFee, nil] The application fee charged on this payment.
       #
       #   @param auto_refunded [Boolean] Whether this payment was auto refunded or not
       #
@@ -293,6 +301,60 @@ module WhopSDK
       #   @param user [WhopSDK::Models::Payment::User, nil] The user that made this payment.
       #
       #   @param voidable [Boolean] True when the payment is tied to a membership in `past_due`, the payment status
+
+      # @see WhopSDK::Models::Payment#application_fee
+      class ApplicationFee < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The unique identifier for the application fee.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute amount
+        #   The application fee amount.
+        #
+        #   @return [Float]
+        required :amount, Float
+
+        # @!attribute amount_captured
+        #   The amount of the application fee that has been captured.
+        #
+        #   @return [Float]
+        required :amount_captured, Float
+
+        # @!attribute amount_refunded
+        #   The amount of the application fee that has been refunded.
+        #
+        #   @return [Float]
+        required :amount_refunded, Float
+
+        # @!attribute created_at
+        #   When the application fee was created.
+        #
+        #   @return [Time]
+        required :created_at, Time
+
+        # @!attribute currency
+        #   The currency of the application fee.
+        #
+        #   @return [Symbol, WhopSDK::Models::Currency]
+        required :currency, enum: -> { WhopSDK::Currency }
+
+        # @!method initialize(id:, amount:, amount_captured:, amount_refunded:, created_at:, currency:)
+        #   The application fee charged on this payment.
+        #
+        #   @param id [String] The unique identifier for the application fee.
+        #
+        #   @param amount [Float] The application fee amount.
+        #
+        #   @param amount_captured [Float] The amount of the application fee that has been captured.
+        #
+        #   @param amount_refunded [Float] The amount of the application fee that has been refunded.
+        #
+        #   @param created_at [Time] When the application fee was created.
+        #
+        #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the application fee.
+      end
 
       # @see WhopSDK::Models::Payment#billing_address
       class BillingAddress < WhopSDK::Internal::Type::BaseModel

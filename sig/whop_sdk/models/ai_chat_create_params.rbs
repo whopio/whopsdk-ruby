@@ -1,23 +1,51 @@
 module WhopSDK
   module Models
     type ai_chat_create_params =
-      { title: String? } & WhopSDK::Internal::Type::request_parameters
+      {
+        message_text: String,
+        current_company_id: String?,
+        message_attachments: ::Array[WhopSDK::AIChatCreateParams::MessageAttachment]?,
+        title: String?
+      }
+      & WhopSDK::Internal::Type::request_parameters
 
     class AIChatCreateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      attr_accessor message_text: String
+
+      attr_accessor current_company_id: String?
+
+      attr_accessor message_attachments: ::Array[WhopSDK::AIChatCreateParams::MessageAttachment]?
+
       attr_accessor title: String?
 
       def initialize: (
+        message_text: String,
+        ?current_company_id: String?,
+        ?message_attachments: ::Array[WhopSDK::AIChatCreateParams::MessageAttachment]?,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
+        message_text: String,
+        current_company_id: String?,
+        message_attachments: ::Array[WhopSDK::AIChatCreateParams::MessageAttachment]?,
         title: String?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type message_attachment = { id: String }
+
+      class MessageAttachment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
     end
   end
 end

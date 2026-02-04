@@ -2,6 +2,9 @@ module WhopSDK
   module Resources
     class AIChats
       def create: (
+        message_text: String,
+        ?current_company_id: String?,
+        ?message_attachments: ::Array[WhopSDK::AIChatCreateParams::MessageAttachment]?,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::AIChat

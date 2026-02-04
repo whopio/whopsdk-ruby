@@ -3,10 +3,10 @@
 require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::AIChatsTest < WhopSDK::Test::ResourceTest
-  def test_create
+  def test_create_required_params
     skip("Prism tests are disabled")
 
-    response = @whop.ai_chats.create
+    response = @whop.ai_chats.create(message_text: "message_text")
 
     assert_pattern do
       response => WhopSDK::AIChat

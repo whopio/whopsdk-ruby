@@ -3,13 +3,22 @@
 module WhopSDK
   module Resources
     class AIChats
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::AIChatCreateParams} for more details.
+      #
       # Creates a new AI chat
       #
       # Required permissions:
       #
       # - `ai_chat:create`
       #
-      # @overload create(title: nil, request_options: {})
+      # @overload create(message_text:, current_company_id: nil, message_attachments: nil, title: nil, request_options: {})
+      #
+      # @param message_text [String] The text content of the first message sent in the chat
+      #
+      # @param current_company_id [String, nil] The ID of the company to set as the current company in context for the AI chat
+      #
+      # @param message_attachments [Array<WhopSDK::Models::AIChatCreateParams::MessageAttachment>, nil] The IDs of existing uploaded attachments to include in the first message to the
       #
       # @param title [String, nil] The title of the AI chat
       #
@@ -18,7 +27,7 @@ module WhopSDK
       # @return [WhopSDK::Models::AIChat]
       #
       # @see WhopSDK::Models::AIChatCreateParams
-      def create(params = {})
+      def create(params)
         parsed, options = WhopSDK::AIChatCreateParams.dump_request(params)
         @client.request(
           method: :post,

@@ -60,6 +60,12 @@ module WhopSDK
       required :custom_field_responses,
                -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Membership::CustomFieldResponse] }
 
+      # @!attribute joined_at
+      #   When the member joined the company.
+      #
+      #   @return [Time, nil]
+      required :joined_at, Time, nil?: true
+
       # @!attribute license_key
       #   The license key for this Membership. This is only present if the membership
       #   grants access to an instance of the Whop Software app.
@@ -142,7 +148,7 @@ module WhopSDK
       #   @return [WhopSDK::Models::Membership::User, nil]
       required :user, -> { WhopSDK::Membership::User }, nil?: true
 
-      # @!method initialize(id:, cancel_at_period_end:, cancel_option:, canceled_at:, cancellation_reason:, company:, created_at:, currency:, custom_field_responses:, license_key:, manage_url:, member:, metadata:, payment_collection_paused:, plan:, product:, promo_code:, renewal_period_end:, renewal_period_start:, status:, updated_at:, user:)
+      # @!method initialize(id:, cancel_at_period_end:, cancel_option:, canceled_at:, cancellation_reason:, company:, created_at:, currency:, custom_field_responses:, joined_at:, license_key:, manage_url:, member:, metadata:, payment_collection_paused:, plan:, product:, promo_code:, renewal_period_end:, renewal_period_start:, status:, updated_at:, user:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::Membership} for more details.
       #
@@ -166,6 +172,8 @@ module WhopSDK
       #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #
       #   @param custom_field_responses [Array<WhopSDK::Models::Membership::CustomFieldResponse>] The responses to custom checkout questions for this membership.
+      #
+      #   @param joined_at [Time, nil] When the member joined the company.
       #
       #   @param license_key [String, nil] The license key for this Membership. This is only present if the membership gran
       #

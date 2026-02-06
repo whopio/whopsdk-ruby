@@ -52,6 +52,10 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::Currency::TaggedSymbol)) }
       attr_accessor :currency
 
+      # When the member joined the company.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :joined_at
+
       # The license key for this Membership. This is only present if the membership
       # grants access to an instance of the Whop Software app.
       sig { returns(T.nilable(String)) }
@@ -161,6 +165,7 @@ module WhopSDK
           company: WhopSDK::Models::MembershipListResponse::Company::OrHash,
           created_at: Time,
           currency: T.nilable(WhopSDK::Currency::OrSymbol),
+          joined_at: T.nilable(Time),
           license_key: T.nilable(String),
           manage_url: T.nilable(String),
           member:
@@ -199,6 +204,8 @@ module WhopSDK
         created_at:,
         # The available currencies on the platform
         currency:,
+        # When the member joined the company.
+        joined_at:,
         # The license key for this Membership. This is only present if the membership
         # grants access to an instance of the Whop Software app.
         license_key:,
@@ -243,6 +250,7 @@ module WhopSDK
             company: WhopSDK::Models::MembershipListResponse::Company,
             created_at: Time,
             currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
+            joined_at: T.nilable(Time),
             license_key: T.nilable(String),
             manage_url: T.nilable(String),
             member: T.nilable(WhopSDK::Models::MembershipListResponse::Member),

@@ -47,6 +47,10 @@ module WhopSDK
       sig { returns(T::Array[WhopSDK::Membership::CustomFieldResponse]) }
       attr_accessor :custom_field_responses
 
+      # When the member joined the company.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :joined_at
+
       # The license key for this Membership. This is only present if the membership
       # grants access to an instance of the Whop Software app.
       sig { returns(T.nilable(String)) }
@@ -138,6 +142,7 @@ module WhopSDK
           currency: T.nilable(WhopSDK::Currency::OrSymbol),
           custom_field_responses:
             T::Array[WhopSDK::Membership::CustomFieldResponse::OrHash],
+          joined_at: T.nilable(Time),
           license_key: T.nilable(String),
           manage_url: T.nilable(String),
           member: T.nilable(WhopSDK::Membership::Member::OrHash),
@@ -174,6 +179,8 @@ module WhopSDK
         currency:,
         # The responses to custom checkout questions for this membership.
         custom_field_responses:,
+        # When the member joined the company.
+        joined_at:,
         # The license key for this Membership. This is only present if the membership
         # grants access to an instance of the Whop Software app.
         license_key:,
@@ -220,6 +227,7 @@ module WhopSDK
             currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
             custom_field_responses:
               T::Array[WhopSDK::Membership::CustomFieldResponse],
+            joined_at: T.nilable(Time),
             license_key: T.nilable(String),
             manage_url: T.nilable(String),
             member: T.nilable(WhopSDK::Membership::Member),

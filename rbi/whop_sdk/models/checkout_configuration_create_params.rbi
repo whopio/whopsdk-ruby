@@ -165,12 +165,14 @@ module WhopSDK
         attr_accessor :currency
 
         # The application fee amount collected by the platform from this connected
-        # account. Must be less than the total payment amount. Only valid for connected
-        # accounts with a parent company.
+        # account. Provided as a number in dollars (e.g., 5.00 for $5.00). Must be less
+        # than the total payment amount. Only valid for connected accounts with a parent
+        # company.
         sig { returns(T.nilable(Float)) }
         attr_accessor :application_fee_amount
 
-        # The interval at which the plan charges (renewal plans).
+        # The interval in days at which the plan charges (renewal plans). For example, 30
+        # for monthly billing.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :billing_period
 
@@ -190,7 +192,8 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :description
 
-        # The interval at which the plan charges (expiration plans).
+        # The number of days until the membership expires (for expiration-based plans).
+        # For example, 365 for a one-year access pass.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :expiration_days
 
@@ -217,7 +220,8 @@ module WhopSDK
         end
         attr_writer :image
 
-        # An additional amount charged upon first purchase.
+        # An additional amount charged upon first purchase. Provided as a number in
+        # dollars (e.g., 10.00 for $10.00).
         sig { returns(T.nilable(Float)) }
         attr_accessor :initial_price
 
@@ -282,7 +286,8 @@ module WhopSDK
         sig { returns(T.nilable(WhopSDK::ReleaseMethod::OrSymbol)) }
         attr_accessor :release_method
 
-        # The amount the customer is charged every billing period.
+        # The amount the customer is charged every billing period. Provided as a number in
+        # dollars (e.g., 9.99 for $9.99/period).
         sig { returns(T.nilable(Float)) }
         attr_accessor :renewal_price
 
@@ -354,23 +359,27 @@ module WhopSDK
           # The respective currency identifier for the plan.
           currency:,
           # The application fee amount collected by the platform from this connected
-          # account. Must be less than the total payment amount. Only valid for connected
-          # accounts with a parent company.
+          # account. Provided as a number in dollars (e.g., 5.00 for $5.00). Must be less
+          # than the total payment amount. Only valid for connected accounts with a parent
+          # company.
           application_fee_amount: nil,
-          # The interval at which the plan charges (renewal plans).
+          # The interval in days at which the plan charges (renewal plans). For example, 30
+          # for monthly billing.
           billing_period: nil,
           # An array of custom field objects.
           custom_fields: nil,
           # The description of the plan.
           description: nil,
-          # The interval at which the plan charges (expiration plans).
+          # The number of days until the membership expires (for expiration-based plans).
+          # For example, 365 for a one-year access pass.
           expiration_days: nil,
           # Whether to force the creation of a new plan even if one with the same attributes
           # already exists.
           force_create_new_plan: nil,
           # An image for the plan. This will be visible on the product page to customers.
           image: nil,
-          # An additional amount charged upon first purchase.
+          # An additional amount charged upon first purchase. Provided as a number in
+          # dollars (e.g., 10.00 for $10.00).
           initial_price: nil,
           # A personal description or notes section for the business.
           internal_notes: nil,
@@ -389,7 +398,8 @@ module WhopSDK
           product_id: nil,
           # The methods of how a plan can be released.
           release_method: nil,
-          # The amount the customer is charged every billing period.
+          # The amount the customer is charged every billing period. Provided as a number in
+          # dollars (e.g., 9.99 for $9.99/period).
           renewal_price: nil,
           # The number of payments required before pausing the subscription.
           split_pay_required_payments: nil,

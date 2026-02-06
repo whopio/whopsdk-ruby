@@ -10,7 +10,8 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The amount of the credit transaction transfer
+      # The amount of the transfer. Provided as a number in the specified currency. Eg:
+      # 10.43 for $10.43 USD.
       sig { returns(Float) }
       attr_accessor :amount
 
@@ -34,7 +35,8 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :fee_amount
 
-      # A hash of metadata attached to the transfer
+      # Custom key-value pairs attached to the transfer. Max 50 keys, 500 chars per key,
+      # 5000 chars per value.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
@@ -81,7 +83,8 @@ module WhopSDK
       def self.new(
         # The unique identifier of the credit transaction transfer
         id:,
-        # The amount of the credit transaction transfer
+        # The amount of the transfer. Provided as a number in the specified currency. Eg:
+        # 10.43 for $10.43 USD.
         amount:,
         # The timestamp when the credit transaction transfer was created
         created_at:,
@@ -93,7 +96,8 @@ module WhopSDK
         destination_ledger_account_id:,
         # The decimal fee of the credit transaction transfer
         fee_amount:,
-        # A hash of metadata attached to the transfer
+        # Custom key-value pairs attached to the transfer. Max 50 keys, 500 chars per key,
+        # 5000 chars per value.
         metadata:,
         # The notes of the credit transaction transfer
         notes:,

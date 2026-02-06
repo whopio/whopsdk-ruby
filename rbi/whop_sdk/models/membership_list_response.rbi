@@ -75,7 +75,8 @@ module WhopSDK
       end
       attr_writer :member
 
-      # A JSON object used to store software licensing information. Ex. HWID
+      # Custom key-value pairs for the membership (commonly used for software licensing,
+      # e.g., HWID). Max 50 keys, 500 chars per key, 5000 chars per value.
       sig { returns(T::Hash[Symbol, T.anything]) }
       attr_accessor :metadata
 
@@ -205,7 +206,8 @@ module WhopSDK
         manage_url:,
         # The Member that this Membership belongs to.
         member:,
-        # A JSON object used to store software licensing information. Ex. HWID
+        # Custom key-value pairs for the membership (commonly used for software licensing,
+        # e.g., HWID). Max 50 keys, 500 chars per key, 5000 chars per value.
         metadata:,
         # Whether the membership's payments are currently paused.
         payment_collection_paused:,

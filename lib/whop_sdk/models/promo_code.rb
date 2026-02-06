@@ -11,7 +11,9 @@ module WhopSDK
       required :id, String
 
       # @!attribute amount_off
-      #   The amount off (% or flat amount) for the promo.
+      #   The discount amount. Interpretation depends on promo_type: if 'percentage', this
+      #   is the percentage (e.g., 20 means 20% off); if 'flat_amount', this is dollars
+      #   off (e.g., 10.00 means $10.00 off).
       #
       #   @return [Float]
       required :amount_off, Float
@@ -127,7 +129,7 @@ module WhopSDK
       #
       #   @param id [String] The ID of the promo.
       #
-      #   @param amount_off [Float] The amount off (% or flat amount) for the promo.
+      #   @param amount_off [Float] The discount amount. Interpretation depends on promo_type: if 'percentage', this
       #
       #   @param churned_users_only [Boolean] Restricts promo use to only users who have churned from the company before.
       #

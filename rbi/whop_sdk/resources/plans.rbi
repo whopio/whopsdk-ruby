@@ -60,7 +60,7 @@ module WhopSDK
         image: nil,
         # An additional amount charged upon first purchase. Use only if a one time payment
         # OR you want to charge an additional amount on top of the renewal price. Provided
-        # as a number in dollars. Eg: 10.43 for $10.43
+        # as a number in the specified currency. Eg: 10.43 for $10.43
         initial_price: nil,
         # A personal description or notes section for the business.
         internal_notes: nil,
@@ -77,7 +77,7 @@ module WhopSDK
         # The methods of how a plan can be released.
         release_method: nil,
         # The amount the customer is charged every billing period. Use only if a recurring
-        # payment. Provided as a number in dollars. Eg: 10.43 for $10.43
+        # payment. Provided as a number in the specified currency. Eg: 10.43 for $10.43
         renewal_price: nil,
         # The number of payments required before pausing the subscription.
         split_pay_required_payments: nil,
@@ -87,7 +87,8 @@ module WhopSDK
         title: nil,
         # The number of free trial days added before a renewal plan.
         trial_period_days: nil,
-        # Limits/doesn't limit the number of units available for purchase.
+        # When true, the plan has unlimited stock (stock field is ignored). When false,
+        # purchases are limited by the stock field.
         unlimited_stock: nil,
         # Visibility of a resource
         visibility: nil,
@@ -153,7 +154,7 @@ module WhopSDK
       def update(
         # The ID
         id,
-        # The interval at which the plan charges (renewal plans).
+        # The interval in days at which the plan charges (renewal plans).
         billing_period: nil,
         # The available currencies on the platform
         currency: nil,
@@ -161,11 +162,13 @@ module WhopSDK
         custom_fields: nil,
         # The description of the plan.
         description: nil,
-        # The interval at which the plan charges (expiration plans).
+        # The number of days until the membership expires (for expiration-based plans).
+        # For example, 365 for a one-year access pass.
         expiration_days: nil,
         # An image for the plan. This will be visible on the product page to customers.
         image: nil,
-        # An additional amount charged upon first purchase.
+        # An additional amount charged upon first purchase. Provided as a number in the
+        # specified currency. Eg: 10.43 for $10.43 USD.
         initial_price: nil,
         # A personal description or notes section for the business.
         internal_notes: nil,
@@ -179,21 +182,23 @@ module WhopSDK
         # The explicit payment method configuration for the plan. If sent as null, the
         # custom configuration will be removed.
         payment_method_configuration: nil,
-        # The amount the customer is charged every billing period.
+        # The amount the customer is charged every billing period. Provided as a number in
+        # the specified currency. Eg: 10.43 for $10.43 USD.
         renewal_price: nil,
         # The number of units available for purchase.
         stock: nil,
         # The price to display with a strikethrough for the initial price. Provided as a
-        # number in dollars. Eg: 19.99 for $19.99
+        # number in the specified currency. Eg: 19.99 for $19.99
         strike_through_initial_price: nil,
         # The price to display with a strikethrough for the renewal price. Provided as a
-        # number in dollars. Eg: 19.99 for $19.99
+        # number in the specified currency. Eg: 19.99 for $19.99
         strike_through_renewal_price: nil,
         # The title of the plan. This will be visible on the product page to customers.
         title: nil,
         # The number of free trial days added before a renewal plan.
         trial_period_days: nil,
-        # Limits/doesn't limit the number of units available for purchase.
+        # When true, the plan has unlimited stock (stock field is ignored). When false,
+        # purchases are limited by the stock field.
         unlimited_stock: nil,
         # Visibility of a resource
         visibility: nil,

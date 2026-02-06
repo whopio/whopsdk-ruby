@@ -9,7 +9,7 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The interval at which the plan charges (renewal plans).
+      # The interval in days at which the plan charges (renewal plans).
       sig { returns(T.nilable(Integer)) }
       attr_accessor :billing_period
 
@@ -40,11 +40,14 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      # The interval at which the plan charges (expiration plans).
+      # The number of days until the membership expires (for expiration-based plans).
+      # For example, 365 for a one-year access pass.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :expiration_days
 
-      # The price a person has to pay for a plan on the initial purchase.
+      # The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
+      # For one-time plans, this is the full price. For renewal plans, this is charged
+      # on top of the first renewal_price.
       sig { returns(Float) }
       attr_accessor :initial_price
 
@@ -94,7 +97,8 @@ module WhopSDK
       sig { returns(WhopSDK::ReleaseMethod::TaggedSymbol) }
       attr_accessor :release_method
 
-      # The price a person has to pay for a plan on the renewal purchase.
+      # The recurring price charged every billing_period in the plan's base_currency
+      # (e.g., 9.99 for $9.99/period). Zero for one-time plans.
       sig { returns(Float) }
       attr_accessor :renewal_price
 
@@ -118,7 +122,8 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :trial_period_days
 
-      # Limits/doesn't limit the number of units available for purchase.
+      # When true, the plan has unlimited stock (stock field is ignored). When false,
+      # purchases are limited by the stock field.
       sig { returns(T::Boolean) }
       attr_accessor :unlimited_stock
 
@@ -168,7 +173,7 @@ module WhopSDK
       def self.new(
         # The internal ID of the plan.
         id:,
-        # The interval at which the plan charges (renewal plans).
+        # The interval in days at which the plan charges (renewal plans).
         billing_period:,
         # Whether or not the plan collects tax.
         collect_tax:,
@@ -182,9 +187,12 @@ module WhopSDK
         custom_fields:,
         # The description of the plan.
         description:,
-        # The interval at which the plan charges (expiration plans).
+        # The number of days until the membership expires (for expiration-based plans).
+        # For example, 365 for a one-year access pass.
         expiration_days:,
-        # The price a person has to pay for a plan on the initial purchase.
+        # The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
+        # For one-time plans, this is the full price. For renewal plans, this is charged
+        # on top of the first renewal_price.
         initial_price:,
         # A personal description or notes section for the business.
         internal_notes:,
@@ -202,7 +210,8 @@ module WhopSDK
         purchase_url:,
         # This is the release method the business uses to sell this plan.
         release_method:,
-        # The price a person has to pay for a plan on the renewal purchase.
+        # The recurring price charged every billing_period in the plan's base_currency
+        # (e.g., 9.99 for $9.99/period). Zero for one-time plans.
         renewal_price:,
         # The number of payments required before pausing the subscription.
         split_pay_required_payments:,
@@ -214,7 +223,8 @@ module WhopSDK
         title:,
         # The number of free trial days added before a renewal plan.
         trial_period_days:,
-        # Limits/doesn't limit the number of units available for purchase.
+        # When true, the plan has unlimited stock (stock field is ignored). When false,
+        # purchases are limited by the stock field.
         unlimited_stock:,
         # When the plan was last updated.
         updated_at:,

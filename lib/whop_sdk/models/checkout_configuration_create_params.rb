@@ -112,14 +112,16 @@ module WhopSDK
 
         # @!attribute application_fee_amount
         #   The application fee amount collected by the platform from this connected
-        #   account. Must be less than the total payment amount. Only valid for connected
-        #   accounts with a parent company.
+        #   account. Provided as a number in dollars (e.g., 5.00 for $5.00). Must be less
+        #   than the total payment amount. Only valid for connected accounts with a parent
+        #   company.
         #
         #   @return [Float, nil]
         optional :application_fee_amount, Float, nil?: true
 
         # @!attribute billing_period
-        #   The interval at which the plan charges (renewal plans).
+        #   The interval in days at which the plan charges (renewal plans). For example, 30
+        #   for monthly billing.
         #
         #   @return [Integer, nil]
         optional :billing_period, Integer, nil?: true
@@ -141,7 +143,8 @@ module WhopSDK
         optional :description, String, nil?: true
 
         # @!attribute expiration_days
-        #   The interval at which the plan charges (expiration plans).
+        #   The number of days until the membership expires (for expiration-based plans).
+        #   For example, 365 for a one-year access pass.
         #
         #   @return [Integer, nil]
         optional :expiration_days, Integer, nil?: true
@@ -160,7 +163,8 @@ module WhopSDK
         optional :image, -> { WhopSDK::CheckoutConfigurationCreateParams::Plan::Image }, nil?: true
 
         # @!attribute initial_price
-        #   An additional amount charged upon first purchase.
+        #   An additional amount charged upon first purchase. Provided as a number in
+        #   dollars (e.g., 10.00 for $10.00).
         #
         #   @return [Float, nil]
         optional :initial_price, Float, nil?: true
@@ -213,7 +217,8 @@ module WhopSDK
         optional :release_method, enum: -> { WhopSDK::ReleaseMethod }, nil?: true
 
         # @!attribute renewal_price
-        #   The amount the customer is charged every billing period.
+        #   The amount the customer is charged every billing period. Provided as a number in
+        #   dollars (e.g., 9.99 for $9.99/period).
         #
         #   @return [Float, nil]
         optional :renewal_price, Float, nil?: true
@@ -260,19 +265,19 @@ module WhopSDK
         #
         #   @param application_fee_amount [Float, nil] The application fee amount collected by the platform from this connected account
         #
-        #   @param billing_period [Integer, nil] The interval at which the plan charges (renewal plans).
+        #   @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans). For example, 30
         #
         #   @param custom_fields [Array<WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::CustomField>, nil] An array of custom field objects.
         #
         #   @param description [String, nil] The description of the plan.
         #
-        #   @param expiration_days [Integer, nil] The interval at which the plan charges (expiration plans).
+        #   @param expiration_days [Integer, nil] The number of days until the membership expires (for expiration-based plans). Fo
         #
         #   @param force_create_new_plan [Boolean, nil] Whether to force the creation of a new plan even if one with the same attributes
         #
         #   @param image [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Image, nil] An image for the plan. This will be visible on the product page to customers.
         #
-        #   @param initial_price [Float, nil] An additional amount charged upon first purchase.
+        #   @param initial_price [Float, nil] An additional amount charged upon first purchase. Provided as a number in dollar
         #
         #   @param internal_notes [String, nil] A personal description or notes section for the business.
         #
@@ -288,7 +293,7 @@ module WhopSDK
         #
         #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod, nil] The methods of how a plan can be released.
         #
-        #   @param renewal_price [Float, nil] The amount the customer is charged every billing period.
+        #   @param renewal_price [Float, nil] The amount the customer is charged every billing period. Provided as a number in
         #
         #   @param split_pay_required_payments [Integer, nil] The number of payments required before pausing the subscription.
         #

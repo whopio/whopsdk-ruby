@@ -11,7 +11,8 @@ module WhopSDK
           T.any(WhopSDK::TransferCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The amount to withdraw
+      # The amount to transfer. Provided as a number in the specified currency. Eg:
+      # 25.00 for $25.00 USD.
       sig { returns(Float) }
       attr_accessor :amount
 
@@ -54,7 +55,8 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The amount to withdraw
+        # The amount to transfer. Provided as a number in the specified currency. Eg:
+        # 25.00 for $25.00 USD.
         amount:,
         # The currency that is being withdrawn.
         currency:,

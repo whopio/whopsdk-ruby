@@ -70,7 +70,8 @@ module WhopSDK
         required :currency, enum: -> { WhopSDK::Currency }
 
         # @!attribute billing_period
-        #   The interval at which the plan charges (renewal plans).
+        #   The interval in days at which the plan charges (renewal plans). For example, 30
+        #   for monthly billing.
         #
         #   @return [Integer, nil]
         optional :billing_period, Integer, nil?: true
@@ -82,7 +83,8 @@ module WhopSDK
         optional :description, String, nil?: true
 
         # @!attribute expiration_days
-        #   The interval at which the plan charges (expiration plans).
+        #   The number of days until the membership expires and revokes access (expiration
+        #   plans). For example, 365 for one year.
         #
         #   @return [Integer, nil]
         optional :expiration_days, Integer, nil?: true
@@ -95,7 +97,8 @@ module WhopSDK
         optional :force_create_new_plan, WhopSDK::Internal::Type::Boolean, nil?: true
 
         # @!attribute initial_price
-        #   An additional amount charged upon first purchase.
+        #   An additional amount charged upon first purchase. Provided as a number in the
+        #   specified currency. Eg: 10.43 for $10.43 USD.
         #
         #   @return [Float, nil]
         optional :initial_price, Float, nil?: true
@@ -126,7 +129,8 @@ module WhopSDK
         optional :product_id, String, nil?: true
 
         # @!attribute renewal_price
-        #   The amount the customer is charged every billing period.
+        #   The amount the customer is charged every billing period. Provided as a number in
+        #   the specified currency. Eg: 10.43 for $10.43 USD.
         #
         #   @return [Float, nil]
         optional :renewal_price, Float, nil?: true
@@ -157,15 +161,15 @@ module WhopSDK
         #
         #   @param currency [Symbol, WhopSDK::Models::Currency] The respective currency identifier for the plan.
         #
-        #   @param billing_period [Integer, nil] The interval at which the plan charges (renewal plans).
+        #   @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans). For example, 30
         #
         #   @param description [String, nil] The description of the plan.
         #
-        #   @param expiration_days [Integer, nil] The interval at which the plan charges (expiration plans).
+        #   @param expiration_days [Integer, nil] The number of days until the membership expires and revokes access (expiration p
         #
         #   @param force_create_new_plan [Boolean, nil] Whether to force the creation of a new plan even if one with the same attributes
         #
-        #   @param initial_price [Float, nil] An additional amount charged upon first purchase.
+        #   @param initial_price [Float, nil] An additional amount charged upon first purchase. Provided as a number in the sp
         #
         #   @param internal_notes [String, nil] A personal description or notes section for the business.
         #
@@ -175,7 +179,7 @@ module WhopSDK
         #
         #   @param product_id [String, nil] The product the plan is related to. Either this or product is required.
         #
-        #   @param renewal_price [Float, nil] The amount the customer is charged every billing period.
+        #   @param renewal_price [Float, nil] The amount the customer is charged every billing period. Provided as a number in
         #
         #   @param title [String, nil] The title of the plan. This will be visible on the product page to customers.
         #

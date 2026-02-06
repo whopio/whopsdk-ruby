@@ -24,7 +24,7 @@ module WhopSDK
       #
       # @param parent_id [String, nil] The ID of the parent post. Set it to the ID of the post you want to comment on o
       #
-      # @param paywall_amount [Float, nil] The amount to paywall this post by. A paywalled post requires the user to purcha
+      # @param paywall_amount [Float, nil] The price in paywall_currency to unlock this post (e.g., 5.00 for $5.00). If set
       #
       # @param paywall_currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #

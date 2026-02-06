@@ -11,7 +11,8 @@ module WhopSDK
       required :id, String
 
       # @!attribute amount
-      #   How much money was attempted to be withdrawn, in a float type.
+      #   The withdrawal amount. Provided as a number in the specified currency. Eg:
+      #   100.00 for $100.00 USD.
       #
       #   @return [Float]
       required :amount, Float
@@ -106,7 +107,7 @@ module WhopSDK
       #
       #   @param id [String] Internal ID of the withdrawal request.
       #
-      #   @param amount [Float] How much money was attempted to be withdrawn, in a float type.
+      #   @param amount [Float] The withdrawal amount. Provided as a number in the specified currency. Eg: 100.0
       #
       #   @param created_at [Time] When the withdrawal request was created.
       #

@@ -164,7 +164,7 @@ module WhopSDK
             )
           end
 
-        # The interval at which the plan charges (renewal plans).
+        # The interval in days at which the plan charges (renewal plans).
         sig { returns(T.nilable(Integer)) }
         attr_accessor :billing_period
 
@@ -180,13 +180,14 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :description
 
-        # The interval at which the plan charges (expiration plans).
+        # The number of days until the membership expires and revokes access (expiration
+        # plans). For example, 365 for a one-year access period.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :expiration_days
 
         # An additional amount charged upon first purchase. Use only if a one time payment
         # OR you want to charge an additional amount on top of the renewal price. Provided
-        # as a number in dollars. Eg: 10.43 for $10.43
+        # as a number in the specified currency. Eg: 10.43 for $10.43
         sig { returns(T.nilable(Float)) }
         attr_accessor :initial_price
 
@@ -203,7 +204,7 @@ module WhopSDK
         attr_accessor :release_method
 
         # The amount the customer is charged every billing period. Use only if a recurring
-        # payment. Provided as a number in dollars. Eg: 10.43 for $10.43
+        # payment. Provided as a number in the specified currency. Eg: 10.43 for $10.43
         sig { returns(T.nilable(Float)) }
         attr_accessor :renewal_price
 
@@ -215,7 +216,8 @@ module WhopSDK
         sig { returns(T.nilable(Integer)) }
         attr_accessor :trial_period_days
 
-        # Limits/doesn't limit the number of units available for purchase.
+        # When true, the plan has unlimited stock (stock field is ignored). When false,
+        # purchases are limited by the stock field.
         sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :unlimited_stock
 
@@ -247,17 +249,18 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The interval at which the plan charges (renewal plans).
+          # The interval in days at which the plan charges (renewal plans).
           billing_period: nil,
           # An array of custom field objects.
           custom_fields: nil,
           # The description of the plan.
           description: nil,
-          # The interval at which the plan charges (expiration plans).
+          # The number of days until the membership expires and revokes access (expiration
+          # plans). For example, 365 for a one-year access period.
           expiration_days: nil,
           # An additional amount charged upon first purchase. Use only if a one time payment
           # OR you want to charge an additional amount on top of the renewal price. Provided
-          # as a number in dollars. Eg: 10.43 for $10.43
+          # as a number in the specified currency. Eg: 10.43 for $10.43
           initial_price: nil,
           # A personal description or notes section for the business.
           internal_notes: nil,
@@ -266,13 +269,14 @@ module WhopSDK
           # The methods of how a plan can be released.
           release_method: nil,
           # The amount the customer is charged every billing period. Use only if a recurring
-          # payment. Provided as a number in dollars. Eg: 10.43 for $10.43
+          # payment. Provided as a number in the specified currency. Eg: 10.43 for $10.43
           renewal_price: nil,
           # The number of units available for purchase.
           stock: nil,
           # The number of free trial days added before a renewal plan.
           trial_period_days: nil,
-          # Limits/doesn't limit the number of units available for purchase.
+          # When true, the plan has unlimited stock (stock field is ignored). When false,
+          # purchases are limited by the stock field.
           unlimited_stock: nil,
           # Visibility of a resource
           visibility: nil

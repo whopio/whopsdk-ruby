@@ -10,6 +10,7 @@ module WhopSDK
         company: WhopSDK::Models::MembershipListResponse::Company,
         created_at: Time,
         currency: WhopSDK::Models::currency?,
+        joined_at: Time?,
         license_key: String?,
         manage_url: String?,
         member: WhopSDK::Models::MembershipListResponse::Member?,
@@ -41,6 +42,8 @@ module WhopSDK
       attr_accessor created_at: Time
 
       attr_accessor currency: WhopSDK::Models::currency?
+
+      attr_accessor joined_at: Time?
 
       attr_accessor license_key: String?
 
@@ -77,6 +80,7 @@ module WhopSDK
         company: WhopSDK::Models::MembershipListResponse::Company,
         created_at: Time,
         currency: WhopSDK::Models::currency?,
+        joined_at: Time?,
         license_key: String?,
         manage_url: String?,
         member: WhopSDK::Models::MembershipListResponse::Member?,
@@ -101,6 +105,7 @@ module WhopSDK
         company: WhopSDK::Models::MembershipListResponse::Company,
         created_at: Time,
         currency: WhopSDK::Models::currency?,
+        joined_at: Time?,
         license_key: String?,
         manage_url: String?,
         member: WhopSDK::Models::MembershipListResponse::Member?,

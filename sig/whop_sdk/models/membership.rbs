@@ -11,6 +11,7 @@ module WhopSDK
         created_at: Time,
         currency: WhopSDK::Models::currency?,
         custom_field_responses: ::Array[WhopSDK::Membership::CustomFieldResponse],
+        joined_at: Time?,
         license_key: String?,
         manage_url: String?,
         member: WhopSDK::Membership::Member?,
@@ -44,6 +45,8 @@ module WhopSDK
       attr_accessor currency: WhopSDK::Models::currency?
 
       attr_accessor custom_field_responses: ::Array[WhopSDK::Membership::CustomFieldResponse]
+
+      attr_accessor joined_at: Time?
 
       attr_accessor license_key: String?
 
@@ -81,6 +84,7 @@ module WhopSDK
         created_at: Time,
         currency: WhopSDK::Models::currency?,
         custom_field_responses: ::Array[WhopSDK::Membership::CustomFieldResponse],
+        joined_at: Time?,
         license_key: String?,
         manage_url: String?,
         member: WhopSDK::Membership::Member?,
@@ -106,6 +110,7 @@ module WhopSDK
         created_at: Time,
         currency: WhopSDK::Models::currency?,
         custom_field_responses: ::Array[WhopSDK::Membership::CustomFieldResponse],
+        joined_at: Time?,
         license_key: String?,
         manage_url: String?,
         member: WhopSDK::Membership::Member?,

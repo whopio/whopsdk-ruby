@@ -54,6 +54,12 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Currency, nil]
       required :currency, enum: -> { WhopSDK::Currency }, nil?: true
 
+      # @!attribute joined_at
+      #   When the member joined the company.
+      #
+      #   @return [Time, nil]
+      required :joined_at, Time, nil?: true
+
       # @!attribute license_key
       #   The license key for this Membership. This is only present if the membership
       #   grants access to an instance of the Whop Software app.
@@ -136,7 +142,7 @@ module WhopSDK
       #   @return [WhopSDK::Models::MembershipListResponse::User, nil]
       required :user, -> { WhopSDK::Models::MembershipListResponse::User }, nil?: true
 
-      # @!method initialize(id:, cancel_at_period_end:, cancel_option:, canceled_at:, cancellation_reason:, company:, created_at:, currency:, license_key:, manage_url:, member:, metadata:, payment_collection_paused:, plan:, product:, promo_code:, renewal_period_end:, renewal_period_start:, status:, updated_at:, user:)
+      # @!method initialize(id:, cancel_at_period_end:, cancel_option:, canceled_at:, cancellation_reason:, company:, created_at:, currency:, joined_at:, license_key:, manage_url:, member:, metadata:, payment_collection_paused:, plan:, product:, promo_code:, renewal_period_end:, renewal_period_start:, status:, updated_at:, user:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::MembershipListResponse} for more details.
       #
@@ -158,6 +164,8 @@ module WhopSDK
       #   @param created_at [Time] The timestamp, in seconds, that this Membership was created at.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
+      #
+      #   @param joined_at [Time, nil] When the member joined the company.
       #
       #   @param license_key [String, nil] The license key for this Membership. This is only present if the membership gran
       #

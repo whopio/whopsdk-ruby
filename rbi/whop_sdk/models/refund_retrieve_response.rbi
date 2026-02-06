@@ -15,7 +15,8 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The amount of the refund.
+      # The amount of the refund. Provided as a number in the specified currency. Eg:
+      # 10.43 for $10.43 USD.
       sig { returns(Float) }
       attr_accessor :amount
 
@@ -85,7 +86,8 @@ module WhopSDK
       def self.new(
         # The ID of the refund.
         id:,
-        # The amount of the refund.
+        # The amount of the refund. Provided as a number in the specified currency. Eg:
+        # 10.43 for $10.43 USD.
         amount:,
         # The time the refund was created.
         created_at:,

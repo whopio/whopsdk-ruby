@@ -8,7 +8,8 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute amount
-      #   The amount to add to the balance.
+      #   The amount to add to the balance. Provided as a number in the specified
+      #   currency. Eg: 50.00 for $50.00 USD.
       #
       #   @return [Float]
       required :amount, Float
@@ -32,7 +33,10 @@ module WhopSDK
       required :payment_method_id, String
 
       # @!method initialize(amount:, company_id:, currency:, payment_method_id:, request_options: {})
-      #   @param amount [Float] The amount to add to the balance.
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::TopupCreateParams} for more details.
+      #
+      #   @param amount [Float] The amount to add to the balance. Provided as a number in the specified currency
       #
       #   @param company_id [String] The ID of the company to add funds to.
       #

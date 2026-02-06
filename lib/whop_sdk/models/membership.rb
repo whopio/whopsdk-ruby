@@ -80,7 +80,8 @@ module WhopSDK
       required :member, -> { WhopSDK::Membership::Member }, nil?: true
 
       # @!attribute metadata
-      #   A JSON object used to store software licensing information. Ex. HWID
+      #   Custom key-value pairs for the membership (commonly used for software licensing,
+      #   e.g., HWID). Max 50 keys, 500 chars per key, 5000 chars per value.
       #
       #   @return [Hash{Symbol=>Object}]
       required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]
@@ -172,7 +173,7 @@ module WhopSDK
       #
       #   @param member [WhopSDK::Models::Membership::Member, nil] The Member that this Membership belongs to.
       #
-      #   @param metadata [Hash{Symbol=>Object}] A JSON object used to store software licensing information. Ex. HWID
+      #   @param metadata [Hash{Symbol=>Object}] Custom key-value pairs for the membership (commonly used for software licensing,
       #
       #   @param payment_collection_paused [Boolean] Whether the membership's payments are currently paused.
       #

@@ -11,7 +11,7 @@ module WhopSDK
       required :id, String
 
       # @!attribute billing_period
-      #   The interval at which the plan charges (renewal plans).
+      #   The interval in days at which the plan charges (renewal plans).
       #
       #   @return [Integer, nil]
       required :billing_period, Integer, nil?: true
@@ -41,13 +41,16 @@ module WhopSDK
       required :description, String, nil?: true
 
       # @!attribute expiration_days
-      #   The interval at which the plan charges (expiration plans).
+      #   The number of days until the membership expires (for expiration-based plans).
+      #   For example, 365 for a one-year access pass.
       #
       #   @return [Integer, nil]
       required :expiration_days, Integer, nil?: true
 
       # @!attribute initial_price
-      #   The price a person has to pay for a plan on the initial purchase.
+      #   The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
+      #   For one-time plans, this is the full price. For renewal plans, this is charged
+      #   on top of the first renewal_price.
       #
       #   @return [Float]
       required :initial_price, Float
@@ -103,7 +106,8 @@ module WhopSDK
       required :release_method, enum: -> { WhopSDK::ReleaseMethod }
 
       # @!attribute renewal_price
-      #   The price a person has to pay for a plan on the renewal purchase.
+      #   The recurring price charged every billing_period in the plan's base_currency
+      #   (e.g., 9.99 for $9.99/period). Zero for one-time plans.
       #
       #   @return [Float]
       required :renewal_price, Float
@@ -133,7 +137,8 @@ module WhopSDK
       required :trial_period_days, Integer, nil?: true
 
       # @!attribute unlimited_stock
-      #   Limits/doesn't limit the number of units available for purchase.
+      #   When true, the plan has unlimited stock (stock field is ignored). When false,
+      #   purchases are limited by the stock field.
       #
       #   @return [Boolean]
       required :unlimited_stock, WhopSDK::Internal::Type::Boolean
@@ -151,13 +156,16 @@ module WhopSDK
       required :visibility, enum: -> { WhopSDK::Visibility }
 
       # @!method initialize(id:, billing_period:, company:, created_at:, currency:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, payment_method_configuration:, plan_type:, product:, purchase_url:, release_method:, renewal_price:, split_pay_required_payments:, stock:, title:, trial_period_days:, unlimited_stock:, updated_at:, visibility:)
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::PlanListResponse} for more details.
+      #
       #   A plan for an product. Plans define the core parameters that define a checkout
       #   and payment on whop. Use plans to create different ways to price your products
       #   (Eg renewal / one_time)
       #
       #   @param id [String] The internal ID of the plan.
       #
-      #   @param billing_period [Integer, nil] The interval at which the plan charges (renewal plans).
+      #   @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans).
       #
       #   @param company [WhopSDK::Models::PlanListResponse::Company, nil] The company for the plan.
       #
@@ -167,9 +175,9 @@ module WhopSDK
       #
       #   @param description [String, nil] The description of the plan.
       #
-      #   @param expiration_days [Integer, nil] The interval at which the plan charges (expiration plans).
+      #   @param expiration_days [Integer, nil] The number of days until the membership expires (for expiration-based plans). Fo
       #
-      #   @param initial_price [Float] The price a person has to pay for a plan on the initial purchase.
+      #   @param initial_price [Float] The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
       #
       #   @param internal_notes [String, nil] A personal description or notes section for the business.
       #
@@ -187,7 +195,7 @@ module WhopSDK
       #
       #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod] This is the release method the business uses to sell this plan.
       #
-      #   @param renewal_price [Float] The price a person has to pay for a plan on the renewal purchase.
+      #   @param renewal_price [Float] The recurring price charged every billing_period in the plan's base_currency (e.
       #
       #   @param split_pay_required_payments [Integer, nil] The number of payments required before pausing the subscription.
       #
@@ -197,7 +205,7 @@ module WhopSDK
       #
       #   @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
       #
-      #   @param unlimited_stock [Boolean] Limits/doesn't limit the number of units available for purchase.
+      #   @param unlimited_stock [Boolean] When true, the plan has unlimited stock (stock field is ignored). When false, pu
       #
       #   @param updated_at [Time] When the plan was last updated.
       #

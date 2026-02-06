@@ -56,7 +56,7 @@ module WhopSDK
       #
       # @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
       #
-      # @param unlimited_stock [Boolean, nil] Limits/doesn't limit the number of units available for purchase.
+      # @param unlimited_stock [Boolean, nil] When true, the plan has unlimited stock (stock field is ignored). When false, pu
       #
       # @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
       #
@@ -109,7 +109,7 @@ module WhopSDK
       #
       # @param id [String] The ID
       #
-      # @param billing_period [Integer, nil] The interval at which the plan charges (renewal plans).
+      # @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans).
       #
       # @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #
@@ -117,11 +117,11 @@ module WhopSDK
       #
       # @param description [String, nil] The description of the plan.
       #
-      # @param expiration_days [Integer, nil] The interval at which the plan charges (expiration plans).
+      # @param expiration_days [Integer, nil] The number of days until the membership expires (for expiration-based plans). Fo
       #
       # @param image [WhopSDK::Models::PlanUpdateParams::Image, nil] An image for the plan. This will be visible on the product page to customers.
       #
-      # @param initial_price [Float, nil] An additional amount charged upon first purchase.
+      # @param initial_price [Float, nil] An additional amount charged upon first purchase. Provided as a number in the sp
       #
       # @param internal_notes [String, nil] A personal description or notes section for the business.
       #
@@ -133,7 +133,7 @@ module WhopSDK
       #
       # @param payment_method_configuration [WhopSDK::Models::PlanUpdateParams::PaymentMethodConfiguration, nil] The explicit payment method configuration for the plan. If sent as null, the cus
       #
-      # @param renewal_price [Float, nil] The amount the customer is charged every billing period.
+      # @param renewal_price [Float, nil] The amount the customer is charged every billing period. Provided as a number in
       #
       # @param stock [Integer, nil] The number of units available for purchase.
       #
@@ -145,7 +145,7 @@ module WhopSDK
       #
       # @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
       #
-      # @param unlimited_stock [Boolean, nil] Limits/doesn't limit the number of units available for purchase.
+      # @param unlimited_stock [Boolean, nil] When true, the plan has unlimited stock (stock field is ignored). When false, pu
       #
       # @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
       #

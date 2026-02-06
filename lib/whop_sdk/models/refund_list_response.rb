@@ -11,7 +11,8 @@ module WhopSDK
       required :id, String
 
       # @!attribute amount
-      #   The amount of the refund.
+      #   The amount of the refund. Provided as a number in the specified currency. Eg:
+      #   10.43 for $10.43 USD.
       #
       #   @return [Float]
       required :amount, Float
@@ -71,11 +72,14 @@ module WhopSDK
       required :status, enum: -> { WhopSDK::RefundStatus }
 
       # @!method initialize(id:, amount:, created_at:, currency:, payment:, provider:, provider_created_at:, reference_status:, reference_type:, reference_value:, status:)
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::RefundListResponse} for more details.
+      #
       #   An object representing a refund made on a payment.
       #
       #   @param id [String] The ID of the refund.
       #
-      #   @param amount [Float] The amount of the refund.
+      #   @param amount [Float] The amount of the refund. Provided as a number in the specified currency. Eg: 10
       #
       #   @param created_at [Time] The time the refund was created.
       #

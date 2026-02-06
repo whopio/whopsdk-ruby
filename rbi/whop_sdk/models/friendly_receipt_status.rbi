@@ -2,7 +2,9 @@
 
 module WhopSDK
   module Models
-    # The friendly status of a receipt
+    # The friendly status of a payment. This is a derived status that provides a
+    # human-readable summary of the payment state, combining the underlying status and
+    # substatus fields.
     module FriendlyReceiptStatus
       extend WhopSDK::Internal::Type::Enum
 

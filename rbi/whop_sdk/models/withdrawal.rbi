@@ -10,7 +10,8 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # How much money was attempted to be withdrawn, in a float type.
+      # The withdrawal amount. Provided as a number in the specified currency. Eg:
+      # 100.00 for $100.00 USD.
       sig { returns(Float) }
       attr_accessor :amount
 
@@ -105,7 +106,8 @@ module WhopSDK
       def self.new(
         # Internal ID of the withdrawal request.
         id:,
-        # How much money was attempted to be withdrawn, in a float type.
+        # The withdrawal amount. Provided as a number in the specified currency. Eg:
+        # 100.00 for $100.00 USD.
         amount:,
         # When the withdrawal request was created.
         created_at:,

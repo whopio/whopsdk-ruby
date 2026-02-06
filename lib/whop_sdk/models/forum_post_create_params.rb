@@ -44,8 +44,8 @@ module WhopSDK
       optional :parent_id, String, nil?: true
 
       # @!attribute paywall_amount
-      #   The amount to paywall this post by. A paywalled post requires the user to
-      #   purchase it in order to view its content.
+      #   The price in paywall_currency to unlock this post (e.g., 5.00 for $5.00). If
+      #   set, users must purchase access to view the post content.
       #
       #   @return [Float, nil]
       optional :paywall_amount, Float, nil?: true
@@ -94,7 +94,7 @@ module WhopSDK
       #
       #   @param parent_id [String, nil] The ID of the parent post. Set it to the ID of the post you want to comment on o
       #
-      #   @param paywall_amount [Float, nil] The amount to paywall this post by. A paywalled post requires the user to purcha
+      #   @param paywall_amount [Float, nil] The price in paywall_currency to unlock this post (e.g., 5.00 for $5.00). If set
       #
       #   @param paywall_currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #

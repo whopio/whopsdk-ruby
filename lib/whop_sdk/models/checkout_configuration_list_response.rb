@@ -149,7 +149,7 @@ module WhopSDK
         required :id, String
 
         # @!attribute billing_period
-        #   The interval at which the plan charges (renewal plans).
+        #   The interval in days at which the plan charges (renewal plans).
         #
         #   @return [Integer, nil]
         required :billing_period, Integer, nil?: true
@@ -161,13 +161,16 @@ module WhopSDK
         required :currency, enum: -> { WhopSDK::Currency }
 
         # @!attribute expiration_days
-        #   The interval at which the plan charges (expiration plans).
+        #   The number of days until the membership expires (for expiration-based plans).
+        #   For example, 365 for a one-year access pass.
         #
         #   @return [Integer, nil]
         required :expiration_days, Integer, nil?: true
 
         # @!attribute initial_price
-        #   The price a person has to pay for a plan on the initial purchase.
+        #   The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
+        #   For one-time plans, this is the full price. For renewal plans, this is charged
+        #   on top of the first renewal_price.
         #
         #   @return [Float]
         required :initial_price, Float
@@ -185,7 +188,8 @@ module WhopSDK
         required :release_method, enum: -> { WhopSDK::ReleaseMethod }
 
         # @!attribute renewal_price
-        #   The price a person has to pay for a plan on the renewal purchase.
+        #   The recurring price charged every billing_period in the plan's base_currency
+        #   (e.g., 9.99 for $9.99/period). Zero for one-time plans.
         #
         #   @return [Float]
         required :renewal_price, Float
@@ -203,23 +207,26 @@ module WhopSDK
         required :visibility, enum: -> { WhopSDK::Visibility }
 
         # @!method initialize(id:, billing_period:, currency:, expiration_days:, initial_price:, plan_type:, release_method:, renewal_price:, trial_period_days:, visibility:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::CheckoutConfigurationListResponse::Plan} for more details.
+        #
         #   The plan to use for the checkout configuration
         #
         #   @param id [String] The internal ID of the plan.
         #
-        #   @param billing_period [Integer, nil] The interval at which the plan charges (renewal plans).
+        #   @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans).
         #
         #   @param currency [Symbol, WhopSDK::Models::Currency] The respective currency identifier for the plan.
         #
-        #   @param expiration_days [Integer, nil] The interval at which the plan charges (expiration plans).
+        #   @param expiration_days [Integer, nil] The number of days until the membership expires (for expiration-based plans). Fo
         #
-        #   @param initial_price [Float] The price a person has to pay for a plan on the initial purchase.
+        #   @param initial_price [Float] The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
         #
         #   @param plan_type [Symbol, WhopSDK::Models::PlanType] Indicates if the plan is a one time payment or recurring.
         #
         #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod] This is the release method the business uses to sell this plan.
         #
-        #   @param renewal_price [Float] The price a person has to pay for a plan on the renewal purchase.
+        #   @param renewal_price [Float] The recurring price charged every billing_period in the plan's base_currency (e.
         #
         #   @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
         #

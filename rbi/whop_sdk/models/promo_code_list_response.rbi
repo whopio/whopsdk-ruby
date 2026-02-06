@@ -15,7 +15,9 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The amount off (% or flat amount) for the promo.
+      # The discount amount. Interpretation depends on promo_type: if 'percentage', this
+      # is the percentage (e.g., 20 means 20% off); if 'flat_amount', this is dollars
+      # off (e.g., 10.00 means $10.00 off).
       sig { returns(Float) }
       attr_accessor :amount_off
 
@@ -121,7 +123,9 @@ module WhopSDK
       def self.new(
         # The ID of the promo.
         id:,
-        # The amount off (% or flat amount) for the promo.
+        # The discount amount. Interpretation depends on promo_type: if 'percentage', this
+        # is the percentage (e.g., 20 means 20% off); if 'flat_amount', this is dollars
+        # off (e.g., 10.00 means $10.00 off).
         amount_off:,
         # Restricts promo use to only users who have churned from the company before.
         churned_users_only:,

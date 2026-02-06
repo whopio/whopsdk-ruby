@@ -33,6 +33,8 @@ module WhopSDK
       | :fuel_card
       | :dankort
       | :carnet
+      | :atm_card
+      | :china_union_payuzcard
       | :unknown
 
     module CardBrands
@@ -70,6 +72,8 @@ module WhopSDK
       FUEL_CARD: :fuel_card
       DANKORT: :dankort
       CARNET: :carnet
+      ATM_CARD: :atm_card
+      CHINA_UNION_PAYUZCARD: :china_union_payuzcard
       UNKNOWN: :unknown
 
       def self?.values: -> ::Array[WhopSDK::Models::card_brands]

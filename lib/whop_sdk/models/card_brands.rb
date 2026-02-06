@@ -38,6 +38,8 @@ module WhopSDK
       FUEL_CARD = :fuel_card
       DANKORT = :dankort
       CARNET = :carnet
+      ATM_CARD = :atm_card
+      CHINA_UNION_PAYUZCARD = :china_union_payuzcard
       UNKNOWN = :unknown
 
       # @!method self.values

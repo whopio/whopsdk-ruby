@@ -43,6 +43,9 @@ module WhopSDK
       FUEL_CARD = T.let(:fuel_card, WhopSDK::CardBrands::TaggedSymbol)
       DANKORT = T.let(:dankort, WhopSDK::CardBrands::TaggedSymbol)
       CARNET = T.let(:carnet, WhopSDK::CardBrands::TaggedSymbol)
+      ATM_CARD = T.let(:atm_card, WhopSDK::CardBrands::TaggedSymbol)
+      CHINA_UNION_PAYUZCARD =
+        T.let(:china_union_payuzcard, WhopSDK::CardBrands::TaggedSymbol)
       UNKNOWN = T.let(:unknown, WhopSDK::CardBrands::TaggedSymbol)
 
       sig { override.returns(T::Array[WhopSDK::CardBrands::TaggedSymbol]) }

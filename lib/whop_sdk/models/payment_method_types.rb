@@ -24,6 +24,7 @@ module WhopSDK
       CAPCHASE_PAY = :capchase_pay
       CARD = :card
       CASHAPP = :cashapp
+      CLARITYPAY = :claritypay
       COINBASE = :coinbase
       CRYPTO = :crypto
       CUSTOM = :custom

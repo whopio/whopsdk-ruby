@@ -19,6 +19,7 @@ module WhopSDK
         T.let(:platform_balance, WhopSDK::PaymentProvider::TaggedSymbol)
       MULTI_PSP = T.let(:multi_psp, WhopSDK::PaymentProvider::TaggedSymbol)
       ADYEN = T.let(:adyen, WhopSDK::PaymentProvider::TaggedSymbol)
+      CLARITYPAY = T.let(:claritypay, WhopSDK::PaymentProvider::TaggedSymbol)
 
       sig { override.returns(T::Array[WhopSDK::PaymentProvider::TaggedSymbol]) }
       def self.values

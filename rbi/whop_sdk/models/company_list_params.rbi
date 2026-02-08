@@ -11,10 +11,6 @@ module WhopSDK
           T.any(WhopSDK::CompanyListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the parent company to list connected accounts for
-      sig { returns(String) }
-      attr_accessor :parent_company_id
-
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_accessor :after
@@ -43,9 +39,13 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
+      # The ID of the parent company to list connected accounts for. Omit to list the
+      # current user's own companies.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :parent_company_id
+
       sig do
         params(
-          parent_company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
           created_after: T.nilable(Time),
@@ -53,12 +53,11 @@ module WhopSDK
           direction: T.nilable(WhopSDK::Direction::OrSymbol),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
+          parent_company_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the parent company to list connected accounts for
-        parent_company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
@@ -73,6 +72,9 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
+        # The ID of the parent company to list connected accounts for. Omit to list the
+        # current user's own companies.
+        parent_company_id: nil,
         request_options: {}
       )
       end
@@ -80,7 +82,6 @@ module WhopSDK
       sig do
         override.returns(
           {
-            parent_company_id: String,
             after: T.nilable(String),
             before: T.nilable(String),
             created_after: T.nilable(Time),
@@ -88,6 +89,7 @@ module WhopSDK
             direction: T.nilable(WhopSDK::Direction::OrSymbol),
             first: T.nilable(Integer),
             last: T.nilable(Integer),
+            parent_company_id: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }
         )

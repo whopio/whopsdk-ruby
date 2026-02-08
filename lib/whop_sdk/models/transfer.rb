@@ -4,7 +4,7 @@ module WhopSDK
   module Models
     class Transfer < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier of the credit transaction transfer
+      #   The unique identifier for the credit transaction transfer.
       #
       #   @return [String]
       required :id, String
@@ -17,7 +17,7 @@ module WhopSDK
       required :amount, Float
 
       # @!attribute created_at
-      #   The timestamp when the credit transaction transfer was created
+      #   The datetime the credit transaction transfer was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -77,11 +77,11 @@ module WhopSDK
       #
       #   Credit Transaction Transfer
       #
-      #   @param id [String] The unique identifier of the credit transaction transfer
+      #   @param id [String] The unique identifier for the credit transaction transfer.
       #
       #   @param amount [Float] The amount of the transfer. Provided as a number in the specified currency. Eg:
       #
-      #   @param created_at [Time] The timestamp when the credit transaction transfer was created
+      #   @param created_at [Time] The datetime the credit transaction transfer was created.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the credit transaction transfer
       #
@@ -107,15 +107,15 @@ module WhopSDK
 
         discriminator :typename
 
-        # An object representing a (sanitized) user of the site.
+        # A user account on Whop. Contains profile information, identity details, and social connections.
         variant :User, -> { WhopSDK::Transfer::Destination::User }
 
-        # An object representing a (sanitized) company.
+        # A company is a seller on Whop. Companies own products, manage members, and receive payouts.
         variant :Company, -> { WhopSDK::Transfer::Destination::Company }
 
         class User < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
-          #   The internal ID of the user.
+          #   The unique identifier for the user.
           #
           #   @return [String]
           required :id, String
@@ -139,9 +139,10 @@ module WhopSDK
           required :username, String
 
           # @!method initialize(id:, name:, username:, typename: :User)
-          #   An object representing a (sanitized) user of the site.
+          #   A user account on Whop. Contains profile information, identity details, and
+          #   social connections.
           #
-          #   @param id [String] The internal ID of the user.
+          #   @param id [String] The unique identifier for the user.
           #
           #   @param name [String, nil] The name of the user from their Whop account.
           #
@@ -152,7 +153,7 @@ module WhopSDK
 
         class Company < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
-          #   The ID (tag) of the company.
+          #   The unique identifier for the company.
           #
           #   @return [String]
           required :id, String
@@ -176,9 +177,10 @@ module WhopSDK
           required :typename, const: :Company
 
           # @!method initialize(id:, route:, title:, typename: :Company)
-          #   An object representing a (sanitized) company.
+          #   A company is a seller on Whop. Companies own products, manage members, and
+          #   receive payouts.
           #
-          #   @param id [String] The ID (tag) of the company.
+          #   @param id [String] The unique identifier for the company.
           #
           #   @param route [String] The slug/route of the company on the Whop site.
           #
@@ -199,15 +201,15 @@ module WhopSDK
 
         discriminator :typename
 
-        # An object representing a (sanitized) user of the site.
+        # A user account on Whop. Contains profile information, identity details, and social connections.
         variant :User, -> { WhopSDK::Transfer::Origin::User }
 
-        # An object representing a (sanitized) company.
+        # A company is a seller on Whop. Companies own products, manage members, and receive payouts.
         variant :Company, -> { WhopSDK::Transfer::Origin::Company }
 
         class User < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
-          #   The internal ID of the user.
+          #   The unique identifier for the user.
           #
           #   @return [String]
           required :id, String
@@ -231,9 +233,10 @@ module WhopSDK
           required :username, String
 
           # @!method initialize(id:, name:, username:, typename: :User)
-          #   An object representing a (sanitized) user of the site.
+          #   A user account on Whop. Contains profile information, identity details, and
+          #   social connections.
           #
-          #   @param id [String] The internal ID of the user.
+          #   @param id [String] The unique identifier for the user.
           #
           #   @param name [String, nil] The name of the user from their Whop account.
           #
@@ -244,7 +247,7 @@ module WhopSDK
 
         class Company < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
-          #   The ID (tag) of the company.
+          #   The unique identifier for the company.
           #
           #   @return [String]
           required :id, String
@@ -268,9 +271,10 @@ module WhopSDK
           required :typename, const: :Company
 
           # @!method initialize(id:, route:, title:, typename: :Company)
-          #   An object representing a (sanitized) company.
+          #   A company is a seller on Whop. Companies own products, manage members, and
+          #   receive payouts.
           #
-          #   @param id [String] The ID (tag) of the company.
+          #   @param id [String] The unique identifier for the company.
           #
           #   @param route [String] The slug/route of the company on the Whop site.
           #

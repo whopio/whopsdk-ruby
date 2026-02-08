@@ -6,7 +6,7 @@ module WhopSDK
       OrHash =
         T.type_alias { T.any(WhopSDK::Company, WhopSDK::Internal::AnyHash) }
 
-      # The ID (tag) of the company.
+      # The unique identifier for the company.
       sig { returns(String) }
       attr_accessor :id
 
@@ -14,7 +14,7 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::BusinessTypes::TaggedSymbol)) }
       attr_accessor :business_type
 
-      # When the company was created (signed up)
+      # The datetime the company was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -69,7 +69,7 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :title
 
-      # The time the company was last updated.
+      # The datetime the company was last updated.
       sig { returns(Time) }
       attr_accessor :updated_at
 
@@ -77,7 +77,8 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :verified
 
-      # An object representing a (sanitized) company.
+      # A company is a seller on Whop. Companies own products, manage members, and
+      # receive payouts.
       sig do
         params(
           id: String,
@@ -99,11 +100,11 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID (tag) of the company.
+        # The unique identifier for the company.
         id:,
         # The different business types a company can be.
         business_type:,
-        # When the company was created (signed up)
+        # The datetime the company was created.
         created_at:,
         # The creator pitch for the company.
         description:,
@@ -128,7 +129,7 @@ module WhopSDK
         social_links:,
         # The title of the company.
         title:,
-        # The time the company was last updated.
+        # The datetime the company was last updated.
         updated_at:,
         # If the company is Whop Verified
         verified:
@@ -191,7 +192,7 @@ module WhopSDK
             T.any(WhopSDK::Company::OwnerUser, WhopSDK::Internal::AnyHash)
           end
 
-        # The internal ID of the user.
+        # The unique identifier for the user.
         sig { returns(String) }
         attr_accessor :id
 
@@ -210,7 +211,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The internal ID of the user.
+          # The unique identifier for the user.
           id:,
           # The name of the user from their Whop account.
           name:,
@@ -234,7 +235,7 @@ module WhopSDK
             T.any(WhopSDK::Company::SocialLink, WhopSDK::Internal::AnyHash)
           end
 
-        # The ID
+        # The unique identifier for the social link.
         sig { returns(String) }
         attr_accessor :id
 
@@ -255,7 +256,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID
+          # The unique identifier for the social link.
           id:,
           # The URL
           url:,

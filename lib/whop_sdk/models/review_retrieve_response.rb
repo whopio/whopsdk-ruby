@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::Reviews#retrieve
     class ReviewRetrieveResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The internal ID of the review.
+      #   The unique identifier for the review.
       #
       #   @return [String]
       required :id, String
@@ -24,7 +24,7 @@ module WhopSDK
       required :company, -> { WhopSDK::Models::ReviewRetrieveResponse::Company }
 
       # @!attribute created_at
-      #   The timestamp of when the review was created.
+      #   The datetime the review was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -79,7 +79,7 @@ module WhopSDK
       required :title, String, nil?: true
 
       # @!attribute updated_at
-      #   The timestamp of when the review was last updated.
+      #   The datetime the review was last updated.
       #
       #   @return [Time]
       required :updated_at, Time
@@ -96,13 +96,13 @@ module WhopSDK
       #
       #   An object representing a user review of a company.
       #
-      #   @param id [String] The internal ID of the review.
+      #   @param id [String] The unique identifier for the review.
       #
       #   @param attachments [Array<WhopSDK::Models::ReviewRetrieveResponse::Attachment>] The attachments attached to the review.
       #
       #   @param company [WhopSDK::Models::ReviewRetrieveResponse::Company] The company the review is for.
       #
-      #   @param created_at [Time] The timestamp of when the review was created.
+      #   @param created_at [Time] The datetime the review was created.
       #
       #   @param description [String, nil] The description of the review.
       #
@@ -120,7 +120,7 @@ module WhopSDK
       #
       #   @param title [String, nil] The title of the review.
       #
-      #   @param updated_at [Time] The timestamp of when the review was last updated.
+      #   @param updated_at [Time] The datetime the review was last updated.
       #
       #   @param user [WhopSDK::Models::ReviewRetrieveResponse::User] The user account that performed the action.
 
@@ -168,7 +168,7 @@ module WhopSDK
       # @see WhopSDK::Models::ReviewRetrieveResponse#company
       class Company < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID (tag) of the company.
+        #   The unique identifier for the company.
         #
         #   @return [String]
         required :id, String
@@ -188,7 +188,7 @@ module WhopSDK
         # @!method initialize(id:, route:, title:)
         #   The company the review is for.
         #
-        #   @param id [String] The ID (tag) of the company.
+        #   @param id [String] The unique identifier for the company.
         #
         #   @param route [String] The slug/route of the company on the Whop site.
         #
@@ -198,7 +198,7 @@ module WhopSDK
       # @see WhopSDK::Models::ReviewRetrieveResponse#product
       class Product < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the public product.
+        #   The unique identifier for the product.
         #
         #   @return [String]
         required :id, String
@@ -212,7 +212,7 @@ module WhopSDK
         # @!method initialize(id:, title:)
         #   The product the review is for.
         #
-        #   @param id [String] The internal ID of the public product.
+        #   @param id [String] The unique identifier for the product.
         #
         #   @param title [String] The title of the product. Use for Whop 4.0.
       end
@@ -220,7 +220,7 @@ module WhopSDK
       # @see WhopSDK::Models::ReviewRetrieveResponse#user
       class User < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user.
+        #   The unique identifier for the user.
         #
         #   @return [String]
         required :id, String
@@ -240,7 +240,7 @@ module WhopSDK
         # @!method initialize(id:, name:, username:)
         #   The user account that performed the action.
         #
-        #   @param id [String] The internal ID of the user.
+        #   @param id [String] The unique identifier for the user.
         #
         #   @param name [String, nil] The name of the user from their Whop account.
         #

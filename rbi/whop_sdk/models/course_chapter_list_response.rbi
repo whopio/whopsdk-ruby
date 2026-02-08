@@ -11,7 +11,7 @@ module WhopSDK
           )
         end
 
-      # The ID of the chapter. Looks like chap_XXX
+      # The unique identifier for the chapter.
       sig { returns(String) }
       attr_accessor :id
 
@@ -30,7 +30,7 @@ module WhopSDK
         )
       end
       def self.new(
-        # The ID of the chapter. Looks like chap_XXX
+        # The unique identifier for the chapter.
         id:,
         # The order of the chapter within its course
         order:,

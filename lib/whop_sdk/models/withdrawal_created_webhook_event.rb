@@ -16,7 +16,8 @@ module WhopSDK
       required :api_version, const: :v1
 
       # @!attribute data
-      #   A withdrawal request.
+      #   A withdrawal represents a request to transfer funds from a company's ledger
+      #   account to an external payout method.
       #
       #   @return [WhopSDK::Models::Withdrawal]
       required :data, -> { WhopSDK::Withdrawal }
@@ -40,9 +41,12 @@ module WhopSDK
       optional :company_id, String, nil?: true
 
       # @!method initialize(id:, data:, timestamp:, company_id: nil, api_version: :v1, type: :"withdrawal.created")
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::WithdrawalCreatedWebhookEvent} for more details.
+      #
       #   @param id [String] A unique ID for every single webhook request
       #
-      #   @param data [WhopSDK::Models::Withdrawal] A withdrawal request.
+      #   @param data [WhopSDK::Models::Withdrawal] A withdrawal represents a request to transfer funds from a company's ledger acco
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #

@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::SetupIntents#retrieve
     class SetupIntent < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The setup intent ID
+      #   The unique identifier for the setup intent.
       #
       #   @return [String]
       required :id, String
@@ -23,7 +23,7 @@ module WhopSDK
       required :company, -> { WhopSDK::SetupIntent::Company }, nil?: true
 
       # @!attribute created_at
-      #   The datetime the payment was created
+      #   The datetime the setup intent was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -59,16 +59,15 @@ module WhopSDK
       required :status, enum: -> { WhopSDK::SetupIntentStatus }
 
       # @!method initialize(id:, checkout_configuration:, company:, created_at:, error_message:, member:, metadata:, payment_method:, status:)
-      #   An object representing a setup intent, which is a flow for allowing a customer
-      #   to add a payment method to their account without making a purchase.
+      #   A setup intent allows a user to save a payment method without making a purchase.
       #
-      #   @param id [String] The setup intent ID
+      #   @param id [String] The unique identifier for the setup intent.
       #
       #   @param checkout_configuration [WhopSDK::Models::SetupIntent::CheckoutConfiguration, nil] The checkout configuration associated with the setup intent
       #
       #   @param company [WhopSDK::Models::SetupIntent::Company, nil] The company of the setup intent
       #
-      #   @param created_at [Time] The datetime the payment was created
+      #   @param created_at [Time] The datetime the setup intent was created.
       #
       #   @param error_message [String, nil] The error message, if any.
       #
@@ -83,7 +82,7 @@ module WhopSDK
       # @see WhopSDK::Models::SetupIntent#checkout_configuration
       class CheckoutConfiguration < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the checkout configuration
+        #   The unique identifier for the checkout session.
         #
         #   @return [String]
         required :id, String
@@ -91,13 +90,13 @@ module WhopSDK
         # @!method initialize(id:)
         #   The checkout configuration associated with the setup intent
         #
-        #   @param id [String] The ID of the checkout configuration
+        #   @param id [String] The unique identifier for the checkout session.
       end
 
       # @see WhopSDK::Models::SetupIntent#company
       class Company < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID (tag) of the company.
+        #   The unique identifier for the company.
         #
         #   @return [String]
         required :id, String
@@ -105,13 +104,13 @@ module WhopSDK
         # @!method initialize(id:)
         #   The company of the setup intent
         #
-        #   @param id [String] The ID (tag) of the company.
+        #   @param id [String] The unique identifier for the company.
       end
 
       # @see WhopSDK::Models::SetupIntent#member
       class Member < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the member
+        #   The unique identifier for the company member.
         #
         #   @return [String]
         required :id, String
@@ -125,14 +124,14 @@ module WhopSDK
         # @!method initialize(id:, user:)
         #   The member connected to the setup intent
         #
-        #   @param id [String] The ID of the member
+        #   @param id [String] The unique identifier for the company member.
         #
         #   @param user [WhopSDK::Models::SetupIntent::Member::User, nil] The user for this member, if any.
 
         # @see WhopSDK::Models::SetupIntent::Member#user
         class User < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
-          #   The internal ID of the user account.
+          #   The unique identifier for the company member user.
           #
           #   @return [String]
           required :id, String
@@ -158,7 +157,7 @@ module WhopSDK
           # @!method initialize(id:, email:, name:, username:)
           #   The user for this member, if any.
           #
-          #   @param id [String] The internal ID of the user account.
+          #   @param id [String] The unique identifier for the company member user.
           #
           #   @param email [String, nil] The digital mailing address of the user.
           #
@@ -171,7 +170,7 @@ module WhopSDK
       # @see WhopSDK::Models::SetupIntent#payment_method
       class PaymentMethod < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the payment method
+        #   The unique identifier for the payment token.
         #
         #   @return [String]
         required :id, String
@@ -183,7 +182,7 @@ module WhopSDK
         required :card, -> { WhopSDK::SetupIntent::PaymentMethod::Card }, nil?: true
 
         # @!attribute created_at
-        #   The date and time the payment method was created
+        #   The datetime the payment token was created.
         #
         #   @return [Time]
         required :created_at, Time
@@ -200,11 +199,11 @@ module WhopSDK
         #
         #   The payment method created during the setup, if available.
         #
-        #   @param id [String] The ID of the payment method
+        #   @param id [String] The unique identifier for the payment token.
         #
         #   @param card [WhopSDK::Models::SetupIntent::PaymentMethod::Card, nil] The card data associated with the payment method, if its a debit or credit card.
         #
-        #   @param created_at [Time] The date and time the payment method was created
+        #   @param created_at [Time] The datetime the payment token was created.
         #
         #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The payment method type of the payment method
 

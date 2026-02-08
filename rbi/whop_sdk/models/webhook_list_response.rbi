@@ -11,7 +11,7 @@ module WhopSDK
           )
         end
 
-      # The ID of the webhook
+      # The unique identifier for the webhook.
       sig { returns(String) }
       attr_accessor :id
 
@@ -25,7 +25,7 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :child_resource_events
 
-      # The timestamp of when the webhook was created
+      # The datetime the webhook was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -41,7 +41,8 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :url
 
-      # A webhook object, which can be configured to be sent updates about a company
+      # A webhook endpoint that receives event notifications for a company via HTTP
+      # POST.
       sig do
         params(
           id: String,
@@ -54,7 +55,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the webhook
+        # The unique identifier for the webhook.
         id:,
         # The API version for this webhook
         api_version:,
@@ -62,7 +63,7 @@ module WhopSDK
         # is created for a Company, enabling this will only send events from the Company's
         # sub-merchants (child companies).
         child_resource_events:,
-        # The timestamp of when the webhook was created
+        # The datetime the webhook was created.
         created_at:,
         # Whether or not this webhook is turned on or not
         enabled:,

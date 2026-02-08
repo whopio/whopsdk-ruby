@@ -11,7 +11,7 @@ module WhopSDK
           )
         end
 
-      # The unique identifier of the credit transaction transfer
+      # The unique identifier for the credit transaction transfer.
       sig { returns(String) }
       attr_accessor :id
 
@@ -20,7 +20,7 @@ module WhopSDK
       sig { returns(Float) }
       attr_accessor :amount
 
-      # The timestamp when the credit transaction transfer was created
+      # The datetime the credit transaction transfer was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -64,12 +64,12 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier of the credit transaction transfer
+        # The unique identifier for the credit transaction transfer.
         id:,
         # The amount of the transfer. Provided as a number in the specified currency. Eg:
         # 10.43 for $10.43 USD.
         amount:,
-        # The timestamp when the credit transaction transfer was created
+        # The datetime the credit transaction transfer was created.
         created_at:,
         # The currency of the credit transaction transfer
         currency:,

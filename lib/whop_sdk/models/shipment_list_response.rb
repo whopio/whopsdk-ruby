@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::Shipments#list
     class ShipmentListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the shipment
+      #   The unique identifier for the shipment.
       #
       #   @return [String]
       required :id, String
@@ -17,7 +17,7 @@ module WhopSDK
       required :carrier, enum: -> { WhopSDK::ShipmentCarrier }
 
       # @!attribute created_at
-      #   The date and time the shipment was created
+      #   The datetime the shipment was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -59,7 +59,7 @@ module WhopSDK
       required :tracking_code, String
 
       # @!attribute updated_at
-      #   The date and time the shipment was last updated
+      #   The datetime the shipment was last updated.
       #
       #   @return [Time]
       required :updated_at, Time
@@ -67,11 +67,11 @@ module WhopSDK
       # @!method initialize(id:, carrier:, created_at:, delivery_estimate:, payment:, service:, status:, substatus:, tracking_code:, updated_at:)
       #   A shipment
       #
-      #   @param id [String] The ID of the shipment
+      #   @param id [String] The unique identifier for the shipment.
       #
       #   @param carrier [Symbol, WhopSDK::Models::ShipmentCarrier] The carrier of the shipment
       #
-      #   @param created_at [Time] The date and time the shipment was created
+      #   @param created_at [Time] The datetime the shipment was created.
       #
       #   @param delivery_estimate [Time, nil] The delivery estimate of the shipment
       #
@@ -85,12 +85,12 @@ module WhopSDK
       #
       #   @param tracking_code [String] The tracking code of the shipment
       #
-      #   @param updated_at [Time] The date and time the shipment was last updated
+      #   @param updated_at [Time] The datetime the shipment was last updated.
 
       # @see WhopSDK::Models::ShipmentListResponse#payment
       class Payment < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The payment ID
+        #   The unique identifier for the payment.
         #
         #   @return [String]
         required :id, String
@@ -98,7 +98,7 @@ module WhopSDK
         # @!method initialize(id:)
         #   The payment of the shipment
         #
-        #   @param id [String] The payment ID
+        #   @param id [String] The unique identifier for the payment.
       end
     end
   end

@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::CompanyTokenTransactions#create
     class CompanyTokenTransaction < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the transaction
+      #   The unique identifier for the company token transaction.
       #
       #   @return [String]
       required :id, String
@@ -23,7 +23,7 @@ module WhopSDK
       required :company, -> { WhopSDK::CompanyTokenTransaction::Company }
 
       # @!attribute created_at
-      #   When the transaction was created
+      #   The datetime the company token transaction was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -67,13 +67,13 @@ module WhopSDK
       # @!method initialize(id:, amount:, company:, created_at:, description:, idempotency_key:, linked_transaction_id:, member:, transaction_type:, user:)
       #   A token transaction within a company
       #
-      #   @param id [String] The ID of the transaction
+      #   @param id [String] The unique identifier for the company token transaction.
       #
       #   @param amount [Float] The transaction amount (always positive)
       #
       #   @param company [WhopSDK::Models::CompanyTokenTransaction::Company] The company
       #
-      #   @param created_at [Time] When the transaction was created
+      #   @param created_at [Time] The datetime the company token transaction was created.
       #
       #   @param description [String, nil] Optional description
       #
@@ -90,7 +90,7 @@ module WhopSDK
       # @see WhopSDK::Models::CompanyTokenTransaction#company
       class Company < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the company
+        #   The unique identifier for the company.
         #
         #   @return [String]
         required :id, String
@@ -110,7 +110,7 @@ module WhopSDK
         # @!method initialize(id:, route:, title:)
         #   The company
         #
-        #   @param id [String] The ID of the company
+        #   @param id [String] The unique identifier for the company.
         #
         #   @param route [String] The slug/route of the company on the Whop site.
         #
@@ -120,7 +120,7 @@ module WhopSDK
       # @see WhopSDK::Models::CompanyTokenTransaction#member
       class Member < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the member
+        #   The unique identifier for the company member.
         #
         #   @return [String]
         required :id, String
@@ -128,13 +128,13 @@ module WhopSDK
         # @!method initialize(id:)
         #   The member
         #
-        #   @param id [String] The ID of the member
+        #   @param id [String] The unique identifier for the company member.
       end
 
       # @see WhopSDK::Models::CompanyTokenTransaction#user
       class User < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user.
+        #   The unique identifier for the user.
         #
         #   @return [String]
         required :id, String
@@ -154,7 +154,7 @@ module WhopSDK
         # @!method initialize(id:, name:, username:)
         #   The user whose balance changed
         #
-        #   @param id [String] The internal ID of the user.
+        #   @param id [String] The unique identifier for the user.
         #
         #   @param name [String, nil] The name of the user from their Whop account.
         #

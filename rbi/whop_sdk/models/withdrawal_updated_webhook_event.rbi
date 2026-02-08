@@ -19,7 +19,8 @@ module WhopSDK
       sig { returns(Symbol) }
       attr_accessor :api_version
 
-      # A withdrawal request.
+      # A withdrawal represents a request to transfer funds from a company's ledger
+      # account to an external payout method.
       sig { returns(WhopSDK::Withdrawal) }
       attr_reader :data
 
@@ -51,7 +52,8 @@ module WhopSDK
       def self.new(
         # A unique ID for every single webhook request
         id:,
-        # A withdrawal request.
+        # A withdrawal represents a request to transfer funds from a company's ledger
+        # account to an external payout method.
         data:,
         # The timestamp in ISO 8601 format that the webhook was sent at on the server
         timestamp:,

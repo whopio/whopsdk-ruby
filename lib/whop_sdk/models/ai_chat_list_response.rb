@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::AIChats#list
     class AIChatListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier for the AI chat
+      #   The unique identifier for the ai chat.
       #
       #   @return [String]
       required :id, String
@@ -17,7 +17,7 @@ module WhopSDK
       required :blended_token_usage, String
 
       # @!attribute created_at
-      #   When the AI chat was created
+      #   The datetime the ai chat was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -41,7 +41,7 @@ module WhopSDK
       required :title, String, nil?: true
 
       # @!attribute updated_at
-      #   When the AI chat was last updated
+      #   The datetime the ai chat was last updated.
       #
       #   @return [Time]
       required :updated_at, Time
@@ -55,11 +55,11 @@ module WhopSDK
       # @!method initialize(id:, blended_token_usage:, created_at:, last_message_at:, message_count:, title:, updated_at:, user:)
       #   An AI chat conversation belonging to a user
       #
-      #   @param id [String] The unique identifier for the AI chat
+      #   @param id [String] The unique identifier for the ai chat.
       #
       #   @param blended_token_usage [String] The total number of tokens used in the chat
       #
-      #   @param created_at [Time] When the AI chat was created
+      #   @param created_at [Time] The datetime the ai chat was created.
       #
       #   @param last_message_at [Time, nil] When the last message was sent
       #
@@ -67,14 +67,14 @@ module WhopSDK
       #
       #   @param title [String, nil] The title of the AI chat
       #
-      #   @param updated_at [Time] When the AI chat was last updated
+      #   @param updated_at [Time] The datetime the ai chat was last updated.
       #
       #   @param user [WhopSDK::Models::AIChatListResponse::User] The user who owns the AI chat
 
       # @see WhopSDK::Models::AIChatListResponse#user
       class User < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user.
+        #   The unique identifier for the user.
         #
         #   @return [String]
         required :id, String
@@ -82,7 +82,7 @@ module WhopSDK
         # @!method initialize(id:)
         #   The user who owns the AI chat
         #
-        #   @param id [String] The internal ID of the user.
+        #   @param id [String] The unique identifier for the user.
       end
     end
   end

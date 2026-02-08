@@ -6,7 +6,7 @@ module WhopSDK
       OrHash =
         T.type_alias { T.any(WhopSDK::AIChat, WhopSDK::Internal::AnyHash) }
 
-      # The unique identifier for the AI chat
+      # The unique identifier for the ai chat.
       sig { returns(String) }
       attr_accessor :id
 
@@ -14,7 +14,7 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :blended_token_usage
 
-      # When the AI chat was created
+      # The datetime the ai chat was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -30,7 +30,7 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
-      # When the AI chat was last updated
+      # The datetime the ai chat was last updated.
       sig { returns(Time) }
       attr_accessor :updated_at
 
@@ -55,11 +55,11 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier for the AI chat
+        # The unique identifier for the ai chat.
         id:,
         # The total number of tokens used in the chat
         blended_token_usage:,
-        # When the AI chat was created
+        # The datetime the ai chat was created.
         created_at:,
         # When the last message was sent
         last_message_at:,
@@ -67,7 +67,7 @@ module WhopSDK
         message_count:,
         # The title of the AI chat
         title:,
-        # When the AI chat was last updated
+        # The datetime the ai chat was last updated.
         updated_at:,
         # The user who owns the AI chat
         user:
@@ -97,14 +97,14 @@ module WhopSDK
             T.any(WhopSDK::AIChat::User, WhopSDK::Internal::AnyHash)
           end
 
-        # The internal ID of the user.
+        # The unique identifier for the user.
         sig { returns(String) }
         attr_accessor :id
 
         # The user who owns the AI chat
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The internal ID of the user.
+          # The unique identifier for the user.
           id:
         )
         end

@@ -19,7 +19,8 @@ module WhopSDK
       sig { returns(Symbol) }
       attr_accessor :api_version
 
-      # An object representing a receipt for a membership.
+      # A payment represents a completed or attempted charge for a membership. Payments
+      # track the amount, status, currency, and payment method used.
       sig { returns(WhopSDK::Payment) }
       attr_reader :data
 
@@ -51,7 +52,8 @@ module WhopSDK
       def self.new(
         # A unique ID for every single webhook request
         id:,
-        # An object representing a receipt for a membership.
+        # A payment represents a completed or attempted charge for a membership. Payments
+        # track the amount, status, currency, and payment method used.
         data:,
         # The timestamp in ISO 8601 format that the webhook was sent at on the server
         timestamp:,

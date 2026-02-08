@@ -16,7 +16,7 @@ module WhopSDK
       required :api_version, const: :v1
 
       # @!attribute data
-      #   An object representing an entry in a waitlist.
+      #   An entry represents a user's signup for a waitlisted plan.
       #
       #   @return [WhopSDK::Models::Entry]
       required :data, -> { WhopSDK::Entry }
@@ -42,7 +42,7 @@ module WhopSDK
       # @!method initialize(id:, data:, timestamp:, company_id: nil, api_version: :v1, type: :"entry.deleted")
       #   @param id [String] A unique ID for every single webhook request
       #
-      #   @param data [WhopSDK::Models::Entry] An object representing an entry in a waitlist.
+      #   @param data [WhopSDK::Models::Entry] An entry represents a user's signup for a waitlisted plan.
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #

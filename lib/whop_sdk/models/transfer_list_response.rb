@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::Transfers#list
     class TransferListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier of the credit transaction transfer
+      #   The unique identifier for the credit transaction transfer.
       #
       #   @return [String]
       required :id, String
@@ -18,7 +18,7 @@ module WhopSDK
       required :amount, Float
 
       # @!attribute created_at
-      #   The timestamp when the credit transaction transfer was created
+      #   The datetime the credit transaction transfer was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -66,11 +66,11 @@ module WhopSDK
       #
       #   Credit Transaction Transfer
       #
-      #   @param id [String] The unique identifier of the credit transaction transfer
+      #   @param id [String] The unique identifier for the credit transaction transfer.
       #
       #   @param amount [Float] The amount of the transfer. Provided as a number in the specified currency. Eg:
       #
-      #   @param created_at [Time] The timestamp when the credit transaction transfer was created
+      #   @param created_at [Time] The datetime the credit transaction transfer was created.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the credit transaction transfer
       #

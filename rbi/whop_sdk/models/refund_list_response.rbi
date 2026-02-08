@@ -8,7 +8,7 @@ module WhopSDK
           T.any(WhopSDK::Models::RefundListResponse, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the refund.
+      # The unique identifier for the refund.
       sig { returns(String) }
       attr_accessor :id
 
@@ -17,7 +17,7 @@ module WhopSDK
       sig { returns(Float) }
       attr_accessor :amount
 
-      # The time the refund was created.
+      # The datetime the refund was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -61,7 +61,8 @@ module WhopSDK
       sig { returns(WhopSDK::RefundStatus::TaggedSymbol) }
       attr_accessor :status
 
-      # An object representing a refund made on a payment.
+      # A refund represents a full or partial reversal of a payment, including the
+      # amount, status, and payment provider.
       sig do
         params(
           id: String,
@@ -79,12 +80,12 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the refund.
+        # The unique identifier for the refund.
         id:,
         # The amount of the refund. Provided as a number in the specified currency. Eg:
         # 10.43 for $10.43 USD.
         amount:,
-        # The time the refund was created.
+        # The datetime the refund was created.
         created_at:,
         # The currency of the refund.
         currency:,
@@ -136,14 +137,14 @@ module WhopSDK
             )
           end
 
-        # The payment ID
+        # The unique identifier for the payment.
         sig { returns(String) }
         attr_accessor :id
 
         # The payment associated with the refund.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The payment ID
+          # The unique identifier for the payment.
           id:
         )
         end

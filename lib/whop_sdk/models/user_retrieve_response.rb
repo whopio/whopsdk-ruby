@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::Users#retrieve
     class UserRetrieveResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The internal ID of the user.
+      #   The unique identifier for the user.
       #
       #   @return [String]
       required :id, String
@@ -17,7 +17,7 @@ module WhopSDK
       required :bio, String, nil?: true
 
       # @!attribute created_at
-      #   When the user was created.
+      #   The datetime the user was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -41,13 +41,14 @@ module WhopSDK
       required :username, String
 
       # @!method initialize(id:, bio:, created_at:, name:, profile_picture:, username:)
-      #   An object representing a (sanitized) user of the site.
+      #   A user account on Whop. Contains profile information, identity details, and
+      #   social connections.
       #
-      #   @param id [String] The internal ID of the user.
+      #   @param id [String] The unique identifier for the user.
       #
       #   @param bio [String, nil] The user's bio
       #
-      #   @param created_at [Time] When the user was created.
+      #   @param created_at [Time] The datetime the user was created.
       #
       #   @param name [String, nil] The name of the user from their Whop account.
       #

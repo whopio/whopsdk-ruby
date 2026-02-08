@@ -8,7 +8,7 @@ module WhopSDK
           T.any(WhopSDK::ProductListItem, WhopSDK::Internal::AnyHash)
         end
 
-      # The internal ID of the public product.
+      # The unique identifier for the product.
       sig { returns(String) }
       attr_accessor :id
 
@@ -16,7 +16,7 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::BusinessTypes::TaggedSymbol)) }
       attr_accessor :business_type
 
-      # When the product was created.
+      # The datetime the product was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -50,7 +50,7 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :title
 
-      # When the product was updated.
+      # The datetime the product was last updated.
       sig { returns(Time) }
       attr_accessor :updated_at
 
@@ -62,7 +62,8 @@ module WhopSDK
       sig { returns(WhopSDK::Visibility::TaggedSymbol) }
       attr_accessor :visibility
 
-      # Represents a product on whop. Use products to sell anything on the platform.
+      # A product is a digital good or service sold on Whop. Products contain plans for
+      # pricing and experiences for content delivery.
       sig do
         params(
           id: String,
@@ -81,11 +82,11 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The internal ID of the public product.
+        # The unique identifier for the product.
         id:,
         # The different business types a company can be.
         business_type:,
-        # When the product was created.
+        # The datetime the product was created.
         created_at:,
         # A unique identifier used to create or update products. When provided on product
         # creation endpoints, we’ll look up an existing product by this identifier — if it
@@ -103,7 +104,7 @@ module WhopSDK
         route:,
         # The title of the product. Use for Whop 4.0.
         title:,
-        # When the product was updated.
+        # The datetime the product was last updated.
         updated_at:,
         # Whether this product is Whop verified.
         verified:,

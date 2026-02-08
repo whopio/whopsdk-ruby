@@ -6,7 +6,7 @@ module WhopSDK
       OrHash =
         T.type_alias { T.any(WhopSDK::Lesson, WhopSDK::Internal::AnyHash) }
 
-      # The ID of the lesson
+      # The unique identifier for the lesson.
       sig { returns(String) }
       attr_accessor :id
 
@@ -22,7 +22,7 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :content
 
-      # The timestamp of when the lesson was created
+      # The datetime the lesson was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -102,7 +102,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the lesson
+        # The unique identifier for the lesson.
         id:,
         # Assessment questions for quiz/knowledge check lessons
         assessment_questions:,
@@ -110,7 +110,7 @@ module WhopSDK
         attachments:,
         # The content of the lesson
         content:,
-        # The timestamp of when the lesson was created
+        # The datetime the lesson was created.
         created_at:,
         # Number of days from course start until the lesson is unlocked
         days_from_course_start_until_unlock:,
@@ -169,7 +169,7 @@ module WhopSDK
             )
           end
 
-        # The ID of the assessment question
+        # The unique identifier for the assessment question.
         sig { returns(String) }
         attr_accessor :id
 
@@ -178,7 +178,7 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :correct_answer
 
-        # When the question was created
+        # The datetime the assessment question was created.
         sig { returns(Time) }
         attr_accessor :created_at
 
@@ -225,12 +225,12 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the assessment question
+          # The unique identifier for the assessment question.
           id:,
           # The correct answer for the question. Used for short answer questions. Only
           # visible to admins (users with courses:update permission)
           correct_answer:,
-          # When the question was created
+          # The datetime the assessment question was created.
           created_at:,
           # Optional image attachment for the question
           image:,
@@ -333,7 +333,7 @@ module WhopSDK
               )
             end
 
-          # The ID of the assessment question option
+          # The unique identifier for the assessment question option.
           sig { returns(String) }
           attr_accessor :id
 
@@ -360,7 +360,7 @@ module WhopSDK
             ).returns(T.attached_class)
           end
           def self.new(
-            # The ID of the assessment question option
+            # The unique identifier for the assessment question option.
             id:,
             # Whether this option is a correct answer. Only visible to admins (users with
             # courses:update permission)
@@ -536,7 +536,7 @@ module WhopSDK
             T.any(WhopSDK::Lesson::VideoAsset, WhopSDK::Internal::AnyHash)
           end
 
-        # The ID of the Mux asset
+        # The unique identifier for the mux asset.
         sig { returns(String) }
         attr_accessor :id
 
@@ -548,7 +548,7 @@ module WhopSDK
         sig { returns(T::Boolean) }
         attr_accessor :audio_only
 
-        # The time at which the Mux asset was created
+        # The datetime the mux asset was created.
         sig { returns(Time) }
         attr_accessor :created_at
 
@@ -584,7 +584,7 @@ module WhopSDK
         sig { returns(WhopSDK::Lesson::VideoAsset::Status::TaggedSymbol) }
         attr_accessor :status
 
-        # The time at which the Mux asset was last updated
+        # The datetime the mux asset was last updated.
         sig { returns(Time) }
         attr_accessor :updated_at
 
@@ -607,13 +607,13 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the Mux asset
+          # The unique identifier for the mux asset.
           id:,
           # The Mux-provided ID of the asset
           asset_id:,
           # Whether this asset contains only audio
           audio_only:,
-          # The time at which the Mux asset was created
+          # The datetime the mux asset was created.
           created_at:,
           # The duration of the video in seconds
           duration_seconds:,
@@ -631,7 +631,7 @@ module WhopSDK
           signed_video_playback_token:,
           # The status of the Mux asset
           status:,
-          # The time at which the Mux asset was last updated
+          # The datetime the mux asset was last updated.
           updated_at:
         )
         end

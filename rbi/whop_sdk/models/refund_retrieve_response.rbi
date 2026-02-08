@@ -11,7 +11,7 @@ module WhopSDK
           )
         end
 
-      # The ID of the refund.
+      # The unique identifier for the refund.
       sig { returns(String) }
       attr_accessor :id
 
@@ -20,7 +20,7 @@ module WhopSDK
       sig { returns(Float) }
       attr_accessor :amount
 
-      # The time the refund was created.
+      # The datetime the refund was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -66,7 +66,8 @@ module WhopSDK
       sig { returns(WhopSDK::RefundStatus::TaggedSymbol) }
       attr_accessor :status
 
-      # An object representing a refund made on a payment.
+      # A refund represents a full or partial reversal of a payment, including the
+      # amount, status, and payment provider.
       sig do
         params(
           id: String,
@@ -84,12 +85,12 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the refund.
+        # The unique identifier for the refund.
         id:,
         # The amount of the refund. Provided as a number in the specified currency. Eg:
         # 10.43 for $10.43 USD.
         amount:,
-        # The time the refund was created.
+        # The datetime the refund was created.
         created_at:,
         # The currency of the refund.
         currency:,
@@ -142,7 +143,7 @@ module WhopSDK
             )
           end
 
-        # The payment ID
+        # The unique identifier for the payment.
         sig { returns(String) }
         attr_accessor :id
 
@@ -158,7 +159,7 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :card_last4
 
-        # The datetime the payment was created
+        # The datetime the payment was created.
         sig { returns(Time) }
         attr_accessor :created_at
 
@@ -277,7 +278,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The payment ID
+          # The unique identifier for the payment.
           id:,
           # The reason why a specific payment was billed
           billing_reason:,
@@ -285,7 +286,7 @@ module WhopSDK
           card_brand:,
           # The last 4 digits of the card used to make the payment.
           card_last4:,
-          # The datetime the payment was created
+          # The datetime the payment was created.
           created_at:,
           # The available currencies on the platform
           currency:,
@@ -353,7 +354,7 @@ module WhopSDK
               )
             end
 
-          # The ID of the member
+          # The unique identifier for the company member.
           sig { returns(String) }
           attr_accessor :id
 
@@ -368,7 +369,7 @@ module WhopSDK
             )
           end
           def self.new(
-            # The ID of the member
+            # The unique identifier for the company member.
             id:,
             # The phone number for the member, if available.
             phone:
@@ -389,7 +390,7 @@ module WhopSDK
               )
             end
 
-          # The internal ID of the membership.
+          # The unique identifier for the membership.
           sig { returns(String) }
           attr_accessor :id
 
@@ -405,7 +406,7 @@ module WhopSDK
             ).returns(T.attached_class)
           end
           def self.new(
-            # The internal ID of the membership.
+            # The unique identifier for the membership.
             id:,
             # The state of the membership.
             status:
@@ -430,7 +431,7 @@ module WhopSDK
               )
             end
 
-          # The internal ID of the user.
+          # The unique identifier for the user.
           sig { returns(String) }
           attr_accessor :id
 
@@ -456,7 +457,7 @@ module WhopSDK
             ).returns(T.attached_class)
           end
           def self.new(
-            # The internal ID of the user.
+            # The unique identifier for the user.
             id:,
             # The email of the user
             email:,

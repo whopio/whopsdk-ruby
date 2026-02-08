@@ -41,7 +41,7 @@ module WhopSDK
       # @see WhopSDK::Models::Reaction#user
       class User < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user.
+        #   The unique identifier for the user.
         #
         #   @return [String]
         required :id, String
@@ -61,7 +61,7 @@ module WhopSDK
         # @!method initialize(id:, name:, username:)
         #   The user who reacted to the post
         #
-        #   @param id [String] The internal ID of the user.
+        #   @param id [String] The unique identifier for the user.
         #
         #   @param name [String, nil] The name of the user from their Whop account.
         #

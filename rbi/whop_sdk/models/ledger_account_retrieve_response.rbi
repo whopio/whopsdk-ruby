@@ -11,7 +11,7 @@ module WhopSDK
           )
         end
 
-      # The ID of the LedgerAccount.
+      # The unique identifier for the ledger account.
       sig { returns(String) }
       attr_accessor :id
 
@@ -104,7 +104,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the LedgerAccount.
+        # The unique identifier for the ledger account.
         id:,
         # The balances associated with the account.
         balances:,
@@ -266,7 +266,7 @@ module WhopSDK
               )
             end
 
-          # The internal ID of the user.
+          # The unique identifier for the user.
           sig { returns(String) }
           attr_accessor :id
 
@@ -282,7 +282,8 @@ module WhopSDK
           sig { returns(String) }
           attr_accessor :username
 
-          # An object representing a (sanitized) user of the site.
+          # A user account on Whop. Contains profile information, identity details, and
+          # social connections.
           sig do
             params(
               id: String,
@@ -292,7 +293,7 @@ module WhopSDK
             ).returns(T.attached_class)
           end
           def self.new(
-            # The internal ID of the user.
+            # The unique identifier for the user.
             id:,
             # The name of the user from their Whop account.
             name:,
@@ -326,7 +327,7 @@ module WhopSDK
               )
             end
 
-          # The ID (tag) of the company.
+          # The unique identifier for the company.
           sig { returns(String) }
           attr_accessor :id
 
@@ -342,7 +343,8 @@ module WhopSDK
           sig { returns(Symbol) }
           attr_accessor :typename
 
-          # An object representing a (sanitized) company.
+          # A company is a seller on Whop. Companies own products, manage members, and
+          # receive payouts.
           sig do
             params(
               id: String,
@@ -352,7 +354,7 @@ module WhopSDK
             ).returns(T.attached_class)
           end
           def self.new(
-            # The ID (tag) of the company.
+            # The unique identifier for the company.
             id:,
             # The slug/route of the company on the Whop site.
             route:,
@@ -437,7 +439,7 @@ module WhopSDK
             )
           end
 
-        # Unique identifier for the object
+        # The unique identifier for the payout account.
         sig { returns(String) }
         attr_accessor :id
 
@@ -535,7 +537,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # Unique identifier for the object
+          # The unique identifier for the payout account.
           id:,
           # The physical address associated with this payout account
           address:,
@@ -724,7 +726,7 @@ module WhopSDK
               )
             end
 
-          # A unique identifier for the verification.
+          # The unique identifier for the verification.
           sig { returns(String) }
           attr_accessor :id
 
@@ -753,7 +755,7 @@ module WhopSDK
             ).returns(T.attached_class)
           end
           def self.new(
-            # A unique identifier for the verification.
+            # The unique identifier for the verification.
             id:,
             # An error code for a verification attempt.
             last_error_code:,

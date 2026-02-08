@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::Webhooks#create
     class WebhookCreateResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the webhook
+      #   The unique identifier for the webhook.
       #
       #   @return [String]
       required :id, String
@@ -25,7 +25,7 @@ module WhopSDK
       required :child_resource_events, WhopSDK::Internal::Type::Boolean
 
       # @!attribute created_at
-      #   The timestamp of when the webhook was created
+      #   The datetime the webhook was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -70,15 +70,16 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::WebhookCreateResponse} for more details.
       #
-      #   A webhook object, which can be configured to be sent updates about a company
+      #   A webhook endpoint that receives event notifications for a company via HTTP
+      #   POST.
       #
-      #   @param id [String] The ID of the webhook
+      #   @param id [String] The unique identifier for the webhook.
       #
       #   @param api_version [Symbol, WhopSDK::Models::APIVersion] The API version for this webhook
       #
       #   @param child_resource_events [Boolean] Whether or not to send events for child resources. For example, if the webhook i
       #
-      #   @param created_at [Time] The timestamp of when the webhook was created
+      #   @param created_at [Time] The datetime the webhook was created.
       #
       #   @param enabled [Boolean] Whether or not this webhook is turned on or not
       #

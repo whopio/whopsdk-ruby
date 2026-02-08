@@ -84,7 +84,7 @@ module WhopSDK
             )
           end
 
-        # The unique ID representing this experience
+        # The unique identifier for the experience.
         sig { returns(String) }
         attr_accessor :id
 
@@ -95,7 +95,7 @@ module WhopSDK
         # The experience for this forum
         sig { params(id: String, name: String).returns(T.attached_class) }
         def self.new(
-          # The unique ID representing this experience
+          # The unique identifier for the experience.
           id:,
           # The written name of the description.
           name:

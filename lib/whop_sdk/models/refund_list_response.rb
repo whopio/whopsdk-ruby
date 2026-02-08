@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::Refunds#list
     class RefundListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the refund.
+      #   The unique identifier for the refund.
       #
       #   @return [String]
       required :id, String
@@ -18,7 +18,7 @@ module WhopSDK
       required :amount, Float
 
       # @!attribute created_at
-      #   The time the refund was created.
+      #   The datetime the refund was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -75,13 +75,14 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::RefundListResponse} for more details.
       #
-      #   An object representing a refund made on a payment.
+      #   A refund represents a full or partial reversal of a payment, including the
+      #   amount, status, and payment provider.
       #
-      #   @param id [String] The ID of the refund.
+      #   @param id [String] The unique identifier for the refund.
       #
       #   @param amount [Float] The amount of the refund. Provided as a number in the specified currency. Eg: 10
       #
-      #   @param created_at [Time] The time the refund was created.
+      #   @param created_at [Time] The datetime the refund was created.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the refund.
       #
@@ -102,7 +103,7 @@ module WhopSDK
       # @see WhopSDK::Models::RefundListResponse#payment
       class Payment < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The payment ID
+        #   The unique identifier for the payment.
         #
         #   @return [String]
         required :id, String
@@ -110,7 +111,7 @@ module WhopSDK
         # @!method initialize(id:)
         #   The payment associated with the refund.
         #
-        #   @param id [String] The payment ID
+        #   @param id [String] The unique identifier for the payment.
       end
     end
   end

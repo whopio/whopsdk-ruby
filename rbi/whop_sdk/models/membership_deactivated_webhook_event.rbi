@@ -19,8 +19,8 @@ module WhopSDK
       sig { returns(Symbol) }
       attr_accessor :api_version
 
-      # A membership represents a purchase between a User and a Company for a specific
-      # Product.
+      # A membership represents an active relationship between a user and a product. It
+      # tracks the user's access, billing status, and renewal schedule.
       sig { returns(WhopSDK::Membership) }
       attr_reader :data
 
@@ -52,8 +52,8 @@ module WhopSDK
       def self.new(
         # A unique ID for every single webhook request
         id:,
-        # A membership represents a purchase between a User and a Company for a specific
-        # Product.
+        # A membership represents an active relationship between a user and a product. It
+        # tracks the user's access, billing status, and renewal schedule.
         data:,
         # The timestamp in ISO 8601 format that the webhook was sent at on the server
         timestamp:,

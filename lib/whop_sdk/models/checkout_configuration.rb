@@ -4,7 +4,7 @@ module WhopSDK
   module Models
     class CheckoutConfiguration < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the checkout configuration
+      #   The unique identifier for the checkout session.
       #
       #   @return [String]
       required :id, String
@@ -72,12 +72,11 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CheckoutConfiguration} for more details.
       #
-      #           A checkout configuration object.
-      #           Can be used to create a reusable custom configuration for a checkout, including attaching plans, affiliates and custom metadata to the checkout.
-      #           This configuration can be re-used by multiple users.
-      #           All successful payments and memberships resulting from a checkout will contain the passed metadata.
+      #   A checkout session is a reusable configuration for a checkout, including the
+      #   plan, affiliate, and custom metadata. Payments and memberships created from a
+      #   checkout session inherit its metadata.
       #
-      #   @param id [String] The ID of the checkout configuration
+      #   @param id [String] The unique identifier for the checkout session.
       #
       #   @param affiliate_code [String, nil] The affiliate code to use for the checkout configuration
       #
@@ -142,7 +141,7 @@ module WhopSDK
       # @see WhopSDK::Models::CheckoutConfiguration#plan
       class Plan < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the plan.
+        #   The unique identifier for the plan.
         #
         #   @return [String]
         required :id, String
@@ -211,7 +210,7 @@ module WhopSDK
         #
         #   The plan to use for the checkout configuration
         #
-        #   @param id [String] The internal ID of the plan.
+        #   @param id [String] The unique identifier for the plan.
         #
         #   @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans).
         #

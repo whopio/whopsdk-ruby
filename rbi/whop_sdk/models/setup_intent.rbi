@@ -6,7 +6,7 @@ module WhopSDK
       OrHash =
         T.type_alias { T.any(WhopSDK::SetupIntent, WhopSDK::Internal::AnyHash) }
 
-      # The setup intent ID
+      # The unique identifier for the setup intent.
       sig { returns(String) }
       attr_accessor :id
 
@@ -31,7 +31,7 @@ module WhopSDK
       end
       attr_writer :company
 
-      # The datetime the payment was created
+      # The datetime the setup intent was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -67,8 +67,7 @@ module WhopSDK
       sig { returns(WhopSDK::SetupIntentStatus::TaggedSymbol) }
       attr_accessor :status
 
-      # An object representing a setup intent, which is a flow for allowing a customer
-      # to add a payment method to their account without making a purchase.
+      # A setup intent allows a user to save a payment method without making a purchase.
       sig do
         params(
           id: String,
@@ -85,13 +84,13 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The setup intent ID
+        # The unique identifier for the setup intent.
         id:,
         # The checkout configuration associated with the setup intent
         checkout_configuration:,
         # The company of the setup intent
         company:,
-        # The datetime the payment was created
+        # The datetime the setup intent was created.
         created_at:,
         # The error message, if any.
         error_message:,
@@ -134,14 +133,14 @@ module WhopSDK
             )
           end
 
-        # The ID of the checkout configuration
+        # The unique identifier for the checkout session.
         sig { returns(String) }
         attr_accessor :id
 
         # The checkout configuration associated with the setup intent
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The ID of the checkout configuration
+          # The unique identifier for the checkout session.
           id:
         )
         end
@@ -157,14 +156,14 @@ module WhopSDK
             T.any(WhopSDK::SetupIntent::Company, WhopSDK::Internal::AnyHash)
           end
 
-        # The ID (tag) of the company.
+        # The unique identifier for the company.
         sig { returns(String) }
         attr_accessor :id
 
         # The company of the setup intent
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The ID (tag) of the company.
+          # The unique identifier for the company.
           id:
         )
         end
@@ -180,7 +179,7 @@ module WhopSDK
             T.any(WhopSDK::SetupIntent::Member, WhopSDK::Internal::AnyHash)
           end
 
-        # The ID of the member
+        # The unique identifier for the company member.
         sig { returns(String) }
         attr_accessor :id
 
@@ -203,7 +202,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the member
+          # The unique identifier for the company member.
           id:,
           # The user for this member, if any.
           user:
@@ -227,7 +226,7 @@ module WhopSDK
               )
             end
 
-          # The internal ID of the user account.
+          # The unique identifier for the company member user.
           sig { returns(String) }
           attr_accessor :id
 
@@ -253,7 +252,7 @@ module WhopSDK
             ).returns(T.attached_class)
           end
           def self.new(
-            # The internal ID of the user account.
+            # The unique identifier for the company member user.
             id:,
             # The digital mailing address of the user.
             email:,
@@ -288,7 +287,7 @@ module WhopSDK
             )
           end
 
-        # The ID of the payment method
+        # The unique identifier for the payment token.
         sig { returns(String) }
         attr_accessor :id
 
@@ -303,7 +302,7 @@ module WhopSDK
         end
         attr_writer :card
 
-        # The date and time the payment method was created
+        # The datetime the payment token was created.
         sig { returns(Time) }
         attr_accessor :created_at
 
@@ -321,11 +320,11 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the payment method
+          # The unique identifier for the payment token.
           id:,
           # The card data associated with the payment method, if its a debit or credit card.
           card:,
-          # The date and time the payment method was created
+          # The datetime the payment token was created.
           created_at:,
           # The payment method type of the payment method
           payment_method_type:

@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::Reviews#list
     class ReviewListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The internal ID of the review.
+      #   The unique identifier for the review.
       #
       #   @return [String]
       required :id, String
@@ -18,7 +18,7 @@ module WhopSDK
                -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::ReviewListResponse::Attachment] }
 
       # @!attribute created_at
-      #   The timestamp of when the review was created.
+      #   The datetime the review was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -67,7 +67,7 @@ module WhopSDK
       required :title, String, nil?: true
 
       # @!attribute updated_at
-      #   The timestamp of when the review was last updated.
+      #   The datetime the review was last updated.
       #
       #   @return [Time]
       required :updated_at, Time
@@ -84,11 +84,11 @@ module WhopSDK
       #
       #   An object representing a user review of a company.
       #
-      #   @param id [String] The internal ID of the review.
+      #   @param id [String] The unique identifier for the review.
       #
       #   @param attachments [Array<WhopSDK::Models::ReviewListResponse::Attachment>] The attachments attached to the review.
       #
-      #   @param created_at [Time] The timestamp of when the review was created.
+      #   @param created_at [Time] The datetime the review was created.
       #
       #   @param description [String, nil] The description of the review.
       #
@@ -104,7 +104,7 @@ module WhopSDK
       #
       #   @param title [String, nil] The title of the review.
       #
-      #   @param updated_at [Time] The timestamp of when the review was last updated.
+      #   @param updated_at [Time] The datetime the review was last updated.
       #
       #   @param user [WhopSDK::Models::ReviewListResponse::User] The user account that performed the action.
 
@@ -152,7 +152,7 @@ module WhopSDK
       # @see WhopSDK::Models::ReviewListResponse#user
       class User < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user.
+        #   The unique identifier for the user.
         #
         #   @return [String]
         required :id, String
@@ -172,7 +172,7 @@ module WhopSDK
         # @!method initialize(id:, name:, username:)
         #   The user account that performed the action.
         #
-        #   @param id [String] The internal ID of the user.
+        #   @param id [String] The unique identifier for the user.
         #
         #   @param name [String, nil] The name of the user from their Whop account.
         #

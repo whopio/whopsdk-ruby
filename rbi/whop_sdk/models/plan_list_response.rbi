@@ -8,7 +8,7 @@ module WhopSDK
           T.any(WhopSDK::Models::PlanListResponse, WhopSDK::Internal::AnyHash)
         end
 
-      # The internal ID of the plan.
+      # The unique identifier for the plan.
       sig { returns(String) }
       attr_accessor :id
 
@@ -27,7 +27,7 @@ module WhopSDK
       end
       attr_writer :company
 
-      # When the plan was created.
+      # The datetime the plan was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -138,7 +138,7 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :unlimited_stock
 
-      # When the plan was last updated.
+      # The datetime the plan was last updated.
       sig { returns(Time) }
       attr_accessor :updated_at
 
@@ -146,9 +146,9 @@ module WhopSDK
       sig { returns(WhopSDK::Visibility::TaggedSymbol) }
       attr_accessor :visibility
 
-      # A plan for an product. Plans define the core parameters that define a checkout
-      # and payment on whop. Use plans to create different ways to price your products
-      # (Eg renewal / one_time)
+      # A plan defines pricing and billing terms for a product. Each product can have
+      # multiple plans representing different pricing options, such as one-time
+      # payments, recurring subscriptions, or free trials.
       sig do
         params(
           id: String,
@@ -184,13 +184,13 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The internal ID of the plan.
+        # The unique identifier for the plan.
         id:,
         # The interval in days at which the plan charges (renewal plans).
         billing_period:,
         # The company for the plan.
         company:,
-        # When the plan was created.
+        # The datetime the plan was created.
         created_at:,
         # The respective currency identifier for the plan.
         currency:,
@@ -233,7 +233,7 @@ module WhopSDK
         # When true, the plan has unlimited stock (stock field is ignored). When false,
         # purchases are limited by the stock field.
         unlimited_stock:,
-        # When the plan was last updated.
+        # The datetime the plan was last updated.
         updated_at:,
         # Shows or hides the plan from public/business view.
         visibility:
@@ -285,7 +285,7 @@ module WhopSDK
             )
           end
 
-        # The ID (tag) of the company.
+        # The unique identifier for the company.
         sig { returns(String) }
         attr_accessor :id
 
@@ -296,7 +296,7 @@ module WhopSDK
         # The company for the plan.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
-          # The ID (tag) of the company.
+          # The unique identifier for the company.
           id:,
           # The title of the company.
           title:
@@ -317,14 +317,14 @@ module WhopSDK
             )
           end
 
-        # The ID of the invoice.
+        # The unique identifier for the invoice.
         sig { returns(String) }
         attr_accessor :id
 
         # The invoice associated with this plan.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The ID of the invoice.
+          # The unique identifier for the invoice.
           id:
         )
         end
@@ -407,7 +407,7 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the public product.
+        # The unique identifier for the product.
         sig { returns(String) }
         attr_accessor :id
 
@@ -418,7 +418,7 @@ module WhopSDK
         # The product that this plan belongs to.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
-          # The internal ID of the public product.
+          # The unique identifier for the product.
           id:,
           # The title of the product. Use for Whop 4.0.
           title:

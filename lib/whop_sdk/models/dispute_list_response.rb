@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::Disputes#list
     class DisputeListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The internal ID of the dispute.
+      #   The unique identifier for the dispute.
       #
       #   @return [String]
       required :id, String
@@ -23,7 +23,7 @@ module WhopSDK
       required :company, -> { WhopSDK::Models::DisputeListResponse::Company }, nil?: true
 
       # @!attribute created_at
-      #   When it was made.
+      #   The datetime the dispute was created.
       #
       #   @return [Time, nil]
       required :created_at, Time, nil?: true
@@ -83,15 +83,16 @@ module WhopSDK
       required :visa_rdr, WhopSDK::Internal::Type::Boolean
 
       # @!method initialize(id:, amount:, company:, created_at:, currency:, editable:, needs_response_by:, payment:, plan:, product:, reason:, status:, visa_rdr:)
-      #   An object representing a dispute against a company.
+      #   A dispute is a chargeback or payment challenge filed against a company,
+      #   including evidence and response status.
       #
-      #   @param id [String] The internal ID of the dispute.
+      #   @param id [String] The unique identifier for the dispute.
       #
       #   @param amount [Float] The amount of the dispute (formatted).
       #
       #   @param company [WhopSDK::Models::DisputeListResponse::Company, nil] The company the dispute is against.
       #
-      #   @param created_at [Time, nil] When it was made.
+      #   @param created_at [Time, nil] The datetime the dispute was created.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the dispute.
       #
@@ -114,7 +115,7 @@ module WhopSDK
       # @see WhopSDK::Models::DisputeListResponse#company
       class Company < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the company
+        #   The unique identifier for the company.
         #
         #   @return [String]
         required :id, String
@@ -128,7 +129,7 @@ module WhopSDK
         # @!method initialize(id:, title:)
         #   The company the dispute is against.
         #
-        #   @param id [String] The ID of the company
+        #   @param id [String] The unique identifier for the company.
         #
         #   @param title [String] The written name of the company.
       end
@@ -136,7 +137,7 @@ module WhopSDK
       # @see WhopSDK::Models::DisputeListResponse#payment
       class Payment < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The payment ID
+        #   The unique identifier for the payment.
         #
         #   @return [String]
         required :id, String
@@ -144,13 +145,13 @@ module WhopSDK
         # @!method initialize(id:)
         #   The payment that got disputed
         #
-        #   @param id [String] The payment ID
+        #   @param id [String] The unique identifier for the payment.
       end
 
       # @see WhopSDK::Models::DisputeListResponse#plan
       class Plan < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the plan.
+        #   The unique identifier for the plan.
         #
         #   @return [String]
         required :id, String
@@ -158,13 +159,13 @@ module WhopSDK
         # @!method initialize(id:)
         #   The plan that got disputed
         #
-        #   @param id [String] The internal ID of the plan.
+        #   @param id [String] The unique identifier for the plan.
       end
 
       # @see WhopSDK::Models::DisputeListResponse#product
       class Product < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the public product.
+        #   The unique identifier for the product.
         #
         #   @return [String]
         required :id, String
@@ -178,7 +179,7 @@ module WhopSDK
         # @!method initialize(id:, title:)
         #   The product that got disputed
         #
-        #   @param id [String] The internal ID of the public product.
+        #   @param id [String] The unique identifier for the product.
         #
         #   @param title [String] The title of the product. Use for Whop 4.0.
       end

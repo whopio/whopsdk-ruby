@@ -37,9 +37,7 @@ gem "whop_sdk", "~> 0.0.26"
 require "bundler/setup"
 require "whop_sdk"
 
-whop = WhopSDK::Client.new(
-  api_key: ENV["WHOP_API_KEY"] # This is the default and can be omitted
-)
+whop = WhopSDK::Client.new
 
 page = whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
 

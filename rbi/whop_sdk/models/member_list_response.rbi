@@ -8,7 +8,7 @@ module WhopSDK
           T.any(WhopSDK::Models::MemberListResponse, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the member
+      # The unique identifier for the company member.
       sig { returns(String) }
       attr_accessor :id
 
@@ -23,7 +23,7 @@ module WhopSDK
       sig { returns(Float) }
       attr_accessor :company_token_balance
 
-      # When the member was created
+      # The datetime the company member was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -47,7 +47,7 @@ module WhopSDK
       sig { returns(WhopSDK::MemberStatuses::TaggedSymbol) }
       attr_accessor :status
 
-      # The timestamp of when this member was last updated
+      # The datetime the company member was last updated.
       sig { returns(Time) }
       attr_accessor :updated_at
 
@@ -87,7 +87,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the member
+        # The unique identifier for the company member.
         id:,
         # The access level of the product member. If its admin, the member is an
         # authorized user of the company. If its customer, the member has a valid
@@ -96,7 +96,7 @@ module WhopSDK
         access_level:,
         # The member's token balance for this company
         company_token_balance:,
-        # When the member was created
+        # The datetime the company member was created.
         created_at:,
         # When the member joined the company
         joined_at:,
@@ -108,7 +108,7 @@ module WhopSDK
         phone:,
         # The status of the member
         status:,
-        # The timestamp of when this member was last updated
+        # The datetime the company member was last updated.
         updated_at:,
         # How much money this customer has spent on the company's products and plans
         usd_total_spent:,
@@ -148,7 +148,7 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the user account.
+        # The unique identifier for the company member user.
         sig { returns(String) }
         attr_accessor :id
 
@@ -174,7 +174,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The internal ID of the user account.
+          # The unique identifier for the company member user.
           id:,
           # The digital mailing address of the user.
           email:,

@@ -6,7 +6,7 @@ module WhopSDK
       OrHash =
         T.type_alias { T.any(WhopSDK::Dispute, WhopSDK::Internal::AnyHash) }
 
-      # The internal ID of the dispute.
+      # The unique identifier for the dispute.
       sig { returns(String) }
       attr_accessor :id
 
@@ -45,7 +45,7 @@ module WhopSDK
       sig { params(company: T.nilable(WhopSDK::Dispute::Company::OrHash)).void }
       attr_writer :company
 
-      # When it was made.
+      # The datetime the dispute was created.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_at
 
@@ -164,7 +164,8 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :visa_rdr
 
-      # An object representing a dispute against a company.
+      # A dispute is a chargeback or payment challenge filed against a company,
+      # including evidence and response status.
       sig do
         params(
           id: String,
@@ -203,7 +204,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The internal ID of the dispute.
+        # The unique identifier for the dispute.
         id:,
         # An IP access log for the user from Whop.
         access_activity_log:,
@@ -217,7 +218,7 @@ module WhopSDK
         cancellation_policy_disclosure:,
         # The company the dispute is against.
         company:,
-        # When it was made.
+        # The datetime the dispute was created.
         created_at:,
         # The currency of the dispute.
         currency:,
@@ -372,7 +373,7 @@ module WhopSDK
             T.any(WhopSDK::Dispute::Company, WhopSDK::Internal::AnyHash)
           end
 
-        # The ID of the company
+        # The unique identifier for the company.
         sig { returns(String) }
         attr_accessor :id
 
@@ -383,7 +384,7 @@ module WhopSDK
         # The company the dispute is against.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
-          # The ID of the company
+          # The unique identifier for the company.
           id:,
           # The written name of the company.
           title:
@@ -463,7 +464,7 @@ module WhopSDK
             T.any(WhopSDK::Dispute::Payment, WhopSDK::Internal::AnyHash)
           end
 
-        # The payment ID
+        # The unique identifier for the payment.
         sig { returns(String) }
         attr_accessor :id
 
@@ -479,7 +480,7 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :card_last4
 
-        # The datetime the payment was created
+        # The datetime the payment was created.
         sig { returns(Time) }
         attr_accessor :created_at
 
@@ -565,7 +566,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The payment ID
+          # The unique identifier for the payment.
           id:,
           # The reason why a specific payment was billed
           billing_reason:,
@@ -573,7 +574,7 @@ module WhopSDK
           card_brand:,
           # The last 4 digits of the card used to make the payment.
           card_last4:,
-          # The datetime the payment was created
+          # The datetime the payment was created.
           created_at:,
           # The available currencies on the platform
           currency:,
@@ -632,7 +633,7 @@ module WhopSDK
               )
             end
 
-          # The ID of the member
+          # The unique identifier for the company member.
           sig { returns(String) }
           attr_accessor :id
 
@@ -647,7 +648,7 @@ module WhopSDK
             )
           end
           def self.new(
-            # The ID of the member
+            # The unique identifier for the company member.
             id:,
             # The phone number for the member, if available.
             phone:
@@ -668,7 +669,7 @@ module WhopSDK
               )
             end
 
-          # The internal ID of the membership.
+          # The unique identifier for the membership.
           sig { returns(String) }
           attr_accessor :id
 
@@ -684,7 +685,7 @@ module WhopSDK
             ).returns(T.attached_class)
           end
           def self.new(
-            # The internal ID of the membership.
+            # The unique identifier for the membership.
             id:,
             # The state of the membership.
             status:
@@ -706,7 +707,7 @@ module WhopSDK
               T.any(WhopSDK::Dispute::Payment::User, WhopSDK::Internal::AnyHash)
             end
 
-          # The internal ID of the user.
+          # The unique identifier for the user.
           sig { returns(String) }
           attr_accessor :id
 
@@ -732,7 +733,7 @@ module WhopSDK
             ).returns(T.attached_class)
           end
           def self.new(
-            # The internal ID of the user.
+            # The unique identifier for the user.
             id:,
             # The email of the user
             email:,
@@ -764,14 +765,14 @@ module WhopSDK
             T.any(WhopSDK::Dispute::Plan, WhopSDK::Internal::AnyHash)
           end
 
-        # The internal ID of the plan.
+        # The unique identifier for the plan.
         sig { returns(String) }
         attr_accessor :id
 
         # The plan that got disputed
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The internal ID of the plan.
+          # The unique identifier for the plan.
           id:
         )
         end
@@ -787,7 +788,7 @@ module WhopSDK
             T.any(WhopSDK::Dispute::Product, WhopSDK::Internal::AnyHash)
           end
 
-        # The internal ID of the public product.
+        # The unique identifier for the product.
         sig { returns(String) }
         attr_accessor :id
 
@@ -798,7 +799,7 @@ module WhopSDK
         # The product that got disputed
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
-          # The internal ID of the public product.
+          # The unique identifier for the product.
           id:,
           # The title of the product. Use for Whop 4.0.
           title:

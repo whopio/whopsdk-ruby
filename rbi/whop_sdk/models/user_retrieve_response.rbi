@@ -11,7 +11,7 @@ module WhopSDK
           )
         end
 
-      # The internal ID of the user.
+      # The unique identifier for the user.
       sig { returns(String) }
       attr_accessor :id
 
@@ -19,7 +19,7 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :bio
 
-      # When the user was created.
+      # The datetime the user was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -49,7 +49,8 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :username
 
-      # An object representing a (sanitized) user of the site.
+      # A user account on Whop. Contains profile information, identity details, and
+      # social connections.
       sig do
         params(
           id: String,
@@ -64,11 +65,11 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The internal ID of the user.
+        # The unique identifier for the user.
         id:,
         # The user's bio
         bio:,
-        # When the user was created.
+        # The datetime the user was created.
         created_at:,
         # The name of the user from their Whop account.
         name:,

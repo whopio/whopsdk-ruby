@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::LedgerAccounts#retrieve
     class LedgerAccountRetrieveResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the LedgerAccount.
+      #   The unique identifier for the ledger account.
       #
       #   @return [String]
       required :id, String
@@ -54,7 +54,7 @@ module WhopSDK
       # @!method initialize(id:, balances:, ledger_type:, owner:, payments_approval_status:, payout_account_details:, transfer_fee:)
       #   Represents a LedgerAccount.
       #
-      #   @param id [String] The ID of the LedgerAccount.
+      #   @param id [String] The unique identifier for the ledger account.
       #
       #   @param balances [Array<WhopSDK::Models::LedgerAccountRetrieveResponse::Balance>] The balances associated with the account.
       #
@@ -126,15 +126,15 @@ module WhopSDK
 
         discriminator :typename
 
-        # An object representing a (sanitized) user of the site.
+        # A user account on Whop. Contains profile information, identity details, and social connections.
         variant :User, -> { WhopSDK::Models::LedgerAccountRetrieveResponse::Owner::User }
 
-        # An object representing a (sanitized) company.
+        # A company is a seller on Whop. Companies own products, manage members, and receive payouts.
         variant :Company, -> { WhopSDK::Models::LedgerAccountRetrieveResponse::Owner::Company }
 
         class User < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
-          #   The internal ID of the user.
+          #   The unique identifier for the user.
           #
           #   @return [String]
           required :id, String
@@ -158,9 +158,10 @@ module WhopSDK
           required :username, String
 
           # @!method initialize(id:, name:, username:, typename: :User)
-          #   An object representing a (sanitized) user of the site.
+          #   A user account on Whop. Contains profile information, identity details, and
+          #   social connections.
           #
-          #   @param id [String] The internal ID of the user.
+          #   @param id [String] The unique identifier for the user.
           #
           #   @param name [String, nil] The name of the user from their Whop account.
           #
@@ -171,7 +172,7 @@ module WhopSDK
 
         class Company < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
-          #   The ID (tag) of the company.
+          #   The unique identifier for the company.
           #
           #   @return [String]
           required :id, String
@@ -195,9 +196,10 @@ module WhopSDK
           required :typename, const: :Company
 
           # @!method initialize(id:, route:, title:, typename: :Company)
-          #   An object representing a (sanitized) company.
+          #   A company is a seller on Whop. Companies own products, manage members, and
+          #   receive payouts.
           #
-          #   @param id [String] The ID (tag) of the company.
+          #   @param id [String] The unique identifier for the company.
           #
           #   @param route [String] The slug/route of the company on the Whop site.
           #
@@ -228,7 +230,7 @@ module WhopSDK
       # @see WhopSDK::Models::LedgerAccountRetrieveResponse#payout_account_details
       class PayoutAccountDetails < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   Unique identifier for the object
+        #   The unique identifier for the payout account.
         #
         #   @return [String]
         required :id, String
@@ -278,7 +280,7 @@ module WhopSDK
         # @!method initialize(id:, address:, business_name:, business_representative:, email:, latest_verification:, phone:)
         #   The payout account associated with the LedgerAccount, if any.
         #
-        #   @param id [String] Unique identifier for the object
+        #   @param id [String] The unique identifier for the payout account.
         #
         #   @param address [WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Address, nil] The physical address associated with this payout account
         #
@@ -392,7 +394,7 @@ module WhopSDK
         # @see WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails#latest_verification
         class LatestVerification < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
-          #   A unique identifier for the verification.
+          #   The unique identifier for the verification.
           #
           #   @return [String]
           required :id, String
@@ -418,7 +420,7 @@ module WhopSDK
           # @!method initialize(id:, last_error_code:, last_error_reason:, status:)
           #   The latest verification for the connected account.
           #
-          #   @param id [String] A unique identifier for the verification.
+          #   @param id [String] The unique identifier for the verification.
           #
           #   @param last_error_code [Symbol, WhopSDK::Models::VerificationErrorCode, nil] An error code for a verification attempt.
           #

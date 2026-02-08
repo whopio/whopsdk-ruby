@@ -11,7 +11,11 @@ module WhopSDK
           )
         end
 
-      # The unique identifier of the resource.
+      # Represents a unique identifier that is Base64 obfuscated. It is often used to
+      # refetch an object or as key for a cache. The ID type appears in a JSON response
+      # as a String; however, it is not intended to be human-readable. When expected as
+      # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+      # input value will be accepted as an ID.
       sig { returns(String) }
       attr_accessor :id
 
@@ -100,7 +104,11 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier of the resource.
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         id:,
         # The content of the message in Markdown format
         content:,
@@ -211,7 +219,7 @@ module WhopSDK
               )
             end
 
-          # The ID of the poll option
+          # The unique identifier for the poll option.
           sig { returns(String) }
           attr_accessor :id
 
@@ -222,7 +230,7 @@ module WhopSDK
           # Represents a single poll option
           sig { params(id: String, text: String).returns(T.attached_class) }
           def self.new(
-            # The ID of the poll option
+            # The unique identifier for the poll option.
             id:,
             # The text of the poll option
             text:
@@ -318,7 +326,7 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the user.
+        # The unique identifier for the user.
         sig { returns(String) }
         attr_accessor :id
 
@@ -337,7 +345,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The internal ID of the user.
+          # The unique identifier for the user.
           id:,
           # The name of the user from their Whop account.
           name:,

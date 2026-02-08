@@ -3,7 +3,7 @@
 module WhopSDK
   module Models
     # @see WhopSDK::Resources::Users#retrieve
-    class UserRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+    class User < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
       #   The unique identifier for the user.
       #
@@ -31,8 +31,8 @@ module WhopSDK
       # @!attribute profile_picture
       #   The user's profile picture
       #
-      #   @return [WhopSDK::Models::UserRetrieveResponse::ProfilePicture, nil]
-      required :profile_picture, -> { WhopSDK::Models::UserRetrieveResponse::ProfilePicture }, nil?: true
+      #   @return [WhopSDK::Models::User::ProfilePicture, nil]
+      required :profile_picture, -> { WhopSDK::User::ProfilePicture }, nil?: true
 
       # @!attribute username
       #   The username of the user from their Whop account.
@@ -52,11 +52,11 @@ module WhopSDK
       #
       #   @param name [String, nil] The name of the user from their Whop account.
       #
-      #   @param profile_picture [WhopSDK::Models::UserRetrieveResponse::ProfilePicture, nil] The user's profile picture
+      #   @param profile_picture [WhopSDK::Models::User::ProfilePicture, nil] The user's profile picture
       #
       #   @param username [String] The username of the user from their Whop account.
 
-      # @see WhopSDK::Models::UserRetrieveResponse#profile_picture
+      # @see WhopSDK::Models::User#profile_picture
       class ProfilePicture < WhopSDK::Internal::Type::BaseModel
         # @!attribute url
         #   This is the URL you use to render optimized attachments on the client. This
@@ -67,7 +67,7 @@ module WhopSDK
 
         # @!method initialize(url:)
         #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::UserRetrieveResponse::ProfilePicture} for more details.
+        #   {WhopSDK::Models::User::ProfilePicture} for more details.
         #
         #   The user's profile picture
         #

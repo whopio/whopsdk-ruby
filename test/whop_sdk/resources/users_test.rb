@@ -9,7 +9,7 @@ class WhopSDK::Test::Resources::UsersTest < WhopSDK::Test::ResourceTest
     response = @whop.users.retrieve("user_xxxxxxxxxxxxx")
 
     assert_pattern do
-      response => WhopSDK::Models::UserRetrieveResponse
+      response => WhopSDK::User
     end
 
     assert_pattern do
@@ -18,7 +18,7 @@ class WhopSDK::Test::Resources::UsersTest < WhopSDK::Test::ResourceTest
         bio: String | nil,
         created_at: Time,
         name: String | nil,
-        profile_picture: WhopSDK::Models::UserRetrieveResponse::ProfilePicture | nil,
+        profile_picture: WhopSDK::User::ProfilePicture | nil,
         username: String
       }
     end
@@ -37,6 +37,27 @@ class WhopSDK::Test::Resources::UsersTest < WhopSDK::Test::ResourceTest
       response => {
         access_level: WhopSDK::AccessLevel,
         has_access: WhopSDK::Internal::Type::Boolean
+      }
+    end
+  end
+
+  def test_update_profile
+    skip("Prism tests are disabled")
+
+    response = @whop.users.update_profile
+
+    assert_pattern do
+      response => WhopSDK::User
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        bio: String | nil,
+        created_at: Time,
+        name: String | nil,
+        profile_picture: WhopSDK::User::ProfilePicture | nil,
+        username: String
       }
     end
   end

@@ -11,14 +11,14 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::UserRetrieveResponse]
+      # @return [WhopSDK::Models::User]
       #
       # @see WhopSDK::Models::UserRetrieveParams
       def retrieve(id, params = {})
         @client.request(
           method: :get,
           path: ["users/%1$s", id],
-          model: WhopSDK::Models::UserRetrieveResponse,
+          model: WhopSDK::User,
           options: params[:request_options]
         )
       end
@@ -49,6 +49,38 @@ module WhopSDK
           method: :get,
           path: ["users/%1$s/access/%2$s", id, resource_id],
           model: WhopSDK::Models::UserCheckAccessResponse,
+          options: options
+        )
+      end
+
+      # Updates the current user's profile
+      #
+      # Required permissions:
+      #
+      # - `user:profile:update`
+      #
+      # @overload update_profile(bio: nil, name: nil, profile_picture: nil, username: nil, request_options: {})
+      #
+      # @param bio [String, nil] User biography
+      #
+      # @param name [String, nil] Display name
+      #
+      # @param profile_picture [WhopSDK::Models::UserUpdateProfileParams::ProfilePicture, nil] Profile picture
+      #
+      # @param username [String, nil] Username (alphanumeric and hyphens)
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::User]
+      #
+      # @see WhopSDK::Models::UserUpdateProfileParams
+      def update_profile(params = {})
+        parsed, options = WhopSDK::UserUpdateProfileParams.dump_request(params)
+        @client.request(
+          method: :patch,
+          path: "users/me",
+          body: parsed,
+          model: WhopSDK::User,
           options: options
         )
       end

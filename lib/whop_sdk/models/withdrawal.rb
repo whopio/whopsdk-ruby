@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::Withdrawals#create
     class Withdrawal < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   Internal ID of the withdrawal request.
+      #   The unique identifier for the withdrawal.
       #
       #   @return [String]
       required :id, String
@@ -18,7 +18,7 @@ module WhopSDK
       required :amount, Float
 
       # @!attribute created_at
-      #   When the withdrawal request was created.
+      #   The datetime the withdrawal was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -103,13 +103,14 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::Withdrawal} for more details.
       #
-      #   A withdrawal request.
+      #   A withdrawal represents a request to transfer funds from a company's ledger
+      #   account to an external payout method.
       #
-      #   @param id [String] Internal ID of the withdrawal request.
+      #   @param id [String] The unique identifier for the withdrawal.
       #
       #   @param amount [Float] The withdrawal amount. Provided as a number in the specified currency. Eg: 100.0
       #
-      #   @param created_at [Time] When the withdrawal request was created.
+      #   @param created_at [Time] The datetime the withdrawal was created.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the withdrawal request.
       #
@@ -195,7 +196,7 @@ module WhopSDK
       # @see WhopSDK::Models::Withdrawal#ledger_account
       class LedgerAccount < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the LedgerAccount.
+        #   The unique identifier for the ledger account.
         #
         #   @return [String]
         required :id, String
@@ -209,7 +210,7 @@ module WhopSDK
         # @!method initialize(id:, company_id:)
         #   The ledger account associated with the withdrawal.
         #
-        #   @param id [String] The ID of the LedgerAccount.
+        #   @param id [String] The unique identifier for the ledger account.
         #
         #   @param company_id [String, nil] The ID of the company associated with this ledger account.
       end
@@ -217,13 +218,13 @@ module WhopSDK
       # @see WhopSDK::Models::Withdrawal#payout_token
       class PayoutToken < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the payout token
+        #   The unique identifier for the payout token.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute created_at
-        #   The date and time the payout token was created
+        #   The datetime the payout token was created.
         #
         #   @return [Time]
         required :created_at, Time
@@ -254,9 +255,9 @@ module WhopSDK
         #
         #   The payout token used for the withdrawal, if applicable.
         #
-        #   @param id [String] The ID of the payout token
+        #   @param id [String] The unique identifier for the payout token.
         #
-        #   @param created_at [Time] The date and time the payout token was created
+        #   @param created_at [Time] The datetime the payout token was created.
         #
         #   @param destination_currency_code [String] The currency code of the payout destination. This is the currency that payouts w
         #

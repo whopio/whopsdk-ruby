@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::Files#create
     class FileCreateResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the file
+      #   The unique identifier for the file.
       #
       #   @return [String]
       required :id, String
@@ -55,7 +55,7 @@ module WhopSDK
       # @!method initialize(id:, content_type:, filename:, size:, upload_headers:, upload_status:, upload_url:, url:)
       #   A file that has been uploaded or is pending upload
       #
-      #   @param id [String] The ID of the file
+      #   @param id [String] The unique identifier for the file.
       #
       #   @param content_type [String, nil] The MIME type of the file (e.g., image/jpeg, video/mp4)
       #

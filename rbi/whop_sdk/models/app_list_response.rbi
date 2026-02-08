@@ -8,7 +8,7 @@ module WhopSDK
           T.any(WhopSDK::Models::AppListResponse, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the app
+      # The unique identifier for the app.
       sig { returns(String) }
       attr_accessor :id
 
@@ -92,7 +92,8 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :verified
 
-      # An object representing an app
+      # An app is an integration built on Whop. Apps can serve consumers as experiences
+      # within products, or serve companies as business tools.
       sig do
         params(
           id: String,
@@ -112,7 +113,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the app
+        # The unique identifier for the app.
         id:,
         # The type of end-user an app is built for
         app_type:,
@@ -186,7 +187,7 @@ module WhopSDK
             )
           end
 
-        # The ID (tag) of the company.
+        # The unique identifier for the company.
         sig { returns(String) }
         attr_accessor :id
 
@@ -197,7 +198,7 @@ module WhopSDK
         # The company that owns the app
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
-          # The ID (tag) of the company.
+          # The unique identifier for the company.
           id:,
           # The title of the company.
           title:
@@ -218,7 +219,7 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the user.
+        # The unique identifier for the user.
         sig { returns(String) }
         attr_accessor :id
 
@@ -237,7 +238,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The internal ID of the user.
+          # The unique identifier for the user.
           id:,
           # The name of the user from their Whop account.
           name:,

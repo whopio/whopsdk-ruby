@@ -8,7 +8,7 @@ module WhopSDK
           T.any(WhopSDK::CompanyTokenTransaction, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the transaction
+      # The unique identifier for the company token transaction.
       sig { returns(String) }
       attr_accessor :id
 
@@ -25,7 +25,7 @@ module WhopSDK
       end
       attr_writer :company
 
-      # When the transaction was created
+      # The datetime the company token transaction was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -77,13 +77,13 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the transaction
+        # The unique identifier for the company token transaction.
         id:,
         # The transaction amount (always positive)
         amount:,
         # The company
         company:,
-        # When the transaction was created
+        # The datetime the company token transaction was created.
         created_at:,
         # Optional description
         description:,
@@ -128,7 +128,7 @@ module WhopSDK
             )
           end
 
-        # The ID of the company
+        # The unique identifier for the company.
         sig { returns(String) }
         attr_accessor :id
 
@@ -147,7 +147,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The ID of the company
+          # The unique identifier for the company.
           id:,
           # The slug/route of the company on the Whop site.
           route:,
@@ -170,14 +170,14 @@ module WhopSDK
             )
           end
 
-        # The ID of the member
+        # The unique identifier for the company member.
         sig { returns(String) }
         attr_accessor :id
 
         # The member
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The ID of the member
+          # The unique identifier for the company member.
           id:
         )
         end
@@ -196,7 +196,7 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the user.
+        # The unique identifier for the user.
         sig { returns(String) }
         attr_accessor :id
 
@@ -215,7 +215,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The internal ID of the user.
+          # The unique identifier for the user.
           id:,
           # The name of the user from their Whop account.
           name:,

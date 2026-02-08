@@ -8,11 +8,11 @@ module WhopSDK
           T.any(WhopSDK::Models::LeadListResponse, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the lead.
+      # The unique identifier for the lead.
       sig { returns(String) }
       attr_accessor :id
 
-      # The timestamp of when the lead was created.
+      # The datetime the lead was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -46,7 +46,7 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :referrer
 
-      # The timestamp of when the lead was last updated.
+      # The datetime the lead was last updated.
       sig { returns(Time) }
       attr_accessor :updated_at
 
@@ -72,9 +72,9 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the lead.
+        # The unique identifier for the lead.
         id:,
-        # The timestamp of when the lead was created.
+        # The datetime the lead was created.
         created_at:,
         # The converted member, if any.
         member:,
@@ -84,7 +84,7 @@ module WhopSDK
         product:,
         # The referrer URL that brought this lead.
         referrer:,
-        # The timestamp of when the lead was last updated.
+        # The datetime the lead was last updated.
         updated_at:,
         # The user who is the lead.
         user:
@@ -117,14 +117,14 @@ module WhopSDK
             )
           end
 
-        # The ID of the member
+        # The unique identifier for the company member.
         sig { returns(String) }
         attr_accessor :id
 
         # The converted member, if any.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The ID of the member
+          # The unique identifier for the company member.
           id:
         )
         end
@@ -143,7 +143,7 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the public product.
+        # The unique identifier for the product.
         sig { returns(String) }
         attr_accessor :id
 
@@ -154,7 +154,7 @@ module WhopSDK
         # The access pass the lead is interested in, if available.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
-          # The internal ID of the public product.
+          # The unique identifier for the product.
           id:,
           # The title of the product. Use for Whop 4.0.
           title:
@@ -175,7 +175,7 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the user.
+        # The unique identifier for the user.
         sig { returns(String) }
         attr_accessor :id
 
@@ -201,7 +201,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The internal ID of the user.
+          # The unique identifier for the user.
           id:,
           # The email of the user
           email:,

@@ -11,7 +11,7 @@ module WhopSDK
           )
         end
 
-      # A unique ID representing the authorized user object.
+      # The unique identifier for the authorized user.
       sig { returns(String) }
       attr_accessor :id
 
@@ -51,7 +51,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # A unique ID representing the authorized user object.
+        # The unique identifier for the authorized user.
         id:,
         # The company associated with the authorized user.
         company:,
@@ -84,7 +84,7 @@ module WhopSDK
             )
           end
 
-        # The ID (tag) of the company.
+        # The unique identifier for the company.
         sig { returns(String) }
         attr_accessor :id
 
@@ -95,7 +95,7 @@ module WhopSDK
         # The company associated with the authorized user.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
-          # The ID (tag) of the company.
+          # The unique identifier for the company.
           id:,
           # The title of the company.
           title:
@@ -116,7 +116,7 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the user.
+        # The unique identifier for the user.
         sig { returns(String) }
         attr_accessor :id
 
@@ -142,7 +142,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The internal ID of the user.
+          # The unique identifier for the user.
           id:,
           # The email of the user
           email:,

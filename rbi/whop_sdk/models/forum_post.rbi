@@ -6,7 +6,11 @@ module WhopSDK
       OrHash =
         T.type_alias { T.any(WhopSDK::ForumPost, WhopSDK::Internal::AnyHash) }
 
-      # The unique identifier of the resource.
+      # Represents a unique identifier that is Base64 obfuscated. It is often used to
+      # refetch an object or as key for a cache. The ID type appears in a JSON response
+      # as a String; however, it is not intended to be human-readable. When expected as
+      # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+      # input value will be accepted as an ID.
       sig { returns(String) }
       attr_accessor :id
 
@@ -80,7 +84,11 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier of the resource.
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         id:,
         # The amount of comments on this post
         comment_count:,
@@ -137,7 +145,7 @@ module WhopSDK
             T.any(WhopSDK::ForumPost::User, WhopSDK::Internal::AnyHash)
           end
 
-        # The internal ID of the user.
+        # The unique identifier for the user.
         sig { returns(String) }
         attr_accessor :id
 
@@ -156,7 +164,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The internal ID of the user.
+          # The unique identifier for the user.
           id:,
           # The name of the user from their Whop account.
           name:,

@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::AuthorizedUsers#list
     class AuthorizedUserListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   A unique ID representing the authorized user object.
+      #   The unique identifier for the authorized user.
       #
       #   @return [String]
       required :id, String
@@ -31,7 +31,7 @@ module WhopSDK
       # @!method initialize(id:, company:, role:, user:)
       #   A user who has elevated security privileges for a company
       #
-      #   @param id [String] A unique ID representing the authorized user object.
+      #   @param id [String] The unique identifier for the authorized user.
       #
       #   @param company [WhopSDK::Models::AuthorizedUserListResponse::Company] The company associated with the authorized user.
       #
@@ -42,7 +42,7 @@ module WhopSDK
       # @see WhopSDK::Models::AuthorizedUserListResponse#company
       class Company < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID (tag) of the company.
+        #   The unique identifier for the company.
         #
         #   @return [String]
         required :id, String
@@ -56,7 +56,7 @@ module WhopSDK
         # @!method initialize(id:, title:)
         #   The company associated with the authorized user.
         #
-        #   @param id [String] The ID (tag) of the company.
+        #   @param id [String] The unique identifier for the company.
         #
         #   @param title [String] The title of the company.
       end
@@ -64,7 +64,7 @@ module WhopSDK
       # @see WhopSDK::Models::AuthorizedUserListResponse#user
       class User < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user.
+        #   The unique identifier for the user.
         #
         #   @return [String]
         required :id, String
@@ -90,7 +90,7 @@ module WhopSDK
         # @!method initialize(id:, email:, name:, username:)
         #   The user associated with the authorized user.
         #
-        #   @param id [String] The internal ID of the user.
+        #   @param id [String] The unique identifier for the user.
         #
         #   @param email [String, nil] The email of the user
         #

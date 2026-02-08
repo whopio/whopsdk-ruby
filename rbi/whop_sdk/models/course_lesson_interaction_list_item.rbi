@@ -11,7 +11,7 @@ module WhopSDK
           )
         end
 
-      # The ID of the lesson interaction
+      # The unique identifier for the lesson interaction.
       sig { returns(String) }
       attr_accessor :id
 
@@ -19,7 +19,7 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :completed
 
-      # When the interaction was created
+      # The datetime the lesson interaction was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -56,11 +56,11 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the lesson interaction
+        # The unique identifier for the lesson interaction.
         id:,
         # Whether the lesson has been completed by the user
         completed:,
-        # When the interaction was created
+        # The datetime the lesson interaction was created.
         created_at:,
         # The lesson this interaction is for
         lesson:,
@@ -92,7 +92,7 @@ module WhopSDK
             )
           end
 
-        # The ID of the lesson
+        # The unique identifier for the lesson.
         sig { returns(String) }
         attr_accessor :id
 
@@ -124,7 +124,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the lesson
+          # The unique identifier for the lesson.
           id:,
           # The chapter this lesson belongs to
           chapter:,
@@ -155,14 +155,14 @@ module WhopSDK
               )
             end
 
-          # The ID of the chapter. Looks like chap_XXX
+          # The unique identifier for the chapter.
           sig { returns(String) }
           attr_accessor :id
 
           # The chapter this lesson belongs to
           sig { params(id: String).returns(T.attached_class) }
           def self.new(
-            # The ID of the chapter. Looks like chap_XXX
+            # The unique identifier for the chapter.
             id:
           )
           end
@@ -182,7 +182,7 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the user.
+        # The unique identifier for the user.
         sig { returns(String) }
         attr_accessor :id
 
@@ -201,7 +201,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The internal ID of the user.
+          # The unique identifier for the user.
           id:,
           # The name of the user from their Whop account.
           name:,

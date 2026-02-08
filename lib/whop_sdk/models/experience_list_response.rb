@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::Experiences#list
     class ExperienceListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique ID representing this experience
+      #   The unique identifier for the experience.
       #
       #   @return [String]
       required :id, String
@@ -23,7 +23,7 @@ module WhopSDK
       required :company, -> { WhopSDK::Models::ExperienceListResponse::Company }
 
       # @!attribute created_at
-      #   The timestamp of when this experience was created.
+      #   The datetime the experience was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -53,15 +53,16 @@ module WhopSDK
       required :order, String, nil?: true
 
       # @!method initialize(id:, app:, company:, created_at:, image:, is_public:, name:, order:)
-      #   An object representing an experience belonging to a company.
+      #   An experience is a feature or content module within a product, such as a chat,
+      #   course, or app.
       #
-      #   @param id [String] The unique ID representing this experience
+      #   @param id [String] The unique identifier for the experience.
       #
       #   @param app [WhopSDK::Models::ExperienceListResponse::App] The experience interface for this experience.
       #
       #   @param company [WhopSDK::Models::ExperienceListResponse::Company] The company that owns this experience.
       #
-      #   @param created_at [Time] The timestamp of when this experience was created.
+      #   @param created_at [Time] The datetime the experience was created.
       #
       #   @param image [WhopSDK::Models::ExperienceListResponse::Image, nil] The logo for the experience.
       #
@@ -74,7 +75,7 @@ module WhopSDK
       # @see WhopSDK::Models::ExperienceListResponse#app
       class App < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the app
+        #   The unique identifier for the app.
         #
         #   @return [String]
         required :id, String
@@ -98,7 +99,7 @@ module WhopSDK
         #
         #   The experience interface for this experience.
         #
-        #   @param id [String] The ID of the app
+        #   @param id [String] The unique identifier for the app.
         #
         #   @param icon [WhopSDK::Models::ExperienceListResponse::App::Icon, nil] The icon for the app. This icon is shown on discovery, on the product page, on c
         #
@@ -127,7 +128,7 @@ module WhopSDK
       # @see WhopSDK::Models::ExperienceListResponse#company
       class Company < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID (tag) of the company.
+        #   The unique identifier for the company.
         #
         #   @return [String]
         required :id, String
@@ -147,7 +148,7 @@ module WhopSDK
         # @!method initialize(id:, route:, title:)
         #   The company that owns this experience.
         #
-        #   @param id [String] The ID (tag) of the company.
+        #   @param id [String] The unique identifier for the company.
         #
         #   @param route [String] The slug/route of the company on the Whop site.
         #

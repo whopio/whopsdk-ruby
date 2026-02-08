@@ -11,7 +11,7 @@ module WhopSDK
           )
         end
 
-      # The unique ID representing this experience
+      # The unique identifier for the experience.
       sig { returns(String) }
       attr_accessor :id
 
@@ -35,7 +35,7 @@ module WhopSDK
       end
       attr_writer :company
 
-      # The timestamp of when this experience was created.
+      # The datetime the experience was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -63,7 +63,8 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :order
 
-      # An object representing an experience belonging to a company.
+      # An experience is a feature or content module within a product, such as a chat,
+      # course, or app.
       sig do
         params(
           id: String,
@@ -78,13 +79,13 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique ID representing this experience
+        # The unique identifier for the experience.
         id:,
         # The experience interface for this experience.
         app:,
         # The company that owns this experience.
         company:,
-        # The timestamp of when this experience was created.
+        # The datetime the experience was created.
         created_at:,
         # The logo for the experience.
         image:,
@@ -123,7 +124,7 @@ module WhopSDK
             )
           end
 
-        # The ID of the app
+        # The unique identifier for the app.
         sig { returns(String) }
         attr_accessor :id
 
@@ -160,7 +161,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the app
+          # The unique identifier for the app.
           id:,
           # The icon for the app. This icon is shown on discovery, on the product page, on
           # checkout, and as a default icon for the experiences.
@@ -222,7 +223,7 @@ module WhopSDK
             )
           end
 
-        # The ID (tag) of the company.
+        # The unique identifier for the company.
         sig { returns(String) }
         attr_accessor :id
 
@@ -241,7 +242,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The ID (tag) of the company.
+          # The unique identifier for the company.
           id:,
           # The slug/route of the company on the Whop site.
           route:,

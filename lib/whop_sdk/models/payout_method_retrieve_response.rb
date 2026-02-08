@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::PayoutMethods#retrieve
     class PayoutMethodRetrieveResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the payout token
+      #   The unique identifier for the payout token.
       #
       #   @return [String]
       required :id, String
@@ -24,7 +24,7 @@ module WhopSDK
       required :company, -> { WhopSDK::Models::PayoutMethodRetrieveResponse::Company }, nil?: true
 
       # @!attribute created_at
-      #   The date and time the payout token was created
+      #   The datetime the payout token was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -67,13 +67,13 @@ module WhopSDK
       #
       #   An object representing an user's setup payout destination.
       #
-      #   @param id [String] The ID of the payout token
+      #   @param id [String] The unique identifier for the payout token.
       #
       #   @param account_reference [String, nil] A reference to identify the payout destination, such as the last 4 digits of an
       #
       #   @param company [WhopSDK::Models::PayoutMethodRetrieveResponse::Company, nil] The company associated with the payout token
       #
-      #   @param created_at [Time] The date and time the payout token was created
+      #   @param created_at [Time] The datetime the payout token was created.
       #
       #   @param currency [String] The currency code of the payout destination. This is the currency that payouts w
       #
@@ -88,7 +88,7 @@ module WhopSDK
       # @see WhopSDK::Models::PayoutMethodRetrieveResponse#company
       class Company < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID (tag) of the company.
+        #   The unique identifier for the company.
         #
         #   @return [String]
         required :id, String
@@ -96,7 +96,7 @@ module WhopSDK
         # @!method initialize(id:)
         #   The company associated with the payout token
         #
-        #   @param id [String] The ID (tag) of the company.
+        #   @param id [String] The unique identifier for the company.
       end
 
       # @see WhopSDK::Models::PayoutMethodRetrieveResponse#destination

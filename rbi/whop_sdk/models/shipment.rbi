@@ -6,7 +6,7 @@ module WhopSDK
       OrHash =
         T.type_alias { T.any(WhopSDK::Shipment, WhopSDK::Internal::AnyHash) }
 
-      # The ID of the shipment
+      # The unique identifier for the shipment.
       sig { returns(String) }
       attr_accessor :id
 
@@ -14,7 +14,7 @@ module WhopSDK
       sig { returns(WhopSDK::ShipmentCarrier::TaggedSymbol) }
       attr_accessor :carrier
 
-      # The date and time the shipment was created
+      # The datetime the shipment was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -47,7 +47,7 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :tracking_code
 
-      # The date and time the shipment was last updated
+      # The datetime the shipment was last updated.
       sig { returns(Time) }
       attr_accessor :updated_at
 
@@ -67,11 +67,11 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the shipment
+        # The unique identifier for the shipment.
         id:,
         # The carrier of the shipment
         carrier:,
-        # The date and time the shipment was created
+        # The datetime the shipment was created.
         created_at:,
         # The delivery estimate of the shipment
         delivery_estimate:,
@@ -85,7 +85,7 @@ module WhopSDK
         substatus:,
         # The tracking code of the shipment
         tracking_code:,
-        # The date and time the shipment was last updated
+        # The datetime the shipment was last updated.
         updated_at:
       )
       end
@@ -115,14 +115,14 @@ module WhopSDK
             T.any(WhopSDK::Shipment::Payment, WhopSDK::Internal::AnyHash)
           end
 
-        # The payment ID
+        # The unique identifier for the payment.
         sig { returns(String) }
         attr_accessor :id
 
         # The payment of the shipment
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The payment ID
+          # The unique identifier for the payment.
           id:
         )
         end

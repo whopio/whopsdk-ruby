@@ -4,7 +4,11 @@ module WhopSDK
   module Models
     class Message < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier of the resource.
+      #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+      #   refetch an object or as key for a cache. The ID type appears in a JSON response
+      #   as a String; however, it is not intended to be human-readable. When expected as
+      #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+      #   input value will be accepted as an ID.
       #
       #   @return [String]
       required :id, String
@@ -82,9 +86,12 @@ module WhopSDK
       required :view_count, Integer, nil?: true
 
       # @!method initialize(id:, content:, created_at:, is_edited:, is_pinned:, message_type:, poll:, poll_votes:, reaction_counts:, replying_to_message_id:, updated_at:, user:, view_count:)
+      #   Some parameter documentations has been truncated, see {WhopSDK::Models::Message}
+      #   for more details.
+      #
       #   Represents a message in a DM channel
       #
-      #   @param id [String] The unique identifier of the resource.
+      #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
       #
       #   @param content [String, nil] The content of the message in Markdown format
       #
@@ -125,7 +132,7 @@ module WhopSDK
 
         class Option < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
-          #   The ID of the poll option
+          #   The unique identifier for the poll option.
           #
           #   @return [String]
           required :id, String
@@ -139,7 +146,7 @@ module WhopSDK
           # @!method initialize(id:, text:)
           #   Represents a single poll option
           #
-          #   @param id [String] The ID of the poll option
+          #   @param id [String] The unique identifier for the poll option.
           #
           #   @param text [String] The text of the poll option
         end
@@ -190,7 +197,7 @@ module WhopSDK
       # @see WhopSDK::Models::Message#user
       class User < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user.
+        #   The unique identifier for the user.
         #
         #   @return [String]
         required :id, String
@@ -210,7 +217,7 @@ module WhopSDK
         # @!method initialize(id:, name:, username:)
         #   The user who sent this message
         #
-        #   @param id [String] The internal ID of the user.
+        #   @param id [String] The unique identifier for the user.
         #
         #   @param name [String, nil] The name of the user from their Whop account.
         #

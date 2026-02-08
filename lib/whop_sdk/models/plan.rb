@@ -4,7 +4,7 @@ module WhopSDK
   module Models
     class Plan < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The internal ID of the plan.
+      #   The unique identifier for the plan.
       #
       #   @return [String]
       required :id, String
@@ -28,7 +28,7 @@ module WhopSDK
       required :company, -> { WhopSDK::Plan::Company }, nil?: true
 
       # @!attribute created_at
-      #   When the plan was created.
+      #   The datetime the plan was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -159,7 +159,7 @@ module WhopSDK
       required :unlimited_stock, WhopSDK::Internal::Type::Boolean
 
       # @!attribute updated_at
-      #   When the plan was last updated.
+      #   The datetime the plan was last updated.
       #
       #   @return [Time]
       required :updated_at, Time
@@ -174,11 +174,11 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Plan}
       #   for more details.
       #
-      #   A plan for an product. Plans define the core parameters that define a checkout
-      #   and payment on whop. Use plans to create different ways to price your products
-      #   (Eg renewal / one_time)
+      #   A plan defines pricing and billing terms for a product. Each product can have
+      #   multiple plans representing different pricing options, such as one-time
+      #   payments, recurring subscriptions, or free trials.
       #
-      #   @param id [String] The internal ID of the plan.
+      #   @param id [String] The unique identifier for the plan.
       #
       #   @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans).
       #
@@ -186,7 +186,7 @@ module WhopSDK
       #
       #   @param company [WhopSDK::Models::Plan::Company, nil] The company for the plan.
       #
-      #   @param created_at [Time] When the plan was created.
+      #   @param created_at [Time] The datetime the plan was created.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency] The respective currency identifier for the plan.
       #
@@ -228,14 +228,14 @@ module WhopSDK
       #
       #   @param unlimited_stock [Boolean] When true, the plan has unlimited stock (stock field is ignored). When false, pu
       #
-      #   @param updated_at [Time] When the plan was last updated.
+      #   @param updated_at [Time] The datetime the plan was last updated.
       #
       #   @param visibility [Symbol, WhopSDK::Models::Visibility] Shows or hides the plan from public/business view.
 
       # @see WhopSDK::Models::Plan#company
       class Company < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID (tag) of the company.
+        #   The unique identifier for the company.
         #
         #   @return [String]
         required :id, String
@@ -249,14 +249,14 @@ module WhopSDK
         # @!method initialize(id:, title:)
         #   The company for the plan.
         #
-        #   @param id [String] The ID (tag) of the company.
+        #   @param id [String] The unique identifier for the company.
         #
         #   @param title [String] The title of the company.
       end
 
       class CustomField < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the given custom field
+        #   The unique identifier for the custom field.
         #
         #   @return [String]
         required :id, String
@@ -294,7 +294,7 @@ module WhopSDK
         # @!method initialize(id:, name:, order:, placeholder:, required:, field_type: :text)
         #   An object representing a custom field for a plan.
         #
-        #   @param id [String] The internal ID of the given custom field
+        #   @param id [String] The unique identifier for the custom field.
         #
         #   @param name [String] The title/header of the custom field.
         #
@@ -310,7 +310,7 @@ module WhopSDK
       # @see WhopSDK::Models::Plan#invoice
       class Invoice < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the invoice.
+        #   The unique identifier for the invoice.
         #
         #   @return [String]
         required :id, String
@@ -318,7 +318,7 @@ module WhopSDK
         # @!method initialize(id:)
         #   The invoice associated with this plan.
         #
-        #   @param id [String] The ID of the invoice.
+        #   @param id [String] The unique identifier for the invoice.
       end
 
       # @see WhopSDK::Models::Plan#payment_method_configuration
@@ -363,7 +363,7 @@ module WhopSDK
       # @see WhopSDK::Models::Plan#product
       class Product < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the public product.
+        #   The unique identifier for the product.
         #
         #   @return [String]
         required :id, String
@@ -377,7 +377,7 @@ module WhopSDK
         # @!method initialize(id:, title:)
         #   The product that this plan belongs to.
         #
-        #   @param id [String] The internal ID of the public product.
+        #   @param id [String] The unique identifier for the product.
         #
         #   @param title [String] The title of the product. Use for Whop 4.0.
       end

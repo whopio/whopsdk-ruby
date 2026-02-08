@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::CourseStudents#retrieve
     class CourseStudentRetrieveResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the course student. Looks like crsi_XXX
+      #   The unique identifier for the course student type.
       #
       #   @return [String]
       required :id, String
@@ -55,7 +55,7 @@ module WhopSDK
       # @!method initialize(id:, completed_lessons_count:, completion_rate:, course:, first_interaction_at:, last_interaction_at:, total_lessons_count:, user:)
       #   A course student (enrollment of a student in a course)
       #
-      #   @param id [String] The ID of the course student. Looks like crsi_XXX
+      #   @param id [String] The unique identifier for the course student type.
       #
       #   @param completed_lessons_count [Integer] The number of lessons the student has completed
       #
@@ -74,7 +74,7 @@ module WhopSDK
       # @see WhopSDK::Models::CourseStudentRetrieveResponse#course
       class Course < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the course. Looks like cors_XXX
+        #   The unique identifier for the course.
         #
         #   @return [String]
         required :id, String
@@ -94,7 +94,7 @@ module WhopSDK
         # @!method initialize(id:, experience:, title:)
         #   The course the student is enrolled in
         #
-        #   @param id [String] The ID of the course. Looks like cors_XXX
+        #   @param id [String] The unique identifier for the course.
         #
         #   @param experience [WhopSDK::Models::CourseStudentRetrieveResponse::Course::Experience] The experience that the course belongs to
         #
@@ -103,7 +103,7 @@ module WhopSDK
         # @see WhopSDK::Models::CourseStudentRetrieveResponse::Course#experience
         class Experience < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
-          #   The unique ID representing this experience
+          #   The unique identifier for the experience.
           #
           #   @return [String]
           required :id, String
@@ -111,14 +111,14 @@ module WhopSDK
           # @!method initialize(id:)
           #   The experience that the course belongs to
           #
-          #   @param id [String] The unique ID representing this experience
+          #   @param id [String] The unique identifier for the experience.
         end
       end
 
       # @see WhopSDK::Models::CourseStudentRetrieveResponse#user
       class User < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user.
+        #   The unique identifier for the user.
         #
         #   @return [String]
         required :id, String
@@ -138,7 +138,7 @@ module WhopSDK
         # @!method initialize(id:, name:, username:)
         #   The user who is enrolled in the course
         #
-        #   @param id [String] The internal ID of the user.
+        #   @param id [String] The unique identifier for the user.
         #
         #   @param name [String, nil] The name of the user from their Whop account.
         #

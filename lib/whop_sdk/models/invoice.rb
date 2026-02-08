@@ -4,13 +4,13 @@ module WhopSDK
   module Models
     class Invoice < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the invoice.
+      #   The unique identifier for the invoice.
       #
       #   @return [String]
       required :id, String
 
       # @!attribute created_at
-      #   The date the invoice was created.
+      #   The datetime the invoice was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -64,9 +64,9 @@ module WhopSDK
       #
       #   A statement that defines an amount due by a customer.
       #
-      #   @param id [String] The ID of the invoice.
+      #   @param id [String] The unique identifier for the invoice.
       #
-      #   @param created_at [Time] The date the invoice was created.
+      #   @param created_at [Time] The datetime the invoice was created.
       #
       #   @param current_plan [WhopSDK::Models::Invoice::CurrentPlan] The plan that the invoice was created for.
       #
@@ -85,7 +85,7 @@ module WhopSDK
       # @see WhopSDK::Models::Invoice#current_plan
       class CurrentPlan < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the plan.
+        #   The unique identifier for the plan.
         #
         #   @return [String]
         required :id, String
@@ -105,7 +105,7 @@ module WhopSDK
         # @!method initialize(id:, currency:, formatted_price:)
         #   The plan that the invoice was created for.
         #
-        #   @param id [String] The internal ID of the plan.
+        #   @param id [String] The unique identifier for the plan.
         #
         #   @param currency [Symbol, WhopSDK::Models::Currency] The respective currency identifier for the plan.
         #
@@ -115,7 +115,7 @@ module WhopSDK
       # @see WhopSDK::Models::Invoice#user
       class User < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user.
+        #   The unique identifier for the user.
         #
         #   @return [String]
         required :id, String
@@ -135,7 +135,7 @@ module WhopSDK
         # @!method initialize(id:, name:, username:)
         #   The user that the invoice was created for.
         #
-        #   @param id [String] The internal ID of the user.
+        #   @param id [String] The unique identifier for the user.
         #
         #   @param name [String, nil] The name of the user from their Whop account.
         #

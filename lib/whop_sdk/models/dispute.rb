@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::Disputes#retrieve
     class Dispute < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The internal ID of the dispute.
+      #   The unique identifier for the dispute.
       #
       #   @return [String]
       required :id, String
@@ -49,7 +49,7 @@ module WhopSDK
       required :company, -> { WhopSDK::Dispute::Company }, nil?: true
 
       # @!attribute created_at
-      #   When it was made.
+      #   The datetime the dispute was created.
       #
       #   @return [Time, nil]
       required :created_at, Time, nil?: true
@@ -178,9 +178,10 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Dispute}
       #   for more details.
       #
-      #   An object representing a dispute against a company.
+      #   A dispute is a chargeback or payment challenge filed against a company,
+      #   including evidence and response status.
       #
-      #   @param id [String] The internal ID of the dispute.
+      #   @param id [String] The unique identifier for the dispute.
       #
       #   @param access_activity_log [String, nil] An IP access log for the user from Whop.
       #
@@ -194,7 +195,7 @@ module WhopSDK
       #
       #   @param company [WhopSDK::Models::Dispute::Company, nil] The company the dispute is against.
       #
-      #   @param created_at [Time, nil] When it was made.
+      #   @param created_at [Time, nil] The datetime the dispute was created.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the dispute.
       #
@@ -279,7 +280,7 @@ module WhopSDK
       # @see WhopSDK::Models::Dispute#company
       class Company < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the company
+        #   The unique identifier for the company.
         #
         #   @return [String]
         required :id, String
@@ -293,7 +294,7 @@ module WhopSDK
         # @!method initialize(id:, title:)
         #   The company the dispute is against.
         #
-        #   @param id [String] The ID of the company
+        #   @param id [String] The unique identifier for the company.
         #
         #   @param title [String] The written name of the company.
       end
@@ -343,7 +344,7 @@ module WhopSDK
       # @see WhopSDK::Models::Dispute#payment
       class Payment < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The payment ID
+        #   The unique identifier for the payment.
         #
         #   @return [String]
         required :id, String
@@ -367,7 +368,7 @@ module WhopSDK
         required :card_last4, String, nil?: true
 
         # @!attribute created_at
-        #   The datetime the payment was created
+        #   The datetime the payment was created.
         #
         #   @return [Time]
         required :created_at, Time
@@ -435,7 +436,7 @@ module WhopSDK
         # @!method initialize(id:, billing_reason:, card_brand:, card_last4:, created_at:, currency:, dispute_alerted_at:, member:, membership:, paid_at:, payment_method_type:, subtotal:, total:, usd_total:, user:)
         #   The payment that got disputed
         #
-        #   @param id [String] The payment ID
+        #   @param id [String] The unique identifier for the payment.
         #
         #   @param billing_reason [Symbol, WhopSDK::Models::BillingReasons, nil] The reason why a specific payment was billed
         #
@@ -443,7 +444,7 @@ module WhopSDK
         #
         #   @param card_last4 [String, nil] The last 4 digits of the card used to make the payment.
         #
-        #   @param created_at [Time] The datetime the payment was created
+        #   @param created_at [Time] The datetime the payment was created.
         #
         #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
         #
@@ -468,7 +469,7 @@ module WhopSDK
         # @see WhopSDK::Models::Dispute::Payment#member
         class Member < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
-          #   The ID of the member
+          #   The unique identifier for the company member.
           #
           #   @return [String]
           required :id, String
@@ -482,7 +483,7 @@ module WhopSDK
           # @!method initialize(id:, phone:)
           #   The member attached to this payment.
           #
-          #   @param id [String] The ID of the member
+          #   @param id [String] The unique identifier for the company member.
           #
           #   @param phone [String, nil] The phone number for the member, if available.
         end
@@ -490,7 +491,7 @@ module WhopSDK
         # @see WhopSDK::Models::Dispute::Payment#membership
         class Membership < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
-          #   The internal ID of the membership.
+          #   The unique identifier for the membership.
           #
           #   @return [String]
           required :id, String
@@ -504,7 +505,7 @@ module WhopSDK
           # @!method initialize(id:, status:)
           #   The membership attached to this payment.
           #
-          #   @param id [String] The internal ID of the membership.
+          #   @param id [String] The unique identifier for the membership.
           #
           #   @param status [Symbol, WhopSDK::Models::MembershipStatus] The state of the membership.
         end
@@ -512,7 +513,7 @@ module WhopSDK
         # @see WhopSDK::Models::Dispute::Payment#user
         class User < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
-          #   The internal ID of the user.
+          #   The unique identifier for the user.
           #
           #   @return [String]
           required :id, String
@@ -538,7 +539,7 @@ module WhopSDK
           # @!method initialize(id:, email:, name:, username:)
           #   The user that made this payment.
           #
-          #   @param id [String] The internal ID of the user.
+          #   @param id [String] The unique identifier for the user.
           #
           #   @param email [String, nil] The email of the user
           #
@@ -551,7 +552,7 @@ module WhopSDK
       # @see WhopSDK::Models::Dispute#plan
       class Plan < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the plan.
+        #   The unique identifier for the plan.
         #
         #   @return [String]
         required :id, String
@@ -559,13 +560,13 @@ module WhopSDK
         # @!method initialize(id:)
         #   The plan that got disputed
         #
-        #   @param id [String] The internal ID of the plan.
+        #   @param id [String] The unique identifier for the plan.
       end
 
       # @see WhopSDK::Models::Dispute#product
       class Product < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the public product.
+        #   The unique identifier for the product.
         #
         #   @return [String]
         required :id, String
@@ -579,7 +580,7 @@ module WhopSDK
         # @!method initialize(id:, title:)
         #   The product that got disputed
         #
-        #   @param id [String] The internal ID of the public product.
+        #   @param id [String] The unique identifier for the product.
         #
         #   @param title [String] The title of the product. Use for Whop 4.0.
       end

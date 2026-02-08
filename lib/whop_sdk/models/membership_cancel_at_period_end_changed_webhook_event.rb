@@ -16,8 +16,8 @@ module WhopSDK
       required :api_version, const: :v1
 
       # @!attribute data
-      #   A membership represents a purchase between a User and a Company for a specific
-      #   Product.
+      #   A membership represents an active relationship between a user and a product. It
+      #   tracks the user's access, billing status, and renewal schedule.
       #
       #   @return [WhopSDK::Models::Membership]
       required :data, -> { WhopSDK::Membership }
@@ -47,7 +47,7 @@ module WhopSDK
       #
       #   @param id [String] A unique ID for every single webhook request
       #
-      #   @param data [WhopSDK::Models::Membership] A membership represents a purchase between a User and a Company for a specific P
+      #   @param data [WhopSDK::Models::Membership] A membership represents an active relationship between a user and a product. It
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #

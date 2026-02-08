@@ -11,11 +11,11 @@ module WhopSDK
           )
         end
 
-      # The payment ID
+      # The unique identifier for the payment.
       sig { returns(String) }
       attr_accessor :id
 
-      # The datetime the payment was created
+      # The datetime the payment was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -39,7 +39,8 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :total
 
-      # An object representing a receipt for a membership.
+      # A payment represents a completed or attempted charge for a membership. Payments
+      # track the amount, status, currency, and payment method used.
       sig do
         params(
           id: String,
@@ -52,9 +53,9 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The payment ID
+        # The unique identifier for the payment.
         id:,
-        # The datetime the payment was created
+        # The datetime the payment was created.
         created_at:,
         # The available currencies on the platform
         currency:,

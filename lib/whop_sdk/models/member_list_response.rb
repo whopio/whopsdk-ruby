@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::Members#list
     class MemberListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the member
+      #   The unique identifier for the company member.
       #
       #   @return [String]
       required :id, String
@@ -26,7 +26,7 @@ module WhopSDK
       required :company_token_balance, Float
 
       # @!attribute created_at
-      #   When the member was created
+      #   The datetime the company member was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -62,7 +62,7 @@ module WhopSDK
       required :status, enum: -> { WhopSDK::MemberStatuses }
 
       # @!attribute updated_at
-      #   The timestamp of when this member was last updated
+      #   The datetime the company member was last updated.
       #
       #   @return [Time]
       required :updated_at, Time
@@ -87,13 +87,13 @@ module WhopSDK
       #   This type should only be made visible to the user/company_buyer who is a part of
       #   the connection.
       #
-      #   @param id [String] The ID of the member
+      #   @param id [String] The unique identifier for the company member.
       #
       #   @param access_level [Symbol, WhopSDK::Models::AccessLevel] The access level of the product member. If its admin, the member is an authorize
       #
       #   @param company_token_balance [Float] The member's token balance for this company
       #
-      #   @param created_at [Time] When the member was created
+      #   @param created_at [Time] The datetime the company member was created.
       #
       #   @param joined_at [Time] When the member joined the company
       #
@@ -105,7 +105,7 @@ module WhopSDK
       #
       #   @param status [Symbol, WhopSDK::Models::MemberStatuses] The status of the member
       #
-      #   @param updated_at [Time] The timestamp of when this member was last updated
+      #   @param updated_at [Time] The datetime the company member was last updated.
       #
       #   @param usd_total_spent [Float] How much money this customer has spent on the company's products and plans
       #
@@ -114,7 +114,7 @@ module WhopSDK
       # @see WhopSDK::Models::MemberListResponse#user
       class User < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user account.
+        #   The unique identifier for the company member user.
         #
         #   @return [String]
         required :id, String
@@ -140,7 +140,7 @@ module WhopSDK
         # @!method initialize(id:, email:, name:, username:)
         #   The user for this member, if any.
         #
-        #   @param id [String] The internal ID of the user account.
+        #   @param id [String] The unique identifier for the company member user.
         #
         #   @param email [String, nil] The digital mailing address of the user.
         #

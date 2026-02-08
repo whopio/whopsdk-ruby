@@ -55,7 +55,7 @@ module WhopSDK
       # @see WhopSDK::Models::VerificationSucceededWebhookEvent#data
       class Data < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   A unique identifier for the verification.
+        #   The unique identifier for the verification.
         #
         #   @return [String]
         required :id, String
@@ -81,7 +81,7 @@ module WhopSDK
         # @!method initialize(id:, last_error_code:, last_error_reason:, status:)
         #   An object representing an identity verification session
         #
-        #   @param id [String] A unique identifier for the verification.
+        #   @param id [String] The unique identifier for the verification.
         #
         #   @param last_error_code [Symbol, WhopSDK::Models::VerificationErrorCode, nil] An error code for a verification attempt.
         #

@@ -4,7 +4,7 @@ module WhopSDK
   module Models
     class App < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the app
+      #   The unique identifier for the app.
       #
       #   @return [String]
       required :id, String
@@ -122,9 +122,10 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::App} for
       #   more details.
       #
-      #   An object representing an app
+      #   An app is an integration built on Whop. Apps can serve consumers as experiences
+      #   within products, or serve companies as business tools.
       #
-      #   @param id [String] The ID of the app
+      #   @param id [String] The unique identifier for the app.
       #
       #   @param api_key [WhopSDK::Models::App::APIKey, nil] The API key for the app
       #
@@ -161,7 +162,7 @@ module WhopSDK
       # @see WhopSDK::Models::App#api_key
       class APIKey < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of this API key
+        #   The unique identifier for the private api key.
         #
         #   @return [String]
         required :id, String
@@ -173,7 +174,7 @@ module WhopSDK
         required :token, String
 
         # @!attribute created_at
-        #   When this API key was created at
+        #   The datetime the private api key was created.
         #
         #   @return [Time]
         required :created_at, Time
@@ -181,17 +182,17 @@ module WhopSDK
         # @!method initialize(id:, token:, created_at:)
         #   The API key for the app
         #
-        #   @param id [String] The ID of this API key
+        #   @param id [String] The unique identifier for the private api key.
         #
         #   @param token [String] This is the API key used to authenticate requests
         #
-        #   @param created_at [Time] When this API key was created at
+        #   @param created_at [Time] The datetime the private api key was created.
       end
 
       # @see WhopSDK::Models::App#company
       class Company < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID (tag) of the company.
+        #   The unique identifier for the company.
         #
         #   @return [String]
         required :id, String
@@ -205,7 +206,7 @@ module WhopSDK
         # @!method initialize(id:, title:)
         #   The company that owns the app
         #
-        #   @param id [String] The ID (tag) of the company.
+        #   @param id [String] The unique identifier for the company.
         #
         #   @param title [String] The title of the company.
       end
@@ -213,7 +214,7 @@ module WhopSDK
       # @see WhopSDK::Models::App#creator
       class Creator < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user.
+        #   The unique identifier for the user.
         #
         #   @return [String]
         required :id, String
@@ -233,7 +234,7 @@ module WhopSDK
         # @!method initialize(id:, name:, username:)
         #   The creator of the app
         #
-        #   @param id [String] The internal ID of the user.
+        #   @param id [String] The unique identifier for the user.
         #
         #   @param name [String, nil] The name of the user from their Whop account.
         #

@@ -4,7 +4,7 @@ module WhopSDK
   module Models
     class Product < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The internal ID of the public product.
+      #   The unique identifier for the product.
       #
       #   @return [String]
       required :id, String
@@ -22,7 +22,7 @@ module WhopSDK
       required :company, -> { WhopSDK::Product::Company }
 
       # @!attribute created_at
-      #   When the product was created.
+      #   The datetime the product was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -134,7 +134,7 @@ module WhopSDK
       required :title, String
 
       # @!attribute updated_at
-      #   When the product was updated.
+      #   The datetime the product was last updated.
       #
       #   @return [Time]
       required :updated_at, Time
@@ -155,15 +155,16 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Product}
       #   for more details.
       #
-      #   Represents a product on whop. Use products to sell anything on the platform.
+      #   A product is a digital good or service sold on Whop. Products contain plans for
+      #   pricing and experiences for content delivery.
       #
-      #   @param id [String] The internal ID of the public product.
+      #   @param id [String] The unique identifier for the product.
       #
       #   @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #
       #   @param company [WhopSDK::Models::Product::Company] A short type of the company that this product belongs to.
       #
-      #   @param created_at [Time] When the product was created.
+      #   @param created_at [Time] The datetime the product was created.
       #
       #   @param custom_cta [Symbol, WhopSDK::Models::CustomCta] The custom call to action for the product.
       #
@@ -199,7 +200,7 @@ module WhopSDK
       #
       #   @param title [String] The title of the product. Use for Whop 4.0.
       #
-      #   @param updated_at [Time] When the product was updated.
+      #   @param updated_at [Time] The datetime the product was last updated.
       #
       #   @param verified [Boolean] Whether this product is Whop verified.
       #
@@ -208,7 +209,7 @@ module WhopSDK
       # @see WhopSDK::Models::Product#company
       class Company < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID (tag) of the company.
+        #   The unique identifier for the company.
         #
         #   @return [String]
         required :id, String
@@ -228,7 +229,7 @@ module WhopSDK
         # @!method initialize(id:, route:, title:)
         #   A short type of the company that this product belongs to.
         #
-        #   @param id [String] The ID (tag) of the company.
+        #   @param id [String] The unique identifier for the company.
         #
         #   @param route [String] The slug/route of the company on the Whop site.
         #
@@ -238,7 +239,7 @@ module WhopSDK
       # @see WhopSDK::Models::Product#owner_user
       class OwnerUser < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user.
+        #   The unique identifier for the user.
         #
         #   @return [String]
         required :id, String
@@ -258,7 +259,7 @@ module WhopSDK
         # @!method initialize(id:, name:, username:)
         #   The user that owns the product (company owner).
         #
-        #   @param id [String] The internal ID of the user.
+        #   @param id [String] The unique identifier for the user.
         #
         #   @param name [String, nil] The name of the user from their Whop account.
         #
@@ -268,7 +269,7 @@ module WhopSDK
       # @see WhopSDK::Models::Product#product_tax_code
       class ProductTaxCode < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the product tax code.
+        #   The unique identifier for the product tax code.
         #
         #   @return [String]
         required :id, String
@@ -288,7 +289,7 @@ module WhopSDK
         # @!method initialize(id:, name:, product_type:)
         #   The product tax code for the product, if any.
         #
-        #   @param id [String] The internal ID of the product tax code.
+        #   @param id [String] The unique identifier for the product tax code.
         #
         #   @param name [String] The name of the product tax code.
         #

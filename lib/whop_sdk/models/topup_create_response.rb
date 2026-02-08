@@ -5,13 +5,13 @@ module WhopSDK
     # @see WhopSDK::Resources::Topups#create
     class TopupCreateResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The payment ID
+      #   The unique identifier for the payment.
       #
       #   @return [String]
       required :id, String
 
       # @!attribute created_at
-      #   The datetime the payment was created
+      #   The datetime the payment was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -47,11 +47,12 @@ module WhopSDK
       required :total, Float, nil?: true
 
       # @!method initialize(id:, created_at:, currency:, failure_message:, paid_at:, status:, total:)
-      #   An object representing a receipt for a membership.
+      #   A payment represents a completed or attempted charge for a membership. Payments
+      #   track the amount, status, currency, and payment method used.
       #
-      #   @param id [String] The payment ID
+      #   @param id [String] The unique identifier for the payment.
       #
-      #   @param created_at [Time] The datetime the payment was created
+      #   @param created_at [Time] The datetime the payment was created.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #

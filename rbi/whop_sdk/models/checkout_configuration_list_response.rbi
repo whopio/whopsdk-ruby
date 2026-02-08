@@ -11,7 +11,7 @@ module WhopSDK
           )
         end
 
-      # The ID of the checkout configuration
+      # The unique identifier for the checkout session.
       sig { returns(String) }
       attr_accessor :id
 
@@ -84,11 +84,9 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :redirect_url
 
-      # A checkout configuration object. Can be used to create a reusable custom
-      # configuration for a checkout, including attaching plans, affiliates and custom
-      # metadata to the checkout. This configuration can be re-used by multiple users.
-      # All successful payments and memberships resulting from a checkout will contain
-      # the passed metadata.
+      # A checkout session is a reusable configuration for a checkout, including the
+      # plan, affiliate, and custom metadata. Payments and memberships created from a
+      # checkout session inherit its metadata.
       sig do
         params(
           id: String,
@@ -110,7 +108,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the checkout configuration
+        # The unique identifier for the checkout session.
         id:,
         # The affiliate code to use for the checkout configuration
         affiliate_code:,
@@ -236,7 +234,7 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the plan.
+        # The unique identifier for the plan.
         sig { returns(String) }
         attr_accessor :id
 
@@ -296,7 +294,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The internal ID of the plan.
+          # The unique identifier for the plan.
           id:,
           # The interval in days at which the plan charges (renewal plans).
           billing_period:,

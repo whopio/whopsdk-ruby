@@ -16,7 +16,8 @@ module WhopSDK
       required :api_version, const: :v1
 
       # @!attribute data
-      #   An object representing a receipt for a membership.
+      #   A payment represents a completed or attempted charge for a membership. Payments
+      #   track the amount, status, currency, and payment method used.
       #
       #   @return [WhopSDK::Models::Payment]
       required :data, -> { WhopSDK::Payment }
@@ -40,9 +41,12 @@ module WhopSDK
       optional :company_id, String, nil?: true
 
       # @!method initialize(id:, data:, timestamp:, company_id: nil, api_version: :v1, type: :"payment.succeeded")
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::PaymentSucceededWebhookEvent} for more details.
+      #
       #   @param id [String] A unique ID for every single webhook request
       #
-      #   @param data [WhopSDK::Models::Payment] An object representing a receipt for a membership.
+      #   @param data [WhopSDK::Models::Payment] A payment represents a completed or attempted charge for a membership. Payments
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #

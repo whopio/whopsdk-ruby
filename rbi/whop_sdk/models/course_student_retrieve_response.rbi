@@ -11,7 +11,7 @@ module WhopSDK
           )
         end
 
-      # The ID of the course student. Looks like crsi_XXX
+      # The unique identifier for the course student type.
       sig { returns(String) }
       attr_accessor :id
 
@@ -72,7 +72,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the course student. Looks like crsi_XXX
+        # The unique identifier for the course student type.
         id:,
         # The number of lessons the student has completed
         completed_lessons_count:,
@@ -117,7 +117,7 @@ module WhopSDK
             )
           end
 
-        # The ID of the course. Looks like cors_XXX
+        # The unique identifier for the course.
         sig { returns(String) }
         attr_accessor :id
 
@@ -151,7 +151,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the course. Looks like cors_XXX
+          # The unique identifier for the course.
           id:,
           # The experience that the course belongs to
           experience:,
@@ -182,14 +182,14 @@ module WhopSDK
               )
             end
 
-          # The unique ID representing this experience
+          # The unique identifier for the experience.
           sig { returns(String) }
           attr_accessor :id
 
           # The experience that the course belongs to
           sig { params(id: String).returns(T.attached_class) }
           def self.new(
-            # The unique ID representing this experience
+            # The unique identifier for the experience.
             id:
           )
           end
@@ -209,7 +209,7 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the user.
+        # The unique identifier for the user.
         sig { returns(String) }
         attr_accessor :id
 
@@ -228,7 +228,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The internal ID of the user.
+          # The unique identifier for the user.
           id:,
           # The name of the user from their Whop account.
           name:,

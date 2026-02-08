@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::CourseLessons#list
     class CourseLessonListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the lesson
+      #   The unique identifier for the lesson.
       #
       #   @return [String]
       required :id, String
@@ -17,7 +17,7 @@ module WhopSDK
       required :content, String, nil?: true
 
       # @!attribute created_at
-      #   The timestamp of when the lesson was created
+      #   The datetime the lesson was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -77,11 +77,11 @@ module WhopSDK
       #
       #   A lesson from the courses app
       #
-      #   @param id [String] The ID of the lesson
+      #   @param id [String] The unique identifier for the lesson.
       #
       #   @param content [String, nil] The content of the lesson
       #
-      #   @param created_at [Time] The timestamp of when the lesson was created
+      #   @param created_at [Time] The datetime the lesson was created.
       #
       #   @param days_from_course_start_until_unlock [Integer, nil] Number of days from course start until the lesson is unlocked
       #

@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::Companies#list
     class CompanyListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID (tag) of the company.
+      #   The unique identifier for the company.
       #
       #   @return [String]
       required :id, String
@@ -17,7 +17,7 @@ module WhopSDK
       required :business_type, enum: -> { WhopSDK::BusinessTypes }, nil?: true
 
       # @!attribute created_at
-      #   When the company was created (signed up)
+      #   The datetime the company was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -84,7 +84,7 @@ module WhopSDK
       required :title, String
 
       # @!attribute updated_at
-      #   The time the company was last updated.
+      #   The datetime the company was last updated.
       #
       #   @return [Time]
       required :updated_at, Time
@@ -99,13 +99,14 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CompanyListResponse} for more details.
       #
-      #   An object representing a (sanitized) company.
+      #   A company is a seller on Whop. Companies own products, manage members, and
+      #   receive payouts.
       #
-      #   @param id [String] The ID (tag) of the company.
+      #   @param id [String] The unique identifier for the company.
       #
       #   @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #
-      #   @param created_at [Time] When the company was created (signed up)
+      #   @param created_at [Time] The datetime the company was created.
       #
       #   @param description [String, nil] The creator pitch for the company.
       #
@@ -127,7 +128,7 @@ module WhopSDK
       #
       #   @param title [String] The title of the company.
       #
-      #   @param updated_at [Time] The time the company was last updated.
+      #   @param updated_at [Time] The datetime the company was last updated.
       #
       #   @param verified [Boolean] If the company is Whop Verified
 
@@ -152,7 +153,7 @@ module WhopSDK
       # @see WhopSDK::Models::CompanyListResponse#owner_user
       class OwnerUser < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user.
+        #   The unique identifier for the user.
         #
         #   @return [String]
         required :id, String
@@ -172,7 +173,7 @@ module WhopSDK
         # @!method initialize(id:, name:, username:)
         #   The user who owns this company
         #
-        #   @param id [String] The internal ID of the user.
+        #   @param id [String] The unique identifier for the user.
         #
         #   @param name [String, nil] The name of the user from their Whop account.
         #

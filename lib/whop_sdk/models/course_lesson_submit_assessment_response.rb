@@ -5,13 +5,13 @@ module WhopSDK
     # @see WhopSDK::Resources::CourseLessons#submit_assessment
     class CourseLessonSubmitAssessmentResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the assessment result
+      #   The unique identifier for the assessment result.
       #
       #   @return [String]
       required :id, String
 
       # @!attribute created_at
-      #   When the assessment was taken
+      #   The datetime the assessment result was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -59,7 +59,7 @@ module WhopSDK
       required :score_percent, Float
 
       # @!attribute updated_at
-      #   When the assessment result was last updated
+      #   The datetime the assessment result was last updated.
       #
       #   @return [Time]
       required :updated_at, Time
@@ -73,9 +73,9 @@ module WhopSDK
       # @!method initialize(id:, created_at:, lesson:, result_correct:, result_grade:, result_graded_questions:, result_passing_grade:, result_question_count:, score_percent:, updated_at:, user:)
       #   The result of a user's assessment attempt
       #
-      #   @param id [String] The ID of the assessment result
+      #   @param id [String] The unique identifier for the assessment result.
       #
-      #   @param created_at [Time] When the assessment was taken
+      #   @param created_at [Time] The datetime the assessment result was created.
       #
       #   @param lesson [WhopSDK::Models::CourseLessonSubmitAssessmentResponse::Lesson] The lesson this assessment result is for
       #
@@ -91,14 +91,14 @@ module WhopSDK
       #
       #   @param score_percent [Float] The percentage score achieved on the assessment
       #
-      #   @param updated_at [Time] When the assessment result was last updated
+      #   @param updated_at [Time] The datetime the assessment result was last updated.
       #
       #   @param user [WhopSDK::Models::CourseLessonSubmitAssessmentResponse::User] The user who took the assessment
 
       # @see WhopSDK::Models::CourseLessonSubmitAssessmentResponse#lesson
       class Lesson < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the lesson
+        #   The unique identifier for the lesson.
         #
         #   @return [String]
         required :id, String
@@ -112,7 +112,7 @@ module WhopSDK
         # @!method initialize(id:, title:)
         #   The lesson this assessment result is for
         #
-        #   @param id [String] The ID of the lesson
+        #   @param id [String] The unique identifier for the lesson.
         #
         #   @param title [String] The title of the lesson
       end
@@ -120,7 +120,7 @@ module WhopSDK
       # @see WhopSDK::Models::CourseLessonSubmitAssessmentResponse#user
       class User < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user.
+        #   The unique identifier for the user.
         #
         #   @return [String]
         required :id, String
@@ -140,7 +140,7 @@ module WhopSDK
         # @!method initialize(id:, name:, username:)
         #   The user who took the assessment
         #
-        #   @param id [String] The internal ID of the user.
+        #   @param id [String] The unique identifier for the user.
         #
         #   @param name [String, nil] The name of the user from their Whop account.
         #

@@ -19,8 +19,7 @@ module WhopSDK
       sig { returns(Symbol) }
       attr_accessor :api_version
 
-      # An object representing a setup intent, which is a flow for allowing a customer
-      # to add a payment method to their account without making a purchase.
+      # A setup intent allows a user to save a payment method without making a purchase.
       sig { returns(WhopSDK::SetupIntent) }
       attr_reader :data
 
@@ -52,8 +51,7 @@ module WhopSDK
       def self.new(
         # A unique ID for every single webhook request
         id:,
-        # An object representing a setup intent, which is a flow for allowing a customer
-        # to add a payment method to their account without making a purchase.
+        # A setup intent allows a user to save a payment method without making a purchase.
         data:,
         # The timestamp in ISO 8601 format that the webhook was sent at on the server
         timestamp:,

@@ -21,6 +21,11 @@ module WhopSDK
     # @return [String]
     attr_reader :api_key
 
+    # When using the SDK in app mode pass this parameter to allow verifying user
+    # tokens
+    # @return [String, nil]
+    attr_reader :app_id
+
     # @return [WhopSDK::Resources::Apps]
     attr_reader :apps
 
@@ -181,7 +186,10 @@ module WhopSDK
     #
     # @param api_key [String, nil] A company API key, company scoped JWT, app API key, or user OAuth token. You
     # must prepend your key/token with the word 'Bearer', which will look like
-    # `Bearer ***************************` Defaults to `ENV["WHOPSDK_API_KEY"]`
+    # `Bearer ***************************` Defaults to `ENV["WHOP_API_KEY"]`
+    #
+    # @param app_id [String, nil] When using the SDK in app mode pass this parameter to allow verifying user
+    # tokens Defaults to `ENV["WHOP_APP_ID"]`
     #
     # @param base_url [String, nil] Override the default base URL for the API, e.g.,
     # `"https://api.example.com/v2/"`. Defaults to `ENV["WHOP_BASE_URL"]`
@@ -194,7 +202,8 @@ module WhopSDK
     #
     # @param max_retry_delay [Float]
     def initialize(
-      api_key: ENV["WHOPSDK_API_KEY"],
+      api_key: ENV["WHOP_API_KEY"],
+      app_id: ENV["WHOP_APP_ID"],
       base_url: ENV["WHOP_BASE_URL"],
       max_retries: self.class::DEFAULT_MAX_RETRIES,
       timeout: self.class::DEFAULT_TIMEOUT_IN_SECONDS,
@@ -204,10 +213,11 @@ module WhopSDK
       base_url ||= "https://api.whop.com/api/v1"
 
       if api_key.nil?
-        raise ArgumentError.new("api_key is required, and can be set via environ: \"WHOPSDK_API_KEY\"")
+        raise ArgumentError.new("api_key is required, and can be set via environ: \"WHOP_API_KEY\"")
       end
 
       @api_key = api_key.to_s
+      @app_id = app_id&.to_s
 
       super(
         base_url: base_url,

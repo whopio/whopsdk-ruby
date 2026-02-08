@@ -16,6 +16,11 @@ module WhopSDK
     sig { returns(String) }
     attr_reader :api_key
 
+    # When using the SDK in app mode pass this parameter to allow verifying user
+    # tokens
+    sig { returns(T.nilable(String)) }
+    attr_reader :app_id
+
     sig { returns(WhopSDK::Resources::Apps) }
     attr_reader :apps
 
@@ -172,6 +177,7 @@ module WhopSDK
     sig do
       params(
         api_key: T.nilable(String),
+        app_id: T.nilable(String),
         base_url: T.nilable(String),
         max_retries: Integer,
         timeout: Float,
@@ -182,8 +188,11 @@ module WhopSDK
     def self.new(
       # A company API key, company scoped JWT, app API key, or user OAuth token. You
       # must prepend your key/token with the word 'Bearer', which will look like
-      # `Bearer ***************************` Defaults to `ENV["WHOPSDK_API_KEY"]`
-      api_key: ENV["WHOPSDK_API_KEY"],
+      # `Bearer ***************************` Defaults to `ENV["WHOP_API_KEY"]`
+      api_key: ENV["WHOP_API_KEY"],
+      # When using the SDK in app mode pass this parameter to allow verifying user
+      # tokens Defaults to `ENV["WHOP_APP_ID"]`
+      app_id: ENV["WHOP_APP_ID"],
       # Override the default base URL for the API, e.g.,
       # `"https://api.example.com/v2/"`. Defaults to `ENV["WHOP_BASE_URL"]`
       base_url: ENV["WHOP_BASE_URL"],

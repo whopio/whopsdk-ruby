@@ -6,7 +6,7 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
     skip("Prism tests are disabled")
 
-    response = @whop.companies.create(email: "email", parent_company_id: "parent_company_id", title: "title")
+    response = @whop.companies.create(title: "title")
 
     assert_pattern do
       response => WhopSDK::Company
@@ -96,10 +96,10 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
     end
   end
 
-  def test_list_required_params
+  def test_list
     skip("Prism tests are disabled")
 
-    response = @whop.companies.list(parent_company_id: "parent_company_id")
+    response = @whop.companies.list
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage

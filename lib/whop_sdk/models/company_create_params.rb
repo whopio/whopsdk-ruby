@@ -7,18 +7,6 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute email
-      #   The email of the user who the company will belong to.
-      #
-      #   @return [String]
-      required :email, String
-
-      # @!attribute parent_company_id
-      #   The company ID of the platform creating this company.
-      #
-      #   @return [String]
-      required :parent_company_id, String
-
       # @!attribute title
       #   The name of the company being created.
       #
@@ -30,6 +18,19 @@ module WhopSDK
       #
       #   @return [Symbol, WhopSDK::Models::BusinessTypes, nil]
       optional :business_type, enum: -> { WhopSDK::BusinessTypes }, nil?: true
+
+      # @!attribute description
+      #   A description of what the company offers or does.
+      #
+      #   @return [String, nil]
+      optional :description, String, nil?: true
+
+      # @!attribute email
+      #   The email of the user who the sub-company will belong to. Required when
+      #   parent_company_id is provided.
+      #
+      #   @return [String, nil]
+      optional :email, String, nil?: true
 
       # @!attribute industry_type
       #   The different industry types a company can be in.
@@ -44,37 +45,44 @@ module WhopSDK
       optional :logo, -> { WhopSDK::CompanyCreateParams::Logo }, nil?: true
 
       # @!attribute metadata
-      #   Additional metadata for the account
+      #   Additional metadata for the company
       #
       #   @return [Hash{Symbol=>Object}, nil]
       optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
+      # @!attribute parent_company_id
+      #   The company ID of the platform creating this sub-company. If omitted, the
+      #   company is created for the current user.
+      #
+      #   @return [String, nil]
+      optional :parent_company_id, String, nil?: true
+
       # @!attribute send_customer_emails
       #   Whether Whop sends transactional emails to customers on behalf of this company.
-      #   Includes: order confirmations, payment failures, refund notifications, upcoming
-      #   renewals, and membership cancelations/expirations. When disabled, the platform
-      #   is responsible for handling these communications. This is defaulted to true.
+      #   Only used when parent_company_id is provided.
       #
       #   @return [Boolean, nil]
       optional :send_customer_emails, WhopSDK::Internal::Type::Boolean, nil?: true
 
-      # @!method initialize(email:, parent_company_id:, title:, business_type: nil, industry_type: nil, logo: nil, metadata: nil, send_customer_emails: nil, request_options: {})
+      # @!method initialize(title:, business_type: nil, description: nil, email: nil, industry_type: nil, logo: nil, metadata: nil, parent_company_id: nil, send_customer_emails: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CompanyCreateParams} for more details.
-      #
-      #   @param email [String] The email of the user who the company will belong to.
-      #
-      #   @param parent_company_id [String] The company ID of the platform creating this company.
       #
       #   @param title [String] The name of the company being created.
       #
       #   @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #
+      #   @param description [String, nil] A description of what the company offers or does.
+      #
+      #   @param email [String, nil] The email of the user who the sub-company will belong to. Required when parent_c
+      #
       #   @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
       #   @param logo [WhopSDK::Models::CompanyCreateParams::Logo, nil] The logo for the company in png, jpeg, or gif format
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] Additional metadata for the account
+      #   @param metadata [Hash{Symbol=>Object}, nil] Additional metadata for the company
+      #
+      #   @param parent_company_id [String, nil] The company ID of the platform creating this sub-company. If omitted, the compan
       #
       #   @param send_customer_emails [Boolean, nil] Whether Whop sends transactional emails to customers on behalf of this company.
       #

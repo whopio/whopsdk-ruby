@@ -27,6 +27,10 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::BusinessTypes::OrSymbol)) }
       attr_accessor :business_type
 
+      # A description of what the company offers or does.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :description
+
       # The different industry types a company can be in.
       sig { returns(T.nilable(WhopSDK::IndustryTypes::OrSymbol)) }
       attr_accessor :industry_type
@@ -56,6 +60,7 @@ module WhopSDK
           banner_image:
             T.nilable(WhopSDK::CompanyUpdateParams::BannerImage::OrHash),
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
+          description: T.nilable(String),
           industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           logo: T.nilable(WhopSDK::CompanyUpdateParams::Logo::OrHash),
           send_customer_emails: T.nilable(T::Boolean),
@@ -68,6 +73,8 @@ module WhopSDK
         banner_image: nil,
         # The different business types a company can be.
         business_type: nil,
+        # A description of what the company offers or does.
+        description: nil,
         # The different industry types a company can be in.
         industry_type: nil,
         # The logo for the company in png, jpeg, or gif format
@@ -88,6 +95,7 @@ module WhopSDK
           {
             banner_image: T.nilable(WhopSDK::CompanyUpdateParams::BannerImage),
             business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
+            description: T.nilable(String),
             industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
             logo: T.nilable(WhopSDK::CompanyUpdateParams::Logo),
             send_customer_emails: T.nilable(T::Boolean),

@@ -2,22 +2,20 @@ module WhopSDK
   module Models
     type company_list_params =
       {
-        parent_company_id: String,
         after: String?,
         before: String?,
         created_after: Time?,
         created_before: Time?,
         direction: WhopSDK::Models::direction?,
         first: Integer?,
-        last: Integer?
+        last: Integer?,
+        parent_company_id: String?
       }
       & WhopSDK::Internal::Type::request_parameters
 
     class CompanyListParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
-
-      attr_accessor parent_company_id: String
 
       attr_accessor after: String?
 
@@ -33,8 +31,9 @@ module WhopSDK
 
       attr_accessor last: Integer?
 
+      attr_accessor parent_company_id: String?
+
       def initialize: (
-        parent_company_id: String,
         ?after: String?,
         ?before: String?,
         ?created_after: Time?,
@@ -42,11 +41,11 @@ module WhopSDK
         ?direction: WhopSDK::Models::direction?,
         ?first: Integer?,
         ?last: Integer?,
+        ?parent_company_id: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        parent_company_id: String,
         after: String?,
         before: String?,
         created_after: Time?,
@@ -54,6 +53,7 @@ module WhopSDK
         direction: WhopSDK::Models::direction?,
         first: Integer?,
         last: Integer?,
+        parent_company_id: String?,
         request_options: WhopSDK::RequestOptions
       }
     end

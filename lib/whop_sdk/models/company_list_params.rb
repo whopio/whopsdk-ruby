@@ -7,12 +7,6 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute parent_company_id
-      #   The ID of the parent company to list connected accounts for
-      #
-      #   @return [String]
-      required :parent_company_id, String
-
       # @!attribute after
       #   Returns the elements in the list that come after the specified cursor.
       #
@@ -55,8 +49,16 @@ module WhopSDK
       #   @return [Integer, nil]
       optional :last, Integer, nil?: true
 
-      # @!method initialize(parent_company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, request_options: {})
-      #   @param parent_company_id [String] The ID of the parent company to list connected accounts for
+      # @!attribute parent_company_id
+      #   The ID of the parent company to list connected accounts for. Omit to list the
+      #   current user's own companies.
+      #
+      #   @return [String, nil]
+      optional :parent_company_id, String, nil?: true
+
+      # @!method initialize(after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, parent_company_id: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::CompanyListParams} for more details.
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -71,6 +73,8 @@ module WhopSDK
       #   @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #
+      #   @param parent_company_id [String, nil] The ID of the parent company to list connected accounts for. Omit to list the cu
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

@@ -6,28 +6,31 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::CompanyCreateParams} for more details.
       #
-      # Create a new connected account for your platform
+      # Create a new company. Pass parent_company_id to create a sub-company under a
+      # platform, or omit it to create a company for the current user.
       #
       # Required permissions:
       #
-      # - `company:create_child`
+      # - `company:create`
       # - `company:basic:read`
       #
-      # @overload create(email:, parent_company_id:, title:, business_type: nil, industry_type: nil, logo: nil, metadata: nil, send_customer_emails: nil, request_options: {})
-      #
-      # @param email [String] The email of the user who the company will belong to.
-      #
-      # @param parent_company_id [String] The company ID of the platform creating this company.
+      # @overload create(title:, business_type: nil, description: nil, email: nil, industry_type: nil, logo: nil, metadata: nil, parent_company_id: nil, send_customer_emails: nil, request_options: {})
       #
       # @param title [String] The name of the company being created.
       #
       # @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #
+      # @param description [String, nil] A description of what the company offers or does.
+      #
+      # @param email [String, nil] The email of the user who the sub-company will belong to. Required when parent_c
+      #
       # @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
       # @param logo [WhopSDK::Models::CompanyCreateParams::Logo, nil] The logo for the company in png, jpeg, or gif format
       #
-      # @param metadata [Hash{Symbol=>Object}, nil] Additional metadata for the account
+      # @param metadata [Hash{Symbol=>Object}, nil] Additional metadata for the company
+      #
+      # @param parent_company_id [String, nil] The company ID of the platform creating this sub-company. If omitted, the compan
       #
       # @param send_customer_emails [Boolean, nil] Whether Whop sends transactional emails to customers on behalf of this company.
       #
@@ -82,13 +85,15 @@ module WhopSDK
       # - `company:update`
       # - `company:basic:read`
       #
-      # @overload update(id, banner_image: nil, business_type: nil, industry_type: nil, logo: nil, send_customer_emails: nil, title: nil, request_options: {})
+      # @overload update(id, banner_image: nil, business_type: nil, description: nil, industry_type: nil, logo: nil, send_customer_emails: nil, title: nil, request_options: {})
       #
       # @param id [String] The ID of the company to update
       #
       # @param banner_image [WhopSDK::Models::CompanyUpdateParams::BannerImage, nil] The banner image for the company in png or jpeg format
       #
       # @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
+      #
+      # @param description [String, nil] A description of what the company offers or does.
       #
       # @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
@@ -114,15 +119,18 @@ module WhopSDK
         )
       end
 
-      # Lists companies the current user has access to
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::CompanyListParams} for more details.
+      #
+      # Lists companies. When parent_company_id is provided, lists connected accounts
+      # under that company. When omitted, lists companies the current user has access
+      # to.
       #
       # Required permissions:
       #
       # - `company:basic:read`
       #
-      # @overload list(parent_company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, request_options: {})
-      #
-      # @param parent_company_id [String] The ID of the parent company to list connected accounts for
+      # @overload list(after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, parent_company_id: nil, request_options: {})
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -138,12 +146,14 @@ module WhopSDK
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
+      # @param parent_company_id [String, nil] The ID of the parent company to list connected accounts for. Omit to list the cu
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::CompanyListResponse>]
       #
       # @see WhopSDK::Models::CompanyListParams
-      def list(params)
+      def list(params = {})
         parsed, options = WhopSDK::CompanyListParams.dump_request(params)
         @client.request(
           method: :get,

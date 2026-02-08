@@ -2,13 +2,14 @@ module WhopSDK
   module Resources
     class Companies
       def create: (
-        email: String,
-        parent_company_id: String,
         title: String,
         ?business_type: WhopSDK::Models::business_types?,
+        ?description: String?,
+        ?email: String?,
         ?industry_type: WhopSDK::Models::industry_types?,
         ?logo: WhopSDK::CompanyCreateParams::Logo?,
         ?metadata: ::Hash[Symbol, top]?,
+        ?parent_company_id: String?,
         ?send_customer_emails: bool?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Company
@@ -22,6 +23,7 @@ module WhopSDK
         String id,
         ?banner_image: WhopSDK::CompanyUpdateParams::BannerImage?,
         ?business_type: WhopSDK::Models::business_types?,
+        ?description: String?,
         ?industry_type: WhopSDK::Models::industry_types?,
         ?logo: WhopSDK::CompanyUpdateParams::Logo?,
         ?send_customer_emails: bool?,
@@ -30,7 +32,6 @@ module WhopSDK
       ) -> WhopSDK::Company
 
       def list: (
-        parent_company_id: String,
         ?after: String?,
         ?before: String?,
         ?created_after: Time?,
@@ -38,6 +39,7 @@ module WhopSDK
         ?direction: WhopSDK::Models::direction?,
         ?first: Integer?,
         ?last: Integer?,
+        ?parent_company_id: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::CompanyListResponse]
 

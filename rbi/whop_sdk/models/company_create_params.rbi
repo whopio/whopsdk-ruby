@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::CompanyCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The name of the company being created.
+      # The display name of the company shown to customers.
       sig { returns(String) }
       attr_accessor :title
 
@@ -19,11 +19,12 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::BusinessTypes::OrSymbol)) }
       attr_accessor :business_type
 
-      # A description of what the company offers or does.
+      # A promotional pitch displayed to potential customers on the company's store
+      # page.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      # The email of the user who the sub-company will belong to. Required when
+      # The email address of the user who will own the connected account. Required when
       # parent_company_id is provided.
       sig { returns(T.nilable(String)) }
       attr_accessor :email
@@ -32,7 +33,7 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::IndustryTypes::OrSymbol)) }
       attr_accessor :industry_type
 
-      # The logo for the company in png, jpeg, or gif format
+      # The company's logo image. Accepts PNG, JPEG, or GIF format.
       sig { returns(T.nilable(WhopSDK::CompanyCreateParams::Logo)) }
       attr_reader :logo
 
@@ -41,17 +42,18 @@ module WhopSDK
       end
       attr_writer :logo
 
-      # Additional metadata for the company
+      # A key-value JSON object of custom metadata to store on the company.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
-      # The company ID of the platform creating this sub-company. If omitted, the
-      # company is created for the current user.
+      # The unique identifier of the parent platform company. When provided, creates a
+      # connected account under that platform. Omit to create a company for the current
+      # user.
       sig { returns(T.nilable(String)) }
       attr_accessor :parent_company_id
 
       # Whether Whop sends transactional emails to customers on behalf of this company.
-      # Only used when parent_company_id is provided.
+      # Only applies when creating a connected account.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :send_customer_emails
 
@@ -70,26 +72,28 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The name of the company being created.
+        # The display name of the company shown to customers.
         title:,
         # The different business types a company can be.
         business_type: nil,
-        # A description of what the company offers or does.
+        # A promotional pitch displayed to potential customers on the company's store
+        # page.
         description: nil,
-        # The email of the user who the sub-company will belong to. Required when
+        # The email address of the user who will own the connected account. Required when
         # parent_company_id is provided.
         email: nil,
         # The different industry types a company can be in.
         industry_type: nil,
-        # The logo for the company in png, jpeg, or gif format
+        # The company's logo image. Accepts PNG, JPEG, or GIF format.
         logo: nil,
-        # Additional metadata for the company
+        # A key-value JSON object of custom metadata to store on the company.
         metadata: nil,
-        # The company ID of the platform creating this sub-company. If omitted, the
-        # company is created for the current user.
+        # The unique identifier of the parent platform company. When provided, creates a
+        # connected account under that platform. Omit to create a company for the current
+        # user.
         parent_company_id: nil,
         # Whether Whop sends transactional emails to customers on behalf of this company.
-        # Only used when parent_company_id is provided.
+        # Only applies when creating a connected account.
         send_customer_emails: nil,
         request_options: {}
       )
@@ -127,7 +131,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The logo for the company in png, jpeg, or gif format
+        # The company's logo image. Accepts PNG, JPEG, or GIF format.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.

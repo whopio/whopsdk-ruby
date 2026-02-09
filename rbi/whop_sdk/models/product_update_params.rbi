@@ -15,7 +15,7 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::BusinessTypes::OrSymbol)) }
       attr_accessor :business_type
 
-      # Whether or not to collect shipping information at checkout from the customer.
+      # Whether the checkout flow collects a shipping address from the customer.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :collect_shipping_address
 
@@ -23,21 +23,23 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::CustomCta::OrSymbol)) }
       attr_accessor :custom_cta
 
-      # The custom call to action URL for the product.
+      # A URL that the call-to-action button links to instead of the default checkout
+      # flow.
       sig { returns(T.nilable(String)) }
       attr_accessor :custom_cta_url
 
-      # The custom statement descriptor for the product i.e. WHOP\*SPORTS, must be
-      # between 5 and 22 characters, contain at least one letter, and not contain any of
-      # the following characters: <, >, \, ', "
+      # A custom text label that appears on the customer's bank statement. Must be 5-22
+      # characters, contain at least one letter, and not contain <, >, \, ', or "
+      # characters.
       sig { returns(T.nilable(String)) }
       attr_accessor :custom_statement_descriptor
 
-      # A written description of the product.
+      # A written description of the product displayed on its product page.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      # The percentage of the revenue that goes to the global affiliate program.
+      # The commission rate as a percentage that affiliates earn through the global
+      # affiliate program.
       sig { returns(T.nilable(Float)) }
       attr_accessor :global_affiliate_percentage
 
@@ -45,7 +47,7 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol)) }
       attr_accessor :global_affiliate_status
 
-      # The headline of the product.
+      # A short marketing headline displayed prominently on the product page.
       sig { returns(T.nilable(String)) }
       attr_accessor :headline
 
@@ -53,7 +55,8 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::IndustryTypes::OrSymbol)) }
       attr_accessor :industry_type
 
-      # The percentage of the revenue that goes to the member affiliate program.
+      # The commission rate as a percentage that members earn through the member
+      # affiliate program.
       sig { returns(T.nilable(Float)) }
       attr_accessor :member_affiliate_percentage
 
@@ -61,19 +64,19 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol)) }
       attr_accessor :member_affiliate_status
 
-      # The ID of the product tax code to apply to this product.
+      # The unique identifier of the tax classification code to apply to this product.
       sig { returns(T.nilable(String)) }
       attr_accessor :product_tax_code_id
 
-      # The URL to redirect the customer to after a purchase.
+      # A URL to redirect the customer to after completing a purchase.
       sig { returns(T.nilable(String)) }
       attr_accessor :redirect_purchase_url
 
-      # The route of the product.
+      # The URL slug for the product's public link.
       sig { returns(T.nilable(String)) }
       attr_accessor :route
 
-      # Configuration for a product on the company's store page.
+      # Layout and display configuration for this product on the company's store page.
       sig { returns(T.nilable(WhopSDK::ProductUpdateParams::StorePageConfig)) }
       attr_reader :store_page_config
 
@@ -85,7 +88,7 @@ module WhopSDK
       end
       attr_writer :store_page_config
 
-      # The title of the product.
+      # The display name of the product. Maximum 40 characters.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
@@ -122,39 +125,42 @@ module WhopSDK
       def self.new(
         # The different business types a company can be.
         business_type: nil,
-        # Whether or not to collect shipping information at checkout from the customer.
+        # Whether the checkout flow collects a shipping address from the customer.
         collect_shipping_address: nil,
         # The different types of custom CTAs that can be selected.
         custom_cta: nil,
-        # The custom call to action URL for the product.
+        # A URL that the call-to-action button links to instead of the default checkout
+        # flow.
         custom_cta_url: nil,
-        # The custom statement descriptor for the product i.e. WHOP\*SPORTS, must be
-        # between 5 and 22 characters, contain at least one letter, and not contain any of
-        # the following characters: <, >, \, ', "
+        # A custom text label that appears on the customer's bank statement. Must be 5-22
+        # characters, contain at least one letter, and not contain <, >, \, ', or "
+        # characters.
         custom_statement_descriptor: nil,
-        # A written description of the product.
+        # A written description of the product displayed on its product page.
         description: nil,
-        # The percentage of the revenue that goes to the global affiliate program.
+        # The commission rate as a percentage that affiliates earn through the global
+        # affiliate program.
         global_affiliate_percentage: nil,
         # The different statuses of the global affiliate program for a product.
         global_affiliate_status: nil,
-        # The headline of the product.
+        # A short marketing headline displayed prominently on the product page.
         headline: nil,
         # The different industry types a company can be in.
         industry_type: nil,
-        # The percentage of the revenue that goes to the member affiliate program.
+        # The commission rate as a percentage that members earn through the member
+        # affiliate program.
         member_affiliate_percentage: nil,
         # The different statuses of the global affiliate program for a product.
         member_affiliate_status: nil,
-        # The ID of the product tax code to apply to this product.
+        # The unique identifier of the tax classification code to apply to this product.
         product_tax_code_id: nil,
-        # The URL to redirect the customer to after a purchase.
+        # A URL to redirect the customer to after completing a purchase.
         redirect_purchase_url: nil,
-        # The route of the product.
+        # The URL slug for the product's public link.
         route: nil,
-        # Configuration for a product on the company's store page.
+        # Layout and display configuration for this product on the company's store page.
         store_page_config: nil,
-        # The title of the product.
+        # The display name of the product. Maximum 40 characters.
         title: nil,
         # Visibility of a resource
         visibility: nil,
@@ -210,7 +216,7 @@ module WhopSDK
         sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :show_price
 
-        # Configuration for a product on the company's store page.
+        # Layout and display configuration for this product on the company's store page.
         sig do
           params(
             custom_cta: T.nilable(String),

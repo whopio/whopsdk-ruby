@@ -336,33 +336,38 @@ module WhopSDK
             required :id, String
 
             # @!attribute email
-            #   The email of the user
+            #   The user's email address. Requires the member:email:read permission to access.
+            #   Null if not authorized.
             #
             #   @return [String, nil]
             required :email, String, nil?: true
 
             # @!attribute name
-            #   The name of the user from their Whop account.
+            #   The user's display name shown on their public profile.
             #
             #   @return [String, nil]
             required :name, String, nil?: true
 
             # @!attribute username
-            #   The username of the user from their Whop account.
+            #   The user's unique username shown on their public profile.
             #
             #   @return [String]
             required :username, String
 
             # @!method initialize(id:, email:, name:, username:)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::RefundUpdatedWebhookEvent::Data::Payment::User} for more
+            #   details.
+            #
             #   The user that made this payment.
             #
             #   @param id [String] The unique identifier for the user.
             #
-            #   @param email [String, nil] The email of the user
+            #   @param email [String, nil] The user's email address. Requires the member:email:read permission to access. N
             #
-            #   @param name [String, nil] The name of the user from their Whop account.
+            #   @param name [String, nil] The user's display name shown on their public profile.
             #
-            #   @param username [String] The username of the user from their Whop account.
+            #   @param username [String] The user's unique username shown on their public profile.
           end
         end
       end

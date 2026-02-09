@@ -102,8 +102,8 @@ module WhopSDK
       # @see WhopSDK::Models::CourseLessonListResponse#thumbnail
       class Thumbnail < WhopSDK::Internal::Type::BaseModel
         # @!attribute url
-        #   This is the URL you use to render optimized attachments on the client. This
-        #   should be used for apps.
+        #   A pre-optimized URL for rendering this attachment on the client. This should be
+        #   used for displaying attachments in apps.
         #
         #   @return [String, nil]
         required :url, String, nil?: true
@@ -114,7 +114,7 @@ module WhopSDK
         #
         #   The thumbnail for the lesson
         #
-        #   @param url [String, nil] This is the URL you use to render optimized attachments on the client. This shou
+        #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
       end
     end
   end

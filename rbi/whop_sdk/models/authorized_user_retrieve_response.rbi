@@ -90,7 +90,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The title of the company.
+        # The display name of the company shown to customers.
         sig { returns(String) }
         attr_accessor :title
 
@@ -99,7 +99,7 @@ module WhopSDK
         def self.new(
           # The unique identifier for the company.
           id:,
-          # The title of the company.
+          # The display name of the company shown to customers.
           title:
         )
         end
@@ -122,15 +122,16 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The email of the user
+        # The user's email address. Requires the member:email:read permission to access.
+        # Null if not authorized.
         sig { returns(T.nilable(String)) }
         attr_accessor :email
 
-        # The name of the user from their Whop account.
+        # The user's display name shown on their public profile.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
-        # The username of the user from their Whop account.
+        # The user's unique username shown on their public profile.
         sig { returns(String) }
         attr_accessor :username
 
@@ -146,11 +147,12 @@ module WhopSDK
         def self.new(
           # The unique identifier for the user.
           id:,
-          # The email of the user
+          # The user's email address. Requires the member:email:read permission to access.
+          # Null if not authorized.
           email:,
-          # The name of the user from their Whop account.
+          # The user's display name shown on their public profile.
           name:,
-          # The username of the user from their Whop account.
+          # The user's unique username shown on their public profile.
           username:
         )
         end

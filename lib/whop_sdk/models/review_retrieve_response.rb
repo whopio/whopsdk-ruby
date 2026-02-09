@@ -126,26 +126,26 @@ module WhopSDK
 
       class Attachment < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the attachment
+        #   The unique identifier of the attachment.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute content_type
-        #   The attachment's content type (e.g., image/jpg, video/mp4)
+        #   The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
         #
         #   @return [String, nil]
         required :content_type, String, nil?: true
 
         # @!attribute filename
-        #   The name of the file
+        #   The original filename of the uploaded attachment, including its file extension.
         #
         #   @return [String, nil]
         required :filename, String, nil?: true
 
         # @!attribute url
-        #   This is the URL you use to render optimized attachments on the client. This
-        #   should be used for apps.
+        #   A pre-optimized URL for rendering this attachment on the client. This should be
+        #   used for displaying attachments in apps.
         #
         #   @return [String, nil]
         required :url, String, nil?: true
@@ -156,13 +156,13 @@ module WhopSDK
         #
         #   Represents an image attachment
         #
-        #   @param id [String] The ID of the attachment
+        #   @param id [String] The unique identifier of the attachment.
         #
-        #   @param content_type [String, nil] The attachment's content type (e.g., image/jpg, video/mp4)
+        #   @param content_type [String, nil] The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
         #
-        #   @param filename [String, nil] The name of the file
+        #   @param filename [String, nil] The original filename of the uploaded attachment, including its file extension.
         #
-        #   @param url [String, nil] This is the URL you use to render optimized attachments on the client. This shou
+        #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
       end
 
       # @see WhopSDK::Models::ReviewRetrieveResponse#company
@@ -174,25 +174,28 @@ module WhopSDK
         required :id, String
 
         # @!attribute route
-        #   The slug/route of the company on the Whop site.
+        #   The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
         #
         #   @return [String]
         required :route, String
 
         # @!attribute title
-        #   The title of the company.
+        #   The display name of the company shown to customers.
         #
         #   @return [String]
         required :title, String
 
         # @!method initialize(id:, route:, title:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::ReviewRetrieveResponse::Company} for more details.
+        #
         #   The company the review is for.
         #
         #   @param id [String] The unique identifier for the company.
         #
-        #   @param route [String] The slug/route of the company on the Whop site.
+        #   @param route [String] The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
         #
-        #   @param title [String] The title of the company.
+        #   @param title [String] The display name of the company shown to customers.
       end
 
       # @see WhopSDK::Models::ReviewRetrieveResponse#product
@@ -204,17 +207,21 @@ module WhopSDK
         required :id, String
 
         # @!attribute title
-        #   The title of the product. Use for Whop 4.0.
+        #   The display name of the product shown to customers on the product page and in
+        #   search results.
         #
         #   @return [String]
         required :title, String
 
         # @!method initialize(id:, title:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::ReviewRetrieveResponse::Product} for more details.
+        #
         #   The product the review is for.
         #
         #   @param id [String] The unique identifier for the product.
         #
-        #   @param title [String] The title of the product. Use for Whop 4.0.
+        #   @param title [String] The display name of the product shown to customers on the product page and in se
       end
 
       # @see WhopSDK::Models::ReviewRetrieveResponse#user
@@ -226,13 +233,13 @@ module WhopSDK
         required :id, String
 
         # @!attribute name
-        #   The name of the user from their Whop account.
+        #   The user's display name shown on their public profile.
         #
         #   @return [String, nil]
         required :name, String, nil?: true
 
         # @!attribute username
-        #   The username of the user from their Whop account.
+        #   The user's unique username shown on their public profile.
         #
         #   @return [String]
         required :username, String
@@ -242,9 +249,9 @@ module WhopSDK
         #
         #   @param id [String] The unique identifier for the user.
         #
-        #   @param name [String, nil] The name of the user from their Whop account.
+        #   @param name [String, nil] The user's display name shown on their public profile.
         #
-        #   @param username [String] The username of the user from their Whop account.
+        #   @param username [String] The user's unique username shown on their public profile.
       end
     end
   end

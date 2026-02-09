@@ -251,7 +251,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The title of the company.
+        # The display name of the company shown to customers.
         sig { returns(String) }
         attr_accessor :title
 
@@ -260,7 +260,7 @@ module WhopSDK
         def self.new(
           # The unique identifier for the company.
           id:,
-          # The title of the company.
+          # The display name of the company shown to customers.
           title:
         )
         end
@@ -280,11 +280,11 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The name of the user from their Whop account.
+        # The user's display name shown on their public profile.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
-        # The username of the user from their Whop account.
+        # The user's unique username shown on their public profile.
         sig { returns(String) }
         attr_accessor :username
 
@@ -297,9 +297,9 @@ module WhopSDK
         def self.new(
           # The unique identifier for the user.
           id:,
-          # The name of the user from their Whop account.
+          # The user's display name shown on their public profile.
           name:,
-          # The username of the user from their Whop account.
+          # The user's unique username shown on their public profile.
           username:
         )
         end
@@ -317,8 +317,8 @@ module WhopSDK
         OrHash =
           T.type_alias { T.any(WhopSDK::App::Icon, WhopSDK::Internal::AnyHash) }
 
-        # This is the URL you use to render optimized attachments on the client. This
-        # should be used for apps.
+        # A pre-optimized URL for rendering this attachment on the client. This should be
+        # used for displaying attachments in apps.
         sig { returns(T.nilable(String)) }
         attr_accessor :url
 
@@ -326,8 +326,8 @@ module WhopSDK
         # checkout, and as a default icon for the experiences.
         sig { params(url: T.nilable(String)).returns(T.attached_class) }
         def self.new(
-          # This is the URL you use to render optimized attachments on the client. This
-          # should be used for apps.
+          # A pre-optimized URL for rendering this attachment on the client. This should be
+          # used for displaying attachments in apps.
           url:
         )
         end

@@ -168,17 +168,21 @@ module WhopSDK
         required :id, String
 
         # @!attribute title
-        #   The title of the product. Use for Whop 4.0.
+        #   The display name of the product shown to customers on the product page and in
+        #   search results.
         #
         #   @return [String]
         required :title, String
 
         # @!method initialize(id:, title:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::PromoCodeListResponse::Product} for more details.
+        #
         #   The product this promo code applies to
         #
         #   @param id [String] The unique identifier for the product.
         #
-        #   @param title [String] The title of the product. Use for Whop 4.0.
+        #   @param title [String] The display name of the product shown to customers on the product page and in se
       end
     end
   end

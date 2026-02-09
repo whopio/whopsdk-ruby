@@ -8,7 +8,7 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute banner_image
-      #   The banner image for the company in png or jpeg format
+      #   The company's banner image. Accepts PNG or JPEG format.
       #
       #   @return [WhopSDK::Models::CompanyUpdateParams::BannerImage, nil]
       optional :banner_image, -> { WhopSDK::CompanyUpdateParams::BannerImage }, nil?: true
@@ -20,7 +20,8 @@ module WhopSDK
       optional :business_type, enum: -> { WhopSDK::BusinessTypes }, nil?: true
 
       # @!attribute description
-      #   A description of what the company offers or does.
+      #   A promotional pitch displayed to potential customers on the company's store
+      #   page.
       #
       #   @return [String, nil]
       optional :description, String, nil?: true
@@ -32,22 +33,20 @@ module WhopSDK
       optional :industry_type, enum: -> { WhopSDK::IndustryTypes }, nil?: true
 
       # @!attribute logo
-      #   The logo for the company in png, jpeg, or gif format
+      #   The company's logo image. Accepts PNG, JPEG, or GIF format.
       #
       #   @return [WhopSDK::Models::CompanyUpdateParams::Logo, nil]
       optional :logo, -> { WhopSDK::CompanyUpdateParams::Logo }, nil?: true
 
       # @!attribute send_customer_emails
-      #   Whether Whop sends transactional emails to customers on behalf of this company.
-      #   Includes: order confirmations, payment failures, refund notifications, upcoming
-      #   renewals, and membership cancelations/expirations. When disabled, the platform
-      #   is responsible for handling these communications.
+      #   Whether Whop sends transactional emails (receipts, renewals, cancelations) to
+      #   customers on behalf of this company.
       #
       #   @return [Boolean, nil]
       optional :send_customer_emails, WhopSDK::Internal::Type::Boolean, nil?: true
 
       # @!attribute title
-      #   The title of the company
+      #   The display name of the company shown to customers.
       #
       #   @return [String, nil]
       optional :title, String, nil?: true
@@ -56,19 +55,19 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CompanyUpdateParams} for more details.
       #
-      #   @param banner_image [WhopSDK::Models::CompanyUpdateParams::BannerImage, nil] The banner image for the company in png or jpeg format
+      #   @param banner_image [WhopSDK::Models::CompanyUpdateParams::BannerImage, nil] The company's banner image. Accepts PNG or JPEG format.
       #
       #   @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #
-      #   @param description [String, nil] A description of what the company offers or does.
+      #   @param description [String, nil] A promotional pitch displayed to potential customers on the company's store page
       #
       #   @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
-      #   @param logo [WhopSDK::Models::CompanyUpdateParams::Logo, nil] The logo for the company in png, jpeg, or gif format
+      #   @param logo [WhopSDK::Models::CompanyUpdateParams::Logo, nil] The company's logo image. Accepts PNG, JPEG, or GIF format.
       #
-      #   @param send_customer_emails [Boolean, nil] Whether Whop sends transactional emails to customers on behalf of this company.
+      #   @param send_customer_emails [Boolean, nil] Whether Whop sends transactional emails (receipts, renewals, cancelations) to cu
       #
-      #   @param title [String, nil] The title of the company
+      #   @param title [String, nil] The display name of the company shown to customers.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
@@ -80,7 +79,7 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   The banner image for the company in png or jpeg format
+        #   The company's banner image. Accepts PNG or JPEG format.
         #
         #   @param id [String] The ID of an existing file object.
       end
@@ -93,7 +92,7 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   The logo for the company in png, jpeg, or gif format
+        #   The company's logo image. Accepts PNG, JPEG, or GIF format.
         #
         #   @param id [String] The ID of an existing file object.
       end

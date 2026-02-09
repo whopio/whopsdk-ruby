@@ -121,7 +121,7 @@ module WhopSDK
           required :id, String
 
           # @!attribute name
-          #   The name of the user from their Whop account.
+          #   The user's display name shown on their public profile.
           #
           #   @return [String, nil]
           required :name, String, nil?: true
@@ -133,7 +133,7 @@ module WhopSDK
           required :typename, const: :User
 
           # @!attribute username
-          #   The username of the user from their Whop account.
+          #   The user's unique username shown on their public profile.
           #
           #   @return [String]
           required :username, String
@@ -144,9 +144,9 @@ module WhopSDK
           #
           #   @param id [String] The unique identifier for the user.
           #
-          #   @param name [String, nil] The name of the user from their Whop account.
+          #   @param name [String, nil] The user's display name shown on their public profile.
           #
-          #   @param username [String] The username of the user from their Whop account.
+          #   @param username [String] The user's unique username shown on their public profile.
           #
           #   @param typename [Symbol, :User] The typename of this object
         end
@@ -159,13 +159,13 @@ module WhopSDK
           required :id, String
 
           # @!attribute route
-          #   The slug/route of the company on the Whop site.
+          #   The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
           #
           #   @return [String]
           required :route, String
 
           # @!attribute title
-          #   The title of the company.
+          #   The display name of the company shown to customers.
           #
           #   @return [String]
           required :title, String
@@ -177,14 +177,17 @@ module WhopSDK
           required :typename, const: :Company
 
           # @!method initialize(id:, route:, title:, typename: :Company)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::Transfer::Destination::Company} for more details.
+          #
           #   A company is a seller on Whop. Companies own products, manage members, and
           #   receive payouts.
           #
           #   @param id [String] The unique identifier for the company.
           #
-          #   @param route [String] The slug/route of the company on the Whop site.
+          #   @param route [String] The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
           #
-          #   @param title [String] The title of the company.
+          #   @param title [String] The display name of the company shown to customers.
           #
           #   @param typename [Symbol, :Company] The typename of this object
         end
@@ -215,7 +218,7 @@ module WhopSDK
           required :id, String
 
           # @!attribute name
-          #   The name of the user from their Whop account.
+          #   The user's display name shown on their public profile.
           #
           #   @return [String, nil]
           required :name, String, nil?: true
@@ -227,7 +230,7 @@ module WhopSDK
           required :typename, const: :User
 
           # @!attribute username
-          #   The username of the user from their Whop account.
+          #   The user's unique username shown on their public profile.
           #
           #   @return [String]
           required :username, String
@@ -238,9 +241,9 @@ module WhopSDK
           #
           #   @param id [String] The unique identifier for the user.
           #
-          #   @param name [String, nil] The name of the user from their Whop account.
+          #   @param name [String, nil] The user's display name shown on their public profile.
           #
-          #   @param username [String] The username of the user from their Whop account.
+          #   @param username [String] The user's unique username shown on their public profile.
           #
           #   @param typename [Symbol, :User] The typename of this object
         end
@@ -253,13 +256,13 @@ module WhopSDK
           required :id, String
 
           # @!attribute route
-          #   The slug/route of the company on the Whop site.
+          #   The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
           #
           #   @return [String]
           required :route, String
 
           # @!attribute title
-          #   The title of the company.
+          #   The display name of the company shown to customers.
           #
           #   @return [String]
           required :title, String
@@ -271,14 +274,17 @@ module WhopSDK
           required :typename, const: :Company
 
           # @!method initialize(id:, route:, title:, typename: :Company)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::Transfer::Origin::Company} for more details.
+          #
           #   A company is a seller on Whop. Companies own products, manage members, and
           #   receive payouts.
           #
           #   @param id [String] The unique identifier for the company.
           #
-          #   @param route [String] The slug/route of the company on the Whop site.
+          #   @param route [String] The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
           #
-          #   @param title [String] The title of the company.
+          #   @param title [String] The display name of the company shown to customers.
           #
           #   @param typename [Symbol, :Company] The typename of this object
         end

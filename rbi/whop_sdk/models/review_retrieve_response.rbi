@@ -177,20 +177,20 @@ module WhopSDK
             )
           end
 
-        # The ID of the attachment
+        # The unique identifier of the attachment.
         sig { returns(String) }
         attr_accessor :id
 
-        # The attachment's content type (e.g., image/jpg, video/mp4)
+        # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
         sig { returns(T.nilable(String)) }
         attr_accessor :content_type
 
-        # The name of the file
+        # The original filename of the uploaded attachment, including its file extension.
         sig { returns(T.nilable(String)) }
         attr_accessor :filename
 
-        # This is the URL you use to render optimized attachments on the client. This
-        # should be used for apps.
+        # A pre-optimized URL for rendering this attachment on the client. This should be
+        # used for displaying attachments in apps.
         sig { returns(T.nilable(String)) }
         attr_accessor :url
 
@@ -204,14 +204,14 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the attachment
+          # The unique identifier of the attachment.
           id:,
-          # The attachment's content type (e.g., image/jpg, video/mp4)
+          # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
           content_type:,
-          # The name of the file
+          # The original filename of the uploaded attachment, including its file extension.
           filename:,
-          # This is the URL you use to render optimized attachments on the client. This
-          # should be used for apps.
+          # A pre-optimized URL for rendering this attachment on the client. This should be
+          # used for displaying attachments in apps.
           url:
         )
         end
@@ -243,11 +243,11 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The slug/route of the company on the Whop site.
+        # The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
         sig { returns(String) }
         attr_accessor :route
 
-        # The title of the company.
+        # The display name of the company shown to customers.
         sig { returns(String) }
         attr_accessor :title
 
@@ -260,9 +260,9 @@ module WhopSDK
         def self.new(
           # The unique identifier for the company.
           id:,
-          # The slug/route of the company on the Whop site.
+          # The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
           route:,
-          # The title of the company.
+          # The display name of the company shown to customers.
           title:
         )
         end
@@ -285,7 +285,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The title of the product. Use for Whop 4.0.
+        # The display name of the product shown to customers on the product page and in
+        # search results.
         sig { returns(String) }
         attr_accessor :title
 
@@ -294,7 +295,8 @@ module WhopSDK
         def self.new(
           # The unique identifier for the product.
           id:,
-          # The title of the product. Use for Whop 4.0.
+          # The display name of the product shown to customers on the product page and in
+          # search results.
           title:
         )
         end
@@ -317,11 +319,11 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The name of the user from their Whop account.
+        # The user's display name shown on their public profile.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
-        # The username of the user from their Whop account.
+        # The user's unique username shown on their public profile.
         sig { returns(String) }
         attr_accessor :username
 
@@ -334,9 +336,9 @@ module WhopSDK
         def self.new(
           # The unique identifier for the user.
           id:,
-          # The name of the user from their Whop account.
+          # The user's display name shown on their public profile.
           name:,
-          # The username of the user from their Whop account.
+          # The user's unique username shown on their public profile.
           username:
         )
         end

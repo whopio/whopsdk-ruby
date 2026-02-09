@@ -198,7 +198,7 @@ module WhopSDK
         required :id, String
 
         # @!attribute title
-        #   The title of the company.
+        #   The display name of the company shown to customers.
         #
         #   @return [String]
         required :title, String
@@ -208,7 +208,7 @@ module WhopSDK
         #
         #   @param id [String] The unique identifier for the company.
         #
-        #   @param title [String] The title of the company.
+        #   @param title [String] The display name of the company shown to customers.
       end
 
       # @see WhopSDK::Models::App#creator
@@ -220,13 +220,13 @@ module WhopSDK
         required :id, String
 
         # @!attribute name
-        #   The name of the user from their Whop account.
+        #   The user's display name shown on their public profile.
         #
         #   @return [String, nil]
         required :name, String, nil?: true
 
         # @!attribute username
-        #   The username of the user from their Whop account.
+        #   The user's unique username shown on their public profile.
         #
         #   @return [String]
         required :username, String
@@ -236,16 +236,16 @@ module WhopSDK
         #
         #   @param id [String] The unique identifier for the user.
         #
-        #   @param name [String, nil] The name of the user from their Whop account.
+        #   @param name [String, nil] The user's display name shown on their public profile.
         #
-        #   @param username [String] The username of the user from their Whop account.
+        #   @param username [String] The user's unique username shown on their public profile.
       end
 
       # @see WhopSDK::Models::App#icon
       class Icon < WhopSDK::Internal::Type::BaseModel
         # @!attribute url
-        #   This is the URL you use to render optimized attachments on the client. This
-        #   should be used for apps.
+        #   A pre-optimized URL for rendering this attachment on the client. This should be
+        #   used for displaying attachments in apps.
         #
         #   @return [String, nil]
         required :url, String, nil?: true
@@ -257,7 +257,7 @@ module WhopSDK
         #   The icon for the app. This icon is shown on discovery, on the product page, on
         #   checkout, and as a default icon for the experiences.
         #
-        #   @param url [String, nil] This is the URL you use to render optimized attachments on the client. This shou
+        #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
       end
 
       class RequestedPermission < WhopSDK::Internal::Type::BaseModel

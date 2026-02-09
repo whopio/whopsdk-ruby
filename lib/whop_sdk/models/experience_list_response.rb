@@ -108,8 +108,8 @@ module WhopSDK
         # @see WhopSDK::Models::ExperienceListResponse::App#icon
         class Icon < WhopSDK::Internal::Type::BaseModel
           # @!attribute url
-          #   This is the URL you use to render optimized attachments on the client. This
-          #   should be used for apps.
+          #   A pre-optimized URL for rendering this attachment on the client. This should be
+          #   used for displaying attachments in apps.
           #
           #   @return [String, nil]
           required :url, String, nil?: true
@@ -121,7 +121,7 @@ module WhopSDK
           #   The icon for the app. This icon is shown on discovery, on the product page, on
           #   checkout, and as a default icon for the experiences.
           #
-          #   @param url [String, nil] This is the URL you use to render optimized attachments on the client. This shou
+          #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
         end
       end
 
@@ -134,32 +134,35 @@ module WhopSDK
         required :id, String
 
         # @!attribute route
-        #   The slug/route of the company on the Whop site.
+        #   The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
         #
         #   @return [String]
         required :route, String
 
         # @!attribute title
-        #   The title of the company.
+        #   The display name of the company shown to customers.
         #
         #   @return [String]
         required :title, String
 
         # @!method initialize(id:, route:, title:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::ExperienceListResponse::Company} for more details.
+        #
         #   The company that owns this experience.
         #
         #   @param id [String] The unique identifier for the company.
         #
-        #   @param route [String] The slug/route of the company on the Whop site.
+        #   @param route [String] The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
         #
-        #   @param title [String] The title of the company.
+        #   @param title [String] The display name of the company shown to customers.
       end
 
       # @see WhopSDK::Models::ExperienceListResponse#image
       class Image < WhopSDK::Internal::Type::BaseModel
         # @!attribute url
-        #   This is the URL you use to render optimized attachments on the client. This
-        #   should be used for apps.
+        #   A pre-optimized URL for rendering this attachment on the client. This should be
+        #   used for displaying attachments in apps.
         #
         #   @return [String, nil]
         required :url, String, nil?: true
@@ -170,7 +173,7 @@ module WhopSDK
         #
         #   The logo for the experience.
         #
-        #   @param url [String, nil] This is the URL you use to render optimized attachments on the client. This shou
+        #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
       end
     end
   end

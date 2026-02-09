@@ -19,11 +19,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # The minimum creation date to filter by
+      # Only return companies created after this datetime.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_after
 
-      # The maximum creation date to filter by
+      # Only return companies created before this datetime.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_before
 
@@ -39,8 +39,9 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
-      # The ID of the parent company to list connected accounts for. Omit to list the
-      # current user's own companies.
+      # The unique identifier of the parent platform company. When provided, lists
+      # connected accounts under that platform. Omit to list the current user's own
+      # companies.
       sig { returns(T.nilable(String)) }
       attr_accessor :parent_company_id
 
@@ -62,9 +63,9 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The minimum creation date to filter by
+        # Only return companies created after this datetime.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return companies created before this datetime.
         created_before: nil,
         # The direction of the sort.
         direction: nil,
@@ -72,8 +73,9 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The ID of the parent company to list connected accounts for. Omit to list the
-        # current user's own companies.
+        # The unique identifier of the parent platform company. When provided, lists
+        # connected accounts under that platform. Omit to list the current user's own
+        # companies.
         parent_company_id: nil,
         request_options: {}
       )

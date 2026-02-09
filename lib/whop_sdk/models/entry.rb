@@ -116,17 +116,21 @@ module WhopSDK
         required :id, String
 
         # @!attribute title
-        #   The title of the product. Use for Whop 4.0.
+        #   The display name of the product shown to customers on the product page and in
+        #   search results.
         #
         #   @return [String]
         required :title, String
 
         # @!method initialize(id:, title:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Entry::Product} for more details.
+        #
         #   The product tied to this entry, if there is one.
         #
         #   @param id [String] The unique identifier for the product.
         #
-        #   @param title [String] The title of the product. Use for Whop 4.0.
+        #   @param title [String] The display name of the product shown to customers on the product page and in se
       end
 
       # @see WhopSDK::Models::Entry#user
@@ -138,33 +142,37 @@ module WhopSDK
         required :id, String
 
         # @!attribute email
-        #   The email of the user
+        #   The user's email address. Requires the member:email:read permission to access.
+        #   Null if not authorized.
         #
         #   @return [String, nil]
         required :email, String, nil?: true
 
         # @!attribute name
-        #   The name of the user from their Whop account.
+        #   The user's display name shown on their public profile.
         #
         #   @return [String, nil]
         required :name, String, nil?: true
 
         # @!attribute username
-        #   The username of the user from their Whop account.
+        #   The user's unique username shown on their public profile.
         #
         #   @return [String]
         required :username, String
 
         # @!method initialize(id:, email:, name:, username:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Entry::User} for more details.
+        #
         #   The user who created the entry.
         #
         #   @param id [String] The unique identifier for the user.
         #
-        #   @param email [String, nil] The email of the user
+        #   @param email [String, nil] The user's email address. Requires the member:email:read permission to access. N
         #
-        #   @param name [String, nil] The name of the user from their Whop account.
+        #   @param name [String, nil] The user's display name shown on their public profile.
         #
-        #   @param username [String] The username of the user from their Whop account.
+        #   @param username [String] The user's unique username shown on their public profile.
       end
     end
   end

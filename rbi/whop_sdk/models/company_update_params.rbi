@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::CompanyUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The banner image for the company in png or jpeg format
+      # The company's banner image. Accepts PNG or JPEG format.
       sig { returns(T.nilable(WhopSDK::CompanyUpdateParams::BannerImage)) }
       attr_reader :banner_image
 
@@ -27,7 +27,8 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::BusinessTypes::OrSymbol)) }
       attr_accessor :business_type
 
-      # A description of what the company offers or does.
+      # A promotional pitch displayed to potential customers on the company's store
+      # page.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
@@ -35,7 +36,7 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::IndustryTypes::OrSymbol)) }
       attr_accessor :industry_type
 
-      # The logo for the company in png, jpeg, or gif format
+      # The company's logo image. Accepts PNG, JPEG, or GIF format.
       sig { returns(T.nilable(WhopSDK::CompanyUpdateParams::Logo)) }
       attr_reader :logo
 
@@ -44,14 +45,12 @@ module WhopSDK
       end
       attr_writer :logo
 
-      # Whether Whop sends transactional emails to customers on behalf of this company.
-      # Includes: order confirmations, payment failures, refund notifications, upcoming
-      # renewals, and membership cancelations/expirations. When disabled, the platform
-      # is responsible for handling these communications.
+      # Whether Whop sends transactional emails (receipts, renewals, cancelations) to
+      # customers on behalf of this company.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :send_customer_emails
 
-      # The title of the company
+      # The display name of the company shown to customers.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
@@ -69,22 +68,21 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The banner image for the company in png or jpeg format
+        # The company's banner image. Accepts PNG or JPEG format.
         banner_image: nil,
         # The different business types a company can be.
         business_type: nil,
-        # A description of what the company offers or does.
+        # A promotional pitch displayed to potential customers on the company's store
+        # page.
         description: nil,
         # The different industry types a company can be in.
         industry_type: nil,
-        # The logo for the company in png, jpeg, or gif format
+        # The company's logo image. Accepts PNG, JPEG, or GIF format.
         logo: nil,
-        # Whether Whop sends transactional emails to customers on behalf of this company.
-        # Includes: order confirmations, payment failures, refund notifications, upcoming
-        # renewals, and membership cancelations/expirations. When disabled, the platform
-        # is responsible for handling these communications.
+        # Whether Whop sends transactional emails (receipts, renewals, cancelations) to
+        # customers on behalf of this company.
         send_customer_emails: nil,
-        # The title of the company
+        # The display name of the company shown to customers.
         title: nil,
         request_options: {}
       )
@@ -120,7 +118,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The banner image for the company in png or jpeg format
+        # The company's banner image. Accepts PNG or JPEG format.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.
@@ -146,7 +144,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The logo for the company in png, jpeg, or gif format
+        # The company's logo image. Accepts PNG, JPEG, or GIF format.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.

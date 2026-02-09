@@ -280,7 +280,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The title of the company.
+        # The display name of the company shown to customers.
         sig { returns(String) }
         attr_accessor :title
 
@@ -289,7 +289,7 @@ module WhopSDK
         def self.new(
           # The unique identifier for the company.
           id:,
-          # The title of the company.
+          # The display name of the company shown to customers.
           title:
         )
         end
@@ -469,7 +469,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The title of the product. Use for Whop 4.0.
+        # The display name of the product shown to customers on the product page and in
+        # search results.
         sig { returns(String) }
         attr_accessor :title
 
@@ -478,7 +479,8 @@ module WhopSDK
         def self.new(
           # The unique identifier for the product.
           id:,
-          # The title of the product. Use for Whop 4.0.
+          # The display name of the product shown to customers on the product page and in
+          # search results.
           title:
         )
         end

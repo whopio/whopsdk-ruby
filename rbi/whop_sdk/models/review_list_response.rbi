@@ -140,20 +140,20 @@ module WhopSDK
             )
           end
 
-        # The ID of the attachment
+        # The unique identifier of the attachment.
         sig { returns(String) }
         attr_accessor :id
 
-        # The attachment's content type (e.g., image/jpg, video/mp4)
+        # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
         sig { returns(T.nilable(String)) }
         attr_accessor :content_type
 
-        # The name of the file
+        # The original filename of the uploaded attachment, including its file extension.
         sig { returns(T.nilable(String)) }
         attr_accessor :filename
 
-        # This is the URL you use to render optimized attachments on the client. This
-        # should be used for apps.
+        # A pre-optimized URL for rendering this attachment on the client. This should be
+        # used for displaying attachments in apps.
         sig { returns(T.nilable(String)) }
         attr_accessor :url
 
@@ -167,14 +167,14 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the attachment
+          # The unique identifier of the attachment.
           id:,
-          # The attachment's content type (e.g., image/jpg, video/mp4)
+          # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
           content_type:,
-          # The name of the file
+          # The original filename of the uploaded attachment, including its file extension.
           filename:,
-          # This is the URL you use to render optimized attachments on the client. This
-          # should be used for apps.
+          # A pre-optimized URL for rendering this attachment on the client. This should be
+          # used for displaying attachments in apps.
           url:
         )
         end
@@ -206,11 +206,11 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The name of the user from their Whop account.
+        # The user's display name shown on their public profile.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
-        # The username of the user from their Whop account.
+        # The user's unique username shown on their public profile.
         sig { returns(String) }
         attr_accessor :username
 
@@ -223,9 +223,9 @@ module WhopSDK
         def self.new(
           # The unique identifier for the user.
           id:,
-          # The name of the user from their Whop account.
+          # The user's display name shown on their public profile.
           name:,
-          # The username of the user from their Whop account.
+          # The user's unique username shown on their public profile.
           username:
         )
         end

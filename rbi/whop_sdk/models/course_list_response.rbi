@@ -157,25 +157,26 @@ module WhopSDK
             )
           end
 
-        # The ID of the attachment
+        # The unique identifier of the attachment.
         sig { returns(String) }
         attr_accessor :id
 
-        # The attachment's content type (e.g., image/jpg, video/mp4)
+        # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
         sig { returns(T.nilable(String)) }
         attr_accessor :content_type
 
-        # The name of the file
+        # The original filename of the uploaded attachment, including its file extension.
         sig { returns(T.nilable(String)) }
         attr_accessor :filename
 
-        # This is the URL you use to render optimized attachments on the client. This
-        # should be used for apps.
+        # A pre-optimized URL for rendering this attachment on the client. This should be
+        # used for displaying attachments in apps.
         sig { returns(T.nilable(String)) }
         attr_accessor :optimized_url
 
-        # The original URL of the attachment, such as a direct link to S3. This should
-        # never be displayed on the client and always passed to an Imgproxy transformer.
+        # The original source URL of the attachment, such as a direct link to S3. This
+        # should never be displayed on the client and should always be passed through an
+        # Imgproxy transformer.
         sig { returns(T.nilable(String)) }
         attr_accessor :source_url
 
@@ -190,17 +191,18 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the attachment
+          # The unique identifier of the attachment.
           id:,
-          # The attachment's content type (e.g., image/jpg, video/mp4)
+          # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
           content_type:,
-          # The name of the file
+          # The original filename of the uploaded attachment, including its file extension.
           filename:,
-          # This is the URL you use to render optimized attachments on the client. This
-          # should be used for apps.
+          # A pre-optimized URL for rendering this attachment on the client. This should be
+          # used for displaying attachments in apps.
           optimized_url:,
-          # The original URL of the attachment, such as a direct link to S3. This should
-          # never be displayed on the client and always passed to an Imgproxy transformer.
+          # The original source URL of the attachment, such as a direct link to S3. This
+          # should never be displayed on the client and should always be passed through an
+          # Imgproxy transformer.
           source_url:
         )
         end

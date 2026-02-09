@@ -216,15 +216,19 @@ module WhopSDK
         raise ArgumentError.new("api_key is required, and can be set via environ: \"WHOP_API_KEY\"")
       end
 
+      headers = {
+        "x-whop-app-id" => (@app_id = app_id&.to_s)
+      }
+
       @api_key = api_key.to_s
-      @app_id = app_id&.to_s
 
       super(
         base_url: base_url,
         timeout: timeout,
         max_retries: max_retries,
         initial_retry_delay: initial_retry_delay,
-        max_retry_delay: max_retry_delay
+        max_retry_delay: max_retry_delay,
+        headers: headers
       )
 
       @apps = WhopSDK::Resources::Apps.new(client: self)

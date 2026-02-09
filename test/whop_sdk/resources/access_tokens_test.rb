@@ -3,10 +3,10 @@
 require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::AccessTokensTest < WhopSDK::Test::ResourceTest
-  def test_create_required_params
+  def test_create
     skip("Prism tests are disabled")
 
-    response = @whop.access_tokens.create(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.access_tokens.create
 
     assert_pattern do
       response => WhopSDK::Models::AccessTokenCreateResponse

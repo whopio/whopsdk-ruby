@@ -8,11 +8,11 @@ module WhopSDK
           T.any(WhopSDK::Models::PlanListResponse, WhopSDK::Internal::AnyHash)
         end
 
-      # The internal ID of the plan.
+      # The unique identifier for the plan.
       sig { returns(String) }
       attr_accessor :id
 
-      # The interval at which the plan charges (renewal plans).
+      # The interval in days at which the plan charges (renewal plans).
       sig { returns(T.nilable(Integer)) }
       attr_accessor :billing_period
 
@@ -27,7 +27,7 @@ module WhopSDK
       end
       attr_writer :company
 
-      # When the plan was created.
+      # The datetime the plan was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -39,11 +39,14 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      # The interval at which the plan charges (expiration plans).
+      # The number of days until the membership expires (for expiration-based plans).
+      # For example, 365 for a one-year access pass.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :expiration_days
 
-      # The price a person has to pay for a plan on the initial purchase.
+      # The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
+      # For one-time plans, this is the full price. For renewal plans, this is charged
+      # on top of the first renewal_price.
       sig { returns(Float) }
       attr_accessor :initial_price
 
@@ -109,7 +112,8 @@ module WhopSDK
       sig { returns(WhopSDK::ReleaseMethod::TaggedSymbol) }
       attr_accessor :release_method
 
-      # The price a person has to pay for a plan on the renewal purchase.
+      # The recurring price charged every billing_period in the plan's base_currency
+      # (e.g., 9.99 for $9.99/period). Zero for one-time plans.
       sig { returns(Float) }
       attr_accessor :renewal_price
 
@@ -129,11 +133,12 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :trial_period_days
 
-      # Limits/doesn't limit the number of units available for purchase.
+      # When true, the plan has unlimited stock (stock field is ignored). When false,
+      # purchases are limited by the stock field.
       sig { returns(T::Boolean) }
       attr_accessor :unlimited_stock
 
-      # When the plan was last updated.
+      # The datetime the plan was last updated.
       sig { returns(Time) }
       attr_accessor :updated_at
 
@@ -141,9 +146,9 @@ module WhopSDK
       sig { returns(WhopSDK::Visibility::TaggedSymbol) }
       attr_accessor :visibility
 
-      # A plan for an product. Plans define the core parameters that define a checkout
-      # and payment on whop. Use plans to create different ways to price your products
-      # (Eg renewal / one_time)
+      # A plan defines pricing and billing terms for a product. Each product can have
+      # multiple plans representing different pricing options, such as one-time
+      # payments, recurring subscriptions, or free trials.
       sig do
         params(
           id: String,
@@ -179,21 +184,24 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The internal ID of the plan.
+        # The unique identifier for the plan.
         id:,
-        # The interval at which the plan charges (renewal plans).
+        # The interval in days at which the plan charges (renewal plans).
         billing_period:,
         # The company for the plan.
         company:,
-        # When the plan was created.
+        # The datetime the plan was created.
         created_at:,
         # The respective currency identifier for the plan.
         currency:,
         # The description of the plan.
         description:,
-        # The interval at which the plan charges (expiration plans).
+        # The number of days until the membership expires (for expiration-based plans).
+        # For example, 365 for a one-year access pass.
         expiration_days:,
-        # The price a person has to pay for a plan on the initial purchase.
+        # The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
+        # For one-time plans, this is the full price. For renewal plans, this is charged
+        # on top of the first renewal_price.
         initial_price:,
         # A personal description or notes section for the business.
         internal_notes:,
@@ -211,7 +219,8 @@ module WhopSDK
         purchase_url:,
         # This is the release method the business uses to sell this plan.
         release_method:,
-        # The price a person has to pay for a plan on the renewal purchase.
+        # The recurring price charged every billing_period in the plan's base_currency
+        # (e.g., 9.99 for $9.99/period). Zero for one-time plans.
         renewal_price:,
         # The number of payments required before pausing the subscription.
         split_pay_required_payments:,
@@ -221,9 +230,10 @@ module WhopSDK
         title:,
         # The number of free trial days added before a renewal plan.
         trial_period_days:,
-        # Limits/doesn't limit the number of units available for purchase.
+        # When true, the plan has unlimited stock (stock field is ignored). When false,
+        # purchases are limited by the stock field.
         unlimited_stock:,
-        # When the plan was last updated.
+        # The datetime the plan was last updated.
         updated_at:,
         # Shows or hides the plan from public/business view.
         visibility:
@@ -275,7 +285,7 @@ module WhopSDK
             )
           end
 
-        # The ID (tag) of the company.
+        # The unique identifier for the company.
         sig { returns(String) }
         attr_accessor :id
 
@@ -286,7 +296,7 @@ module WhopSDK
         # The company for the plan.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
-          # The ID (tag) of the company.
+          # The unique identifier for the company.
           id:,
           # The title of the company.
           title:
@@ -307,14 +317,14 @@ module WhopSDK
             )
           end
 
-        # The ID of the invoice.
+        # The unique identifier for the invoice.
         sig { returns(String) }
         attr_accessor :id
 
         # The invoice associated with this plan.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The ID of the invoice.
+          # The unique identifier for the invoice.
           id:
         )
         end
@@ -397,7 +407,7 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the public product.
+        # The unique identifier for the product.
         sig { returns(String) }
         attr_accessor :id
 
@@ -408,7 +418,7 @@ module WhopSDK
         # The product that this plan belongs to.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
-          # The internal ID of the public product.
+          # The unique identifier for the product.
           id:,
           # The title of the product. Use for Whop 4.0.
           title:

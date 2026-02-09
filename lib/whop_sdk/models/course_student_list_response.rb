@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::CourseStudents#list
     class CourseStudentListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the course student. Looks like crsi_XXX
+      #   The unique identifier for the course student type.
       #
       #   @return [String]
       required :id, String
@@ -49,7 +49,7 @@ module WhopSDK
       # @!method initialize(id:, completed_lessons_count:, completion_rate:, first_interaction_at:, last_interaction_at:, total_lessons_count:, user:)
       #   A course student (enrollment of a student in a course)
       #
-      #   @param id [String] The ID of the course student. Looks like crsi_XXX
+      #   @param id [String] The unique identifier for the course student type.
       #
       #   @param completed_lessons_count [Integer] The number of lessons the student has completed
       #
@@ -66,7 +66,7 @@ module WhopSDK
       # @see WhopSDK::Models::CourseStudentListResponse#user
       class User < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user.
+        #   The unique identifier for the user.
         #
         #   @return [String]
         required :id, String
@@ -86,7 +86,7 @@ module WhopSDK
         # @!method initialize(id:, name:, username:)
         #   The user who is enrolled in the course
         #
-        #   @param id [String] The internal ID of the user.
+        #   @param id [String] The unique identifier for the user.
         #
         #   @param name [String, nil] The name of the user from their Whop account.
         #

@@ -11,7 +11,7 @@ module WhopSDK
           )
         end
 
-      # The payment ID
+      # The unique identifier for the payment.
       sig { returns(String) }
       attr_accessor :id
 
@@ -79,7 +79,7 @@ module WhopSDK
       end
       attr_writer :company
 
-      # The datetime the payment was created
+      # The datetime the payment was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -254,7 +254,8 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :voidable
 
-      # An object representing a receipt for a membership.
+      # A payment represents a completed or attempted charge for a membership. Payments
+      # track the amount, status, currency, and payment method used.
       sig do
         params(
           id: String,
@@ -310,7 +311,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The payment ID
+        # The unique identifier for the payment.
         id:,
         # How much the payment is for after fees
         amount_after_fees:,
@@ -328,7 +329,7 @@ module WhopSDK
         card_last4:,
         # The company for the payment.
         company:,
-        # The datetime the payment was created
+        # The datetime the payment was created.
         created_at:,
         # The available currencies on the platform
         currency:,
@@ -466,7 +467,7 @@ module WhopSDK
         sig { returns(Float) }
         attr_accessor :amount_refunded
 
-        # When the application fee was created.
+        # The datetime the application fee was created.
         sig { returns(Time) }
         attr_accessor :created_at
 
@@ -494,7 +495,7 @@ module WhopSDK
           amount_captured:,
           # The amount of the application fee that has been refunded.
           amount_refunded:,
-          # When the application fee was created.
+          # The datetime the application fee was created.
           created_at:,
           # The currency of the application fee.
           currency:
@@ -610,7 +611,7 @@ module WhopSDK
             )
           end
 
-        # The ID of the company
+        # The unique identifier for the company.
         sig { returns(String) }
         attr_accessor :id
 
@@ -629,7 +630,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The ID of the company
+          # The unique identifier for the company.
           id:,
           # The slug/route of the company on the Whop site.
           route:,
@@ -652,7 +653,7 @@ module WhopSDK
             )
           end
 
-        # The ID of the member
+        # The unique identifier for the company member.
         sig { returns(String) }
         attr_accessor :id
 
@@ -665,7 +666,7 @@ module WhopSDK
           params(id: String, phone: T.nilable(String)).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the member
+          # The unique identifier for the company member.
           id:,
           # The phone number for the member, if available.
           phone:
@@ -686,7 +687,7 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the membership.
+        # The unique identifier for the membership.
         sig { returns(String) }
         attr_accessor :id
 
@@ -702,7 +703,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The internal ID of the membership.
+          # The unique identifier for the membership.
           id:,
           # The state of the membership.
           status:
@@ -727,7 +728,7 @@ module WhopSDK
             )
           end
 
-        # The ID of the payment method
+        # The unique identifier for the payment token.
         sig { returns(String) }
         attr_accessor :id
 
@@ -749,7 +750,7 @@ module WhopSDK
         end
         attr_writer :card
 
-        # The date and time the payment method was created
+        # The datetime the payment token was created.
         sig { returns(Time) }
         attr_accessor :created_at
 
@@ -770,11 +771,11 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the payment method
+          # The unique identifier for the payment token.
           id:,
           # The card data associated with the payment method, if its a debit or credit card.
           card:,
-          # The date and time the payment method was created
+          # The datetime the payment token was created.
           created_at:,
           # The payment method type of the payment method
           payment_method_type:
@@ -867,14 +868,14 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the plan.
+        # The unique identifier for the plan.
         sig { returns(String) }
         attr_accessor :id
 
         # The plan attached to this payment.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The internal ID of the plan.
+          # The unique identifier for the plan.
           id:
         )
         end
@@ -893,7 +894,7 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the public product.
+        # The unique identifier for the product.
         sig { returns(String) }
         attr_accessor :id
 
@@ -912,7 +913,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The internal ID of the public product.
+          # The unique identifier for the product.
           id:,
           # The route of the product.
           route:,
@@ -935,11 +936,13 @@ module WhopSDK
             )
           end
 
-        # The ID of the promo.
+        # The unique identifier for the promo code.
         sig { returns(String) }
         attr_accessor :id
 
-        # The amount off (% or flat amount) for the promo.
+        # The discount amount. Interpretation depends on promo_type: if 'percentage', this
+        # is the percentage (e.g., 20 means 20% off); if 'flat_amount', this is dollars
+        # off (e.g., 10.00 means $10.00 off).
         sig { returns(Float) }
         attr_accessor :amount_off
 
@@ -971,9 +974,11 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the promo.
+          # The unique identifier for the promo code.
           id:,
-          # The amount off (% or flat amount) for the promo.
+          # The discount amount. Interpretation depends on promo_type: if 'percentage', this
+          # is the percentage (e.g., 20 means 20% off); if 'flat_amount', this is dollars
+          # off (e.g., 10.00 means $10.00 off).
           amount_off:,
           # The monetary currency of the promo code.
           base_currency:,
@@ -1011,7 +1016,7 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the user.
+        # The unique identifier for the user.
         sig { returns(String) }
         attr_accessor :id
 
@@ -1037,7 +1042,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The internal ID of the user.
+          # The unique identifier for the user.
           id:,
           # The email of the user
           email:,

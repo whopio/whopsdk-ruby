@@ -60,7 +60,7 @@ module WhopSDK
       # @!attribute initial_price
       #   An additional amount charged upon first purchase. Use only if a one time payment
       #   OR you want to charge an additional amount on top of the renewal price. Provided
-      #   as a number in dollars. Eg: 10.43 for $10.43
+      #   as a number in the specified currency. Eg: 10.43 for $10.43
       #
       #   @return [Float, nil]
       optional :initial_price, Float, nil?: true
@@ -107,7 +107,7 @@ module WhopSDK
 
       # @!attribute renewal_price
       #   The amount the customer is charged every billing period. Use only if a recurring
-      #   payment. Provided as a number in dollars. Eg: 10.43 for $10.43
+      #   payment. Provided as a number in the specified currency. Eg: 10.43 for $10.43
       #
       #   @return [Float, nil]
       optional :renewal_price, Float, nil?: true
@@ -137,7 +137,8 @@ module WhopSDK
       optional :trial_period_days, Integer, nil?: true
 
       # @!attribute unlimited_stock
-      #   Limits/doesn't limit the number of units available for purchase.
+      #   When true, the plan has unlimited stock (stock field is ignored). When false,
+      #   purchases are limited by the stock field.
       #
       #   @return [Boolean, nil]
       optional :unlimited_stock, WhopSDK::Internal::Type::Boolean, nil?: true
@@ -192,7 +193,7 @@ module WhopSDK
       #
       #   @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
       #
-      #   @param unlimited_stock [Boolean, nil] Limits/doesn't limit the number of units available for purchase.
+      #   @param unlimited_stock [Boolean, nil] When true, the plan has unlimited stock (stock field is ignored). When false, pu
       #
       #   @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
       #

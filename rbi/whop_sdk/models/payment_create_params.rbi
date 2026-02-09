@@ -97,7 +97,8 @@ module WhopSDK
         sig { returns(WhopSDK::Currency::OrSymbol) }
         attr_accessor :currency
 
-        # The interval at which the plan charges (renewal plans).
+        # The interval in days at which the plan charges (renewal plans). For example, 30
+        # for monthly billing.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :billing_period
 
@@ -105,7 +106,8 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :description
 
-        # The interval at which the plan charges (expiration plans).
+        # The number of days until the membership expires and revokes access (expiration
+        # plans). For example, 365 for one year.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :expiration_days
 
@@ -114,7 +116,8 @@ module WhopSDK
         sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :force_create_new_plan
 
-        # An additional amount charged upon first purchase.
+        # An additional amount charged upon first purchase. Provided as a number in the
+        # specified currency. Eg: 10.43 for $10.43 USD.
         sig { returns(T.nilable(Float)) }
         attr_accessor :initial_price
 
@@ -143,7 +146,8 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :product_id
 
-        # The amount the customer is charged every billing period.
+        # The amount the customer is charged every billing period. Provided as a number in
+        # the specified currency. Eg: 10.43 for $10.43 USD.
         sig { returns(T.nilable(Float)) }
         attr_accessor :renewal_price
 
@@ -182,16 +186,19 @@ module WhopSDK
         def self.new(
           # The respective currency identifier for the plan.
           currency:,
-          # The interval at which the plan charges (renewal plans).
+          # The interval in days at which the plan charges (renewal plans). For example, 30
+          # for monthly billing.
           billing_period: nil,
           # The description of the plan.
           description: nil,
-          # The interval at which the plan charges (expiration plans).
+          # The number of days until the membership expires and revokes access (expiration
+          # plans). For example, 365 for one year.
           expiration_days: nil,
           # Whether to force the creation of a new plan even if one with the same attributes
           # already exists.
           force_create_new_plan: nil,
-          # An additional amount charged upon first purchase.
+          # An additional amount charged upon first purchase. Provided as a number in the
+          # specified currency. Eg: 10.43 for $10.43 USD.
           initial_price: nil,
           # A personal description or notes section for the business.
           internal_notes: nil,
@@ -202,7 +209,8 @@ module WhopSDK
           product: nil,
           # The product the plan is related to. Either this or product is required.
           product_id: nil,
-          # The amount the customer is charged every billing period.
+          # The amount the customer is charged every billing period. Provided as a number in
+          # the specified currency. Eg: 10.43 for $10.43 USD.
           renewal_price: nil,
           # The title of the plan. This will be visible on the product page to customers.
           title: nil,

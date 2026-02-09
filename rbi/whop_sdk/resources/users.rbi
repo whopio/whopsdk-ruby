@@ -8,7 +8,7 @@ module WhopSDK
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::UserRetrieveResponse)
+        ).returns(WhopSDK::User)
       end
       def retrieve(
         # The ID (user_xxx) or username of the user
@@ -31,6 +31,34 @@ module WhopSDK
         resource_id,
         # The ID (user_xxx) or username of the user
         id:,
+        request_options: {}
+      )
+      end
+
+      # Updates the current user's profile
+      #
+      # Required permissions:
+      #
+      # - `user:profile:update`
+      sig do
+        params(
+          bio: T.nilable(String),
+          name: T.nilable(String),
+          profile_picture:
+            T.nilable(WhopSDK::UserUpdateProfileParams::ProfilePicture::OrHash),
+          username: T.nilable(String),
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::User)
+      end
+      def update_profile(
+        # User biography
+        bio: nil,
+        # Display name
+        name: nil,
+        # Profile picture
+        profile_picture: nil,
+        # Username (alphanumeric and hyphens)
+        username: nil,
         request_options: {}
       )
       end

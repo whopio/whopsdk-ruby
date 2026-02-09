@@ -1,16 +1,16 @@
 module WhopSDK
   module Models
-    type user_retrieve_response =
+    type user =
       {
         id: String,
         bio: String?,
         created_at: Time,
         name: String?,
-        profile_picture: WhopSDK::Models::UserRetrieveResponse::ProfilePicture?,
+        profile_picture: WhopSDK::User::ProfilePicture?,
         username: String
       }
 
-    class UserRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+    class User < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor bio: String?
@@ -19,7 +19,7 @@ module WhopSDK
 
       attr_accessor name: String?
 
-      attr_accessor profile_picture: WhopSDK::Models::UserRetrieveResponse::ProfilePicture?
+      attr_accessor profile_picture: WhopSDK::User::ProfilePicture?
 
       attr_accessor username: String
 
@@ -28,7 +28,7 @@ module WhopSDK
         bio: String?,
         created_at: Time,
         name: String?,
-        profile_picture: WhopSDK::Models::UserRetrieveResponse::ProfilePicture?,
+        profile_picture: WhopSDK::User::ProfilePicture?,
         username: String
       ) -> void
 
@@ -37,7 +37,7 @@ module WhopSDK
         bio: String?,
         created_at: Time,
         name: String?,
-        profile_picture: WhopSDK::Models::UserRetrieveResponse::ProfilePicture?,
+        profile_picture: WhopSDK::User::ProfilePicture?,
         username: String
       }
 

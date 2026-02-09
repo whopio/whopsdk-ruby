@@ -8,7 +8,7 @@ module WhopSDK
           T.any(WhopSDK::Models::FileCreateResponse, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the file
+      # The unique identifier for the file.
       sig { returns(String) }
       attr_accessor :id
 
@@ -54,7 +54,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the file
+        # The unique identifier for the file.
         id:,
         # The MIME type of the file (e.g., image/jpeg, video/mp4)
         content_type:,

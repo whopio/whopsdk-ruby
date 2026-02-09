@@ -6,7 +6,7 @@ module WhopSDK
       OrHash =
         T.type_alias { T.any(WhopSDK::Product, WhopSDK::Internal::AnyHash) }
 
-      # The internal ID of the public product.
+      # The unique identifier for the product.
       sig { returns(String) }
       attr_accessor :id
 
@@ -21,7 +21,7 @@ module WhopSDK
       sig { params(company: WhopSDK::Product::Company::OrHash).void }
       attr_writer :company
 
-      # When the product was created.
+      # The datetime the product was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -107,7 +107,7 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :title
 
-      # When the product was updated.
+      # The datetime the product was last updated.
       sig { returns(Time) }
       attr_accessor :updated_at
 
@@ -119,7 +119,8 @@ module WhopSDK
       sig { returns(WhopSDK::Visibility::TaggedSymbol) }
       attr_accessor :visibility
 
-      # Represents a product on whop. Use products to sell anything on the platform.
+      # A product is a digital good or service sold on Whop. Products contain plans for
+      # pricing and experiences for content delivery.
       sig do
         params(
           id: String,
@@ -149,13 +150,13 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The internal ID of the public product.
+        # The unique identifier for the product.
         id:,
         # The different business types a company can be.
         business_type:,
         # A short type of the company that this product belongs to.
         company:,
-        # When the product was created.
+        # The datetime the product was created.
         created_at:,
         # The custom call to action for the product.
         custom_cta:,
@@ -195,7 +196,7 @@ module WhopSDK
         route:,
         # The title of the product. Use for Whop 4.0.
         title:,
-        # When the product was updated.
+        # The datetime the product was last updated.
         updated_at:,
         # Whether this product is Whop verified.
         verified:,
@@ -245,7 +246,7 @@ module WhopSDK
             T.any(WhopSDK::Product::Company, WhopSDK::Internal::AnyHash)
           end
 
-        # The ID (tag) of the company.
+        # The unique identifier for the company.
         sig { returns(String) }
         attr_accessor :id
 
@@ -264,7 +265,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The ID (tag) of the company.
+          # The unique identifier for the company.
           id:,
           # The slug/route of the company on the Whop site.
           route:,
@@ -284,7 +285,7 @@ module WhopSDK
             T.any(WhopSDK::Product::OwnerUser, WhopSDK::Internal::AnyHash)
           end
 
-        # The internal ID of the user.
+        # The unique identifier for the user.
         sig { returns(String) }
         attr_accessor :id
 
@@ -303,7 +304,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The internal ID of the user.
+          # The unique identifier for the user.
           id:,
           # The name of the user from their Whop account.
           name:,
@@ -327,7 +328,7 @@ module WhopSDK
             T.any(WhopSDK::Product::ProductTaxCode, WhopSDK::Internal::AnyHash)
           end
 
-        # The internal ID of the product tax code.
+        # The unique identifier for the product tax code.
         sig { returns(String) }
         attr_accessor :id
 
@@ -351,7 +352,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The internal ID of the product tax code.
+          # The unique identifier for the product tax code.
           id:,
           # The name of the product tax code.
           name:,

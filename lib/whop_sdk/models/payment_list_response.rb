@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::Payments#list
     class PaymentListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The payment ID
+      #   The unique identifier for the payment.
       #
       #   @return [String]
       required :id, String
@@ -59,7 +59,7 @@ module WhopSDK
       required :company, -> { WhopSDK::Models::PaymentListResponse::Company }, nil?: true
 
       # @!attribute created_at
-      #   The datetime the payment was created
+      #   The datetime the payment was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -229,9 +229,10 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentListResponse} for more details.
       #
-      #   An object representing a receipt for a membership.
+      #   A payment represents a completed or attempted charge for a membership. Payments
+      #   track the amount, status, currency, and payment method used.
       #
-      #   @param id [String] The payment ID
+      #   @param id [String] The unique identifier for the payment.
       #
       #   @param amount_after_fees [Float] How much the payment is for after fees
       #
@@ -249,7 +250,7 @@ module WhopSDK
       #
       #   @param company [WhopSDK::Models::PaymentListResponse::Company, nil] The company for the payment.
       #
-      #   @param created_at [Time] The datetime the payment was created
+      #   @param created_at [Time] The datetime the payment was created.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #
@@ -330,7 +331,7 @@ module WhopSDK
         required :amount_refunded, Float
 
         # @!attribute created_at
-        #   When the application fee was created.
+        #   The datetime the application fee was created.
         #
         #   @return [Time]
         required :created_at, Time
@@ -352,7 +353,7 @@ module WhopSDK
         #
         #   @param amount_refunded [Float] The amount of the application fee that has been refunded.
         #
-        #   @param created_at [Time] When the application fee was created.
+        #   @param created_at [Time] The datetime the application fee was created.
         #
         #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the application fee.
       end
@@ -422,7 +423,7 @@ module WhopSDK
       # @see WhopSDK::Models::PaymentListResponse#company
       class Company < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the company
+        #   The unique identifier for the company.
         #
         #   @return [String]
         required :id, String
@@ -442,7 +443,7 @@ module WhopSDK
         # @!method initialize(id:, route:, title:)
         #   The company for the payment.
         #
-        #   @param id [String] The ID of the company
+        #   @param id [String] The unique identifier for the company.
         #
         #   @param route [String] The slug/route of the company on the Whop site.
         #
@@ -452,7 +453,7 @@ module WhopSDK
       # @see WhopSDK::Models::PaymentListResponse#member
       class Member < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the member
+        #   The unique identifier for the company member.
         #
         #   @return [String]
         required :id, String
@@ -466,7 +467,7 @@ module WhopSDK
         # @!method initialize(id:, phone:)
         #   The member attached to this payment.
         #
-        #   @param id [String] The ID of the member
+        #   @param id [String] The unique identifier for the company member.
         #
         #   @param phone [String, nil] The phone number for the member, if available.
       end
@@ -474,7 +475,7 @@ module WhopSDK
       # @see WhopSDK::Models::PaymentListResponse#membership
       class Membership < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the membership.
+        #   The unique identifier for the membership.
         #
         #   @return [String]
         required :id, String
@@ -488,7 +489,7 @@ module WhopSDK
         # @!method initialize(id:, status:)
         #   The membership attached to this payment.
         #
-        #   @param id [String] The internal ID of the membership.
+        #   @param id [String] The unique identifier for the membership.
         #
         #   @param status [Symbol, WhopSDK::Models::MembershipStatus] The state of the membership.
       end
@@ -496,7 +497,7 @@ module WhopSDK
       # @see WhopSDK::Models::PaymentListResponse#payment_method
       class PaymentMethod < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the payment method
+        #   The unique identifier for the payment token.
         #
         #   @return [String]
         required :id, String
@@ -508,7 +509,7 @@ module WhopSDK
         required :card, -> { WhopSDK::Models::PaymentListResponse::PaymentMethod::Card }, nil?: true
 
         # @!attribute created_at
-        #   The date and time the payment method was created
+        #   The datetime the payment token was created.
         #
         #   @return [Time]
         required :created_at, Time
@@ -525,11 +526,11 @@ module WhopSDK
         #
         #   The payment method used for the payment, if available.
         #
-        #   @param id [String] The ID of the payment method
+        #   @param id [String] The unique identifier for the payment token.
         #
         #   @param card [WhopSDK::Models::PaymentListResponse::PaymentMethod::Card, nil] The card data associated with the payment method, if its a debit or credit card.
         #
-        #   @param created_at [Time] The date and time the payment method was created
+        #   @param created_at [Time] The datetime the payment token was created.
         #
         #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The payment method type of the payment method
 
@@ -575,7 +576,7 @@ module WhopSDK
       # @see WhopSDK::Models::PaymentListResponse#plan
       class Plan < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the plan.
+        #   The unique identifier for the plan.
         #
         #   @return [String]
         required :id, String
@@ -583,13 +584,13 @@ module WhopSDK
         # @!method initialize(id:)
         #   The plan attached to this payment.
         #
-        #   @param id [String] The internal ID of the plan.
+        #   @param id [String] The unique identifier for the plan.
       end
 
       # @see WhopSDK::Models::PaymentListResponse#product
       class Product < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the public product.
+        #   The unique identifier for the product.
         #
         #   @return [String]
         required :id, String
@@ -609,7 +610,7 @@ module WhopSDK
         # @!method initialize(id:, route:, title:)
         #   The product this payment was made for
         #
-        #   @param id [String] The internal ID of the public product.
+        #   @param id [String] The unique identifier for the product.
         #
         #   @param route [String] The route of the product.
         #
@@ -619,13 +620,15 @@ module WhopSDK
       # @see WhopSDK::Models::PaymentListResponse#promo_code
       class PromoCode < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the promo.
+        #   The unique identifier for the promo code.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute amount_off
-        #   The amount off (% or flat amount) for the promo.
+        #   The discount amount. Interpretation depends on promo_type: if 'percentage', this
+        #   is the percentage (e.g., 20 means 20% off); if 'flat_amount', this is dollars
+        #   off (e.g., 10.00 means $10.00 off).
         #
         #   @return [Float]
         required :amount_off, Float
@@ -655,11 +658,14 @@ module WhopSDK
         required :promo_type, enum: -> { WhopSDK::PromoType }
 
         # @!method initialize(id:, amount_off:, base_currency:, code:, number_of_intervals:, promo_type:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::PaymentListResponse::PromoCode} for more details.
+        #
         #   The promo code used for this payment.
         #
-        #   @param id [String] The ID of the promo.
+        #   @param id [String] The unique identifier for the promo code.
         #
-        #   @param amount_off [Float] The amount off (% or flat amount) for the promo.
+        #   @param amount_off [Float] The discount amount. Interpretation depends on promo_type: if 'percentage', this
         #
         #   @param base_currency [Symbol, WhopSDK::Models::Currency] The monetary currency of the promo code.
         #
@@ -673,7 +679,7 @@ module WhopSDK
       # @see WhopSDK::Models::PaymentListResponse#user
       class User < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user.
+        #   The unique identifier for the user.
         #
         #   @return [String]
         required :id, String
@@ -699,7 +705,7 @@ module WhopSDK
         # @!method initialize(id:, email:, name:, username:)
         #   The user that made this payment.
         #
-        #   @param id [String] The internal ID of the user.
+        #   @param id [String] The unique identifier for the user.
         #
         #   @param email [String, nil] The email of the user
         #

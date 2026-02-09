@@ -42,8 +42,8 @@ module WhopSDK
         # The ID of the parent post. Set it to the ID of the post you want to comment on
         # or don't include it if its a top level post.
         parent_id: nil,
-        # The amount to paywall this post by. A paywalled post requires the user to
-        # purchase it in order to view its content.
+        # The price in paywall_currency to unlock this post (e.g., 5.00 for $5.00). If
+        # set, users must purchase access to view the post content.
         paywall_amount: nil,
         # The available currencies on the platform
         paywall_currency: nil,

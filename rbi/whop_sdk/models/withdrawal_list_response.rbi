@@ -11,15 +11,16 @@ module WhopSDK
           )
         end
 
-      # Internal ID of the withdrawal request.
+      # The unique identifier for the withdrawal.
       sig { returns(String) }
       attr_accessor :id
 
-      # How much money was attempted to be withdrawn, in a float type.
+      # The withdrawal amount. Provided as a number in the specified currency. Eg:
+      # 100.00 for $100.00 USD.
       sig { returns(Float) }
       attr_accessor :amount
 
-      # When the withdrawal request was created.
+      # The datetime the withdrawal was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -50,7 +51,8 @@ module WhopSDK
       sig { returns(WhopSDK::WithdrawalStatus::TaggedSymbol) }
       attr_accessor :status
 
-      # A withdrawal request.
+      # A withdrawal represents a request to transfer funds from a company's ledger
+      # account to an external payout method.
       sig do
         params(
           id: String,
@@ -65,11 +67,12 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # Internal ID of the withdrawal request.
+        # The unique identifier for the withdrawal.
         id:,
-        # How much money was attempted to be withdrawn, in a float type.
+        # The withdrawal amount. Provided as a number in the specified currency. Eg:
+        # 100.00 for $100.00 USD.
         amount:,
-        # When the withdrawal request was created.
+        # The datetime the withdrawal was created.
         created_at:,
         # The currency of the withdrawal request.
         currency:,

@@ -6,11 +6,11 @@ module WhopSDK
       OrHash =
         T.type_alias { T.any(WhopSDK::Entry, WhopSDK::Internal::AnyHash) }
 
-      # The internal ID of the entry.
+      # The unique identifier for the entry.
       sig { returns(String) }
       attr_accessor :id
 
-      # When the entry was created.
+      # The datetime the entry was created.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_at
 
@@ -43,7 +43,7 @@ module WhopSDK
       sig { params(user: WhopSDK::Entry::User::OrHash).void }
       attr_writer :user
 
-      # An object representing an entry in a waitlist.
+      # An entry represents a user's signup for a waitlisted plan.
       sig do
         params(
           id: String,
@@ -57,9 +57,9 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The internal ID of the entry.
+        # The unique identifier for the entry.
         id:,
-        # When the entry was created.
+        # The datetime the entry was created.
         created_at:,
         # Responses collected from the user when submitting their entry.
         custom_field_responses:,
@@ -100,7 +100,7 @@ module WhopSDK
             )
           end
 
-        # The ID of the custom field item
+        # The unique identifier for the custom field response.
         sig { returns(String) }
         attr_accessor :id
 
@@ -119,7 +119,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The ID of the custom field item
+          # The unique identifier for the custom field response.
           id:,
           # The response a user gave to the specific question or field.
           answer:,
@@ -141,14 +141,14 @@ module WhopSDK
             T.any(WhopSDK::Entry::Plan, WhopSDK::Internal::AnyHash)
           end
 
-        # The internal ID of the plan.
+        # The unique identifier for the plan.
         sig { returns(String) }
         attr_accessor :id
 
         # The waitlist plan the entry if for.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The internal ID of the plan.
+          # The unique identifier for the plan.
           id:
         )
         end
@@ -164,7 +164,7 @@ module WhopSDK
             T.any(WhopSDK::Entry::Product, WhopSDK::Internal::AnyHash)
           end
 
-        # The internal ID of the public product.
+        # The unique identifier for the product.
         sig { returns(String) }
         attr_accessor :id
 
@@ -175,7 +175,7 @@ module WhopSDK
         # The product tied to this entry, if there is one.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
-          # The internal ID of the public product.
+          # The unique identifier for the product.
           id:,
           # The title of the product. Use for Whop 4.0.
           title:
@@ -193,7 +193,7 @@ module WhopSDK
             T.any(WhopSDK::Entry::User, WhopSDK::Internal::AnyHash)
           end
 
-        # The internal ID of the user.
+        # The unique identifier for the user.
         sig { returns(String) }
         attr_accessor :id
 
@@ -219,7 +219,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The internal ID of the user.
+          # The unique identifier for the user.
           id:,
           # The email of the user
           email:,

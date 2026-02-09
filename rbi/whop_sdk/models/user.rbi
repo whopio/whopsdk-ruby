@@ -2,16 +2,10 @@
 
 module WhopSDK
   module Models
-    class UserRetrieveResponse < WhopSDK::Internal::Type::BaseModel
-      OrHash =
-        T.type_alias do
-          T.any(
-            WhopSDK::Models::UserRetrieveResponse,
-            WhopSDK::Internal::AnyHash
-          )
-        end
+    class User < WhopSDK::Internal::Type::BaseModel
+      OrHash = T.type_alias { T.any(WhopSDK::User, WhopSDK::Internal::AnyHash) }
 
-      # The internal ID of the user.
+      # The unique identifier for the user.
       sig { returns(String) }
       attr_accessor :id
 
@@ -19,7 +13,7 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :bio
 
-      # When the user was created.
+      # The datetime the user was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -28,19 +22,12 @@ module WhopSDK
       attr_accessor :name
 
       # The user's profile picture
-      sig do
-        returns(
-          T.nilable(WhopSDK::Models::UserRetrieveResponse::ProfilePicture)
-        )
-      end
+      sig { returns(T.nilable(WhopSDK::User::ProfilePicture)) }
       attr_reader :profile_picture
 
       sig do
         params(
-          profile_picture:
-            T.nilable(
-              WhopSDK::Models::UserRetrieveResponse::ProfilePicture::OrHash
-            )
+          profile_picture: T.nilable(WhopSDK::User::ProfilePicture::OrHash)
         ).void
       end
       attr_writer :profile_picture
@@ -49,26 +36,24 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :username
 
-      # An object representing a (sanitized) user of the site.
+      # A user account on Whop. Contains profile information, identity details, and
+      # social connections.
       sig do
         params(
           id: String,
           bio: T.nilable(String),
           created_at: Time,
           name: T.nilable(String),
-          profile_picture:
-            T.nilable(
-              WhopSDK::Models::UserRetrieveResponse::ProfilePicture::OrHash
-            ),
+          profile_picture: T.nilable(WhopSDK::User::ProfilePicture::OrHash),
           username: String
         ).returns(T.attached_class)
       end
       def self.new(
-        # The internal ID of the user.
+        # The unique identifier for the user.
         id:,
         # The user's bio
         bio:,
-        # When the user was created.
+        # The datetime the user was created.
         created_at:,
         # The name of the user from their Whop account.
         name:,
@@ -86,8 +71,7 @@ module WhopSDK
             bio: T.nilable(String),
             created_at: Time,
             name: T.nilable(String),
-            profile_picture:
-              T.nilable(WhopSDK::Models::UserRetrieveResponse::ProfilePicture),
+            profile_picture: T.nilable(WhopSDK::User::ProfilePicture),
             username: String
           }
         )
@@ -98,10 +82,7 @@ module WhopSDK
       class ProfilePicture < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(
-              WhopSDK::Models::UserRetrieveResponse::ProfilePicture,
-              WhopSDK::Internal::AnyHash
-            )
+            T.any(WhopSDK::User::ProfilePicture, WhopSDK::Internal::AnyHash)
           end
 
         # This is the URL you use to render optimized attachments on the client. This

@@ -5,13 +5,13 @@ module WhopSDK
     # @see WhopSDK::Resources::FeeMarkups#list
     class FeeMarkupListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier of the fee markup.
+      #   The unique identifier for the fee markup.
       #
       #   @return [String]
       required :id, String
 
       # @!attribute created_at
-      #   When this fee markup was created.
+      #   The datetime the fee markup was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -41,7 +41,7 @@ module WhopSDK
       required :percentage_fee, Float, nil?: true
 
       # @!attribute updated_at
-      #   When this fee markup was last updated.
+      #   The datetime the fee markup was last updated.
       #
       #   @return [Time]
       required :updated_at, Time
@@ -49,9 +49,9 @@ module WhopSDK
       # @!method initialize(id:, created_at:, fee_type:, fixed_fee_usd:, notes:, percentage_fee:, updated_at:)
       #   Represents a fee markup configuration for a company
       #
-      #   @param id [String] The unique identifier of the fee markup.
+      #   @param id [String] The unique identifier for the fee markup.
       #
-      #   @param created_at [Time] When this fee markup was created.
+      #   @param created_at [Time] The datetime the fee markup was created.
       #
       #   @param fee_type [Symbol, WhopSDK::Models::FeeMarkupType] The type of fee this markup applies to.
       #
@@ -61,7 +61,7 @@ module WhopSDK
       #
       #   @param percentage_fee [Float, nil] The percentage fee to charge (0-25).
       #
-      #   @param updated_at [Time] When this fee markup was last updated.
+      #   @param updated_at [Time] The datetime the fee markup was last updated.
     end
   end
 end

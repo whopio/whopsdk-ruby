@@ -5,7 +5,11 @@ module WhopSDK
     # @see WhopSDK::Resources::ForumPosts#list
     class ForumPostListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier of the resource.
+      #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+      #   refetch an object or as key for a cache. The ID type appears in a JSON response
+      #   as a String; however, it is not intended to be human-readable. When expected as
+      #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+      #   input value will be accepted as an ID.
       #
       #   @return [String]
       required :id, String
@@ -83,9 +87,12 @@ module WhopSDK
       required :view_count, Integer, nil?: true
 
       # @!method initialize(id:, comment_count:, content:, created_at:, is_edited:, is_pinned:, is_poster_admin:, like_count:, parent_id:, title:, updated_at:, user:, view_count:)
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::ForumPostListResponse} for more details.
+      #
       #   Represents a post in forum
       #
-      #   @param id [String] The unique identifier of the resource.
+      #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
       #
       #   @param comment_count [Integer] The amount of comments on this post
       #
@@ -114,7 +121,7 @@ module WhopSDK
       # @see WhopSDK::Models::ForumPostListResponse#user
       class User < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user.
+        #   The unique identifier for the user.
         #
         #   @return [String]
         required :id, String
@@ -134,7 +141,7 @@ module WhopSDK
         # @!method initialize(id:, name:, username:)
         #   The user who created this forum post
         #
-        #   @param id [String] The internal ID of the user.
+        #   @param id [String] The unique identifier for the user.
         #
         #   @param name [String, nil] The name of the user from their Whop account.
         #

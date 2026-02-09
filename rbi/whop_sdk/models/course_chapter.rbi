@@ -8,7 +8,7 @@ module WhopSDK
           T.any(WhopSDK::CourseChapter, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the chapter. Looks like chap_XXX
+      # The unique identifier for the chapter.
       sig { returns(String) }
       attr_accessor :id
 
@@ -34,7 +34,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the chapter. Looks like chap_XXX
+        # The unique identifier for the chapter.
         id:,
         # The lessons in this chapter
         lessons:,
@@ -64,7 +64,7 @@ module WhopSDK
             T.any(WhopSDK::CourseChapter::Lesson, WhopSDK::Internal::AnyHash)
           end
 
-        # The ID of the lesson
+        # The unique identifier for the lesson.
         sig { returns(String) }
         attr_accessor :id
 
@@ -83,7 +83,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The ID of the lesson
+          # The unique identifier for the lesson.
           id:,
           # The order of the lesson within its chapter
           order:,

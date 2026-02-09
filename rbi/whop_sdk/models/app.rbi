@@ -5,7 +5,7 @@ module WhopSDK
     class App < WhopSDK::Internal::Type::BaseModel
       OrHash = T.type_alias { T.any(WhopSDK::App, WhopSDK::Internal::AnyHash) }
 
-      # The ID of the app
+      # The unique identifier for the app.
       sig { returns(String) }
       attr_accessor :id
 
@@ -100,7 +100,8 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :verified
 
-      # An object representing an app
+      # An app is an integration built on Whop. Apps can serve consumers as experiences
+      # within products, or serve companies as business tools.
       sig do
         params(
           id: String,
@@ -124,7 +125,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the app
+        # The unique identifier for the app.
         id:,
         # The API key for the app
         api_key:,
@@ -205,7 +206,7 @@ module WhopSDK
             T.any(WhopSDK::App::APIKey, WhopSDK::Internal::AnyHash)
           end
 
-        # The ID of this API key
+        # The unique identifier for the private api key.
         sig { returns(String) }
         attr_accessor :id
 
@@ -213,7 +214,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :token
 
-        # When this API key was created at
+        # The datetime the private api key was created.
         sig { returns(Time) }
         attr_accessor :created_at
 
@@ -224,11 +225,11 @@ module WhopSDK
           )
         end
         def self.new(
-          # The ID of this API key
+          # The unique identifier for the private api key.
           id:,
           # This is the API key used to authenticate requests
           token:,
-          # When this API key was created at
+          # The datetime the private api key was created.
           created_at:
         )
         end
@@ -246,7 +247,7 @@ module WhopSDK
             T.any(WhopSDK::App::Company, WhopSDK::Internal::AnyHash)
           end
 
-        # The ID (tag) of the company.
+        # The unique identifier for the company.
         sig { returns(String) }
         attr_accessor :id
 
@@ -257,7 +258,7 @@ module WhopSDK
         # The company that owns the app
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
-          # The ID (tag) of the company.
+          # The unique identifier for the company.
           id:,
           # The title of the company.
           title:
@@ -275,7 +276,7 @@ module WhopSDK
             T.any(WhopSDK::App::Creator, WhopSDK::Internal::AnyHash)
           end
 
-        # The internal ID of the user.
+        # The unique identifier for the user.
         sig { returns(String) }
         attr_accessor :id
 
@@ -294,7 +295,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The internal ID of the user.
+          # The unique identifier for the user.
           id:,
           # The name of the user from their Whop account.
           name:,

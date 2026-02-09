@@ -5,19 +5,20 @@ module WhopSDK
     # @see WhopSDK::Resources::Withdrawals#list
     class WithdrawalListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   Internal ID of the withdrawal request.
+      #   The unique identifier for the withdrawal.
       #
       #   @return [String]
       required :id, String
 
       # @!attribute amount
-      #   How much money was attempted to be withdrawn, in a float type.
+      #   The withdrawal amount. Provided as a number in the specified currency. Eg:
+      #   100.00 for $100.00 USD.
       #
       #   @return [Float]
       required :amount, Float
 
       # @!attribute created_at
-      #   When the withdrawal request was created.
+      #   The datetime the withdrawal was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -65,13 +66,14 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::WithdrawalListResponse} for more details.
       #
-      #   A withdrawal request.
+      #   A withdrawal represents a request to transfer funds from a company's ledger
+      #   account to an external payout method.
       #
-      #   @param id [String] Internal ID of the withdrawal request.
+      #   @param id [String] The unique identifier for the withdrawal.
       #
-      #   @param amount [Float] How much money was attempted to be withdrawn, in a float type.
+      #   @param amount [Float] The withdrawal amount. Provided as a number in the specified currency. Eg: 100.0
       #
-      #   @param created_at [Time] When the withdrawal request was created.
+      #   @param created_at [Time] The datetime the withdrawal was created.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the withdrawal request.
       #

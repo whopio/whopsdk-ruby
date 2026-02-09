@@ -11,7 +11,7 @@ module WhopSDK
           )
         end
 
-      # The ID of the lesson
+      # The unique identifier for the lesson.
       sig { returns(String) }
       attr_accessor :id
 
@@ -19,7 +19,7 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :content
 
-      # The timestamp of when the lesson was created
+      # The datetime the lesson was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -88,11 +88,11 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the lesson
+        # The unique identifier for the lesson.
         id:,
         # The content of the lesson
         content:,
-        # The timestamp of when the lesson was created
+        # The datetime the lesson was created.
         created_at:,
         # Number of days from course start until the lesson is unlocked
         days_from_course_start_until_unlock:,

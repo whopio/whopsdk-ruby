@@ -8,7 +8,7 @@ module WhopSDK
           T.any(WhopSDK::Models::CourseListResponse, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the course. Looks like cors_XXX
+      # The unique identifier for the course.
       sig { returns(String) }
       attr_accessor :id
 
@@ -21,7 +21,7 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :cover_image
 
-      # The timestamp of when the course was created
+      # The datetime the course was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -63,7 +63,7 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
-      # The timestamp of when the course was last updated
+      # The datetime the course was last updated.
       sig { returns(Time) }
       attr_accessor :updated_at
 
@@ -92,14 +92,14 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the course. Looks like cors_XXX
+        # The unique identifier for the course.
         id:,
         # Whether the course will award its students a PDF certificate after completing
         # all lessons
         certificate_after_completion_enabled:,
         # The URL of the course's cover image, which is shown in course preview cards
         cover_image:,
-        # The timestamp of when the course was created
+        # The datetime the course was created.
         created_at:,
         # A short description of the course
         description:,
@@ -117,7 +117,7 @@ module WhopSDK
         thumbnail:,
         # The title of the course
         title:,
-        # The timestamp of when the course was last updated
+        # The datetime the course was last updated.
         updated_at:,
         # The visibility of the course. Determines how / whether this course is visible to
         # users.

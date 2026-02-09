@@ -5,13 +5,15 @@ module WhopSDK
     # @see WhopSDK::Resources::PromoCodes#create
     class PromoCode < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the promo.
+      #   The unique identifier for the promo code.
       #
       #   @return [String]
       required :id, String
 
       # @!attribute amount_off
-      #   The amount off (% or flat amount) for the promo.
+      #   The discount amount. Interpretation depends on promo_type: if 'percentage', this
+      #   is the percentage (e.g., 20 means 20% off); if 'flat_amount', this is dollars
+      #   off (e.g., 10.00 means $10.00 off).
       #
       #   @return [Float]
       required :amount_off, Float
@@ -35,7 +37,7 @@ module WhopSDK
       required :company, -> { WhopSDK::PromoCode::Company }
 
       # @!attribute created_at
-      #   The timestamp of when the promo was created.
+      #   The datetime the promo code was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -123,11 +125,13 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PromoCode} for more details.
       #
-      #   An object representing a promo code for a plan.
+      #   A promo code applies a discount to a plan during checkout. Promo codes can be
+      #   percentage-based or fixed-amount, and can have usage limits and expiration
+      #   dates.
       #
-      #   @param id [String] The ID of the promo.
+      #   @param id [String] The unique identifier for the promo code.
       #
-      #   @param amount_off [Float] The amount off (% or flat amount) for the promo.
+      #   @param amount_off [Float] The discount amount. Interpretation depends on promo_type: if 'percentage', this
       #
       #   @param churned_users_only [Boolean] Restricts promo use to only users who have churned from the company before.
       #
@@ -135,7 +139,7 @@ module WhopSDK
       #
       #   @param company [WhopSDK::Models::PromoCode::Company] The company for the promo code.
       #
-      #   @param created_at [Time] The timestamp of when the promo was created.
+      #   @param created_at [Time] The datetime the promo code was created.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency] The monetary currency of the promo code.
       #
@@ -166,7 +170,7 @@ module WhopSDK
       # @see WhopSDK::Models::PromoCode#company
       class Company < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the company
+        #   The unique identifier for the company.
         #
         #   @return [String]
         required :id, String
@@ -180,7 +184,7 @@ module WhopSDK
         # @!method initialize(id:, title:)
         #   The company for the promo code.
         #
-        #   @param id [String] The ID of the company
+        #   @param id [String] The unique identifier for the company.
         #
         #   @param title [String] The written name of the company.
       end
@@ -188,7 +192,7 @@ module WhopSDK
       # @see WhopSDK::Models::PromoCode#product
       class Product < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the public product.
+        #   The unique identifier for the product.
         #
         #   @return [String]
         required :id, String
@@ -202,7 +206,7 @@ module WhopSDK
         # @!method initialize(id:, title:)
         #   The product this promo code applies to
         #
-        #   @param id [String] The internal ID of the public product.
+        #   @param id [String] The unique identifier for the product.
         #
         #   @param title [String] The title of the product. Use for Whop 4.0.
       end

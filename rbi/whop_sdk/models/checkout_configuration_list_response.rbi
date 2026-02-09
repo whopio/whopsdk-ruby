@@ -11,7 +11,7 @@ module WhopSDK
           )
         end
 
-      # The ID of the checkout configuration
+      # The unique identifier for the checkout session.
       sig { returns(String) }
       attr_accessor :id
 
@@ -84,11 +84,9 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :redirect_url
 
-      # A checkout configuration object. Can be used to create a reusable custom
-      # configuration for a checkout, including attaching plans, affiliates and custom
-      # metadata to the checkout. This configuration can be re-used by multiple users.
-      # All successful payments and memberships resulting from a checkout will contain
-      # the passed metadata.
+      # A checkout session is a reusable configuration for a checkout, including the
+      # plan, affiliate, and custom metadata. Payments and memberships created from a
+      # checkout session inherit its metadata.
       sig do
         params(
           id: String,
@@ -110,7 +108,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the checkout configuration
+        # The unique identifier for the checkout session.
         id:,
         # The affiliate code to use for the checkout configuration
         affiliate_code:,
@@ -236,11 +234,11 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the plan.
+        # The unique identifier for the plan.
         sig { returns(String) }
         attr_accessor :id
 
-        # The interval at which the plan charges (renewal plans).
+        # The interval in days at which the plan charges (renewal plans).
         sig { returns(T.nilable(Integer)) }
         attr_accessor :billing_period
 
@@ -248,11 +246,14 @@ module WhopSDK
         sig { returns(WhopSDK::Currency::TaggedSymbol) }
         attr_accessor :currency
 
-        # The interval at which the plan charges (expiration plans).
+        # The number of days until the membership expires (for expiration-based plans).
+        # For example, 365 for a one-year access pass.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :expiration_days
 
-        # The price a person has to pay for a plan on the initial purchase.
+        # The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
+        # For one-time plans, this is the full price. For renewal plans, this is charged
+        # on top of the first renewal_price.
         sig { returns(Float) }
         attr_accessor :initial_price
 
@@ -264,7 +265,8 @@ module WhopSDK
         sig { returns(WhopSDK::ReleaseMethod::TaggedSymbol) }
         attr_accessor :release_method
 
-        # The price a person has to pay for a plan on the renewal purchase.
+        # The recurring price charged every billing_period in the plan's base_currency
+        # (e.g., 9.99 for $9.99/period). Zero for one-time plans.
         sig { returns(Float) }
         attr_accessor :renewal_price
 
@@ -292,21 +294,25 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The internal ID of the plan.
+          # The unique identifier for the plan.
           id:,
-          # The interval at which the plan charges (renewal plans).
+          # The interval in days at which the plan charges (renewal plans).
           billing_period:,
           # The respective currency identifier for the plan.
           currency:,
-          # The interval at which the plan charges (expiration plans).
+          # The number of days until the membership expires (for expiration-based plans).
+          # For example, 365 for a one-year access pass.
           expiration_days:,
-          # The price a person has to pay for a plan on the initial purchase.
+          # The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
+          # For one-time plans, this is the full price. For renewal plans, this is charged
+          # on top of the first renewal_price.
           initial_price:,
           # Indicates if the plan is a one time payment or recurring.
           plan_type:,
           # This is the release method the business uses to sell this plan.
           release_method:,
-          # The price a person has to pay for a plan on the renewal purchase.
+          # The recurring price charged every billing_period in the plan's base_currency
+          # (e.g., 9.99 for $9.99/period). Zero for one-time plans.
           renewal_price:,
           # The number of free trial days added before a renewal plan.
           trial_period_days:,

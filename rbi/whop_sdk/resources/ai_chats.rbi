@@ -10,11 +10,24 @@ module WhopSDK
       # - `ai_chat:create`
       sig do
         params(
+          message_text: String,
+          current_company_id: T.nilable(String),
+          message_attachments:
+            T.nilable(
+              T::Array[WhopSDK::AIChatCreateParams::MessageAttachment::OrHash]
+            ),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::AIChat)
       end
       def create(
+        # The text content of the first message sent in the chat
+        message_text:,
+        # The ID of the company to set as the current company in context for the AI chat
+        current_company_id: nil,
+        # The IDs of existing uploaded attachments to include in the first message to the
+        # agent
+        message_attachments: nil,
         # The title of the AI chat
         title: nil,
         request_options: {}
@@ -43,6 +56,7 @@ module WhopSDK
       sig do
         params(
           id: String,
+          current_company_id: T.nilable(String),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::AIChat)
@@ -50,6 +64,8 @@ module WhopSDK
       def update(
         # The ID of the AI chat to update
         id,
+        # The ID of the company to set as the current company in context for the AI chat
+        current_company_id: nil,
         # The new title for the AI chat
         title: nil,
         request_options: {}

@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::Courses#list
     class CourseListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the course. Looks like cors_XXX
+      #   The unique identifier for the course.
       #
       #   @return [String]
       required :id, String
@@ -24,7 +24,7 @@ module WhopSDK
       required :cover_image, String, nil?: true
 
       # @!attribute created_at
-      #   The timestamp of when the course was created
+      #   The datetime the course was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -74,7 +74,7 @@ module WhopSDK
       required :title, String, nil?: true
 
       # @!attribute updated_at
-      #   The timestamp of when the course was last updated
+      #   The datetime the course was last updated.
       #
       #   @return [Time]
       required :updated_at, Time
@@ -92,13 +92,13 @@ module WhopSDK
       #
       #   A course from the courses app
       #
-      #   @param id [String] The ID of the course. Looks like cors_XXX
+      #   @param id [String] The unique identifier for the course.
       #
       #   @param certificate_after_completion_enabled [Boolean, nil] Whether the course will award its students a PDF certificate after completing al
       #
       #   @param cover_image [String, nil] The URL of the course's cover image, which is shown in course preview cards
       #
-      #   @param created_at [Time] The timestamp of when the course was created
+      #   @param created_at [Time] The datetime the course was created.
       #
       #   @param description [String, nil] A short description of the course
       #
@@ -114,7 +114,7 @@ module WhopSDK
       #
       #   @param title [String, nil] The title of the course
       #
-      #   @param updated_at [Time] The timestamp of when the course was last updated
+      #   @param updated_at [Time] The datetime the course was last updated.
       #
       #   @param visibility [Symbol, WhopSDK::Models::CourseVisibilities] The visibility of the course. Determines how / whether this course is visible to
 

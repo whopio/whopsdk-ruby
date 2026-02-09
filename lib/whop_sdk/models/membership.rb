@@ -4,7 +4,7 @@ module WhopSDK
   module Models
     class Membership < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the membership
+      #   The unique identifier for the membership.
       #
       #   @return [String]
       required :id, String
@@ -42,7 +42,7 @@ module WhopSDK
       required :company, -> { WhopSDK::Membership::Company }
 
       # @!attribute created_at
-      #   The timestamp, in seconds, that this Membership was created at.
+      #   The datetime the membership was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -59,6 +59,12 @@ module WhopSDK
       #   @return [Array<WhopSDK::Models::Membership::CustomFieldResponse>]
       required :custom_field_responses,
                -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Membership::CustomFieldResponse] }
+
+      # @!attribute joined_at
+      #   When the member joined the company.
+      #
+      #   @return [Time, nil]
+      required :joined_at, Time, nil?: true
 
       # @!attribute license_key
       #   The license key for this Membership. This is only present if the membership
@@ -80,7 +86,8 @@ module WhopSDK
       required :member, -> { WhopSDK::Membership::Member }, nil?: true
 
       # @!attribute metadata
-      #   A JSON object used to store software licensing information. Ex. HWID
+      #   Custom key-value pairs for the membership (commonly used for software licensing,
+      #   e.g., HWID). Max 50 keys, 500 chars per key, 5000 chars per value.
       #
       #   @return [Hash{Symbol=>Object}]
       required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]
@@ -130,7 +137,7 @@ module WhopSDK
       required :status, enum: -> { WhopSDK::MembershipStatus }
 
       # @!attribute updated_at
-      #   A timestamp of when the membership was last updated
+      #   The datetime the membership was last updated.
       #
       #   @return [Time]
       required :updated_at, Time
@@ -141,14 +148,14 @@ module WhopSDK
       #   @return [WhopSDK::Models::Membership::User, nil]
       required :user, -> { WhopSDK::Membership::User }, nil?: true
 
-      # @!method initialize(id:, cancel_at_period_end:, cancel_option:, canceled_at:, cancellation_reason:, company:, created_at:, currency:, custom_field_responses:, license_key:, manage_url:, member:, metadata:, payment_collection_paused:, plan:, product:, promo_code:, renewal_period_end:, renewal_period_start:, status:, updated_at:, user:)
+      # @!method initialize(id:, cancel_at_period_end:, cancel_option:, canceled_at:, cancellation_reason:, company:, created_at:, currency:, custom_field_responses:, joined_at:, license_key:, manage_url:, member:, metadata:, payment_collection_paused:, plan:, product:, promo_code:, renewal_period_end:, renewal_period_start:, status:, updated_at:, user:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::Membership} for more details.
       #
-      #   A membership represents a purchase between a User and a Company for a specific
-      #   Product.
+      #   A membership represents an active relationship between a user and a product. It
+      #   tracks the user's access, billing status, and renewal schedule.
       #
-      #   @param id [String] The ID of the membership
+      #   @param id [String] The unique identifier for the membership.
       #
       #   @param cancel_at_period_end [Boolean] Whether this Membership is set to cancel at the end of the current billing cycle
       #
@@ -160,11 +167,13 @@ module WhopSDK
       #
       #   @param company [WhopSDK::Models::Membership::Company] The Company this Membership belongs to.
       #
-      #   @param created_at [Time] The timestamp, in seconds, that this Membership was created at.
+      #   @param created_at [Time] The datetime the membership was created.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #
       #   @param custom_field_responses [Array<WhopSDK::Models::Membership::CustomFieldResponse>] The responses to custom checkout questions for this membership.
+      #
+      #   @param joined_at [Time, nil] When the member joined the company.
       #
       #   @param license_key [String, nil] The license key for this Membership. This is only present if the membership gran
       #
@@ -172,7 +181,7 @@ module WhopSDK
       #
       #   @param member [WhopSDK::Models::Membership::Member, nil] The Member that this Membership belongs to.
       #
-      #   @param metadata [Hash{Symbol=>Object}] A JSON object used to store software licensing information. Ex. HWID
+      #   @param metadata [Hash{Symbol=>Object}] Custom key-value pairs for the membership (commonly used for software licensing,
       #
       #   @param payment_collection_paused [Boolean] Whether the membership's payments are currently paused.
       #
@@ -188,14 +197,14 @@ module WhopSDK
       #
       #   @param status [Symbol, WhopSDK::Models::MembershipStatus] The status of the membership.
       #
-      #   @param updated_at [Time] A timestamp of when the membership was last updated
+      #   @param updated_at [Time] The datetime the membership was last updated.
       #
       #   @param user [WhopSDK::Models::Membership::User, nil] The user this membership belongs to
 
       # @see WhopSDK::Models::Membership#company
       class Company < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID (tag) of the company.
+        #   The unique identifier for the company.
         #
         #   @return [String]
         required :id, String
@@ -209,14 +218,14 @@ module WhopSDK
         # @!method initialize(id:, title:)
         #   The Company this Membership belongs to.
         #
-        #   @param id [String] The ID (tag) of the company.
+        #   @param id [String] The unique identifier for the company.
         #
         #   @param title [String] The title of the company.
       end
 
       class CustomFieldResponse < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the custom field item
+        #   The unique identifier for the custom field response.
         #
         #   @return [String]
         required :id, String
@@ -236,7 +245,7 @@ module WhopSDK
         # @!method initialize(id:, answer:, question:)
         #   The response from a custom field on checkout
         #
-        #   @param id [String] The ID of the custom field item
+        #   @param id [String] The unique identifier for the custom field response.
         #
         #   @param answer [String] The response a user gave to the specific question or field.
         #
@@ -246,7 +255,7 @@ module WhopSDK
       # @see WhopSDK::Models::Membership#member
       class Member < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the member
+        #   The unique identifier for the member.
         #
         #   @return [String]
         required :id, String
@@ -254,13 +263,13 @@ module WhopSDK
         # @!method initialize(id:)
         #   The Member that this Membership belongs to.
         #
-        #   @param id [String] The ID of the member
+        #   @param id [String] The unique identifier for the member.
       end
 
       # @see WhopSDK::Models::Membership#plan
       class Plan < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the plan.
+        #   The unique identifier for the plan.
         #
         #   @return [String]
         required :id, String
@@ -268,13 +277,13 @@ module WhopSDK
         # @!method initialize(id:)
         #   The Plan this Membership is for.
         #
-        #   @param id [String] The internal ID of the plan.
+        #   @param id [String] The unique identifier for the plan.
       end
 
       # @see WhopSDK::Models::Membership#product
       class Product < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the public product.
+        #   The unique identifier for the product.
         #
         #   @return [String]
         required :id, String
@@ -288,7 +297,7 @@ module WhopSDK
         # @!method initialize(id:, title:)
         #   The Product this Membership grants access to.
         #
-        #   @param id [String] The internal ID of the public product.
+        #   @param id [String] The unique identifier for the product.
         #
         #   @param title [String] The title of the product. Use for Whop 4.0.
       end
@@ -296,7 +305,7 @@ module WhopSDK
       # @see WhopSDK::Models::Membership#promo_code
       class PromoCode < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the promo.
+        #   The unique identifier for the promo code.
         #
         #   @return [String]
         required :id, String
@@ -304,13 +313,13 @@ module WhopSDK
         # @!method initialize(id:)
         #   The Promo Code that is currently applied to this Membership.
         #
-        #   @param id [String] The ID of the promo.
+        #   @param id [String] The unique identifier for the promo code.
       end
 
       # @see WhopSDK::Models::Membership#user
       class User < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user.
+        #   The unique identifier for the user.
         #
         #   @return [String]
         required :id, String
@@ -336,7 +345,7 @@ module WhopSDK
         # @!method initialize(id:, email:, name:, username:)
         #   The user this membership belongs to
         #
-        #   @param id [String] The internal ID of the user.
+        #   @param id [String] The unique identifier for the user.
         #
         #   @param email [String, nil] The email of the user
         #

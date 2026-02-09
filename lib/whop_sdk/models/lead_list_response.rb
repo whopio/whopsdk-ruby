@@ -5,13 +5,13 @@ module WhopSDK
     # @see WhopSDK::Resources::Leads#list
     class LeadListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the lead.
+      #   The unique identifier for the lead.
       #
       #   @return [String]
       required :id, String
 
       # @!attribute created_at
-      #   The timestamp of when the lead was created.
+      #   The datetime the lead was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -41,7 +41,7 @@ module WhopSDK
       required :referrer, String, nil?: true
 
       # @!attribute updated_at
-      #   The timestamp of when the lead was last updated.
+      #   The datetime the lead was last updated.
       #
       #   @return [Time]
       required :updated_at, Time
@@ -55,9 +55,9 @@ module WhopSDK
       # @!method initialize(id:, created_at:, member:, metadata:, product:, referrer:, updated_at:, user:)
       #   An object representing a lead (someone who is interested in a whop).
       #
-      #   @param id [String] The ID of the lead.
+      #   @param id [String] The unique identifier for the lead.
       #
-      #   @param created_at [Time] The timestamp of when the lead was created.
+      #   @param created_at [Time] The datetime the lead was created.
       #
       #   @param member [WhopSDK::Models::LeadListResponse::Member, nil] The converted member, if any.
       #
@@ -67,14 +67,14 @@ module WhopSDK
       #
       #   @param referrer [String, nil] The referrer URL that brought this lead.
       #
-      #   @param updated_at [Time] The timestamp of when the lead was last updated.
+      #   @param updated_at [Time] The datetime the lead was last updated.
       #
       #   @param user [WhopSDK::Models::LeadListResponse::User] The user who is the lead.
 
       # @see WhopSDK::Models::LeadListResponse#member
       class Member < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the member
+        #   The unique identifier for the company member.
         #
         #   @return [String]
         required :id, String
@@ -82,13 +82,13 @@ module WhopSDK
         # @!method initialize(id:)
         #   The converted member, if any.
         #
-        #   @param id [String] The ID of the member
+        #   @param id [String] The unique identifier for the company member.
       end
 
       # @see WhopSDK::Models::LeadListResponse#product
       class Product < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the public product.
+        #   The unique identifier for the product.
         #
         #   @return [String]
         required :id, String
@@ -102,7 +102,7 @@ module WhopSDK
         # @!method initialize(id:, title:)
         #   The access pass the lead is interested in, if available.
         #
-        #   @param id [String] The internal ID of the public product.
+        #   @param id [String] The unique identifier for the product.
         #
         #   @param title [String] The title of the product. Use for Whop 4.0.
       end
@@ -110,7 +110,7 @@ module WhopSDK
       # @see WhopSDK::Models::LeadListResponse#user
       class User < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user.
+        #   The unique identifier for the user.
         #
         #   @return [String]
         required :id, String
@@ -136,7 +136,7 @@ module WhopSDK
         # @!method initialize(id:, email:, name:, username:)
         #   The user who is the lead.
         #
-        #   @param id [String] The internal ID of the user.
+        #   @param id [String] The unique identifier for the user.
         #
         #   @param email [String, nil] The email of the user
         #

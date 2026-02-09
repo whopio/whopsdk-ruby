@@ -5,19 +5,20 @@ module WhopSDK
     # @see WhopSDK::Resources::Refunds#retrieve
     class RefundRetrieveResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the refund.
+      #   The unique identifier for the refund.
       #
       #   @return [String]
       required :id, String
 
       # @!attribute amount
-      #   The amount of the refund.
+      #   The amount of the refund. Provided as a number in the specified currency. Eg:
+      #   10.43 for $10.43 USD.
       #
       #   @return [Float]
       required :amount, Float
 
       # @!attribute created_at
-      #   The time the refund was created.
+      #   The datetime the refund was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -71,13 +72,17 @@ module WhopSDK
       required :status, enum: -> { WhopSDK::RefundStatus }
 
       # @!method initialize(id:, amount:, created_at:, currency:, payment:, provider:, provider_created_at:, reference_status:, reference_type:, reference_value:, status:)
-      #   An object representing a refund made on a payment.
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::RefundRetrieveResponse} for more details.
       #
-      #   @param id [String] The ID of the refund.
+      #   A refund represents a full or partial reversal of a payment, including the
+      #   amount, status, and payment provider.
       #
-      #   @param amount [Float] The amount of the refund.
+      #   @param id [String] The unique identifier for the refund.
       #
-      #   @param created_at [Time] The time the refund was created.
+      #   @param amount [Float] The amount of the refund. Provided as a number in the specified currency. Eg: 10
+      #
+      #   @param created_at [Time] The datetime the refund was created.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the refund.
       #
@@ -98,7 +103,7 @@ module WhopSDK
       # @see WhopSDK::Models::RefundRetrieveResponse#payment
       class Payment < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The payment ID
+        #   The unique identifier for the payment.
         #
         #   @return [String]
         required :id, String
@@ -122,7 +127,7 @@ module WhopSDK
         required :card_last4, String, nil?: true
 
         # @!attribute created_at
-        #   The datetime the payment was created
+        #   The datetime the payment was created.
         #
         #   @return [Time]
         required :created_at, Time
@@ -190,7 +195,7 @@ module WhopSDK
         # @!method initialize(id:, billing_reason:, card_brand:, card_last4:, created_at:, currency:, dispute_alerted_at:, member:, membership:, paid_at:, payment_method_type:, subtotal:, total:, usd_total:, user:)
         #   The payment associated with the refund.
         #
-        #   @param id [String] The payment ID
+        #   @param id [String] The unique identifier for the payment.
         #
         #   @param billing_reason [Symbol, WhopSDK::Models::BillingReasons, nil] The reason why a specific payment was billed
         #
@@ -198,7 +203,7 @@ module WhopSDK
         #
         #   @param card_last4 [String, nil] The last 4 digits of the card used to make the payment.
         #
-        #   @param created_at [Time] The datetime the payment was created
+        #   @param created_at [Time] The datetime the payment was created.
         #
         #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
         #
@@ -223,7 +228,7 @@ module WhopSDK
         # @see WhopSDK::Models::RefundRetrieveResponse::Payment#member
         class Member < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
-          #   The ID of the member
+          #   The unique identifier for the company member.
           #
           #   @return [String]
           required :id, String
@@ -237,7 +242,7 @@ module WhopSDK
           # @!method initialize(id:, phone:)
           #   The member attached to this payment.
           #
-          #   @param id [String] The ID of the member
+          #   @param id [String] The unique identifier for the company member.
           #
           #   @param phone [String, nil] The phone number for the member, if available.
         end
@@ -245,7 +250,7 @@ module WhopSDK
         # @see WhopSDK::Models::RefundRetrieveResponse::Payment#membership
         class Membership < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
-          #   The internal ID of the membership.
+          #   The unique identifier for the membership.
           #
           #   @return [String]
           required :id, String
@@ -259,7 +264,7 @@ module WhopSDK
           # @!method initialize(id:, status:)
           #   The membership attached to this payment.
           #
-          #   @param id [String] The internal ID of the membership.
+          #   @param id [String] The unique identifier for the membership.
           #
           #   @param status [Symbol, WhopSDK::Models::MembershipStatus] The state of the membership.
         end
@@ -267,7 +272,7 @@ module WhopSDK
         # @see WhopSDK::Models::RefundRetrieveResponse::Payment#user
         class User < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
-          #   The internal ID of the user.
+          #   The unique identifier for the user.
           #
           #   @return [String]
           required :id, String
@@ -293,7 +298,7 @@ module WhopSDK
           # @!method initialize(id:, email:, name:, username:)
           #   The user that made this payment.
           #
-          #   @param id [String] The internal ID of the user.
+          #   @param id [String] The unique identifier for the user.
           #
           #   @param email [String, nil] The email of the user
           #

@@ -11,14 +11,6 @@ module WhopSDK
           T.any(WhopSDK::CompanyCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The email of the user who the company will belong to.
-      sig { returns(String) }
-      attr_accessor :email
-
-      # The company ID of the platform creating this company.
-      sig { returns(String) }
-      attr_accessor :parent_company_id
-
       # The name of the company being created.
       sig { returns(String) }
       attr_accessor :title
@@ -26,6 +18,15 @@ module WhopSDK
       # The different business types a company can be.
       sig { returns(T.nilable(WhopSDK::BusinessTypes::OrSymbol)) }
       attr_accessor :business_type
+
+      # A description of what the company offers or does.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :description
+
+      # The email of the user who the sub-company will belong to. Required when
+      # parent_company_id is provided.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :email
 
       # The different industry types a company can be in.
       sig { returns(T.nilable(WhopSDK::IndustryTypes::OrSymbol)) }
@@ -40,49 +41,55 @@ module WhopSDK
       end
       attr_writer :logo
 
-      # Additional metadata for the account
+      # Additional metadata for the company
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
+      # The company ID of the platform creating this sub-company. If omitted, the
+      # company is created for the current user.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :parent_company_id
+
       # Whether Whop sends transactional emails to customers on behalf of this company.
-      # Includes: order confirmations, payment failures, refund notifications, upcoming
-      # renewals, and membership cancelations/expirations. When disabled, the platform
-      # is responsible for handling these communications. This is defaulted to true.
+      # Only used when parent_company_id is provided.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :send_customer_emails
 
       sig do
         params(
-          email: String,
-          parent_company_id: String,
           title: String,
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
+          description: T.nilable(String),
+          email: T.nilable(String),
           industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           logo: T.nilable(WhopSDK::CompanyCreateParams::Logo::OrHash),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
+          parent_company_id: T.nilable(String),
           send_customer_emails: T.nilable(T::Boolean),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # The email of the user who the company will belong to.
-        email:,
-        # The company ID of the platform creating this company.
-        parent_company_id:,
         # The name of the company being created.
         title:,
         # The different business types a company can be.
         business_type: nil,
+        # A description of what the company offers or does.
+        description: nil,
+        # The email of the user who the sub-company will belong to. Required when
+        # parent_company_id is provided.
+        email: nil,
         # The different industry types a company can be in.
         industry_type: nil,
         # The logo for the company in png, jpeg, or gif format
         logo: nil,
-        # Additional metadata for the account
+        # Additional metadata for the company
         metadata: nil,
+        # The company ID of the platform creating this sub-company. If omitted, the
+        # company is created for the current user.
+        parent_company_id: nil,
         # Whether Whop sends transactional emails to customers on behalf of this company.
-        # Includes: order confirmations, payment failures, refund notifications, upcoming
-        # renewals, and membership cancelations/expirations. When disabled, the platform
-        # is responsible for handling these communications. This is defaulted to true.
+        # Only used when parent_company_id is provided.
         send_customer_emails: nil,
         request_options: {}
       )
@@ -91,13 +98,14 @@ module WhopSDK
       sig do
         override.returns(
           {
-            email: String,
-            parent_company_id: String,
             title: String,
             business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
+            description: T.nilable(String),
+            email: T.nilable(String),
             industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
             logo: T.nilable(WhopSDK::CompanyCreateParams::Logo),
             metadata: T.nilable(T::Hash[Symbol, T.anything]),
+            parent_company_id: T.nilable(String),
             send_customer_emails: T.nilable(T::Boolean),
             request_options: WhopSDK::RequestOptions
           }

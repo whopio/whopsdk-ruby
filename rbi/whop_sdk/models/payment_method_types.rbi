@@ -30,6 +30,7 @@ module WhopSDK
         T.let(:capchase_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       CARD = T.let(:card, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       CASHAPP = T.let(:cashapp, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      CLARITYPAY = T.let(:claritypay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       COINBASE = T.let(:coinbase, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       CRYPTO = T.let(:crypto, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       CUSTOM = T.let(:custom, WhopSDK::PaymentMethodTypes::TaggedSymbol)

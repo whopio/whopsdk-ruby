@@ -6,11 +6,11 @@ module WhopSDK
       OrHash =
         T.type_alias { T.any(WhopSDK::Invoice, WhopSDK::Internal::AnyHash) }
 
-      # The ID of the invoice.
+      # The unique identifier for the invoice.
       sig { returns(String) }
       attr_accessor :id
 
-      # The date the invoice was created.
+      # The datetime the invoice was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -64,9 +64,9 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the invoice.
+        # The unique identifier for the invoice.
         id:,
-        # The date the invoice was created.
+        # The datetime the invoice was created.
         created_at:,
         # The plan that the invoice was created for.
         current_plan:,
@@ -110,7 +110,7 @@ module WhopSDK
             T.any(WhopSDK::Invoice::CurrentPlan, WhopSDK::Internal::AnyHash)
           end
 
-        # The internal ID of the plan.
+        # The unique identifier for the plan.
         sig { returns(String) }
         attr_accessor :id
 
@@ -131,7 +131,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The internal ID of the plan.
+          # The unique identifier for the plan.
           id:,
           # The respective currency identifier for the plan.
           currency:,
@@ -159,7 +159,7 @@ module WhopSDK
             T.any(WhopSDK::Invoice::User, WhopSDK::Internal::AnyHash)
           end
 
-        # The internal ID of the user.
+        # The unique identifier for the user.
         sig { returns(String) }
         attr_accessor :id
 
@@ -178,7 +178,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The internal ID of the user.
+          # The unique identifier for the user.
           id:,
           # The name of the user from their Whop account.
           name:,

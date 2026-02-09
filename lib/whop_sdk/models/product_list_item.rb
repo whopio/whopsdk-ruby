@@ -4,7 +4,7 @@ module WhopSDK
   module Models
     class ProductListItem < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The internal ID of the public product.
+      #   The unique identifier for the product.
       #
       #   @return [String]
       required :id, String
@@ -16,7 +16,7 @@ module WhopSDK
       required :business_type, enum: -> { WhopSDK::BusinessTypes }, nil?: true
 
       # @!attribute created_at
-      #   When the product was created.
+      #   The datetime the product was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -66,7 +66,7 @@ module WhopSDK
       required :title, String
 
       # @!attribute updated_at
-      #   When the product was updated.
+      #   The datetime the product was last updated.
       #
       #   @return [Time]
       required :updated_at, Time
@@ -87,13 +87,14 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ProductListItem} for more details.
       #
-      #   Represents a product on whop. Use products to sell anything on the platform.
+      #   A product is a digital good or service sold on Whop. Products contain plans for
+      #   pricing and experiences for content delivery.
       #
-      #   @param id [String] The internal ID of the public product.
+      #   @param id [String] The unique identifier for the product.
       #
       #   @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #
-      #   @param created_at [Time] When the product was created.
+      #   @param created_at [Time] The datetime the product was created.
       #
       #   @param external_identifier [String, nil] A unique identifier used to create or update products. When provided on product
       #
@@ -109,7 +110,7 @@ module WhopSDK
       #
       #   @param title [String] The title of the product. Use for Whop 4.0.
       #
-      #   @param updated_at [Time] When the product was updated.
+      #   @param updated_at [Time] The datetime the product was last updated.
       #
       #   @param verified [Boolean] Whether this product is Whop verified.
       #

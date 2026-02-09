@@ -8,7 +8,7 @@ module WhopSDK
           T.any(WhopSDK::CourseLessonInteraction, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the lesson interaction
+      # The unique identifier for the lesson interaction.
       sig { returns(String) }
       attr_accessor :id
 
@@ -25,7 +25,7 @@ module WhopSDK
       end
       attr_writer :course
 
-      # When the interaction was created
+      # The datetime the lesson interaction was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -57,13 +57,13 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the lesson interaction
+        # The unique identifier for the lesson interaction.
         id:,
         # Whether the lesson has been completed by the user
         completed:,
         # The course for this lesson interaction
         course:,
-        # When the interaction was created
+        # The datetime the lesson interaction was created.
         created_at:,
         # The lesson this interaction is for
         lesson:,
@@ -96,7 +96,7 @@ module WhopSDK
             )
           end
 
-        # The ID of the course. Looks like cors_XXX
+        # The unique identifier for the course.
         sig { returns(String) }
         attr_accessor :id
 
@@ -126,7 +126,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the course. Looks like cors_XXX
+          # The unique identifier for the course.
           id:,
           # The experience that the course belongs to
           experience:,
@@ -156,14 +156,14 @@ module WhopSDK
               )
             end
 
-          # The unique ID representing this experience
+          # The unique identifier for the experience.
           sig { returns(String) }
           attr_accessor :id
 
           # The experience that the course belongs to
           sig { params(id: String).returns(T.attached_class) }
           def self.new(
-            # The unique ID representing this experience
+            # The unique identifier for the experience.
             id:
           )
           end
@@ -183,7 +183,7 @@ module WhopSDK
             )
           end
 
-        # The ID of the lesson
+        # The unique identifier for the lesson.
         sig { returns(String) }
         attr_accessor :id
 
@@ -211,7 +211,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the lesson
+          # The unique identifier for the lesson.
           id:,
           # The chapter this lesson belongs to
           chapter:,
@@ -241,14 +241,14 @@ module WhopSDK
               )
             end
 
-          # The ID of the chapter. Looks like chap_XXX
+          # The unique identifier for the chapter.
           sig { returns(String) }
           attr_accessor :id
 
           # The chapter this lesson belongs to
           sig { params(id: String).returns(T.attached_class) }
           def self.new(
-            # The ID of the chapter. Looks like chap_XXX
+            # The unique identifier for the chapter.
             id:
           )
           end
@@ -268,7 +268,7 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the user.
+        # The unique identifier for the user.
         sig { returns(String) }
         attr_accessor :id
 
@@ -287,7 +287,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The internal ID of the user.
+          # The unique identifier for the user.
           id:,
           # The name of the user from their Whop account.
           name:,

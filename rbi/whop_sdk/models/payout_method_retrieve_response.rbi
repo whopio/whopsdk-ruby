@@ -11,7 +11,7 @@ module WhopSDK
           )
         end
 
-      # The ID of the payout token
+      # The unique identifier for the payout token.
       sig { returns(String) }
       attr_accessor :id
 
@@ -38,7 +38,7 @@ module WhopSDK
       end
       attr_writer :company
 
-      # The date and time the payout token was created
+      # The datetime the payout token was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -99,14 +99,14 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the payout token
+        # The unique identifier for the payout token.
         id:,
         # A reference to identify the payout destination, such as the last 4 digits of an
         # account number or an email address.
         account_reference:,
         # The company associated with the payout token
         company:,
-        # The date and time the payout token was created
+        # The datetime the payout token was created.
         created_at:,
         # The currency code of the payout destination. This is the currency that payouts
         # will be made in for this token.
@@ -154,14 +154,14 @@ module WhopSDK
             )
           end
 
-        # The ID (tag) of the company.
+        # The unique identifier for the company.
         sig { returns(String) }
         attr_accessor :id
 
         # The company associated with the payout token
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The ID (tag) of the company.
+          # The unique identifier for the company.
           id:
         )
         end

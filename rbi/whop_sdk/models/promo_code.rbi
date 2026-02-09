@@ -6,11 +6,13 @@ module WhopSDK
       OrHash =
         T.type_alias { T.any(WhopSDK::PromoCode, WhopSDK::Internal::AnyHash) }
 
-      # The ID of the promo.
+      # The unique identifier for the promo code.
       sig { returns(String) }
       attr_accessor :id
 
-      # The amount off (% or flat amount) for the promo.
+      # The discount amount. Interpretation depends on promo_type: if 'percentage', this
+      # is the percentage (e.g., 20 means 20% off); if 'flat_amount', this is dollars
+      # off (e.g., 10.00 means $10.00 off).
       sig { returns(Float) }
       attr_accessor :amount_off
 
@@ -29,7 +31,7 @@ module WhopSDK
       sig { params(company: WhopSDK::PromoCode::Company::OrHash).void }
       attr_writer :company
 
-      # The timestamp of when the promo was created.
+      # The datetime the promo code was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -91,7 +93,9 @@ module WhopSDK
       sig { returns(Integer) }
       attr_accessor :uses
 
-      # An object representing a promo code for a plan.
+      # A promo code applies a discount to a plan during checkout. Promo codes can be
+      # percentage-based or fixed-amount, and can have usage limits and expiration
+      # dates.
       sig do
         params(
           id: String,
@@ -116,9 +120,11 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the promo.
+        # The unique identifier for the promo code.
         id:,
-        # The amount off (% or flat amount) for the promo.
+        # The discount amount. Interpretation depends on promo_type: if 'percentage', this
+        # is the percentage (e.g., 20 means 20% off); if 'flat_amount', this is dollars
+        # off (e.g., 10.00 means $10.00 off).
         amount_off:,
         # Restricts promo use to only users who have churned from the company before.
         churned_users_only:,
@@ -126,7 +132,7 @@ module WhopSDK
         code:,
         # The company for the promo code.
         company:,
-        # The timestamp of when the promo was created.
+        # The datetime the promo code was created.
         created_at:,
         # The monetary currency of the promo code.
         currency:,
@@ -192,7 +198,7 @@ module WhopSDK
             T.any(WhopSDK::PromoCode::Company, WhopSDK::Internal::AnyHash)
           end
 
-        # The ID of the company
+        # The unique identifier for the company.
         sig { returns(String) }
         attr_accessor :id
 
@@ -203,7 +209,7 @@ module WhopSDK
         # The company for the promo code.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
-          # The ID of the company
+          # The unique identifier for the company.
           id:,
           # The written name of the company.
           title:
@@ -221,7 +227,7 @@ module WhopSDK
             T.any(WhopSDK::PromoCode::Product, WhopSDK::Internal::AnyHash)
           end
 
-        # The internal ID of the public product.
+        # The unique identifier for the product.
         sig { returns(String) }
         attr_accessor :id
 
@@ -232,7 +238,7 @@ module WhopSDK
         # The product this promo code applies to
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
-          # The internal ID of the public product.
+          # The unique identifier for the product.
           id:,
           # The title of the product. Use for Whop 4.0.
           title:

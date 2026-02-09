@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::Apps#list
     class AppListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the app
+      #   The unique identifier for the app.
       #
       #   @return [String]
       required :id, String
@@ -103,9 +103,10 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AppListResponse} for more details.
       #
-      #   An object representing an app
+      #   An app is an integration built on Whop. Apps can serve consumers as experiences
+      #   within products, or serve companies as business tools.
       #
-      #   @param id [String] The ID of the app
+      #   @param id [String] The unique identifier for the app.
       #
       #   @param app_type [Symbol, WhopSDK::Models::AppType] The type of end-user an app is built for
       #
@@ -136,7 +137,7 @@ module WhopSDK
       # @see WhopSDK::Models::AppListResponse#company
       class Company < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID (tag) of the company.
+        #   The unique identifier for the company.
         #
         #   @return [String]
         required :id, String
@@ -150,7 +151,7 @@ module WhopSDK
         # @!method initialize(id:, title:)
         #   The company that owns the app
         #
-        #   @param id [String] The ID (tag) of the company.
+        #   @param id [String] The unique identifier for the company.
         #
         #   @param title [String] The title of the company.
       end
@@ -158,7 +159,7 @@ module WhopSDK
       # @see WhopSDK::Models::AppListResponse#creator
       class Creator < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user.
+        #   The unique identifier for the user.
         #
         #   @return [String]
         required :id, String
@@ -178,7 +179,7 @@ module WhopSDK
         # @!method initialize(id:, name:, username:)
         #   The creator of the app
         #
-        #   @param id [String] The internal ID of the user.
+        #   @param id [String] The unique identifier for the user.
         #
         #   @param name [String, nil] The name of the user from their Whop account.
         #

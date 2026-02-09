@@ -15,7 +15,9 @@ module WhopSDK
     # Default max retry delay in seconds.
     DEFAULT_MAX_RETRY_DELAY = 8.0
 
-    # The app API key from an app from the /dashboard/developer page
+    # A company API key, company scoped JWT, app API key, or user OAuth token. You
+    # must prepend your key/token with the word 'Bearer', which will look like
+    # `Bearer ***************************`
     # @return [String]
     attr_reader :api_key
 
@@ -182,8 +184,9 @@ module WhopSDK
 
     # Creates and returns a new client for interacting with the API.
     #
-    # @param api_key [String, nil] The app API key from an app from the /dashboard/developer page Defaults to
-    # `ENV["WHOP_API_KEY"]`
+    # @param api_key [String, nil] A company API key, company scoped JWT, app API key, or user OAuth token. You
+    # must prepend your key/token with the word 'Bearer', which will look like
+    # `Bearer ***************************` Defaults to `ENV["WHOP_API_KEY"]`
     #
     # @param app_id [String, nil] When using the SDK in app mode pass this parameter to allow verifying user
     # tokens Defaults to `ENV["WHOP_APP_ID"]`

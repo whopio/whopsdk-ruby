@@ -11,7 +11,8 @@ module WhopSDK
           T.any(WhopSDK::TopupCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The amount to add to the balance.
+      # The amount to add to the balance. Provided as a number in the specified
+      # currency. Eg: 50.00 for $50.00 USD.
       sig { returns(Float) }
       attr_accessor :amount
 
@@ -37,7 +38,8 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The amount to add to the balance.
+        # The amount to add to the balance. Provided as a number in the specified
+        # currency. Eg: 50.00 for $50.00 USD.
         amount:,
         # The ID of the company to add funds to.
         company_id:,

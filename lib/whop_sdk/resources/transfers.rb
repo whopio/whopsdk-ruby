@@ -14,7 +14,7 @@ module WhopSDK
       #
       # @overload create(amount:, currency:, destination_id:, origin_id:, idempotence_key: nil, metadata: nil, notes: nil, request_options: {})
       #
-      # @param amount [Float] The amount to withdraw
+      # @param amount [Float] The amount to transfer. Provided as a number in the specified currency. Eg: 25.0
       #
       # @param currency [Symbol, WhopSDK::Models::Currency] The currency that is being withdrawn.
       #

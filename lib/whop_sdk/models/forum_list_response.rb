@@ -50,7 +50,7 @@ module WhopSDK
       # @see WhopSDK::Models::ForumListResponse#experience
       class Experience < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The unique ID representing this experience
+        #   The unique identifier for the experience.
         #
         #   @return [String]
         required :id, String
@@ -64,7 +64,7 @@ module WhopSDK
         # @!method initialize(id:, name:)
         #   The experience for this forum
         #
-        #   @param id [String] The unique ID representing this experience
+        #   @param id [String] The unique identifier for the experience.
         #
         #   @param name [String] The written name of the description.
       end

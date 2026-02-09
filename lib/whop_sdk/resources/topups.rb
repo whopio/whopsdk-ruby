@@ -3,6 +3,9 @@
 module WhopSDK
   module Resources
     class Topups
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::TopupCreateParams} for more details.
+      #
       # Add funds to your platform balance by charging a stored payment method.
       #
       # Required permissions:
@@ -11,7 +14,7 @@ module WhopSDK
       #
       # @overload create(amount:, company_id:, currency:, payment_method_id:, request_options: {})
       #
-      # @param amount [Float] The amount to add to the balance.
+      # @param amount [Float] The amount to add to the balance. Provided as a number in the specified currency
       #
       # @param company_id [String] The ID of the company to add funds to.
       #

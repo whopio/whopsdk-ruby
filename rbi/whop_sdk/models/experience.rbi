@@ -6,7 +6,7 @@ module WhopSDK
       OrHash =
         T.type_alias { T.any(WhopSDK::Experience, WhopSDK::Internal::AnyHash) }
 
-      # The unique ID representing this experience
+      # The unique identifier for the experience.
       sig { returns(String) }
       attr_accessor :id
 
@@ -24,7 +24,7 @@ module WhopSDK
       sig { params(company: WhopSDK::Experience::Company::OrHash).void }
       attr_writer :company
 
-      # The timestamp of when this experience was created.
+      # The datetime the experience was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -53,7 +53,8 @@ module WhopSDK
       sig { returns(T::Array[WhopSDK::Experience::Product]) }
       attr_accessor :products
 
-      # An object representing an experience belonging to a company.
+      # An experience is a feature or content module within a product, such as a chat,
+      # course, or app.
       sig do
         params(
           id: String,
@@ -68,13 +69,13 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique ID representing this experience
+        # The unique identifier for the experience.
         id:,
         # The experience interface for this experience.
         app:,
         # The company that owns this experience.
         company:,
-        # The timestamp of when this experience was created.
+        # The datetime the experience was created.
         created_at:,
         # The logo for the experience.
         image:,
@@ -115,7 +116,7 @@ module WhopSDK
             T.any(WhopSDK::Experience::App, WhopSDK::Internal::AnyHash)
           end
 
-        # The ID of the app
+        # The unique identifier for the app.
         sig { returns(String) }
         attr_accessor :id
 
@@ -142,7 +143,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the app
+          # The unique identifier for the app.
           id:,
           # The icon for the app. This icon is shown on discovery, on the product page, on
           # checkout, and as a default icon for the experiences.
@@ -197,7 +198,7 @@ module WhopSDK
             T.any(WhopSDK::Experience::Company, WhopSDK::Internal::AnyHash)
           end
 
-        # The ID (tag) of the company.
+        # The unique identifier for the company.
         sig { returns(String) }
         attr_accessor :id
 
@@ -216,7 +217,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The ID (tag) of the company.
+          # The unique identifier for the company.
           id:,
           # The slug/route of the company on the Whop site.
           route:,
@@ -261,7 +262,7 @@ module WhopSDK
             T.any(WhopSDK::Experience::Product, WhopSDK::Internal::AnyHash)
           end
 
-        # The internal ID of the public product.
+        # The unique identifier for the product.
         sig { returns(String) }
         attr_accessor :id
 
@@ -273,14 +274,15 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :title
 
-        # Represents a product on whop. Use products to sell anything on the platform.
+        # A product is a digital good or service sold on Whop. Products contain plans for
+        # pricing and experiences for content delivery.
         sig do
           params(id: String, route: String, title: String).returns(
             T.attached_class
           )
         end
         def self.new(
-          # The internal ID of the public product.
+          # The unique identifier for the product.
           id:,
           # The route of the product.
           route:,

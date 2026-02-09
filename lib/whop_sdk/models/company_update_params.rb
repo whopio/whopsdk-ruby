@@ -19,6 +19,12 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::BusinessTypes, nil]
       optional :business_type, enum: -> { WhopSDK::BusinessTypes }, nil?: true
 
+      # @!attribute description
+      #   A description of what the company offers or does.
+      #
+      #   @return [String, nil]
+      optional :description, String, nil?: true
+
       # @!attribute industry_type
       #   The different industry types a company can be in.
       #
@@ -46,13 +52,15 @@ module WhopSDK
       #   @return [String, nil]
       optional :title, String, nil?: true
 
-      # @!method initialize(banner_image: nil, business_type: nil, industry_type: nil, logo: nil, send_customer_emails: nil, title: nil, request_options: {})
+      # @!method initialize(banner_image: nil, business_type: nil, description: nil, industry_type: nil, logo: nil, send_customer_emails: nil, title: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CompanyUpdateParams} for more details.
       #
       #   @param banner_image [WhopSDK::Models::CompanyUpdateParams::BannerImage, nil] The banner image for the company in png or jpeg format
       #
       #   @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
+      #
+      #   @param description [String, nil] A description of what the company offers or does.
       #
       #   @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #

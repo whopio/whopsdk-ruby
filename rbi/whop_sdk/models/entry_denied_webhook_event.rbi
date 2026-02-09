@@ -16,7 +16,7 @@ module WhopSDK
       sig { returns(Symbol) }
       attr_accessor :api_version
 
-      # An object representing an entry in a waitlist.
+      # An entry represents a user's signup for a waitlisted plan.
       sig { returns(WhopSDK::Entry) }
       attr_reader :data
 
@@ -48,7 +48,7 @@ module WhopSDK
       def self.new(
         # A unique ID for every single webhook request
         id:,
-        # An object representing an entry in a waitlist.
+        # An entry represents a user's signup for a waitlisted plan.
         data:,
         # The timestamp in ISO 8601 format that the webhook was sent at on the server
         timestamp:,

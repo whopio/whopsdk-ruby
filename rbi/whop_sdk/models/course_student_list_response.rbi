@@ -11,7 +11,7 @@ module WhopSDK
           )
         end
 
-      # The ID of the course student. Looks like crsi_XXX
+      # The unique identifier for the course student type.
       sig { returns(String) }
       attr_accessor :id
 
@@ -59,7 +59,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the course student. Looks like crsi_XXX
+        # The unique identifier for the course student type.
         id:,
         # The number of lessons the student has completed
         completed_lessons_count:,
@@ -101,7 +101,7 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the user.
+        # The unique identifier for the user.
         sig { returns(String) }
         attr_accessor :id
 
@@ -120,7 +120,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The internal ID of the user.
+          # The unique identifier for the user.
           id:,
           # The name of the user from their Whop account.
           name:,

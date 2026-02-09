@@ -10,7 +10,9 @@ module WhopSDK
 
     DEFAULT_MAX_RETRY_DELAY = T.let(8.0, Float)
 
-    # The app API key from an app from the /dashboard/developer page
+    # A company API key, company scoped JWT, app API key, or user OAuth token. You
+    # must prepend your key/token with the word 'Bearer', which will look like
+    # `Bearer ***************************`
     sig { returns(String) }
     attr_reader :api_key
 
@@ -184,8 +186,9 @@ module WhopSDK
       ).returns(T.attached_class)
     end
     def self.new(
-      # The app API key from an app from the /dashboard/developer page Defaults to
-      # `ENV["WHOP_API_KEY"]`
+      # A company API key, company scoped JWT, app API key, or user OAuth token. You
+      # must prepend your key/token with the word 'Bearer', which will look like
+      # `Bearer ***************************` Defaults to `ENV["WHOP_API_KEY"]`
       api_key: ENV["WHOP_API_KEY"],
       # When using the SDK in app mode pass this parameter to allow verifying user
       # tokens Defaults to `ENV["WHOP_APP_ID"]`

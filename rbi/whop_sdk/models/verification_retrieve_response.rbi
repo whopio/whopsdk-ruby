@@ -11,7 +11,7 @@ module WhopSDK
           )
         end
 
-      # A unique identifier for the verification.
+      # The unique identifier for the verification.
       sig { returns(String) }
       attr_accessor :id
 
@@ -37,7 +37,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # A unique identifier for the verification.
+        # The unique identifier for the verification.
         id:,
         # An error code for a verification attempt.
         last_error_code:,

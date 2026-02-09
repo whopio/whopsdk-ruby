@@ -15,7 +15,7 @@ module WhopSDK
       #
       # @overload create(amount_off:, base_currency:, code:, company_id:, new_users_only:, promo_duration_months:, promo_type:, churned_users_only: nil, existing_memberships_only: nil, expires_at: nil, one_per_customer: nil, plan_ids: nil, product_id: nil, stock: nil, unlimited_stock: nil, request_options: {})
       #
-      # @param amount_off [Float] The amount off (% or flat amount) for the promo.
+      # @param amount_off [Float] The discount amount. Interpretation depends on promo_type: if 'percentage', this
       #
       # @param base_currency [Symbol, WhopSDK::Models::Currency] The monetary currency of the promo code.
       #

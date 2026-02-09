@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::CourseChapters#list
     class CourseChapterListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the chapter. Looks like chap_XXX
+      #   The unique identifier for the chapter.
       #
       #   @return [String]
       required :id, String
@@ -25,7 +25,7 @@ module WhopSDK
       # @!method initialize(id:, order:, title:)
       #   A chapter from the courses app
       #
-      #   @param id [String] The ID of the chapter. Looks like chap_XXX
+      #   @param id [String] The unique identifier for the chapter.
       #
       #   @param order [Integer] The order of the chapter within its course
       #

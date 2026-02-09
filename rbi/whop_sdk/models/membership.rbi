@@ -6,7 +6,7 @@ module WhopSDK
       OrHash =
         T.type_alias { T.any(WhopSDK::Membership, WhopSDK::Internal::AnyHash) }
 
-      # The ID of the membership
+      # The unique identifier for the membership.
       sig { returns(String) }
       attr_accessor :id
 
@@ -35,7 +35,7 @@ module WhopSDK
       sig { params(company: WhopSDK::Membership::Company::OrHash).void }
       attr_writer :company
 
-      # The timestamp, in seconds, that this Membership was created at.
+      # The datetime the membership was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -46,6 +46,10 @@ module WhopSDK
       # The responses to custom checkout questions for this membership.
       sig { returns(T::Array[WhopSDK::Membership::CustomFieldResponse]) }
       attr_accessor :custom_field_responses
+
+      # When the member joined the company.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :joined_at
 
       # The license key for this Membership. This is only present if the membership
       # grants access to an instance of the Whop Software app.
@@ -65,7 +69,8 @@ module WhopSDK
       end
       attr_writer :member
 
-      # A JSON object used to store software licensing information. Ex. HWID
+      # Custom key-value pairs for the membership (commonly used for software licensing,
+      # e.g., HWID). Max 50 keys, 500 chars per key, 5000 chars per value.
       sig { returns(T::Hash[Symbol, T.anything]) }
       attr_accessor :metadata
 
@@ -112,7 +117,7 @@ module WhopSDK
       sig { returns(WhopSDK::MembershipStatus::TaggedSymbol) }
       attr_accessor :status
 
-      # A timestamp of when the membership was last updated
+      # The datetime the membership was last updated.
       sig { returns(Time) }
       attr_accessor :updated_at
 
@@ -123,8 +128,8 @@ module WhopSDK
       sig { params(user: T.nilable(WhopSDK::Membership::User::OrHash)).void }
       attr_writer :user
 
-      # A membership represents a purchase between a User and a Company for a specific
-      # Product.
+      # A membership represents an active relationship between a user and a product. It
+      # tracks the user's access, billing status, and renewal schedule.
       sig do
         params(
           id: String,
@@ -137,6 +142,7 @@ module WhopSDK
           currency: T.nilable(WhopSDK::Currency::OrSymbol),
           custom_field_responses:
             T::Array[WhopSDK::Membership::CustomFieldResponse::OrHash],
+          joined_at: T.nilable(Time),
           license_key: T.nilable(String),
           manage_url: T.nilable(String),
           member: T.nilable(WhopSDK::Membership::Member::OrHash),
@@ -153,7 +159,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the membership
+        # The unique identifier for the membership.
         id:,
         # Whether this Membership is set to cancel at the end of the current billing
         # cycle. Only applies for memberships that have a renewal plan.
@@ -167,12 +173,14 @@ module WhopSDK
         cancellation_reason:,
         # The Company this Membership belongs to.
         company:,
-        # The timestamp, in seconds, that this Membership was created at.
+        # The datetime the membership was created.
         created_at:,
         # The available currencies on the platform
         currency:,
         # The responses to custom checkout questions for this membership.
         custom_field_responses:,
+        # When the member joined the company.
+        joined_at:,
         # The license key for this Membership. This is only present if the membership
         # grants access to an instance of the Whop Software app.
         license_key:,
@@ -180,7 +188,8 @@ module WhopSDK
         manage_url:,
         # The Member that this Membership belongs to.
         member:,
-        # A JSON object used to store software licensing information. Ex. HWID
+        # Custom key-value pairs for the membership (commonly used for software licensing,
+        # e.g., HWID). Max 50 keys, 500 chars per key, 5000 chars per value.
         metadata:,
         # Whether the membership's payments are currently paused.
         payment_collection_paused:,
@@ -198,7 +207,7 @@ module WhopSDK
         renewal_period_start:,
         # The status of the membership.
         status:,
-        # A timestamp of when the membership was last updated
+        # The datetime the membership was last updated.
         updated_at:,
         # The user this membership belongs to
         user:
@@ -218,6 +227,7 @@ module WhopSDK
             currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
             custom_field_responses:
               T::Array[WhopSDK::Membership::CustomFieldResponse],
+            joined_at: T.nilable(Time),
             license_key: T.nilable(String),
             manage_url: T.nilable(String),
             member: T.nilable(WhopSDK::Membership::Member),
@@ -243,7 +253,7 @@ module WhopSDK
             T.any(WhopSDK::Membership::Company, WhopSDK::Internal::AnyHash)
           end
 
-        # The ID (tag) of the company.
+        # The unique identifier for the company.
         sig { returns(String) }
         attr_accessor :id
 
@@ -254,7 +264,7 @@ module WhopSDK
         # The Company this Membership belongs to.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
-          # The ID (tag) of the company.
+          # The unique identifier for the company.
           id:,
           # The title of the company.
           title:
@@ -275,7 +285,7 @@ module WhopSDK
             )
           end
 
-        # The ID of the custom field item
+        # The unique identifier for the custom field response.
         sig { returns(String) }
         attr_accessor :id
 
@@ -294,7 +304,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The ID of the custom field item
+          # The unique identifier for the custom field response.
           id:,
           # The response a user gave to the specific question or field.
           answer:,
@@ -316,14 +326,14 @@ module WhopSDK
             T.any(WhopSDK::Membership::Member, WhopSDK::Internal::AnyHash)
           end
 
-        # The ID of the member
+        # The unique identifier for the member.
         sig { returns(String) }
         attr_accessor :id
 
         # The Member that this Membership belongs to.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The ID of the member
+          # The unique identifier for the member.
           id:
         )
         end
@@ -339,14 +349,14 @@ module WhopSDK
             T.any(WhopSDK::Membership::Plan, WhopSDK::Internal::AnyHash)
           end
 
-        # The internal ID of the plan.
+        # The unique identifier for the plan.
         sig { returns(String) }
         attr_accessor :id
 
         # The Plan this Membership is for.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The internal ID of the plan.
+          # The unique identifier for the plan.
           id:
         )
         end
@@ -362,7 +372,7 @@ module WhopSDK
             T.any(WhopSDK::Membership::Product, WhopSDK::Internal::AnyHash)
           end
 
-        # The internal ID of the public product.
+        # The unique identifier for the product.
         sig { returns(String) }
         attr_accessor :id
 
@@ -373,7 +383,7 @@ module WhopSDK
         # The Product this Membership grants access to.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
-          # The internal ID of the public product.
+          # The unique identifier for the product.
           id:,
           # The title of the product. Use for Whop 4.0.
           title:
@@ -391,14 +401,14 @@ module WhopSDK
             T.any(WhopSDK::Membership::PromoCode, WhopSDK::Internal::AnyHash)
           end
 
-        # The ID of the promo.
+        # The unique identifier for the promo code.
         sig { returns(String) }
         attr_accessor :id
 
         # The Promo Code that is currently applied to this Membership.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The ID of the promo.
+          # The unique identifier for the promo code.
           id:
         )
         end
@@ -414,7 +424,7 @@ module WhopSDK
             T.any(WhopSDK::Membership::User, WhopSDK::Internal::AnyHash)
           end
 
-        # The internal ID of the user.
+        # The unique identifier for the user.
         sig { returns(String) }
         attr_accessor :id
 
@@ -440,7 +450,7 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The internal ID of the user.
+          # The unique identifier for the user.
           id:,
           # The email of the user
           email:,

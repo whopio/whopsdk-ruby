@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::CourseChapters#create
     class CourseChapter < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the chapter. Looks like chap_XXX
+      #   The unique identifier for the chapter.
       #
       #   @return [String]
       required :id, String
@@ -31,7 +31,7 @@ module WhopSDK
       # @!method initialize(id:, lessons:, order:, title:)
       #   A chapter from the courses app
       #
-      #   @param id [String] The ID of the chapter. Looks like chap_XXX
+      #   @param id [String] The unique identifier for the chapter.
       #
       #   @param lessons [Array<WhopSDK::Models::CourseChapter::Lesson>] The lessons in this chapter
       #
@@ -41,7 +41,7 @@ module WhopSDK
 
       class Lesson < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the lesson
+        #   The unique identifier for the lesson.
         #
         #   @return [String]
         required :id, String
@@ -61,7 +61,7 @@ module WhopSDK
         # @!method initialize(id:, order:, title:)
         #   A lesson from the courses app
         #
-        #   @param id [String] The ID of the lesson
+        #   @param id [String] The unique identifier for the lesson.
         #
         #   @param order [Integer] The order of the lesson within its chapter
         #

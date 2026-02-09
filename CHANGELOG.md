@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.0.27 (2026-02-09)
+
+Full Changelog: [v0.0.26...v0.0.27](https://github.com/whopio/whopsdk-ruby/compare/v0.0.26...v0.0.27)
+
+### Features
+
+* **api:** api update ([65ed264](https://github.com/whopio/whopsdk-ruby/commit/65ed2647981ae0aba98d848dcf31d40303785c35))
+* **api:** api update ([5337616](https://github.com/whopio/whopsdk-ruby/commit/5337616fe580b2afa16b2210eb2113a2755c8529))
+* **api:** api update ([2bec9bc](https://github.com/whopio/whopsdk-ruby/commit/2bec9bc09fbd1a3b41ef8c1ef4bc57a339db43ea))
+* **api:** api update ([0900d40](https://github.com/whopio/whopsdk-ruby/commit/0900d40866a9819b082ccfbe51a531439c5619d8))
+* **api:** api update ([adcace1](https://github.com/whopio/whopsdk-ruby/commit/adcace101df013b38450625f5eacf7573938d902))
+* **api:** api update ([32441bf](https://github.com/whopio/whopsdk-ruby/commit/32441bff9dd037424c7e93be807c3e73250f5b78))
+* **api:** api update ([be694cf](https://github.com/whopio/whopsdk-ruby/commit/be694cff7f498f177f025c75292ce29c800c1658))
+* **api:** api update ([3bdf111](https://github.com/whopio/whopsdk-ruby/commit/3bdf1117e8b6b434b77713fcf534dd112c743ff1))
+* **api:** api update ([71cfae3](https://github.com/whopio/whopsdk-ruby/commit/71cfae32a386c17a95fd5d82a24ae70ec7f5417d))
+* **api:** manual updates ([1cf2d62](https://github.com/whopio/whopsdk-ruby/commit/1cf2d62a8da26bd66c578465980e3600d14e2a94))
+* **api:** manual updates ([60c21fa](https://github.com/whopio/whopsdk-ruby/commit/60c21fa901ca211970592fa6b0ae6650c11a7fc8))
+* **api:** manual updates ([6ea51d3](https://github.com/whopio/whopsdk-ruby/commit/6ea51d3e2a8809d552d1905e6dff99c19e5b1403))
+
+
+### Bug Fixes
+
+* **client:** loosen json header parsing ([1020366](https://github.com/whopio/whopsdk-ruby/commit/1020366437c0cdbba833f84deab255a8902cf610))
+
+
+### Chores
+
+* **docs:** remove www prefix ([d581cb1](https://github.com/whopio/whopsdk-ruby/commit/d581cb174e297c951ac30d0790d48d6a53c046e4))
+
 ## 0.0.26 (2026-02-03)
 
 Full Changelog: [v0.0.25...v0.0.26](https://github.com/whopio/whopsdk-ruby/compare/v0.0.25...v0.0.26)

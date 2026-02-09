@@ -58,7 +58,7 @@ module WhopSDK
       # @see WhopSDK::Models::SupportChannelListResponse#customer_user
       class CustomerUser < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The internal ID of the user.
+        #   The unique identifier for the user.
         #
         #   @return [String]
         required :id, String
@@ -78,7 +78,7 @@ module WhopSDK
         # @!method initialize(id:, name:, username:)
         #   The customer user if this is a support chat
         #
-        #   @param id [String] The internal ID of the user.
+        #   @param id [String] The unique identifier for the user.
         #
         #   @param name [String, nil] The name of the user from their Whop account.
         #

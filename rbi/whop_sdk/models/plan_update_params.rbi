@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::PlanUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The interval at which the plan charges (renewal plans).
+      # The interval in days at which the plan charges (renewal plans).
       sig { returns(T.nilable(Integer)) }
       attr_accessor :billing_period
 
@@ -29,7 +29,8 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      # The interval at which the plan charges (expiration plans).
+      # The number of days until the membership expires (for expiration-based plans).
+      # For example, 365 for a one-year access pass.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :expiration_days
 
@@ -42,7 +43,8 @@ module WhopSDK
       end
       attr_writer :image
 
-      # An additional amount charged upon first purchase.
+      # An additional amount charged upon first purchase. Provided as a number in the
+      # specified currency. Eg: 10.43 for $10.43 USD.
       sig { returns(T.nilable(Float)) }
       attr_accessor :initial_price
 
@@ -82,7 +84,8 @@ module WhopSDK
       end
       attr_writer :payment_method_configuration
 
-      # The amount the customer is charged every billing period.
+      # The amount the customer is charged every billing period. Provided as a number in
+      # the specified currency. Eg: 10.43 for $10.43 USD.
       sig { returns(T.nilable(Float)) }
       attr_accessor :renewal_price
 
@@ -91,12 +94,12 @@ module WhopSDK
       attr_accessor :stock
 
       # The price to display with a strikethrough for the initial price. Provided as a
-      # number in dollars. Eg: 19.99 for $19.99
+      # number in the specified currency. Eg: 19.99 for $19.99
       sig { returns(T.nilable(Float)) }
       attr_accessor :strike_through_initial_price
 
       # The price to display with a strikethrough for the renewal price. Provided as a
-      # number in dollars. Eg: 19.99 for $19.99
+      # number in the specified currency. Eg: 19.99 for $19.99
       sig { returns(T.nilable(Float)) }
       attr_accessor :strike_through_renewal_price
 
@@ -108,7 +111,8 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :trial_period_days
 
-      # Limits/doesn't limit the number of units available for purchase.
+      # When true, the plan has unlimited stock (stock field is ignored). When false,
+      # purchases are limited by the stock field.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :unlimited_stock
 
@@ -146,7 +150,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The interval at which the plan charges (renewal plans).
+        # The interval in days at which the plan charges (renewal plans).
         billing_period: nil,
         # The available currencies on the platform
         currency: nil,
@@ -154,11 +158,13 @@ module WhopSDK
         custom_fields: nil,
         # The description of the plan.
         description: nil,
-        # The interval at which the plan charges (expiration plans).
+        # The number of days until the membership expires (for expiration-based plans).
+        # For example, 365 for a one-year access pass.
         expiration_days: nil,
         # An image for the plan. This will be visible on the product page to customers.
         image: nil,
-        # An additional amount charged upon first purchase.
+        # An additional amount charged upon first purchase. Provided as a number in the
+        # specified currency. Eg: 10.43 for $10.43 USD.
         initial_price: nil,
         # A personal description or notes section for the business.
         internal_notes: nil,
@@ -172,21 +178,23 @@ module WhopSDK
         # The explicit payment method configuration for the plan. If sent as null, the
         # custom configuration will be removed.
         payment_method_configuration: nil,
-        # The amount the customer is charged every billing period.
+        # The amount the customer is charged every billing period. Provided as a number in
+        # the specified currency. Eg: 10.43 for $10.43 USD.
         renewal_price: nil,
         # The number of units available for purchase.
         stock: nil,
         # The price to display with a strikethrough for the initial price. Provided as a
-        # number in dollars. Eg: 19.99 for $19.99
+        # number in the specified currency. Eg: 19.99 for $19.99
         strike_through_initial_price: nil,
         # The price to display with a strikethrough for the renewal price. Provided as a
-        # number in dollars. Eg: 19.99 for $19.99
+        # number in the specified currency. Eg: 19.99 for $19.99
         strike_through_renewal_price: nil,
         # The title of the plan. This will be visible on the product page to customers.
         title: nil,
         # The number of free trial days added before a renewal plan.
         trial_period_days: nil,
-        # Limits/doesn't limit the number of units available for purchase.
+        # When true, the plan has unlimited stock (stock field is ignored). When false,
+        # purchases are limited by the stock field.
         unlimited_stock: nil,
         # Visibility of a resource
         visibility: nil,

@@ -11,11 +11,11 @@ module WhopSDK
           )
         end
 
-      # The unique identifier of the fee markup.
+      # The unique identifier for the fee markup.
       sig { returns(String) }
       attr_accessor :id
 
-      # When this fee markup was created.
+      # The datetime the fee markup was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -35,7 +35,7 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :percentage_fee
 
-      # When this fee markup was last updated.
+      # The datetime the fee markup was last updated.
       sig { returns(Time) }
       attr_accessor :updated_at
 
@@ -52,9 +52,9 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier of the fee markup.
+        # The unique identifier for the fee markup.
         id:,
-        # When this fee markup was created.
+        # The datetime the fee markup was created.
         created_at:,
         # The type of fee this markup applies to.
         fee_type:,
@@ -64,7 +64,7 @@ module WhopSDK
         notes:,
         # The percentage fee to charge (0-25).
         percentage_fee:,
-        # When this fee markup was last updated.
+        # The datetime the fee markup was last updated.
         updated_at:
       )
       end

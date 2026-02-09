@@ -15,6 +15,7 @@ module WhopSDK
       PLATFORM_BALANCE = :platform_balance
       MULTI_PSP = :multi_psp
       ADYEN = :adyen
+      CLARITYPAY = :claritypay
 
       # @!method self.values
       #   @return [Array<Symbol>]

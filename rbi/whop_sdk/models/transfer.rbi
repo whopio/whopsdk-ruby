@@ -6,15 +6,16 @@ module WhopSDK
       OrHash =
         T.type_alias { T.any(WhopSDK::Transfer, WhopSDK::Internal::AnyHash) }
 
-      # The unique identifier of the credit transaction transfer
+      # The unique identifier for the credit transaction transfer.
       sig { returns(String) }
       attr_accessor :id
 
-      # The amount of the credit transaction transfer
+      # The amount of the transfer. Provided as a number in the specified currency. Eg:
+      # 10.43 for $10.43 USD.
       sig { returns(Float) }
       attr_accessor :amount
 
-      # The timestamp when the credit transaction transfer was created
+      # The datetime the credit transaction transfer was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -34,7 +35,8 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :fee_amount
 
-      # A hash of metadata attached to the transfer
+      # Custom key-value pairs attached to the transfer. Max 50 keys, 500 chars per key,
+      # 5000 chars per value.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
@@ -79,11 +81,12 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier of the credit transaction transfer
+        # The unique identifier for the credit transaction transfer.
         id:,
-        # The amount of the credit transaction transfer
+        # The amount of the transfer. Provided as a number in the specified currency. Eg:
+        # 10.43 for $10.43 USD.
         amount:,
-        # The timestamp when the credit transaction transfer was created
+        # The datetime the credit transaction transfer was created.
         created_at:,
         # The currency of the credit transaction transfer
         currency:,
@@ -93,7 +96,8 @@ module WhopSDK
         destination_ledger_account_id:,
         # The decimal fee of the credit transaction transfer
         fee_amount:,
-        # A hash of metadata attached to the transfer
+        # Custom key-value pairs attached to the transfer. Max 50 keys, 500 chars per key,
+        # 5000 chars per value.
         metadata:,
         # The notes of the credit transaction transfer
         notes:,
@@ -147,7 +151,7 @@ module WhopSDK
               )
             end
 
-          # The internal ID of the user.
+          # The unique identifier for the user.
           sig { returns(String) }
           attr_accessor :id
 
@@ -163,7 +167,8 @@ module WhopSDK
           sig { returns(String) }
           attr_accessor :username
 
-          # An object representing a (sanitized) user of the site.
+          # A user account on Whop. Contains profile information, identity details, and
+          # social connections.
           sig do
             params(
               id: String,
@@ -173,7 +178,7 @@ module WhopSDK
             ).returns(T.attached_class)
           end
           def self.new(
-            # The internal ID of the user.
+            # The unique identifier for the user.
             id:,
             # The name of the user from their Whop account.
             name:,
@@ -207,7 +212,7 @@ module WhopSDK
               )
             end
 
-          # The ID (tag) of the company.
+          # The unique identifier for the company.
           sig { returns(String) }
           attr_accessor :id
 
@@ -223,7 +228,8 @@ module WhopSDK
           sig { returns(Symbol) }
           attr_accessor :typename
 
-          # An object representing a (sanitized) company.
+          # A company is a seller on Whop. Companies own products, manage members, and
+          # receive payouts.
           sig do
             params(
               id: String,
@@ -233,7 +239,7 @@ module WhopSDK
             ).returns(T.attached_class)
           end
           def self.new(
-            # The ID (tag) of the company.
+            # The unique identifier for the company.
             id:,
             # The slug/route of the company on the Whop site.
             route:,
@@ -280,7 +286,7 @@ module WhopSDK
               T.any(WhopSDK::Transfer::Origin::User, WhopSDK::Internal::AnyHash)
             end
 
-          # The internal ID of the user.
+          # The unique identifier for the user.
           sig { returns(String) }
           attr_accessor :id
 
@@ -296,7 +302,8 @@ module WhopSDK
           sig { returns(String) }
           attr_accessor :username
 
-          # An object representing a (sanitized) user of the site.
+          # A user account on Whop. Contains profile information, identity details, and
+          # social connections.
           sig do
             params(
               id: String,
@@ -306,7 +313,7 @@ module WhopSDK
             ).returns(T.attached_class)
           end
           def self.new(
-            # The internal ID of the user.
+            # The unique identifier for the user.
             id:,
             # The name of the user from their Whop account.
             name:,
@@ -340,7 +347,7 @@ module WhopSDK
               )
             end
 
-          # The ID (tag) of the company.
+          # The unique identifier for the company.
           sig { returns(String) }
           attr_accessor :id
 
@@ -356,7 +363,8 @@ module WhopSDK
           sig { returns(Symbol) }
           attr_accessor :typename
 
-          # An object representing a (sanitized) company.
+          # A company is a seller on Whop. Companies own products, manage members, and
+          # receive payouts.
           sig do
             params(
               id: String,
@@ -366,7 +374,7 @@ module WhopSDK
             ).returns(T.attached_class)
           end
           def self.new(
-            # The ID (tag) of the company.
+            # The unique identifier for the company.
             id:,
             # The slug/route of the company on the Whop site.
             route:,

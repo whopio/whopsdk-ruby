@@ -8,7 +8,7 @@ module WhopSDK
           T.any(WhopSDK::Models::ReviewListResponse, WhopSDK::Internal::AnyHash)
         end
 
-      # The internal ID of the review.
+      # The unique identifier for the review.
       sig { returns(String) }
       attr_accessor :id
 
@@ -16,7 +16,7 @@ module WhopSDK
       sig { returns(T::Array[WhopSDK::Models::ReviewListResponse::Attachment]) }
       attr_accessor :attachments
 
-      # The timestamp of when the review was created.
+      # The datetime the review was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
@@ -49,7 +49,7 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
-      # The timestamp of when the review was last updated.
+      # The datetime the review was last updated.
       sig { returns(Time) }
       attr_accessor :updated_at
 
@@ -81,11 +81,11 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The internal ID of the review.
+        # The unique identifier for the review.
         id:,
         # The attachments attached to the review.
         attachments:,
-        # The timestamp of when the review was created.
+        # The datetime the review was created.
         created_at:,
         # The description of the review.
         description:,
@@ -102,7 +102,7 @@ module WhopSDK
         status:,
         # The title of the review.
         title:,
-        # The timestamp of when the review was last updated.
+        # The datetime the review was last updated.
         updated_at:,
         # The user account that performed the action.
         user:
@@ -202,7 +202,7 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the user.
+        # The unique identifier for the user.
         sig { returns(String) }
         attr_accessor :id
 
@@ -221,7 +221,7 @@ module WhopSDK
           )
         end
         def self.new(
-          # The internal ID of the user.
+          # The unique identifier for the user.
           id:,
           # The name of the user from their Whop account.
           name:,

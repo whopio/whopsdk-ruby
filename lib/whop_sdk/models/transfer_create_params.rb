@@ -8,7 +8,8 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute amount
-      #   The amount to withdraw
+      #   The amount to transfer. Provided as a number in the specified currency. Eg:
+      #   25.00 for $25.00 USD.
       #
       #   @return [Float]
       required :amount, Float
@@ -55,7 +56,7 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::TransferCreateParams} for more details.
       #
-      #   @param amount [Float] The amount to withdraw
+      #   @param amount [Float] The amount to transfer. Provided as a number in the specified currency. Eg: 25.0
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency] The currency that is being withdrawn.
       #

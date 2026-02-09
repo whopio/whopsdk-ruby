@@ -11,7 +11,7 @@ module WhopSDK
           )
         end
 
-      # The internal ID of the dispute.
+      # The unique identifier for the dispute.
       sig { returns(String) }
       attr_accessor :id
 
@@ -31,7 +31,7 @@ module WhopSDK
       end
       attr_writer :company
 
-      # When it was made.
+      # The datetime the dispute was created.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_at
 
@@ -94,7 +94,8 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :visa_rdr
 
-      # An object representing a dispute against a company.
+      # A dispute is a chargeback or payment challenge filed against a company,
+      # including evidence and response status.
       sig do
         params(
           id: String,
@@ -116,13 +117,13 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The internal ID of the dispute.
+        # The unique identifier for the dispute.
         id:,
         # The amount of the dispute (formatted).
         amount:,
         # The company the dispute is against.
         company:,
-        # When it was made.
+        # The datetime the dispute was created.
         created_at:,
         # The currency of the dispute.
         currency:,
@@ -176,7 +177,7 @@ module WhopSDK
             )
           end
 
-        # The ID of the company
+        # The unique identifier for the company.
         sig { returns(String) }
         attr_accessor :id
 
@@ -187,7 +188,7 @@ module WhopSDK
         # The company the dispute is against.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
-          # The ID of the company
+          # The unique identifier for the company.
           id:,
           # The written name of the company.
           title:
@@ -208,14 +209,14 @@ module WhopSDK
             )
           end
 
-        # The payment ID
+        # The unique identifier for the payment.
         sig { returns(String) }
         attr_accessor :id
 
         # The payment that got disputed
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The payment ID
+          # The unique identifier for the payment.
           id:
         )
         end
@@ -234,14 +235,14 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the plan.
+        # The unique identifier for the plan.
         sig { returns(String) }
         attr_accessor :id
 
         # The plan that got disputed
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The internal ID of the plan.
+          # The unique identifier for the plan.
           id:
         )
         end
@@ -260,7 +261,7 @@ module WhopSDK
             )
           end
 
-        # The internal ID of the public product.
+        # The unique identifier for the product.
         sig { returns(String) }
         attr_accessor :id
 
@@ -271,7 +272,7 @@ module WhopSDK
         # The product that got disputed
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
-          # The internal ID of the public product.
+          # The unique identifier for the product.
           id:,
           # The title of the product. Use for Whop 4.0.
           title:

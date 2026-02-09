@@ -5,7 +5,7 @@ module WhopSDK
     # @see WhopSDK::Resources::CourseLessons#create
     class Lesson < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The ID of the lesson
+      #   The unique identifier for the lesson.
       #
       #   @return [String]
       required :id, String
@@ -30,7 +30,7 @@ module WhopSDK
       required :content, String, nil?: true
 
       # @!attribute created_at
-      #   The timestamp of when the lesson was created
+      #   The datetime the lesson was created.
       #
       #   @return [Time]
       required :created_at, Time
@@ -102,7 +102,7 @@ module WhopSDK
       #
       #   A lesson from the courses app
       #
-      #   @param id [String] The ID of the lesson
+      #   @param id [String] The unique identifier for the lesson.
       #
       #   @param assessment_questions [Array<WhopSDK::Models::Lesson::AssessmentQuestion>] Assessment questions for quiz/knowledge check lessons
       #
@@ -110,7 +110,7 @@ module WhopSDK
       #
       #   @param content [String, nil] The content of the lesson
       #
-      #   @param created_at [Time] The timestamp of when the lesson was created
+      #   @param created_at [Time] The datetime the lesson was created.
       #
       #   @param days_from_course_start_until_unlock [Integer, nil] Number of days from course start until the lesson is unlocked
       #
@@ -134,7 +134,7 @@ module WhopSDK
 
       class AssessmentQuestion < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the assessment question
+        #   The unique identifier for the assessment question.
         #
         #   @return [String]
         required :id, String
@@ -147,7 +147,7 @@ module WhopSDK
         required :correct_answer, String, nil?: true
 
         # @!attribute created_at
-        #   When the question was created
+        #   The datetime the assessment question was created.
         #
         #   @return [Time]
         required :created_at, Time
@@ -188,11 +188,11 @@ module WhopSDK
         #
         #   An assessment question in a course quiz or knowledge check
         #
-        #   @param id [String] The ID of the assessment question
+        #   @param id [String] The unique identifier for the assessment question.
         #
         #   @param correct_answer [String, nil] The correct answer for the question. Used for short answer questions. Only visib
         #
-        #   @param created_at [Time] When the question was created
+        #   @param created_at [Time] The datetime the assessment question was created.
         #
         #   @param image [WhopSDK::Models::Lesson::AssessmentQuestion::Image, nil] Optional image attachment for the question
         #
@@ -248,7 +248,7 @@ module WhopSDK
 
         class Option < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
-          #   The ID of the assessment question option
+          #   The unique identifier for the assessment question option.
           #
           #   @return [String]
           required :id, String
@@ -278,7 +278,7 @@ module WhopSDK
           #
           #   An answer option for a multiple choice or multiple select assessment question
           #
-          #   @param id [String] The ID of the assessment question option
+          #   @param id [String] The unique identifier for the assessment question option.
           #
           #   @param is_correct [Boolean, nil] Whether this option is a correct answer. Only visible to admins (users with cour
           #
@@ -392,7 +392,7 @@ module WhopSDK
       # @see WhopSDK::Models::Lesson#video_asset
       class VideoAsset < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the Mux asset
+        #   The unique identifier for the mux asset.
         #
         #   @return [String]
         required :id, String
@@ -410,7 +410,7 @@ module WhopSDK
         required :audio_only, WhopSDK::Internal::Type::Boolean
 
         # @!attribute created_at
-        #   The time at which the Mux asset was created
+        #   The datetime the mux asset was created.
         #
         #   @return [Time]
         required :created_at, Time
@@ -464,7 +464,7 @@ module WhopSDK
         required :status, enum: -> { WhopSDK::Lesson::VideoAsset::Status }
 
         # @!attribute updated_at
-        #   The time at which the Mux asset was last updated
+        #   The datetime the mux asset was last updated.
         #
         #   @return [Time]
         required :updated_at, Time
@@ -472,13 +472,13 @@ module WhopSDK
         # @!method initialize(id:, asset_id:, audio_only:, created_at:, duration_seconds:, finished_uploading_at:, playback_id:, signed_playback_id:, signed_storyboard_playback_token:, signed_thumbnail_playback_token:, signed_video_playback_token:, status:, updated_at:)
         #   The associated Mux asset for video lessons
         #
-        #   @param id [String] The ID of the Mux asset
+        #   @param id [String] The unique identifier for the mux asset.
         #
         #   @param asset_id [String, nil] The Mux-provided ID of the asset
         #
         #   @param audio_only [Boolean] Whether this asset contains only audio
         #
-        #   @param created_at [Time] The time at which the Mux asset was created
+        #   @param created_at [Time] The datetime the mux asset was created.
         #
         #   @param duration_seconds [Integer, nil] The duration of the video in seconds
         #
@@ -496,7 +496,7 @@ module WhopSDK
         #
         #   @param status [Symbol, WhopSDK::Models::Lesson::VideoAsset::Status] The status of the Mux asset
         #
-        #   @param updated_at [Time] The time at which the Mux asset was last updated
+        #   @param updated_at [Time] The datetime the mux asset was last updated.
 
         # The status of the Mux asset
         #

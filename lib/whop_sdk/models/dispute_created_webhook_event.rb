@@ -16,7 +16,8 @@ module WhopSDK
       required :api_version, const: :v1
 
       # @!attribute data
-      #   An object representing a dispute against a company.
+      #   A dispute is a chargeback or payment challenge filed against a company,
+      #   including evidence and response status.
       #
       #   @return [WhopSDK::Models::Dispute]
       required :data, -> { WhopSDK::Dispute }
@@ -40,9 +41,12 @@ module WhopSDK
       optional :company_id, String, nil?: true
 
       # @!method initialize(id:, data:, timestamp:, company_id: nil, api_version: :v1, type: :"dispute.created")
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::DisputeCreatedWebhookEvent} for more details.
+      #
       #   @param id [String] A unique ID for every single webhook request
       #
-      #   @param data [WhopSDK::Models::Dispute] An object representing a dispute against a company.
+      #   @param data [WhopSDK::Models::Dispute] A dispute is a chargeback or payment challenge filed against a company, includin
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #

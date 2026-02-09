@@ -40,6 +40,8 @@ module WhopSDK
       CARNET = :carnet
       ATM_CARD = :atm_card
       CHINA_UNION_PAYUZCARD = :china_union_payuzcard
+      CODENSA = :codensa
+      CABAL = :cabal
       UNKNOWN = :unknown
 
       # @!method self.values

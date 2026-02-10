@@ -15,7 +15,8 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The content of the lesson
+      # The text body of the lesson in plain text format. Null if the lesson has no text
+      # content.
       sig { returns(T.nilable(String)) }
       attr_accessor :content
 
@@ -23,11 +24,13 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # Number of days from course start until the lesson is unlocked
+      # The number of days after a student starts the course before this lesson becomes
+      # accessible. Null if the lesson is available immediately.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :days_from_course_start_until_unlock
 
-      # ID for the embed (YouTube video ID or Loom share ID)
+      # The external video identifier for embedded video lessons, such as a YouTube
+      # video ID or Loom share ID. Null if the lesson has no embed.
       sig { returns(T.nilable(String)) }
       attr_accessor :embed_id
 
@@ -35,15 +38,17 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::EmbedType::TaggedSymbol)) }
       attr_accessor :embed_type
 
-      # The type of the lesson (text, video, pdf, multi, quiz, knowledge_check)
+      # The content format of this lesson. One of: text, video, pdf, multi, quiz,
+      # knowledge_check.
       sig { returns(WhopSDK::LessonTypes::TaggedSymbol) }
       attr_accessor :lesson_type
 
-      # The order of the lesson within its chapter
+      # The sort position of this lesson within its parent chapter, starting from zero.
       sig { returns(Integer) }
       attr_accessor :order
 
-      # The thumbnail for the lesson
+      # The thumbnail image displayed on lesson cards and previews. Null if no thumbnail
+      # has been uploaded.
       sig do
         returns(T.nilable(WhopSDK::Models::CourseLessonListResponse::Thumbnail))
       end
@@ -59,16 +64,17 @@ module WhopSDK
       end
       attr_writer :thumbnail
 
-      # The title of the lesson
+      # The display name of the lesson shown to students. Maximum 120 characters.
       sig { returns(String) }
       attr_accessor :title
 
-      # The visibility of the lesson. Determines how / whether this lesson is visible to
-      # users.
+      # The visibility setting that controls whether this lesson appears to students.
+      # One of: visible, hidden.
       sig { returns(WhopSDK::LessonVisibilities::TaggedSymbol) }
       attr_accessor :visibility
 
-      # A lesson from the courses app
+      # An individual learning unit within a chapter, which can contain text, video,
+      # PDF, or assessment content.
       sig do
         params(
           id: String,
@@ -90,26 +96,31 @@ module WhopSDK
       def self.new(
         # The unique identifier for the lesson.
         id:,
-        # The content of the lesson
+        # The text body of the lesson in plain text format. Null if the lesson has no text
+        # content.
         content:,
         # The datetime the lesson was created.
         created_at:,
-        # Number of days from course start until the lesson is unlocked
+        # The number of days after a student starts the course before this lesson becomes
+        # accessible. Null if the lesson is available immediately.
         days_from_course_start_until_unlock:,
-        # ID for the embed (YouTube video ID or Loom share ID)
+        # The external video identifier for embedded video lessons, such as a YouTube
+        # video ID or Loom share ID. Null if the lesson has no embed.
         embed_id:,
         # The type of embed for a lesson
         embed_type:,
-        # The type of the lesson (text, video, pdf, multi, quiz, knowledge_check)
+        # The content format of this lesson. One of: text, video, pdf, multi, quiz,
+        # knowledge_check.
         lesson_type:,
-        # The order of the lesson within its chapter
+        # The sort position of this lesson within its parent chapter, starting from zero.
         order:,
-        # The thumbnail for the lesson
+        # The thumbnail image displayed on lesson cards and previews. Null if no thumbnail
+        # has been uploaded.
         thumbnail:,
-        # The title of the lesson
+        # The display name of the lesson shown to students. Maximum 120 characters.
         title:,
-        # The visibility of the lesson. Determines how / whether this lesson is visible to
-        # users.
+        # The visibility setting that controls whether this lesson appears to students.
+        # One of: visible, hidden.
         visibility:
       )
       end
@@ -149,7 +160,8 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :url
 
-        # The thumbnail for the lesson
+        # The thumbnail image displayed on lesson cards and previews. Null if no thumbnail
+        # has been uploaded.
         sig { params(url: T.nilable(String)).returns(T.attached_class) }
         def self.new(
           # A pre-optimized URL for rendering this attachment on the client. This should be

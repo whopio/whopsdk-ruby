@@ -11,22 +11,25 @@ module WhopSDK
           T.any(WhopSDK::ForumPostUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The attachments for this post
+      # A replacement list of file attachments for this post, such as images or videos.
       sig do
         returns(T.nilable(T::Array[WhopSDK::ForumPostUpdateParams::Attachment]))
       end
       attr_accessor :attachments
 
-      # This is the main body of the post in Markdown format. Hidden if paywalled and
-      # user hasn't purchased access to it.
+      # The updated body of the post in Markdown format. For example, 'Check out this
+      # **update**'. Hidden if the post is paywalled and the viewer has not purchased
+      # access.
       sig { returns(T.nilable(String)) }
       attr_accessor :content
 
-      # Whether the post is pinned. You can only pin a top level posts (not comments).
+      # Whether this post should be pinned to the top of the forum. Only top-level posts
+      # can be pinned, not comments.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :is_pinned
 
-      # The title of the post. Only visible if paywalled.
+      # The updated title of the post, displayed prominently at the top. Required for
+      # paywalled posts as it remains visible to non-purchasers.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
@@ -48,14 +51,17 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The attachments for this post
+        # A replacement list of file attachments for this post, such as images or videos.
         attachments: nil,
-        # This is the main body of the post in Markdown format. Hidden if paywalled and
-        # user hasn't purchased access to it.
+        # The updated body of the post in Markdown format. For example, 'Check out this
+        # **update**'. Hidden if the post is paywalled and the viewer has not purchased
+        # access.
         content: nil,
-        # Whether the post is pinned. You can only pin a top level posts (not comments).
+        # Whether this post should be pinned to the top of the forum. Only top-level posts
+        # can be pinned, not comments.
         is_pinned: nil,
-        # The title of the post. Only visible if paywalled.
+        # The updated title of the post, displayed prominently at the top. Required for
+        # paywalled posts as it remains visible to non-purchasers.
         title: nil,
         # The visibility types for forum posts
         visibility: nil,

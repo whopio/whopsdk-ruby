@@ -11,7 +11,7 @@ module WhopSDK
       required :id, String
 
       # @!attribute blended_token_usage
-      #   The total number of tokens used in the chat
+      #   The total number of tokens consumed across all messages in this conversation.
       #
       #   @return [String]
       required :blended_token_usage, String
@@ -23,19 +23,21 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute last_message_at
-      #   When the last message was sent
+      #   The timestamp of the most recent message in this conversation. Null if no
+      #   messages have been sent yet.
       #
       #   @return [Time, nil]
       required :last_message_at, Time, nil?: true
 
       # @!attribute message_count
-      #   The number of messages in the chat
+      #   The total number of messages exchanged in this conversation.
       #
       #   @return [Integer]
       required :message_count, Integer
 
       # @!attribute title
-      #   The title of the AI chat
+      #   A short descriptive title for this AI chat conversation. Null if no title has
+      #   been set.
       #
       #   @return [String, nil]
       required :title, String, nil?: true
@@ -47,29 +49,33 @@ module WhopSDK
       required :updated_at, Time
 
       # @!attribute user
-      #   The user who owns the AI chat
+      #   The user who owns this AI chat conversation.
       #
       #   @return [WhopSDK::Models::AIChat::User]
       required :user, -> { WhopSDK::AIChat::User }
 
       # @!method initialize(id:, blended_token_usage:, created_at:, last_message_at:, message_count:, title:, updated_at:, user:)
-      #   An AI chat conversation belonging to a user
+      #   Some parameter documentations has been truncated, see {WhopSDK::Models::AIChat}
+      #   for more details.
+      #
+      #   An AI-powered chat conversation belonging to a user, with optional scheduled
+      #   automation.
       #
       #   @param id [String] The unique identifier for the ai chat.
       #
-      #   @param blended_token_usage [String] The total number of tokens used in the chat
+      #   @param blended_token_usage [String] The total number of tokens consumed across all messages in this conversation.
       #
       #   @param created_at [Time] The datetime the ai chat was created.
       #
-      #   @param last_message_at [Time, nil] When the last message was sent
+      #   @param last_message_at [Time, nil] The timestamp of the most recent message in this conversation. Null if no messag
       #
-      #   @param message_count [Integer] The number of messages in the chat
+      #   @param message_count [Integer] The total number of messages exchanged in this conversation.
       #
-      #   @param title [String, nil] The title of the AI chat
+      #   @param title [String, nil] A short descriptive title for this AI chat conversation. Null if no title has be
       #
       #   @param updated_at [Time] The datetime the ai chat was last updated.
       #
-      #   @param user [WhopSDK::Models::AIChat::User] The user who owns the AI chat
+      #   @param user [WhopSDK::Models::AIChat::User] The user who owns this AI chat conversation.
 
       # @see WhopSDK::Models::AIChat#user
       class User < WhopSDK::Internal::Type::BaseModel
@@ -80,7 +86,7 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   The user who owns the AI chat
+        #   The user who owns this AI chat conversation.
         #
         #   @param id [String] The unique identifier for the user.
       end

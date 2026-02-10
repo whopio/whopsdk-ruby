@@ -11,15 +11,17 @@ module WhopSDK
           T.any(WhopSDK::ShipmentCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the company to create the shipment for
+      # The unique identifier of the company to create the shipment for, starting with
+      # 'biz\_'.
       sig { returns(String) }
       attr_accessor :company_id
 
-      # The ID of the payment to create the shipment for
+      # The unique identifier of the payment to associate the shipment with.
       sig { returns(String) }
       attr_accessor :payment_id
 
-      # The tracking code for the shipment
+      # The carrier tracking code for the shipment, such as a USPS, UPS, or FedEx
+      # tracking number.
       sig { returns(String) }
       attr_accessor :tracking_code
 
@@ -32,11 +34,13 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the company to create the shipment for
+        # The unique identifier of the company to create the shipment for, starting with
+        # 'biz\_'.
         company_id:,
-        # The ID of the payment to create the shipment for
+        # The unique identifier of the payment to associate the shipment with.
         payment_id:,
-        # The tracking code for the shipment
+        # The carrier tracking code for the shipment, such as a USPS, UPS, or FedEx
+        # tracking number.
         tracking_code:,
         request_options: {}
       )

@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class Refunds
-      # Retrieves a Refund by ID
+      # Retrieves the details of an existing refund.
       #
       # Required permissions:
       #
@@ -14,7 +14,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the refund
+      # @param id [String] The unique identifier of the refund.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -30,7 +30,8 @@ module WhopSDK
         )
       end
 
-      # Lists Refunds for a payment.
+      # Returns a paginated list of refunds for a specific payment, with optional
+      # filtering by creation date.
       #
       # Required permissions:
       #
@@ -38,15 +39,15 @@ module WhopSDK
       #
       # @overload list(payment_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, request_options: {})
       #
-      # @param payment_id [String] The ID of the payment to list refunds for
+      # @param payment_id [String] The unique identifier of the payment to list refunds for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param created_after [Time, nil] The minimum creation date to filter by
+      # @param created_after [Time, nil] Only return refunds created after this timestamp.
       #
-      # @param created_before [Time, nil] The maximum creation date to filter by
+      # @param created_before [Time, nil] Only return refunds created before this timestamp.
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #

@@ -16,7 +16,9 @@ module WhopSDK
       required :api_version, const: :v1
 
       # @!attribute data
-      #   A statement that defines an amount due by a customer.
+      #   An invoice represents an itemized bill sent by a company to a customer for a
+      #   specific product and plan, tracking the amount owed, due date, and payment
+      #   status.
       #
       #   @return [WhopSDK::Models::Invoice]
       required :data, -> { WhopSDK::Invoice }
@@ -40,9 +42,12 @@ module WhopSDK
       optional :company_id, String, nil?: true
 
       # @!method initialize(id:, data:, timestamp:, company_id: nil, api_version: :v1, type: :"invoice.past_due")
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::InvoicePastDueWebhookEvent} for more details.
+      #
       #   @param id [String] A unique ID for every single webhook request
       #
-      #   @param data [WhopSDK::Models::Invoice] A statement that defines an amount due by a customer.
+      #   @param data [WhopSDK::Models::Invoice] An invoice represents an itemized bill sent by a company to a customer for a spe
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #

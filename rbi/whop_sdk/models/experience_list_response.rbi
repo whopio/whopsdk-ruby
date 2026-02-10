@@ -15,7 +15,7 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The experience interface for this experience.
+      # The app that powers this experience, defining its interface and behavior.
       sig { returns(WhopSDK::Models::ExperienceListResponse::App) }
       attr_reader :app
 
@@ -39,7 +39,8 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The logo for the experience.
+      # The custom logo image for this experience. Null if no custom logo has been
+      # uploaded.
       sig { returns(T.nilable(WhopSDK::Models::ExperienceListResponse::Image)) }
       attr_reader :image
 
@@ -51,15 +52,18 @@ module WhopSDK
       end
       attr_writer :image
 
-      # Whether the experience is visible to the public
+      # Whether this experience is publicly visible to all users, including those
+      # without a membership.
       sig { returns(T::Boolean) }
       attr_accessor :is_public
 
-      # The written name of the description.
+      # The display name of this experience shown to users in the product navigation.
+      # Maximum 255 characters.
       sig { returns(String) }
       attr_accessor :name
 
-      # The order of the experience in the section
+      # The sort position of this experience within its section. Lower values appear
+      # first. Null if no position has been set.
       sig { returns(T.nilable(String)) }
       attr_accessor :order
 
@@ -81,19 +85,23 @@ module WhopSDK
       def self.new(
         # The unique identifier for the experience.
         id:,
-        # The experience interface for this experience.
+        # The app that powers this experience, defining its interface and behavior.
         app:,
         # The company that owns this experience.
         company:,
         # The datetime the experience was created.
         created_at:,
-        # The logo for the experience.
+        # The custom logo image for this experience. Null if no custom logo has been
+        # uploaded.
         image:,
-        # Whether the experience is visible to the public
+        # Whether this experience is publicly visible to all users, including those
+        # without a membership.
         is_public:,
-        # The written name of the description.
+        # The display name of this experience shown to users in the product navigation.
+        # Maximum 255 characters.
         name:,
-        # The order of the experience in the section
+        # The sort position of this experience within its section. Lower values appear
+        # first. Null if no position has been set.
         order:
       )
       end
@@ -128,8 +136,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The icon for the app. This icon is shown on discovery, on the product page, on
-        # checkout, and as a default icon for the experiences.
+        # The icon image for this app, displayed on the app store, product pages,
+        # checkout, and as the default icon for experiences using this app.
         sig do
           returns(T.nilable(WhopSDK::Models::ExperienceListResponse::App::Icon))
         end
@@ -145,11 +153,12 @@ module WhopSDK
         end
         attr_writer :icon
 
-        # The name of the app
+        # The display name of this app shown on the app store and in experience
+        # navigation. Maximum 30 characters.
         sig { returns(String) }
         attr_accessor :name
 
-        # The experience interface for this experience.
+        # The app that powers this experience, defining its interface and behavior.
         sig do
           params(
             id: String,
@@ -163,10 +172,11 @@ module WhopSDK
         def self.new(
           # The unique identifier for the app.
           id:,
-          # The icon for the app. This icon is shown on discovery, on the product page, on
-          # checkout, and as a default icon for the experiences.
+          # The icon image for this app, displayed on the app store, product pages,
+          # checkout, and as the default icon for experiences using this app.
           icon:,
-          # The name of the app
+          # The display name of this app shown on the app store and in experience
+          # navigation. Maximum 30 characters.
           name:
         )
         end
@@ -198,8 +208,8 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :url
 
-          # The icon for the app. This icon is shown on discovery, on the product page, on
-          # checkout, and as a default icon for the experiences.
+          # The icon image for this app, displayed on the app store, product pages,
+          # checkout, and as the default icon for experiences using this app.
           sig { params(url: T.nilable(String)).returns(T.attached_class) }
           def self.new(
             # A pre-optimized URL for rendering this attachment on the client. This should be
@@ -270,7 +280,8 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :url
 
-        # The logo for the experience.
+        # The custom logo image for this experience. Null if no custom logo has been
+        # uploaded.
         sig { params(url: T.nilable(String)).returns(T.attached_class) }
         def self.new(
           # A pre-optimized URL for rendering this attachment on the client. This should be

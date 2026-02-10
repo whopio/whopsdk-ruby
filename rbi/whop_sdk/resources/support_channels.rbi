@@ -3,8 +3,8 @@
 module WhopSDK
   module Resources
     class SupportChannels
-      # Create a new support channel for a user in a company. If one already exists, it
-      # will return the existing one.
+      # Open a new support channel between a company team member and a customer. Returns
+      # the existing channel if one already exists for that user.
       #
       # Required permissions:
       #
@@ -17,15 +17,16 @@ module WhopSDK
         ).returns(WhopSDK::SupportChannel)
       end
       def create(
-        # The ID of the company to create the support chat in
+        # The unique identifier of the company to create the support channel in.
         company_id:,
-        # The ID (user_xxx) or username of the user to create the support chat for
+        # The user ID (e.g. 'user_xxxxx') or username of the customer to open a support
+        # channel for.
         user_id:,
         request_options: {}
       )
       end
 
-      # Retrieves a support channel
+      # Retrieves the details of an existing support channel.
       #
       # Required permissions:
       #
@@ -37,13 +38,14 @@ module WhopSDK
         ).returns(WhopSDK::SupportChannel)
       end
       def retrieve(
-        # The ID of the support channel to fetch
+        # The unique identifier of the support channel to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # Lists chat channels inside a company
+      # Returns a paginated list of support channels for a specific company, with
+      # optional filtering by resolution status and custom sorting.
       #
       # Required permissions:
       #
@@ -66,7 +68,7 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the company to list chat channels for
+        # The unique identifier of the company to list support channels for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
@@ -78,9 +80,8 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # Filter for tickets where customer sent the last message (needs response) AND not
-        # resolved. Set to true to only return open channels, false to only return
-        # resolved channels.
+        # Whether to filter by open or resolved support channels. Set to true to only
+        # return channels awaiting a response, or false for resolved channels.
         open_: nil,
         # Sort options for message channels
         order: nil,

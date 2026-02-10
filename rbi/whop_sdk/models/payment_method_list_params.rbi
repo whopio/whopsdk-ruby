@@ -19,15 +19,16 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # The ID of the Company. Provide either this or member_id (not both).
+      # The unique identifier of the company. Provide either this or member_id, not
+      # both.
       sig { returns(T.nilable(String)) }
       attr_accessor :company_id
 
-      # The minimum creation date to filter by
+      # Only return payment methods created after this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_after
 
-      # The maximum creation date to filter by
+      # Only return payment methods created before this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_before
 
@@ -43,7 +44,7 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
-      # The ID of the Member to list payment methods for
+      # The unique identifier of the member to list payment methods for.
       sig { returns(T.nilable(String)) }
       attr_accessor :member_id
 
@@ -66,11 +67,12 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The ID of the Company. Provide either this or member_id (not both).
+        # The unique identifier of the company. Provide either this or member_id, not
+        # both.
         company_id: nil,
-        # The minimum creation date to filter by
+        # Only return payment methods created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return payment methods created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,
@@ -78,7 +80,7 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The ID of the Member to list payment methods for
+        # The unique identifier of the member to list payment methods for.
         member_id: nil,
         request_options: {}
       )

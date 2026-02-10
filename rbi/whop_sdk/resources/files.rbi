@@ -3,7 +3,8 @@
 module WhopSDK
   module Resources
     class Files
-      # Creates a file and returns a presigned URL for upload
+      # Create a new file record and receive a presigned URL for uploading content to
+      # S3.
       sig do
         params(
           filename: String,
@@ -11,13 +12,14 @@ module WhopSDK
         ).returns(WhopSDK::Models::FileCreateResponse)
       end
       def create(
-        # The filename of the file
+        # The name of the file including its extension (e.g., "photo.png" or
+        # "document.pdf").
         filename:,
         request_options: {}
       )
       end
 
-      # Retrieves a file by its ID
+      # Retrieves the details of an existing file.
       sig do
         params(
           id: String,
@@ -25,7 +27,7 @@ module WhopSDK
         ).returns(WhopSDK::Models::FileRetrieveResponse)
       end
       def retrieve(
-        # The ID of the file (e.g., file_xxxxx)
+        # The unique identifier of the file to retrieve.
         id,
         request_options: {}
       )

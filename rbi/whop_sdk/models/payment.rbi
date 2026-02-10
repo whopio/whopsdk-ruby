@@ -48,7 +48,8 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::CardBrands::TaggedSymbol)) }
       attr_accessor :card_brand
 
-      # The last 4 digits of the card used to make the payment.
+      # The last four digits of the card used to make this payment. Null if the payment
+      # was not made with a card.
       sig { returns(T.nilable(String)) }
       attr_accessor :card_last4
 
@@ -104,11 +105,13 @@ module WhopSDK
       sig { returns(T.nilable(Time)) }
       attr_accessor :next_payment_attempt
 
-      # The datetime the payment was paid
+      # The time at which this payment was successfully collected. Null if the payment
+      # has not yet succeeded. As a Unix timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :paid_at
 
-      # The payment method used for the payment, if available.
+      # The tokenized payment method reference used for this payment. Null if no token
+      # was used.
       sig { returns(T.nilable(WhopSDK::Payment::PaymentMethod)) }
       attr_reader :payment_method
 
@@ -258,7 +261,8 @@ module WhopSDK
         billing_reason:,
         # Possible card brands that a payment token can have
         card_brand:,
-        # The last 4 digits of the card used to make the payment.
+        # The last four digits of the card used to make this payment. Null if the payment
+        # was not made with a card.
         card_last4:,
         # The company for the payment.
         company:,
@@ -281,9 +285,11 @@ module WhopSDK
         metadata:,
         # The time of the next schedule payment retry.
         next_payment_attempt:,
-        # The datetime the payment was paid
+        # The time at which this payment was successfully collected. Null if the payment
+        # has not yet succeeded. As a Unix timestamp.
         paid_at:,
-        # The payment method used for the payment, if available.
+        # The tokenized payment method reference used for this payment. Null if no token
+        # was used.
         payment_method:,
         # The different types of payment methods that can be used.
         payment_method_type:,
@@ -661,7 +667,8 @@ module WhopSDK
         sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
         attr_accessor :payment_method_type
 
-        # The payment method used for the payment, if available.
+        # The tokenized payment method reference used for this payment. Null if no token
+        # was used.
         sig do
           params(
             id: String,
@@ -708,15 +715,16 @@ module WhopSDK
           sig { returns(T.nilable(WhopSDK::CardBrands::TaggedSymbol)) }
           attr_accessor :brand
 
-          # Card expiration month, like 03 for March.
+          # The two-digit expiration month of the card (1-12). Null if not available.
           sig { returns(T.nilable(Integer)) }
           attr_accessor :exp_month
 
-          # Card expiration year, like 27 for 2027.
+          # The two-digit expiration year of the card (e.g., 27 for 2027). Null if not
+          # available.
           sig { returns(T.nilable(Integer)) }
           attr_accessor :exp_year
 
-          # Last four digits of the card.
+          # The last four digits of the card number. Null if not available.
           sig { returns(T.nilable(String)) }
           attr_accessor :last4
 
@@ -732,11 +740,12 @@ module WhopSDK
           def self.new(
             # Possible card brands that a payment token can have
             brand:,
-            # Card expiration month, like 03 for March.
+            # The two-digit expiration month of the card (1-12). Null if not available.
             exp_month:,
-            # Card expiration year, like 27 for 2027.
+            # The two-digit expiration year of the card (e.g., 27 for 2027). Null if not
+            # available.
             exp_year:,
-            # Last four digits of the card.
+            # The last four digits of the card number. Null if not available.
             last4:
           )
           end

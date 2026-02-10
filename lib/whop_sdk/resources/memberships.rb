@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class Memberships
-      # Retrieves a membership by ID or license key
+      # Retrieves the details of an existing membership.
       #
       # Required permissions:
       #
@@ -12,7 +12,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the membership or a license key
+      # @param id [String] The unique identifier of the membership, or a license key.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -28,7 +28,10 @@ module WhopSDK
         )
       end
 
-      # Update a membership
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::MembershipUpdateParams} for more details.
+      #
+      # Update a membership's metadata or other mutable properties.
       #
       # Required permissions:
       #
@@ -38,9 +41,9 @@ module WhopSDK
       #
       # @overload update(id, metadata: nil, request_options: {})
       #
-      # @param id [String] The ID of the membership.
+      # @param id [String] The unique identifier of the membership to update.
       #
-      # @param metadata [Hash{Symbol=>Object}, nil] The metadata to update the membership with.
+      # @param metadata [Hash{Symbol=>Object}, nil] A JSON object of key-value pairs to store on the membership. Replaces any existi
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -58,7 +61,11 @@ module WhopSDK
         )
       end
 
-      # Lists memberships
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::MembershipListParams} for more details.
+      #
+      # Returns a paginated list of memberships, with optional filtering by product,
+      # plan, status, and user.
       #
       # Required permissions:
       #
@@ -71,13 +78,13 @@ module WhopSDK
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param cancel_options [Array<Symbol, WhopSDK::Models::CancelOptions>, nil] The cancel options to filter the memberships by
+      # @param cancel_options [Array<Symbol, WhopSDK::Models::CancelOptions>, nil] Filter to only memberships matching these cancellation reasons.
       #
-      # @param company_id [String, nil] The ID of the company to list memberships for
+      # @param company_id [String, nil] The unique identifier of the company to list memberships for. Required when usin
       #
-      # @param created_after [Time, nil] The minimum creation date to filter by
+      # @param created_after [Time, nil] Only return memberships created after this timestamp.
       #
-      # @param created_before [Time, nil] The maximum creation date to filter by
+      # @param created_before [Time, nil] Only return memberships created before this timestamp.
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
@@ -87,15 +94,15 @@ module WhopSDK
       #
       # @param order [Symbol, WhopSDK::Models::MembershipListParams::Order, nil] Which columns can be used to sort.
       #
-      # @param plan_ids [Array<String>, nil] The plan IDs to filter the memberships by
+      # @param plan_ids [Array<String>, nil] Filter to only memberships belonging to these plan identifiers.
       #
-      # @param product_ids [Array<String>, nil] The product IDs to filter the memberships by
+      # @param product_ids [Array<String>, nil] Filter to only memberships belonging to these product identifiers.
       #
-      # @param promo_code_ids [Array<String>, nil] The promo code IDs to filter the memberships by
+      # @param promo_code_ids [Array<String>, nil] Filter to only memberships that used these promo code identifiers.
       #
-      # @param statuses [Array<Symbol, WhopSDK::Models::MembershipStatus>, nil] The membership status to filter the memberships by
+      # @param statuses [Array<Symbol, WhopSDK::Models::MembershipStatus>, nil] Filter to only memberships matching these statuses.
       #
-      # @param user_ids [Array<String>, nil] Only return memberships from these whop user ids
+      # @param user_ids [Array<String>, nil] Filter to only memberships belonging to these user identifiers.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -114,8 +121,8 @@ module WhopSDK
         )
       end
 
-      # Cancels a membership either immediately or at the end of the current billing
-      # period
+      # Cancel a membership either immediately or at the end of the current billing
+      # period. Immediate cancellation revokes access right away.
       #
       # Required permissions:
       #
@@ -125,7 +132,7 @@ module WhopSDK
       #
       # @overload cancel(id, cancellation_mode: nil, request_options: {})
       #
-      # @param id [String] The ID of the membership.
+      # @param id [String] The unique identifier of the membership to cancel.
       #
       # @param cancellation_mode [Symbol, WhopSDK::Models::MembershipCancelParams::CancellationMode, nil] The mode of cancellation for a membership
       #
@@ -148,7 +155,8 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::MembershipPauseParams} for more details.
       #
-      # Pauses a membership's payments
+      # Pause a membership's recurring payments. The customer retains access but will
+      # not be charged until the membership is resumed.
       #
       # Required permissions:
       #
@@ -158,9 +166,9 @@ module WhopSDK
       #
       # @overload pause(id, void_payments: nil, request_options: {})
       #
-      # @param id [String] The ID of the membership you want to pause.
+      # @param id [String] The unique identifier of the membership to pause.
       #
-      # @param void_payments [Boolean, nil] Whether to void past_due payments associated with the membership to prevent futu
+      # @param void_payments [Boolean, nil] Whether to void any outstanding past-due payments on this membership, preventing
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -178,7 +186,8 @@ module WhopSDK
         )
       end
 
-      # Resumes a membership's payments
+      # Resume a previously paused membership's recurring payments. Billing resumes on
+      # the next cycle.
       #
       # Required permissions:
       #
@@ -188,7 +197,7 @@ module WhopSDK
       #
       # @overload resume(id, request_options: {})
       #
-      # @param id [String] The ID of the membership you want to resume.
+      # @param id [String] The unique identifier of the membership to resume.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -204,7 +213,8 @@ module WhopSDK
         )
       end
 
-      # Uncancels a membership that was scheduled to cancel at period end
+      # Reverse a pending cancellation for a membership that was scheduled to cancel at
+      # period end.
       #
       # Required permissions:
       #
@@ -214,7 +224,7 @@ module WhopSDK
       #
       # @overload uncancel(id, request_options: {})
       #
-      # @param id [String] The ID of the membership.
+      # @param id [String] The unique identifier of the membership to uncancel.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

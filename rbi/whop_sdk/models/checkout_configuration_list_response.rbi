@@ -84,9 +84,9 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :redirect_url
 
-      # A checkout session is a reusable configuration for a checkout, including the
-      # plan, affiliate, and custom metadata. Payments and memberships created from a
-      # checkout session inherit its metadata.
+      # A checkout configuration is a reusable configuration for a checkout, including
+      # the plan, affiliate, and custom metadata. Payments and memberships created from
+      # a checkout session inherit its metadata.
       sig do
         params(
           id: String,
@@ -238,11 +238,13 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The interval in days at which the plan charges (renewal plans).
+        # The number of days between each recurring charge. Null for one-time plans. For
+        # example, 30 for monthly or 365 for annual billing.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :billing_period
 
-        # The respective currency identifier for the plan.
+        # The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
+        # amounts on the plan are denominated in this currency.
         sig { returns(WhopSDK::Currency::TaggedSymbol) }
         attr_accessor :currency
 
@@ -257,11 +259,13 @@ module WhopSDK
         sig { returns(Float) }
         attr_accessor :initial_price
 
-        # Indicates if the plan is a one time payment or recurring.
+        # The billing model for this plan: 'renewal' for recurring subscriptions or
+        # 'one_time' for single payments.
         sig { returns(WhopSDK::PlanType::TaggedSymbol) }
         attr_accessor :plan_type
 
-        # This is the release method the business uses to sell this plan.
+        # The method used to sell this plan: 'buy_now' for immediate purchase or
+        # 'waitlist' for waitlist-based access.
         sig { returns(WhopSDK::ReleaseMethod::TaggedSymbol) }
         attr_accessor :release_method
 
@@ -270,11 +274,14 @@ module WhopSDK
         sig { returns(Float) }
         attr_accessor :renewal_price
 
-        # The number of free trial days added before a renewal plan.
+        # The number of free trial days before the first charge on a renewal plan. Null if
+        # no trial is configured or the current user has already used a trial for this
+        # plan.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :trial_period_days
 
-        # Shows or hides the plan from public/business view.
+        # Controls whether the plan is visible to customers. When set to 'hidden', the
+        # plan is only accessible via direct link.
         sig { returns(WhopSDK::Visibility::TaggedSymbol) }
         attr_accessor :visibility
 
@@ -296,9 +303,11 @@ module WhopSDK
         def self.new(
           # The unique identifier for the plan.
           id:,
-          # The interval in days at which the plan charges (renewal plans).
+          # The number of days between each recurring charge. Null for one-time plans. For
+          # example, 30 for monthly or 365 for annual billing.
           billing_period:,
-          # The respective currency identifier for the plan.
+          # The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
+          # amounts on the plan are denominated in this currency.
           currency:,
           # The number of days until the membership expires (for expiration-based plans).
           # For example, 365 for a one-year access pass.
@@ -307,16 +316,21 @@ module WhopSDK
           # For one-time plans, this is the full price. For renewal plans, this is charged
           # on top of the first renewal_price.
           initial_price:,
-          # Indicates if the plan is a one time payment or recurring.
+          # The billing model for this plan: 'renewal' for recurring subscriptions or
+          # 'one_time' for single payments.
           plan_type:,
-          # This is the release method the business uses to sell this plan.
+          # The method used to sell this plan: 'buy_now' for immediate purchase or
+          # 'waitlist' for waitlist-based access.
           release_method:,
           # The recurring price charged every billing_period in the plan's base_currency
           # (e.g., 9.99 for $9.99/period). Zero for one-time plans.
           renewal_price:,
-          # The number of free trial days added before a renewal plan.
+          # The number of free trial days before the first charge on a renewal plan. Null if
+          # no trial is configured or the current user has already used a trial for this
+          # plan.
           trial_period_days:,
-          # Shows or hides the plan from public/business view.
+          # Controls whether the plan is visible to customers. When set to 'hidden', the
+          # plan is only accessible via direct link.
           visibility:
         )
         end

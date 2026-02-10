@@ -11,34 +11,34 @@ module WhopSDK
           T.any(WhopSDK::InvoiceCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The method of collection for this invoice. If using charge_automatically, you
-      # must provide a payment_token.
+      # How the invoice should be collected. Use charge_automatically to charge a stored
+      # payment method, or send_invoice to email the customer.
       sig { returns(WhopSDK::CollectionMethod::OrSymbol) }
       attr_accessor :collection_method
 
-      # The company ID to create this invoice for.
+      # The unique identifier of the company to create this invoice for.
       sig { returns(String) }
       attr_accessor :company_id
 
-      # The date the invoice is due, if applicable.
+      # The date by which the invoice must be paid.
       sig { returns(Time) }
       attr_accessor :due_date
 
-      # The member ID to create this invoice for. Include this if you want to create an
-      # invoice for an existing member. If you do not have a member ID, you must provide
-      # an email_address and customer_name.
+      # The unique identifier of an existing member to create this invoice for. If not
+      # provided, you must supply an email_address and customer_name.
       sig { returns(String) }
       attr_accessor :member_id
 
-      # The properties of the plan to create for this invoice.
+      # The plan attributes defining the price, currency, and billing interval for this
+      # invoice.
       sig { returns(WhopSDK::InvoiceCreateParams::Plan) }
       attr_reader :plan
 
       sig { params(plan: WhopSDK::InvoiceCreateParams::Plan::OrHash).void }
       attr_writer :plan
 
-      # The properties of the product to create for this invoice. Include this if you
-      # want to create an invoice for a new product.
+      # The properties of the product to create for this invoice. Provide this to create
+      # a new product inline.
       sig { returns(WhopSDK::InvoiceCreateParams::Product) }
       attr_reader :product
 
@@ -47,18 +47,17 @@ module WhopSDK
       end
       attr_writer :product
 
-      # Whether or not to charge the customer a buyer fee.
+      # Whether to charge the customer a buyer fee on this invoice.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :charge_buyer_fee
 
-      # The name of the customer to create this invoice for. This is required if you
-      # want to create an invoice for a customer who does not have a member of your
-      # company yet.
+      # The name of the customer. Required when creating an invoice for a customer who
+      # is not yet a member of the company.
       sig { returns(T.nilable(String)) }
       attr_accessor :customer_name
 
-      # The payment method ID to use for this invoice. If using charge_automatically,
-      # you must provide a payment_method_id.
+      # The unique identifier of the payment method to charge. Required when
+      # collection_method is charge_automatically.
       sig { returns(T.nilable(String)) }
       attr_accessor :payment_method_id
 
@@ -67,13 +66,12 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :payment_token_id
 
-      # The email address to create this invoice for. This is required if you want to
-      # create an invoice for a user who does not have a member of your company yet.
+      # The email address of the customer. Required when creating an invoice for a
+      # customer who is not yet a member of the company.
       sig { returns(String) }
       attr_accessor :email_address
 
-      # The product ID to create this invoice for. Include this if you want to create an
-      # invoice for an existing product.
+      # The unique identifier of an existing product to create this invoice for.
       sig { returns(String) }
       attr_accessor :product_id
 
@@ -95,36 +93,34 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The method of collection for this invoice. If using charge_automatically, you
-        # must provide a payment_token.
+        # How the invoice should be collected. Use charge_automatically to charge a stored
+        # payment method, or send_invoice to email the customer.
         collection_method:,
-        # The company ID to create this invoice for.
+        # The unique identifier of the company to create this invoice for.
         company_id:,
-        # The date the invoice is due, if applicable.
+        # The date by which the invoice must be paid.
         due_date:,
-        # The member ID to create this invoice for. Include this if you want to create an
-        # invoice for an existing member. If you do not have a member ID, you must provide
-        # an email_address and customer_name.
+        # The unique identifier of an existing member to create this invoice for. If not
+        # provided, you must supply an email_address and customer_name.
         member_id:,
-        # The properties of the plan to create for this invoice.
+        # The plan attributes defining the price, currency, and billing interval for this
+        # invoice.
         plan:,
-        # The properties of the product to create for this invoice. Include this if you
-        # want to create an invoice for a new product.
+        # The properties of the product to create for this invoice. Provide this to create
+        # a new product inline.
         product:,
-        # The email address to create this invoice for. This is required if you want to
-        # create an invoice for a user who does not have a member of your company yet.
+        # The email address of the customer. Required when creating an invoice for a
+        # customer who is not yet a member of the company.
         email_address:,
-        # The product ID to create this invoice for. Include this if you want to create an
-        # invoice for an existing product.
+        # The unique identifier of an existing product to create this invoice for.
         product_id:,
-        # Whether or not to charge the customer a buyer fee.
+        # Whether to charge the customer a buyer fee on this invoice.
         charge_buyer_fee: nil,
-        # The name of the customer to create this invoice for. This is required if you
-        # want to create an invoice for a customer who does not have a member of your
-        # company yet.
+        # The name of the customer. Required when creating an invoice for a customer who
+        # is not yet a member of the company.
         customer_name: nil,
-        # The payment method ID to use for this invoice. If using charge_automatically,
-        # you must provide a payment_method_id.
+        # The unique identifier of the payment method to charge. Required when
+        # collection_method is charge_automatically.
         payment_method_id: nil,
         # The payment token ID to use for this invoice. If using charge_automatically, you
         # must provide a payment_token.
@@ -225,7 +221,8 @@ module WhopSDK
         sig { returns(T.nilable(WhopSDK::Visibility::OrSymbol)) }
         attr_accessor :visibility
 
-        # The properties of the plan to create for this invoice.
+        # The plan attributes defining the price, currency, and billing interval for this
+        # invoice.
         sig do
           params(
             billing_period: T.nilable(Integer),
@@ -401,8 +398,8 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :product_tax_code_id
 
-        # The properties of the product to create for this invoice. Include this if you
-        # want to create an invoice for a new product.
+        # The properties of the product to create for this invoice. Provide this to create
+        # a new product inline.
         sig do
           params(title: String, product_tax_code_id: T.nilable(String)).returns(
             T.attached_class

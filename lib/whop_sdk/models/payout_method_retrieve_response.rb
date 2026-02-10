@@ -11,14 +11,15 @@ module WhopSDK
       required :id, String
 
       # @!attribute account_reference
-      #   A reference to identify the payout destination, such as the last 4 digits of an
-      #   account number or an email address.
+      #   A masked identifier for the payout destination, such as the last four digits of
+      #   a bank account or an email address. Null if no reference is available.
       #
       #   @return [String, nil]
       required :account_reference, String, nil?: true
 
       # @!attribute company
-      #   The company associated with the payout token
+      #   The company associated with this payout destination. Null if not linked to a
+      #   specific company.
       #
       #   @return [WhopSDK::Models::PayoutMethodRetrieveResponse::Company, nil]
       required :company, -> { WhopSDK::Models::PayoutMethodRetrieveResponse::Company }, nil?: true
@@ -30,33 +31,36 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute currency
-      #   The currency code of the payout destination. This is the currency that payouts
-      #   will be made in for this token.
+      #   The three-letter ISO currency code that payouts are delivered in for this
+      #   destination.
       #
       #   @return [String]
       required :currency, String
 
       # @!attribute destination
-      #   The payout destination associated with the payout token
+      #   The payout destination configuration linked to this token. Null if not yet
+      #   configured.
       #
       #   @return [WhopSDK::Models::PayoutMethodRetrieveResponse::Destination, nil]
       required :destination, -> { WhopSDK::Models::PayoutMethodRetrieveResponse::Destination }, nil?: true
 
       # @!attribute institution_name
-      #   The name of the bank or financial institution.
+      #   The name of the bank or financial institution receiving payouts. Null if not
+      #   applicable or not provided.
       #
       #   @return [String, nil]
       required :institution_name, String, nil?: true
 
       # @!attribute is_default
-      #   Whether this payout token is the default for the payout account
+      #   Whether this is the default payout destination for the associated payout
+      #   account.
       #
       #   @return [Boolean]
       required :is_default, WhopSDK::Internal::Type::Boolean
 
       # @!attribute nickname
-      #   An optional nickname for the payout token to help the user identify it. This is
-      #   not used by the provider and is only for the user's reference.
+      #   A user-defined label to help identify this payout destination. Not sent to the
+      #   provider. Null if no nickname has been set.
       #
       #   @return [String, nil]
       required :nickname, String, nil?: true
@@ -65,25 +69,26 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PayoutMethodRetrieveResponse} for more details.
       #
-      #   An object representing an user's setup payout destination.
+      #   A configured payout destination where a user receives earned funds, such as a
+      #   bank account or digital wallet.
       #
       #   @param id [String] The unique identifier for the payout token.
       #
-      #   @param account_reference [String, nil] A reference to identify the payout destination, such as the last 4 digits of an
+      #   @param account_reference [String, nil] A masked identifier for the payout destination, such as the last four digits of
       #
-      #   @param company [WhopSDK::Models::PayoutMethodRetrieveResponse::Company, nil] The company associated with the payout token
+      #   @param company [WhopSDK::Models::PayoutMethodRetrieveResponse::Company, nil] The company associated with this payout destination. Null if not linked to a spe
       #
       #   @param created_at [Time] The datetime the payout token was created.
       #
-      #   @param currency [String] The currency code of the payout destination. This is the currency that payouts w
+      #   @param currency [String] The three-letter ISO currency code that payouts are delivered in for this destin
       #
-      #   @param destination [WhopSDK::Models::PayoutMethodRetrieveResponse::Destination, nil] The payout destination associated with the payout token
+      #   @param destination [WhopSDK::Models::PayoutMethodRetrieveResponse::Destination, nil] The payout destination configuration linked to this token. Null if not yet confi
       #
-      #   @param institution_name [String, nil] The name of the bank or financial institution.
+      #   @param institution_name [String, nil] The name of the bank or financial institution receiving payouts. Null if not app
       #
-      #   @param is_default [Boolean] Whether this payout token is the default for the payout account
+      #   @param is_default [Boolean] Whether this is the default payout destination for the associated payout account
       #
-      #   @param nickname [String, nil] An optional nickname for the payout token to help the user identify it. This is
+      #   @param nickname [String, nil] A user-defined label to help identify this payout destination. Not sent to the p
 
       # @see WhopSDK::Models::PayoutMethodRetrieveResponse#company
       class Company < WhopSDK::Internal::Type::BaseModel
@@ -94,7 +99,8 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   The company associated with the payout token
+        #   The company associated with this payout destination. Null if not linked to a
+        #   specific company.
         #
         #   @param id [String] The unique identifier for the company.
       end
@@ -120,7 +126,8 @@ module WhopSDK
         required :name, String
 
         # @!method initialize(category:, country_code:, name:)
-        #   The payout destination associated with the payout token
+        #   The payout destination configuration linked to this token. Null if not yet
+        #   configured.
         #
         #   @param category [Symbol, WhopSDK::Models::PayoutDestinationCategory] The category of the payout destination
         #

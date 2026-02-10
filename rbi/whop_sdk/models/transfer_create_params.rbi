@@ -11,34 +11,36 @@ module WhopSDK
           T.any(WhopSDK::TransferCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The amount to transfer. Provided as a number in the specified currency. Eg:
-      # 25.00 for $25.00 USD.
+      # The amount to transfer in the specified currency. For example, 25.00 for $25.00
+      # USD.
       sig { returns(Float) }
       attr_accessor :amount
 
-      # The currency that is being withdrawn.
+      # The currency of the transfer amount, such as 'usd'.
       sig { returns(WhopSDK::Currency::OrSymbol) }
       attr_accessor :currency
 
-      # The ID of the destination account which will receive the funds (either a User
-      # ID, Company ID, or LedgerAccount ID)
+      # The identifier of the account receiving the funds. Accepts a user ID
+      # ('user_xxx'), company ID ('biz_xxx'), or ledger account ID ('ldgr_xxx').
       sig { returns(String) }
       attr_accessor :destination_id
 
-      # The ID of the origin account which will send the funds (either a User ID,
-      # Company ID, or LedgerAccount ID)
+      # The identifier of the account sending the funds. Accepts a user ID ('user_xxx'),
+      # company ID ('biz_xxx'), or ledger account ID ('ldgr_xxx').
       sig { returns(String) }
       attr_accessor :origin_id
 
-      # A unique key to ensure idempotence. Use a UUID or similar.
+      # A unique key to prevent duplicate transfers. Use a UUID or similar unique
+      # string.
       sig { returns(T.nilable(String)) }
       attr_accessor :idempotence_key
 
-      # A hash of metadata to attach to the transfer.
+      # A JSON object of custom metadata to attach to the transfer for tracking
+      # purposes.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
-      # Notes for the transfer. Maximum of 50 characters.
+      # A short note describing the transfer, up to 50 characters.
       sig { returns(T.nilable(String)) }
       attr_accessor :notes
 
@@ -55,22 +57,24 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The amount to transfer. Provided as a number in the specified currency. Eg:
-        # 25.00 for $25.00 USD.
+        # The amount to transfer in the specified currency. For example, 25.00 for $25.00
+        # USD.
         amount:,
-        # The currency that is being withdrawn.
+        # The currency of the transfer amount, such as 'usd'.
         currency:,
-        # The ID of the destination account which will receive the funds (either a User
-        # ID, Company ID, or LedgerAccount ID)
+        # The identifier of the account receiving the funds. Accepts a user ID
+        # ('user_xxx'), company ID ('biz_xxx'), or ledger account ID ('ldgr_xxx').
         destination_id:,
-        # The ID of the origin account which will send the funds (either a User ID,
-        # Company ID, or LedgerAccount ID)
+        # The identifier of the account sending the funds. Accepts a user ID ('user_xxx'),
+        # company ID ('biz_xxx'), or ledger account ID ('ldgr_xxx').
         origin_id:,
-        # A unique key to ensure idempotence. Use a UUID or similar.
+        # A unique key to prevent duplicate transfers. Use a UUID or similar unique
+        # string.
         idempotence_key: nil,
-        # A hash of metadata to attach to the transfer.
+        # A JSON object of custom metadata to attach to the transfer for tracking
+        # purposes.
         metadata: nil,
-        # Notes for the transfer. Maximum of 50 characters.
+        # A short note describing the transfer, up to 50 characters.
         notes: nil,
         request_options: {}
       )

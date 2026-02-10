@@ -11,11 +11,12 @@ module WhopSDK
           T.any(WhopSDK::LeadUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # Custom metadata for the lead.
+      # A JSON object of custom metadata to set on the lead, replacing any existing
+      # metadata.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
-      # The url referrer of the lead.
+      # The updated referral URL for the lead, such as 'https://example.com/landing'.
       sig { returns(T.nilable(String)) }
       attr_accessor :referrer
 
@@ -27,9 +28,10 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # Custom metadata for the lead.
+        # A JSON object of custom metadata to set on the lead, replacing any existing
+        # metadata.
         metadata: nil,
-        # The url referrer of the lead.
+        # The updated referral URL for the lead, such as 'https://example.com/landing'.
         referrer: nil,
         request_options: {}
       )

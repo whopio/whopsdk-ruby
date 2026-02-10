@@ -11,7 +11,8 @@ module WhopSDK
       required :id, String
 
       # @!attribute content
-      #   The content of the lesson
+      #   The text body of the lesson in plain text format. Null if the lesson has no text
+      #   content.
       #
       #   @return [String, nil]
       required :content, String, nil?: true
@@ -23,13 +24,15 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute days_from_course_start_until_unlock
-      #   Number of days from course start until the lesson is unlocked
+      #   The number of days after a student starts the course before this lesson becomes
+      #   accessible. Null if the lesson is available immediately.
       #
       #   @return [Integer, nil]
       required :days_from_course_start_until_unlock, Integer, nil?: true
 
       # @!attribute embed_id
-      #   ID for the embed (YouTube video ID or Loom share ID)
+      #   The external video identifier for embedded video lessons, such as a YouTube
+      #   video ID or Loom share ID. Null if the lesson has no embed.
       #
       #   @return [String, nil]
       required :embed_id, String, nil?: true
@@ -41,32 +44,34 @@ module WhopSDK
       required :embed_type, enum: -> { WhopSDK::EmbedType }, nil?: true
 
       # @!attribute lesson_type
-      #   The type of the lesson (text, video, pdf, multi, quiz, knowledge_check)
+      #   The content format of this lesson. One of: text, video, pdf, multi, quiz,
+      #   knowledge_check.
       #
       #   @return [Symbol, WhopSDK::Models::LessonTypes]
       required :lesson_type, enum: -> { WhopSDK::LessonTypes }
 
       # @!attribute order
-      #   The order of the lesson within its chapter
+      #   The sort position of this lesson within its parent chapter, starting from zero.
       #
       #   @return [Integer]
       required :order, Integer
 
       # @!attribute thumbnail
-      #   The thumbnail for the lesson
+      #   The thumbnail image displayed on lesson cards and previews. Null if no thumbnail
+      #   has been uploaded.
       #
       #   @return [WhopSDK::Models::CourseLessonListResponse::Thumbnail, nil]
       required :thumbnail, -> { WhopSDK::Models::CourseLessonListResponse::Thumbnail }, nil?: true
 
       # @!attribute title
-      #   The title of the lesson
+      #   The display name of the lesson shown to students. Maximum 120 characters.
       #
       #   @return [String]
       required :title, String
 
       # @!attribute visibility
-      #   The visibility of the lesson. Determines how / whether this lesson is visible to
-      #   users.
+      #   The visibility setting that controls whether this lesson appears to students.
+      #   One of: visible, hidden.
       #
       #   @return [Symbol, WhopSDK::Models::LessonVisibilities]
       required :visibility, enum: -> { WhopSDK::LessonVisibilities }
@@ -75,29 +80,30 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CourseLessonListResponse} for more details.
       #
-      #   A lesson from the courses app
+      #   An individual learning unit within a chapter, which can contain text, video,
+      #   PDF, or assessment content.
       #
       #   @param id [String] The unique identifier for the lesson.
       #
-      #   @param content [String, nil] The content of the lesson
+      #   @param content [String, nil] The text body of the lesson in plain text format. Null if the lesson has no text
       #
       #   @param created_at [Time] The datetime the lesson was created.
       #
-      #   @param days_from_course_start_until_unlock [Integer, nil] Number of days from course start until the lesson is unlocked
+      #   @param days_from_course_start_until_unlock [Integer, nil] The number of days after a student starts the course before this lesson becomes
       #
-      #   @param embed_id [String, nil] ID for the embed (YouTube video ID or Loom share ID)
+      #   @param embed_id [String, nil] The external video identifier for embedded video lessons, such as a YouTube vide
       #
       #   @param embed_type [Symbol, WhopSDK::Models::EmbedType, nil] The type of embed for a lesson
       #
-      #   @param lesson_type [Symbol, WhopSDK::Models::LessonTypes] The type of the lesson (text, video, pdf, multi, quiz, knowledge_check)
+      #   @param lesson_type [Symbol, WhopSDK::Models::LessonTypes] The content format of this lesson. One of: text, video, pdf, multi, quiz, knowle
       #
-      #   @param order [Integer] The order of the lesson within its chapter
+      #   @param order [Integer] The sort position of this lesson within its parent chapter, starting from zero.
       #
-      #   @param thumbnail [WhopSDK::Models::CourseLessonListResponse::Thumbnail, nil] The thumbnail for the lesson
+      #   @param thumbnail [WhopSDK::Models::CourseLessonListResponse::Thumbnail, nil] The thumbnail image displayed on lesson cards and previews. Null if no thumbnail
       #
-      #   @param title [String] The title of the lesson
+      #   @param title [String] The display name of the lesson shown to students. Maximum 120 characters.
       #
-      #   @param visibility [Symbol, WhopSDK::Models::LessonVisibilities] The visibility of the lesson. Determines how / whether this lesson is visible to
+      #   @param visibility [Symbol, WhopSDK::Models::LessonVisibilities] The visibility setting that controls whether this lesson appears to students. On
 
       # @see WhopSDK::Models::CourseLessonListResponse#thumbnail
       class Thumbnail < WhopSDK::Internal::Type::BaseModel
@@ -112,7 +118,8 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::CourseLessonListResponse::Thumbnail} for more details.
         #
-        #   The thumbnail for the lesson
+        #   The thumbnail image displayed on lesson cards and previews. Null if no thumbnail
+        #   has been uploaded.
         #
         #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
       end

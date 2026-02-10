@@ -17,43 +17,48 @@ module WhopSDK
       required :created_at, Time, nil?: true
 
       # @!attribute plan
-      #   The waitlist plan the entry if for.
+      #   The waitlisted plan that this entry is a signup for.
       #
       #   @return [WhopSDK::Models::EntryListResponse::Plan, nil]
       required :plan, -> { WhopSDK::Models::EntryListResponse::Plan }, nil?: true
 
       # @!attribute product
-      #   The product tied to this entry, if there is one.
+      #   The product associated with this entry's waitlisted plan. Null if the plan is
+      #   not tied to a product.
       #
       #   @return [WhopSDK::Models::EntryListResponse::Product, nil]
       required :product, -> { WhopSDK::Models::EntryListResponse::Product }, nil?: true
 
       # @!attribute status
-      #   The status of the entry.
+      #   The current status of the waitlist entry (e.g., drafted, pending, approved,
+      #   denied).
       #
       #   @return [Symbol, WhopSDK::Models::EntryStatus]
       required :status, enum: -> { WhopSDK::EntryStatus }
 
       # @!attribute user
-      #   The user who created the entry.
+      #   The user who submitted this waitlist entry.
       #
       #   @return [WhopSDK::Models::EntryListResponse::User]
       required :user, -> { WhopSDK::Models::EntryListResponse::User }
 
       # @!method initialize(id:, created_at:, plan:, product:, status:, user:)
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::EntryListResponse} for more details.
+      #
       #   An entry represents a user's signup for a waitlisted plan.
       #
       #   @param id [String] The unique identifier for the entry.
       #
       #   @param created_at [Time, nil] The datetime the entry was created.
       #
-      #   @param plan [WhopSDK::Models::EntryListResponse::Plan, nil] The waitlist plan the entry if for.
+      #   @param plan [WhopSDK::Models::EntryListResponse::Plan, nil] The waitlisted plan that this entry is a signup for.
       #
-      #   @param product [WhopSDK::Models::EntryListResponse::Product, nil] The product tied to this entry, if there is one.
+      #   @param product [WhopSDK::Models::EntryListResponse::Product, nil] The product associated with this entry's waitlisted plan. Null if the plan is no
       #
-      #   @param status [Symbol, WhopSDK::Models::EntryStatus] The status of the entry.
+      #   @param status [Symbol, WhopSDK::Models::EntryStatus] The current status of the waitlist entry (e.g., drafted, pending, approved, deni
       #
-      #   @param user [WhopSDK::Models::EntryListResponse::User] The user who created the entry.
+      #   @param user [WhopSDK::Models::EntryListResponse::User] The user who submitted this waitlist entry.
 
       # @see WhopSDK::Models::EntryListResponse#plan
       class Plan < WhopSDK::Internal::Type::BaseModel
@@ -64,7 +69,7 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   The waitlist plan the entry if for.
+        #   The waitlisted plan that this entry is a signup for.
         #
         #   @param id [String] The unique identifier for the plan.
       end
@@ -88,7 +93,8 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::EntryListResponse::Product} for more details.
         #
-        #   The product tied to this entry, if there is one.
+        #   The product associated with this entry's waitlisted plan. Null if the plan is
+        #   not tied to a product.
         #
         #   @param id [String] The unique identifier for the product.
         #
@@ -126,7 +132,7 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::EntryListResponse::User} for more details.
         #
-        #   The user who created the entry.
+        #   The user who submitted this waitlist entry.
         #
         #   @param id [String] The unique identifier for the user.
         #

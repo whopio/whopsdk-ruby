@@ -22,11 +22,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # Whether the lesson has been completed by the user
+      # Whether to filter for completed or in-progress lesson interactions.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :completed
 
-      # The ID of the course to list course lesson interactions for
+      # The unique identifier of the course to filter interactions for.
       sig { returns(T.nilable(String)) }
       attr_accessor :course_id
 
@@ -38,11 +38,11 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
-      # The ID of the lesson to list course lesson interactions for
+      # The unique identifier of the lesson to filter interactions for.
       sig { returns(T.nilable(String)) }
       attr_accessor :lesson_id
 
-      # The ID of the user to list course lesson interactions for
+      # The unique identifier of the user to filter lesson interactions for.
       sig { returns(T.nilable(String)) }
       attr_accessor :user_id
 
@@ -64,17 +64,17 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # Whether the lesson has been completed by the user
+        # Whether to filter for completed or in-progress lesson interactions.
         completed: nil,
-        # The ID of the course to list course lesson interactions for
+        # The unique identifier of the course to filter interactions for.
         course_id: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The ID of the lesson to list course lesson interactions for
+        # The unique identifier of the lesson to filter interactions for.
         lesson_id: nil,
-        # The ID of the user to list course lesson interactions for
+        # The unique identifier of the user to filter lesson interactions for.
         user_id: nil,
         request_options: {}
       )

@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class Members
-      # Retrieves a member of a company by ID
+      # Retrieves the details of an existing member.
       #
       # Required permissions:
       #
@@ -13,7 +13,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the member
+      # @param id [String] The unique identifier of the member to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -32,7 +32,8 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::MemberListParams} for more details.
       #
-      # List the members of a company
+      # Returns a paginated list of members for a company, with extensive filtering by
+      # product, plan, status, access level, and more.
       #
       # Required permissions:
       #
@@ -48,11 +49,11 @@ module WhopSDK
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param company_id [String, nil] The ID of the company to list members for
+      # @param company_id [String, nil] The unique identifier of the company to list members for.
       #
-      # @param created_after [Time, nil] The minimum creation date to filter by
+      # @param created_after [Time, nil] Only return members created after this timestamp.
       #
-      # @param created_before [Time, nil] The maximum creation date to filter by
+      # @param created_before [Time, nil] Only return members created before this timestamp.
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
@@ -60,21 +61,21 @@ module WhopSDK
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param most_recent_actions [Array<Symbol, WhopSDK::Models::MemberMostRecentActions>, nil] The most recent actions to filter the members by
+      # @param most_recent_actions [Array<Symbol, WhopSDK::Models::MemberMostRecentActions>, nil] Filter members by their most recent activity type.
       #
       # @param order [Symbol, WhopSDK::Models::MemberListParams::Order, nil] Which columns can be used to sort.
       #
-      # @param plan_ids [Array<String>, nil] The plan IDs to filter the members by
+      # @param plan_ids [Array<String>, nil] Filter members to only those subscribed to these specific plans.
       #
-      # @param product_ids [Array<String>, nil] The product IDs to filter the members by
+      # @param product_ids [Array<String>, nil] Filter members to only those belonging to these specific products.
       #
-      # @param promo_code_ids [Array<String>, nil] The promo code IDs to filter the members by
+      # @param promo_code_ids [Array<String>, nil] Filter members to only those who used these specific promo codes.
       #
-      # @param query [String, nil] The name, username, or email to filter the members by. The email filter will onl
+      # @param query [String, nil] Search members by name, username, or email. Email filtering requires the member:
       #
-      # @param statuses [Array<Symbol, WhopSDK::Models::MemberStatuses>, nil] The statuses to filter the members by
+      # @param statuses [Array<Symbol, WhopSDK::Models::MemberStatuses>, nil] Filter members by their current subscription status.
       #
-      # @param user_ids [Array<String>, nil] The user IDs to filter the members by
+      # @param user_ids [Array<String>, nil] Filter members to only those matching these specific user identifiers.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

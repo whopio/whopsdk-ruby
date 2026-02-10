@@ -19,11 +19,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # Only return companies created after this datetime.
+      # Only return companies created after this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_after
 
-      # Only return companies created before this datetime.
+      # Only return companies created before this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_before
 
@@ -63,9 +63,9 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # Only return companies created after this datetime.
+        # Only return companies created after this timestamp.
         created_after: nil,
-        # Only return companies created before this datetime.
+        # Only return companies created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,

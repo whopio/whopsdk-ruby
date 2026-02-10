@@ -14,15 +14,15 @@ module WhopSDK
           )
         end
 
-      # An IP access log for the user from Whop.
+      # An IP access activity log showing the customer used the service.
       sig { returns(T.nilable(String)) }
       attr_accessor :access_activity_log
 
-      # The billing address of the user from their payment details.
+      # The billing address associated with the customer's payment method.
       sig { returns(T.nilable(String)) }
       attr_accessor :billing_address
 
-      # A file containing the cancellation policy from the company.
+      # A file upload containing the company's cancellation policy document.
       sig do
         returns(
           T.nilable(
@@ -42,11 +42,12 @@ module WhopSDK
       end
       attr_writer :cancellation_policy_attachment
 
-      # A cancellation policy disclosure from the company.
+      # The company's cancellation policy text to submit as evidence.
       sig { returns(T.nilable(String)) }
       attr_accessor :cancellation_policy_disclosure
 
-      # A file containing the customer communication from the company (An image).
+      # A file upload containing evidence of customer communication. Must be a JPEG,
+      # PNG, GIF, or PDF.
       sig do
         returns(
           T.nilable(
@@ -66,23 +67,23 @@ module WhopSDK
       end
       attr_writer :customer_communication_attachment
 
-      # The email of the customer from their payment details.
+      # The email address of the customer associated with the disputed payment.
       sig { returns(T.nilable(String)) }
       attr_accessor :customer_email_address
 
-      # The name of the customer from their payment details.
+      # The full name of the customer associated with the disputed payment.
       sig { returns(T.nilable(String)) }
       attr_accessor :customer_name
 
-      # Additional notes the company chooses to submit regarding the dispute.
+      # Additional notes or context to submit as part of the dispute evidence.
       sig { returns(T.nilable(String)) }
       attr_accessor :notes
 
-      # The description of the product from the company.
+      # A description of the product or service that was provided to the customer.
       sig { returns(T.nilable(String)) }
       attr_accessor :product_description
 
-      # A file containing the refund policy from the company.
+      # A file upload containing the company's refund policy document.
       sig do
         returns(
           T.nilable(
@@ -102,19 +103,19 @@ module WhopSDK
       end
       attr_writer :refund_policy_attachment
 
-      # A refund policy disclosure from the company.
+      # The company's refund policy text to submit as evidence.
       sig { returns(T.nilable(String)) }
       attr_accessor :refund_policy_disclosure
 
-      # A description on why the refund is being refused by the company.
+      # An explanation of why the refund request was refused.
       sig { returns(T.nilable(String)) }
       attr_accessor :refund_refusal_explanation
 
-      # When the product was delivered by the company.
+      # The date when the product or service was delivered to the customer.
       sig { returns(T.nilable(String)) }
       attr_accessor :service_date
 
-      # A file that does not fit in the other categories.
+      # A file upload for evidence that does not fit into the other categories.
       sig do
         returns(
           T.nilable(
@@ -166,33 +167,34 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # An IP access log for the user from Whop.
+        # An IP access activity log showing the customer used the service.
         access_activity_log: nil,
-        # The billing address of the user from their payment details.
+        # The billing address associated with the customer's payment method.
         billing_address: nil,
-        # A file containing the cancellation policy from the company.
+        # A file upload containing the company's cancellation policy document.
         cancellation_policy_attachment: nil,
-        # A cancellation policy disclosure from the company.
+        # The company's cancellation policy text to submit as evidence.
         cancellation_policy_disclosure: nil,
-        # A file containing the customer communication from the company (An image).
+        # A file upload containing evidence of customer communication. Must be a JPEG,
+        # PNG, GIF, or PDF.
         customer_communication_attachment: nil,
-        # The email of the customer from their payment details.
+        # The email address of the customer associated with the disputed payment.
         customer_email_address: nil,
-        # The name of the customer from their payment details.
+        # The full name of the customer associated with the disputed payment.
         customer_name: nil,
-        # Additional notes the company chooses to submit regarding the dispute.
+        # Additional notes or context to submit as part of the dispute evidence.
         notes: nil,
-        # The description of the product from the company.
+        # A description of the product or service that was provided to the customer.
         product_description: nil,
-        # A file containing the refund policy from the company.
+        # A file upload containing the company's refund policy document.
         refund_policy_attachment: nil,
-        # A refund policy disclosure from the company.
+        # The company's refund policy text to submit as evidence.
         refund_policy_disclosure: nil,
-        # A description on why the refund is being refused by the company.
+        # An explanation of why the refund request was refused.
         refund_refusal_explanation: nil,
-        # When the product was delivered by the company.
+        # The date when the product or service was delivered to the customer.
         service_date: nil,
-        # A file that does not fit in the other categories.
+        # A file upload for evidence that does not fit into the other categories.
         uncategorized_attachment: nil,
         request_options: {}
       )
@@ -247,7 +249,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # A file containing the cancellation policy from the company.
+        # A file upload containing the company's cancellation policy document.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.
@@ -273,7 +275,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # A file containing the customer communication from the company (An image).
+        # A file upload containing evidence of customer communication. Must be a JPEG,
+        # PNG, GIF, or PDF.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.
@@ -299,7 +302,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # A file containing the refund policy from the company.
+        # A file upload containing the company's refund policy document.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.
@@ -325,7 +328,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # A file that does not fit in the other categories.
+        # A file upload for evidence that does not fit into the other categories.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.

@@ -10,19 +10,22 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # An IP access log for the user from Whop.
+      # A log of IP-based access activity for the customer on Whop, submitted as
+      # evidence in the dispute.
       sig { returns(T.nilable(String)) }
       attr_accessor :access_activity_log
 
-      # The amount of the dispute (formatted).
+      # The disputed amount in the specified currency, formatted as a decimal.
       sig { returns(Float) }
       attr_accessor :amount
 
-      # The billing address of the user from their payment details.
+      # The customer's billing address from their payment details, submitted as evidence
+      # in the dispute.
       sig { returns(T.nilable(String)) }
       attr_accessor :billing_address
 
-      # The cancellation policy for this dispute
+      # The cancellation policy document uploaded as dispute evidence. Null if no
+      # cancellation policy has been provided.
       sig { returns(T.nilable(WhopSDK::Dispute::CancellationPolicyAttachment)) }
       attr_reader :cancellation_policy_attachment
 
@@ -34,11 +37,12 @@ module WhopSDK
       end
       attr_writer :cancellation_policy_attachment
 
-      # A cancellation policy disclosure from the company.
+      # A text disclosure describing the company's cancellation policy, submitted as
+      # dispute evidence.
       sig { returns(T.nilable(String)) }
       attr_accessor :cancellation_policy_disclosure
 
-      # The company the dispute is against.
+      # The company that the dispute was filed against.
       sig { returns(T.nilable(WhopSDK::Dispute::Company)) }
       attr_reader :company
 
@@ -49,11 +53,12 @@ module WhopSDK
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_at
 
-      # The currency of the dispute.
+      # The three-letter ISO currency code for the disputed amount.
       sig { returns(WhopSDK::Currency::TaggedSymbol) }
       attr_accessor :currency
 
-      # The customer communication for this dispute
+      # Evidence of customer communication or product usage, uploaded as a dispute
+      # attachment. Null if not provided.
       sig do
         returns(T.nilable(WhopSDK::Dispute::CustomerCommunicationAttachment))
       end
@@ -67,60 +72,64 @@ module WhopSDK
       end
       attr_writer :customer_communication_attachment
 
-      # The email of the customer from their payment details. This is submitted in the
-      # evidence packet to the payment processor. You can change it before submitting
-      # the dispute.
+      # The customer's email address from their payment details, included in the
+      # evidence packet sent to the payment processor. Editable before submission.
       sig { returns(T.nilable(String)) }
       attr_accessor :customer_email_address
 
-      # The name of the customer from their payment details. This is submitted in the
-      # evidence packet to the payment processor. You can change it before submitting
-      # the dispute.
+      # The customer's full name from their payment details, included in the evidence
+      # packet sent to the payment processor. Editable before submission.
       sig { returns(T.nilable(String)) }
       attr_accessor :customer_name
 
-      # Whether or not the dispute data can be edited.
+      # Whether the dispute evidence can still be edited and submitted. Returns true
+      # only when the dispute status requires a response.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :editable
 
-      # The last date the dispute is allow to be submitted by.
+      # The deadline by which dispute evidence must be submitted. Null if no response
+      # deadline is set.
       sig { returns(T.nilable(Time)) }
       attr_accessor :needs_response_by
 
-      # Additional notes the company chooses to submit regarding the dispute.
+      # Additional freeform notes submitted by the company as part of the dispute
+      # evidence.
       sig { returns(T.nilable(String)) }
       attr_accessor :notes
 
-      # The payment that got disputed
+      # The original payment that was disputed.
       sig { returns(T.nilable(WhopSDK::Dispute::Payment)) }
       attr_reader :payment
 
       sig { params(payment: T.nilable(WhopSDK::Dispute::Payment::OrHash)).void }
       attr_writer :payment
 
-      # The plan that got disputed
+      # The plan associated with the disputed payment. Null if the dispute is not linked
+      # to a specific plan.
       sig { returns(T.nilable(WhopSDK::Dispute::Plan)) }
       attr_reader :plan
 
       sig { params(plan: T.nilable(WhopSDK::Dispute::Plan::OrHash)).void }
       attr_writer :plan
 
-      # The product that got disputed
+      # The product associated with the disputed payment. Null if the dispute is not
+      # linked to a specific product.
       sig { returns(T.nilable(WhopSDK::Dispute::Product)) }
       attr_reader :product
 
       sig { params(product: T.nilable(WhopSDK::Dispute::Product::OrHash)).void }
       attr_writer :product
 
-      # The description of the product from the company.
+      # A description of the product or service provided, submitted as dispute evidence.
       sig { returns(T.nilable(String)) }
       attr_accessor :product_description
 
-      # The reason for the dispute
+      # A human-readable reason for the dispute.
       sig { returns(T.nilable(String)) }
       attr_accessor :reason
 
-      # The refund policy for this dispute
+      # The refund policy document uploaded as dispute evidence. Null if no refund
+      # policy has been provided.
       sig { returns(T.nilable(WhopSDK::Dispute::RefundPolicyAttachment)) }
       attr_reader :refund_policy_attachment
 
@@ -132,23 +141,28 @@ module WhopSDK
       end
       attr_writer :refund_policy_attachment
 
-      # A refund policy disclosure from the company.
+      # A text disclosure describing the company's refund policy, submitted as dispute
+      # evidence.
       sig { returns(T.nilable(String)) }
       attr_accessor :refund_policy_disclosure
 
-      # A description on why the refund is being refused by the company.
+      # An explanation from the company for why a refund was refused, submitted as
+      # dispute evidence.
       sig { returns(T.nilable(String)) }
       attr_accessor :refund_refusal_explanation
 
-      # When the product was delivered by the company.
+      # The date when the product or service was delivered to the customer, submitted as
+      # dispute evidence.
       sig { returns(T.nilable(String)) }
       attr_accessor :service_date
 
-      # The status of the dispute (mimics stripe's dispute status).
+      # The current status of the dispute lifecycle, such as needs_response,
+      # under_review, won, or lost.
       sig { returns(WhopSDK::DisputeStatuses::TaggedSymbol) }
       attr_accessor :status
 
-      # An attachment that did not fit into the other categories
+      # An additional attachment that does not fit into the standard evidence
+      # categories. Null if not provided.
       sig { returns(T.nilable(WhopSDK::Dispute::UncategorizedAttachment)) }
       attr_reader :uncategorized_attachment
 
@@ -160,7 +174,8 @@ module WhopSDK
       end
       attr_writer :uncategorized_attachment
 
-      # Whether or not the dispute is a Visa Rapid Dispute Resolution.
+      # Whether the dispute was automatically resolved through Visa Rapid Dispute
+      # Resolution (RDR).
       sig { returns(T::Boolean) }
       attr_accessor :visa_rdr
 
@@ -206,61 +221,76 @@ module WhopSDK
       def self.new(
         # The unique identifier for the dispute.
         id:,
-        # An IP access log for the user from Whop.
+        # A log of IP-based access activity for the customer on Whop, submitted as
+        # evidence in the dispute.
         access_activity_log:,
-        # The amount of the dispute (formatted).
+        # The disputed amount in the specified currency, formatted as a decimal.
         amount:,
-        # The billing address of the user from their payment details.
+        # The customer's billing address from their payment details, submitted as evidence
+        # in the dispute.
         billing_address:,
-        # The cancellation policy for this dispute
+        # The cancellation policy document uploaded as dispute evidence. Null if no
+        # cancellation policy has been provided.
         cancellation_policy_attachment:,
-        # A cancellation policy disclosure from the company.
+        # A text disclosure describing the company's cancellation policy, submitted as
+        # dispute evidence.
         cancellation_policy_disclosure:,
-        # The company the dispute is against.
+        # The company that the dispute was filed against.
         company:,
         # The datetime the dispute was created.
         created_at:,
-        # The currency of the dispute.
+        # The three-letter ISO currency code for the disputed amount.
         currency:,
-        # The customer communication for this dispute
+        # Evidence of customer communication or product usage, uploaded as a dispute
+        # attachment. Null if not provided.
         customer_communication_attachment:,
-        # The email of the customer from their payment details. This is submitted in the
-        # evidence packet to the payment processor. You can change it before submitting
-        # the dispute.
+        # The customer's email address from their payment details, included in the
+        # evidence packet sent to the payment processor. Editable before submission.
         customer_email_address:,
-        # The name of the customer from their payment details. This is submitted in the
-        # evidence packet to the payment processor. You can change it before submitting
-        # the dispute.
+        # The customer's full name from their payment details, included in the evidence
+        # packet sent to the payment processor. Editable before submission.
         customer_name:,
-        # Whether or not the dispute data can be edited.
+        # Whether the dispute evidence can still be edited and submitted. Returns true
+        # only when the dispute status requires a response.
         editable:,
-        # The last date the dispute is allow to be submitted by.
+        # The deadline by which dispute evidence must be submitted. Null if no response
+        # deadline is set.
         needs_response_by:,
-        # Additional notes the company chooses to submit regarding the dispute.
+        # Additional freeform notes submitted by the company as part of the dispute
+        # evidence.
         notes:,
-        # The payment that got disputed
+        # The original payment that was disputed.
         payment:,
-        # The plan that got disputed
+        # The plan associated with the disputed payment. Null if the dispute is not linked
+        # to a specific plan.
         plan:,
-        # The product that got disputed
+        # The product associated with the disputed payment. Null if the dispute is not
+        # linked to a specific product.
         product:,
-        # The description of the product from the company.
+        # A description of the product or service provided, submitted as dispute evidence.
         product_description:,
-        # The reason for the dispute
+        # A human-readable reason for the dispute.
         reason:,
-        # The refund policy for this dispute
+        # The refund policy document uploaded as dispute evidence. Null if no refund
+        # policy has been provided.
         refund_policy_attachment:,
-        # A refund policy disclosure from the company.
+        # A text disclosure describing the company's refund policy, submitted as dispute
+        # evidence.
         refund_policy_disclosure:,
-        # A description on why the refund is being refused by the company.
+        # An explanation from the company for why a refund was refused, submitted as
+        # dispute evidence.
         refund_refusal_explanation:,
-        # When the product was delivered by the company.
+        # The date when the product or service was delivered to the customer, submitted as
+        # dispute evidence.
         service_date:,
-        # The status of the dispute (mimics stripe's dispute status).
+        # The current status of the dispute lifecycle, such as needs_response,
+        # under_review, won, or lost.
         status:,
-        # An attachment that did not fit into the other categories
+        # An additional attachment that does not fit into the standard evidence
+        # categories. Null if not provided.
         uncategorized_attachment:,
-        # Whether or not the dispute is a Visa Rapid Dispute Resolution.
+        # Whether the dispute was automatically resolved through Visa Rapid Dispute
+        # Resolution (RDR).
         visa_rdr:
       )
       end
@@ -314,7 +344,11 @@ module WhopSDK
             )
           end
 
-        # The unique identifier of the attachment.
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         sig { returns(String) }
         attr_accessor :id
 
@@ -331,7 +365,8 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :url
 
-        # The cancellation policy for this dispute
+        # The cancellation policy document uploaded as dispute evidence. Null if no
+        # cancellation policy has been provided.
         sig do
           params(
             id: String,
@@ -341,7 +376,11 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The unique identifier of the attachment.
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
           id:,
           # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
           content_type:,
@@ -381,7 +420,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :title
 
-        # The company the dispute is against.
+        # The company that the dispute was filed against.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the company.
@@ -405,7 +444,11 @@ module WhopSDK
             )
           end
 
-        # The unique identifier of the attachment.
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         sig { returns(String) }
         attr_accessor :id
 
@@ -422,7 +465,8 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :url
 
-        # The customer communication for this dispute
+        # Evidence of customer communication or product usage, uploaded as a dispute
+        # attachment. Null if not provided.
         sig do
           params(
             id: String,
@@ -432,7 +476,11 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The unique identifier of the attachment.
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
           id:,
           # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
           content_type:,
@@ -476,7 +524,8 @@ module WhopSDK
         sig { returns(T.nilable(WhopSDK::CardBrands::TaggedSymbol)) }
         attr_accessor :card_brand
 
-        # The last 4 digits of the card used to make the payment.
+        # The last four digits of the card used to make this payment. Null if the payment
+        # was not made with a card.
         sig { returns(T.nilable(String)) }
         attr_accessor :card_last4
 
@@ -514,7 +563,8 @@ module WhopSDK
         end
         attr_writer :membership
 
-        # The datetime the payment was paid
+        # The time at which this payment was successfully collected. Null if the payment
+        # has not yet succeeded. As a Unix timestamp.
         sig { returns(T.nilable(Time)) }
         attr_accessor :paid_at
 
@@ -543,7 +593,7 @@ module WhopSDK
         end
         attr_writer :user
 
-        # The payment that got disputed
+        # The original payment that was disputed.
         sig do
           params(
             id: String,
@@ -572,7 +622,8 @@ module WhopSDK
           billing_reason:,
           # Possible card brands that a payment token can have
           card_brand:,
-          # The last 4 digits of the card used to make the payment.
+          # The last four digits of the card used to make this payment. Null if the payment
+          # was not made with a card.
           card_last4:,
           # The datetime the payment was created.
           created_at:,
@@ -584,7 +635,8 @@ module WhopSDK
           member:,
           # The membership attached to this payment.
           membership:,
-          # The datetime the payment was paid
+          # The time at which this payment was successfully collected. Null if the payment
+          # has not yet succeeded. As a Unix timestamp.
           paid_at:,
           # The different types of payment methods that can be used.
           payment_method_type:,
@@ -771,7 +823,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The plan that got disputed
+        # The plan associated with the disputed payment. Null if the dispute is not linked
+        # to a specific plan.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the plan.
@@ -799,7 +852,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :title
 
-        # The product that got disputed
+        # The product associated with the disputed payment. Null if the dispute is not
+        # linked to a specific product.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the product.
@@ -824,7 +878,11 @@ module WhopSDK
             )
           end
 
-        # The unique identifier of the attachment.
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         sig { returns(String) }
         attr_accessor :id
 
@@ -841,7 +899,8 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :url
 
-        # The refund policy for this dispute
+        # The refund policy document uploaded as dispute evidence. Null if no refund
+        # policy has been provided.
         sig do
           params(
             id: String,
@@ -851,7 +910,11 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The unique identifier of the attachment.
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
           id:,
           # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
           content_type:,
@@ -886,7 +949,11 @@ module WhopSDK
             )
           end
 
-        # The unique identifier of the attachment.
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         sig { returns(String) }
         attr_accessor :id
 
@@ -903,7 +970,8 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :url
 
-        # An attachment that did not fit into the other categories
+        # An additional attachment that does not fit into the standard evidence
+        # categories. Null if not provided.
         sig do
           params(
             id: String,
@@ -913,7 +981,11 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The unique identifier of the attachment.
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
           id:,
           # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
           content_type:,

@@ -11,33 +11,34 @@ module WhopSDK
       required :id, String
 
       # @!attribute company
-      #   The company associated with the authorized user.
+      #   The company this authorized user has access to.
       #
       #   @return [WhopSDK::Models::AuthorizedUserListResponse::Company]
       required :company, -> { WhopSDK::Models::AuthorizedUserListResponse::Company }
 
       # @!attribute role
-      #   The role of the authorized user in the company.
+      #   The permission role assigned to this authorized user within the company.
       #
       #   @return [Symbol, WhopSDK::Models::AuthorizedUserRoles]
       required :role, enum: -> { WhopSDK::AuthorizedUserRoles }
 
       # @!attribute user
-      #   The user associated with the authorized user.
+      #   The user account linked to this authorized user record.
       #
       #   @return [WhopSDK::Models::AuthorizedUserListResponse::User]
       required :user, -> { WhopSDK::Models::AuthorizedUserListResponse::User }
 
       # @!method initialize(id:, company:, role:, user:)
-      #   A user who has elevated security privileges for a company
+      #   A user who has been granted administrative access to manage a company's
+      #   dashboard and settings.
       #
       #   @param id [String] The unique identifier for the authorized user.
       #
-      #   @param company [WhopSDK::Models::AuthorizedUserListResponse::Company] The company associated with the authorized user.
+      #   @param company [WhopSDK::Models::AuthorizedUserListResponse::Company] The company this authorized user has access to.
       #
-      #   @param role [Symbol, WhopSDK::Models::AuthorizedUserRoles] The role of the authorized user in the company.
+      #   @param role [Symbol, WhopSDK::Models::AuthorizedUserRoles] The permission role assigned to this authorized user within the company.
       #
-      #   @param user [WhopSDK::Models::AuthorizedUserListResponse::User] The user associated with the authorized user.
+      #   @param user [WhopSDK::Models::AuthorizedUserListResponse::User] The user account linked to this authorized user record.
 
       # @see WhopSDK::Models::AuthorizedUserListResponse#company
       class Company < WhopSDK::Internal::Type::BaseModel
@@ -54,7 +55,7 @@ module WhopSDK
         required :title, String
 
         # @!method initialize(id:, title:)
-        #   The company associated with the authorized user.
+        #   The company this authorized user has access to.
         #
         #   @param id [String] The unique identifier for the company.
         #
@@ -92,7 +93,7 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::AuthorizedUserListResponse::User} for more details.
         #
-        #   The user associated with the authorized user.
+        #   The user account linked to this authorized user record.
         #
         #   @param id [String] The unique identifier for the user.
         #

@@ -16,7 +16,9 @@ module WhopSDK
       sig { returns(Symbol) }
       attr_accessor :api_version
 
-      # A statement that defines an amount due by a customer.
+      # An invoice represents an itemized bill sent by a company to a customer for a
+      # specific product and plan, tracking the amount owed, due date, and payment
+      # status.
       sig { returns(WhopSDK::Invoice) }
       attr_reader :data
 
@@ -48,7 +50,9 @@ module WhopSDK
       def self.new(
         # A unique ID for every single webhook request
         id:,
-        # A statement that defines an amount due by a customer.
+        # An invoice represents an itemized bill sent by a company to a customer for a
+        # specific product and plan, tracking the amount owed, due date, and payment
+        # status.
         data:,
         # The timestamp in ISO 8601 format that the webhook was sent at on the server
         timestamp:,

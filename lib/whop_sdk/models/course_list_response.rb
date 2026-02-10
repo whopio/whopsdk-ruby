@@ -11,14 +11,15 @@ module WhopSDK
       required :id, String
 
       # @!attribute certificate_after_completion_enabled
-      #   Whether the course will award its students a PDF certificate after completing
-      #   all lessons
+      #   Whether students receive a PDF certificate after completing all lessons in this
+      #   course. Null if the setting has not been configured.
       #
       #   @return [Boolean, nil]
       required :certificate_after_completion_enabled, WhopSDK::Internal::Type::Boolean, nil?: true
 
       # @!attribute cover_image
-      #   The URL of the course's cover image, which is shown in course preview cards
+      #   The URL of the course cover image shown on preview cards. Null if no cover image
+      #   has been uploaded.
       #
       #   @return [String, nil]
       required :cover_image, String, nil?: true
@@ -30,45 +31,50 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute description
-      #   A short description of the course
+      #   A brief summary of the course content and objectives. Null if no description has
+      #   been set.
       #
       #   @return [String, nil]
       required :description, String, nil?: true
 
       # @!attribute language
-      #   The language spoken in the video content of the course, used to generate closed
-      #   captions in the right language
+      #   The spoken language of the video content, used to generate accurate closed
+      #   captions. One of: en, es, it, pt, de, fr, pl, ru, nl, ca, tr, sv, uk, no, fi,
+      #   sk, el, cs, hr, da, ro, bg.
       #
       #   @return [Symbol, WhopSDK::Models::Languages]
       required :language, enum: -> { WhopSDK::Languages }
 
       # @!attribute order
-      #   The order of the course within its experience
+      #   The sort position of this course within its parent experience, as a decimal for
+      #   flexible ordering.
       #
       #   @return [String]
       required :order, String
 
       # @!attribute require_completing_lessons_in_order
-      #   Whether the course requires students to complete the previous lesson before
-      #   moving on to the next one
+      #   Whether students must complete each lesson sequentially before advancing to the
+      #   next one.
       #
       #   @return [Boolean]
       required :require_completing_lessons_in_order, WhopSDK::Internal::Type::Boolean
 
       # @!attribute tagline
-      #   A short tagline for the course. It is displayed under the course title in the UI
+      #   A short marketing tagline displayed beneath the course title. Null if no tagline
+      #   has been set.
       #
       #   @return [String, nil]
       required :tagline, String, nil?: true
 
       # @!attribute thumbnail
-      #   The thumbnail for the course
+      #   The thumbnail image displayed on course cards and previews. Null if no thumbnail
+      #   has been uploaded.
       #
       #   @return [WhopSDK::Models::CourseListResponse::Thumbnail, nil]
       required :thumbnail, -> { WhopSDK::Models::CourseListResponse::Thumbnail }, nil?: true
 
       # @!attribute title
-      #   The title of the course
+      #   The display name of the course shown to students. Null if no title has been set.
       #
       #   @return [String, nil]
       required :title, String, nil?: true
@@ -80,8 +86,8 @@ module WhopSDK
       required :updated_at, Time
 
       # @!attribute visibility
-      #   The visibility of the course. Determines how / whether this course is visible to
-      #   users.
+      #   The visibility setting that controls whether this course appears to students.
+      #   One of: visible, hidden.
       #
       #   @return [Symbol, WhopSDK::Models::CourseVisibilities]
       required :visibility, enum: -> { WhopSDK::CourseVisibilities }
@@ -90,38 +96,43 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CourseListResponse} for more details.
       #
-      #   A course from the courses app
+      #   A structured learning module containing chapters and lessons, belonging to an
+      #   experience.
       #
       #   @param id [String] The unique identifier for the course.
       #
-      #   @param certificate_after_completion_enabled [Boolean, nil] Whether the course will award its students a PDF certificate after completing al
+      #   @param certificate_after_completion_enabled [Boolean, nil] Whether students receive a PDF certificate after completing all lessons in this
       #
-      #   @param cover_image [String, nil] The URL of the course's cover image, which is shown in course preview cards
+      #   @param cover_image [String, nil] The URL of the course cover image shown on preview cards. Null if no cover image
       #
       #   @param created_at [Time] The datetime the course was created.
       #
-      #   @param description [String, nil] A short description of the course
+      #   @param description [String, nil] A brief summary of the course content and objectives. Null if no description has
       #
-      #   @param language [Symbol, WhopSDK::Models::Languages] The language spoken in the video content of the course, used to generate closed
+      #   @param language [Symbol, WhopSDK::Models::Languages] The spoken language of the video content, used to generate accurate closed capti
       #
-      #   @param order [String] The order of the course within its experience
+      #   @param order [String] The sort position of this course within its parent experience, as a decimal for
       #
-      #   @param require_completing_lessons_in_order [Boolean] Whether the course requires students to complete the previous lesson before movi
+      #   @param require_completing_lessons_in_order [Boolean] Whether students must complete each lesson sequentially before advancing to the
       #
-      #   @param tagline [String, nil] A short tagline for the course. It is displayed under the course title in the UI
+      #   @param tagline [String, nil] A short marketing tagline displayed beneath the course title. Null if no tagline
       #
-      #   @param thumbnail [WhopSDK::Models::CourseListResponse::Thumbnail, nil] The thumbnail for the course
+      #   @param thumbnail [WhopSDK::Models::CourseListResponse::Thumbnail, nil] The thumbnail image displayed on course cards and previews. Null if no thumbnail
       #
-      #   @param title [String, nil] The title of the course
+      #   @param title [String, nil] The display name of the course shown to students. Null if no title has been set.
       #
       #   @param updated_at [Time] The datetime the course was last updated.
       #
-      #   @param visibility [Symbol, WhopSDK::Models::CourseVisibilities] The visibility of the course. Determines how / whether this course is visible to
+      #   @param visibility [Symbol, WhopSDK::Models::CourseVisibilities] The visibility setting that controls whether this course appears to students. On
 
       # @see WhopSDK::Models::CourseListResponse#thumbnail
       class Thumbnail < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The unique identifier of the attachment.
+        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+        #   refetch an object or as key for a cache. The ID type appears in a JSON response
+        #   as a String; however, it is not intended to be human-readable. When expected as
+        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        #   input value will be accepted as an ID.
         #
         #   @return [String]
         required :id, String
@@ -157,9 +168,10 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::CourseListResponse::Thumbnail} for more details.
         #
-        #   The thumbnail for the course
+        #   The thumbnail image displayed on course cards and previews. Null if no thumbnail
+        #   has been uploaded.
         #
-        #   @param id [String] The unique identifier of the attachment.
+        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
         #
         #   @param content_type [String, nil] The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
         #

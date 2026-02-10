@@ -11,17 +11,19 @@ module WhopSDK
           T.any(WhopSDK::MessageUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The attachments for this message
+      # A replacement list of file attachments for this message, such as images or
+      # videos.
       sig do
         returns(T.nilable(T::Array[WhopSDK::MessageUpdateParams::Attachment]))
       end
       attr_accessor :attachments
 
-      # The content of the message in Markdown format
+      # The updated body of the message in Markdown format. For example, 'Hello
+      # **world**'.
       sig { returns(T.nilable(String)) }
       attr_accessor :content
 
-      # Whether this message is pinned
+      # Whether this message should be pinned to the top of the channel.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :is_pinned
 
@@ -37,11 +39,13 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The attachments for this message
+        # A replacement list of file attachments for this message, such as images or
+        # videos.
         attachments: nil,
-        # The content of the message in Markdown format
+        # The updated body of the message in Markdown format. For example, 'Hello
+        # **world**'.
         content: nil,
-        # Whether this message is pinned
+        # Whether this message should be pinned to the top of the channel.
         is_pinned: nil,
         request_options: {}
       )

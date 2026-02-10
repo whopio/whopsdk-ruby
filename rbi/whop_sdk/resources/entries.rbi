@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class Entries
-      # Retrieves an entry by ID
+      # Retrieves the details of an existing waitlist entry.
       #
       # Required permissions:
       #
@@ -16,13 +16,14 @@ module WhopSDK
         ).returns(WhopSDK::Entry)
       end
       def retrieve(
-        # The ID of the entry
+        # The unique identifier of the waitlist entry to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # Lists entries for a company
+      # Returns a paginated list of waitlist entries for a company, with optional
+      # filtering by product, plan, status, and creation date.
       #
       # Required permissions:
       #
@@ -48,15 +49,15 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the company
+        # The unique identifier of the company to list waitlist entries for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The minimum creation date to filter by
+        # Only return entries created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return entries created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,
@@ -66,17 +67,18 @@ module WhopSDK
         last: nil,
         # Which columns can be used to sort.
         order: nil,
-        # The plan IDs to filter the entries by
+        # Filter entries to only those for specific plans.
         plan_ids: nil,
-        # The product IDs to filter the entries by
+        # Filter entries to only those for specific products.
         product_ids: nil,
-        # The statuses to filter the entries by
+        # Filter entries by their current status.
         statuses: nil,
         request_options: {}
       )
       end
 
-      # Approve an entry
+      # Approve a pending waitlist entry, triggering the checkout process to grant the
+      # user access to the plan.
       #
       # Required permissions:
       #
@@ -88,13 +90,14 @@ module WhopSDK
         ).returns(WhopSDK::Models::EntryApproveResponse)
       end
       def approve(
-        # The ID of the entry to approve.
+        # The unique identifier of the waitlist entry to approve.
         id,
         request_options: {}
       )
       end
 
-      # Deny an entry
+      # Deny a pending waitlist entry, preventing the user from gaining access to the
+      # plan.
       #
       # Required permissions:
       #
@@ -108,7 +111,7 @@ module WhopSDK
         ).returns(WhopSDK::Entry)
       end
       def deny(
-        # The ID of the entry
+        # The unique identifier of the waitlist entry to deny.
         id,
         request_options: {}
       )

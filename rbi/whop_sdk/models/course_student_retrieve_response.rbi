@@ -15,15 +15,16 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The number of lessons the student has completed
+      # The total number of lessons this student has marked as completed in the course.
       sig { returns(Integer) }
       attr_accessor :completed_lessons_count
 
-      # The percentage of lessons completed (0-100)
+      # The percentage of available lessons the student has completed, as a value from 0
+      # to 100 rounded to two decimal places.
       sig { returns(Float) }
       attr_accessor :completion_rate
 
-      # The course the student is enrolled in
+      # The course this student is enrolled in.
       sig { returns(WhopSDK::Models::CourseStudentRetrieveResponse::Course) }
       attr_reader :course
 
@@ -34,19 +35,21 @@ module WhopSDK
       end
       attr_writer :course
 
-      # When the student first interacted with the course
+      # The timestamp when the student first interacted with this course, as a Unix
+      # timestamp.
       sig { returns(Time) }
       attr_accessor :first_interaction_at
 
-      # When the student last interacted with the course
+      # The timestamp when the student most recently interacted with this course, as a
+      # Unix timestamp.
       sig { returns(Time) }
       attr_accessor :last_interaction_at
 
-      # The total number of lessons the student has access to
+      # The total number of visible lessons available to this student in the course.
       sig { returns(Integer) }
       attr_accessor :total_lessons_count
 
-      # The user who is enrolled in the course
+      # The user profile of the enrolled student.
       sig { returns(WhopSDK::Models::CourseStudentRetrieveResponse::User) }
       attr_reader :user
 
@@ -57,7 +60,8 @@ module WhopSDK
       end
       attr_writer :user
 
-      # A course student (enrollment of a student in a course)
+      # An enrollment record for a student in a course, including progress and
+      # completion metrics.
       sig do
         params(
           id: String,
@@ -74,19 +78,22 @@ module WhopSDK
       def self.new(
         # The unique identifier for the course student type.
         id:,
-        # The number of lessons the student has completed
+        # The total number of lessons this student has marked as completed in the course.
         completed_lessons_count:,
-        # The percentage of lessons completed (0-100)
+        # The percentage of available lessons the student has completed, as a value from 0
+        # to 100 rounded to two decimal places.
         completion_rate:,
-        # The course the student is enrolled in
+        # The course this student is enrolled in.
         course:,
-        # When the student first interacted with the course
+        # The timestamp when the student first interacted with this course, as a Unix
+        # timestamp.
         first_interaction_at:,
-        # When the student last interacted with the course
+        # The timestamp when the student most recently interacted with this course, as a
+        # Unix timestamp.
         last_interaction_at:,
-        # The total number of lessons the student has access to
+        # The total number of visible lessons available to this student in the course.
         total_lessons_count:,
-        # The user who is enrolled in the course
+        # The user profile of the enrolled student.
         user:
       )
       end
@@ -121,7 +128,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The experience that the course belongs to
+        # The parent experience that this course belongs to.
         sig do
           returns(
             WhopSDK::Models::CourseStudentRetrieveResponse::Course::Experience
@@ -137,11 +144,11 @@ module WhopSDK
         end
         attr_writer :experience
 
-        # The title of the course
+        # The display name of the course shown to students. Null if no title has been set.
         sig { returns(T.nilable(String)) }
         attr_accessor :title
 
-        # The course the student is enrolled in
+        # The course this student is enrolled in.
         sig do
           params(
             id: String,
@@ -153,9 +160,9 @@ module WhopSDK
         def self.new(
           # The unique identifier for the course.
           id:,
-          # The experience that the course belongs to
+          # The parent experience that this course belongs to.
           experience:,
-          # The title of the course
+          # The display name of the course shown to students. Null if no title has been set.
           title:
         )
         end
@@ -186,7 +193,7 @@ module WhopSDK
           sig { returns(String) }
           attr_accessor :id
 
-          # The experience that the course belongs to
+          # The parent experience that this course belongs to.
           sig { params(id: String).returns(T.attached_class) }
           def self.new(
             # The unique identifier for the experience.
@@ -221,7 +228,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :username
 
-        # The user who is enrolled in the course
+        # The user profile of the enrolled student.
         sig do
           params(id: String, name: T.nilable(String), username: String).returns(
             T.attached_class

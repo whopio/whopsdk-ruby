@@ -11,7 +11,8 @@ module WhopSDK
           T.any(WhopSDK::CourseLessonUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # Completion requirements for quiz/knowledge check lessons
+      # The passing criteria for quiz or knowledge check lessons, such as minimum grade
+      # or correct answers.
       sig do
         returns(
           T.nilable(
@@ -31,8 +32,8 @@ module WhopSDK
       end
       attr_writer :assessment_completion_requirement
 
-      # Assessment questions for quiz/knowledge check lessons. Replaces all existing
-      # questions.
+      # The full list of assessment questions for quiz or knowledge check lessons.
+      # Replaces all existing questions.
       sig do
         returns(
           T.nilable(
@@ -42,7 +43,7 @@ module WhopSDK
       end
       attr_accessor :assessment_questions
 
-      # General attachments for the lesson (PDFs, files, etc). Replaces all existing
+      # File attachments for the lesson such as PDFs or documents. Replaces all existing
       # attachments.
       sig do
         returns(
@@ -51,15 +52,17 @@ module WhopSDK
       end
       attr_accessor :attachments
 
-      # The content of the lesson
+      # The rich text or HTML content body of the lesson.
       sig { returns(T.nilable(String)) }
       attr_accessor :content
 
-      # Days from course start until unlock
+      # The number of days after a student starts the course before this lesson becomes
+      # accessible.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :days_from_course_start_until_unlock
 
-      # ID for the embed (YouTube video ID or Loom share ID)
+      # The external video identifier for embedded content (e.g., a YouTube video ID or
+      # Loom share ID).
       sig { returns(T.nilable(String)) }
       attr_accessor :embed_id
 
@@ -71,7 +74,7 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::LessonTypes::OrSymbol)) }
       attr_accessor :lesson_type
 
-      # The main PDF file for this lesson
+      # The primary PDF document attached to this lesson for student reference.
       sig { returns(T.nilable(WhopSDK::CourseLessonUpdateParams::MainPdf)) }
       attr_reader :main_pdf
 
@@ -83,15 +86,16 @@ module WhopSDK
       end
       attr_writer :main_pdf
 
-      # Maximum number of attempts allowed for assessments
+      # The maximum number of attempts a student is allowed for assessment lessons.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :max_attempts
 
-      # The ID of the Mux asset to attach to this lesson for video lessons
+      # The identifier of a Mux video asset to attach to this lesson (e.g.,
+      # "mux_XXXXX").
       sig { returns(T.nilable(String)) }
       attr_accessor :mux_asset_id
 
-      # The thumbnail for the lesson in png, jpeg, or gif format
+      # The thumbnail image for the lesson in PNG, JPEG, or GIF format.
       sig { returns(T.nilable(WhopSDK::CourseLessonUpdateParams::Thumbnail)) }
       attr_reader :thumbnail
 
@@ -103,7 +107,7 @@ module WhopSDK
       end
       attr_writer :thumbnail
 
-      # The title of the lesson
+      # The display title of the lesson (e.g., "Getting Started with APIs").
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
@@ -145,33 +149,37 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # Completion requirements for quiz/knowledge check lessons
+        # The passing criteria for quiz or knowledge check lessons, such as minimum grade
+        # or correct answers.
         assessment_completion_requirement: nil,
-        # Assessment questions for quiz/knowledge check lessons. Replaces all existing
-        # questions.
+        # The full list of assessment questions for quiz or knowledge check lessons.
+        # Replaces all existing questions.
         assessment_questions: nil,
-        # General attachments for the lesson (PDFs, files, etc). Replaces all existing
+        # File attachments for the lesson such as PDFs or documents. Replaces all existing
         # attachments.
         attachments: nil,
-        # The content of the lesson
+        # The rich text or HTML content body of the lesson.
         content: nil,
-        # Days from course start until unlock
+        # The number of days after a student starts the course before this lesson becomes
+        # accessible.
         days_from_course_start_until_unlock: nil,
-        # ID for the embed (YouTube video ID or Loom share ID)
+        # The external video identifier for embedded content (e.g., a YouTube video ID or
+        # Loom share ID).
         embed_id: nil,
         # The type of embed for a lesson
         embed_type: nil,
         # The available types for a lesson
         lesson_type: nil,
-        # The main PDF file for this lesson
+        # The primary PDF document attached to this lesson for student reference.
         main_pdf: nil,
-        # Maximum number of attempts allowed for assessments
+        # The maximum number of attempts a student is allowed for assessment lessons.
         max_attempts: nil,
-        # The ID of the Mux asset to attach to this lesson for video lessons
+        # The identifier of a Mux video asset to attach to this lesson (e.g.,
+        # "mux_XXXXX").
         mux_asset_id: nil,
-        # The thumbnail for the lesson in png, jpeg, or gif format
+        # The thumbnail image for the lesson in PNG, JPEG, or GIF format.
         thumbnail: nil,
-        # The title of the lesson
+        # The display title of the lesson (e.g., "Getting Started with APIs").
         title: nil,
         # The available visibilities for a lesson. Determines how / whether a lesson is
         # visible to users.
@@ -232,7 +240,8 @@ module WhopSDK
         sig { returns(T.nilable(Integer)) }
         attr_accessor :minimum_questions_correct
 
-        # Completion requirements for quiz/knowledge check lessons
+        # The passing criteria for quiz or knowledge check lessons, such as minimum grade
+        # or correct answers.
         sig do
           params(
             minimum_grade_percent: T.nilable(Float),
@@ -498,7 +507,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The main PDF file for this lesson
+        # The primary PDF document attached to this lesson for student reference.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.
@@ -524,7 +533,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The thumbnail for the lesson in png, jpeg, or gif format
+        # The thumbnail image for the lesson in PNG, JPEG, or GIF format.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.

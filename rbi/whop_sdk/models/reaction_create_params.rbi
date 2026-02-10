@@ -11,17 +11,17 @@ module WhopSDK
           T.any(WhopSDK::ReactionCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the post or message to react to.
+      # The unique identifier of the message or forum post to react to.
       sig { returns(String) }
       attr_accessor :resource_id
 
-      # The emoji to react with (e.g., :heart: or '😀'). It will be ignored in forums,
-      # as everything will be :heart:
+      # The emoji to react with, in shortcode or unicode format. For example, ':heart:'
+      # or a unicode emoji. Ignored in forums where reactions are always likes.
       sig { returns(T.nilable(String)) }
       attr_accessor :emoji
 
-      # The ID of the poll option to vote for. Only valid for messages or posts with
-      # polls.
+      # The unique identifier of a poll option to vote for. Only valid when the target
+      # message or post contains a poll.
       sig { returns(T.nilable(String)) }
       attr_accessor :poll_option_id
 
@@ -34,13 +34,13 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the post or message to react to.
+        # The unique identifier of the message or forum post to react to.
         resource_id:,
-        # The emoji to react with (e.g., :heart: or '😀'). It will be ignored in forums,
-        # as everything will be :heart:
+        # The emoji to react with, in shortcode or unicode format. For example, ':heart:'
+        # or a unicode emoji. Ignored in forums where reactions are always likes.
         emoji: nil,
-        # The ID of the poll option to vote for. Only valid for messages or posts with
-        # polls.
+        # The unique identifier of a poll option to vote for. Only valid when the target
+        # message or post contains a poll.
         poll_option_id: nil,
         request_options: {}
       )

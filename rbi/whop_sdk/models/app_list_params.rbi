@@ -23,7 +23,7 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # The ID of the company to filter apps by
+      # Filter apps to only those created by this company, starting with 'biz\_'.
       sig { returns(T.nilable(String)) }
       attr_accessor :company_id
 
@@ -43,12 +43,12 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::AppListParams::Order::OrSymbol)) }
       attr_accessor :order
 
-      # The query to search for apps by name.
+      # A search string to filter apps by name, such as 'chat' or 'analytics'.
       sig { returns(T.nilable(String)) }
       attr_accessor :query
 
-      # If true, you will only get apps that are verified by Whop. Use this to populate
-      # a 'featured apps' section on the app store.
+      # Whether to only return apps that have been verified by Whop. Useful for
+      # populating a featured apps section.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :verified_apps_only
 
@@ -79,7 +79,7 @@ module WhopSDK
         app_type: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The ID of the company to filter apps by
+        # Filter apps to only those created by this company, starting with 'biz\_'.
         company_id: nil,
         # The direction of the sort.
         direction: nil,
@@ -89,10 +89,10 @@ module WhopSDK
         last: nil,
         # The order to fetch the apps in for discovery.
         order: nil,
-        # The query to search for apps by name.
+        # A search string to filter apps by name, such as 'chat' or 'analytics'.
         query: nil,
-        # If true, you will only get apps that are verified by Whop. Use this to populate
-        # a 'featured apps' section on the app store.
+        # Whether to only return apps that have been verified by Whop. Useful for
+        # populating a featured apps section.
         verified_apps_only: nil,
         # The different types of an app view
         view_type: nil,

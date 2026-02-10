@@ -3,7 +3,8 @@
 module WhopSDK
   module Resources
     class Reactions
-      # Creates a new reaction
+      # Add an emoji reaction or poll vote to a message or forum post. In forums, the
+      # reaction is always a like.
       #
       # Required permissions:
       #
@@ -17,19 +18,19 @@ module WhopSDK
         ).returns(WhopSDK::Reaction)
       end
       def create(
-        # The ID of the post or message to react to.
+        # The unique identifier of the message or forum post to react to.
         resource_id:,
-        # The emoji to react with (e.g., :heart: or '😀'). It will be ignored in forums,
-        # as everything will be :heart:
+        # The emoji to react with, in shortcode or unicode format. For example, ':heart:'
+        # or a unicode emoji. Ignored in forums where reactions are always likes.
         emoji: nil,
-        # The ID of the poll option to vote for. Only valid for messages or posts with
-        # polls.
+        # The unique identifier of a poll option to vote for. Only valid when the target
+        # message or post contains a poll.
         poll_option_id: nil,
         request_options: {}
       )
       end
 
-      # Retrieves a reaction
+      # Retrieves the details of an existing reaction.
       #
       # Required permissions:
       #
@@ -41,13 +42,14 @@ module WhopSDK
         ).returns(WhopSDK::Reaction)
       end
       def retrieve(
-        # The ID of the reaction
+        # The unique identifier of the reaction to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # Lists reactions for a post or a message
+      # Returns a paginated list of emoji reactions on a specific message or forum post,
+      # sorted by most recent.
       #
       # Required permissions:
       #
@@ -65,7 +67,7 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the post or message to list reactions for
+        # The unique identifier of the message or forum post to list reactions for.
         resource_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
@@ -79,7 +81,8 @@ module WhopSDK
       )
       end
 
-      # Deletes a reaction
+      # Remove an emoji reaction from a message or forum post. Only the reaction author
+      # or a channel admin can remove a reaction.
       #
       # Required permissions:
       #
@@ -92,10 +95,13 @@ module WhopSDK
         ).returns(T::Boolean)
       end
       def delete(
-        # The ID of the reaction to remove or message / post to remove the reaction from.
-        # If the ID is from a message / post, you need to pass the emoji argument.
+        # The unique identifier of the reaction to remove, or the identifier of the
+        # message or forum post to remove a reaction from. When passing a message or post
+        # ID, you must also provide the emoji argument.
         id,
-        # The emoji to remove (e.g., :heart: or '😀').
+        # The emoji to remove, in shortcode or unicode format. For example, ':heart:' or a
+        # unicode emoji. Required when the id refers to a message or post instead of a
+        # reaction.
         emoji: nil,
         request_options: {}
       )

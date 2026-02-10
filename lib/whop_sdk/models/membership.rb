@@ -10,8 +10,8 @@ module WhopSDK
       required :id, String
 
       # @!attribute cancel_at_period_end
-      #   Whether this Membership is set to cancel at the end of the current billing
-      #   cycle. Only applies for memberships that have a renewal plan.
+      #   Whether this membership is set to cancel at the end of the current billing
+      #   cycle. Only applies to memberships with a recurring plan.
       #
       #   @return [Boolean]
       required :cancel_at_period_end, WhopSDK::Internal::Type::Boolean
@@ -24,19 +24,21 @@ module WhopSDK
       required :cancel_option, enum: -> { WhopSDK::CancelOptions }, nil?: true
 
       # @!attribute canceled_at
-      #   The epoch timestamp of when the customer initiated a cancellation.
+      #   The time the customer initiated cancellation of this membership. As a Unix
+      #   timestamp. Null if the membership has not been canceled.
       #
       #   @return [Time, nil]
       required :canceled_at, Time, nil?: true
 
       # @!attribute cancellation_reason
-      #   The reason that the member canceled the membership (filled out by the member).
+      #   Free-text explanation provided by the customer when canceling. Null if the
+      #   customer did not provide a reason.
       #
       #   @return [String, nil]
       required :cancellation_reason, String, nil?: true
 
       # @!attribute company
-      #   The Company this Membership belongs to.
+      #   The company this membership belongs to.
       #
       #   @return [WhopSDK::Models::Membership::Company]
       required :company, -> { WhopSDK::Membership::Company }
@@ -54,33 +56,37 @@ module WhopSDK
       required :currency, enum: -> { WhopSDK::Currency }, nil?: true
 
       # @!attribute custom_field_responses
-      #   The responses to custom checkout questions for this membership.
+      #   The customer's responses to custom checkout questions configured on the product
+      #   at the time of purchase.
       #
       #   @return [Array<WhopSDK::Models::Membership::CustomFieldResponse>]
       required :custom_field_responses,
                -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Membership::CustomFieldResponse] }
 
       # @!attribute joined_at
-      #   When the member joined the company.
+      #   The time the user first joined the company associated with this membership. As a
+      #   Unix timestamp. Null if the member record does not exist.
       #
       #   @return [Time, nil]
       required :joined_at, Time, nil?: true
 
       # @!attribute license_key
-      #   The license key for this Membership. This is only present if the membership
-      #   grants access to an instance of the Whop Software app.
+      #   The software license key associated with this membership. Only present if the
+      #   product includes a Whop Software Licensing experience. Null otherwise.
       #
       #   @return [String, nil]
       required :license_key, String, nil?: true
 
       # @!attribute manage_url
-      #   The URL for the customer to manage their membership.
+      #   The URL where the customer can view and manage this membership, including
+      #   cancellation and plan changes. Null if no member record exists.
       #
       #   @return [String, nil]
       required :manage_url, String, nil?: true
 
       # @!attribute member
-      #   The Member that this Membership belongs to.
+      #   The member record linking the user to the company for this membership. Null if
+      #   the member record has not been created yet.
       #
       #   @return [WhopSDK::Models::Membership::Member, nil]
       required :member, -> { WhopSDK::Membership::Member }, nil?: true
@@ -93,45 +99,48 @@ module WhopSDK
       required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]
 
       # @!attribute payment_collection_paused
-      #   Whether the membership's payments are currently paused.
+      #   Whether recurring payment collection for this membership is temporarily paused
+      #   by the company.
       #
       #   @return [Boolean]
       required :payment_collection_paused, WhopSDK::Internal::Type::Boolean
 
       # @!attribute plan
-      #   The Plan this Membership is for.
+      #   The plan the customer purchased to create this membership.
       #
       #   @return [WhopSDK::Models::Membership::Plan]
       required :plan, -> { WhopSDK::Membership::Plan }
 
       # @!attribute product
-      #   The Product this Membership grants access to.
+      #   The product this membership grants access to.
       #
       #   @return [WhopSDK::Models::Membership::Product]
       required :product, -> { WhopSDK::Membership::Product }
 
       # @!attribute promo_code
-      #   The Promo Code that is currently applied to this Membership.
+      #   The promotional code currently applied to this membership's billing. Null if no
+      #   promo code is active.
       #
       #   @return [WhopSDK::Models::Membership::PromoCode, nil]
       required :promo_code, -> { WhopSDK::Membership::PromoCode }, nil?: true
 
       # @!attribute renewal_period_end
-      #   The timestamp in seconds at which the current billing cycle for this
-      #   subscription ends. Only applies for memberships that have a renewal plan.
+      #   The end of the current billing period for this recurring membership. As a Unix
+      #   timestamp. Null if the membership is not recurring.
       #
       #   @return [Time, nil]
       required :renewal_period_end, Time, nil?: true
 
       # @!attribute renewal_period_start
-      #   The timestamp in seconds at which the current billing cycle for this
-      #   subscription start. Only applies for memberships that have a renewal plan.
+      #   The start of the current billing period for this recurring membership. As a Unix
+      #   timestamp. Null if the membership is not recurring.
       #
       #   @return [Time, nil]
       required :renewal_period_start, Time, nil?: true
 
       # @!attribute status
-      #   The status of the membership.
+      #   The current lifecycle status of the membership (e.g., active, trialing,
+      #   past_due, canceled, expired, completed).
       #
       #   @return [Symbol, WhopSDK::Models::MembershipStatus]
       required :status, enum: -> { WhopSDK::MembershipStatus }
@@ -143,7 +152,7 @@ module WhopSDK
       required :updated_at, Time
 
       # @!attribute user
-      #   The user this membership belongs to
+      #   The user who owns this membership. Null if the user account has been deleted.
       #
       #   @return [WhopSDK::Models::Membership::User, nil]
       required :user, -> { WhopSDK::Membership::User }, nil?: true
@@ -157,49 +166,49 @@ module WhopSDK
       #
       #   @param id [String] The unique identifier for the membership.
       #
-      #   @param cancel_at_period_end [Boolean] Whether this Membership is set to cancel at the end of the current billing cycle
+      #   @param cancel_at_period_end [Boolean] Whether this membership is set to cancel at the end of the current billing cycle
       #
       #   @param cancel_option [Symbol, WhopSDK::Models::CancelOptions, nil] The different reasons a user can choose for why they are canceling their members
       #
-      #   @param canceled_at [Time, nil] The epoch timestamp of when the customer initiated a cancellation.
+      #   @param canceled_at [Time, nil] The time the customer initiated cancellation of this membership. As a Unix times
       #
-      #   @param cancellation_reason [String, nil] The reason that the member canceled the membership (filled out by the member).
+      #   @param cancellation_reason [String, nil] Free-text explanation provided by the customer when canceling. Null if the custo
       #
-      #   @param company [WhopSDK::Models::Membership::Company] The Company this Membership belongs to.
+      #   @param company [WhopSDK::Models::Membership::Company] The company this membership belongs to.
       #
       #   @param created_at [Time] The datetime the membership was created.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #
-      #   @param custom_field_responses [Array<WhopSDK::Models::Membership::CustomFieldResponse>] The responses to custom checkout questions for this membership.
+      #   @param custom_field_responses [Array<WhopSDK::Models::Membership::CustomFieldResponse>] The customer's responses to custom checkout questions configured on the product
       #
-      #   @param joined_at [Time, nil] When the member joined the company.
+      #   @param joined_at [Time, nil] The time the user first joined the company associated with this membership. As a
       #
-      #   @param license_key [String, nil] The license key for this Membership. This is only present if the membership gran
+      #   @param license_key [String, nil] The software license key associated with this membership. Only present if the pr
       #
-      #   @param manage_url [String, nil] The URL for the customer to manage their membership.
+      #   @param manage_url [String, nil] The URL where the customer can view and manage this membership, including cancel
       #
-      #   @param member [WhopSDK::Models::Membership::Member, nil] The Member that this Membership belongs to.
+      #   @param member [WhopSDK::Models::Membership::Member, nil] The member record linking the user to the company for this membership. Null if t
       #
       #   @param metadata [Hash{Symbol=>Object}] Custom key-value pairs for the membership (commonly used for software licensing,
       #
-      #   @param payment_collection_paused [Boolean] Whether the membership's payments are currently paused.
+      #   @param payment_collection_paused [Boolean] Whether recurring payment collection for this membership is temporarily paused b
       #
-      #   @param plan [WhopSDK::Models::Membership::Plan] The Plan this Membership is for.
+      #   @param plan [WhopSDK::Models::Membership::Plan] The plan the customer purchased to create this membership.
       #
-      #   @param product [WhopSDK::Models::Membership::Product] The Product this Membership grants access to.
+      #   @param product [WhopSDK::Models::Membership::Product] The product this membership grants access to.
       #
-      #   @param promo_code [WhopSDK::Models::Membership::PromoCode, nil] The Promo Code that is currently applied to this Membership.
+      #   @param promo_code [WhopSDK::Models::Membership::PromoCode, nil] The promotional code currently applied to this membership's billing. Null if no
       #
-      #   @param renewal_period_end [Time, nil] The timestamp in seconds at which the current billing cycle for this subscriptio
+      #   @param renewal_period_end [Time, nil] The end of the current billing period for this recurring membership. As a Unix t
       #
-      #   @param renewal_period_start [Time, nil] The timestamp in seconds at which the current billing cycle for this subscriptio
+      #   @param renewal_period_start [Time, nil] The start of the current billing period for this recurring membership. As a Unix
       #
-      #   @param status [Symbol, WhopSDK::Models::MembershipStatus] The status of the membership.
+      #   @param status [Symbol, WhopSDK::Models::MembershipStatus] The current lifecycle status of the membership (e.g., active, trialing, past_due
       #
       #   @param updated_at [Time] The datetime the membership was last updated.
       #
-      #   @param user [WhopSDK::Models::Membership::User, nil] The user this membership belongs to
+      #   @param user [WhopSDK::Models::Membership::User, nil] The user who owns this membership. Null if the user account has been deleted.
 
       # @see WhopSDK::Models::Membership#company
       class Company < WhopSDK::Internal::Type::BaseModel
@@ -216,7 +225,7 @@ module WhopSDK
         required :title, String
 
         # @!method initialize(id:, title:)
-        #   The Company this Membership belongs to.
+        #   The company this membership belongs to.
         #
         #   @param id [String] The unique identifier for the company.
         #
@@ -261,7 +270,8 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   The Member that this Membership belongs to.
+        #   The member record linking the user to the company for this membership. Null if
+        #   the member record has not been created yet.
         #
         #   @param id [String] The unique identifier for the member.
       end
@@ -275,7 +285,7 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   The Plan this Membership is for.
+        #   The plan the customer purchased to create this membership.
         #
         #   @param id [String] The unique identifier for the plan.
       end
@@ -299,7 +309,7 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::Membership::Product} for more details.
         #
-        #   The Product this Membership grants access to.
+        #   The product this membership grants access to.
         #
         #   @param id [String] The unique identifier for the product.
         #
@@ -315,7 +325,8 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   The Promo Code that is currently applied to this Membership.
+        #   The promotional code currently applied to this membership's billing. Null if no
+        #   promo code is active.
         #
         #   @param id [String] The unique identifier for the promo code.
       end
@@ -351,7 +362,7 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::Membership::User} for more details.
         #
-        #   The user this membership belongs to
+        #   The user who owns this membership. Null if the user account has been deleted.
         #
         #   @param id [String] The unique identifier for the user.
         #

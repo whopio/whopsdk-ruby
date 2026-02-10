@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class Forums
-      # Retrieves a forum
+      # Retrieves the details of an existing forum.
       #
       # Required permissions:
       #
@@ -15,13 +15,14 @@ module WhopSDK
         ).returns(WhopSDK::Forum)
       end
       def retrieve(
-        # The ID of the forum to fetch, it can be an experience ID or a forum ID
+        # The unique identifier of the forum or experience to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # Updates a forum
+      # Update moderation and notification settings for a forum, such as who can post,
+      # who can comment, and email notification preferences.
       #
       # Required permissions:
       #
@@ -37,7 +38,8 @@ module WhopSDK
         ).returns(WhopSDK::Forum)
       end
       def update(
-        # Experience ID (exp\_\*) or Forum external ID
+        # The unique identifier of the forum to update. Accepts either an experience ID
+        # (e.g. 'exp_xxxxx') or a forum ID.
         id,
         # Email notification preference option for a forum feed
         email_notification_preference: nil,
@@ -49,7 +51,8 @@ module WhopSDK
       )
       end
 
-      # Lists forums inside a company
+      # Returns a paginated list of forums within a specific company, with optional
+      # filtering by product.
       #
       # Required permissions:
       #
@@ -68,7 +71,7 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the company to list forums for
+        # The unique identifier of the company to list forums for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
@@ -78,7 +81,8 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # If provided, only forums connected to this product are returned
+        # The unique identifier of a product to filter by. When set, only forums connected
+        # to this product are returned.
         product_id: nil,
         request_options: {}
       )

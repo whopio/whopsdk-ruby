@@ -11,33 +11,37 @@ module WhopSDK
       required :id, String
 
       # @!attribute emoji
-      #   The emoji that was used in shortcode format (:heart:)
+      #   The emoji used for this reaction in shortcode format. Null if the reaction type
+      #   is not emoji.
       #
       #   @return [String, nil]
       required :emoji, String, nil?: true
 
       # @!attribute resource_id
-      #   The ID of the post this reaction belongs to
+      #   The unique identifier of the post this reaction was left on.
       #
       #   @return [String]
       required :resource_id, String
 
       # @!attribute user
-      #   The user who reacted to the post
+      #   The user who left this reaction on the post.
       #
       #   @return [WhopSDK::Models::ReactionListResponse::User]
       required :user, -> { WhopSDK::Models::ReactionListResponse::User }
 
       # @!method initialize(id:, emoji:, resource_id:, user:)
-      #   Represents a reaction to a feed post
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::ReactionListResponse} for more details.
+      #
+      #   A single reaction left by a user on a feed post, such as a like or emoji.
       #
       #   @param id [String] The unique identifier for the entity
       #
-      #   @param emoji [String, nil] The emoji that was used in shortcode format (:heart:)
+      #   @param emoji [String, nil] The emoji used for this reaction in shortcode format. Null if the reaction type
       #
-      #   @param resource_id [String] The ID of the post this reaction belongs to
+      #   @param resource_id [String] The unique identifier of the post this reaction was left on.
       #
-      #   @param user [WhopSDK::Models::ReactionListResponse::User] The user who reacted to the post
+      #   @param user [WhopSDK::Models::ReactionListResponse::User] The user who left this reaction on the post.
 
       # @see WhopSDK::Models::ReactionListResponse#user
       class User < WhopSDK::Internal::Type::BaseModel
@@ -60,7 +64,7 @@ module WhopSDK
         required :username, String
 
         # @!method initialize(id:, name:, username:)
-        #   The user who reacted to the post
+        #   The user who left this reaction on the post.
         #
         #   @param id [String] The unique identifier for the user.
         #

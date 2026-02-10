@@ -10,7 +10,7 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The carrier of the shipment
+      # The shipping carrier responsible for delivering this shipment.
       sig { returns(WhopSDK::ShipmentCarrier::TaggedSymbol) }
       attr_accessor :carrier
 
@@ -18,11 +18,13 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The delivery estimate of the shipment
+      # The estimated delivery date for this shipment. Null if the carrier has not
+      # provided an estimate.
       sig { returns(T.nilable(Time)) }
       attr_accessor :delivery_estimate
 
-      # The payment of the shipment
+      # The payment associated with this shipment. Null if the payment has been deleted
+      # or is inaccessible.
       sig { returns(T.nilable(WhopSDK::Shipment::Payment)) }
       attr_reader :payment
 
@@ -31,11 +33,12 @@ module WhopSDK
       end
       attr_writer :payment
 
-      # The service of the shipment
+      # The shipping service level used for this shipment. Null if the carrier does not
+      # specify a service tier.
       sig { returns(T.nilable(String)) }
       attr_accessor :service
 
-      # The status of the shipment
+      # The current delivery status of this shipment.
       sig { returns(WhopSDK::ShipmentStatus::TaggedSymbol) }
       attr_accessor :status
 
@@ -43,7 +46,7 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::ShipmentSubstatus::TaggedSymbol)) }
       attr_accessor :substatus
 
-      # The tracking code of the shipment
+      # The carrier-assigned tracking number used to look up shipment progress.
       sig { returns(String) }
       attr_accessor :tracking_code
 
@@ -51,7 +54,8 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :updated_at
 
-      # A shipment
+      # A physical shipment associated with a payment, including carrier details and
+      # tracking information.
       sig do
         params(
           id: String,
@@ -69,21 +73,24 @@ module WhopSDK
       def self.new(
         # The unique identifier for the shipment.
         id:,
-        # The carrier of the shipment
+        # The shipping carrier responsible for delivering this shipment.
         carrier:,
         # The datetime the shipment was created.
         created_at:,
-        # The delivery estimate of the shipment
+        # The estimated delivery date for this shipment. Null if the carrier has not
+        # provided an estimate.
         delivery_estimate:,
-        # The payment of the shipment
+        # The payment associated with this shipment. Null if the payment has been deleted
+        # or is inaccessible.
         payment:,
-        # The service of the shipment
+        # The shipping service level used for this shipment. Null if the carrier does not
+        # specify a service tier.
         service:,
-        # The status of the shipment
+        # The current delivery status of this shipment.
         status:,
         # The substatus of a shipment
         substatus:,
-        # The tracking code of the shipment
+        # The carrier-assigned tracking number used to look up shipment progress.
         tracking_code:,
         # The datetime the shipment was last updated.
         updated_at:
@@ -119,7 +126,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The payment of the shipment
+        # The payment associated with this shipment. Null if the payment has been deleted
+        # or is inaccessible.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the payment.

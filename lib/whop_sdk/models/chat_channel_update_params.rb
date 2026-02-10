@@ -8,25 +8,27 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute ban_media
-      #   Whether media uploads are banned in this chat
+      #   Whether media uploads such as images and videos are banned in this chat channel.
       #
       #   @return [Boolean, nil]
       optional :ban_media, WhopSDK::Internal::Type::Boolean, nil?: true
 
       # @!attribute ban_urls
-      #   Whether URLs are banned in this chat
+      #   Whether URLs and links are banned from being posted in this chat channel.
       #
       #   @return [Boolean, nil]
       optional :ban_urls, WhopSDK::Internal::Type::Boolean, nil?: true
 
       # @!attribute banned_words
-      #   List of banned words for this chat
+      #   A list of words that are automatically blocked from messages in this chat
+      #   channel. For example, ['spam', 'scam'].
       #
       #   @return [Array<String>, nil]
       optional :banned_words, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
 
       # @!attribute user_posts_cooldown_seconds
-      #   The cooldown period in seconds between user posts
+      #   The minimum number of seconds a user must wait between sending messages in this
+      #   chat channel.
       #
       #   @return [Integer, nil]
       optional :user_posts_cooldown_seconds, Integer, nil?: true
@@ -44,13 +46,16 @@ module WhopSDK
       optional :who_can_react, enum: -> { WhopSDK::WhoCanReact }, nil?: true
 
       # @!method initialize(ban_media: nil, ban_urls: nil, banned_words: nil, user_posts_cooldown_seconds: nil, who_can_post: nil, who_can_react: nil, request_options: {})
-      #   @param ban_media [Boolean, nil] Whether media uploads are banned in this chat
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::ChatChannelUpdateParams} for more details.
       #
-      #   @param ban_urls [Boolean, nil] Whether URLs are banned in this chat
+      #   @param ban_media [Boolean, nil] Whether media uploads such as images and videos are banned in this chat channel.
       #
-      #   @param banned_words [Array<String>, nil] List of banned words for this chat
+      #   @param ban_urls [Boolean, nil] Whether URLs and links are banned from being posted in this chat channel.
       #
-      #   @param user_posts_cooldown_seconds [Integer, nil] The cooldown period in seconds between user posts
+      #   @param banned_words [Array<String>, nil] A list of words that are automatically blocked from messages in this chat channe
+      #
+      #   @param user_posts_cooldown_seconds [Integer, nil] The minimum number of seconds a user must wait between sending messages in this
       #
       #   @param who_can_post [Symbol, WhopSDK::Models::WhoCanPost, nil] Who can post on a chat feed
       #

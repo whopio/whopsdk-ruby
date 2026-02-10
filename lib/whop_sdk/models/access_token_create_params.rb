@@ -8,34 +8,30 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute company_id
-      #   The ID of the Company to generate the token for. The API key must have
-      #   permission to access this Company, such as the being the company the API key
-      #   belongs to or a sub-merchant of it
+      #   The unique identifier of the company to generate the token for, starting with
+      #   'biz\_'. The API key must have permission to access this company.
       #
       #   @return [String, nil]
       optional :company_id, String, nil?: true
 
       # @!attribute expires_at
-      #   The expiration timestamp for the access token. If not provided, a default
-      #   expiration time of 1 hour will be used. The expiration can be set to a maximum
-      #   of 3 hours from the current time.
+      #   The expiration timestamp for the access token. Defaults to 1 hour from now, with
+      #   a maximum of 3 hours.
       #
       #   @return [Time, nil]
       optional :expires_at, Time, nil?: true
 
       # @!attribute scoped_actions
-      #   Array of desired scoped actions for the access token. If sent as an empty array
-      #   or not provided, all permissions from the authenticating credential (API key or
-      #   OAuth token) will be available on the token. If sending an explicit list, they
-      #   must be a subset of the credential's existing permissions. Otherwise, an error
-      #   will be raised.
+      #   An array of permission scopes to grant to the access token. If empty or omitted,
+      #   all permissions from the authenticating credential are inherited. Must be a
+      #   subset of the credential's permissions.
       #
       #   @return [Array<String>, nil]
       optional :scoped_actions, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
 
       # @!attribute user_id
-      #   The ID of the User to generate the token for. The API key must have permission
-      #   to access this User.
+      #   The unique identifier of the user to generate the token for, starting with
+      #   'user\_'. The API key must have permission to access this user.
       #
       #   @return [String, nil]
       optional :user_id, String, nil?: true
@@ -44,13 +40,13 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AccessTokenCreateParams} for more details.
       #
-      #   @param company_id [String, nil] The ID of the Company to generate the token for. The API key must have permissio
+      #   @param company_id [String, nil] The unique identifier of the company to generate the token for, starting with 'b
       #
-      #   @param expires_at [Time, nil] The expiration timestamp for the access token. If not provided, a default expira
+      #   @param expires_at [Time, nil] The expiration timestamp for the access token. Defaults to 1 hour from now, with
       #
-      #   @param scoped_actions [Array<String>, nil] Array of desired scoped actions for the access token. If sent as an empty array
+      #   @param scoped_actions [Array<String>, nil] An array of permission scopes to grant to the access token. If empty or omitted,
       #
-      #   @param user_id [String, nil] The ID of the User to generate the token for. The API key must have permission t
+      #   @param user_id [String, nil] The unique identifier of the user to generate the token for, starting with 'user
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

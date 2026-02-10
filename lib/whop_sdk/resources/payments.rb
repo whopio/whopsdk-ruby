@@ -55,7 +55,7 @@ module WhopSDK
         )
       end
 
-      # Retrieves a payment by ID
+      # Retrieves the details of an existing payment.
       #
       # Required permissions:
       #
@@ -69,7 +69,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the payment
+      # @param id [String] The unique identifier of the payment.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -85,7 +85,11 @@ module WhopSDK
         )
       end
 
-      # Lists payments
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::PaymentListParams} for more details.
+      #
+      # Returns a paginated list of payments for a company, with optional filtering by
+      # product, plan, status, billing reason, currency, and creation date.
       #
       # Required permissions:
       #
@@ -99,37 +103,37 @@ module WhopSDK
       #
       # @overload list(company_id:, after: nil, before: nil, billing_reasons: nil, created_after: nil, created_before: nil, currencies: nil, direction: nil, first: nil, include_free: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, statuses: nil, substatuses: nil, request_options: {})
       #
-      # @param company_id [String] The ID of the company to list payments for
+      # @param company_id [String] The unique identifier of the company to list payments for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param billing_reasons [Array<Symbol, WhopSDK::Models::BillingReasons>, nil] The billing reason for the payment
+      # @param billing_reasons [Array<Symbol, WhopSDK::Models::BillingReasons>, nil] Filter payments by their billing reason.
       #
-      # @param created_after [Time, nil] The minimum creation date to filter by
+      # @param created_after [Time, nil] Only return payments created after this timestamp.
       #
-      # @param created_before [Time, nil] The maximum creation date to filter by
+      # @param created_before [Time, nil] Only return payments created before this timestamp.
       #
-      # @param currencies [Array<Symbol, WhopSDK::Models::Currency>, nil] The currency of the payment.
+      # @param currencies [Array<Symbol, WhopSDK::Models::Currency>, nil] Filter payments by their currency code.
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
-      # @param include_free [Boolean, nil] Whether to include free payments.
+      # @param include_free [Boolean, nil] Whether to include payments with a zero amount.
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
       # @param order [Symbol, WhopSDK::Models::PaymentListParams::Order, nil] The order to sort the results by.
       #
-      # @param plan_ids [Array<String>, nil] A specific plan.
+      # @param plan_ids [Array<String>, nil] Filter payments to only those associated with these specific plan identifiers.
       #
-      # @param product_ids [Array<String>, nil] A specific product.
+      # @param product_ids [Array<String>, nil] Filter payments to only those associated with these specific product identifiers
       #
-      # @param statuses [Array<Symbol, WhopSDK::Models::ReceiptStatus>, nil] The status of the payment.
+      # @param statuses [Array<Symbol, WhopSDK::Models::ReceiptStatus>, nil] Filter payments by their current status.
       #
-      # @param substatuses [Array<Symbol, WhopSDK::Models::FriendlyReceiptStatus>, nil] The substatus of the payment.
+      # @param substatuses [Array<Symbol, WhopSDK::Models::FriendlyReceiptStatus>, nil] Filter payments by their current substatus for more granular filtering.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -148,7 +152,8 @@ module WhopSDK
         )
       end
 
-      # Lists fees for a payment
+      # Returns the list of fees associated with a specific payment, including platform
+      # fees and processing fees.
       #
       # Required permissions:
       #
@@ -156,7 +161,7 @@ module WhopSDK
       #
       # @overload list_fees(id, after: nil, before: nil, first: nil, last: nil, request_options: {})
       #
-      # @param id [String] The ID of the payment to list fees for
+      # @param id [String] The unique identifier of the payment to list fees for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -183,7 +188,11 @@ module WhopSDK
         )
       end
 
-      # Refunds a payment
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::PaymentRefundParams} for more details.
+      #
+      # Issue a full or partial refund for a payment. The refund is processed through
+      # the original payment processor and the membership status is updated accordingly.
       #
       # Required permissions:
       #
@@ -197,9 +206,9 @@ module WhopSDK
       #
       # @overload refund(id, partial_amount: nil, request_options: {})
       #
-      # @param id [String] The ID of the payment you want to update or take action upon.
+      # @param id [String] The unique identifier of the payment to refund.
       #
-      # @param partial_amount [Float, nil] An amount if the refund is supposed to be partial.
+      # @param partial_amount [Float, nil] The amount to refund in the payment currency. If omitted, the full payment amoun
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -217,7 +226,8 @@ module WhopSDK
         )
       end
 
-      # Retries a payment
+      # Retry a failed or pending payment. This re-attempts the charge using the
+      # original payment method and plan details.
       #
       # Required permissions:
       #
@@ -231,7 +241,7 @@ module WhopSDK
       #
       # @overload retry_(id, request_options: {})
       #
-      # @param id [String] The ID of the payment
+      # @param id [String] The unique identifier of the payment to retry.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -247,7 +257,8 @@ module WhopSDK
         )
       end
 
-      # Voids a payment
+      # Void a payment that has not yet been settled. Voiding cancels the payment before
+      # it is captured by the payment processor.
       #
       # Required permissions:
       #
@@ -261,7 +272,7 @@ module WhopSDK
       #
       # @overload void(id, request_options: {})
       #
-      # @param id [String] The ID of the payment you want to void.
+      # @param id [String] The unique identifier of the payment to void.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -3,7 +3,8 @@
 module WhopSDK
   module Resources
     class DmMembers
-      # Adds a user to a DM channel
+      # Add a new user to an existing DM channel. Only an admin of the channel can add
+      # members.
       #
       # Required permissions:
       #
@@ -16,15 +17,16 @@ module WhopSDK
         ).returns(WhopSDK::DmMember)
       end
       def create(
-        # The ID of the DM channel to add the member to
+        # The unique identifier of the DM channel to add the new member to.
         channel_id:,
-        # The ID of the user to add to the channel
+        # The unique identifier of the user to add to the DM channel. For example,
+        # 'user_xxxxx'.
         user_id:,
         request_options: {}
       )
       end
 
-      # Retrieves a DM channel member
+      # Retrieves the details of an existing DM member.
       #
       # Required permissions:
       #
@@ -36,13 +38,14 @@ module WhopSDK
         ).returns(WhopSDK::DmMember)
       end
       def retrieve(
-        # The ID of the DM channel member
+        # The unique identifier of the DM channel member to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # Updates a DM channel member's settings
+      # Update a DM channel member's settings, such as their notification preferences or
+      # membership status.
       #
       # Required permissions:
       #
@@ -57,7 +60,7 @@ module WhopSDK
         ).returns(WhopSDK::DmMember)
       end
       def update(
-        # The ID of the DM channel member to update
+        # The unique identifier of the DM channel member to update.
         id,
         # The notification preferences for a DMs feed member
         notification_preference: nil,
@@ -67,7 +70,8 @@ module WhopSDK
       )
       end
 
-      # Lists members of a DM channel
+      # Returns a paginated list of members in a specific DM channel, sorted by the date
+      # they were added.
       #
       # Required permissions:
       #
@@ -85,7 +89,7 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the DM channel to list members for
+        # The unique identifier of the DM channel to list members for.
         channel_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
@@ -99,7 +103,8 @@ module WhopSDK
       )
       end
 
-      # Removes a user from a DM channel
+      # Remove a user from a DM channel. An admin can remove any member, and a member
+      # can remove themselves.
       #
       # Required permissions:
       #
@@ -111,7 +116,7 @@ module WhopSDK
         ).returns(T::Boolean)
       end
       def delete(
-        # The ID of the DM channel member to remove
+        # The unique identifier of the DM channel member to remove.
         id,
         request_options: {}
       )

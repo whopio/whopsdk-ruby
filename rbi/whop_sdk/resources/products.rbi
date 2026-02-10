@@ -3,7 +3,8 @@
 module WhopSDK
   module Resources
     class Products
-      # Create a new product for a company.
+      # Create a new product for a company. The product serves as the top-level
+      # container for plans and experiences.
       #
       # Required permissions:
       #
@@ -93,7 +94,7 @@ module WhopSDK
       )
       end
 
-      # Retrieve a single product by its unique identifier or route slug.
+      # Retrieves the details of an existing product.
       #
       # Required permissions:
       #
@@ -111,7 +112,7 @@ module WhopSDK
       )
       end
 
-      # Update an existing product.
+      # Update a product's title, description, visibility, and other settings.
       #
       # Required permissions:
       #
@@ -192,7 +193,8 @@ module WhopSDK
       )
       end
 
-      # List products belonging to a company, with optional filtering and sorting.
+      # Returns a paginated list of products belonging to a company, with optional
+      # filtering by type, visibility, and creation date.
       #
       # Required permissions:
       #
@@ -221,9 +223,9 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # Only return products created after this datetime.
+        # Only return products created after this timestamp.
         created_after: nil,
-        # Only return products created before this datetime.
+        # Only return products created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,
@@ -241,7 +243,7 @@ module WhopSDK
       )
       end
 
-      # Delete a product by its unique identifier.
+      # Permanently delete a product and remove it from the company's catalog.
       #
       # Required permissions:
       #

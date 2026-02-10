@@ -11,21 +11,23 @@ module WhopSDK
           T.any(WhopSDK::MessageCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the channel or experience to send to.
+      # The unique identifier of the channel or experience to send the message in. For
+      # example, 'exp_xxxxx' or 'feed_xxxxx'.
       sig { returns(String) }
       attr_accessor :channel_id
 
-      # The content of the message in Markdown format.
+      # The body of the message in Markdown format. For example, 'Hello **world**'.
       sig { returns(String) }
       attr_accessor :content
 
-      # The attachments for this message, such as videos or images.
+      # A list of file attachments to include with the message, such as images or
+      # videos.
       sig do
         returns(T.nilable(T::Array[WhopSDK::MessageCreateParams::Attachment]))
       end
       attr_accessor :attachments
 
-      # The poll for this message
+      # A poll to attach to this message, allowing recipients to vote on options.
       sig { returns(T.nilable(WhopSDK::MessageCreateParams::Poll)) }
       attr_reader :poll
 
@@ -34,7 +36,8 @@ module WhopSDK
       end
       attr_writer :poll
 
-      # The ID of the message this is replying to, if applicable.
+      # The unique identifier of the message this is replying to, creating a threaded
+      # reply.
       sig { returns(T.nilable(String)) }
       attr_accessor :replying_to_message_id
 
@@ -52,15 +55,18 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the channel or experience to send to.
+        # The unique identifier of the channel or experience to send the message in. For
+        # example, 'exp_xxxxx' or 'feed_xxxxx'.
         channel_id:,
-        # The content of the message in Markdown format.
+        # The body of the message in Markdown format. For example, 'Hello **world**'.
         content:,
-        # The attachments for this message, such as videos or images.
+        # A list of file attachments to include with the message, such as images or
+        # videos.
         attachments: nil,
-        # The poll for this message
+        # A poll to attach to this message, allowing recipients to vote on options.
         poll: nil,
-        # The ID of the message this is replying to, if applicable.
+        # The unique identifier of the message this is replying to, creating a threaded
+        # reply.
         replying_to_message_id: nil,
         request_options: {}
       )
@@ -121,7 +127,7 @@ module WhopSDK
         sig { returns(T::Array[WhopSDK::MessageCreateParams::Poll::Option]) }
         attr_accessor :options
 
-        # The poll for this message
+        # A poll to attach to this message, allowing recipients to vote on options.
         sig do
           params(
             options:

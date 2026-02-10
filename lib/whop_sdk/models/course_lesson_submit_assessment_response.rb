@@ -104,7 +104,7 @@ module WhopSDK
         required :id, String
 
         # @!attribute title
-        #   The title of the lesson
+        #   The display name of the lesson shown to students. Maximum 120 characters.
         #
         #   @return [String]
         required :title, String
@@ -114,7 +114,7 @@ module WhopSDK
         #
         #   @param id [String] The unique identifier for the lesson.
         #
-        #   @param title [String] The title of the lesson
+        #   @param title [String] The display name of the lesson shown to students. Maximum 120 characters.
       end
 
       # @see WhopSDK::Models::CourseLessonSubmitAssessmentResponse#user

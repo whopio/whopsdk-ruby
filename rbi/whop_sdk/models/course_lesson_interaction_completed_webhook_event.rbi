@@ -19,7 +19,8 @@ module WhopSDK
       sig { returns(Symbol) }
       attr_accessor :api_version
 
-      # A lesson interaction tracking user progress in courses
+      # A record of a user's progress on a specific lesson, tracking whether they have
+      # completed it.
       sig { returns(WhopSDK::CourseLessonInteraction) }
       attr_reader :data
 
@@ -51,7 +52,8 @@ module WhopSDK
       def self.new(
         # A unique ID for every single webhook request
         id:,
-        # A lesson interaction tracking user progress in courses
+        # A record of a user's progress on a specific lesson, tracking whether they have
+        # completed it.
         data:,
         # The timestamp in ISO 8601 format that the webhook was sent at on the server
         timestamp:,

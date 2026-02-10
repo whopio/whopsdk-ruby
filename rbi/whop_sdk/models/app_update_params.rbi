@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::AppUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The description of the app for the app store in-depth app view.
+      # The detailed description shown on the app store's in-depth app view page.
       sig { returns(T.nilable(String)) }
       attr_accessor :app_store_description
 
@@ -19,27 +19,29 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::AppType::OrSymbol)) }
       attr_accessor :app_type
 
-      # The base production url of the app
+      # The base production URL where the app is hosted, such as
+      # 'https://myapp.example.com'.
       sig { returns(T.nilable(String)) }
       attr_accessor :base_url
 
-      # The path for the dashboard view of the app
+      # The URL path for the company dashboard view of the app, such as '/dashboard'.
       sig { returns(T.nilable(String)) }
       attr_accessor :dashboard_path
 
-      # The description of the app
+      # A short description of the app shown in listings and search results.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      # The path for the discover view of the app
+      # The URL path for the discover view of the app, such as '/discover'.
       sig { returns(T.nilable(String)) }
       attr_accessor :discover_path
 
-      # The path for the hub view of the app
+      # The URL path for the member-facing hub view of the app, such as
+      # '/experiences/[experienceId]'.
       sig { returns(T.nilable(String)) }
       attr_accessor :experience_path
 
-      # The icon for the app
+      # The icon image for the app, used in listings and navigation.
       sig { returns(T.nilable(WhopSDK::AppUpdateParams::Icon)) }
       attr_reader :icon
 
@@ -48,11 +50,11 @@ module WhopSDK
       end
       attr_writer :icon
 
-      # The name of the app
+      # The display name for the app, shown to users on the app store and product pages.
       sig { returns(T.nilable(String)) }
       attr_accessor :name
 
-      # The scopes that the app will request off of users when a user installs the app.
+      # The permission scopes the app will request from users when they install it.
       sig do
         returns(
           T.nilable(T::Array[WhopSDK::AppUpdateParams::RequiredScope::OrSymbol])
@@ -84,25 +86,27 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The description of the app for the app store in-depth app view.
+        # The detailed description shown on the app store's in-depth app view page.
         app_store_description: nil,
         # The type of end-user an app is built for
         app_type: nil,
-        # The base production url of the app
+        # The base production URL where the app is hosted, such as
+        # 'https://myapp.example.com'.
         base_url: nil,
-        # The path for the dashboard view of the app
+        # The URL path for the company dashboard view of the app, such as '/dashboard'.
         dashboard_path: nil,
-        # The description of the app
+        # A short description of the app shown in listings and search results.
         description: nil,
-        # The path for the discover view of the app
+        # The URL path for the discover view of the app, such as '/discover'.
         discover_path: nil,
-        # The path for the hub view of the app
+        # The URL path for the member-facing hub view of the app, such as
+        # '/experiences/[experienceId]'.
         experience_path: nil,
-        # The icon for the app
+        # The icon image for the app, used in listings and navigation.
         icon: nil,
-        # The name of the app
+        # The display name for the app, shown to users on the app store and product pages.
         name: nil,
-        # The scopes that the app will request off of users when a user installs the app.
+        # The permission scopes the app will request from users when they install it.
         required_scopes: nil,
         # The status of an experience interface
         status: nil,
@@ -144,7 +148,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The icon for the app
+        # The icon image for the app, used in listings and navigation.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.

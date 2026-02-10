@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::PaymentListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the company to list payments for
+      # The unique identifier of the company to list payments for.
       sig { returns(String) }
       attr_accessor :company_id
 
@@ -23,19 +23,19 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # The billing reason for the payment
+      # Filter payments by their billing reason.
       sig { returns(T.nilable(T::Array[WhopSDK::BillingReasons::OrSymbol])) }
       attr_accessor :billing_reasons
 
-      # The minimum creation date to filter by
+      # Only return payments created after this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_after
 
-      # The maximum creation date to filter by
+      # Only return payments created before this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_before
 
-      # The currency of the payment.
+      # Filter payments by their currency code.
       sig { returns(T.nilable(T::Array[WhopSDK::Currency::OrSymbol])) }
       attr_accessor :currencies
 
@@ -47,7 +47,7 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :first
 
-      # Whether to include free payments.
+      # Whether to include payments with a zero amount.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :include_free
 
@@ -59,19 +59,20 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::PaymentListParams::Order::OrSymbol)) }
       attr_accessor :order
 
-      # A specific plan.
+      # Filter payments to only those associated with these specific plan identifiers.
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :plan_ids
 
-      # A specific product.
+      # Filter payments to only those associated with these specific product
+      # identifiers.
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :product_ids
 
-      # The status of the payment.
+      # Filter payments by their current status.
       sig { returns(T.nilable(T::Array[WhopSDK::ReceiptStatus::OrSymbol])) }
       attr_accessor :statuses
 
-      # The substatus of the payment.
+      # Filter payments by their current substatus for more granular filtering.
       sig do
         returns(T.nilable(T::Array[WhopSDK::FriendlyReceiptStatus::OrSymbol]))
       end
@@ -101,37 +102,38 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the company to list payments for
+        # The unique identifier of the company to list payments for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The billing reason for the payment
+        # Filter payments by their billing reason.
         billing_reasons: nil,
-        # The minimum creation date to filter by
+        # Only return payments created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return payments created before this timestamp.
         created_before: nil,
-        # The currency of the payment.
+        # Filter payments by their currency code.
         currencies: nil,
         # The direction of the sort.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
-        # Whether to include free payments.
+        # Whether to include payments with a zero amount.
         include_free: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
         # The order to sort the results by.
         order: nil,
-        # A specific plan.
+        # Filter payments to only those associated with these specific plan identifiers.
         plan_ids: nil,
-        # A specific product.
+        # Filter payments to only those associated with these specific product
+        # identifiers.
         product_ids: nil,
-        # The status of the payment.
+        # Filter payments by their current status.
         statuses: nil,
-        # The substatus of the payment.
+        # Filter payments by their current substatus for more granular filtering.
         substatuses: nil,
         request_options: {}
       )

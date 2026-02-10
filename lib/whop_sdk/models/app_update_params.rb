@@ -8,7 +8,7 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute app_store_description
-      #   The description of the app for the app store in-depth app view.
+      #   The detailed description shown on the app store's in-depth app view page.
       #
       #   @return [String, nil]
       optional :app_store_description, String, nil?: true
@@ -20,49 +20,51 @@ module WhopSDK
       optional :app_type, enum: -> { WhopSDK::AppType }, nil?: true
 
       # @!attribute base_url
-      #   The base production url of the app
+      #   The base production URL where the app is hosted, such as
+      #   'https://myapp.example.com'.
       #
       #   @return [String, nil]
       optional :base_url, String, nil?: true
 
       # @!attribute dashboard_path
-      #   The path for the dashboard view of the app
+      #   The URL path for the company dashboard view of the app, such as '/dashboard'.
       #
       #   @return [String, nil]
       optional :dashboard_path, String, nil?: true
 
       # @!attribute description
-      #   The description of the app
+      #   A short description of the app shown in listings and search results.
       #
       #   @return [String, nil]
       optional :description, String, nil?: true
 
       # @!attribute discover_path
-      #   The path for the discover view of the app
+      #   The URL path for the discover view of the app, such as '/discover'.
       #
       #   @return [String, nil]
       optional :discover_path, String, nil?: true
 
       # @!attribute experience_path
-      #   The path for the hub view of the app
+      #   The URL path for the member-facing hub view of the app, such as
+      #   '/experiences/[experienceId]'.
       #
       #   @return [String, nil]
       optional :experience_path, String, nil?: true
 
       # @!attribute icon
-      #   The icon for the app
+      #   The icon image for the app, used in listings and navigation.
       #
       #   @return [WhopSDK::Models::AppUpdateParams::Icon, nil]
       optional :icon, -> { WhopSDK::AppUpdateParams::Icon }, nil?: true
 
       # @!attribute name
-      #   The name of the app
+      #   The display name for the app, shown to users on the app store and product pages.
       #
       #   @return [String, nil]
       optional :name, String, nil?: true
 
       # @!attribute required_scopes
-      #   The scopes that the app will request off of users when a user installs the app.
+      #   The permission scopes the app will request from users when they install it.
       #
       #   @return [Array<Symbol, WhopSDK::Models::AppUpdateParams::RequiredScope>, nil]
       optional :required_scopes,
@@ -76,25 +78,28 @@ module WhopSDK
       optional :status, enum: -> { WhopSDK::AppStatuses }, nil?: true
 
       # @!method initialize(app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, required_scopes: nil, status: nil, request_options: {})
-      #   @param app_store_description [String, nil] The description of the app for the app store in-depth app view.
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::AppUpdateParams} for more details.
+      #
+      #   @param app_store_description [String, nil] The detailed description shown on the app store's in-depth app view page.
       #
       #   @param app_type [Symbol, WhopSDK::Models::AppType, nil] The type of end-user an app is built for
       #
-      #   @param base_url [String, nil] The base production url of the app
+      #   @param base_url [String, nil] The base production URL where the app is hosted, such as 'https://myapp.example.
       #
-      #   @param dashboard_path [String, nil] The path for the dashboard view of the app
+      #   @param dashboard_path [String, nil] The URL path for the company dashboard view of the app, such as '/dashboard'.
       #
-      #   @param description [String, nil] The description of the app
+      #   @param description [String, nil] A short description of the app shown in listings and search results.
       #
-      #   @param discover_path [String, nil] The path for the discover view of the app
+      #   @param discover_path [String, nil] The URL path for the discover view of the app, such as '/discover'.
       #
-      #   @param experience_path [String, nil] The path for the hub view of the app
+      #   @param experience_path [String, nil] The URL path for the member-facing hub view of the app, such as '/experiences/[e
       #
-      #   @param icon [WhopSDK::Models::AppUpdateParams::Icon, nil] The icon for the app
+      #   @param icon [WhopSDK::Models::AppUpdateParams::Icon, nil] The icon image for the app, used in listings and navigation.
       #
-      #   @param name [String, nil] The name of the app
+      #   @param name [String, nil] The display name for the app, shown to users on the app store and product pages.
       #
-      #   @param required_scopes [Array<Symbol, WhopSDK::Models::AppUpdateParams::RequiredScope>, nil] The scopes that the app will request off of users when a user installs the app.
+      #   @param required_scopes [Array<Symbol, WhopSDK::Models::AppUpdateParams::RequiredScope>, nil] The permission scopes the app will request from users when they install it.
       #
       #   @param status [Symbol, WhopSDK::Models::AppStatuses, nil] The status of an experience interface
       #
@@ -108,7 +113,7 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   The icon for the app
+        #   The icon image for the app, used in listings and navigation.
         #
         #   @param id [String] The ID of an existing file object.
       end

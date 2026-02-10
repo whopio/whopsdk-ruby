@@ -6,7 +6,8 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::ReactionCreateParams} for more details.
       #
-      # Creates a new reaction
+      # Add an emoji reaction or poll vote to a message or forum post. In forums, the
+      # reaction is always a like.
       #
       # Required permissions:
       #
@@ -14,11 +15,11 @@ module WhopSDK
       #
       # @overload create(resource_id:, emoji: nil, poll_option_id: nil, request_options: {})
       #
-      # @param resource_id [String] The ID of the post or message to react to.
+      # @param resource_id [String] The unique identifier of the message or forum post to react to.
       #
-      # @param emoji [String, nil] The emoji to react with (e.g., :heart: or '😀'). It will be ignored in forums, a
+      # @param emoji [String, nil] The emoji to react with, in shortcode or unicode format. For example, ':heart:'
       #
-      # @param poll_option_id [String, nil] The ID of the poll option to vote for. Only valid for messages or posts with pol
+      # @param poll_option_id [String, nil] The unique identifier of a poll option to vote for. Only valid when the target m
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -36,7 +37,7 @@ module WhopSDK
         )
       end
 
-      # Retrieves a reaction
+      # Retrieves the details of an existing reaction.
       #
       # Required permissions:
       #
@@ -44,7 +45,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the reaction
+      # @param id [String] The unique identifier of the reaction to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -60,7 +61,8 @@ module WhopSDK
         )
       end
 
-      # Lists reactions for a post or a message
+      # Returns a paginated list of emoji reactions on a specific message or forum post,
+      # sorted by most recent.
       #
       # Required permissions:
       #
@@ -68,7 +70,7 @@ module WhopSDK
       #
       # @overload list(resource_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
       #
-      # @param resource_id [String] The ID of the post or message to list reactions for
+      # @param resource_id [String] The unique identifier of the message or forum post to list reactions for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -98,7 +100,8 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::ReactionDeleteParams} for more details.
       #
-      # Deletes a reaction
+      # Remove an emoji reaction from a message or forum post. Only the reaction author
+      # or a channel admin can remove a reaction.
       #
       # Required permissions:
       #
@@ -106,9 +109,9 @@ module WhopSDK
       #
       # @overload delete(id, emoji: nil, request_options: {})
       #
-      # @param id [String] The ID of the reaction to remove or message / post to remove the reaction from.
+      # @param id [String] The unique identifier of the reaction to remove, or the identifier of the messag
       #
-      # @param emoji [String, nil] The emoji to remove (e.g., :heart: or '😀').
+      # @param emoji [String, nil] The emoji to remove, in shortcode or unicode format. For example, ':heart:' or a
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

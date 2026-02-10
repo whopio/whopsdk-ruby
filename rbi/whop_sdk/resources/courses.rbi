@@ -3,7 +3,8 @@
 module WhopSDK
   module Resources
     class Courses
-      # Creates a new course module in an experience
+      # Create a new course within an experience, with optional chapters, lessons, and a
+      # certificate.
       #
       # Required permissions:
       #
@@ -22,23 +23,24 @@ module WhopSDK
         ).returns(WhopSDK::Course)
       end
       def create(
-        # The ID of the experience to create the course in
+        # The unique identifier of the experience to create the course in (e.g.,
+        # "exp_XXXXX").
         experience_id:,
-        # The title of the course
+        # The display title of the course (e.g., "Introduction to Web Development").
         title:,
-        # Whether the course will award its students a PDF certificate after completing
-        # all lessons
+        # Whether the course awards students a PDF certificate after completing all
+        # lessons.
         certificate_after_completion_enabled: nil,
-        # The decimal order position of the course within its experience. If not provided,
-        # it will be set to the next sequential order. Use fractional values (e.g., 1.5)
-        # to place between existing courses.
+        # The decimal order position of the course within its experience. Use fractional
+        # values (e.g., "1.5") to place between existing courses.
         order: nil,
-        # Whether the course requires students to complete the previous lesson before
-        # moving on to the next one
+        # Whether students must complete each lesson sequentially before advancing to the
+        # next one.
         require_completing_lessons_in_order: nil,
-        # The tagline of the course
+        # A short tagline displayed beneath the course title (e.g., "Master the
+        # fundamentals of design").
         tagline: nil,
-        # The thumbnail for the course in png, jpeg, or gif format
+        # The thumbnail image for the course in PNG, JPEG, or GIF format.
         thumbnail: nil,
         # The available visibilities for a course. Determines how / whether a course is
         # visible to users.
@@ -47,7 +49,7 @@ module WhopSDK
       )
       end
 
-      # Retrieves a course by ID
+      # Retrieves the details of an existing course.
       #
       # Required permissions:
       #
@@ -59,13 +61,14 @@ module WhopSDK
         ).returns(WhopSDK::Course)
       end
       def retrieve(
-        # The ID of the course
+        # The unique identifier of the course to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # Updates a course
+      # Update a course's title, description, visibility, thumbnail, or chapter
+      # ordering.
       #
       # Required permissions:
       #
@@ -88,28 +91,29 @@ module WhopSDK
         ).returns(WhopSDK::Course)
       end
       def update(
-        # The ID of the course to update
+        # The unique identifier of the course to update (e.g., "course_XXXXX").
         id,
-        # Whether the course will award its students a PDF certificate after completing
-        # all lessons
+        # Whether the course awards students a PDF certificate after completing all
+        # lessons.
         certificate_after_completion_enabled: nil,
-        # The chapters and lessons to update
+        # A list of chapters with nested lessons to reorder or rename in bulk.
         chapters: nil,
-        # A short description of the course
+        # A short description of the course displayed to students on the course page.
         description: nil,
         # The available languages for a course
         language: nil,
         # The decimal order position of the course within its experience. Use fractional
-        # values (e.g., 1.5) to place between existing courses.
+        # values (e.g., "1.5") to place between existing courses.
         order: nil,
-        # Whether the course requires students to complete the previous lesson before
-        # moving on to the next one
+        # Whether students must complete each lesson sequentially before advancing to the
+        # next one.
         require_completing_lessons_in_order: nil,
-        # A short tagline for the course
+        # A short tagline displayed beneath the course title (e.g., "Master the
+        # fundamentals of design").
         tagline: nil,
-        # The thumbnail for the course in png, jpeg, or gif format
+        # The thumbnail image for the course in PNG, JPEG, or GIF format.
         thumbnail: nil,
-        # The title of the course
+        # The display title of the course (e.g., "Introduction to Web Development").
         title: nil,
         # The available visibilities for a course. Determines how / whether a course is
         # visible to users.
@@ -118,7 +122,8 @@ module WhopSDK
       )
       end
 
-      # Lists courses for an experience or company
+      # Returns a paginated list of courses, filtered by either an experience or a
+      # company.
       #
       # Required permissions:
       #
@@ -141,9 +146,9 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The ID of the company
+        # The unique identifier of the company to list courses for.
         company_id: nil,
-        # The ID of the experience
+        # The unique identifier of the experience to list courses for.
         experience_id: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
@@ -153,7 +158,8 @@ module WhopSDK
       )
       end
 
-      # Deletes a course
+      # Permanently delete a course and all of its chapters, lessons, and student
+      # progress.
       #
       # Required permissions:
       #
@@ -165,7 +171,7 @@ module WhopSDK
         ).returns(T::Boolean)
       end
       def delete(
-        # The ID of the course to delete
+        # The unique identifier of the course to delete (e.g., "course_XXXXX").
         id,
         request_options: {}
       )

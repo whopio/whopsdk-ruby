@@ -14,73 +14,78 @@ module WhopSDK
       required :id, String
 
       # @!attribute content
-      #   The content of the message in Markdown format
+      #   The message content formatted as Markdown. Null if the message has no text
+      #   content.
       #
       #   @return [String, nil]
       required :content, String, nil?: true
 
       # @!attribute created_at
-      #   The timestamp when the post was created
+      #   The timestamp when this message was originally created.
       #
       #   @return [Time]
       required :created_at, Time
 
       # @!attribute is_edited
-      #   Whether the message has been edited
+      #   Whether the message content has been edited after it was originally sent.
       #
       #   @return [Boolean]
       required :is_edited, WhopSDK::Internal::Type::Boolean
 
       # @!attribute is_pinned
-      #   Whether this message is pinned
+      #   Whether this message is pinned to the top of the channel for easy access.
       #
       #   @return [Boolean]
       required :is_pinned, WhopSDK::Internal::Type::Boolean
 
       # @!attribute message_type
-      #   The type of post
+      #   The classification of this message: regular, system, or automated.
       #
       #   @return [Symbol, WhopSDK::Models::DmsPostTypes]
       required :message_type, enum: -> { WhopSDK::DmsPostTypes }
 
       # @!attribute poll
-      #   The poll for this message
+      #   A poll attached to this message. Null if the message does not contain a poll.
       #
       #   @return [WhopSDK::Models::Message::Poll, nil]
       required :poll, -> { WhopSDK::Message::Poll }, nil?: true
 
       # @!attribute poll_votes
-      #   The reaction counts for this message
+      #   Aggregated reaction counts on this message, filtered to a specific reaction
+      #   type.
       #
       #   @return [Array<WhopSDK::Models::Message::PollVote>]
       required :poll_votes, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Message::PollVote] }
 
       # @!attribute reaction_counts
-      #   The reaction counts for this message
+      #   Aggregated reaction counts on this message, filtered to a specific reaction
+      #   type.
       #
       #   @return [Array<WhopSDK::Models::Message::ReactionCount>]
       required :reaction_counts, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Message::ReactionCount] }
 
       # @!attribute replying_to_message_id
-      #   The ID of the message this is replying to, if applicable
+      #   The unique identifier of the message this post is replying to. Null if this is
+      #   not a reply.
       #
       #   @return [String, nil]
       required :replying_to_message_id, String, nil?: true
 
       # @!attribute updated_at
-      #   The timestamp when the post was last updated
+      #   The timestamp when this message was last modified.
       #
       #   @return [Time]
       required :updated_at, Time
 
       # @!attribute user
-      #   The user who sent this message
+      #   The user who authored this message.
       #
       #   @return [WhopSDK::Models::Message::User]
       required :user, -> { WhopSDK::Message::User }
 
       # @!attribute view_count
-      #   The number of times this message has been viewed
+      #   The number of unique views this message has received. Null if view tracking is
+      #   not enabled for this channel.
       #
       #   @return [Integer, nil]
       required :view_count, Integer, nil?: true
@@ -89,33 +94,33 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Message}
       #   for more details.
       #
-      #   Represents a message in a DM channel
+      #   A message sent within an experience chat, direct message, or group chat.
       #
       #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
       #
-      #   @param content [String, nil] The content of the message in Markdown format
+      #   @param content [String, nil] The message content formatted as Markdown. Null if the message has no text conte
       #
-      #   @param created_at [Time] The timestamp when the post was created
+      #   @param created_at [Time] The timestamp when this message was originally created.
       #
-      #   @param is_edited [Boolean] Whether the message has been edited
+      #   @param is_edited [Boolean] Whether the message content has been edited after it was originally sent.
       #
-      #   @param is_pinned [Boolean] Whether this message is pinned
+      #   @param is_pinned [Boolean] Whether this message is pinned to the top of the channel for easy access.
       #
-      #   @param message_type [Symbol, WhopSDK::Models::DmsPostTypes] The type of post
+      #   @param message_type [Symbol, WhopSDK::Models::DmsPostTypes] The classification of this message: regular, system, or automated.
       #
-      #   @param poll [WhopSDK::Models::Message::Poll, nil] The poll for this message
+      #   @param poll [WhopSDK::Models::Message::Poll, nil] A poll attached to this message. Null if the message does not contain a poll.
       #
-      #   @param poll_votes [Array<WhopSDK::Models::Message::PollVote>] The reaction counts for this message
+      #   @param poll_votes [Array<WhopSDK::Models::Message::PollVote>] Aggregated reaction counts on this message, filtered to a specific reaction type
       #
-      #   @param reaction_counts [Array<WhopSDK::Models::Message::ReactionCount>] The reaction counts for this message
+      #   @param reaction_counts [Array<WhopSDK::Models::Message::ReactionCount>] Aggregated reaction counts on this message, filtered to a specific reaction type
       #
-      #   @param replying_to_message_id [String, nil] The ID of the message this is replying to, if applicable
+      #   @param replying_to_message_id [String, nil] The unique identifier of the message this post is replying to. Null if this is n
       #
-      #   @param updated_at [Time] The timestamp when the post was last updated
+      #   @param updated_at [Time] The timestamp when this message was last modified.
       #
-      #   @param user [WhopSDK::Models::Message::User] The user who sent this message
+      #   @param user [WhopSDK::Models::Message::User] The user who authored this message.
       #
-      #   @param view_count [Integer, nil] The number of times this message has been viewed
+      #   @param view_count [Integer, nil] The number of unique views this message has received. Null if view tracking is n
 
       # @see WhopSDK::Models::Message#poll
       class Poll < WhopSDK::Internal::Type::BaseModel
@@ -126,7 +131,7 @@ module WhopSDK
         required :options, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Message::Poll::Option] }, nil?: true
 
         # @!method initialize(options:)
-        #   The poll for this message
+        #   A poll attached to this message. Null if the message does not contain a poll.
         #
         #   @param options [Array<WhopSDK::Models::Message::Poll::Option>, nil] The options for the poll
 
@@ -215,7 +220,7 @@ module WhopSDK
         required :username, String
 
         # @!method initialize(id:, name:, username:)
-        #   The user who sent this message
+        #   The user who authored this message.
         #
         #   @param id [String] The unique identifier for the user.
         #

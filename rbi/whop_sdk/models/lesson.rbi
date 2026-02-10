@@ -10,15 +10,18 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # Assessment questions for quiz/knowledge check lessons
+      # The list of questions for quiz or knowledge check lessons. Empty for
+      # non-assessment lesson types.
       sig { returns(T::Array[WhopSDK::Lesson::AssessmentQuestion]) }
       attr_accessor :assessment_questions
 
-      # The attached files in this lesson as a flat array
+      # All supplementary files attached to this lesson returned as a flat array rather
+      # than a paginated connection.
       sig { returns(T::Array[WhopSDK::Lesson::Attachment]) }
       attr_accessor :attachments
 
-      # The content of the lesson
+      # The text body of the lesson in plain text format. Null if the lesson has no text
+      # content.
       sig { returns(T.nilable(String)) }
       attr_accessor :content
 
@@ -26,11 +29,13 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # Number of days from course start until the lesson is unlocked
+      # The number of days after a student starts the course before this lesson becomes
+      # accessible. Null if the lesson is available immediately.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :days_from_course_start_until_unlock
 
-      # ID for the embed (YouTube video ID or Loom share ID)
+      # The external video identifier for embedded video lessons, such as a YouTube
+      # video ID or Loom share ID. Null if the lesson has no embed.
       sig { returns(T.nilable(String)) }
       attr_accessor :embed_id
 
@@ -38,22 +43,25 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::EmbedType::TaggedSymbol)) }
       attr_accessor :embed_type
 
-      # The type of the lesson (text, video, pdf, multi, quiz, knowledge_check)
+      # The content format of this lesson. One of: text, video, pdf, multi, quiz,
+      # knowledge_check.
       sig { returns(WhopSDK::LessonTypes::TaggedSymbol) }
       attr_accessor :lesson_type
 
-      # The main PDF file for this lesson
+      # The primary PDF document for PDF-type lessons. Null if this lesson is not a PDF
+      # lesson or no PDF has been uploaded.
       sig { returns(T.nilable(WhopSDK::Lesson::MainPdf)) }
       attr_reader :main_pdf
 
       sig { params(main_pdf: T.nilable(WhopSDK::Lesson::MainPdf::OrHash)).void }
       attr_writer :main_pdf
 
-      # The order of the lesson within its chapter
+      # The sort position of this lesson within its parent chapter, starting from zero.
       sig { returns(Integer) }
       attr_accessor :order
 
-      # The thumbnail for the lesson
+      # The thumbnail image displayed on lesson cards and previews. Null if no thumbnail
+      # has been uploaded.
       sig { returns(T.nilable(WhopSDK::Lesson::Thumbnail)) }
       attr_reader :thumbnail
 
@@ -62,11 +70,12 @@ module WhopSDK
       end
       attr_writer :thumbnail
 
-      # The title of the lesson
+      # The display name of the lesson shown to students. Maximum 120 characters.
       sig { returns(String) }
       attr_accessor :title
 
-      # The associated Mux asset for video lessons
+      # The Mux video asset for video-type lessons, used for streaming playback. Null if
+      # this lesson has no hosted video.
       sig { returns(T.nilable(WhopSDK::Lesson::VideoAsset)) }
       attr_reader :video_asset
 
@@ -75,12 +84,13 @@ module WhopSDK
       end
       attr_writer :video_asset
 
-      # The visibility of the lesson. Determines how / whether this lesson is visible to
-      # users.
+      # The visibility setting that controls whether this lesson appears to students.
+      # One of: visible, hidden.
       sig { returns(WhopSDK::LessonVisibilities::TaggedSymbol) }
       attr_accessor :visibility
 
-      # A lesson from the courses app
+      # An individual learning unit within a chapter, which can contain text, video,
+      # PDF, or assessment content.
       sig do
         params(
           id: String,
@@ -104,34 +114,43 @@ module WhopSDK
       def self.new(
         # The unique identifier for the lesson.
         id:,
-        # Assessment questions for quiz/knowledge check lessons
+        # The list of questions for quiz or knowledge check lessons. Empty for
+        # non-assessment lesson types.
         assessment_questions:,
-        # The attached files in this lesson as a flat array
+        # All supplementary files attached to this lesson returned as a flat array rather
+        # than a paginated connection.
         attachments:,
-        # The content of the lesson
+        # The text body of the lesson in plain text format. Null if the lesson has no text
+        # content.
         content:,
         # The datetime the lesson was created.
         created_at:,
-        # Number of days from course start until the lesson is unlocked
+        # The number of days after a student starts the course before this lesson becomes
+        # accessible. Null if the lesson is available immediately.
         days_from_course_start_until_unlock:,
-        # ID for the embed (YouTube video ID or Loom share ID)
+        # The external video identifier for embedded video lessons, such as a YouTube
+        # video ID or Loom share ID. Null if the lesson has no embed.
         embed_id:,
         # The type of embed for a lesson
         embed_type:,
-        # The type of the lesson (text, video, pdf, multi, quiz, knowledge_check)
+        # The content format of this lesson. One of: text, video, pdf, multi, quiz,
+        # knowledge_check.
         lesson_type:,
-        # The main PDF file for this lesson
+        # The primary PDF document for PDF-type lessons. Null if this lesson is not a PDF
+        # lesson or no PDF has been uploaded.
         main_pdf:,
-        # The order of the lesson within its chapter
+        # The sort position of this lesson within its parent chapter, starting from zero.
         order:,
-        # The thumbnail for the lesson
+        # The thumbnail image displayed on lesson cards and previews. Null if no thumbnail
+        # has been uploaded.
         thumbnail:,
-        # The title of the lesson
+        # The display name of the lesson shown to students. Maximum 120 characters.
         title:,
-        # The associated Mux asset for video lessons
+        # The Mux video asset for video-type lessons, used for streaming playback. Null if
+        # this lesson has no hosted video.
         video_asset:,
-        # The visibility of the lesson. Determines how / whether this lesson is visible to
-        # users.
+        # The visibility setting that controls whether this lesson appears to students.
+        # One of: visible, hidden.
         visibility:
       )
       end
@@ -271,7 +290,11 @@ module WhopSDK
               )
             end
 
-          # The unique identifier of the attachment.
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
           sig { returns(String) }
           attr_accessor :id
 
@@ -298,7 +321,11 @@ module WhopSDK
             ).returns(T.attached_class)
           end
           def self.new(
-            # The unique identifier of the attachment.
+            # Represents a unique identifier that is Base64 obfuscated. It is often used to
+            # refetch an object or as key for a cache. The ID type appears in a JSON response
+            # as a String; however, it is not intended to be human-readable. When expected as
+            # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+            # input value will be accepted as an ID.
             id:,
             # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
             content_type:,
@@ -393,7 +420,11 @@ module WhopSDK
             T.any(WhopSDK::Lesson::Attachment, WhopSDK::Internal::AnyHash)
           end
 
-        # The unique identifier of the attachment.
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         sig { returns(String) }
         attr_accessor :id
 
@@ -420,7 +451,11 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The unique identifier of the attachment.
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
           id:,
           # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
           content_type:,
@@ -452,7 +487,11 @@ module WhopSDK
             T.any(WhopSDK::Lesson::MainPdf, WhopSDK::Internal::AnyHash)
           end
 
-        # The unique identifier of the attachment.
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         sig { returns(String) }
         attr_accessor :id
 
@@ -469,7 +508,8 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :url
 
-        # The main PDF file for this lesson
+        # The primary PDF document for PDF-type lessons. Null if this lesson is not a PDF
+        # lesson or no PDF has been uploaded.
         sig do
           params(
             id: String,
@@ -479,7 +519,11 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The unique identifier of the attachment.
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
           id:,
           # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
           content_type:,
@@ -516,7 +560,8 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :url
 
-        # The thumbnail for the lesson
+        # The thumbnail image displayed on lesson cards and previews. Null if no thumbnail
+        # has been uploaded.
         sig { params(url: T.nilable(String)).returns(T.attached_class) }
         def self.new(
           # A pre-optimized URL for rendering this attachment on the client. This should be
@@ -588,7 +633,8 @@ module WhopSDK
         sig { returns(Time) }
         attr_accessor :updated_at
 
-        # The associated Mux asset for video lessons
+        # The Mux video asset for video-type lessons, used for streaming playback. Null if
+        # this lesson has no hosted video.
         sig do
           params(
             id: String,

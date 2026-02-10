@@ -20,7 +20,8 @@ module WhopSDK
       optional :before, String, nil?: true
 
       # @!attribute company_id
-      #   Filter DM channels scoped to a specific company
+      #   The unique identifier of a company to filter DM channels by. Only returns
+      #   channels scoped to this company.
       #
       #   @return [String, nil]
       optional :company_id, String, nil?: true
@@ -38,11 +39,14 @@ module WhopSDK
       optional :last, Integer, nil?: true
 
       # @!method initialize(after: nil, before: nil, company_id: nil, first: nil, last: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::DmChannelListParams} for more details.
+      #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param company_id [String, nil] Filter DM channels scoped to a specific company
+      #   @param company_id [String, nil] The unique identifier of a company to filter DM channels by. Only returns channe
       #
       #   @param first [Integer, nil] Returns the first _n_ elements from the list.
       #

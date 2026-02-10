@@ -15,7 +15,7 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The company associated with the authorized user.
+      # The company this authorized user has access to.
       sig { returns(WhopSDK::Models::AuthorizedUserRetrieveResponse::Company) }
       attr_reader :company
 
@@ -27,11 +27,11 @@ module WhopSDK
       end
       attr_writer :company
 
-      # The role of the authorized user in the company.
+      # The permission role assigned to this authorized user within the company.
       sig { returns(WhopSDK::AuthorizedUserRoles::TaggedSymbol) }
       attr_accessor :role
 
-      # The user associated with the authorized user.
+      # The user account linked to this authorized user record.
       sig { returns(WhopSDK::Models::AuthorizedUserRetrieveResponse::User) }
       attr_reader :user
 
@@ -42,7 +42,8 @@ module WhopSDK
       end
       attr_writer :user
 
-      # A user who has elevated security privileges for a company
+      # A user who has been granted administrative access to manage a company's
+      # dashboard and settings.
       sig do
         params(
           id: String,
@@ -55,11 +56,11 @@ module WhopSDK
       def self.new(
         # The unique identifier for the authorized user.
         id:,
-        # The company associated with the authorized user.
+        # The company this authorized user has access to.
         company:,
-        # The role of the authorized user in the company.
+        # The permission role assigned to this authorized user within the company.
         role:,
-        # The user associated with the authorized user.
+        # The user account linked to this authorized user record.
         user:
       )
       end
@@ -94,7 +95,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :title
 
-        # The company associated with the authorized user.
+        # The company this authorized user has access to.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the company.
@@ -135,7 +136,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :username
 
-        # The user associated with the authorized user.
+        # The user account linked to this authorized user record.
         sig do
           params(
             id: String,

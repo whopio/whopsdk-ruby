@@ -20,19 +20,20 @@ module WhopSDK
       optional :before, String, nil?: true
 
       # @!attribute company_id
-      #   The ID of the Company. Provide either this or member_id (not both).
+      #   The unique identifier of the company. Provide either this or member_id, not
+      #   both.
       #
       #   @return [String, nil]
       optional :company_id, String, nil?: true
 
       # @!attribute created_after
-      #   The minimum creation date to filter by
+      #   Only return payment methods created after this timestamp.
       #
       #   @return [Time, nil]
       optional :created_after, Time, nil?: true
 
       # @!attribute created_before
-      #   The maximum creation date to filter by
+      #   Only return payment methods created before this timestamp.
       #
       #   @return [Time, nil]
       optional :created_before, Time, nil?: true
@@ -56,21 +57,24 @@ module WhopSDK
       optional :last, Integer, nil?: true
 
       # @!attribute member_id
-      #   The ID of the Member to list payment methods for
+      #   The unique identifier of the member to list payment methods for.
       #
       #   @return [String, nil]
       optional :member_id, String, nil?: true
 
       # @!method initialize(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, member_id: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::PaymentMethodListParams} for more details.
+      #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param company_id [String, nil] The ID of the Company. Provide either this or member_id (not both).
+      #   @param company_id [String, nil] The unique identifier of the company. Provide either this or member_id, not both
       #
-      #   @param created_after [Time, nil] The minimum creation date to filter by
+      #   @param created_after [Time, nil] Only return payment methods created after this timestamp.
       #
-      #   @param created_before [Time, nil] The maximum creation date to filter by
+      #   @param created_before [Time, nil] Only return payment methods created before this timestamp.
       #
       #   @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
@@ -78,7 +82,7 @@ module WhopSDK
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      #   @param member_id [String, nil] The ID of the Member to list payment methods for
+      #   @param member_id [String, nil] The unique identifier of the member to list payment methods for.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

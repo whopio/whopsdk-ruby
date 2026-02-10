@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class Reviews
-      # Retrieve a review by its ID
+      # Retrieves the details of an existing review.
       sig do
         params(
           id: String,
@@ -11,13 +11,14 @@ module WhopSDK
         ).returns(WhopSDK::Models::ReviewRetrieveResponse)
       end
       def retrieve(
-        # The ID of the review
+        # The unique identifier of the review to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # List all reviews
+      # Returns a paginated list of customer reviews for a specific product, with
+      # optional filtering by star rating and creation date.
       sig do
         params(
           product_id: String,
@@ -35,23 +36,23 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the product
+        # The unique identifier of the product to list reviews for.
         product_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The minimum creation date to filter by
+        # Only return reviews created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return reviews created before this timestamp.
         created_before: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The maximum star rating of the review (inclusive)
+        # The maximum star rating to include in results, from 1 to 5 inclusive.
         max_stars: nil,
-        # The minimum star rating of the review (inclusive)
+        # The minimum star rating to include in results, from 1 to 5 inclusive.
         min_stars: nil,
         request_options: {}
       )

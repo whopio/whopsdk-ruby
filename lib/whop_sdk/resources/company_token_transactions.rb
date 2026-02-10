@@ -3,7 +3,11 @@
 module WhopSDK
   module Resources
     class CompanyTokenTransactions
-      # Create a token transaction (add/subtract/transfer) for a member
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::CompanyTokenTransactionCreateParams} for more details.
+      #
+      # Create a token transaction to add, subtract, or transfer tokens for a member
+      # within a company.
       #
       # Required permissions:
       #
@@ -13,17 +17,17 @@ module WhopSDK
       #
       # @overload create(amount:, company_id:, destination_user_id:, user_id:, description: nil, idempotency_key: nil, transaction_type: :subtract, request_options: {})
       #
-      # @param amount [Float] The positive amount of tokens
+      # @param amount [Float] The positive number of tokens to transact. For example, 100.0 for 100 tokens.
       #
-      # @param company_id [String] The company ID
+      # @param company_id [String] The unique identifier of the company to create the transaction in, starting with
       #
-      # @param destination_user_id [String] Required for transfers - the user to receive tokens
+      # @param destination_user_id [String] The unique identifier of the user receiving the tokens. Required when the transa
       #
-      # @param user_id [String] The user ID whose balance will change
+      # @param user_id [String] The unique identifier of the user whose token balance will be affected, starting
       #
-      # @param description [String, nil] Optional description for the transaction
+      # @param description [String, nil] A human-readable description of why the transaction was created.
       #
-      # @param idempotency_key [String, nil] Optional key to prevent duplicate transactions
+      # @param idempotency_key [String, nil] A unique key to prevent duplicate transactions. Use a UUID or similar unique str
       #
       # @param transaction_type [Symbol, :subtract]
       #
@@ -43,7 +47,7 @@ module WhopSDK
         )
       end
 
-      # Retrieves a token transaction by ID
+      # Retrieves the details of an existing company token transaction.
       #
       # Required permissions:
       #
@@ -53,7 +57,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the transaction
+      # @param id [String] The unique identifier of the token transaction to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -69,7 +73,9 @@ module WhopSDK
         )
       end
 
-      # Lists token transactions for a company
+      # Returns a paginated list of token transactions for a user or company, depending
+      # on the authenticated actor, with optional filtering by user and transaction
+      # type.
       #
       # Required permissions:
       #
@@ -79,7 +85,7 @@ module WhopSDK
       #
       # @overload list(company_id:, after: nil, before: nil, first: nil, last: nil, transaction_type: nil, user_id: nil, request_options: {})
       #
-      # @param company_id [String] The ID of the company
+      # @param company_id [String] The unique identifier of the company to list token transactions for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -91,7 +97,7 @@ module WhopSDK
       #
       # @param transaction_type [Symbol, WhopSDK::Models::BotTokenTransactionTypes, nil] The type of token transaction
       #
-      # @param user_id [String, nil] Filter by user ID
+      # @param user_id [String, nil] Filter transactions to only those involving this specific user.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

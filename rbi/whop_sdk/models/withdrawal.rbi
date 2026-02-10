@@ -10,8 +10,8 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The withdrawal amount. Provided as a number in the specified currency. Eg:
-      # 100.00 for $100.00 USD.
+      # The withdrawal amount as a decimal number in the specified currency (e.g.,
+      # 100.00 for $100.00 USD).
       sig { returns(Float) }
       attr_accessor :amount
 
@@ -19,7 +19,7 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The currency of the withdrawal request.
+      # The three-letter ISO currency code for this withdrawal (e.g., 'usd', 'eur').
       sig { returns(WhopSDK::Currency::TaggedSymbol) }
       attr_accessor :currency
 
@@ -27,16 +27,18 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::Withdrawal::ErrorCode::TaggedSymbol)) }
       attr_accessor :error_code
 
-      # The error message for the withdrawal, if any.
+      # A human-readable message describing why the payout failed. Null if no error
+      # occurred.
       sig { returns(T.nilable(String)) }
       attr_accessor :error_message
 
-      # The estimated availability date for the withdrawal, if any.
+      # The estimated time at which the funds become available in the destination
+      # account. Null if no estimate is available. As a Unix timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :estimated_availability
 
-      # The fee amount that was charged for the withdrawal. This is in the same currency
-      # as the withdrawal amount.
+      # The fee charged for processing this withdrawal, in the same currency as the
+      # withdrawal amount.
       sig { returns(Float) }
       attr_accessor :fee_amount
 
@@ -44,7 +46,7 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::WithdrawalFeeTypes::TaggedSymbol)) }
       attr_accessor :fee_type
 
-      # The ledger account associated with the withdrawal.
+      # The ledger account from which the withdrawal funds are sourced.
       sig { returns(WhopSDK::Withdrawal::LedgerAccount) }
       attr_reader :ledger_account
 
@@ -53,13 +55,13 @@ module WhopSDK
       end
       attr_writer :ledger_account
 
-      # The markup fee that was charged for the withdrawal. This is in the same currency
-      # as the withdrawal amount. This only applies to platform accounts using Whop
-      # Rails.
+      # An additional markup fee charged for the withdrawal, in the same currency as the
+      # withdrawal amount. Only applies to platform accounts using Whop Rails.
       sig { returns(Float) }
       attr_accessor :markup_fee
 
-      # The payout token used for the withdrawal, if applicable.
+      # The saved payout destination used for this withdrawal (e.g., a bank account or
+      # PayPal address). Null if no payout token was used.
       sig { returns(T.nilable(WhopSDK::Withdrawal::PayoutToken)) }
       attr_reader :payout_token
 
@@ -70,16 +72,17 @@ module WhopSDK
       end
       attr_writer :payout_token
 
-      # The speed of the withdrawal.
+      # The processing speed selected for this withdrawal ('standard' or 'instant').
       sig { returns(WhopSDK::WithdrawalSpeeds::TaggedSymbol) }
       attr_accessor :speed
 
-      # Status of the withdrawal.
+      # The computed lifecycle status of the withdrawal, accounting for the state of
+      # associated payouts (e.g., 'requested', 'in_transit', 'completed', 'failed').
       sig { returns(WhopSDK::WithdrawalStatus::TaggedSymbol) }
       attr_accessor :status
 
-      # The trace code for the payout, if applicable. Provided on ACH transactions when
-      # available.
+      # The ACH trace number for tracking the payout through the banking network. Null
+      # if not available or not an ACH transaction.
       sig { returns(T.nilable(String)) }
       attr_accessor :trace_code
 
@@ -107,38 +110,41 @@ module WhopSDK
       def self.new(
         # The unique identifier for the withdrawal.
         id:,
-        # The withdrawal amount. Provided as a number in the specified currency. Eg:
-        # 100.00 for $100.00 USD.
+        # The withdrawal amount as a decimal number in the specified currency (e.g.,
+        # 100.00 for $100.00 USD).
         amount:,
         # The datetime the withdrawal was created.
         created_at:,
-        # The currency of the withdrawal request.
+        # The three-letter ISO currency code for this withdrawal (e.g., 'usd', 'eur').
         currency:,
         # The different error codes a payout can be in.
         error_code:,
-        # The error message for the withdrawal, if any.
+        # A human-readable message describing why the payout failed. Null if no error
+        # occurred.
         error_message:,
-        # The estimated availability date for the withdrawal, if any.
+        # The estimated time at which the funds become available in the destination
+        # account. Null if no estimate is available. As a Unix timestamp.
         estimated_availability:,
-        # The fee amount that was charged for the withdrawal. This is in the same currency
-        # as the withdrawal amount.
+        # The fee charged for processing this withdrawal, in the same currency as the
+        # withdrawal amount.
         fee_amount:,
         # The different fee types for a withdrawal.
         fee_type:,
-        # The ledger account associated with the withdrawal.
+        # The ledger account from which the withdrawal funds are sourced.
         ledger_account:,
-        # The markup fee that was charged for the withdrawal. This is in the same currency
-        # as the withdrawal amount. This only applies to platform accounts using Whop
-        # Rails.
+        # An additional markup fee charged for the withdrawal, in the same currency as the
+        # withdrawal amount. Only applies to platform accounts using Whop Rails.
         markup_fee:,
-        # The payout token used for the withdrawal, if applicable.
+        # The saved payout destination used for this withdrawal (e.g., a bank account or
+        # PayPal address). Null if no payout token was used.
         payout_token:,
-        # The speed of the withdrawal.
+        # The processing speed selected for this withdrawal ('standard' or 'instant').
         speed:,
-        # Status of the withdrawal.
+        # The computed lifecycle status of the withdrawal, accounting for the state of
+        # associated payouts (e.g., 'requested', 'in_transit', 'completed', 'failed').
         status:,
-        # The trace code for the payout, if applicable. Provided on ACH transactions when
-        # available.
+        # The ACH trace number for tracking the payout through the banking network. Null
+        # if not available or not an ACH transaction.
         trace_code:
       )
       end
@@ -412,7 +418,7 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :company_id
 
-        # The ledger account associated with the withdrawal.
+        # The ledger account from which the withdrawal funds are sourced.
         sig do
           params(id: String, company_id: T.nilable(String)).returns(
             T.attached_class
@@ -449,21 +455,22 @@ module WhopSDK
         sig { returns(Time) }
         attr_accessor :created_at
 
-        # The currency code of the payout destination. This is the currency that payouts
-        # will be made in for this token.
+        # The three-letter ISO currency code that payouts are delivered in for this
+        # destination.
         sig { returns(String) }
         attr_accessor :destination_currency_code
 
-        # An optional nickname for the payout token to help the user identify it. This is
-        # not used by the provider and is only for the user's reference.
+        # A user-defined label to help identify this payout destination. Not sent to the
+        # provider. Null if no nickname has been set.
         sig { returns(T.nilable(String)) }
         attr_accessor :nickname
 
-        # The name of the payer associated with the payout token.
+        # The legal name of the account holder receiving payouts. Null if not provided.
         sig { returns(T.nilable(String)) }
         attr_accessor :payer_name
 
-        # The payout token used for the withdrawal, if applicable.
+        # The saved payout destination used for this withdrawal (e.g., a bank account or
+        # PayPal address). Null if no payout token was used.
         sig do
           params(
             id: String,
@@ -478,13 +485,13 @@ module WhopSDK
           id:,
           # The datetime the payout token was created.
           created_at:,
-          # The currency code of the payout destination. This is the currency that payouts
-          # will be made in for this token.
+          # The three-letter ISO currency code that payouts are delivered in for this
+          # destination.
           destination_currency_code:,
-          # An optional nickname for the payout token to help the user identify it. This is
-          # not used by the provider and is only for the user's reference.
+          # A user-defined label to help identify this payout destination. Not sent to the
+          # provider. Null if no nickname has been set.
           nickname:,
-          # The name of the payer associated with the payout token.
+          # The legal name of the account holder receiving payouts. Null if not provided.
           payer_name:
         )
         end

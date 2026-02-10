@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class PayoutMethods
-      # Retrieves a payout method by ID
+      # Retrieves the details of an existing payout method.
       #
       # Required permissions:
       #
@@ -15,13 +15,14 @@ module WhopSDK
         ).returns(WhopSDK::Models::PayoutMethodRetrieveResponse)
       end
       def retrieve(
-        # The ID of the payout method
+        # The unique identifier of the payout method to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # Lists payout destinations for a company
+      # Returns a list of active payout methods configured for a company, ordered by
+      # most recently created.
       #
       # Required permissions:
       #
@@ -41,7 +42,7 @@ module WhopSDK
         )
       end
       def list(
-        # The company ID to list payout methods for.
+        # The unique identifier of the company to list payout methods for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,

@@ -50,7 +50,7 @@ module WhopSDK
       )
       end
 
-      # Retrieves a payment by ID
+      # Retrieves the details of an existing payment.
       #
       # Required permissions:
       #
@@ -68,13 +68,14 @@ module WhopSDK
         ).returns(WhopSDK::Payment)
       end
       def retrieve(
-        # The ID of the payment
+        # The unique identifier of the payment.
         id,
         request_options: {}
       )
       end
 
-      # Lists payments
+      # Returns a paginated list of payments for a company, with optional filtering by
+      # product, plan, status, billing reason, currency, and creation date.
       #
       # Required permissions:
       #
@@ -111,43 +112,45 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the company to list payments for
+        # The unique identifier of the company to list payments for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The billing reason for the payment
+        # Filter payments by their billing reason.
         billing_reasons: nil,
-        # The minimum creation date to filter by
+        # Only return payments created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return payments created before this timestamp.
         created_before: nil,
-        # The currency of the payment.
+        # Filter payments by their currency code.
         currencies: nil,
         # The direction of the sort.
         direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
-        # Whether to include free payments.
+        # Whether to include payments with a zero amount.
         include_free: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
         # The order to sort the results by.
         order: nil,
-        # A specific plan.
+        # Filter payments to only those associated with these specific plan identifiers.
         plan_ids: nil,
-        # A specific product.
+        # Filter payments to only those associated with these specific product
+        # identifiers.
         product_ids: nil,
-        # The status of the payment.
+        # Filter payments by their current status.
         statuses: nil,
-        # The substatus of the payment.
+        # Filter payments by their current substatus for more granular filtering.
         substatuses: nil,
         request_options: {}
       )
       end
 
-      # Lists fees for a payment
+      # Returns the list of fees associated with a specific payment, including platform
+      # fees and processing fees.
       #
       # Required permissions:
       #
@@ -167,7 +170,7 @@ module WhopSDK
         )
       end
       def list_fees(
-        # The ID of the payment to list fees for
+        # The unique identifier of the payment to list fees for.
         id,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
@@ -181,7 +184,8 @@ module WhopSDK
       )
       end
 
-      # Refunds a payment
+      # Issue a full or partial refund for a payment. The refund is processed through
+      # the original payment processor and the membership status is updated accordingly.
       #
       # Required permissions:
       #
@@ -200,15 +204,17 @@ module WhopSDK
         ).returns(WhopSDK::Payment)
       end
       def refund(
-        # The ID of the payment you want to update or take action upon.
+        # The unique identifier of the payment to refund.
         id,
-        # An amount if the refund is supposed to be partial.
+        # The amount to refund in the payment currency. If omitted, the full payment
+        # amount is refunded.
         partial_amount: nil,
         request_options: {}
       )
       end
 
-      # Retries a payment
+      # Retry a failed or pending payment. This re-attempts the charge using the
+      # original payment method and plan details.
       #
       # Required permissions:
       #
@@ -226,13 +232,14 @@ module WhopSDK
         ).returns(WhopSDK::Payment)
       end
       def retry_(
-        # The ID of the payment
+        # The unique identifier of the payment to retry.
         id,
         request_options: {}
       )
       end
 
-      # Voids a payment
+      # Void a payment that has not yet been settled. Voiding cancels the payment before
+      # it is captured by the payment processor.
       #
       # Required permissions:
       #
@@ -250,7 +257,7 @@ module WhopSDK
         ).returns(WhopSDK::Payment)
       end
       def void(
-        # The ID of the payment you want to void.
+        # The unique identifier of the payment to void.
         id,
         request_options: {}
       )

@@ -11,7 +11,8 @@ module WhopSDK
           T.any(WhopSDK::PlanUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The interval in days at which the plan charges (renewal plans).
+      # The number of days between recurring charges. For example, 30 for monthly or 365
+      # for yearly.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :billing_period
 
@@ -19,22 +20,22 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::Currency::OrSymbol)) }
       attr_accessor :currency
 
-      # An array of custom field objects.
+      # An array of custom field definitions to collect from customers at checkout.
       sig do
         returns(T.nilable(T::Array[WhopSDK::PlanUpdateParams::CustomField]))
       end
       attr_accessor :custom_fields
 
-      # The description of the plan.
+      # A text description of the plan displayed to customers on the product page.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      # The number of days until the membership expires (for expiration-based plans).
-      # For example, 365 for a one-year access pass.
+      # The number of days until the membership expires and access is revoked. For
+      # example, 365 for one-year access.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :expiration_days
 
-      # An image for the plan. This will be visible on the product page to customers.
+      # An image displayed on the product page to represent this plan.
       sig { returns(T.nilable(WhopSDK::PlanUpdateParams::Image)) }
       attr_reader :image
 
@@ -43,20 +44,20 @@ module WhopSDK
       end
       attr_writer :image
 
-      # An additional amount charged upon first purchase. Provided as a number in the
-      # specified currency. Eg: 10.43 for $10.43 USD.
+      # The amount charged on the first purchase. Provided in the plan's currency (e.g.,
+      # 10.43 for $10.43).
       sig { returns(T.nilable(Float)) }
       attr_accessor :initial_price
 
-      # A personal description or notes section for the business.
+      # Private notes visible only to the business owner. Not shown to customers.
       sig { returns(T.nilable(String)) }
       attr_accessor :internal_notes
 
-      # Whether this plan uses legacy payment method controls
+      # Whether this plan uses legacy payment method controls.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :legacy_payment_method_controls
 
-      # Whether or not to offer a discount to cancel a subscription.
+      # Whether to offer a retention discount when a customer attempts to cancel.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :offer_cancel_discount
 
@@ -65,8 +66,8 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::TaxType::OrSymbol)) }
       attr_accessor :override_tax_type
 
-      # The explicit payment method configuration for the plan. If sent as null, the
-      # custom configuration will be removed.
+      # Explicit payment method configuration for the plan. Sending null removes any
+      # custom configuration.
       sig do
         returns(
           T.nilable(WhopSDK::PlanUpdateParams::PaymentMethodConfiguration)
@@ -84,35 +85,35 @@ module WhopSDK
       end
       attr_writer :payment_method_configuration
 
-      # The amount the customer is charged every billing period. Provided as a number in
-      # the specified currency. Eg: 10.43 for $10.43 USD.
+      # The amount charged each billing period for recurring plans. Provided in the
+      # plan's currency (e.g., 10.43 for $10.43).
       sig { returns(T.nilable(Float)) }
       attr_accessor :renewal_price
 
-      # The number of units available for purchase.
+      # The maximum number of units available for purchase. Ignored when unlimited_stock
+      # is true.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :stock
 
-      # The price to display with a strikethrough for the initial price. Provided as a
-      # number in the specified currency. Eg: 19.99 for $19.99
+      # A comparison price displayed with a strikethrough for the initial price.
+      # Provided in the plan's currency (e.g., 19.99 for $19.99).
       sig { returns(T.nilable(Float)) }
       attr_accessor :strike_through_initial_price
 
-      # The price to display with a strikethrough for the renewal price. Provided as a
-      # number in the specified currency. Eg: 19.99 for $19.99
+      # A comparison price displayed with a strikethrough for the renewal price.
+      # Provided in the plan's currency (e.g., 19.99 for $19.99).
       sig { returns(T.nilable(Float)) }
       attr_accessor :strike_through_renewal_price
 
-      # The title of the plan. This will be visible on the product page to customers.
+      # The display name of the plan shown to customers on the product page.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
-      # The number of free trial days added before a renewal plan.
+      # The number of free trial days before the first charge on a recurring plan.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :trial_period_days
 
-      # When true, the plan has unlimited stock (stock field is ignored). When false,
-      # purchases are limited by the stock field.
+      # Whether the plan has unlimited stock. When true, the stock field is ignored.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :unlimited_stock
 
@@ -150,51 +151,52 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The interval in days at which the plan charges (renewal plans).
+        # The number of days between recurring charges. For example, 30 for monthly or 365
+        # for yearly.
         billing_period: nil,
         # The available currencies on the platform
         currency: nil,
-        # An array of custom field objects.
+        # An array of custom field definitions to collect from customers at checkout.
         custom_fields: nil,
-        # The description of the plan.
+        # A text description of the plan displayed to customers on the product page.
         description: nil,
-        # The number of days until the membership expires (for expiration-based plans).
-        # For example, 365 for a one-year access pass.
+        # The number of days until the membership expires and access is revoked. For
+        # example, 365 for one-year access.
         expiration_days: nil,
-        # An image for the plan. This will be visible on the product page to customers.
+        # An image displayed on the product page to represent this plan.
         image: nil,
-        # An additional amount charged upon first purchase. Provided as a number in the
-        # specified currency. Eg: 10.43 for $10.43 USD.
+        # The amount charged on the first purchase. Provided in the plan's currency (e.g.,
+        # 10.43 for $10.43).
         initial_price: nil,
-        # A personal description or notes section for the business.
+        # Private notes visible only to the business owner. Not shown to customers.
         internal_notes: nil,
-        # Whether this plan uses legacy payment method controls
+        # Whether this plan uses legacy payment method controls.
         legacy_payment_method_controls: nil,
-        # Whether or not to offer a discount to cancel a subscription.
+        # Whether to offer a retention discount when a customer attempts to cancel.
         offer_cancel_discount: nil,
         # Whether or not the tax is included in a plan's price (or if it hasn't been set
         # up)
         override_tax_type: nil,
-        # The explicit payment method configuration for the plan. If sent as null, the
-        # custom configuration will be removed.
+        # Explicit payment method configuration for the plan. Sending null removes any
+        # custom configuration.
         payment_method_configuration: nil,
-        # The amount the customer is charged every billing period. Provided as a number in
-        # the specified currency. Eg: 10.43 for $10.43 USD.
+        # The amount charged each billing period for recurring plans. Provided in the
+        # plan's currency (e.g., 10.43 for $10.43).
         renewal_price: nil,
-        # The number of units available for purchase.
+        # The maximum number of units available for purchase. Ignored when unlimited_stock
+        # is true.
         stock: nil,
-        # The price to display with a strikethrough for the initial price. Provided as a
-        # number in the specified currency. Eg: 19.99 for $19.99
+        # A comparison price displayed with a strikethrough for the initial price.
+        # Provided in the plan's currency (e.g., 19.99 for $19.99).
         strike_through_initial_price: nil,
-        # The price to display with a strikethrough for the renewal price. Provided as a
-        # number in the specified currency. Eg: 19.99 for $19.99
+        # A comparison price displayed with a strikethrough for the renewal price.
+        # Provided in the plan's currency (e.g., 19.99 for $19.99).
         strike_through_renewal_price: nil,
-        # The title of the plan. This will be visible on the product page to customers.
+        # The display name of the plan shown to customers on the product page.
         title: nil,
-        # The number of free trial days added before a renewal plan.
+        # The number of free trial days before the first charge on a recurring plan.
         trial_period_days: nil,
-        # When true, the plan has unlimited stock (stock field is ignored). When false,
-        # purchases are limited by the stock field.
+        # Whether the plan has unlimited stock. When true, the stock field is ignored.
         unlimited_stock: nil,
         # Visibility of a resource
         visibility: nil,
@@ -319,7 +321,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # An image for the plan. This will be visible on the product page to customers.
+        # An image displayed on the product page to represent this plan.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.
@@ -359,8 +361,8 @@ module WhopSDK
         sig { returns(T::Boolean) }
         attr_accessor :include_platform_defaults
 
-        # The explicit payment method configuration for the plan. If sent as null, the
-        # custom configuration will be removed.
+        # Explicit payment method configuration for the plan. Sending null removes any
+        # custom configuration.
         sig do
           params(
             disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],

@@ -15,7 +15,8 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The checkout configuration associated with the setup intent
+      # The checkout session configuration associated with this setup intent. Null if no
+      # checkout session was used.
       sig do
         returns(
           T.nilable(
@@ -35,7 +36,8 @@ module WhopSDK
       end
       attr_writer :checkout_configuration
 
-      # The company of the setup intent
+      # The company that initiated this setup intent. Null if the company has been
+      # deleted.
       sig do
         returns(T.nilable(WhopSDK::Models::SetupIntentListResponse::Company))
       end
@@ -53,11 +55,13 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The error message, if any.
+      # A human-readable error message explaining why the setup intent failed. Null if
+      # no error occurred.
       sig { returns(T.nilable(String)) }
       attr_accessor :error_message
 
-      # The member connected to the setup intent
+      # The company member associated with this setup intent. Null if the user is not a
+      # member.
       sig do
         returns(T.nilable(WhopSDK::Models::SetupIntentListResponse::Member))
       end
@@ -71,11 +75,13 @@ module WhopSDK
       end
       attr_writer :member
 
-      # The metadata associated with the setup intent
+      # Custom key-value pairs attached to this setup intent. Null if no metadata was
+      # provided.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
-      # The payment method created during the setup, if available.
+      # The saved payment method created by this setup intent. Null if the setup has not
+      # completed successfully.
       sig do
         returns(
           T.nilable(WhopSDK::Models::SetupIntentListResponse::PaymentMethod)
@@ -93,11 +99,12 @@ module WhopSDK
       end
       attr_writer :payment_method
 
-      # The status of the setup intent
+      # The current status of the setup intent.
       sig { returns(WhopSDK::SetupIntentStatus::TaggedSymbol) }
       attr_accessor :status
 
-      # A setup intent allows a user to save a payment method without making a purchase.
+      # A setup intent allows a user to save a payment method for future use without
+      # making an immediate purchase.
       sig do
         params(
           id: String,
@@ -124,21 +131,27 @@ module WhopSDK
       def self.new(
         # The unique identifier for the setup intent.
         id:,
-        # The checkout configuration associated with the setup intent
+        # The checkout session configuration associated with this setup intent. Null if no
+        # checkout session was used.
         checkout_configuration:,
-        # The company of the setup intent
+        # The company that initiated this setup intent. Null if the company has been
+        # deleted.
         company:,
         # The datetime the setup intent was created.
         created_at:,
-        # The error message, if any.
+        # A human-readable error message explaining why the setup intent failed. Null if
+        # no error occurred.
         error_message:,
-        # The member connected to the setup intent
+        # The company member associated with this setup intent. Null if the user is not a
+        # member.
         member:,
-        # The metadata associated with the setup intent
+        # Custom key-value pairs attached to this setup intent. Null if no metadata was
+        # provided.
         metadata:,
-        # The payment method created during the setup, if available.
+        # The saved payment method created by this setup intent. Null if the setup has not
+        # completed successfully.
         payment_method:,
-        # The status of the setup intent
+        # The current status of the setup intent.
         status:
       )
       end
@@ -181,7 +194,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The checkout configuration associated with the setup intent
+        # The checkout session configuration associated with this setup intent. Null if no
+        # checkout session was used.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the checkout session.
@@ -207,7 +221,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The company of the setup intent
+        # The company that initiated this setup intent. Null if the company has been
+        # deleted.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the company.
@@ -251,7 +266,8 @@ module WhopSDK
         end
         attr_writer :user
 
-        # The member connected to the setup intent
+        # The company member associated with this setup intent. Null if the user is not a
+        # member.
         sig do
           params(
             id: String,
@@ -385,7 +401,8 @@ module WhopSDK
         sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
         attr_accessor :payment_method_type
 
-        # The payment method created during the setup, if available.
+        # The saved payment method created by this setup intent. Null if the setup has not
+        # completed successfully.
         sig do
           params(
             id: String,
@@ -438,15 +455,16 @@ module WhopSDK
           sig { returns(T.nilable(WhopSDK::CardBrands::TaggedSymbol)) }
           attr_accessor :brand
 
-          # Card expiration month, like 03 for March.
+          # The two-digit expiration month of the card (1-12). Null if not available.
           sig { returns(T.nilable(Integer)) }
           attr_accessor :exp_month
 
-          # Card expiration year, like 27 for 2027.
+          # The two-digit expiration year of the card (e.g., 27 for 2027). Null if not
+          # available.
           sig { returns(T.nilable(Integer)) }
           attr_accessor :exp_year
 
-          # Last four digits of the card.
+          # The last four digits of the card number. Null if not available.
           sig { returns(T.nilable(String)) }
           attr_accessor :last4
 
@@ -462,11 +480,12 @@ module WhopSDK
           def self.new(
             # Possible card brands that a payment token can have
             brand:,
-            # Card expiration month, like 03 for March.
+            # The two-digit expiration month of the card (1-12). Null if not available.
             exp_month:,
-            # Card expiration year, like 27 for 2027.
+            # The two-digit expiration year of the card (e.g., 27 for 2027). Null if not
+            # available.
             exp_year:,
-            # Last four digits of the card.
+            # The last four digits of the card number. Null if not available.
             last4:
           )
           end

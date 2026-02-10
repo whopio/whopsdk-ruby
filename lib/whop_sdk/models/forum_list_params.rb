@@ -8,7 +8,7 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute company_id
-      #   The ID of the company to list forums for
+      #   The unique identifier of the company to list forums for.
       #
       #   @return [String]
       required :company_id, String
@@ -38,13 +38,17 @@ module WhopSDK
       optional :last, Integer, nil?: true
 
       # @!attribute product_id
-      #   If provided, only forums connected to this product are returned
+      #   The unique identifier of a product to filter by. When set, only forums connected
+      #   to this product are returned.
       #
       #   @return [String, nil]
       optional :product_id, String, nil?: true
 
       # @!method initialize(company_id:, after: nil, before: nil, first: nil, last: nil, product_id: nil, request_options: {})
-      #   @param company_id [String] The ID of the company to list forums for
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::ForumListParams} for more details.
+      #
+      #   @param company_id [String] The unique identifier of the company to list forums for.
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -54,7 +58,7 @@ module WhopSDK
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      #   @param product_id [String, nil] If provided, only forums connected to this product are returned
+      #   @param product_id [String, nil] The unique identifier of a product to filter by. When set, only forums connected
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

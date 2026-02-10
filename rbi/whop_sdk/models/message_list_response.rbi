@@ -19,27 +19,28 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The content of the message in Markdown format
+      # The message content formatted as Markdown. Null if the message has no text
+      # content.
       sig { returns(T.nilable(String)) }
       attr_accessor :content
 
-      # The timestamp when the post was created
+      # The timestamp when this message was originally created.
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # Whether the message has been edited
+      # Whether the message content has been edited after it was originally sent.
       sig { returns(T::Boolean) }
       attr_accessor :is_edited
 
-      # Whether this message is pinned
+      # Whether this message is pinned to the top of the channel for easy access.
       sig { returns(T::Boolean) }
       attr_accessor :is_pinned
 
-      # The type of post
+      # The classification of this message: regular, system, or automated.
       sig { returns(WhopSDK::DmsPostTypes::TaggedSymbol) }
       attr_accessor :message_type
 
-      # The poll for this message
+      # A poll attached to this message. Null if the message does not contain a poll.
       sig { returns(T.nilable(WhopSDK::Models::MessageListResponse::Poll)) }
       attr_reader :poll
 
@@ -50,25 +51,28 @@ module WhopSDK
       end
       attr_writer :poll
 
-      # The reaction counts for this message
+      # Aggregated reaction counts on this message, filtered to a specific reaction
+      # type.
       sig { returns(T::Array[WhopSDK::Models::MessageListResponse::PollVote]) }
       attr_accessor :poll_votes
 
-      # The reaction counts for this message
+      # Aggregated reaction counts on this message, filtered to a specific reaction
+      # type.
       sig do
         returns(T::Array[WhopSDK::Models::MessageListResponse::ReactionCount])
       end
       attr_accessor :reaction_counts
 
-      # The ID of the message this is replying to, if applicable
+      # The unique identifier of the message this post is replying to. Null if this is
+      # not a reply.
       sig { returns(T.nilable(String)) }
       attr_accessor :replying_to_message_id
 
-      # The timestamp when the post was last updated
+      # The timestamp when this message was last modified.
       sig { returns(Time) }
       attr_accessor :updated_at
 
-      # The user who sent this message
+      # The user who authored this message.
       sig { returns(WhopSDK::Models::MessageListResponse::User) }
       attr_reader :user
 
@@ -77,11 +81,12 @@ module WhopSDK
       end
       attr_writer :user
 
-      # The number of times this message has been viewed
+      # The number of unique views this message has received. Null if view tracking is
+      # not enabled for this channel.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :view_count
 
-      # Represents a message in a DM channel
+      # A message sent within an experience chat, direct message, or group chat.
       sig do
         params(
           id: String,
@@ -110,29 +115,34 @@ module WhopSDK
         # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
         # input value will be accepted as an ID.
         id:,
-        # The content of the message in Markdown format
+        # The message content formatted as Markdown. Null if the message has no text
+        # content.
         content:,
-        # The timestamp when the post was created
+        # The timestamp when this message was originally created.
         created_at:,
-        # Whether the message has been edited
+        # Whether the message content has been edited after it was originally sent.
         is_edited:,
-        # Whether this message is pinned
+        # Whether this message is pinned to the top of the channel for easy access.
         is_pinned:,
-        # The type of post
+        # The classification of this message: regular, system, or automated.
         message_type:,
-        # The poll for this message
+        # A poll attached to this message. Null if the message does not contain a poll.
         poll:,
-        # The reaction counts for this message
+        # Aggregated reaction counts on this message, filtered to a specific reaction
+        # type.
         poll_votes:,
-        # The reaction counts for this message
+        # Aggregated reaction counts on this message, filtered to a specific reaction
+        # type.
         reaction_counts:,
-        # The ID of the message this is replying to, if applicable
+        # The unique identifier of the message this post is replying to. Null if this is
+        # not a reply.
         replying_to_message_id:,
-        # The timestamp when the post was last updated
+        # The timestamp when this message was last modified.
         updated_at:,
-        # The user who sent this message
+        # The user who authored this message.
         user:,
-        # The number of times this message has been viewed
+        # The number of unique views this message has received. Null if view tracking is
+        # not enabled for this channel.
         view_count:
       )
       end
@@ -180,7 +190,7 @@ module WhopSDK
         end
         attr_accessor :options
 
-        # The poll for this message
+        # A poll attached to this message. Null if the message does not contain a poll.
         sig do
           params(
             options:
@@ -338,7 +348,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :username
 
-        # The user who sent this message
+        # The user who authored this message.
         sig do
           params(id: String, name: T.nilable(String), username: String).returns(
             T.attached_class

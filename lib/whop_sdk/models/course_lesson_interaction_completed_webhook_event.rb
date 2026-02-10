@@ -16,7 +16,8 @@ module WhopSDK
       required :api_version, const: :v1
 
       # @!attribute data
-      #   A lesson interaction tracking user progress in courses
+      #   A record of a user's progress on a specific lesson, tracking whether they have
+      #   completed it.
       #
       #   @return [WhopSDK::Models::CourseLessonInteraction]
       required :data, -> { WhopSDK::CourseLessonInteraction }
@@ -40,9 +41,13 @@ module WhopSDK
       optional :company_id, String, nil?: true
 
       # @!method initialize(id:, data:, timestamp:, company_id: nil, api_version: :v1, type: :"course_lesson_interaction.completed")
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::CourseLessonInteractionCompletedWebhookEvent} for more
+      #   details.
+      #
       #   @param id [String] A unique ID for every single webhook request
       #
-      #   @param data [WhopSDK::Models::CourseLessonInteraction] A lesson interaction tracking user progress in courses
+      #   @param data [WhopSDK::Models::CourseLessonInteraction] A record of a user's progress on a specific lesson, tracking whether they have c
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #

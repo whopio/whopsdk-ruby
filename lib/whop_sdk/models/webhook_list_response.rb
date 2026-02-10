@@ -11,15 +11,15 @@ module WhopSDK
       required :id, String
 
       # @!attribute api_version
-      #   The API version for this webhook
+      #   The API version used to format payloads sent to this webhook endpoint.
       #
       #   @return [Symbol, WhopSDK::Models::APIVersion]
       required :api_version, enum: -> { WhopSDK::APIVersion }
 
       # @!attribute child_resource_events
-      #   Whether or not to send events for child resources. For example, if the webhook
-      #   is created for a Company, enabling this will only send events from the Company's
-      #   sub-merchants (child companies).
+      #   Whether events are sent for child resources. For example, if the webhook is on a
+      #   company, enabling this sends events only from the company's sub-merchants (child
+      #   companies).
       #
       #   @return [Boolean]
       required :child_resource_events, WhopSDK::Internal::Type::Boolean
@@ -31,19 +31,19 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute enabled
-      #   Whether or not this webhook is turned on or not
+      #   Whether this webhook endpoint is currently active and receiving events.
       #
       #   @return [Boolean]
       required :enabled, WhopSDK::Internal::Type::Boolean
 
       # @!attribute events
-      #   The number of events this webhooks is configured to receive
+      #   The list of event types this webhook is subscribed to.
       #
       #   @return [Array<Symbol, WhopSDK::Models::WebhookEvent>]
       required :events, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::WebhookEvent] }
 
       # @!attribute url
-      #   The URL the webhook events will be sent to
+      #   The destination URL where webhook payloads are delivered via HTTP POST.
       #
       #   @return [String]
       required :url, String
@@ -57,17 +57,17 @@ module WhopSDK
       #
       #   @param id [String] The unique identifier for the webhook.
       #
-      #   @param api_version [Symbol, WhopSDK::Models::APIVersion] The API version for this webhook
+      #   @param api_version [Symbol, WhopSDK::Models::APIVersion] The API version used to format payloads sent to this webhook endpoint.
       #
-      #   @param child_resource_events [Boolean] Whether or not to send events for child resources. For example, if the webhook i
+      #   @param child_resource_events [Boolean] Whether events are sent for child resources. For example, if the webhook is on a
       #
       #   @param created_at [Time] The datetime the webhook was created.
       #
-      #   @param enabled [Boolean] Whether or not this webhook is turned on or not
+      #   @param enabled [Boolean] Whether this webhook endpoint is currently active and receiving events.
       #
-      #   @param events [Array<Symbol, WhopSDK::Models::WebhookEvent>] The number of events this webhooks is configured to receive
+      #   @param events [Array<Symbol, WhopSDK::Models::WebhookEvent>] The list of event types this webhook is subscribed to.
       #
-      #   @param url [String] The URL the webhook events will be sent to
+      #   @param url [String] The destination URL where webhook payloads are delivered via HTTP POST.
     end
   end
 end

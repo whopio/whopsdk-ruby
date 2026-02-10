@@ -11,16 +11,16 @@ module WhopSDK
           T.any(WhopSDK::CourseUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # Whether the course will award its students a PDF certificate after completing
-      # all lessons
+      # Whether the course awards students a PDF certificate after completing all
+      # lessons.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :certificate_after_completion_enabled
 
-      # The chapters and lessons to update
+      # A list of chapters with nested lessons to reorder or rename in bulk.
       sig { returns(T.nilable(T::Array[WhopSDK::CourseUpdateParams::Chapter])) }
       attr_accessor :chapters
 
-      # A short description of the course
+      # A short description of the course displayed to students on the course page.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
@@ -29,20 +29,21 @@ module WhopSDK
       attr_accessor :language
 
       # The decimal order position of the course within its experience. Use fractional
-      # values (e.g., 1.5) to place between existing courses.
+      # values (e.g., "1.5") to place between existing courses.
       sig { returns(T.nilable(String)) }
       attr_accessor :order
 
-      # Whether the course requires students to complete the previous lesson before
-      # moving on to the next one
+      # Whether students must complete each lesson sequentially before advancing to the
+      # next one.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :require_completing_lessons_in_order
 
-      # A short tagline for the course
+      # A short tagline displayed beneath the course title (e.g., "Master the
+      # fundamentals of design").
       sig { returns(T.nilable(String)) }
       attr_accessor :tagline
 
-      # The thumbnail for the course in png, jpeg, or gif format
+      # The thumbnail image for the course in PNG, JPEG, or GIF format.
       sig { returns(T.nilable(WhopSDK::CourseUpdateParams::Thumbnail)) }
       attr_reader :thumbnail
 
@@ -53,7 +54,7 @@ module WhopSDK
       end
       attr_writer :thumbnail
 
-      # The title of the course
+      # The display title of the course (e.g., "Introduction to Web Development").
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
@@ -79,26 +80,27 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # Whether the course will award its students a PDF certificate after completing
-        # all lessons
+        # Whether the course awards students a PDF certificate after completing all
+        # lessons.
         certificate_after_completion_enabled: nil,
-        # The chapters and lessons to update
+        # A list of chapters with nested lessons to reorder or rename in bulk.
         chapters: nil,
-        # A short description of the course
+        # A short description of the course displayed to students on the course page.
         description: nil,
         # The available languages for a course
         language: nil,
         # The decimal order position of the course within its experience. Use fractional
-        # values (e.g., 1.5) to place between existing courses.
+        # values (e.g., "1.5") to place between existing courses.
         order: nil,
-        # Whether the course requires students to complete the previous lesson before
-        # moving on to the next one
+        # Whether students must complete each lesson sequentially before advancing to the
+        # next one.
         require_completing_lessons_in_order: nil,
-        # A short tagline for the course
+        # A short tagline displayed beneath the course title (e.g., "Master the
+        # fundamentals of design").
         tagline: nil,
-        # The thumbnail for the course in png, jpeg, or gif format
+        # The thumbnail image for the course in PNG, JPEG, or GIF format.
         thumbnail: nil,
-        # The title of the course
+        # The display title of the course (e.g., "Introduction to Web Development").
         title: nil,
         # The available visibilities for a course. Determines how / whether a course is
         # visible to users.
@@ -265,7 +267,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The thumbnail for the course in png, jpeg, or gif format
+        # The thumbnail image for the course in PNG, JPEG, or GIF format.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.

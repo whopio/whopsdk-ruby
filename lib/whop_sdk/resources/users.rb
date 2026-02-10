@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class Users
-      # Retrieve a single user by their unique identifier or username.
+      # Retrieves the details of an existing user.
       #
       # @overload retrieve(id, request_options: {})
       #

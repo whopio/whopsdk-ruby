@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::ReactionListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the post or message to list reactions for
+      # The unique identifier of the message or forum post to list reactions for.
       sig { returns(String) }
       attr_accessor :resource_id
 
@@ -42,7 +42,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the post or message to list reactions for
+        # The unique identifier of the message or forum post to list reactions for.
         resource_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,

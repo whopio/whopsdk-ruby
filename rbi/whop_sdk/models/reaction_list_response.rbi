@@ -15,15 +15,16 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The emoji that was used in shortcode format (:heart:)
+      # The emoji used for this reaction in shortcode format. Null if the reaction type
+      # is not emoji.
       sig { returns(T.nilable(String)) }
       attr_accessor :emoji
 
-      # The ID of the post this reaction belongs to
+      # The unique identifier of the post this reaction was left on.
       sig { returns(String) }
       attr_accessor :resource_id
 
-      # The user who reacted to the post
+      # The user who left this reaction on the post.
       sig { returns(WhopSDK::Models::ReactionListResponse::User) }
       attr_reader :user
 
@@ -32,7 +33,7 @@ module WhopSDK
       end
       attr_writer :user
 
-      # Represents a reaction to a feed post
+      # A single reaction left by a user on a feed post, such as a like or emoji.
       sig do
         params(
           id: String,
@@ -44,11 +45,12 @@ module WhopSDK
       def self.new(
         # The unique identifier for the entity
         id:,
-        # The emoji that was used in shortcode format (:heart:)
+        # The emoji used for this reaction in shortcode format. Null if the reaction type
+        # is not emoji.
         emoji:,
-        # The ID of the post this reaction belongs to
+        # The unique identifier of the post this reaction was left on.
         resource_id:,
-        # The user who reacted to the post
+        # The user who left this reaction on the post.
         user:
       )
       end
@@ -87,7 +89,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :username
 
-        # The user who reacted to the post
+        # The user who left this reaction on the post.
         sig do
           params(id: String, name: T.nilable(String), username: String).returns(
             T.attached_class

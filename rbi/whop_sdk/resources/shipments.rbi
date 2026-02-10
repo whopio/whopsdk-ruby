@@ -3,7 +3,8 @@
 module WhopSDK
   module Resources
     class Shipments
-      # Creates a new shipment
+      # Create a new shipment with a tracking code for a specific payment within a
+      # company.
       #
       # Required permissions:
       #
@@ -18,17 +19,19 @@ module WhopSDK
         ).returns(WhopSDK::Shipment)
       end
       def create(
-        # The ID of the company to create the shipment for
+        # The unique identifier of the company to create the shipment for, starting with
+        # 'biz\_'.
         company_id:,
-        # The ID of the payment to create the shipment for
+        # The unique identifier of the payment to associate the shipment with.
         payment_id:,
-        # The tracking code for the shipment
+        # The carrier tracking code for the shipment, such as a USPS, UPS, or FedEx
+        # tracking number.
         tracking_code:,
         request_options: {}
       )
       end
 
-      # Retrieves a shipment by ID
+      # Retrieves the details of an existing shipment.
       #
       # Required permissions:
       #
@@ -41,13 +44,14 @@ module WhopSDK
         ).returns(WhopSDK::Shipment)
       end
       def retrieve(
-        # The ID of the shipment
+        # The unique identifier of the shipment to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # Lists shipments for a payment
+      # Returns a paginated list of shipments, with optional filtering by payment,
+      # company, or user.
       #
       # Required permissions:
       #
@@ -72,15 +76,15 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The ID of the company
+        # Filter shipments to only those belonging to this company.
         company_id: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The ID of the payment
+        # Filter shipments to only those associated with this specific payment.
         payment_id: nil,
-        # The ID of the user
+        # Filter shipments to only those for this specific user.
         user_id: nil,
         request_options: {}
       )

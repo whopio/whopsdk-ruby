@@ -27,7 +27,8 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :failure_message
 
-      # The datetime the payment was paid
+      # The time at which this payment was successfully collected. Null if the payment
+      # has not yet succeeded. As a Unix timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :paid_at
 
@@ -61,7 +62,8 @@ module WhopSDK
         currency:,
         # If the payment failed, the reason for the failure.
         failure_message:,
-        # The datetime the payment was paid
+        # The time at which this payment was successfully collected. Null if the payment
+        # has not yet succeeded. As a Unix timestamp.
         paid_at:,
         # The status of a receipt
         status:,

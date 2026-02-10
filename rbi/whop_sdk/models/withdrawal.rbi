@@ -387,6 +387,11 @@ module WhopSDK
             :unsupported_region,
             WhopSDK::Withdrawal::ErrorCode::TaggedSymbol
           )
+        PAYOUT_PROVIDER_TIMEOUT =
+          T.let(
+            :payout_provider_timeout,
+            WhopSDK::Withdrawal::ErrorCode::TaggedSymbol
+          )
 
         sig do
           override.returns(

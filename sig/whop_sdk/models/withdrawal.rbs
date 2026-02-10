@@ -133,6 +133,7 @@ module WhopSDK
         | :ssn_invalid
         | :wallet_screenshot_required
         | :unsupported_region
+        | :payout_provider_timeout
 
       module ErrorCode
         extend WhopSDK::Internal::Type::Enum
@@ -183,6 +184,7 @@ module WhopSDK
         SSN_INVALID: :ssn_invalid
         WALLET_SCREENSHOT_REQUIRED: :wallet_screenshot_required
         UNSUPPORTED_REGION: :unsupported_region
+        PAYOUT_PROVIDER_TIMEOUT: :payout_provider_timeout
 
         def self?.values: -> ::Array[WhopSDK::Models::Withdrawal::error_code]
       end

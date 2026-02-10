@@ -191,6 +191,7 @@ module WhopSDK
         SSN_INVALID = :ssn_invalid
         WALLET_SCREENSHOT_REQUIRED = :wallet_screenshot_required
         UNSUPPORTED_REGION = :unsupported_region
+        PAYOUT_PROVIDER_TIMEOUT = :payout_provider_timeout
 
         # @!method self.values
         #   @return [Array<Symbol>]

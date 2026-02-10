@@ -11,8 +11,7 @@ module WhopSDK
       required :id, String
 
       # @!attribute content
-      #   The text body of the lesson in plain text format. Null if the lesson has no text
-      #   content.
+      #   The Markdown content body of the lesson. Null if the lesson has no text content.
       #
       #   @return [String, nil]
       required :content, String, nil?: true
@@ -85,7 +84,7 @@ module WhopSDK
       #
       #   @param id [String] The unique identifier for the lesson.
       #
-      #   @param content [String, nil] The text body of the lesson in plain text format. Null if the lesson has no text
+      #   @param content [String, nil] The Markdown content body of the lesson. Null if the lesson has no text content.
       #
       #   @param created_at [Time] The datetime the lesson was created.
       #

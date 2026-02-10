@@ -20,8 +20,7 @@ module WhopSDK
       sig { returns(T::Array[WhopSDK::Lesson::Attachment]) }
       attr_accessor :attachments
 
-      # The text body of the lesson in plain text format. Null if the lesson has no text
-      # content.
+      # The Markdown content body of the lesson. Null if the lesson has no text content.
       sig { returns(T.nilable(String)) }
       attr_accessor :content
 
@@ -120,8 +119,7 @@ module WhopSDK
         # All supplementary files attached to this lesson returned as a flat array rather
         # than a paginated connection.
         attachments:,
-        # The text body of the lesson in plain text format. Null if the lesson has no text
-        # content.
+        # The Markdown content body of the lesson. Null if the lesson has no text content.
         content:,
         # The datetime the lesson was created.
         created_at:,

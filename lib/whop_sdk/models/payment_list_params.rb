@@ -7,12 +7,6 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute company_id
-      #   The unique identifier of the company to list payments for.
-      #
-      #   @return [String]
-      required :company_id, String
-
       # @!attribute after
       #   Returns the elements in the list that come after the specified cursor.
       #
@@ -32,6 +26,12 @@ module WhopSDK
       optional :billing_reasons,
                -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::BillingReasons] },
                nil?: true
+
+      # @!attribute company_id
+      #   The unique identifier of the company to list payments for.
+      #
+      #   @return [String, nil]
+      optional :company_id, String, nil?: true
 
       # @!attribute created_after
       #   Only return payments created after this timestamp.
@@ -108,17 +108,17 @@ module WhopSDK
                -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::FriendlyReceiptStatus] },
                nil?: true
 
-      # @!method initialize(company_id:, after: nil, before: nil, billing_reasons: nil, created_after: nil, created_before: nil, currencies: nil, direction: nil, first: nil, include_free: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, statuses: nil, substatuses: nil, request_options: {})
+      # @!method initialize(after: nil, before: nil, billing_reasons: nil, company_id: nil, created_after: nil, created_before: nil, currencies: nil, direction: nil, first: nil, include_free: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, statuses: nil, substatuses: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentListParams} for more details.
-      #
-      #   @param company_id [String] The unique identifier of the company to list payments for.
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
       #   @param billing_reasons [Array<Symbol, WhopSDK::Models::BillingReasons>, nil] Filter payments by their billing reason.
+      #
+      #   @param company_id [String, nil] The unique identifier of the company to list payments for.
       #
       #   @param created_after [Time, nil] Only return payments created after this timestamp.
       #

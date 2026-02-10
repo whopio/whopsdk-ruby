@@ -88,8 +88,8 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::PaymentListParams} for more details.
       #
-      # Returns a paginated list of payments for a company, with optional filtering by
-      # product, plan, status, billing reason, currency, and creation date.
+      # Returns a paginated list of payments for the actor in context, with optional
+      # filtering by product, plan, status, billing reason, currency, and creation date.
       #
       # Required permissions:
       #
@@ -101,15 +101,15 @@ module WhopSDK
       # - `member:phone:read`
       # - `promo_code:basic:read`
       #
-      # @overload list(company_id:, after: nil, before: nil, billing_reasons: nil, created_after: nil, created_before: nil, currencies: nil, direction: nil, first: nil, include_free: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, statuses: nil, substatuses: nil, request_options: {})
-      #
-      # @param company_id [String] The unique identifier of the company to list payments for.
+      # @overload list(after: nil, before: nil, billing_reasons: nil, company_id: nil, created_after: nil, created_before: nil, currencies: nil, direction: nil, first: nil, include_free: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, statuses: nil, substatuses: nil, request_options: {})
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
       # @param billing_reasons [Array<Symbol, WhopSDK::Models::BillingReasons>, nil] Filter payments by their billing reason.
+      #
+      # @param company_id [String, nil] The unique identifier of the company to list payments for.
       #
       # @param created_after [Time, nil] Only return payments created after this timestamp.
       #
@@ -140,7 +140,7 @@ module WhopSDK
       # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::PaymentListResponse>]
       #
       # @see WhopSDK::Models::PaymentListParams
-      def list(params)
+      def list(params = {})
         parsed, options = WhopSDK::PaymentListParams.dump_request(params)
         @client.request(
           method: :get,

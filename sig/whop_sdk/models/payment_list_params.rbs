@@ -2,10 +2,10 @@ module WhopSDK
   module Models
     type payment_list_params =
       {
-        company_id: String,
         after: String?,
         before: String?,
         billing_reasons: ::Array[WhopSDK::Models::billing_reasons]?,
+        company_id: String?,
         created_after: Time?,
         created_before: Time?,
         currencies: ::Array[WhopSDK::Models::currency]?,
@@ -25,13 +25,13 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor company_id: String
-
       attr_accessor after: String?
 
       attr_accessor before: String?
 
       attr_accessor billing_reasons: ::Array[WhopSDK::Models::billing_reasons]?
+
+      attr_accessor company_id: String?
 
       attr_accessor created_after: Time?
 
@@ -58,10 +58,10 @@ module WhopSDK
       attr_accessor substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?
 
       def initialize: (
-        company_id: String,
         ?after: String?,
         ?before: String?,
         ?billing_reasons: ::Array[WhopSDK::Models::billing_reasons]?,
+        ?company_id: String?,
         ?created_after: Time?,
         ?created_before: Time?,
         ?currencies: ::Array[WhopSDK::Models::currency]?,
@@ -78,10 +78,10 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
-        company_id: String,
         after: String?,
         before: String?,
         billing_reasons: ::Array[WhopSDK::Models::billing_reasons]?,
+        company_id: String?,
         created_after: Time?,
         created_before: Time?,
         currencies: ::Array[WhopSDK::Models::currency]?,

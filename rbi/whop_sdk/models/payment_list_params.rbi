@@ -11,10 +11,6 @@ module WhopSDK
           T.any(WhopSDK::PaymentListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The unique identifier of the company to list payments for.
-      sig { returns(String) }
-      attr_accessor :company_id
-
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_accessor :after
@@ -26,6 +22,10 @@ module WhopSDK
       # Filter payments by their billing reason.
       sig { returns(T.nilable(T::Array[WhopSDK::BillingReasons::OrSymbol])) }
       attr_accessor :billing_reasons
+
+      # The unique identifier of the company to list payments for.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :company_id
 
       # Only return payments created after this timestamp.
       sig { returns(T.nilable(Time)) }
@@ -80,11 +80,11 @@ module WhopSDK
 
       sig do
         params(
-          company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
           billing_reasons:
             T.nilable(T::Array[WhopSDK::BillingReasons::OrSymbol]),
+          company_id: T.nilable(String),
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
           currencies: T.nilable(T::Array[WhopSDK::Currency::OrSymbol]),
@@ -102,14 +102,14 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier of the company to list payments for.
-        company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
         # Filter payments by their billing reason.
         billing_reasons: nil,
+        # The unique identifier of the company to list payments for.
+        company_id: nil,
         # Only return payments created after this timestamp.
         created_after: nil,
         # Only return payments created before this timestamp.
@@ -142,11 +142,11 @@ module WhopSDK
       sig do
         override.returns(
           {
-            company_id: String,
             after: T.nilable(String),
             before: T.nilable(String),
             billing_reasons:
               T.nilable(T::Array[WhopSDK::BillingReasons::OrSymbol]),
+            company_id: T.nilable(String),
             created_after: T.nilable(Time),
             created_before: T.nilable(Time),
             currencies: T.nilable(T::Array[WhopSDK::Currency::OrSymbol]),

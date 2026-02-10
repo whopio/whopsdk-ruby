@@ -25,6 +25,8 @@ module WhopSDK
           global_affiliate_status:
             T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
           headline: T.nilable(String),
+          industry_group:
+            T.nilable(WhopSDK::ProductCreateParams::IndustryGroup::OrSymbol),
           industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           member_affiliate_percentage: T.nilable(Float),
           member_affiliate_status:
@@ -71,6 +73,8 @@ module WhopSDK
         global_affiliate_status: nil,
         # A short marketing headline displayed prominently on the product page.
         headline: nil,
+        # The different industry groups a company can be in.
+        industry_group: nil,
         # The different industry types a company can be in.
         industry_type: nil,
         # The commission rate as a percentage that members earn through the member
@@ -131,6 +135,8 @@ module WhopSDK
           global_affiliate_status:
             T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
           headline: T.nilable(String),
+          industry_group:
+            T.nilable(WhopSDK::ProductUpdateParams::IndustryGroup::OrSymbol),
           industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           member_affiliate_percentage: T.nilable(Float),
           member_affiliate_status:
@@ -170,6 +176,8 @@ module WhopSDK
         global_affiliate_status: nil,
         # A short marketing headline displayed prominently on the product page.
         headline: nil,
+        # The different industry groups a company can be in.
+        industry_group: nil,
         # The different industry types a company can be in.
         industry_type: nil,
         # The commission rate as a percentage that members earn through the member

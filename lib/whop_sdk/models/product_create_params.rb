@@ -114,14 +114,6 @@ module WhopSDK
       #   @return [WhopSDK::Models::ProductCreateParams::PlanOptions, nil]
       optional :plan_options, -> { WhopSDK::ProductCreateParams::PlanOptions }, nil?: true
 
-      # @!attribute product_highlights
-      #   Key features and benefits to display on the product page.
-      #
-      #   @return [Array<WhopSDK::Models::ProductCreateParams::ProductHighlight>, nil]
-      optional :product_highlights,
-               -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::ProductCreateParams::ProductHighlight] },
-               nil?: true
-
       # @!attribute product_tax_code_id
       #   The unique identifier of the tax classification code to apply to this product.
       #
@@ -146,7 +138,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility, nil]
       optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-      # @!method initialize(company_id:, title:, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, experience_ids: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_group: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, plan_options: nil, product_highlights: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil, request_options: {})
+      # @!method initialize(company_id:, title:, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, experience_ids: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_group: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, plan_options: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ProductCreateParams} for more details.
       #
@@ -183,8 +175,6 @@ module WhopSDK
       #   @param member_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for a product.
       #
       #   @param plan_options [WhopSDK::Models::ProductCreateParams::PlanOptions, nil] Configuration for an automatically generated plan to attach to this product.
-      #
-      #   @param product_highlights [Array<WhopSDK::Models::ProductCreateParams::ProductHighlight>, nil] Key features and benefits to display on the product page.
       #
       #   @param product_tax_code_id [String, nil] The unique identifier of the tax classification code to apply to this product.
       #
@@ -457,54 +447,6 @@ module WhopSDK
           #   @param required [Boolean, nil] Whether or not the field is required.
           #
           #   @param field_type [Symbol, :text] The type of the custom field.
-        end
-      end
-
-      class ProductHighlight < WhopSDK::Internal::Type::BaseModel
-        # @!attribute content
-        #   Text to display to describe the product highlight (max length 250 for
-        #   qualification or benefits, 170 for who this is for, 140 for pricing features).
-        #
-        #   @return [String]
-        required :content, String
-
-        # @!attribute highlight_type
-        #   The type of this highlight.
-        #
-        #   @return [Symbol, WhopSDK::Models::ProductCreateParams::ProductHighlight::HighlightType]
-        required :highlight_type, enum: -> { WhopSDK::ProductCreateParams::ProductHighlight::HighlightType }
-
-        # @!attribute title
-        #   The title of the product highlight, if applicable.
-        #
-        #   @return [String, nil]
-        optional :title, String, nil?: true
-
-        # @!method initialize(content:, highlight_type:, title: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::ProductCreateParams::ProductHighlight} for more details.
-        #
-        #   Input for creating a product highlight
-        #
-        #   @param content [String] Text to display to describe the product highlight (max length 250 for qualificat
-        #
-        #   @param highlight_type [Symbol, WhopSDK::Models::ProductCreateParams::ProductHighlight::HighlightType] The type of this highlight.
-        #
-        #   @param title [String, nil] The title of the product highlight, if applicable.
-
-        # The type of this highlight.
-        #
-        # @see WhopSDK::Models::ProductCreateParams::ProductHighlight#highlight_type
-        module HighlightType
-          extend WhopSDK::Internal::Type::Enum
-
-          QUALIFICATION = :qualification
-          BENEFIT = :benefit
-          WHO_THIS_IS_FOR = :who_this_is_for
-          PRICING_FEATURE = :pricing_feature
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
         end
       end
     end

@@ -19,7 +19,6 @@ module WhopSDK
         ?member_affiliate_percentage: Float?,
         ?member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         ?plan_options: WhopSDK::ProductCreateParams::PlanOptions?,
-        ?product_highlights: ::Array[WhopSDK::ProductCreateParams::ProductHighlight]?,
         ?product_tax_code_id: String?,
         ?redirect_purchase_url: String?,
         ?route: String?,

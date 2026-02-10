@@ -14,7 +14,7 @@ module WhopSDK
       # - `access_pass:create`
       # - `access_pass:basic:read`
       #
-      # @overload create(company_id:, title:, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, experience_ids: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, plan_options: nil, product_highlights: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil, request_options: {})
+      # @overload create(company_id:, title:, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, experience_ids: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_group: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, plan_options: nil, product_highlights: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil, request_options: {})
       #
       # @param company_id [String] The unique identifier of the company to create this product for.
       #
@@ -39,6 +39,8 @@ module WhopSDK
       # @param global_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for a product.
       #
       # @param headline [String, nil] A short marketing headline displayed prominently on the product page.
+      #
+      # @param industry_group [Symbol, WhopSDK::Models::ProductCreateParams::IndustryGroup, nil] The different industry groups a company can be in.
       #
       # @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
@@ -108,7 +110,7 @@ module WhopSDK
       # - `access_pass:update`
       # - `access_pass:basic:read`
       #
-      # @overload update(id, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
+      # @overload update(id, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_group: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the product to update.
       #
@@ -129,6 +131,8 @@ module WhopSDK
       # @param global_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for a product.
       #
       # @param headline [String, nil] A short marketing headline displayed prominently on the product page.
+      #
+      # @param industry_group [Symbol, WhopSDK::Models::ProductUpdateParams::IndustryGroup, nil] The different industry groups a company can be in.
       #
       # @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #

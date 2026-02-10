@@ -14,7 +14,7 @@ module WhopSDK
       # - `company:create`
       # - `company:basic:read`
       #
-      # @overload create(title:, business_type: nil, description: nil, email: nil, industry_type: nil, logo: nil, metadata: nil, parent_company_id: nil, send_customer_emails: nil, request_options: {})
+      # @overload create(title:, business_type: nil, description: nil, email: nil, industry_group: nil, industry_type: nil, logo: nil, metadata: nil, parent_company_id: nil, send_customer_emails: nil, request_options: {})
       #
       # @param title [String] The display name of the company shown to customers.
       #
@@ -23,6 +23,8 @@ module WhopSDK
       # @param description [String, nil] A promotional pitch displayed to potential customers on the company's store page
       #
       # @param email [String, nil] The email address of the user who will own the connected account. Required when
+      #
+      # @param industry_group [Symbol, WhopSDK::Models::CompanyCreateParams::IndustryGroup, nil] The different industry groups a company can be in.
       #
       # @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
@@ -84,7 +86,7 @@ module WhopSDK
       # - `company:update`
       # - `company:basic:read`
       #
-      # @overload update(id, banner_image: nil, business_type: nil, description: nil, industry_type: nil, logo: nil, send_customer_emails: nil, title: nil, request_options: {})
+      # @overload update(id, banner_image: nil, business_type: nil, description: nil, industry_group: nil, industry_type: nil, logo: nil, send_customer_emails: nil, title: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the company to update.
       #
@@ -93,6 +95,8 @@ module WhopSDK
       # @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #
       # @param description [String, nil] A promotional pitch displayed to potential customers on the company's store page
+      #
+      # @param industry_group [Symbol, WhopSDK::Models::CompanyUpdateParams::IndustryGroup, nil] The different industry groups a company can be in.
       #
       # @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #

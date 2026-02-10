@@ -74,8 +74,8 @@ module WhopSDK
       )
       end
 
-      # Returns a paginated list of payments for a company, with optional filtering by
-      # product, plan, status, billing reason, currency, and creation date.
+      # Returns a paginated list of payments for the actor in context, with optional
+      # filtering by product, plan, status, billing reason, currency, and creation date.
       #
       # Required permissions:
       #
@@ -88,11 +88,11 @@ module WhopSDK
       # - `promo_code:basic:read`
       sig do
         params(
-          company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
           billing_reasons:
             T.nilable(T::Array[WhopSDK::BillingReasons::OrSymbol]),
+          company_id: T.nilable(String),
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
           currencies: T.nilable(T::Array[WhopSDK::Currency::OrSymbol]),
@@ -112,14 +112,14 @@ module WhopSDK
         )
       end
       def list(
-        # The unique identifier of the company to list payments for.
-        company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
         # Filter payments by their billing reason.
         billing_reasons: nil,
+        # The unique identifier of the company to list payments for.
+        company_id: nil,
         # Only return payments created after this timestamp.
         created_after: nil,
         # Only return payments created before this timestamp.

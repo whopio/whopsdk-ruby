@@ -111,10 +111,10 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
     end
   end
 
-  def test_list_required_params
+  def test_list
     skip("Prism tests are disabled")
 
-    response = @whop.payments.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.payments.list
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage

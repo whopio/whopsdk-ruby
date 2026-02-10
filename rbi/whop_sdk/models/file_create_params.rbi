@@ -11,7 +11,8 @@ module WhopSDK
           T.any(WhopSDK::FileCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The filename of the file
+      # The name of the file including its extension (e.g., "photo.png" or
+      # "document.pdf").
       sig { returns(String) }
       attr_accessor :filename
 
@@ -22,7 +23,8 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The filename of the file
+        # The name of the file including its extension (e.g., "photo.png" or
+        # "document.pdf").
         filename:,
         request_options: {}
       )

@@ -16,7 +16,8 @@ module WhopSDK
       required :api_version, const: :v1
 
       # @!attribute data
-      #   An object representing an identity verification session
+      #   An identity verification session used to confirm a user's identity for payout
+      #   account eligibility.
       #
       #   @return [WhopSDK::Models::VerificationSucceededWebhookEvent::Data]
       required :data, -> { WhopSDK::VerificationSucceededWebhookEvent::Data }
@@ -40,9 +41,12 @@ module WhopSDK
       optional :company_id, String, nil?: true
 
       # @!method initialize(id:, data:, timestamp:, company_id: nil, api_version: :v1, type: :"verification.succeeded")
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::VerificationSucceededWebhookEvent} for more details.
+      #
       #   @param id [String] A unique ID for every single webhook request
       #
-      #   @param data [WhopSDK::Models::VerificationSucceededWebhookEvent::Data] An object representing an identity verification session
+      #   @param data [WhopSDK::Models::VerificationSucceededWebhookEvent::Data] An identity verification session used to confirm a user's identity for payout ac
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #
@@ -67,27 +71,32 @@ module WhopSDK
         required :last_error_code, enum: -> { WhopSDK::VerificationErrorCode }, nil?: true
 
         # @!attribute last_error_reason
-        #   The last error reason that occurred during the verification.
+        #   A human-readable explanation of the most recent verification error. Null if no
+        #   error has occurred.
         #
         #   @return [String, nil]
         required :last_error_reason, String, nil?: true
 
         # @!attribute status
-        #   The status of the verification.
+        #   The current status of this verification session.
         #
         #   @return [Symbol, WhopSDK::Models::VerificationStatus]
         required :status, enum: -> { WhopSDK::VerificationStatus }
 
         # @!method initialize(id:, last_error_code:, last_error_reason:, status:)
-        #   An object representing an identity verification session
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::VerificationSucceededWebhookEvent::Data} for more details.
+        #
+        #   An identity verification session used to confirm a user's identity for payout
+        #   account eligibility.
         #
         #   @param id [String] The unique identifier for the verification.
         #
         #   @param last_error_code [Symbol, WhopSDK::Models::VerificationErrorCode, nil] An error code for a verification attempt.
         #
-        #   @param last_error_reason [String, nil] The last error reason that occurred during the verification.
+        #   @param last_error_reason [String, nil] A human-readable explanation of the most recent verification error. Null if no e
         #
-        #   @param status [Symbol, WhopSDK::Models::VerificationStatus] The status of the verification.
+        #   @param status [Symbol, WhopSDK::Models::VerificationStatus] The current status of this verification session.
       end
     end
   end

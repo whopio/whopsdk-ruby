@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::WebhookListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the company to list webhooks for
+      # The unique identifier of the company to list webhooks for.
       sig { returns(String) }
       attr_accessor :company_id
 
@@ -42,7 +42,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the company to list webhooks for
+        # The unique identifier of the company to list webhooks for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,

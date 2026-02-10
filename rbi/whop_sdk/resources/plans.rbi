@@ -3,7 +3,8 @@
 module WhopSDK
   module Resources
     class Plans
-      # Create a new Plan
+      # Create a new pricing plan for a product. The plan defines the billing interval,
+      # price, and availability for customers.
       #
       # Required permissions:
       #
@@ -42,53 +43,56 @@ module WhopSDK
         ).returns(WhopSDK::Plan)
       end
       def create(
-        # The company the plan should be created for.
+        # The unique identifier of the company to create this plan for.
         company_id:,
-        # The product the plan is related to.
+        # The unique identifier of the product to attach this plan to.
         product_id:,
-        # The interval in days at which the plan charges (renewal plans).
+        # The number of days between recurring charges. For example, 30 for monthly or 365
+        # for yearly.
         billing_period: nil,
         # The available currencies on the platform
         currency: nil,
-        # An array of custom field objects.
+        # An array of custom field definitions to collect from customers at checkout.
         custom_fields: nil,
-        # The description of the plan.
+        # A text description of the plan displayed to customers on the product page.
         description: nil,
-        # The interval at which the plan expires and revokes access (expiration plans).
+        # The number of days until the membership expires and access is revoked. Used for
+        # expiration-based plans.
         expiration_days: nil,
-        # An image for the plan. This will be visible on the product page to customers.
+        # An image displayed on the product page to represent this plan.
         image: nil,
-        # An additional amount charged upon first purchase. Use only if a one time payment
-        # OR you want to charge an additional amount on top of the renewal price. Provided
-        # as a number in the specified currency. Eg: 10.43 for $10.43
+        # The amount charged on the first purchase. For one-time plans, this is the full
+        # price. For recurring plans, this is an additional charge on top of the renewal
+        # price. Provided in the plan's currency (e.g., 10.43 for $10.43).
         initial_price: nil,
-        # A personal description or notes section for the business.
+        # Private notes visible only to the business owner. Not shown to customers.
         internal_notes: nil,
-        # Whether this plan uses legacy payment method controls
+        # Whether this plan uses legacy payment method controls.
         legacy_payment_method_controls: nil,
         # Whether or not the tax is included in a plan's price (or if it hasn't been set
         # up)
         override_tax_type: nil,
-        # The explicit payment method configuration for the plan. If not provided, the
-        # platform or company's defaults will apply.
+        # Explicit payment method configuration for the plan. When not provided, the
+        # company's defaults apply.
         payment_method_configuration: nil,
         # The type of plan that can be attached to a product
         plan_type: nil,
         # The methods of how a plan can be released.
         release_method: nil,
-        # The amount the customer is charged every billing period. Use only if a recurring
-        # payment. Provided as a number in the specified currency. Eg: 10.43 for $10.43
+        # The amount charged each billing period for recurring plans. Provided in the
+        # plan's currency (e.g., 10.43 for $10.43).
         renewal_price: nil,
-        # The number of payments required before pausing the subscription.
+        # The number of installment payments required before the subscription pauses.
         split_pay_required_payments: nil,
-        # The number of units available for purchase.
+        # The maximum number of units available for purchase. Ignored when unlimited_stock
+        # is true.
         stock: nil,
-        # The title of the plan. This will be visible on the product page to customers.
+        # The display name of the plan shown to customers on the product page.
         title: nil,
-        # The number of free trial days added before a renewal plan.
+        # The number of free trial days before the first charge on a recurring plan.
         trial_period_days: nil,
-        # When true, the plan has unlimited stock (stock field is ignored). When false,
-        # purchases are limited by the stock field.
+        # Whether the plan has unlimited stock. When true, the stock field is ignored.
+        # Defaults to true.
         unlimited_stock: nil,
         # Visibility of a resource
         visibility: nil,
@@ -96,7 +100,7 @@ module WhopSDK
       )
       end
 
-      # Retrieves a plan by ID
+      # Retrieves the details of an existing plan.
       #
       # Required permissions:
       #
@@ -108,13 +112,14 @@ module WhopSDK
         ).returns(WhopSDK::Plan)
       end
       def retrieve(
-        # The ID of the plan
+        # The unique identifier of the plan.
         id,
         request_options: {}
       )
       end
 
-      # Update an existing Plan
+      # Update a plan's pricing, billing interval, visibility, stock, and other
+      # settings.
       #
       # Required permissions:
       #
@@ -152,53 +157,54 @@ module WhopSDK
         ).returns(WhopSDK::Plan)
       end
       def update(
-        # The ID
+        # The unique identifier of the plan to update.
         id,
-        # The interval in days at which the plan charges (renewal plans).
+        # The number of days between recurring charges. For example, 30 for monthly or 365
+        # for yearly.
         billing_period: nil,
         # The available currencies on the platform
         currency: nil,
-        # An array of custom field objects.
+        # An array of custom field definitions to collect from customers at checkout.
         custom_fields: nil,
-        # The description of the plan.
+        # A text description of the plan displayed to customers on the product page.
         description: nil,
-        # The number of days until the membership expires (for expiration-based plans).
-        # For example, 365 for a one-year access pass.
+        # The number of days until the membership expires and access is revoked. For
+        # example, 365 for one-year access.
         expiration_days: nil,
-        # An image for the plan. This will be visible on the product page to customers.
+        # An image displayed on the product page to represent this plan.
         image: nil,
-        # An additional amount charged upon first purchase. Provided as a number in the
-        # specified currency. Eg: 10.43 for $10.43 USD.
+        # The amount charged on the first purchase. Provided in the plan's currency (e.g.,
+        # 10.43 for $10.43).
         initial_price: nil,
-        # A personal description or notes section for the business.
+        # Private notes visible only to the business owner. Not shown to customers.
         internal_notes: nil,
-        # Whether this plan uses legacy payment method controls
+        # Whether this plan uses legacy payment method controls.
         legacy_payment_method_controls: nil,
-        # Whether or not to offer a discount to cancel a subscription.
+        # Whether to offer a retention discount when a customer attempts to cancel.
         offer_cancel_discount: nil,
         # Whether or not the tax is included in a plan's price (or if it hasn't been set
         # up)
         override_tax_type: nil,
-        # The explicit payment method configuration for the plan. If sent as null, the
-        # custom configuration will be removed.
+        # Explicit payment method configuration for the plan. Sending null removes any
+        # custom configuration.
         payment_method_configuration: nil,
-        # The amount the customer is charged every billing period. Provided as a number in
-        # the specified currency. Eg: 10.43 for $10.43 USD.
+        # The amount charged each billing period for recurring plans. Provided in the
+        # plan's currency (e.g., 10.43 for $10.43).
         renewal_price: nil,
-        # The number of units available for purchase.
+        # The maximum number of units available for purchase. Ignored when unlimited_stock
+        # is true.
         stock: nil,
-        # The price to display with a strikethrough for the initial price. Provided as a
-        # number in the specified currency. Eg: 19.99 for $19.99
+        # A comparison price displayed with a strikethrough for the initial price.
+        # Provided in the plan's currency (e.g., 19.99 for $19.99).
         strike_through_initial_price: nil,
-        # The price to display with a strikethrough for the renewal price. Provided as a
-        # number in the specified currency. Eg: 19.99 for $19.99
+        # A comparison price displayed with a strikethrough for the renewal price.
+        # Provided in the plan's currency (e.g., 19.99 for $19.99).
         strike_through_renewal_price: nil,
-        # The title of the plan. This will be visible on the product page to customers.
+        # The display name of the plan shown to customers on the product page.
         title: nil,
-        # The number of free trial days added before a renewal plan.
+        # The number of free trial days before the first charge on a recurring plan.
         trial_period_days: nil,
-        # When true, the plan has unlimited stock (stock field is ignored). When false,
-        # purchases are limited by the stock field.
+        # Whether the plan has unlimited stock. When true, the stock field is ignored.
         unlimited_stock: nil,
         # Visibility of a resource
         visibility: nil,
@@ -206,7 +212,8 @@ module WhopSDK
       )
       end
 
-      # Lists plans for a company
+      # Returns a paginated list of plans belonging to a company, with optional
+      # filtering by visibility, type, release method, and product.
       #
       # Required permissions:
       #
@@ -234,15 +241,15 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the company
+        # The unique identifier of the company to list plans for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The minimum creation date to filter by
+        # Only return plans created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return plans created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,
@@ -252,19 +259,20 @@ module WhopSDK
         last: nil,
         # The ways a relation of Plans can be ordered
         order: nil,
-        # The plan type to filter the plans by
+        # Filter to only plans matching these billing types.
         plan_types: nil,
-        # The product IDs to filter the plans by
+        # Filter to only plans belonging to these product identifiers.
         product_ids: nil,
-        # The release method to filter the plans by
+        # Filter to only plans matching these release methods.
         release_methods: nil,
-        # The visibility to filter the plans by
+        # Filter to only plans matching these visibility states.
         visibilities: nil,
         request_options: {}
       )
       end
 
-      # Delete an existing Plan
+      # Permanently delete a plan from a product. Existing memberships on this plan will
+      # not be affected.
       #
       # Required permissions:
       #
@@ -276,7 +284,7 @@ module WhopSDK
         ).returns(T::Boolean)
       end
       def delete(
-        # The ID of the plan to delete.
+        # The unique identifier of the plan to delete.
         id,
         request_options: {}
       )

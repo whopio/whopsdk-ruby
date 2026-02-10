@@ -19,11 +19,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # The ID of the chapter (returns lessons only for this chapter)
+      # The unique identifier of a chapter to return only its lessons.
       sig { returns(T.nilable(String)) }
       attr_accessor :chapter_id
 
-      # The ID of the course (returns all lessons across all chapters)
+      # The unique identifier of the course to return all lessons across all chapters.
       sig { returns(T.nilable(String)) }
       attr_accessor :course_id
 
@@ -51,9 +51,9 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The ID of the chapter (returns lessons only for this chapter)
+        # The unique identifier of a chapter to return only its lessons.
         chapter_id: nil,
-        # The ID of the course (returns all lessons across all chapters)
+        # The unique identifier of the course to return all lessons across all chapters.
         course_id: nil,
         # Returns the first _n_ elements from the list.
         first: nil,

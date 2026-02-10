@@ -20,13 +20,13 @@ module WhopSDK
       optional :before, String, nil?: true
 
       # @!attribute created_after
-      #   Only return companies created after this datetime.
+      #   Only return companies created after this timestamp.
       #
       #   @return [Time, nil]
       optional :created_after, Time, nil?: true
 
       # @!attribute created_before
-      #   Only return companies created before this datetime.
+      #   Only return companies created before this timestamp.
       #
       #   @return [Time, nil]
       optional :created_before, Time, nil?: true
@@ -65,9 +65,9 @@ module WhopSDK
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param created_after [Time, nil] Only return companies created after this datetime.
+      #   @param created_after [Time, nil] Only return companies created after this timestamp.
       #
-      #   @param created_before [Time, nil] Only return companies created before this datetime.
+      #   @param created_before [Time, nil] Only return companies created before this timestamp.
       #
       #   @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #

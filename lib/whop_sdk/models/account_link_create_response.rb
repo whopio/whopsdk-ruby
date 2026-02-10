@@ -5,24 +5,28 @@ module WhopSDK
     # @see WhopSDK::Resources::AccountLinks#create
     class AccountLinkCreateResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute expires_at
-      #   The expiration timestamp of the url.
+      #   The timestamp after which this account link URL is no longer valid.
       #
       #   @return [Time]
       required :expires_at, Time
 
       # @!attribute url
-      #   The URL to navigate the user to.
+      #   The temporary URL to redirect the user to for account access. Expires at the
+      #   time specified by expires_at.
       #
       #   @return [String]
       required :url, String
 
       # @!method initialize(expires_at:, url:)
-      #   An object representing a url that a user can be directed to to access their
-      #   account.
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::AccountLinkCreateResponse} for more details.
       #
-      #   @param expires_at [Time] The expiration timestamp of the url.
+      #   A temporary, time-limited URL that grants a user access to an external account
+      #   management page.
       #
-      #   @param url [String] The URL to navigate the user to.
+      #   @param expires_at [Time] The timestamp after which this account link URL is no longer valid.
+      #
+      #   @param url [String] The temporary URL to redirect the user to for account access. Expires at the tim
     end
   end
 end

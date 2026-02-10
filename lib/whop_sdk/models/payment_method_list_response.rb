@@ -2,7 +2,7 @@
 
 module WhopSDK
   module Models
-    # A payment method with no additional properties
+    # A saved payment method with no type-specific details available.
     #
     # @see WhopSDK::Resources::PaymentMethods#list
     module PaymentMethodListResponse
@@ -10,40 +10,45 @@ module WhopSDK
 
       discriminator :typename
 
-      # A payment method with no additional properties
+      # A saved payment method with no type-specific details available.
       variant :BasePaymentMethod, -> { WhopSDK::Models::PaymentMethodListResponse::BasePaymentMethod }
 
-      # The card for the payment method
+      # A saved card payment method, including brand, last four digits, and expiration details.
       variant :CardPaymentMethod, -> { WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod }
 
-      # The bank account for the payment method
+      # A saved US bank account payment method, including bank name, last four digits, and account type.
       variant :UsBankAccountPaymentMethod,
               -> { WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod }
 
-      # The Cash App details for the payment method
+      # A saved Cash App payment method, including the buyer's cashtag and unique identifier.
       variant :CashappPaymentMethod, -> { WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod }
 
-      # The iDEAL details for the payment method
+      # A saved iDEAL payment method, including the customer's bank name and BIC code.
       variant :IdealPaymentMethod, -> { WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod }
 
-      # The SEPA Direct Debit details for the payment method
+      # A saved SEPA Direct Debit payment method, including the bank code, country, and last four IBAN digits.
       variant :SepaDebitPaymentMethod, -> { WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod }
 
       class BasePaymentMethod < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the payment method
+        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+        #   refetch an object or as key for a cache. The ID type appears in a JSON response
+        #   as a String; however, it is not intended to be human-readable. When expected as
+        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        #   input value will be accepted as an ID.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute created_at
-        #   When the payment method was created
+        #   The time of the event in ISO 8601 UTC format with millisecond precision
         #
         #   @return [Time]
         required :created_at, Time
 
         # @!attribute payment_method_type
-        #   The type of the payment method
+        #   The type of payment instrument stored on file (e.g., card, us_bank_account,
+        #   cashapp, ideal, sepa_debit).
         #
         #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes]
         required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }
@@ -55,38 +60,48 @@ module WhopSDK
         required :typename, const: :BasePaymentMethod
 
         # @!method initialize(id:, created_at:, payment_method_type:, typename: :BasePaymentMethod)
-        #   A payment method with no additional properties
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::PaymentMethodListResponse::BasePaymentMethod} for more
+        #   details.
         #
-        #   @param id [String] The ID of the payment method
+        #   A saved payment method with no type-specific details available.
         #
-        #   @param created_at [Time] When the payment method was created
+        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
         #
-        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of the payment method
+        #   @param created_at [Time] The time of the event in ISO 8601 UTC format with millisecond precision
+        #
+        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of payment instrument stored on file (e.g., card, us_bank_account, cash
         #
         #   @param typename [Symbol, :BasePaymentMethod] The typename of this object
       end
 
       class CardPaymentMethod < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the payment method
+        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+        #   refetch an object or as key for a cache. The ID type appears in a JSON response
+        #   as a String; however, it is not intended to be human-readable. When expected as
+        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        #   input value will be accepted as an ID.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute card
-        #   The card details associated with this payment method
+        #   The card-specific details for this payment method, including brand, last four
+        #   digits, and expiration.
         #
         #   @return [WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card]
         required :card, -> { WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card }
 
         # @!attribute created_at
-        #   When the payment method was created
+        #   The time of the event in ISO 8601 UTC format with millisecond precision
         #
         #   @return [Time]
         required :created_at, Time
 
         # @!attribute payment_method_type
-        #   The type of the payment method
+        #   The type of payment instrument stored on file (e.g., card, us_bank_account,
+        #   cashapp, ideal, sepa_debit).
         #
         #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes]
         required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }
@@ -98,15 +113,20 @@ module WhopSDK
         required :typename, const: :CardPaymentMethod
 
         # @!method initialize(id:, card:, created_at:, payment_method_type:, typename: :CardPaymentMethod)
-        #   The card for the payment method
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod} for more
+        #   details.
         #
-        #   @param id [String] The ID of the payment method
+        #   A saved card payment method, including brand, last four digits, and expiration
+        #   details.
         #
-        #   @param card [WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card] The card details associated with this payment method
+        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
         #
-        #   @param created_at [Time] When the payment method was created
+        #   @param card [WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card] The card-specific details for this payment method, including brand, last four di
         #
-        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of the payment method
+        #   @param created_at [Time] The time of the event in ISO 8601 UTC format with millisecond precision
+        #
+        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of payment instrument stored on file (e.g., card, us_bank_account, cash
         #
         #   @param typename [Symbol, :CardPaymentMethod] The typename of this object
 
@@ -119,51 +139,62 @@ module WhopSDK
           required :brand, enum: -> { WhopSDK::CardBrands }, nil?: true
 
           # @!attribute exp_month
-          #   Card expiration month, like 03 for March.
+          #   The two-digit expiration month of the card (1-12). Null if not available.
           #
           #   @return [Integer, nil]
           required :exp_month, Integer, nil?: true
 
           # @!attribute exp_year
-          #   Card expiration year, like 27 for 2027.
+          #   The two-digit expiration year of the card (e.g., 27 for 2027). Null if not
+          #   available.
           #
           #   @return [Integer, nil]
           required :exp_year, Integer, nil?: true
 
           # @!attribute last4
-          #   Last four digits of the card.
+          #   The last four digits of the card number. Null if not available.
           #
           #   @return [String, nil]
           required :last4, String, nil?: true
 
           # @!method initialize(brand:, exp_month:, exp_year:, last4:)
-          #   The card details associated with this payment method
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card} for more
+          #   details.
+          #
+          #   The card-specific details for this payment method, including brand, last four
+          #   digits, and expiration.
           #
           #   @param brand [Symbol, WhopSDK::Models::CardBrands, nil] Possible card brands that a payment token can have
           #
-          #   @param exp_month [Integer, nil] Card expiration month, like 03 for March.
+          #   @param exp_month [Integer, nil] The two-digit expiration month of the card (1-12). Null if not available.
           #
-          #   @param exp_year [Integer, nil] Card expiration year, like 27 for 2027.
+          #   @param exp_year [Integer, nil] The two-digit expiration year of the card (e.g., 27 for 2027). Null if not avail
           #
-          #   @param last4 [String, nil] Last four digits of the card.
+          #   @param last4 [String, nil] The last four digits of the card number. Null if not available.
         end
       end
 
       class UsBankAccountPaymentMethod < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the payment method
+        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+        #   refetch an object or as key for a cache. The ID type appears in a JSON response
+        #   as a String; however, it is not intended to be human-readable. When expected as
+        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        #   input value will be accepted as an ID.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute created_at
-        #   When the payment method was created
+        #   The time of the event in ISO 8601 UTC format with millisecond precision
         #
         #   @return [Time]
         required :created_at, Time
 
         # @!attribute payment_method_type
-        #   The type of the payment method
+        #   The type of payment instrument stored on file (e.g., card, us_bank_account,
+        #   cashapp, ideal, sepa_debit).
         #
         #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes]
         required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }
@@ -175,77 +206,90 @@ module WhopSDK
         required :typename, const: :UsBankAccountPaymentMethod
 
         # @!attribute us_bank_account
-        #   The bank details associated with this payment method
+        #   The bank account-specific details for this payment method, including bank name
+        #   and last four digits.
         #
         #   @return [WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod::UsBankAccount]
         required :us_bank_account,
                  -> { WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod::UsBankAccount }
 
         # @!method initialize(id:, created_at:, payment_method_type:, us_bank_account:, typename: :UsBankAccountPaymentMethod)
-        #   The bank account for the payment method
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod} for
+        #   more details.
         #
-        #   @param id [String] The ID of the payment method
+        #   A saved US bank account payment method, including bank name, last four digits,
+        #   and account type.
         #
-        #   @param created_at [Time] When the payment method was created
+        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
         #
-        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of the payment method
+        #   @param created_at [Time] The time of the event in ISO 8601 UTC format with millisecond precision
         #
-        #   @param us_bank_account [WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod::UsBankAccount] The bank details associated with this payment method
+        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of payment instrument stored on file (e.g., card, us_bank_account, cash
+        #
+        #   @param us_bank_account [WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod::UsBankAccount] The bank account-specific details for this payment method, including bank name a
         #
         #   @param typename [Symbol, :UsBankAccountPaymentMethod] The typename of this object
 
         # @see WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod#us_bank_account
         class UsBankAccount < WhopSDK::Internal::Type::BaseModel
           # @!attribute account_type
-          #   The type of account
+          #   The type of bank account (e.g., checking, savings).
           #
           #   @return [String]
           required :account_type, String
 
           # @!attribute bank_name
-          #   The name of the bank
+          #   The name of the financial institution holding the account.
           #
           #   @return [String]
           required :bank_name, String
 
           # @!attribute last4
-          #   The last 4 digits of the account number
+          #   The last four digits of the bank account number.
           #
           #   @return [String]
           required :last4, String
 
           # @!method initialize(account_type:, bank_name:, last4:)
-          #   The bank details associated with this payment method
+          #   The bank account-specific details for this payment method, including bank name
+          #   and last four digits.
           #
-          #   @param account_type [String] The type of account
+          #   @param account_type [String] The type of bank account (e.g., checking, savings).
           #
-          #   @param bank_name [String] The name of the bank
+          #   @param bank_name [String] The name of the financial institution holding the account.
           #
-          #   @param last4 [String] The last 4 digits of the account number
+          #   @param last4 [String] The last four digits of the bank account number.
         end
       end
 
       class CashappPaymentMethod < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the payment method
+        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+        #   refetch an object or as key for a cache. The ID type appears in a JSON response
+        #   as a String; however, it is not intended to be human-readable. When expected as
+        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        #   input value will be accepted as an ID.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute cashapp
-        #   The Cash App details associated with this payment method
+        #   The Cash App-specific details for this payment method, including cashtag and
+        #   buyer ID.
         #
         #   @return [WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod::Cashapp]
         required :cashapp, -> { WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod::Cashapp }
 
         # @!attribute created_at
-        #   When the payment method was created
+        #   The time of the event in ISO 8601 UTC format with millisecond precision
         #
         #   @return [Time]
         required :created_at, Time
 
         # @!attribute payment_method_type
-        #   The type of the payment method
+        #   The type of payment instrument stored on file (e.g., card, us_bank_account,
+        #   cashapp, ideal, sepa_debit).
         #
         #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes]
         required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }
@@ -257,62 +301,78 @@ module WhopSDK
         required :typename, const: :CashappPaymentMethod
 
         # @!method initialize(id:, cashapp:, created_at:, payment_method_type:, typename: :CashappPaymentMethod)
-        #   The Cash App details for the payment method
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod} for more
+        #   details.
         #
-        #   @param id [String] The ID of the payment method
+        #   A saved Cash App payment method, including the buyer's cashtag and unique
+        #   identifier.
         #
-        #   @param cashapp [WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod::Cashapp] The Cash App details associated with this payment method
+        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
         #
-        #   @param created_at [Time] When the payment method was created
+        #   @param cashapp [WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod::Cashapp] The Cash App-specific details for this payment method, including cashtag and buy
         #
-        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of the payment method
+        #   @param created_at [Time] The time of the event in ISO 8601 UTC format with millisecond precision
+        #
+        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of payment instrument stored on file (e.g., card, us_bank_account, cash
         #
         #   @param typename [Symbol, :CashappPaymentMethod] The typename of this object
 
         # @see WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod#cashapp
         class Cashapp < WhopSDK::Internal::Type::BaseModel
           # @!attribute buyer_id
-          #   A unique and immutable identifier assigned by Cash App to every buyer.
+          #   The unique and immutable identifier assigned by Cash App to the buyer. Null if
+          #   not available.
           #
           #   @return [String, nil]
           required :buyer_id, String, nil?: true
 
           # @!attribute cashtag
-          #   A public identifier for buyers using Cash App.
+          #   The public cashtag handle of the buyer on Cash App. Null if not available.
           #
           #   @return [String, nil]
           required :cashtag, String, nil?: true
 
           # @!method initialize(buyer_id:, cashtag:)
-          #   The Cash App details associated with this payment method
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod::Cashapp} for
+          #   more details.
           #
-          #   @param buyer_id [String, nil] A unique and immutable identifier assigned by Cash App to every buyer.
+          #   The Cash App-specific details for this payment method, including cashtag and
+          #   buyer ID.
           #
-          #   @param cashtag [String, nil] A public identifier for buyers using Cash App.
+          #   @param buyer_id [String, nil] The unique and immutable identifier assigned by Cash App to the buyer. Null if n
+          #
+          #   @param cashtag [String, nil] The public cashtag handle of the buyer on Cash App. Null if not available.
         end
       end
 
       class IdealPaymentMethod < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the payment method
+        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+        #   refetch an object or as key for a cache. The ID type appears in a JSON response
+        #   as a String; however, it is not intended to be human-readable. When expected as
+        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        #   input value will be accepted as an ID.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute created_at
-        #   When the payment method was created
+        #   The time of the event in ISO 8601 UTC format with millisecond precision
         #
         #   @return [Time]
         required :created_at, Time
 
         # @!attribute ideal
-        #   The iDEAL details associated with this payment method
+        #   The iDEAL-specific details for this payment method, including bank name and BIC.
         #
         #   @return [WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod::Ideal]
         required :ideal, -> { WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod::Ideal }
 
         # @!attribute payment_method_type
-        #   The type of the payment method
+        #   The type of payment instrument stored on file (e.g., card, us_bank_account,
+        #   cashapp, ideal, sepa_debit).
         #
         #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes]
         required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }
@@ -324,62 +384,78 @@ module WhopSDK
         required :typename, const: :IdealPaymentMethod
 
         # @!method initialize(id:, created_at:, ideal:, payment_method_type:, typename: :IdealPaymentMethod)
-        #   The iDEAL details for the payment method
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod} for more
+        #   details.
         #
-        #   @param id [String] The ID of the payment method
+        #   A saved iDEAL payment method, including the customer's bank name and BIC code.
         #
-        #   @param created_at [Time] When the payment method was created
+        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
         #
-        #   @param ideal [WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod::Ideal] The iDEAL details associated with this payment method
+        #   @param created_at [Time] The time of the event in ISO 8601 UTC format with millisecond precision
         #
-        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of the payment method
+        #   @param ideal [WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod::Ideal] The iDEAL-specific details for this payment method, including bank name and BIC.
+        #
+        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of payment instrument stored on file (e.g., card, us_bank_account, cash
         #
         #   @param typename [Symbol, :IdealPaymentMethod] The typename of this object
 
         # @see WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod#ideal
         class Ideal < WhopSDK::Internal::Type::BaseModel
           # @!attribute bank
-          #   The customer's bank.
+          #   The name of the customer's bank used for the iDEAL transaction. Null if not
+          #   available.
           #
           #   @return [String, nil]
           required :bank, String, nil?: true
 
           # @!attribute bic
-          #   The Bank Identifier Code of the customer's bank.
+          #   The Bank Identifier Code (BIC/SWIFT) of the customer's bank. Null if not
+          #   available.
           #
           #   @return [String, nil]
           required :bic, String, nil?: true
 
           # @!method initialize(bank:, bic:)
-          #   The iDEAL details associated with this payment method
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod::Ideal} for more
+          #   details.
           #
-          #   @param bank [String, nil] The customer's bank.
+          #   The iDEAL-specific details for this payment method, including bank name and BIC.
           #
-          #   @param bic [String, nil] The Bank Identifier Code of the customer's bank.
+          #   @param bank [String, nil] The name of the customer's bank used for the iDEAL transaction. Null if not avai
+          #
+          #   @param bic [String, nil] The Bank Identifier Code (BIC/SWIFT) of the customer's bank. Null if not availab
         end
       end
 
       class SepaDebitPaymentMethod < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the payment method
+        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+        #   refetch an object or as key for a cache. The ID type appears in a JSON response
+        #   as a String; however, it is not intended to be human-readable. When expected as
+        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        #   input value will be accepted as an ID.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute created_at
-        #   When the payment method was created
+        #   The time of the event in ISO 8601 UTC format with millisecond precision
         #
         #   @return [Time]
         required :created_at, Time
 
         # @!attribute payment_method_type
-        #   The type of the payment method
+        #   The type of payment instrument stored on file (e.g., card, us_bank_account,
+        #   cashapp, ideal, sepa_debit).
         #
         #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes]
         required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }
 
         # @!attribute sepa_debit
-        #   The SEPA Direct Debit details associated with this payment method
+        #   The SEPA Direct Debit-specific details for this payment method, including bank
+        #   code and last four IBAN digits.
         #
         #   @return [WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod::SepaDebit]
         required :sepa_debit, -> { WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod::SepaDebit }
@@ -391,54 +467,68 @@ module WhopSDK
         required :typename, const: :SepaDebitPaymentMethod
 
         # @!method initialize(id:, created_at:, payment_method_type:, sepa_debit:, typename: :SepaDebitPaymentMethod)
-        #   The SEPA Direct Debit details for the payment method
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod} for more
+        #   details.
         #
-        #   @param id [String] The ID of the payment method
+        #   A saved SEPA Direct Debit payment method, including the bank code, country, and
+        #   last four IBAN digits.
         #
-        #   @param created_at [Time] When the payment method was created
+        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
         #
-        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of the payment method
+        #   @param created_at [Time] The time of the event in ISO 8601 UTC format with millisecond precision
         #
-        #   @param sepa_debit [WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod::SepaDebit] The SEPA Direct Debit details associated with this payment method
+        #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The type of payment instrument stored on file (e.g., card, us_bank_account, cash
+        #
+        #   @param sepa_debit [WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod::SepaDebit] The SEPA Direct Debit-specific details for this payment method, including bank c
         #
         #   @param typename [Symbol, :SepaDebitPaymentMethod] The typename of this object
 
         # @see WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod#sepa_debit
         class SepaDebit < WhopSDK::Internal::Type::BaseModel
           # @!attribute bank_code
-          #   Bank code of the bank associated with the account.
+          #   The bank code of the financial institution associated with this SEPA account.
+          #   Null if not available.
           #
           #   @return [String, nil]
           required :bank_code, String, nil?: true
 
           # @!attribute branch_code
-          #   Branch code of the bank associated with the account.
+          #   The branch code of the financial institution associated with this SEPA account.
+          #   Null if not available.
           #
           #   @return [String, nil]
           required :branch_code, String, nil?: true
 
           # @!attribute country
-          #   Two-letter ISO code representing the country the bank account is located in.
+          #   The two-letter ISO country code where the bank account is located. Null if not
+          #   available.
           #
           #   @return [String, nil]
           required :country, String, nil?: true
 
           # @!attribute last4
-          #   Last four digits of the IBAN.
+          #   The last four digits of the IBAN associated with this SEPA account. Null if not
+          #   available.
           #
           #   @return [String, nil]
           required :last4, String, nil?: true
 
           # @!method initialize(bank_code:, branch_code:, country:, last4:)
-          #   The SEPA Direct Debit details associated with this payment method
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod::SepaDebit}
+          #   for more details.
           #
-          #   @param bank_code [String, nil] Bank code of the bank associated with the account.
+          #   The SEPA Direct Debit-specific details for this payment method, including bank
+          #   code and last four IBAN digits.
           #
-          #   @param branch_code [String, nil] Branch code of the bank associated with the account.
+          #   @param bank_code [String, nil] The bank code of the financial institution associated with this SEPA account. Nu
           #
-          #   @param country [String, nil] Two-letter ISO code representing the country the bank account is located in.
+          #   @param branch_code [String, nil] The branch code of the financial institution associated with this SEPA account.
           #
-          #   @param last4 [String, nil] Last four digits of the IBAN.
+          #   @param country [String, nil] The two-letter ISO country code where the bank account is located. Null if not a
+          #
+          #   @param last4 [String, nil] The last four digits of the IBAN associated with this SEPA account. Null if not
         end
       end
 

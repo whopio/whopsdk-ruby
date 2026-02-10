@@ -5,23 +5,29 @@ module WhopSDK
     # @see WhopSDK::Resources::AccessTokens#create
     class AccessTokenCreateResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute token
-      #   The JWT access token string.
+      #   The signed JWT access token string to include in API request Authorization
+      #   headers.
       #
       #   @return [String]
       required :token, String
 
       # @!attribute expires_at
-      #   The expiration timestamp of the access token.
+      #   The timestamp after which this access token is no longer valid and must be
+      #   refreshed.
       #
       #   @return [Time]
       required :expires_at, Time
 
       # @!method initialize(token:, expires_at:)
-      #   An object representing an access token used for authenticating API requests.
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::AccessTokenCreateResponse} for more details.
       #
-      #   @param token [String] The JWT access token string.
+      #   A short-lived access token used to authenticate API requests on behalf of a user
+      #   or application.
       #
-      #   @param expires_at [Time] The expiration timestamp of the access token.
+      #   @param token [String] The signed JWT access token string to include in API request Authorization heade
+      #
+      #   @param expires_at [Time] The timestamp after which this access token is no longer valid and must be refre
     end
   end
 end

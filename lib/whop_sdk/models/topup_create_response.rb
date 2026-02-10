@@ -29,7 +29,8 @@ module WhopSDK
       required :failure_message, String, nil?: true
 
       # @!attribute paid_at
-      #   The datetime the payment was paid
+      #   The time at which this payment was successfully collected. Null if the payment
+      #   has not yet succeeded. As a Unix timestamp.
       #
       #   @return [Time, nil]
       required :paid_at, Time, nil?: true
@@ -47,6 +48,9 @@ module WhopSDK
       required :total, Float, nil?: true
 
       # @!method initialize(id:, created_at:, currency:, failure_message:, paid_at:, status:, total:)
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::TopupCreateResponse} for more details.
+      #
       #   A payment represents a completed or attempted charge for a membership. Payments
       #   track the amount, status, currency, and payment method used.
       #
@@ -58,7 +62,7 @@ module WhopSDK
       #
       #   @param failure_message [String, nil] If the payment failed, the reason for the failure.
       #
-      #   @param paid_at [Time, nil] The datetime the payment was paid
+      #   @param paid_at [Time, nil] The time at which this payment was successfully collected. Null if the payment h
       #
       #   @param status [Symbol, WhopSDK::Models::ReceiptStatus, nil] The status of a receipt
       #

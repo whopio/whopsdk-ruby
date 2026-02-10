@@ -8,13 +8,16 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute custom_name
-      #   The custom name for the DM channel
+      #   A new custom display name for the DM channel. For example, 'Project Discussion'.
       #
       #   @return [String, nil]
       optional :custom_name, String, nil?: true
 
       # @!method initialize(custom_name: nil, request_options: {})
-      #   @param custom_name [String, nil] The custom name for the DM channel
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::DmChannelUpdateParams} for more details.
+      #
+      #   @param custom_name [String, nil] A new custom display name for the DM channel. For example, 'Project Discussion'.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

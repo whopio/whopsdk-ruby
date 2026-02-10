@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::PlanListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the company
+      # The unique identifier of the company to list plans for.
       sig { returns(String) }
       attr_accessor :company_id
 
@@ -23,11 +23,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # The minimum creation date to filter by
+      # Only return plans created after this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_after
 
-      # The maximum creation date to filter by
+      # Only return plans created before this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_before
 
@@ -47,19 +47,19 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::PlanListParams::Order::OrSymbol)) }
       attr_accessor :order
 
-      # The plan type to filter the plans by
+      # Filter to only plans matching these billing types.
       sig { returns(T.nilable(T::Array[WhopSDK::PlanType::OrSymbol])) }
       attr_accessor :plan_types
 
-      # The product IDs to filter the plans by
+      # Filter to only plans belonging to these product identifiers.
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :product_ids
 
-      # The release method to filter the plans by
+      # Filter to only plans matching these release methods.
       sig { returns(T.nilable(T::Array[WhopSDK::ReleaseMethod::OrSymbol])) }
       attr_accessor :release_methods
 
-      # The visibility to filter the plans by
+      # Filter to only plans matching these visibility states.
       sig { returns(T.nilable(T::Array[WhopSDK::VisibilityFilter::OrSymbol])) }
       attr_accessor :visibilities
 
@@ -84,15 +84,15 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the company
+        # The unique identifier of the company to list plans for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The minimum creation date to filter by
+        # Only return plans created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return plans created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,
@@ -102,13 +102,13 @@ module WhopSDK
         last: nil,
         # The ways a relation of Plans can be ordered
         order: nil,
-        # The plan type to filter the plans by
+        # Filter to only plans matching these billing types.
         plan_types: nil,
-        # The product IDs to filter the plans by
+        # Filter to only plans belonging to these product identifiers.
         product_ids: nil,
-        # The release method to filter the plans by
+        # Filter to only plans matching these release methods.
         release_methods: nil,
-        # The visibility to filter the plans by
+        # Filter to only plans matching these visibility states.
         visibilities: nil,
         request_options: {}
       )

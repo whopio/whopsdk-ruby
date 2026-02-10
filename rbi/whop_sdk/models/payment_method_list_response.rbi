@@ -2,7 +2,7 @@
 
 module WhopSDK
   module Models
-    # A payment method with no additional properties
+    # A saved payment method with no type-specific details available.
     module PaymentMethodListResponse
       extend WhopSDK::Internal::Type::Union
 
@@ -27,15 +27,20 @@ module WhopSDK
             )
           end
 
-        # The ID of the payment method
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         sig { returns(String) }
         attr_accessor :id
 
-        # When the payment method was created
+        # The time of the event in ISO 8601 UTC format with millisecond precision
         sig { returns(Time) }
         attr_accessor :created_at
 
-        # The type of the payment method
+        # The type of payment instrument stored on file (e.g., card, us_bank_account,
+        # cashapp, ideal, sepa_debit).
         sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
         attr_accessor :payment_method_type
 
@@ -43,7 +48,7 @@ module WhopSDK
         sig { returns(Symbol) }
         attr_accessor :typename
 
-        # A payment method with no additional properties
+        # A saved payment method with no type-specific details available.
         sig do
           params(
             id: String,
@@ -53,11 +58,16 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the payment method
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
           id:,
-          # When the payment method was created
+          # The time of the event in ISO 8601 UTC format with millisecond precision
           created_at:,
-          # The type of the payment method
+          # The type of payment instrument stored on file (e.g., card, us_bank_account,
+          # cashapp, ideal, sepa_debit).
           payment_method_type:,
           # The typename of this object
           typename: :BasePaymentMethod
@@ -87,11 +97,16 @@ module WhopSDK
             )
           end
 
-        # The ID of the payment method
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         sig { returns(String) }
         attr_accessor :id
 
-        # The card details associated with this payment method
+        # The card-specific details for this payment method, including brand, last four
+        # digits, and expiration.
         sig do
           returns(
             WhopSDK::Models::PaymentMethodListResponse::CardPaymentMethod::Card
@@ -107,11 +122,12 @@ module WhopSDK
         end
         attr_writer :card
 
-        # When the payment method was created
+        # The time of the event in ISO 8601 UTC format with millisecond precision
         sig { returns(Time) }
         attr_accessor :created_at
 
-        # The type of the payment method
+        # The type of payment instrument stored on file (e.g., card, us_bank_account,
+        # cashapp, ideal, sepa_debit).
         sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
         attr_accessor :payment_method_type
 
@@ -119,7 +135,8 @@ module WhopSDK
         sig { returns(Symbol) }
         attr_accessor :typename
 
-        # The card for the payment method
+        # A saved card payment method, including brand, last four digits, and expiration
+        # details.
         sig do
           params(
             id: String,
@@ -131,13 +148,19 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the payment method
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
           id:,
-          # The card details associated with this payment method
+          # The card-specific details for this payment method, including brand, last four
+          # digits, and expiration.
           card:,
-          # When the payment method was created
+          # The time of the event in ISO 8601 UTC format with millisecond precision
           created_at:,
-          # The type of the payment method
+          # The type of payment instrument stored on file (e.g., card, us_bank_account,
+          # cashapp, ideal, sepa_debit).
           payment_method_type:,
           # The typename of this object
           typename: :CardPaymentMethod
@@ -172,19 +195,21 @@ module WhopSDK
           sig { returns(T.nilable(WhopSDK::CardBrands::TaggedSymbol)) }
           attr_accessor :brand
 
-          # Card expiration month, like 03 for March.
+          # The two-digit expiration month of the card (1-12). Null if not available.
           sig { returns(T.nilable(Integer)) }
           attr_accessor :exp_month
 
-          # Card expiration year, like 27 for 2027.
+          # The two-digit expiration year of the card (e.g., 27 for 2027). Null if not
+          # available.
           sig { returns(T.nilable(Integer)) }
           attr_accessor :exp_year
 
-          # Last four digits of the card.
+          # The last four digits of the card number. Null if not available.
           sig { returns(T.nilable(String)) }
           attr_accessor :last4
 
-          # The card details associated with this payment method
+          # The card-specific details for this payment method, including brand, last four
+          # digits, and expiration.
           sig do
             params(
               brand: T.nilable(WhopSDK::CardBrands::OrSymbol),
@@ -196,11 +221,12 @@ module WhopSDK
           def self.new(
             # Possible card brands that a payment token can have
             brand:,
-            # Card expiration month, like 03 for March.
+            # The two-digit expiration month of the card (1-12). Null if not available.
             exp_month:,
-            # Card expiration year, like 27 for 2027.
+            # The two-digit expiration year of the card (e.g., 27 for 2027). Null if not
+            # available.
             exp_year:,
-            # Last four digits of the card.
+            # The last four digits of the card number. Null if not available.
             last4:
           )
           end
@@ -229,15 +255,20 @@ module WhopSDK
             )
           end
 
-        # The ID of the payment method
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         sig { returns(String) }
         attr_accessor :id
 
-        # When the payment method was created
+        # The time of the event in ISO 8601 UTC format with millisecond precision
         sig { returns(Time) }
         attr_accessor :created_at
 
-        # The type of the payment method
+        # The type of payment instrument stored on file (e.g., card, us_bank_account,
+        # cashapp, ideal, sepa_debit).
         sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
         attr_accessor :payment_method_type
 
@@ -245,7 +276,8 @@ module WhopSDK
         sig { returns(Symbol) }
         attr_accessor :typename
 
-        # The bank details associated with this payment method
+        # The bank account-specific details for this payment method, including bank name
+        # and last four digits.
         sig do
           returns(
             WhopSDK::Models::PaymentMethodListResponse::UsBankAccountPaymentMethod::UsBankAccount
@@ -261,7 +293,8 @@ module WhopSDK
         end
         attr_writer :us_bank_account
 
-        # The bank account for the payment method
+        # A saved US bank account payment method, including bank name, last four digits,
+        # and account type.
         sig do
           params(
             id: String,
@@ -273,13 +306,19 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the payment method
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
           id:,
-          # When the payment method was created
+          # The time of the event in ISO 8601 UTC format with millisecond precision
           created_at:,
-          # The type of the payment method
+          # The type of payment instrument stored on file (e.g., card, us_bank_account,
+          # cashapp, ideal, sepa_debit).
           payment_method_type:,
-          # The bank details associated with this payment method
+          # The bank account-specific details for this payment method, including bank name
+          # and last four digits.
           us_bank_account:,
           # The typename of this object
           typename: :UsBankAccountPaymentMethod
@@ -310,19 +349,20 @@ module WhopSDK
               )
             end
 
-          # The type of account
+          # The type of bank account (e.g., checking, savings).
           sig { returns(String) }
           attr_accessor :account_type
 
-          # The name of the bank
+          # The name of the financial institution holding the account.
           sig { returns(String) }
           attr_accessor :bank_name
 
-          # The last 4 digits of the account number
+          # The last four digits of the bank account number.
           sig { returns(String) }
           attr_accessor :last4
 
-          # The bank details associated with this payment method
+          # The bank account-specific details for this payment method, including bank name
+          # and last four digits.
           sig do
             params(
               account_type: String,
@@ -331,11 +371,11 @@ module WhopSDK
             ).returns(T.attached_class)
           end
           def self.new(
-            # The type of account
+            # The type of bank account (e.g., checking, savings).
             account_type:,
-            # The name of the bank
+            # The name of the financial institution holding the account.
             bank_name:,
-            # The last 4 digits of the account number
+            # The last four digits of the bank account number.
             last4:
           )
           end
@@ -359,11 +399,16 @@ module WhopSDK
             )
           end
 
-        # The ID of the payment method
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         sig { returns(String) }
         attr_accessor :id
 
-        # The Cash App details associated with this payment method
+        # The Cash App-specific details for this payment method, including cashtag and
+        # buyer ID.
         sig do
           returns(
             WhopSDK::Models::PaymentMethodListResponse::CashappPaymentMethod::Cashapp
@@ -379,11 +424,12 @@ module WhopSDK
         end
         attr_writer :cashapp
 
-        # When the payment method was created
+        # The time of the event in ISO 8601 UTC format with millisecond precision
         sig { returns(Time) }
         attr_accessor :created_at
 
-        # The type of the payment method
+        # The type of payment instrument stored on file (e.g., card, us_bank_account,
+        # cashapp, ideal, sepa_debit).
         sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
         attr_accessor :payment_method_type
 
@@ -391,7 +437,8 @@ module WhopSDK
         sig { returns(Symbol) }
         attr_accessor :typename
 
-        # The Cash App details for the payment method
+        # A saved Cash App payment method, including the buyer's cashtag and unique
+        # identifier.
         sig do
           params(
             id: String,
@@ -403,13 +450,19 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the payment method
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
           id:,
-          # The Cash App details associated with this payment method
+          # The Cash App-specific details for this payment method, including cashtag and
+          # buyer ID.
           cashapp:,
-          # When the payment method was created
+          # The time of the event in ISO 8601 UTC format with millisecond precision
           created_at:,
-          # The type of the payment method
+          # The type of payment instrument stored on file (e.g., card, us_bank_account,
+          # cashapp, ideal, sepa_debit).
           payment_method_type:,
           # The typename of this object
           typename: :CashappPaymentMethod
@@ -440,15 +493,17 @@ module WhopSDK
               )
             end
 
-          # A unique and immutable identifier assigned by Cash App to every buyer.
+          # The unique and immutable identifier assigned by Cash App to the buyer. Null if
+          # not available.
           sig { returns(T.nilable(String)) }
           attr_accessor :buyer_id
 
-          # A public identifier for buyers using Cash App.
+          # The public cashtag handle of the buyer on Cash App. Null if not available.
           sig { returns(T.nilable(String)) }
           attr_accessor :cashtag
 
-          # The Cash App details associated with this payment method
+          # The Cash App-specific details for this payment method, including cashtag and
+          # buyer ID.
           sig do
             params(
               buyer_id: T.nilable(String),
@@ -456,9 +511,10 @@ module WhopSDK
             ).returns(T.attached_class)
           end
           def self.new(
-            # A unique and immutable identifier assigned by Cash App to every buyer.
+            # The unique and immutable identifier assigned by Cash App to the buyer. Null if
+            # not available.
             buyer_id:,
-            # A public identifier for buyers using Cash App.
+            # The public cashtag handle of the buyer on Cash App. Null if not available.
             cashtag:
           )
           end
@@ -482,15 +538,19 @@ module WhopSDK
             )
           end
 
-        # The ID of the payment method
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         sig { returns(String) }
         attr_accessor :id
 
-        # When the payment method was created
+        # The time of the event in ISO 8601 UTC format with millisecond precision
         sig { returns(Time) }
         attr_accessor :created_at
 
-        # The iDEAL details associated with this payment method
+        # The iDEAL-specific details for this payment method, including bank name and BIC.
         sig do
           returns(
             WhopSDK::Models::PaymentMethodListResponse::IdealPaymentMethod::Ideal
@@ -506,7 +566,8 @@ module WhopSDK
         end
         attr_writer :ideal
 
-        # The type of the payment method
+        # The type of payment instrument stored on file (e.g., card, us_bank_account,
+        # cashapp, ideal, sepa_debit).
         sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
         attr_accessor :payment_method_type
 
@@ -514,7 +575,7 @@ module WhopSDK
         sig { returns(Symbol) }
         attr_accessor :typename
 
-        # The iDEAL details for the payment method
+        # A saved iDEAL payment method, including the customer's bank name and BIC code.
         sig do
           params(
             id: String,
@@ -526,13 +587,18 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the payment method
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
           id:,
-          # When the payment method was created
+          # The time of the event in ISO 8601 UTC format with millisecond precision
           created_at:,
-          # The iDEAL details associated with this payment method
+          # The iDEAL-specific details for this payment method, including bank name and BIC.
           ideal:,
-          # The type of the payment method
+          # The type of payment instrument stored on file (e.g., card, us_bank_account,
+          # cashapp, ideal, sepa_debit).
           payment_method_type:,
           # The typename of this object
           typename: :IdealPaymentMethod
@@ -563,24 +629,28 @@ module WhopSDK
               )
             end
 
-          # The customer's bank.
+          # The name of the customer's bank used for the iDEAL transaction. Null if not
+          # available.
           sig { returns(T.nilable(String)) }
           attr_accessor :bank
 
-          # The Bank Identifier Code of the customer's bank.
+          # The Bank Identifier Code (BIC/SWIFT) of the customer's bank. Null if not
+          # available.
           sig { returns(T.nilable(String)) }
           attr_accessor :bic
 
-          # The iDEAL details associated with this payment method
+          # The iDEAL-specific details for this payment method, including bank name and BIC.
           sig do
             params(bank: T.nilable(String), bic: T.nilable(String)).returns(
               T.attached_class
             )
           end
           def self.new(
-            # The customer's bank.
+            # The name of the customer's bank used for the iDEAL transaction. Null if not
+            # available.
             bank:,
-            # The Bank Identifier Code of the customer's bank.
+            # The Bank Identifier Code (BIC/SWIFT) of the customer's bank. Null if not
+            # available.
             bic:
           )
           end
@@ -604,19 +674,25 @@ module WhopSDK
             )
           end
 
-        # The ID of the payment method
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         sig { returns(String) }
         attr_accessor :id
 
-        # When the payment method was created
+        # The time of the event in ISO 8601 UTC format with millisecond precision
         sig { returns(Time) }
         attr_accessor :created_at
 
-        # The type of the payment method
+        # The type of payment instrument stored on file (e.g., card, us_bank_account,
+        # cashapp, ideal, sepa_debit).
         sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
         attr_accessor :payment_method_type
 
-        # The SEPA Direct Debit details associated with this payment method
+        # The SEPA Direct Debit-specific details for this payment method, including bank
+        # code and last four IBAN digits.
         sig do
           returns(
             WhopSDK::Models::PaymentMethodListResponse::SepaDebitPaymentMethod::SepaDebit
@@ -636,7 +712,8 @@ module WhopSDK
         sig { returns(Symbol) }
         attr_accessor :typename
 
-        # The SEPA Direct Debit details for the payment method
+        # A saved SEPA Direct Debit payment method, including the bank code, country, and
+        # last four IBAN digits.
         sig do
           params(
             id: String,
@@ -648,13 +725,19 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the payment method
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
           id:,
-          # When the payment method was created
+          # The time of the event in ISO 8601 UTC format with millisecond precision
           created_at:,
-          # The type of the payment method
+          # The type of payment instrument stored on file (e.g., card, us_bank_account,
+          # cashapp, ideal, sepa_debit).
           payment_method_type:,
-          # The SEPA Direct Debit details associated with this payment method
+          # The SEPA Direct Debit-specific details for this payment method, including bank
+          # code and last four IBAN digits.
           sepa_debit:,
           # The typename of this object
           typename: :SepaDebitPaymentMethod
@@ -685,23 +768,28 @@ module WhopSDK
               )
             end
 
-          # Bank code of the bank associated with the account.
+          # The bank code of the financial institution associated with this SEPA account.
+          # Null if not available.
           sig { returns(T.nilable(String)) }
           attr_accessor :bank_code
 
-          # Branch code of the bank associated with the account.
+          # The branch code of the financial institution associated with this SEPA account.
+          # Null if not available.
           sig { returns(T.nilable(String)) }
           attr_accessor :branch_code
 
-          # Two-letter ISO code representing the country the bank account is located in.
+          # The two-letter ISO country code where the bank account is located. Null if not
+          # available.
           sig { returns(T.nilable(String)) }
           attr_accessor :country
 
-          # Last four digits of the IBAN.
+          # The last four digits of the IBAN associated with this SEPA account. Null if not
+          # available.
           sig { returns(T.nilable(String)) }
           attr_accessor :last4
 
-          # The SEPA Direct Debit details associated with this payment method
+          # The SEPA Direct Debit-specific details for this payment method, including bank
+          # code and last four IBAN digits.
           sig do
             params(
               bank_code: T.nilable(String),
@@ -711,13 +799,17 @@ module WhopSDK
             ).returns(T.attached_class)
           end
           def self.new(
-            # Bank code of the bank associated with the account.
+            # The bank code of the financial institution associated with this SEPA account.
+            # Null if not available.
             bank_code:,
-            # Branch code of the bank associated with the account.
+            # The branch code of the financial institution associated with this SEPA account.
+            # Null if not available.
             branch_code:,
-            # Two-letter ISO code representing the country the bank account is located in.
+            # The two-letter ISO country code where the bank account is located. Null if not
+            # available.
             country:,
-            # Last four digits of the IBAN.
+            # The last four digits of the IBAN associated with this SEPA account. Null if not
+            # available.
             last4:
           )
           end

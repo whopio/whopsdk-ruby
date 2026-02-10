@@ -8,31 +8,34 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute chapter_id
-      #   The ID of the chapter to create the lesson in
+      #   The unique identifier of the chapter to create the lesson in (e.g.,
+      #   "chap_XXXXX").
       #
       #   @return [String]
       required :chapter_id, String
 
       # @!attribute lesson_type
-      #   The type of the lesson
+      #   The content type of the lesson, such as video, text, quiz, or knowledge check.
       #
       #   @return [Symbol, WhopSDK::Models::LessonTypes]
       required :lesson_type, enum: -> { WhopSDK::LessonTypes }
 
       # @!attribute content
-      #   The content of the lesson
+      #   The rich text or HTML content body of the lesson.
       #
       #   @return [String, nil]
       optional :content, String, nil?: true
 
       # @!attribute days_from_course_start_until_unlock
-      #   Days from course start until unlock
+      #   The number of days after a student starts the course before this lesson becomes
+      #   accessible.
       #
       #   @return [Integer, nil]
       optional :days_from_course_start_until_unlock, Integer, nil?: true
 
       # @!attribute embed_id
-      #   ID for the embed (YouTube video ID or Loom share ID)
+      #   The external video identifier for embedded content (e.g., a YouTube video ID or
+      #   Loom share ID).
       #
       #   @return [String, nil]
       optional :embed_id, String, nil?: true
@@ -44,33 +47,36 @@ module WhopSDK
       optional :embed_type, enum: -> { WhopSDK::EmbedType }, nil?: true
 
       # @!attribute thumbnail
-      #   The thumbnail for the lesson in png, jpeg, or gif format
+      #   The thumbnail image for the lesson in PNG, JPEG, or GIF format.
       #
       #   @return [WhopSDK::Models::CourseLessonCreateParams::Thumbnail, nil]
       optional :thumbnail, -> { WhopSDK::CourseLessonCreateParams::Thumbnail }, nil?: true
 
       # @!attribute title
-      #   The title of the lesson
+      #   The display title of the lesson (e.g., "Getting Started with APIs").
       #
       #   @return [String, nil]
       optional :title, String, nil?: true
 
       # @!method initialize(chapter_id:, lesson_type:, content: nil, days_from_course_start_until_unlock: nil, embed_id: nil, embed_type: nil, thumbnail: nil, title: nil, request_options: {})
-      #   @param chapter_id [String] The ID of the chapter to create the lesson in
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::CourseLessonCreateParams} for more details.
       #
-      #   @param lesson_type [Symbol, WhopSDK::Models::LessonTypes] The type of the lesson
+      #   @param chapter_id [String] The unique identifier of the chapter to create the lesson in (e.g., "chap_XXXXX"
       #
-      #   @param content [String, nil] The content of the lesson
+      #   @param lesson_type [Symbol, WhopSDK::Models::LessonTypes] The content type of the lesson, such as video, text, quiz, or knowledge check.
       #
-      #   @param days_from_course_start_until_unlock [Integer, nil] Days from course start until unlock
+      #   @param content [String, nil] The rich text or HTML content body of the lesson.
       #
-      #   @param embed_id [String, nil] ID for the embed (YouTube video ID or Loom share ID)
+      #   @param days_from_course_start_until_unlock [Integer, nil] The number of days after a student starts the course before this lesson becomes
+      #
+      #   @param embed_id [String, nil] The external video identifier for embedded content (e.g., a YouTube video ID or
       #
       #   @param embed_type [Symbol, WhopSDK::Models::EmbedType, nil] The type of embed for a lesson
       #
-      #   @param thumbnail [WhopSDK::Models::CourseLessonCreateParams::Thumbnail, nil] The thumbnail for the lesson in png, jpeg, or gif format
+      #   @param thumbnail [WhopSDK::Models::CourseLessonCreateParams::Thumbnail, nil] The thumbnail image for the lesson in PNG, JPEG, or GIF format.
       #
-      #   @param title [String, nil] The title of the lesson
+      #   @param title [String, nil] The display title of the lesson (e.g., "Getting Started with APIs").
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
@@ -82,7 +88,7 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   The thumbnail for the lesson in png, jpeg, or gif format
+        #   The thumbnail image for the lesson in PNG, JPEG, or GIF format.
         #
         #   @param id [String] The ID of an existing file object.
       end

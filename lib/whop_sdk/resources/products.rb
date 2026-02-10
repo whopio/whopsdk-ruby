@@ -6,7 +6,8 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::ProductCreateParams} for more details.
       #
-      # Create a new product for a company.
+      # Create a new product for a company. The product serves as the top-level
+      # container for plans and experiences.
       #
       # Required permissions:
       #
@@ -73,7 +74,7 @@ module WhopSDK
         )
       end
 
-      # Retrieve a single product by its unique identifier or route slug.
+      # Retrieves the details of an existing product.
       #
       # Required permissions:
       #
@@ -100,7 +101,7 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::ProductUpdateParams} for more details.
       #
-      # Update an existing product.
+      # Update a product's title, description, visibility, and other settings.
       #
       # Required permissions:
       #
@@ -163,7 +164,8 @@ module WhopSDK
         )
       end
 
-      # List products belonging to a company, with optional filtering and sorting.
+      # Returns a paginated list of products belonging to a company, with optional
+      # filtering by type, visibility, and creation date.
       #
       # Required permissions:
       #
@@ -177,9 +179,9 @@ module WhopSDK
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param created_after [Time, nil] Only return products created after this datetime.
+      # @param created_after [Time, nil] Only return products created after this timestamp.
       #
-      # @param created_before [Time, nil] Only return products created before this datetime.
+      # @param created_before [Time, nil] Only return products created before this timestamp.
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
@@ -210,7 +212,7 @@ module WhopSDK
         )
       end
 
-      # Delete a product by its unique identifier.
+      # Permanently delete a product and remove it from the company's catalog.
       #
       # Required permissions:
       #

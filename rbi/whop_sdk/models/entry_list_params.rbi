@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::EntryListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the company
+      # The unique identifier of the company to list waitlist entries for.
       sig { returns(String) }
       attr_accessor :company_id
 
@@ -23,11 +23,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # The minimum creation date to filter by
+      # Only return entries created after this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_after
 
-      # The maximum creation date to filter by
+      # Only return entries created before this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_before
 
@@ -47,15 +47,15 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::EntryListParams::Order::OrSymbol)) }
       attr_accessor :order
 
-      # The plan IDs to filter the entries by
+      # Filter entries to only those for specific plans.
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :plan_ids
 
-      # The product IDs to filter the entries by
+      # Filter entries to only those for specific products.
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :product_ids
 
-      # The statuses to filter the entries by
+      # Filter entries by their current status.
       sig { returns(T.nilable(T::Array[WhopSDK::EntryStatus::OrSymbol])) }
       attr_accessor :statuses
 
@@ -77,15 +77,15 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the company
+        # The unique identifier of the company to list waitlist entries for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The minimum creation date to filter by
+        # Only return entries created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return entries created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,
@@ -95,11 +95,11 @@ module WhopSDK
         last: nil,
         # Which columns can be used to sort.
         order: nil,
-        # The plan IDs to filter the entries by
+        # Filter entries to only those for specific plans.
         plan_ids: nil,
-        # The product IDs to filter the entries by
+        # Filter entries to only those for specific products.
         product_ids: nil,
-        # The statuses to filter the entries by
+        # Filter entries by their current status.
         statuses: nil,
         request_options: {}
       )

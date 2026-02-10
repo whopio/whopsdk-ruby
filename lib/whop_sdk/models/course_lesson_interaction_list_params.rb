@@ -20,13 +20,13 @@ module WhopSDK
       optional :before, String, nil?: true
 
       # @!attribute completed
-      #   Whether the lesson has been completed by the user
+      #   Whether to filter for completed or in-progress lesson interactions.
       #
       #   @return [Boolean, nil]
       optional :completed, WhopSDK::Internal::Type::Boolean, nil?: true
 
       # @!attribute course_id
-      #   The ID of the course to list course lesson interactions for
+      #   The unique identifier of the course to filter interactions for.
       #
       #   @return [String, nil]
       optional :course_id, String, nil?: true
@@ -44,13 +44,13 @@ module WhopSDK
       optional :last, Integer, nil?: true
 
       # @!attribute lesson_id
-      #   The ID of the lesson to list course lesson interactions for
+      #   The unique identifier of the lesson to filter interactions for.
       #
       #   @return [String, nil]
       optional :lesson_id, String, nil?: true
 
       # @!attribute user_id
-      #   The ID of the user to list course lesson interactions for
+      #   The unique identifier of the user to filter lesson interactions for.
       #
       #   @return [String, nil]
       optional :user_id, String, nil?: true
@@ -60,17 +60,17 @@ module WhopSDK
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param completed [Boolean, nil] Whether the lesson has been completed by the user
+      #   @param completed [Boolean, nil] Whether to filter for completed or in-progress lesson interactions.
       #
-      #   @param course_id [String, nil] The ID of the course to list course lesson interactions for
+      #   @param course_id [String, nil] The unique identifier of the course to filter interactions for.
       #
       #   @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      #   @param lesson_id [String, nil] The ID of the lesson to list course lesson interactions for
+      #   @param lesson_id [String, nil] The unique identifier of the lesson to filter interactions for.
       #
-      #   @param user_id [String, nil] The ID of the user to list course lesson interactions for
+      #   @param user_id [String, nil] The unique identifier of the user to filter lesson interactions for.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

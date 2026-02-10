@@ -6,7 +6,8 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::InvoiceCreateParams} for more details.
       #
-      # Creates an invoice
+      # Create an invoice for a customer. The invoice can be charged automatically using
+      # a stored payment method, or sent to the customer for manual payment.
       #
       # Required permissions:
       #
@@ -15,27 +16,28 @@ module WhopSDK
       #
       # @overload create(collection_method:, company_id:, due_date:, member_id:, plan:, product:, email_address:, product_id:, charge_buyer_fee: nil, customer_name: nil, payment_method_id: nil, payment_token_id: nil, request_options: {})
       #
-      # @param collection_method [Symbol, WhopSDK::Models::CollectionMethod] The method of collection for this invoice. If using charge_automatically, you mu
+      # @param collection_method [Symbol, WhopSDK::Models::CollectionMethod] How the invoice should be collected. Use charge_automatically to charge a stored
       #
-      # @param company_id [String] The company ID to create this invoice for.
+      # @param company_id [String] The unique identifier of the company to create this invoice for.
       #
-      # @param due_date [Time] The date the invoice is due, if applicable.
+      # @param due_date [Time] The date by which the invoice must be paid.
       #
-      # @param member_id [String] The member ID to create this invoice for. Include this if you want to create an
+      # @param member_id [String] The unique identifier of an existing member to create this invoice for. If not p
       #
-      # @param plan [WhopSDK::Models::InvoiceCreateParams::Plan] The properties of the plan to create for this invoice.
+      # @param plan [WhopSDK::Models::InvoiceCreateParams::Plan] The plan attributes defining the price, currency, and billing interval for this
       #
-      # @param product [WhopSDK::Models::InvoiceCreateParams::Product] The properties of the product to create for this invoice. Include this if you wa
+      # @param product [WhopSDK::Models::InvoiceCreateParams::Product] The properties of the product to create for this invoice. Provide this to create
       #
-      # @param email_address [String] The email address to create this invoice for. This is required if you want to cr
+      # @param email_address [String] The email address of the customer. Required when creating an invoice for a custo
       #
-      # @param product_id [String] The product ID to create this invoice for. Include this if you want to create an
+      # @param product_id [String] The unique identifier of an existing product to create this invoice for.
       #
-      # @param charge_buyer_fee [Boolean, nil] Whether or not to charge the customer a buyer fee.
+      # @param charge_buyer_fee [Boolean, nil] Whether to charge the customer a buyer fee on this invoice.
       #
-      # @param customer_name [String, nil] The name of the customer to create this invoice for. This is required if you wan
+      # @param customer_name [String, nil] The name of the customer. Required when creating an invoice for a customer who i
       #
-      # @param payment_method_id [String, nil] The payment method ID to use for this invoice. If using charge_automatically, yo
+      # @param payment_method_id [String, nil] The unique identifier of the payment method to charge. Required when
+      # collection\_
       #
       # @param payment_token_id [String, nil] The payment token ID to use for this invoice. If using charge_automatically, you
       #
@@ -55,7 +57,7 @@ module WhopSDK
         )
       end
 
-      # Retrieves an invoice by ID or token
+      # Retrieves the details of an existing invoice.
       #
       # Required permissions:
       #
@@ -64,7 +66,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the invoice or a token
+      # @param id [String] The unique identifier of the invoice, or a secure token.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -80,7 +82,11 @@ module WhopSDK
         )
       end
 
-      # Lists invoices
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::InvoiceListParams} for more details.
+      #
+      # Returns a paginated list of invoices for a company, with optional filtering by
+      # product, status, collection method, and creation date.
       #
       # Required permissions:
       #
@@ -89,17 +95,17 @@ module WhopSDK
       #
       # @overload list(company_id:, after: nil, before: nil, collection_methods: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, product_ids: nil, statuses: nil, request_options: {})
       #
-      # @param company_id [String] The ID of the company to list invoices for
+      # @param company_id [String] The unique identifier of the company to list invoices for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param collection_methods [Array<Symbol, WhopSDK::Models::CollectionMethod>, nil] Filter invoices by their collection method
+      # @param collection_methods [Array<Symbol, WhopSDK::Models::CollectionMethod>, nil] Filter invoices by their collection method.
       #
-      # @param created_after [Time, nil] The minimum creation date to filter by
+      # @param created_after [Time, nil] Only return invoices created after this timestamp.
       #
-      # @param created_before [Time, nil] The maximum creation date to filter by
+      # @param created_before [Time, nil] Only return invoices created before this timestamp.
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
@@ -109,9 +115,9 @@ module WhopSDK
       #
       # @param order [Symbol, WhopSDK::Models::InvoiceListParams::Order, nil] Which columns can be used to sort.
       #
-      # @param product_ids [Array<String>, nil] Return only invoices created for these specific product ids
+      # @param product_ids [Array<String>, nil] Filter invoices to only those associated with these specific product identifiers
       #
-      # @param statuses [Array<Symbol, WhopSDK::Models::InvoiceStatus>, nil] The statuses to filter the invoices by
+      # @param statuses [Array<Symbol, WhopSDK::Models::InvoiceStatus>, nil] Filter invoices by their current status.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -130,7 +136,8 @@ module WhopSDK
         )
       end
 
-      # Void an invoice
+      # Void an open invoice so it can no longer be paid. Voiding is permanent and
+      # cannot be undone.
       #
       # Required permissions:
       #
@@ -138,7 +145,7 @@ module WhopSDK
       #
       # @overload void(id, request_options: {})
       #
-      # @param id [String] The ID of the invoice to void
+      # @param id [String] The unique identifier of the invoice to void.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

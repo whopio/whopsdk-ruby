@@ -52,7 +52,7 @@ module WhopSDK
       )
       end
 
-      # Retrieve a single company by its unique identifier or route slug.
+      # Retrieves the details of an existing company.
       #
       # Required permissions:
       #
@@ -70,8 +70,7 @@ module WhopSDK
       )
       end
 
-      # Update an existing company. Either a regular company, platform company, or one
-      # of a platform's connected accounts
+      # Update a company's title, description, logo, and other settings.
       #
       # Required permissions:
       #
@@ -114,9 +113,9 @@ module WhopSDK
       )
       end
 
-      # List companies. When parent_company_id is provided, lists connected accounts
-      # under that platform. When omitted, lists companies the current user has access
-      # to.
+      # Returns a paginated list of companies. When parent_company_id is provided, lists
+      # connected accounts under that platform. When omitted, lists companies the
+      # current user has access to.
       #
       # Required permissions:
       #
@@ -141,9 +140,9 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # Only return companies created after this datetime.
+        # Only return companies created after this timestamp.
         created_after: nil,
-        # Only return companies created before this datetime.
+        # Only return companies created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,

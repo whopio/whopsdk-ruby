@@ -11,20 +11,20 @@ module WhopSDK
           T.any(WhopSDK::TopupCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The amount to add to the balance. Provided as a number in the specified
-      # currency. Eg: 50.00 for $50.00 USD.
+      # The amount to add to the balance in the specified currency. For example, 50.00
+      # for $50.00 USD.
       sig { returns(Float) }
       attr_accessor :amount
 
-      # The ID of the company to add funds to.
+      # The unique identifier of the company to add funds to, starting with 'biz\_'.
       sig { returns(String) }
       attr_accessor :company_id
 
-      # The currency of the top-up.
+      # The currency for the top-up amount, such as 'usd'.
       sig { returns(WhopSDK::Currency::OrSymbol) }
       attr_accessor :currency
 
-      # The ID of the payment method to charge for the top-up.
+      # The unique identifier of the stored payment method to charge for the top-up.
       sig { returns(String) }
       attr_accessor :payment_method_id
 
@@ -38,14 +38,14 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The amount to add to the balance. Provided as a number in the specified
-        # currency. Eg: 50.00 for $50.00 USD.
+        # The amount to add to the balance in the specified currency. For example, 50.00
+        # for $50.00 USD.
         amount:,
-        # The ID of the company to add funds to.
+        # The unique identifier of the company to add funds to, starting with 'biz\_'.
         company_id:,
-        # The currency of the top-up.
+        # The currency for the top-up amount, such as 'usd'.
         currency:,
-        # The ID of the payment method to charge for the top-up.
+        # The unique identifier of the stored payment method to charge for the top-up.
         payment_method_id:,
         request_options: {}
       )

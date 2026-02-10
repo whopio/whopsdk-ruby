@@ -46,7 +46,8 @@ module WhopSDK
       required :card_brand, enum: -> { WhopSDK::CardBrands }, nil?: true
 
       # @!attribute card_last4
-      #   The last 4 digits of the card used to make the payment.
+      #   The last four digits of the card used to make this payment. Null if the payment
+      #   was not made with a card.
       #
       #   @return [String, nil]
       required :card_last4, String, nil?: true
@@ -113,13 +114,15 @@ module WhopSDK
       required :next_payment_attempt, Time, nil?: true
 
       # @!attribute paid_at
-      #   The datetime the payment was paid
+      #   The time at which this payment was successfully collected. Null if the payment
+      #   has not yet succeeded. As a Unix timestamp.
       #
       #   @return [Time, nil]
       required :paid_at, Time, nil?: true
 
       # @!attribute payment_method
-      #   The payment method used for the payment, if available.
+      #   The tokenized payment method reference used for this payment. Null if no token
+      #   was used.
       #
       #   @return [WhopSDK::Models::Payment::PaymentMethod, nil]
       required :payment_method, -> { WhopSDK::Payment::PaymentMethod }, nil?: true
@@ -245,7 +248,7 @@ module WhopSDK
       #
       #   @param card_brand [Symbol, WhopSDK::Models::CardBrands, nil] Possible card brands that a payment token can have
       #
-      #   @param card_last4 [String, nil] The last 4 digits of the card used to make the payment.
+      #   @param card_last4 [String, nil] The last four digits of the card used to make this payment. Null if the payment
       #
       #   @param company [WhopSDK::Models::Payment::Company, nil] The company for the payment.
       #
@@ -267,9 +270,9 @@ module WhopSDK
       #
       #   @param next_payment_attempt [Time, nil] The time of the next schedule payment retry.
       #
-      #   @param paid_at [Time, nil] The datetime the payment was paid
+      #   @param paid_at [Time, nil] The time at which this payment was successfully collected. Null if the payment h
       #
-      #   @param payment_method [WhopSDK::Models::Payment::PaymentMethod, nil] The payment method used for the payment, if available.
+      #   @param payment_method [WhopSDK::Models::Payment::PaymentMethod, nil] The tokenized payment method reference used for this payment. Null if no token w
       #
       #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes, nil] The different types of payment methods that can be used.
       #
@@ -523,7 +526,8 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::Payment::PaymentMethod} for more details.
         #
-        #   The payment method used for the payment, if available.
+        #   The tokenized payment method reference used for this payment. Null if no token
+        #   was used.
         #
         #   @param id [String] The unique identifier for the payment token.
         #
@@ -542,33 +546,37 @@ module WhopSDK
           required :brand, enum: -> { WhopSDK::CardBrands }, nil?: true
 
           # @!attribute exp_month
-          #   Card expiration month, like 03 for March.
+          #   The two-digit expiration month of the card (1-12). Null if not available.
           #
           #   @return [Integer, nil]
           required :exp_month, Integer, nil?: true
 
           # @!attribute exp_year
-          #   Card expiration year, like 27 for 2027.
+          #   The two-digit expiration year of the card (e.g., 27 for 2027). Null if not
+          #   available.
           #
           #   @return [Integer, nil]
           required :exp_year, Integer, nil?: true
 
           # @!attribute last4
-          #   Last four digits of the card.
+          #   The last four digits of the card number. Null if not available.
           #
           #   @return [String, nil]
           required :last4, String, nil?: true
 
           # @!method initialize(brand:, exp_month:, exp_year:, last4:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::Payment::PaymentMethod::Card} for more details.
+          #
           #   The card data associated with the payment method, if its a debit or credit card.
           #
           #   @param brand [Symbol, WhopSDK::Models::CardBrands, nil] Possible card brands that a payment token can have
           #
-          #   @param exp_month [Integer, nil] Card expiration month, like 03 for March.
+          #   @param exp_month [Integer, nil] The two-digit expiration month of the card (1-12). Null if not available.
           #
-          #   @param exp_year [Integer, nil] Card expiration year, like 27 for 2027.
+          #   @param exp_year [Integer, nil] The two-digit expiration year of the card (e.g., 27 for 2027). Null if not avail
           #
-          #   @param last4 [String, nil] Last four digits of the card.
+          #   @param last4 [String, nil] The last four digits of the card number. Null if not available.
         end
       end
 

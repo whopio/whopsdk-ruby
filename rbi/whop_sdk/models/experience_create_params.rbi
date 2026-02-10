@@ -11,19 +11,19 @@ module WhopSDK
           T.any(WhopSDK::ExperienceCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the app to create the experience for
+      # The unique identifier of the app that powers this experience.
       sig { returns(String) }
       attr_accessor :app_id
 
-      # The ID of the company to create the experience for
+      # The unique identifier of the company to create this experience for.
       sig { returns(String) }
       attr_accessor :company_id
 
-      # Whether the experience is publicly accessible
+      # Whether the experience is publicly accessible without a membership.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :is_public
 
-      # The logo for the experience
+      # A logo image displayed alongside the experience name.
       sig { returns(T.nilable(WhopSDK::ExperienceCreateParams::Logo)) }
       attr_reader :logo
 
@@ -34,11 +34,11 @@ module WhopSDK
       end
       attr_writer :logo
 
-      # The name of the experience
+      # The display name of the experience. Defaults to the app's name if not provided.
       sig { returns(T.nilable(String)) }
       attr_accessor :name
 
-      # The ID of the section to create the experience in
+      # The unique identifier of the section to place the experience in.
       sig { returns(T.nilable(String)) }
       attr_accessor :section_id
 
@@ -54,17 +54,17 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the app to create the experience for
+        # The unique identifier of the app that powers this experience.
         app_id:,
-        # The ID of the company to create the experience for
+        # The unique identifier of the company to create this experience for.
         company_id:,
-        # Whether the experience is publicly accessible
+        # Whether the experience is publicly accessible without a membership.
         is_public: nil,
-        # The logo for the experience
+        # A logo image displayed alongside the experience name.
         logo: nil,
-        # The name of the experience
+        # The display name of the experience. Defaults to the app's name if not provided.
         name: nil,
-        # The ID of the section to create the experience in
+        # The unique identifier of the section to place the experience in.
         section_id: nil,
         request_options: {}
       )
@@ -99,7 +99,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The logo for the experience
+        # A logo image displayed alongside the experience name.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.

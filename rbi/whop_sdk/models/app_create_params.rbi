@@ -11,19 +11,21 @@ module WhopSDK
           T.any(WhopSDK::AppCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the company to create the app for
+      # The unique identifier of the company to create the app for, starting with
+      # 'biz\_'.
       sig { returns(String) }
       attr_accessor :company_id
 
-      # The name of the app to be created
+      # The display name for the app, shown to users on the app store and product pages.
       sig { returns(String) }
       attr_accessor :name
 
-      # The base URL of the app to be created
+      # The base production URL where the app is hosted, such as
+      # 'https://myapp.example.com'.
       sig { returns(T.nilable(String)) }
       attr_accessor :base_url
 
-      # The icon for the app in png, jpeg, or gif format
+      # The icon image for the app in PNG, JPEG, or GIF format.
       sig { returns(T.nilable(WhopSDK::AppCreateParams::Icon)) }
       attr_reader :icon
 
@@ -42,13 +44,15 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the company to create the app for
+        # The unique identifier of the company to create the app for, starting with
+        # 'biz\_'.
         company_id:,
-        # The name of the app to be created
+        # The display name for the app, shown to users on the app store and product pages.
         name:,
-        # The base URL of the app to be created
+        # The base production URL where the app is hosted, such as
+        # 'https://myapp.example.com'.
         base_url: nil,
-        # The icon for the app in png, jpeg, or gif format
+        # The icon image for the app in PNG, JPEG, or GIF format.
         icon: nil,
         request_options: {}
       )
@@ -78,7 +82,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The icon for the app in png, jpeg, or gif format
+        # The icon image for the app in PNG, JPEG, or GIF format.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.

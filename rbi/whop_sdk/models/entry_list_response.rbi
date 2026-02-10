@@ -16,7 +16,7 @@ module WhopSDK
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_at
 
-      # The waitlist plan the entry if for.
+      # The waitlisted plan that this entry is a signup for.
       sig { returns(T.nilable(WhopSDK::Models::EntryListResponse::Plan)) }
       attr_reader :plan
 
@@ -27,7 +27,8 @@ module WhopSDK
       end
       attr_writer :plan
 
-      # The product tied to this entry, if there is one.
+      # The product associated with this entry's waitlisted plan. Null if the plan is
+      # not tied to a product.
       sig { returns(T.nilable(WhopSDK::Models::EntryListResponse::Product)) }
       attr_reader :product
 
@@ -39,11 +40,12 @@ module WhopSDK
       end
       attr_writer :product
 
-      # The status of the entry.
+      # The current status of the waitlist entry (e.g., drafted, pending, approved,
+      # denied).
       sig { returns(WhopSDK::EntryStatus::TaggedSymbol) }
       attr_accessor :status
 
-      # The user who created the entry.
+      # The user who submitted this waitlist entry.
       sig { returns(WhopSDK::Models::EntryListResponse::User) }
       attr_reader :user
 
@@ -69,13 +71,15 @@ module WhopSDK
         id:,
         # The datetime the entry was created.
         created_at:,
-        # The waitlist plan the entry if for.
+        # The waitlisted plan that this entry is a signup for.
         plan:,
-        # The product tied to this entry, if there is one.
+        # The product associated with this entry's waitlisted plan. Null if the plan is
+        # not tied to a product.
         product:,
-        # The status of the entry.
+        # The current status of the waitlist entry (e.g., drafted, pending, approved,
+        # denied).
         status:,
-        # The user who created the entry.
+        # The user who submitted this waitlist entry.
         user:
       )
       end
@@ -108,7 +112,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The waitlist plan the entry if for.
+        # The waitlisted plan that this entry is a signup for.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the plan.
@@ -139,7 +143,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :title
 
-        # The product tied to this entry, if there is one.
+        # The product associated with this entry's waitlisted plan. Null if the plan is
+        # not tied to a product.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the product.
@@ -181,7 +186,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :username
 
-        # The user who created the entry.
+        # The user who submitted this waitlist entry.
         sig do
           params(
             id: String,

@@ -93,8 +93,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The amount of the refund. Provided as a number in the specified currency. Eg:
-        # 10.43 for $10.43 USD.
+        # The refunded amount as a decimal in the specified currency, such as 10.43 for
+        # $10.43 USD.
         sig { returns(Float) }
         attr_accessor :amount
 
@@ -102,11 +102,12 @@ module WhopSDK
         sig { returns(Time) }
         attr_accessor :created_at
 
-        # The currency of the refund.
+        # The three-letter ISO currency code for the refunded amount.
         sig { returns(WhopSDK::Currency::TaggedSymbol) }
         attr_accessor :currency
 
-        # The payment associated with the refund.
+        # The original payment that this refund was issued against. Null if the payment is
+        # no longer available.
         sig do
           returns(T.nilable(WhopSDK::RefundUpdatedWebhookEvent::Data::Payment))
         end
@@ -122,11 +123,12 @@ module WhopSDK
         end
         attr_writer :payment
 
-        # The provider of the refund.
+        # The payment provider that processed the refund.
         sig { returns(WhopSDK::PaymentProvider::TaggedSymbol) }
         attr_accessor :provider
 
-        # The time the refund was created by the provider.
+        # The timestamp when the refund was created in the payment provider's system. Null
+        # if not available from the provider.
         sig { returns(T.nilable(Time)) }
         attr_accessor :provider_created_at
 
@@ -138,11 +140,13 @@ module WhopSDK
         sig { returns(T.nilable(WhopSDK::RefundReferenceType::TaggedSymbol)) }
         attr_accessor :reference_type
 
-        # The value of the reference.
+        # The tracking reference value from the payment processor, used to trace the
+        # refund through banking networks. Null if no reference was provided.
         sig { returns(T.nilable(String)) }
         attr_accessor :reference_value
 
-        # The status of the refund.
+        # The current processing status of the refund, such as pending, succeeded, or
+        # failed.
         sig { returns(WhopSDK::RefundStatus::TaggedSymbol) }
         attr_accessor :status
 
@@ -170,26 +174,30 @@ module WhopSDK
         def self.new(
           # The unique identifier for the refund.
           id:,
-          # The amount of the refund. Provided as a number in the specified currency. Eg:
-          # 10.43 for $10.43 USD.
+          # The refunded amount as a decimal in the specified currency, such as 10.43 for
+          # $10.43 USD.
           amount:,
           # The datetime the refund was created.
           created_at:,
-          # The currency of the refund.
+          # The three-letter ISO currency code for the refunded amount.
           currency:,
-          # The payment associated with the refund.
+          # The original payment that this refund was issued against. Null if the payment is
+          # no longer available.
           payment:,
-          # The provider of the refund.
+          # The payment provider that processed the refund.
           provider:,
-          # The time the refund was created by the provider.
+          # The timestamp when the refund was created in the payment provider's system. Null
+          # if not available from the provider.
           provider_created_at:,
           # The status of the refund reference.
           reference_status:,
           # The type of refund reference that was made available by the payment provider.
           reference_type:,
-          # The value of the reference.
+          # The tracking reference value from the payment processor, used to trace the
+          # refund through banking networks. Null if no reference was provided.
           reference_value:,
-          # The status of the refund.
+          # The current processing status of the refund, such as pending, succeeded, or
+          # failed.
           status:
         )
         end
@@ -238,7 +246,8 @@ module WhopSDK
           sig { returns(T.nilable(WhopSDK::CardBrands::TaggedSymbol)) }
           attr_accessor :card_brand
 
-          # The last 4 digits of the card used to make the payment.
+          # The last four digits of the card used to make this payment. Null if the payment
+          # was not made with a card.
           sig { returns(T.nilable(String)) }
           attr_accessor :card_last4
 
@@ -294,7 +303,8 @@ module WhopSDK
           end
           attr_writer :membership
 
-          # The datetime the payment was paid
+          # The time at which this payment was successfully collected. Null if the payment
+          # has not yet succeeded. As a Unix timestamp.
           sig { returns(T.nilable(Time)) }
           attr_accessor :paid_at
 
@@ -332,7 +342,8 @@ module WhopSDK
           end
           attr_writer :user
 
-          # The payment associated with the refund.
+          # The original payment that this refund was issued against. Null if the payment is
+          # no longer available.
           sig do
             params(
               id: String,
@@ -369,7 +380,8 @@ module WhopSDK
             billing_reason:,
             # Possible card brands that a payment token can have
             card_brand:,
-            # The last 4 digits of the card used to make the payment.
+            # The last four digits of the card used to make this payment. Null if the payment
+            # was not made with a card.
             card_last4:,
             # The datetime the payment was created.
             created_at:,
@@ -381,7 +393,8 @@ module WhopSDK
             member:,
             # The membership attached to this payment.
             membership:,
-            # The datetime the payment was paid
+            # The time at which this payment was successfully collected. Null if the payment
+            # has not yet succeeded. As a Unix timestamp.
             paid_at:,
             # The different types of payment methods that can be used.
             payment_method_type:,

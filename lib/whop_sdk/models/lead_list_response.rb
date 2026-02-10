@@ -17,25 +17,28 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute member
-      #   The converted member, if any.
+      #   The company member record if this lead has converted into a paying customer.
+      #   Null if the lead has not converted.
       #
       #   @return [WhopSDK::Models::LeadListResponse::Member, nil]
       required :member, -> { WhopSDK::Models::LeadListResponse::Member }, nil?: true
 
       # @!attribute metadata
-      #   Custom metadata for the lead.
+      #   Custom key-value pairs attached to this lead. Null if no metadata was provided.
       #
       #   @return [Hash{Symbol=>Object}, nil]
       required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
       # @!attribute product
-      #   The access pass the lead is interested in, if available.
+      #   The product the lead expressed interest in. Null if the lead is not associated
+      #   with a specific product.
       #
       #   @return [WhopSDK::Models::LeadListResponse::Product, nil]
       required :product, -> { WhopSDK::Models::LeadListResponse::Product }, nil?: true
 
       # @!attribute referrer
-      #   The referrer URL that brought this lead.
+      #   The URL of the page that referred this lead to the company. Null if no referrer
+      #   was captured.
       #
       #   @return [String, nil]
       required :referrer, String, nil?: true
@@ -47,29 +50,33 @@ module WhopSDK
       required :updated_at, Time
 
       # @!attribute user
-      #   The user who is the lead.
+      #   The user account associated with this lead.
       #
       #   @return [WhopSDK::Models::LeadListResponse::User]
       required :user, -> { WhopSDK::Models::LeadListResponse::User }
 
       # @!method initialize(id:, created_at:, member:, metadata:, product:, referrer:, updated_at:, user:)
-      #   An object representing a lead (someone who is interested in a whop).
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::LeadListResponse} for more details.
+      #
+      #   A prospective customer who has expressed interest in a company or product but
+      #   has not yet purchased.
       #
       #   @param id [String] The unique identifier for the lead.
       #
       #   @param created_at [Time] The datetime the lead was created.
       #
-      #   @param member [WhopSDK::Models::LeadListResponse::Member, nil] The converted member, if any.
+      #   @param member [WhopSDK::Models::LeadListResponse::Member, nil] The company member record if this lead has converted into a paying customer. Nul
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] Custom metadata for the lead.
+      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs attached to this lead. Null if no metadata was provided.
       #
-      #   @param product [WhopSDK::Models::LeadListResponse::Product, nil] The access pass the lead is interested in, if available.
+      #   @param product [WhopSDK::Models::LeadListResponse::Product, nil] The product the lead expressed interest in. Null if the lead is not associated w
       #
-      #   @param referrer [String, nil] The referrer URL that brought this lead.
+      #   @param referrer [String, nil] The URL of the page that referred this lead to the company. Null if no referrer
       #
       #   @param updated_at [Time] The datetime the lead was last updated.
       #
-      #   @param user [WhopSDK::Models::LeadListResponse::User] The user who is the lead.
+      #   @param user [WhopSDK::Models::LeadListResponse::User] The user account associated with this lead.
 
       # @see WhopSDK::Models::LeadListResponse#member
       class Member < WhopSDK::Internal::Type::BaseModel
@@ -80,7 +87,8 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   The converted member, if any.
+        #   The company member record if this lead has converted into a paying customer.
+        #   Null if the lead has not converted.
         #
         #   @param id [String] The unique identifier for the company member.
       end
@@ -104,7 +112,8 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::LeadListResponse::Product} for more details.
         #
-        #   The access pass the lead is interested in, if available.
+        #   The product the lead expressed interest in. Null if the lead is not associated
+        #   with a specific product.
         #
         #   @param id [String] The unique identifier for the product.
         #
@@ -142,7 +151,7 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::LeadListResponse::User} for more details.
         #
-        #   The user who is the lead.
+        #   The user account associated with this lead.
         #
         #   @param id [String] The unique identifier for the user.
         #

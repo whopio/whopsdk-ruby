@@ -3,7 +3,11 @@
 module WhopSDK
   module Resources
     class FeeMarkups
-      # Creates or updates a fee markup for a company.
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::FeeMarkupCreateParams} for more details.
+      #
+      # Create or update a fee markup for a company. If a markup for the specified fee
+      # type already exists, it will be updated with the new values.
       #
       # Required permissions:
       #
@@ -11,17 +15,17 @@ module WhopSDK
       #
       # @overload create(company_id:, fee_type:, fixed_fee_usd: nil, metadata: nil, notes: nil, percentage_fee: nil, request_options: {})
       #
-      # @param company_id [String] The ID (tag) of the company you want to update the fee markup for.
+      # @param company_id [String] The unique identifier of the company to create or update the fee markup for.
       #
-      # @param fee_type [Symbol, WhopSDK::Models::FeeMarkupType] The type of fee this markup applies to.
+      # @param fee_type [Symbol, WhopSDK::Models::FeeMarkupType] The type of fee this markup applies to, such as processing or platform fees.
       #
-      # @param fixed_fee_usd [Float, nil] The fixed fee in USD to charge (0-50).
+      # @param fixed_fee_usd [Float, nil] The fixed fee amount in USD to charge per transaction. Must be between 0 and 50.
       #
-      # @param metadata [Hash{Symbol=>Object}, nil] Custom metadata to attach to this fee markup.
+      # @param metadata [Hash{Symbol=>Object}, nil] Custom key-value metadata to attach to this fee markup.
       #
-      # @param notes [String, nil] Internal notes about this fee markup.
+      # @param notes [String, nil] Internal notes about this fee markup for record-keeping purposes.
       #
-      # @param percentage_fee [Float, nil] The percentage fee to charge (0-25).
+      # @param percentage_fee [Float, nil] The percentage fee to charge per transaction. Must be between 0 and 25.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -42,7 +46,8 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::FeeMarkupListParams} for more details.
       #
-      # Lists fee markups for a company.
+      # Returns a paginated list of fee markups configured for a company. If the company
+      # is a platform account, returns the platform default markups.
       #
       # Required permissions:
       #
@@ -50,7 +55,7 @@ module WhopSDK
       #
       # @overload list(company_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
       #
-      # @param company_id [String] The ID (tag) of the company you want to list the fee markups for. If you pass yo
+      # @param company_id [String] The unique identifier of the company to list fee markups for. Pass a platform ac
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -77,7 +82,8 @@ module WhopSDK
         )
       end
 
-      # Deletes a fee markup for a company.
+      # Delete a fee markup configuration for a company. This removes the custom fee
+      # override and reverts to the parent company's default fees.
       #
       # Required permissions:
       #
@@ -85,7 +91,7 @@ module WhopSDK
       #
       # @overload delete(id, request_options: {})
       #
-      # @param id [String] The ID of the fee markup to delete.
+      # @param id [String] The unique identifier of the fee markup to delete.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -11,7 +11,8 @@ module WhopSDK
       required :id, String
 
       # @!attribute checkout_configuration
-      #   The checkout configuration associated with the setup intent
+      #   The checkout session configuration associated with this setup intent. Null if no
+      #   checkout session was used.
       #
       #   @return [WhopSDK::Models::SetupIntentListResponse::CheckoutConfiguration, nil]
       required :checkout_configuration,
@@ -19,7 +20,8 @@ module WhopSDK
                nil?: true
 
       # @!attribute company
-      #   The company of the setup intent
+      #   The company that initiated this setup intent. Null if the company has been
+      #   deleted.
       #
       #   @return [WhopSDK::Models::SetupIntentListResponse::Company, nil]
       required :company, -> { WhopSDK::Models::SetupIntentListResponse::Company }, nil?: true
@@ -31,55 +33,63 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute error_message
-      #   The error message, if any.
+      #   A human-readable error message explaining why the setup intent failed. Null if
+      #   no error occurred.
       #
       #   @return [String, nil]
       required :error_message, String, nil?: true
 
       # @!attribute member
-      #   The member connected to the setup intent
+      #   The company member associated with this setup intent. Null if the user is not a
+      #   member.
       #
       #   @return [WhopSDK::Models::SetupIntentListResponse::Member, nil]
       required :member, -> { WhopSDK::Models::SetupIntentListResponse::Member }, nil?: true
 
       # @!attribute metadata
-      #   The metadata associated with the setup intent
+      #   Custom key-value pairs attached to this setup intent. Null if no metadata was
+      #   provided.
       #
       #   @return [Hash{Symbol=>Object}, nil]
       required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
       # @!attribute payment_method
-      #   The payment method created during the setup, if available.
+      #   The saved payment method created by this setup intent. Null if the setup has not
+      #   completed successfully.
       #
       #   @return [WhopSDK::Models::SetupIntentListResponse::PaymentMethod, nil]
       required :payment_method, -> { WhopSDK::Models::SetupIntentListResponse::PaymentMethod }, nil?: true
 
       # @!attribute status
-      #   The status of the setup intent
+      #   The current status of the setup intent.
       #
       #   @return [Symbol, WhopSDK::Models::SetupIntentStatus]
       required :status, enum: -> { WhopSDK::SetupIntentStatus }
 
       # @!method initialize(id:, checkout_configuration:, company:, created_at:, error_message:, member:, metadata:, payment_method:, status:)
-      #   A setup intent allows a user to save a payment method without making a purchase.
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::SetupIntentListResponse} for more details.
+      #
+      #   A setup intent allows a user to save a payment method for future use without
+      #   making an immediate purchase.
       #
       #   @param id [String] The unique identifier for the setup intent.
       #
-      #   @param checkout_configuration [WhopSDK::Models::SetupIntentListResponse::CheckoutConfiguration, nil] The checkout configuration associated with the setup intent
+      #   @param checkout_configuration [WhopSDK::Models::SetupIntentListResponse::CheckoutConfiguration, nil] The checkout session configuration associated with this setup intent. Null if no
       #
-      #   @param company [WhopSDK::Models::SetupIntentListResponse::Company, nil] The company of the setup intent
+      #   @param company [WhopSDK::Models::SetupIntentListResponse::Company, nil] The company that initiated this setup intent. Null if the company has been delet
       #
       #   @param created_at [Time] The datetime the setup intent was created.
       #
-      #   @param error_message [String, nil] The error message, if any.
+      #   @param error_message [String, nil] A human-readable error message explaining why the setup intent failed. Null if n
       #
-      #   @param member [WhopSDK::Models::SetupIntentListResponse::Member, nil] The member connected to the setup intent
+      #   @param member [WhopSDK::Models::SetupIntentListResponse::Member, nil] The company member associated with this setup intent. Null if the user is not a
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] The metadata associated with the setup intent
+      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs attached to this setup intent. Null if no metadata was pr
       #
-      #   @param payment_method [WhopSDK::Models::SetupIntentListResponse::PaymentMethod, nil] The payment method created during the setup, if available.
+      #   @param payment_method [WhopSDK::Models::SetupIntentListResponse::PaymentMethod, nil] The saved payment method created by this setup intent. Null if the setup has not
       #
-      #   @param status [Symbol, WhopSDK::Models::SetupIntentStatus] The status of the setup intent
+      #   @param status [Symbol, WhopSDK::Models::SetupIntentStatus] The current status of the setup intent.
 
       # @see WhopSDK::Models::SetupIntentListResponse#checkout_configuration
       class CheckoutConfiguration < WhopSDK::Internal::Type::BaseModel
@@ -90,7 +100,8 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   The checkout configuration associated with the setup intent
+        #   The checkout session configuration associated with this setup intent. Null if no
+        #   checkout session was used.
         #
         #   @param id [String] The unique identifier for the checkout session.
       end
@@ -104,7 +115,8 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   The company of the setup intent
+        #   The company that initiated this setup intent. Null if the company has been
+        #   deleted.
         #
         #   @param id [String] The unique identifier for the company.
       end
@@ -124,7 +136,8 @@ module WhopSDK
         required :user, -> { WhopSDK::Models::SetupIntentListResponse::Member::User }, nil?: true
 
         # @!method initialize(id:, user:)
-        #   The member connected to the setup intent
+        #   The company member associated with this setup intent. Null if the user is not a
+        #   member.
         #
         #   @param id [String] The unique identifier for the company member.
         #
@@ -199,7 +212,8 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::SetupIntentListResponse::PaymentMethod} for more details.
         #
-        #   The payment method created during the setup, if available.
+        #   The saved payment method created by this setup intent. Null if the setup has not
+        #   completed successfully.
         #
         #   @param id [String] The unique identifier for the payment token.
         #
@@ -218,33 +232,38 @@ module WhopSDK
           required :brand, enum: -> { WhopSDK::CardBrands }, nil?: true
 
           # @!attribute exp_month
-          #   Card expiration month, like 03 for March.
+          #   The two-digit expiration month of the card (1-12). Null if not available.
           #
           #   @return [Integer, nil]
           required :exp_month, Integer, nil?: true
 
           # @!attribute exp_year
-          #   Card expiration year, like 27 for 2027.
+          #   The two-digit expiration year of the card (e.g., 27 for 2027). Null if not
+          #   available.
           #
           #   @return [Integer, nil]
           required :exp_year, Integer, nil?: true
 
           # @!attribute last4
-          #   Last four digits of the card.
+          #   The last four digits of the card number. Null if not available.
           #
           #   @return [String, nil]
           required :last4, String, nil?: true
 
           # @!method initialize(brand:, exp_month:, exp_year:, last4:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::SetupIntentListResponse::PaymentMethod::Card} for more
+          #   details.
+          #
           #   The card data associated with the payment method, if its a debit or credit card.
           #
           #   @param brand [Symbol, WhopSDK::Models::CardBrands, nil] Possible card brands that a payment token can have
           #
-          #   @param exp_month [Integer, nil] Card expiration month, like 03 for March.
+          #   @param exp_month [Integer, nil] The two-digit expiration month of the card (1-12). Null if not available.
           #
-          #   @param exp_year [Integer, nil] Card expiration year, like 27 for 2027.
+          #   @param exp_year [Integer, nil] The two-digit expiration year of the card (e.g., 27 for 2027). Null if not avail
           #
-          #   @param last4 [String, nil] Last four digits of the card.
+          #   @param last4 [String, nil] The last four digits of the card number. Null if not available.
         end
       end
     end

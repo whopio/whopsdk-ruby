@@ -153,7 +153,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The title of the lesson
+        # The display name of the lesson shown to students. Maximum 120 characters.
         sig { returns(String) }
         attr_accessor :title
 
@@ -162,7 +162,7 @@ module WhopSDK
         def self.new(
           # The unique identifier for the lesson.
           id:,
-          # The title of the lesson
+          # The display name of the lesson shown to students. Maximum 120 characters.
           title:
         )
         end

@@ -11,8 +11,8 @@ module WhopSDK
       required :id, String
 
       # @!attribute amount
-      #   The withdrawal amount. Provided as a number in the specified currency. Eg:
-      #   100.00 for $100.00 USD.
+      #   The withdrawal amount as a decimal number in the specified currency (e.g.,
+      #   100.00 for $100.00 USD).
       #
       #   @return [Float]
       required :amount, Float
@@ -24,7 +24,7 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute currency
-      #   The currency of the withdrawal request.
+      #   The three-letter ISO currency code for this withdrawal (e.g., 'usd', 'eur').
       #
       #   @return [Symbol, WhopSDK::Models::Currency]
       required :currency, enum: -> { WhopSDK::Currency }
@@ -36,20 +36,22 @@ module WhopSDK
       required :error_code, enum: -> { WhopSDK::Withdrawal::ErrorCode }, nil?: true
 
       # @!attribute error_message
-      #   The error message for the withdrawal, if any.
+      #   A human-readable message describing why the payout failed. Null if no error
+      #   occurred.
       #
       #   @return [String, nil]
       required :error_message, String, nil?: true
 
       # @!attribute estimated_availability
-      #   The estimated availability date for the withdrawal, if any.
+      #   The estimated time at which the funds become available in the destination
+      #   account. Null if no estimate is available. As a Unix timestamp.
       #
       #   @return [Time, nil]
       required :estimated_availability, Time, nil?: true
 
       # @!attribute fee_amount
-      #   The fee amount that was charged for the withdrawal. This is in the same currency
-      #   as the withdrawal amount.
+      #   The fee charged for processing this withdrawal, in the same currency as the
+      #   withdrawal amount.
       #
       #   @return [Float]
       required :fee_amount, Float
@@ -61,40 +63,41 @@ module WhopSDK
       required :fee_type, enum: -> { WhopSDK::WithdrawalFeeTypes }, nil?: true
 
       # @!attribute ledger_account
-      #   The ledger account associated with the withdrawal.
+      #   The ledger account from which the withdrawal funds are sourced.
       #
       #   @return [WhopSDK::Models::Withdrawal::LedgerAccount]
       required :ledger_account, -> { WhopSDK::Withdrawal::LedgerAccount }
 
       # @!attribute markup_fee
-      #   The markup fee that was charged for the withdrawal. This is in the same currency
-      #   as the withdrawal amount. This only applies to platform accounts using Whop
-      #   Rails.
+      #   An additional markup fee charged for the withdrawal, in the same currency as the
+      #   withdrawal amount. Only applies to platform accounts using Whop Rails.
       #
       #   @return [Float]
       required :markup_fee, Float
 
       # @!attribute payout_token
-      #   The payout token used for the withdrawal, if applicable.
+      #   The saved payout destination used for this withdrawal (e.g., a bank account or
+      #   PayPal address). Null if no payout token was used.
       #
       #   @return [WhopSDK::Models::Withdrawal::PayoutToken, nil]
       required :payout_token, -> { WhopSDK::Withdrawal::PayoutToken }, nil?: true
 
       # @!attribute speed
-      #   The speed of the withdrawal.
+      #   The processing speed selected for this withdrawal ('standard' or 'instant').
       #
       #   @return [Symbol, WhopSDK::Models::WithdrawalSpeeds]
       required :speed, enum: -> { WhopSDK::WithdrawalSpeeds }
 
       # @!attribute status
-      #   Status of the withdrawal.
+      #   The computed lifecycle status of the withdrawal, accounting for the state of
+      #   associated payouts (e.g., 'requested', 'in_transit', 'completed', 'failed').
       #
       #   @return [Symbol, WhopSDK::Models::WithdrawalStatus]
       required :status, enum: -> { WhopSDK::WithdrawalStatus }
 
       # @!attribute trace_code
-      #   The trace code for the payout, if applicable. Provided on ACH transactions when
-      #   available.
+      #   The ACH trace number for tracking the payout through the banking network. Null
+      #   if not available or not an ACH transaction.
       #
       #   @return [String, nil]
       required :trace_code, String, nil?: true
@@ -108,33 +111,33 @@ module WhopSDK
       #
       #   @param id [String] The unique identifier for the withdrawal.
       #
-      #   @param amount [Float] The withdrawal amount. Provided as a number in the specified currency. Eg: 100.0
+      #   @param amount [Float] The withdrawal amount as a decimal number in the specified currency (e.g., 100.0
       #
       #   @param created_at [Time] The datetime the withdrawal was created.
       #
-      #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the withdrawal request.
+      #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for this withdrawal (e.g., 'usd', 'eur').
       #
       #   @param error_code [Symbol, WhopSDK::Models::Withdrawal::ErrorCode, nil] The different error codes a payout can be in.
       #
-      #   @param error_message [String, nil] The error message for the withdrawal, if any.
+      #   @param error_message [String, nil] A human-readable message describing why the payout failed. Null if no error occu
       #
-      #   @param estimated_availability [Time, nil] The estimated availability date for the withdrawal, if any.
+      #   @param estimated_availability [Time, nil] The estimated time at which the funds become available in the destination accoun
       #
-      #   @param fee_amount [Float] The fee amount that was charged for the withdrawal. This is in the same currency
+      #   @param fee_amount [Float] The fee charged for processing this withdrawal, in the same currency as the with
       #
       #   @param fee_type [Symbol, WhopSDK::Models::WithdrawalFeeTypes, nil] The different fee types for a withdrawal.
       #
-      #   @param ledger_account [WhopSDK::Models::Withdrawal::LedgerAccount] The ledger account associated with the withdrawal.
+      #   @param ledger_account [WhopSDK::Models::Withdrawal::LedgerAccount] The ledger account from which the withdrawal funds are sourced.
       #
-      #   @param markup_fee [Float] The markup fee that was charged for the withdrawal. This is in the same currency
+      #   @param markup_fee [Float] An additional markup fee charged for the withdrawal, in the same currency as the
       #
-      #   @param payout_token [WhopSDK::Models::Withdrawal::PayoutToken, nil] The payout token used for the withdrawal, if applicable.
+      #   @param payout_token [WhopSDK::Models::Withdrawal::PayoutToken, nil] The saved payout destination used for this withdrawal (e.g., a bank account or P
       #
-      #   @param speed [Symbol, WhopSDK::Models::WithdrawalSpeeds] The speed of the withdrawal.
+      #   @param speed [Symbol, WhopSDK::Models::WithdrawalSpeeds] The processing speed selected for this withdrawal ('standard' or 'instant').
       #
-      #   @param status [Symbol, WhopSDK::Models::WithdrawalStatus] Status of the withdrawal.
+      #   @param status [Symbol, WhopSDK::Models::WithdrawalStatus] The computed lifecycle status of the withdrawal, accounting for the state of ass
       #
-      #   @param trace_code [String, nil] The trace code for the payout, if applicable. Provided on ACH transactions when
+      #   @param trace_code [String, nil] The ACH trace number for tracking the payout through the banking network. Null i
 
       # The different error codes a payout can be in.
       #
@@ -215,7 +218,7 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::Withdrawal::LedgerAccount} for more details.
         #
-        #   The ledger account associated with the withdrawal.
+        #   The ledger account from which the withdrawal funds are sourced.
         #
         #   @param id [String] The unique identifier for the ledger account.
         #
@@ -237,21 +240,21 @@ module WhopSDK
         required :created_at, Time
 
         # @!attribute destination_currency_code
-        #   The currency code of the payout destination. This is the currency that payouts
-        #   will be made in for this token.
+        #   The three-letter ISO currency code that payouts are delivered in for this
+        #   destination.
         #
         #   @return [String]
         required :destination_currency_code, String
 
         # @!attribute nickname
-        #   An optional nickname for the payout token to help the user identify it. This is
-        #   not used by the provider and is only for the user's reference.
+        #   A user-defined label to help identify this payout destination. Not sent to the
+        #   provider. Null if no nickname has been set.
         #
         #   @return [String, nil]
         required :nickname, String, nil?: true
 
         # @!attribute payer_name
-        #   The name of the payer associated with the payout token.
+        #   The legal name of the account holder receiving payouts. Null if not provided.
         #
         #   @return [String, nil]
         required :payer_name, String, nil?: true
@@ -260,17 +263,18 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::Withdrawal::PayoutToken} for more details.
         #
-        #   The payout token used for the withdrawal, if applicable.
+        #   The saved payout destination used for this withdrawal (e.g., a bank account or
+        #   PayPal address). Null if no payout token was used.
         #
         #   @param id [String] The unique identifier for the payout token.
         #
         #   @param created_at [Time] The datetime the payout token was created.
         #
-        #   @param destination_currency_code [String] The currency code of the payout destination. This is the currency that payouts w
+        #   @param destination_currency_code [String] The three-letter ISO currency code that payouts are delivered in for this destin
         #
-        #   @param nickname [String, nil] An optional nickname for the payout token to help the user identify it. This is
+        #   @param nickname [String, nil] A user-defined label to help identify this payout destination. Not sent to the p
         #
-        #   @param payer_name [String, nil] The name of the payer associated with the payout token.
+        #   @param payer_name [String, nil] The legal name of the account holder receiving payouts. Null if not provided.
       end
     end
   end

@@ -6,7 +6,8 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::ForumPostCreateParams} for more details.
       #
-      # Create a new forum post
+      # Create a new forum post or comment within an experience. Supports text content,
+      # attachments, polls, paywalling, and pinning.
       #
       # Required permissions:
       #
@@ -14,25 +15,26 @@ module WhopSDK
       #
       # @overload create(experience_id:, attachments: nil, content: nil, is_mention: nil, parent_id: nil, paywall_amount: nil, paywall_currency: nil, pinned: nil, poll: nil, title: nil, visibility: nil, request_options: {})
       #
-      # @param experience_id [String] The experience to create this post in
+      # @param experience_id [String] The unique identifier of the experience to create this post in. For example, 'ex
       #
-      # @param attachments [Array<WhopSDK::Models::ForumPostCreateParams::Attachment>, nil] The attachments for this post
+      # @param attachments [Array<WhopSDK::Models::ForumPostCreateParams::Attachment>, nil] A list of file attachments to include with the post, such as images or videos.
       #
-      # @param content [String, nil] This is the main body of the post in Markdown format. Hidden if paywalled and us
+      # @param content [String, nil] The main body of the post in Markdown format. For example, 'Check out this
+      # \*\*upd
       #
-      # @param is_mention [Boolean, nil] This is used to determine if the post should be sent as a 'mention' notification
+      # @param is_mention [Boolean, nil] Whether to send this post as a mention notification to all users in the experien
       #
-      # @param parent_id [String, nil] The ID of the parent post. Set it to the ID of the post you want to comment on o
+      # @param parent_id [String, nil] The unique identifier of the parent post to comment on. Omit this field to creat
       #
-      # @param paywall_amount [Float, nil] The price in paywall_currency to unlock this post (e.g., 5.00 for $5.00). If set
+      # @param paywall_amount [Float, nil] The price to unlock this post in the specified paywall currency. For example, 5.
       #
       # @param paywall_currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #
-      # @param pinned [Boolean, nil] Whether the post should be pinned
+      # @param pinned [Boolean, nil] Whether this post should be pinned to the top of the forum.
       #
-      # @param poll [WhopSDK::Models::ForumPostCreateParams::Poll, nil] The poll for this post
+      # @param poll [WhopSDK::Models::ForumPostCreateParams::Poll, nil] A poll to attach to this post, allowing members to vote on options.
       #
-      # @param title [String, nil] The title of the post. Only visible if paywalled.
+      # @param title [String, nil] The title of the post, displayed prominently at the top. Required for paywalled
       #
       # @param visibility [Symbol, WhopSDK::Models::ForumPostVisibilityType, nil] The visibility types for forum posts
       #
@@ -52,7 +54,7 @@ module WhopSDK
         )
       end
 
-      # Retrieves a forum post by ID
+      # Retrieves the details of an existing forum post.
       #
       # Required permissions:
       #
@@ -60,7 +62,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the forum post
+      # @param id [String] The unique identifier of the forum post to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -79,19 +81,21 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::ForumPostUpdateParams} for more details.
       #
-      # Update an existing forum post
+      # Edit the content, attachments, pinned status, or visibility of an existing forum
+      # post or comment.
       #
       # @overload update(id, attachments: nil, content: nil, is_pinned: nil, title: nil, visibility: nil, request_options: {})
       #
-      # @param id [String] The ID of the forum post to update
+      # @param id [String] The unique identifier of the forum post to update.
       #
-      # @param attachments [Array<WhopSDK::Models::ForumPostUpdateParams::Attachment>, nil] The attachments for this post
+      # @param attachments [Array<WhopSDK::Models::ForumPostUpdateParams::Attachment>, nil] A replacement list of file attachments for this post, such as images or videos.
       #
-      # @param content [String, nil] This is the main body of the post in Markdown format. Hidden if paywalled and us
+      # @param content [String, nil] The updated body of the post in Markdown format. For example, 'Check out this
+      # \*\*
       #
-      # @param is_pinned [Boolean, nil] Whether the post is pinned. You can only pin a top level posts (not comments).
+      # @param is_pinned [Boolean, nil] Whether this post should be pinned to the top of the forum. Only top-level posts
       #
-      # @param title [String, nil] The title of the post. Only visible if paywalled.
+      # @param title [String, nil] The updated title of the post, displayed prominently at the top. Required for pa
       #
       # @param visibility [Symbol, WhopSDK::Models::ForumPostVisibilityType, nil] The visibility types for forum posts
       #
@@ -111,7 +115,11 @@ module WhopSDK
         )
       end
 
-      # Lists forum posts
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::ForumPostListParams} for more details.
+      #
+      # Returns a paginated list of forum posts within a specific experience, with
+      # optional filtering by parent post or pinned status.
       #
       # Required permissions:
       #
@@ -119,7 +127,7 @@ module WhopSDK
       #
       # @overload list(experience_id:, after: nil, before: nil, first: nil, last: nil, parent_id: nil, pinned: nil, request_options: {})
       #
-      # @param experience_id [String] The ID of the experience to list forum posts for
+      # @param experience_id [String] The unique identifier of the experience to list forum posts for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -129,9 +137,9 @@ module WhopSDK
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param parent_id [String, nil] The ID of the parent post to list forum post comments for
+      # @param parent_id [String, nil] The unique identifier of a parent post to list comments for. When set, returns r
       #
-      # @param pinned [Boolean, nil] Set to true to only return pinned posts
+      # @param pinned [Boolean, nil] Whether to filter for only pinned posts. Set to true to return only pinned posts
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -14,42 +14,47 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The plan that the invoice was created for.
+      # The plan that this invoice charges for.
       sig { returns(WhopSDK::Invoice::CurrentPlan) }
       attr_reader :current_plan
 
       sig { params(current_plan: WhopSDK::Invoice::CurrentPlan::OrHash).void }
       attr_writer :current_plan
 
-      # The date the invoice is due.
+      # The deadline by which payment is expected. Null if the invoice is collected
+      # automatically.
       sig { returns(T.nilable(Time)) }
       attr_accessor :due_date
 
-      # The email address that the invoice was created for.
+      # The email address of the customer this invoice is addressed to. Null if no email
+      # is on file.
       sig { returns(T.nilable(String)) }
       attr_accessor :email_address
 
-      # A signed token that allows fetching the invoice data publically without being
-      # authenticated.
+      # A signed token that allows fetching invoice data publicly without
+      # authentication.
       sig { returns(String) }
       attr_accessor :fetch_invoice_token
 
-      # The number of the invoice.
+      # The sequential invoice number for display purposes.
       sig { returns(String) }
       attr_accessor :number
 
-      # The status of the invoice.
+      # The current payment status of the invoice, such as draft, open, paid, or void.
       sig { returns(WhopSDK::InvoiceStatus::TaggedSymbol) }
       attr_accessor :status
 
-      # The user that the invoice was created for.
+      # The user this invoice is addressed to. Null if the user account has been
+      # removed.
       sig { returns(T.nilable(WhopSDK::Invoice::User)) }
       attr_reader :user
 
       sig { params(user: T.nilable(WhopSDK::Invoice::User::OrHash)).void }
       attr_writer :user
 
-      # A statement that defines an amount due by a customer.
+      # An invoice represents an itemized bill sent by a company to a customer for a
+      # specific product and plan, tracking the amount owed, due date, and payment
+      # status.
       sig do
         params(
           id: String,
@@ -68,20 +73,23 @@ module WhopSDK
         id:,
         # The datetime the invoice was created.
         created_at:,
-        # The plan that the invoice was created for.
+        # The plan that this invoice charges for.
         current_plan:,
-        # The date the invoice is due.
+        # The deadline by which payment is expected. Null if the invoice is collected
+        # automatically.
         due_date:,
-        # The email address that the invoice was created for.
+        # The email address of the customer this invoice is addressed to. Null if no email
+        # is on file.
         email_address:,
-        # A signed token that allows fetching the invoice data publically without being
-        # authenticated.
+        # A signed token that allows fetching invoice data publicly without
+        # authentication.
         fetch_invoice_token:,
-        # The number of the invoice.
+        # The sequential invoice number for display purposes.
         number:,
-        # The status of the invoice.
+        # The current payment status of the invoice, such as draft, open, paid, or void.
         status:,
-        # The user that the invoice was created for.
+        # The user this invoice is addressed to. Null if the user account has been
+        # removed.
         user:
       )
       end
@@ -114,7 +122,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The respective currency identifier for the plan.
+        # The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
+        # amounts on the plan are denominated in this currency.
         sig { returns(WhopSDK::Currency::TaggedSymbol) }
         attr_accessor :currency
 
@@ -122,7 +131,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :formatted_price
 
-        # The plan that the invoice was created for.
+        # The plan that this invoice charges for.
         sig do
           params(
             id: String,
@@ -133,7 +142,8 @@ module WhopSDK
         def self.new(
           # The unique identifier for the plan.
           id:,
-          # The respective currency identifier for the plan.
+          # The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
+          # amounts on the plan are denominated in this currency.
           currency:,
           # The formatted price (including currency) for the plan.
           formatted_price:
@@ -171,7 +181,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :username
 
-        # The user that the invoice was created for.
+        # The user this invoice is addressed to. Null if the user account has been
+        # removed.
         sig do
           params(id: String, name: T.nilable(String), username: String).returns(
             T.attached_class

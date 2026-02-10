@@ -3,7 +3,8 @@
 module WhopSDK
   module Resources
     class Transfers
-      # Creates a new transfer between ledger accounts
+      # Transfer funds between two ledger accounts, such as from a company balance to a
+      # user balance.
       #
       # Required permissions:
       #
@@ -21,28 +22,30 @@ module WhopSDK
         ).returns(WhopSDK::Transfer)
       end
       def create(
-        # The amount to transfer. Provided as a number in the specified currency. Eg:
-        # 25.00 for $25.00 USD.
+        # The amount to transfer in the specified currency. For example, 25.00 for $25.00
+        # USD.
         amount:,
-        # The currency that is being withdrawn.
+        # The currency of the transfer amount, such as 'usd'.
         currency:,
-        # The ID of the destination account which will receive the funds (either a User
-        # ID, Company ID, or LedgerAccount ID)
+        # The identifier of the account receiving the funds. Accepts a user ID
+        # ('user_xxx'), company ID ('biz_xxx'), or ledger account ID ('ldgr_xxx').
         destination_id:,
-        # The ID of the origin account which will send the funds (either a User ID,
-        # Company ID, or LedgerAccount ID)
+        # The identifier of the account sending the funds. Accepts a user ID ('user_xxx'),
+        # company ID ('biz_xxx'), or ledger account ID ('ldgr_xxx').
         origin_id:,
-        # A unique key to ensure idempotence. Use a UUID or similar.
+        # A unique key to prevent duplicate transfers. Use a UUID or similar unique
+        # string.
         idempotence_key: nil,
-        # A hash of metadata to attach to the transfer.
+        # A JSON object of custom metadata to attach to the transfer for tracking
+        # purposes.
         metadata: nil,
-        # Notes for the transfer. Maximum of 50 characters.
+        # A short note describing the transfer, up to 50 characters.
         notes: nil,
         request_options: {}
       )
       end
 
-      # Retrieves a transfer by ID
+      # Retrieves the details of an existing transfer.
       #
       # Required permissions:
       #
@@ -54,13 +57,14 @@ module WhopSDK
         ).returns(WhopSDK::Transfer)
       end
       def retrieve(
-        # The ID of the transfer
+        # The unique identifier of the transfer to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # Lists transfers
+      # Returns a paginated list of fund transfers, filtered by origin or destination
+      # account, with optional sorting and date filtering.
       #
       # Required permissions:
       #
@@ -87,12 +91,12 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The minimum creation date to filter by
+        # Only return transfers created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return transfers created before this timestamp.
         created_before: nil,
-        # Filter transfers to only those that were sent to this destination account.
-        # (user_xxx, biz_xxx, ldgr_xxx)
+        # Filter to transfers received by this account. Accepts a user, company, or ledger
+        # account ID.
         destination_id: nil,
         # The direction of the sort.
         direction: nil,
@@ -102,8 +106,8 @@ module WhopSDK
         last: nil,
         # Which columns can be used to sort.
         order: nil,
-        # Filter transfers to only those that were sent from this origin account.
-        # (user_xxx, biz_xxx, ldgr_xxx)
+        # Filter to transfers sent from this account. Accepts a user, company, or ledger
+        # account ID.
         origin_id: nil,
         request_options: {}
       )

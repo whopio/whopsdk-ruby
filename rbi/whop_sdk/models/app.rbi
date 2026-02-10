@@ -9,94 +9,100 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The API key for the app
+      # The API key used to authenticate requests on behalf of this app. Null if no API
+      # key has been generated. Requires the 'developer:manage_api_key' permission.
       sig { returns(T.nilable(WhopSDK::App::APIKey)) }
       attr_reader :api_key
 
       sig { params(api_key: T.nilable(WhopSDK::App::APIKey::OrHash)).void }
       attr_writer :api_key
 
-      # The type of end-user an app is built for
+      # The target audience classification for this app (e.g., 'b2b_app', 'b2c_app',
+      # 'company_app', 'component').
       sig { returns(WhopSDK::AppType::TaggedSymbol) }
       attr_accessor :app_type
 
-      # The base url of the app
+      # The production base URL where the app is hosted. Null if no base URL is
+      # configured.
       sig { returns(T.nilable(String)) }
       attr_accessor :base_url
 
-      # The company that owns the app
+      # The company that owns and publishes this app.
       sig { returns(WhopSDK::App::Company) }
       attr_reader :company
 
       sig { params(company: WhopSDK::App::Company::OrHash).void }
       attr_writer :company
 
-      # The creator of the app
+      # The user who created and owns the company that published this app.
       sig { returns(WhopSDK::App::Creator) }
       attr_reader :creator
 
       sig { params(creator: WhopSDK::App::Creator::OrHash).void }
       attr_writer :creator
 
-      # The path part for a specific view of the app. This is the template part of the
-      # url after the base domain. Eg: /experiences/[experienceId]
+      # The URL path template for a specific view of this app, appended to the base
+      # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+      # not configured.
       sig { returns(T.nilable(String)) }
       attr_accessor :dashboard_path
 
-      # The description of the app
+      # A written description of what this app does, displayed on the app store listing
+      # page. Null if no description has been set.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      # The path part for a specific view of the app. This is the template part of the
-      # url after the base domain. Eg: /experiences/[experienceId]
+      # The URL path template for a specific view of this app, appended to the base
+      # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+      # not configured.
       sig { returns(T.nilable(String)) }
       attr_accessor :discover_path
 
-      # The unique part of the proxied domain for this app. Used to generate the base
-      # url used to display the app inside the whop platform. Refers to the id part in
-      # the final url: https://{domain_id}.apps.whop.com
+      # The unique subdomain identifier for this app's proxied URL on the Whop platform.
+      # Forms the URL pattern https://{domain_id}.apps.whop.com.
       sig { returns(String) }
       attr_accessor :domain_id
 
-      # The path part for a specific view of the app. This is the template part of the
-      # url after the base domain. Eg: /experiences/[experienceId]
+      # The URL path template for a specific view of this app, appended to the base
+      # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+      # not configured.
       sig { returns(T.nilable(String)) }
       attr_accessor :experience_path
 
-      # The icon for the app. This icon is shown on discovery, on the product page, on
-      # checkout, and as a default icon for the experiences.
+      # The icon image for this app, displayed on the app store, product pages,
+      # checkout, and as the default icon for experiences using this app.
       sig { returns(T.nilable(WhopSDK::App::Icon)) }
       attr_reader :icon
 
       sig { params(icon: T.nilable(WhopSDK::App::Icon::OrHash)).void }
       attr_writer :icon
 
-      # The name of the app
+      # The display name of this app shown on the app store and in experience
+      # navigation. Maximum 30 characters.
       sig { returns(String) }
       attr_accessor :name
 
-      # The set of permissions that an app requests to be granted when a user installs
-      # the app.
+      # The list of permissions this app requests when installed, including both
+      # required and optional permissions with justifications.
       sig { returns(T::Array[WhopSDK::App::RequestedPermission]) }
       attr_accessor :requested_permissions
 
-      # A collection of stats for the app.
+      # Aggregate usage statistics for this app, including daily, weekly, and monthly
+      # active user counts.
       sig { returns(T.nilable(WhopSDK::App::Stats)) }
       attr_reader :stats
 
       sig { params(stats: T.nilable(WhopSDK::App::Stats::OrHash)).void }
       attr_writer :stats
 
-      # If the status is live, the app is visible on Whop discovery. In order to be
-      # live, you need to set the name, icon, and description. Being unlisted or hidden
-      # means it's not visible on Whop but you can still install the app via direct
-      # link. To remove the app from whop discovery, you should set the status to
-      # unlisted.
+      # The current visibility status of this app on the Whop app store. 'live' means
+      # publicly discoverable, 'unlisted' means accessible only via direct link, and
+      # 'hidden' means not visible anywhere.
       sig { returns(WhopSDK::AppStatuses::TaggedSymbol) }
       attr_accessor :status
 
-      # Whether this app has been verified by Whop. Verified apps are endorsed by whop
-      # and are shown in the 'featured apps' section of the app store.
+      # Whether this app has been verified by Whop. Verified apps are endorsed by Whop
+      # and displayed in the featured apps section of the app store.
       sig { returns(T::Boolean) }
       attr_accessor :verified
 
@@ -127,49 +133,55 @@ module WhopSDK
       def self.new(
         # The unique identifier for the app.
         id:,
-        # The API key for the app
+        # The API key used to authenticate requests on behalf of this app. Null if no API
+        # key has been generated. Requires the 'developer:manage_api_key' permission.
         api_key:,
-        # The type of end-user an app is built for
+        # The target audience classification for this app (e.g., 'b2b_app', 'b2c_app',
+        # 'company_app', 'component').
         app_type:,
-        # The base url of the app
+        # The production base URL where the app is hosted. Null if no base URL is
+        # configured.
         base_url:,
-        # The company that owns the app
+        # The company that owns and publishes this app.
         company:,
-        # The creator of the app
+        # The user who created and owns the company that published this app.
         creator:,
-        # The path part for a specific view of the app. This is the template part of the
-        # url after the base domain. Eg: /experiences/[experienceId]
+        # The URL path template for a specific view of this app, appended to the base
+        # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+        # not configured.
         dashboard_path:,
-        # The description of the app
+        # A written description of what this app does, displayed on the app store listing
+        # page. Null if no description has been set.
         description:,
-        # The path part for a specific view of the app. This is the template part of the
-        # url after the base domain. Eg: /experiences/[experienceId]
+        # The URL path template for a specific view of this app, appended to the base
+        # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+        # not configured.
         discover_path:,
-        # The unique part of the proxied domain for this app. Used to generate the base
-        # url used to display the app inside the whop platform. Refers to the id part in
-        # the final url: https://{domain_id}.apps.whop.com
+        # The unique subdomain identifier for this app's proxied URL on the Whop platform.
+        # Forms the URL pattern https://{domain_id}.apps.whop.com.
         domain_id:,
-        # The path part for a specific view of the app. This is the template part of the
-        # url after the base domain. Eg: /experiences/[experienceId]
+        # The URL path template for a specific view of this app, appended to the base
+        # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+        # not configured.
         experience_path:,
-        # The icon for the app. This icon is shown on discovery, on the product page, on
-        # checkout, and as a default icon for the experiences.
+        # The icon image for this app, displayed on the app store, product pages,
+        # checkout, and as the default icon for experiences using this app.
         icon:,
-        # The name of the app
+        # The display name of this app shown on the app store and in experience
+        # navigation. Maximum 30 characters.
         name:,
-        # The set of permissions that an app requests to be granted when a user installs
-        # the app.
+        # The list of permissions this app requests when installed, including both
+        # required and optional permissions with justifications.
         requested_permissions:,
-        # A collection of stats for the app.
+        # Aggregate usage statistics for this app, including daily, weekly, and monthly
+        # active user counts.
         stats:,
-        # If the status is live, the app is visible on Whop discovery. In order to be
-        # live, you need to set the name, icon, and description. Being unlisted or hidden
-        # means it's not visible on Whop but you can still install the app via direct
-        # link. To remove the app from whop discovery, you should set the status to
-        # unlisted.
+        # The current visibility status of this app on the Whop app store. 'live' means
+        # publicly discoverable, 'unlisted' means accessible only via direct link, and
+        # 'hidden' means not visible anywhere.
         status:,
-        # Whether this app has been verified by Whop. Verified apps are endorsed by whop
-        # and are shown in the 'featured apps' section of the app store.
+        # Whether this app has been verified by Whop. Verified apps are endorsed by Whop
+        # and displayed in the featured apps section of the app store.
         verified:
       )
       end
@@ -218,7 +230,8 @@ module WhopSDK
         sig { returns(Time) }
         attr_accessor :created_at
 
-        # The API key for the app
+        # The API key used to authenticate requests on behalf of this app. Null if no API
+        # key has been generated. Requires the 'developer:manage_api_key' permission.
         sig do
           params(id: String, token: String, created_at: Time).returns(
             T.attached_class
@@ -255,7 +268,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :title
 
-        # The company that owns the app
+        # The company that owns and publishes this app.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the company.
@@ -288,7 +301,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :username
 
-        # The creator of the app
+        # The user who created and owns the company that published this app.
         sig do
           params(id: String, name: T.nilable(String), username: String).returns(
             T.attached_class
@@ -322,8 +335,8 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :url
 
-        # The icon for the app. This icon is shown on discovery, on the product page, on
-        # checkout, and as a default icon for the experiences.
+        # The icon image for this app, displayed on the app store, product pages,
+        # checkout, and as the default icon for experiences using this app.
         sig { params(url: T.nilable(String)).returns(T.attached_class) }
         def self.new(
           # A pre-optimized URL for rendering this attachment on the client. This should be
@@ -435,26 +448,28 @@ module WhopSDK
             T.any(WhopSDK::App::Stats, WhopSDK::Internal::AnyHash)
           end
 
-        # This is the number of users that have spent time in this app in the last 24
-        # hours.
+        # The number of unique users who have spent time in this app in the last 24 hours.
+        # Returns 0 if no usage data is available.
         sig { returns(Integer) }
         attr_accessor :dau
 
-        # This is the number of users that have spent time in this app in the last 28
-        # days.
+        # The number of unique users who have spent time in this app in the last 28 days.
+        # Returns 0 if no usage data is available.
         sig { returns(Integer) }
         attr_accessor :mau
 
-        # This how much time, in seconds, users have spent in this app in the last 24
-        # hours.
+        # The total time, in seconds, that all users have spent in this app over the last
+        # 24 hours. Returns 0 if no usage data is available.
         sig { returns(Integer) }
         attr_accessor :time_spent_last24_hours
 
-        # This is the number of users that have spent time in this app in the last 7 days.
+        # The number of unique users who have spent time in this app in the last 7 days.
+        # Returns 0 if no usage data is available.
         sig { returns(Integer) }
         attr_accessor :wau
 
-        # A collection of stats for the app.
+        # Aggregate usage statistics for this app, including daily, weekly, and monthly
+        # active user counts.
         sig do
           params(
             dau: Integer,
@@ -464,16 +479,17 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # This is the number of users that have spent time in this app in the last 24
-          # hours.
+          # The number of unique users who have spent time in this app in the last 24 hours.
+          # Returns 0 if no usage data is available.
           dau:,
-          # This is the number of users that have spent time in this app in the last 28
-          # days.
+          # The number of unique users who have spent time in this app in the last 28 days.
+          # Returns 0 if no usage data is available.
           mau:,
-          # This how much time, in seconds, users have spent in this app in the last 24
-          # hours.
+          # The total time, in seconds, that all users have spent in this app over the last
+          # 24 hours. Returns 0 if no usage data is available.
           time_spent_last24_hours:,
-          # This is the number of users that have spent time in this app in the last 7 days.
+          # The number of unique users who have spent time in this app in the last 7 days.
+          # Returns 0 if no usage data is available.
           wau:
         )
         end

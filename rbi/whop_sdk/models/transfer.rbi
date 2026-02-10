@@ -10,8 +10,8 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The amount of the transfer. Provided as a number in the specified currency. Eg:
-      # 10.43 for $10.43 USD.
+      # The transfer amount in the currency specified by the currency field. For
+      # example, 10.43 represents $10.43 USD.
       sig { returns(Float) }
       attr_accessor :amount
 
@@ -19,40 +19,42 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The currency of the credit transaction transfer
+      # The currency in which this transfer amount is denominated.
       sig { returns(WhopSDK::Currency::TaggedSymbol) }
       attr_accessor :currency
 
-      # The recipient of the credit transaction transfer
+      # The entity receiving the transferred funds.
       sig { returns(T.nilable(WhopSDK::Transfer::Destination::Variants)) }
       attr_accessor :destination
 
-      # The ID of the destination ledger account
+      # The unique identifier of the ledger account receiving the funds.
       sig { returns(String) }
       attr_accessor :destination_ledger_account_id
 
-      # The decimal fee of the credit transaction transfer
+      # The flat fee amount deducted from this transfer, in the transfer's currency.
+      # Null if no flat fee was applied.
       sig { returns(T.nilable(Float)) }
       attr_accessor :fee_amount
 
-      # Custom key-value pairs attached to the transfer. Max 50 keys, 500 chars per key,
-      # 5000 chars per value.
+      # Custom key-value pairs attached to this transfer. Maximum 50 keys, 500
+      # characters per key, 5000 characters per value.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
-      # The notes of the credit transaction transfer
+      # A free-text note attached to this transfer by the sender. Null if no note was
+      # provided.
       sig { returns(T.nilable(String)) }
       attr_accessor :notes
 
-      # The sender of the credit transaction transfer
+      # The entity that sent the transferred funds.
       sig { returns(T.nilable(WhopSDK::Transfer::Origin::Variants)) }
       attr_accessor :origin
 
-      # The ID of the origin ledger account
+      # The unique identifier of the ledger account that sent the funds.
       sig { returns(String) }
       attr_accessor :origin_ledger_account_id
 
-      # Credit Transaction Transfer
+      # A transfer of credit between two ledger accounts.
       sig do
         params(
           id: String,
@@ -83,27 +85,29 @@ module WhopSDK
       def self.new(
         # The unique identifier for the credit transaction transfer.
         id:,
-        # The amount of the transfer. Provided as a number in the specified currency. Eg:
-        # 10.43 for $10.43 USD.
+        # The transfer amount in the currency specified by the currency field. For
+        # example, 10.43 represents $10.43 USD.
         amount:,
         # The datetime the credit transaction transfer was created.
         created_at:,
-        # The currency of the credit transaction transfer
+        # The currency in which this transfer amount is denominated.
         currency:,
-        # The recipient of the credit transaction transfer
+        # The entity receiving the transferred funds.
         destination:,
-        # The ID of the destination ledger account
+        # The unique identifier of the ledger account receiving the funds.
         destination_ledger_account_id:,
-        # The decimal fee of the credit transaction transfer
+        # The flat fee amount deducted from this transfer, in the transfer's currency.
+        # Null if no flat fee was applied.
         fee_amount:,
-        # Custom key-value pairs attached to the transfer. Max 50 keys, 500 chars per key,
-        # 5000 chars per value.
+        # Custom key-value pairs attached to this transfer. Maximum 50 keys, 500
+        # characters per key, 5000 characters per value.
         metadata:,
-        # The notes of the credit transaction transfer
+        # A free-text note attached to this transfer by the sender. Null if no note was
+        # provided.
         notes:,
-        # The sender of the credit transaction transfer
+        # The entity that sent the transferred funds.
         origin:,
-        # The ID of the origin ledger account
+        # The unique identifier of the ledger account that sent the funds.
         origin_ledger_account_id:
       )
       end
@@ -128,7 +132,7 @@ module WhopSDK
       def to_hash
       end
 
-      # The recipient of the credit transaction transfer
+      # The entity receiving the transferred funds.
       module Destination
         extend WhopSDK::Internal::Type::Union
 
@@ -266,7 +270,7 @@ module WhopSDK
         end
       end
 
-      # The sender of the credit transaction transfer
+      # The entity that sent the transferred funds.
       module Origin
         extend WhopSDK::Internal::Type::Union
 

@@ -11,7 +11,8 @@ module WhopSDK
           T.any(WhopSDK::MembershipUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The metadata to update the membership with.
+      # A JSON object of key-value pairs to store on the membership. Replaces any
+      # existing metadata.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
@@ -22,7 +23,8 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The metadata to update the membership with.
+        # A JSON object of key-value pairs to store on the membership. Replaces any
+        # existing metadata.
         metadata: nil,
         request_options: {}
       )

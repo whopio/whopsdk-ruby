@@ -11,20 +11,25 @@ module WhopSDK
           )
         end
 
-      # The JWT access token string.
+      # The signed JWT access token string to include in API request Authorization
+      # headers.
       sig { returns(String) }
       attr_accessor :token
 
-      # The expiration timestamp of the access token.
+      # The timestamp after which this access token is no longer valid and must be
+      # refreshed.
       sig { returns(Time) }
       attr_accessor :expires_at
 
-      # An object representing an access token used for authenticating API requests.
+      # A short-lived access token used to authenticate API requests on behalf of a user
+      # or application.
       sig { params(token: String, expires_at: Time).returns(T.attached_class) }
       def self.new(
-        # The JWT access token string.
+        # The signed JWT access token string to include in API request Authorization
+        # headers.
         token:,
-        # The expiration timestamp of the access token.
+        # The timestamp after which this access token is no longer valid and must be
+        # refreshed.
         expires_at:
       )
       end

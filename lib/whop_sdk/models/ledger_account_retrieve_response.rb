@@ -410,27 +410,32 @@ module WhopSDK
           required :last_error_code, enum: -> { WhopSDK::VerificationErrorCode }, nil?: true
 
           # @!attribute last_error_reason
-          #   The last error reason that occurred during the verification.
+          #   A human-readable explanation of the most recent verification error. Null if no
+          #   error has occurred.
           #
           #   @return [String, nil]
           required :last_error_reason, String, nil?: true
 
           # @!attribute status
-          #   The status of the verification.
+          #   The current status of this verification session.
           #
           #   @return [Symbol, WhopSDK::Models::VerificationStatus]
           required :status, enum: -> { WhopSDK::VerificationStatus }
 
           # @!method initialize(id:, last_error_code:, last_error_reason:, status:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification}
+          #   for more details.
+          #
           #   The latest verification for the connected account.
           #
           #   @param id [String] The unique identifier for the verification.
           #
           #   @param last_error_code [Symbol, WhopSDK::Models::VerificationErrorCode, nil] An error code for a verification attempt.
           #
-          #   @param last_error_reason [String, nil] The last error reason that occurred during the verification.
+          #   @param last_error_reason [String, nil] A human-readable explanation of the most recent verification error. Null if no e
           #
-          #   @param status [Symbol, WhopSDK::Models::VerificationStatus] The status of the verification.
+          #   @param status [Symbol, WhopSDK::Models::VerificationStatus] The current status of this verification session.
         end
       end
     end

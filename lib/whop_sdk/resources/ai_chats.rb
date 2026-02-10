@@ -6,7 +6,7 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::AIChatCreateParams} for more details.
       #
-      # Creates a new AI chat
+      # Create a new AI chat thread and send the first message to the AI agent.
       #
       # Required permissions:
       #
@@ -14,13 +14,13 @@ module WhopSDK
       #
       # @overload create(message_text:, current_company_id: nil, message_attachments: nil, title: nil, request_options: {})
       #
-      # @param message_text [String] The text content of the first message sent in the chat
+      # @param message_text [String] The text content of the first message to send to the AI agent.
       #
-      # @param current_company_id [String, nil] The ID of the company to set as the current company in context for the AI chat
+      # @param current_company_id [String, nil] The unique identifier of the company to set as context for the AI chat (e.g., "b
       #
-      # @param message_attachments [Array<WhopSDK::Models::AIChatCreateParams::MessageAttachment>, nil] The IDs of existing uploaded attachments to include in the first message to the
+      # @param message_attachments [Array<WhopSDK::Models::AIChatCreateParams::MessageAttachment>, nil] A list of previously uploaded file attachments to include with the first message
       #
-      # @param title [String, nil] The title of the AI chat
+      # @param title [String, nil] An optional display title for the AI chat thread (e.g., "Help with billing").
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -38,11 +38,11 @@ module WhopSDK
         )
       end
 
-      # Fetches a single AI chat by ID
+      # Retrieves the details of an existing AI chat.
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the AI chat
+      # @param id [String] The unique identifier of the AI chat to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -58,7 +58,10 @@ module WhopSDK
         )
       end
 
-      # Updates an AI chat
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::AIChatUpdateParams} for more details.
+      #
+      # Update an AI chat's title or associated company context.
       #
       # Required permissions:
       #
@@ -66,11 +69,11 @@ module WhopSDK
       #
       # @overload update(id, current_company_id: nil, title: nil, request_options: {})
       #
-      # @param id [String] The ID of the AI chat to update
+      # @param id [String] The unique identifier of the AI chat to update (e.g., "ai_chat_XXXXX").
       #
-      # @param current_company_id [String, nil] The ID of the company to set as the current company in context for the AI chat
+      # @param current_company_id [String, nil] The unique identifier of the company to set as context for the AI chat (e.g., "b
       #
-      # @param title [String, nil] The new title for the AI chat
+      # @param title [String, nil] The new display title for the AI chat thread (e.g., "Help with billing").
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -88,7 +91,7 @@ module WhopSDK
         )
       end
 
-      # Fetches all AI chats for the current user
+      # Returns a paginated list of AI chat threads for the current authenticated user.
       #
       # @overload list(after: nil, before: nil, first: nil, last: nil, request_options: {})
       #
@@ -117,7 +120,7 @@ module WhopSDK
         )
       end
 
-      # Deletes an AI chat
+      # Delete an AI chat thread so it no longer appears in the user's chat list.
       #
       # Required permissions:
       #
@@ -125,7 +128,7 @@ module WhopSDK
       #
       # @overload delete(id, request_options: {})
       #
-      # @param id [String] The ID of the AI chat to delete
+      # @param id [String] The unique identifier of the AI chat to delete (e.g., "ai_chat_XXXXX").
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

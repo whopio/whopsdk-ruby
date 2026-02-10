@@ -3,11 +3,7 @@
 module WhopSDK
   module Resources
     class PaymentMethods
-      # A payment method is a stored representation of how a customer intends to pay,
-      # such as a card, bank account, or digital wallet. It holds the necessary billing
-      # details and can be attached to a member for future one-time or recurring
-      # charges. This lets you reuse the same payment credentials across multiple
-      # payments. You must provide exactly one of company_id or member_id.
+      # Retrieves the details of an existing payment method.
       #
       # Required permissions:
       #
@@ -21,21 +17,22 @@ module WhopSDK
         ).returns(WhopSDK::Models::PaymentMethodRetrieveResponse::Variants)
       end
       def retrieve(
-        # The ID of the PaymentMethod
+        # The unique identifier of the payment method.
         id,
-        # The ID of the Company. Provide either this or member_id (not both).
+        # The unique identifier of the company. Provide either this or member_id, not
+        # both.
         company_id: nil,
-        # The ID of the Member. Provide either this or company_id (not both).
+        # The unique identifier of the member. Provide either this or company_id, not
+        # both.
         member_id: nil,
         request_options: {}
       )
       end
 
-      # A payment method is a stored representation of how a customer intends to pay,
-      # such as a card, bank account, or digital wallet. It holds the necessary billing
-      # details and can be attached to a member for future one-time or recurring
-      # charges. This lets you reuse the same payment credentials across multiple
-      # payments.
+      # Returns a paginated list of payment methods for a member or company, with
+      # optional filtering by creation date. A payment method is a stored representation
+      # of how a customer intends to pay, such as a card, bank account, or digital
+      # wallet.
       #
       # Required permissions:
       #
@@ -63,11 +60,12 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The ID of the Company. Provide either this or member_id (not both).
+        # The unique identifier of the company. Provide either this or member_id, not
+        # both.
         company_id: nil,
-        # The minimum creation date to filter by
+        # Only return payment methods created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return payment methods created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,
@@ -75,7 +73,7 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The ID of the Member to list payment methods for
+        # The unique identifier of the member to list payment methods for.
         member_id: nil,
         request_options: {}
       )

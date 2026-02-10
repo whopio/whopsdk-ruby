@@ -11,15 +11,17 @@ module WhopSDK
           T.any(WhopSDK::DmChannelCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The user ids to create a DM with. Can be email, username or user_id (tag)
+      # The list of user identifiers to include in the DM channel. Each entry can be an
+      # email, username, or user ID (e.g. 'user_xxxxx').
       sig { returns(T::Array[String]) }
       attr_accessor :with_user_ids
 
-      # The ID of the company to scope this DM channel to.
+      # The unique identifier of the company to scope this DM channel to. When set, the
+      # channel is visible only within that company context.
       sig { returns(T.nilable(String)) }
       attr_accessor :company_id
 
-      # The custom name for the DM channel
+      # A custom display name for the DM channel. For example, 'Project Discussion'.
       sig { returns(T.nilable(String)) }
       attr_accessor :custom_name
 
@@ -32,11 +34,13 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The user ids to create a DM with. Can be email, username or user_id (tag)
+        # The list of user identifiers to include in the DM channel. Each entry can be an
+        # email, username, or user ID (e.g. 'user_xxxxx').
         with_user_ids:,
-        # The ID of the company to scope this DM channel to.
+        # The unique identifier of the company to scope this DM channel to. When set, the
+        # channel is visible only within that company context.
         company_id: nil,
-        # The custom name for the DM channel
+        # A custom display name for the DM channel. For example, 'Project Discussion'.
         custom_name: nil,
         request_options: {}
       )

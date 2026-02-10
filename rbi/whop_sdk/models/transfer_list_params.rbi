@@ -19,16 +19,16 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # The minimum creation date to filter by
+      # Only return transfers created after this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_after
 
-      # The maximum creation date to filter by
+      # Only return transfers created before this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_before
 
-      # Filter transfers to only those that were sent to this destination account.
-      # (user_xxx, biz_xxx, ldgr_xxx)
+      # Filter to transfers received by this account. Accepts a user, company, or ledger
+      # account ID.
       sig { returns(T.nilable(String)) }
       attr_accessor :destination_id
 
@@ -48,8 +48,8 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::TransferListParams::Order::OrSymbol)) }
       attr_accessor :order
 
-      # Filter transfers to only those that were sent from this origin account.
-      # (user_xxx, biz_xxx, ldgr_xxx)
+      # Filter to transfers sent from this account. Accepts a user, company, or ledger
+      # account ID.
       sig { returns(T.nilable(String)) }
       attr_accessor :origin_id
 
@@ -73,12 +73,12 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The minimum creation date to filter by
+        # Only return transfers created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return transfers created before this timestamp.
         created_before: nil,
-        # Filter transfers to only those that were sent to this destination account.
-        # (user_xxx, biz_xxx, ldgr_xxx)
+        # Filter to transfers received by this account. Accepts a user, company, or ledger
+        # account ID.
         destination_id: nil,
         # The direction of the sort.
         direction: nil,
@@ -88,8 +88,8 @@ module WhopSDK
         last: nil,
         # Which columns can be used to sort.
         order: nil,
-        # Filter transfers to only those that were sent from this origin account.
-        # (user_xxx, biz_xxx, ldgr_xxx)
+        # Filter to transfers sent from this account. Accepts a user, company, or ledger
+        # account ID.
         origin_id: nil,
         request_options: {}
       )

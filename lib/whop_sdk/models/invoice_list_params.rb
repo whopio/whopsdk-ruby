@@ -8,7 +8,7 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute company_id
-      #   The ID of the company to list invoices for
+      #   The unique identifier of the company to list invoices for.
       #
       #   @return [String]
       required :company_id, String
@@ -26,7 +26,7 @@ module WhopSDK
       optional :before, String, nil?: true
 
       # @!attribute collection_methods
-      #   Filter invoices by their collection method
+      #   Filter invoices by their collection method.
       #
       #   @return [Array<Symbol, WhopSDK::Models::CollectionMethod>, nil]
       optional :collection_methods,
@@ -34,13 +34,13 @@ module WhopSDK
                nil?: true
 
       # @!attribute created_after
-      #   The minimum creation date to filter by
+      #   Only return invoices created after this timestamp.
       #
       #   @return [Time, nil]
       optional :created_after, Time, nil?: true
 
       # @!attribute created_before
-      #   The maximum creation date to filter by
+      #   Only return invoices created before this timestamp.
       #
       #   @return [Time, nil]
       optional :created_before, Time, nil?: true
@@ -70,29 +70,33 @@ module WhopSDK
       optional :order, enum: -> { WhopSDK::InvoiceListParams::Order }, nil?: true
 
       # @!attribute product_ids
-      #   Return only invoices created for these specific product ids
+      #   Filter invoices to only those associated with these specific product
+      #   identifiers.
       #
       #   @return [Array<String>, nil]
       optional :product_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
 
       # @!attribute statuses
-      #   The statuses to filter the invoices by
+      #   Filter invoices by their current status.
       #
       #   @return [Array<Symbol, WhopSDK::Models::InvoiceStatus>, nil]
       optional :statuses, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::InvoiceStatus] }, nil?: true
 
       # @!method initialize(company_id:, after: nil, before: nil, collection_methods: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, product_ids: nil, statuses: nil, request_options: {})
-      #   @param company_id [String] The ID of the company to list invoices for
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::InvoiceListParams} for more details.
+      #
+      #   @param company_id [String] The unique identifier of the company to list invoices for.
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param collection_methods [Array<Symbol, WhopSDK::Models::CollectionMethod>, nil] Filter invoices by their collection method
+      #   @param collection_methods [Array<Symbol, WhopSDK::Models::CollectionMethod>, nil] Filter invoices by their collection method.
       #
-      #   @param created_after [Time, nil] The minimum creation date to filter by
+      #   @param created_after [Time, nil] Only return invoices created after this timestamp.
       #
-      #   @param created_before [Time, nil] The maximum creation date to filter by
+      #   @param created_before [Time, nil] Only return invoices created before this timestamp.
       #
       #   @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
@@ -102,9 +106,9 @@ module WhopSDK
       #
       #   @param order [Symbol, WhopSDK::Models::InvoiceListParams::Order, nil] Which columns can be used to sort.
       #
-      #   @param product_ids [Array<String>, nil] Return only invoices created for these specific product ids
+      #   @param product_ids [Array<String>, nil] Filter invoices to only those associated with these specific product identifiers
       #
-      #   @param statuses [Array<Symbol, WhopSDK::Models::InvoiceStatus>, nil] The statuses to filter the invoices by
+      #   @param statuses [Array<Symbol, WhopSDK::Models::InvoiceStatus>, nil] Filter invoices by their current status.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 

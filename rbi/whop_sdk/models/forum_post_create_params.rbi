@@ -11,34 +11,35 @@ module WhopSDK
           T.any(WhopSDK::ForumPostCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The experience to create this post in
+      # The unique identifier of the experience to create this post in. For example,
+      # 'exp_xxxxx'.
       sig { returns(String) }
       attr_accessor :experience_id
 
-      # The attachments for this post
+      # A list of file attachments to include with the post, such as images or videos.
       sig do
         returns(T.nilable(T::Array[WhopSDK::ForumPostCreateParams::Attachment]))
       end
       attr_accessor :attachments
 
-      # This is the main body of the post in Markdown format. Hidden if paywalled and
-      # user hasn't purchased access to it.
+      # The main body of the post in Markdown format. For example, 'Check out this
+      # **update**'. Hidden if the post is paywalled and the viewer has not purchased
+      # access.
       sig { returns(T.nilable(String)) }
       attr_accessor :content
 
-      # This is used to determine if the post should be sent as a 'mention' notification
-      # to all of the users who are in the experience. This means that anyone with
-      # 'mentions' enabled will receive a notification about this post.
+      # Whether to send this post as a mention notification to all users in the
+      # experience who have mentions enabled.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :is_mention
 
-      # The ID of the parent post. Set it to the ID of the post you want to comment on
-      # or don't include it if its a top level post.
+      # The unique identifier of the parent post to comment on. Omit this field to
+      # create a top-level post.
       sig { returns(T.nilable(String)) }
       attr_accessor :parent_id
 
-      # The price in paywall_currency to unlock this post (e.g., 5.00 for $5.00). If
-      # set, users must purchase access to view the post content.
+      # The price to unlock this post in the specified paywall currency. For example,
+      # 5.00 for $5.00. When set, users must purchase access to view the post content.
       sig { returns(T.nilable(Float)) }
       attr_accessor :paywall_amount
 
@@ -46,11 +47,11 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::Currency::OrSymbol)) }
       attr_accessor :paywall_currency
 
-      # Whether the post should be pinned
+      # Whether this post should be pinned to the top of the forum.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :pinned
 
-      # The poll for this post
+      # A poll to attach to this post, allowing members to vote on options.
       sig { returns(T.nilable(WhopSDK::ForumPostCreateParams::Poll)) }
       attr_reader :poll
 
@@ -61,7 +62,8 @@ module WhopSDK
       end
       attr_writer :poll
 
-      # The title of the post. Only visible if paywalled.
+      # The title of the post, displayed prominently at the top. Required for paywalled
+      # posts as it remains visible to non-purchasers.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
@@ -89,30 +91,32 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The experience to create this post in
+        # The unique identifier of the experience to create this post in. For example,
+        # 'exp_xxxxx'.
         experience_id:,
-        # The attachments for this post
+        # A list of file attachments to include with the post, such as images or videos.
         attachments: nil,
-        # This is the main body of the post in Markdown format. Hidden if paywalled and
-        # user hasn't purchased access to it.
+        # The main body of the post in Markdown format. For example, 'Check out this
+        # **update**'. Hidden if the post is paywalled and the viewer has not purchased
+        # access.
         content: nil,
-        # This is used to determine if the post should be sent as a 'mention' notification
-        # to all of the users who are in the experience. This means that anyone with
-        # 'mentions' enabled will receive a notification about this post.
+        # Whether to send this post as a mention notification to all users in the
+        # experience who have mentions enabled.
         is_mention: nil,
-        # The ID of the parent post. Set it to the ID of the post you want to comment on
-        # or don't include it if its a top level post.
+        # The unique identifier of the parent post to comment on. Omit this field to
+        # create a top-level post.
         parent_id: nil,
-        # The price in paywall_currency to unlock this post (e.g., 5.00 for $5.00). If
-        # set, users must purchase access to view the post content.
+        # The price to unlock this post in the specified paywall currency. For example,
+        # 5.00 for $5.00. When set, users must purchase access to view the post content.
         paywall_amount: nil,
         # The available currencies on the platform
         paywall_currency: nil,
-        # Whether the post should be pinned
+        # Whether this post should be pinned to the top of the forum.
         pinned: nil,
-        # The poll for this post
+        # A poll to attach to this post, allowing members to vote on options.
         poll: nil,
-        # The title of the post. Only visible if paywalled.
+        # The title of the post, displayed prominently at the top. Required for paywalled
+        # posts as it remains visible to non-purchasers.
         title: nil,
         # The visibility types for forum posts
         visibility: nil,
@@ -181,7 +185,7 @@ module WhopSDK
         sig { returns(T::Array[WhopSDK::ForumPostCreateParams::Poll::Option]) }
         attr_accessor :options
 
-        # The poll for this post
+        # A poll to attach to this post, allowing members to vote on options.
         sig do
           params(
             options:

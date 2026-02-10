@@ -11,7 +11,7 @@ module WhopSDK
       required :id, String
 
       # @!attribute app
-      #   The experience interface for this experience.
+      #   The app that powers this experience, defining its interface and behavior.
       #
       #   @return [WhopSDK::Models::ExperienceListResponse::App]
       required :app, -> { WhopSDK::Models::ExperienceListResponse::App }
@@ -29,48 +29,55 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute image
-      #   The logo for the experience.
+      #   The custom logo image for this experience. Null if no custom logo has been
+      #   uploaded.
       #
       #   @return [WhopSDK::Models::ExperienceListResponse::Image, nil]
       required :image, -> { WhopSDK::Models::ExperienceListResponse::Image }, nil?: true
 
       # @!attribute is_public
-      #   Whether the experience is visible to the public
+      #   Whether this experience is publicly visible to all users, including those
+      #   without a membership.
       #
       #   @return [Boolean]
       required :is_public, WhopSDK::Internal::Type::Boolean
 
       # @!attribute name
-      #   The written name of the description.
+      #   The display name of this experience shown to users in the product navigation.
+      #   Maximum 255 characters.
       #
       #   @return [String]
       required :name, String
 
       # @!attribute order
-      #   The order of the experience in the section
+      #   The sort position of this experience within its section. Lower values appear
+      #   first. Null if no position has been set.
       #
       #   @return [String, nil]
       required :order, String, nil?: true
 
       # @!method initialize(id:, app:, company:, created_at:, image:, is_public:, name:, order:)
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::ExperienceListResponse} for more details.
+      #
       #   An experience is a feature or content module within a product, such as a chat,
       #   course, or app.
       #
       #   @param id [String] The unique identifier for the experience.
       #
-      #   @param app [WhopSDK::Models::ExperienceListResponse::App] The experience interface for this experience.
+      #   @param app [WhopSDK::Models::ExperienceListResponse::App] The app that powers this experience, defining its interface and behavior.
       #
       #   @param company [WhopSDK::Models::ExperienceListResponse::Company] The company that owns this experience.
       #
       #   @param created_at [Time] The datetime the experience was created.
       #
-      #   @param image [WhopSDK::Models::ExperienceListResponse::Image, nil] The logo for the experience.
+      #   @param image [WhopSDK::Models::ExperienceListResponse::Image, nil] The custom logo image for this experience. Null if no custom logo has been uploa
       #
-      #   @param is_public [Boolean] Whether the experience is visible to the public
+      #   @param is_public [Boolean] Whether this experience is publicly visible to all users, including those withou
       #
-      #   @param name [String] The written name of the description.
+      #   @param name [String] The display name of this experience shown to users in the product navigation. Ma
       #
-      #   @param order [String, nil] The order of the experience in the section
+      #   @param order [String, nil] The sort position of this experience within its section. Lower values appear fir
 
       # @see WhopSDK::Models::ExperienceListResponse#app
       class App < WhopSDK::Internal::Type::BaseModel
@@ -81,14 +88,15 @@ module WhopSDK
         required :id, String
 
         # @!attribute icon
-        #   The icon for the app. This icon is shown on discovery, on the product page, on
-        #   checkout, and as a default icon for the experiences.
+        #   The icon image for this app, displayed on the app store, product pages,
+        #   checkout, and as the default icon for experiences using this app.
         #
         #   @return [WhopSDK::Models::ExperienceListResponse::App::Icon, nil]
         required :icon, -> { WhopSDK::Models::ExperienceListResponse::App::Icon }, nil?: true
 
         # @!attribute name
-        #   The name of the app
+        #   The display name of this app shown on the app store and in experience
+        #   navigation. Maximum 30 characters.
         #
         #   @return [String]
         required :name, String
@@ -97,13 +105,13 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::ExperienceListResponse::App} for more details.
         #
-        #   The experience interface for this experience.
+        #   The app that powers this experience, defining its interface and behavior.
         #
         #   @param id [String] The unique identifier for the app.
         #
-        #   @param icon [WhopSDK::Models::ExperienceListResponse::App::Icon, nil] The icon for the app. This icon is shown on discovery, on the product page, on c
+        #   @param icon [WhopSDK::Models::ExperienceListResponse::App::Icon, nil] The icon image for this app, displayed on the app store, product pages, checkout
         #
-        #   @param name [String] The name of the app
+        #   @param name [String] The display name of this app shown on the app store and in experience navigation
 
         # @see WhopSDK::Models::ExperienceListResponse::App#icon
         class Icon < WhopSDK::Internal::Type::BaseModel
@@ -118,8 +126,8 @@ module WhopSDK
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::ExperienceListResponse::App::Icon} for more details.
           #
-          #   The icon for the app. This icon is shown on discovery, on the product page, on
-          #   checkout, and as a default icon for the experiences.
+          #   The icon image for this app, displayed on the app store, product pages,
+          #   checkout, and as the default icon for experiences using this app.
           #
           #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
         end
@@ -171,7 +179,8 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::ExperienceListResponse::Image} for more details.
         #
-        #   The logo for the experience.
+        #   The custom logo image for this experience. Null if no custom logo has been
+        #   uploaded.
         #
         #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
       end

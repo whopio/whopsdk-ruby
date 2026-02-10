@@ -18,23 +18,23 @@ module WhopSDK
         ).returns(WhopSDK::Experience)
       end
       def create(
-        # The ID of the app to create the experience for
+        # The unique identifier of the app that powers this experience.
         app_id:,
-        # The ID of the company to create the experience for
+        # The unique identifier of the company to create this experience for.
         company_id:,
-        # Whether the experience is publicly accessible
+        # Whether the experience is publicly accessible without a membership.
         is_public: nil,
-        # The logo for the experience
+        # A logo image displayed alongside the experience name.
         logo: nil,
-        # The name of the experience
+        # The display name of the experience. Defaults to the app's name if not provided.
         name: nil,
-        # The ID of the section to create the experience in
+        # The unique identifier of the section to place the experience in.
         section_id: nil,
         request_options: {}
       )
       end
 
-      # Retrieves an experience by ID
+      # Retrieves the details of an existing experience.
       sig do
         params(
           id: String,
@@ -42,7 +42,7 @@ module WhopSDK
         ).returns(WhopSDK::Experience)
       end
       def retrieve(
-        # The ID of the experience
+        # The unique identifier of the experience.
         id,
         request_options: {}
       )
@@ -65,25 +65,26 @@ module WhopSDK
         ).returns(WhopSDK::Experience)
       end
       def update(
-        # The id of the experience to update.
+        # The unique identifier of the experience to update.
         id,
         # The different access levels for experiences (PUBLIC IS NEVER USED ANYMORE).
         access_level: nil,
-        # Whether the experience is publicly accessible.
+        # Whether the experience is publicly accessible without a membership.
         is_public: nil,
-        # The logo for the experience
+        # A logo image displayed alongside the experience name.
         logo: nil,
-        # The name of the experience.
+        # The display name of the experience.
         name: nil,
-        # The order of the experience in the section.
+        # The position of the experience within its section for display ordering.
         order: nil,
-        # The ID of the section to update.
+        # The unique identifier of the section to move the experience into.
         section_id: nil,
         request_options: {}
       )
       end
 
-      # Lists experiences for a company
+      # Returns a paginated list of experiences belonging to a company, with optional
+      # filtering by product and app.
       #
       # Required permissions:
       #
@@ -105,23 +106,23 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the company to filter experiences by
+        # The unique identifier of the company to list experiences for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
-        # The ID of the app to filter experiences by
+        # Filter to only experiences powered by this app identifier.
         app_id: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The minimum creation date to filter by
+        # Only return experiences created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return experiences created before this timestamp.
         created_before: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The ID of the product to filter experiences by
+        # Filter to only experiences attached to this product identifier.
         product_id: nil,
         request_options: {}
       )
@@ -137,13 +138,13 @@ module WhopSDK
         ).returns(T::Boolean)
       end
       def delete(
-        # The internal ID of the experience to delete.
+        # The unique identifier of the experience to delete.
         id,
         request_options: {}
       )
       end
 
-      # Adds an experience to an product, making it accessible to the product's
+      # Attach an experience to a product, making it accessible to the product's
       # customers.
       #
       # Required permissions:
@@ -157,16 +158,16 @@ module WhopSDK
         ).returns(WhopSDK::Experience)
       end
       def attach(
-        # The ID of the Experience to be added to an Access Pass.
+        # The unique identifier of the experience to attach.
         id,
-        # The ID of the Access Pass to add the Experience to.
+        # The unique identifier of the product to attach the experience to.
         product_id:,
         request_options: {}
       )
       end
 
-      # Removes an experience from an product, making it inaccessible to the product's
-      # customers.
+      # Detach an experience from a product, removing customer access to it through that
+      # product.
       #
       # Required permissions:
       #
@@ -179,9 +180,9 @@ module WhopSDK
         ).returns(WhopSDK::Experience)
       end
       def detach(
-        # The ID of the Experience to be added to an Access Pass.
+        # The unique identifier of the experience to detach.
         id,
-        # The ID of the Access Pass to add the Experience to.
+        # The unique identifier of the product to detach the experience from.
         product_id:,
         request_options: {}
       )
@@ -205,9 +206,10 @@ module WhopSDK
         ).returns(WhopSDK::Experience)
       end
       def duplicate(
-        # The ID of the experience to duplicate
+        # The unique identifier of the experience to duplicate.
         id,
-        # The name of the new experience
+        # The display name for the duplicated experience. Defaults to the original
+        # experience's name.
         name: nil,
         request_options: {}
       )

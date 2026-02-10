@@ -12,15 +12,18 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The bot ID if this is a support chat
+      # The unique identifier of the company associated with this channel. Null if this
+      # is not a support or company-scoped conversation.
       sig { returns(T.nilable(String)) }
       attr_accessor :company_id
 
-      # The custom name of the DM channel, if any
+      # A custom display name assigned to this channel by the user. Null if no custom
+      # name has been set.
       sig { returns(T.nilable(String)) }
       attr_accessor :custom_name
 
-      # The customer user if this is a support chat
+      # The customer who initiated this support conversation. Null if this is not a
+      # support chat.
       sig { returns(T.nilable(WhopSDK::SupportChannel::CustomerUser)) }
       attr_reader :customer_user
 
@@ -32,15 +35,18 @@ module WhopSDK
       end
       attr_writer :customer_user
 
-      # When the last message was sent
+      # The timestamp when the most recent message was sent in this channel. Null if no
+      # messages have been sent.
       sig { returns(T.nilable(Time)) }
       attr_accessor :last_message_at
 
-      # When the support ticket was resolved (null if unresolved)
+      # The timestamp when the linked support ticket was marked as resolved. Null if
+      # unresolved or not a support chat.
       sig { returns(T.nilable(Time)) }
       attr_accessor :resolved_at
 
-      # Represents a DM channel
+      # A messaging channel that can be a one-on-one DM, group chat, company support
+      # conversation, or platform-level direct message.
       sig do
         params(
           id: String,
@@ -55,15 +61,20 @@ module WhopSDK
       def self.new(
         # The unique identifier for the entity
         id:,
-        # The bot ID if this is a support chat
+        # The unique identifier of the company associated with this channel. Null if this
+        # is not a support or company-scoped conversation.
         company_id:,
-        # The custom name of the DM channel, if any
+        # A custom display name assigned to this channel by the user. Null if no custom
+        # name has been set.
         custom_name:,
-        # The customer user if this is a support chat
+        # The customer who initiated this support conversation. Null if this is not a
+        # support chat.
         customer_user:,
-        # When the last message was sent
+        # The timestamp when the most recent message was sent in this channel. Null if no
+        # messages have been sent.
         last_message_at:,
-        # When the support ticket was resolved (null if unresolved)
+        # The timestamp when the linked support ticket was marked as resolved. Null if
+        # unresolved or not a support chat.
         resolved_at:
       )
       end
@@ -104,7 +115,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :username
 
-        # The customer user if this is a support chat
+        # The customer who initiated this support conversation. Null if this is not a
+        # support chat.
         sig do
           params(id: String, name: T.nilable(String), username: String).returns(
             T.attached_class

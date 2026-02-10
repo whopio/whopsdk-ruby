@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class CourseLessonInteractions
-      # Retrieves a course lesson interaction by ID
+      # Retrieves the details of an existing course lesson interaction.
       #
       # Required permissions:
       #
@@ -16,13 +16,14 @@ module WhopSDK
         ).returns(WhopSDK::CourseLessonInteraction)
       end
       def retrieve(
-        # The ID of the course lesson interaction
+        # The unique identifier of the lesson interaction to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # Lists course lesson interactions
+      # Returns a paginated list of lesson interactions, filtered by lesson, course,
+      # user, or completion status.
       #
       # Required permissions:
       #
@@ -50,17 +51,17 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # Whether the lesson has been completed by the user
+        # Whether to filter for completed or in-progress lesson interactions.
         completed: nil,
-        # The ID of the course to list course lesson interactions for
+        # The unique identifier of the course to filter interactions for.
         course_id: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The ID of the lesson to list course lesson interactions for
+        # The unique identifier of the lesson to filter interactions for.
         lesson_id: nil,
-        # The ID of the user to list course lesson interactions for
+        # The unique identifier of the user to filter lesson interactions for.
         user_id: nil,
         request_options: {}
       )

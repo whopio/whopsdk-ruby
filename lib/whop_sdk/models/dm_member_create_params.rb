@@ -8,21 +8,25 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute channel_id
-      #   The ID of the DM channel to add the member to
+      #   The unique identifier of the DM channel to add the new member to.
       #
       #   @return [String]
       required :channel_id, String
 
       # @!attribute user_id
-      #   The ID of the user to add to the channel
+      #   The unique identifier of the user to add to the DM channel. For example,
+      #   'user_xxxxx'.
       #
       #   @return [String]
       required :user_id, String
 
       # @!method initialize(channel_id:, user_id:, request_options: {})
-      #   @param channel_id [String] The ID of the DM channel to add the member to
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::DmMemberCreateParams} for more details.
       #
-      #   @param user_id [String] The ID of the user to add to the channel
+      #   @param channel_id [String] The unique identifier of the DM channel to add the new member to.
+      #
+      #   @param user_id [String] The unique identifier of the user to add to the DM channel. For example, 'user_x
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

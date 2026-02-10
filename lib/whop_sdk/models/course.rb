@@ -11,20 +11,22 @@ module WhopSDK
       required :id, String
 
       # @!attribute certificate_after_completion_enabled
-      #   Whether the course will award its students a PDF certificate after completing
-      #   all lessons
+      #   Whether students receive a PDF certificate after completing all lessons in this
+      #   course. Null if the setting has not been configured.
       #
       #   @return [Boolean, nil]
       required :certificate_after_completion_enabled, WhopSDK::Internal::Type::Boolean, nil?: true
 
       # @!attribute chapters
-      #   The chapters in this course
+      #   An ordered list of all chapters in this course, sorted by their display
+      #   position.
       #
       #   @return [Array<WhopSDK::Models::Course::Chapter>]
       required :chapters, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Course::Chapter] }
 
       # @!attribute cover_image
-      #   The URL of the course's cover image, which is shown in course preview cards
+      #   The URL of the course cover image shown on preview cards. Null if no cover image
+      #   has been uploaded.
       #
       #   @return [String, nil]
       required :cover_image, String, nil?: true
@@ -36,45 +38,50 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute description
-      #   A short description of the course
+      #   A brief summary of the course content and objectives. Null if no description has
+      #   been set.
       #
       #   @return [String, nil]
       required :description, String, nil?: true
 
       # @!attribute language
-      #   The language spoken in the video content of the course, used to generate closed
-      #   captions in the right language
+      #   The spoken language of the video content, used to generate accurate closed
+      #   captions. One of: en, es, it, pt, de, fr, pl, ru, nl, ca, tr, sv, uk, no, fi,
+      #   sk, el, cs, hr, da, ro, bg.
       #
       #   @return [Symbol, WhopSDK::Models::Languages]
       required :language, enum: -> { WhopSDK::Languages }
 
       # @!attribute order
-      #   The order of the course within its experience
+      #   The sort position of this course within its parent experience, as a decimal for
+      #   flexible ordering.
       #
       #   @return [String]
       required :order, String
 
       # @!attribute require_completing_lessons_in_order
-      #   Whether the course requires students to complete the previous lesson before
-      #   moving on to the next one
+      #   Whether students must complete each lesson sequentially before advancing to the
+      #   next one.
       #
       #   @return [Boolean]
       required :require_completing_lessons_in_order, WhopSDK::Internal::Type::Boolean
 
       # @!attribute tagline
-      #   A short tagline for the course. It is displayed under the course title in the UI
+      #   A short marketing tagline displayed beneath the course title. Null if no tagline
+      #   has been set.
       #
       #   @return [String, nil]
       required :tagline, String, nil?: true
 
       # @!attribute thumbnail
-      #   The thumbnail for the course
+      #   The thumbnail image displayed on course cards and previews. Null if no thumbnail
+      #   has been uploaded.
       #
       #   @return [WhopSDK::Models::Course::Thumbnail, nil]
       required :thumbnail, -> { WhopSDK::Course::Thumbnail }, nil?: true
 
       # @!attribute title
-      #   The title of the course
+      #   The display name of the course shown to students. Null if no title has been set.
       #
       #   @return [String, nil]
       required :title, String, nil?: true
@@ -86,8 +93,8 @@ module WhopSDK
       required :updated_at, Time
 
       # @!attribute visibility
-      #   The visibility of the course. Determines how / whether this course is visible to
-      #   users.
+      #   The visibility setting that controls whether this course appears to students.
+      #   One of: visible, hidden.
       #
       #   @return [Symbol, WhopSDK::Models::CourseVisibilities]
       required :visibility, enum: -> { WhopSDK::CourseVisibilities }
@@ -96,35 +103,36 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Course}
       #   for more details.
       #
-      #   A course from the courses app
+      #   A structured learning module containing chapters and lessons, belonging to an
+      #   experience.
       #
       #   @param id [String] The unique identifier for the course.
       #
-      #   @param certificate_after_completion_enabled [Boolean, nil] Whether the course will award its students a PDF certificate after completing al
+      #   @param certificate_after_completion_enabled [Boolean, nil] Whether students receive a PDF certificate after completing all lessons in this
       #
-      #   @param chapters [Array<WhopSDK::Models::Course::Chapter>] The chapters in this course
+      #   @param chapters [Array<WhopSDK::Models::Course::Chapter>] An ordered list of all chapters in this course, sorted by their display position
       #
-      #   @param cover_image [String, nil] The URL of the course's cover image, which is shown in course preview cards
+      #   @param cover_image [String, nil] The URL of the course cover image shown on preview cards. Null if no cover image
       #
       #   @param created_at [Time] The datetime the course was created.
       #
-      #   @param description [String, nil] A short description of the course
+      #   @param description [String, nil] A brief summary of the course content and objectives. Null if no description has
       #
-      #   @param language [Symbol, WhopSDK::Models::Languages] The language spoken in the video content of the course, used to generate closed
+      #   @param language [Symbol, WhopSDK::Models::Languages] The spoken language of the video content, used to generate accurate closed capti
       #
-      #   @param order [String] The order of the course within its experience
+      #   @param order [String] The sort position of this course within its parent experience, as a decimal for
       #
-      #   @param require_completing_lessons_in_order [Boolean] Whether the course requires students to complete the previous lesson before movi
+      #   @param require_completing_lessons_in_order [Boolean] Whether students must complete each lesson sequentially before advancing to the
       #
-      #   @param tagline [String, nil] A short tagline for the course. It is displayed under the course title in the UI
+      #   @param tagline [String, nil] A short marketing tagline displayed beneath the course title. Null if no tagline
       #
-      #   @param thumbnail [WhopSDK::Models::Course::Thumbnail, nil] The thumbnail for the course
+      #   @param thumbnail [WhopSDK::Models::Course::Thumbnail, nil] The thumbnail image displayed on course cards and previews. Null if no thumbnail
       #
-      #   @param title [String, nil] The title of the course
+      #   @param title [String, nil] The display name of the course shown to students. Null if no title has been set.
       #
       #   @param updated_at [Time] The datetime the course was last updated.
       #
-      #   @param visibility [Symbol, WhopSDK::Models::CourseVisibilities] The visibility of the course. Determines how / whether this course is visible to
+      #   @param visibility [Symbol, WhopSDK::Models::CourseVisibilities] The visibility setting that controls whether this course appears to students. On
 
       class Chapter < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
@@ -134,33 +142,38 @@ module WhopSDK
         required :id, String
 
         # @!attribute lessons
-        #   The lessons in this chapter
+        #   An ordered list of lessons in this chapter, sorted by display position. Hidden
+        #   lessons are excluded for non-admin users.
         #
         #   @return [Array<WhopSDK::Models::Course::Chapter::Lesson>]
         required :lessons, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Course::Chapter::Lesson] }
 
         # @!attribute order
-        #   The order of the chapter within its course
+        #   The sort position of this chapter within its parent course, starting from zero.
         #
         #   @return [Integer]
         required :order, Integer
 
         # @!attribute title
-        #   The title of the chapter
+        #   The display name of the chapter shown to students. Maximum 150 characters.
         #
         #   @return [String]
         required :title, String
 
         # @!method initialize(id:, lessons:, order:, title:)
-        #   A chapter from the courses app
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Course::Chapter} for more details.
+        #
+        #   A grouping of related lessons within a course, used to organize content into
+        #   sections.
         #
         #   @param id [String] The unique identifier for the chapter.
         #
-        #   @param lessons [Array<WhopSDK::Models::Course::Chapter::Lesson>] The lessons in this chapter
+        #   @param lessons [Array<WhopSDK::Models::Course::Chapter::Lesson>] An ordered list of lessons in this chapter, sorted by display position. Hidden l
         #
-        #   @param order [Integer] The order of the chapter within its course
+        #   @param order [Integer] The sort position of this chapter within its parent course, starting from zero.
         #
-        #   @param title [String] The title of the chapter
+        #   @param title [String] The display name of the chapter shown to students. Maximum 150 characters.
 
         class Lesson < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
@@ -170,49 +183,56 @@ module WhopSDK
           required :id, String
 
           # @!attribute lesson_type
-          #   The type of the lesson (text, video, pdf, multi, quiz, knowledge_check)
+          #   The content format of this lesson. One of: text, video, pdf, multi, quiz,
+          #   knowledge_check.
           #
           #   @return [Symbol, WhopSDK::Models::LessonTypes]
           required :lesson_type, enum: -> { WhopSDK::LessonTypes }
 
           # @!attribute order
-          #   The order of the lesson within its chapter
+          #   The sort position of this lesson within its parent chapter, starting from zero.
           #
           #   @return [Integer]
           required :order, Integer
 
           # @!attribute thumbnail
-          #   The thumbnail for the lesson
+          #   The thumbnail image displayed on lesson cards and previews. Null if no thumbnail
+          #   has been uploaded.
           #
           #   @return [WhopSDK::Models::Course::Chapter::Lesson::Thumbnail, nil]
           required :thumbnail, -> { WhopSDK::Course::Chapter::Lesson::Thumbnail }, nil?: true
 
           # @!attribute title
-          #   The title of the lesson
+          #   The display name of the lesson shown to students. Maximum 120 characters.
           #
           #   @return [String]
           required :title, String
 
           # @!attribute video_asset
-          #   The associated Mux asset for video lessons
+          #   The Mux video asset for video-type lessons, used for streaming playback. Null if
+          #   this lesson has no hosted video.
           #
           #   @return [WhopSDK::Models::Course::Chapter::Lesson::VideoAsset, nil]
           required :video_asset, -> { WhopSDK::Course::Chapter::Lesson::VideoAsset }, nil?: true
 
           # @!method initialize(id:, lesson_type:, order:, thumbnail:, title:, video_asset:)
-          #   A lesson from the courses app
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::Course::Chapter::Lesson} for more details.
+          #
+          #   An individual learning unit within a chapter, which can contain text, video,
+          #   PDF, or assessment content.
           #
           #   @param id [String] The unique identifier for the lesson.
           #
-          #   @param lesson_type [Symbol, WhopSDK::Models::LessonTypes] The type of the lesson (text, video, pdf, multi, quiz, knowledge_check)
+          #   @param lesson_type [Symbol, WhopSDK::Models::LessonTypes] The content format of this lesson. One of: text, video, pdf, multi, quiz, knowle
           #
-          #   @param order [Integer] The order of the lesson within its chapter
+          #   @param order [Integer] The sort position of this lesson within its parent chapter, starting from zero.
           #
-          #   @param thumbnail [WhopSDK::Models::Course::Chapter::Lesson::Thumbnail, nil] The thumbnail for the lesson
+          #   @param thumbnail [WhopSDK::Models::Course::Chapter::Lesson::Thumbnail, nil] The thumbnail image displayed on lesson cards and previews. Null if no thumbnail
           #
-          #   @param title [String] The title of the lesson
+          #   @param title [String] The display name of the lesson shown to students. Maximum 120 characters.
           #
-          #   @param video_asset [WhopSDK::Models::Course::Chapter::Lesson::VideoAsset, nil] The associated Mux asset for video lessons
+          #   @param video_asset [WhopSDK::Models::Course::Chapter::Lesson::VideoAsset, nil] The Mux video asset for video-type lessons, used for streaming playback. Null if
 
           # @see WhopSDK::Models::Course::Chapter::Lesson#thumbnail
           class Thumbnail < WhopSDK::Internal::Type::BaseModel
@@ -227,7 +247,8 @@ module WhopSDK
             #   Some parameter documentations has been truncated, see
             #   {WhopSDK::Models::Course::Chapter::Lesson::Thumbnail} for more details.
             #
-            #   The thumbnail for the lesson
+            #   The thumbnail image displayed on lesson cards and previews. Null if no thumbnail
+            #   has been uploaded.
             #
             #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
           end
@@ -253,7 +274,8 @@ module WhopSDK
             required :signed_thumbnail_playback_token, String, nil?: true
 
             # @!method initialize(duration_seconds:, signed_playback_id:, signed_thumbnail_playback_token:)
-            #   The associated Mux asset for video lessons
+            #   The Mux video asset for video-type lessons, used for streaming playback. Null if
+            #   this lesson has no hosted video.
             #
             #   @param duration_seconds [Integer, nil] The duration of the video in seconds
             #
@@ -267,7 +289,11 @@ module WhopSDK
       # @see WhopSDK::Models::Course#thumbnail
       class Thumbnail < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The unique identifier of the attachment.
+        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+        #   refetch an object or as key for a cache. The ID type appears in a JSON response
+        #   as a String; however, it is not intended to be human-readable. When expected as
+        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        #   input value will be accepted as an ID.
         #
         #   @return [String]
         required :id, String
@@ -303,9 +329,10 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::Course::Thumbnail} for more details.
         #
-        #   The thumbnail for the course
+        #   The thumbnail image displayed on course cards and previews. Null if no thumbnail
+        #   has been uploaded.
         #
-        #   @param id [String] The unique identifier of the attachment.
+        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
         #
         #   @param content_type [String, nil] The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
         #

@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class Users
-      # Retrieve a single user by their unique identifier or username.
+      # Retrieves the details of an existing user.
       sig do
         params(
           id: String,

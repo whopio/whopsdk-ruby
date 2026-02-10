@@ -10,16 +10,18 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # Whether the course will award its students a PDF certificate after completing
-      # all lessons
+      # Whether students receive a PDF certificate after completing all lessons in this
+      # course. Null if the setting has not been configured.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :certificate_after_completion_enabled
 
-      # The chapters in this course
+      # An ordered list of all chapters in this course, sorted by their display
+      # position.
       sig { returns(T::Array[WhopSDK::Course::Chapter]) }
       attr_accessor :chapters
 
-      # The URL of the course's cover image, which is shown in course preview cards
+      # The URL of the course cover image shown on preview cards. Null if no cover image
+      # has been uploaded.
       sig { returns(T.nilable(String)) }
       attr_accessor :cover_image
 
@@ -27,29 +29,34 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # A short description of the course
+      # A brief summary of the course content and objectives. Null if no description has
+      # been set.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      # The language spoken in the video content of the course, used to generate closed
-      # captions in the right language
+      # The spoken language of the video content, used to generate accurate closed
+      # captions. One of: en, es, it, pt, de, fr, pl, ru, nl, ca, tr, sv, uk, no, fi,
+      # sk, el, cs, hr, da, ro, bg.
       sig { returns(WhopSDK::Languages::TaggedSymbol) }
       attr_accessor :language
 
-      # The order of the course within its experience
+      # The sort position of this course within its parent experience, as a decimal for
+      # flexible ordering.
       sig { returns(String) }
       attr_accessor :order
 
-      # Whether the course requires students to complete the previous lesson before
-      # moving on to the next one
+      # Whether students must complete each lesson sequentially before advancing to the
+      # next one.
       sig { returns(T::Boolean) }
       attr_accessor :require_completing_lessons_in_order
 
-      # A short tagline for the course. It is displayed under the course title in the UI
+      # A short marketing tagline displayed beneath the course title. Null if no tagline
+      # has been set.
       sig { returns(T.nilable(String)) }
       attr_accessor :tagline
 
-      # The thumbnail for the course
+      # The thumbnail image displayed on course cards and previews. Null if no thumbnail
+      # has been uploaded.
       sig { returns(T.nilable(WhopSDK::Course::Thumbnail)) }
       attr_reader :thumbnail
 
@@ -58,7 +65,7 @@ module WhopSDK
       end
       attr_writer :thumbnail
 
-      # The title of the course
+      # The display name of the course shown to students. Null if no title has been set.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
@@ -66,12 +73,13 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :updated_at
 
-      # The visibility of the course. Determines how / whether this course is visible to
-      # users.
+      # The visibility setting that controls whether this course appears to students.
+      # One of: visible, hidden.
       sig { returns(WhopSDK::CourseVisibilities::TaggedSymbol) }
       attr_accessor :visibility
 
-      # A course from the courses app
+      # A structured learning module containing chapters and lessons, belonging to an
+      # experience.
       sig do
         params(
           id: String,
@@ -93,35 +101,42 @@ module WhopSDK
       def self.new(
         # The unique identifier for the course.
         id:,
-        # Whether the course will award its students a PDF certificate after completing
-        # all lessons
+        # Whether students receive a PDF certificate after completing all lessons in this
+        # course. Null if the setting has not been configured.
         certificate_after_completion_enabled:,
-        # The chapters in this course
+        # An ordered list of all chapters in this course, sorted by their display
+        # position.
         chapters:,
-        # The URL of the course's cover image, which is shown in course preview cards
+        # The URL of the course cover image shown on preview cards. Null if no cover image
+        # has been uploaded.
         cover_image:,
         # The datetime the course was created.
         created_at:,
-        # A short description of the course
+        # A brief summary of the course content and objectives. Null if no description has
+        # been set.
         description:,
-        # The language spoken in the video content of the course, used to generate closed
-        # captions in the right language
+        # The spoken language of the video content, used to generate accurate closed
+        # captions. One of: en, es, it, pt, de, fr, pl, ru, nl, ca, tr, sv, uk, no, fi,
+        # sk, el, cs, hr, da, ro, bg.
         language:,
-        # The order of the course within its experience
+        # The sort position of this course within its parent experience, as a decimal for
+        # flexible ordering.
         order:,
-        # Whether the course requires students to complete the previous lesson before
-        # moving on to the next one
+        # Whether students must complete each lesson sequentially before advancing to the
+        # next one.
         require_completing_lessons_in_order:,
-        # A short tagline for the course. It is displayed under the course title in the UI
+        # A short marketing tagline displayed beneath the course title. Null if no tagline
+        # has been set.
         tagline:,
-        # The thumbnail for the course
+        # The thumbnail image displayed on course cards and previews. Null if no thumbnail
+        # has been uploaded.
         thumbnail:,
-        # The title of the course
+        # The display name of the course shown to students. Null if no title has been set.
         title:,
         # The datetime the course was last updated.
         updated_at:,
-        # The visibility of the course. Determines how / whether this course is visible to
-        # users.
+        # The visibility setting that controls whether this course appears to students.
+        # One of: visible, hidden.
         visibility:
       )
       end
@@ -159,19 +174,21 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The lessons in this chapter
+        # An ordered list of lessons in this chapter, sorted by display position. Hidden
+        # lessons are excluded for non-admin users.
         sig { returns(T::Array[WhopSDK::Course::Chapter::Lesson]) }
         attr_accessor :lessons
 
-        # The order of the chapter within its course
+        # The sort position of this chapter within its parent course, starting from zero.
         sig { returns(Integer) }
         attr_accessor :order
 
-        # The title of the chapter
+        # The display name of the chapter shown to students. Maximum 150 characters.
         sig { returns(String) }
         attr_accessor :title
 
-        # A chapter from the courses app
+        # A grouping of related lessons within a course, used to organize content into
+        # sections.
         sig do
           params(
             id: String,
@@ -183,11 +200,12 @@ module WhopSDK
         def self.new(
           # The unique identifier for the chapter.
           id:,
-          # The lessons in this chapter
+          # An ordered list of lessons in this chapter, sorted by display position. Hidden
+          # lessons are excluded for non-admin users.
           lessons:,
-          # The order of the chapter within its course
+          # The sort position of this chapter within its parent course, starting from zero.
           order:,
-          # The title of the chapter
+          # The display name of the chapter shown to students. Maximum 150 characters.
           title:
         )
         end
@@ -218,15 +236,17 @@ module WhopSDK
           sig { returns(String) }
           attr_accessor :id
 
-          # The type of the lesson (text, video, pdf, multi, quiz, knowledge_check)
+          # The content format of this lesson. One of: text, video, pdf, multi, quiz,
+          # knowledge_check.
           sig { returns(WhopSDK::LessonTypes::TaggedSymbol) }
           attr_accessor :lesson_type
 
-          # The order of the lesson within its chapter
+          # The sort position of this lesson within its parent chapter, starting from zero.
           sig { returns(Integer) }
           attr_accessor :order
 
-          # The thumbnail for the lesson
+          # The thumbnail image displayed on lesson cards and previews. Null if no thumbnail
+          # has been uploaded.
           sig do
             returns(T.nilable(WhopSDK::Course::Chapter::Lesson::Thumbnail))
           end
@@ -240,11 +260,12 @@ module WhopSDK
           end
           attr_writer :thumbnail
 
-          # The title of the lesson
+          # The display name of the lesson shown to students. Maximum 120 characters.
           sig { returns(String) }
           attr_accessor :title
 
-          # The associated Mux asset for video lessons
+          # The Mux video asset for video-type lessons, used for streaming playback. Null if
+          # this lesson has no hosted video.
           sig do
             returns(T.nilable(WhopSDK::Course::Chapter::Lesson::VideoAsset))
           end
@@ -258,7 +279,8 @@ module WhopSDK
           end
           attr_writer :video_asset
 
-          # A lesson from the courses app
+          # An individual learning unit within a chapter, which can contain text, video,
+          # PDF, or assessment content.
           sig do
             params(
               id: String,
@@ -274,15 +296,18 @@ module WhopSDK
           def self.new(
             # The unique identifier for the lesson.
             id:,
-            # The type of the lesson (text, video, pdf, multi, quiz, knowledge_check)
+            # The content format of this lesson. One of: text, video, pdf, multi, quiz,
+            # knowledge_check.
             lesson_type:,
-            # The order of the lesson within its chapter
+            # The sort position of this lesson within its parent chapter, starting from zero.
             order:,
-            # The thumbnail for the lesson
+            # The thumbnail image displayed on lesson cards and previews. Null if no thumbnail
+            # has been uploaded.
             thumbnail:,
-            # The title of the lesson
+            # The display name of the lesson shown to students. Maximum 120 characters.
             title:,
-            # The associated Mux asset for video lessons
+            # The Mux video asset for video-type lessons, used for streaming playback. Null if
+            # this lesson has no hosted video.
             video_asset:
           )
           end
@@ -318,7 +343,8 @@ module WhopSDK
             sig { returns(T.nilable(String)) }
             attr_accessor :url
 
-            # The thumbnail for the lesson
+            # The thumbnail image displayed on lesson cards and previews. Null if no thumbnail
+            # has been uploaded.
             sig { params(url: T.nilable(String)).returns(T.attached_class) }
             def self.new(
               # A pre-optimized URL for rendering this attachment on the client. This should be
@@ -353,7 +379,8 @@ module WhopSDK
             sig { returns(T.nilable(String)) }
             attr_accessor :signed_thumbnail_playback_token
 
-            # The associated Mux asset for video lessons
+            # The Mux video asset for video-type lessons, used for streaming playback. Null if
+            # this lesson has no hosted video.
             sig do
               params(
                 duration_seconds: T.nilable(Integer),
@@ -392,7 +419,11 @@ module WhopSDK
             T.any(WhopSDK::Course::Thumbnail, WhopSDK::Internal::AnyHash)
           end
 
-        # The unique identifier of the attachment.
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         sig { returns(String) }
         attr_accessor :id
 
@@ -415,7 +446,8 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :source_url
 
-        # The thumbnail for the course
+        # The thumbnail image displayed on course cards and previews. Null if no thumbnail
+        # has been uploaded.
         sig do
           params(
             id: String,
@@ -426,7 +458,11 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The unique identifier of the attachment.
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
           id:,
           # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
           content_type:,

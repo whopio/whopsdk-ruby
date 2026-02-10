@@ -10,7 +10,7 @@ module WhopSDK
       required :id, String
 
       # @!attribute completed
-      #   Whether the lesson has been completed by the user
+      #   Whether the user has finished this lesson.
       #
       #   @return [Boolean]
       required :completed, WhopSDK::Internal::Type::Boolean
@@ -22,29 +22,30 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute lesson
-      #   The lesson this interaction is for
+      #   The lesson that this progress record belongs to.
       #
       #   @return [WhopSDK::Models::CourseLessonInteractionListItem::Lesson]
       required :lesson, -> { WhopSDK::CourseLessonInteractionListItem::Lesson }
 
       # @!attribute user
-      #   The user who interacted with the lesson
+      #   The user whose progress is being tracked.
       #
       #   @return [WhopSDK::Models::CourseLessonInteractionListItem::User]
       required :user, -> { WhopSDK::CourseLessonInteractionListItem::User }
 
       # @!method initialize(id:, completed:, created_at:, lesson:, user:)
-      #   A lesson interaction tracking user progress in courses
+      #   A record of a user's progress on a specific lesson, tracking whether they have
+      #   completed it.
       #
       #   @param id [String] The unique identifier for the lesson interaction.
       #
-      #   @param completed [Boolean] Whether the lesson has been completed by the user
+      #   @param completed [Boolean] Whether the user has finished this lesson.
       #
       #   @param created_at [Time] The datetime the lesson interaction was created.
       #
-      #   @param lesson [WhopSDK::Models::CourseLessonInteractionListItem::Lesson] The lesson this interaction is for
+      #   @param lesson [WhopSDK::Models::CourseLessonInteractionListItem::Lesson] The lesson that this progress record belongs to.
       #
-      #   @param user [WhopSDK::Models::CourseLessonInteractionListItem::User] The user who interacted with the lesson
+      #   @param user [WhopSDK::Models::CourseLessonInteractionListItem::User] The user whose progress is being tracked.
 
       # @see WhopSDK::Models::CourseLessonInteractionListItem#lesson
       class Lesson < WhopSDK::Internal::Type::BaseModel
@@ -55,25 +56,25 @@ module WhopSDK
         required :id, String
 
         # @!attribute chapter
-        #   The chapter this lesson belongs to
+        #   The parent chapter that contains this lesson.
         #
         #   @return [WhopSDK::Models::CourseLessonInteractionListItem::Lesson::Chapter]
         required :chapter, -> { WhopSDK::CourseLessonInteractionListItem::Lesson::Chapter }
 
         # @!attribute title
-        #   The title of the lesson
+        #   The display name of the lesson shown to students. Maximum 120 characters.
         #
         #   @return [String]
         required :title, String
 
         # @!method initialize(id:, chapter:, title:)
-        #   The lesson this interaction is for
+        #   The lesson that this progress record belongs to.
         #
         #   @param id [String] The unique identifier for the lesson.
         #
-        #   @param chapter [WhopSDK::Models::CourseLessonInteractionListItem::Lesson::Chapter] The chapter this lesson belongs to
+        #   @param chapter [WhopSDK::Models::CourseLessonInteractionListItem::Lesson::Chapter] The parent chapter that contains this lesson.
         #
-        #   @param title [String] The title of the lesson
+        #   @param title [String] The display name of the lesson shown to students. Maximum 120 characters.
 
         # @see WhopSDK::Models::CourseLessonInteractionListItem::Lesson#chapter
         class Chapter < WhopSDK::Internal::Type::BaseModel
@@ -84,7 +85,7 @@ module WhopSDK
           required :id, String
 
           # @!method initialize(id:)
-          #   The chapter this lesson belongs to
+          #   The parent chapter that contains this lesson.
           #
           #   @param id [String] The unique identifier for the chapter.
         end
@@ -111,7 +112,7 @@ module WhopSDK
         required :username, String
 
         # @!method initialize(id:, name:, username:)
-        #   The user who interacted with the lesson
+        #   The user whose progress is being tracked.
         #
         #   @param id [String] The unique identifier for the user.
         #

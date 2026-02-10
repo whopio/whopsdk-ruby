@@ -21,7 +21,7 @@ module WhopSDK
       required :lesson_type, enum: -> { WhopSDK::LessonTypes }
 
       # @!attribute content
-      #   The rich text or HTML content body of the lesson.
+      #   The Markdown content body of the lesson.
       #
       #   @return [String, nil]
       optional :content, String, nil?: true
@@ -66,7 +66,7 @@ module WhopSDK
       #
       #   @param lesson_type [Symbol, WhopSDK::Models::LessonTypes] The content type of the lesson, such as video, text, quiz, or knowledge check.
       #
-      #   @param content [String, nil] The rich text or HTML content body of the lesson.
+      #   @param content [String, nil] The Markdown content body of the lesson.
       #
       #   @param days_from_course_start_until_unlock [Integer, nil] The number of days after a student starts the course before this lesson becomes
       #

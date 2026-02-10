@@ -26,8 +26,7 @@ module WhopSDK
       required :attachments, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Lesson::Attachment] }
 
       # @!attribute content
-      #   The text body of the lesson in plain text format. Null if the lesson has no text
-      #   content.
+      #   The Markdown content body of the lesson. Null if the lesson has no text content.
       #
       #   @return [String, nil]
       required :content, String, nil?: true
@@ -118,7 +117,7 @@ module WhopSDK
       #
       #   @param attachments [Array<WhopSDK::Models::Lesson::Attachment>] All supplementary files attached to this lesson returned as a flat array rather
       #
-      #   @param content [String, nil] The text body of the lesson in plain text format. Null if the lesson has no text
+      #   @param content [String, nil] The Markdown content body of the lesson. Null if the lesson has no text content.
       #
       #   @param created_at [Time] The datetime the lesson was created.
       #

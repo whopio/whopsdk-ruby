@@ -29,7 +29,7 @@ module WhopSDK
         chapter_id:,
         # The content type of the lesson, such as video, text, quiz, or knowledge check.
         lesson_type:,
-        # The rich text or HTML content body of the lesson.
+        # The Markdown content body of the lesson.
         content: nil,
         # The number of days after a student starts the course before this lesson becomes
         # accessible.
@@ -116,7 +116,7 @@ module WhopSDK
         # File attachments for the lesson such as PDFs or documents. Replaces all existing
         # attachments.
         attachments: nil,
-        # The rich text or HTML content body of the lesson.
+        # The Markdown content body of the lesson.
         content: nil,
         # The number of days after a student starts the course before this lesson becomes
         # accessible.

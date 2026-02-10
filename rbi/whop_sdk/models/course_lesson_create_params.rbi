@@ -20,7 +20,7 @@ module WhopSDK
       sig { returns(WhopSDK::LessonTypes::OrSymbol) }
       attr_accessor :lesson_type
 
-      # The rich text or HTML content body of the lesson.
+      # The Markdown content body of the lesson.
       sig { returns(T.nilable(String)) }
       attr_accessor :content
 
@@ -74,7 +74,7 @@ module WhopSDK
         chapter_id:,
         # The content type of the lesson, such as video, text, quiz, or knowledge check.
         lesson_type:,
-        # The rich text or HTML content body of the lesson.
+        # The Markdown content body of the lesson.
         content: nil,
         # The number of days after a student starts the course before this lesson becomes
         # accessible.

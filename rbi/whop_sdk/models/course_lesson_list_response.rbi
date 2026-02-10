@@ -15,8 +15,7 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The text body of the lesson in plain text format. Null if the lesson has no text
-      # content.
+      # The Markdown content body of the lesson. Null if the lesson has no text content.
       sig { returns(T.nilable(String)) }
       attr_accessor :content
 
@@ -96,8 +95,7 @@ module WhopSDK
       def self.new(
         # The unique identifier for the lesson.
         id:,
-        # The text body of the lesson in plain text format. Null if the lesson has no text
-        # content.
+        # The Markdown content body of the lesson. Null if the lesson has no text content.
         content:,
         # The datetime the lesson was created.
         created_at:,

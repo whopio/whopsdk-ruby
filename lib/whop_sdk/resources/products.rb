@@ -14,7 +14,7 @@ module WhopSDK
       # - `access_pass:create`
       # - `access_pass:basic:read`
       #
-      # @overload create(company_id:, title:, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, experience_ids: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_group: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, plan_options: nil, product_highlights: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil, request_options: {})
+      # @overload create(company_id:, title:, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, experience_ids: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_group: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, plan_options: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil, request_options: {})
       #
       # @param company_id [String] The unique identifier of the company to create this product for.
       #
@@ -49,8 +49,6 @@ module WhopSDK
       # @param member_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for a product.
       #
       # @param plan_options [WhopSDK::Models::ProductCreateParams::PlanOptions, nil] Configuration for an automatically generated plan to attach to this product.
-      #
-      # @param product_highlights [Array<WhopSDK::Models::ProductCreateParams::ProductHighlight>, nil] Key features and benefits to display on the product page.
       #
       # @param product_tax_code_id [String, nil] The unique identifier of the tax classification code to apply to this product.
       #

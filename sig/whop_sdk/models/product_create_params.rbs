@@ -19,7 +19,6 @@ module WhopSDK
         member_affiliate_percentage: Float?,
         member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         plan_options: WhopSDK::ProductCreateParams::PlanOptions?,
-        product_highlights: ::Array[WhopSDK::ProductCreateParams::ProductHighlight]?,
         product_tax_code_id: String?,
         redirect_purchase_url: String?,
         route: String?,
@@ -65,8 +64,6 @@ module WhopSDK
 
       attr_accessor plan_options: WhopSDK::ProductCreateParams::PlanOptions?
 
-      attr_accessor product_highlights: ::Array[WhopSDK::ProductCreateParams::ProductHighlight]?
-
       attr_accessor product_tax_code_id: String?
 
       attr_accessor redirect_purchase_url: String?
@@ -93,7 +90,6 @@ module WhopSDK
         ?member_affiliate_percentage: Float?,
         ?member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         ?plan_options: WhopSDK::ProductCreateParams::PlanOptions?,
-        ?product_highlights: ::Array[WhopSDK::ProductCreateParams::ProductHighlight]?,
         ?product_tax_code_id: String?,
         ?redirect_purchase_url: String?,
         ?route: String?,
@@ -119,7 +115,6 @@ module WhopSDK
         member_affiliate_percentage: Float?,
         member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         plan_options: WhopSDK::ProductCreateParams::PlanOptions?,
-        product_highlights: ::Array[WhopSDK::ProductCreateParams::ProductHighlight]?,
         product_tax_code_id: String?,
         redirect_purchase_url: String?,
         route: String?,
@@ -479,47 +474,6 @@ module WhopSDK
             placeholder: String?,
             required: bool?
           }
-        end
-      end
-
-      type product_highlight =
-        {
-          content: String,
-          highlight_type: WhopSDK::Models::ProductCreateParams::ProductHighlight::highlight_type,
-          title: String?
-        }
-
-      class ProductHighlight < WhopSDK::Internal::Type::BaseModel
-        attr_accessor content: String
-
-        attr_accessor highlight_type: WhopSDK::Models::ProductCreateParams::ProductHighlight::highlight_type
-
-        attr_accessor title: String?
-
-        def initialize: (
-          content: String,
-          highlight_type: WhopSDK::Models::ProductCreateParams::ProductHighlight::highlight_type,
-          ?title: String?
-        ) -> void
-
-        def to_hash: -> {
-          content: String,
-          highlight_type: WhopSDK::Models::ProductCreateParams::ProductHighlight::highlight_type,
-          title: String?
-        }
-
-        type highlight_type =
-          :qualification | :benefit | :who_this_is_for | :pricing_feature
-
-        module HighlightType
-          extend WhopSDK::Internal::Type::Enum
-
-          QUALIFICATION: :qualification
-          BENEFIT: :benefit
-          WHO_THIS_IS_FOR: :who_this_is_for
-          PRICING_FEATURE: :pricing_feature
-
-          def self?.values: -> ::Array[WhopSDK::Models::ProductCreateParams::ProductHighlight::highlight_type]
         end
       end
     end

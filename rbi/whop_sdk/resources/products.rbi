@@ -33,10 +33,6 @@ module WhopSDK
             T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
           plan_options:
             T.nilable(WhopSDK::ProductCreateParams::PlanOptions::OrHash),
-          product_highlights:
-            T.nilable(
-              T::Array[WhopSDK::ProductCreateParams::ProductHighlight::OrHash]
-            ),
           product_tax_code_id: T.nilable(String),
           redirect_purchase_url: T.nilable(String),
           route: T.nilable(String),
@@ -84,8 +80,6 @@ module WhopSDK
         member_affiliate_status: nil,
         # Configuration for an automatically generated plan to attach to this product.
         plan_options: nil,
-        # Key features and benefits to display on the product page.
-        product_highlights: nil,
         # The unique identifier of the tax classification code to apply to this product.
         product_tax_code_id: nil,
         # A URL to redirect the customer to after completing a purchase.

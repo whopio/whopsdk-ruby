@@ -96,14 +96,6 @@ module WhopSDK
       end
       attr_writer :plan_options
 
-      # Key features and benefits to display on the product page.
-      sig do
-        returns(
-          T.nilable(T::Array[WhopSDK::ProductCreateParams::ProductHighlight])
-        )
-      end
-      attr_accessor :product_highlights
-
       # The unique identifier of the tax classification code to apply to this product.
       sig { returns(T.nilable(String)) }
       attr_accessor :product_tax_code_id
@@ -143,10 +135,6 @@ module WhopSDK
             T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
           plan_options:
             T.nilable(WhopSDK::ProductCreateParams::PlanOptions::OrHash),
-          product_highlights:
-            T.nilable(
-              T::Array[WhopSDK::ProductCreateParams::ProductHighlight::OrHash]
-            ),
           product_tax_code_id: T.nilable(String),
           redirect_purchase_url: T.nilable(String),
           route: T.nilable(String),
@@ -194,8 +182,6 @@ module WhopSDK
         member_affiliate_status: nil,
         # Configuration for an automatically generated plan to attach to this product.
         plan_options: nil,
-        # Key features and benefits to display on the product page.
-        product_highlights: nil,
         # The unique identifier of the tax classification code to apply to this product.
         product_tax_code_id: nil,
         # A URL to redirect the customer to after completing a purchase.
@@ -231,10 +217,6 @@ module WhopSDK
             member_affiliate_status:
               T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
             plan_options: T.nilable(WhopSDK::ProductCreateParams::PlanOptions),
-            product_highlights:
-              T.nilable(
-                T::Array[WhopSDK::ProductCreateParams::ProductHighlight]
-              ),
             product_tax_code_id: T.nilable(String),
             redirect_purchase_url: T.nilable(String),
             route: T.nilable(String),
@@ -1079,111 +1061,6 @@ module WhopSDK
             )
           end
           def to_hash
-          end
-        end
-      end
-
-      class ProductHighlight < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(
-              WhopSDK::ProductCreateParams::ProductHighlight,
-              WhopSDK::Internal::AnyHash
-            )
-          end
-
-        # Text to display to describe the product highlight (max length 250 for
-        # qualification or benefits, 170 for who this is for, 140 for pricing features).
-        sig { returns(String) }
-        attr_accessor :content
-
-        # The type of this highlight.
-        sig do
-          returns(
-            WhopSDK::ProductCreateParams::ProductHighlight::HighlightType::OrSymbol
-          )
-        end
-        attr_accessor :highlight_type
-
-        # The title of the product highlight, if applicable.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :title
-
-        # Input for creating a product highlight
-        sig do
-          params(
-            content: String,
-            highlight_type:
-              WhopSDK::ProductCreateParams::ProductHighlight::HighlightType::OrSymbol,
-            title: T.nilable(String)
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # Text to display to describe the product highlight (max length 250 for
-          # qualification or benefits, 170 for who this is for, 140 for pricing features).
-          content:,
-          # The type of this highlight.
-          highlight_type:,
-          # The title of the product highlight, if applicable.
-          title: nil
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              content: String,
-              highlight_type:
-                WhopSDK::ProductCreateParams::ProductHighlight::HighlightType::OrSymbol,
-              title: T.nilable(String)
-            }
-          )
-        end
-        def to_hash
-        end
-
-        # The type of this highlight.
-        module HighlightType
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                WhopSDK::ProductCreateParams::ProductHighlight::HighlightType
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          QUALIFICATION =
-            T.let(
-              :qualification,
-              WhopSDK::ProductCreateParams::ProductHighlight::HighlightType::TaggedSymbol
-            )
-          BENEFIT =
-            T.let(
-              :benefit,
-              WhopSDK::ProductCreateParams::ProductHighlight::HighlightType::TaggedSymbol
-            )
-          WHO_THIS_IS_FOR =
-            T.let(
-              :who_this_is_for,
-              WhopSDK::ProductCreateParams::ProductHighlight::HighlightType::TaggedSymbol
-            )
-          PRICING_FEATURE =
-            T.let(
-              :pricing_feature,
-              WhopSDK::ProductCreateParams::ProductHighlight::HighlightType::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                WhopSDK::ProductCreateParams::ProductHighlight::HighlightType::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
           end
         end
       end

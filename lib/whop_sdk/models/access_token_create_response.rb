@@ -22,8 +22,8 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AccessTokenCreateResponse} for more details.
       #
-      #   A short-lived access token used to authenticate API requests on behalf of a user
-      #   or application.
+      #   A short-lived access token used to authenticate API requests on behalf of a
+      #   user.
       #
       #   @param token [String] The signed JWT access token string to include in API request Authorization heade
       #

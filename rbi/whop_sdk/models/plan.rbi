@@ -156,9 +156,9 @@ module WhopSDK
       sig { returns(WhopSDK::Visibility::TaggedSymbol) }
       attr_accessor :visibility
 
-      # A plan defines pricing and billing terms for a product. Each product can have
-      # multiple plans representing different pricing options, such as one-time
-      # payments, recurring subscriptions, or free trials.
+      # A plan defines pricing and billing terms for a checkout. Plans can optionally
+      # belong to a product, where they represent different pricing options such as
+      # one-time payments, recurring subscriptions, or free trials.
       sig do
         params(
           id: String,

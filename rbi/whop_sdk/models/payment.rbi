@@ -204,8 +204,8 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :voidable
 
-      # A payment represents a completed or attempted charge for a membership. Payments
-      # track the amount, status, currency, and payment method used.
+      # A payment represents a completed or attempted charge. Payments track the amount,
+      # status, currency, and payment method used.
       sig do
         params(
           id: String,

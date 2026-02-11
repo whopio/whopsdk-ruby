@@ -33,8 +33,8 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::VerificationRetrieveResponse} for more details.
       #
-      #   An identity verification session used to confirm a user's identity for payout
-      #   account eligibility.
+      #   An identity verification session used to confirm a person or entity's identity
+      #   for payout account eligibility.
       #
       #   @param id [String] The unique identifier for the verification.
       #

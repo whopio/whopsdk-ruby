@@ -231,8 +231,8 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Payment}
       #   for more details.
       #
-      #   A payment represents a completed or attempted charge for a membership. Payments
-      #   track the amount, status, currency, and payment method used.
+      #   A payment represents a completed or attempted charge. Payments track the amount,
+      #   status, currency, and payment method used.
       #
       #   @param id [String] The unique identifier for the payment.
       #

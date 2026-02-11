@@ -68,7 +68,7 @@ module WhopSDK
       #   {WhopSDK::Models::Experience} for more details.
       #
       #   An experience is a feature or content module within a product, such as a chat,
-      #   course, or app.
+      #   course, or custom app.
       #
       #   @param id [String] The unique identifier for the experience.
       #

@@ -12,7 +12,8 @@ module WhopSDK
         end
 
       # The unique identifier of the experience to create this post in. For example,
-      # 'exp_xxxxx'.
+      # 'exp_xxxxx'. Pass 'public' along with company_id to automatically use the
+      # company's public forum.
       sig { returns(String) }
       attr_accessor :experience_id
 
@@ -21,6 +22,11 @@ module WhopSDK
         returns(T.nilable(T::Array[WhopSDK::ForumPostCreateParams::Attachment]))
       end
       attr_accessor :attachments
+
+      # The unique identifier of the company whose public forum to post in. Required
+      # when experience_id is 'public'. For example, 'biz_xxxxx'.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :company_id
 
       # The main body of the post in Markdown format. For example, 'Check out this
       # **update**'. Hidden if the post is paywalled and the viewer has not purchased
@@ -78,6 +84,7 @@ module WhopSDK
             T.nilable(
               T::Array[WhopSDK::ForumPostCreateParams::Attachment::OrHash]
             ),
+          company_id: T.nilable(String),
           content: T.nilable(String),
           is_mention: T.nilable(T::Boolean),
           parent_id: T.nilable(String),
@@ -92,10 +99,14 @@ module WhopSDK
       end
       def self.new(
         # The unique identifier of the experience to create this post in. For example,
-        # 'exp_xxxxx'.
+        # 'exp_xxxxx'. Pass 'public' along with company_id to automatically use the
+        # company's public forum.
         experience_id:,
         # A list of file attachments to include with the post, such as images or videos.
         attachments: nil,
+        # The unique identifier of the company whose public forum to post in. Required
+        # when experience_id is 'public'. For example, 'biz_xxxxx'.
+        company_id: nil,
         # The main body of the post in Markdown format. For example, 'Check out this
         # **update**'. Hidden if the post is paywalled and the viewer has not purchased
         # access.
@@ -130,6 +141,7 @@ module WhopSDK
             experience_id: String,
             attachments:
               T.nilable(T::Array[WhopSDK::ForumPostCreateParams::Attachment]),
+            company_id: T.nilable(String),
             content: T.nilable(String),
             is_mention: T.nilable(T::Boolean),
             parent_id: T.nilable(String),

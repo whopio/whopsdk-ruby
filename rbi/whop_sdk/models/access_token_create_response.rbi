@@ -21,8 +21,8 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :expires_at
 
-      # A short-lived access token used to authenticate API requests on behalf of a user
-      # or application.
+      # A short-lived access token used to authenticate API requests on behalf of a
+      # user.
       sig { params(token: String, expires_at: Time).returns(T.attached_class) }
       def self.new(
         # The signed JWT access token string to include in API request Authorization

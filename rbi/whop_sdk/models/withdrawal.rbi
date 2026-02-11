@@ -86,8 +86,8 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :trace_code
 
-      # A withdrawal represents a request to transfer funds from a company's ledger
-      # account to an external payout method.
+      # A withdrawal represents a request to transfer funds from a ledger account to an
+      # external payout method.
       sig do
         params(
           id: String,

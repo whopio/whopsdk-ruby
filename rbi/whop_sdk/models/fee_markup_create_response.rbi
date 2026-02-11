@@ -43,7 +43,7 @@ module WhopSDK
       attr_accessor :updated_at
 
       # A fee markup configuration that defines additional charges applied to
-      # transactions for a company.
+      # transactions for a platform's connected accounts.
       sig do
         params(
           id: String,

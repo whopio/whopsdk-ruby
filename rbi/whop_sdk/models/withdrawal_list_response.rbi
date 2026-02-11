@@ -51,8 +51,8 @@ module WhopSDK
       sig { returns(WhopSDK::WithdrawalStatus::TaggedSymbol) }
       attr_accessor :status
 
-      # A withdrawal represents a request to transfer funds from a company's ledger
-      # account to an external payout method.
+      # A withdrawal represents a request to transfer funds from a ledger account to an
+      # external payout method.
       sig do
         params(
           id: String,

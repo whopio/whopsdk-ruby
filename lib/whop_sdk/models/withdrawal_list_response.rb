@@ -66,8 +66,8 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::WithdrawalListResponse} for more details.
       #
-      #   A withdrawal represents a request to transfer funds from a company's ledger
-      #   account to an external payout method.
+      #   A withdrawal represents a request to transfer funds from a ledger account to an
+      #   external payout method.
       #
       #   @param id [String] The unique identifier for the withdrawal.
       #

@@ -58,7 +58,7 @@ module WhopSDK
       attr_accessor :products
 
       # An experience is a feature or content module within a product, such as a chat,
-      # course, or app.
+      # course, or custom app.
       sig do
         params(
           id: String,

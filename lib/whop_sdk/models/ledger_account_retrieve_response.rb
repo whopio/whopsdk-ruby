@@ -52,7 +52,8 @@ module WhopSDK
       required :transfer_fee, Float, nil?: true
 
       # @!method initialize(id:, balances:, ledger_type:, owner:, payments_approval_status:, payout_account_details:, transfer_fee:)
-      #   Represents a LedgerAccount.
+      #   A ledger account represents a financial account on Whop that can hold many
+      #   balances.
       #
       #   @param id [String] The unique identifier for the ledger account.
       #

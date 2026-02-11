@@ -16,8 +16,8 @@ module WhopSDK
       required :api_version, const: :v1
 
       # @!attribute data
-      #   An identity verification session used to confirm a user's identity for payout
-      #   account eligibility.
+      #   An identity verification session used to confirm a person or entity's identity
+      #   for payout account eligibility.
       #
       #   @return [WhopSDK::Models::VerificationSucceededWebhookEvent::Data]
       required :data, -> { WhopSDK::VerificationSucceededWebhookEvent::Data }
@@ -46,7 +46,7 @@ module WhopSDK
       #
       #   @param id [String] A unique ID for every single webhook request
       #
-      #   @param data [WhopSDK::Models::VerificationSucceededWebhookEvent::Data] An identity verification session used to confirm a user's identity for payout ac
+      #   @param data [WhopSDK::Models::VerificationSucceededWebhookEvent::Data] An identity verification session used to confirm a person or entity's identity f
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #
@@ -87,8 +87,8 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::VerificationSucceededWebhookEvent::Data} for more details.
         #
-        #   An identity verification session used to confirm a user's identity for payout
-        #   account eligibility.
+        #   An identity verification session used to confirm a person or entity's identity
+        #   for payout account eligibility.
         #
         #   @param id [String] The unique identifier for the verification.
         #

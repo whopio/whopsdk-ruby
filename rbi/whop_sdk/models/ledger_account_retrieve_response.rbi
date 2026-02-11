@@ -75,7 +75,8 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :transfer_fee
 
-      # Represents a LedgerAccount.
+      # A ledger account represents a financial account on Whop that can hold many
+      # balances.
       sig do
         params(
           id: String,

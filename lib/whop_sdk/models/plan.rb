@@ -195,9 +195,9 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Plan}
       #   for more details.
       #
-      #   A plan defines pricing and billing terms for a product. Each product can have
-      #   multiple plans representing different pricing options, such as one-time
-      #   payments, recurring subscriptions, or free trials.
+      #   A plan defines pricing and billing terms for a checkout. Plans can optionally
+      #   belong to a product, where they represent different pricing options such as
+      #   one-time payments, recurring subscriptions, or free trials.
       #
       #   @param id [String] The unique identifier for the plan.
       #

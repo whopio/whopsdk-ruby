@@ -6,6 +6,7 @@ module WhopSDK
         name: String,
         ?base_url: String?,
         ?icon: WhopSDK::AppCreateParams::Icon?,
+        ?redirect_uris: ::Array[String]?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::App
 
@@ -25,6 +26,7 @@ module WhopSDK
         ?experience_path: String?,
         ?icon: WhopSDK::AppUpdateParams::Icon?,
         ?name: String?,
+        ?redirect_uris: ::Array[String]?,
         ?required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
         ?status: WhopSDK::Models::app_statuses?,
         ?request_options: WhopSDK::request_opts

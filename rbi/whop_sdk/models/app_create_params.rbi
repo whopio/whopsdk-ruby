@@ -34,12 +34,18 @@ module WhopSDK
       end
       attr_writer :icon
 
+      # The whitelisted OAuth callback URLs that users are redirected to after
+      # authorizing the app.
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_accessor :redirect_uris
+
       sig do
         params(
           company_id: String,
           name: String,
           base_url: T.nilable(String),
           icon: T.nilable(WhopSDK::AppCreateParams::Icon::OrHash),
+          redirect_uris: T.nilable(T::Array[String]),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -54,6 +60,9 @@ module WhopSDK
         base_url: nil,
         # The icon image for the app in PNG, JPEG, or GIF format.
         icon: nil,
+        # The whitelisted OAuth callback URLs that users are redirected to after
+        # authorizing the app.
+        redirect_uris: nil,
         request_options: {}
       )
       end
@@ -65,6 +74,7 @@ module WhopSDK
             name: String,
             base_url: T.nilable(String),
             icon: T.nilable(WhopSDK::AppCreateParams::Icon),
+            redirect_uris: T.nilable(T::Array[String]),
             request_options: WhopSDK::RequestOptions
           }
         )

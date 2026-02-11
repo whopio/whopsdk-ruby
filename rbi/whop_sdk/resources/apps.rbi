@@ -16,6 +16,7 @@ module WhopSDK
           name: String,
           base_url: T.nilable(String),
           icon: T.nilable(WhopSDK::AppCreateParams::Icon::OrHash),
+          redirect_uris: T.nilable(T::Array[String]),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::App)
       end
@@ -30,6 +31,9 @@ module WhopSDK
         base_url: nil,
         # The icon image for the app in PNG, JPEG, or GIF format.
         icon: nil,
+        # The whitelisted OAuth callback URLs that users are redirected to after
+        # authorizing the app.
+        redirect_uris: nil,
         request_options: {}
       )
       end
@@ -71,6 +75,7 @@ module WhopSDK
           experience_path: T.nilable(String),
           icon: T.nilable(WhopSDK::AppUpdateParams::Icon::OrHash),
           name: T.nilable(String),
+          redirect_uris: T.nilable(T::Array[String]),
           required_scopes:
             T.nilable(
               T::Array[WhopSDK::AppUpdateParams::RequiredScope::OrSymbol]
@@ -102,6 +107,9 @@ module WhopSDK
         icon: nil,
         # The display name for the app, shown to users on the app store and product pages.
         name: nil,
+        # The whitelisted OAuth callback URLs that users are redirected to after
+        # authorizing the app
+        redirect_uris: nil,
         # The permission scopes the app will request from users when they install it.
         required_scopes: nil,
         # The status of an experience interface

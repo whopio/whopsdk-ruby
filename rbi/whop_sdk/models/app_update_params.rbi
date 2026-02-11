@@ -54,6 +54,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :name
 
+      # The whitelisted OAuth callback URLs that users are redirected to after
+      # authorizing the app
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_accessor :redirect_uris
+
       # The permission scopes the app will request from users when they install it.
       sig do
         returns(
@@ -77,6 +82,7 @@ module WhopSDK
           experience_path: T.nilable(String),
           icon: T.nilable(WhopSDK::AppUpdateParams::Icon::OrHash),
           name: T.nilable(String),
+          redirect_uris: T.nilable(T::Array[String]),
           required_scopes:
             T.nilable(
               T::Array[WhopSDK::AppUpdateParams::RequiredScope::OrSymbol]
@@ -106,6 +112,9 @@ module WhopSDK
         icon: nil,
         # The display name for the app, shown to users on the app store and product pages.
         name: nil,
+        # The whitelisted OAuth callback URLs that users are redirected to after
+        # authorizing the app
+        redirect_uris: nil,
         # The permission scopes the app will request from users when they install it.
         required_scopes: nil,
         # The status of an experience interface
@@ -126,6 +135,7 @@ module WhopSDK
             experience_path: T.nilable(String),
             icon: T.nilable(WhopSDK::AppUpdateParams::Icon),
             name: T.nilable(String),
+            redirect_uris: T.nilable(T::Array[String]),
             required_scopes:
               T.nilable(
                 T::Array[WhopSDK::AppUpdateParams::RequiredScope::OrSymbol]

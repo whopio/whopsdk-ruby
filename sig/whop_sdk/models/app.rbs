@@ -15,6 +15,7 @@ module WhopSDK
         experience_path: String?,
         icon: WhopSDK::App::Icon?,
         name: String,
+        redirect_uris: ::Array[String],
         requested_permissions: ::Array[WhopSDK::App::RequestedPermission],
         stats: WhopSDK::App::Stats?,
         status: WhopSDK::Models::app_statuses,
@@ -48,6 +49,8 @@ module WhopSDK
 
       attr_accessor name: String
 
+      attr_accessor redirect_uris: ::Array[String]
+
       attr_accessor requested_permissions: ::Array[WhopSDK::App::RequestedPermission]
 
       attr_accessor stats: WhopSDK::App::Stats?
@@ -70,6 +73,7 @@ module WhopSDK
         experience_path: String?,
         icon: WhopSDK::App::Icon?,
         name: String,
+        redirect_uris: ::Array[String],
         requested_permissions: ::Array[WhopSDK::App::RequestedPermission],
         stats: WhopSDK::App::Stats?,
         status: WhopSDK::Models::app_statuses,
@@ -90,6 +94,7 @@ module WhopSDK
         experience_path: String?,
         icon: WhopSDK::App::Icon?,
         name: String,
+        redirect_uris: ::Array[String],
         requested_permissions: ::Array[WhopSDK::App::RequestedPermission],
         stats: WhopSDK::App::Stats?,
         status: WhopSDK::Models::app_statuses,

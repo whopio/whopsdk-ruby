@@ -7,17 +7,20 @@ module WhopSDK
       # {WhopSDK::Models::ForumPostCreateParams} for more details.
       #
       # Create a new forum post or comment within an experience. Supports text content,
-      # attachments, polls, paywalling, and pinning.
+      # attachments, polls, paywalling, and pinning. Pass experience_id 'public' with a
+      # company_id to post to a company's public forum.
       #
       # Required permissions:
       #
       # - `forum:post:create`
       #
-      # @overload create(experience_id:, attachments: nil, content: nil, is_mention: nil, parent_id: nil, paywall_amount: nil, paywall_currency: nil, pinned: nil, poll: nil, title: nil, visibility: nil, request_options: {})
+      # @overload create(experience_id:, attachments: nil, company_id: nil, content: nil, is_mention: nil, parent_id: nil, paywall_amount: nil, paywall_currency: nil, pinned: nil, poll: nil, title: nil, visibility: nil, request_options: {})
       #
       # @param experience_id [String] The unique identifier of the experience to create this post in. For example, 'ex
       #
       # @param attachments [Array<WhopSDK::Models::ForumPostCreateParams::Attachment>, nil] A list of file attachments to include with the post, such as images or videos.
+      #
+      # @param company_id [String, nil] The unique identifier of the company whose public forum to post in. Required whe
       #
       # @param content [String, nil] The main body of the post in Markdown format. For example, 'Check out this
       # \*\*upd

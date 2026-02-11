@@ -9,7 +9,8 @@ module WhopSDK
 
       # @!attribute experience_id
       #   The unique identifier of the experience to create this post in. For example,
-      #   'exp_xxxxx'.
+      #   'exp_xxxxx'. Pass 'public' along with company_id to automatically use the
+      #   company's public forum.
       #
       #   @return [String]
       required :experience_id, String
@@ -21,6 +22,13 @@ module WhopSDK
       optional :attachments,
                -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::ForumPostCreateParams::Attachment] },
                nil?: true
+
+      # @!attribute company_id
+      #   The unique identifier of the company whose public forum to post in. Required
+      #   when experience_id is 'public'. For example, 'biz_xxxxx'.
+      #
+      #   @return [String, nil]
+      optional :company_id, String, nil?: true
 
       # @!attribute content
       #   The main body of the post in Markdown format. For example, 'Check out this
@@ -82,13 +90,15 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::ForumPostVisibilityType, nil]
       optional :visibility, enum: -> { WhopSDK::ForumPostVisibilityType }, nil?: true
 
-      # @!method initialize(experience_id:, attachments: nil, content: nil, is_mention: nil, parent_id: nil, paywall_amount: nil, paywall_currency: nil, pinned: nil, poll: nil, title: nil, visibility: nil, request_options: {})
+      # @!method initialize(experience_id:, attachments: nil, company_id: nil, content: nil, is_mention: nil, parent_id: nil, paywall_amount: nil, paywall_currency: nil, pinned: nil, poll: nil, title: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ForumPostCreateParams} for more details.
       #
       #   @param experience_id [String] The unique identifier of the experience to create this post in. For example, 'ex
       #
       #   @param attachments [Array<WhopSDK::Models::ForumPostCreateParams::Attachment>, nil] A list of file attachments to include with the post, such as images or videos.
+      #
+      #   @param company_id [String, nil] The unique identifier of the company whose public forum to post in. Required whe
       #
       #   @param content [String, nil] The main body of the post in Markdown format. For example, 'Check out this
       #   \*\*upd

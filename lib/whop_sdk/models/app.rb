@@ -94,6 +94,13 @@ module WhopSDK
       #   @return [String]
       required :name, String
 
+      # @!attribute redirect_uris
+      #   The whitelisted OAuth callback URLs that users are redirected to after
+      #   authorizing the app.
+      #
+      #   @return [Array<String>]
+      required :redirect_uris, WhopSDK::Internal::Type::ArrayOf[String]
+
       # @!attribute requested_permissions
       #   The list of permissions this app requests when installed, including both
       #   required and optional permissions with justifications.
@@ -124,7 +131,7 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, api_key:, app_type:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, icon:, name:, requested_permissions:, stats:, status:, verified:)
+      # @!method initialize(id:, api_key:, app_type:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, icon:, name:, redirect_uris:, requested_permissions:, stats:, status:, verified:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::App} for
       #   more details.
       #
@@ -156,6 +163,8 @@ module WhopSDK
       #   @param icon [WhopSDK::Models::App::Icon, nil] The icon image for this app, displayed on the app store, product pages, checkout
       #
       #   @param name [String] The display name of this app shown on the app store and in experience navigation
+      #
+      #   @param redirect_uris [Array<String>] The whitelisted OAuth callback URLs that users are redirected to after authorizi
       #
       #   @param requested_permissions [Array<WhopSDK::Models::App::RequestedPermission>] The list of permissions this app requests when installed, including both require
       #

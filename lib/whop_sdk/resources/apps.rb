@@ -14,7 +14,7 @@ module WhopSDK
       # - `developer:create_app`
       # - `developer:manage_api_key`
       #
-      # @overload create(company_id:, name:, base_url: nil, icon: nil, request_options: {})
+      # @overload create(company_id:, name:, base_url: nil, icon: nil, redirect_uris: nil, request_options: {})
       #
       # @param company_id [String] The unique identifier of the company to create the app for, starting with
       # 'biz\_'
@@ -24,6 +24,8 @@ module WhopSDK
       # @param base_url [String, nil] The base production URL where the app is hosted, such as 'https://myapp.example.
       #
       # @param icon [WhopSDK::Models::AppCreateParams::Icon, nil] The icon image for the app in PNG, JPEG, or GIF format.
+      #
+      # @param redirect_uris [Array<String>, nil] The whitelisted OAuth callback URLs that users are redirected to after authorizi
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -70,7 +72,7 @@ module WhopSDK
       # - `developer:update_app`
       # - `developer:manage_api_key`
       #
-      # @overload update(id, app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, required_scopes: nil, status: nil, request_options: {})
+      # @overload update(id, app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, redirect_uris: nil, required_scopes: nil, status: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the app to update, starting with 'app\_'.
       #
@@ -91,6 +93,8 @@ module WhopSDK
       # @param icon [WhopSDK::Models::AppUpdateParams::Icon, nil] The icon image for the app, used in listings and navigation.
       #
       # @param name [String, nil] The display name for the app, shown to users on the app store and product pages.
+      #
+      # @param redirect_uris [Array<String>, nil] The whitelisted OAuth callback URLs that users are redirected to after authorizi
       #
       # @param required_scopes [Array<Symbol, WhopSDK::Models::AppUpdateParams::RequiredScope>, nil] The permission scopes the app will request from users when they install it.
       #

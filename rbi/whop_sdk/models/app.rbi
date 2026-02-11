@@ -82,6 +82,11 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :name
 
+      # The whitelisted OAuth callback URLs that users are redirected to after
+      # authorizing the app.
+      sig { returns(T::Array[String]) }
+      attr_accessor :redirect_uris
+
       # The list of permissions this app requests when installed, including both
       # required and optional permissions with justifications.
       sig { returns(T::Array[WhopSDK::App::RequestedPermission]) }
@@ -123,6 +128,7 @@ module WhopSDK
           experience_path: T.nilable(String),
           icon: T.nilable(WhopSDK::App::Icon::OrHash),
           name: String,
+          redirect_uris: T::Array[String],
           requested_permissions:
             T::Array[WhopSDK::App::RequestedPermission::OrHash],
           stats: T.nilable(WhopSDK::App::Stats::OrHash),
@@ -170,6 +176,9 @@ module WhopSDK
         # The display name of this app shown on the app store and in experience
         # navigation. Maximum 30 characters.
         name:,
+        # The whitelisted OAuth callback URLs that users are redirected to after
+        # authorizing the app.
+        redirect_uris:,
         # The list of permissions this app requests when installed, including both
         # required and optional permissions with justifications.
         requested_permissions:,
@@ -202,6 +211,7 @@ module WhopSDK
             experience_path: T.nilable(String),
             icon: T.nilable(WhopSDK::App::Icon),
             name: String,
+            redirect_uris: T::Array[String],
             requested_permissions: T::Array[WhopSDK::App::RequestedPermission],
             stats: T.nilable(WhopSDK::App::Stats),
             status: WhopSDK::AppStatuses::TaggedSymbol,

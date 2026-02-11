@@ -63,6 +63,13 @@ module WhopSDK
       #   @return [String, nil]
       optional :name, String, nil?: true
 
+      # @!attribute redirect_uris
+      #   The whitelisted OAuth callback URLs that users are redirected to after
+      #   authorizing the app
+      #
+      #   @return [Array<String>, nil]
+      optional :redirect_uris, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
+
       # @!attribute required_scopes
       #   The permission scopes the app will request from users when they install it.
       #
@@ -77,7 +84,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::AppStatuses, nil]
       optional :status, enum: -> { WhopSDK::AppStatuses }, nil?: true
 
-      # @!method initialize(app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, required_scopes: nil, status: nil, request_options: {})
+      # @!method initialize(app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, redirect_uris: nil, required_scopes: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AppUpdateParams} for more details.
       #
@@ -98,6 +105,8 @@ module WhopSDK
       #   @param icon [WhopSDK::Models::AppUpdateParams::Icon, nil] The icon image for the app, used in listings and navigation.
       #
       #   @param name [String, nil] The display name for the app, shown to users on the app store and product pages.
+      #
+      #   @param redirect_uris [Array<String>, nil] The whitelisted OAuth callback URLs that users are redirected to after authorizi
       #
       #   @param required_scopes [Array<Symbol, WhopSDK::Models::AppUpdateParams::RequiredScope>, nil] The permission scopes the app will request from users when they install it.
       #

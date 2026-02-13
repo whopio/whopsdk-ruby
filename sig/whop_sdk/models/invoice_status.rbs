@@ -1,10 +1,11 @@
 module WhopSDK
   module Models
-    type invoice_status = :open | :paid | :past_due | :void
+    type invoice_status = :draft | :open | :paid | :past_due | :void
 
     module InvoiceStatus
       extend WhopSDK::Internal::Type::Enum
 
+      DRAFT: :draft
       OPEN: :open
       PAID: :paid
       PAST_DUE: :past_due

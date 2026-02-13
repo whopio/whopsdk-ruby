@@ -10,6 +10,7 @@ module WhopSDK
         product: WhopSDK::InvoiceCreateParams::Product,
         email_address: String,
         product_id: String,
+        ?automatically_finalizes_at: Time?,
         ?charge_buyer_fee: bool?,
         ?customer_name: String?,
         ?payment_method_id: String?,

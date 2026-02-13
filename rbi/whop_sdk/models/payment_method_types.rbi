@@ -103,6 +103,7 @@ module WhopSDK
       SPLITIT = T.let(:splitit, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       SUNBIT = T.let(:sunbit, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       SWISH = T.let(:swish, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      TAMARA = T.let(:tamara, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       TWINT = T.let(:twint, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       UPI = T.let(:upi, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       US_BANK_ACCOUNT =

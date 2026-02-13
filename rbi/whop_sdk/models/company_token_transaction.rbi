@@ -55,7 +55,9 @@ module WhopSDK
       attr_writer :member
 
       # The direction of this token transaction (add, subtract, or transfer).
-      sig { returns(WhopSDK::BotTokenTransactionTypes::TaggedSymbol) }
+      sig do
+        returns(WhopSDK::CompanyTokenTransaction::TransactionType::TaggedSymbol)
+      end
       attr_accessor :transaction_type
 
       # The user whose token balance was affected by this transaction.
@@ -77,7 +79,8 @@ module WhopSDK
           idempotency_key: T.nilable(String),
           linked_transaction_id: T.nilable(String),
           member: WhopSDK::CompanyTokenTransaction::Member::OrHash,
-          transaction_type: WhopSDK::BotTokenTransactionTypes::OrSymbol,
+          transaction_type:
+            WhopSDK::CompanyTokenTransaction::TransactionType::OrSymbol,
           user: WhopSDK::CompanyTokenTransaction::User::OrHash
         ).returns(T.attached_class)
       end
@@ -120,7 +123,8 @@ module WhopSDK
             idempotency_key: T.nilable(String),
             linked_transaction_id: T.nilable(String),
             member: WhopSDK::CompanyTokenTransaction::Member,
-            transaction_type: WhopSDK::BotTokenTransactionTypes::TaggedSymbol,
+            transaction_type:
+              WhopSDK::CompanyTokenTransaction::TransactionType::TaggedSymbol,
             user: WhopSDK::CompanyTokenTransaction::User
           }
         )
@@ -193,6 +197,43 @@ module WhopSDK
 
         sig { override.returns({ id: String }) }
         def to_hash
+        end
+      end
+
+      # The direction of this token transaction (add, subtract, or transfer).
+      module TransactionType
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::CompanyTokenTransaction::TransactionType)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        ADD =
+          T.let(
+            :add,
+            WhopSDK::CompanyTokenTransaction::TransactionType::TaggedSymbol
+          )
+        SUBTRACT =
+          T.let(
+            :subtract,
+            WhopSDK::CompanyTokenTransaction::TransactionType::TaggedSymbol
+          )
+        TRANSFER =
+          T.let(
+            :transfer,
+            WhopSDK::CompanyTokenTransaction::TransactionType::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::CompanyTokenTransaction::TransactionType::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
         end
       end
 

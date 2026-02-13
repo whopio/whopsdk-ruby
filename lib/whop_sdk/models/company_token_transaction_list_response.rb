@@ -59,8 +59,9 @@ module WhopSDK
       # @!attribute transaction_type
       #   The direction of this token transaction (add, subtract, or transfer).
       #
-      #   @return [Symbol, WhopSDK::Models::BotTokenTransactionTypes]
-      required :transaction_type, enum: -> { WhopSDK::BotTokenTransactionTypes }
+      #   @return [Symbol, WhopSDK::Models::CompanyTokenTransactionListResponse::TransactionType]
+      required :transaction_type,
+               enum: -> { WhopSDK::Models::CompanyTokenTransactionListResponse::TransactionType }
 
       # @!attribute user
       #   The user whose token balance was affected by this transaction.
@@ -91,7 +92,7 @@ module WhopSDK
       #
       #   @param member [WhopSDK::Models::CompanyTokenTransactionListResponse::Member] The member whose token balance was affected by this transaction.
       #
-      #   @param transaction_type [Symbol, WhopSDK::Models::BotTokenTransactionTypes] The direction of this token transaction (add, subtract, or transfer).
+      #   @param transaction_type [Symbol, WhopSDK::Models::CompanyTokenTransactionListResponse::TransactionType] The direction of this token transaction (add, subtract, or transfer).
       #
       #   @param user [WhopSDK::Models::CompanyTokenTransactionListResponse::User] The user whose token balance was affected by this transaction.
 
@@ -137,6 +138,20 @@ module WhopSDK
         #   The member whose token balance was affected by this transaction.
         #
         #   @param id [String] The unique identifier for the company member.
+      end
+
+      # The direction of this token transaction (add, subtract, or transfer).
+      #
+      # @see WhopSDK::Models::CompanyTokenTransactionListResponse#transaction_type
+      module TransactionType
+        extend WhopSDK::Internal::Type::Enum
+
+        ADD = :add
+        SUBTRACT = :subtract
+        TRANSFER = :transfer
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # @see WhopSDK::Models::CompanyTokenTransactionListResponse#user

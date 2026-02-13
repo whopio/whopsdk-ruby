@@ -82,7 +82,9 @@ module WhopSDK
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           transaction_type:
-            T.nilable(WhopSDK::BotTokenTransactionTypes::OrSymbol),
+            T.nilable(
+              WhopSDK::CompanyTokenTransactionListParams::TransactionType::OrSymbol
+            ),
           user_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(

@@ -3,7 +3,11 @@
 module WhopSDK
   module Resources
     class DmMembers
-      # Adds a user to a DM channel
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::DmMemberCreateParams} for more details.
+      #
+      # Add a new user to an existing DM channel. Only an admin of the channel can add
+      # members.
       #
       # Required permissions:
       #
@@ -11,9 +15,9 @@ module WhopSDK
       #
       # @overload create(channel_id:, user_id:, request_options: {})
       #
-      # @param channel_id [String] The ID of the DM channel to add the member to
+      # @param channel_id [String] The unique identifier of the DM channel to add the new member to.
       #
-      # @param user_id [String] The ID of the user to add to the channel
+      # @param user_id [String] The unique identifier of the user to add to the DM channel. For example, 'user_x
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -31,7 +35,7 @@ module WhopSDK
         )
       end
 
-      # Retrieves a DM channel member
+      # Retrieves the details of an existing DM member.
       #
       # Required permissions:
       #
@@ -39,7 +43,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the DM channel member
+      # @param id [String] The unique identifier of the DM channel member to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -55,7 +59,8 @@ module WhopSDK
         )
       end
 
-      # Updates a DM channel member's settings
+      # Update a DM channel member's settings, such as their notification preferences or
+      # membership status.
       #
       # Required permissions:
       #
@@ -63,7 +68,7 @@ module WhopSDK
       #
       # @overload update(id, notification_preference: nil, status: nil, request_options: {})
       #
-      # @param id [String] The ID of the DM channel member to update
+      # @param id [String] The unique identifier of the DM channel member to update.
       #
       # @param notification_preference [Symbol, WhopSDK::Models::DmFeedMemberNotificationPreferences, nil] The notification preferences for a DMs feed member
       #
@@ -85,7 +90,8 @@ module WhopSDK
         )
       end
 
-      # Lists members of a DM channel
+      # Returns a paginated list of members in a specific DM channel, sorted by the date
+      # they were added.
       #
       # Required permissions:
       #
@@ -93,7 +99,7 @@ module WhopSDK
       #
       # @overload list(channel_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
       #
-      # @param channel_id [String] The ID of the DM channel to list members for
+      # @param channel_id [String] The unique identifier of the DM channel to list members for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -120,7 +126,8 @@ module WhopSDK
         )
       end
 
-      # Removes a user from a DM channel
+      # Remove a user from a DM channel. An admin can remove any member, and a member
+      # can remove themselves.
       #
       # Required permissions:
       #
@@ -128,7 +135,7 @@ module WhopSDK
       #
       # @overload delete(id, request_options: {})
       #
-      # @param id [String] The ID of the DM channel member to remove
+      # @param id [String] The unique identifier of the DM channel member to remove.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

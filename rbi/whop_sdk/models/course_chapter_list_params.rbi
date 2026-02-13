@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::CourseChapterListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the course
+      # The unique identifier of the course to list chapters for.
       sig { returns(String) }
       attr_accessor :course_id
 
@@ -42,7 +42,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the course
+        # The unique identifier of the course to list chapters for.
         course_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,

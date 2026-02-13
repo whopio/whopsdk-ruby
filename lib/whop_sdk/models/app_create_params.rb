@@ -8,37 +8,52 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute company_id
-      #   The ID of the company to create the app for
+      #   The unique identifier of the company to create the app for, starting with
+      #   'biz\_'.
       #
       #   @return [String]
       required :company_id, String
 
       # @!attribute name
-      #   The name of the app to be created
+      #   The display name for the app, shown to users on the app store and product pages.
       #
       #   @return [String]
       required :name, String
 
       # @!attribute base_url
-      #   The base URL of the app to be created
+      #   The base production URL where the app is hosted, such as
+      #   'https://myapp.example.com'.
       #
       #   @return [String, nil]
       optional :base_url, String, nil?: true
 
       # @!attribute icon
-      #   The icon for the app in png, jpeg, or gif format
+      #   The icon image for the app in PNG, JPEG, or GIF format.
       #
       #   @return [WhopSDK::Models::AppCreateParams::Icon, nil]
       optional :icon, -> { WhopSDK::AppCreateParams::Icon }, nil?: true
 
-      # @!method initialize(company_id:, name:, base_url: nil, icon: nil, request_options: {})
-      #   @param company_id [String] The ID of the company to create the app for
+      # @!attribute redirect_uris
+      #   The whitelisted OAuth callback URLs that users are redirected to after
+      #   authorizing the app.
       #
-      #   @param name [String] The name of the app to be created
+      #   @return [Array<String>, nil]
+      optional :redirect_uris, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
+
+      # @!method initialize(company_id:, name:, base_url: nil, icon: nil, redirect_uris: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::AppCreateParams} for more details.
       #
-      #   @param base_url [String, nil] The base URL of the app to be created
+      #   @param company_id [String] The unique identifier of the company to create the app for, starting with
+      #   'biz\_'
       #
-      #   @param icon [WhopSDK::Models::AppCreateParams::Icon, nil] The icon for the app in png, jpeg, or gif format
+      #   @param name [String] The display name for the app, shown to users on the app store and product pages.
+      #
+      #   @param base_url [String, nil] The base production URL where the app is hosted, such as 'https://myapp.example.
+      #
+      #   @param icon [WhopSDK::Models::AppCreateParams::Icon, nil] The icon image for the app in PNG, JPEG, or GIF format.
+      #
+      #   @param redirect_uris [Array<String>, nil] The whitelisted OAuth callback URLs that users are redirected to after authorizi
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
@@ -50,7 +65,7 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   The icon for the app in png, jpeg, or gif format
+        #   The icon image for the app in PNG, JPEG, or GIF format.
         #
         #   @param id [String] The ID of an existing file object.
       end

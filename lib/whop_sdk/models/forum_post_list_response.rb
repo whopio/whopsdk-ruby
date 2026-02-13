@@ -15,73 +15,74 @@ module WhopSDK
       required :id, String
 
       # @!attribute comment_count
-      #   The amount of comments on this post
+      #   The total number of direct comments on this post.
       #
       #   @return [Integer]
       required :comment_count, Integer
 
       # @!attribute content
-      #   The content of the forum post in Markdown format
+      #   The body of the forum post in Markdown format. Null if the post is paywalled and
+      #   the current user does not have access.
       #
       #   @return [String, nil]
       required :content, String, nil?: true
 
       # @!attribute created_at
-      #   The timestamp when the post was created
+      #   The time this post was created, as a Unix timestamp.
       #
       #   @return [Time]
       required :created_at, Time
 
       # @!attribute is_edited
-      #   Whether the forum post has been edited
+      #   Whether this post has been edited after its initial creation.
       #
       #   @return [Boolean]
       required :is_edited, WhopSDK::Internal::Type::Boolean
 
       # @!attribute is_pinned
-      #   Whether this forum post is pinned
+      #   Whether this post is pinned to the top of the forum feed.
       #
       #   @return [Boolean]
       required :is_pinned, WhopSDK::Internal::Type::Boolean
 
       # @!attribute is_poster_admin
-      #   Whether the user that sent the post is an admin of the company
+      #   Whether the author of this post is an admin of the company that owns the forum.
       #
       #   @return [Boolean]
       required :is_poster_admin, WhopSDK::Internal::Type::Boolean
 
       # @!attribute like_count
-      #   The number of likes this post has received
+      #   The total number of like reactions this post has received.
       #
       #   @return [Integer, nil]
       required :like_count, Integer, nil?: true
 
       # @!attribute parent_id
-      #   The ID of the parent forum post, if applicable
+      #   The unique identifier of the parent post. Null if this is a top-level post.
       #
       #   @return [String, nil]
       required :parent_id, String, nil?: true
 
       # @!attribute title
-      #   The title of the forum post
+      #   The headline of the forum post. Null if the post has no title.
       #
       #   @return [String, nil]
       required :title, String, nil?: true
 
       # @!attribute updated_at
-      #   The timestamp when the post was last updated
+      #   The time this post was last updated, as a Unix timestamp.
       #
       #   @return [Time]
       required :updated_at, Time
 
       # @!attribute user
-      #   The user who created this forum post
+      #   The user who authored this forum post.
       #
       #   @return [WhopSDK::Models::ForumPostListResponse::User]
       required :user, -> { WhopSDK::Models::ForumPostListResponse::User }
 
       # @!attribute view_count
-      #   The number of times this message has been viewed
+      #   The total number of times this post has been viewed by users.
       #
       #   @return [Integer, nil]
       required :view_count, Integer, nil?: true
@@ -90,33 +91,34 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ForumPostListResponse} for more details.
       #
-      #   Represents a post in forum
+      #   A post or comment in a forum feed, supporting rich text, attachments, polls, and
+      #   reactions.
       #
       #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
       #
-      #   @param comment_count [Integer] The amount of comments on this post
+      #   @param comment_count [Integer] The total number of direct comments on this post.
       #
-      #   @param content [String, nil] The content of the forum post in Markdown format
+      #   @param content [String, nil] The body of the forum post in Markdown format. Null if the post is paywalled and
       #
-      #   @param created_at [Time] The timestamp when the post was created
+      #   @param created_at [Time] The time this post was created, as a Unix timestamp.
       #
-      #   @param is_edited [Boolean] Whether the forum post has been edited
+      #   @param is_edited [Boolean] Whether this post has been edited after its initial creation.
       #
-      #   @param is_pinned [Boolean] Whether this forum post is pinned
+      #   @param is_pinned [Boolean] Whether this post is pinned to the top of the forum feed.
       #
-      #   @param is_poster_admin [Boolean] Whether the user that sent the post is an admin of the company
+      #   @param is_poster_admin [Boolean] Whether the author of this post is an admin of the company that owns the forum.
       #
-      #   @param like_count [Integer, nil] The number of likes this post has received
+      #   @param like_count [Integer, nil] The total number of like reactions this post has received.
       #
-      #   @param parent_id [String, nil] The ID of the parent forum post, if applicable
+      #   @param parent_id [String, nil] The unique identifier of the parent post. Null if this is a top-level post.
       #
-      #   @param title [String, nil] The title of the forum post
+      #   @param title [String, nil] The headline of the forum post. Null if the post has no title.
       #
-      #   @param updated_at [Time] The timestamp when the post was last updated
+      #   @param updated_at [Time] The time this post was last updated, as a Unix timestamp.
       #
-      #   @param user [WhopSDK::Models::ForumPostListResponse::User] The user who created this forum post
+      #   @param user [WhopSDK::Models::ForumPostListResponse::User] The user who authored this forum post.
       #
-      #   @param view_count [Integer, nil] The number of times this message has been viewed
+      #   @param view_count [Integer, nil] The total number of times this post has been viewed by users.
 
       # @see WhopSDK::Models::ForumPostListResponse#user
       class User < WhopSDK::Internal::Type::BaseModel
@@ -127,25 +129,25 @@ module WhopSDK
         required :id, String
 
         # @!attribute name
-        #   The name of the user from their Whop account.
+        #   The user's display name shown on their public profile.
         #
         #   @return [String, nil]
         required :name, String, nil?: true
 
         # @!attribute username
-        #   The username of the user from their Whop account.
+        #   The user's unique username shown on their public profile.
         #
         #   @return [String]
         required :username, String
 
         # @!method initialize(id:, name:, username:)
-        #   The user who created this forum post
+        #   The user who authored this forum post.
         #
         #   @param id [String] The unique identifier for the user.
         #
-        #   @param name [String, nil] The name of the user from their Whop account.
+        #   @param name [String, nil] The user's display name shown on their public profile.
         #
-        #   @param username [String] The username of the user from their Whop account.
+        #   @param username [String] The user's unique username shown on their public profile.
       end
     end
   end

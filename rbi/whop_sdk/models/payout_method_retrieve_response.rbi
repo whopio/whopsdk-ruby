@@ -15,12 +15,13 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # A reference to identify the payout destination, such as the last 4 digits of an
-      # account number or an email address.
+      # A masked identifier for the payout destination, such as the last four digits of
+      # a bank account or an email address. Null if no reference is available.
       sig { returns(T.nilable(String)) }
       attr_accessor :account_reference
 
-      # The company associated with the payout token
+      # The company associated with this payout destination. Null if not linked to a
+      # specific company.
       sig do
         returns(
           T.nilable(WhopSDK::Models::PayoutMethodRetrieveResponse::Company)
@@ -42,12 +43,13 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The currency code of the payout destination. This is the currency that payouts
-      # will be made in for this token.
+      # The three-letter ISO currency code that payouts are delivered in for this
+      # destination.
       sig { returns(String) }
       attr_accessor :currency
 
-      # The payout destination associated with the payout token
+      # The payout destination configuration linked to this token. Null if not yet
+      # configured.
       sig do
         returns(
           T.nilable(WhopSDK::Models::PayoutMethodRetrieveResponse::Destination)
@@ -65,20 +67,23 @@ module WhopSDK
       end
       attr_writer :destination
 
-      # The name of the bank or financial institution.
+      # The name of the bank or financial institution receiving payouts. Null if not
+      # applicable or not provided.
       sig { returns(T.nilable(String)) }
       attr_accessor :institution_name
 
-      # Whether this payout token is the default for the payout account
+      # Whether this is the default payout destination for the associated payout
+      # account.
       sig { returns(T::Boolean) }
       attr_accessor :is_default
 
-      # An optional nickname for the payout token to help the user identify it. This is
-      # not used by the provider and is only for the user's reference.
+      # A user-defined label to help identify this payout destination. Not sent to the
+      # provider. Null if no nickname has been set.
       sig { returns(T.nilable(String)) }
       attr_accessor :nickname
 
-      # An object representing an user's setup payout destination.
+      # A configured payout destination where a user receives earned funds, such as a
+      # bank account or digital wallet.
       sig do
         params(
           id: String,
@@ -101,24 +106,28 @@ module WhopSDK
       def self.new(
         # The unique identifier for the payout token.
         id:,
-        # A reference to identify the payout destination, such as the last 4 digits of an
-        # account number or an email address.
+        # A masked identifier for the payout destination, such as the last four digits of
+        # a bank account or an email address. Null if no reference is available.
         account_reference:,
-        # The company associated with the payout token
+        # The company associated with this payout destination. Null if not linked to a
+        # specific company.
         company:,
         # The datetime the payout token was created.
         created_at:,
-        # The currency code of the payout destination. This is the currency that payouts
-        # will be made in for this token.
+        # The three-letter ISO currency code that payouts are delivered in for this
+        # destination.
         currency:,
-        # The payout destination associated with the payout token
+        # The payout destination configuration linked to this token. Null if not yet
+        # configured.
         destination:,
-        # The name of the bank or financial institution.
+        # The name of the bank or financial institution receiving payouts. Null if not
+        # applicable or not provided.
         institution_name:,
-        # Whether this payout token is the default for the payout account
+        # Whether this is the default payout destination for the associated payout
+        # account.
         is_default:,
-        # An optional nickname for the payout token to help the user identify it. This is
-        # not used by the provider and is only for the user's reference.
+        # A user-defined label to help identify this payout destination. Not sent to the
+        # provider. Null if no nickname has been set.
         nickname:
       )
       end
@@ -158,7 +167,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The company associated with the payout token
+        # The company associated with this payout destination. Null if not linked to a
+        # specific company.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the company.
@@ -192,7 +202,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :name
 
-        # The payout destination associated with the payout token
+        # The payout destination configuration linked to this token. Null if not yet
+        # configured.
         sig do
           params(
             category: WhopSDK::PayoutDestinationCategory::OrSymbol,

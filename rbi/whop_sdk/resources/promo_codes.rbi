@@ -3,7 +3,8 @@
 module WhopSDK
   module Resources
     class PromoCodes
-      # Create a new promo code for a product or plan
+      # Create a new promo code that applies a discount at checkout. Can be scoped to
+      # specific products or plans.
       #
       # Required permissions:
       #
@@ -30,46 +31,51 @@ module WhopSDK
         ).returns(WhopSDK::PromoCode)
       end
       def create(
-        # The discount amount. Interpretation depends on promo_type: if 'percentage', this
-        # is the percentage (e.g., 20 means 20% off); if 'flat_amount', this is dollars
-        # off (e.g., 10.00 means $10.00 off).
+        # The discount amount. When promo_type is percentage, this is the percent off
+        # (e.g., 20 for 20% off). When promo_type is flat_amount, this is the currency
+        # amount off (e.g., 10.00 for $10.00 off).
         amount_off:,
-        # The monetary currency of the promo code.
+        # The three-letter ISO currency code for the promo code discount.
         base_currency:,
-        # The specific code used to apply the promo at checkout.
+        # The alphanumeric code customers enter at checkout to apply the discount.
         code:,
-        # The id of the company to create the promo code for.
+        # The unique identifier of the company to create this promo code for.
         company_id:,
-        # Restricts promo use to only users who have never purchased from the company
-        # before.
+        # Whether to restrict this promo code to only users who have never purchased from
+        # the company before.
         new_users_only:,
-        # The number of months this promo code is applied and valid for.
+        # The number of billing months the discount remains active. For example, 3 means
+        # the discount applies to the first 3 billing cycles.
         promo_duration_months:,
-        # The type (% or flat amount) of the promo.
+        # The discount type, either percentage or flat_amount.
         promo_type:,
-        # Restricts promo use to only users who have churned from the company before.
+        # Whether to restrict this promo code to only users who have previously churned
+        # from the company.
         churned_users_only: nil,
-        # Whether this promo code is for existing memberships only (cancelations)
+        # Whether this promo code can only be applied to existing memberships, such as for
+        # cancellation retention offers.
         existing_memberships_only: nil,
-        # The date/time of when the promo expires.
+        # The datetime when the promo code expires and can no longer be used. Null means
+        # it never expires.
         expires_at: nil,
-        # Restricts promo use to only be applied once per customer.
+        # Whether each customer can only use this promo code once.
         one_per_customer: nil,
-        # The IDs of the plans that the promo code applies to. If product_id is provided,
-        # it will only apply to plans attached to that product
+        # The identifiers of plans this promo code applies to. When product_id is also
+        # provided, only plans attached to that product are included.
         plan_ids: nil,
-        # The product to lock the promo code to, if any. If provided will filter out any
-        # plan ids not attached to this product
+        # The identifier of the product to scope this promo code to. When provided, the
+        # promo code only applies to plans attached to this product.
         product_id: nil,
-        # The quantity limit on the number of uses.
+        # The maximum number of times this promo code can be used. Ignored when
+        # unlimited_stock is true.
         stock: nil,
-        # Whether or not the promo code should have unlimited stock.
+        # Whether the promo code can be used an unlimited number of times.
         unlimited_stock: nil,
         request_options: {}
       )
       end
 
-      # Retrieves a promo code by ID
+      # Retrieves the details of an existing promo code.
       #
       # Required permissions:
       #
@@ -82,13 +88,14 @@ module WhopSDK
         ).returns(WhopSDK::PromoCode)
       end
       def retrieve(
-        # The ID of the promo code to retrieve
+        # The unique identifier of the promo code.
         id,
         request_options: {}
       )
       end
 
-      # Lists promo codes for a company
+      # Returns a paginated list of promo codes belonging to a company, with optional
+      # filtering by product, plan, and status.
       #
       # Required permissions:
       #
@@ -112,23 +119,23 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the company to list promo codes for
+        # The unique identifier of the company to list promo codes for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The minimum creation date to filter by
+        # Only return promo codes created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return promo codes created before this timestamp.
         created_before: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # Filter promo codes by plan ID(s)
+        # Filter to only promo codes scoped to these plan identifiers.
         plan_ids: nil,
-        # Filter promo codes by product ID(s)
+        # Filter to only promo codes scoped to these product identifiers.
         product_ids: nil,
         # Statuses for promo codes
         status: nil,
@@ -136,7 +143,8 @@ module WhopSDK
       )
       end
 
-      # Archive a promo code, preventing further use
+      # Archive a promo code, preventing it from being used in future checkouts.
+      # Existing memberships are not affected.
       #
       # Required permissions:
       #
@@ -148,7 +156,7 @@ module WhopSDK
         ).returns(T::Boolean)
       end
       def delete(
-        # The internal ID of the promo code to archive.
+        # The unique identifier of the promo code to archive.
         id,
         request_options: {}
       )

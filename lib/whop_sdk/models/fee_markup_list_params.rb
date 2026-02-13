@@ -8,8 +8,8 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute company_id
-      #   The ID (tag) of the company you want to list the fee markups for. If you pass
-      #   your platform account, you will get the platform default markups.
+      #   The unique identifier of the company to list fee markups for. Pass a platform
+      #   account identifier to retrieve platform default markups.
       #
       #   @return [String]
       required :company_id, String
@@ -42,7 +42,7 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::FeeMarkupListParams} for more details.
       #
-      #   @param company_id [String] The ID (tag) of the company you want to list the fee markups for. If you pass yo
+      #   @param company_id [String] The unique identifier of the company to list fee markups for. Pass a platform ac
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #

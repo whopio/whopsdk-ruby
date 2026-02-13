@@ -10,115 +10,128 @@ module WhopSDK
       required :id, String
 
       # @!attribute api_key
-      #   The API key for the app
+      #   The API key used to authenticate requests on behalf of this app. Null if no API
+      #   key has been generated. Requires the 'developer:manage_api_key' permission.
       #
       #   @return [WhopSDK::Models::App::APIKey, nil]
       required :api_key, -> { WhopSDK::App::APIKey }, nil?: true
 
       # @!attribute app_type
-      #   The type of end-user an app is built for
+      #   The target audience classification for this app (e.g., 'b2b_app', 'b2c_app',
+      #   'company_app', 'component').
       #
       #   @return [Symbol, WhopSDK::Models::AppType]
       required :app_type, enum: -> { WhopSDK::AppType }
 
       # @!attribute base_url
-      #   The base url of the app
+      #   The production base URL where the app is hosted. Null if no base URL is
+      #   configured.
       #
       #   @return [String, nil]
       required :base_url, String, nil?: true
 
       # @!attribute company
-      #   The company that owns the app
+      #   The company that owns and publishes this app.
       #
       #   @return [WhopSDK::Models::App::Company]
       required :company, -> { WhopSDK::App::Company }
 
       # @!attribute creator
-      #   The creator of the app
+      #   The user who created and owns the company that published this app.
       #
       #   @return [WhopSDK::Models::App::Creator]
       required :creator, -> { WhopSDK::App::Creator }
 
       # @!attribute dashboard_path
-      #   The path part for a specific view of the app. This is the template part of the
-      #   url after the base domain. Eg: /experiences/[experienceId]
+      #   The URL path template for a specific view of this app, appended to the base
+      #   domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+      #   not configured.
       #
       #   @return [String, nil]
       required :dashboard_path, String, nil?: true
 
       # @!attribute description
-      #   The description of the app
+      #   A written description of what this app does, displayed on the app store listing
+      #   page. Null if no description has been set.
       #
       #   @return [String, nil]
       required :description, String, nil?: true
 
       # @!attribute discover_path
-      #   The path part for a specific view of the app. This is the template part of the
-      #   url after the base domain. Eg: /experiences/[experienceId]
+      #   The URL path template for a specific view of this app, appended to the base
+      #   domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+      #   not configured.
       #
       #   @return [String, nil]
       required :discover_path, String, nil?: true
 
       # @!attribute domain_id
-      #   The unique part of the proxied domain for this app. Used to generate the base
-      #   url used to display the app inside the whop platform. Refers to the id part in
-      #   the final url: https://{domain_id}.apps.whop.com
+      #   The unique subdomain identifier for this app's proxied URL on the Whop platform.
+      #   Forms the URL pattern https://{domain_id}.apps.whop.com.
       #
       #   @return [String]
       required :domain_id, String
 
       # @!attribute experience_path
-      #   The path part for a specific view of the app. This is the template part of the
-      #   url after the base domain. Eg: /experiences/[experienceId]
+      #   The URL path template for a specific view of this app, appended to the base
+      #   domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+      #   not configured.
       #
       #   @return [String, nil]
       required :experience_path, String, nil?: true
 
       # @!attribute icon
-      #   The icon for the app. This icon is shown on discovery, on the product page, on
-      #   checkout, and as a default icon for the experiences.
+      #   The icon image for this app, displayed on the app store, product pages,
+      #   checkout, and as the default icon for experiences using this app.
       #
       #   @return [WhopSDK::Models::App::Icon, nil]
       required :icon, -> { WhopSDK::App::Icon }, nil?: true
 
       # @!attribute name
-      #   The name of the app
+      #   The display name of this app shown on the app store and in experience
+      #   navigation. Maximum 30 characters.
       #
       #   @return [String]
       required :name, String
 
+      # @!attribute redirect_uris
+      #   The whitelisted OAuth callback URLs that users are redirected to after
+      #   authorizing the app.
+      #
+      #   @return [Array<String>]
+      required :redirect_uris, WhopSDK::Internal::Type::ArrayOf[String]
+
       # @!attribute requested_permissions
-      #   The set of permissions that an app requests to be granted when a user installs
-      #   the app.
+      #   The list of permissions this app requests when installed, including both
+      #   required and optional permissions with justifications.
       #
       #   @return [Array<WhopSDK::Models::App::RequestedPermission>]
       required :requested_permissions,
                -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::App::RequestedPermission] }
 
       # @!attribute stats
-      #   A collection of stats for the app.
+      #   Aggregate usage statistics for this app, including daily, weekly, and monthly
+      #   active user counts.
       #
       #   @return [WhopSDK::Models::App::Stats, nil]
       required :stats, -> { WhopSDK::App::Stats }, nil?: true
 
       # @!attribute status
-      #   If the status is live, the app is visible on Whop discovery. In order to be
-      #   live, you need to set the name, icon, and description. Being unlisted or hidden
-      #   means it's not visible on Whop but you can still install the app via direct
-      #   link. To remove the app from whop discovery, you should set the status to
-      #   unlisted.
+      #   The current visibility status of this app on the Whop app store. 'live' means
+      #   publicly discoverable, 'unlisted' means accessible only via direct link, and
+      #   'hidden' means not visible anywhere.
       #
       #   @return [Symbol, WhopSDK::Models::AppStatuses]
       required :status, enum: -> { WhopSDK::AppStatuses }
 
       # @!attribute verified
-      #   Whether this app has been verified by Whop. Verified apps are endorsed by whop
-      #   and are shown in the 'featured apps' section of the app store.
+      #   Whether this app has been verified by Whop. Verified apps are endorsed by Whop
+      #   and displayed in the featured apps section of the app store.
       #
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, api_key:, app_type:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, icon:, name:, requested_permissions:, stats:, status:, verified:)
+      # @!method initialize(id:, api_key:, app_type:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, icon:, name:, redirect_uris:, requested_permissions:, stats:, status:, verified:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::App} for
       #   more details.
       #
@@ -127,37 +140,39 @@ module WhopSDK
       #
       #   @param id [String] The unique identifier for the app.
       #
-      #   @param api_key [WhopSDK::Models::App::APIKey, nil] The API key for the app
+      #   @param api_key [WhopSDK::Models::App::APIKey, nil] The API key used to authenticate requests on behalf of this app. Null if no API
       #
-      #   @param app_type [Symbol, WhopSDK::Models::AppType] The type of end-user an app is built for
+      #   @param app_type [Symbol, WhopSDK::Models::AppType] The target audience classification for this app (e.g., 'b2b_app', 'b2c_app', 'co
       #
-      #   @param base_url [String, nil] The base url of the app
+      #   @param base_url [String, nil] The production base URL where the app is hosted. Null if no base URL is configur
       #
-      #   @param company [WhopSDK::Models::App::Company] The company that owns the app
+      #   @param company [WhopSDK::Models::App::Company] The company that owns and publishes this app.
       #
-      #   @param creator [WhopSDK::Models::App::Creator] The creator of the app
+      #   @param creator [WhopSDK::Models::App::Creator] The user who created and owns the company that published this app.
       #
-      #   @param dashboard_path [String, nil] The path part for a specific view of the app. This is the template part of the u
+      #   @param dashboard_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
       #
-      #   @param description [String, nil] The description of the app
+      #   @param description [String, nil] A written description of what this app does, displayed on the app store listing
       #
-      #   @param discover_path [String, nil] The path part for a specific view of the app. This is the template part of the u
+      #   @param discover_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
       #
-      #   @param domain_id [String] The unique part of the proxied domain for this app. Used to generate the base ur
+      #   @param domain_id [String] The unique subdomain identifier for this app's proxied URL on the Whop platform.
       #
-      #   @param experience_path [String, nil] The path part for a specific view of the app. This is the template part of the u
+      #   @param experience_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
       #
-      #   @param icon [WhopSDK::Models::App::Icon, nil] The icon for the app. This icon is shown on discovery, on the product page, on c
+      #   @param icon [WhopSDK::Models::App::Icon, nil] The icon image for this app, displayed on the app store, product pages, checkout
       #
-      #   @param name [String] The name of the app
+      #   @param name [String] The display name of this app shown on the app store and in experience navigation
       #
-      #   @param requested_permissions [Array<WhopSDK::Models::App::RequestedPermission>] The set of permissions that an app requests to be granted when a user installs t
+      #   @param redirect_uris [Array<String>] The whitelisted OAuth callback URLs that users are redirected to after authorizi
       #
-      #   @param stats [WhopSDK::Models::App::Stats, nil] A collection of stats for the app.
+      #   @param requested_permissions [Array<WhopSDK::Models::App::RequestedPermission>] The list of permissions this app requests when installed, including both require
       #
-      #   @param status [Symbol, WhopSDK::Models::AppStatuses] If the status is live, the app is visible on Whop discovery. In order to be live
+      #   @param stats [WhopSDK::Models::App::Stats, nil] Aggregate usage statistics for this app, including daily, weekly, and monthly ac
       #
-      #   @param verified [Boolean] Whether this app has been verified by Whop. Verified apps are endorsed by whop a
+      #   @param status [Symbol, WhopSDK::Models::AppStatuses] The current visibility status of this app on the Whop app store. 'live' means pu
+      #
+      #   @param verified [Boolean] Whether this app has been verified by Whop. Verified apps are endorsed by Whop a
 
       # @see WhopSDK::Models::App#api_key
       class APIKey < WhopSDK::Internal::Type::BaseModel
@@ -180,7 +195,8 @@ module WhopSDK
         required :created_at, Time
 
         # @!method initialize(id:, token:, created_at:)
-        #   The API key for the app
+        #   The API key used to authenticate requests on behalf of this app. Null if no API
+        #   key has been generated. Requires the 'developer:manage_api_key' permission.
         #
         #   @param id [String] The unique identifier for the private api key.
         #
@@ -198,17 +214,17 @@ module WhopSDK
         required :id, String
 
         # @!attribute title
-        #   The title of the company.
+        #   The display name of the company shown to customers.
         #
         #   @return [String]
         required :title, String
 
         # @!method initialize(id:, title:)
-        #   The company that owns the app
+        #   The company that owns and publishes this app.
         #
         #   @param id [String] The unique identifier for the company.
         #
-        #   @param title [String] The title of the company.
+        #   @param title [String] The display name of the company shown to customers.
       end
 
       # @see WhopSDK::Models::App#creator
@@ -220,32 +236,32 @@ module WhopSDK
         required :id, String
 
         # @!attribute name
-        #   The name of the user from their Whop account.
+        #   The user's display name shown on their public profile.
         #
         #   @return [String, nil]
         required :name, String, nil?: true
 
         # @!attribute username
-        #   The username of the user from their Whop account.
+        #   The user's unique username shown on their public profile.
         #
         #   @return [String]
         required :username, String
 
         # @!method initialize(id:, name:, username:)
-        #   The creator of the app
+        #   The user who created and owns the company that published this app.
         #
         #   @param id [String] The unique identifier for the user.
         #
-        #   @param name [String, nil] The name of the user from their Whop account.
+        #   @param name [String, nil] The user's display name shown on their public profile.
         #
-        #   @param username [String] The username of the user from their Whop account.
+        #   @param username [String] The user's unique username shown on their public profile.
       end
 
       # @see WhopSDK::Models::App#icon
       class Icon < WhopSDK::Internal::Type::BaseModel
         # @!attribute url
-        #   This is the URL you use to render optimized attachments on the client. This
-        #   should be used for apps.
+        #   A pre-optimized URL for rendering this attachment on the client. This should be
+        #   used for displaying attachments in apps.
         #
         #   @return [String, nil]
         required :url, String, nil?: true
@@ -254,10 +270,10 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::App::Icon} for more details.
         #
-        #   The icon for the app. This icon is shown on discovery, on the product page, on
-        #   checkout, and as a default icon for the experiences.
+        #   The icon image for this app, displayed on the app store, product pages,
+        #   checkout, and as the default icon for experiences using this app.
         #
-        #   @param url [String, nil] This is the URL you use to render optimized attachments on the client. This shou
+        #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
       end
 
       class RequestedPermission < WhopSDK::Internal::Type::BaseModel
@@ -315,28 +331,29 @@ module WhopSDK
       # @see WhopSDK::Models::App#stats
       class Stats < WhopSDK::Internal::Type::BaseModel
         # @!attribute dau
-        #   This is the number of users that have spent time in this app in the last 24
-        #   hours.
+        #   The number of unique users who have spent time in this app in the last 24 hours.
+        #   Returns 0 if no usage data is available.
         #
         #   @return [Integer]
         required :dau, Integer
 
         # @!attribute mau
-        #   This is the number of users that have spent time in this app in the last 28
-        #   days.
+        #   The number of unique users who have spent time in this app in the last 28 days.
+        #   Returns 0 if no usage data is available.
         #
         #   @return [Integer]
         required :mau, Integer
 
         # @!attribute time_spent_last24_hours
-        #   This how much time, in seconds, users have spent in this app in the last 24
-        #   hours.
+        #   The total time, in seconds, that all users have spent in this app over the last
+        #   24 hours. Returns 0 if no usage data is available.
         #
         #   @return [Integer]
         required :time_spent_last24_hours, Integer
 
         # @!attribute wau
-        #   This is the number of users that have spent time in this app in the last 7 days.
+        #   The number of unique users who have spent time in this app in the last 7 days.
+        #   Returns 0 if no usage data is available.
         #
         #   @return [Integer]
         required :wau, Integer
@@ -345,15 +362,16 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::App::Stats} for more details.
         #
-        #   A collection of stats for the app.
+        #   Aggregate usage statistics for this app, including daily, weekly, and monthly
+        #   active user counts.
         #
-        #   @param dau [Integer] This is the number of users that have spent time in this app in the last 24 hour
+        #   @param dau [Integer] The number of unique users who have spent time in this app in the last 24 hours.
         #
-        #   @param mau [Integer] This is the number of users that have spent time in this app in the last 28 days
+        #   @param mau [Integer] The number of unique users who have spent time in this app in the last 28 days.
         #
-        #   @param time_spent_last24_hours [Integer] This how much time, in seconds, users have spent in this app in the last 24 hour
+        #   @param time_spent_last24_hours [Integer] The total time, in seconds, that all users have spent in this app over the last
         #
-        #   @param wau [Integer] This is the number of users that have spent time in this app in the last 7 days.
+        #   @param wau [Integer] The number of unique users who have spent time in this app in the last 7 days. R
       end
     end
   end

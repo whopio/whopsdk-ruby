@@ -12,11 +12,12 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The email notification preference for this forum
+      # The email notification setting that controls which posts trigger email alerts.
+      # One of: all_admin_posts, only_weekly_summary, none.
       sig { returns(WhopSDK::EmailNotificationPreferences::TaggedSymbol) }
       attr_accessor :email_notification_preference
 
-      # The experience for this forum
+      # The parent experience that this forum belongs to.
       sig { returns(WhopSDK::Models::ForumListResponse::Experience) }
       attr_reader :experience
 
@@ -27,15 +28,18 @@ module WhopSDK
       end
       attr_writer :experience
 
-      # Who can comment on this forum
+      # The permission level controlling who can comment on posts. One of: everyone,
+      # admins.
       sig { returns(WhopSDK::WhoCanCommentTypes::TaggedSymbol) }
       attr_accessor :who_can_comment
 
-      # Who can post on this forum
+      # The permission level controlling who can create new posts. One of: everyone,
+      # admins.
       sig { returns(WhopSDK::WhoCanPostTypes::TaggedSymbol) }
       attr_accessor :who_can_post
 
-      # Represents a forum feed
+      # A discussion forum where members can create posts, comment, and react, belonging
+      # to an experience.
       sig do
         params(
           id: String,
@@ -49,13 +53,16 @@ module WhopSDK
       def self.new(
         # The unique identifier for the entity
         id:,
-        # The email notification preference for this forum
+        # The email notification setting that controls which posts trigger email alerts.
+        # One of: all_admin_posts, only_weekly_summary, none.
         email_notification_preference:,
-        # The experience for this forum
+        # The parent experience that this forum belongs to.
         experience:,
-        # Who can comment on this forum
+        # The permission level controlling who can comment on posts. One of: everyone,
+        # admins.
         who_can_comment:,
-        # Who can post on this forum
+        # The permission level controlling who can create new posts. One of: everyone,
+        # admins.
         who_can_post:
       )
       end
@@ -88,16 +95,18 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The written name of the description.
+        # The display name of this experience shown to users in the product navigation.
+        # Maximum 255 characters.
         sig { returns(String) }
         attr_accessor :name
 
-        # The experience for this forum
+        # The parent experience that this forum belongs to.
         sig { params(id: String, name: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the experience.
           id:,
-          # The written name of the description.
+          # The display name of this experience shown to users in the product navigation.
+          # Maximum 255 characters.
           name:
         )
         end

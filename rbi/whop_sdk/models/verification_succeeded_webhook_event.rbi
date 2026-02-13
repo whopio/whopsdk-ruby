@@ -19,7 +19,8 @@ module WhopSDK
       sig { returns(Symbol) }
       attr_accessor :api_version
 
-      # An object representing an identity verification session
+      # An identity verification session used to confirm a person or entity's identity
+      # for payout account eligibility.
       sig { returns(WhopSDK::VerificationSucceededWebhookEvent::Data) }
       attr_reader :data
 
@@ -55,7 +56,8 @@ module WhopSDK
       def self.new(
         # A unique ID for every single webhook request
         id:,
-        # An object representing an identity verification session
+        # An identity verification session used to confirm a person or entity's identity
+        # for payout account eligibility.
         data:,
         # The timestamp in ISO 8601 format that the webhook was sent at on the server
         timestamp:,
@@ -100,15 +102,17 @@ module WhopSDK
         sig { returns(T.nilable(WhopSDK::VerificationErrorCode::TaggedSymbol)) }
         attr_accessor :last_error_code
 
-        # The last error reason that occurred during the verification.
+        # A human-readable explanation of the most recent verification error. Null if no
+        # error has occurred.
         sig { returns(T.nilable(String)) }
         attr_accessor :last_error_reason
 
-        # The status of the verification.
+        # The current status of this verification session.
         sig { returns(WhopSDK::VerificationStatus::TaggedSymbol) }
         attr_accessor :status
 
-        # An object representing an identity verification session
+        # An identity verification session used to confirm a person or entity's identity
+        # for payout account eligibility.
         sig do
           params(
             id: String,
@@ -123,9 +127,10 @@ module WhopSDK
           id:,
           # An error code for a verification attempt.
           last_error_code:,
-          # The last error reason that occurred during the verification.
+          # A human-readable explanation of the most recent verification error. Null if no
+          # error has occurred.
           last_error_reason:,
-          # The status of the verification.
+          # The current status of this verification session.
           status:
         )
         end

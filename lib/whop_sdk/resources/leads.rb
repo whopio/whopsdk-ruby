@@ -6,7 +6,8 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::LeadCreateParams} for more details.
       #
-      # Creates a new lead
+      # Record a new lead for a company, capturing a potential customer's interest in a
+      # specific product.
       #
       # Required permissions:
       #
@@ -17,15 +18,16 @@ module WhopSDK
       #
       # @overload create(company_id:, metadata: nil, product_id: nil, referrer: nil, user_id: nil, request_options: {})
       #
-      # @param company_id [String] The ID of the company to create a lead for.
+      # @param company_id [String] The unique identifier of the company to create the lead for, starting with
+      # 'biz\_
       #
-      # @param metadata [Hash{Symbol=>Object}, nil] Custom metadata for the lead.
+      # @param metadata [Hash{Symbol=>Object}, nil] A JSON object of custom metadata to attach to the lead for tracking purposes.
       #
-      # @param product_id [String, nil] The ID of the product the lead is interested in.
+      # @param product_id [String, nil] The unique identifier of the product the lead is interested in, starting with 'p
       #
-      # @param referrer [String, nil] The url referrer of the lead, if any.
+      # @param referrer [String, nil] The referral URL that brought the lead to the company, such as 'https://example.
       #
-      # @param user_id [String, nil] The ID of the user to create a lead for. If the request is made by a user, that
+      # @param user_id [String, nil] The unique identifier of the user to record as the lead. If authenticated as a u
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -37,7 +39,7 @@ module WhopSDK
         @client.request(method: :post, path: "leads", body: parsed, model: WhopSDK::Lead, options: options)
       end
 
-      # Retrieves a lead by ID
+      # Retrieves the details of an existing lead.
       #
       # Required permissions:
       #
@@ -48,7 +50,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the lead
+      # @param id [String] The unique identifier of the lead to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -64,7 +66,10 @@ module WhopSDK
         )
       end
 
-      # Updates a lead
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::LeadUpdateParams} for more details.
+      #
+      # Update the metadata or referrer information on an existing lead record.
       #
       # Required permissions:
       #
@@ -75,11 +80,11 @@ module WhopSDK
       #
       # @overload update(id, metadata: nil, referrer: nil, request_options: {})
       #
-      # @param id [String] The ID of the lead to update.
+      # @param id [String] The unique identifier of the lead to update, starting with 'lead\_'.
       #
-      # @param metadata [Hash{Symbol=>Object}, nil] Custom metadata for the lead.
+      # @param metadata [Hash{Symbol=>Object}, nil] A JSON object of custom metadata to set on the lead, replacing any existing meta
       #
-      # @param referrer [String, nil] The url referrer of the lead.
+      # @param referrer [String, nil] The updated referral URL for the lead, such as 'https://example.com/landing'.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -97,7 +102,8 @@ module WhopSDK
         )
       end
 
-      # Lists leads for a company
+      # Returns a paginated list of leads for a company, with optional filtering by
+      # product and creation date.
       #
       # Required permissions:
       #
@@ -108,21 +114,21 @@ module WhopSDK
       #
       # @overload list(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, product_ids: nil, request_options: {})
       #
-      # @param company_id [String] The ID of the company to list leads for
+      # @param company_id [String] The unique identifier of the company to list leads for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param created_after [Time, nil] The minimum creation date to filter by
+      # @param created_after [Time, nil] Only return leads created after this timestamp.
       #
-      # @param created_before [Time, nil] The maximum creation date to filter by
+      # @param created_before [Time, nil] Only return leads created before this timestamp.
       #
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param product_ids [Array<String>, nil] The product IDs to filter the leads by
+      # @param product_ids [Array<String>, nil] Filter leads to only those associated with these specific product identifiers.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -3,7 +3,11 @@
 module WhopSDK
   module Resources
     class Shipments
-      # Creates a new shipment
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::ShipmentCreateParams} for more details.
+      #
+      # Create a new shipment with a tracking code for a specific payment within a
+      # company.
       #
       # Required permissions:
       #
@@ -12,11 +16,11 @@ module WhopSDK
       #
       # @overload create(company_id:, payment_id:, tracking_code:, request_options: {})
       #
-      # @param company_id [String] The ID of the company to create the shipment for
+      # @param company_id [String] The unique identifier of the company to create the shipment for, starting with '
       #
-      # @param payment_id [String] The ID of the payment to create the shipment for
+      # @param payment_id [String] The unique identifier of the payment to associate the shipment with.
       #
-      # @param tracking_code [String] The tracking code for the shipment
+      # @param tracking_code [String] The carrier tracking code for the shipment, such as a USPS, UPS, or FedEx tracki
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -34,7 +38,7 @@ module WhopSDK
         )
       end
 
-      # Retrieves a shipment by ID
+      # Retrieves the details of an existing shipment.
       #
       # Required permissions:
       #
@@ -43,7 +47,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the shipment
+      # @param id [String] The unique identifier of the shipment to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -59,7 +63,8 @@ module WhopSDK
         )
       end
 
-      # Lists shipments for a payment
+      # Returns a paginated list of shipments, with optional filtering by payment,
+      # company, or user.
       #
       # Required permissions:
       #
@@ -72,15 +77,15 @@ module WhopSDK
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param company_id [String, nil] The ID of the company
+      # @param company_id [String, nil] Filter shipments to only those belonging to this company.
       #
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param payment_id [String, nil] The ID of the payment
+      # @param payment_id [String, nil] Filter shipments to only those associated with this specific payment.
       #
-      # @param user_id [String, nil] The ID of the user
+      # @param user_id [String, nil] Filter shipments to only those for this specific user.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

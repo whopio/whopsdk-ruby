@@ -23,7 +23,8 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The creator pitch for the company.
+      # A promotional pitch written by the company creator, displayed to potential
+      # customers on the store page.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
@@ -42,16 +43,17 @@ module WhopSDK
       end
       attr_writer :logo
 
-      # The number of members in the company.
+      # The total number of users who currently hold active memberships across all of
+      # this company's products.
       sig { returns(Integer) }
       attr_accessor :member_count
 
-      # A key-value store of data for the account, created/updated by the platform that
-      # made the account.
+      # A key-value JSON object of custom metadata for this company, managed by the
+      # platform that created the account.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
-      # The user who owns this company
+      # The user who owns and has full administrative control over this company.
       sig { returns(WhopSDK::Models::CompanyListResponse::OwnerUser) }
       attr_reader :owner_user
 
@@ -62,19 +64,21 @@ module WhopSDK
       end
       attr_writer :owner_user
 
-      # The number of reviews that have been published for the company.
+      # The total number of published customer reviews across all products for this
+      # company.
       sig { returns(Integer) }
       attr_accessor :published_reviews_count
 
-      # The slug/route of the company on the Whop site.
+      # The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
       sig { returns(String) }
       attr_accessor :route
 
-      # Whether Whop sends transactional emails to customers on behalf of this company.
+      # Whether Whop sends transactional emails (receipts, updates) to customers on
+      # behalf of this company.
       sig { returns(T::Boolean) }
       attr_accessor :send_customer_emails
 
-      # The title of the company.
+      # The display name of the company shown to customers.
       sig { returns(String) }
       attr_accessor :title
 
@@ -82,7 +86,7 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :updated_at
 
-      # If the company is Whop Verified
+      # Whether this company has been verified by Whop's trust and safety team.
       sig { returns(T::Boolean) }
       attr_accessor :verified
 
@@ -114,30 +118,34 @@ module WhopSDK
         business_type:,
         # The datetime the company was created.
         created_at:,
-        # The creator pitch for the company.
+        # A promotional pitch written by the company creator, displayed to potential
+        # customers on the store page.
         description:,
         # The different industry types a company can be in.
         industry_type:,
         # The company's logo.
         logo:,
-        # The number of members in the company.
+        # The total number of users who currently hold active memberships across all of
+        # this company's products.
         member_count:,
-        # A key-value store of data for the account, created/updated by the platform that
-        # made the account.
+        # A key-value JSON object of custom metadata for this company, managed by the
+        # platform that created the account.
         metadata:,
-        # The user who owns this company
+        # The user who owns and has full administrative control over this company.
         owner_user:,
-        # The number of reviews that have been published for the company.
+        # The total number of published customer reviews across all products for this
+        # company.
         published_reviews_count:,
-        # The slug/route of the company on the Whop site.
+        # The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
         route:,
-        # Whether Whop sends transactional emails to customers on behalf of this company.
+        # Whether Whop sends transactional emails (receipts, updates) to customers on
+        # behalf of this company.
         send_customer_emails:,
-        # The title of the company.
+        # The display name of the company shown to customers.
         title:,
         # The datetime the company was last updated.
         updated_at:,
-        # If the company is Whop Verified
+        # Whether this company has been verified by Whop's trust and safety team.
         verified:
       )
       end
@@ -175,16 +183,16 @@ module WhopSDK
             )
           end
 
-        # This is the URL you use to render optimized attachments on the client. This
-        # should be used for apps.
+        # A pre-optimized URL for rendering this attachment on the client. This should be
+        # used for displaying attachments in apps.
         sig { returns(T.nilable(String)) }
         attr_accessor :url
 
         # The company's logo.
         sig { params(url: T.nilable(String)).returns(T.attached_class) }
         def self.new(
-          # This is the URL you use to render optimized attachments on the client. This
-          # should be used for apps.
+          # A pre-optimized URL for rendering this attachment on the client. This should be
+          # used for displaying attachments in apps.
           url:
         )
         end
@@ -207,15 +215,15 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The name of the user from their Whop account.
+        # The user's display name shown on their public profile.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
-        # The username of the user from their Whop account.
+        # The user's unique username shown on their public profile.
         sig { returns(String) }
         attr_accessor :username
 
-        # The user who owns this company
+        # The user who owns and has full administrative control over this company.
         sig do
           params(id: String, name: T.nilable(String), username: String).returns(
             T.attached_class
@@ -224,9 +232,9 @@ module WhopSDK
         def self.new(
           # The unique identifier for the user.
           id:,
-          # The name of the user from their Whop account.
+          # The user's display name shown on their public profile.
           name:,
-          # The username of the user from their Whop account.
+          # The user's unique username shown on their public profile.
           username:
         )
         end

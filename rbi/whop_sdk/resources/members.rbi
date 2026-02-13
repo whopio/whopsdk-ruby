@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class Members
-      # Retrieves a member of a company by ID
+      # Retrieves the details of an existing member.
       #
       # Required permissions:
       #
@@ -17,13 +17,14 @@ module WhopSDK
         ).returns(WhopSDK::Models::MemberRetrieveResponse)
       end
       def retrieve(
-        # The ID of the member
+        # The unique identifier of the member to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # List the members of a company
+      # Returns a paginated list of members for a company, with extensive filtering by
+      # product, plan, status, access level, and more.
       #
       # Required permissions:
       #
@@ -62,11 +63,11 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The ID of the company to list members for
+        # The unique identifier of the company to list members for.
         company_id: nil,
-        # The minimum creation date to filter by
+        # Only return members created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return members created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,
@@ -74,22 +75,22 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The most recent actions to filter the members by
+        # Filter members by their most recent activity type.
         most_recent_actions: nil,
         # Which columns can be used to sort.
         order: nil,
-        # The plan IDs to filter the members by
+        # Filter members to only those subscribed to these specific plans.
         plan_ids: nil,
-        # The product IDs to filter the members by
+        # Filter members to only those belonging to these specific products.
         product_ids: nil,
-        # The promo code IDs to filter the members by
+        # Filter members to only those who used these specific promo codes.
         promo_code_ids: nil,
-        # The name, username, or email to filter the members by. The email filter will
-        # only apply if the current actor has the `member:email:read` permission.
+        # Search members by name, username, or email. Email filtering requires the
+        # member:email:read permission.
         query: nil,
-        # The statuses to filter the members by
+        # Filter members by their current subscription status.
         statuses: nil,
-        # The user IDs to filter the members by
+        # Filter members to only those matching these specific user identifiers.
         user_ids: nil,
         request_options: {}
       )

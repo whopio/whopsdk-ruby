@@ -3,10 +3,7 @@
 module WhopSDK
   module Resources
     class ChatChannels
-      # Some parameter documentations has been truncated, see
-      # {WhopSDK::Models::ChatChannelRetrieveParams} for more details.
-      #
-      # Retrieves a chat channel
+      # Retrieves the details of an existing chat channel.
       #
       # Required permissions:
       #
@@ -14,7 +11,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the chat channel to fetch, it can be an experience ID or a chat channe
+      # @param id [String] The unique identifier of the chat channel or experience to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -33,7 +30,8 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::ChatChannelUpdateParams} for more details.
       #
-      # Updates a chat channel
+      # Update moderation settings for a chat channel, such as who can post, banned
+      # words, and media restrictions.
       #
       # Required permissions:
       #
@@ -41,15 +39,15 @@ module WhopSDK
       #
       # @overload update(id, ban_media: nil, ban_urls: nil, banned_words: nil, user_posts_cooldown_seconds: nil, who_can_post: nil, who_can_react: nil, request_options: {})
       #
-      # @param id [String] The ID of the chat channel to update. Can be an experience ID or a chat feed ext
+      # @param id [String] The unique identifier of the chat channel to update. Accepts either an experienc
       #
-      # @param ban_media [Boolean, nil] Whether media uploads are banned in this chat
+      # @param ban_media [Boolean, nil] Whether media uploads such as images and videos are banned in this chat channel.
       #
-      # @param ban_urls [Boolean, nil] Whether URLs are banned in this chat
+      # @param ban_urls [Boolean, nil] Whether URLs and links are banned from being posted in this chat channel.
       #
-      # @param banned_words [Array<String>, nil] List of banned words for this chat
+      # @param banned_words [Array<String>, nil] A list of words that are automatically blocked from messages in this chat channe
       #
-      # @param user_posts_cooldown_seconds [Integer, nil] The cooldown period in seconds between user posts
+      # @param user_posts_cooldown_seconds [Integer, nil] The minimum number of seconds a user must wait between sending messages in this
       #
       # @param who_can_post [Symbol, WhopSDK::Models::WhoCanPost, nil] Who can post on a chat feed
       #
@@ -71,7 +69,11 @@ module WhopSDK
         )
       end
 
-      # Lists chat channels inside a company
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::ChatChannelListParams} for more details.
+      #
+      # Returns a paginated list of chat channels within a specific company, with
+      # optional filtering by product.
       #
       # Required permissions:
       #
@@ -79,7 +81,7 @@ module WhopSDK
       #
       # @overload list(company_id:, after: nil, before: nil, first: nil, last: nil, product_id: nil, request_options: {})
       #
-      # @param company_id [String] The ID of the company to list chat channels for
+      # @param company_id [String] The unique identifier of the company to list chat channels for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -89,7 +91,7 @@ module WhopSDK
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param product_id [String, nil] If provided, only chat channels connected to this product are returned
+      # @param product_id [String, nil] The unique identifier of a product to filter by. When set, only chat channels co
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

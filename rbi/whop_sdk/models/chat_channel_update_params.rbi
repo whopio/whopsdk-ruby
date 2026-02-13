@@ -11,19 +11,21 @@ module WhopSDK
           T.any(WhopSDK::ChatChannelUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # Whether media uploads are banned in this chat
+      # Whether media uploads such as images and videos are banned in this chat channel.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :ban_media
 
-      # Whether URLs are banned in this chat
+      # Whether URLs and links are banned from being posted in this chat channel.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :ban_urls
 
-      # List of banned words for this chat
+      # A list of words that are automatically blocked from messages in this chat
+      # channel. For example, ['spam', 'scam'].
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :banned_words
 
-      # The cooldown period in seconds between user posts
+      # The minimum number of seconds a user must wait between sending messages in this
+      # chat channel.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :user_posts_cooldown_seconds
 
@@ -47,13 +49,15 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # Whether media uploads are banned in this chat
+        # Whether media uploads such as images and videos are banned in this chat channel.
         ban_media: nil,
-        # Whether URLs are banned in this chat
+        # Whether URLs and links are banned from being posted in this chat channel.
         ban_urls: nil,
-        # List of banned words for this chat
+        # A list of words that are automatically blocked from messages in this chat
+        # channel. For example, ['spam', 'scam'].
         banned_words: nil,
-        # The cooldown period in seconds between user posts
+        # The minimum number of seconds a user must wait between sending messages in this
+        # chat channel.
         user_posts_cooldown_seconds: nil,
         # Who can post on a chat feed
         who_can_post: nil,

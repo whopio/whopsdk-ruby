@@ -6,6 +6,7 @@ module WhopSDK
     module InvoiceStatus
       extend WhopSDK::Internal::Type::Enum
 
+      DRAFT = :draft
       OPEN = :open
       PAID = :paid
       PAST_DUE = :past_due

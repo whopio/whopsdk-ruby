@@ -10,33 +10,37 @@ module WhopSDK
       required :id, String
 
       # @!attribute emoji
-      #   The emoji that was used in shortcode format (:heart:)
+      #   The emoji used for this reaction in shortcode format. Null if the reaction type
+      #   is not emoji.
       #
       #   @return [String, nil]
       required :emoji, String, nil?: true
 
       # @!attribute resource_id
-      #   The ID of the post this reaction belongs to
+      #   The unique identifier of the post this reaction was left on.
       #
       #   @return [String]
       required :resource_id, String
 
       # @!attribute user
-      #   The user who reacted to the post
+      #   The user who left this reaction on the post.
       #
       #   @return [WhopSDK::Models::Reaction::User]
       required :user, -> { WhopSDK::Reaction::User }
 
       # @!method initialize(id:, emoji:, resource_id:, user:)
-      #   Represents a reaction to a feed post
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::Reaction} for more details.
+      #
+      #   A single reaction left by a user on a feed post, such as a like or emoji.
       #
       #   @param id [String] The unique identifier for the entity
       #
-      #   @param emoji [String, nil] The emoji that was used in shortcode format (:heart:)
+      #   @param emoji [String, nil] The emoji used for this reaction in shortcode format. Null if the reaction type
       #
-      #   @param resource_id [String] The ID of the post this reaction belongs to
+      #   @param resource_id [String] The unique identifier of the post this reaction was left on.
       #
-      #   @param user [WhopSDK::Models::Reaction::User] The user who reacted to the post
+      #   @param user [WhopSDK::Models::Reaction::User] The user who left this reaction on the post.
 
       # @see WhopSDK::Models::Reaction#user
       class User < WhopSDK::Internal::Type::BaseModel
@@ -47,25 +51,25 @@ module WhopSDK
         required :id, String
 
         # @!attribute name
-        #   The name of the user from their Whop account.
+        #   The user's display name shown on their public profile.
         #
         #   @return [String, nil]
         required :name, String, nil?: true
 
         # @!attribute username
-        #   The username of the user from their Whop account.
+        #   The user's unique username shown on their public profile.
         #
         #   @return [String]
         required :username, String
 
         # @!method initialize(id:, name:, username:)
-        #   The user who reacted to the post
+        #   The user who left this reaction on the post.
         #
         #   @param id [String] The unique identifier for the user.
         #
-        #   @param name [String, nil] The name of the user from their Whop account.
+        #   @param name [String, nil] The user's display name shown on their public profile.
         #
-        #   @param username [String] The username of the user from their Whop account.
+        #   @param username [String] The user's unique username shown on their public profile.
       end
     end
   end

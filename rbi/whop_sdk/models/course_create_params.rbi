@@ -11,35 +11,36 @@ module WhopSDK
           T.any(WhopSDK::CourseCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the experience to create the course in
+      # The unique identifier of the experience to create the course in (e.g.,
+      # "exp_XXXXX").
       sig { returns(String) }
       attr_accessor :experience_id
 
-      # The title of the course
+      # The display title of the course (e.g., "Introduction to Web Development").
       sig { returns(String) }
       attr_accessor :title
 
-      # Whether the course will award its students a PDF certificate after completing
-      # all lessons
+      # Whether the course awards students a PDF certificate after completing all
+      # lessons.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :certificate_after_completion_enabled
 
-      # The decimal order position of the course within its experience. If not provided,
-      # it will be set to the next sequential order. Use fractional values (e.g., 1.5)
-      # to place between existing courses.
+      # The decimal order position of the course within its experience. Use fractional
+      # values (e.g., "1.5") to place between existing courses.
       sig { returns(T.nilable(String)) }
       attr_accessor :order
 
-      # Whether the course requires students to complete the previous lesson before
-      # moving on to the next one
+      # Whether students must complete each lesson sequentially before advancing to the
+      # next one.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :require_completing_lessons_in_order
 
-      # The tagline of the course
+      # A short tagline displayed beneath the course title (e.g., "Master the
+      # fundamentals of design").
       sig { returns(T.nilable(String)) }
       attr_accessor :tagline
 
-      # The thumbnail for the course in png, jpeg, or gif format
+      # The thumbnail image for the course in PNG, JPEG, or GIF format.
       sig { returns(T.nilable(WhopSDK::CourseCreateParams::Thumbnail)) }
       attr_reader :thumbnail
 
@@ -69,23 +70,24 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the experience to create the course in
+        # The unique identifier of the experience to create the course in (e.g.,
+        # "exp_XXXXX").
         experience_id:,
-        # The title of the course
+        # The display title of the course (e.g., "Introduction to Web Development").
         title:,
-        # Whether the course will award its students a PDF certificate after completing
-        # all lessons
+        # Whether the course awards students a PDF certificate after completing all
+        # lessons.
         certificate_after_completion_enabled: nil,
-        # The decimal order position of the course within its experience. If not provided,
-        # it will be set to the next sequential order. Use fractional values (e.g., 1.5)
-        # to place between existing courses.
+        # The decimal order position of the course within its experience. Use fractional
+        # values (e.g., "1.5") to place between existing courses.
         order: nil,
-        # Whether the course requires students to complete the previous lesson before
-        # moving on to the next one
+        # Whether students must complete each lesson sequentially before advancing to the
+        # next one.
         require_completing_lessons_in_order: nil,
-        # The tagline of the course
+        # A short tagline displayed beneath the course title (e.g., "Master the
+        # fundamentals of design").
         tagline: nil,
-        # The thumbnail for the course in png, jpeg, or gif format
+        # The thumbnail image for the course in PNG, JPEG, or GIF format.
         thumbnail: nil,
         # The available visibilities for a course. Determines how / whether a course is
         # visible to users.
@@ -125,7 +127,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The thumbnail for the course in png, jpeg, or gif format
+        # The thumbnail image for the course in PNG, JPEG, or GIF format.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.

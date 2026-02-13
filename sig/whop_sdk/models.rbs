@@ -61,8 +61,6 @@ module WhopSDK
 
   module BillingReasons = WhopSDK::Models::BillingReasons
 
-  module BotTokenTransactionTypes = WhopSDK::Models::BotTokenTransactionTypes
-
   module BusinessTypes = WhopSDK::Models::BusinessTypes
 
   module CancelOptions = WhopSDK::Models::CancelOptions

@@ -11,7 +11,8 @@ module WhopSDK
           T.any(WhopSDK::PaymentRefundParams, WhopSDK::Internal::AnyHash)
         end
 
-      # An amount if the refund is supposed to be partial.
+      # The amount to refund in the payment currency. If omitted, the full payment
+      # amount is refunded.
       sig { returns(T.nilable(Float)) }
       attr_accessor :partial_amount
 
@@ -22,7 +23,8 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # An amount if the refund is supposed to be partial.
+        # The amount to refund in the payment currency. If omitted, the full payment
+        # amount is refunded.
         partial_amount: nil,
         request_options: {}
       )

@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::LeadListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the company to list leads for
+      # The unique identifier of the company to list leads for.
       sig { returns(String) }
       attr_accessor :company_id
 
@@ -23,11 +23,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # The minimum creation date to filter by
+      # Only return leads created after this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_after
 
-      # The maximum creation date to filter by
+      # Only return leads created before this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_before
 
@@ -39,7 +39,7 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
-      # The product IDs to filter the leads by
+      # Filter leads to only those associated with these specific product identifiers.
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :product_ids
 
@@ -57,21 +57,21 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the company to list leads for
+        # The unique identifier of the company to list leads for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The minimum creation date to filter by
+        # Only return leads created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return leads created before this timestamp.
         created_before: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The product IDs to filter the leads by
+        # Filter leads to only those associated with these specific product identifiers.
         product_ids: nil,
         request_options: {}
       )

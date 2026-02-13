@@ -14,7 +14,7 @@ module WhopSDK
           )
         end
 
-      # The ID of the company to list checkout configurations for
+      # The unique identifier of the company to list checkout configurations for.
       sig { returns(String) }
       attr_accessor :company_id
 
@@ -26,11 +26,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # The minimum creation date to filter by
+      # Only return checkout configurations created after this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_after
 
-      # The maximum creation date to filter by
+      # Only return checkout configurations created before this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_before
 
@@ -46,7 +46,8 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
-      # The ID of the plan to filter checkout configurations by
+      # Filter checkout configurations to only those associated with this plan
+      # identifier.
       sig { returns(T.nilable(String)) }
       attr_accessor :plan_id
 
@@ -65,15 +66,15 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the company to list checkout configurations for
+        # The unique identifier of the company to list checkout configurations for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The minimum creation date to filter by
+        # Only return checkout configurations created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return checkout configurations created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,
@@ -81,7 +82,8 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The ID of the plan to filter checkout configurations by
+        # Filter checkout configurations to only those associated with this plan
+        # identifier.
         plan_id: nil,
         request_options: {}
       )

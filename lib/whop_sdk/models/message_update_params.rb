@@ -8,7 +8,8 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute attachments
-      #   The attachments for this message
+      #   A replacement list of file attachments for this message, such as images or
+      #   videos.
       #
       #   @return [Array<WhopSDK::Models::MessageUpdateParams::Attachment>, nil]
       optional :attachments,
@@ -16,23 +17,28 @@ module WhopSDK
                nil?: true
 
       # @!attribute content
-      #   The content of the message in Markdown format
+      #   The updated body of the message in Markdown format. For example, 'Hello
+      #   **world**'.
       #
       #   @return [String, nil]
       optional :content, String, nil?: true
 
       # @!attribute is_pinned
-      #   Whether this message is pinned
+      #   Whether this message should be pinned to the top of the channel.
       #
       #   @return [Boolean, nil]
       optional :is_pinned, WhopSDK::Internal::Type::Boolean, nil?: true
 
       # @!method initialize(attachments: nil, content: nil, is_pinned: nil, request_options: {})
-      #   @param attachments [Array<WhopSDK::Models::MessageUpdateParams::Attachment>, nil] The attachments for this message
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::MessageUpdateParams} for more details.
       #
-      #   @param content [String, nil] The content of the message in Markdown format
+      #   @param attachments [Array<WhopSDK::Models::MessageUpdateParams::Attachment>, nil] A replacement list of file attachments for this message, such as images or video
       #
-      #   @param is_pinned [Boolean, nil] Whether this message is pinned
+      #   @param content [String, nil] The updated body of the message in Markdown format. For example,
+      #   'Hello \*_world_
+      #
+      #   @param is_pinned [Boolean, nil] Whether this message should be pinned to the top of the channel.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 

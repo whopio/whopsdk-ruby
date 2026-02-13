@@ -8,7 +8,8 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute assessment_completion_requirement
-      #   Completion requirements for quiz/knowledge check lessons
+      #   The passing criteria for quiz or knowledge check lessons, such as minimum grade
+      #   or correct answers.
       #
       #   @return [WhopSDK::Models::CourseLessonUpdateParams::AssessmentCompletionRequirement, nil]
       optional :assessment_completion_requirement,
@@ -16,8 +17,8 @@ module WhopSDK
                nil?: true
 
       # @!attribute assessment_questions
-      #   Assessment questions for quiz/knowledge check lessons. Replaces all existing
-      #   questions.
+      #   The full list of assessment questions for quiz or knowledge check lessons.
+      #   Replaces all existing questions.
       #
       #   @return [Array<WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion>, nil]
       optional :assessment_questions,
@@ -25,7 +26,7 @@ module WhopSDK
                nil?: true
 
       # @!attribute attachments
-      #   General attachments for the lesson (PDFs, files, etc). Replaces all existing
+      #   File attachments for the lesson such as PDFs or documents. Replaces all existing
       #   attachments.
       #
       #   @return [Array<WhopSDK::Models::CourseLessonUpdateParams::Attachment>, nil]
@@ -34,19 +35,21 @@ module WhopSDK
                nil?: true
 
       # @!attribute content
-      #   The content of the lesson
+      #   The Markdown content body of the lesson.
       #
       #   @return [String, nil]
       optional :content, String, nil?: true
 
       # @!attribute days_from_course_start_until_unlock
-      #   Days from course start until unlock
+      #   The number of days after a student starts the course before this lesson becomes
+      #   accessible.
       #
       #   @return [Integer, nil]
       optional :days_from_course_start_until_unlock, Integer, nil?: true
 
       # @!attribute embed_id
-      #   ID for the embed (YouTube video ID or Loom share ID)
+      #   The external video identifier for embedded content (e.g., a YouTube video ID or
+      #   Loom share ID).
       #
       #   @return [String, nil]
       optional :embed_id, String, nil?: true
@@ -64,31 +67,32 @@ module WhopSDK
       optional :lesson_type, enum: -> { WhopSDK::LessonTypes }, nil?: true
 
       # @!attribute main_pdf
-      #   The main PDF file for this lesson
+      #   The primary PDF document attached to this lesson for student reference.
       #
       #   @return [WhopSDK::Models::CourseLessonUpdateParams::MainPdf, nil]
       optional :main_pdf, -> { WhopSDK::CourseLessonUpdateParams::MainPdf }, nil?: true
 
       # @!attribute max_attempts
-      #   Maximum number of attempts allowed for assessments
+      #   The maximum number of attempts a student is allowed for assessment lessons.
       #
       #   @return [Integer, nil]
       optional :max_attempts, Integer, nil?: true
 
       # @!attribute mux_asset_id
-      #   The ID of the Mux asset to attach to this lesson for video lessons
+      #   The identifier of a Mux video asset to attach to this lesson (e.g.,
+      #   "mux_XXXXX").
       #
       #   @return [String, nil]
       optional :mux_asset_id, String, nil?: true
 
       # @!attribute thumbnail
-      #   The thumbnail for the lesson in png, jpeg, or gif format
+      #   The thumbnail image for the lesson in PNG, JPEG, or GIF format.
       #
       #   @return [WhopSDK::Models::CourseLessonUpdateParams::Thumbnail, nil]
       optional :thumbnail, -> { WhopSDK::CourseLessonUpdateParams::Thumbnail }, nil?: true
 
       # @!attribute title
-      #   The title of the lesson
+      #   The display title of the lesson (e.g., "Getting Started with APIs").
       #
       #   @return [String, nil]
       optional :title, String, nil?: true
@@ -104,31 +108,31 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CourseLessonUpdateParams} for more details.
       #
-      #   @param assessment_completion_requirement [WhopSDK::Models::CourseLessonUpdateParams::AssessmentCompletionRequirement, nil] Completion requirements for quiz/knowledge check lessons
+      #   @param assessment_completion_requirement [WhopSDK::Models::CourseLessonUpdateParams::AssessmentCompletionRequirement, nil] The passing criteria for quiz or knowledge check lessons, such as minimum grade
       #
-      #   @param assessment_questions [Array<WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion>, nil] Assessment questions for quiz/knowledge check lessons. Replaces all existing que
+      #   @param assessment_questions [Array<WhopSDK::Models::CourseLessonUpdateParams::AssessmentQuestion>, nil] The full list of assessment questions for quiz or knowledge check lessons. Repla
       #
-      #   @param attachments [Array<WhopSDK::Models::CourseLessonUpdateParams::Attachment>, nil] General attachments for the lesson (PDFs, files, etc). Replaces all existing att
+      #   @param attachments [Array<WhopSDK::Models::CourseLessonUpdateParams::Attachment>, nil] File attachments for the lesson such as PDFs or documents. Replaces all existing
       #
-      #   @param content [String, nil] The content of the lesson
+      #   @param content [String, nil] The Markdown content body of the lesson.
       #
-      #   @param days_from_course_start_until_unlock [Integer, nil] Days from course start until unlock
+      #   @param days_from_course_start_until_unlock [Integer, nil] The number of days after a student starts the course before this lesson becomes
       #
-      #   @param embed_id [String, nil] ID for the embed (YouTube video ID or Loom share ID)
+      #   @param embed_id [String, nil] The external video identifier for embedded content (e.g., a YouTube video ID or
       #
       #   @param embed_type [Symbol, WhopSDK::Models::EmbedType, nil] The type of embed for a lesson
       #
       #   @param lesson_type [Symbol, WhopSDK::Models::LessonTypes, nil] The available types for a lesson
       #
-      #   @param main_pdf [WhopSDK::Models::CourseLessonUpdateParams::MainPdf, nil] The main PDF file for this lesson
+      #   @param main_pdf [WhopSDK::Models::CourseLessonUpdateParams::MainPdf, nil] The primary PDF document attached to this lesson for student reference.
       #
-      #   @param max_attempts [Integer, nil] Maximum number of attempts allowed for assessments
+      #   @param max_attempts [Integer, nil] The maximum number of attempts a student is allowed for assessment lessons.
       #
-      #   @param mux_asset_id [String, nil] The ID of the Mux asset to attach to this lesson for video lessons
+      #   @param mux_asset_id [String, nil] The identifier of a Mux video asset to attach to this lesson (e.g., "mux_XXXXX")
       #
-      #   @param thumbnail [WhopSDK::Models::CourseLessonUpdateParams::Thumbnail, nil] The thumbnail for the lesson in png, jpeg, or gif format
+      #   @param thumbnail [WhopSDK::Models::CourseLessonUpdateParams::Thumbnail, nil] The thumbnail image for the lesson in PNG, JPEG, or GIF format.
       #
-      #   @param title [String, nil] The title of the lesson
+      #   @param title [String, nil] The display title of the lesson (e.g., "Getting Started with APIs").
       #
       #   @param visibility [Symbol, WhopSDK::Models::LessonVisibilities, nil] The available visibilities for a lesson. Determines how / whether a lesson is vi
       #
@@ -154,7 +158,8 @@ module WhopSDK
         #   {WhopSDK::Models::CourseLessonUpdateParams::AssessmentCompletionRequirement} for
         #   more details.
         #
-        #   Completion requirements for quiz/knowledge check lessons
+        #   The passing criteria for quiz or knowledge check lessons, such as minimum grade
+        #   or correct answers.
         #
         #   @param minimum_grade_percent [Float, nil] The minimum grade percentage required to pass (0-100). Cannot be set together wi
         #
@@ -292,7 +297,7 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   The main PDF file for this lesson
+        #   The primary PDF document attached to this lesson for student reference.
         #
         #   @param id [String] The ID of an existing file object.
       end
@@ -305,7 +310,7 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   The thumbnail for the lesson in png, jpeg, or gif format
+        #   The thumbnail image for the lesson in PNG, JPEG, or GIF format.
         #
         #   @param id [String] The ID of an existing file object.
       end

@@ -8,7 +8,7 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute channel_id
-      #   The ID of the channel or the experience ID to list messages for
+      #   The unique identifier of the channel or experience to list messages for.
       #
       #   @return [String]
       required :channel_id, String
@@ -44,7 +44,7 @@ module WhopSDK
       optional :last, Integer, nil?: true
 
       # @!method initialize(channel_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, request_options: {})
-      #   @param channel_id [String] The ID of the channel or the experience ID to list messages for
+      #   @param channel_id [String] The unique identifier of the channel or experience to list messages for.
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #

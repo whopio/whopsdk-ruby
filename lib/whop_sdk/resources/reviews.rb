@@ -3,11 +3,11 @@
 module WhopSDK
   module Resources
     class Reviews
-      # Retrieve a review by its ID
+      # Retrieves the details of an existing review.
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the review
+      # @param id [String] The unique identifier of the review to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -23,27 +23,28 @@ module WhopSDK
         )
       end
 
-      # List all reviews
+      # Returns a paginated list of customer reviews for a specific product, with
+      # optional filtering by star rating and creation date.
       #
       # @overload list(product_id:, after: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, max_stars: nil, min_stars: nil, request_options: {})
       #
-      # @param product_id [String] The ID of the product
+      # @param product_id [String] The unique identifier of the product to list reviews for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param created_after [Time, nil] The minimum creation date to filter by
+      # @param created_after [Time, nil] Only return reviews created after this timestamp.
       #
-      # @param created_before [Time, nil] The maximum creation date to filter by
+      # @param created_before [Time, nil] Only return reviews created before this timestamp.
       #
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param max_stars [Integer, nil] The maximum star rating of the review (inclusive)
+      # @param max_stars [Integer, nil] The maximum star rating to include in results, from 1 to 5 inclusive.
       #
-      # @param min_stars [Integer, nil] The minimum star rating of the review (inclusive)
+      # @param min_stars [Integer, nil] The minimum star rating to include in results, from 1 to 5 inclusive.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

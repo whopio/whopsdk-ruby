@@ -15,8 +15,8 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The withdrawal amount. Provided as a number in the specified currency. Eg:
-      # 100.00 for $100.00 USD.
+      # The withdrawal amount as a decimal number in the specified currency (e.g.,
+      # 100.00 for $100.00 USD).
       sig { returns(Float) }
       attr_accessor :amount
 
@@ -24,12 +24,12 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The currency of the withdrawal request.
+      # The three-letter ISO currency code for this withdrawal (e.g., 'usd', 'eur').
       sig { returns(WhopSDK::Currency::TaggedSymbol) }
       attr_accessor :currency
 
-      # The fee amount that was charged for the withdrawal. This is in the same currency
-      # as the withdrawal amount.
+      # The fee charged for processing this withdrawal, in the same currency as the
+      # withdrawal amount.
       sig { returns(Float) }
       attr_accessor :fee_amount
 
@@ -37,22 +37,22 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::WithdrawalFeeTypes::TaggedSymbol)) }
       attr_accessor :fee_type
 
-      # The markup fee that was charged for the withdrawal. This is in the same currency
-      # as the withdrawal amount. This only applies to platform accounts using Whop
-      # Rails.
+      # An additional markup fee charged for the withdrawal, in the same currency as the
+      # withdrawal amount. Only applies to platform accounts using Whop Rails.
       sig { returns(Float) }
       attr_accessor :markup_fee
 
-      # The speed of the withdrawal.
+      # The processing speed selected for this withdrawal ('standard' or 'instant').
       sig { returns(WhopSDK::WithdrawalSpeeds::TaggedSymbol) }
       attr_accessor :speed
 
-      # Status of the withdrawal.
+      # The computed lifecycle status of the withdrawal, accounting for the state of
+      # associated payouts (e.g., 'requested', 'in_transit', 'completed', 'failed').
       sig { returns(WhopSDK::WithdrawalStatus::TaggedSymbol) }
       attr_accessor :status
 
-      # A withdrawal represents a request to transfer funds from a company's ledger
-      # account to an external payout method.
+      # A withdrawal represents a request to transfer funds from a ledger account to an
+      # external payout method.
       sig do
         params(
           id: String,
@@ -69,25 +69,25 @@ module WhopSDK
       def self.new(
         # The unique identifier for the withdrawal.
         id:,
-        # The withdrawal amount. Provided as a number in the specified currency. Eg:
-        # 100.00 for $100.00 USD.
+        # The withdrawal amount as a decimal number in the specified currency (e.g.,
+        # 100.00 for $100.00 USD).
         amount:,
         # The datetime the withdrawal was created.
         created_at:,
-        # The currency of the withdrawal request.
+        # The three-letter ISO currency code for this withdrawal (e.g., 'usd', 'eur').
         currency:,
-        # The fee amount that was charged for the withdrawal. This is in the same currency
-        # as the withdrawal amount.
+        # The fee charged for processing this withdrawal, in the same currency as the
+        # withdrawal amount.
         fee_amount:,
         # The different fee types for a withdrawal.
         fee_type:,
-        # The markup fee that was charged for the withdrawal. This is in the same currency
-        # as the withdrawal amount. This only applies to platform accounts using Whop
-        # Rails.
+        # An additional markup fee charged for the withdrawal, in the same currency as the
+        # withdrawal amount. Only applies to platform accounts using Whop Rails.
         markup_fee:,
-        # The speed of the withdrawal.
+        # The processing speed selected for this withdrawal ('standard' or 'instant').
         speed:,
-        # Status of the withdrawal.
+        # The computed lifecycle status of the withdrawal, accounting for the state of
+        # associated payouts (e.g., 'requested', 'in_transit', 'completed', 'failed').
         status:
       )
       end

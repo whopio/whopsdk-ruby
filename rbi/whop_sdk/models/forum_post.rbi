@@ -14,58 +14,60 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The amount of comments on this post
+      # The total number of direct comments on this post.
       sig { returns(Integer) }
       attr_accessor :comment_count
 
-      # The content of the forum post in Markdown format
+      # The body of the forum post in Markdown format. Null if the post is paywalled and
+      # the current user does not have access.
       sig { returns(T.nilable(String)) }
       attr_accessor :content
 
-      # The timestamp when the post was created
+      # The time this post was created, as a Unix timestamp.
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # Whether the forum post has been edited
+      # Whether this post has been edited after its initial creation.
       sig { returns(T::Boolean) }
       attr_accessor :is_edited
 
-      # Whether this forum post is pinned
+      # Whether this post is pinned to the top of the forum feed.
       sig { returns(T::Boolean) }
       attr_accessor :is_pinned
 
-      # Whether the user that sent the post is an admin of the company
+      # Whether the author of this post is an admin of the company that owns the forum.
       sig { returns(T::Boolean) }
       attr_accessor :is_poster_admin
 
-      # The number of likes this post has received
+      # The total number of like reactions this post has received.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :like_count
 
-      # The ID of the parent forum post, if applicable
+      # The unique identifier of the parent post. Null if this is a top-level post.
       sig { returns(T.nilable(String)) }
       attr_accessor :parent_id
 
-      # The title of the forum post
+      # The headline of the forum post. Null if the post has no title.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
-      # The timestamp when the post was last updated
+      # The time this post was last updated, as a Unix timestamp.
       sig { returns(Time) }
       attr_accessor :updated_at
 
-      # The user who created this forum post
+      # The user who authored this forum post.
       sig { returns(WhopSDK::ForumPost::User) }
       attr_reader :user
 
       sig { params(user: WhopSDK::ForumPost::User::OrHash).void }
       attr_writer :user
 
-      # The number of times this message has been viewed
+      # The total number of times this post has been viewed by users.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :view_count
 
-      # Represents a post in forum
+      # A post or comment in a forum feed, supporting rich text, attachments, polls, and
+      # reactions.
       sig do
         params(
           id: String,
@@ -90,29 +92,30 @@ module WhopSDK
         # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
         # input value will be accepted as an ID.
         id:,
-        # The amount of comments on this post
+        # The total number of direct comments on this post.
         comment_count:,
-        # The content of the forum post in Markdown format
+        # The body of the forum post in Markdown format. Null if the post is paywalled and
+        # the current user does not have access.
         content:,
-        # The timestamp when the post was created
+        # The time this post was created, as a Unix timestamp.
         created_at:,
-        # Whether the forum post has been edited
+        # Whether this post has been edited after its initial creation.
         is_edited:,
-        # Whether this forum post is pinned
+        # Whether this post is pinned to the top of the forum feed.
         is_pinned:,
-        # Whether the user that sent the post is an admin of the company
+        # Whether the author of this post is an admin of the company that owns the forum.
         is_poster_admin:,
-        # The number of likes this post has received
+        # The total number of like reactions this post has received.
         like_count:,
-        # The ID of the parent forum post, if applicable
+        # The unique identifier of the parent post. Null if this is a top-level post.
         parent_id:,
-        # The title of the forum post
+        # The headline of the forum post. Null if the post has no title.
         title:,
-        # The timestamp when the post was last updated
+        # The time this post was last updated, as a Unix timestamp.
         updated_at:,
-        # The user who created this forum post
+        # The user who authored this forum post.
         user:,
-        # The number of times this message has been viewed
+        # The total number of times this post has been viewed by users.
         view_count:
       )
       end
@@ -149,15 +152,15 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The name of the user from their Whop account.
+        # The user's display name shown on their public profile.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
-        # The username of the user from their Whop account.
+        # The user's unique username shown on their public profile.
         sig { returns(String) }
         attr_accessor :username
 
-        # The user who created this forum post
+        # The user who authored this forum post.
         sig do
           params(id: String, name: T.nilable(String), username: String).returns(
             T.attached_class
@@ -166,9 +169,9 @@ module WhopSDK
         def self.new(
           # The unique identifier for the user.
           id:,
-          # The name of the user from their Whop account.
+          # The user's display name shown on their public profile.
           name:,
-          # The username of the user from their Whop account.
+          # The user's unique username shown on their public profile.
           username:
         )
         end

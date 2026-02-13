@@ -15,13 +15,13 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The API version for this webhook
+      # The API version used to format payloads sent to this webhook endpoint.
       sig { returns(WhopSDK::APIVersion::TaggedSymbol) }
       attr_accessor :api_version
 
-      # Whether or not to send events for child resources. For example, if the webhook
-      # is created for a Company, enabling this will only send events from the Company's
-      # sub-merchants (child companies).
+      # Whether events are sent for child resources. For example, if the webhook is on a
+      # company, enabling this sends events only from the company's sub-merchants (child
+      # companies).
       sig { returns(T::Boolean) }
       attr_accessor :child_resource_events
 
@@ -29,27 +29,28 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # Whether or not this webhook is turned on or not
+      # Whether this webhook endpoint is currently active and receiving events.
       sig { returns(T::Boolean) }
       attr_accessor :enabled
 
-      # The number of events this webhooks is configured to receive
+      # The list of event types this webhook is subscribed to.
       sig { returns(T::Array[WhopSDK::WebhookEvent::TaggedSymbol]) }
       attr_accessor :events
 
-      # The resource ID
+      # The ID of the resource (company or product) this webhook is attached to.
       sig { returns(String) }
       attr_accessor :resource_id
 
-      # The list of events that can be tested with this webhook
+      # The subset of subscribed event types that support sending test payloads.
       sig { returns(T::Array[WhopSDK::WebhookEvent::TaggedSymbol]) }
       attr_accessor :testable_events
 
-      # The URL the webhook events will be sent to
+      # The destination URL where webhook payloads are delivered via HTTP POST.
       sig { returns(String) }
       attr_accessor :url
 
-      # A unique secret key that will be sent with each webhook event
+      # The secret key used to sign webhook payloads for verification. Include this in
+      # your HMAC validation logic.
       sig { returns(String) }
       attr_accessor :webhook_secret
 
@@ -72,25 +73,26 @@ module WhopSDK
       def self.new(
         # The unique identifier for the webhook.
         id:,
-        # The API version for this webhook
+        # The API version used to format payloads sent to this webhook endpoint.
         api_version:,
-        # Whether or not to send events for child resources. For example, if the webhook
-        # is created for a Company, enabling this will only send events from the Company's
-        # sub-merchants (child companies).
+        # Whether events are sent for child resources. For example, if the webhook is on a
+        # company, enabling this sends events only from the company's sub-merchants (child
+        # companies).
         child_resource_events:,
         # The datetime the webhook was created.
         created_at:,
-        # Whether or not this webhook is turned on or not
+        # Whether this webhook endpoint is currently active and receiving events.
         enabled:,
-        # The number of events this webhooks is configured to receive
+        # The list of event types this webhook is subscribed to.
         events:,
-        # The resource ID
+        # The ID of the resource (company or product) this webhook is attached to.
         resource_id:,
-        # The list of events that can be tested with this webhook
+        # The subset of subscribed event types that support sending test payloads.
         testable_events:,
-        # The URL the webhook events will be sent to
+        # The destination URL where webhook payloads are delivered via HTTP POST.
         url:,
-        # A unique secret key that will be sent with each webhook event
+        # The secret key used to sign webhook payloads for verification. Include this in
+        # your HMAC validation logic.
         webhook_secret:
       )
       end

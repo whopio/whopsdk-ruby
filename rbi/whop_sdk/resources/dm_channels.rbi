@@ -3,7 +3,8 @@
 module WhopSDK
   module Resources
     class DmChannels
-      # Creates a DM channel
+      # Create a new DM channel between two or more users, optionally scoped to a
+      # specific company. Returns the existing channel if one already exists.
       sig do
         params(
           with_user_ids: T::Array[String],
@@ -13,17 +14,19 @@ module WhopSDK
         ).returns(WhopSDK::DmChannel)
       end
       def create(
-        # The user ids to create a DM with. Can be email, username or user_id (tag)
+        # The list of user identifiers to include in the DM channel. Each entry can be an
+        # email, username, or user ID (e.g. 'user_xxxxx').
         with_user_ids:,
-        # The ID of the company to scope this DM channel to.
+        # The unique identifier of the company to scope this DM channel to. When set, the
+        # channel is visible only within that company context.
         company_id: nil,
-        # The custom name for the DM channel
+        # A custom display name for the DM channel. For example, 'Project Discussion'.
         custom_name: nil,
         request_options: {}
       )
       end
 
-      # Retrieves a DM channel
+      # Retrieves the details of an existing DM channel.
       #
       # Required permissions:
       #
@@ -35,13 +38,14 @@ module WhopSDK
         ).returns(WhopSDK::DmChannel)
       end
       def retrieve(
-        # The ID of the DM channel
+        # The unique identifier of the DM channel to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # Updates a DM channel
+      # Update the settings of an existing DM channel, such as its display name. Only an
+      # admin of the channel can perform this action.
       #
       # Required permissions:
       #
@@ -54,15 +58,16 @@ module WhopSDK
         ).returns(WhopSDK::DmChannel)
       end
       def update(
-        # The ID of the DM channel to update
+        # The unique identifier of the DM channel to update.
         id,
-        # The custom name for the DM channel
+        # A new custom display name for the DM channel. For example, 'Project Discussion'.
         custom_name: nil,
         request_options: {}
       )
       end
 
-      # Lists DM channels for the current user
+      # Returns a paginated list of DM channels for the currently authenticated user,
+      # sorted by most recently active.
       #
       # Required permissions:
       #
@@ -84,7 +89,8 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # Filter DM channels scoped to a specific company
+        # The unique identifier of a company to filter DM channels by. Only returns
+        # channels scoped to this company.
         company_id: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
@@ -94,7 +100,8 @@ module WhopSDK
       )
       end
 
-      # Deletes a DM channel
+      # Permanently delete a DM channel and all of its messages. Only an admin of the
+      # channel can perform this action.
       #
       # Required permissions:
       #
@@ -106,7 +113,7 @@ module WhopSDK
         ).returns(T::Boolean)
       end
       def delete(
-        # The ID of the DM channel to delete
+        # The unique identifier of the DM channel to delete.
         id,
         request_options: {}
       )

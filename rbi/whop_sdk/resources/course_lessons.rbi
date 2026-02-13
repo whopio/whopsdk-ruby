@@ -3,7 +3,8 @@
 module WhopSDK
   module Resources
     class CourseLessons
-      # Creates a new course lesson
+      # Create a new lesson within a course chapter. Lessons can contain video, text, or
+      # assessment content.
       #
       # Required permissions:
       #
@@ -23,27 +24,30 @@ module WhopSDK
         ).returns(WhopSDK::Lesson)
       end
       def create(
-        # The ID of the chapter to create the lesson in
+        # The unique identifier of the chapter to create the lesson in (e.g.,
+        # "chap_XXXXX").
         chapter_id:,
-        # The type of the lesson
+        # The content type of the lesson, such as video, text, quiz, or knowledge check.
         lesson_type:,
-        # The content of the lesson
+        # The Markdown content body of the lesson.
         content: nil,
-        # Days from course start until unlock
+        # The number of days after a student starts the course before this lesson becomes
+        # accessible.
         days_from_course_start_until_unlock: nil,
-        # ID for the embed (YouTube video ID or Loom share ID)
+        # The external video identifier for embedded content (e.g., a YouTube video ID or
+        # Loom share ID).
         embed_id: nil,
         # The type of embed for a lesson
         embed_type: nil,
-        # The thumbnail for the lesson in png, jpeg, or gif format
+        # The thumbnail image for the lesson in PNG, JPEG, or GIF format.
         thumbnail: nil,
-        # The title of the lesson
+        # The display title of the lesson (e.g., "Getting Started with APIs").
         title: nil,
         request_options: {}
       )
       end
 
-      # Retrieves a course lesson by ID
+      # Retrieves the details of an existing course lesson.
       #
       # Required permissions:
       #
@@ -55,13 +59,14 @@ module WhopSDK
         ).returns(WhopSDK::Lesson)
       end
       def retrieve(
-        # The ID of the lesson
+        # The unique identifier of the lesson to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # Updates a course lesson
+      # Update a lesson's content, type, visibility, assessment questions, or media
+      # attachments.
       #
       # Required permissions:
       #
@@ -100,35 +105,39 @@ module WhopSDK
         ).returns(WhopSDK::Lesson)
       end
       def update(
-        # The ID of the lesson to update
+        # The unique identifier of the lesson to update (e.g., "les_XXXXX").
         id,
-        # Completion requirements for quiz/knowledge check lessons
+        # The passing criteria for quiz or knowledge check lessons, such as minimum grade
+        # or correct answers.
         assessment_completion_requirement: nil,
-        # Assessment questions for quiz/knowledge check lessons. Replaces all existing
-        # questions.
+        # The full list of assessment questions for quiz or knowledge check lessons.
+        # Replaces all existing questions.
         assessment_questions: nil,
-        # General attachments for the lesson (PDFs, files, etc). Replaces all existing
+        # File attachments for the lesson such as PDFs or documents. Replaces all existing
         # attachments.
         attachments: nil,
-        # The content of the lesson
+        # The Markdown content body of the lesson.
         content: nil,
-        # Days from course start until unlock
+        # The number of days after a student starts the course before this lesson becomes
+        # accessible.
         days_from_course_start_until_unlock: nil,
-        # ID for the embed (YouTube video ID or Loom share ID)
+        # The external video identifier for embedded content (e.g., a YouTube video ID or
+        # Loom share ID).
         embed_id: nil,
         # The type of embed for a lesson
         embed_type: nil,
         # The available types for a lesson
         lesson_type: nil,
-        # The main PDF file for this lesson
+        # The primary PDF document attached to this lesson for student reference.
         main_pdf: nil,
-        # Maximum number of attempts allowed for assessments
+        # The maximum number of attempts a student is allowed for assessment lessons.
         max_attempts: nil,
-        # The ID of the Mux asset to attach to this lesson for video lessons
+        # The identifier of a Mux video asset to attach to this lesson (e.g.,
+        # "mux_XXXXX").
         mux_asset_id: nil,
-        # The thumbnail for the lesson in png, jpeg, or gif format
+        # The thumbnail image for the lesson in PNG, JPEG, or GIF format.
         thumbnail: nil,
-        # The title of the lesson
+        # The display title of the lesson (e.g., "Getting Started with APIs").
         title: nil,
         # The available visibilities for a lesson. Determines how / whether a lesson is
         # visible to users.
@@ -137,7 +146,8 @@ module WhopSDK
       )
       end
 
-      # Lists lessons for a course or chapter
+      # Returns a paginated list of lessons within a course or chapter, ordered by
+      # position.
       #
       # Required permissions:
       #
@@ -162,9 +172,9 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The ID of the chapter (returns lessons only for this chapter)
+        # The unique identifier of a chapter to return only its lessons.
         chapter_id: nil,
-        # The ID of the course (returns all lessons across all chapters)
+        # The unique identifier of the course to return all lessons across all chapters.
         course_id: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
@@ -174,7 +184,7 @@ module WhopSDK
       )
       end
 
-      # Deletes a course lesson
+      # Permanently delete a lesson and remove it from its chapter.
       #
       # Required permissions:
       #
@@ -186,13 +196,13 @@ module WhopSDK
         ).returns(T::Boolean)
       end
       def delete(
-        # The ID of the lesson to delete
+        # The unique identifier of the lesson to delete (e.g., "les_XXXXX").
         id,
         request_options: {}
       )
       end
 
-      # Marks a course lesson as completed
+      # Mark a lesson as completed for the current user after they finish the content.
       sig do
         params(
           lesson_id: String,
@@ -200,13 +210,14 @@ module WhopSDK
         ).returns(T::Boolean)
       end
       def mark_as_completed(
-        # The ID of the lesson to mark as completed
+        # The unique identifier of the lesson to mark as completed (e.g., "les_XXXXX").
         lesson_id,
         request_options: {}
       )
       end
 
-      # Starts a course lesson
+      # Record that the current user has started viewing a lesson, creating progress
+      # tracking records.
       sig do
         params(
           lesson_id: String,
@@ -214,13 +225,13 @@ module WhopSDK
         ).returns(T::Boolean)
       end
       def start(
-        # The ID of the lesson being started
+        # The unique identifier of the lesson the user is starting (e.g., "les_XXXXX").
         lesson_id,
         request_options: {}
       )
       end
 
-      # Submits answers for a course assessment
+      # Submit answers for a quiz or knowledge check lesson and receive a graded result.
       sig do
         params(
           lesson_id: String,
@@ -232,9 +243,10 @@ module WhopSDK
         ).returns(WhopSDK::Models::CourseLessonSubmitAssessmentResponse)
       end
       def submit_assessment(
-        # The ID of the lesson (quiz or knowledge check) to submit answers for
+        # The unique identifier of the quiz or knowledge check lesson to submit answers
+        # for (e.g., "les_XXXXX").
         lesson_id,
-        # The answers to the assessment questions
+        # The list of answers to submit for each assessment question.
         answers:,
         request_options: {}
       )

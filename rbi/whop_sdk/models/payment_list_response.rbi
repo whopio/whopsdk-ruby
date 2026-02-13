@@ -63,7 +63,8 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::CardBrands::TaggedSymbol)) }
       attr_accessor :card_brand
 
-      # The last 4 digits of the card used to make the payment.
+      # The last four digits of the card used to make this payment. Null if the payment
+      # was not made with a card.
       sig { returns(T.nilable(String)) }
       attr_accessor :card_last4
 
@@ -134,11 +135,13 @@ module WhopSDK
       sig { returns(T.nilable(Time)) }
       attr_accessor :next_payment_attempt
 
-      # The datetime the payment was paid
+      # The time at which this payment was successfully collected. Null if the payment
+      # has not yet succeeded. As a Unix timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :paid_at
 
-      # The payment method used for the payment, if available.
+      # The tokenized payment method reference used for this payment. Null if no token
+      # was used.
       sig do
         returns(T.nilable(WhopSDK::Models::PaymentListResponse::PaymentMethod))
       end
@@ -254,8 +257,8 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :voidable
 
-      # A payment represents a completed or attempted charge for a membership. Payments
-      # track the amount, status, currency, and payment method used.
+      # A payment represents a completed or attempted charge. Payments track the amount,
+      # status, currency, and payment method used.
       sig do
         params(
           id: String,
@@ -325,7 +328,8 @@ module WhopSDK
         billing_reason:,
         # Possible card brands that a payment token can have
         card_brand:,
-        # The last 4 digits of the card used to make the payment.
+        # The last four digits of the card used to make this payment. Null if the payment
+        # was not made with a card.
         card_last4:,
         # The company for the payment.
         company:,
@@ -348,9 +352,11 @@ module WhopSDK
         metadata:,
         # The time of the next schedule payment retry.
         next_payment_attempt:,
-        # The datetime the payment was paid
+        # The time at which this payment was successfully collected. Null if the payment
+        # has not yet succeeded. As a Unix timestamp.
         paid_at:,
-        # The payment method used for the payment, if available.
+        # The tokenized payment method reference used for this payment. Null if no token
+        # was used.
         payment_method:,
         # The different types of payment methods that can be used.
         payment_method_type:,
@@ -758,7 +764,8 @@ module WhopSDK
         sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
         attr_accessor :payment_method_type
 
-        # The payment method used for the payment, if available.
+        # The tokenized payment method reference used for this payment. Null if no token
+        # was used.
         sig do
           params(
             id: String,
@@ -811,15 +818,16 @@ module WhopSDK
           sig { returns(T.nilable(WhopSDK::CardBrands::TaggedSymbol)) }
           attr_accessor :brand
 
-          # Card expiration month, like 03 for March.
+          # The two-digit expiration month of the card (1-12). Null if not available.
           sig { returns(T.nilable(Integer)) }
           attr_accessor :exp_month
 
-          # Card expiration year, like 27 for 2027.
+          # The two-digit expiration year of the card (e.g., 27 for 2027). Null if not
+          # available.
           sig { returns(T.nilable(Integer)) }
           attr_accessor :exp_year
 
-          # Last four digits of the card.
+          # The last four digits of the card number. Null if not available.
           sig { returns(T.nilable(String)) }
           attr_accessor :last4
 
@@ -835,11 +843,12 @@ module WhopSDK
           def self.new(
             # Possible card brands that a payment token can have
             brand:,
-            # Card expiration month, like 03 for March.
+            # The two-digit expiration month of the card (1-12). Null if not available.
             exp_month:,
-            # Card expiration year, like 27 for 2027.
+            # The two-digit expiration year of the card (e.g., 27 for 2027). Null if not
+            # available.
             exp_year:,
-            # Last four digits of the card.
+            # The last four digits of the card number. Null if not available.
             last4:
           )
           end
@@ -898,11 +907,13 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The route of the product.
+        # The URL slug used in the product's public link (e.g., 'my-product' in
+        # whop.com/company/my-product).
         sig { returns(String) }
         attr_accessor :route
 
-        # The title of the product. Use for Whop 4.0.
+        # The display name of the product shown to customers on the product page and in
+        # search results.
         sig { returns(String) }
         attr_accessor :title
 
@@ -915,9 +926,11 @@ module WhopSDK
         def self.new(
           # The unique identifier for the product.
           id:,
-          # The route of the product.
+          # The URL slug used in the product's public link (e.g., 'my-product' in
+          # whop.com/company/my-product).
           route:,
-          # The title of the product. Use for Whop 4.0.
+          # The display name of the product shown to customers on the product page and in
+          # search results.
           title:
         )
         end
@@ -1020,15 +1033,16 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The email of the user
+        # The user's email address. Requires the member:email:read permission to access.
+        # Null if not authorized.
         sig { returns(T.nilable(String)) }
         attr_accessor :email
 
-        # The name of the user from their Whop account.
+        # The user's display name shown on their public profile.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
-        # The username of the user from their Whop account.
+        # The user's unique username shown on their public profile.
         sig { returns(String) }
         attr_accessor :username
 
@@ -1044,11 +1058,12 @@ module WhopSDK
         def self.new(
           # The unique identifier for the user.
           id:,
-          # The email of the user
+          # The user's email address. Requires the member:email:read permission to access.
+          # Null if not authorized.
           email:,
-          # The name of the user from their Whop account.
+          # The user's display name shown on their public profile.
           name:,
-          # The username of the user from their Whop account.
+          # The user's unique username shown on their public profile.
           username:
         )
         end

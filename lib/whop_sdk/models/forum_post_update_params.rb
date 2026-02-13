@@ -8,7 +8,7 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute attachments
-      #   The attachments for this post
+      #   A replacement list of file attachments for this post, such as images or videos.
       #
       #   @return [Array<WhopSDK::Models::ForumPostUpdateParams::Attachment>, nil]
       optional :attachments,
@@ -16,20 +16,23 @@ module WhopSDK
                nil?: true
 
       # @!attribute content
-      #   This is the main body of the post in Markdown format. Hidden if paywalled and
-      #   user hasn't purchased access to it.
+      #   The updated body of the post in Markdown format. For example, 'Check out this
+      #   **update**'. Hidden if the post is paywalled and the viewer has not purchased
+      #   access.
       #
       #   @return [String, nil]
       optional :content, String, nil?: true
 
       # @!attribute is_pinned
-      #   Whether the post is pinned. You can only pin a top level posts (not comments).
+      #   Whether this post should be pinned to the top of the forum. Only top-level posts
+      #   can be pinned, not comments.
       #
       #   @return [Boolean, nil]
       optional :is_pinned, WhopSDK::Internal::Type::Boolean, nil?: true
 
       # @!attribute title
-      #   The title of the post. Only visible if paywalled.
+      #   The updated title of the post, displayed prominently at the top. Required for
+      #   paywalled posts as it remains visible to non-purchasers.
       #
       #   @return [String, nil]
       optional :title, String, nil?: true
@@ -44,13 +47,14 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ForumPostUpdateParams} for more details.
       #
-      #   @param attachments [Array<WhopSDK::Models::ForumPostUpdateParams::Attachment>, nil] The attachments for this post
+      #   @param attachments [Array<WhopSDK::Models::ForumPostUpdateParams::Attachment>, nil] A replacement list of file attachments for this post, such as images or videos.
       #
-      #   @param content [String, nil] This is the main body of the post in Markdown format. Hidden if paywalled and us
+      #   @param content [String, nil] The updated body of the post in Markdown format. For example, 'Check out this
+      #   \*\*
       #
-      #   @param is_pinned [Boolean, nil] Whether the post is pinned. You can only pin a top level posts (not comments).
+      #   @param is_pinned [Boolean, nil] Whether this post should be pinned to the top of the forum. Only top-level posts
       #
-      #   @param title [String, nil] The title of the post. Only visible if paywalled.
+      #   @param title [String, nil] The updated title of the post, displayed prominently at the top. Required for pa
       #
       #   @param visibility [Symbol, WhopSDK::Models::ForumPostVisibilityType, nil] The visibility types for forum posts
       #

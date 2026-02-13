@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class CourseStudents
-      # Retrieves a course student by interaction ID
+      # Retrieves the details of an existing course student.
       #
       # Required permissions:
       #
@@ -12,7 +12,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the course student interaction
+      # @param id [String] The unique identifier of the course student record to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -28,7 +28,8 @@ module WhopSDK
         )
       end
 
-      # Lists students for a course
+      # Returns a paginated list of students enrolled in a course, with optional name
+      # filtering.
       #
       # Required permissions:
       #
@@ -37,7 +38,7 @@ module WhopSDK
       #
       # @overload list(course_id:, after: nil, before: nil, first: nil, keyword: nil, last: nil, request_options: {})
       #
-      # @param course_id [String] The ID of the course
+      # @param course_id [String] The unique identifier of the course to list enrolled students for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -45,7 +46,7 @@ module WhopSDK
       #
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
-      # @param keyword [String, nil] Filter students by name - returns students whose names match the keyword
+      # @param keyword [String, nil] A search term to filter students by name or username.
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #

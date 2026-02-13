@@ -73,9 +73,9 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CheckoutConfigurationListResponse} for more details.
       #
-      #   A checkout session is a reusable configuration for a checkout, including the
-      #   plan, affiliate, and custom metadata. Payments and memberships created from a
-      #   checkout session inherit its metadata.
+      #   A checkout configuration is a reusable configuration for a checkout, including
+      #   the plan, affiliate, and custom metadata. Payments and memberships created from
+      #   a checkout session inherit its metadata.
       #
       #   @param id [String] The unique identifier for the checkout session.
       #
@@ -148,13 +148,15 @@ module WhopSDK
         required :id, String
 
         # @!attribute billing_period
-        #   The interval in days at which the plan charges (renewal plans).
+        #   The number of days between each recurring charge. Null for one-time plans. For
+        #   example, 30 for monthly or 365 for annual billing.
         #
         #   @return [Integer, nil]
         required :billing_period, Integer, nil?: true
 
         # @!attribute currency
-        #   The respective currency identifier for the plan.
+        #   The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
+        #   amounts on the plan are denominated in this currency.
         #
         #   @return [Symbol, WhopSDK::Models::Currency]
         required :currency, enum: -> { WhopSDK::Currency }
@@ -175,13 +177,15 @@ module WhopSDK
         required :initial_price, Float
 
         # @!attribute plan_type
-        #   Indicates if the plan is a one time payment or recurring.
+        #   The billing model for this plan: 'renewal' for recurring subscriptions or
+        #   'one_time' for single payments.
         #
         #   @return [Symbol, WhopSDK::Models::PlanType]
         required :plan_type, enum: -> { WhopSDK::PlanType }
 
         # @!attribute release_method
-        #   This is the release method the business uses to sell this plan.
+        #   The method used to sell this plan: 'buy_now' for immediate purchase or
+        #   'waitlist' for waitlist-based access.
         #
         #   @return [Symbol, WhopSDK::Models::ReleaseMethod]
         required :release_method, enum: -> { WhopSDK::ReleaseMethod }
@@ -194,13 +198,16 @@ module WhopSDK
         required :renewal_price, Float
 
         # @!attribute trial_period_days
-        #   The number of free trial days added before a renewal plan.
+        #   The number of free trial days before the first charge on a renewal plan. Null if
+        #   no trial is configured or the current user has already used a trial for this
+        #   plan.
         #
         #   @return [Integer, nil]
         required :trial_period_days, Integer, nil?: true
 
         # @!attribute visibility
-        #   Shows or hides the plan from public/business view.
+        #   Controls whether the plan is visible to customers. When set to 'hidden', the
+        #   plan is only accessible via direct link.
         #
         #   @return [Symbol, WhopSDK::Models::Visibility]
         required :visibility, enum: -> { WhopSDK::Visibility }
@@ -213,23 +220,23 @@ module WhopSDK
         #
         #   @param id [String] The unique identifier for the plan.
         #
-        #   @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans).
+        #   @param billing_period [Integer, nil] The number of days between each recurring charge. Null for one-time plans. For e
         #
-        #   @param currency [Symbol, WhopSDK::Models::Currency] The respective currency identifier for the plan.
+        #   @param currency [Symbol, WhopSDK::Models::Currency] The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
         #
         #   @param expiration_days [Integer, nil] The number of days until the membership expires (for expiration-based plans). Fo
         #
         #   @param initial_price [Float] The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
         #
-        #   @param plan_type [Symbol, WhopSDK::Models::PlanType] Indicates if the plan is a one time payment or recurring.
+        #   @param plan_type [Symbol, WhopSDK::Models::PlanType] The billing model for this plan: 'renewal' for recurring subscriptions or 'one_t
         #
-        #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod] This is the release method the business uses to sell this plan.
+        #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod] The method used to sell this plan: 'buy_now' for immediate purchase or 'waitlist
         #
         #   @param renewal_price [Float] The recurring price charged every billing_period in the plan's base_currency (e.
         #
-        #   @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
+        #   @param trial_period_days [Integer, nil] The number of free trial days before the first charge on a renewal plan. Null if
         #
-        #   @param visibility [Symbol, WhopSDK::Models::Visibility] Shows or hides the plan from public/business view.
+        #   @param visibility [Symbol, WhopSDK::Models::Visibility] Controls whether the plan is visible to customers. When set to 'hidden', the pla
       end
     end
   end

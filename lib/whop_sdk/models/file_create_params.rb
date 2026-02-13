@@ -8,13 +8,17 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute filename
-      #   The filename of the file
+      #   The name of the file including its extension (e.g., "photo.png" or
+      #   "document.pdf").
       #
       #   @return [String]
       required :filename, String
 
       # @!method initialize(filename:, request_options: {})
-      #   @param filename [String] The filename of the file
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::FileCreateParams} for more details.
+      #
+      #   @param filename [String] The name of the file including its extension (e.g., "photo.png" or "document.pdf
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

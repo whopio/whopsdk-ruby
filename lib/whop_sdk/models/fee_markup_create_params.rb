@@ -8,53 +8,56 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute company_id
-      #   The ID (tag) of the company you want to update the fee markup for.
+      #   The unique identifier of the company to create or update the fee markup for.
       #
       #   @return [String]
       required :company_id, String
 
       # @!attribute fee_type
-      #   The type of fee this markup applies to.
+      #   The type of fee this markup applies to, such as processing or platform fees.
       #
       #   @return [Symbol, WhopSDK::Models::FeeMarkupType]
       required :fee_type, enum: -> { WhopSDK::FeeMarkupType }
 
       # @!attribute fixed_fee_usd
-      #   The fixed fee in USD to charge (0-50).
+      #   The fixed fee amount in USD to charge per transaction. Must be between 0 and 50.
       #
       #   @return [Float, nil]
       optional :fixed_fee_usd, Float, nil?: true
 
       # @!attribute metadata
-      #   Custom metadata to attach to this fee markup.
+      #   Custom key-value metadata to attach to this fee markup.
       #
       #   @return [Hash{Symbol=>Object}, nil]
       optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
       # @!attribute notes
-      #   Internal notes about this fee markup.
+      #   Internal notes about this fee markup for record-keeping purposes.
       #
       #   @return [String, nil]
       optional :notes, String, nil?: true
 
       # @!attribute percentage_fee
-      #   The percentage fee to charge (0-25).
+      #   The percentage fee to charge per transaction. Must be between 0 and 25.
       #
       #   @return [Float, nil]
       optional :percentage_fee, Float, nil?: true
 
       # @!method initialize(company_id:, fee_type:, fixed_fee_usd: nil, metadata: nil, notes: nil, percentage_fee: nil, request_options: {})
-      #   @param company_id [String] The ID (tag) of the company you want to update the fee markup for.
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::FeeMarkupCreateParams} for more details.
       #
-      #   @param fee_type [Symbol, WhopSDK::Models::FeeMarkupType] The type of fee this markup applies to.
+      #   @param company_id [String] The unique identifier of the company to create or update the fee markup for.
       #
-      #   @param fixed_fee_usd [Float, nil] The fixed fee in USD to charge (0-50).
+      #   @param fee_type [Symbol, WhopSDK::Models::FeeMarkupType] The type of fee this markup applies to, such as processing or platform fees.
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] Custom metadata to attach to this fee markup.
+      #   @param fixed_fee_usd [Float, nil] The fixed fee amount in USD to charge per transaction. Must be between 0 and 50.
       #
-      #   @param notes [String, nil] Internal notes about this fee markup.
+      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value metadata to attach to this fee markup.
       #
-      #   @param percentage_fee [Float, nil] The percentage fee to charge (0-25).
+      #   @param notes [String, nil] Internal notes about this fee markup for record-keeping purposes.
+      #
+      #   @param percentage_fee [Float, nil] The percentage fee to charge per transaction. Must be between 0 and 25.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

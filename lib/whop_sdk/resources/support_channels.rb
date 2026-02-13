@@ -3,8 +3,11 @@
 module WhopSDK
   module Resources
     class SupportChannels
-      # Create a new support channel for a user in a company. If one already exists, it
-      # will return the existing one.
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::SupportChannelCreateParams} for more details.
+      #
+      # Open a new support channel between a company team member and a customer. Returns
+      # the existing channel if one already exists for that user.
       #
       # Required permissions:
       #
@@ -12,9 +15,9 @@ module WhopSDK
       #
       # @overload create(company_id:, user_id:, request_options: {})
       #
-      # @param company_id [String] The ID of the company to create the support chat in
+      # @param company_id [String] The unique identifier of the company to create the support channel in.
       #
-      # @param user_id [String] The ID (user_xxx) or username of the user to create the support chat for
+      # @param user_id [String] The user ID (e.g. 'user_xxxxx') or username of the customer to open a support ch
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -32,7 +35,7 @@ module WhopSDK
         )
       end
 
-      # Retrieves a support channel
+      # Retrieves the details of an existing support channel.
       #
       # Required permissions:
       #
@@ -40,7 +43,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the support channel to fetch
+      # @param id [String] The unique identifier of the support channel to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -59,7 +62,8 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::SupportChannelListParams} for more details.
       #
-      # Lists chat channels inside a company
+      # Returns a paginated list of support channels for a specific company, with
+      # optional filtering by resolution status and custom sorting.
       #
       # Required permissions:
       #
@@ -67,7 +71,7 @@ module WhopSDK
       #
       # @overload list(company_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, open_: nil, order: nil, request_options: {})
       #
-      # @param company_id [String] The ID of the company to list chat channels for
+      # @param company_id [String] The unique identifier of the company to list support channels for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -79,7 +83,7 @@ module WhopSDK
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param open_ [Boolean, nil] Filter for tickets where customer sent the last message (needs response) AND not
+      # @param open_ [Boolean, nil] Whether to filter by open or resolved support channels. Set to true to only retu
       #
       # @param order [Symbol, WhopSDK::Models::SupportChannelListParams::Order, nil] Sort options for message channels
       #

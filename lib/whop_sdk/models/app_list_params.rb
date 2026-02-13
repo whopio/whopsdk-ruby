@@ -26,7 +26,7 @@ module WhopSDK
       optional :before, String, nil?: true
 
       # @!attribute company_id
-      #   The ID of the company to filter apps by
+      #   Filter apps to only those created by this company, starting with 'biz\_'.
       #
       #   @return [String, nil]
       optional :company_id, String, nil?: true
@@ -56,14 +56,14 @@ module WhopSDK
       optional :order, enum: -> { WhopSDK::AppListParams::Order }, nil?: true
 
       # @!attribute query
-      #   The query to search for apps by name.
+      #   A search string to filter apps by name, such as 'chat' or 'analytics'.
       #
       #   @return [String, nil]
       optional :query, String, nil?: true
 
       # @!attribute verified_apps_only
-      #   If true, you will only get apps that are verified by Whop. Use this to populate
-      #   a 'featured apps' section on the app store.
+      #   Whether to only return apps that have been verified by Whop. Useful for
+      #   populating a featured apps section.
       #
       #   @return [Boolean, nil]
       optional :verified_apps_only, WhopSDK::Internal::Type::Boolean, nil?: true
@@ -84,7 +84,7 @@ module WhopSDK
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param company_id [String, nil] The ID of the company to filter apps by
+      #   @param company_id [String, nil] Filter apps to only those created by this company, starting with 'biz\_'.
       #
       #   @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
@@ -94,9 +94,9 @@ module WhopSDK
       #
       #   @param order [Symbol, WhopSDK::Models::AppListParams::Order, nil] The order to fetch the apps in for discovery.
       #
-      #   @param query [String, nil] The query to search for apps by name.
+      #   @param query [String, nil] A search string to filter apps by name, such as 'chat' or 'analytics'.
       #
-      #   @param verified_apps_only [Boolean, nil] If true, you will only get apps that are verified by Whop. Use this to populate
+      #   @param verified_apps_only [Boolean, nil] Whether to only return apps that have been verified by Whop. Useful for populati
       #
       #   @param view_type [Symbol, WhopSDK::Models::AppViewType, nil] The different types of an app view
       #

@@ -8,7 +8,7 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute resource_id
-      #   The ID of the post or message to list reactions for
+      #   The unique identifier of the message or forum post to list reactions for.
       #
       #   @return [String]
       required :resource_id, String
@@ -38,7 +38,7 @@ module WhopSDK
       optional :last, Integer, nil?: true
 
       # @!method initialize(resource_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
-      #   @param resource_id [String] The ID of the post or message to list reactions for
+      #   @param resource_id [String] The unique identifier of the message or forum post to list reactions for.
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #

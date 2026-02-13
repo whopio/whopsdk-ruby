@@ -8,55 +8,59 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute company_id
-      #   The id of the company to target. Only team members of this company will receive
-      #   the notification. When clicked will take the user to your dashboard app view.
+      #   The unique identifier of the company to target. Only team members of this
+      #   company will receive the notification. Clicking the notification opens your
+      #   dashboard app view.
       #
       #   @return [String]
       required :company_id, String
 
       # @!attribute content
-      #   The content of the notification
+      #   The main body text of the notification displayed to the user.
       #
       #   @return [String]
       required :content, String
 
       # @!attribute title
-      #   The title of the notification
+      #   The headline text of the notification, displayed prominently to the user.
       #
       #   @return [String]
       required :title, String
 
       # @!attribute icon_user_id
-      #   Optional: ID of a Whop user whose profile picture will be used as the
-      #   notification icon. If not provided, defaults to the experience or company
-      #   avatar.
+      #   The unique identifier of a user whose profile picture will be used as the
+      #   notification icon. Defaults to the experience or company avatar when not
+      #   provided.
       #
       #   @return [String, nil]
       optional :icon_user_id, String, nil?: true
 
       # @!attribute rest_path
-      #   The rest path to append to the generated deep link that opens your app. Use
-      #   [restPath] in your app path in the dashboard to read this parameter.
+      #   A path segment appended to the generated deep link that opens your app. Use
+      #   [restPath] in your app path configuration to read this parameter. For example,
+      #   '/settings/billing'.
       #
       #   @return [String, nil]
       optional :rest_path, String, nil?: true
 
       # @!attribute subtitle
-      #   The subtitle of the notification
+      #   An optional secondary line of text displayed below the title in the
+      #   notification.
       #
       #   @return [String, nil]
       optional :subtitle, String, nil?: true
 
       # @!attribute user_ids
-      #   If provided, this will only send to these users if they are also in the main
-      #   scope (experience or company)
+      #   An optional list of user IDs to narrow the audience. When provided, only these
+      #   users receive the notification, provided they are in the targeted experience or
+      #   company.
       #
       #   @return [Array<String>, nil]
       optional :user_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
 
       # @!attribute experience_id
-      #   The id of the experience to target. All users with access to this experience
-      #   (customers and admins) will receive the notification. When clicked, open your
+      #   The unique identifier of the experience to target. All users with access to this
+      #   experience will receive the notification. Clicking the notification opens the
       #   experience view.
       #
       #   @return [String]
@@ -66,21 +70,21 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::NotificationCreateParams} for more details.
       #
-      #   @param company_id [String] The id of the company to target. Only team members of this company will receive
+      #   @param company_id [String] The unique identifier of the company to target. Only team members of this compan
       #
-      #   @param content [String] The content of the notification
+      #   @param content [String] The main body text of the notification displayed to the user.
       #
-      #   @param title [String] The title of the notification
+      #   @param title [String] The headline text of the notification, displayed prominently to the user.
       #
-      #   @param experience_id [String] The id of the experience to target. All users with access to this experience (cu
+      #   @param experience_id [String] The unique identifier of the experience to target. All users with access to this
       #
-      #   @param icon_user_id [String, nil] Optional: ID of a Whop user whose profile picture will be used as the notificati
+      #   @param icon_user_id [String, nil] The unique identifier of a user whose profile picture will be used as the notifi
       #
-      #   @param rest_path [String, nil] The rest path to append to the generated deep link that opens your app. Use [res
+      #   @param rest_path [String, nil] A path segment appended to the generated deep link that opens your app. Use [res
       #
-      #   @param subtitle [String, nil] The subtitle of the notification
+      #   @param subtitle [String, nil] An optional secondary line of text displayed below the title in the notification
       #
-      #   @param user_ids [Array<String>, nil] If provided, this will only send to these users if they are also in the main sco
+      #   @param user_ids [Array<String>, nil] An optional list of user IDs to narrow the audience. When provided, only these u
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

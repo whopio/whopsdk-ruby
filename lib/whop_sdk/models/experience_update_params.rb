@@ -14,31 +14,31 @@ module WhopSDK
       optional :access_level, enum: -> { WhopSDK::ExperienceUpdateParams::AccessLevel }, nil?: true
 
       # @!attribute is_public
-      #   Whether the experience is publicly accessible.
+      #   Whether the experience is publicly accessible without a membership.
       #
       #   @return [Boolean, nil]
       optional :is_public, WhopSDK::Internal::Type::Boolean, nil?: true
 
       # @!attribute logo
-      #   The logo for the experience
+      #   A logo image displayed alongside the experience name.
       #
       #   @return [WhopSDK::Models::ExperienceUpdateParams::Logo, nil]
       optional :logo, -> { WhopSDK::ExperienceUpdateParams::Logo }, nil?: true
 
       # @!attribute name
-      #   The name of the experience.
+      #   The display name of the experience.
       #
       #   @return [String, nil]
       optional :name, String, nil?: true
 
       # @!attribute order
-      #   The order of the experience in the section.
+      #   The position of the experience within its section for display ordering.
       #
       #   @return [String, nil]
       optional :order, String, nil?: true
 
       # @!attribute section_id
-      #   The ID of the section to update.
+      #   The unique identifier of the section to move the experience into.
       #
       #   @return [String, nil]
       optional :section_id, String, nil?: true
@@ -46,15 +46,15 @@ module WhopSDK
       # @!method initialize(access_level: nil, is_public: nil, logo: nil, name: nil, order: nil, section_id: nil, request_options: {})
       #   @param access_level [Symbol, WhopSDK::Models::ExperienceUpdateParams::AccessLevel, nil] The different access levels for experiences (PUBLIC IS NEVER USED ANYMORE).
       #
-      #   @param is_public [Boolean, nil] Whether the experience is publicly accessible.
+      #   @param is_public [Boolean, nil] Whether the experience is publicly accessible without a membership.
       #
-      #   @param logo [WhopSDK::Models::ExperienceUpdateParams::Logo, nil] The logo for the experience
+      #   @param logo [WhopSDK::Models::ExperienceUpdateParams::Logo, nil] A logo image displayed alongside the experience name.
       #
-      #   @param name [String, nil] The name of the experience.
+      #   @param name [String, nil] The display name of the experience.
       #
-      #   @param order [String, nil] The order of the experience in the section.
+      #   @param order [String, nil] The position of the experience within its section for display ordering.
       #
-      #   @param section_id [String, nil] The ID of the section to update.
+      #   @param section_id [String, nil] The unique identifier of the section to move the experience into.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
@@ -77,7 +77,7 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   The logo for the experience
+        #   A logo image displayed alongside the experience name.
         #
         #   @param id [String] The ID of an existing file object.
       end

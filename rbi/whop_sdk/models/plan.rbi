@@ -9,15 +9,18 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The interval in days at which the plan charges (renewal plans).
+      # The number of days between each recurring charge. Null for one-time plans. For
+      # example, 30 for monthly or 365 for annual billing.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :billing_period
 
-      # Whether or not the plan collects tax.
+      # Whether tax is collected on purchases of this plan, based on the company's tax
+      # configuration.
       sig { returns(T::Boolean) }
       attr_accessor :collect_tax
 
-      # The company for the plan.
+      # The company that sells this plan. Null for standalone invoice plans not linked
+      # to a company.
       sig { returns(T.nilable(WhopSDK::Plan::Company)) }
       attr_reader :company
 
@@ -28,15 +31,18 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The respective currency identifier for the plan.
+      # The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
+      # amounts on the plan are denominated in this currency.
       sig { returns(WhopSDK::Currency::TaggedSymbol) }
       attr_accessor :currency
 
-      # The custom fields for the plan.
+      # Custom input fields displayed on the checkout form that collect additional
+      # information from the buyer.
       sig { returns(T::Array[WhopSDK::Plan::CustomField]) }
       attr_accessor :custom_fields
 
-      # The description of the plan.
+      # A text description of the plan visible to customers. Maximum 500 characters.
+      # Null if no description is set.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
@@ -51,22 +57,26 @@ module WhopSDK
       sig { returns(Float) }
       attr_accessor :initial_price
 
-      # A personal description or notes section for the business.
+      # Private notes visible only to the company owner and team members. Not shown to
+      # customers. Null if no notes have been added.
       sig { returns(T.nilable(String)) }
       attr_accessor :internal_notes
 
-      # The invoice associated with this plan.
+      # The invoice this plan was generated for. Null if the plan was not created for a
+      # specific invoice.
       sig { returns(T.nilable(WhopSDK::Plan::Invoice)) }
       attr_reader :invoice
 
       sig { params(invoice: T.nilable(WhopSDK::Plan::Invoice::OrHash)).void }
       attr_writer :invoice
 
-      # The number of members for the plan.
+      # The number of users who currently hold an active membership through this plan.
+      # Only visible to authorized team members.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :member_count
 
-      # The explicit payment method configuration for the plan, if any.
+      # The explicit payment method configuration specifying which payment methods are
+      # enabled or disabled for this plan. Null if the plan uses default settings.
       sig { returns(T.nilable(WhopSDK::Plan::PaymentMethodConfiguration)) }
       attr_reader :payment_method_configuration
 
@@ -78,22 +88,26 @@ module WhopSDK
       end
       attr_writer :payment_method_configuration
 
-      # Indicates if the plan is a one time payment or recurring.
+      # The billing model for this plan: 'renewal' for recurring subscriptions or
+      # 'one_time' for single payments.
       sig { returns(WhopSDK::PlanType::TaggedSymbol) }
       attr_accessor :plan_type
 
-      # The product that this plan belongs to.
+      # The product that this plan belongs to. Null for standalone one-off purchases not
+      # linked to a product.
       sig { returns(T.nilable(WhopSDK::Plan::Product)) }
       attr_reader :product
 
       sig { params(product: T.nilable(WhopSDK::Plan::Product::OrHash)).void }
       attr_writer :product
 
-      # The direct link to purchase the product.
+      # The full URL where customers can purchase this plan directly, bypassing the
+      # product page.
       sig { returns(String) }
       attr_accessor :purchase_url
 
-      # This is the release method the business uses to sell this plan.
+      # The method used to sell this plan: 'buy_now' for immediate purchase or
+      # 'waitlist' for waitlist-based access.
       sig { returns(WhopSDK::ReleaseMethod::TaggedSymbol) }
       attr_accessor :release_method
 
@@ -102,23 +116,29 @@ module WhopSDK
       sig { returns(Float) }
       attr_accessor :renewal_price
 
-      # The number of payments required before pausing the subscription.
+      # The total number of installment payments required before the subscription
+      # pauses. Null if split pay is not configured. Must be greater than 1.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :split_pay_required_payments
 
-      # The number of units available for purchase. Only displayed to authorized actors
+      # The number of units available for purchase. Only visible to authorized team
+      # members. Null if the requester lacks permission.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :stock
 
-      # The tax type for the plan.
+      # How tax is handled for this plan: 'inclusive' (tax included in price),
+      # 'exclusive' (tax added at checkout), or 'unspecified' (tax not configured).
       sig { returns(WhopSDK::TaxType::TaggedSymbol) }
       attr_accessor :tax_type
 
-      # The title of the plan. This will be visible on the product page to customers.
+      # The display name of the plan shown to customers on the product page and at
+      # checkout. Maximum 30 characters. Null if no title has been set.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
-      # The number of free trial days added before a renewal plan.
+      # The number of free trial days before the first charge on a renewal plan. Null if
+      # no trial is configured or the current user has already used a trial for this
+      # plan.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :trial_period_days
 
@@ -131,13 +151,14 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :updated_at
 
-      # Shows or hides the plan from public/business view.
+      # Controls whether the plan is visible to customers. When set to 'hidden', the
+      # plan is only accessible via direct link.
       sig { returns(WhopSDK::Visibility::TaggedSymbol) }
       attr_accessor :visibility
 
-      # A plan defines pricing and billing terms for a product. Each product can have
-      # multiple plans representing different pricing options, such as one-time
-      # payments, recurring subscriptions, or free trials.
+      # A plan defines pricing and billing terms for a checkout. Plans can optionally
+      # belong to a product, where they represent different pricing options such as
+      # one-time payments, recurring subscriptions, or free trials.
       sig do
         params(
           id: String,
@@ -173,19 +194,25 @@ module WhopSDK
       def self.new(
         # The unique identifier for the plan.
         id:,
-        # The interval in days at which the plan charges (renewal plans).
+        # The number of days between each recurring charge. Null for one-time plans. For
+        # example, 30 for monthly or 365 for annual billing.
         billing_period:,
-        # Whether or not the plan collects tax.
+        # Whether tax is collected on purchases of this plan, based on the company's tax
+        # configuration.
         collect_tax:,
-        # The company for the plan.
+        # The company that sells this plan. Null for standalone invoice plans not linked
+        # to a company.
         company:,
         # The datetime the plan was created.
         created_at:,
-        # The respective currency identifier for the plan.
+        # The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
+        # amounts on the plan are denominated in this currency.
         currency:,
-        # The custom fields for the plan.
+        # Custom input fields displayed on the checkout form that collect additional
+        # information from the buyer.
         custom_fields:,
-        # The description of the plan.
+        # A text description of the plan visible to customers. Maximum 500 characters.
+        # Null if no description is set.
         description:,
         # The number of days until the membership expires (for expiration-based plans).
         # For example, 365 for a one-year access pass.
@@ -194,41 +221,56 @@ module WhopSDK
         # For one-time plans, this is the full price. For renewal plans, this is charged
         # on top of the first renewal_price.
         initial_price:,
-        # A personal description or notes section for the business.
+        # Private notes visible only to the company owner and team members. Not shown to
+        # customers. Null if no notes have been added.
         internal_notes:,
-        # The invoice associated with this plan.
+        # The invoice this plan was generated for. Null if the plan was not created for a
+        # specific invoice.
         invoice:,
-        # The number of members for the plan.
+        # The number of users who currently hold an active membership through this plan.
+        # Only visible to authorized team members.
         member_count:,
-        # The explicit payment method configuration for the plan, if any.
+        # The explicit payment method configuration specifying which payment methods are
+        # enabled or disabled for this plan. Null if the plan uses default settings.
         payment_method_configuration:,
-        # Indicates if the plan is a one time payment or recurring.
+        # The billing model for this plan: 'renewal' for recurring subscriptions or
+        # 'one_time' for single payments.
         plan_type:,
-        # The product that this plan belongs to.
+        # The product that this plan belongs to. Null for standalone one-off purchases not
+        # linked to a product.
         product:,
-        # The direct link to purchase the product.
+        # The full URL where customers can purchase this plan directly, bypassing the
+        # product page.
         purchase_url:,
-        # This is the release method the business uses to sell this plan.
+        # The method used to sell this plan: 'buy_now' for immediate purchase or
+        # 'waitlist' for waitlist-based access.
         release_method:,
         # The recurring price charged every billing_period in the plan's base_currency
         # (e.g., 9.99 for $9.99/period). Zero for one-time plans.
         renewal_price:,
-        # The number of payments required before pausing the subscription.
+        # The total number of installment payments required before the subscription
+        # pauses. Null if split pay is not configured. Must be greater than 1.
         split_pay_required_payments:,
-        # The number of units available for purchase. Only displayed to authorized actors
+        # The number of units available for purchase. Only visible to authorized team
+        # members. Null if the requester lacks permission.
         stock:,
-        # The tax type for the plan.
+        # How tax is handled for this plan: 'inclusive' (tax included in price),
+        # 'exclusive' (tax added at checkout), or 'unspecified' (tax not configured).
         tax_type:,
-        # The title of the plan. This will be visible on the product page to customers.
+        # The display name of the plan shown to customers on the product page and at
+        # checkout. Maximum 30 characters. Null if no title has been set.
         title:,
-        # The number of free trial days added before a renewal plan.
+        # The number of free trial days before the first charge on a renewal plan. Null if
+        # no trial is configured or the current user has already used a trial for this
+        # plan.
         trial_period_days:,
         # When true, the plan has unlimited stock (stock field is ignored). When false,
         # purchases are limited by the stock field.
         unlimited_stock:,
         # The datetime the plan was last updated.
         updated_at:,
-        # Shows or hides the plan from public/business view.
+        # Controls whether the plan is visible to customers. When set to 'hidden', the
+        # plan is only accessible via direct link.
         visibility:
       )
       end
@@ -280,16 +322,17 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The title of the company.
+        # The display name of the company shown to customers.
         sig { returns(String) }
         attr_accessor :title
 
-        # The company for the plan.
+        # The company that sells this plan. Null for standalone invoice plans not linked
+        # to a company.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the company.
           id:,
-          # The title of the company.
+          # The display name of the company shown to customers.
           title:
         )
         end
@@ -382,7 +425,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The invoice associated with this plan.
+        # The invoice this plan was generated for. Null if the plan was not created for a
+        # specific invoice.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the invoice.
@@ -422,7 +466,8 @@ module WhopSDK
         sig { returns(T::Boolean) }
         attr_accessor :include_platform_defaults
 
-        # The explicit payment method configuration for the plan, if any.
+        # The explicit payment method configuration specifying which payment methods are
+        # enabled or disabled for this plan. Null if the plan uses default settings.
         sig do
           params(
             disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
@@ -469,16 +514,19 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The title of the product. Use for Whop 4.0.
+        # The display name of the product shown to customers on the product page and in
+        # search results.
         sig { returns(String) }
         attr_accessor :title
 
-        # The product that this plan belongs to.
+        # The product that this plan belongs to. Null for standalone one-off purchases not
+        # linked to a product.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the product.
           id:,
-          # The title of the product. Use for Whop 4.0.
+          # The display name of the product shown to customers on the product page and in
+          # search results.
           title:
         )
         end

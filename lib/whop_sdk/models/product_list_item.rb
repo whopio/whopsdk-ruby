@@ -22,15 +22,15 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute external_identifier
-      #   A unique identifier used to create or update products. When provided on product
-      #   creation endpoints, we’ll look up an existing product by this identifier — if it
-      #   exists, we’ll update it; if not, we’ll create a new one.
+      #   A unique identifier used to create or update products via the API. When provided
+      #   on product creation endpoints, an existing product with this identifier will be
+      #   updated instead of creating a new one.
       #
       #   @return [String, nil]
       required :external_identifier, String, nil?: true
 
       # @!attribute headline
-      #   The headline of the product.
+      #   A short marketing headline displayed prominently on the product's product page.
       #
       #   @return [String, nil]
       required :headline, String, nil?: true
@@ -42,25 +42,28 @@ module WhopSDK
       required :industry_type, enum: -> { WhopSDK::IndustryTypes }, nil?: true
 
       # @!attribute member_count
-      #   The number of active users for this product.
+      #   The number of users who currently hold an active membership to this product.
+      #   Returns 0 if the company has disabled public member counts.
       #
       #   @return [Integer]
       required :member_count, Integer
 
       # @!attribute published_reviews_count
-      #   The number of reviews that have been published for the product.
+      #   The total number of published customer reviews for this product's company.
       #
       #   @return [Integer]
       required :published_reviews_count, Integer
 
       # @!attribute route
-      #   The route of the product.
+      #   The URL slug used in the product's public link (e.g., 'my-product' in
+      #   whop.com/company/my-product).
       #
       #   @return [String]
       required :route, String
 
       # @!attribute title
-      #   The title of the product. Use for Whop 4.0.
+      #   The display name of the product shown to customers on the product page and in
+      #   search results.
       #
       #   @return [String]
       required :title, String
@@ -72,13 +75,14 @@ module WhopSDK
       required :updated_at, Time
 
       # @!attribute verified
-      #   Whether this product is Whop verified.
+      #   Whether this company has been verified by Whop's trust and safety team.
       #
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
       # @!attribute visibility
-      #   This product will/will not be displayed publicly.
+      #   Controls whether the product is visible to customers. When set to 'hidden', the
+      #   product is only accessible via direct link.
       #
       #   @return [Symbol, WhopSDK::Models::Visibility]
       required :visibility, enum: -> { WhopSDK::Visibility }
@@ -96,25 +100,25 @@ module WhopSDK
       #
       #   @param created_at [Time] The datetime the product was created.
       #
-      #   @param external_identifier [String, nil] A unique identifier used to create or update products. When provided on product
+      #   @param external_identifier [String, nil] A unique identifier used to create or update products via the API. When provided
       #
-      #   @param headline [String, nil] The headline of the product.
+      #   @param headline [String, nil] A short marketing headline displayed prominently on the product's product page.
       #
       #   @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
-      #   @param member_count [Integer] The number of active users for this product.
+      #   @param member_count [Integer] The number of users who currently hold an active membership to this product. Ret
       #
-      #   @param published_reviews_count [Integer] The number of reviews that have been published for the product.
+      #   @param published_reviews_count [Integer] The total number of published customer reviews for this product's company.
       #
-      #   @param route [String] The route of the product.
+      #   @param route [String] The URL slug used in the product's public link (e.g., 'my-product' in whop.com/c
       #
-      #   @param title [String] The title of the product. Use for Whop 4.0.
+      #   @param title [String] The display name of the product shown to customers on the product page and in se
       #
       #   @param updated_at [Time] The datetime the product was last updated.
       #
-      #   @param verified [Boolean] Whether this product is Whop verified.
+      #   @param verified [Boolean] Whether this company has been verified by Whop's trust and safety team.
       #
-      #   @param visibility [Symbol, WhopSDK::Models::Visibility] This product will/will not be displayed publicly.
+      #   @param visibility [Symbol, WhopSDK::Models::Visibility] Controls whether the product is visible to customers. When set to 'hidden', the
     end
   end
 end

@@ -14,15 +14,18 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :created_at
 
-      # When the last message was sent
+      # The timestamp when the most recent message was sent in this channel. Null if no
+      # messages have been sent.
       sig { returns(T.nilable(Time)) }
       attr_accessor :last_message_at
 
-      # The custom name of the DM channel, if any
+      # A custom display name assigned to this channel by the user. Null if no custom
+      # name has been set.
       sig { returns(T.nilable(String)) }
       attr_accessor :name
 
-      # Represents a DM channel
+      # A messaging channel that can be a one-on-one DM, group chat, company support
+      # conversation, or platform-level direct message.
       sig do
         params(
           id: String,
@@ -36,9 +39,11 @@ module WhopSDK
         id:,
         # The time the entity was created (in milliseconds since Unix epoch)
         created_at:,
-        # When the last message was sent
+        # The timestamp when the most recent message was sent in this channel. Null if no
+        # messages have been sent.
         last_message_at:,
-        # The custom name of the DM channel, if any
+        # A custom display name assigned to this channel by the user. Null if no custom
+        # name has been set.
         name:
       )
       end

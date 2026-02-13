@@ -3,7 +3,10 @@
 module WhopSDK
   module Resources
     class CourseChapters
-      # Creates a new course chapter
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::CourseChapterCreateParams} for more details.
+      #
+      # Create a new chapter within a course to organize lessons into sections.
       #
       # Required permissions:
       #
@@ -11,9 +14,9 @@ module WhopSDK
       #
       # @overload create(course_id:, title: nil, request_options: {})
       #
-      # @param course_id [String] The ID of the course to create the chapter in
+      # @param course_id [String] The unique identifier of the course to create the chapter in (e.g., "course_XXXX
       #
-      # @param title [String, nil] The title of the chapter
+      # @param title [String, nil] The display title of the chapter (e.g., "Module 1: Introduction").
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -31,7 +34,7 @@ module WhopSDK
         )
       end
 
-      # Retrieves a course chapter by ID
+      # Retrieves the details of an existing course chapter.
       #
       # Required permissions:
       #
@@ -39,7 +42,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the chapter
+      # @param id [String] The unique identifier of the chapter to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -55,7 +58,7 @@ module WhopSDK
         )
       end
 
-      # Updates a course chapter
+      # Update a chapter's title within a course.
       #
       # Required permissions:
       #
@@ -63,9 +66,9 @@ module WhopSDK
       #
       # @overload update(id, title:, request_options: {})
       #
-      # @param id [String] The ID of the chapter to update
+      # @param id [String] The unique identifier of the chapter to update (e.g., "chap_XXXXX").
       #
-      # @param title [String] The title of the chapter
+      # @param title [String] The new display title of the chapter (e.g., "Module 1: Introduction").
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -83,7 +86,7 @@ module WhopSDK
         )
       end
 
-      # Lists chapters for a course
+      # Returns a paginated list of chapters within a course, ordered by position.
       #
       # Required permissions:
       #
@@ -91,7 +94,7 @@ module WhopSDK
       #
       # @overload list(course_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
       #
-      # @param course_id [String] The ID of the course
+      # @param course_id [String] The unique identifier of the course to list chapters for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -118,7 +121,7 @@ module WhopSDK
         )
       end
 
-      # Deletes a course chapter
+      # Permanently delete a chapter and all of its lessons from a course.
       #
       # Required permissions:
       #
@@ -126,7 +129,7 @@ module WhopSDK
       #
       # @overload delete(id, request_options: {})
       #
-      # @param id [String] The ID of the chapter to delete
+      # @param id [String] The unique identifier of the chapter to delete (e.g., "chap_XXXXX").
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

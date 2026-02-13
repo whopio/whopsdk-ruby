@@ -11,21 +11,23 @@ module WhopSDK
           )
         end
 
-      # The expiration timestamp of the url.
+      # The timestamp after which this account link URL is no longer valid.
       sig { returns(Time) }
       attr_accessor :expires_at
 
-      # The URL to navigate the user to.
+      # The temporary URL to redirect the user to for account access. Expires at the
+      # time specified by expires_at.
       sig { returns(String) }
       attr_accessor :url
 
-      # An object representing a url that a user can be directed to to access their
-      # account.
+      # A temporary, time-limited URL that grants a user access to an external account
+      # management page.
       sig { params(expires_at: Time, url: String).returns(T.attached_class) }
       def self.new(
-        # The expiration timestamp of the url.
+        # The timestamp after which this account link URL is no longer valid.
         expires_at:,
-        # The URL to navigate the user to.
+        # The temporary URL to redirect the user to for account access. Expires at the
+        # time specified by expires_at.
         url:
       )
       end

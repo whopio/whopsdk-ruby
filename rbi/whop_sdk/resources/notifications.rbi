@@ -3,7 +3,8 @@
 module WhopSDK
   module Resources
     class Notifications
-      # Queues a notification to be sent to users in an experience or company team
+      # Send a push notification to users in an experience or company team. The
+      # notification is processed asynchronously and supports targeting specific users.
       #
       # Required permissions:
       #
@@ -22,28 +23,32 @@ module WhopSDK
         ).returns(WhopSDK::Models::NotificationCreateResponse)
       end
       def create(
-        # The id of the company to target. Only team members of this company will receive
-        # the notification. When clicked will take the user to your dashboard app view.
+        # The unique identifier of the company to target. Only team members of this
+        # company will receive the notification. Clicking the notification opens your
+        # dashboard app view.
         company_id:,
-        # The content of the notification
+        # The main body text of the notification displayed to the user.
         content:,
-        # The title of the notification
+        # The headline text of the notification, displayed prominently to the user.
         title:,
-        # The id of the experience to target. All users with access to this experience
-        # (customers and admins) will receive the notification. When clicked, open your
+        # The unique identifier of the experience to target. All users with access to this
+        # experience will receive the notification. Clicking the notification opens the
         # experience view.
         experience_id:,
-        # Optional: ID of a Whop user whose profile picture will be used as the
-        # notification icon. If not provided, defaults to the experience or company
-        # avatar.
+        # The unique identifier of a user whose profile picture will be used as the
+        # notification icon. Defaults to the experience or company avatar when not
+        # provided.
         icon_user_id: nil,
-        # The rest path to append to the generated deep link that opens your app. Use
-        # [restPath] in your app path in the dashboard to read this parameter.
+        # A path segment appended to the generated deep link that opens your app. Use
+        # [restPath] in your app path configuration to read this parameter. For example,
+        # '/settings/billing'.
         rest_path: nil,
-        # The subtitle of the notification
+        # An optional secondary line of text displayed below the title in the
+        # notification.
         subtitle: nil,
-        # If provided, this will only send to these users if they are also in the main
-        # scope (experience or company)
+        # An optional list of user IDs to narrow the audience. When provided, only these
+        # users receive the notification, provided they are in the targeted experience or
+        # company.
         user_ids: nil,
         request_options: {}
       )

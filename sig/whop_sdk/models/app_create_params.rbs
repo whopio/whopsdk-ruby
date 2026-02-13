@@ -5,7 +5,8 @@ module WhopSDK
         company_id: String,
         name: String,
         base_url: String?,
-        icon: WhopSDK::AppCreateParams::Icon?
+        icon: WhopSDK::AppCreateParams::Icon?,
+        redirect_uris: ::Array[String]?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -21,11 +22,14 @@ module WhopSDK
 
       attr_accessor icon: WhopSDK::AppCreateParams::Icon?
 
+      attr_accessor redirect_uris: ::Array[String]?
+
       def initialize: (
         company_id: String,
         name: String,
         ?base_url: String?,
         ?icon: WhopSDK::AppCreateParams::Icon?,
+        ?redirect_uris: ::Array[String]?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -34,6 +38,7 @@ module WhopSDK
         name: String,
         base_url: String?,
         icon: WhopSDK::AppCreateParams::Icon?,
+        redirect_uris: ::Array[String]?,
         request_options: WhopSDK::RequestOptions
       }
 

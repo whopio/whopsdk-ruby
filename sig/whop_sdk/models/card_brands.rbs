@@ -35,6 +35,8 @@ module WhopSDK
       | :carnet
       | :atm_card
       | :china_union_payuzcard
+      | :codensa
+      | :cabal
       | :unknown
 
     module CardBrands
@@ -74,6 +76,8 @@ module WhopSDK
       CARNET: :carnet
       ATM_CARD: :atm_card
       CHINA_UNION_PAYUZCARD: :china_union_payuzcard
+      CODENSA: :codensa
+      CABAL: :cabal
       UNKNOWN: :unknown
 
       def self?.values: -> ::Array[WhopSDK::Models::card_brands]

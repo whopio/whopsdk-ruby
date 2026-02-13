@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class Verifications
-      # Retrieves a verification by ID
+      # Retrieves the details of an existing verification.
       #
       # Required permissions:
       #
@@ -11,7 +11,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the verification
+      # @param id [String] The unique identifier of the verification to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

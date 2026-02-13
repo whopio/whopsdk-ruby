@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class Refunds
-      # Retrieves a Refund by ID
+      # Retrieves the details of an existing refund.
       #
       # Required permissions:
       #
@@ -18,13 +18,14 @@ module WhopSDK
         ).returns(WhopSDK::Models::RefundRetrieveResponse)
       end
       def retrieve(
-        # The ID of the refund
+        # The unique identifier of the refund.
         id,
         request_options: {}
       )
       end
 
-      # Lists Refunds for a payment.
+      # Returns a paginated list of refunds for a specific payment, with optional
+      # filtering by creation date.
       #
       # Required permissions:
       #
@@ -45,15 +46,15 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the payment to list refunds for
+        # The unique identifier of the payment to list refunds for.
         payment_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The minimum creation date to filter by
+        # Only return refunds created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return refunds created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,

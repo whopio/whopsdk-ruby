@@ -3,7 +3,8 @@
 module WhopSDK
   module Resources
     class Leads
-      # Creates a new lead
+      # Record a new lead for a company, capturing a potential customer's interest in a
+      # specific product.
       #
       # Required permissions:
       #
@@ -22,22 +23,25 @@ module WhopSDK
         ).returns(WhopSDK::Lead)
       end
       def create(
-        # The ID of the company to create a lead for.
+        # The unique identifier of the company to create the lead for, starting with
+        # 'biz\_'.
         company_id:,
-        # Custom metadata for the lead.
+        # A JSON object of custom metadata to attach to the lead for tracking purposes.
         metadata: nil,
-        # The ID of the product the lead is interested in.
+        # The unique identifier of the product the lead is interested in, starting with
+        # 'prod\_'.
         product_id: nil,
-        # The url referrer of the lead, if any.
+        # The referral URL that brought the lead to the company, such as
+        # 'https://example.com/landing'.
         referrer: nil,
-        # The ID of the user to create a lead for. If the request is made by a user, that
-        # user will be used.
+        # The unique identifier of the user to record as the lead. If authenticated as a
+        # user, that user is used automatically.
         user_id: nil,
         request_options: {}
       )
       end
 
-      # Retrieves a lead by ID
+      # Retrieves the details of an existing lead.
       #
       # Required permissions:
       #
@@ -52,13 +56,13 @@ module WhopSDK
         ).returns(WhopSDK::Lead)
       end
       def retrieve(
-        # The ID of the lead
+        # The unique identifier of the lead to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # Updates a lead
+      # Update the metadata or referrer information on an existing lead record.
       #
       # Required permissions:
       #
@@ -75,17 +79,19 @@ module WhopSDK
         ).returns(WhopSDK::Lead)
       end
       def update(
-        # The ID of the lead to update.
+        # The unique identifier of the lead to update, starting with 'lead\_'.
         id,
-        # Custom metadata for the lead.
+        # A JSON object of custom metadata to set on the lead, replacing any existing
+        # metadata.
         metadata: nil,
-        # The url referrer of the lead.
+        # The updated referral URL for the lead, such as 'https://example.com/landing'.
         referrer: nil,
         request_options: {}
       )
       end
 
-      # Lists leads for a company
+      # Returns a paginated list of leads for a company, with optional filtering by
+      # product and creation date.
       #
       # Required permissions:
       #
@@ -109,21 +115,21 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the company to list leads for
+        # The unique identifier of the company to list leads for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The minimum creation date to filter by
+        # Only return leads created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return leads created before this timestamp.
         created_before: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The product IDs to filter the leads by
+        # Filter leads to only those associated with these specific product identifiers.
         product_ids: nil,
         request_options: {}
       )

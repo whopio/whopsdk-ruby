@@ -20,19 +20,19 @@ module WhopSDK
       optional :before, String, nil?: true
 
       # @!attribute company_id
-      #   The ID of the company to list authorized users for
+      #   The unique identifier of the company to list authorized users for.
       #
       #   @return [String, nil]
       optional :company_id, String, nil?: true
 
       # @!attribute created_after
-      #   The minimum creation date to filter by
+      #   Only return authorized users created after this timestamp.
       #
       #   @return [Time, nil]
       optional :created_after, Time, nil?: true
 
       # @!attribute created_before
-      #   The maximum creation date to filter by
+      #   Only return authorized users created before this timestamp.
       #
       #   @return [Time, nil]
       optional :created_before, Time, nil?: true
@@ -56,21 +56,25 @@ module WhopSDK
       optional :role, enum: -> { WhopSDK::AuthorizedUserRoles }, nil?: true
 
       # @!attribute user_id
-      #   Filter by the user ID to check if the user is an authorized user
+      #   Filter results to a specific user to check if they are an authorized team
+      #   member.
       #
       #   @return [String, nil]
       optional :user_id, String, nil?: true
 
       # @!method initialize(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, last: nil, role: nil, user_id: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::AuthorizedUserListParams} for more details.
+      #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param company_id [String, nil] The ID of the company to list authorized users for
+      #   @param company_id [String, nil] The unique identifier of the company to list authorized users for.
       #
-      #   @param created_after [Time, nil] The minimum creation date to filter by
+      #   @param created_after [Time, nil] Only return authorized users created after this timestamp.
       #
-      #   @param created_before [Time, nil] The maximum creation date to filter by
+      #   @param created_before [Time, nil] Only return authorized users created before this timestamp.
       #
       #   @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
@@ -78,7 +82,7 @@ module WhopSDK
       #
       #   @param role [Symbol, WhopSDK::Models::AuthorizedUserRoles, nil] Possible roles an authorized user can have
       #
-      #   @param user_id [String, nil] Filter by the user ID to check if the user is an authorized user
+      #   @param user_id [String, nil] Filter results to a specific user to check if they are an authorized team member
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

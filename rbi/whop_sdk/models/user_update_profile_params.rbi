@@ -11,15 +11,15 @@ module WhopSDK
           T.any(WhopSDK::UserUpdateProfileParams, WhopSDK::Internal::AnyHash)
         end
 
-      # User biography
+      # A short biography displayed on the user's public profile.
       sig { returns(T.nilable(String)) }
       attr_accessor :bio
 
-      # Display name
+      # The user's display name shown on their public profile. Maximum 100 characters.
       sig { returns(T.nilable(String)) }
       attr_accessor :name
 
-      # Profile picture
+      # The user's profile picture image attachment.
       sig do
         returns(T.nilable(WhopSDK::UserUpdateProfileParams::ProfilePicture))
       end
@@ -33,7 +33,8 @@ module WhopSDK
       end
       attr_writer :profile_picture
 
-      # Username (alphanumeric and hyphens)
+      # The user's unique username. Alphanumeric characters and hyphens only. Maximum 42
+      # characters.
       sig { returns(T.nilable(String)) }
       attr_accessor :username
 
@@ -48,13 +49,14 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # User biography
+        # A short biography displayed on the user's public profile.
         bio: nil,
-        # Display name
+        # The user's display name shown on their public profile. Maximum 100 characters.
         name: nil,
-        # Profile picture
+        # The user's profile picture image attachment.
         profile_picture: nil,
-        # Username (alphanumeric and hyphens)
+        # The user's unique username. Alphanumeric characters and hyphens only. Maximum 42
+        # characters.
         username: nil,
         request_options: {}
       )
@@ -88,7 +90,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # Profile picture
+        # The user's profile picture image attachment.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.

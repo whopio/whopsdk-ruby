@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class AuthorizedUsers
-      # Retrieves a authorized user by ID
+      # Retrieves the details of an existing authorized user.
       #
       # Required permissions:
       #
@@ -16,13 +16,14 @@ module WhopSDK
         ).returns(WhopSDK::Models::AuthorizedUserRetrieveResponse)
       end
       def retrieve(
-        # The ID of the authorized user
+        # The unique identifier of the authorized user to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # Lists authorized users
+      # Returns a paginated list of authorized team members for a company, with optional
+      # filtering by user, role, and creation date.
       #
       # Required permissions:
       #
@@ -51,11 +52,11 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The ID of the company to list authorized users for
+        # The unique identifier of the company to list authorized users for.
         company_id: nil,
-        # The minimum creation date to filter by
+        # Only return authorized users created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return authorized users created before this timestamp.
         created_before: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
@@ -63,7 +64,8 @@ module WhopSDK
         last: nil,
         # Possible roles an authorized user can have
         role: nil,
-        # Filter by the user ID to check if the user is an authorized user
+        # Filter results to a specific user to check if they are an authorized team
+        # member.
         user_id: nil,
         request_options: {}
       )

@@ -11,8 +11,8 @@ module WhopSDK
           T.any(WhopSDK::FeeMarkupListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID (tag) of the company you want to list the fee markups for. If you pass
-      # your platform account, you will get the platform default markups.
+      # The unique identifier of the company to list fee markups for. Pass a platform
+      # account identifier to retrieve platform default markups.
       sig { returns(String) }
       attr_accessor :company_id
 
@@ -43,8 +43,8 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID (tag) of the company you want to list the fee markups for. If you pass
-        # your platform account, you will get the platform default markups.
+        # The unique identifier of the company to list fee markups for. Pass a platform
+        # account identifier to retrieve platform default markups.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,

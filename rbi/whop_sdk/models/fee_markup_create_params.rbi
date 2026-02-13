@@ -11,27 +11,27 @@ module WhopSDK
           T.any(WhopSDK::FeeMarkupCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID (tag) of the company you want to update the fee markup for.
+      # The unique identifier of the company to create or update the fee markup for.
       sig { returns(String) }
       attr_accessor :company_id
 
-      # The type of fee this markup applies to.
+      # The type of fee this markup applies to, such as processing or platform fees.
       sig { returns(WhopSDK::FeeMarkupType::OrSymbol) }
       attr_accessor :fee_type
 
-      # The fixed fee in USD to charge (0-50).
+      # The fixed fee amount in USD to charge per transaction. Must be between 0 and 50.
       sig { returns(T.nilable(Float)) }
       attr_accessor :fixed_fee_usd
 
-      # Custom metadata to attach to this fee markup.
+      # Custom key-value metadata to attach to this fee markup.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
-      # Internal notes about this fee markup.
+      # Internal notes about this fee markup for record-keeping purposes.
       sig { returns(T.nilable(String)) }
       attr_accessor :notes
 
-      # The percentage fee to charge (0-25).
+      # The percentage fee to charge per transaction. Must be between 0 and 25.
       sig { returns(T.nilable(Float)) }
       attr_accessor :percentage_fee
 
@@ -47,17 +47,17 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID (tag) of the company you want to update the fee markup for.
+        # The unique identifier of the company to create or update the fee markup for.
         company_id:,
-        # The type of fee this markup applies to.
+        # The type of fee this markup applies to, such as processing or platform fees.
         fee_type:,
-        # The fixed fee in USD to charge (0-50).
+        # The fixed fee amount in USD to charge per transaction. Must be between 0 and 50.
         fixed_fee_usd: nil,
-        # Custom metadata to attach to this fee markup.
+        # Custom key-value metadata to attach to this fee markup.
         metadata: nil,
-        # Internal notes about this fee markup.
+        # Internal notes about this fee markup for record-keeping purposes.
         notes: nil,
-        # The percentage fee to charge (0-25).
+        # The percentage fee to charge per transaction. Must be between 0 and 25.
         percentage_fee: nil,
         request_options: {}
       )

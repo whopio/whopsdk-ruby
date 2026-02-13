@@ -3,11 +3,7 @@
 module WhopSDK
   module Resources
     class SetupIntents
-      # A setup intent is an object used to securely collect and store a member’s
-      # payment method for future use without charging them immediately. It handles
-      # authentication steps up front so future off-session payments can be completed
-      # smoothly. This ensures the payment method is verified and ready for later
-      # billing.
+      # Retrieves the details of an existing setup intent.
       #
       # Required permissions:
       #
@@ -17,7 +13,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the Setup Intent
+      # @param id [String] The unique identifier of the setup intent.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -33,11 +29,9 @@ module WhopSDK
         )
       end
 
-      # A setup intent is an object used to securely collect and store a member’s
-      # payment method for future use without charging them immediately. It handles
-      # authentication steps up front so future off-session payments can be completed
-      # smoothly. This ensures the payment method is verified and ready for later
-      # billing.
+      # Returns a paginated list of setup intents for a company, with optional filtering
+      # by creation date. A setup intent securely collects and stores a member's payment
+      # method for future use without charging them immediately.
       #
       # Required permissions:
       #
@@ -47,15 +41,15 @@ module WhopSDK
       #
       # @overload list(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, request_options: {})
       #
-      # @param company_id [String] The ID of the company to list setup intents for
+      # @param company_id [String] The unique identifier of the company to list setup intents for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param created_after [Time, nil] The minimum creation date to filter by
+      # @param created_after [Time, nil] Only return setup intents created after this timestamp.
       #
-      # @param created_before [Time, nil] The maximum creation date to filter by
+      # @param created_before [Time, nil] Only return setup intents created before this timestamp.
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #

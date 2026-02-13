@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class LedgerAccounts
-      # Retrieves a ledger account by its ID, company ID or user ID
+      # Retrieves the details of an existing ledger account.
       #
       # Required permissions:
       #
@@ -16,8 +16,8 @@ module WhopSDK
         ).returns(WhopSDK::Models::LedgerAccountRetrieveResponse)
       end
       def retrieve(
-        # Either a User ID, Company ID, or LedgerAccount ID (user_xxx, biz_xxx, or
-        # ldgr_xxx)
+        # The identifier to look up the ledger account. Accepts a user ID ('user_xxx'),
+        # company ID ('biz_xxx'), or ledger account ID ('ldgr_xxx').
         id,
         request_options: {}
       )

@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class CourseChapters
-      # Creates a new course chapter
+      # Create a new chapter within a course to organize lessons into sections.
       #
       # Required permissions:
       #
@@ -16,15 +16,16 @@ module WhopSDK
         ).returns(WhopSDK::CourseChapter)
       end
       def create(
-        # The ID of the course to create the chapter in
+        # The unique identifier of the course to create the chapter in (e.g.,
+        # "course_XXXXX").
         course_id:,
-        # The title of the chapter
+        # The display title of the chapter (e.g., "Module 1: Introduction").
         title: nil,
         request_options: {}
       )
       end
 
-      # Retrieves a course chapter by ID
+      # Retrieves the details of an existing course chapter.
       #
       # Required permissions:
       #
@@ -36,13 +37,13 @@ module WhopSDK
         ).returns(WhopSDK::CourseChapter)
       end
       def retrieve(
-        # The ID of the chapter
+        # The unique identifier of the chapter to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # Updates a course chapter
+      # Update a chapter's title within a course.
       #
       # Required permissions:
       #
@@ -55,15 +56,15 @@ module WhopSDK
         ).returns(WhopSDK::CourseChapter)
       end
       def update(
-        # The ID of the chapter to update
+        # The unique identifier of the chapter to update (e.g., "chap_XXXXX").
         id,
-        # The title of the chapter
+        # The new display title of the chapter (e.g., "Module 1: Introduction").
         title:,
         request_options: {}
       )
       end
 
-      # Lists chapters for a course
+      # Returns a paginated list of chapters within a course, ordered by position.
       #
       # Required permissions:
       #
@@ -83,7 +84,7 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the course
+        # The unique identifier of the course to list chapters for.
         course_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
@@ -97,7 +98,7 @@ module WhopSDK
       )
       end
 
-      # Deletes a course chapter
+      # Permanently delete a chapter and all of its lessons from a course.
       #
       # Required permissions:
       #
@@ -109,7 +110,7 @@ module WhopSDK
         ).returns(T::Boolean)
       end
       def delete(
-        # The ID of the chapter to delete
+        # The unique identifier of the chapter to delete (e.g., "chap_XXXXX").
         id,
         request_options: {}
       )

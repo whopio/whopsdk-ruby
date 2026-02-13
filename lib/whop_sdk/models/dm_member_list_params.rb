@@ -8,7 +8,7 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute channel_id
-      #   The ID of the DM channel to list members for
+      #   The unique identifier of the DM channel to list members for.
       #
       #   @return [String]
       required :channel_id, String
@@ -38,7 +38,7 @@ module WhopSDK
       optional :last, Integer, nil?: true
 
       # @!method initialize(channel_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
-      #   @param channel_id [String] The ID of the DM channel to list members for
+      #   @param channel_id [String] The unique identifier of the DM channel to list members for.
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #

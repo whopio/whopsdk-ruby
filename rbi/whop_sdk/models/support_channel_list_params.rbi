@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::SupportChannelListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the company to list chat channels for
+      # The unique identifier of the company to list support channels for.
       sig { returns(String) }
       attr_accessor :company_id
 
@@ -35,9 +35,8 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
-      # Filter for tickets where customer sent the last message (needs response) AND not
-      # resolved. Set to true to only return open channels, false to only return
-      # resolved channels.
+      # Whether to filter by open or resolved support channels. Set to true to only
+      # return channels awaiting a response, or false for resolved channels.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :open_
 
@@ -61,7 +60,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the company to list chat channels for
+        # The unique identifier of the company to list support channels for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
@@ -73,9 +72,8 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # Filter for tickets where customer sent the last message (needs response) AND not
-        # resolved. Set to true to only return open channels, false to only return
-        # resolved channels.
+        # Whether to filter by open or resolved support channels. Set to true to only
+        # return channels awaiting a response, or false for resolved channels.
         open_: nil,
         # Sort options for message channels
         order: nil,

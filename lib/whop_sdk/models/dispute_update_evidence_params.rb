@@ -8,19 +8,19 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute access_activity_log
-      #   An IP access log for the user from Whop.
+      #   An IP access activity log showing the customer used the service.
       #
       #   @return [String, nil]
       optional :access_activity_log, String, nil?: true
 
       # @!attribute billing_address
-      #   The billing address of the user from their payment details.
+      #   The billing address associated with the customer's payment method.
       #
       #   @return [String, nil]
       optional :billing_address, String, nil?: true
 
       # @!attribute cancellation_policy_attachment
-      #   A file containing the cancellation policy from the company.
+      #   A file upload containing the company's cancellation policy document.
       #
       #   @return [WhopSDK::Models::DisputeUpdateEvidenceParams::CancellationPolicyAttachment, nil]
       optional :cancellation_policy_attachment,
@@ -28,13 +28,14 @@ module WhopSDK
                nil?: true
 
       # @!attribute cancellation_policy_disclosure
-      #   A cancellation policy disclosure from the company.
+      #   The company's cancellation policy text to submit as evidence.
       #
       #   @return [String, nil]
       optional :cancellation_policy_disclosure, String, nil?: true
 
       # @!attribute customer_communication_attachment
-      #   A file containing the customer communication from the company (An image).
+      #   A file upload containing evidence of customer communication. Must be a JPEG,
+      #   PNG, GIF, or PDF.
       #
       #   @return [WhopSDK::Models::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment, nil]
       optional :customer_communication_attachment,
@@ -42,31 +43,31 @@ module WhopSDK
                nil?: true
 
       # @!attribute customer_email_address
-      #   The email of the customer from their payment details.
+      #   The email address of the customer associated with the disputed payment.
       #
       #   @return [String, nil]
       optional :customer_email_address, String, nil?: true
 
       # @!attribute customer_name
-      #   The name of the customer from their payment details.
+      #   The full name of the customer associated with the disputed payment.
       #
       #   @return [String, nil]
       optional :customer_name, String, nil?: true
 
       # @!attribute notes
-      #   Additional notes the company chooses to submit regarding the dispute.
+      #   Additional notes or context to submit as part of the dispute evidence.
       #
       #   @return [String, nil]
       optional :notes, String, nil?: true
 
       # @!attribute product_description
-      #   The description of the product from the company.
+      #   A description of the product or service that was provided to the customer.
       #
       #   @return [String, nil]
       optional :product_description, String, nil?: true
 
       # @!attribute refund_policy_attachment
-      #   A file containing the refund policy from the company.
+      #   A file upload containing the company's refund policy document.
       #
       #   @return [WhopSDK::Models::DisputeUpdateEvidenceParams::RefundPolicyAttachment, nil]
       optional :refund_policy_attachment,
@@ -74,25 +75,25 @@ module WhopSDK
                nil?: true
 
       # @!attribute refund_policy_disclosure
-      #   A refund policy disclosure from the company.
+      #   The company's refund policy text to submit as evidence.
       #
       #   @return [String, nil]
       optional :refund_policy_disclosure, String, nil?: true
 
       # @!attribute refund_refusal_explanation
-      #   A description on why the refund is being refused by the company.
+      #   An explanation of why the refund request was refused.
       #
       #   @return [String, nil]
       optional :refund_refusal_explanation, String, nil?: true
 
       # @!attribute service_date
-      #   When the product was delivered by the company.
+      #   The date when the product or service was delivered to the customer.
       #
       #   @return [String, nil]
       optional :service_date, String, nil?: true
 
       # @!attribute uncategorized_attachment
-      #   A file that does not fit in the other categories.
+      #   A file upload for evidence that does not fit into the other categories.
       #
       #   @return [WhopSDK::Models::DisputeUpdateEvidenceParams::UncategorizedAttachment, nil]
       optional :uncategorized_attachment,
@@ -100,33 +101,36 @@ module WhopSDK
                nil?: true
 
       # @!method initialize(access_activity_log: nil, billing_address: nil, cancellation_policy_attachment: nil, cancellation_policy_disclosure: nil, customer_communication_attachment: nil, customer_email_address: nil, customer_name: nil, notes: nil, product_description: nil, refund_policy_attachment: nil, refund_policy_disclosure: nil, refund_refusal_explanation: nil, service_date: nil, uncategorized_attachment: nil, request_options: {})
-      #   @param access_activity_log [String, nil] An IP access log for the user from Whop.
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::DisputeUpdateEvidenceParams} for more details.
       #
-      #   @param billing_address [String, nil] The billing address of the user from their payment details.
+      #   @param access_activity_log [String, nil] An IP access activity log showing the customer used the service.
       #
-      #   @param cancellation_policy_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::CancellationPolicyAttachment, nil] A file containing the cancellation policy from the company.
+      #   @param billing_address [String, nil] The billing address associated with the customer's payment method.
       #
-      #   @param cancellation_policy_disclosure [String, nil] A cancellation policy disclosure from the company.
+      #   @param cancellation_policy_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::CancellationPolicyAttachment, nil] A file upload containing the company's cancellation policy document.
       #
-      #   @param customer_communication_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment, nil] A file containing the customer communication from the company (An image).
+      #   @param cancellation_policy_disclosure [String, nil] The company's cancellation policy text to submit as evidence.
       #
-      #   @param customer_email_address [String, nil] The email of the customer from their payment details.
+      #   @param customer_communication_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment, nil] A file upload containing evidence of customer communication. Must be a JPEG, PNG
       #
-      #   @param customer_name [String, nil] The name of the customer from their payment details.
+      #   @param customer_email_address [String, nil] The email address of the customer associated with the disputed payment.
       #
-      #   @param notes [String, nil] Additional notes the company chooses to submit regarding the dispute.
+      #   @param customer_name [String, nil] The full name of the customer associated with the disputed payment.
       #
-      #   @param product_description [String, nil] The description of the product from the company.
+      #   @param notes [String, nil] Additional notes or context to submit as part of the dispute evidence.
       #
-      #   @param refund_policy_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::RefundPolicyAttachment, nil] A file containing the refund policy from the company.
+      #   @param product_description [String, nil] A description of the product or service that was provided to the customer.
       #
-      #   @param refund_policy_disclosure [String, nil] A refund policy disclosure from the company.
+      #   @param refund_policy_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::RefundPolicyAttachment, nil] A file upload containing the company's refund policy document.
       #
-      #   @param refund_refusal_explanation [String, nil] A description on why the refund is being refused by the company.
+      #   @param refund_policy_disclosure [String, nil] The company's refund policy text to submit as evidence.
       #
-      #   @param service_date [String, nil] When the product was delivered by the company.
+      #   @param refund_refusal_explanation [String, nil] An explanation of why the refund request was refused.
       #
-      #   @param uncategorized_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::UncategorizedAttachment, nil] A file that does not fit in the other categories.
+      #   @param service_date [String, nil] The date when the product or service was delivered to the customer.
+      #
+      #   @param uncategorized_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::UncategorizedAttachment, nil] A file upload for evidence that does not fit into the other categories.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
@@ -138,7 +142,7 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   A file containing the cancellation policy from the company.
+        #   A file upload containing the company's cancellation policy document.
         #
         #   @param id [String] The ID of an existing file object.
       end
@@ -151,7 +155,8 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   A file containing the customer communication from the company (An image).
+        #   A file upload containing evidence of customer communication. Must be a JPEG,
+        #   PNG, GIF, or PDF.
         #
         #   @param id [String] The ID of an existing file object.
       end
@@ -164,7 +169,7 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   A file containing the refund policy from the company.
+        #   A file upload containing the company's refund policy document.
         #
         #   @param id [String] The ID of an existing file object.
       end
@@ -177,7 +182,7 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   A file that does not fit in the other categories.
+        #   A file upload for evidence that does not fit into the other categories.
         #
         #   @param id [String] The ID of an existing file object.
       end

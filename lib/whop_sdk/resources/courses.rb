@@ -6,7 +6,8 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::CourseCreateParams} for more details.
       #
-      # Creates a new course module in an experience
+      # Create a new course within an experience, with optional chapters, lessons, and a
+      # certificate.
       #
       # Required permissions:
       #
@@ -14,19 +15,19 @@ module WhopSDK
       #
       # @overload create(experience_id:, title:, certificate_after_completion_enabled: nil, order: nil, require_completing_lessons_in_order: nil, tagline: nil, thumbnail: nil, visibility: nil, request_options: {})
       #
-      # @param experience_id [String] The ID of the experience to create the course in
+      # @param experience_id [String] The unique identifier of the experience to create the course in (e.g., "exp_XXXX
       #
-      # @param title [String] The title of the course
+      # @param title [String] The display title of the course (e.g., "Introduction to Web Development").
       #
-      # @param certificate_after_completion_enabled [Boolean, nil] Whether the course will award its students a PDF certificate after completing al
+      # @param certificate_after_completion_enabled [Boolean, nil] Whether the course awards students a PDF certificate after completing all lesson
       #
-      # @param order [String, nil] The decimal order position of the course within its experience. If not provided,
+      # @param order [String, nil] The decimal order position of the course within its experience. Use fractional v
       #
-      # @param require_completing_lessons_in_order [Boolean, nil] Whether the course requires students to complete the previous lesson before movi
+      # @param require_completing_lessons_in_order [Boolean, nil] Whether students must complete each lesson sequentially before advancing to the
       #
-      # @param tagline [String, nil] The tagline of the course
+      # @param tagline [String, nil] A short tagline displayed beneath the course title (e.g., "Master the fundamenta
       #
-      # @param thumbnail [WhopSDK::Models::CourseCreateParams::Thumbnail, nil] The thumbnail for the course in png, jpeg, or gif format
+      # @param thumbnail [WhopSDK::Models::CourseCreateParams::Thumbnail, nil] The thumbnail image for the course in PNG, JPEG, or GIF format.
       #
       # @param visibility [Symbol, WhopSDK::Models::CourseVisibilities, nil] The available visibilities for a course. Determines how / whether a course is vi
       #
@@ -46,7 +47,7 @@ module WhopSDK
         )
       end
 
-      # Retrieves a course by ID
+      # Retrieves the details of an existing course.
       #
       # Required permissions:
       #
@@ -54,7 +55,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the course
+      # @param id [String] The unique identifier of the course to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -73,7 +74,8 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::CourseUpdateParams} for more details.
       #
-      # Updates a course
+      # Update a course's title, description, visibility, thumbnail, or chapter
+      # ordering.
       #
       # Required permissions:
       #
@@ -81,25 +83,25 @@ module WhopSDK
       #
       # @overload update(id, certificate_after_completion_enabled: nil, chapters: nil, description: nil, language: nil, order: nil, require_completing_lessons_in_order: nil, tagline: nil, thumbnail: nil, title: nil, visibility: nil, request_options: {})
       #
-      # @param id [String] The ID of the course to update
+      # @param id [String] The unique identifier of the course to update (e.g., "course_XXXXX").
       #
-      # @param certificate_after_completion_enabled [Boolean, nil] Whether the course will award its students a PDF certificate after completing al
+      # @param certificate_after_completion_enabled [Boolean, nil] Whether the course awards students a PDF certificate after completing all lesson
       #
-      # @param chapters [Array<WhopSDK::Models::CourseUpdateParams::Chapter>, nil] The chapters and lessons to update
+      # @param chapters [Array<WhopSDK::Models::CourseUpdateParams::Chapter>, nil] A list of chapters with nested lessons to reorder or rename in bulk.
       #
-      # @param description [String, nil] A short description of the course
+      # @param description [String, nil] A short description of the course displayed to students on the course page.
       #
       # @param language [Symbol, WhopSDK::Models::Languages, nil] The available languages for a course
       #
       # @param order [String, nil] The decimal order position of the course within its experience. Use fractional v
       #
-      # @param require_completing_lessons_in_order [Boolean, nil] Whether the course requires students to complete the previous lesson before movi
+      # @param require_completing_lessons_in_order [Boolean, nil] Whether students must complete each lesson sequentially before advancing to the
       #
-      # @param tagline [String, nil] A short tagline for the course
+      # @param tagline [String, nil] A short tagline displayed beneath the course title (e.g., "Master the fundamenta
       #
-      # @param thumbnail [WhopSDK::Models::CourseUpdateParams::Thumbnail, nil] The thumbnail for the course in png, jpeg, or gif format
+      # @param thumbnail [WhopSDK::Models::CourseUpdateParams::Thumbnail, nil] The thumbnail image for the course in PNG, JPEG, or GIF format.
       #
-      # @param title [String, nil] The title of the course
+      # @param title [String, nil] The display title of the course (e.g., "Introduction to Web Development").
       #
       # @param visibility [Symbol, WhopSDK::Models::CourseVisibilities, nil] The available visibilities for a course. Determines how / whether a course is vi
       #
@@ -119,7 +121,8 @@ module WhopSDK
         )
       end
 
-      # Lists courses for an experience or company
+      # Returns a paginated list of courses, filtered by either an experience or a
+      # company.
       #
       # Required permissions:
       #
@@ -131,9 +134,9 @@ module WhopSDK
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param company_id [String, nil] The ID of the company
+      # @param company_id [String, nil] The unique identifier of the company to list courses for.
       #
-      # @param experience_id [String, nil] The ID of the experience
+      # @param experience_id [String, nil] The unique identifier of the experience to list courses for.
       #
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
@@ -156,7 +159,8 @@ module WhopSDK
         )
       end
 
-      # Deletes a course
+      # Permanently delete a course and all of its chapters, lessons, and student
+      # progress.
       #
       # Required permissions:
       #
@@ -164,7 +168,7 @@ module WhopSDK
       #
       # @overload delete(id, request_options: {})
       #
-      # @param id [String] The ID of the course to delete
+      # @param id [String] The unique identifier of the course to delete (e.g., "course_XXXXX").
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

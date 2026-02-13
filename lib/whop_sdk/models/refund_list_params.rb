@@ -8,7 +8,7 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute payment_id
-      #   The ID of the payment to list refunds for
+      #   The unique identifier of the payment to list refunds for.
       #
       #   @return [String]
       required :payment_id, String
@@ -26,13 +26,13 @@ module WhopSDK
       optional :before, String, nil?: true
 
       # @!attribute created_after
-      #   The minimum creation date to filter by
+      #   Only return refunds created after this timestamp.
       #
       #   @return [Time, nil]
       optional :created_after, Time, nil?: true
 
       # @!attribute created_before
-      #   The maximum creation date to filter by
+      #   Only return refunds created before this timestamp.
       #
       #   @return [Time, nil]
       optional :created_before, Time, nil?: true
@@ -56,15 +56,15 @@ module WhopSDK
       optional :last, Integer, nil?: true
 
       # @!method initialize(payment_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, request_options: {})
-      #   @param payment_id [String] The ID of the payment to list refunds for
+      #   @param payment_id [String] The unique identifier of the payment to list refunds for.
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param created_after [Time, nil] The minimum creation date to filter by
+      #   @param created_after [Time, nil] Only return refunds created after this timestamp.
       #
-      #   @param created_before [Time, nil] The maximum creation date to filter by
+      #   @param created_before [Time, nil] Only return refunds created before this timestamp.
       #
       #   @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #

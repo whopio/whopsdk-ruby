@@ -3,7 +3,11 @@
 module WhopSDK
   module Resources
     class Messages
-      # Creates a new message
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::MessageCreateParams} for more details.
+      #
+      # Send a new message in an experience chat, DM, or group chat channel. Supports
+      # text content, attachments, polls, and replies.
       #
       # Required permissions:
       #
@@ -11,15 +15,15 @@ module WhopSDK
       #
       # @overload create(channel_id:, content:, attachments: nil, poll: nil, replying_to_message_id: nil, request_options: {})
       #
-      # @param channel_id [String] The ID of the channel or experience to send to.
+      # @param channel_id [String] The unique identifier of the channel or experience to send the message in. For e
       #
-      # @param content [String] The content of the message in Markdown format.
+      # @param content [String] The body of the message in Markdown format. For example, 'Hello **world**'.
       #
-      # @param attachments [Array<WhopSDK::Models::MessageCreateParams::Attachment>, nil] The attachments for this message, such as videos or images.
+      # @param attachments [Array<WhopSDK::Models::MessageCreateParams::Attachment>, nil] A list of file attachments to include with the message, such as images or videos
       #
-      # @param poll [WhopSDK::Models::MessageCreateParams::Poll, nil] The poll for this message
+      # @param poll [WhopSDK::Models::MessageCreateParams::Poll, nil] A poll to attach to this message, allowing recipients to vote on options.
       #
-      # @param replying_to_message_id [String, nil] The ID of the message this is replying to, if applicable.
+      # @param replying_to_message_id [String, nil] The unique identifier of the message this is replying to, creating a threaded re
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -37,7 +41,7 @@ module WhopSDK
         )
       end
 
-      # Retrieves a message
+      # Retrieves the details of an existing message.
       #
       # Required permissions:
       #
@@ -45,7 +49,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the message
+      # @param id [String] The unique identifier of the message to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -61,17 +65,22 @@ module WhopSDK
         )
       end
 
-      # Updates an existing message
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::MessageUpdateParams} for more details.
+      #
+      # Edit the content, attachments, or pinned status of an existing message in an
+      # experience chat, DM, or group chat channel.
       #
       # @overload update(id, attachments: nil, content: nil, is_pinned: nil, request_options: {})
       #
-      # @param id [String] The ID of the message to update
+      # @param id [String] The unique identifier of the message to update.
       #
-      # @param attachments [Array<WhopSDK::Models::MessageUpdateParams::Attachment>, nil] The attachments for this message
+      # @param attachments [Array<WhopSDK::Models::MessageUpdateParams::Attachment>, nil] A replacement list of file attachments for this message, such as images or video
       #
-      # @param content [String, nil] The content of the message in Markdown format
+      # @param content [String, nil] The updated body of the message in Markdown format. For example,
+      # 'Hello \*_world_
       #
-      # @param is_pinned [Boolean, nil] Whether this message is pinned
+      # @param is_pinned [Boolean, nil] Whether this message should be pinned to the top of the channel.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -89,7 +98,8 @@ module WhopSDK
         )
       end
 
-      # Lists messages inside a channel
+      # Returns a paginated list of messages within a specific experience chat, DM, or
+      # group chat channel, sorted by creation time.
       #
       # Required permissions:
       #
@@ -97,7 +107,7 @@ module WhopSDK
       #
       # @overload list(channel_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, request_options: {})
       #
-      # @param channel_id [String] The ID of the channel or the experience ID to list messages for
+      # @param channel_id [String] The unique identifier of the channel or experience to list messages for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -126,7 +136,8 @@ module WhopSDK
         )
       end
 
-      # Deletes a message
+      # Permanently delete a message from an experience chat, DM, or group chat channel.
+      # Only the message author or a channel admin can delete a message.
       #
       # Required permissions:
       #
@@ -134,7 +145,7 @@ module WhopSDK
       #
       # @overload delete(id, request_options: {})
       #
-      # @param id [String] The ID of the message to delete
+      # @param id [String] The unique identifier of the message to delete.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

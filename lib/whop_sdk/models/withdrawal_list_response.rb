@@ -11,8 +11,8 @@ module WhopSDK
       required :id, String
 
       # @!attribute amount
-      #   The withdrawal amount. Provided as a number in the specified currency. Eg:
-      #   100.00 for $100.00 USD.
+      #   The withdrawal amount as a decimal number in the specified currency (e.g.,
+      #   100.00 for $100.00 USD).
       #
       #   @return [Float]
       required :amount, Float
@@ -24,14 +24,14 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute currency
-      #   The currency of the withdrawal request.
+      #   The three-letter ISO currency code for this withdrawal (e.g., 'usd', 'eur').
       #
       #   @return [Symbol, WhopSDK::Models::Currency]
       required :currency, enum: -> { WhopSDK::Currency }
 
       # @!attribute fee_amount
-      #   The fee amount that was charged for the withdrawal. This is in the same currency
-      #   as the withdrawal amount.
+      #   The fee charged for processing this withdrawal, in the same currency as the
+      #   withdrawal amount.
       #
       #   @return [Float]
       required :fee_amount, Float
@@ -43,21 +43,21 @@ module WhopSDK
       required :fee_type, enum: -> { WhopSDK::WithdrawalFeeTypes }, nil?: true
 
       # @!attribute markup_fee
-      #   The markup fee that was charged for the withdrawal. This is in the same currency
-      #   as the withdrawal amount. This only applies to platform accounts using Whop
-      #   Rails.
+      #   An additional markup fee charged for the withdrawal, in the same currency as the
+      #   withdrawal amount. Only applies to platform accounts using Whop Rails.
       #
       #   @return [Float]
       required :markup_fee, Float
 
       # @!attribute speed
-      #   The speed of the withdrawal.
+      #   The processing speed selected for this withdrawal ('standard' or 'instant').
       #
       #   @return [Symbol, WhopSDK::Models::WithdrawalSpeeds]
       required :speed, enum: -> { WhopSDK::WithdrawalSpeeds }
 
       # @!attribute status
-      #   Status of the withdrawal.
+      #   The computed lifecycle status of the withdrawal, accounting for the state of
+      #   associated payouts (e.g., 'requested', 'in_transit', 'completed', 'failed').
       #
       #   @return [Symbol, WhopSDK::Models::WithdrawalStatus]
       required :status, enum: -> { WhopSDK::WithdrawalStatus }
@@ -66,26 +66,26 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::WithdrawalListResponse} for more details.
       #
-      #   A withdrawal represents a request to transfer funds from a company's ledger
-      #   account to an external payout method.
+      #   A withdrawal represents a request to transfer funds from a ledger account to an
+      #   external payout method.
       #
       #   @param id [String] The unique identifier for the withdrawal.
       #
-      #   @param amount [Float] The withdrawal amount. Provided as a number in the specified currency. Eg: 100.0
+      #   @param amount [Float] The withdrawal amount as a decimal number in the specified currency (e.g., 100.0
       #
       #   @param created_at [Time] The datetime the withdrawal was created.
       #
-      #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the withdrawal request.
+      #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for this withdrawal (e.g., 'usd', 'eur').
       #
-      #   @param fee_amount [Float] The fee amount that was charged for the withdrawal. This is in the same currency
+      #   @param fee_amount [Float] The fee charged for processing this withdrawal, in the same currency as the with
       #
       #   @param fee_type [Symbol, WhopSDK::Models::WithdrawalFeeTypes, nil] The different fee types for a withdrawal.
       #
-      #   @param markup_fee [Float] The markup fee that was charged for the withdrawal. This is in the same currency
+      #   @param markup_fee [Float] An additional markup fee charged for the withdrawal, in the same currency as the
       #
-      #   @param speed [Symbol, WhopSDK::Models::WithdrawalSpeeds] The speed of the withdrawal.
+      #   @param speed [Symbol, WhopSDK::Models::WithdrawalSpeeds] The processing speed selected for this withdrawal ('standard' or 'instant').
       #
-      #   @param status [Symbol, WhopSDK::Models::WithdrawalStatus] Status of the withdrawal.
+      #   @param status [Symbol, WhopSDK::Models::WithdrawalStatus] The computed lifecycle status of the withdrawal, accounting for the state of ass
     end
   end
 end

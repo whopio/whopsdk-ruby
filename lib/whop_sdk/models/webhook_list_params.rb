@@ -8,7 +8,7 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute company_id
-      #   The ID of the company to list webhooks for
+      #   The unique identifier of the company to list webhooks for.
       #
       #   @return [String]
       required :company_id, String
@@ -38,7 +38,7 @@ module WhopSDK
       optional :last, Integer, nil?: true
 
       # @!method initialize(company_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
-      #   @param company_id [String] The ID of the company to list webhooks for
+      #   @param company_id [String] The unique identifier of the company to list webhooks for.
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #

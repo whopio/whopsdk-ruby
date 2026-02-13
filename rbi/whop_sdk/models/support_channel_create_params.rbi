@@ -11,11 +11,12 @@ module WhopSDK
           T.any(WhopSDK::SupportChannelCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the company to create the support chat in
+      # The unique identifier of the company to create the support channel in.
       sig { returns(String) }
       attr_accessor :company_id
 
-      # The ID (user_xxx) or username of the user to create the support chat for
+      # The user ID (e.g. 'user_xxxxx') or username of the customer to open a support
+      # channel for.
       sig { returns(String) }
       attr_accessor :user_id
 
@@ -27,9 +28,10 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the company to create the support chat in
+        # The unique identifier of the company to create the support channel in.
         company_id:,
-        # The ID (user_xxx) or username of the user to create the support chat for
+        # The user ID (e.g. 'user_xxxxx') or username of the customer to open a support
+        # channel for.
         user_id:,
         request_options: {}
       )

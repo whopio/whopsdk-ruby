@@ -11,33 +11,38 @@ module WhopSDK
       required :id, String
 
       # @!attribute lessons
-      #   The lessons in this chapter
+      #   An ordered list of lessons in this chapter, sorted by display position. Hidden
+      #   lessons are excluded for non-admin users.
       #
       #   @return [Array<WhopSDK::Models::CourseChapter::Lesson>]
       required :lessons, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::CourseChapter::Lesson] }
 
       # @!attribute order
-      #   The order of the chapter within its course
+      #   The sort position of this chapter within its parent course, starting from zero.
       #
       #   @return [Integer]
       required :order, Integer
 
       # @!attribute title
-      #   The title of the chapter
+      #   The display name of the chapter shown to students. Maximum 150 characters.
       #
       #   @return [String]
       required :title, String
 
       # @!method initialize(id:, lessons:, order:, title:)
-      #   A chapter from the courses app
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::CourseChapter} for more details.
+      #
+      #   A grouping of related lessons within a course, used to organize content into
+      #   sections.
       #
       #   @param id [String] The unique identifier for the chapter.
       #
-      #   @param lessons [Array<WhopSDK::Models::CourseChapter::Lesson>] The lessons in this chapter
+      #   @param lessons [Array<WhopSDK::Models::CourseChapter::Lesson>] An ordered list of lessons in this chapter, sorted by display position. Hidden l
       #
-      #   @param order [Integer] The order of the chapter within its course
+      #   @param order [Integer] The sort position of this chapter within its parent course, starting from zero.
       #
-      #   @param title [String] The title of the chapter
+      #   @param title [String] The display name of the chapter shown to students. Maximum 150 characters.
 
       class Lesson < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
@@ -47,25 +52,26 @@ module WhopSDK
         required :id, String
 
         # @!attribute order
-        #   The order of the lesson within its chapter
+        #   The sort position of this lesson within its parent chapter, starting from zero.
         #
         #   @return [Integer]
         required :order, Integer
 
         # @!attribute title
-        #   The title of the lesson
+        #   The display name of the lesson shown to students. Maximum 120 characters.
         #
         #   @return [String]
         required :title, String
 
         # @!method initialize(id:, order:, title:)
-        #   A lesson from the courses app
+        #   An individual learning unit within a chapter, which can contain text, video,
+        #   PDF, or assessment content.
         #
         #   @param id [String] The unique identifier for the lesson.
         #
-        #   @param order [Integer] The order of the lesson within its chapter
+        #   @param order [Integer] The sort position of this lesson within its parent chapter, starting from zero.
         #
-        #   @param title [String] The title of the lesson
+        #   @param title [String] The display name of the lesson shown to students. Maximum 120 characters.
       end
     end
   end

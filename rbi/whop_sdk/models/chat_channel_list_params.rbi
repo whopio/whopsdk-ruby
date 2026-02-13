@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::ChatChannelListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the company to list chat channels for
+      # The unique identifier of the company to list chat channels for.
       sig { returns(String) }
       attr_accessor :company_id
 
@@ -31,7 +31,8 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
-      # If provided, only chat channels connected to this product are returned
+      # The unique identifier of a product to filter by. When set, only chat channels
+      # connected to this product are returned.
       sig { returns(T.nilable(String)) }
       attr_accessor :product_id
 
@@ -47,7 +48,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the company to list chat channels for
+        # The unique identifier of the company to list chat channels for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
@@ -57,7 +58,8 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # If provided, only chat channels connected to this product are returned
+        # The unique identifier of a product to filter by. When set, only chat channels
+        # connected to this product are returned.
         product_id: nil,
         request_options: {}
       )

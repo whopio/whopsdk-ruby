@@ -11,8 +11,8 @@ module WhopSDK
           T.any(WhopSDK::MembershipPauseParams, WhopSDK::Internal::AnyHash)
         end
 
-      # Whether to void past_due payments associated with the membership to prevent
-      # future payment attempts.
+      # Whether to void any outstanding past-due payments on this membership, preventing
+      # future collection attempts.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :void_payments
 
@@ -23,8 +23,8 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # Whether to void past_due payments associated with the membership to prevent
-        # future payment attempts.
+        # Whether to void any outstanding past-due payments on this membership, preventing
+        # future collection attempts.
         void_payments: nil,
         request_options: {}
       )

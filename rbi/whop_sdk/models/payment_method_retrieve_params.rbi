@@ -14,11 +14,13 @@ module WhopSDK
           )
         end
 
-      # The ID of the Company. Provide either this or member_id (not both).
+      # The unique identifier of the company. Provide either this or member_id, not
+      # both.
       sig { returns(T.nilable(String)) }
       attr_accessor :company_id
 
-      # The ID of the Member. Provide either this or company_id (not both).
+      # The unique identifier of the member. Provide either this or company_id, not
+      # both.
       sig { returns(T.nilable(String)) }
       attr_accessor :member_id
 
@@ -30,9 +32,11 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the Company. Provide either this or member_id (not both).
+        # The unique identifier of the company. Provide either this or member_id, not
+        # both.
         company_id: nil,
-        # The ID of the Member. Provide either this or company_id (not both).
+        # The unique identifier of the member. Provide either this or company_id, not
+        # both.
         member_id: nil,
         request_options: {}
       )

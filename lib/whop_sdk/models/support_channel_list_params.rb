@@ -8,7 +8,7 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute company_id
-      #   The ID of the company to list chat channels for
+      #   The unique identifier of the company to list support channels for.
       #
       #   @return [String]
       required :company_id, String
@@ -44,9 +44,8 @@ module WhopSDK
       optional :last, Integer, nil?: true
 
       # @!attribute open_
-      #   Filter for tickets where customer sent the last message (needs response) AND not
-      #   resolved. Set to true to only return open channels, false to only return
-      #   resolved channels.
+      #   Whether to filter by open or resolved support channels. Set to true to only
+      #   return channels awaiting a response, or false for resolved channels.
       #
       #   @return [Boolean, nil]
       optional :open_, WhopSDK::Internal::Type::Boolean, nil?: true
@@ -61,7 +60,7 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::SupportChannelListParams} for more details.
       #
-      #   @param company_id [String] The ID of the company to list chat channels for
+      #   @param company_id [String] The unique identifier of the company to list support channels for.
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -73,7 +72,7 @@ module WhopSDK
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      #   @param open_ [Boolean, nil] Filter for tickets where customer sent the last message (needs response) AND not
+      #   @param open_ [Boolean, nil] Whether to filter by open or resolved support channels. Set to true to only retu
       #
       #   @param order [Symbol, WhopSDK::Models::SupportChannelListParams::Order, nil] Sort options for message channels
       #

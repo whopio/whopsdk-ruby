@@ -23,15 +23,15 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # The ID of the company to list members for
+      # The unique identifier of the company to list members for.
       sig { returns(T.nilable(String)) }
       attr_accessor :company_id
 
-      # The minimum creation date to filter by
+      # Only return members created after this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_after
 
-      # The maximum creation date to filter by
+      # Only return members created before this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_before
 
@@ -47,7 +47,7 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
-      # The most recent actions to filter the members by
+      # Filter members by their most recent activity type.
       sig do
         returns(T.nilable(T::Array[WhopSDK::MemberMostRecentActions::OrSymbol]))
       end
@@ -57,28 +57,28 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::MemberListParams::Order::OrSymbol)) }
       attr_accessor :order
 
-      # The plan IDs to filter the members by
+      # Filter members to only those subscribed to these specific plans.
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :plan_ids
 
-      # The product IDs to filter the members by
+      # Filter members to only those belonging to these specific products.
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :product_ids
 
-      # The promo code IDs to filter the members by
+      # Filter members to only those who used these specific promo codes.
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :promo_code_ids
 
-      # The name, username, or email to filter the members by. The email filter will
-      # only apply if the current actor has the `member:email:read` permission.
+      # Search members by name, username, or email. Email filtering requires the
+      # member:email:read permission.
       sig { returns(T.nilable(String)) }
       attr_accessor :query
 
-      # The statuses to filter the members by
+      # Filter members by their current subscription status.
       sig { returns(T.nilable(T::Array[WhopSDK::MemberStatuses::OrSymbol])) }
       attr_accessor :statuses
 
-      # The user IDs to filter the members by
+      # Filter members to only those matching these specific user identifiers.
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :user_ids
 
@@ -112,11 +112,11 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The ID of the company to list members for
+        # The unique identifier of the company to list members for.
         company_id: nil,
-        # The minimum creation date to filter by
+        # Only return members created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return members created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,
@@ -124,22 +124,22 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The most recent actions to filter the members by
+        # Filter members by their most recent activity type.
         most_recent_actions: nil,
         # Which columns can be used to sort.
         order: nil,
-        # The plan IDs to filter the members by
+        # Filter members to only those subscribed to these specific plans.
         plan_ids: nil,
-        # The product IDs to filter the members by
+        # Filter members to only those belonging to these specific products.
         product_ids: nil,
-        # The promo code IDs to filter the members by
+        # Filter members to only those who used these specific promo codes.
         promo_code_ids: nil,
-        # The name, username, or email to filter the members by. The email filter will
-        # only apply if the current actor has the `member:email:read` permission.
+        # Search members by name, username, or email. Email filtering requires the
+        # member:email:read permission.
         query: nil,
-        # The statuses to filter the members by
+        # Filter members by their current subscription status.
         statuses: nil,
-        # The user IDs to filter the members by
+        # Filter members to only those matching these specific user identifiers.
         user_ids: nil,
         request_options: {}
       )

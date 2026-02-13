@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::InvoiceListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the company to list invoices for
+      # The unique identifier of the company to list invoices for.
       sig { returns(String) }
       attr_accessor :company_id
 
@@ -23,15 +23,15 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # Filter invoices by their collection method
+      # Filter invoices by their collection method.
       sig { returns(T.nilable(T::Array[WhopSDK::CollectionMethod::OrSymbol])) }
       attr_accessor :collection_methods
 
-      # The minimum creation date to filter by
+      # Only return invoices created after this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_after
 
-      # The maximum creation date to filter by
+      # Only return invoices created before this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_before
 
@@ -51,11 +51,12 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::InvoiceListParams::Order::OrSymbol)) }
       attr_accessor :order
 
-      # Return only invoices created for these specific product ids
+      # Filter invoices to only those associated with these specific product
+      # identifiers.
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :product_ids
 
-      # The statuses to filter the invoices by
+      # Filter invoices by their current status.
       sig { returns(T.nilable(T::Array[WhopSDK::InvoiceStatus::OrSymbol])) }
       attr_accessor :statuses
 
@@ -78,17 +79,17 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the company to list invoices for
+        # The unique identifier of the company to list invoices for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # Filter invoices by their collection method
+        # Filter invoices by their collection method.
         collection_methods: nil,
-        # The minimum creation date to filter by
+        # Only return invoices created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return invoices created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,
@@ -98,9 +99,10 @@ module WhopSDK
         last: nil,
         # Which columns can be used to sort.
         order: nil,
-        # Return only invoices created for these specific product ids
+        # Filter invoices to only those associated with these specific product
+        # identifiers.
         product_ids: nil,
-        # The statuses to filter the invoices by
+        # Filter invoices by their current status.
         statuses: nil,
         request_options: {}
       )

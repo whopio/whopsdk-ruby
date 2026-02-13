@@ -11,16 +11,17 @@ module WhopSDK
           T.any(WhopSDK::AIChatCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The text content of the first message sent in the chat
+      # The text content of the first message to send to the AI agent.
       sig { returns(String) }
       attr_accessor :message_text
 
-      # The ID of the company to set as the current company in context for the AI chat
+      # The unique identifier of the company to set as context for the AI chat (e.g.,
+      # "biz_XXXXX").
       sig { returns(T.nilable(String)) }
       attr_accessor :current_company_id
 
-      # The IDs of existing uploaded attachments to include in the first message to the
-      # agent
+      # A list of previously uploaded file attachments to include with the first
+      # message.
       sig do
         returns(
           T.nilable(T::Array[WhopSDK::AIChatCreateParams::MessageAttachment])
@@ -28,7 +29,7 @@ module WhopSDK
       end
       attr_accessor :message_attachments
 
-      # The title of the AI chat
+      # An optional display title for the AI chat thread (e.g., "Help with billing").
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
@@ -45,14 +46,15 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The text content of the first message sent in the chat
+        # The text content of the first message to send to the AI agent.
         message_text:,
-        # The ID of the company to set as the current company in context for the AI chat
+        # The unique identifier of the company to set as context for the AI chat (e.g.,
+        # "biz_XXXXX").
         current_company_id: nil,
-        # The IDs of existing uploaded attachments to include in the first message to the
-        # agent
+        # A list of previously uploaded file attachments to include with the first
+        # message.
         message_attachments: nil,
-        # The title of the AI chat
+        # An optional display title for the AI chat thread (e.g., "Help with billing").
         title: nil,
         request_options: {}
       )

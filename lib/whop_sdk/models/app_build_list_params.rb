@@ -8,7 +8,7 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute app_id
-      #   The ID of the app to filter app builds by
+      #   The unique identifier of the app to list builds for.
       #
       #   @return [String]
       required :app_id, String
@@ -26,13 +26,13 @@ module WhopSDK
       optional :before, String, nil?: true
 
       # @!attribute created_after
-      #   The minimum creation date to filter by
+      #   Only return builds created after this timestamp.
       #
       #   @return [Time, nil]
       optional :created_after, Time, nil?: true
 
       # @!attribute created_before
-      #   The maximum creation date to filter by
+      #   Only return builds created before this timestamp.
       #
       #   @return [Time, nil]
       optional :created_before, Time, nil?: true
@@ -62,15 +62,15 @@ module WhopSDK
       optional :status, enum: -> { WhopSDK::AppBuildStatuses }, nil?: true
 
       # @!method initialize(app_id:, after: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, platform: nil, status: nil, request_options: {})
-      #   @param app_id [String] The ID of the app to filter app builds by
+      #   @param app_id [String] The unique identifier of the app to list builds for.
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param created_after [Time, nil] The minimum creation date to filter by
+      #   @param created_after [Time, nil] Only return builds created after this timestamp.
       #
-      #   @param created_before [Time, nil] The maximum creation date to filter by
+      #   @param created_before [Time, nil] Only return builds created before this timestamp.
       #
       #   @param first [Integer, nil] Returns the first _n_ elements from the list.
       #

@@ -18,21 +18,21 @@ module WhopSDK
       #
       # @overload create(plan:, plan_id:, company_id:, affiliate_code: nil, currency: nil, metadata: nil, payment_method_configuration: nil, redirect_url: nil, source_url: nil, mode: :setup, request_options: {})
       #
-      # @param plan [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan] Pass this object to create a new plan for this checkout configuration
+      # @param plan [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan] The plan attributes to create a new plan inline for this checkout configuration.
       #
-      # @param plan_id [String] The ID of the plan to use for the checkout configuration
+      # @param plan_id [String] The unique identifier of an existing plan to use for this checkout configuration
       #
-      # @param company_id [String] The ID of the company for which to generate the checkout configuration. Only req
+      # @param company_id [String] The unique identifier of the company to create the checkout configuration for. O
       #
-      # @param affiliate_code [String, nil] The affiliate code to use for the checkout configuration
+      # @param affiliate_code [String, nil] An affiliate tracking code to attribute the checkout to a specific affiliate.
       #
       # @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #
-      # @param metadata [Hash{Symbol=>Object}, nil] The metadata to use for the checkout configuration
+      # @param metadata [Hash{Symbol=>Object}, nil] Custom key-value metadata to attach to the checkout configuration.
       #
-      # @param payment_method_configuration [WhopSDK::Models::CheckoutConfigurationCreateParams::PaymentMethodConfiguration, nil] This currently only works for configurations made in 'setup' mode. The explicit
+      # @param payment_method_configuration [WhopSDK::Models::CheckoutConfigurationCreateParams::PaymentMethodConfiguration, nil] The explicit payment method configuration for the checkout session. Only applies
       #
-      # @param redirect_url [String, nil] The URL to redirect the user to after the checkout configuration is created
+      # @param redirect_url [String, nil] The URL to redirect the user to after checkout is completed.
       #
       # @param source_url [String, nil] The URL of the page where the checkout is being initiated from.
       #
@@ -54,7 +54,7 @@ module WhopSDK
         )
       end
 
-      # Retrieves a checkout configuration by ID
+      # Retrieves the details of an existing checkout configuration.
       #
       # Required permissions:
       #
@@ -62,7 +62,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the checkout configuration
+      # @param id [String] The unique identifier of the checkout configuration.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -78,7 +78,11 @@ module WhopSDK
         )
       end
 
-      # Lists checkout configurations
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::CheckoutConfigurationListParams} for more details.
+      #
+      # Returns a paginated list of checkout configurations for a company, with optional
+      # filtering by plan and creation date.
       #
       # Required permissions:
       #
@@ -86,15 +90,15 @@ module WhopSDK
       #
       # @overload list(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, plan_id: nil, request_options: {})
       #
-      # @param company_id [String] The ID of the company to list checkout configurations for
+      # @param company_id [String] The unique identifier of the company to list checkout configurations for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param created_after [Time, nil] The minimum creation date to filter by
+      # @param created_after [Time, nil] Only return checkout configurations created after this timestamp.
       #
-      # @param created_before [Time, nil] The maximum creation date to filter by
+      # @param created_before [Time, nil] Only return checkout configurations created before this timestamp.
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
@@ -102,7 +106,7 @@ module WhopSDK
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param plan_id [String, nil] The ID of the plan to filter checkout configurations by
+      # @param plan_id [String, nil] Filter checkout configurations to only those associated with this plan identifie
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

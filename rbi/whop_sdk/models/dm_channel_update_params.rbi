@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::DmChannelUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The custom name for the DM channel
+      # A new custom display name for the DM channel. For example, 'Project Discussion'.
       sig { returns(T.nilable(String)) }
       attr_accessor :custom_name
 
@@ -22,7 +22,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The custom name for the DM channel
+        # A new custom display name for the DM channel. For example, 'Project Discussion'.
         custom_name: nil,
         request_options: {}
       )

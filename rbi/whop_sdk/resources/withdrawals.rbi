@@ -38,7 +38,7 @@ module WhopSDK
       )
       end
 
-      # Retrieves a withdrawal by ID
+      # Retrieves the details of an existing withdrawal.
       #
       # Required permissions:
       #
@@ -51,13 +51,14 @@ module WhopSDK
         ).returns(WhopSDK::Withdrawal)
       end
       def retrieve(
-        # The ID of the Withdrawal
+        # The unique identifier of the withdrawal to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # Lists withdrawals
+      # Returns a paginated list of withdrawals for a company, with optional sorting and
+      # date filtering.
       #
       # Required permissions:
       #
@@ -78,15 +79,15 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the company to list withdrawals for
+        # The unique identifier of the company to list withdrawals for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The minimum creation date to filter by
+        # Only return withdrawals created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return withdrawals created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,

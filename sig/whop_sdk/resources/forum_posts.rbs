@@ -4,6 +4,7 @@ module WhopSDK
       def create: (
         experience_id: String,
         ?attachments: ::Array[WhopSDK::ForumPostCreateParams::Attachment]?,
+        ?company_id: String?,
         ?content: String?,
         ?is_mention: bool?,
         ?parent_id: String?,

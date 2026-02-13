@@ -87,6 +87,7 @@ module WhopSDK
       SPLITIT = :splitit
       SUNBIT = :sunbit
       SWISH = :swish
+      TAMARA = :tamara
       TWINT = :twint
       UPI = :upi
       US_BANK_ACCOUNT = :us_bank_account

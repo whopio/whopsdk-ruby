@@ -8,13 +8,13 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute product_id
-      #   The ID of the Access Pass to add the Experience to.
+      #   The unique identifier of the product to detach the experience from.
       #
       #   @return [String]
       required :product_id, String
 
       # @!method initialize(product_id:, request_options: {})
-      #   @param product_id [String] The ID of the Access Pass to add the Experience to.
+      #   @param product_id [String] The unique identifier of the product to detach the experience from.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

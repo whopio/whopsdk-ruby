@@ -8,13 +8,13 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute title
-      #   The title of the chapter
+      #   The new display title of the chapter (e.g., "Module 1: Introduction").
       #
       #   @return [String]
       required :title, String
 
       # @!method initialize(title:, request_options: {})
-      #   @param title [String] The title of the chapter
+      #   @param title [String] The new display title of the chapter (e.g., "Module 1: Introduction").
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

@@ -8,14 +8,14 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute answers
-      #   The answers to the assessment questions
+      #   The list of answers to submit for each assessment question.
       #
       #   @return [Array<WhopSDK::Models::CourseLessonSubmitAssessmentParams::Answer>]
       required :answers,
                -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::CourseLessonSubmitAssessmentParams::Answer] }
 
       # @!method initialize(answers:, request_options: {})
-      #   @param answers [Array<WhopSDK::Models::CourseLessonSubmitAssessmentParams::Answer>] The answers to the assessment questions
+      #   @param answers [Array<WhopSDK::Models::CourseLessonSubmitAssessmentParams::Answer>] The list of answers to submit for each assessment question.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 

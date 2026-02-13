@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::DmMemberListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the DM channel to list members for
+      # The unique identifier of the DM channel to list members for.
       sig { returns(String) }
       attr_accessor :channel_id
 
@@ -42,7 +42,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the DM channel to list members for
+        # The unique identifier of the DM channel to list members for.
         channel_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,

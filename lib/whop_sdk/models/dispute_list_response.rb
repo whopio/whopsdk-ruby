@@ -11,13 +11,13 @@ module WhopSDK
       required :id, String
 
       # @!attribute amount
-      #   The amount of the dispute (formatted).
+      #   The disputed amount in the specified currency, formatted as a decimal.
       #
       #   @return [Float]
       required :amount, Float
 
       # @!attribute company
-      #   The company the dispute is against.
+      #   The company that the dispute was filed against.
       #
       #   @return [WhopSDK::Models::DisputeListResponse::Company, nil]
       required :company, -> { WhopSDK::Models::DisputeListResponse::Company }, nil?: true
@@ -29,88 +29,97 @@ module WhopSDK
       required :created_at, Time, nil?: true
 
       # @!attribute currency
-      #   The currency of the dispute.
+      #   The three-letter ISO currency code for the disputed amount.
       #
       #   @return [Symbol, WhopSDK::Models::Currency]
       required :currency, enum: -> { WhopSDK::Currency }
 
       # @!attribute editable
-      #   Whether or not the dispute data can be edited.
+      #   Whether the dispute evidence can still be edited and submitted. Returns true
+      #   only when the dispute status requires a response.
       #
       #   @return [Boolean, nil]
       required :editable, WhopSDK::Internal::Type::Boolean, nil?: true
 
       # @!attribute needs_response_by
-      #   The last date the dispute is allow to be submitted by.
+      #   The deadline by which dispute evidence must be submitted. Null if no response
+      #   deadline is set.
       #
       #   @return [Time, nil]
       required :needs_response_by, Time, nil?: true
 
       # @!attribute payment
-      #   The payment that got disputed
+      #   The original payment that was disputed.
       #
       #   @return [WhopSDK::Models::DisputeListResponse::Payment, nil]
       required :payment, -> { WhopSDK::Models::DisputeListResponse::Payment }, nil?: true
 
       # @!attribute plan
-      #   The plan that got disputed
+      #   The plan associated with the disputed payment. Null if the dispute is not linked
+      #   to a specific plan.
       #
       #   @return [WhopSDK::Models::DisputeListResponse::Plan, nil]
       required :plan, -> { WhopSDK::Models::DisputeListResponse::Plan }, nil?: true
 
       # @!attribute product
-      #   The product that got disputed
+      #   The product associated with the disputed payment. Null if the dispute is not
+      #   linked to a specific product.
       #
       #   @return [WhopSDK::Models::DisputeListResponse::Product, nil]
       required :product, -> { WhopSDK::Models::DisputeListResponse::Product }, nil?: true
 
       # @!attribute reason
-      #   The reason for the dispute
+      #   A human-readable reason for the dispute.
       #
       #   @return [String, nil]
       required :reason, String, nil?: true
 
       # @!attribute status
-      #   The status of the dispute (mimics stripe's dispute status).
+      #   The current status of the dispute lifecycle, such as needs_response,
+      #   under_review, won, or lost.
       #
       #   @return [Symbol, WhopSDK::Models::DisputeStatuses]
       required :status, enum: -> { WhopSDK::DisputeStatuses }
 
       # @!attribute visa_rdr
-      #   Whether or not the dispute is a Visa Rapid Dispute Resolution.
+      #   Whether the dispute was automatically resolved through Visa Rapid Dispute
+      #   Resolution (RDR).
       #
       #   @return [Boolean]
       required :visa_rdr, WhopSDK::Internal::Type::Boolean
 
       # @!method initialize(id:, amount:, company:, created_at:, currency:, editable:, needs_response_by:, payment:, plan:, product:, reason:, status:, visa_rdr:)
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::DisputeListResponse} for more details.
+      #
       #   A dispute is a chargeback or payment challenge filed against a company,
       #   including evidence and response status.
       #
       #   @param id [String] The unique identifier for the dispute.
       #
-      #   @param amount [Float] The amount of the dispute (formatted).
+      #   @param amount [Float] The disputed amount in the specified currency, formatted as a decimal.
       #
-      #   @param company [WhopSDK::Models::DisputeListResponse::Company, nil] The company the dispute is against.
+      #   @param company [WhopSDK::Models::DisputeListResponse::Company, nil] The company that the dispute was filed against.
       #
       #   @param created_at [Time, nil] The datetime the dispute was created.
       #
-      #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the dispute.
+      #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for the disputed amount.
       #
-      #   @param editable [Boolean, nil] Whether or not the dispute data can be edited.
+      #   @param editable [Boolean, nil] Whether the dispute evidence can still be edited and submitted. Returns true onl
       #
-      #   @param needs_response_by [Time, nil] The last date the dispute is allow to be submitted by.
+      #   @param needs_response_by [Time, nil] The deadline by which dispute evidence must be submitted. Null if no response de
       #
-      #   @param payment [WhopSDK::Models::DisputeListResponse::Payment, nil] The payment that got disputed
+      #   @param payment [WhopSDK::Models::DisputeListResponse::Payment, nil] The original payment that was disputed.
       #
-      #   @param plan [WhopSDK::Models::DisputeListResponse::Plan, nil] The plan that got disputed
+      #   @param plan [WhopSDK::Models::DisputeListResponse::Plan, nil] The plan associated with the disputed payment. Null if the dispute is not linked
       #
-      #   @param product [WhopSDK::Models::DisputeListResponse::Product, nil] The product that got disputed
+      #   @param product [WhopSDK::Models::DisputeListResponse::Product, nil] The product associated with the disputed payment. Null if the dispute is not lin
       #
-      #   @param reason [String, nil] The reason for the dispute
+      #   @param reason [String, nil] A human-readable reason for the dispute.
       #
-      #   @param status [Symbol, WhopSDK::Models::DisputeStatuses] The status of the dispute (mimics stripe's dispute status).
+      #   @param status [Symbol, WhopSDK::Models::DisputeStatuses] The current status of the dispute lifecycle, such as needs_response, under_revie
       #
-      #   @param visa_rdr [Boolean] Whether or not the dispute is a Visa Rapid Dispute Resolution.
+      #   @param visa_rdr [Boolean] Whether the dispute was automatically resolved through Visa Rapid Dispute Resolu
 
       # @see WhopSDK::Models::DisputeListResponse#company
       class Company < WhopSDK::Internal::Type::BaseModel
@@ -127,7 +136,7 @@ module WhopSDK
         required :title, String
 
         # @!method initialize(id:, title:)
-        #   The company the dispute is against.
+        #   The company that the dispute was filed against.
         #
         #   @param id [String] The unique identifier for the company.
         #
@@ -143,7 +152,7 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   The payment that got disputed
+        #   The original payment that was disputed.
         #
         #   @param id [String] The unique identifier for the payment.
       end
@@ -157,7 +166,8 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   The plan that got disputed
+        #   The plan associated with the disputed payment. Null if the dispute is not linked
+        #   to a specific plan.
         #
         #   @param id [String] The unique identifier for the plan.
       end
@@ -171,17 +181,22 @@ module WhopSDK
         required :id, String
 
         # @!attribute title
-        #   The title of the product. Use for Whop 4.0.
+        #   The display name of the product shown to customers on the product page and in
+        #   search results.
         #
         #   @return [String]
         required :title, String
 
         # @!method initialize(id:, title:)
-        #   The product that got disputed
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::DisputeListResponse::Product} for more details.
+        #
+        #   The product associated with the disputed payment. Null if the dispute is not
+        #   linked to a specific product.
         #
         #   @param id [String] The unique identifier for the product.
         #
-        #   @param title [String] The title of the product. Use for Whop 4.0.
+        #   @param title [String] The display name of the product shown to customers on the product page and in se
       end
     end
   end

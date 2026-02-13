@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class Disputes
-      # Retrieves a Dispute by ID
+      # Retrieves the details of an existing dispute.
       #
       # Required permissions:
       #
@@ -22,13 +22,15 @@ module WhopSDK
         ).returns(WhopSDK::Dispute)
       end
       def retrieve(
-        # The ID of the dispute
+        # The unique identifier of the dispute.
         id,
         request_options: {}
       )
       end
 
-      # Lists disputes the current actor has access to
+      # Returns a paginated list of disputes for a company, with optional filtering by
+      # creation date. A dispute represents a chargeback or inquiry filed by a customer
+      # against a payment.
       #
       # Required permissions:
       #
@@ -53,15 +55,15 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the company to list disputes for
+        # The unique identifier of the company to list disputes for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The minimum creation date to filter by
+        # Only return disputes created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return disputes created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,
@@ -93,8 +95,8 @@ module WhopSDK
         ).returns(WhopSDK::Dispute)
       end
       def submit_evidence(
-        # The ID of the dispute (Ex. dspt_xxxx) you want to finalize evidence submission
-        # for and send to the processor.
+        # The unique identifier of the dispute to submit to the payment processor for
+        # review.
         id,
         request_options: {}
       )
@@ -145,35 +147,36 @@ module WhopSDK
         ).returns(WhopSDK::Dispute)
       end
       def update_evidence(
-        # The ID of the dispute you want to update.
+        # The unique identifier of the dispute to update.
         id,
-        # An IP access log for the user from Whop.
+        # An IP access activity log showing the customer used the service.
         access_activity_log: nil,
-        # The billing address of the user from their payment details.
+        # The billing address associated with the customer's payment method.
         billing_address: nil,
-        # A file containing the cancellation policy from the company.
+        # A file upload containing the company's cancellation policy document.
         cancellation_policy_attachment: nil,
-        # A cancellation policy disclosure from the company.
+        # The company's cancellation policy text to submit as evidence.
         cancellation_policy_disclosure: nil,
-        # A file containing the customer communication from the company (An image).
+        # A file upload containing evidence of customer communication. Must be a JPEG,
+        # PNG, GIF, or PDF.
         customer_communication_attachment: nil,
-        # The email of the customer from their payment details.
+        # The email address of the customer associated with the disputed payment.
         customer_email_address: nil,
-        # The name of the customer from their payment details.
+        # The full name of the customer associated with the disputed payment.
         customer_name: nil,
-        # Additional notes the company chooses to submit regarding the dispute.
+        # Additional notes or context to submit as part of the dispute evidence.
         notes: nil,
-        # The description of the product from the company.
+        # A description of the product or service that was provided to the customer.
         product_description: nil,
-        # A file containing the refund policy from the company.
+        # A file upload containing the company's refund policy document.
         refund_policy_attachment: nil,
-        # A refund policy disclosure from the company.
+        # The company's refund policy text to submit as evidence.
         refund_policy_disclosure: nil,
-        # A description on why the refund is being refused by the company.
+        # An explanation of why the refund request was refused.
         refund_refusal_explanation: nil,
-        # When the product was delivered by the company.
+        # The date when the product or service was delivered to the customer.
         service_date: nil,
-        # A file that does not fit in the other categories.
+        # A file upload for evidence that does not fit into the other categories.
         uncategorized_attachment: nil,
         request_options: {}
       )

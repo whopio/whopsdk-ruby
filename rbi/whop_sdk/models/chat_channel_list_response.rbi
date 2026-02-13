@@ -15,19 +15,19 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # Whether or not media is banned in this chat
+      # Whether media uploads such as images and videos are blocked in this chat.
       sig { returns(T::Boolean) }
       attr_accessor :ban_media
 
-      # Whether or not URLs are banned in this chat
+      # Whether URL links are blocked from being posted in this chat.
       sig { returns(T::Boolean) }
       attr_accessor :ban_urls
 
-      # List of banned words in this chat
+      # A list of words that are automatically filtered from messages in this chat.
       sig { returns(T::Array[String]) }
       attr_accessor :banned_words
 
-      # The experience for this chat
+      # The experience this chat feed is attached to.
       sig { returns(WhopSDK::Models::ChatChannelListResponse::Experience) }
       attr_reader :experience
 
@@ -39,19 +39,21 @@ module WhopSDK
       end
       attr_writer :experience
 
-      # The number of seconds a user needs to wait before posting again, if any
+      # The minimum number of seconds a user must wait between consecutive messages.
+      # Null if no cooldown is enforced.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :user_posts_cooldown_seconds
 
-      # Who can post on this chat
+      # The permission level controlling which users can send messages in this chat.
       sig { returns(WhopSDK::WhoCanPost::TaggedSymbol) }
       attr_accessor :who_can_post
 
-      # Who can react on this chat
+      # The permission level controlling which users can add reactions in this chat.
       sig { returns(WhopSDK::WhoCanReact::TaggedSymbol) }
       attr_accessor :who_can_react
 
-      # Represents a Chat feed
+      # A real-time chat feed attached to an experience, with configurable moderation
+      # and posting permissions.
       sig do
         params(
           id: String,
@@ -68,19 +70,20 @@ module WhopSDK
       def self.new(
         # The unique identifier for the entity
         id:,
-        # Whether or not media is banned in this chat
+        # Whether media uploads such as images and videos are blocked in this chat.
         ban_media:,
-        # Whether or not URLs are banned in this chat
+        # Whether URL links are blocked from being posted in this chat.
         ban_urls:,
-        # List of banned words in this chat
+        # A list of words that are automatically filtered from messages in this chat.
         banned_words:,
-        # The experience for this chat
+        # The experience this chat feed is attached to.
         experience:,
-        # The number of seconds a user needs to wait before posting again, if any
+        # The minimum number of seconds a user must wait between consecutive messages.
+        # Null if no cooldown is enforced.
         user_posts_cooldown_seconds:,
-        # Who can post on this chat
+        # The permission level controlling which users can send messages in this chat.
         who_can_post:,
-        # Who can react on this chat
+        # The permission level controlling which users can add reactions in this chat.
         who_can_react:
       )
       end
@@ -115,16 +118,18 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The written name of the description.
+        # The display name of this experience shown to users in the product navigation.
+        # Maximum 255 characters.
         sig { returns(String) }
         attr_accessor :name
 
-        # The experience for this chat
+        # The experience this chat feed is attached to.
         sig { params(id: String, name: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the experience.
           id:,
-          # The written name of the description.
+          # The display name of this experience shown to users in the product navigation.
+          # Maximum 255 characters.
           name:
         )
         end

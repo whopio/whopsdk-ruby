@@ -16,7 +16,7 @@ module WhopSDK
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_at
 
-      # The waitlist plan the entry if for.
+      # The waitlisted plan that this entry is a signup for.
       sig { returns(T.nilable(WhopSDK::Models::EntryListResponse::Plan)) }
       attr_reader :plan
 
@@ -27,7 +27,8 @@ module WhopSDK
       end
       attr_writer :plan
 
-      # The product tied to this entry, if there is one.
+      # The product associated with this entry's waitlisted plan. Null if the plan is
+      # not tied to a product.
       sig { returns(T.nilable(WhopSDK::Models::EntryListResponse::Product)) }
       attr_reader :product
 
@@ -39,11 +40,12 @@ module WhopSDK
       end
       attr_writer :product
 
-      # The status of the entry.
+      # The current status of the waitlist entry (e.g., drafted, pending, approved,
+      # denied).
       sig { returns(WhopSDK::EntryStatus::TaggedSymbol) }
       attr_accessor :status
 
-      # The user who created the entry.
+      # The user who submitted this waitlist entry.
       sig { returns(WhopSDK::Models::EntryListResponse::User) }
       attr_reader :user
 
@@ -69,13 +71,15 @@ module WhopSDK
         id:,
         # The datetime the entry was created.
         created_at:,
-        # The waitlist plan the entry if for.
+        # The waitlisted plan that this entry is a signup for.
         plan:,
-        # The product tied to this entry, if there is one.
+        # The product associated with this entry's waitlisted plan. Null if the plan is
+        # not tied to a product.
         product:,
-        # The status of the entry.
+        # The current status of the waitlist entry (e.g., drafted, pending, approved,
+        # denied).
         status:,
-        # The user who created the entry.
+        # The user who submitted this waitlist entry.
         user:
       )
       end
@@ -108,7 +112,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The waitlist plan the entry if for.
+        # The waitlisted plan that this entry is a signup for.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the plan.
@@ -134,16 +138,19 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The title of the product. Use for Whop 4.0.
+        # The display name of the product shown to customers on the product page and in
+        # search results.
         sig { returns(String) }
         attr_accessor :title
 
-        # The product tied to this entry, if there is one.
+        # The product associated with this entry's waitlisted plan. Null if the plan is
+        # not tied to a product.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the product.
           id:,
-          # The title of the product. Use for Whop 4.0.
+          # The display name of the product shown to customers on the product page and in
+          # search results.
           title:
         )
         end
@@ -166,19 +173,20 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The email of the user
+        # The user's email address. Requires the member:email:read permission to access.
+        # Null if not authorized.
         sig { returns(T.nilable(String)) }
         attr_accessor :email
 
-        # The name of the user from their Whop account.
+        # The user's display name shown on their public profile.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
-        # The username of the user from their Whop account.
+        # The user's unique username shown on their public profile.
         sig { returns(String) }
         attr_accessor :username
 
-        # The user who created the entry.
+        # The user who submitted this waitlist entry.
         sig do
           params(
             id: String,
@@ -190,11 +198,12 @@ module WhopSDK
         def self.new(
           # The unique identifier for the user.
           id:,
-          # The email of the user
+          # The user's email address. Requires the member:email:read permission to access.
+          # Null if not authorized.
           email:,
-          # The name of the user from their Whop account.
+          # The user's display name shown on their public profile.
           name:,
-          # The username of the user from their Whop account.
+          # The user's unique username shown on their public profile.
           username:
         )
         end

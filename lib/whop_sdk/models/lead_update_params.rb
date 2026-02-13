@@ -8,21 +8,25 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute metadata
-      #   Custom metadata for the lead.
+      #   A JSON object of custom metadata to set on the lead, replacing any existing
+      #   metadata.
       #
       #   @return [Hash{Symbol=>Object}, nil]
       optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
       # @!attribute referrer
-      #   The url referrer of the lead.
+      #   The updated referral URL for the lead, such as 'https://example.com/landing'.
       #
       #   @return [String, nil]
       optional :referrer, String, nil?: true
 
       # @!method initialize(metadata: nil, referrer: nil, request_options: {})
-      #   @param metadata [Hash{Symbol=>Object}, nil] Custom metadata for the lead.
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::LeadUpdateParams} for more details.
       #
-      #   @param referrer [String, nil] The url referrer of the lead.
+      #   @param metadata [Hash{Symbol=>Object}, nil] A JSON object of custom metadata to set on the lead, replacing any existing meta
+      #
+      #   @param referrer [String, nil] The updated referral URL for the lead, such as 'https://example.com/landing'.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

@@ -19,11 +19,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # The ID of the company
+      # The unique identifier of the company to list courses for.
       sig { returns(T.nilable(String)) }
       attr_accessor :company_id
 
-      # The ID of the experience
+      # The unique identifier of the experience to list courses for.
       sig { returns(T.nilable(String)) }
       attr_accessor :experience_id
 
@@ -51,9 +51,9 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The ID of the company
+        # The unique identifier of the company to list courses for.
         company_id: nil,
-        # The ID of the experience
+        # The unique identifier of the experience to list courses for.
         experience_id: nil,
         # Returns the first _n_ elements from the list.
         first: nil,

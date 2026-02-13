@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::CourseStudentListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the course
+      # The unique identifier of the course to list enrolled students for.
       sig { returns(String) }
       attr_accessor :course_id
 
@@ -27,7 +27,7 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :first
 
-      # Filter students by name - returns students whose names match the keyword
+      # A search term to filter students by name or username.
       sig { returns(T.nilable(String)) }
       attr_accessor :keyword
 
@@ -47,7 +47,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the course
+        # The unique identifier of the course to list enrolled students for.
         course_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
@@ -55,7 +55,7 @@ module WhopSDK
         before: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
-        # Filter students by name - returns students whose names match the keyword
+        # A search term to filter students by name or username.
         keyword: nil,
         # Returns the last _n_ elements from the list.
         last: nil,

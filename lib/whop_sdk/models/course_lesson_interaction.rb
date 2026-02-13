@@ -10,13 +10,13 @@ module WhopSDK
       required :id, String
 
       # @!attribute completed
-      #   Whether the lesson has been completed by the user
+      #   Whether the user has finished this lesson.
       #
       #   @return [Boolean]
       required :completed, WhopSDK::Internal::Type::Boolean
 
       # @!attribute course
-      #   The course for this lesson interaction
+      #   The course that contains the tracked lesson.
       #
       #   @return [WhopSDK::Models::CourseLessonInteraction::Course]
       required :course, -> { WhopSDK::CourseLessonInteraction::Course }
@@ -28,31 +28,32 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute lesson
-      #   The lesson this interaction is for
+      #   The lesson that this progress record belongs to.
       #
       #   @return [WhopSDK::Models::CourseLessonInteraction::Lesson]
       required :lesson, -> { WhopSDK::CourseLessonInteraction::Lesson }
 
       # @!attribute user
-      #   The user who interacted with the lesson
+      #   The user whose progress is being tracked.
       #
       #   @return [WhopSDK::Models::CourseLessonInteraction::User]
       required :user, -> { WhopSDK::CourseLessonInteraction::User }
 
       # @!method initialize(id:, completed:, course:, created_at:, lesson:, user:)
-      #   A lesson interaction tracking user progress in courses
+      #   A record of a user's progress on a specific lesson, tracking whether they have
+      #   completed it.
       #
       #   @param id [String] The unique identifier for the lesson interaction.
       #
-      #   @param completed [Boolean] Whether the lesson has been completed by the user
+      #   @param completed [Boolean] Whether the user has finished this lesson.
       #
-      #   @param course [WhopSDK::Models::CourseLessonInteraction::Course] The course for this lesson interaction
+      #   @param course [WhopSDK::Models::CourseLessonInteraction::Course] The course that contains the tracked lesson.
       #
       #   @param created_at [Time] The datetime the lesson interaction was created.
       #
-      #   @param lesson [WhopSDK::Models::CourseLessonInteraction::Lesson] The lesson this interaction is for
+      #   @param lesson [WhopSDK::Models::CourseLessonInteraction::Lesson] The lesson that this progress record belongs to.
       #
-      #   @param user [WhopSDK::Models::CourseLessonInteraction::User] The user who interacted with the lesson
+      #   @param user [WhopSDK::Models::CourseLessonInteraction::User] The user whose progress is being tracked.
 
       # @see WhopSDK::Models::CourseLessonInteraction#course
       class Course < WhopSDK::Internal::Type::BaseModel
@@ -63,25 +64,28 @@ module WhopSDK
         required :id, String
 
         # @!attribute experience
-        #   The experience that the course belongs to
+        #   The parent experience that this course belongs to.
         #
         #   @return [WhopSDK::Models::CourseLessonInteraction::Course::Experience]
         required :experience, -> { WhopSDK::CourseLessonInteraction::Course::Experience }
 
         # @!attribute title
-        #   The title of the course
+        #   The display name of the course shown to students. Null if no title has been set.
         #
         #   @return [String, nil]
         required :title, String, nil?: true
 
         # @!method initialize(id:, experience:, title:)
-        #   The course for this lesson interaction
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::CourseLessonInteraction::Course} for more details.
+        #
+        #   The course that contains the tracked lesson.
         #
         #   @param id [String] The unique identifier for the course.
         #
-        #   @param experience [WhopSDK::Models::CourseLessonInteraction::Course::Experience] The experience that the course belongs to
+        #   @param experience [WhopSDK::Models::CourseLessonInteraction::Course::Experience] The parent experience that this course belongs to.
         #
-        #   @param title [String, nil] The title of the course
+        #   @param title [String, nil] The display name of the course shown to students. Null if no title has been set.
 
         # @see WhopSDK::Models::CourseLessonInteraction::Course#experience
         class Experience < WhopSDK::Internal::Type::BaseModel
@@ -92,7 +96,7 @@ module WhopSDK
           required :id, String
 
           # @!method initialize(id:)
-          #   The experience that the course belongs to
+          #   The parent experience that this course belongs to.
           #
           #   @param id [String] The unique identifier for the experience.
         end
@@ -107,25 +111,25 @@ module WhopSDK
         required :id, String
 
         # @!attribute chapter
-        #   The chapter this lesson belongs to
+        #   The parent chapter that contains this lesson.
         #
         #   @return [WhopSDK::Models::CourseLessonInteraction::Lesson::Chapter]
         required :chapter, -> { WhopSDK::CourseLessonInteraction::Lesson::Chapter }
 
         # @!attribute title
-        #   The title of the lesson
+        #   The display name of the lesson shown to students. Maximum 120 characters.
         #
         #   @return [String]
         required :title, String
 
         # @!method initialize(id:, chapter:, title:)
-        #   The lesson this interaction is for
+        #   The lesson that this progress record belongs to.
         #
         #   @param id [String] The unique identifier for the lesson.
         #
-        #   @param chapter [WhopSDK::Models::CourseLessonInteraction::Lesson::Chapter] The chapter this lesson belongs to
+        #   @param chapter [WhopSDK::Models::CourseLessonInteraction::Lesson::Chapter] The parent chapter that contains this lesson.
         #
-        #   @param title [String] The title of the lesson
+        #   @param title [String] The display name of the lesson shown to students. Maximum 120 characters.
 
         # @see WhopSDK::Models::CourseLessonInteraction::Lesson#chapter
         class Chapter < WhopSDK::Internal::Type::BaseModel
@@ -136,7 +140,7 @@ module WhopSDK
           required :id, String
 
           # @!method initialize(id:)
-          #   The chapter this lesson belongs to
+          #   The parent chapter that contains this lesson.
           #
           #   @param id [String] The unique identifier for the chapter.
         end
@@ -151,25 +155,25 @@ module WhopSDK
         required :id, String
 
         # @!attribute name
-        #   The name of the user from their Whop account.
+        #   The user's display name shown on their public profile.
         #
         #   @return [String, nil]
         required :name, String, nil?: true
 
         # @!attribute username
-        #   The username of the user from their Whop account.
+        #   The user's unique username shown on their public profile.
         #
         #   @return [String]
         required :username, String
 
         # @!method initialize(id:, name:, username:)
-        #   The user who interacted with the lesson
+        #   The user whose progress is being tracked.
         #
         #   @param id [String] The unique identifier for the user.
         #
-        #   @param name [String, nil] The name of the user from their Whop account.
+        #   @param name [String, nil] The user's display name shown on their public profile.
         #
-        #   @param username [String] The username of the user from their Whop account.
+        #   @param username [String] The user's unique username shown on their public profile.
       end
     end
   end

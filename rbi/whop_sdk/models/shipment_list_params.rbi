@@ -19,7 +19,7 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # The ID of the company
+      # Filter shipments to only those belonging to this company.
       sig { returns(T.nilable(String)) }
       attr_accessor :company_id
 
@@ -31,11 +31,11 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
-      # The ID of the payment
+      # Filter shipments to only those associated with this specific payment.
       sig { returns(T.nilable(String)) }
       attr_accessor :payment_id
 
-      # The ID of the user
+      # Filter shipments to only those for this specific user.
       sig { returns(T.nilable(String)) }
       attr_accessor :user_id
 
@@ -56,15 +56,15 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The ID of the company
+        # Filter shipments to only those belonging to this company.
         company_id: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The ID of the payment
+        # Filter shipments to only those associated with this specific payment.
         payment_id: nil,
-        # The ID of the user
+        # Filter shipments to only those for this specific user.
         user_id: nil,
         request_options: {}
       )

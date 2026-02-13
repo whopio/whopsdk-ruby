@@ -11,20 +11,22 @@ module WhopSDK
       required :id, String
 
       # @!attribute assessment_questions
-      #   Assessment questions for quiz/knowledge check lessons
+      #   The list of questions for quiz or knowledge check lessons. Empty for
+      #   non-assessment lesson types.
       #
       #   @return [Array<WhopSDK::Models::Lesson::AssessmentQuestion>]
       required :assessment_questions,
                -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Lesson::AssessmentQuestion] }
 
       # @!attribute attachments
-      #   The attached files in this lesson as a flat array
+      #   All supplementary files attached to this lesson returned as a flat array rather
+      #   than a paginated connection.
       #
       #   @return [Array<WhopSDK::Models::Lesson::Attachment>]
       required :attachments, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Lesson::Attachment] }
 
       # @!attribute content
-      #   The content of the lesson
+      #   The Markdown content body of the lesson. Null if the lesson has no text content.
       #
       #   @return [String, nil]
       required :content, String, nil?: true
@@ -36,13 +38,15 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute days_from_course_start_until_unlock
-      #   Number of days from course start until the lesson is unlocked
+      #   The number of days after a student starts the course before this lesson becomes
+      #   accessible. Null if the lesson is available immediately.
       #
       #   @return [Integer, nil]
       required :days_from_course_start_until_unlock, Integer, nil?: true
 
       # @!attribute embed_id
-      #   ID for the embed (YouTube video ID or Loom share ID)
+      #   The external video identifier for embedded video lessons, such as a YouTube
+      #   video ID or Loom share ID. Null if the lesson has no embed.
       #
       #   @return [String, nil]
       required :embed_id, String, nil?: true
@@ -54,44 +58,48 @@ module WhopSDK
       required :embed_type, enum: -> { WhopSDK::EmbedType }, nil?: true
 
       # @!attribute lesson_type
-      #   The type of the lesson (text, video, pdf, multi, quiz, knowledge_check)
+      #   The content format of this lesson. One of: text, video, pdf, multi, quiz,
+      #   knowledge_check.
       #
       #   @return [Symbol, WhopSDK::Models::LessonTypes]
       required :lesson_type, enum: -> { WhopSDK::LessonTypes }
 
       # @!attribute main_pdf
-      #   The main PDF file for this lesson
+      #   The primary PDF document for PDF-type lessons. Null if this lesson is not a PDF
+      #   lesson or no PDF has been uploaded.
       #
       #   @return [WhopSDK::Models::Lesson::MainPdf, nil]
       required :main_pdf, -> { WhopSDK::Lesson::MainPdf }, nil?: true
 
       # @!attribute order
-      #   The order of the lesson within its chapter
+      #   The sort position of this lesson within its parent chapter, starting from zero.
       #
       #   @return [Integer]
       required :order, Integer
 
       # @!attribute thumbnail
-      #   The thumbnail for the lesson
+      #   The thumbnail image displayed on lesson cards and previews. Null if no thumbnail
+      #   has been uploaded.
       #
       #   @return [WhopSDK::Models::Lesson::Thumbnail, nil]
       required :thumbnail, -> { WhopSDK::Lesson::Thumbnail }, nil?: true
 
       # @!attribute title
-      #   The title of the lesson
+      #   The display name of the lesson shown to students. Maximum 120 characters.
       #
       #   @return [String]
       required :title, String
 
       # @!attribute video_asset
-      #   The associated Mux asset for video lessons
+      #   The Mux video asset for video-type lessons, used for streaming playback. Null if
+      #   this lesson has no hosted video.
       #
       #   @return [WhopSDK::Models::Lesson::VideoAsset, nil]
       required :video_asset, -> { WhopSDK::Lesson::VideoAsset }, nil?: true
 
       # @!attribute visibility
-      #   The visibility of the lesson. Determines how / whether this lesson is visible to
-      #   users.
+      #   The visibility setting that controls whether this lesson appears to students.
+      #   One of: visible, hidden.
       #
       #   @return [Symbol, WhopSDK::Models::LessonVisibilities]
       required :visibility, enum: -> { WhopSDK::LessonVisibilities }
@@ -100,37 +108,38 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Lesson}
       #   for more details.
       #
-      #   A lesson from the courses app
+      #   An individual learning unit within a chapter, which can contain text, video,
+      #   PDF, or assessment content.
       #
       #   @param id [String] The unique identifier for the lesson.
       #
-      #   @param assessment_questions [Array<WhopSDK::Models::Lesson::AssessmentQuestion>] Assessment questions for quiz/knowledge check lessons
+      #   @param assessment_questions [Array<WhopSDK::Models::Lesson::AssessmentQuestion>] The list of questions for quiz or knowledge check lessons. Empty for non-assessm
       #
-      #   @param attachments [Array<WhopSDK::Models::Lesson::Attachment>] The attached files in this lesson as a flat array
+      #   @param attachments [Array<WhopSDK::Models::Lesson::Attachment>] All supplementary files attached to this lesson returned as a flat array rather
       #
-      #   @param content [String, nil] The content of the lesson
+      #   @param content [String, nil] The Markdown content body of the lesson. Null if the lesson has no text content.
       #
       #   @param created_at [Time] The datetime the lesson was created.
       #
-      #   @param days_from_course_start_until_unlock [Integer, nil] Number of days from course start until the lesson is unlocked
+      #   @param days_from_course_start_until_unlock [Integer, nil] The number of days after a student starts the course before this lesson becomes
       #
-      #   @param embed_id [String, nil] ID for the embed (YouTube video ID or Loom share ID)
+      #   @param embed_id [String, nil] The external video identifier for embedded video lessons, such as a YouTube vide
       #
       #   @param embed_type [Symbol, WhopSDK::Models::EmbedType, nil] The type of embed for a lesson
       #
-      #   @param lesson_type [Symbol, WhopSDK::Models::LessonTypes] The type of the lesson (text, video, pdf, multi, quiz, knowledge_check)
+      #   @param lesson_type [Symbol, WhopSDK::Models::LessonTypes] The content format of this lesson. One of: text, video, pdf, multi, quiz, knowle
       #
-      #   @param main_pdf [WhopSDK::Models::Lesson::MainPdf, nil] The main PDF file for this lesson
+      #   @param main_pdf [WhopSDK::Models::Lesson::MainPdf, nil] The primary PDF document for PDF-type lessons. Null if this lesson is not a PDF
       #
-      #   @param order [Integer] The order of the lesson within its chapter
+      #   @param order [Integer] The sort position of this lesson within its parent chapter, starting from zero.
       #
-      #   @param thumbnail [WhopSDK::Models::Lesson::Thumbnail, nil] The thumbnail for the lesson
+      #   @param thumbnail [WhopSDK::Models::Lesson::Thumbnail, nil] The thumbnail image displayed on lesson cards and previews. Null if no thumbnail
       #
-      #   @param title [String] The title of the lesson
+      #   @param title [String] The display name of the lesson shown to students. Maximum 120 characters.
       #
-      #   @param video_asset [WhopSDK::Models::Lesson::VideoAsset, nil] The associated Mux asset for video lessons
+      #   @param video_asset [WhopSDK::Models::Lesson::VideoAsset, nil] The Mux video asset for video-type lessons, used for streaming playback. Null if
       #
-      #   @param visibility [Symbol, WhopSDK::Models::LessonVisibilities] The visibility of the lesson. Determines how / whether this lesson is visible to
+      #   @param visibility [Symbol, WhopSDK::Models::LessonVisibilities] The visibility setting that controls whether this lesson appears to students. On
 
       class AssessmentQuestion < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
@@ -207,26 +216,30 @@ module WhopSDK
         # @see WhopSDK::Models::Lesson::AssessmentQuestion#image
         class Image < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
-          #   The ID of the attachment
+          #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+          #   refetch an object or as key for a cache. The ID type appears in a JSON response
+          #   as a String; however, it is not intended to be human-readable. When expected as
+          #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          #   input value will be accepted as an ID.
           #
           #   @return [String]
           required :id, String
 
           # @!attribute content_type
-          #   The attachment's content type (e.g., image/jpg, video/mp4)
+          #   The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
           #
           #   @return [String, nil]
           required :content_type, String, nil?: true
 
           # @!attribute filename
-          #   The name of the file
+          #   The original filename of the uploaded attachment, including its file extension.
           #
           #   @return [String, nil]
           required :filename, String, nil?: true
 
           # @!attribute url
-          #   This is the URL you use to render optimized attachments on the client. This
-          #   should be used for apps.
+          #   A pre-optimized URL for rendering this attachment on the client. This should be
+          #   used for displaying attachments in apps.
           #
           #   @return [String, nil]
           required :url, String, nil?: true
@@ -237,13 +250,13 @@ module WhopSDK
           #
           #   Optional image attachment for the question
           #
-          #   @param id [String] The ID of the attachment
+          #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
           #
-          #   @param content_type [String, nil] The attachment's content type (e.g., image/jpg, video/mp4)
+          #   @param content_type [String, nil] The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
           #
-          #   @param filename [String, nil] The name of the file
+          #   @param filename [String, nil] The original filename of the uploaded attachment, including its file extension.
           #
-          #   @param url [String, nil] This is the URL you use to render optimized attachments on the client. This shou
+          #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
         end
 
         class Option < WhopSDK::Internal::Type::BaseModel
@@ -290,26 +303,30 @@ module WhopSDK
 
       class Attachment < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the attachment
+        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+        #   refetch an object or as key for a cache. The ID type appears in a JSON response
+        #   as a String; however, it is not intended to be human-readable. When expected as
+        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        #   input value will be accepted as an ID.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute content_type
-        #   The attachment's content type (e.g., image/jpg, video/mp4)
+        #   The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
         #
         #   @return [String, nil]
         required :content_type, String, nil?: true
 
         # @!attribute filename
-        #   The name of the file
+        #   The original filename of the uploaded attachment, including its file extension.
         #
         #   @return [String, nil]
         required :filename, String, nil?: true
 
         # @!attribute url
-        #   This is the URL you use to render optimized attachments on the client. This
-        #   should be used for apps.
+        #   A pre-optimized URL for rendering this attachment on the client. This should be
+        #   used for displaying attachments in apps.
         #
         #   @return [String, nil]
         required :url, String, nil?: true
@@ -320,38 +337,42 @@ module WhopSDK
         #
         #   Represents an image attachment
         #
-        #   @param id [String] The ID of the attachment
+        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
         #
-        #   @param content_type [String, nil] The attachment's content type (e.g., image/jpg, video/mp4)
+        #   @param content_type [String, nil] The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
         #
-        #   @param filename [String, nil] The name of the file
+        #   @param filename [String, nil] The original filename of the uploaded attachment, including its file extension.
         #
-        #   @param url [String, nil] This is the URL you use to render optimized attachments on the client. This shou
+        #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
       end
 
       # @see WhopSDK::Models::Lesson#main_pdf
       class MainPdf < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of the attachment
+        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+        #   refetch an object or as key for a cache. The ID type appears in a JSON response
+        #   as a String; however, it is not intended to be human-readable. When expected as
+        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        #   input value will be accepted as an ID.
         #
         #   @return [String]
         required :id, String
 
         # @!attribute content_type
-        #   The attachment's content type (e.g., image/jpg, video/mp4)
+        #   The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
         #
         #   @return [String, nil]
         required :content_type, String, nil?: true
 
         # @!attribute filename
-        #   The name of the file
+        #   The original filename of the uploaded attachment, including its file extension.
         #
         #   @return [String, nil]
         required :filename, String, nil?: true
 
         # @!attribute url
-        #   This is the URL you use to render optimized attachments on the client. This
-        #   should be used for apps.
+        #   A pre-optimized URL for rendering this attachment on the client. This should be
+        #   used for displaying attachments in apps.
         #
         #   @return [String, nil]
         required :url, String, nil?: true
@@ -360,22 +381,23 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::Lesson::MainPdf} for more details.
         #
-        #   The main PDF file for this lesson
+        #   The primary PDF document for PDF-type lessons. Null if this lesson is not a PDF
+        #   lesson or no PDF has been uploaded.
         #
-        #   @param id [String] The ID of the attachment
+        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
         #
-        #   @param content_type [String, nil] The attachment's content type (e.g., image/jpg, video/mp4)
+        #   @param content_type [String, nil] The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
         #
-        #   @param filename [String, nil] The name of the file
+        #   @param filename [String, nil] The original filename of the uploaded attachment, including its file extension.
         #
-        #   @param url [String, nil] This is the URL you use to render optimized attachments on the client. This shou
+        #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
       end
 
       # @see WhopSDK::Models::Lesson#thumbnail
       class Thumbnail < WhopSDK::Internal::Type::BaseModel
         # @!attribute url
-        #   This is the URL you use to render optimized attachments on the client. This
-        #   should be used for apps.
+        #   A pre-optimized URL for rendering this attachment on the client. This should be
+        #   used for displaying attachments in apps.
         #
         #   @return [String, nil]
         required :url, String, nil?: true
@@ -384,9 +406,10 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::Lesson::Thumbnail} for more details.
         #
-        #   The thumbnail for the lesson
+        #   The thumbnail image displayed on lesson cards and previews. Null if no thumbnail
+        #   has been uploaded.
         #
-        #   @param url [String, nil] This is the URL you use to render optimized attachments on the client. This shou
+        #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
       end
 
       # @see WhopSDK::Models::Lesson#video_asset
@@ -470,7 +493,8 @@ module WhopSDK
         required :updated_at, Time
 
         # @!method initialize(id:, asset_id:, audio_only:, created_at:, duration_seconds:, finished_uploading_at:, playback_id:, signed_playback_id:, signed_storyboard_playback_token:, signed_thumbnail_playback_token:, signed_video_playback_token:, status:, updated_at:)
-        #   The associated Mux asset for video lessons
+        #   The Mux video asset for video-type lessons, used for streaming playback. Null if
+        #   this lesson has no hosted video.
         #
         #   @param id [String] The unique identifier for the mux asset.
         #

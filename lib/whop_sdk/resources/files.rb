@@ -3,11 +3,15 @@
 module WhopSDK
   module Resources
     class Files
-      # Creates a file and returns a presigned URL for upload
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::FileCreateParams} for more details.
+      #
+      # Create a new file record and receive a presigned URL for uploading content to
+      # S3.
       #
       # @overload create(filename:, request_options: {})
       #
-      # @param filename [String] The filename of the file
+      # @param filename [String] The name of the file including its extension (e.g., "photo.png" or "document.pdf
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -25,11 +29,11 @@ module WhopSDK
         )
       end
 
-      # Retrieves a file by its ID
+      # Retrieves the details of an existing file.
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the file (e.g., file_xxxxx)
+      # @param id [String] The unique identifier of the file to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

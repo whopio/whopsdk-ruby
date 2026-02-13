@@ -42,7 +42,7 @@ module WhopSDK
         )
       end
 
-      # Retrieves a webhook by ID
+      # Retrieves the details of an existing webhook.
       #
       # Required permissions:
       #
@@ -50,7 +50,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the webhook
+      # @param id [String] The unique identifier of the webhook to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -102,7 +102,8 @@ module WhopSDK
         )
       end
 
-      # Lists webhooks for a company
+      # Returns a paginated list of webhook endpoints configured for a company, ordered
+      # by most recently created.
       #
       # Required permissions:
       #
@@ -110,7 +111,7 @@ module WhopSDK
       #
       # @overload list(company_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
       #
-      # @param company_id [String] The ID of the company to list webhooks for
+      # @param company_id [String] The unique identifier of the company to list webhooks for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #

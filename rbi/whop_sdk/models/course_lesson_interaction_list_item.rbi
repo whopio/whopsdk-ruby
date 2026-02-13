@@ -15,7 +15,7 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # Whether the lesson has been completed by the user
+      # Whether the user has finished this lesson.
       sig { returns(T::Boolean) }
       attr_accessor :completed
 
@@ -23,7 +23,7 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The lesson this interaction is for
+      # The lesson that this progress record belongs to.
       sig { returns(WhopSDK::CourseLessonInteractionListItem::Lesson) }
       attr_reader :lesson
 
@@ -34,7 +34,7 @@ module WhopSDK
       end
       attr_writer :lesson
 
-      # The user who interacted with the lesson
+      # The user whose progress is being tracked.
       sig { returns(WhopSDK::CourseLessonInteractionListItem::User) }
       attr_reader :user
 
@@ -45,7 +45,8 @@ module WhopSDK
       end
       attr_writer :user
 
-      # A lesson interaction tracking user progress in courses
+      # A record of a user's progress on a specific lesson, tracking whether they have
+      # completed it.
       sig do
         params(
           id: String,
@@ -58,13 +59,13 @@ module WhopSDK
       def self.new(
         # The unique identifier for the lesson interaction.
         id:,
-        # Whether the lesson has been completed by the user
+        # Whether the user has finished this lesson.
         completed:,
         # The datetime the lesson interaction was created.
         created_at:,
-        # The lesson this interaction is for
+        # The lesson that this progress record belongs to.
         lesson:,
-        # The user who interacted with the lesson
+        # The user whose progress is being tracked.
         user:
       )
       end
@@ -96,7 +97,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The chapter this lesson belongs to
+        # The parent chapter that contains this lesson.
         sig do
           returns(WhopSDK::CourseLessonInteractionListItem::Lesson::Chapter)
         end
@@ -110,11 +111,11 @@ module WhopSDK
         end
         attr_writer :chapter
 
-        # The title of the lesson
+        # The display name of the lesson shown to students. Maximum 120 characters.
         sig { returns(String) }
         attr_accessor :title
 
-        # The lesson this interaction is for
+        # The lesson that this progress record belongs to.
         sig do
           params(
             id: String,
@@ -126,9 +127,9 @@ module WhopSDK
         def self.new(
           # The unique identifier for the lesson.
           id:,
-          # The chapter this lesson belongs to
+          # The parent chapter that contains this lesson.
           chapter:,
-          # The title of the lesson
+          # The display name of the lesson shown to students. Maximum 120 characters.
           title:
         )
         end
@@ -159,7 +160,7 @@ module WhopSDK
           sig { returns(String) }
           attr_accessor :id
 
-          # The chapter this lesson belongs to
+          # The parent chapter that contains this lesson.
           sig { params(id: String).returns(T.attached_class) }
           def self.new(
             # The unique identifier for the chapter.
@@ -186,15 +187,15 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The name of the user from their Whop account.
+        # The user's display name shown on their public profile.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
-        # The username of the user from their Whop account.
+        # The user's unique username shown on their public profile.
         sig { returns(String) }
         attr_accessor :username
 
-        # The user who interacted with the lesson
+        # The user whose progress is being tracked.
         sig do
           params(id: String, name: T.nilable(String), username: String).returns(
             T.attached_class
@@ -203,9 +204,9 @@ module WhopSDK
         def self.new(
           # The unique identifier for the user.
           id:,
-          # The name of the user from their Whop account.
+          # The user's display name shown on their public profile.
           name:,
-          # The username of the user from their Whop account.
+          # The user's unique username shown on their public profile.
           username:
         )
         end

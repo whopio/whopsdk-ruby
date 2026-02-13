@@ -6,7 +6,8 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::PlanCreateParams} for more details.
       #
-      # Create a new Plan
+      # Create a new pricing plan for a product. The plan defines the billing interval,
+      # price, and availability for customers.
       #
       # Required permissions:
       #
@@ -16,47 +17,47 @@ module WhopSDK
       #
       # @overload create(company_id:, product_id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, split_pay_required_payments: nil, stock: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
       #
-      # @param company_id [String] The company the plan should be created for.
+      # @param company_id [String] The unique identifier of the company to create this plan for.
       #
-      # @param product_id [String] The product the plan is related to.
+      # @param product_id [String] The unique identifier of the product to attach this plan to.
       #
-      # @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans).
+      # @param billing_period [Integer, nil] The number of days between recurring charges. For example, 30 for monthly or 365
       #
       # @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #
-      # @param custom_fields [Array<WhopSDK::Models::PlanCreateParams::CustomField>, nil] An array of custom field objects.
+      # @param custom_fields [Array<WhopSDK::Models::PlanCreateParams::CustomField>, nil] An array of custom field definitions to collect from customers at checkout.
       #
-      # @param description [String, nil] The description of the plan.
+      # @param description [String, nil] A text description of the plan displayed to customers on the product page.
       #
-      # @param expiration_days [Integer, nil] The interval at which the plan expires and revokes access (expiration plans).
+      # @param expiration_days [Integer, nil] The number of days until the membership expires and access is revoked. Used for
       #
-      # @param image [WhopSDK::Models::PlanCreateParams::Image, nil] An image for the plan. This will be visible on the product page to customers.
+      # @param image [WhopSDK::Models::PlanCreateParams::Image, nil] An image displayed on the product page to represent this plan.
       #
-      # @param initial_price [Float, nil] An additional amount charged upon first purchase. Use only if a one time payment
+      # @param initial_price [Float, nil] The amount charged on the first purchase. For one-time plans, this is the full p
       #
-      # @param internal_notes [String, nil] A personal description or notes section for the business.
+      # @param internal_notes [String, nil] Private notes visible only to the business owner. Not shown to customers.
       #
-      # @param legacy_payment_method_controls [Boolean, nil] Whether this plan uses legacy payment method controls
+      # @param legacy_payment_method_controls [Boolean, nil] Whether this plan uses legacy payment method controls.
       #
       # @param override_tax_type [Symbol, WhopSDK::Models::TaxType, nil] Whether or not the tax is included in a plan's price (or if it hasn't been set u
       #
-      # @param payment_method_configuration [WhopSDK::Models::PlanCreateParams::PaymentMethodConfiguration, nil] The explicit payment method configuration for the plan. If not provided, the pla
+      # @param payment_method_configuration [WhopSDK::Models::PlanCreateParams::PaymentMethodConfiguration, nil] Explicit payment method configuration for the plan. When not provided, the compa
       #
       # @param plan_type [Symbol, WhopSDK::Models::PlanType, nil] The type of plan that can be attached to a product
       #
       # @param release_method [Symbol, WhopSDK::Models::ReleaseMethod, nil] The methods of how a plan can be released.
       #
-      # @param renewal_price [Float, nil] The amount the customer is charged every billing period. Use only if a recurring
+      # @param renewal_price [Float, nil] The amount charged each billing period for recurring plans. Provided in the plan
       #
-      # @param split_pay_required_payments [Integer, nil] The number of payments required before pausing the subscription.
+      # @param split_pay_required_payments [Integer, nil] The number of installment payments required before the subscription pauses.
       #
-      # @param stock [Integer, nil] The number of units available for purchase.
+      # @param stock [Integer, nil] The maximum number of units available for purchase. Ignored when unlimited_stock
       #
-      # @param title [String, nil] The title of the plan. This will be visible on the product page to customers.
+      # @param title [String, nil] The display name of the plan shown to customers on the product page.
       #
-      # @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
+      # @param trial_period_days [Integer, nil] The number of free trial days before the first charge on a recurring plan.
       #
-      # @param unlimited_stock [Boolean, nil] When true, the plan has unlimited stock (stock field is ignored). When false, pu
+      # @param unlimited_stock [Boolean, nil] Whether the plan has unlimited stock. When true, the stock field is ignored. Def
       #
       # @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
       #
@@ -70,7 +71,7 @@ module WhopSDK
         @client.request(method: :post, path: "plans", body: parsed, model: WhopSDK::Plan, options: options)
       end
 
-      # Retrieves a plan by ID
+      # Retrieves the details of an existing plan.
       #
       # Required permissions:
       #
@@ -78,7 +79,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the plan
+      # @param id [String] The unique identifier of the plan.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -97,7 +98,8 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::PlanUpdateParams} for more details.
       #
-      # Update an existing Plan
+      # Update a plan's pricing, billing interval, visibility, stock, and other
+      # settings.
       #
       # Required permissions:
       #
@@ -107,45 +109,45 @@ module WhopSDK
       #
       # @overload update(id, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, offer_cancel_discount: nil, override_tax_type: nil, payment_method_configuration: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
       #
-      # @param id [String] The ID
+      # @param id [String] The unique identifier of the plan to update.
       #
-      # @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans).
+      # @param billing_period [Integer, nil] The number of days between recurring charges. For example, 30 for monthly or 365
       #
       # @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #
-      # @param custom_fields [Array<WhopSDK::Models::PlanUpdateParams::CustomField>, nil] An array of custom field objects.
+      # @param custom_fields [Array<WhopSDK::Models::PlanUpdateParams::CustomField>, nil] An array of custom field definitions to collect from customers at checkout.
       #
-      # @param description [String, nil] The description of the plan.
+      # @param description [String, nil] A text description of the plan displayed to customers on the product page.
       #
-      # @param expiration_days [Integer, nil] The number of days until the membership expires (for expiration-based plans). Fo
+      # @param expiration_days [Integer, nil] The number of days until the membership expires and access is revoked. For examp
       #
-      # @param image [WhopSDK::Models::PlanUpdateParams::Image, nil] An image for the plan. This will be visible on the product page to customers.
+      # @param image [WhopSDK::Models::PlanUpdateParams::Image, nil] An image displayed on the product page to represent this plan.
       #
-      # @param initial_price [Float, nil] An additional amount charged upon first purchase. Provided as a number in the sp
+      # @param initial_price [Float, nil] The amount charged on the first purchase. Provided in the plan's currency (e.g.,
       #
-      # @param internal_notes [String, nil] A personal description or notes section for the business.
+      # @param internal_notes [String, nil] Private notes visible only to the business owner. Not shown to customers.
       #
-      # @param legacy_payment_method_controls [Boolean, nil] Whether this plan uses legacy payment method controls
+      # @param legacy_payment_method_controls [Boolean, nil] Whether this plan uses legacy payment method controls.
       #
-      # @param offer_cancel_discount [Boolean, nil] Whether or not to offer a discount to cancel a subscription.
+      # @param offer_cancel_discount [Boolean, nil] Whether to offer a retention discount when a customer attempts to cancel.
       #
       # @param override_tax_type [Symbol, WhopSDK::Models::TaxType, nil] Whether or not the tax is included in a plan's price (or if it hasn't been set u
       #
-      # @param payment_method_configuration [WhopSDK::Models::PlanUpdateParams::PaymentMethodConfiguration, nil] The explicit payment method configuration for the plan. If sent as null, the cus
+      # @param payment_method_configuration [WhopSDK::Models::PlanUpdateParams::PaymentMethodConfiguration, nil] Explicit payment method configuration for the plan. Sending null removes any cus
       #
-      # @param renewal_price [Float, nil] The amount the customer is charged every billing period. Provided as a number in
+      # @param renewal_price [Float, nil] The amount charged each billing period for recurring plans. Provided in the plan
       #
-      # @param stock [Integer, nil] The number of units available for purchase.
+      # @param stock [Integer, nil] The maximum number of units available for purchase. Ignored when unlimited_stock
       #
-      # @param strike_through_initial_price [Float, nil] The price to display with a strikethrough for the initial price. Provided as a n
+      # @param strike_through_initial_price [Float, nil] A comparison price displayed with a strikethrough for the initial price. Provide
       #
-      # @param strike_through_renewal_price [Float, nil] The price to display with a strikethrough for the renewal price. Provided as a n
+      # @param strike_through_renewal_price [Float, nil] A comparison price displayed with a strikethrough for the renewal price. Provide
       #
-      # @param title [String, nil] The title of the plan. This will be visible on the product page to customers.
+      # @param title [String, nil] The display name of the plan shown to customers on the product page.
       #
-      # @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
+      # @param trial_period_days [Integer, nil] The number of free trial days before the first charge on a recurring plan.
       #
-      # @param unlimited_stock [Boolean, nil] When true, the plan has unlimited stock (stock field is ignored). When false, pu
+      # @param unlimited_stock [Boolean, nil] Whether the plan has unlimited stock. When true, the stock field is ignored.
       #
       # @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
       #
@@ -165,7 +167,8 @@ module WhopSDK
         )
       end
 
-      # Lists plans for a company
+      # Returns a paginated list of plans belonging to a company, with optional
+      # filtering by visibility, type, release method, and product.
       #
       # Required permissions:
       #
@@ -173,15 +176,15 @@ module WhopSDK
       #
       # @overload list(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_types: nil, product_ids: nil, release_methods: nil, visibilities: nil, request_options: {})
       #
-      # @param company_id [String] The ID of the company
+      # @param company_id [String] The unique identifier of the company to list plans for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param created_after [Time, nil] The minimum creation date to filter by
+      # @param created_after [Time, nil] Only return plans created after this timestamp.
       #
-      # @param created_before [Time, nil] The maximum creation date to filter by
+      # @param created_before [Time, nil] Only return plans created before this timestamp.
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
@@ -191,13 +194,13 @@ module WhopSDK
       #
       # @param order [Symbol, WhopSDK::Models::PlanListParams::Order, nil] The ways a relation of Plans can be ordered
       #
-      # @param plan_types [Array<Symbol, WhopSDK::Models::PlanType>, nil] The plan type to filter the plans by
+      # @param plan_types [Array<Symbol, WhopSDK::Models::PlanType>, nil] Filter to only plans matching these billing types.
       #
-      # @param product_ids [Array<String>, nil] The product IDs to filter the plans by
+      # @param product_ids [Array<String>, nil] Filter to only plans belonging to these product identifiers.
       #
-      # @param release_methods [Array<Symbol, WhopSDK::Models::ReleaseMethod>, nil] The release method to filter the plans by
+      # @param release_methods [Array<Symbol, WhopSDK::Models::ReleaseMethod>, nil] Filter to only plans matching these release methods.
       #
-      # @param visibilities [Array<Symbol, WhopSDK::Models::VisibilityFilter>, nil] The visibility to filter the plans by
+      # @param visibilities [Array<Symbol, WhopSDK::Models::VisibilityFilter>, nil] Filter to only plans matching these visibility states.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -216,7 +219,8 @@ module WhopSDK
         )
       end
 
-      # Delete an existing Plan
+      # Permanently delete a plan from a product. Existing memberships on this plan will
+      # not be affected.
       #
       # Required permissions:
       #
@@ -224,7 +228,7 @@ module WhopSDK
       #
       # @overload delete(id, request_options: {})
       #
-      # @param id [String] The ID of the plan to delete.
+      # @param id [String] The unique identifier of the plan to delete.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class Disputes
-      # Retrieves a Dispute by ID
+      # Retrieves the details of an existing dispute.
       #
       # Required permissions:
       #
@@ -18,7 +18,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the dispute
+      # @param id [String] The unique identifier of the dispute.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -34,7 +34,9 @@ module WhopSDK
         )
       end
 
-      # Lists disputes the current actor has access to
+      # Returns a paginated list of disputes for a company, with optional filtering by
+      # creation date. A dispute represents a chargeback or inquiry filed by a customer
+      # against a payment.
       #
       # Required permissions:
       #
@@ -46,15 +48,15 @@ module WhopSDK
       #
       # @overload list(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, request_options: {})
       #
-      # @param company_id [String] The ID of the company to list disputes for
+      # @param company_id [String] The unique identifier of the company to list disputes for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param created_after [Time, nil] The minimum creation date to filter by
+      # @param created_after [Time, nil] Only return disputes created after this timestamp.
       #
-      # @param created_before [Time, nil] The maximum creation date to filter by
+      # @param created_before [Time, nil] Only return disputes created before this timestamp.
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
@@ -98,7 +100,7 @@ module WhopSDK
       #
       # @overload submit_evidence(id, request_options: {})
       #
-      # @param id [String] The ID of the dispute (Ex. dspt_xxxx) you want to finalize evidence submission f
+      # @param id [String] The unique identifier of the dispute to submit to the payment processor for revi
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -114,6 +116,9 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::DisputeUpdateEvidenceParams} for more details.
+      #
       # Update a dispute with evidence data to attempt to win the dispute.
       #
       # Required permissions:
@@ -129,35 +134,35 @@ module WhopSDK
       #
       # @overload update_evidence(id, access_activity_log: nil, billing_address: nil, cancellation_policy_attachment: nil, cancellation_policy_disclosure: nil, customer_communication_attachment: nil, customer_email_address: nil, customer_name: nil, notes: nil, product_description: nil, refund_policy_attachment: nil, refund_policy_disclosure: nil, refund_refusal_explanation: nil, service_date: nil, uncategorized_attachment: nil, request_options: {})
       #
-      # @param id [String] The ID of the dispute you want to update.
+      # @param id [String] The unique identifier of the dispute to update.
       #
-      # @param access_activity_log [String, nil] An IP access log for the user from Whop.
+      # @param access_activity_log [String, nil] An IP access activity log showing the customer used the service.
       #
-      # @param billing_address [String, nil] The billing address of the user from their payment details.
+      # @param billing_address [String, nil] The billing address associated with the customer's payment method.
       #
-      # @param cancellation_policy_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::CancellationPolicyAttachment, nil] A file containing the cancellation policy from the company.
+      # @param cancellation_policy_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::CancellationPolicyAttachment, nil] A file upload containing the company's cancellation policy document.
       #
-      # @param cancellation_policy_disclosure [String, nil] A cancellation policy disclosure from the company.
+      # @param cancellation_policy_disclosure [String, nil] The company's cancellation policy text to submit as evidence.
       #
-      # @param customer_communication_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment, nil] A file containing the customer communication from the company (An image).
+      # @param customer_communication_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::CustomerCommunicationAttachment, nil] A file upload containing evidence of customer communication. Must be a JPEG, PNG
       #
-      # @param customer_email_address [String, nil] The email of the customer from their payment details.
+      # @param customer_email_address [String, nil] The email address of the customer associated with the disputed payment.
       #
-      # @param customer_name [String, nil] The name of the customer from their payment details.
+      # @param customer_name [String, nil] The full name of the customer associated with the disputed payment.
       #
-      # @param notes [String, nil] Additional notes the company chooses to submit regarding the dispute.
+      # @param notes [String, nil] Additional notes or context to submit as part of the dispute evidence.
       #
-      # @param product_description [String, nil] The description of the product from the company.
+      # @param product_description [String, nil] A description of the product or service that was provided to the customer.
       #
-      # @param refund_policy_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::RefundPolicyAttachment, nil] A file containing the refund policy from the company.
+      # @param refund_policy_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::RefundPolicyAttachment, nil] A file upload containing the company's refund policy document.
       #
-      # @param refund_policy_disclosure [String, nil] A refund policy disclosure from the company.
+      # @param refund_policy_disclosure [String, nil] The company's refund policy text to submit as evidence.
       #
-      # @param refund_refusal_explanation [String, nil] A description on why the refund is being refused by the company.
+      # @param refund_refusal_explanation [String, nil] An explanation of why the refund request was refused.
       #
-      # @param service_date [String, nil] When the product was delivered by the company.
+      # @param service_date [String, nil] The date when the product or service was delivered to the customer.
       #
-      # @param uncategorized_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::UncategorizedAttachment, nil] A file that does not fit in the other categories.
+      # @param uncategorized_attachment [WhopSDK::Models::DisputeUpdateEvidenceParams::UncategorizedAttachment, nil] A file upload for evidence that does not fit into the other categories.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

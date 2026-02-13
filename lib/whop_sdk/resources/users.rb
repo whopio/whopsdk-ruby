@@ -3,11 +3,11 @@
 module WhopSDK
   module Resources
     class Users
-      # Retrieves a user by ID or username
+      # Retrieves the details of an existing user.
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID (user_xxx) or username of the user
+      # @param id [String] The unique identifier or username of the user.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -26,13 +26,14 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::UserCheckAccessParams} for more details.
       #
-      # Check if a user has access (and their access level) to a resource
+      # Check whether a user has access to a specific resource, and return their access
+      # level.
       #
       # @overload check_access(resource_id, id:, request_options: {})
       #
-      # @param resource_id [String] The ID of the resource. Can be a company (biz_xxx), product (prod_xxx), or exper
+      # @param resource_id [String] The unique identifier of the resource to check access for. Accepts a company, pr
       #
-      # @param id [String] The ID (user_xxx) or username of the user
+      # @param id [String] The unique identifier or username of the user.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -53,7 +54,10 @@ module WhopSDK
         )
       end
 
-      # Updates the current user's profile
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::UserUpdateProfileParams} for more details.
+      #
+      # Update the currently authenticated user's profile.
       #
       # Required permissions:
       #
@@ -61,13 +65,13 @@ module WhopSDK
       #
       # @overload update_profile(bio: nil, name: nil, profile_picture: nil, username: nil, request_options: {})
       #
-      # @param bio [String, nil] User biography
+      # @param bio [String, nil] A short biography displayed on the user's public profile.
       #
-      # @param name [String, nil] Display name
+      # @param name [String, nil] The user's display name shown on their public profile. Maximum 100 characters.
       #
-      # @param profile_picture [WhopSDK::Models::UserUpdateProfileParams::ProfilePicture, nil] Profile picture
+      # @param profile_picture [WhopSDK::Models::UserUpdateProfileParams::ProfilePicture, nil] The user's profile picture image attachment.
       #
-      # @param username [String, nil] Username (alphanumeric and hyphens)
+      # @param username [String, nil] The user's unique username. Alphanumeric characters and hyphens only. Maximum 42
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

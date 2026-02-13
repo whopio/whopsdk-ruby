@@ -19,7 +19,8 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # Filter DM channels scoped to a specific company
+      # The unique identifier of a company to filter DM channels by. Only returns
+      # channels scoped to this company.
       sig { returns(T.nilable(String)) }
       attr_accessor :company_id
 
@@ -46,7 +47,8 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # Filter DM channels scoped to a specific company
+        # The unique identifier of a company to filter DM channels by. Only returns
+        # channels scoped to this company.
         company_id: nil,
         # Returns the first _n_ elements from the list.
         first: nil,

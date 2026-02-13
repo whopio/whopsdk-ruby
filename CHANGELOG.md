@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.0.28 (2026-02-13)
+
+Full Changelog: [v0.0.27...v0.0.28](https://github.com/whopio/whopsdk-ruby/compare/v0.0.27...v0.0.28)
+
+### Features
+
+* **api:** api update ([3d480a8](https://github.com/whopio/whopsdk-ruby/commit/3d480a8c7b7d440c4edfa1067b156c88a7c07efd))
+* **api:** api update ([1721944](https://github.com/whopio/whopsdk-ruby/commit/1721944bb515a5ee1eecb3f7ba43eea96763b00b))
+* **api:** api update ([3b32134](https://github.com/whopio/whopsdk-ruby/commit/3b321344577fa04c3cb70743bd381108fafdc7c2))
+* **api:** api update ([c4dbb11](https://github.com/whopio/whopsdk-ruby/commit/c4dbb11f8dd3862aa616d63387f96a5ae62392c0))
+* **api:** api update ([a6cec2c](https://github.com/whopio/whopsdk-ruby/commit/a6cec2c09ed799f3d6607d884f543653fb490b57))
+* **api:** api update ([f173bf9](https://github.com/whopio/whopsdk-ruby/commit/f173bf9fa8441ed9cd7fcd92f241dd2d1972e057))
+* **api:** api update ([3fa5697](https://github.com/whopio/whopsdk-ruby/commit/3fa56971b88284df0612640c581e446205d9b5b6))
+* **api:** api update ([63accfc](https://github.com/whopio/whopsdk-ruby/commit/63accfc1df49a36eead79abc81d75f3d4ebf7ce9))
+* **api:** api update ([7eada7c](https://github.com/whopio/whopsdk-ruby/commit/7eada7c05cb4f18d8d84dba1a0c22ca4a61cf460))
+* **api:** api update ([b3c3d77](https://github.com/whopio/whopsdk-ruby/commit/b3c3d77fe6c08d878e4983beacf9fb6b4a84b238))
+* **api:** api update ([6d1c4e9](https://github.com/whopio/whopsdk-ruby/commit/6d1c4e99fe46d43a67aba8bac62ad6347cf22d1c))
+* **api:** api update ([bb02a5e](https://github.com/whopio/whopsdk-ruby/commit/bb02a5ebaa149af41f46d860e0f6da07dec20c0f))
+* **api:** api update ([1957770](https://github.com/whopio/whopsdk-ruby/commit/1957770a92a4fba413f9277312aabeac1ba51dad))
+* **api:** api update ([929026d](https://github.com/whopio/whopsdk-ruby/commit/929026d0eee42ab7f930f81bbeb582348d8b5b8b))
+
+
+### Chores
+
+* configure new SDK language ([8483357](https://github.com/whopio/whopsdk-ruby/commit/8483357ba5ca5b76ebb4ec832b40861982adf85f))
+
 ## 0.0.27 (2026-02-09)
 
 Full Changelog: [v0.0.26...v0.0.27](https://github.com/whopio/whopsdk-ruby/compare/v0.0.26...v0.0.27)

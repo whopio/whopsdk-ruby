@@ -12,35 +12,37 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The MIME type of the file (e.g., image/jpeg, video/mp4)
+      # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
       sig { returns(T.nilable(String)) }
       attr_accessor :content_type
 
-      # The name of the file
+      # The original filename of the uploaded file, including its file extension.
       sig { returns(T.nilable(String)) }
       attr_accessor :filename
 
-      # The size of the file in bytes
+      # The file size in bytes. Null if the file has not finished uploading.
       sig { returns(T.nilable(String)) }
       attr_accessor :size
 
-      # Headers to include in the upload request (only on create)
+      # Headers to include in the upload request. Only present in the response from the
+      # create mutation.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :upload_headers
 
-      # The upload status of the file
+      # The current upload status of the file (e.g., pending, ready).
       sig { returns(WhopSDK::UploadStatus::TaggedSymbol) }
       attr_accessor :upload_status
 
-      # The presigned URL to upload the file to (only on create)
+      # The presigned URL to upload the file contents to. Only present in the response
+      # from the create mutation.
       sig { returns(T.nilable(String)) }
       attr_accessor :upload_url
 
-      # The URL to access the file
+      # The CDN URL for accessing the file. Null if the file has not finished uploading.
       sig { returns(T.nilable(String)) }
       attr_accessor :url
 
-      # A file that has been uploaded or is pending upload
+      # A file that has been uploaded or is pending upload.
       sig do
         params(
           id: String,
@@ -56,19 +58,21 @@ module WhopSDK
       def self.new(
         # The unique identifier for the file.
         id:,
-        # The MIME type of the file (e.g., image/jpeg, video/mp4)
+        # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
         content_type:,
-        # The name of the file
+        # The original filename of the uploaded file, including its file extension.
         filename:,
-        # The size of the file in bytes
+        # The file size in bytes. Null if the file has not finished uploading.
         size:,
-        # Headers to include in the upload request (only on create)
+        # Headers to include in the upload request. Only present in the response from the
+        # create mutation.
         upload_headers:,
-        # The upload status of the file
+        # The current upload status of the file (e.g., pending, ready).
         upload_status:,
-        # The presigned URL to upload the file to (only on create)
+        # The presigned URL to upload the file contents to. Only present in the response
+        # from the create mutation.
         upload_url:,
-        # The URL to access the file
+        # The CDN URL for accessing the file. Null if the file has not finished uploading.
         url:
       )
       end

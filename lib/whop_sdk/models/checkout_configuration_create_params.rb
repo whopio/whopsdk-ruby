@@ -8,13 +8,13 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute plan
-      #   Pass this object to create a new plan for this checkout configuration
+      #   The plan attributes to create a new plan inline for this checkout configuration.
       #
       #   @return [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan]
       required :plan, -> { WhopSDK::CheckoutConfigurationCreateParams::Plan }
 
       # @!attribute affiliate_code
-      #   The affiliate code to use for the checkout configuration
+      #   An affiliate tracking code to attribute the checkout to a specific affiliate.
       #
       #   @return [String, nil]
       optional :affiliate_code, String, nil?: true
@@ -26,7 +26,7 @@ module WhopSDK
       optional :currency, enum: -> { WhopSDK::Currency }, nil?: true
 
       # @!attribute metadata
-      #   The metadata to use for the checkout configuration
+      #   Custom key-value metadata to attach to the checkout configuration.
       #
       #   @return [Hash{Symbol=>Object}, nil]
       optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
@@ -37,9 +37,8 @@ module WhopSDK
       required :mode, const: :setup
 
       # @!attribute payment_method_configuration
-      #   This currently only works for configurations made in 'setup' mode. The explicit
-      #   payment method configuration for the checkout session. If not provided, the
-      #   platform or company's defaults will apply.
+      #   The explicit payment method configuration for the checkout session. Only applies
+      #   to setup mode. If not provided, the platform or company defaults will apply.
       #
       #   @return [WhopSDK::Models::CheckoutConfigurationCreateParams::PaymentMethodConfiguration, nil]
       optional :payment_method_configuration,
@@ -47,7 +46,7 @@ module WhopSDK
                nil?: true
 
       # @!attribute redirect_url
-      #   The URL to redirect the user to after the checkout configuration is created
+      #   The URL to redirect the user to after checkout is completed.
       #
       #   @return [String, nil]
       optional :redirect_url, String, nil?: true
@@ -59,14 +58,15 @@ module WhopSDK
       optional :source_url, String, nil?: true
 
       # @!attribute plan_id
-      #   The ID of the plan to use for the checkout configuration
+      #   The unique identifier of an existing plan to use for this checkout
+      #   configuration.
       #
       #   @return [String]
       required :plan_id, String
 
       # @!attribute company_id
-      #   The ID of the company for which to generate the checkout configuration. Only
-      #   required in setup mode.
+      #   The unique identifier of the company to create the checkout configuration for.
+      #   Only required in setup mode.
       #
       #   @return [String]
       required :company_id, String
@@ -75,21 +75,21 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CheckoutConfigurationCreateParams} for more details.
       #
-      #   @param plan [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan] Pass this object to create a new plan for this checkout configuration
+      #   @param plan [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan] The plan attributes to create a new plan inline for this checkout configuration.
       #
-      #   @param plan_id [String] The ID of the plan to use for the checkout configuration
+      #   @param plan_id [String] The unique identifier of an existing plan to use for this checkout configuration
       #
-      #   @param company_id [String] The ID of the company for which to generate the checkout configuration. Only req
+      #   @param company_id [String] The unique identifier of the company to create the checkout configuration for. O
       #
-      #   @param affiliate_code [String, nil] The affiliate code to use for the checkout configuration
+      #   @param affiliate_code [String, nil] An affiliate tracking code to attribute the checkout to a specific affiliate.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] The metadata to use for the checkout configuration
+      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value metadata to attach to the checkout configuration.
       #
-      #   @param payment_method_configuration [WhopSDK::Models::CheckoutConfigurationCreateParams::PaymentMethodConfiguration, nil] This currently only works for configurations made in 'setup' mode. The explicit
+      #   @param payment_method_configuration [WhopSDK::Models::CheckoutConfigurationCreateParams::PaymentMethodConfiguration, nil] The explicit payment method configuration for the checkout session. Only applies
       #
-      #   @param redirect_url [String, nil] The URL to redirect the user to after the checkout configuration is created
+      #   @param redirect_url [String, nil] The URL to redirect the user to after checkout is completed.
       #
       #   @param source_url [String, nil] The URL of the page where the checkout is being initiated from.
       #
@@ -257,7 +257,7 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan} for more details.
         #
-        #   Pass this object to create a new plan for this checkout configuration
+        #   The plan attributes to create a new plan inline for this checkout configuration.
         #
         #   @param company_id [String] The company the plan should be created for.
         #
@@ -471,6 +471,14 @@ module WhopSDK
           #   @return [String, nil]
           optional :headline, String, nil?: true
 
+          # @!attribute industry_group
+          #   The different industry groups a company can be in.
+          #
+          #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Product::IndustryGroup, nil]
+          optional :industry_group,
+                   enum: -> { WhopSDK::CheckoutConfigurationCreateParams::Plan::Product::IndustryGroup },
+                   nil?: true
+
           # @!attribute industry_type
           #   The different industry types a company can be in.
           #
@@ -501,7 +509,7 @@ module WhopSDK
           #   @return [Symbol, WhopSDK::Models::Visibility, nil]
           optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-          # @!method initialize(external_identifier:, title:, business_type: nil, collect_shipping_address: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil)
+          # @!method initialize(external_identifier:, title:, business_type: nil, collect_shipping_address: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_group: nil, industry_type: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Product} for more
           #   details.
@@ -528,6 +536,8 @@ module WhopSDK
           #
           #   @param headline [String, nil] The headline of the product.
           #
+          #   @param industry_group [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Product::IndustryGroup, nil] The different industry groups a company can be in.
+          #
           #   @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
           #
           #   @param product_tax_code_id [String, nil] The ID of the product tax code to apply to this product.
@@ -537,6 +547,143 @@ module WhopSDK
           #   @param route [String, nil] The route of the product.
           #
           #   @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
+
+          # The different industry groups a company can be in.
+          #
+          # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Product#industry_group
+          module IndustryGroup
+            extend WhopSDK::Internal::Type::Enum
+
+            ACADEMIC_AND_TEST_PREP = :academic_and_test_prep
+            ACCESSORIES = :accessories
+            AI_AND_AUTOMATION_AGENCIES = :ai_and_automation_agencies
+            AI_AND_AUTOMATION_SOFTWARE = :ai_and_automation_software
+            ARTS_AND_CRAFTS = :arts_and_crafts
+            AUTOMOTIVE = :automotive
+            B2B_AND_PROFESSIONAL_MARKETPLACES = :b2b_and_professional_marketplaces
+            BABY_AND_KIDS = :baby_and_kids
+            BEAUTY_AND_PERSONAL_CARE = :beauty_and_personal_care
+            BEAUTY_AND_WELLNESS = :beauty_and_wellness
+            BUSINESS_AND_ENTREPRENEURSHIP = :business_and_entrepreneurship
+            BUSINESS_AND_MONEY_GROUPS = :business_and_money_groups
+            CAREER_AND_PROFESSIONAL = :career_and_professional
+            CHARITY_AND_CAUSE_EVENTS = :charity_and_cause_events
+            CLOTHING_AND_APPAREL = :clothing_and_apparel
+            COMMUNICATION_AND_MESSAGING_SOFTWARE = :communication_and_messaging_software
+            COMMUNITY_AND_EDUCATION_SOFTWARE = :community_and_education_software
+            CONSULTING = :consulting
+            CONTENT_AND_CLIPPING_AGENCIES = :content_and_clipping_agencies
+            CREATIVE_AND_CONTENT_CREATION = :creative_and_content_creation
+            CREATIVE_AND_CONTENT_GROUPS = :creative_and_content_groups
+            CREATIVE_AND_EDUCATION = :creative_and_education
+            CREATIVE_GIGS = :creative_gigs
+            CREATIVE_SERVICES = :creative_services
+            CUSTOMER_SUPPORT_AGENCIES = :customer_support_agencies
+            DATING_AND_RELATIONSHIPS = :dating_and_relationships
+            DELIVERY_AND_LOGISTICS = :delivery_and_logistics
+            DENTAL_AND_VISION = :dental_and_vision
+            DERMATOLOGY_AND_SKIN = :dermatology_and_skin
+            DESIGN_AND_CREATIVE_AGENCIES = :design_and_creative_agencies
+            DEVELOPER_AND_TECHNICAL_TOOLS = :developer_and_technical_tools
+            DEVELOPMENT_AGENCIES = :development_agencies
+            DIGITAL_AND_EDUCATION_MARKETPLACES = :digital_and_education_marketplaces
+            E_COMMERCE_SOFTWARE = :e_commerce_software
+            EDUCATION_AND_BUSINESS_EVENTS = :education_and_business_events
+            EDUCATION_AND_CHILDCARE = :education_and_childcare
+            ELECTRONICS_AND_GADGETS = :electronics_and_gadgets
+            ENTERTAINMENT_AND_LEISURE = :entertainment_and_leisure
+            ENTERTAINMENT_EVENTS = :entertainment_events
+            FAMILY_AND_COMMUNITY_EVENTS = :family_and_community_events
+            FINANCE_AND_INVESTING = :finance_and_investing
+            FITNESS_AND_ATHLETICS = :fitness_and_athletics
+            FITNESS_AND_HEALTH_GROUPS = :fitness_and_health_groups
+            FITNESS_AND_RECREATION = :fitness_and_recreation
+            FITNESS_EQUIPMENT_AND_GEAR = :fitness_equipment_and_gear
+            FOOD_AND_BEVERAGE = :food_and_beverage
+            FOOD_AND_BEVERAGES = :food_and_beverages
+            FOOD_AND_HOSPITALITY_MARKETPLACES = :food_and_hospitality_marketplaces
+            GAMING_AND_ENTERTAINMENT_SOFTWARE = :gaming_and_entertainment_software
+            GAMING_GROUPS = :gaming_groups
+            GENETIC_AND_SPECIALIZED = :genetic_and_specialized
+            GOVERNMENT_AND_PUBLIC = :government_and_public
+            HEALTH_AND_WELLNESS = :health_and_wellness
+            HEALTH_AND_WELLNESS_SERVICES = :health_and_wellness_services
+            HEALTHCARE = :healthcare
+            HEALTHCARE_AND_WELLNESS_SOFTWARE = :healthcare_and_wellness_software
+            HOBBIES_AND_LIFESTYLE = :hobbies_and_lifestyle
+            HOBBY_AND_INTEREST_GROUPS = :hobby_and_interest_groups
+            HOME_AND_LIVING = :home_and_living
+            HOME_AND_TRADE_SERVICES = :home_and_trade_services
+            HOME_AND_TRADE_STOREFRONTS = :home_and_trade_storefronts
+            HOME_SERVICES_GIGS = :home_services_gigs
+            HOSPITALITY_AND_LODGING = :hospitality_and_lodging
+            INDUSTRY_SPECIFIC_SOFTWARE = :industry_specific_software
+            LANGUAGE_AND_COMMUNICATION = :language_and_communication
+            LEGAL_AND_COMPLIANCE = :legal_and_compliance
+            LIFESTYLE_AND_CULTURE = :lifestyle_and_culture
+            LIFESTYLE_AND_PERSONAL_GROWTH_GROUPS = :lifestyle_and_personal_growth_groups
+            LIFESTYLE_AND_WELLNESS_EVENTS = :lifestyle_and_wellness_events
+            LOGISTICS_AND_TRANSPORTATION_SERVICES = :logistics_and_transportation_services
+            MARKETING_AGENCIES = :marketing_agencies
+            MARKETING_AND_ADVERTISING = :marketing_and_advertising
+            MARKETING_AND_SALES_SOFTWARE = :marketing_and_sales_software
+            MENTAL_HEALTH_AND_BEHAVIORAL = :mental_health_and_behavioral
+            MISCELLANEOUS = :miscellaneous
+            MUSIC_AND_PERFORMING_ARTS = :music_and_performing_arts
+            NEWS_AND_POLITICS = :news_and_politics
+            NONPROFIT_AND_CHARITY = :nonprofit_and_charity
+            OFFICE_AND_BUSINESS_SUPPLIES = :office_and_business_supplies
+            OUTDOOR_AND_SPORTS = :outdoor_and_sports
+            PERSONAL_DEVELOPMENT = :personal_development
+            PERSONAL_FINANCE = :personal_finance
+            PERSONAL_SERVICES = :personal_services
+            PET_SERVICES = :pet_services
+            PETS_AND_ANIMALS = :pets_and_animals
+            PRIMARY_AND_GENERAL_CARE = :primary_and_general_care
+            PRODUCT_MARKETPLACES = :product_marketplaces
+            PRODUCTIVITY_AND_BUSINESS_OPS = :productivity_and_business_ops
+            PROFESSIONAL_GIGS = :professional_gigs
+            PROFESSIONAL_SERVICES = :professional_services
+            PROFESSIONAL_SERVICES_STOREFRONT = :professional_services_storefront
+            PUBLISHING_AND_INFO_PRODUCTS = :publishing_and_info_products
+            REAL_ESTATE = :real_estate
+            REAL_ESTATE_SOFTWARE = :real_estate_software
+            RECRUITING_AND_STAFFING = :recruiting_and_staffing
+            REHABILITATION_AND_THERAPY = :rehabilitation_and_therapy
+            RENTAL_MARKETPLACES = :rental_marketplaces
+            RETAIL = :retail
+            SALES_AGENCIES = :sales_agencies
+            SALES_AND_REVENUE = :sales_and_revenue
+            SECURITY_AND_PRIVACY_SOFTWARE = :security_and_privacy_software
+            SERVICE_MARKETPLACES = :service_marketplaces
+            SLEEP_AND_CHRONIC_CONDITIONS = :sleep_and_chronic_conditions
+            SOCIAL_AND_NETWORKING_EVENTS = :social_and_networking_events
+            SPECIALIZED_GIGS = :specialized_gigs
+            SPECIALTY_MEDICAL_CARE = :specialty_medical_care
+            SPIRITUALITY_AND_MINDFULNESS = :spirituality_and_mindfulness
+            SPIRITUALITY_AND_PERSONAL_GROWTH = :spirituality_and_personal_growth
+            SPORTS_AND_FITNESS_EVENTS = :sports_and_fitness_events
+            SPORTS_BETTING_AND_GAMBLING = :sports_betting_and_gambling
+            SPORTS_BETTING_GROUPS = :sports_betting_groups
+            SUPPLEMENTS_AND_NUTRITION = :supplements_and_nutrition
+            SUSTAINABILITY_AND_ECO_PRODUCTS = :sustainability_and_eco_products
+            TASK_AND_ERRANDS = :task_and_errands
+            TECH_AND_AI = :tech_and_ai
+            TECH_AND_DEV_GROUPS = :tech_and_dev_groups
+            TECH_AND_DEVELOPMENT = :tech_and_development
+            TRADING_AND_FINANCE_SOFTWARE = :trading_and_finance_software
+            TRADING_AND_INVESTING = :trading_and_investing
+            TRADING_AND_INVESTING_GROUPS = :trading_and_investing_groups
+            TRANSPORTATION = :transportation
+            VETERINARY = :veterinary
+            VIDEO_GAMES_AND_ESPORTS = :video_games_and_esports
+            WEIGHT_AND_METABOLIC_HEALTH = :weight_and_metabolic_health
+            WELLNESS_AND_ALTERNATIVE = :wellness_and_alternative
+            WOMENS_AND_MENS_HEALTH = :womens_and_mens_health
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
         end
       end
 
@@ -570,9 +717,8 @@ module WhopSDK
         #   {WhopSDK::Models::CheckoutConfigurationCreateParams::PaymentMethodConfiguration}
         #   for more details.
         #
-        #   This currently only works for configurations made in 'setup' mode. The explicit
-        #   payment method configuration for the checkout session. If not provided, the
-        #   platform or company's defaults will apply.
+        #   The explicit payment method configuration for the checkout session. Only applies
+        #   to setup mode. If not provided, the platform or company defaults will apply.
         #
         #   @param disabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly disabled. Only applie
         #

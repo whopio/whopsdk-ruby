@@ -8,7 +8,7 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute company_id
-      #   The ID of the company
+      #   The unique identifier of the company to list plans for.
       #
       #   @return [String]
       required :company_id, String
@@ -26,13 +26,13 @@ module WhopSDK
       optional :before, String, nil?: true
 
       # @!attribute created_after
-      #   The minimum creation date to filter by
+      #   Only return plans created after this timestamp.
       #
       #   @return [Time, nil]
       optional :created_after, Time, nil?: true
 
       # @!attribute created_before
-      #   The maximum creation date to filter by
+      #   Only return plans created before this timestamp.
       #
       #   @return [Time, nil]
       optional :created_before, Time, nil?: true
@@ -62,19 +62,19 @@ module WhopSDK
       optional :order, enum: -> { WhopSDK::PlanListParams::Order }, nil?: true
 
       # @!attribute plan_types
-      #   The plan type to filter the plans by
+      #   Filter to only plans matching these billing types.
       #
       #   @return [Array<Symbol, WhopSDK::Models::PlanType>, nil]
       optional :plan_types, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PlanType] }, nil?: true
 
       # @!attribute product_ids
-      #   The product IDs to filter the plans by
+      #   Filter to only plans belonging to these product identifiers.
       #
       #   @return [Array<String>, nil]
       optional :product_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
 
       # @!attribute release_methods
-      #   The release method to filter the plans by
+      #   Filter to only plans matching these release methods.
       #
       #   @return [Array<Symbol, WhopSDK::Models::ReleaseMethod>, nil]
       optional :release_methods,
@@ -82,7 +82,7 @@ module WhopSDK
                nil?: true
 
       # @!attribute visibilities
-      #   The visibility to filter the plans by
+      #   Filter to only plans matching these visibility states.
       #
       #   @return [Array<Symbol, WhopSDK::Models::VisibilityFilter>, nil]
       optional :visibilities,
@@ -90,15 +90,15 @@ module WhopSDK
                nil?: true
 
       # @!method initialize(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_types: nil, product_ids: nil, release_methods: nil, visibilities: nil, request_options: {})
-      #   @param company_id [String] The ID of the company
+      #   @param company_id [String] The unique identifier of the company to list plans for.
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param created_after [Time, nil] The minimum creation date to filter by
+      #   @param created_after [Time, nil] Only return plans created after this timestamp.
       #
-      #   @param created_before [Time, nil] The maximum creation date to filter by
+      #   @param created_before [Time, nil] Only return plans created before this timestamp.
       #
       #   @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
@@ -108,13 +108,13 @@ module WhopSDK
       #
       #   @param order [Symbol, WhopSDK::Models::PlanListParams::Order, nil] The ways a relation of Plans can be ordered
       #
-      #   @param plan_types [Array<Symbol, WhopSDK::Models::PlanType>, nil] The plan type to filter the plans by
+      #   @param plan_types [Array<Symbol, WhopSDK::Models::PlanType>, nil] Filter to only plans matching these billing types.
       #
-      #   @param product_ids [Array<String>, nil] The product IDs to filter the plans by
+      #   @param product_ids [Array<String>, nil] Filter to only plans belonging to these product identifiers.
       #
-      #   @param release_methods [Array<Symbol, WhopSDK::Models::ReleaseMethod>, nil] The release method to filter the plans by
+      #   @param release_methods [Array<Symbol, WhopSDK::Models::ReleaseMethod>, nil] Filter to only plans matching these release methods.
       #
-      #   @param visibilities [Array<Symbol, WhopSDK::Models::VisibilityFilter>, nil] The visibility to filter the plans by
+      #   @param visibilities [Array<Symbol, WhopSDK::Models::VisibilityFilter>, nil] Filter to only plans matching these visibility states.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 

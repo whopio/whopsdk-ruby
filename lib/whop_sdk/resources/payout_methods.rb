@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class PayoutMethods
-      # Retrieves a payout method by ID
+      # Retrieves the details of an existing payout method.
       #
       # Required permissions:
       #
@@ -11,7 +11,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the payout method
+      # @param id [String] The unique identifier of the payout method to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -27,7 +27,8 @@ module WhopSDK
         )
       end
 
-      # Lists payout destinations for a company
+      # Returns a list of active payout methods configured for a company, ordered by
+      # most recently created.
       #
       # Required permissions:
       #
@@ -35,7 +36,7 @@ module WhopSDK
       #
       # @overload list(company_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
       #
-      # @param company_id [String] The company ID to list payout methods for.
+      # @param company_id [String] The unique identifier of the company to list payout methods for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #

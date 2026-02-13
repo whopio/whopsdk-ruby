@@ -20,13 +20,13 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # A unique identifier used to create or update products. When provided on product
-      # creation endpoints, we’ll look up an existing product by this identifier — if it
-      # exists, we’ll update it; if not, we’ll create a new one.
+      # A unique identifier used to create or update products via the API. When provided
+      # on product creation endpoints, an existing product with this identifier will be
+      # updated instead of creating a new one.
       sig { returns(T.nilable(String)) }
       attr_accessor :external_identifier
 
-      # The headline of the product.
+      # A short marketing headline displayed prominently on the product's product page.
       sig { returns(T.nilable(String)) }
       attr_accessor :headline
 
@@ -34,19 +34,22 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::IndustryTypes::TaggedSymbol)) }
       attr_accessor :industry_type
 
-      # The number of active users for this product.
+      # The number of users who currently hold an active membership to this product.
+      # Returns 0 if the company has disabled public member counts.
       sig { returns(Integer) }
       attr_accessor :member_count
 
-      # The number of reviews that have been published for the product.
+      # The total number of published customer reviews for this product's company.
       sig { returns(Integer) }
       attr_accessor :published_reviews_count
 
-      # The route of the product.
+      # The URL slug used in the product's public link (e.g., 'my-product' in
+      # whop.com/company/my-product).
       sig { returns(String) }
       attr_accessor :route
 
-      # The title of the product. Use for Whop 4.0.
+      # The display name of the product shown to customers on the product page and in
+      # search results.
       sig { returns(String) }
       attr_accessor :title
 
@@ -54,11 +57,12 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :updated_at
 
-      # Whether this product is Whop verified.
+      # Whether this company has been verified by Whop's trust and safety team.
       sig { returns(T::Boolean) }
       attr_accessor :verified
 
-      # This product will/will not be displayed publicly.
+      # Controls whether the product is visible to customers. When set to 'hidden', the
+      # product is only accessible via direct link.
       sig { returns(WhopSDK::Visibility::TaggedSymbol) }
       attr_accessor :visibility
 
@@ -88,27 +92,31 @@ module WhopSDK
         business_type:,
         # The datetime the product was created.
         created_at:,
-        # A unique identifier used to create or update products. When provided on product
-        # creation endpoints, we’ll look up an existing product by this identifier — if it
-        # exists, we’ll update it; if not, we’ll create a new one.
+        # A unique identifier used to create or update products via the API. When provided
+        # on product creation endpoints, an existing product with this identifier will be
+        # updated instead of creating a new one.
         external_identifier:,
-        # The headline of the product.
+        # A short marketing headline displayed prominently on the product's product page.
         headline:,
         # The different industry types a company can be in.
         industry_type:,
-        # The number of active users for this product.
+        # The number of users who currently hold an active membership to this product.
+        # Returns 0 if the company has disabled public member counts.
         member_count:,
-        # The number of reviews that have been published for the product.
+        # The total number of published customer reviews for this product's company.
         published_reviews_count:,
-        # The route of the product.
+        # The URL slug used in the product's public link (e.g., 'my-product' in
+        # whop.com/company/my-product).
         route:,
-        # The title of the product. Use for Whop 4.0.
+        # The display name of the product shown to customers on the product page and in
+        # search results.
         title:,
         # The datetime the product was last updated.
         updated_at:,
-        # Whether this product is Whop verified.
+        # Whether this company has been verified by Whop's trust and safety team.
         verified:,
-        # This product will/will not be displayed publicly.
+        # Controls whether the product is visible to customers. When set to 'hidden', the
+        # product is only accessible via direct link.
         visibility:
       )
       end

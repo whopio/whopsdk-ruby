@@ -16,7 +16,8 @@ module WhopSDK
       required :api_version, const: :v1
 
       # @!attribute data
-      #   A setup intent allows a user to save a payment method without making a purchase.
+      #   A setup intent allows a user to save a payment method for future use without
+      #   making an immediate purchase.
       #
       #   @return [WhopSDK::Models::SetupIntent]
       required :data, -> { WhopSDK::SetupIntent }
@@ -45,7 +46,7 @@ module WhopSDK
       #
       #   @param id [String] A unique ID for every single webhook request
       #
-      #   @param data [WhopSDK::Models::SetupIntent] A setup intent allows a user to save a payment method without making a purchase.
+      #   @param data [WhopSDK::Models::SetupIntent] A setup intent allows a user to save a payment method for future use without mak
       #
       #   @param timestamp [Time] The timestamp in ISO 8601 format that the webhook was sent at on the server
       #

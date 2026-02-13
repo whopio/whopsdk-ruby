@@ -8,46 +8,48 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute amount
-      #   The amount to transfer. Provided as a number in the specified currency. Eg:
-      #   25.00 for $25.00 USD.
+      #   The amount to transfer in the specified currency. For example, 25.00 for $25.00
+      #   USD.
       #
       #   @return [Float]
       required :amount, Float
 
       # @!attribute currency
-      #   The currency that is being withdrawn.
+      #   The currency of the transfer amount, such as 'usd'.
       #
       #   @return [Symbol, WhopSDK::Models::Currency]
       required :currency, enum: -> { WhopSDK::Currency }
 
       # @!attribute destination_id
-      #   The ID of the destination account which will receive the funds (either a User
-      #   ID, Company ID, or LedgerAccount ID)
+      #   The identifier of the account receiving the funds. Accepts a user ID
+      #   ('user_xxx'), company ID ('biz_xxx'), or ledger account ID ('ldgr_xxx').
       #
       #   @return [String]
       required :destination_id, String
 
       # @!attribute origin_id
-      #   The ID of the origin account which will send the funds (either a User ID,
-      #   Company ID, or LedgerAccount ID)
+      #   The identifier of the account sending the funds. Accepts a user ID ('user_xxx'),
+      #   company ID ('biz_xxx'), or ledger account ID ('ldgr_xxx').
       #
       #   @return [String]
       required :origin_id, String
 
       # @!attribute idempotence_key
-      #   A unique key to ensure idempotence. Use a UUID or similar.
+      #   A unique key to prevent duplicate transfers. Use a UUID or similar unique
+      #   string.
       #
       #   @return [String, nil]
       optional :idempotence_key, String, nil?: true
 
       # @!attribute metadata
-      #   A hash of metadata to attach to the transfer.
+      #   A JSON object of custom metadata to attach to the transfer for tracking
+      #   purposes.
       #
       #   @return [Hash{Symbol=>Object}, nil]
       optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
       # @!attribute notes
-      #   Notes for the transfer. Maximum of 50 characters.
+      #   A short note describing the transfer, up to 50 characters.
       #
       #   @return [String, nil]
       optional :notes, String, nil?: true
@@ -56,19 +58,19 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::TransferCreateParams} for more details.
       #
-      #   @param amount [Float] The amount to transfer. Provided as a number in the specified currency. Eg: 25.0
+      #   @param amount [Float] The amount to transfer in the specified currency. For example, 25.00 for $25.00
       #
-      #   @param currency [Symbol, WhopSDK::Models::Currency] The currency that is being withdrawn.
+      #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the transfer amount, such as 'usd'.
       #
-      #   @param destination_id [String] The ID of the destination account which will receive the funds (either a User ID
+      #   @param destination_id [String] The identifier of the account receiving the funds. Accepts a user ID ('user_xxx'
       #
-      #   @param origin_id [String] The ID of the origin account which will send the funds (either a User ID, Compan
+      #   @param origin_id [String] The identifier of the account sending the funds. Accepts a user ID ('user_xxx'),
       #
-      #   @param idempotence_key [String, nil] A unique key to ensure idempotence. Use a UUID or similar.
+      #   @param idempotence_key [String, nil] A unique key to prevent duplicate transfers. Use a UUID or similar unique string
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] A hash of metadata to attach to the transfer.
+      #   @param metadata [Hash{Symbol=>Object}, nil] A JSON object of custom metadata to attach to the transfer for tracking purposes
       #
-      #   @param notes [String, nil] Notes for the transfer. Maximum of 50 characters.
+      #   @param notes [String, nil] A short note describing the transfer, up to 50 characters.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

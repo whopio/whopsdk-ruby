@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::CourseChapterUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The title of the chapter
+      # The new display title of the chapter (e.g., "Module 1: Introduction").
       sig { returns(String) }
       attr_accessor :title
 
@@ -22,7 +22,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The title of the chapter
+        # The new display title of the chapter (e.g., "Module 1: Introduction").
         title:,
         request_options: {}
       )

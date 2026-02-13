@@ -8,20 +8,21 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute message_text
-      #   The text content of the first message sent in the chat
+      #   The text content of the first message to send to the AI agent.
       #
       #   @return [String]
       required :message_text, String
 
       # @!attribute current_company_id
-      #   The ID of the company to set as the current company in context for the AI chat
+      #   The unique identifier of the company to set as context for the AI chat (e.g.,
+      #   "biz_XXXXX").
       #
       #   @return [String, nil]
       optional :current_company_id, String, nil?: true
 
       # @!attribute message_attachments
-      #   The IDs of existing uploaded attachments to include in the first message to the
-      #   agent
+      #   A list of previously uploaded file attachments to include with the first
+      #   message.
       #
       #   @return [Array<WhopSDK::Models::AIChatCreateParams::MessageAttachment>, nil]
       optional :message_attachments,
@@ -29,7 +30,7 @@ module WhopSDK
                nil?: true
 
       # @!attribute title
-      #   The title of the AI chat
+      #   An optional display title for the AI chat thread (e.g., "Help with billing").
       #
       #   @return [String, nil]
       optional :title, String, nil?: true
@@ -38,13 +39,13 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AIChatCreateParams} for more details.
       #
-      #   @param message_text [String] The text content of the first message sent in the chat
+      #   @param message_text [String] The text content of the first message to send to the AI agent.
       #
-      #   @param current_company_id [String, nil] The ID of the company to set as the current company in context for the AI chat
+      #   @param current_company_id [String, nil] The unique identifier of the company to set as context for the AI chat (e.g., "b
       #
-      #   @param message_attachments [Array<WhopSDK::Models::AIChatCreateParams::MessageAttachment>, nil] The IDs of existing uploaded attachments to include in the first message to the
+      #   @param message_attachments [Array<WhopSDK::Models::AIChatCreateParams::MessageAttachment>, nil] A list of previously uploaded file attachments to include with the first message
       #
-      #   @param title [String, nil] The title of the AI chat
+      #   @param title [String, nil] An optional display title for the AI chat thread (e.g., "Help with billing").
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 

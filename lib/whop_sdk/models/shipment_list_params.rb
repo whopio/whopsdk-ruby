@@ -20,7 +20,7 @@ module WhopSDK
       optional :before, String, nil?: true
 
       # @!attribute company_id
-      #   The ID of the company
+      #   Filter shipments to only those belonging to this company.
       #
       #   @return [String, nil]
       optional :company_id, String, nil?: true
@@ -38,13 +38,13 @@ module WhopSDK
       optional :last, Integer, nil?: true
 
       # @!attribute payment_id
-      #   The ID of the payment
+      #   Filter shipments to only those associated with this specific payment.
       #
       #   @return [String, nil]
       optional :payment_id, String, nil?: true
 
       # @!attribute user_id
-      #   The ID of the user
+      #   Filter shipments to only those for this specific user.
       #
       #   @return [String, nil]
       optional :user_id, String, nil?: true
@@ -54,15 +54,15 @@ module WhopSDK
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param company_id [String, nil] The ID of the company
+      #   @param company_id [String, nil] Filter shipments to only those belonging to this company.
       #
       #   @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      #   @param payment_id [String, nil] The ID of the payment
+      #   @param payment_id [String, nil] Filter shipments to only those associated with this specific payment.
       #
-      #   @param user_id [String, nil] The ID of the user
+      #   @param user_id [String, nil] Filter shipments to only those for this specific user.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

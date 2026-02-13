@@ -6,7 +6,8 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::TransferCreateParams} for more details.
       #
-      # Creates a new transfer between ledger accounts
+      # Transfer funds between two ledger accounts, such as from a company balance to a
+      # user balance.
       #
       # Required permissions:
       #
@@ -14,19 +15,19 @@ module WhopSDK
       #
       # @overload create(amount:, currency:, destination_id:, origin_id:, idempotence_key: nil, metadata: nil, notes: nil, request_options: {})
       #
-      # @param amount [Float] The amount to transfer. Provided as a number in the specified currency. Eg: 25.0
+      # @param amount [Float] The amount to transfer in the specified currency. For example, 25.00 for $25.00
       #
-      # @param currency [Symbol, WhopSDK::Models::Currency] The currency that is being withdrawn.
+      # @param currency [Symbol, WhopSDK::Models::Currency] The currency of the transfer amount, such as 'usd'.
       #
-      # @param destination_id [String] The ID of the destination account which will receive the funds (either a User ID
+      # @param destination_id [String] The identifier of the account receiving the funds. Accepts a user ID ('user_xxx'
       #
-      # @param origin_id [String] The ID of the origin account which will send the funds (either a User ID, Compan
+      # @param origin_id [String] The identifier of the account sending the funds. Accepts a user ID ('user_xxx'),
       #
-      # @param idempotence_key [String, nil] A unique key to ensure idempotence. Use a UUID or similar.
+      # @param idempotence_key [String, nil] A unique key to prevent duplicate transfers. Use a UUID or similar unique string
       #
-      # @param metadata [Hash{Symbol=>Object}, nil] A hash of metadata to attach to the transfer.
+      # @param metadata [Hash{Symbol=>Object}, nil] A JSON object of custom metadata to attach to the transfer for tracking purposes
       #
-      # @param notes [String, nil] Notes for the transfer. Maximum of 50 characters.
+      # @param notes [String, nil] A short note describing the transfer, up to 50 characters.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -44,7 +45,7 @@ module WhopSDK
         )
       end
 
-      # Retrieves a transfer by ID
+      # Retrieves the details of an existing transfer.
       #
       # Required permissions:
       #
@@ -52,7 +53,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the transfer
+      # @param id [String] The unique identifier of the transfer to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -71,7 +72,8 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::TransferListParams} for more details.
       #
-      # Lists transfers
+      # Returns a paginated list of fund transfers, filtered by origin or destination
+      # account, with optional sorting and date filtering.
       #
       # Required permissions:
       #
@@ -83,11 +85,11 @@ module WhopSDK
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param created_after [Time, nil] The minimum creation date to filter by
+      # @param created_after [Time, nil] Only return transfers created after this timestamp.
       #
-      # @param created_before [Time, nil] The maximum creation date to filter by
+      # @param created_before [Time, nil] Only return transfers created before this timestamp.
       #
-      # @param destination_id [String, nil] Filter transfers to only those that were sent to this destination account. (user
+      # @param destination_id [String, nil] Filter to transfers received by this account. Accepts a user, company, or ledger
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
@@ -97,7 +99,7 @@ module WhopSDK
       #
       # @param order [Symbol, WhopSDK::Models::TransferListParams::Order, nil] Which columns can be used to sort.
       #
-      # @param origin_id [String, nil] Filter transfers to only those that were sent from this origin account. (user_xx
+      # @param origin_id [String, nil] Filter to transfers sent from this account. Accepts a user, company, or ledger a
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -8,13 +8,17 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute name
-      #   The name of the new experience
+      #   The display name for the duplicated experience. Defaults to the original
+      #   experience's name.
       #
       #   @return [String, nil]
       optional :name, String, nil?: true
 
       # @!method initialize(name: nil, request_options: {})
-      #   @param name [String, nil] The name of the new experience
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::ExperienceDuplicateParams} for more details.
+      #
+      #   @param name [String, nil] The display name for the duplicated experience. Defaults to the original experie
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

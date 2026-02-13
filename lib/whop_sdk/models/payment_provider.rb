@@ -16,6 +16,7 @@ module WhopSDK
       MULTI_PSP = :multi_psp
       ADYEN = :adyen
       CLARITYPAY = :claritypay
+      CHECKOUT_DOT_COM = :checkout_dot_com
 
       # @!method self.values
       #   @return [Array<Symbol>]

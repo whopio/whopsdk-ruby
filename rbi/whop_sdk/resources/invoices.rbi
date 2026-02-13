@@ -20,6 +20,7 @@ module WhopSDK
           product: WhopSDK::InvoiceCreateParams::Product::OrHash,
           email_address: String,
           product_id: String,
+          automatically_finalizes_at: T.nilable(Time),
           charge_buyer_fee: T.nilable(T::Boolean),
           customer_name: T.nilable(String),
           payment_method_id: T.nilable(String),
@@ -49,6 +50,10 @@ module WhopSDK
         email_address:,
         # The unique identifier of an existing product to create this invoice for.
         product_id:,
+        # The date and time when the invoice will be automatically finalized and charged.
+        # Only valid when collection_method is charge_automatically. If not provided, the
+        # charge will be processed immediately.
+        automatically_finalizes_at: nil,
         # Whether to charge the customer a buyer fee on this invoice.
         charge_buyer_fee: nil,
         # The name of the customer. Required when creating an invoice for a customer who

@@ -47,6 +47,14 @@ module WhopSDK
       #   @return [WhopSDK::Models::InvoiceCreateParams::Product]
       required :product, -> { WhopSDK::InvoiceCreateParams::Product }
 
+      # @!attribute automatically_finalizes_at
+      #   The date and time when the invoice will be automatically finalized and charged.
+      #   Only valid when collection_method is charge_automatically. If not provided, the
+      #   charge will be processed immediately.
+      #
+      #   @return [Time, nil]
+      optional :automatically_finalizes_at, Time, nil?: true
+
       # @!attribute charge_buyer_fee
       #   Whether to charge the customer a buyer fee on this invoice.
       #
@@ -87,7 +95,7 @@ module WhopSDK
       #   @return [String]
       required :product_id, String
 
-      # @!method initialize(collection_method:, company_id:, due_date:, member_id:, plan:, product:, email_address:, product_id:, charge_buyer_fee: nil, customer_name: nil, payment_method_id: nil, payment_token_id: nil, request_options: {})
+      # @!method initialize(collection_method:, company_id:, due_date:, member_id:, plan:, product:, email_address:, product_id:, automatically_finalizes_at: nil, charge_buyer_fee: nil, customer_name: nil, payment_method_id: nil, payment_token_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::InvoiceCreateParams} for more details.
       #
@@ -106,6 +114,8 @@ module WhopSDK
       #   @param email_address [String] The email address of the customer. Required when creating an invoice for a custo
       #
       #   @param product_id [String] The unique identifier of an existing product to create this invoice for.
+      #
+      #   @param automatically_finalizes_at [Time, nil] The date and time when the invoice will be automatically finalized and charged.
       #
       #   @param charge_buyer_fee [Boolean, nil] Whether to charge the customer a buyer fee on this invoice.
       #

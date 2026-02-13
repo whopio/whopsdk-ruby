@@ -40,8 +40,10 @@ module WhopSDK
       # @!attribute transaction_type
       #   The type of token transaction
       #
-      #   @return [Symbol, WhopSDK::Models::BotTokenTransactionTypes, nil]
-      optional :transaction_type, enum: -> { WhopSDK::BotTokenTransactionTypes }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::CompanyTokenTransactionListParams::TransactionType, nil]
+      optional :transaction_type,
+               enum: -> { WhopSDK::CompanyTokenTransactionListParams::TransactionType },
+               nil?: true
 
       # @!attribute user_id
       #   Filter transactions to only those involving this specific user.
@@ -60,11 +62,23 @@ module WhopSDK
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      #   @param transaction_type [Symbol, WhopSDK::Models::BotTokenTransactionTypes, nil] The type of token transaction
+      #   @param transaction_type [Symbol, WhopSDK::Models::CompanyTokenTransactionListParams::TransactionType, nil] The type of token transaction
       #
       #   @param user_id [String, nil] Filter transactions to only those involving this specific user.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      # The type of token transaction
+      module TransactionType
+        extend WhopSDK::Internal::Type::Enum
+
+        ADD = :add
+        SUBTRACT = :subtract
+        TRANSFER = :transfer
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

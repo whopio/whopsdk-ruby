@@ -35,7 +35,13 @@ module WhopSDK
       attr_accessor :last
 
       # The type of token transaction
-      sig { returns(T.nilable(WhopSDK::BotTokenTransactionTypes::OrSymbol)) }
+      sig do
+        returns(
+          T.nilable(
+            WhopSDK::CompanyTokenTransactionListParams::TransactionType::OrSymbol
+          )
+        )
+      end
       attr_accessor :transaction_type
 
       # Filter transactions to only those involving this specific user.
@@ -50,7 +56,9 @@ module WhopSDK
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           transaction_type:
-            T.nilable(WhopSDK::BotTokenTransactionTypes::OrSymbol),
+            T.nilable(
+              WhopSDK::CompanyTokenTransactionListParams::TransactionType::OrSymbol
+            ),
           user_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -83,13 +91,55 @@ module WhopSDK
             first: T.nilable(Integer),
             last: T.nilable(Integer),
             transaction_type:
-              T.nilable(WhopSDK::BotTokenTransactionTypes::OrSymbol),
+              T.nilable(
+                WhopSDK::CompanyTokenTransactionListParams::TransactionType::OrSymbol
+              ),
             user_id: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }
         )
       end
       def to_hash
+      end
+
+      # The type of token transaction
+      module TransactionType
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(
+              Symbol,
+              WhopSDK::CompanyTokenTransactionListParams::TransactionType
+            )
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        ADD =
+          T.let(
+            :add,
+            WhopSDK::CompanyTokenTransactionListParams::TransactionType::TaggedSymbol
+          )
+        SUBTRACT =
+          T.let(
+            :subtract,
+            WhopSDK::CompanyTokenTransactionListParams::TransactionType::TaggedSymbol
+          )
+        TRANSFER =
+          T.let(
+            :transfer,
+            WhopSDK::CompanyTokenTransactionListParams::TransactionType::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::CompanyTokenTransactionListParams::TransactionType::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
       end
     end
   end

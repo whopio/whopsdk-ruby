@@ -98,6 +98,7 @@ module WhopSDK
 
         ACADEMIC_AND_TEST_PREP = :academic_and_test_prep
         ACCESSORIES = :accessories
+        AGRICULTURE_AND_FARMING = :agriculture_and_farming
         AI_AND_AUTOMATION_AGENCIES = :ai_and_automation_agencies
         AI_AND_AUTOMATION_SOFTWARE = :ai_and_automation_software
         ARTS_AND_CRAFTS = :arts_and_crafts
@@ -110,6 +111,7 @@ module WhopSDK
         BUSINESS_AND_MONEY_GROUPS = :business_and_money_groups
         CAREER_AND_PROFESSIONAL = :career_and_professional
         CHARITY_AND_CAUSE_EVENTS = :charity_and_cause_events
+        CLASS_ACTION_SETTLEMENT = :class_action_settlement
         CLOTHING_AND_APPAREL = :clothing_and_apparel
         COMMUNICATION_AND_MESSAGING_SOFTWARE = :communication_and_messaging_software
         COMMUNITY_AND_EDUCATION_SOFTWARE = :community_and_education_software
@@ -129,6 +131,7 @@ module WhopSDK
         DEVELOPER_AND_TECHNICAL_TOOLS = :developer_and_technical_tools
         DEVELOPMENT_AGENCIES = :development_agencies
         DIGITAL_AND_EDUCATION_MARKETPLACES = :digital_and_education_marketplaces
+        DIGITAL_GOODS_AND_ACCOUNTS = :digital_goods_and_accounts
         E_COMMERCE_SOFTWARE = :e_commerce_software
         EDUCATION_AND_BUSINESS_EVENTS = :education_and_business_events
         EDUCATION_AND_CHILDCARE = :education_and_childcare
@@ -144,6 +147,7 @@ module WhopSDK
         FOOD_AND_BEVERAGE = :food_and_beverage
         FOOD_AND_BEVERAGES = :food_and_beverages
         FOOD_AND_HOSPITALITY_MARKETPLACES = :food_and_hospitality_marketplaces
+        FUNERAL_AND_DEATH_CARE = :funeral_and_death_care
         GAMING_AND_ENTERTAINMENT_SOFTWARE = :gaming_and_entertainment_software
         GAMING_GROUPS = :gaming_groups
         GENETIC_AND_SPECIALIZED = :genetic_and_specialized
@@ -157,8 +161,10 @@ module WhopSDK
         HOME_AND_LIVING = :home_and_living
         HOME_AND_TRADE_SERVICES = :home_and_trade_services
         HOME_AND_TRADE_STOREFRONTS = :home_and_trade_storefronts
+        HOME_IMPROVEMENT_AND_TOOLS = :home_improvement_and_tools
         HOME_SERVICES_GIGS = :home_services_gigs
         HOSPITALITY_AND_LODGING = :hospitality_and_lodging
+        INDUSTRIAL_AND_MANUFACTURING = :industrial_and_manufacturing
         INDUSTRY_SPECIFIC_SOFTWARE = :industry_specific_software
         LANGUAGE_AND_COMMUNICATION = :language_and_communication
         LEGAL_AND_COMPLIANCE = :legal_and_compliance
@@ -169,6 +175,7 @@ module WhopSDK
         MARKETING_AGENCIES = :marketing_agencies
         MARKETING_AND_ADVERTISING = :marketing_and_advertising
         MARKETING_AND_SALES_SOFTWARE = :marketing_and_sales_software
+        MEDIA_AND_PUBLISHING_COMPANIES = :media_and_publishing_companies
         MENTAL_HEALTH_AND_BEHAVIORAL = :mental_health_and_behavioral
         MISCELLANEOUS = :miscellaneous
         MUSIC_AND_PERFORMING_ARTS = :music_and_performing_arts
@@ -196,6 +203,7 @@ module WhopSDK
         RETAIL = :retail
         SALES_AGENCIES = :sales_agencies
         SALES_AND_REVENUE = :sales_and_revenue
+        SECURITY_AND_INVESTIGATIONS = :security_and_investigations
         SECURITY_AND_PRIVACY_SOFTWARE = :security_and_privacy_software
         SERVICE_MARKETPLACES = :service_marketplaces
         SLEEP_AND_CHRONIC_CONDITIONS = :sleep_and_chronic_conditions

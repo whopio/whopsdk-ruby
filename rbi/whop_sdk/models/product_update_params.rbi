@@ -233,6 +233,11 @@ module WhopSDK
             :accessories,
             WhopSDK::ProductUpdateParams::IndustryGroup::TaggedSymbol
           )
+        AGRICULTURE_AND_FARMING =
+          T.let(
+            :agriculture_and_farming,
+            WhopSDK::ProductUpdateParams::IndustryGroup::TaggedSymbol
+          )
         AI_AND_AUTOMATION_AGENCIES =
           T.let(
             :ai_and_automation_agencies,
@@ -291,6 +296,11 @@ module WhopSDK
         CHARITY_AND_CAUSE_EVENTS =
           T.let(
             :charity_and_cause_events,
+            WhopSDK::ProductUpdateParams::IndustryGroup::TaggedSymbol
+          )
+        CLASS_ACTION_SETTLEMENT =
+          T.let(
+            :class_action_settlement,
             WhopSDK::ProductUpdateParams::IndustryGroup::TaggedSymbol
           )
         CLOTHING_AND_APPAREL =
@@ -388,6 +398,11 @@ module WhopSDK
             :digital_and_education_marketplaces,
             WhopSDK::ProductUpdateParams::IndustryGroup::TaggedSymbol
           )
+        DIGITAL_GOODS_AND_ACCOUNTS =
+          T.let(
+            :digital_goods_and_accounts,
+            WhopSDK::ProductUpdateParams::IndustryGroup::TaggedSymbol
+          )
         E_COMMERCE_SOFTWARE =
           T.let(
             :e_commerce_software,
@@ -463,6 +478,11 @@ module WhopSDK
             :food_and_hospitality_marketplaces,
             WhopSDK::ProductUpdateParams::IndustryGroup::TaggedSymbol
           )
+        FUNERAL_AND_DEATH_CARE =
+          T.let(
+            :funeral_and_death_care,
+            WhopSDK::ProductUpdateParams::IndustryGroup::TaggedSymbol
+          )
         GAMING_AND_ENTERTAINMENT_SOFTWARE =
           T.let(
             :gaming_and_entertainment_software,
@@ -528,6 +548,11 @@ module WhopSDK
             :home_and_trade_storefronts,
             WhopSDK::ProductUpdateParams::IndustryGroup::TaggedSymbol
           )
+        HOME_IMPROVEMENT_AND_TOOLS =
+          T.let(
+            :home_improvement_and_tools,
+            WhopSDK::ProductUpdateParams::IndustryGroup::TaggedSymbol
+          )
         HOME_SERVICES_GIGS =
           T.let(
             :home_services_gigs,
@@ -536,6 +561,11 @@ module WhopSDK
         HOSPITALITY_AND_LODGING =
           T.let(
             :hospitality_and_lodging,
+            WhopSDK::ProductUpdateParams::IndustryGroup::TaggedSymbol
+          )
+        INDUSTRIAL_AND_MANUFACTURING =
+          T.let(
+            :industrial_and_manufacturing,
             WhopSDK::ProductUpdateParams::IndustryGroup::TaggedSymbol
           )
         INDUSTRY_SPECIFIC_SOFTWARE =
@@ -586,6 +616,11 @@ module WhopSDK
         MARKETING_AND_SALES_SOFTWARE =
           T.let(
             :marketing_and_sales_software,
+            WhopSDK::ProductUpdateParams::IndustryGroup::TaggedSymbol
+          )
+        MEDIA_AND_PUBLISHING_COMPANIES =
+          T.let(
+            :media_and_publishing_companies,
             WhopSDK::ProductUpdateParams::IndustryGroup::TaggedSymbol
           )
         MENTAL_HEALTH_AND_BEHAVIORAL =
@@ -721,6 +756,11 @@ module WhopSDK
         SALES_AND_REVENUE =
           T.let(
             :sales_and_revenue,
+            WhopSDK::ProductUpdateParams::IndustryGroup::TaggedSymbol
+          )
+        SECURITY_AND_INVESTIGATIONS =
+          T.let(
+            :security_and_investigations,
             WhopSDK::ProductUpdateParams::IndustryGroup::TaggedSymbol
           )
         SECURITY_AND_PRIVACY_SOFTWARE =

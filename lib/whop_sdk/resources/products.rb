@@ -108,7 +108,7 @@ module WhopSDK
       # - `access_pass:update`
       # - `access_pass:basic:read`
       #
-      # @overload update(id, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_group: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
+      # @overload update(id, business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, gallery_images: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_group: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the product to update.
       #
@@ -123,6 +123,8 @@ module WhopSDK
       # @param custom_statement_descriptor [String, nil] A custom text label that appears on the customer's bank statement. Must be 5-22
       #
       # @param description [String, nil] A written description of the product displayed on its product page.
+      #
+      # @param gallery_images [Array<WhopSDK::Models::ProductUpdateParams::GalleryImage>, nil] The gallery images for the product.
       #
       # @param global_affiliate_percentage [Float, nil] The commission rate as a percentage that affiliates earn through the global affi
       #

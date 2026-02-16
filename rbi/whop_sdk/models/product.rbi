@@ -52,6 +52,10 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :external_identifier
 
+      # The gallery images for this product, ordered by position.
+      sig { returns(T::Array[WhopSDK::Product::GalleryImage]) }
+      attr_accessor :gallery_images
+
       # The commission rate (as a percentage) that affiliates earn on sales through the
       # Whop marketplace global affiliate program. Null if the program is not active.
       sig { returns(T.nilable(Float)) }
@@ -144,6 +148,7 @@ module WhopSDK
           custom_statement_descriptor: T.nilable(String),
           description: T.nilable(String),
           external_identifier: T.nilable(String),
+          gallery_images: T::Array[WhopSDK::Product::GalleryImage::OrHash],
           global_affiliate_percentage: T.nilable(Float),
           global_affiliate_status: WhopSDK::GlobalAffiliateStatus::OrSymbol,
           headline: T.nilable(String),
@@ -187,6 +192,8 @@ module WhopSDK
         # on product creation endpoints, an existing product with this identifier will be
         # updated instead of creating a new one.
         external_identifier:,
+        # The gallery images for this product, ordered by position.
+        gallery_images:,
         # The commission rate (as a percentage) that affiliates earn on sales through the
         # Whop marketplace global affiliate program. Null if the program is not active.
         global_affiliate_percentage:,
@@ -241,6 +248,7 @@ module WhopSDK
             custom_statement_descriptor: T.nilable(String),
             description: T.nilable(String),
             external_identifier: T.nilable(String),
+            gallery_images: T::Array[WhopSDK::Product::GalleryImage],
             global_affiliate_percentage: T.nilable(Float),
             global_affiliate_status:
               WhopSDK::GlobalAffiliateStatus::TaggedSymbol,
@@ -299,6 +307,47 @@ module WhopSDK
         end
 
         sig { override.returns({ id: String, route: String, title: String }) }
+        def to_hash
+        end
+      end
+
+      class GalleryImage < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Product::GalleryImage, WhopSDK::Internal::AnyHash)
+          end
+
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # A pre-optimized URL for rendering this attachment on the client. This should be
+        # used for displaying attachments in apps.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :url
+
+        # Represents an image attachment
+        sig do
+          params(id: String, url: T.nilable(String)).returns(T.attached_class)
+        end
+        def self.new(
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
+          id:,
+          # A pre-optimized URL for rendering this attachment on the client. This should be
+          # used for displaying attachments in apps.
+          url:
+        )
+        end
+
+        sig { override.returns({ id: String, url: T.nilable(String) }) }
         def to_hash
         end
       end

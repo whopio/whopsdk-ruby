@@ -125,6 +125,10 @@ module WhopSDK
           custom_cta_url: T.nilable(String),
           custom_statement_descriptor: T.nilable(String),
           description: T.nilable(String),
+          gallery_images:
+            T.nilable(
+              T::Array[WhopSDK::ProductUpdateParams::GalleryImage::OrHash]
+            ),
           global_affiliate_percentage: T.nilable(Float),
           global_affiliate_status:
             T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
@@ -163,6 +167,8 @@ module WhopSDK
         custom_statement_descriptor: nil,
         # A written description of the product displayed on its product page.
         description: nil,
+        # The gallery images for the product.
+        gallery_images: nil,
         # The commission rate as a percentage that affiliates earn through the global
         # affiliate program.
         global_affiliate_percentage: nil,

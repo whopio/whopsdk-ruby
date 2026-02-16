@@ -64,6 +64,12 @@ module WhopSDK
       #   @return [String, nil]
       required :external_identifier, String, nil?: true
 
+      # @!attribute gallery_images
+      #   The gallery images for this product, ordered by position.
+      #
+      #   @return [Array<WhopSDK::Models::Product::GalleryImage>]
+      required :gallery_images, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Product::GalleryImage] }
+
       # @!attribute global_affiliate_percentage
       #   The commission rate (as a percentage) that affiliates earn on sales through the
       #   Whop marketplace global affiliate program. Null if the program is not active.
@@ -163,7 +169,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility]
       required :visibility, enum: -> { WhopSDK::Visibility }
 
-      # @!method initialize(id:, business_type:, company:, created_at:, custom_cta:, custom_cta_url:, custom_statement_descriptor:, description:, external_identifier:, global_affiliate_percentage:, global_affiliate_status:, headline:, industry_type:, member_affiliate_percentage:, member_affiliate_status:, member_count:, owner_user:, product_tax_code:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
+      # @!method initialize(id:, business_type:, company:, created_at:, custom_cta:, custom_cta_url:, custom_statement_descriptor:, description:, external_identifier:, gallery_images:, global_affiliate_percentage:, global_affiliate_status:, headline:, industry_type:, member_affiliate_percentage:, member_affiliate_status:, member_count:, owner_user:, product_tax_code:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Product}
       #   for more details.
       #
@@ -187,6 +193,8 @@ module WhopSDK
       #   @param description [String, nil] A brief summary of what the product offers, displayed on product pages and searc
       #
       #   @param external_identifier [String, nil] A unique identifier used to create or update products via the API. When provided
+      #
+      #   @param gallery_images [Array<WhopSDK::Models::Product::GalleryImage>] The gallery images for this product, ordered by position.
       #
       #   @param global_affiliate_percentage [Float, nil] The commission rate (as a percentage) that affiliates earn on sales through the
       #
@@ -249,6 +257,35 @@ module WhopSDK
         #   @param route [String] The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
         #
         #   @param title [String] The display name of the company shown to customers.
+      end
+
+      class GalleryImage < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+        #   refetch an object or as key for a cache. The ID type appears in a JSON response
+        #   as a String; however, it is not intended to be human-readable. When expected as
+        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        #   input value will be accepted as an ID.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute url
+        #   A pre-optimized URL for rendering this attachment on the client. This should be
+        #   used for displaying attachments in apps.
+        #
+        #   @return [String, nil]
+        required :url, String, nil?: true
+
+        # @!method initialize(id:, url:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Product::GalleryImage} for more details.
+        #
+        #   Represents an image attachment
+        #
+        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+        #
+        #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
       end
 
       # @see WhopSDK::Models::Product#owner_user

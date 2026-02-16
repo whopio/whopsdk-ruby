@@ -39,6 +39,7 @@ module WhopSDK
         ?custom_cta_url: String?,
         ?custom_statement_descriptor: String?,
         ?description: String?,
+        ?gallery_images: ::Array[WhopSDK::ProductUpdateParams::GalleryImage]?,
         ?global_affiliate_percentage: Float?,
         ?global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         ?headline: String?,

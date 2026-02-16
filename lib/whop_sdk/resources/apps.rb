@@ -72,7 +72,7 @@ module WhopSDK
       # - `developer:update_app`
       # - `developer:manage_api_key`
       #
-      # @overload update(id, app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, redirect_uris: nil, required_scopes: nil, status: nil, request_options: {})
+      # @overload update(id, app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, oauth_client_type: nil, redirect_uris: nil, required_scopes: nil, status: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the app to update, starting with 'app\_'.
       #
@@ -93,6 +93,8 @@ module WhopSDK
       # @param icon [WhopSDK::Models::AppUpdateParams::Icon, nil] The icon image for the app, used in listings and navigation.
       #
       # @param name [String, nil] The display name for the app, shown to users on the app store and product pages.
+      #
+      # @param oauth_client_type [Symbol, WhopSDK::Models::AppUpdateParams::OAuthClientType, nil] How this app authenticates at the OAuth token endpoint.
       #
       # @param redirect_uris [Array<String>, nil] The whitelisted OAuth callback URLs that users are redirected to after authorizi
       #

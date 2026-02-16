@@ -54,6 +54,12 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :name
 
+      # How this app authenticates at the OAuth token endpoint.
+      sig do
+        returns(T.nilable(WhopSDK::AppUpdateParams::OAuthClientType::OrSymbol))
+      end
+      attr_accessor :oauth_client_type
+
       # The whitelisted OAuth callback URLs that users are redirected to after
       # authorizing the app
       sig { returns(T.nilable(T::Array[String])) }
@@ -82,6 +88,8 @@ module WhopSDK
           experience_path: T.nilable(String),
           icon: T.nilable(WhopSDK::AppUpdateParams::Icon::OrHash),
           name: T.nilable(String),
+          oauth_client_type:
+            T.nilable(WhopSDK::AppUpdateParams::OAuthClientType::OrSymbol),
           redirect_uris: T.nilable(T::Array[String]),
           required_scopes:
             T.nilable(
@@ -112,6 +120,8 @@ module WhopSDK
         icon: nil,
         # The display name for the app, shown to users on the app store and product pages.
         name: nil,
+        # How this app authenticates at the OAuth token endpoint.
+        oauth_client_type: nil,
         # The whitelisted OAuth callback URLs that users are redirected to after
         # authorizing the app
         redirect_uris: nil,
@@ -135,6 +145,8 @@ module WhopSDK
             experience_path: T.nilable(String),
             icon: T.nilable(WhopSDK::AppUpdateParams::Icon),
             name: T.nilable(String),
+            oauth_client_type:
+              T.nilable(WhopSDK::AppUpdateParams::OAuthClientType::OrSymbol),
             redirect_uris: T.nilable(T::Array[String]),
             required_scopes:
               T.nilable(
@@ -168,6 +180,36 @@ module WhopSDK
 
         sig { override.returns({ id: String }) }
         def to_hash
+        end
+      end
+
+      # How this app authenticates at the OAuth token endpoint.
+      module OAuthClientType
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::AppUpdateParams::OAuthClientType)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        PUBLIC =
+          T.let(
+            :public,
+            WhopSDK::AppUpdateParams::OAuthClientType::TaggedSymbol
+          )
+        CONFIDENTIAL =
+          T.let(
+            :confidential,
+            WhopSDK::AppUpdateParams::OAuthClientType::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::AppUpdateParams::OAuthClientType::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
 

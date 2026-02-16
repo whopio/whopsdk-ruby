@@ -75,6 +75,8 @@ module WhopSDK
           experience_path: T.nilable(String),
           icon: T.nilable(WhopSDK::AppUpdateParams::Icon::OrHash),
           name: T.nilable(String),
+          oauth_client_type:
+            T.nilable(WhopSDK::AppUpdateParams::OAuthClientType::OrSymbol),
           redirect_uris: T.nilable(T::Array[String]),
           required_scopes:
             T.nilable(
@@ -107,6 +109,8 @@ module WhopSDK
         icon: nil,
         # The display name for the app, shown to users on the app store and product pages.
         name: nil,
+        # How this app authenticates at the OAuth token endpoint.
+        oauth_client_type: nil,
         # The whitelisted OAuth callback URLs that users are redirected to after
         # authorizing the app
         redirect_uris: nil,

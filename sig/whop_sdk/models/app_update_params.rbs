@@ -11,6 +11,7 @@ module WhopSDK
         experience_path: String?,
         icon: WhopSDK::AppUpdateParams::Icon?,
         name: String?,
+        oauth_client_type: WhopSDK::Models::AppUpdateParams::oauth_client_type?,
         redirect_uris: ::Array[String]?,
         required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
         status: WhopSDK::Models::app_statuses?
@@ -39,6 +40,8 @@ module WhopSDK
 
       attr_accessor name: String?
 
+      attr_accessor oauth_client_type: WhopSDK::Models::AppUpdateParams::oauth_client_type?
+
       attr_accessor redirect_uris: ::Array[String]?
 
       attr_accessor required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?
@@ -55,6 +58,7 @@ module WhopSDK
         ?experience_path: String?,
         ?icon: WhopSDK::AppUpdateParams::Icon?,
         ?name: String?,
+        ?oauth_client_type: WhopSDK::Models::AppUpdateParams::oauth_client_type?,
         ?redirect_uris: ::Array[String]?,
         ?required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
         ?status: WhopSDK::Models::app_statuses?,
@@ -71,6 +75,7 @@ module WhopSDK
         experience_path: String?,
         icon: WhopSDK::AppUpdateParams::Icon?,
         name: String?,
+        oauth_client_type: WhopSDK::Models::AppUpdateParams::oauth_client_type?,
         redirect_uris: ::Array[String]?,
         required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
         status: WhopSDK::Models::app_statuses?,
@@ -85,6 +90,17 @@ module WhopSDK
         def initialize: (id: String) -> void
 
         def to_hash: -> { id: String }
+      end
+
+      type oauth_client_type = :public | :confidential
+
+      module OAuthClientType
+        extend WhopSDK::Internal::Type::Enum
+
+        PUBLIC: :public
+        CONFIDENTIAL: :confidential
+
+        def self?.values: -> ::Array[WhopSDK::Models::AppUpdateParams::oauth_client_type]
       end
 
       type required_scope = :read_user

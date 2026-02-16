@@ -26,6 +26,7 @@ module WhopSDK
         ?experience_path: String?,
         ?icon: WhopSDK::AppUpdateParams::Icon?,
         ?name: String?,
+        ?oauth_client_type: WhopSDK::Models::AppUpdateParams::oauth_client_type?,
         ?redirect_uris: ::Array[String]?,
         ?required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
         ?status: WhopSDK::Models::app_statuses?,

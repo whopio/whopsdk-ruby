@@ -63,6 +63,12 @@ module WhopSDK
       #   @return [String, nil]
       optional :name, String, nil?: true
 
+      # @!attribute oauth_client_type
+      #   How this app authenticates at the OAuth token endpoint.
+      #
+      #   @return [Symbol, WhopSDK::Models::AppUpdateParams::OAuthClientType, nil]
+      optional :oauth_client_type, enum: -> { WhopSDK::AppUpdateParams::OAuthClientType }, nil?: true
+
       # @!attribute redirect_uris
       #   The whitelisted OAuth callback URLs that users are redirected to after
       #   authorizing the app
@@ -84,7 +90,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::AppStatuses, nil]
       optional :status, enum: -> { WhopSDK::AppStatuses }, nil?: true
 
-      # @!method initialize(app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, redirect_uris: nil, required_scopes: nil, status: nil, request_options: {})
+      # @!method initialize(app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, oauth_client_type: nil, redirect_uris: nil, required_scopes: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AppUpdateParams} for more details.
       #
@@ -106,6 +112,8 @@ module WhopSDK
       #
       #   @param name [String, nil] The display name for the app, shown to users on the app store and product pages.
       #
+      #   @param oauth_client_type [Symbol, WhopSDK::Models::AppUpdateParams::OAuthClientType, nil] How this app authenticates at the OAuth token endpoint.
+      #
       #   @param redirect_uris [Array<String>, nil] The whitelisted OAuth callback URLs that users are redirected to after authorizi
       #
       #   @param required_scopes [Array<Symbol, WhopSDK::Models::AppUpdateParams::RequiredScope>, nil] The permission scopes the app will request from users when they install it.
@@ -125,6 +133,17 @@ module WhopSDK
         #   The icon image for the app, used in listings and navigation.
         #
         #   @param id [String] The ID of an existing file object.
+      end
+
+      # How this app authenticates at the OAuth token endpoint.
+      module OAuthClientType
+        extend WhopSDK::Internal::Type::Enum
+
+        PUBLIC = :public
+        CONFIDENTIAL = :confidential
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # These are the scopes an app can request on behalf of a user

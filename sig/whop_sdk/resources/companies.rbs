@@ -29,6 +29,7 @@ module WhopSDK
         ?industry_type: WhopSDK::Models::industry_types?,
         ?logo: WhopSDK::CompanyUpdateParams::Logo?,
         ?send_customer_emails: bool?,
+        ?target_audience: String?,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Company

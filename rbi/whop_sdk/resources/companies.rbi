@@ -92,6 +92,7 @@ module WhopSDK
           industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           logo: T.nilable(WhopSDK::CompanyUpdateParams::Logo::OrHash),
           send_customer_emails: T.nilable(T::Boolean),
+          target_audience: T.nilable(String),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Company)
@@ -115,6 +116,9 @@ module WhopSDK
         # Whether Whop sends transactional emails (receipts, renewals, cancelations) to
         # customers on behalf of this company.
         send_customer_emails: nil,
+        # The target audience for this company (e.g., 'beginner day traders aged 18-25
+        # looking to learn options').
+        target_audience: nil,
         # The display name of the company shown to customers.
         title: nil,
         request_options: {}

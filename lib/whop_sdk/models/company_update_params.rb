@@ -51,13 +51,20 @@ module WhopSDK
       #   @return [Boolean, nil]
       optional :send_customer_emails, WhopSDK::Internal::Type::Boolean, nil?: true
 
+      # @!attribute target_audience
+      #   The target audience for this company (e.g., 'beginner day traders aged 18-25
+      #   looking to learn options').
+      #
+      #   @return [String, nil]
+      optional :target_audience, String, nil?: true
+
       # @!attribute title
       #   The display name of the company shown to customers.
       #
       #   @return [String, nil]
       optional :title, String, nil?: true
 
-      # @!method initialize(banner_image: nil, business_type: nil, description: nil, industry_group: nil, industry_type: nil, logo: nil, send_customer_emails: nil, title: nil, request_options: {})
+      # @!method initialize(banner_image: nil, business_type: nil, description: nil, industry_group: nil, industry_type: nil, logo: nil, send_customer_emails: nil, target_audience: nil, title: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CompanyUpdateParams} for more details.
       #
@@ -74,6 +81,8 @@ module WhopSDK
       #   @param logo [WhopSDK::Models::CompanyUpdateParams::Logo, nil] The company's logo image. Accepts PNG, JPEG, or GIF format.
       #
       #   @param send_customer_emails [Boolean, nil] Whether Whop sends transactional emails (receipts, renewals, cancelations) to cu
+      #
+      #   @param target_audience [String, nil] The target audience for this company (e.g., 'beginner day traders aged 18-25 loo
       #
       #   @param title [String, nil] The display name of the company shown to customers.
       #

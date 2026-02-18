@@ -94,6 +94,13 @@ module WhopSDK
       #   @return [Array<String>, nil]
       optional :product_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
 
+      # @!attribute query
+      #   Search payments by user ID, membership ID, user email, name, or username. Email
+      #   filtering requires the member:email:read permission.
+      #
+      #   @return [String, nil]
+      optional :query, String, nil?: true
+
       # @!attribute statuses
       #   Filter payments by their current status.
       #
@@ -108,7 +115,7 @@ module WhopSDK
                -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::FriendlyReceiptStatus] },
                nil?: true
 
-      # @!method initialize(after: nil, before: nil, billing_reasons: nil, company_id: nil, created_after: nil, created_before: nil, currencies: nil, direction: nil, first: nil, include_free: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, statuses: nil, substatuses: nil, request_options: {})
+      # @!method initialize(after: nil, before: nil, billing_reasons: nil, company_id: nil, created_after: nil, created_before: nil, currencies: nil, direction: nil, first: nil, include_free: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, query: nil, statuses: nil, substatuses: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentListParams} for more details.
       #
@@ -139,6 +146,8 @@ module WhopSDK
       #   @param plan_ids [Array<String>, nil] Filter payments to only those associated with these specific plan identifiers.
       #
       #   @param product_ids [Array<String>, nil] Filter payments to only those associated with these specific product identifiers
+      #
+      #   @param query [String, nil] Search payments by user ID, membership ID, user email, name, or username. Email
       #
       #   @param statuses [Array<Symbol, WhopSDK::Models::ReceiptStatus>, nil] Filter payments by their current status.
       #

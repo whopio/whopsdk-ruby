@@ -16,6 +16,7 @@ module WhopSDK
         order: WhopSDK::Models::PaymentListParams::order?,
         plan_ids: ::Array[String]?,
         product_ids: ::Array[String]?,
+        query: String?,
         statuses: ::Array[WhopSDK::Models::receipt_status]?,
         substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?
       }
@@ -53,6 +54,8 @@ module WhopSDK
 
       attr_accessor product_ids: ::Array[String]?
 
+      attr_accessor query: String?
+
       attr_accessor statuses: ::Array[WhopSDK::Models::receipt_status]?
 
       attr_accessor substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?
@@ -72,6 +75,7 @@ module WhopSDK
         ?order: WhopSDK::Models::PaymentListParams::order?,
         ?plan_ids: ::Array[String]?,
         ?product_ids: ::Array[String]?,
+        ?query: String?,
         ?statuses: ::Array[WhopSDK::Models::receipt_status]?,
         ?substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?,
         ?request_options: WhopSDK::request_opts
@@ -92,6 +96,7 @@ module WhopSDK
         order: WhopSDK::Models::PaymentListParams::order?,
         plan_ids: ::Array[String]?,
         product_ids: ::Array[String]?,
+        query: String?,
         statuses: ::Array[WhopSDK::Models::receipt_status]?,
         substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?,
         request_options: WhopSDK::RequestOptions

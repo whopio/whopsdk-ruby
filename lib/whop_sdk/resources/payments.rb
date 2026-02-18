@@ -24,6 +24,8 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `payment:dispute:read`
+      # - `payment:resolution_center_case:read`
       #
       # @overload create(company_id:, member_id:, payment_method_id:, plan:, plan_id:, metadata: nil, request_options: {})
       #
@@ -66,6 +68,8 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `payment:dispute:read`
+      # - `payment:resolution_center_case:read`
       #
       # @overload retrieve(id, request_options: {})
       #
@@ -101,7 +105,7 @@ module WhopSDK
       # - `member:phone:read`
       # - `promo_code:basic:read`
       #
-      # @overload list(after: nil, before: nil, billing_reasons: nil, company_id: nil, created_after: nil, created_before: nil, currencies: nil, direction: nil, first: nil, include_free: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, statuses: nil, substatuses: nil, request_options: {})
+      # @overload list(after: nil, before: nil, billing_reasons: nil, company_id: nil, created_after: nil, created_before: nil, currencies: nil, direction: nil, first: nil, include_free: nil, last: nil, order: nil, plan_ids: nil, product_ids: nil, query: nil, statuses: nil, substatuses: nil, request_options: {})
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -130,6 +134,8 @@ module WhopSDK
       # @param plan_ids [Array<String>, nil] Filter payments to only those associated with these specific plan identifiers.
       #
       # @param product_ids [Array<String>, nil] Filter payments to only those associated with these specific product identifiers
+      #
+      # @param query [String, nil] Search payments by user ID, membership ID, user email, name, or username. Email
       #
       # @param statuses [Array<Symbol, WhopSDK::Models::ReceiptStatus>, nil] Filter payments by their current status.
       #
@@ -203,6 +209,8 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `payment:dispute:read`
+      # - `payment:resolution_center_case:read`
       #
       # @overload refund(id, partial_amount: nil, request_options: {})
       #
@@ -238,6 +246,8 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `payment:dispute:read`
+      # - `payment:resolution_center_case:read`
       #
       # @overload retry_(id, request_options: {})
       #
@@ -269,6 +279,8 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `payment:dispute:read`
+      # - `payment:resolution_center_case:read`
       #
       # @overload void(id, request_options: {})
       #

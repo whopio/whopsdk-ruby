@@ -16,6 +16,8 @@ module WhopSDK
             T.nilable(
               T::Array[WhopSDK::AIChatCreateParams::MessageAttachment::OrHash]
             ),
+          message_source:
+            T.nilable(WhopSDK::AIChatCreateParams::MessageSource::OrSymbol),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::AIChat)
@@ -29,6 +31,8 @@ module WhopSDK
         # A list of previously uploaded file attachments to include with the first
         # message.
         message_attachments: nil,
+        # The source of an AI chat message
+        message_source: nil,
         # An optional display title for the AI chat thread (e.g., "Help with billing").
         title: nil,
         request_options: {}

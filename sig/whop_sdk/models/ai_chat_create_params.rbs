@@ -5,6 +5,7 @@ module WhopSDK
         message_text: String,
         current_company_id: String?,
         message_attachments: ::Array[WhopSDK::AIChatCreateParams::MessageAttachment]?,
+        message_source: WhopSDK::Models::AIChatCreateParams::message_source?,
         title: String?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -19,12 +20,15 @@ module WhopSDK
 
       attr_accessor message_attachments: ::Array[WhopSDK::AIChatCreateParams::MessageAttachment]?
 
+      attr_accessor message_source: WhopSDK::Models::AIChatCreateParams::message_source?
+
       attr_accessor title: String?
 
       def initialize: (
         message_text: String,
         ?current_company_id: String?,
         ?message_attachments: ::Array[WhopSDK::AIChatCreateParams::MessageAttachment]?,
+        ?message_source: WhopSDK::Models::AIChatCreateParams::message_source?,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
@@ -33,6 +37,7 @@ module WhopSDK
         message_text: String,
         current_company_id: String?,
         message_attachments: ::Array[WhopSDK::AIChatCreateParams::MessageAttachment]?,
+        message_source: WhopSDK::Models::AIChatCreateParams::message_source?,
         title: String?,
         request_options: WhopSDK::RequestOptions
       }
@@ -45,6 +50,18 @@ module WhopSDK
         def initialize: (id: String) -> void
 
         def to_hash: -> { id: String }
+      end
+
+      type message_source = :manual | :suggestion | :link
+
+      module MessageSource
+        extend WhopSDK::Internal::Type::Enum
+
+        MANUAL: :manual
+        SUGGESTION: :suggestion
+        LINK: :link
+
+        def self?.values: -> ::Array[WhopSDK::Models::AIChatCreateParams::message_source]
       end
     end
   end

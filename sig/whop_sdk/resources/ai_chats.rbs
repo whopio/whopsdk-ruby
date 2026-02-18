@@ -5,6 +5,7 @@ module WhopSDK
         message_text: String,
         ?current_company_id: String?,
         ?message_attachments: ::Array[WhopSDK::AIChatCreateParams::MessageAttachment]?,
+        ?message_source: WhopSDK::Models::AIChatCreateParams::message_source?,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::AIChat

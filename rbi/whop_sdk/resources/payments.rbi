@@ -21,6 +21,8 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `payment:dispute:read`
+      # - `payment:resolution_center_case:read`
       sig do
         params(
           company_id: String,
@@ -61,6 +63,8 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `payment:dispute:read`
+      # - `payment:resolution_center_case:read`
       sig do
         params(
           id: String,
@@ -103,6 +107,7 @@ module WhopSDK
           order: T.nilable(WhopSDK::PaymentListParams::Order::OrSymbol),
           plan_ids: T.nilable(T::Array[String]),
           product_ids: T.nilable(T::Array[String]),
+          query: T.nilable(String),
           statuses: T.nilable(T::Array[WhopSDK::ReceiptStatus::OrSymbol]),
           substatuses:
             T.nilable(T::Array[WhopSDK::FriendlyReceiptStatus::OrSymbol]),
@@ -141,6 +146,9 @@ module WhopSDK
         # Filter payments to only those associated with these specific product
         # identifiers.
         product_ids: nil,
+        # Search payments by user ID, membership ID, user email, name, or username. Email
+        # filtering requires the member:email:read permission.
+        query: nil,
         # Filter payments by their current status.
         statuses: nil,
         # Filter payments by their current substatus for more granular filtering.
@@ -196,6 +204,8 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `payment:dispute:read`
+      # - `payment:resolution_center_case:read`
       sig do
         params(
           id: String,
@@ -225,6 +235,8 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `payment:dispute:read`
+      # - `payment:resolution_center_case:read`
       sig do
         params(
           id: String,
@@ -250,6 +262,8 @@ module WhopSDK
       # - `member:basic:read`
       # - `member:phone:read`
       # - `promo_code:basic:read`
+      # - `payment:dispute:read`
+      # - `payment:resolution_center_case:read`
       sig do
         params(
           id: String,

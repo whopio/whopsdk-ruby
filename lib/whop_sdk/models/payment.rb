@@ -76,11 +76,33 @@ module WhopSDK
       #   @return [Time, nil]
       required :dispute_alerted_at, Time, nil?: true
 
+      # @!attribute disputes
+      #   The disputes attached to this payment. Null if the actor in context does not
+      #   have the payment:dispute:read permission.
+      #
+      #   @return [Array<WhopSDK::Models::Payment::Dispute>, nil]
+      required :disputes, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Dispute] }, nil?: true
+
       # @!attribute failure_message
       #   If the payment failed, the reason for the failure.
       #
       #   @return [String, nil]
       required :failure_message, String, nil?: true
+
+      # @!attribute financing_installments_count
+      #   The number of financing installments for the payment. Present if the payment is
+      #   a financing payment (e.g. Splitit, Klarna, etc.).
+      #
+      #   @return [Integer, nil]
+      required :financing_installments_count, Integer, nil?: true
+
+      # @!attribute financing_transactions
+      #   The financing transactions attached to this payment. Present if the payment is a
+      #   financing payment (e.g. Splitit, Klarna, etc.).
+      #
+      #   @return [Array<WhopSDK::Models::Payment::FinancingTransaction>]
+      required :financing_transactions,
+               -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::FinancingTransaction] }
 
       # @!attribute last_payment_attempt
       #   The time of the last payment attempt.
@@ -176,6 +198,14 @@ module WhopSDK
       #   @return [Time, nil]
       required :refunded_at, Time, nil?: true
 
+      # @!attribute resolutions
+      #   The resolution center cases opened by the customer on this payment. Null if the
+      #   actor in context does not have the payment:resolution_center_case:read
+      #   permission.
+      #
+      #   @return [Array<WhopSDK::Models::Payment::Resolution>, nil]
+      required :resolutions, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Resolution] }, nil?: true
+
       # @!attribute retryable
       #   True when the payment status is `open` and its membership is in one of the
       #   retry-eligible states (`active`, `trialing`, `completed`, or `past_due`);
@@ -227,7 +257,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, company:, created_at:, currency:, dispute_alerted_at:, failure_message:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, status:, substatus:, subtotal:, total:, usd_total:, user:, voidable:)
+      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, company:, created_at:, currency:, dispute_alerted_at:, disputes:, failure_message:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, resolutions:, retryable:, status:, substatus:, subtotal:, total:, usd_total:, user:, voidable:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Payment}
       #   for more details.
       #
@@ -258,7 +288,13 @@ module WhopSDK
       #
       #   @param dispute_alerted_at [Time, nil] When an alert came in that this transaction will be disputed
       #
+      #   @param disputes [Array<WhopSDK::Models::Payment::Dispute>, nil] The disputes attached to this payment. Null if the actor in context does not hav
+      #
       #   @param failure_message [String, nil] If the payment failed, the reason for the failure.
+      #
+      #   @param financing_installments_count [Integer, nil] The number of financing installments for the payment. Present if the payment is
+      #
+      #   @param financing_transactions [Array<WhopSDK::Models::Payment::FinancingTransaction>] The financing transactions attached to this payment. Present if the payment is a
       #
       #   @param last_payment_attempt [Time, nil] The time of the last payment attempt.
       #
@@ -289,6 +325,8 @@ module WhopSDK
       #   @param refunded_amount [Float, nil] The payment refund amount(if applicable).
       #
       #   @param refunded_at [Time, nil] When the payment was refunded (if applicable).
+      #
+      #   @param resolutions [Array<WhopSDK::Models::Payment::Resolution>, nil] The resolution center cases opened by the customer on this payment. Null if the
       #
       #   @param retryable [Boolean] True when the payment status is `open` and its membership is in one of the retry
       #
@@ -450,6 +488,171 @@ module WhopSDK
         #   @param route [String] The slug/route of the company on the Whop site.
         #
         #   @param title [String] The written name of the company.
+      end
+
+      class Dispute < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The unique identifier for the dispute.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute amount
+        #   The disputed amount in the specified currency, formatted as a decimal.
+        #
+        #   @return [Float]
+        required :amount, Float
+
+        # @!attribute currency
+        #   The three-letter ISO currency code for the disputed amount.
+        #
+        #   @return [Symbol, WhopSDK::Models::Currency]
+        required :currency, enum: -> { WhopSDK::Currency }
+
+        # @!attribute editable
+        #   Whether the dispute evidence can still be edited and submitted. Returns true
+        #   only when the dispute status requires a response.
+        #
+        #   @return [Boolean, nil]
+        required :editable, WhopSDK::Internal::Type::Boolean, nil?: true
+
+        # @!attribute needs_response_by
+        #   The deadline by which dispute evidence must be submitted. Null if no response
+        #   deadline is set.
+        #
+        #   @return [Time, nil]
+        required :needs_response_by, Time, nil?: true
+
+        # @!attribute notes
+        #   Additional freeform notes submitted by the company as part of the dispute
+        #   evidence.
+        #
+        #   @return [String, nil]
+        required :notes, String, nil?: true
+
+        # @!attribute reason
+        #   A human-readable reason for the dispute.
+        #
+        #   @return [String, nil]
+        required :reason, String, nil?: true
+
+        # @!attribute status
+        #   The current status of the dispute lifecycle, such as needs_response,
+        #   under_review, won, or lost.
+        #
+        #   @return [Symbol, WhopSDK::Models::DisputeStatuses]
+        required :status, enum: -> { WhopSDK::DisputeStatuses }
+
+        # @!method initialize(id:, amount:, currency:, editable:, needs_response_by:, notes:, reason:, status:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Payment::Dispute} for more details.
+        #
+        #   A dispute is a chargeback or payment challenge filed against a company,
+        #   including evidence and response status.
+        #
+        #   @param id [String] The unique identifier for the dispute.
+        #
+        #   @param amount [Float] The disputed amount in the specified currency, formatted as a decimal.
+        #
+        #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for the disputed amount.
+        #
+        #   @param editable [Boolean, nil] Whether the dispute evidence can still be edited and submitted. Returns true onl
+        #
+        #   @param needs_response_by [Time, nil] The deadline by which dispute evidence must be submitted. Null if no response de
+        #
+        #   @param notes [String, nil] Additional freeform notes submitted by the company as part of the dispute eviden
+        #
+        #   @param reason [String, nil] A human-readable reason for the dispute.
+        #
+        #   @param status [Symbol, WhopSDK::Models::DisputeStatuses] The current status of the dispute lifecycle, such as needs_response, under_revie
+      end
+
+      class FinancingTransaction < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The unique identifier for the payment transaction.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute amount
+        #   The amount of the payment transaction.
+        #
+        #   @return [Float]
+        required :amount, Float
+
+        # @!attribute created_at
+        #   The date and time the payment transaction was created.
+        #
+        #   @return [Time]
+        required :created_at, Time
+
+        # @!attribute status
+        #   The status of the payment transaction.
+        #
+        #   @return [Symbol, WhopSDK::Models::Payment::FinancingTransaction::Status]
+        required :status, enum: -> { WhopSDK::Payment::FinancingTransaction::Status }
+
+        # @!attribute transaction_type
+        #   The type of the payment transaction.
+        #
+        #   @return [Symbol, WhopSDK::Models::Payment::FinancingTransaction::TransactionType]
+        required :transaction_type, enum: -> { WhopSDK::Payment::FinancingTransaction::TransactionType }
+
+        # @!method initialize(id:, amount:, created_at:, status:, transaction_type:)
+        #   A payment transaction.
+        #
+        #   @param id [String] The unique identifier for the payment transaction.
+        #
+        #   @param amount [Float] The amount of the payment transaction.
+        #
+        #   @param created_at [Time] The date and time the payment transaction was created.
+        #
+        #   @param status [Symbol, WhopSDK::Models::Payment::FinancingTransaction::Status] The status of the payment transaction.
+        #
+        #   @param transaction_type [Symbol, WhopSDK::Models::Payment::FinancingTransaction::TransactionType] The type of the payment transaction.
+
+        # The status of the payment transaction.
+        #
+        # @see WhopSDK::Models::Payment::FinancingTransaction#status
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          SUCCEEDED = :succeeded
+          DECLINED = :declined
+          ERROR = :error
+          PENDING = :pending
+          CREATED = :created
+          EXPIRED = :expired
+          WON = :won
+          REJECTED = :rejected
+          LOST = :lost
+          PREVENTED = :prevented
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # The type of the payment transaction.
+        #
+        # @see WhopSDK::Models::Payment::FinancingTransaction#transaction_type
+        module TransactionType
+          extend WhopSDK::Internal::Type::Enum
+
+          PURCHASE = :purchase
+          AUTHORIZE = :authorize
+          CAPTURE = :capture
+          REFUND = :refund
+          CANCEL = :cancel
+          VERIFY = :verify
+          CHARGEBACK = :chargeback
+          THREE_D_SECURE = :three_d_secure
+          FRAUD_SCREENING = :fraud_screening
+          AUTHORIZATION = :authorization
+          INSTALLMENT = :installment
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
 
       # @see WhopSDK::Models::Payment#member
@@ -686,6 +889,169 @@ module WhopSDK
         #   @param number_of_intervals [Integer, nil] The number of months the promo is applied for.
         #
         #   @param promo_type [Symbol, WhopSDK::Models::PromoType] The type (% or flat amount) of the promo.
+      end
+
+      class Resolution < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The unique identifier for the resolution.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute customer_appealed
+        #   Whether the customer has filed an appeal after the initial resolution decision.
+        #
+        #   @return [Boolean]
+        required :customer_appealed, WhopSDK::Internal::Type::Boolean
+
+        # @!attribute customer_response_actions
+        #   The list of actions currently available to the customer.
+        #
+        #   @return [Array<Symbol, WhopSDK::Models::Payment::Resolution::CustomerResponseAction>]
+        required :customer_response_actions,
+                 -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::Payment::Resolution::CustomerResponseAction] }
+
+        # @!attribute due_date
+        #   The deadline by which the next response is required. Null if no deadline is
+        #   currently active. As a Unix timestamp.
+        #
+        #   @return [Time, nil]
+        required :due_date, Time, nil?: true
+
+        # @!attribute issue
+        #   The category of the dispute.
+        #
+        #   @return [Symbol, WhopSDK::Models::Payment::Resolution::Issue]
+        required :issue, enum: -> { WhopSDK::Payment::Resolution::Issue }
+
+        # @!attribute merchant_appealed
+        #   Whether the merchant has filed an appeal after the initial resolution decision.
+        #
+        #   @return [Boolean]
+        required :merchant_appealed, WhopSDK::Internal::Type::Boolean
+
+        # @!attribute merchant_response_actions
+        #   The list of actions currently available to the merchant.
+        #
+        #   @return [Array<Symbol, WhopSDK::Models::Payment::Resolution::MerchantResponseAction>]
+        required :merchant_response_actions,
+                 -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::Payment::Resolution::MerchantResponseAction] }
+
+        # @!attribute platform_response_actions
+        #   The list of actions currently available to the Whop platform for moderating this
+        #   resolution.
+        #
+        #   @return [Array<Symbol, WhopSDK::Models::Payment::Resolution::PlatformResponseAction>]
+        required :platform_response_actions,
+                 -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::Payment::Resolution::PlatformResponseAction] }
+
+        # @!attribute status
+        #   The current status of the resolution case, indicating which party needs to
+        #   respond or if the case is closed.
+        #
+        #   @return [Symbol, WhopSDK::Models::Payment::Resolution::Status]
+        required :status, enum: -> { WhopSDK::Payment::Resolution::Status }
+
+        # @!method initialize(id:, customer_appealed:, customer_response_actions:, due_date:, issue:, merchant_appealed:, merchant_response_actions:, platform_response_actions:, status:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Payment::Resolution} for more details.
+        #
+        #   A resolution is a dispute or support case between a buyer and seller, tracking
+        #   the issue, status, and outcome.
+        #
+        #   @param id [String] The unique identifier for the resolution.
+        #
+        #   @param customer_appealed [Boolean] Whether the customer has filed an appeal after the initial resolution decision.
+        #
+        #   @param customer_response_actions [Array<Symbol, WhopSDK::Models::Payment::Resolution::CustomerResponseAction>] The list of actions currently available to the customer.
+        #
+        #   @param due_date [Time, nil] The deadline by which the next response is required. Null if no deadline is curr
+        #
+        #   @param issue [Symbol, WhopSDK::Models::Payment::Resolution::Issue] The category of the dispute.
+        #
+        #   @param merchant_appealed [Boolean] Whether the merchant has filed an appeal after the initial resolution decision.
+        #
+        #   @param merchant_response_actions [Array<Symbol, WhopSDK::Models::Payment::Resolution::MerchantResponseAction>] The list of actions currently available to the merchant.
+        #
+        #   @param platform_response_actions [Array<Symbol, WhopSDK::Models::Payment::Resolution::PlatformResponseAction>] The list of actions currently available to the Whop platform for moderating this
+        #
+        #   @param status [Symbol, WhopSDK::Models::Payment::Resolution::Status] The current status of the resolution case, indicating which party needs to respo
+
+        # The types of responses a customer can make to a resolution.
+        module CustomerResponseAction
+          extend WhopSDK::Internal::Type::Enum
+
+          RESPOND = :respond
+          APPEAL = :appeal
+          WITHDRAW = :withdraw
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # The category of the dispute.
+        #
+        # @see WhopSDK::Models::Payment::Resolution#issue
+        module Issue
+          extend WhopSDK::Internal::Type::Enum
+
+          FORGOT_TO_CANCEL = :forgot_to_cancel
+          ITEM_NOT_RECEIVED = :item_not_received
+          SIGNIFICANTLY_NOT_AS_DESCRIBED = :significantly_not_as_described
+          UNAUTHORIZED_TRANSACTION = :unauthorized_transaction
+          PRODUCT_UNACCEPTABLE = :product_unacceptable
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # The types of responses a merchant can make to a resolution.
+        module MerchantResponseAction
+          extend WhopSDK::Internal::Type::Enum
+
+          ACCEPT = :accept
+          DENY = :deny
+          REQUEST_MORE_INFO = :request_more_info
+          APPEAL = :appeal
+          RESPOND = :respond
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # The types of responses the platform can make to a resolution.
+        module PlatformResponseAction
+          extend WhopSDK::Internal::Type::Enum
+
+          REQUEST_BUYER_INFO = :request_buyer_info
+          REQUEST_MERCHANT_INFO = :request_merchant_info
+          MERCHANT_WINS = :merchant_wins
+          PLATFORM_REFUND = :platform_refund
+          MERCHANT_REFUND = :merchant_refund
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # The current status of the resolution case, indicating which party needs to
+        # respond or if the case is closed.
+        #
+        # @see WhopSDK::Models::Payment::Resolution#status
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          MERCHANT_RESPONSE_NEEDED = :merchant_response_needed
+          CUSTOMER_RESPONSE_NEEDED = :customer_response_needed
+          MERCHANT_INFO_NEEDED = :merchant_info_needed
+          CUSTOMER_INFO_NEEDED = :customer_info_needed
+          UNDER_PLATFORM_REVIEW = :under_platform_review
+          CUSTOMER_WON = :customer_won
+          MERCHANT_WON = :merchant_won
+          CUSTOMER_WITHDREW = :customer_withdrew
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
 
       # @see WhopSDK::Models::Payment#user

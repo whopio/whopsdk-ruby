@@ -31,6 +31,7 @@ module WhopSDK
         ?order: WhopSDK::Models::PaymentListParams::order?,
         ?plan_ids: ::Array[String]?,
         ?product_ids: ::Array[String]?,
+        ?query: String?,
         ?statuses: ::Array[WhopSDK::Models::receipt_status]?,
         ?substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?,
         ?request_options: WhopSDK::request_opts

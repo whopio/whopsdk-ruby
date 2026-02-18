@@ -12,13 +12,15 @@ module WhopSDK
       #
       # - `ai_chat:create`
       #
-      # @overload create(message_text:, current_company_id: nil, message_attachments: nil, title: nil, request_options: {})
+      # @overload create(message_text:, current_company_id: nil, message_attachments: nil, message_source: nil, title: nil, request_options: {})
       #
       # @param message_text [String] The text content of the first message to send to the AI agent.
       #
       # @param current_company_id [String, nil] The unique identifier of the company to set as context for the AI chat (e.g., "b
       #
       # @param message_attachments [Array<WhopSDK::Models::AIChatCreateParams::MessageAttachment>, nil] A list of previously uploaded file attachments to include with the first message
+      #
+      # @param message_source [Symbol, WhopSDK::Models::AIChatCreateParams::MessageSource, nil] The source of an AI chat message
       #
       # @param title [String, nil] An optional display title for the AI chat thread (e.g., "Help with billing").
       #

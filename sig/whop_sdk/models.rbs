@@ -291,6 +291,8 @@ module WhopSDK
 
   module GlobalAffiliateStatus = WhopSDK::Models::GlobalAffiliateStatus
 
+  module IndustryGroups = WhopSDK::Models::IndustryGroups
+
   module IndustryTypes = WhopSDK::Models::IndustryTypes
 
   class Invoice = WhopSDK::Models::Invoice
@@ -540,6 +542,8 @@ module WhopSDK
   module TaxType = WhopSDK::Models::TaxType
 
   class TopupCreateParams = WhopSDK::Models::TopupCreateParams
+
+  module TransactionType = WhopSDK::Models::TransactionType
 
   class Transfer = WhopSDK::Models::Transfer
 

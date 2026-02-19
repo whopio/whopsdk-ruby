@@ -16,8 +16,7 @@ module WhopSDK
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           description: T.nilable(String),
           email: T.nilable(String),
-          industry_group:
-            T.nilable(WhopSDK::CompanyCreateParams::IndustryGroup::OrSymbol),
+          industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
           industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           logo: T.nilable(WhopSDK::CompanyCreateParams::Logo::OrHash),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
@@ -87,8 +86,7 @@ module WhopSDK
             T.nilable(WhopSDK::CompanyUpdateParams::BannerImage::OrHash),
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           description: T.nilable(String),
-          industry_group:
-            T.nilable(WhopSDK::CompanyUpdateParams::IndustryGroup::OrSymbol),
+          industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
           industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           logo: T.nilable(WhopSDK::CompanyUpdateParams::Logo::OrHash),
           send_customer_emails: T.nilable(T::Boolean),

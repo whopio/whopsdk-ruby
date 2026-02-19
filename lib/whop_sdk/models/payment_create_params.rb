@@ -250,10 +250,8 @@ module WhopSDK
           # @!attribute industry_group
           #   The different industry groups a company can be in.
           #
-          #   @return [Symbol, WhopSDK::Models::PaymentCreateParams::Plan::Product::IndustryGroup, nil]
-          optional :industry_group,
-                   enum: -> { WhopSDK::PaymentCreateParams::Plan::Product::IndustryGroup },
-                   nil?: true
+          #   @return [Symbol, WhopSDK::Models::IndustryGroups, nil]
+          optional :industry_group, enum: -> { WhopSDK::IndustryGroups }, nil?: true
 
           # @!attribute industry_type
           #   The different industry types a company can be in.
@@ -311,7 +309,7 @@ module WhopSDK
           #
           #   @param headline [String, nil] The headline of the product.
           #
-          #   @param industry_group [Symbol, WhopSDK::Models::PaymentCreateParams::Plan::Product::IndustryGroup, nil] The different industry groups a company can be in.
+          #   @param industry_group [Symbol, WhopSDK::Models::IndustryGroups, nil] The different industry groups a company can be in.
           #
           #   @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
           #
@@ -322,151 +320,6 @@ module WhopSDK
           #   @param route [String, nil] The route of the product.
           #
           #   @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
-
-          # The different industry groups a company can be in.
-          #
-          # @see WhopSDK::Models::PaymentCreateParams::Plan::Product#industry_group
-          module IndustryGroup
-            extend WhopSDK::Internal::Type::Enum
-
-            ACADEMIC_AND_TEST_PREP = :academic_and_test_prep
-            ACCESSORIES = :accessories
-            AGRICULTURE_AND_FARMING = :agriculture_and_farming
-            AI_AND_AUTOMATION_AGENCIES = :ai_and_automation_agencies
-            AI_AND_AUTOMATION_SOFTWARE = :ai_and_automation_software
-            ARTS_AND_CRAFTS = :arts_and_crafts
-            AUTOMOTIVE = :automotive
-            B2B_AND_PROFESSIONAL_MARKETPLACES = :b2b_and_professional_marketplaces
-            BABY_AND_KIDS = :baby_and_kids
-            BEAUTY_AND_PERSONAL_CARE = :beauty_and_personal_care
-            BEAUTY_AND_WELLNESS = :beauty_and_wellness
-            BUSINESS_AND_ENTREPRENEURSHIP = :business_and_entrepreneurship
-            BUSINESS_AND_MONEY_GROUPS = :business_and_money_groups
-            CAREER_AND_PROFESSIONAL = :career_and_professional
-            CHARITY_AND_CAUSE_EVENTS = :charity_and_cause_events
-            CLASS_ACTION_SETTLEMENT = :class_action_settlement
-            CLOTHING_AND_APPAREL = :clothing_and_apparel
-            COMMUNICATION_AND_MESSAGING_SOFTWARE = :communication_and_messaging_software
-            COMMUNITY_AND_EDUCATION_SOFTWARE = :community_and_education_software
-            CONSULTING = :consulting
-            CONTENT_AND_CLIPPING_AGENCIES = :content_and_clipping_agencies
-            CREATIVE_AND_CONTENT_CREATION = :creative_and_content_creation
-            CREATIVE_AND_CONTENT_GROUPS = :creative_and_content_groups
-            CREATIVE_AND_EDUCATION = :creative_and_education
-            CREATIVE_GIGS = :creative_gigs
-            CREATIVE_SERVICES = :creative_services
-            CUSTOMER_SUPPORT_AGENCIES = :customer_support_agencies
-            DATING_AND_RELATIONSHIPS = :dating_and_relationships
-            DELIVERY_AND_LOGISTICS = :delivery_and_logistics
-            DENTAL_AND_VISION = :dental_and_vision
-            DERMATOLOGY_AND_SKIN = :dermatology_and_skin
-            DESIGN_AND_CREATIVE_AGENCIES = :design_and_creative_agencies
-            DEVELOPER_AND_TECHNICAL_TOOLS = :developer_and_technical_tools
-            DEVELOPMENT_AGENCIES = :development_agencies
-            DIGITAL_AND_EDUCATION_MARKETPLACES = :digital_and_education_marketplaces
-            DIGITAL_GOODS_AND_ACCOUNTS = :digital_goods_and_accounts
-            E_COMMERCE_SOFTWARE = :e_commerce_software
-            EDUCATION_AND_BUSINESS_EVENTS = :education_and_business_events
-            EDUCATION_AND_CHILDCARE = :education_and_childcare
-            ELECTRONICS_AND_GADGETS = :electronics_and_gadgets
-            ENTERTAINMENT_AND_LEISURE = :entertainment_and_leisure
-            ENTERTAINMENT_EVENTS = :entertainment_events
-            FAMILY_AND_COMMUNITY_EVENTS = :family_and_community_events
-            FINANCE_AND_INVESTING = :finance_and_investing
-            FITNESS_AND_ATHLETICS = :fitness_and_athletics
-            FITNESS_AND_HEALTH_GROUPS = :fitness_and_health_groups
-            FITNESS_AND_RECREATION = :fitness_and_recreation
-            FITNESS_EQUIPMENT_AND_GEAR = :fitness_equipment_and_gear
-            FOOD_AND_BEVERAGE = :food_and_beverage
-            FOOD_AND_BEVERAGES = :food_and_beverages
-            FOOD_AND_HOSPITALITY_MARKETPLACES = :food_and_hospitality_marketplaces
-            FUNERAL_AND_DEATH_CARE = :funeral_and_death_care
-            GAMING_AND_ENTERTAINMENT_SOFTWARE = :gaming_and_entertainment_software
-            GAMING_GROUPS = :gaming_groups
-            GENETIC_AND_SPECIALIZED = :genetic_and_specialized
-            GOVERNMENT_AND_PUBLIC = :government_and_public
-            HEALTH_AND_WELLNESS = :health_and_wellness
-            HEALTH_AND_WELLNESS_SERVICES = :health_and_wellness_services
-            HEALTHCARE = :healthcare
-            HEALTHCARE_AND_WELLNESS_SOFTWARE = :healthcare_and_wellness_software
-            HOBBIES_AND_LIFESTYLE = :hobbies_and_lifestyle
-            HOBBY_AND_INTEREST_GROUPS = :hobby_and_interest_groups
-            HOME_AND_LIVING = :home_and_living
-            HOME_AND_TRADE_SERVICES = :home_and_trade_services
-            HOME_AND_TRADE_STOREFRONTS = :home_and_trade_storefronts
-            HOME_IMPROVEMENT_AND_TOOLS = :home_improvement_and_tools
-            HOME_SERVICES_GIGS = :home_services_gigs
-            HOSPITALITY_AND_LODGING = :hospitality_and_lodging
-            INDUSTRIAL_AND_MANUFACTURING = :industrial_and_manufacturing
-            INDUSTRY_SPECIFIC_SOFTWARE = :industry_specific_software
-            LANGUAGE_AND_COMMUNICATION = :language_and_communication
-            LEGAL_AND_COMPLIANCE = :legal_and_compliance
-            LIFESTYLE_AND_CULTURE = :lifestyle_and_culture
-            LIFESTYLE_AND_PERSONAL_GROWTH_GROUPS = :lifestyle_and_personal_growth_groups
-            LIFESTYLE_AND_WELLNESS_EVENTS = :lifestyle_and_wellness_events
-            LOGISTICS_AND_TRANSPORTATION_SERVICES = :logistics_and_transportation_services
-            MARKETING_AGENCIES = :marketing_agencies
-            MARKETING_AND_ADVERTISING = :marketing_and_advertising
-            MARKETING_AND_SALES_SOFTWARE = :marketing_and_sales_software
-            MEDIA_AND_PUBLISHING_COMPANIES = :media_and_publishing_companies
-            MENTAL_HEALTH_AND_BEHAVIORAL = :mental_health_and_behavioral
-            MISCELLANEOUS = :miscellaneous
-            MUSIC_AND_PERFORMING_ARTS = :music_and_performing_arts
-            NEWS_AND_POLITICS = :news_and_politics
-            NONPROFIT_AND_CHARITY = :nonprofit_and_charity
-            OFFICE_AND_BUSINESS_SUPPLIES = :office_and_business_supplies
-            OUTDOOR_AND_SPORTS = :outdoor_and_sports
-            PERSONAL_DEVELOPMENT = :personal_development
-            PERSONAL_FINANCE = :personal_finance
-            PERSONAL_SERVICES = :personal_services
-            PET_SERVICES = :pet_services
-            PETS_AND_ANIMALS = :pets_and_animals
-            PRIMARY_AND_GENERAL_CARE = :primary_and_general_care
-            PRODUCT_MARKETPLACES = :product_marketplaces
-            PRODUCTIVITY_AND_BUSINESS_OPS = :productivity_and_business_ops
-            PROFESSIONAL_GIGS = :professional_gigs
-            PROFESSIONAL_SERVICES = :professional_services
-            PROFESSIONAL_SERVICES_STOREFRONT = :professional_services_storefront
-            PUBLISHING_AND_INFO_PRODUCTS = :publishing_and_info_products
-            REAL_ESTATE = :real_estate
-            REAL_ESTATE_SOFTWARE = :real_estate_software
-            RECRUITING_AND_STAFFING = :recruiting_and_staffing
-            REHABILITATION_AND_THERAPY = :rehabilitation_and_therapy
-            RENTAL_MARKETPLACES = :rental_marketplaces
-            RETAIL = :retail
-            SALES_AGENCIES = :sales_agencies
-            SALES_AND_REVENUE = :sales_and_revenue
-            SECURITY_AND_INVESTIGATIONS = :security_and_investigations
-            SECURITY_AND_PRIVACY_SOFTWARE = :security_and_privacy_software
-            SERVICE_MARKETPLACES = :service_marketplaces
-            SLEEP_AND_CHRONIC_CONDITIONS = :sleep_and_chronic_conditions
-            SOCIAL_AND_NETWORKING_EVENTS = :social_and_networking_events
-            SPECIALIZED_GIGS = :specialized_gigs
-            SPECIALTY_MEDICAL_CARE = :specialty_medical_care
-            SPIRITUALITY_AND_MINDFULNESS = :spirituality_and_mindfulness
-            SPIRITUALITY_AND_PERSONAL_GROWTH = :spirituality_and_personal_growth
-            SPORTS_AND_FITNESS_EVENTS = :sports_and_fitness_events
-            SPORTS_BETTING_AND_GAMBLING = :sports_betting_and_gambling
-            SPORTS_BETTING_GROUPS = :sports_betting_groups
-            SUPPLEMENTS_AND_NUTRITION = :supplements_and_nutrition
-            SUSTAINABILITY_AND_ECO_PRODUCTS = :sustainability_and_eco_products
-            TASK_AND_ERRANDS = :task_and_errands
-            TECH_AND_AI = :tech_and_ai
-            TECH_AND_DEV_GROUPS = :tech_and_dev_groups
-            TECH_AND_DEVELOPMENT = :tech_and_development
-            TRADING_AND_FINANCE_SOFTWARE = :trading_and_finance_software
-            TRADING_AND_INVESTING = :trading_and_investing
-            TRADING_AND_INVESTING_GROUPS = :trading_and_investing_groups
-            TRANSPORTATION = :transportation
-            VETERINARY = :veterinary
-            VIDEO_GAMES_AND_ESPORTS = :video_games_and_esports
-            WEIGHT_AND_METABOLIC_HEALTH = :weight_and_metabolic_health
-            WELLNESS_AND_ALTERNATIVE = :wellness_and_alternative
-            WOMENS_AND_MENS_HEALTH = :womens_and_mens_health
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
         end
       end
     end

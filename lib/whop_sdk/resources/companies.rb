@@ -24,7 +24,7 @@ module WhopSDK
       #
       # @param email [String, nil] The email address of the user who will own the connected account. Required when
       #
-      # @param industry_group [Symbol, WhopSDK::Models::CompanyCreateParams::IndustryGroup, nil] The different industry groups a company can be in.
+      # @param industry_group [Symbol, WhopSDK::Models::IndustryGroups, nil] The different industry groups a company can be in.
       #
       # @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
@@ -96,7 +96,7 @@ module WhopSDK
       #
       # @param description [String, nil] A promotional pitch displayed to potential customers on the company's store page
       #
-      # @param industry_group [Symbol, WhopSDK::Models::CompanyUpdateParams::IndustryGroup, nil] The different industry groups a company can be in.
+      # @param industry_group [Symbol, WhopSDK::Models::IndustryGroups, nil] The different industry groups a company can be in.
       #
       # @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #

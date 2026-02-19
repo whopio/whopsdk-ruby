@@ -23,7 +23,7 @@ module WhopSDK
         ?before: String?,
         ?first: Integer?,
         ?last: Integer?,
-        ?transaction_type: WhopSDK::Models::transaction_type?,
+        ?transaction_type: WhopSDK::Models::company_token_transaction_type?,
         ?user_id: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::CompanyTokenTransactionListResponse]

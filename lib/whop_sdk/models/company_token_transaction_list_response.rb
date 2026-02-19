@@ -59,8 +59,8 @@ module WhopSDK
       # @!attribute transaction_type
       #   The direction of this token transaction (add, subtract, or transfer).
       #
-      #   @return [Symbol, WhopSDK::Models::TransactionType]
-      required :transaction_type, enum: -> { WhopSDK::TransactionType }
+      #   @return [Symbol, WhopSDK::Models::CompanyTokenTransactionType]
+      required :transaction_type, enum: -> { WhopSDK::CompanyTokenTransactionType }
 
       # @!attribute user
       #   The user whose token balance was affected by this transaction.
@@ -91,7 +91,7 @@ module WhopSDK
       #
       #   @param member [WhopSDK::Models::CompanyTokenTransactionListResponse::Member] The member whose token balance was affected by this transaction.
       #
-      #   @param transaction_type [Symbol, WhopSDK::Models::TransactionType] The direction of this token transaction (add, subtract, or transfer).
+      #   @param transaction_type [Symbol, WhopSDK::Models::CompanyTokenTransactionType] The direction of this token transaction (add, subtract, or transfer).
       #
       #   @param user [WhopSDK::Models::CompanyTokenTransactionListResponse::User] The user whose token balance was affected by this transaction.
 

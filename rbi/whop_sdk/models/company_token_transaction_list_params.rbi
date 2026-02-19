@@ -35,7 +35,7 @@ module WhopSDK
       attr_accessor :last
 
       # The type of token transaction
-      sig { returns(T.nilable(WhopSDK::TransactionType::OrSymbol)) }
+      sig { returns(T.nilable(WhopSDK::CompanyTokenTransactionType::OrSymbol)) }
       attr_accessor :transaction_type
 
       # Filter transactions to only those involving this specific user.
@@ -49,7 +49,8 @@ module WhopSDK
           before: T.nilable(String),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
-          transaction_type: T.nilable(WhopSDK::TransactionType::OrSymbol),
+          transaction_type:
+            T.nilable(WhopSDK::CompanyTokenTransactionType::OrSymbol),
           user_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -81,7 +82,8 @@ module WhopSDK
             before: T.nilable(String),
             first: T.nilable(Integer),
             last: T.nilable(Integer),
-            transaction_type: T.nilable(WhopSDK::TransactionType::OrSymbol),
+            transaction_type:
+              T.nilable(WhopSDK::CompanyTokenTransactionType::OrSymbol),
             user_id: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }

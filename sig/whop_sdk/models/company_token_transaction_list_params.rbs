@@ -7,7 +7,7 @@ module WhopSDK
         before: String?,
         first: Integer?,
         last: Integer?,
-        transaction_type: WhopSDK::Models::transaction_type?,
+        transaction_type: WhopSDK::Models::company_token_transaction_type?,
         user_id: String?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -26,7 +26,7 @@ module WhopSDK
 
       attr_accessor last: Integer?
 
-      attr_accessor transaction_type: WhopSDK::Models::transaction_type?
+      attr_accessor transaction_type: WhopSDK::Models::company_token_transaction_type?
 
       attr_accessor user_id: String?
 
@@ -36,7 +36,7 @@ module WhopSDK
         ?before: String?,
         ?first: Integer?,
         ?last: Integer?,
-        ?transaction_type: WhopSDK::Models::transaction_type?,
+        ?transaction_type: WhopSDK::Models::company_token_transaction_type?,
         ?user_id: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
@@ -47,7 +47,7 @@ module WhopSDK
         before: String?,
         first: Integer?,
         last: Integer?,
-        transaction_type: WhopSDK::Models::transaction_type?,
+        transaction_type: WhopSDK::Models::company_token_transaction_type?,
         user_id: String?,
         request_options: WhopSDK::RequestOptions
       }

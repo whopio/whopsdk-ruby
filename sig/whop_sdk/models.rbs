@@ -103,6 +103,8 @@ module WhopSDK
 
   class CompanyTokenTransactionRetrieveParams = WhopSDK::Models::CompanyTokenTransactionRetrieveParams
 
+  module CompanyTokenTransactionType = WhopSDK::Models::CompanyTokenTransactionType
+
   class CompanyUpdateParams = WhopSDK::Models::CompanyUpdateParams
 
   class Course = WhopSDK::Models::Course
@@ -542,8 +544,6 @@ module WhopSDK
   module TaxType = WhopSDK::Models::TaxType
 
   class TopupCreateParams = WhopSDK::Models::TopupCreateParams
-
-  module TransactionType = WhopSDK::Models::TransactionType
 
   class Transfer = WhopSDK::Models::Transfer
 

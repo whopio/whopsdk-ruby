@@ -68,7 +68,7 @@ module WhopSDK
       attr_writer :member
 
       # The direction of this token transaction (add, subtract, or transfer).
-      sig { returns(WhopSDK::TransactionType::TaggedSymbol) }
+      sig { returns(WhopSDK::CompanyTokenTransactionType::TaggedSymbol) }
       attr_accessor :transaction_type
 
       # The user whose token balance was affected by this transaction.
@@ -99,7 +99,7 @@ module WhopSDK
           linked_transaction_id: T.nilable(String),
           member:
             WhopSDK::Models::CompanyTokenTransactionListResponse::Member::OrHash,
-          transaction_type: WhopSDK::TransactionType::OrSymbol,
+          transaction_type: WhopSDK::CompanyTokenTransactionType::OrSymbol,
           user:
             WhopSDK::Models::CompanyTokenTransactionListResponse::User::OrHash
         ).returns(T.attached_class)
@@ -145,7 +145,8 @@ module WhopSDK
             linked_transaction_id: T.nilable(String),
             member:
               WhopSDK::Models::CompanyTokenTransactionListResponse::Member,
-            transaction_type: WhopSDK::TransactionType::TaggedSymbol,
+            transaction_type:
+              WhopSDK::CompanyTokenTransactionType::TaggedSymbol,
             user: WhopSDK::Models::CompanyTokenTransactionListResponse::User
           }
         )

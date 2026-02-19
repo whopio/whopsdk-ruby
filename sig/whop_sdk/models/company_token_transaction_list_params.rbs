@@ -7,7 +7,7 @@ module WhopSDK
         before: String?,
         first: Integer?,
         last: Integer?,
-        transaction_type: WhopSDK::Models::CompanyTokenTransactionListParams::transaction_type?,
+        transaction_type: WhopSDK::Models::transaction_type?,
         user_id: String?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -26,7 +26,7 @@ module WhopSDK
 
       attr_accessor last: Integer?
 
-      attr_accessor transaction_type: WhopSDK::Models::CompanyTokenTransactionListParams::transaction_type?
+      attr_accessor transaction_type: WhopSDK::Models::transaction_type?
 
       attr_accessor user_id: String?
 
@@ -36,7 +36,7 @@ module WhopSDK
         ?before: String?,
         ?first: Integer?,
         ?last: Integer?,
-        ?transaction_type: WhopSDK::Models::CompanyTokenTransactionListParams::transaction_type?,
+        ?transaction_type: WhopSDK::Models::transaction_type?,
         ?user_id: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
@@ -47,22 +47,10 @@ module WhopSDK
         before: String?,
         first: Integer?,
         last: Integer?,
-        transaction_type: WhopSDK::Models::CompanyTokenTransactionListParams::transaction_type?,
+        transaction_type: WhopSDK::Models::transaction_type?,
         user_id: String?,
         request_options: WhopSDK::RequestOptions
       }
-
-      type transaction_type = :add | :subtract | :transfer
-
-      module TransactionType
-        extend WhopSDK::Internal::Type::Enum
-
-        ADD: :add
-        SUBTRACT: :subtract
-        TRANSFER: :transfer
-
-        def self?.values: -> ::Array[WhopSDK::Models::CompanyTokenTransactionListParams::transaction_type]
-      end
     end
   end
 end

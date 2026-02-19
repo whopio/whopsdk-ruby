@@ -10,7 +10,7 @@ module WhopSDK
         idempotency_key: String?,
         linked_transaction_id: String?,
         member: WhopSDK::Models::CompanyTokenTransactionListResponse::Member,
-        transaction_type: WhopSDK::Models::CompanyTokenTransactionListResponse::transaction_type,
+        transaction_type: WhopSDK::Models::transaction_type,
         user: WhopSDK::Models::CompanyTokenTransactionListResponse::User
       }
 
@@ -31,7 +31,7 @@ module WhopSDK
 
       attr_accessor member: WhopSDK::Models::CompanyTokenTransactionListResponse::Member
 
-      attr_accessor transaction_type: WhopSDK::Models::CompanyTokenTransactionListResponse::transaction_type
+      attr_accessor transaction_type: WhopSDK::Models::transaction_type
 
       attr_accessor user: WhopSDK::Models::CompanyTokenTransactionListResponse::User
 
@@ -44,7 +44,7 @@ module WhopSDK
         idempotency_key: String?,
         linked_transaction_id: String?,
         member: WhopSDK::Models::CompanyTokenTransactionListResponse::Member,
-        transaction_type: WhopSDK::Models::CompanyTokenTransactionListResponse::transaction_type,
+        transaction_type: WhopSDK::Models::transaction_type,
         user: WhopSDK::Models::CompanyTokenTransactionListResponse::User
       ) -> void
 
@@ -57,7 +57,7 @@ module WhopSDK
         idempotency_key: String?,
         linked_transaction_id: String?,
         member: WhopSDK::Models::CompanyTokenTransactionListResponse::Member,
-        transaction_type: WhopSDK::Models::CompanyTokenTransactionListResponse::transaction_type,
+        transaction_type: WhopSDK::Models::transaction_type,
         user: WhopSDK::Models::CompanyTokenTransactionListResponse::User
       }
 
@@ -83,18 +83,6 @@ module WhopSDK
         def initialize: (id: String) -> void
 
         def to_hash: -> { id: String }
-      end
-
-      type transaction_type = :add | :subtract | :transfer
-
-      module TransactionType
-        extend WhopSDK::Internal::Type::Enum
-
-        ADD: :add
-        SUBTRACT: :subtract
-        TRANSFER: :transfer
-
-        def self?.values: -> ::Array[WhopSDK::Models::CompanyTokenTransactionListResponse::transaction_type]
       end
 
       type user = { id: String, name: String?, username: String }

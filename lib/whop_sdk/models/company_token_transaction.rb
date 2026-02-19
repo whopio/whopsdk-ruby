@@ -59,8 +59,8 @@ module WhopSDK
       # @!attribute transaction_type
       #   The direction of this token transaction (add, subtract, or transfer).
       #
-      #   @return [Symbol, WhopSDK::Models::CompanyTokenTransaction::TransactionType]
-      required :transaction_type, enum: -> { WhopSDK::CompanyTokenTransaction::TransactionType }
+      #   @return [Symbol, WhopSDK::Models::TransactionType]
+      required :transaction_type, enum: -> { WhopSDK::TransactionType }
 
       # @!attribute user
       #   The user whose token balance was affected by this transaction.
@@ -91,7 +91,7 @@ module WhopSDK
       #
       #   @param member [WhopSDK::Models::CompanyTokenTransaction::Member] The member whose token balance was affected by this transaction.
       #
-      #   @param transaction_type [Symbol, WhopSDK::Models::CompanyTokenTransaction::TransactionType] The direction of this token transaction (add, subtract, or transfer).
+      #   @param transaction_type [Symbol, WhopSDK::Models::TransactionType] The direction of this token transaction (add, subtract, or transfer).
       #
       #   @param user [WhopSDK::Models::CompanyTokenTransaction::User] The user whose token balance was affected by this transaction.
 
@@ -137,20 +137,6 @@ module WhopSDK
         #   The member whose token balance was affected by this transaction.
         #
         #   @param id [String] The unique identifier for the company member.
-      end
-
-      # The direction of this token transaction (add, subtract, or transfer).
-      #
-      # @see WhopSDK::Models::CompanyTokenTransaction#transaction_type
-      module TransactionType
-        extend WhopSDK::Internal::Type::Enum
-
-        ADD = :add
-        SUBTRACT = :subtract
-        TRANSFER = :transfer
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
 
       # @see WhopSDK::Models::CompanyTokenTransaction#user

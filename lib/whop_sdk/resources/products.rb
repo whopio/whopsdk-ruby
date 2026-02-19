@@ -40,7 +40,7 @@ module WhopSDK
       #
       # @param headline [String, nil] A short marketing headline displayed prominently on the product page.
       #
-      # @param industry_group [Symbol, WhopSDK::Models::ProductCreateParams::IndustryGroup, nil] The different industry groups a company can be in.
+      # @param industry_group [Symbol, WhopSDK::Models::IndustryGroups, nil] The different industry groups a company can be in.
       #
       # @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
@@ -132,7 +132,7 @@ module WhopSDK
       #
       # @param headline [String, nil] A short marketing headline displayed prominently on the product page.
       #
-      # @param industry_group [Symbol, WhopSDK::Models::ProductUpdateParams::IndustryGroup, nil] The different industry groups a company can be in.
+      # @param industry_group [Symbol, WhopSDK::Models::IndustryGroups, nil] The different industry groups a company can be in.
       #
       # @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #

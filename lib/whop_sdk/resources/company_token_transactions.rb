@@ -95,7 +95,7 @@ module WhopSDK
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param transaction_type [Symbol, WhopSDK::Models::CompanyTokenTransactionListParams::TransactionType, nil] The type of token transaction
+      # @param transaction_type [Symbol, WhopSDK::Models::TransactionType, nil] The type of token transaction
       #
       # @param user_id [String, nil] Filter transactions to only those involving this specific user.
       #

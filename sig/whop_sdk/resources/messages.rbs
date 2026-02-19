@@ -5,6 +5,7 @@ module WhopSDK
         channel_id: String,
         content: String,
         ?attachments: ::Array[WhopSDK::MessageCreateParams::Attachment]?,
+        ?auto_detect_links: bool?,
         ?poll: WhopSDK::MessageCreateParams::Poll?,
         ?replying_to_message_id: String?,
         ?request_options: WhopSDK::request_opts

@@ -27,6 +27,10 @@ module WhopSDK
       end
       attr_accessor :attachments
 
+      # Automatically detect URLs in the message and generate link previews.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :auto_detect_links
+
       # A poll to attach to this message, allowing recipients to vote on options.
       sig { returns(T.nilable(WhopSDK::MessageCreateParams::Poll)) }
       attr_reader :poll
@@ -49,6 +53,7 @@ module WhopSDK
             T.nilable(
               T::Array[WhopSDK::MessageCreateParams::Attachment::OrHash]
             ),
+          auto_detect_links: T.nilable(T::Boolean),
           poll: T.nilable(WhopSDK::MessageCreateParams::Poll::OrHash),
           replying_to_message_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -63,6 +68,8 @@ module WhopSDK
         # A list of file attachments to include with the message, such as images or
         # videos.
         attachments: nil,
+        # Automatically detect URLs in the message and generate link previews.
+        auto_detect_links: nil,
         # A poll to attach to this message, allowing recipients to vote on options.
         poll: nil,
         # The unique identifier of the message this is replying to, creating a threaded
@@ -79,6 +86,7 @@ module WhopSDK
             content: String,
             attachments:
               T.nilable(T::Array[WhopSDK::MessageCreateParams::Attachment]),
+            auto_detect_links: T.nilable(T::Boolean),
             poll: T.nilable(WhopSDK::MessageCreateParams::Poll),
             replying_to_message_id: T.nilable(String),
             request_options: WhopSDK::RequestOptions

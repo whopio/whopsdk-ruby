@@ -17,6 +17,7 @@ module WhopSDK
             T.nilable(
               T::Array[WhopSDK::MessageCreateParams::Attachment::OrHash]
             ),
+          auto_detect_links: T.nilable(T::Boolean),
           poll: T.nilable(WhopSDK::MessageCreateParams::Poll::OrHash),
           replying_to_message_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -31,6 +32,8 @@ module WhopSDK
         # A list of file attachments to include with the message, such as images or
         # videos.
         attachments: nil,
+        # Automatically detect URLs in the message and generate link previews.
+        auto_detect_links: nil,
         # A poll to attach to this message, allowing recipients to vote on options.
         poll: nil,
         # The unique identifier of the message this is replying to, creating a threaded

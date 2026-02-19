@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::CourseChaptersTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.course_chapters.create(course_id: "cors_xxxxxxxxxxxxx")
 
@@ -23,7 +23,7 @@ class WhopSDK::Test::Resources::CourseChaptersTest < WhopSDK::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.course_chapters.retrieve("chap_xxxxxxxxxxxxx")
 
@@ -42,7 +42,7 @@ class WhopSDK::Test::Resources::CourseChaptersTest < WhopSDK::Test::ResourceTest
   end
 
   def test_update_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.course_chapters.update("chap_xxxxxxxxxxxxx", title: "title")
 
@@ -61,7 +61,7 @@ class WhopSDK::Test::Resources::CourseChaptersTest < WhopSDK::Test::ResourceTest
   end
 
   def test_list_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.course_chapters.list(course_id: "cors_xxxxxxxxxxxxx")
 
@@ -86,7 +86,7 @@ class WhopSDK::Test::Resources::CourseChaptersTest < WhopSDK::Test::ResourceTest
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.course_chapters.delete("chap_xxxxxxxxxxxxx")
 

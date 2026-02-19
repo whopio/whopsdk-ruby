@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::TransfersTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @whop.transfers.create(
@@ -36,7 +36,7 @@ class WhopSDK::Test::Resources::TransfersTest < WhopSDK::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.transfers.retrieve("ctt_xxxxxxxxxxxxxx")
 
@@ -62,7 +62,7 @@ class WhopSDK::Test::Resources::TransfersTest < WhopSDK::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.transfers.list
 

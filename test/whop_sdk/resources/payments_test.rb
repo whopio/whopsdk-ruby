@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @whop.payments.create(
@@ -65,7 +65,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.payments.retrieve("pay_xxxxxxxxxxxxxx")
 
@@ -120,7 +120,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.payments.list
 
@@ -178,7 +178,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_list_fees
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.payments.list_fees("pay_xxxxxxxxxxxxxx")
 
@@ -204,7 +204,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_refund
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.payments.refund("pay_xxxxxxxxxxxxxx")
 
@@ -259,7 +259,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_retry_
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.payments.retry_("pay_xxxxxxxxxxxxxx")
 
@@ -314,7 +314,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_void
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.payments.void("pay_xxxxxxxxxxxxxx")
 

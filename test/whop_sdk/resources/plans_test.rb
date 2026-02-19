@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.plans.create(company_id: "biz_xxxxxxxxxxxxxx", product_id: "prod_xxxxxxxxxxxxx")
 
@@ -46,7 +46,7 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.plans.retrieve("plan_xxxxxxxxxxxxx")
 
@@ -88,7 +88,7 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.plans.update("plan_xxxxxxxxxxxxx")
 
@@ -130,7 +130,7 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
   end
 
   def test_list_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.plans.list(company_id: "biz_xxxxxxxxxxxxxx")
 
@@ -176,7 +176,7 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.plans.delete("plan_xxxxxxxxxxxxx")
 

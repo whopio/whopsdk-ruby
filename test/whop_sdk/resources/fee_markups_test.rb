@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::FeeMarkupsTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @whop.fee_markups.create(company_id: "biz_xxxxxxxxxxxxxx", fee_type: :crypto_withdrawal_markup)
@@ -27,7 +27,7 @@ class WhopSDK::Test::Resources::FeeMarkupsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_list_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.fee_markups.list(company_id: "biz_xxxxxxxxxxxxxx")
 
@@ -56,7 +56,7 @@ class WhopSDK::Test::Resources::FeeMarkupsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.fee_markups.delete("id")
 

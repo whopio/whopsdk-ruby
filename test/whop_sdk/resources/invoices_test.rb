@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @whop.invoices.create(
@@ -36,7 +36,7 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.invoices.retrieve("inv_xxxxxxxxxxxxxx")
 
@@ -60,7 +60,7 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
   end
 
   def test_list_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
 
@@ -91,7 +91,7 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
   end
 
   def test_void
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.invoices.void("inv_xxxxxxxxxxxxxx")
 

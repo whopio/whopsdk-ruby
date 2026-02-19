@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::RefundsTest < WhopSDK::Test::ResourceTest
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.refunds.retrieve("rf_xxxxxxxxxxxxxxx")
 
@@ -30,7 +30,7 @@ class WhopSDK::Test::Resources::RefundsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_list_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.refunds.list(payment_id: "pay_xxxxxxxxxxxxxx")
 

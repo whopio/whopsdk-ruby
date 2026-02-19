@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::CompanyTokenTransactionsTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @whop.company_token_transactions.create(
@@ -36,7 +36,7 @@ class WhopSDK::Test::Resources::CompanyTokenTransactionsTest < WhopSDK::Test::Re
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.company_token_transactions.retrieve("id")
 
@@ -61,7 +61,7 @@ class WhopSDK::Test::Resources::CompanyTokenTransactionsTest < WhopSDK::Test::Re
   end
 
   def test_list_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.company_token_transactions.list(company_id: "biz_xxxxxxxxxxxxxx")
 

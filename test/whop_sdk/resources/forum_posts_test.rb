@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::ForumPostsTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.forum_posts.create(experience_id: "exp_xxxxxxxxxxxxxx")
 
@@ -32,7 +32,7 @@ class WhopSDK::Test::Resources::ForumPostsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.forum_posts.retrieve("id")
 
@@ -60,7 +60,7 @@ class WhopSDK::Test::Resources::ForumPostsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.forum_posts.update("id")
 
@@ -88,7 +88,7 @@ class WhopSDK::Test::Resources::ForumPostsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_list_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.forum_posts.list(experience_id: "exp_xxxxxxxxxxxxxx")
 

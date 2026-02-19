@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::CourseLessonsTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.course_lessons.create(chapter_id: "chap_xxxxxxxxxxxxx", lesson_type: :text)
 
@@ -34,7 +34,7 @@ class WhopSDK::Test::Resources::CourseLessonsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.course_lessons.retrieve("lesn_xxxxxxxxxxxxx")
 
@@ -64,7 +64,7 @@ class WhopSDK::Test::Resources::CourseLessonsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.course_lessons.update("lesn_xxxxxxxxxxxxx")
 
@@ -94,7 +94,7 @@ class WhopSDK::Test::Resources::CourseLessonsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.course_lessons.list
 
@@ -127,7 +127,7 @@ class WhopSDK::Test::Resources::CourseLessonsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.course_lessons.delete("lesn_xxxxxxxxxxxxx")
 
@@ -137,7 +137,7 @@ class WhopSDK::Test::Resources::CourseLessonsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_mark_as_completed
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.course_lessons.mark_as_completed("lesson_id")
 
@@ -147,7 +147,7 @@ class WhopSDK::Test::Resources::CourseLessonsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_start
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.course_lessons.start("lesson_id")
 
@@ -157,7 +157,7 @@ class WhopSDK::Test::Resources::CourseLessonsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_submit_assessment_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.course_lessons.submit_assessment("lesson_id", answers: [{question_id: "question_id"}])
 

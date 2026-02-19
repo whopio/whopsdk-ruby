@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.memberships.retrieve("mem_xxxxxxxxxxxxxx")
 
@@ -42,7 +42,7 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.memberships.update("mem_xxxxxxxxxxxxxx")
 
@@ -80,7 +80,7 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.memberships.list
 
@@ -124,7 +124,7 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_cancel
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.memberships.cancel("mem_xxxxxxxxxxxxxx")
 
@@ -162,7 +162,7 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_pause
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.memberships.pause("mem_xxxxxxxxxxxxxx")
 
@@ -200,7 +200,7 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_resume
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.memberships.resume("mem_xxxxxxxxxxxxxx")
 
@@ -238,7 +238,7 @@ class WhopSDK::Test::Resources::MembershipsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_uncancel
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.memberships.uncancel("mem_xxxxxxxxxxxxxx")
 

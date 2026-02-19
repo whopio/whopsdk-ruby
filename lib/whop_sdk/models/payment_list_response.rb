@@ -47,7 +47,8 @@ module WhopSDK
       required :card_brand, enum: -> { WhopSDK::CardBrands }, nil?: true
 
       # @!attribute card_last4
-      #   The last 4 digits of the card used to make the payment.
+      #   The last four digits of the card used to make this payment. Null if the payment
+      #   was not made with a card.
       #
       #   @return [String, nil]
       required :card_last4, String, nil?: true
@@ -114,13 +115,15 @@ module WhopSDK
       required :next_payment_attempt, Time, nil?: true
 
       # @!attribute paid_at
-      #   The datetime the payment was paid
+      #   The time at which this payment was successfully collected. Null if the payment
+      #   has not yet succeeded. As a Unix timestamp.
       #
       #   @return [Time, nil]
       required :paid_at, Time, nil?: true
 
       # @!attribute payment_method
-      #   The payment method used for the payment, if available.
+      #   The tokenized payment method reference used for this payment. Null if no token
+      #   was used.
       #
       #   @return [WhopSDK::Models::PaymentListResponse::PaymentMethod, nil]
       required :payment_method, -> { WhopSDK::Models::PaymentListResponse::PaymentMethod }, nil?: true
@@ -229,8 +232,8 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentListResponse} for more details.
       #
-      #   A payment represents a completed or attempted charge for a membership. Payments
-      #   track the amount, status, currency, and payment method used.
+      #   A payment represents a completed or attempted charge. Payments track the amount,
+      #   status, currency, and payment method used.
       #
       #   @param id [String] The unique identifier for the payment.
       #
@@ -246,7 +249,7 @@ module WhopSDK
       #
       #   @param card_brand [Symbol, WhopSDK::Models::CardBrands, nil] Possible card brands that a payment token can have
       #
-      #   @param card_last4 [String, nil] The last 4 digits of the card used to make the payment.
+      #   @param card_last4 [String, nil] The last four digits of the card used to make this payment. Null if the payment
       #
       #   @param company [WhopSDK::Models::PaymentListResponse::Company, nil] The company for the payment.
       #
@@ -268,9 +271,9 @@ module WhopSDK
       #
       #   @param next_payment_attempt [Time, nil] The time of the next schedule payment retry.
       #
-      #   @param paid_at [Time, nil] The datetime the payment was paid
+      #   @param paid_at [Time, nil] The time at which this payment was successfully collected. Null if the payment h
       #
-      #   @param payment_method [WhopSDK::Models::PaymentListResponse::PaymentMethod, nil] The payment method used for the payment, if available.
+      #   @param payment_method [WhopSDK::Models::PaymentListResponse::PaymentMethod, nil] The tokenized payment method reference used for this payment. Null if no token w
       #
       #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes, nil] The different types of payment methods that can be used.
       #
@@ -524,7 +527,8 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::PaymentListResponse::PaymentMethod} for more details.
         #
-        #   The payment method used for the payment, if available.
+        #   The tokenized payment method reference used for this payment. Null if no token
+        #   was used.
         #
         #   @param id [String] The unique identifier for the payment token.
         #
@@ -543,33 +547,37 @@ module WhopSDK
           required :brand, enum: -> { WhopSDK::CardBrands }, nil?: true
 
           # @!attribute exp_month
-          #   Card expiration month, like 03 for March.
+          #   The two-digit expiration month of the card (1-12). Null if not available.
           #
           #   @return [Integer, nil]
           required :exp_month, Integer, nil?: true
 
           # @!attribute exp_year
-          #   Card expiration year, like 27 for 2027.
+          #   The two-digit expiration year of the card (e.g., 27 for 2027). Null if not
+          #   available.
           #
           #   @return [Integer, nil]
           required :exp_year, Integer, nil?: true
 
           # @!attribute last4
-          #   Last four digits of the card.
+          #   The last four digits of the card number. Null if not available.
           #
           #   @return [String, nil]
           required :last4, String, nil?: true
 
           # @!method initialize(brand:, exp_month:, exp_year:, last4:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::PaymentListResponse::PaymentMethod::Card} for more details.
+          #
           #   The card data associated with the payment method, if its a debit or credit card.
           #
           #   @param brand [Symbol, WhopSDK::Models::CardBrands, nil] Possible card brands that a payment token can have
           #
-          #   @param exp_month [Integer, nil] Card expiration month, like 03 for March.
+          #   @param exp_month [Integer, nil] The two-digit expiration month of the card (1-12). Null if not available.
           #
-          #   @param exp_year [Integer, nil] Card expiration year, like 27 for 2027.
+          #   @param exp_year [Integer, nil] The two-digit expiration year of the card (e.g., 27 for 2027). Null if not avail
           #
-          #   @param last4 [String, nil] Last four digits of the card.
+          #   @param last4 [String, nil] The last four digits of the card number. Null if not available.
         end
       end
 
@@ -596,25 +604,30 @@ module WhopSDK
         required :id, String
 
         # @!attribute route
-        #   The route of the product.
+        #   The URL slug used in the product's public link (e.g., 'my-product' in
+        #   whop.com/company/my-product).
         #
         #   @return [String]
         required :route, String
 
         # @!attribute title
-        #   The title of the product. Use for Whop 4.0.
+        #   The display name of the product shown to customers on the product page and in
+        #   search results.
         #
         #   @return [String]
         required :title, String
 
         # @!method initialize(id:, route:, title:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::PaymentListResponse::Product} for more details.
+        #
         #   The product this payment was made for
         #
         #   @param id [String] The unique identifier for the product.
         #
-        #   @param route [String] The route of the product.
+        #   @param route [String] The URL slug used in the product's public link (e.g., 'my-product' in whop.com/c
         #
-        #   @param title [String] The title of the product. Use for Whop 4.0.
+        #   @param title [String] The display name of the product shown to customers on the product page and in se
       end
 
       # @see WhopSDK::Models::PaymentListResponse#promo_code
@@ -685,33 +698,37 @@ module WhopSDK
         required :id, String
 
         # @!attribute email
-        #   The email of the user
+        #   The user's email address. Requires the member:email:read permission to access.
+        #   Null if not authorized.
         #
         #   @return [String, nil]
         required :email, String, nil?: true
 
         # @!attribute name
-        #   The name of the user from their Whop account.
+        #   The user's display name shown on their public profile.
         #
         #   @return [String, nil]
         required :name, String, nil?: true
 
         # @!attribute username
-        #   The username of the user from their Whop account.
+        #   The user's unique username shown on their public profile.
         #
         #   @return [String]
         required :username, String
 
         # @!method initialize(id:, email:, name:, username:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::PaymentListResponse::User} for more details.
+        #
         #   The user that made this payment.
         #
         #   @param id [String] The unique identifier for the user.
         #
-        #   @param email [String, nil] The email of the user
+        #   @param email [String, nil] The user's email address. Requires the member:email:read permission to access. N
         #
-        #   @param name [String, nil] The name of the user from their Whop account.
+        #   @param name [String, nil] The user's display name shown on their public profile.
         #
-        #   @param username [String] The username of the user from their Whop account.
+        #   @param username [String] The user's unique username shown on their public profile.
       end
     end
   end

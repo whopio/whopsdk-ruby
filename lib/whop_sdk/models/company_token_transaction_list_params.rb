@@ -8,7 +8,7 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute company_id
-      #   The ID of the company
+      #   The unique identifier of the company to list token transactions for.
       #
       #   @return [String]
       required :company_id, String
@@ -40,17 +40,17 @@ module WhopSDK
       # @!attribute transaction_type
       #   The type of token transaction
       #
-      #   @return [Symbol, WhopSDK::Models::BotTokenTransactionTypes, nil]
-      optional :transaction_type, enum: -> { WhopSDK::BotTokenTransactionTypes }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::CompanyTokenTransactionType, nil]
+      optional :transaction_type, enum: -> { WhopSDK::CompanyTokenTransactionType }, nil?: true
 
       # @!attribute user_id
-      #   Filter by user ID
+      #   Filter transactions to only those involving this specific user.
       #
       #   @return [String, nil]
       optional :user_id, String, nil?: true
 
       # @!method initialize(company_id:, after: nil, before: nil, first: nil, last: nil, transaction_type: nil, user_id: nil, request_options: {})
-      #   @param company_id [String] The ID of the company
+      #   @param company_id [String] The unique identifier of the company to list token transactions for.
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -60,9 +60,9 @@ module WhopSDK
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      #   @param transaction_type [Symbol, WhopSDK::Models::BotTokenTransactionTypes, nil] The type of token transaction
+      #   @param transaction_type [Symbol, WhopSDK::Models::CompanyTokenTransactionType, nil] The type of token transaction
       #
-      #   @param user_id [String, nil] Filter by user ID
+      #   @param user_id [String, nil] Filter transactions to only those involving this specific user.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

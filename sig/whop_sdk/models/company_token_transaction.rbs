@@ -10,7 +10,7 @@ module WhopSDK
         idempotency_key: String?,
         linked_transaction_id: String?,
         member: WhopSDK::CompanyTokenTransaction::Member,
-        transaction_type: WhopSDK::Models::bot_token_transaction_types,
+        transaction_type: WhopSDK::Models::company_token_transaction_type,
         user: WhopSDK::CompanyTokenTransaction::User
       }
 
@@ -31,7 +31,7 @@ module WhopSDK
 
       attr_accessor member: WhopSDK::CompanyTokenTransaction::Member
 
-      attr_accessor transaction_type: WhopSDK::Models::bot_token_transaction_types
+      attr_accessor transaction_type: WhopSDK::Models::company_token_transaction_type
 
       attr_accessor user: WhopSDK::CompanyTokenTransaction::User
 
@@ -44,7 +44,7 @@ module WhopSDK
         idempotency_key: String?,
         linked_transaction_id: String?,
         member: WhopSDK::CompanyTokenTransaction::Member,
-        transaction_type: WhopSDK::Models::bot_token_transaction_types,
+        transaction_type: WhopSDK::Models::company_token_transaction_type,
         user: WhopSDK::CompanyTokenTransaction::User
       ) -> void
 
@@ -57,7 +57,7 @@ module WhopSDK
         idempotency_key: String?,
         linked_transaction_id: String?,
         member: WhopSDK::CompanyTokenTransaction::Member,
-        transaction_type: WhopSDK::Models::bot_token_transaction_types,
+        transaction_type: WhopSDK::Models::company_token_transaction_type,
         user: WhopSDK::CompanyTokenTransaction::User
       }
 

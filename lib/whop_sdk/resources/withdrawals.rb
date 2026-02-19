@@ -43,7 +43,7 @@ module WhopSDK
         )
       end
 
-      # Retrieves a withdrawal by ID
+      # Retrieves the details of an existing withdrawal.
       #
       # Required permissions:
       #
@@ -52,7 +52,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the Withdrawal
+      # @param id [String] The unique identifier of the withdrawal to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -68,7 +68,8 @@ module WhopSDK
         )
       end
 
-      # Lists withdrawals
+      # Returns a paginated list of withdrawals for a company, with optional sorting and
+      # date filtering.
       #
       # Required permissions:
       #
@@ -76,15 +77,15 @@ module WhopSDK
       #
       # @overload list(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, request_options: {})
       #
-      # @param company_id [String] The ID of the company to list withdrawals for
+      # @param company_id [String] The unique identifier of the company to list withdrawals for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param created_after [Time, nil] The minimum creation date to filter by
+      # @param created_after [Time, nil] Only return withdrawals created after this timestamp.
       #
-      # @param created_before [Time, nil] The maximum creation date to filter by
+      # @param created_before [Time, nil] Only return withdrawals created before this timestamp.
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #

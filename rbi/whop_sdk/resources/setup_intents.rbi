@@ -3,11 +3,7 @@
 module WhopSDK
   module Resources
     class SetupIntents
-      # A setup intent is an object used to securely collect and store a member’s
-      # payment method for future use without charging them immediately. It handles
-      # authentication steps up front so future off-session payments can be completed
-      # smoothly. This ensures the payment method is verified and ready for later
-      # billing.
+      # Retrieves the details of an existing setup intent.
       #
       # Required permissions:
       #
@@ -21,17 +17,15 @@ module WhopSDK
         ).returns(WhopSDK::SetupIntent)
       end
       def retrieve(
-        # The ID of the Setup Intent
+        # The unique identifier of the setup intent.
         id,
         request_options: {}
       )
       end
 
-      # A setup intent is an object used to securely collect and store a member’s
-      # payment method for future use without charging them immediately. It handles
-      # authentication steps up front so future off-session payments can be completed
-      # smoothly. This ensures the payment method is verified and ready for later
-      # billing.
+      # Returns a paginated list of setup intents for a company, with optional filtering
+      # by creation date. A setup intent securely collects and stores a member's payment
+      # method for future use without charging them immediately.
       #
       # Required permissions:
       #
@@ -56,15 +50,15 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the company to list setup intents for
+        # The unique identifier of the company to list setup intents for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The minimum creation date to filter by
+        # Only return setup intents created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return setup intents created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,

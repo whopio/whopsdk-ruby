@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class AIChats
-      # Creates a new AI chat
+      # Create a new AI chat thread and send the first message to the AI agent.
       #
       # Required permissions:
       #
@@ -16,25 +16,30 @@ module WhopSDK
             T.nilable(
               T::Array[WhopSDK::AIChatCreateParams::MessageAttachment::OrHash]
             ),
+          message_source:
+            T.nilable(WhopSDK::AIChatCreateParams::MessageSource::OrSymbol),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::AIChat)
       end
       def create(
-        # The text content of the first message sent in the chat
+        # The text content of the first message to send to the AI agent.
         message_text:,
-        # The ID of the company to set as the current company in context for the AI chat
+        # The unique identifier of the company to set as context for the AI chat (e.g.,
+        # "biz_XXXXX").
         current_company_id: nil,
-        # The IDs of existing uploaded attachments to include in the first message to the
-        # agent
+        # A list of previously uploaded file attachments to include with the first
+        # message.
         message_attachments: nil,
-        # The title of the AI chat
+        # The source of an AI chat message
+        message_source: nil,
+        # An optional display title for the AI chat thread (e.g., "Help with billing").
         title: nil,
         request_options: {}
       )
       end
 
-      # Fetches a single AI chat by ID
+      # Retrieves the details of an existing AI chat.
       sig do
         params(
           id: String,
@@ -42,13 +47,13 @@ module WhopSDK
         ).returns(WhopSDK::AIChat)
       end
       def retrieve(
-        # The ID of the AI chat
+        # The unique identifier of the AI chat to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # Updates an AI chat
+      # Update an AI chat's title or associated company context.
       #
       # Required permissions:
       #
@@ -62,17 +67,18 @@ module WhopSDK
         ).returns(WhopSDK::AIChat)
       end
       def update(
-        # The ID of the AI chat to update
+        # The unique identifier of the AI chat to update (e.g., "ai_chat_XXXXX").
         id,
-        # The ID of the company to set as the current company in context for the AI chat
+        # The unique identifier of the company to set as context for the AI chat (e.g.,
+        # "biz_XXXXX").
         current_company_id: nil,
-        # The new title for the AI chat
+        # The new display title for the AI chat thread (e.g., "Help with billing").
         title: nil,
         request_options: {}
       )
       end
 
-      # Fetches all AI chats for the current user
+      # Returns a paginated list of AI chat threads for the current authenticated user.
       sig do
         params(
           after: T.nilable(String),
@@ -97,7 +103,7 @@ module WhopSDK
       )
       end
 
-      # Deletes an AI chat
+      # Delete an AI chat thread so it no longer appears in the user's chat list.
       #
       # Required permissions:
       #
@@ -109,7 +115,7 @@ module WhopSDK
         ).returns(T::Boolean)
       end
       def delete(
-        # The ID of the AI chat to delete
+        # The unique identifier of the AI chat to delete (e.g., "ai_chat_XXXXX").
         id,
         request_options: {}
       )

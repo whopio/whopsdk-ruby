@@ -11,13 +11,14 @@ module WhopSDK
       required :id, String
 
       # @!attribute amount
-      #   The transaction amount (always positive)
+      #   The token amount for this transaction. Always a positive value regardless of
+      #   transaction type.
       #
       #   @return [Float]
       required :amount, Float
 
       # @!attribute company
-      #   The company
+      #   The company whose token balance this transaction affects.
       #
       #   @return [WhopSDK::Models::CompanyTokenTransactionListResponse::Company]
       required :company, -> { WhopSDK::Models::CompanyTokenTransactionListResponse::Company }
@@ -29,63 +30,70 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute description
-      #   Optional description
+      #   Free-text description explaining the reason for this token transaction. Null if
+      #   no description was provided.
       #
       #   @return [String, nil]
       required :description, String, nil?: true
 
       # @!attribute idempotency_key
-      #   Optional idempotency key to prevent duplicate transactions
+      #   A unique key used to prevent duplicate transactions when retrying API requests.
+      #   Null if no idempotency key was provided.
       #
       #   @return [String, nil]
       required :idempotency_key, String, nil?: true
 
       # @!attribute linked_transaction_id
-      #   For transfers, the ID of the linked transaction
+      #   The ID of the corresponding transaction on the other side of a transfer. Null if
+      #   this is not a transfer transaction.
       #
       #   @return [String, nil]
       required :linked_transaction_id, String, nil?: true
 
       # @!attribute member
-      #   The member
+      #   The member whose token balance was affected by this transaction.
       #
       #   @return [WhopSDK::Models::CompanyTokenTransactionListResponse::Member]
       required :member, -> { WhopSDK::Models::CompanyTokenTransactionListResponse::Member }
 
       # @!attribute transaction_type
-      #   The type of transaction
+      #   The direction of this token transaction (add, subtract, or transfer).
       #
-      #   @return [Symbol, WhopSDK::Models::BotTokenTransactionTypes]
-      required :transaction_type, enum: -> { WhopSDK::BotTokenTransactionTypes }
+      #   @return [Symbol, WhopSDK::Models::CompanyTokenTransactionType]
+      required :transaction_type, enum: -> { WhopSDK::CompanyTokenTransactionType }
 
       # @!attribute user
-      #   The user whose balance changed
+      #   The user whose token balance was affected by this transaction.
       #
       #   @return [WhopSDK::Models::CompanyTokenTransactionListResponse::User]
       required :user, -> { WhopSDK::Models::CompanyTokenTransactionListResponse::User }
 
       # @!method initialize(id:, amount:, company:, created_at:, description:, idempotency_key:, linked_transaction_id:, member:, transaction_type:, user:)
-      #   A token transaction within a company
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::CompanyTokenTransactionListResponse} for more details.
+      #
+      #   A token transaction records a credit or debit to a member's token balance within
+      #   a company, including transfers between members.
       #
       #   @param id [String] The unique identifier for the company token transaction.
       #
-      #   @param amount [Float] The transaction amount (always positive)
+      #   @param amount [Float] The token amount for this transaction. Always a positive value regardless of tra
       #
-      #   @param company [WhopSDK::Models::CompanyTokenTransactionListResponse::Company] The company
+      #   @param company [WhopSDK::Models::CompanyTokenTransactionListResponse::Company] The company whose token balance this transaction affects.
       #
       #   @param created_at [Time] The datetime the company token transaction was created.
       #
-      #   @param description [String, nil] Optional description
+      #   @param description [String, nil] Free-text description explaining the reason for this token transaction. Null if
       #
-      #   @param idempotency_key [String, nil] Optional idempotency key to prevent duplicate transactions
+      #   @param idempotency_key [String, nil] A unique key used to prevent duplicate transactions when retrying API requests.
       #
-      #   @param linked_transaction_id [String, nil] For transfers, the ID of the linked transaction
+      #   @param linked_transaction_id [String, nil] The ID of the corresponding transaction on the other side of a transfer. Null if
       #
-      #   @param member [WhopSDK::Models::CompanyTokenTransactionListResponse::Member] The member
+      #   @param member [WhopSDK::Models::CompanyTokenTransactionListResponse::Member] The member whose token balance was affected by this transaction.
       #
-      #   @param transaction_type [Symbol, WhopSDK::Models::BotTokenTransactionTypes] The type of transaction
+      #   @param transaction_type [Symbol, WhopSDK::Models::CompanyTokenTransactionType] The direction of this token transaction (add, subtract, or transfer).
       #
-      #   @param user [WhopSDK::Models::CompanyTokenTransactionListResponse::User] The user whose balance changed
+      #   @param user [WhopSDK::Models::CompanyTokenTransactionListResponse::User] The user whose token balance was affected by this transaction.
 
       # @see WhopSDK::Models::CompanyTokenTransactionListResponse#company
       class Company < WhopSDK::Internal::Type::BaseModel
@@ -108,7 +116,7 @@ module WhopSDK
         required :title, String
 
         # @!method initialize(id:, route:, title:)
-        #   The company
+        #   The company whose token balance this transaction affects.
         #
         #   @param id [String] The unique identifier for the company.
         #
@@ -126,7 +134,7 @@ module WhopSDK
         required :id, String
 
         # @!method initialize(id:)
-        #   The member
+        #   The member whose token balance was affected by this transaction.
         #
         #   @param id [String] The unique identifier for the company member.
       end
@@ -140,25 +148,25 @@ module WhopSDK
         required :id, String
 
         # @!attribute name
-        #   The name of the user from their Whop account.
+        #   The user's display name shown on their public profile.
         #
         #   @return [String, nil]
         required :name, String, nil?: true
 
         # @!attribute username
-        #   The username of the user from their Whop account.
+        #   The user's unique username shown on their public profile.
         #
         #   @return [String]
         required :username, String
 
         # @!method initialize(id:, name:, username:)
-        #   The user whose balance changed
+        #   The user whose token balance was affected by this transaction.
         #
         #   @param id [String] The unique identifier for the user.
         #
-        #   @param name [String, nil] The name of the user from their Whop account.
+        #   @param name [String, nil] The user's display name shown on their public profile.
         #
-        #   @param username [String] The username of the user from their Whop account.
+        #   @param username [String] The user's unique username shown on their public profile.
       end
     end
   end

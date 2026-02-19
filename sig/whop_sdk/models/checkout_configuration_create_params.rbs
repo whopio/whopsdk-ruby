@@ -283,6 +283,7 @@ module WhopSDK
             global_affiliate_percentage: Float?,
             global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
             headline: String?,
+            industry_group: WhopSDK::Models::industry_groups?,
             industry_type: WhopSDK::Models::industry_types?,
             product_tax_code_id: String?,
             redirect_purchase_url: String?,
@@ -309,6 +310,8 @@ module WhopSDK
 
           attr_accessor headline: String?
 
+          attr_accessor industry_group: WhopSDK::Models::industry_groups?
+
           attr_accessor industry_type: WhopSDK::Models::industry_types?
 
           attr_accessor product_tax_code_id: String?
@@ -329,6 +332,7 @@ module WhopSDK
             ?global_affiliate_percentage: Float?,
             ?global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
             ?headline: String?,
+            ?industry_group: WhopSDK::Models::industry_groups?,
             ?industry_type: WhopSDK::Models::industry_types?,
             ?product_tax_code_id: String?,
             ?redirect_purchase_url: String?,
@@ -346,6 +350,7 @@ module WhopSDK
             global_affiliate_percentage: Float?,
             global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
             headline: String?,
+            industry_group: WhopSDK::Models::industry_groups?,
             industry_type: WhopSDK::Models::industry_types?,
             product_tax_code_id: String?,
             redirect_purchase_url: String?,

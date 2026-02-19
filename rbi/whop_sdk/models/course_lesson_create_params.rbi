@@ -11,23 +11,26 @@ module WhopSDK
           T.any(WhopSDK::CourseLessonCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the chapter to create the lesson in
+      # The unique identifier of the chapter to create the lesson in (e.g.,
+      # "chap_XXXXX").
       sig { returns(String) }
       attr_accessor :chapter_id
 
-      # The type of the lesson
+      # The content type of the lesson, such as video, text, quiz, or knowledge check.
       sig { returns(WhopSDK::LessonTypes::OrSymbol) }
       attr_accessor :lesson_type
 
-      # The content of the lesson
+      # The Markdown content body of the lesson.
       sig { returns(T.nilable(String)) }
       attr_accessor :content
 
-      # Days from course start until unlock
+      # The number of days after a student starts the course before this lesson becomes
+      # accessible.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :days_from_course_start_until_unlock
 
-      # ID for the embed (YouTube video ID or Loom share ID)
+      # The external video identifier for embedded content (e.g., a YouTube video ID or
+      # Loom share ID).
       sig { returns(T.nilable(String)) }
       attr_accessor :embed_id
 
@@ -35,7 +38,7 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::EmbedType::OrSymbol)) }
       attr_accessor :embed_type
 
-      # The thumbnail for the lesson in png, jpeg, or gif format
+      # The thumbnail image for the lesson in PNG, JPEG, or GIF format.
       sig { returns(T.nilable(WhopSDK::CourseLessonCreateParams::Thumbnail)) }
       attr_reader :thumbnail
 
@@ -47,7 +50,7 @@ module WhopSDK
       end
       attr_writer :thumbnail
 
-      # The title of the lesson
+      # The display title of the lesson (e.g., "Getting Started with APIs").
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
@@ -66,21 +69,24 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the chapter to create the lesson in
+        # The unique identifier of the chapter to create the lesson in (e.g.,
+        # "chap_XXXXX").
         chapter_id:,
-        # The type of the lesson
+        # The content type of the lesson, such as video, text, quiz, or knowledge check.
         lesson_type:,
-        # The content of the lesson
+        # The Markdown content body of the lesson.
         content: nil,
-        # Days from course start until unlock
+        # The number of days after a student starts the course before this lesson becomes
+        # accessible.
         days_from_course_start_until_unlock: nil,
-        # ID for the embed (YouTube video ID or Loom share ID)
+        # The external video identifier for embedded content (e.g., a YouTube video ID or
+        # Loom share ID).
         embed_id: nil,
         # The type of embed for a lesson
         embed_type: nil,
-        # The thumbnail for the lesson in png, jpeg, or gif format
+        # The thumbnail image for the lesson in PNG, JPEG, or GIF format.
         thumbnail: nil,
-        # The title of the lesson
+        # The display title of the lesson (e.g., "Getting Started with APIs").
         title: nil,
         request_options: {}
       )
@@ -117,7 +123,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The thumbnail for the lesson in png, jpeg, or gif format
+        # The thumbnail image for the lesson in PNG, JPEG, or GIF format.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.

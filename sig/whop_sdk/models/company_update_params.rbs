@@ -5,9 +5,11 @@ module WhopSDK
         banner_image: WhopSDK::CompanyUpdateParams::BannerImage?,
         business_type: WhopSDK::Models::business_types?,
         description: String?,
+        industry_group: WhopSDK::Models::industry_groups?,
         industry_type: WhopSDK::Models::industry_types?,
         logo: WhopSDK::CompanyUpdateParams::Logo?,
         send_customer_emails: bool?,
+        target_audience: String?,
         title: String?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -22,11 +24,15 @@ module WhopSDK
 
       attr_accessor description: String?
 
+      attr_accessor industry_group: WhopSDK::Models::industry_groups?
+
       attr_accessor industry_type: WhopSDK::Models::industry_types?
 
       attr_accessor logo: WhopSDK::CompanyUpdateParams::Logo?
 
       attr_accessor send_customer_emails: bool?
+
+      attr_accessor target_audience: String?
 
       attr_accessor title: String?
 
@@ -34,9 +40,11 @@ module WhopSDK
         ?banner_image: WhopSDK::CompanyUpdateParams::BannerImage?,
         ?business_type: WhopSDK::Models::business_types?,
         ?description: String?,
+        ?industry_group: WhopSDK::Models::industry_groups?,
         ?industry_type: WhopSDK::Models::industry_types?,
         ?logo: WhopSDK::CompanyUpdateParams::Logo?,
         ?send_customer_emails: bool?,
+        ?target_audience: String?,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
@@ -45,9 +53,11 @@ module WhopSDK
         banner_image: WhopSDK::CompanyUpdateParams::BannerImage?,
         business_type: WhopSDK::Models::business_types?,
         description: String?,
+        industry_group: WhopSDK::Models::industry_groups?,
         industry_type: WhopSDK::Models::industry_types?,
         logo: WhopSDK::CompanyUpdateParams::Logo?,
         send_customer_emails: bool?,
+        target_audience: String?,
         title: String?,
         request_options: WhopSDK::RequestOptions
       }

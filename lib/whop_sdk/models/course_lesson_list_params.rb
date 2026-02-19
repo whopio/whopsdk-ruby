@@ -20,13 +20,13 @@ module WhopSDK
       optional :before, String, nil?: true
 
       # @!attribute chapter_id
-      #   The ID of the chapter (returns lessons only for this chapter)
+      #   The unique identifier of a chapter to return only its lessons.
       #
       #   @return [String, nil]
       optional :chapter_id, String, nil?: true
 
       # @!attribute course_id
-      #   The ID of the course (returns all lessons across all chapters)
+      #   The unique identifier of the course to return all lessons across all chapters.
       #
       #   @return [String, nil]
       optional :course_id, String, nil?: true
@@ -48,9 +48,9 @@ module WhopSDK
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param chapter_id [String, nil] The ID of the chapter (returns lessons only for this chapter)
+      #   @param chapter_id [String, nil] The unique identifier of a chapter to return only its lessons.
       #
-      #   @param course_id [String, nil] The ID of the course (returns all lessons across all chapters)
+      #   @param course_id [String, nil] The unique identifier of the course to return all lessons across all chapters.
       #
       #   @param first [Integer, nil] Returns the first _n_ elements from the list.
       #

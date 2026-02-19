@@ -8,19 +8,21 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute channel_id
-      #   The ID of the channel or experience to send to.
+      #   The unique identifier of the channel or experience to send the message in. For
+      #   example, 'exp_xxxxx' or 'feed_xxxxx'.
       #
       #   @return [String]
       required :channel_id, String
 
       # @!attribute content
-      #   The content of the message in Markdown format.
+      #   The body of the message in Markdown format. For example, 'Hello **world**'.
       #
       #   @return [String]
       required :content, String
 
       # @!attribute attachments
-      #   The attachments for this message, such as videos or images.
+      #   A list of file attachments to include with the message, such as images or
+      #   videos.
       #
       #   @return [Array<WhopSDK::Models::MessageCreateParams::Attachment>, nil]
       optional :attachments,
@@ -28,27 +30,31 @@ module WhopSDK
                nil?: true
 
       # @!attribute poll
-      #   The poll for this message
+      #   A poll to attach to this message, allowing recipients to vote on options.
       #
       #   @return [WhopSDK::Models::MessageCreateParams::Poll, nil]
       optional :poll, -> { WhopSDK::MessageCreateParams::Poll }, nil?: true
 
       # @!attribute replying_to_message_id
-      #   The ID of the message this is replying to, if applicable.
+      #   The unique identifier of the message this is replying to, creating a threaded
+      #   reply.
       #
       #   @return [String, nil]
       optional :replying_to_message_id, String, nil?: true
 
       # @!method initialize(channel_id:, content:, attachments: nil, poll: nil, replying_to_message_id: nil, request_options: {})
-      #   @param channel_id [String] The ID of the channel or experience to send to.
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::MessageCreateParams} for more details.
       #
-      #   @param content [String] The content of the message in Markdown format.
+      #   @param channel_id [String] The unique identifier of the channel or experience to send the message in. For e
       #
-      #   @param attachments [Array<WhopSDK::Models::MessageCreateParams::Attachment>, nil] The attachments for this message, such as videos or images.
+      #   @param content [String] The body of the message in Markdown format. For example, 'Hello **world**'.
       #
-      #   @param poll [WhopSDK::Models::MessageCreateParams::Poll, nil] The poll for this message
+      #   @param attachments [Array<WhopSDK::Models::MessageCreateParams::Attachment>, nil] A list of file attachments to include with the message, such as images or videos
       #
-      #   @param replying_to_message_id [String, nil] The ID of the message this is replying to, if applicable.
+      #   @param poll [WhopSDK::Models::MessageCreateParams::Poll, nil] A poll to attach to this message, allowing recipients to vote on options.
+      #
+      #   @param replying_to_message_id [String, nil] The unique identifier of the message this is replying to, creating a threaded re
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
@@ -73,7 +79,7 @@ module WhopSDK
         required :options, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::MessageCreateParams::Poll::Option] }
 
         # @!method initialize(options:)
-        #   The poll for this message
+        #   A poll to attach to this message, allowing recipients to vote on options.
         #
         #   @param options [Array<WhopSDK::Models::MessageCreateParams::Poll::Option>] The options for the poll. Must have sequential IDs starting from 1
 

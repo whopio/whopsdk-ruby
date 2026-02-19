@@ -11,8 +11,8 @@ module WhopSDK
       required :id, String
 
       # @!attribute amount
-      #   The amount of the transfer. Provided as a number in the specified currency. Eg:
-      #   10.43 for $10.43 USD.
+      #   The transfer amount in the currency specified by the currency field. For
+      #   example, 10.43 represents $10.43 USD.
       #
       #   @return [Float]
       required :amount, Float
@@ -24,38 +24,40 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute currency
-      #   The currency of the credit transaction transfer
+      #   The currency in which this transfer amount is denominated.
       #
       #   @return [Symbol, WhopSDK::Models::Currency]
       required :currency, enum: -> { WhopSDK::Currency }
 
       # @!attribute destination_ledger_account_id
-      #   The ID of the destination ledger account
+      #   The unique identifier of the ledger account receiving the funds.
       #
       #   @return [String]
       required :destination_ledger_account_id, String
 
       # @!attribute fee_amount
-      #   The decimal fee of the credit transaction transfer
+      #   The flat fee amount deducted from this transfer, in the transfer's currency.
+      #   Null if no flat fee was applied.
       #
       #   @return [Float, nil]
       required :fee_amount, Float, nil?: true
 
       # @!attribute metadata
-      #   Custom key-value pairs attached to the transfer. Max 50 keys, 500 chars per key,
-      #   5000 chars per value.
+      #   Custom key-value pairs attached to this transfer. Maximum 50 keys, 500
+      #   characters per key, 5000 characters per value.
       #
       #   @return [Hash{Symbol=>Object}, nil]
       required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
       # @!attribute notes
-      #   The notes of the credit transaction transfer
+      #   A free-text note attached to this transfer by the sender. Null if no note was
+      #   provided.
       #
       #   @return [String, nil]
       required :notes, String, nil?: true
 
       # @!attribute origin_ledger_account_id
-      #   The ID of the origin ledger account
+      #   The unique identifier of the ledger account that sent the funds.
       #
       #   @return [String]
       required :origin_ledger_account_id, String
@@ -64,25 +66,25 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::TransferListResponse} for more details.
       #
-      #   Credit Transaction Transfer
+      #   A transfer of credit between two ledger accounts.
       #
       #   @param id [String] The unique identifier for the credit transaction transfer.
       #
-      #   @param amount [Float] The amount of the transfer. Provided as a number in the specified currency. Eg:
+      #   @param amount [Float] The transfer amount in the currency specified by the currency field. For example
       #
       #   @param created_at [Time] The datetime the credit transaction transfer was created.
       #
-      #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the credit transaction transfer
+      #   @param currency [Symbol, WhopSDK::Models::Currency] The currency in which this transfer amount is denominated.
       #
-      #   @param destination_ledger_account_id [String] The ID of the destination ledger account
+      #   @param destination_ledger_account_id [String] The unique identifier of the ledger account receiving the funds.
       #
-      #   @param fee_amount [Float, nil] The decimal fee of the credit transaction transfer
+      #   @param fee_amount [Float, nil] The flat fee amount deducted from this transfer, in the transfer's currency. Nul
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs attached to the transfer. Max 50 keys, 500 chars per key,
+      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs attached to this transfer. Maximum 50 keys, 500 character
       #
-      #   @param notes [String, nil] The notes of the credit transaction transfer
+      #   @param notes [String, nil] A free-text note attached to this transfer by the sender. Null if no note was pr
       #
-      #   @param origin_ledger_account_id [String] The ID of the origin ledger account
+      #   @param origin_ledger_account_id [String] The unique identifier of the ledger account that sent the funds.
     end
   end
 end

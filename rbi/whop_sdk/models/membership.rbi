@@ -10,8 +10,8 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # Whether this Membership is set to cancel at the end of the current billing
-      # cycle. Only applies for memberships that have a renewal plan.
+      # Whether this membership is set to cancel at the end of the current billing
+      # cycle. Only applies to memberships with a recurring plan.
       sig { returns(T::Boolean) }
       attr_accessor :cancel_at_period_end
 
@@ -20,15 +20,17 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::CancelOptions::TaggedSymbol)) }
       attr_accessor :cancel_option
 
-      # The epoch timestamp of when the customer initiated a cancellation.
+      # The time the customer initiated cancellation of this membership. As a Unix
+      # timestamp. Null if the membership has not been canceled.
       sig { returns(T.nilable(Time)) }
       attr_accessor :canceled_at
 
-      # The reason that the member canceled the membership (filled out by the member).
+      # Free-text explanation provided by the customer when canceling. Null if the
+      # customer did not provide a reason.
       sig { returns(T.nilable(String)) }
       attr_accessor :cancellation_reason
 
-      # The Company this Membership belongs to.
+      # The company this membership belongs to.
       sig { returns(WhopSDK::Membership::Company) }
       attr_reader :company
 
@@ -43,24 +45,28 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::Currency::TaggedSymbol)) }
       attr_accessor :currency
 
-      # The responses to custom checkout questions for this membership.
+      # The customer's responses to custom checkout questions configured on the product
+      # at the time of purchase.
       sig { returns(T::Array[WhopSDK::Membership::CustomFieldResponse]) }
       attr_accessor :custom_field_responses
 
-      # When the member joined the company.
+      # The time the user first joined the company associated with this membership. As a
+      # Unix timestamp. Null if the member record does not exist.
       sig { returns(T.nilable(Time)) }
       attr_accessor :joined_at
 
-      # The license key for this Membership. This is only present if the membership
-      # grants access to an instance of the Whop Software app.
+      # The software license key associated with this membership. Only present if the
+      # product includes a Whop Software Licensing experience. Null otherwise.
       sig { returns(T.nilable(String)) }
       attr_accessor :license_key
 
-      # The URL for the customer to manage their membership.
+      # The URL where the customer can view and manage this membership, including
+      # cancellation and plan changes. Null if no member record exists.
       sig { returns(T.nilable(String)) }
       attr_accessor :manage_url
 
-      # The Member that this Membership belongs to.
+      # The member record linking the user to the company for this membership. Null if
+      # the member record has not been created yet.
       sig { returns(T.nilable(WhopSDK::Membership::Member)) }
       attr_reader :member
 
@@ -74,25 +80,27 @@ module WhopSDK
       sig { returns(T::Hash[Symbol, T.anything]) }
       attr_accessor :metadata
 
-      # Whether the membership's payments are currently paused.
+      # Whether recurring payment collection for this membership is temporarily paused
+      # by the company.
       sig { returns(T::Boolean) }
       attr_accessor :payment_collection_paused
 
-      # The Plan this Membership is for.
+      # The plan the customer purchased to create this membership.
       sig { returns(WhopSDK::Membership::Plan) }
       attr_reader :plan
 
       sig { params(plan: WhopSDK::Membership::Plan::OrHash).void }
       attr_writer :plan
 
-      # The Product this Membership grants access to.
+      # The product this membership grants access to.
       sig { returns(WhopSDK::Membership::Product) }
       attr_reader :product
 
       sig { params(product: WhopSDK::Membership::Product::OrHash).void }
       attr_writer :product
 
-      # The Promo Code that is currently applied to this Membership.
+      # The promotional code currently applied to this membership's billing. Null if no
+      # promo code is active.
       sig { returns(T.nilable(WhopSDK::Membership::PromoCode)) }
       attr_reader :promo_code
 
@@ -103,17 +111,18 @@ module WhopSDK
       end
       attr_writer :promo_code
 
-      # The timestamp in seconds at which the current billing cycle for this
-      # subscription ends. Only applies for memberships that have a renewal plan.
+      # The end of the current billing period for this recurring membership. As a Unix
+      # timestamp. Null if the membership is not recurring.
       sig { returns(T.nilable(Time)) }
       attr_accessor :renewal_period_end
 
-      # The timestamp in seconds at which the current billing cycle for this
-      # subscription start. Only applies for memberships that have a renewal plan.
+      # The start of the current billing period for this recurring membership. As a Unix
+      # timestamp. Null if the membership is not recurring.
       sig { returns(T.nilable(Time)) }
       attr_accessor :renewal_period_start
 
-      # The status of the membership.
+      # The current lifecycle status of the membership (e.g., active, trialing,
+      # past_due, canceled, expired, completed).
       sig { returns(WhopSDK::MembershipStatus::TaggedSymbol) }
       attr_accessor :status
 
@@ -121,7 +130,7 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :updated_at
 
-      # The user this membership belongs to
+      # The user who owns this membership. Null if the user account has been deleted.
       sig { returns(T.nilable(WhopSDK::Membership::User)) }
       attr_reader :user
 
@@ -161,55 +170,64 @@ module WhopSDK
       def self.new(
         # The unique identifier for the membership.
         id:,
-        # Whether this Membership is set to cancel at the end of the current billing
-        # cycle. Only applies for memberships that have a renewal plan.
+        # Whether this membership is set to cancel at the end of the current billing
+        # cycle. Only applies to memberships with a recurring plan.
         cancel_at_period_end:,
         # The different reasons a user can choose for why they are canceling their
         # membership.
         cancel_option:,
-        # The epoch timestamp of when the customer initiated a cancellation.
+        # The time the customer initiated cancellation of this membership. As a Unix
+        # timestamp. Null if the membership has not been canceled.
         canceled_at:,
-        # The reason that the member canceled the membership (filled out by the member).
+        # Free-text explanation provided by the customer when canceling. Null if the
+        # customer did not provide a reason.
         cancellation_reason:,
-        # The Company this Membership belongs to.
+        # The company this membership belongs to.
         company:,
         # The datetime the membership was created.
         created_at:,
         # The available currencies on the platform
         currency:,
-        # The responses to custom checkout questions for this membership.
+        # The customer's responses to custom checkout questions configured on the product
+        # at the time of purchase.
         custom_field_responses:,
-        # When the member joined the company.
+        # The time the user first joined the company associated with this membership. As a
+        # Unix timestamp. Null if the member record does not exist.
         joined_at:,
-        # The license key for this Membership. This is only present if the membership
-        # grants access to an instance of the Whop Software app.
+        # The software license key associated with this membership. Only present if the
+        # product includes a Whop Software Licensing experience. Null otherwise.
         license_key:,
-        # The URL for the customer to manage their membership.
+        # The URL where the customer can view and manage this membership, including
+        # cancellation and plan changes. Null if no member record exists.
         manage_url:,
-        # The Member that this Membership belongs to.
+        # The member record linking the user to the company for this membership. Null if
+        # the member record has not been created yet.
         member:,
         # Custom key-value pairs for the membership (commonly used for software licensing,
         # e.g., HWID). Max 50 keys, 500 chars per key, 5000 chars per value.
         metadata:,
-        # Whether the membership's payments are currently paused.
+        # Whether recurring payment collection for this membership is temporarily paused
+        # by the company.
         payment_collection_paused:,
-        # The Plan this Membership is for.
+        # The plan the customer purchased to create this membership.
         plan:,
-        # The Product this Membership grants access to.
+        # The product this membership grants access to.
         product:,
-        # The Promo Code that is currently applied to this Membership.
+        # The promotional code currently applied to this membership's billing. Null if no
+        # promo code is active.
         promo_code:,
-        # The timestamp in seconds at which the current billing cycle for this
-        # subscription ends. Only applies for memberships that have a renewal plan.
+        # The end of the current billing period for this recurring membership. As a Unix
+        # timestamp. Null if the membership is not recurring.
         renewal_period_end:,
-        # The timestamp in seconds at which the current billing cycle for this
-        # subscription start. Only applies for memberships that have a renewal plan.
+        # The start of the current billing period for this recurring membership. As a Unix
+        # timestamp. Null if the membership is not recurring.
         renewal_period_start:,
-        # The status of the membership.
+        # The current lifecycle status of the membership (e.g., active, trialing,
+        # past_due, canceled, expired, completed).
         status:,
         # The datetime the membership was last updated.
         updated_at:,
-        # The user this membership belongs to
+        # The user who owns this membership. Null if the user account has been deleted.
         user:
       )
       end
@@ -257,16 +275,16 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The title of the company.
+        # The display name of the company shown to customers.
         sig { returns(String) }
         attr_accessor :title
 
-        # The Company this Membership belongs to.
+        # The company this membership belongs to.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the company.
           id:,
-          # The title of the company.
+          # The display name of the company shown to customers.
           title:
         )
         end
@@ -330,7 +348,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The Member that this Membership belongs to.
+        # The member record linking the user to the company for this membership. Null if
+        # the member record has not been created yet.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the member.
@@ -353,7 +372,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The Plan this Membership is for.
+        # The plan the customer purchased to create this membership.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the plan.
@@ -376,16 +395,18 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The title of the product. Use for Whop 4.0.
+        # The display name of the product shown to customers on the product page and in
+        # search results.
         sig { returns(String) }
         attr_accessor :title
 
-        # The Product this Membership grants access to.
+        # The product this membership grants access to.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the product.
           id:,
-          # The title of the product. Use for Whop 4.0.
+          # The display name of the product shown to customers on the product page and in
+          # search results.
           title:
         )
         end
@@ -405,7 +426,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The Promo Code that is currently applied to this Membership.
+        # The promotional code currently applied to this membership's billing. Null if no
+        # promo code is active.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the promo code.
@@ -428,19 +450,20 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The email of the user
+        # The user's email address. Requires the member:email:read permission to access.
+        # Null if not authorized.
         sig { returns(T.nilable(String)) }
         attr_accessor :email
 
-        # The name of the user from their Whop account.
+        # The user's display name shown on their public profile.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
-        # The username of the user from their Whop account.
+        # The user's unique username shown on their public profile.
         sig { returns(String) }
         attr_accessor :username
 
-        # The user this membership belongs to
+        # The user who owns this membership. Null if the user account has been deleted.
         sig do
           params(
             id: String,
@@ -452,11 +475,12 @@ module WhopSDK
         def self.new(
           # The unique identifier for the user.
           id:,
-          # The email of the user
+          # The user's email address. Requires the member:email:read permission to access.
+          # Null if not authorized.
           email:,
-          # The name of the user from their Whop account.
+          # The user's display name shown on their public profile.
           name:,
-          # The username of the user from their Whop account.
+          # The user's unique username shown on their public profile.
           username:
         )
         end

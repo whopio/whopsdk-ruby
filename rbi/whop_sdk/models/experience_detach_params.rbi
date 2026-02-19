@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::ExperienceDetachParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the Access Pass to add the Experience to.
+      # The unique identifier of the product to detach the experience from.
       sig { returns(String) }
       attr_accessor :product_id
 
@@ -22,7 +22,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the Access Pass to add the Experience to.
+        # The unique identifier of the product to detach the experience from.
         product_id:,
         request_options: {}
       )

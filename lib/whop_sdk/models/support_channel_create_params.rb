@@ -8,21 +8,25 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute company_id
-      #   The ID of the company to create the support chat in
+      #   The unique identifier of the company to create the support channel in.
       #
       #   @return [String]
       required :company_id, String
 
       # @!attribute user_id
-      #   The ID (user_xxx) or username of the user to create the support chat for
+      #   The user ID (e.g. 'user_xxxxx') or username of the customer to open a support
+      #   channel for.
       #
       #   @return [String]
       required :user_id, String
 
       # @!method initialize(company_id:, user_id:, request_options: {})
-      #   @param company_id [String] The ID of the company to create the support chat in
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::SupportChannelCreateParams} for more details.
       #
-      #   @param user_id [String] The ID (user_xxx) or username of the user to create the support chat for
+      #   @param company_id [String] The unique identifier of the company to create the support channel in.
+      #
+      #   @param user_id [String] The user ID (e.g. 'user_xxxxx') or username of the customer to open a support ch
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

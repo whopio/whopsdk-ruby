@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class Verifications
-      # Retrieves a verification by ID
+      # Retrieves the details of an existing verification.
       #
       # Required permissions:
       #
@@ -15,7 +15,7 @@ module WhopSDK
         ).returns(WhopSDK::Models::VerificationRetrieveResponse)
       end
       def retrieve(
-        # The ID of the verification
+        # The unique identifier of the verification to retrieve.
         id,
         request_options: {}
       )

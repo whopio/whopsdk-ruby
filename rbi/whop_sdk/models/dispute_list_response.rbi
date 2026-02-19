@@ -15,11 +15,11 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The amount of the dispute (formatted).
+      # The disputed amount in the specified currency, formatted as a decimal.
       sig { returns(Float) }
       attr_accessor :amount
 
-      # The company the dispute is against.
+      # The company that the dispute was filed against.
       sig { returns(T.nilable(WhopSDK::Models::DisputeListResponse::Company)) }
       attr_reader :company
 
@@ -35,19 +35,21 @@ module WhopSDK
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_at
 
-      # The currency of the dispute.
+      # The three-letter ISO currency code for the disputed amount.
       sig { returns(WhopSDK::Currency::TaggedSymbol) }
       attr_accessor :currency
 
-      # Whether or not the dispute data can be edited.
+      # Whether the dispute evidence can still be edited and submitted. Returns true
+      # only when the dispute status requires a response.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :editable
 
-      # The last date the dispute is allow to be submitted by.
+      # The deadline by which dispute evidence must be submitted. Null if no response
+      # deadline is set.
       sig { returns(T.nilable(Time)) }
       attr_accessor :needs_response_by
 
-      # The payment that got disputed
+      # The original payment that was disputed.
       sig { returns(T.nilable(WhopSDK::Models::DisputeListResponse::Payment)) }
       attr_reader :payment
 
@@ -59,7 +61,8 @@ module WhopSDK
       end
       attr_writer :payment
 
-      # The plan that got disputed
+      # The plan associated with the disputed payment. Null if the dispute is not linked
+      # to a specific plan.
       sig { returns(T.nilable(WhopSDK::Models::DisputeListResponse::Plan)) }
       attr_reader :plan
 
@@ -70,7 +73,8 @@ module WhopSDK
       end
       attr_writer :plan
 
-      # The product that got disputed
+      # The product associated with the disputed payment. Null if the dispute is not
+      # linked to a specific product.
       sig { returns(T.nilable(WhopSDK::Models::DisputeListResponse::Product)) }
       attr_reader :product
 
@@ -82,15 +86,17 @@ module WhopSDK
       end
       attr_writer :product
 
-      # The reason for the dispute
+      # A human-readable reason for the dispute.
       sig { returns(T.nilable(String)) }
       attr_accessor :reason
 
-      # The status of the dispute (mimics stripe's dispute status).
+      # The current status of the dispute lifecycle, such as needs_response,
+      # under_review, won, or lost.
       sig { returns(WhopSDK::DisputeStatuses::TaggedSymbol) }
       attr_accessor :status
 
-      # Whether or not the dispute is a Visa Rapid Dispute Resolution.
+      # Whether the dispute was automatically resolved through Visa Rapid Dispute
+      # Resolution (RDR).
       sig { returns(T::Boolean) }
       attr_accessor :visa_rdr
 
@@ -119,29 +125,35 @@ module WhopSDK
       def self.new(
         # The unique identifier for the dispute.
         id:,
-        # The amount of the dispute (formatted).
+        # The disputed amount in the specified currency, formatted as a decimal.
         amount:,
-        # The company the dispute is against.
+        # The company that the dispute was filed against.
         company:,
         # The datetime the dispute was created.
         created_at:,
-        # The currency of the dispute.
+        # The three-letter ISO currency code for the disputed amount.
         currency:,
-        # Whether or not the dispute data can be edited.
+        # Whether the dispute evidence can still be edited and submitted. Returns true
+        # only when the dispute status requires a response.
         editable:,
-        # The last date the dispute is allow to be submitted by.
+        # The deadline by which dispute evidence must be submitted. Null if no response
+        # deadline is set.
         needs_response_by:,
-        # The payment that got disputed
+        # The original payment that was disputed.
         payment:,
-        # The plan that got disputed
+        # The plan associated with the disputed payment. Null if the dispute is not linked
+        # to a specific plan.
         plan:,
-        # The product that got disputed
+        # The product associated with the disputed payment. Null if the dispute is not
+        # linked to a specific product.
         product:,
-        # The reason for the dispute
+        # A human-readable reason for the dispute.
         reason:,
-        # The status of the dispute (mimics stripe's dispute status).
+        # The current status of the dispute lifecycle, such as needs_response,
+        # under_review, won, or lost.
         status:,
-        # Whether or not the dispute is a Visa Rapid Dispute Resolution.
+        # Whether the dispute was automatically resolved through Visa Rapid Dispute
+        # Resolution (RDR).
         visa_rdr:
       )
       end
@@ -185,7 +197,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :title
 
-        # The company the dispute is against.
+        # The company that the dispute was filed against.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the company.
@@ -213,7 +225,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The payment that got disputed
+        # The original payment that was disputed.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the payment.
@@ -239,7 +251,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The plan that got disputed
+        # The plan associated with the disputed payment. Null if the dispute is not linked
+        # to a specific plan.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the plan.
@@ -265,16 +278,19 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The title of the product. Use for Whop 4.0.
+        # The display name of the product shown to customers on the product page and in
+        # search results.
         sig { returns(String) }
         attr_accessor :title
 
-        # The product that got disputed
+        # The product associated with the disputed payment. Null if the dispute is not
+        # linked to a specific product.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the product.
           id:,
-          # The title of the product. Use for Whop 4.0.
+          # The display name of the product shown to customers on the product page and in
+          # search results.
           title:
         )
         end

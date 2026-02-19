@@ -3,7 +3,7 @@
 module WhopSDK
   module Models
     # The type of token transaction
-    module BotTokenTransactionTypes
+    module CompanyTokenTransactionType
       extend WhopSDK::Internal::Type::Enum
 
       ADD = :add

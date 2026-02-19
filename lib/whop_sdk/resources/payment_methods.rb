@@ -3,11 +3,10 @@
 module WhopSDK
   module Resources
     class PaymentMethods
-      # A payment method is a stored representation of how a customer intends to pay,
-      # such as a card, bank account, or digital wallet. It holds the necessary billing
-      # details and can be attached to a member for future one-time or recurring
-      # charges. This lets you reuse the same payment credentials across multiple
-      # payments. You must provide exactly one of company_id or member_id.
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::PaymentMethodRetrieveParams} for more details.
+      #
+      # Retrieves the details of an existing payment method.
       #
       # Required permissions:
       #
@@ -15,11 +14,11 @@ module WhopSDK
       #
       # @overload retrieve(id, company_id: nil, member_id: nil, request_options: {})
       #
-      # @param id [String] The ID of the PaymentMethod
+      # @param id [String] The unique identifier of the payment method.
       #
-      # @param company_id [String, nil] The ID of the Company. Provide either this or member_id (not both).
+      # @param company_id [String, nil] The unique identifier of the company. Provide either this or member_id, not both
       #
-      # @param member_id [String, nil] The ID of the Member. Provide either this or company_id (not both).
+      # @param member_id [String, nil] The unique identifier of the member. Provide either this or company_id, not both
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -37,11 +36,13 @@ module WhopSDK
         )
       end
 
-      # A payment method is a stored representation of how a customer intends to pay,
-      # such as a card, bank account, or digital wallet. It holds the necessary billing
-      # details and can be attached to a member for future one-time or recurring
-      # charges. This lets you reuse the same payment credentials across multiple
-      # payments.
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::PaymentMethodListParams} for more details.
+      #
+      # Returns a paginated list of payment methods for a member or company, with
+      # optional filtering by creation date. A payment method is a stored representation
+      # of how a customer intends to pay, such as a card, bank account, or digital
+      # wallet.
       #
       # Required permissions:
       #
@@ -53,11 +54,11 @@ module WhopSDK
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param company_id [String, nil] The ID of the Company. Provide either this or member_id (not both).
+      # @param company_id [String, nil] The unique identifier of the company. Provide either this or member_id, not both
       #
-      # @param created_after [Time, nil] The minimum creation date to filter by
+      # @param created_after [Time, nil] Only return payment methods created after this timestamp.
       #
-      # @param created_before [Time, nil] The maximum creation date to filter by
+      # @param created_before [Time, nil] Only return payment methods created before this timestamp.
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
@@ -65,7 +66,7 @@ module WhopSDK
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param member_id [String, nil] The ID of the Member to list payment methods for
+      # @param member_id [String, nil] The unique identifier of the member to list payment methods for.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

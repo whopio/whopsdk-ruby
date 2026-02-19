@@ -3,7 +3,8 @@
 module WhopSDK
   module Resources
     class Invoices
-      # Creates an invoice
+      # Create an invoice for a customer. The invoice can be charged automatically using
+      # a stored payment method, or sent to the customer for manual payment.
       #
       # Required permissions:
       #
@@ -19,6 +20,7 @@ module WhopSDK
           product: WhopSDK::InvoiceCreateParams::Product::OrHash,
           email_address: String,
           product_id: String,
+          automatically_finalizes_at: T.nilable(Time),
           charge_buyer_fee: T.nilable(T::Boolean),
           customer_name: T.nilable(String),
           payment_method_id: T.nilable(String),
@@ -27,36 +29,38 @@ module WhopSDK
         ).returns(WhopSDK::Invoice)
       end
       def create(
-        # The method of collection for this invoice. If using charge_automatically, you
-        # must provide a payment_token.
+        # How the invoice should be collected. Use charge_automatically to charge a stored
+        # payment method, or send_invoice to email the customer.
         collection_method:,
-        # The company ID to create this invoice for.
+        # The unique identifier of the company to create this invoice for.
         company_id:,
-        # The date the invoice is due, if applicable.
+        # The date by which the invoice must be paid.
         due_date:,
-        # The member ID to create this invoice for. Include this if you want to create an
-        # invoice for an existing member. If you do not have a member ID, you must provide
-        # an email_address and customer_name.
+        # The unique identifier of an existing member to create this invoice for. If not
+        # provided, you must supply an email_address and customer_name.
         member_id:,
-        # The properties of the plan to create for this invoice.
+        # The plan attributes defining the price, currency, and billing interval for this
+        # invoice.
         plan:,
-        # The properties of the product to create for this invoice. Include this if you
-        # want to create an invoice for a new product.
+        # The properties of the product to create for this invoice. Provide this to create
+        # a new product inline.
         product:,
-        # The email address to create this invoice for. This is required if you want to
-        # create an invoice for a user who does not have a member of your company yet.
+        # The email address of the customer. Required when creating an invoice for a
+        # customer who is not yet a member of the company.
         email_address:,
-        # The product ID to create this invoice for. Include this if you want to create an
-        # invoice for an existing product.
+        # The unique identifier of an existing product to create this invoice for.
         product_id:,
-        # Whether or not to charge the customer a buyer fee.
+        # The date and time when the invoice will be automatically finalized and charged.
+        # Only valid when collection_method is charge_automatically. If not provided, the
+        # charge will be processed immediately.
+        automatically_finalizes_at: nil,
+        # Whether to charge the customer a buyer fee on this invoice.
         charge_buyer_fee: nil,
-        # The name of the customer to create this invoice for. This is required if you
-        # want to create an invoice for a customer who does not have a member of your
-        # company yet.
+        # The name of the customer. Required when creating an invoice for a customer who
+        # is not yet a member of the company.
         customer_name: nil,
-        # The payment method ID to use for this invoice. If using charge_automatically,
-        # you must provide a payment_method_id.
+        # The unique identifier of the payment method to charge. Required when
+        # collection_method is charge_automatically.
         payment_method_id: nil,
         # The payment token ID to use for this invoice. If using charge_automatically, you
         # must provide a payment_token.
@@ -65,7 +69,7 @@ module WhopSDK
       )
       end
 
-      # Retrieves an invoice by ID or token
+      # Retrieves the details of an existing invoice.
       #
       # Required permissions:
       #
@@ -78,13 +82,14 @@ module WhopSDK
         ).returns(WhopSDK::Invoice)
       end
       def retrieve(
-        # The ID of the invoice or a token
+        # The unique identifier of the invoice, or a secure token.
         id,
         request_options: {}
       )
       end
 
-      # Lists invoices
+      # Returns a paginated list of invoices for a company, with optional filtering by
+      # product, status, collection method, and creation date.
       #
       # Required permissions:
       #
@@ -109,17 +114,17 @@ module WhopSDK
         ).returns(WhopSDK::Internal::CursorPage[WhopSDK::InvoiceListItem])
       end
       def list(
-        # The ID of the company to list invoices for
+        # The unique identifier of the company to list invoices for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # Filter invoices by their collection method
+        # Filter invoices by their collection method.
         collection_methods: nil,
-        # The minimum creation date to filter by
+        # Only return invoices created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return invoices created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,
@@ -129,15 +134,17 @@ module WhopSDK
         last: nil,
         # Which columns can be used to sort.
         order: nil,
-        # Return only invoices created for these specific product ids
+        # Filter invoices to only those associated with these specific product
+        # identifiers.
         product_ids: nil,
-        # The statuses to filter the invoices by
+        # Filter invoices by their current status.
         statuses: nil,
         request_options: {}
       )
       end
 
-      # Void an invoice
+      # Void an open invoice so it can no longer be paid. Voiding is permanent and
+      # cannot be undone.
       #
       # Required permissions:
       #
@@ -149,7 +156,7 @@ module WhopSDK
         ).returns(T::Boolean)
       end
       def void(
-        # The ID of the invoice to void
+        # The unique identifier of the invoice to void.
         id,
         request_options: {}
       )

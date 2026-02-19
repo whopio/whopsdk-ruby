@@ -1,0 +1,15 @@
+module WhopSDK
+  module Models
+    type company_token_transaction_type = :add | :subtract | :transfer
+
+    module CompanyTokenTransactionType
+      extend WhopSDK::Internal::Type::Enum
+
+      ADD: :add
+      SUBTRACT: :subtract
+      TRANSFER: :transfer
+
+      def self?.values: -> ::Array[WhopSDK::Models::company_token_transaction_type]
+    end
+  end
+end

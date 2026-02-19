@@ -29,7 +29,7 @@ class WhopSDK::Test::Resources::CompanyTokenTransactionsTest < WhopSDK::Test::Re
         idempotency_key: String | nil,
         linked_transaction_id: String | nil,
         member: WhopSDK::CompanyTokenTransaction::Member,
-        transaction_type: WhopSDK::BotTokenTransactionTypes,
+        transaction_type: WhopSDK::CompanyTokenTransactionType,
         user: WhopSDK::CompanyTokenTransaction::User
       }
     end
@@ -54,7 +54,7 @@ class WhopSDK::Test::Resources::CompanyTokenTransactionsTest < WhopSDK::Test::Re
         idempotency_key: String | nil,
         linked_transaction_id: String | nil,
         member: WhopSDK::CompanyTokenTransaction::Member,
-        transaction_type: WhopSDK::BotTokenTransactionTypes,
+        transaction_type: WhopSDK::CompanyTokenTransactionType,
         user: WhopSDK::CompanyTokenTransaction::User
       }
     end
@@ -86,7 +86,7 @@ class WhopSDK::Test::Resources::CompanyTokenTransactionsTest < WhopSDK::Test::Re
         idempotency_key: String | nil,
         linked_transaction_id: String | nil,
         member: WhopSDK::Models::CompanyTokenTransactionListResponse::Member,
-        transaction_type: WhopSDK::BotTokenTransactionTypes,
+        transaction_type: WhopSDK::CompanyTokenTransactionType,
         user: WhopSDK::Models::CompanyTokenTransactionListResponse::User
       }
     end

@@ -31,24 +31,24 @@ module WhopSDK
         ).returns(WhopSDK::CheckoutConfiguration)
       end
       def create(
-        # Pass this object to create a new plan for this checkout configuration
+        # The plan attributes to create a new plan inline for this checkout configuration.
         plan:,
-        # The ID of the plan to use for the checkout configuration
+        # The unique identifier of an existing plan to use for this checkout
+        # configuration.
         plan_id:,
-        # The ID of the company for which to generate the checkout configuration. Only
-        # required in setup mode.
+        # The unique identifier of the company to create the checkout configuration for.
+        # Only required in setup mode.
         company_id:,
-        # The affiliate code to use for the checkout configuration
+        # An affiliate tracking code to attribute the checkout to a specific affiliate.
         affiliate_code: nil,
         # The available currencies on the platform
         currency: nil,
-        # The metadata to use for the checkout configuration
+        # Custom key-value metadata to attach to the checkout configuration.
         metadata: nil,
-        # This currently only works for configurations made in 'setup' mode. The explicit
-        # payment method configuration for the checkout session. If not provided, the
-        # platform or company's defaults will apply.
+        # The explicit payment method configuration for the checkout session. Only applies
+        # to setup mode. If not provided, the platform or company defaults will apply.
         payment_method_configuration: nil,
-        # The URL to redirect the user to after the checkout configuration is created
+        # The URL to redirect the user to after checkout is completed.
         redirect_url: nil,
         # The URL of the page where the checkout is being initiated from.
         source_url: nil,
@@ -57,7 +57,7 @@ module WhopSDK
       )
       end
 
-      # Retrieves a checkout configuration by ID
+      # Retrieves the details of an existing checkout configuration.
       #
       # Required permissions:
       #
@@ -69,13 +69,14 @@ module WhopSDK
         ).returns(WhopSDK::CheckoutConfiguration)
       end
       def retrieve(
-        # The ID of the checkout configuration
+        # The unique identifier of the checkout configuration.
         id,
         request_options: {}
       )
       end
 
-      # Lists checkout configurations
+      # Returns a paginated list of checkout configurations for a company, with optional
+      # filtering by plan and creation date.
       #
       # Required permissions:
       #
@@ -99,15 +100,15 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the company to list checkout configurations for
+        # The unique identifier of the company to list checkout configurations for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The minimum creation date to filter by
+        # Only return checkout configurations created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return checkout configurations created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,
@@ -115,7 +116,8 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The ID of the plan to filter checkout configurations by
+        # Filter checkout configurations to only those associated with this plan
+        # identifier.
         plan_id: nil,
         request_options: {}
       )

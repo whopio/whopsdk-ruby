@@ -104,7 +104,7 @@ module WhopSDK
         required :id, String
 
         # @!attribute title
-        #   The title of the lesson
+        #   The display name of the lesson shown to students. Maximum 120 characters.
         #
         #   @return [String]
         required :title, String
@@ -114,7 +114,7 @@ module WhopSDK
         #
         #   @param id [String] The unique identifier for the lesson.
         #
-        #   @param title [String] The title of the lesson
+        #   @param title [String] The display name of the lesson shown to students. Maximum 120 characters.
       end
 
       # @see WhopSDK::Models::CourseLessonSubmitAssessmentResponse#user
@@ -126,13 +126,13 @@ module WhopSDK
         required :id, String
 
         # @!attribute name
-        #   The name of the user from their Whop account.
+        #   The user's display name shown on their public profile.
         #
         #   @return [String, nil]
         required :name, String, nil?: true
 
         # @!attribute username
-        #   The username of the user from their Whop account.
+        #   The user's unique username shown on their public profile.
         #
         #   @return [String]
         required :username, String
@@ -142,9 +142,9 @@ module WhopSDK
         #
         #   @param id [String] The unique identifier for the user.
         #
-        #   @param name [String, nil] The name of the user from their Whop account.
+        #   @param name [String, nil] The user's display name shown on their public profile.
         #
-        #   @param username [String] The username of the user from their Whop account.
+        #   @param username [String] The user's unique username shown on their public profile.
       end
     end
   end

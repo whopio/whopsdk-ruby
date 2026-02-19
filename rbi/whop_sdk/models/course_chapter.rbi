@@ -12,19 +12,21 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The lessons in this chapter
+      # An ordered list of lessons in this chapter, sorted by display position. Hidden
+      # lessons are excluded for non-admin users.
       sig { returns(T::Array[WhopSDK::CourseChapter::Lesson]) }
       attr_accessor :lessons
 
-      # The order of the chapter within its course
+      # The sort position of this chapter within its parent course, starting from zero.
       sig { returns(Integer) }
       attr_accessor :order
 
-      # The title of the chapter
+      # The display name of the chapter shown to students. Maximum 150 characters.
       sig { returns(String) }
       attr_accessor :title
 
-      # A chapter from the courses app
+      # A grouping of related lessons within a course, used to organize content into
+      # sections.
       sig do
         params(
           id: String,
@@ -36,11 +38,12 @@ module WhopSDK
       def self.new(
         # The unique identifier for the chapter.
         id:,
-        # The lessons in this chapter
+        # An ordered list of lessons in this chapter, sorted by display position. Hidden
+        # lessons are excluded for non-admin users.
         lessons:,
-        # The order of the chapter within its course
+        # The sort position of this chapter within its parent course, starting from zero.
         order:,
-        # The title of the chapter
+        # The display name of the chapter shown to students. Maximum 150 characters.
         title:
       )
       end
@@ -68,15 +71,16 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The order of the lesson within its chapter
+        # The sort position of this lesson within its parent chapter, starting from zero.
         sig { returns(Integer) }
         attr_accessor :order
 
-        # The title of the lesson
+        # The display name of the lesson shown to students. Maximum 120 characters.
         sig { returns(String) }
         attr_accessor :title
 
-        # A lesson from the courses app
+        # An individual learning unit within a chapter, which can contain text, video,
+        # PDF, or assessment content.
         sig do
           params(id: String, order: Integer, title: String).returns(
             T.attached_class
@@ -85,9 +89,9 @@ module WhopSDK
         def self.new(
           # The unique identifier for the lesson.
           id:,
-          # The order of the lesson within its chapter
+          # The sort position of this lesson within its parent chapter, starting from zero.
           order:,
-          # The title of the lesson
+          # The display name of the lesson shown to students. Maximum 120 characters.
           title:
         )
         end

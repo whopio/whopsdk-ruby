@@ -9,17 +9,17 @@ module WhopSDK
       #
       # @overload create(app_id:, company_id:, is_public: nil, logo: nil, name: nil, section_id: nil, request_options: {})
       #
-      # @param app_id [String] The ID of the app to create the experience for
+      # @param app_id [String] The unique identifier of the app that powers this experience.
       #
-      # @param company_id [String] The ID of the company to create the experience for
+      # @param company_id [String] The unique identifier of the company to create this experience for.
       #
-      # @param is_public [Boolean, nil] Whether the experience is publicly accessible
+      # @param is_public [Boolean, nil] Whether the experience is publicly accessible without a membership.
       #
-      # @param logo [WhopSDK::Models::ExperienceCreateParams::Logo, nil] The logo for the experience
+      # @param logo [WhopSDK::Models::ExperienceCreateParams::Logo, nil] A logo image displayed alongside the experience name.
       #
-      # @param name [String, nil] The name of the experience
+      # @param name [String, nil] The display name of the experience. Defaults to the app's name if not provided.
       #
-      # @param section_id [String, nil] The ID of the section to create the experience in
+      # @param section_id [String, nil] The unique identifier of the section to place the experience in.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -37,11 +37,11 @@ module WhopSDK
         )
       end
 
-      # Retrieves an experience by ID
+      # Retrieves the details of an existing experience.
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the experience
+      # @param id [String] The unique identifier of the experience.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -63,19 +63,19 @@ module WhopSDK
       #
       # @overload update(id, access_level: nil, is_public: nil, logo: nil, name: nil, order: nil, section_id: nil, request_options: {})
       #
-      # @param id [String] The id of the experience to update.
+      # @param id [String] The unique identifier of the experience to update.
       #
       # @param access_level [Symbol, WhopSDK::Models::ExperienceUpdateParams::AccessLevel, nil] The different access levels for experiences (PUBLIC IS NEVER USED ANYMORE).
       #
-      # @param is_public [Boolean, nil] Whether the experience is publicly accessible.
+      # @param is_public [Boolean, nil] Whether the experience is publicly accessible without a membership.
       #
-      # @param logo [WhopSDK::Models::ExperienceUpdateParams::Logo, nil] The logo for the experience
+      # @param logo [WhopSDK::Models::ExperienceUpdateParams::Logo, nil] A logo image displayed alongside the experience name.
       #
-      # @param name [String, nil] The name of the experience.
+      # @param name [String, nil] The display name of the experience.
       #
-      # @param order [String, nil] The order of the experience in the section.
+      # @param order [String, nil] The position of the experience within its section for display ordering.
       #
-      # @param section_id [String, nil] The ID of the section to update.
+      # @param section_id [String, nil] The unique identifier of the section to move the experience into.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -93,7 +93,8 @@ module WhopSDK
         )
       end
 
-      # Lists experiences for a company
+      # Returns a paginated list of experiences belonging to a company, with optional
+      # filtering by product and app.
       #
       # Required permissions:
       #
@@ -101,23 +102,23 @@ module WhopSDK
       #
       # @overload list(company_id:, after: nil, app_id: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, product_id: nil, request_options: {})
       #
-      # @param company_id [String] The ID of the company to filter experiences by
+      # @param company_id [String] The unique identifier of the company to list experiences for.
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
-      # @param app_id [String, nil] The ID of the app to filter experiences by
+      # @param app_id [String, nil] Filter to only experiences powered by this app identifier.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param created_after [Time, nil] The minimum creation date to filter by
+      # @param created_after [Time, nil] Only return experiences created after this timestamp.
       #
-      # @param created_before [Time, nil] The maximum creation date to filter by
+      # @param created_before [Time, nil] Only return experiences created before this timestamp.
       #
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param product_id [String, nil] The ID of the product to filter experiences by
+      # @param product_id [String, nil] Filter to only experiences attached to this product identifier.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -142,7 +143,7 @@ module WhopSDK
       #
       # @overload delete(id, request_options: {})
       #
-      # @param id [String] The internal ID of the experience to delete.
+      # @param id [String] The unique identifier of the experience to delete.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -158,7 +159,7 @@ module WhopSDK
         )
       end
 
-      # Adds an experience to an product, making it accessible to the product's
+      # Attach an experience to a product, making it accessible to the product's
       # customers.
       #
       # Required permissions:
@@ -167,9 +168,9 @@ module WhopSDK
       #
       # @overload attach(id, product_id:, request_options: {})
       #
-      # @param id [String] The ID of the Experience to be added to an Access Pass.
+      # @param id [String] The unique identifier of the experience to attach.
       #
-      # @param product_id [String] The ID of the Access Pass to add the Experience to.
+      # @param product_id [String] The unique identifier of the product to attach the experience to.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -187,8 +188,8 @@ module WhopSDK
         )
       end
 
-      # Removes an experience from an product, making it inaccessible to the product's
-      # customers.
+      # Detach an experience from a product, removing customer access to it through that
+      # product.
       #
       # Required permissions:
       #
@@ -196,9 +197,9 @@ module WhopSDK
       #
       # @overload detach(id, product_id:, request_options: {})
       #
-      # @param id [String] The ID of the Experience to be added to an Access Pass.
+      # @param id [String] The unique identifier of the experience to detach.
       #
-      # @param product_id [String] The ID of the Access Pass to add the Experience to.
+      # @param product_id [String] The unique identifier of the product to detach the experience from.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -216,6 +217,9 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::ExperienceDuplicateParams} for more details.
+      #
       # Duplicates an existing experience. The name will be copied, unless provided. The
       # new experience will be attached to the same products as the original experience.
       # If duplicating a Forum or Chat experience, the new experience will have the same
@@ -229,9 +233,9 @@ module WhopSDK
       #
       # @overload duplicate(id, name: nil, request_options: {})
       #
-      # @param id [String] The ID of the experience to duplicate
+      # @param id [String] The unique identifier of the experience to duplicate.
       #
-      # @param name [String, nil] The name of the new experience
+      # @param name [String, nil] The display name for the duplicated experience. Defaults to the original experie
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

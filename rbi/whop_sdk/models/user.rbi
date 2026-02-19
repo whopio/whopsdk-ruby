@@ -9,7 +9,7 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The user's bio
+      # A short biography written by the user, displayed on their public profile.
       sig { returns(T.nilable(String)) }
       attr_accessor :bio
 
@@ -17,11 +17,12 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The name of the user from their Whop account.
+      # The user's display name shown on their public profile.
       sig { returns(T.nilable(String)) }
       attr_accessor :name
 
-      # The user's profile picture
+      # The user's profile picture attachment with URL, content type, and file metadata.
+      # Null if using a legacy profile picture.
       sig { returns(T.nilable(WhopSDK::User::ProfilePicture)) }
       attr_reader :profile_picture
 
@@ -32,7 +33,7 @@ module WhopSDK
       end
       attr_writer :profile_picture
 
-      # The username of the user from their Whop account.
+      # The user's unique username shown on their public profile.
       sig { returns(String) }
       attr_accessor :username
 
@@ -51,15 +52,16 @@ module WhopSDK
       def self.new(
         # The unique identifier for the user.
         id:,
-        # The user's bio
+        # A short biography written by the user, displayed on their public profile.
         bio:,
         # The datetime the user was created.
         created_at:,
-        # The name of the user from their Whop account.
+        # The user's display name shown on their public profile.
         name:,
-        # The user's profile picture
+        # The user's profile picture attachment with URL, content type, and file metadata.
+        # Null if using a legacy profile picture.
         profile_picture:,
-        # The username of the user from their Whop account.
+        # The user's unique username shown on their public profile.
         username:
       )
       end
@@ -85,16 +87,17 @@ module WhopSDK
             T.any(WhopSDK::User::ProfilePicture, WhopSDK::Internal::AnyHash)
           end
 
-        # This is the URL you use to render optimized attachments on the client. This
-        # should be used for apps.
+        # A pre-optimized URL for rendering this attachment on the client. This should be
+        # used for displaying attachments in apps.
         sig { returns(T.nilable(String)) }
         attr_accessor :url
 
-        # The user's profile picture
+        # The user's profile picture attachment with URL, content type, and file metadata.
+        # Null if using a legacy profile picture.
         sig { params(url: T.nilable(String)).returns(T.attached_class) }
         def self.new(
-          # This is the URL you use to render optimized attachments on the client. This
-          # should be used for apps.
+          # A pre-optimized URL for rendering this attachment on the client. This should be
+          # used for displaying attachments in apps.
           url:
         )
         end

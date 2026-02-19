@@ -14,7 +14,7 @@ module WhopSDK
           )
         end
 
-      # Pass this object to create a new plan for this checkout configuration
+      # The plan attributes to create a new plan inline for this checkout configuration.
       sig { returns(WhopSDK::CheckoutConfigurationCreateParams::Plan) }
       attr_reader :plan
 
@@ -25,7 +25,7 @@ module WhopSDK
       end
       attr_writer :plan
 
-      # The affiliate code to use for the checkout configuration
+      # An affiliate tracking code to attribute the checkout to a specific affiliate.
       sig { returns(T.nilable(String)) }
       attr_accessor :affiliate_code
 
@@ -33,16 +33,15 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::Currency::OrSymbol)) }
       attr_accessor :currency
 
-      # The metadata to use for the checkout configuration
+      # Custom key-value metadata to attach to the checkout configuration.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
       sig { returns(Symbol) }
       attr_accessor :mode
 
-      # This currently only works for configurations made in 'setup' mode. The explicit
-      # payment method configuration for the checkout session. If not provided, the
-      # platform or company's defaults will apply.
+      # The explicit payment method configuration for the checkout session. Only applies
+      # to setup mode. If not provided, the platform or company defaults will apply.
       sig do
         returns(
           T.nilable(
@@ -62,7 +61,7 @@ module WhopSDK
       end
       attr_writer :payment_method_configuration
 
-      # The URL to redirect the user to after the checkout configuration is created
+      # The URL to redirect the user to after checkout is completed.
       sig { returns(T.nilable(String)) }
       attr_accessor :redirect_url
 
@@ -70,12 +69,13 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :source_url
 
-      # The ID of the plan to use for the checkout configuration
+      # The unique identifier of an existing plan to use for this checkout
+      # configuration.
       sig { returns(String) }
       attr_accessor :plan_id
 
-      # The ID of the company for which to generate the checkout configuration. Only
-      # required in setup mode.
+      # The unique identifier of the company to create the checkout configuration for.
+      # Only required in setup mode.
       sig { returns(String) }
       attr_accessor :company_id
 
@@ -98,24 +98,24 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # Pass this object to create a new plan for this checkout configuration
+        # The plan attributes to create a new plan inline for this checkout configuration.
         plan:,
-        # The ID of the plan to use for the checkout configuration
+        # The unique identifier of an existing plan to use for this checkout
+        # configuration.
         plan_id:,
-        # The ID of the company for which to generate the checkout configuration. Only
-        # required in setup mode.
+        # The unique identifier of the company to create the checkout configuration for.
+        # Only required in setup mode.
         company_id:,
-        # The affiliate code to use for the checkout configuration
+        # An affiliate tracking code to attribute the checkout to a specific affiliate.
         affiliate_code: nil,
         # The available currencies on the platform
         currency: nil,
-        # The metadata to use for the checkout configuration
+        # Custom key-value metadata to attach to the checkout configuration.
         metadata: nil,
-        # This currently only works for configurations made in 'setup' mode. The explicit
-        # payment method configuration for the checkout session. If not provided, the
-        # platform or company's defaults will apply.
+        # The explicit payment method configuration for the checkout session. Only applies
+        # to setup mode. If not provided, the platform or company defaults will apply.
         payment_method_configuration: nil,
-        # The URL to redirect the user to after the checkout configuration is created
+        # The URL to redirect the user to after checkout is completed.
         redirect_url: nil,
         # The URL of the page where the checkout is being initiated from.
         source_url: nil,
@@ -311,7 +311,7 @@ module WhopSDK
         sig { returns(T.nilable(WhopSDK::Visibility::OrSymbol)) }
         attr_accessor :visibility
 
-        # Pass this object to create a new plan for this checkout configuration
+        # The plan attributes to create a new plan inline for this checkout configuration.
         sig do
           params(
             company_id: String,
@@ -675,6 +675,10 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :headline
 
+          # The different industry groups a company can be in.
+          sig { returns(T.nilable(WhopSDK::IndustryGroups::OrSymbol)) }
+          attr_accessor :industry_group
+
           # The different industry types a company can be in.
           sig { returns(T.nilable(WhopSDK::IndustryTypes::OrSymbol)) }
           attr_accessor :industry_type
@@ -709,6 +713,7 @@ module WhopSDK
               global_affiliate_status:
                 T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
               headline: T.nilable(String),
+              industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
               industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
               product_tax_code_id: T.nilable(String),
               redirect_purchase_url: T.nilable(String),
@@ -739,6 +744,8 @@ module WhopSDK
             global_affiliate_status: nil,
             # The headline of the product.
             headline: nil,
+            # The different industry groups a company can be in.
+            industry_group: nil,
             # The different industry types a company can be in.
             industry_type: nil,
             # The ID of the product tax code to apply to this product.
@@ -765,6 +772,7 @@ module WhopSDK
                 global_affiliate_status:
                   T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
                 headline: T.nilable(String),
+                industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
                 industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
                 product_tax_code_id: T.nilable(String),
                 redirect_purchase_url: T.nilable(String),
@@ -805,9 +813,8 @@ module WhopSDK
         sig { returns(T::Boolean) }
         attr_accessor :include_platform_defaults
 
-        # This currently only works for configurations made in 'setup' mode. The explicit
-        # payment method configuration for the checkout session. If not provided, the
-        # platform or company's defaults will apply.
+        # The explicit payment method configuration for the checkout session. Only applies
+        # to setup mode. If not provided, the platform or company defaults will apply.
         sig do
           params(
             disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],

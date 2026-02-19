@@ -8,21 +8,25 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute course_id
-      #   The ID of the course to create the chapter in
+      #   The unique identifier of the course to create the chapter in (e.g.,
+      #   "course_XXXXX").
       #
       #   @return [String]
       required :course_id, String
 
       # @!attribute title
-      #   The title of the chapter
+      #   The display title of the chapter (e.g., "Module 1: Introduction").
       #
       #   @return [String, nil]
       optional :title, String, nil?: true
 
       # @!method initialize(course_id:, title: nil, request_options: {})
-      #   @param course_id [String] The ID of the course to create the chapter in
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::CourseChapterCreateParams} for more details.
       #
-      #   @param title [String, nil] The title of the chapter
+      #   @param course_id [String] The unique identifier of the course to create the chapter in (e.g., "course_XXXX
+      #
+      #   @param title [String, nil] The display title of the chapter (e.g., "Module 1: Introduction").
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

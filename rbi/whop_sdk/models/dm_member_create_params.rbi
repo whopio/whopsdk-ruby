@@ -11,11 +11,12 @@ module WhopSDK
           T.any(WhopSDK::DmMemberCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the DM channel to add the member to
+      # The unique identifier of the DM channel to add the new member to.
       sig { returns(String) }
       attr_accessor :channel_id
 
-      # The ID of the user to add to the channel
+      # The unique identifier of the user to add to the DM channel. For example,
+      # 'user_xxxxx'.
       sig { returns(String) }
       attr_accessor :user_id
 
@@ -27,9 +28,10 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the DM channel to add the member to
+        # The unique identifier of the DM channel to add the new member to.
         channel_id:,
-        # The ID of the user to add to the channel
+        # The unique identifier of the user to add to the DM channel. For example,
+        # 'user_xxxxx'.
         user_id:,
         request_options: {}
       )

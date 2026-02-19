@@ -14,7 +14,7 @@ module WhopSDK
           )
         end
 
-      # The answers to the assessment questions
+      # The list of answers to submit for each assessment question.
       sig do
         returns(T::Array[WhopSDK::CourseLessonSubmitAssessmentParams::Answer])
       end
@@ -30,7 +30,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The answers to the assessment questions
+        # The list of answers to submit for each assessment question.
         answers:,
         request_options: {}
       )

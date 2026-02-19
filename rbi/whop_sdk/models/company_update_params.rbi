@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::CompanyUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The banner image for the company in png or jpeg format
+      # The company's banner image. Accepts PNG or JPEG format.
       sig { returns(T.nilable(WhopSDK::CompanyUpdateParams::BannerImage)) }
       attr_reader :banner_image
 
@@ -27,15 +27,20 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::BusinessTypes::OrSymbol)) }
       attr_accessor :business_type
 
-      # A description of what the company offers or does.
+      # A promotional pitch displayed to potential customers on the company's store
+      # page.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
+
+      # The different industry groups a company can be in.
+      sig { returns(T.nilable(WhopSDK::IndustryGroups::OrSymbol)) }
+      attr_accessor :industry_group
 
       # The different industry types a company can be in.
       sig { returns(T.nilable(WhopSDK::IndustryTypes::OrSymbol)) }
       attr_accessor :industry_type
 
-      # The logo for the company in png, jpeg, or gif format
+      # The company's logo image. Accepts PNG, JPEG, or GIF format.
       sig { returns(T.nilable(WhopSDK::CompanyUpdateParams::Logo)) }
       attr_reader :logo
 
@@ -44,14 +49,17 @@ module WhopSDK
       end
       attr_writer :logo
 
-      # Whether Whop sends transactional emails to customers on behalf of this company.
-      # Includes: order confirmations, payment failures, refund notifications, upcoming
-      # renewals, and membership cancelations/expirations. When disabled, the platform
-      # is responsible for handling these communications.
+      # Whether Whop sends transactional emails (receipts, renewals, cancelations) to
+      # customers on behalf of this company.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :send_customer_emails
 
-      # The title of the company
+      # The target audience for this company (e.g., 'beginner day traders aged 18-25
+      # looking to learn options').
+      sig { returns(T.nilable(String)) }
+      attr_accessor :target_audience
+
+      # The display name of the company shown to customers.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
@@ -61,30 +69,36 @@ module WhopSDK
             T.nilable(WhopSDK::CompanyUpdateParams::BannerImage::OrHash),
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           description: T.nilable(String),
+          industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
           industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           logo: T.nilable(WhopSDK::CompanyUpdateParams::Logo::OrHash),
           send_customer_emails: T.nilable(T::Boolean),
+          target_audience: T.nilable(String),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # The banner image for the company in png or jpeg format
+        # The company's banner image. Accepts PNG or JPEG format.
         banner_image: nil,
         # The different business types a company can be.
         business_type: nil,
-        # A description of what the company offers or does.
+        # A promotional pitch displayed to potential customers on the company's store
+        # page.
         description: nil,
+        # The different industry groups a company can be in.
+        industry_group: nil,
         # The different industry types a company can be in.
         industry_type: nil,
-        # The logo for the company in png, jpeg, or gif format
+        # The company's logo image. Accepts PNG, JPEG, or GIF format.
         logo: nil,
-        # Whether Whop sends transactional emails to customers on behalf of this company.
-        # Includes: order confirmations, payment failures, refund notifications, upcoming
-        # renewals, and membership cancelations/expirations. When disabled, the platform
-        # is responsible for handling these communications.
+        # Whether Whop sends transactional emails (receipts, renewals, cancelations) to
+        # customers on behalf of this company.
         send_customer_emails: nil,
-        # The title of the company
+        # The target audience for this company (e.g., 'beginner day traders aged 18-25
+        # looking to learn options').
+        target_audience: nil,
+        # The display name of the company shown to customers.
         title: nil,
         request_options: {}
       )
@@ -96,9 +110,11 @@ module WhopSDK
             banner_image: T.nilable(WhopSDK::CompanyUpdateParams::BannerImage),
             business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
             description: T.nilable(String),
+            industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
             industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
             logo: T.nilable(WhopSDK::CompanyUpdateParams::Logo),
             send_customer_emails: T.nilable(T::Boolean),
+            target_audience: T.nilable(String),
             title: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }
@@ -120,7 +136,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The banner image for the company in png or jpeg format
+        # The company's banner image. Accepts PNG or JPEG format.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.
@@ -146,7 +162,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The logo for the company in png, jpeg, or gif format
+        # The company's logo image. Accepts PNG, JPEG, or GIF format.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.

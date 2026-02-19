@@ -14,7 +14,7 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::BusinessTypes::TaggedSymbol)) }
       attr_accessor :business_type
 
-      # A short type of the company that this product belongs to.
+      # The company this product belongs to.
       sig { returns(WhopSDK::Product::Company) }
       attr_reader :company
 
@@ -25,38 +25,48 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The custom call to action for the product.
+      # The call-to-action button label displayed on the product's purchase page (e.g.,
+      # 'join', 'buy', 'subscribe').
       sig { returns(WhopSDK::CustomCta::TaggedSymbol) }
       attr_accessor :custom_cta
 
-      # The custom call to action URL for the product, if any.
+      # An optional URL that the call-to-action button links to instead of the default
+      # checkout flow. Null if no custom URL is set.
       sig { returns(T.nilable(String)) }
       attr_accessor :custom_cta_url
 
-      # The custom statement descriptor for the product.
+      # A custom text label that appears on the customer's bank or credit card statement
+      # for purchases of this product. Maximum 22 characters, including the required
+      # prefix WHOP\*.
       sig { returns(T.nilable(String)) }
       attr_accessor :custom_statement_descriptor
 
-      # A short description of what the company offers or does.
+      # A brief summary of what the product offers, displayed on product pages and
+      # search results.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      # A unique identifier used to create or update products. When provided on product
-      # creation endpoints, we’ll look up an existing product by this identifier — if it
-      # exists, we’ll update it; if not, we’ll create a new one.
+      # A unique identifier used to create or update products via the API. When provided
+      # on product creation endpoints, an existing product with this identifier will be
+      # updated instead of creating a new one.
       sig { returns(T.nilable(String)) }
       attr_accessor :external_identifier
 
-      # The percentage of a transaction a user is eligible to earn from the whop
-      # marketplace global affiliate program.
+      # The gallery images for this product, ordered by position.
+      sig { returns(T::Array[WhopSDK::Product::GalleryImage]) }
+      attr_accessor :gallery_images
+
+      # The commission rate (as a percentage) that affiliates earn on sales through the
+      # Whop marketplace global affiliate program. Null if the program is not active.
       sig { returns(T.nilable(Float)) }
       attr_accessor :global_affiliate_percentage
 
-      # The status of the global affiliate program for this product.
+      # The enrollment status of this product in the Whop marketplace global affiliate
+      # program.
       sig { returns(WhopSDK::GlobalAffiliateStatus::TaggedSymbol) }
       attr_accessor :global_affiliate_status
 
-      # The headline of the product.
+      # A short marketing headline displayed prominently on the product's product page.
       sig { returns(T.nilable(String)) }
       attr_accessor :headline
 
@@ -64,27 +74,30 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::IndustryTypes::TaggedSymbol)) }
       attr_accessor :industry_type
 
-      # The percentage of a transaction a user is eligible to earn from the whop
-      # marketplace member affiliate program.
+      # The commission rate (as a percentage) that existing members earn when referring
+      # new customers through the member affiliate program. Null if the program is not
+      # active.
       sig { returns(T.nilable(Float)) }
       attr_accessor :member_affiliate_percentage
 
-      # The status of the member affiliate program for this product.
+      # The enrollment status of this product in the member affiliate program.
       sig { returns(WhopSDK::GlobalAffiliateStatus::TaggedSymbol) }
       attr_accessor :member_affiliate_status
 
-      # The number of active users for this product.
+      # The number of users who currently hold an active membership to this product.
+      # Returns 0 if the company has disabled public member counts.
       sig { returns(Integer) }
       attr_accessor :member_count
 
-      # The user that owns the product (company owner).
+      # The user who owns the company that sells this product.
       sig { returns(WhopSDK::Product::OwnerUser) }
       attr_reader :owner_user
 
       sig { params(owner_user: WhopSDK::Product::OwnerUser::OrHash).void }
       attr_writer :owner_user
 
-      # The product tax code for the product, if any.
+      # The tax classification code applied to purchases of this product for sales tax
+      # calculation. Null if no tax code is assigned.
       sig { returns(T.nilable(WhopSDK::Product::ProductTaxCode)) }
       attr_reader :product_tax_code
 
@@ -95,15 +108,17 @@ module WhopSDK
       end
       attr_writer :product_tax_code
 
-      # The number of reviews that have been published for the product.
+      # The total number of published customer reviews for this product's company.
       sig { returns(Integer) }
       attr_accessor :published_reviews_count
 
-      # The route of the product.
+      # The URL slug used in the product's public link (e.g., 'my-product' in
+      # whop.com/company/my-product).
       sig { returns(String) }
       attr_accessor :route
 
-      # The title of the product. Use for Whop 4.0.
+      # The display name of the product shown to customers on the product page and in
+      # search results.
       sig { returns(String) }
       attr_accessor :title
 
@@ -111,11 +126,12 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :updated_at
 
-      # Whether this product is Whop verified.
+      # Whether this company has been verified by Whop's trust and safety team.
       sig { returns(T::Boolean) }
       attr_accessor :verified
 
-      # This product will/will not be displayed publicly.
+      # Controls whether the product is visible to customers. When set to 'hidden', the
+      # product is only accessible via direct link.
       sig { returns(WhopSDK::Visibility::TaggedSymbol) }
       attr_accessor :visibility
 
@@ -132,6 +148,7 @@ module WhopSDK
           custom_statement_descriptor: T.nilable(String),
           description: T.nilable(String),
           external_identifier: T.nilable(String),
+          gallery_images: T::Array[WhopSDK::Product::GalleryImage::OrHash],
           global_affiliate_percentage: T.nilable(Float),
           global_affiliate_status: WhopSDK::GlobalAffiliateStatus::OrSymbol,
           headline: T.nilable(String),
@@ -154,53 +171,67 @@ module WhopSDK
         id:,
         # The different business types a company can be.
         business_type:,
-        # A short type of the company that this product belongs to.
+        # The company this product belongs to.
         company:,
         # The datetime the product was created.
         created_at:,
-        # The custom call to action for the product.
+        # The call-to-action button label displayed on the product's purchase page (e.g.,
+        # 'join', 'buy', 'subscribe').
         custom_cta:,
-        # The custom call to action URL for the product, if any.
+        # An optional URL that the call-to-action button links to instead of the default
+        # checkout flow. Null if no custom URL is set.
         custom_cta_url:,
-        # The custom statement descriptor for the product.
+        # A custom text label that appears on the customer's bank or credit card statement
+        # for purchases of this product. Maximum 22 characters, including the required
+        # prefix WHOP\*.
         custom_statement_descriptor:,
-        # A short description of what the company offers or does.
+        # A brief summary of what the product offers, displayed on product pages and
+        # search results.
         description:,
-        # A unique identifier used to create or update products. When provided on product
-        # creation endpoints, we’ll look up an existing product by this identifier — if it
-        # exists, we’ll update it; if not, we’ll create a new one.
+        # A unique identifier used to create or update products via the API. When provided
+        # on product creation endpoints, an existing product with this identifier will be
+        # updated instead of creating a new one.
         external_identifier:,
-        # The percentage of a transaction a user is eligible to earn from the whop
-        # marketplace global affiliate program.
+        # The gallery images for this product, ordered by position.
+        gallery_images:,
+        # The commission rate (as a percentage) that affiliates earn on sales through the
+        # Whop marketplace global affiliate program. Null if the program is not active.
         global_affiliate_percentage:,
-        # The status of the global affiliate program for this product.
+        # The enrollment status of this product in the Whop marketplace global affiliate
+        # program.
         global_affiliate_status:,
-        # The headline of the product.
+        # A short marketing headline displayed prominently on the product's product page.
         headline:,
         # The different industry types a company can be in.
         industry_type:,
-        # The percentage of a transaction a user is eligible to earn from the whop
-        # marketplace member affiliate program.
+        # The commission rate (as a percentage) that existing members earn when referring
+        # new customers through the member affiliate program. Null if the program is not
+        # active.
         member_affiliate_percentage:,
-        # The status of the member affiliate program for this product.
+        # The enrollment status of this product in the member affiliate program.
         member_affiliate_status:,
-        # The number of active users for this product.
+        # The number of users who currently hold an active membership to this product.
+        # Returns 0 if the company has disabled public member counts.
         member_count:,
-        # The user that owns the product (company owner).
+        # The user who owns the company that sells this product.
         owner_user:,
-        # The product tax code for the product, if any.
+        # The tax classification code applied to purchases of this product for sales tax
+        # calculation. Null if no tax code is assigned.
         product_tax_code:,
-        # The number of reviews that have been published for the product.
+        # The total number of published customer reviews for this product's company.
         published_reviews_count:,
-        # The route of the product.
+        # The URL slug used in the product's public link (e.g., 'my-product' in
+        # whop.com/company/my-product).
         route:,
-        # The title of the product. Use for Whop 4.0.
+        # The display name of the product shown to customers on the product page and in
+        # search results.
         title:,
         # The datetime the product was last updated.
         updated_at:,
-        # Whether this product is Whop verified.
+        # Whether this company has been verified by Whop's trust and safety team.
         verified:,
-        # This product will/will not be displayed publicly.
+        # Controls whether the product is visible to customers. When set to 'hidden', the
+        # product is only accessible via direct link.
         visibility:
       )
       end
@@ -217,6 +248,7 @@ module WhopSDK
             custom_statement_descriptor: T.nilable(String),
             description: T.nilable(String),
             external_identifier: T.nilable(String),
+            gallery_images: T::Array[WhopSDK::Product::GalleryImage],
             global_affiliate_percentage: T.nilable(Float),
             global_affiliate_status:
               WhopSDK::GlobalAffiliateStatus::TaggedSymbol,
@@ -250,15 +282,15 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The slug/route of the company on the Whop site.
+        # The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
         sig { returns(String) }
         attr_accessor :route
 
-        # The title of the company.
+        # The display name of the company shown to customers.
         sig { returns(String) }
         attr_accessor :title
 
-        # A short type of the company that this product belongs to.
+        # The company this product belongs to.
         sig do
           params(id: String, route: String, title: String).returns(
             T.attached_class
@@ -267,14 +299,55 @@ module WhopSDK
         def self.new(
           # The unique identifier for the company.
           id:,
-          # The slug/route of the company on the Whop site.
+          # The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
           route:,
-          # The title of the company.
+          # The display name of the company shown to customers.
           title:
         )
         end
 
         sig { override.returns({ id: String, route: String, title: String }) }
+        def to_hash
+        end
+      end
+
+      class GalleryImage < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Product::GalleryImage, WhopSDK::Internal::AnyHash)
+          end
+
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # A pre-optimized URL for rendering this attachment on the client. This should be
+        # used for displaying attachments in apps.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :url
+
+        # Represents an image attachment
+        sig do
+          params(id: String, url: T.nilable(String)).returns(T.attached_class)
+        end
+        def self.new(
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
+          id:,
+          # A pre-optimized URL for rendering this attachment on the client. This should be
+          # used for displaying attachments in apps.
+          url:
+        )
+        end
+
+        sig { override.returns({ id: String, url: T.nilable(String) }) }
         def to_hash
         end
       end
@@ -289,15 +362,15 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The name of the user from their Whop account.
+        # The user's display name shown on their public profile.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
-        # The username of the user from their Whop account.
+        # The user's unique username shown on their public profile.
         sig { returns(String) }
         attr_accessor :username
 
-        # The user that owns the product (company owner).
+        # The user who owns the company that sells this product.
         sig do
           params(id: String, name: T.nilable(String), username: String).returns(
             T.attached_class
@@ -306,9 +379,9 @@ module WhopSDK
         def self.new(
           # The unique identifier for the user.
           id:,
-          # The name of the user from their Whop account.
+          # The user's display name shown on their public profile.
           name:,
-          # The username of the user from their Whop account.
+          # The user's unique username shown on their public profile.
           username:
         )
         end
@@ -332,17 +405,19 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The name of the product tax code.
+        # The human-readable name of this tax classification (e.g., 'Digital - SaaS').
         sig { returns(String) }
         attr_accessor :name
 
-        # The type of product this tax code applies to.
+        # The broad product category this tax code covers (e.g., physical goods, digital
+        # services).
         sig do
           returns(WhopSDK::Product::ProductTaxCode::ProductType::TaggedSymbol)
         end
         attr_accessor :product_type
 
-        # The product tax code for the product, if any.
+        # The tax classification code applied to purchases of this product for sales tax
+        # calculation. Null if no tax code is assigned.
         sig do
           params(
             id: String,
@@ -354,9 +429,10 @@ module WhopSDK
         def self.new(
           # The unique identifier for the product tax code.
           id:,
-          # The name of the product tax code.
+          # The human-readable name of this tax classification (e.g., 'Digital - SaaS').
           name:,
-          # The type of product this tax code applies to.
+          # The broad product category this tax code covers (e.g., physical goods, digital
+          # services).
           product_type:
         )
         end
@@ -374,7 +450,8 @@ module WhopSDK
         def to_hash
         end
 
-        # The type of product this tax code applies to.
+        # The broad product category this tax code covers (e.g., physical goods, digital
+        # services).
         module ProductType
           extend WhopSDK::Internal::Type::Enum
 

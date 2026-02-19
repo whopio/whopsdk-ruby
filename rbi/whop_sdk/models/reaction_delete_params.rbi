@@ -11,7 +11,9 @@ module WhopSDK
           T.any(WhopSDK::ReactionDeleteParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The emoji to remove (e.g., :heart: or '😀').
+      # The emoji to remove, in shortcode or unicode format. For example, ':heart:' or a
+      # unicode emoji. Required when the id refers to a message or post instead of a
+      # reaction.
       sig { returns(T.nilable(String)) }
       attr_accessor :emoji
 
@@ -22,7 +24,9 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The emoji to remove (e.g., :heart: or '😀').
+        # The emoji to remove, in shortcode or unicode format. For example, ':heart:' or a
+        # unicode emoji. Required when the id refers to a message or post instead of a
+        # reaction.
         emoji: nil,
         request_options: {}
       )

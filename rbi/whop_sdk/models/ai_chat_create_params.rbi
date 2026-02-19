@@ -11,16 +11,17 @@ module WhopSDK
           T.any(WhopSDK::AIChatCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The text content of the first message sent in the chat
+      # The text content of the first message to send to the AI agent.
       sig { returns(String) }
       attr_accessor :message_text
 
-      # The ID of the company to set as the current company in context for the AI chat
+      # The unique identifier of the company to set as context for the AI chat (e.g.,
+      # "biz_XXXXX").
       sig { returns(T.nilable(String)) }
       attr_accessor :current_company_id
 
-      # The IDs of existing uploaded attachments to include in the first message to the
-      # agent
+      # A list of previously uploaded file attachments to include with the first
+      # message.
       sig do
         returns(
           T.nilable(T::Array[WhopSDK::AIChatCreateParams::MessageAttachment])
@@ -28,7 +29,13 @@ module WhopSDK
       end
       attr_accessor :message_attachments
 
-      # The title of the AI chat
+      # The source of an AI chat message
+      sig do
+        returns(T.nilable(WhopSDK::AIChatCreateParams::MessageSource::OrSymbol))
+      end
+      attr_accessor :message_source
+
+      # An optional display title for the AI chat thread (e.g., "Help with billing").
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
@@ -40,19 +47,24 @@ module WhopSDK
             T.nilable(
               T::Array[WhopSDK::AIChatCreateParams::MessageAttachment::OrHash]
             ),
+          message_source:
+            T.nilable(WhopSDK::AIChatCreateParams::MessageSource::OrSymbol),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # The text content of the first message sent in the chat
+        # The text content of the first message to send to the AI agent.
         message_text:,
-        # The ID of the company to set as the current company in context for the AI chat
+        # The unique identifier of the company to set as context for the AI chat (e.g.,
+        # "biz_XXXXX").
         current_company_id: nil,
-        # The IDs of existing uploaded attachments to include in the first message to the
-        # agent
+        # A list of previously uploaded file attachments to include with the first
+        # message.
         message_attachments: nil,
-        # The title of the AI chat
+        # The source of an AI chat message
+        message_source: nil,
+        # An optional display title for the AI chat thread (e.g., "Help with billing").
         title: nil,
         request_options: {}
       )
@@ -67,6 +79,8 @@ module WhopSDK
               T.nilable(
                 T::Array[WhopSDK::AIChatCreateParams::MessageAttachment]
               ),
+            message_source:
+              T.nilable(WhopSDK::AIChatCreateParams::MessageSource::OrSymbol),
             title: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }
@@ -98,6 +112,38 @@ module WhopSDK
 
         sig { override.returns({ id: String }) }
         def to_hash
+        end
+      end
+
+      # The source of an AI chat message
+      module MessageSource
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::AIChatCreateParams::MessageSource)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        MANUAL =
+          T.let(
+            :manual,
+            WhopSDK::AIChatCreateParams::MessageSource::TaggedSymbol
+          )
+        SUGGESTION =
+          T.let(
+            :suggestion,
+            WhopSDK::AIChatCreateParams::MessageSource::TaggedSymbol
+          )
+        LINK =
+          T.let(:link, WhopSDK::AIChatCreateParams::MessageSource::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::AIChatCreateParams::MessageSource::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
     end

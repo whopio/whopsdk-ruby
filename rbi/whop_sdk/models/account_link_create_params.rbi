@@ -11,21 +11,23 @@ module WhopSDK
           T.any(WhopSDK::AccountLinkCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the Company to generate the url for. The company must be a
-      # sub-merchant of the API key's company.
+      # The unique identifier of the company to generate the link for, starting with
+      # 'biz\_'. Must be a sub-merchant of the API key's company.
       sig { returns(String) }
       attr_accessor :company_id
 
-      # The URL to redirect to if the session expires and needs to be re-authenticated
-      # due to the token expiring.
+      # The URL to redirect the user to if the session expires and needs to be
+      # re-authenticated, such as 'https://example.com/refresh'.
       sig { returns(String) }
       attr_accessor :refresh_url
 
-      # The URL to redirect to when the customer wants to return to your site.
+      # The URL to redirect the user to when they want to return to your site, such as
+      # 'https://example.com/return'.
       sig { returns(String) }
       attr_accessor :return_url
 
-      # The use case for which the link will be used.
+      # The purpose of the account link, such as hosted payouts portal or hosted KYC
+      # onboarding.
       sig { returns(WhopSDK::AccountLinkCreateParams::UseCase::OrSymbol) }
       attr_accessor :use_case
 
@@ -39,15 +41,17 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the Company to generate the url for. The company must be a
-        # sub-merchant of the API key's company.
+        # The unique identifier of the company to generate the link for, starting with
+        # 'biz\_'. Must be a sub-merchant of the API key's company.
         company_id:,
-        # The URL to redirect to if the session expires and needs to be re-authenticated
-        # due to the token expiring.
+        # The URL to redirect the user to if the session expires and needs to be
+        # re-authenticated, such as 'https://example.com/refresh'.
         refresh_url:,
-        # The URL to redirect to when the customer wants to return to your site.
+        # The URL to redirect the user to when they want to return to your site, such as
+        # 'https://example.com/return'.
         return_url:,
-        # The use case for which the link will be used.
+        # The purpose of the account link, such as hosted payouts portal or hosted KYC
+        # onboarding.
         use_case:,
         request_options: {}
       )
@@ -67,7 +71,8 @@ module WhopSDK
       def to_hash
       end
 
-      # The use case for which the link will be used.
+      # The purpose of the account link, such as hosted payouts portal or hosted KYC
+      # onboarding.
       module UseCase
         extend WhopSDK::Internal::Type::Enum
 

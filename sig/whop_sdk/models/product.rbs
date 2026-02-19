@@ -11,6 +11,7 @@ module WhopSDK
         custom_statement_descriptor: String?,
         description: String?,
         external_identifier: String?,
+        gallery_images: ::Array[WhopSDK::Product::GalleryImage],
         global_affiliate_percentage: Float?,
         global_affiliate_status: WhopSDK::Models::global_affiliate_status,
         headline: String?,
@@ -46,6 +47,8 @@ module WhopSDK
       attr_accessor description: String?
 
       attr_accessor external_identifier: String?
+
+      attr_accessor gallery_images: ::Array[WhopSDK::Product::GalleryImage]
 
       attr_accessor global_affiliate_percentage: Float?
 
@@ -87,6 +90,7 @@ module WhopSDK
         custom_statement_descriptor: String?,
         description: String?,
         external_identifier: String?,
+        gallery_images: ::Array[WhopSDK::Product::GalleryImage],
         global_affiliate_percentage: Float?,
         global_affiliate_status: WhopSDK::Models::global_affiliate_status,
         headline: String?,
@@ -114,6 +118,7 @@ module WhopSDK
         custom_statement_descriptor: String?,
         description: String?,
         external_identifier: String?,
+        gallery_images: ::Array[WhopSDK::Product::GalleryImage],
         global_affiliate_percentage: Float?,
         global_affiliate_status: WhopSDK::Models::global_affiliate_status,
         headline: String?,
@@ -143,6 +148,18 @@ module WhopSDK
         def initialize: (id: String, route: String, title: String) -> void
 
         def to_hash: -> { id: String, route: String, title: String }
+      end
+
+      type gallery_image = { id: String, url: String? }
+
+      class GalleryImage < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor url: String?
+
+        def initialize: (id: String, url: String?) -> void
+
+        def to_hash: -> { id: String, url: String? }
       end
 
       type owner_user = { id: String, name: String?, username: String }

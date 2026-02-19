@@ -11,15 +11,15 @@ module WhopSDK
       required :id, String
 
       # @!attribute api_version
-      #   The API version for this webhook
+      #   The API version used to format payloads sent to this webhook endpoint.
       #
       #   @return [Symbol, WhopSDK::Models::APIVersion]
       required :api_version, enum: -> { WhopSDK::APIVersion }
 
       # @!attribute child_resource_events
-      #   Whether or not to send events for child resources. For example, if the webhook
-      #   is created for a Company, enabling this will only send events from the Company's
-      #   sub-merchants (child companies).
+      #   Whether events are sent for child resources. For example, if the webhook is on a
+      #   company, enabling this sends events only from the company's sub-merchants (child
+      #   companies).
       #
       #   @return [Boolean]
       required :child_resource_events, WhopSDK::Internal::Type::Boolean
@@ -31,37 +31,38 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute enabled
-      #   Whether or not this webhook is turned on or not
+      #   Whether this webhook endpoint is currently active and receiving events.
       #
       #   @return [Boolean]
       required :enabled, WhopSDK::Internal::Type::Boolean
 
       # @!attribute events
-      #   The number of events this webhooks is configured to receive
+      #   The list of event types this webhook is subscribed to.
       #
       #   @return [Array<Symbol, WhopSDK::Models::WebhookEvent>]
       required :events, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::WebhookEvent] }
 
       # @!attribute resource_id
-      #   The resource ID
+      #   The ID of the resource (company or product) this webhook is attached to.
       #
       #   @return [String]
       required :resource_id, String
 
       # @!attribute testable_events
-      #   The list of events that can be tested with this webhook
+      #   The subset of subscribed event types that support sending test payloads.
       #
       #   @return [Array<Symbol, WhopSDK::Models::WebhookEvent>]
       required :testable_events, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::WebhookEvent] }
 
       # @!attribute url
-      #   The URL the webhook events will be sent to
+      #   The destination URL where webhook payloads are delivered via HTTP POST.
       #
       #   @return [String]
       required :url, String
 
       # @!attribute webhook_secret
-      #   A unique secret key that will be sent with each webhook event
+      #   The secret key used to sign webhook payloads for verification. Include this in
+      #   your HMAC validation logic.
       #
       #   @return [String]
       required :webhook_secret, String
@@ -75,23 +76,23 @@ module WhopSDK
       #
       #   @param id [String] The unique identifier for the webhook.
       #
-      #   @param api_version [Symbol, WhopSDK::Models::APIVersion] The API version for this webhook
+      #   @param api_version [Symbol, WhopSDK::Models::APIVersion] The API version used to format payloads sent to this webhook endpoint.
       #
-      #   @param child_resource_events [Boolean] Whether or not to send events for child resources. For example, if the webhook i
+      #   @param child_resource_events [Boolean] Whether events are sent for child resources. For example, if the webhook is on a
       #
       #   @param created_at [Time] The datetime the webhook was created.
       #
-      #   @param enabled [Boolean] Whether or not this webhook is turned on or not
+      #   @param enabled [Boolean] Whether this webhook endpoint is currently active and receiving events.
       #
-      #   @param events [Array<Symbol, WhopSDK::Models::WebhookEvent>] The number of events this webhooks is configured to receive
+      #   @param events [Array<Symbol, WhopSDK::Models::WebhookEvent>] The list of event types this webhook is subscribed to.
       #
-      #   @param resource_id [String] The resource ID
+      #   @param resource_id [String] The ID of the resource (company or product) this webhook is attached to.
       #
-      #   @param testable_events [Array<Symbol, WhopSDK::Models::WebhookEvent>] The list of events that can be tested with this webhook
+      #   @param testable_events [Array<Symbol, WhopSDK::Models::WebhookEvent>] The subset of subscribed event types that support sending test payloads.
       #
-      #   @param url [String] The URL the webhook events will be sent to
+      #   @param url [String] The destination URL where webhook payloads are delivered via HTTP POST.
       #
-      #   @param webhook_secret [String] A unique secret key that will be sent with each webhook event
+      #   @param webhook_secret [String] The secret key used to sign webhook payloads for verification. Include this in y
     end
   end
 end

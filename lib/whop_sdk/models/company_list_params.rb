@@ -20,13 +20,13 @@ module WhopSDK
       optional :before, String, nil?: true
 
       # @!attribute created_after
-      #   The minimum creation date to filter by
+      #   Only return companies created after this timestamp.
       #
       #   @return [Time, nil]
       optional :created_after, Time, nil?: true
 
       # @!attribute created_before
-      #   The maximum creation date to filter by
+      #   Only return companies created before this timestamp.
       #
       #   @return [Time, nil]
       optional :created_before, Time, nil?: true
@@ -50,8 +50,9 @@ module WhopSDK
       optional :last, Integer, nil?: true
 
       # @!attribute parent_company_id
-      #   The ID of the parent company to list connected accounts for. Omit to list the
-      #   current user's own companies.
+      #   The unique identifier of the parent platform company. When provided, lists
+      #   connected accounts under that platform. Omit to list the current user's own
+      #   companies.
       #
       #   @return [String, nil]
       optional :parent_company_id, String, nil?: true
@@ -64,9 +65,9 @@ module WhopSDK
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param created_after [Time, nil] The minimum creation date to filter by
+      #   @param created_after [Time, nil] Only return companies created after this timestamp.
       #
-      #   @param created_before [Time, nil] The maximum creation date to filter by
+      #   @param created_before [Time, nil] Only return companies created before this timestamp.
       #
       #   @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
@@ -74,7 +75,7 @@ module WhopSDK
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      #   @param parent_company_id [String, nil] The ID of the parent company to list connected accounts for. Omit to list the cu
+      #   @param parent_company_id [String, nil] The unique identifier of the parent platform company. When provided, lists conne
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

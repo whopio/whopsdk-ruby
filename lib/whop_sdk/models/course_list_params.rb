@@ -20,13 +20,13 @@ module WhopSDK
       optional :before, String, nil?: true
 
       # @!attribute company_id
-      #   The ID of the company
+      #   The unique identifier of the company to list courses for.
       #
       #   @return [String, nil]
       optional :company_id, String, nil?: true
 
       # @!attribute experience_id
-      #   The ID of the experience
+      #   The unique identifier of the experience to list courses for.
       #
       #   @return [String, nil]
       optional :experience_id, String, nil?: true
@@ -48,9 +48,9 @@ module WhopSDK
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param company_id [String, nil] The ID of the company
+      #   @param company_id [String, nil] The unique identifier of the company to list courses for.
       #
-      #   @param experience_id [String, nil] The ID of the experience
+      #   @param experience_id [String, nil] The unique identifier of the experience to list courses for.
       #
       #   @param first [Integer, nil] Returns the first _n_ elements from the list.
       #

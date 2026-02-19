@@ -17,6 +17,12 @@ module WhopSDK
       EVENTS = :events
       COACHING_AND_COURSES = :coaching_and_courses
       OTHER = :other
+      SERVICES = :services
+      GIG_ECONOMY = :gig_economy
+      MARKETPLACE = :marketplace
+      TELEHEALTH = :telehealth
+      CLASS_ACTION_SETTLEMENT = :class_action_settlement
+      PHYSICAL_PRODUCT = :physical_product
       SAAS = :saas
       COURSE = :course
       COMMUNITY = :community

@@ -3,7 +3,8 @@
 module WhopSDK
   module Resources
     class Apps
-      # Create a new App
+      # Register a new app on the Whop developer platform. Apps provide custom
+      # experiences that can be added to products.
       #
       # Required permissions:
       #
@@ -15,23 +16,29 @@ module WhopSDK
           name: String,
           base_url: T.nilable(String),
           icon: T.nilable(WhopSDK::AppCreateParams::Icon::OrHash),
+          redirect_uris: T.nilable(T::Array[String]),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::App)
       end
       def create(
-        # The ID of the company to create the app for
+        # The unique identifier of the company to create the app for, starting with
+        # 'biz\_'.
         company_id:,
-        # The name of the app to be created
+        # The display name for the app, shown to users on the app store and product pages.
         name:,
-        # The base URL of the app to be created
+        # The base production URL where the app is hosted, such as
+        # 'https://myapp.example.com'.
         base_url: nil,
-        # The icon for the app in png, jpeg, or gif format
+        # The icon image for the app in PNG, JPEG, or GIF format.
         icon: nil,
+        # The whitelisted OAuth callback URLs that users are redirected to after
+        # authorizing the app.
+        redirect_uris: nil,
         request_options: {}
       )
       end
 
-      # Retrieves an app by ID
+      # Retrieves the details of an existing app.
       #
       # Required permissions:
       #
@@ -43,13 +50,14 @@ module WhopSDK
         ).returns(WhopSDK::App)
       end
       def retrieve(
-        # The ID of the app
+        # The unique identifier of the app to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # Update an existing App
+      # Update the settings, metadata, or status of an existing app on the Whop
+      # developer platform.
       #
       # Required permissions:
       #
@@ -67,6 +75,9 @@ module WhopSDK
           experience_path: T.nilable(String),
           icon: T.nilable(WhopSDK::AppUpdateParams::Icon::OrHash),
           name: T.nilable(String),
+          oauth_client_type:
+            T.nilable(WhopSDK::AppUpdateParams::OAuthClientType::OrSymbol),
+          redirect_uris: T.nilable(T::Array[String]),
           required_scopes:
             T.nilable(
               T::Array[WhopSDK::AppUpdateParams::RequiredScope::OrSymbol]
@@ -76,27 +87,34 @@ module WhopSDK
         ).returns(WhopSDK::App)
       end
       def update(
-        # The ID of the app
+        # The unique identifier of the app to update, starting with 'app\_'.
         id,
-        # The description of the app for the app store in-depth app view.
+        # The detailed description shown on the app store's in-depth app view page.
         app_store_description: nil,
         # The type of end-user an app is built for
         app_type: nil,
-        # The base production url of the app
+        # The base production URL where the app is hosted, such as
+        # 'https://myapp.example.com'.
         base_url: nil,
-        # The path for the dashboard view of the app
+        # The URL path for the company dashboard view of the app, such as '/dashboard'.
         dashboard_path: nil,
-        # The description of the app
+        # A short description of the app shown in listings and search results.
         description: nil,
-        # The path for the discover view of the app
+        # The URL path for the discover view of the app, such as '/discover'.
         discover_path: nil,
-        # The path for the hub view of the app
+        # The URL path for the member-facing hub view of the app, such as
+        # '/experiences/[experienceId]'.
         experience_path: nil,
-        # The icon for the app
+        # The icon image for the app, used in listings and navigation.
         icon: nil,
-        # The name of the app
+        # The display name for the app, shown to users on the app store and product pages.
         name: nil,
-        # The scopes that the app will request off of users when a user installs the app.
+        # How this app authenticates at the OAuth token endpoint.
+        oauth_client_type: nil,
+        # The whitelisted OAuth callback URLs that users are redirected to after
+        # authorizing the app
+        redirect_uris: nil,
+        # The permission scopes the app will request from users when they install it.
         required_scopes: nil,
         # The status of an experience interface
         status: nil,
@@ -104,7 +122,8 @@ module WhopSDK
       )
       end
 
-      # Fetches a list of apps
+      # Returns a paginated list of apps on the Whop platform, with optional filtering
+      # by company, type, view support, and search query.
       sig do
         params(
           after: T.nilable(String),
@@ -130,7 +149,7 @@ module WhopSDK
         app_type: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The ID of the company to filter apps by
+        # Filter apps to only those created by this company, starting with 'biz\_'.
         company_id: nil,
         # The direction of the sort.
         direction: nil,
@@ -140,10 +159,10 @@ module WhopSDK
         last: nil,
         # The order to fetch the apps in for discovery.
         order: nil,
-        # The query to search for apps by name.
+        # A search string to filter apps by name, such as 'chat' or 'analytics'.
         query: nil,
-        # If true, you will only get apps that are verified by Whop. Use this to populate
-        # a 'featured apps' section on the app store.
+        # Whether to only return apps that have been verified by Whop. Useful for
+        # populating a featured apps section.
         verified_apps_only: nil,
         # The different types of an app view
         view_type: nil,

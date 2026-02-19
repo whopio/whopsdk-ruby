@@ -24,6 +24,14 @@ module WhopSDK
       COACHING_AND_COURSES =
         T.let(:coaching_and_courses, WhopSDK::BusinessTypes::TaggedSymbol)
       OTHER = T.let(:other, WhopSDK::BusinessTypes::TaggedSymbol)
+      SERVICES = T.let(:services, WhopSDK::BusinessTypes::TaggedSymbol)
+      GIG_ECONOMY = T.let(:gig_economy, WhopSDK::BusinessTypes::TaggedSymbol)
+      MARKETPLACE = T.let(:marketplace, WhopSDK::BusinessTypes::TaggedSymbol)
+      TELEHEALTH = T.let(:telehealth, WhopSDK::BusinessTypes::TaggedSymbol)
+      CLASS_ACTION_SETTLEMENT =
+        T.let(:class_action_settlement, WhopSDK::BusinessTypes::TaggedSymbol)
+      PHYSICAL_PRODUCT =
+        T.let(:physical_product, WhopSDK::BusinessTypes::TaggedSymbol)
       SAAS = T.let(:saas, WhopSDK::BusinessTypes::TaggedSymbol)
       COURSE = T.let(:course, WhopSDK::BusinessTypes::TaggedSymbol)
       COMMUNITY = T.let(:community, WhopSDK::BusinessTypes::TaggedSymbol)

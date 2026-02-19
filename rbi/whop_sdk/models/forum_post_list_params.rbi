@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::ForumPostListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the experience to list forum posts for
+      # The unique identifier of the experience to list forum posts for.
       sig { returns(String) }
       attr_accessor :experience_id
 
@@ -31,11 +31,13 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
-      # The ID of the parent post to list forum post comments for
+      # The unique identifier of a parent post to list comments for. When set, returns
+      # replies to that post.
       sig { returns(T.nilable(String)) }
       attr_accessor :parent_id
 
-      # Set to true to only return pinned posts
+      # Whether to filter for only pinned posts. Set to true to return only pinned
+      # posts.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :pinned
 
@@ -52,7 +54,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the experience to list forum posts for
+        # The unique identifier of the experience to list forum posts for.
         experience_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
@@ -62,9 +64,11 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The ID of the parent post to list forum post comments for
+        # The unique identifier of a parent post to list comments for. When set, returns
+        # replies to that post.
         parent_id: nil,
-        # Set to true to only return pinned posts
+        # Whether to filter for only pinned posts. Set to true to return only pinned
+        # posts.
         pinned: nil,
         request_options: {}
       )

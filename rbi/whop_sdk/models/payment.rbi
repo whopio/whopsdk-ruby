@@ -48,7 +48,8 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::CardBrands::TaggedSymbol)) }
       attr_accessor :card_brand
 
-      # The last 4 digits of the card used to make the payment.
+      # The last four digits of the card used to make this payment. Null if the payment
+      # was not made with a card.
       sig { returns(T.nilable(String)) }
       attr_accessor :card_last4
 
@@ -71,9 +72,24 @@ module WhopSDK
       sig { returns(T.nilable(Time)) }
       attr_accessor :dispute_alerted_at
 
+      # The disputes attached to this payment. Null if the actor in context does not
+      # have the payment:dispute:read permission.
+      sig { returns(T.nilable(T::Array[WhopSDK::Payment::Dispute])) }
+      attr_accessor :disputes
+
       # If the payment failed, the reason for the failure.
       sig { returns(T.nilable(String)) }
       attr_accessor :failure_message
+
+      # The number of financing installments for the payment. Present if the payment is
+      # a financing payment (e.g. Splitit, Klarna, etc.).
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :financing_installments_count
+
+      # The financing transactions attached to this payment. Present if the payment is a
+      # financing payment (e.g. Splitit, Klarna, etc.).
+      sig { returns(T::Array[WhopSDK::Payment::FinancingTransaction]) }
+      attr_accessor :financing_transactions
 
       # The time of the last payment attempt.
       sig { returns(T.nilable(Time)) }
@@ -104,11 +120,13 @@ module WhopSDK
       sig { returns(T.nilable(Time)) }
       attr_accessor :next_payment_attempt
 
-      # The datetime the payment was paid
+      # The time at which this payment was successfully collected. Null if the payment
+      # has not yet succeeded. As a Unix timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :paid_at
 
-      # The payment method used for the payment, if available.
+      # The tokenized payment method reference used for this payment. Null if no token
+      # was used.
       sig { returns(T.nilable(WhopSDK::Payment::PaymentMethod)) }
       attr_reader :payment_method
 
@@ -163,6 +181,12 @@ module WhopSDK
       sig { returns(T.nilable(Time)) }
       attr_accessor :refunded_at
 
+      # The resolution center cases opened by the customer on this payment. Null if the
+      # actor in context does not have the payment:resolution_center_case:read
+      # permission.
+      sig { returns(T.nilable(T::Array[WhopSDK::Payment::Resolution])) }
+      attr_accessor :resolutions
+
       # True when the payment status is `open` and its membership is in one of the
       # retry-eligible states (`active`, `trialing`, `completed`, or `past_due`);
       # otherwise false. Used to decide if Whop can attempt the charge again.
@@ -201,8 +225,8 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :voidable
 
-      # A payment represents a completed or attempted charge for a membership. Payments
-      # track the amount, status, currency, and payment method used.
+      # A payment represents a completed or attempted charge. Payments track the amount,
+      # status, currency, and payment method used.
       sig do
         params(
           id: String,
@@ -217,7 +241,11 @@ module WhopSDK
           created_at: Time,
           currency: T.nilable(WhopSDK::Currency::OrSymbol),
           dispute_alerted_at: T.nilable(Time),
+          disputes: T.nilable(T::Array[WhopSDK::Payment::Dispute::OrHash]),
           failure_message: T.nilable(String),
+          financing_installments_count: T.nilable(Integer),
+          financing_transactions:
+            T::Array[WhopSDK::Payment::FinancingTransaction::OrHash],
           last_payment_attempt: T.nilable(Time),
           member: T.nilable(WhopSDK::Payment::Member::OrHash),
           membership: T.nilable(WhopSDK::Payment::Membership::OrHash),
@@ -233,6 +261,8 @@ module WhopSDK
           refundable: T::Boolean,
           refunded_amount: T.nilable(Float),
           refunded_at: T.nilable(Time),
+          resolutions:
+            T.nilable(T::Array[WhopSDK::Payment::Resolution::OrHash]),
           retryable: T::Boolean,
           status: T.nilable(WhopSDK::ReceiptStatus::OrSymbol),
           substatus: WhopSDK::FriendlyReceiptStatus::OrSymbol,
@@ -258,7 +288,8 @@ module WhopSDK
         billing_reason:,
         # Possible card brands that a payment token can have
         card_brand:,
-        # The last 4 digits of the card used to make the payment.
+        # The last four digits of the card used to make this payment. Null if the payment
+        # was not made with a card.
         card_last4:,
         # The company for the payment.
         company:,
@@ -268,8 +299,17 @@ module WhopSDK
         currency:,
         # When an alert came in that this transaction will be disputed
         dispute_alerted_at:,
+        # The disputes attached to this payment. Null if the actor in context does not
+        # have the payment:dispute:read permission.
+        disputes:,
         # If the payment failed, the reason for the failure.
         failure_message:,
+        # The number of financing installments for the payment. Present if the payment is
+        # a financing payment (e.g. Splitit, Klarna, etc.).
+        financing_installments_count:,
+        # The financing transactions attached to this payment. Present if the payment is a
+        # financing payment (e.g. Splitit, Klarna, etc.).
+        financing_transactions:,
         # The time of the last payment attempt.
         last_payment_attempt:,
         # The member attached to this payment.
@@ -281,9 +321,11 @@ module WhopSDK
         metadata:,
         # The time of the next schedule payment retry.
         next_payment_attempt:,
-        # The datetime the payment was paid
+        # The time at which this payment was successfully collected. Null if the payment
+        # has not yet succeeded. As a Unix timestamp.
         paid_at:,
-        # The payment method used for the payment, if available.
+        # The tokenized payment method reference used for this payment. Null if no token
+        # was used.
         payment_method:,
         # The different types of payment methods that can be used.
         payment_method_type:,
@@ -302,6 +344,10 @@ module WhopSDK
         refunded_amount:,
         # When the payment was refunded (if applicable).
         refunded_at:,
+        # The resolution center cases opened by the customer on this payment. Null if the
+        # actor in context does not have the payment:resolution_center_case:read
+        # permission.
+        resolutions:,
         # True when the payment status is `open` and its membership is in one of the
         # retry-eligible states (`active`, `trialing`, `completed`, or `past_due`);
         # otherwise false. Used to decide if Whop can attempt the charge again.
@@ -339,7 +385,11 @@ module WhopSDK
             created_at: Time,
             currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
             dispute_alerted_at: T.nilable(Time),
+            disputes: T.nilable(T::Array[WhopSDK::Payment::Dispute]),
             failure_message: T.nilable(String),
+            financing_installments_count: T.nilable(Integer),
+            financing_transactions:
+              T::Array[WhopSDK::Payment::FinancingTransaction],
             last_payment_attempt: T.nilable(Time),
             member: T.nilable(WhopSDK::Payment::Member),
             membership: T.nilable(WhopSDK::Payment::Membership),
@@ -356,6 +406,7 @@ module WhopSDK
             refundable: T::Boolean,
             refunded_amount: T.nilable(Float),
             refunded_at: T.nilable(Time),
+            resolutions: T.nilable(T::Array[WhopSDK::Payment::Resolution]),
             retryable: T::Boolean,
             status: T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol),
             substatus: WhopSDK::FriendlyReceiptStatus::TaggedSymbol,
@@ -563,6 +614,333 @@ module WhopSDK
         end
       end
 
+      class Dispute < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Payment::Dispute, WhopSDK::Internal::AnyHash)
+          end
+
+        # The unique identifier for the dispute.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The disputed amount in the specified currency, formatted as a decimal.
+        sig { returns(Float) }
+        attr_accessor :amount
+
+        # The three-letter ISO currency code for the disputed amount.
+        sig { returns(WhopSDK::Currency::TaggedSymbol) }
+        attr_accessor :currency
+
+        # Whether the dispute evidence can still be edited and submitted. Returns true
+        # only when the dispute status requires a response.
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_accessor :editable
+
+        # The deadline by which dispute evidence must be submitted. Null if no response
+        # deadline is set.
+        sig { returns(T.nilable(Time)) }
+        attr_accessor :needs_response_by
+
+        # Additional freeform notes submitted by the company as part of the dispute
+        # evidence.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :notes
+
+        # A human-readable reason for the dispute.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :reason
+
+        # The current status of the dispute lifecycle, such as needs_response,
+        # under_review, won, or lost.
+        sig { returns(WhopSDK::DisputeStatuses::TaggedSymbol) }
+        attr_accessor :status
+
+        # A dispute is a chargeback or payment challenge filed against a company,
+        # including evidence and response status.
+        sig do
+          params(
+            id: String,
+            amount: Float,
+            currency: WhopSDK::Currency::OrSymbol,
+            editable: T.nilable(T::Boolean),
+            needs_response_by: T.nilable(Time),
+            notes: T.nilable(String),
+            reason: T.nilable(String),
+            status: WhopSDK::DisputeStatuses::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The unique identifier for the dispute.
+          id:,
+          # The disputed amount in the specified currency, formatted as a decimal.
+          amount:,
+          # The three-letter ISO currency code for the disputed amount.
+          currency:,
+          # Whether the dispute evidence can still be edited and submitted. Returns true
+          # only when the dispute status requires a response.
+          editable:,
+          # The deadline by which dispute evidence must be submitted. Null if no response
+          # deadline is set.
+          needs_response_by:,
+          # Additional freeform notes submitted by the company as part of the dispute
+          # evidence.
+          notes:,
+          # A human-readable reason for the dispute.
+          reason:,
+          # The current status of the dispute lifecycle, such as needs_response,
+          # under_review, won, or lost.
+          status:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              amount: Float,
+              currency: WhopSDK::Currency::TaggedSymbol,
+              editable: T.nilable(T::Boolean),
+              needs_response_by: T.nilable(Time),
+              notes: T.nilable(String),
+              reason: T.nilable(String),
+              status: WhopSDK::DisputeStatuses::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class FinancingTransaction < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Payment::FinancingTransaction,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The unique identifier for the payment transaction.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The amount of the payment transaction.
+        sig { returns(Float) }
+        attr_accessor :amount
+
+        # The date and time the payment transaction was created.
+        sig { returns(Time) }
+        attr_accessor :created_at
+
+        # The status of the payment transaction.
+        sig do
+          returns(WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol)
+        end
+        attr_accessor :status
+
+        # The type of the payment transaction.
+        sig do
+          returns(
+            WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
+          )
+        end
+        attr_accessor :transaction_type
+
+        # A payment transaction.
+        sig do
+          params(
+            id: String,
+            amount: Float,
+            created_at: Time,
+            status: WhopSDK::Payment::FinancingTransaction::Status::OrSymbol,
+            transaction_type:
+              WhopSDK::Payment::FinancingTransaction::TransactionType::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The unique identifier for the payment transaction.
+          id:,
+          # The amount of the payment transaction.
+          amount:,
+          # The date and time the payment transaction was created.
+          created_at:,
+          # The status of the payment transaction.
+          status:,
+          # The type of the payment transaction.
+          transaction_type:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              amount: Float,
+              created_at: Time,
+              status:
+                WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol,
+              transaction_type:
+                WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # The status of the payment transaction.
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, WhopSDK::Payment::FinancingTransaction::Status)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          SUCCEEDED =
+            T.let(
+              :succeeded,
+              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
+            )
+          DECLINED =
+            T.let(
+              :declined,
+              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
+            )
+          ERROR =
+            T.let(
+              :error,
+              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
+            )
+          PENDING =
+            T.let(
+              :pending,
+              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
+            )
+          CREATED =
+            T.let(
+              :created,
+              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
+            )
+          EXPIRED =
+            T.let(
+              :expired,
+              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
+            )
+          WON =
+            T.let(
+              :won,
+              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
+            )
+          REJECTED =
+            T.let(
+              :rejected,
+              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
+            )
+          LOST =
+            T.let(
+              :lost,
+              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
+            )
+          PREVENTED =
+            T.let(
+              :prevented,
+              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # The type of the payment transaction.
+        module TransactionType
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                WhopSDK::Payment::FinancingTransaction::TransactionType
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          PURCHASE =
+            T.let(
+              :purchase,
+              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
+            )
+          AUTHORIZE =
+            T.let(
+              :authorize,
+              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
+            )
+          CAPTURE =
+            T.let(
+              :capture,
+              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
+            )
+          REFUND =
+            T.let(
+              :refund,
+              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
+            )
+          CANCEL =
+            T.let(
+              :cancel,
+              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
+            )
+          VERIFY =
+            T.let(
+              :verify,
+              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
+            )
+          CHARGEBACK =
+            T.let(
+              :chargeback,
+              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
+            )
+          THREE_D_SECURE =
+            T.let(
+              :three_d_secure,
+              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
+            )
+          FRAUD_SCREENING =
+            T.let(
+              :fraud_screening,
+              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
+            )
+          AUTHORIZATION =
+            T.let(
+              :authorization,
+              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
+            )
+          INSTALLMENT =
+            T.let(
+              :installment,
+              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+      end
+
       class Member < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
@@ -661,7 +1039,8 @@ module WhopSDK
         sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
         attr_accessor :payment_method_type
 
-        # The payment method used for the payment, if available.
+        # The tokenized payment method reference used for this payment. Null if no token
+        # was used.
         sig do
           params(
             id: String,
@@ -708,15 +1087,16 @@ module WhopSDK
           sig { returns(T.nilable(WhopSDK::CardBrands::TaggedSymbol)) }
           attr_accessor :brand
 
-          # Card expiration month, like 03 for March.
+          # The two-digit expiration month of the card (1-12). Null if not available.
           sig { returns(T.nilable(Integer)) }
           attr_accessor :exp_month
 
-          # Card expiration year, like 27 for 2027.
+          # The two-digit expiration year of the card (e.g., 27 for 2027). Null if not
+          # available.
           sig { returns(T.nilable(Integer)) }
           attr_accessor :exp_year
 
-          # Last four digits of the card.
+          # The last four digits of the card number. Null if not available.
           sig { returns(T.nilable(String)) }
           attr_accessor :last4
 
@@ -732,11 +1112,12 @@ module WhopSDK
           def self.new(
             # Possible card brands that a payment token can have
             brand:,
-            # Card expiration month, like 03 for March.
+            # The two-digit expiration month of the card (1-12). Null if not available.
             exp_month:,
-            # Card expiration year, like 27 for 2027.
+            # The two-digit expiration year of the card (e.g., 27 for 2027). Null if not
+            # available.
             exp_year:,
-            # Last four digits of the card.
+            # The last four digits of the card number. Null if not available.
             last4:
           )
           end
@@ -789,11 +1170,13 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The route of the product.
+        # The URL slug used in the product's public link (e.g., 'my-product' in
+        # whop.com/company/my-product).
         sig { returns(String) }
         attr_accessor :route
 
-        # The title of the product. Use for Whop 4.0.
+        # The display name of the product shown to customers on the product page and in
+        # search results.
         sig { returns(String) }
         attr_accessor :title
 
@@ -806,9 +1189,11 @@ module WhopSDK
         def self.new(
           # The unique identifier for the product.
           id:,
-          # The route of the product.
+          # The URL slug used in the product's public link (e.g., 'my-product' in
+          # whop.com/company/my-product).
           route:,
-          # The title of the product. Use for Whop 4.0.
+          # The display name of the product shown to customers on the product page and in
+          # search results.
           title:
         )
         end
@@ -895,6 +1280,388 @@ module WhopSDK
         end
       end
 
+      class Resolution < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Payment::Resolution, WhopSDK::Internal::AnyHash)
+          end
+
+        # The unique identifier for the resolution.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # Whether the customer has filed an appeal after the initial resolution decision.
+        sig { returns(T::Boolean) }
+        attr_accessor :customer_appealed
+
+        # The list of actions currently available to the customer.
+        sig do
+          returns(
+            T::Array[
+              WhopSDK::Payment::Resolution::CustomerResponseAction::TaggedSymbol
+            ]
+          )
+        end
+        attr_accessor :customer_response_actions
+
+        # The deadline by which the next response is required. Null if no deadline is
+        # currently active. As a Unix timestamp.
+        sig { returns(T.nilable(Time)) }
+        attr_accessor :due_date
+
+        # The category of the dispute.
+        sig { returns(WhopSDK::Payment::Resolution::Issue::TaggedSymbol) }
+        attr_accessor :issue
+
+        # Whether the merchant has filed an appeal after the initial resolution decision.
+        sig { returns(T::Boolean) }
+        attr_accessor :merchant_appealed
+
+        # The list of actions currently available to the merchant.
+        sig do
+          returns(
+            T::Array[
+              WhopSDK::Payment::Resolution::MerchantResponseAction::TaggedSymbol
+            ]
+          )
+        end
+        attr_accessor :merchant_response_actions
+
+        # The list of actions currently available to the Whop platform for moderating this
+        # resolution.
+        sig do
+          returns(
+            T::Array[
+              WhopSDK::Payment::Resolution::PlatformResponseAction::TaggedSymbol
+            ]
+          )
+        end
+        attr_accessor :platform_response_actions
+
+        # The current status of the resolution case, indicating which party needs to
+        # respond or if the case is closed.
+        sig { returns(WhopSDK::Payment::Resolution::Status::TaggedSymbol) }
+        attr_accessor :status
+
+        # A resolution is a dispute or support case between a buyer and seller, tracking
+        # the issue, status, and outcome.
+        sig do
+          params(
+            id: String,
+            customer_appealed: T::Boolean,
+            customer_response_actions:
+              T::Array[
+                WhopSDK::Payment::Resolution::CustomerResponseAction::OrSymbol
+              ],
+            due_date: T.nilable(Time),
+            issue: WhopSDK::Payment::Resolution::Issue::OrSymbol,
+            merchant_appealed: T::Boolean,
+            merchant_response_actions:
+              T::Array[
+                WhopSDK::Payment::Resolution::MerchantResponseAction::OrSymbol
+              ],
+            platform_response_actions:
+              T::Array[
+                WhopSDK::Payment::Resolution::PlatformResponseAction::OrSymbol
+              ],
+            status: WhopSDK::Payment::Resolution::Status::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The unique identifier for the resolution.
+          id:,
+          # Whether the customer has filed an appeal after the initial resolution decision.
+          customer_appealed:,
+          # The list of actions currently available to the customer.
+          customer_response_actions:,
+          # The deadline by which the next response is required. Null if no deadline is
+          # currently active. As a Unix timestamp.
+          due_date:,
+          # The category of the dispute.
+          issue:,
+          # Whether the merchant has filed an appeal after the initial resolution decision.
+          merchant_appealed:,
+          # The list of actions currently available to the merchant.
+          merchant_response_actions:,
+          # The list of actions currently available to the Whop platform for moderating this
+          # resolution.
+          platform_response_actions:,
+          # The current status of the resolution case, indicating which party needs to
+          # respond or if the case is closed.
+          status:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              customer_appealed: T::Boolean,
+              customer_response_actions:
+                T::Array[
+                  WhopSDK::Payment::Resolution::CustomerResponseAction::TaggedSymbol
+                ],
+              due_date: T.nilable(Time),
+              issue: WhopSDK::Payment::Resolution::Issue::TaggedSymbol,
+              merchant_appealed: T::Boolean,
+              merchant_response_actions:
+                T::Array[
+                  WhopSDK::Payment::Resolution::MerchantResponseAction::TaggedSymbol
+                ],
+              platform_response_actions:
+                T::Array[
+                  WhopSDK::Payment::Resolution::PlatformResponseAction::TaggedSymbol
+                ],
+              status: WhopSDK::Payment::Resolution::Status::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # The types of responses a customer can make to a resolution.
+        module CustomerResponseAction
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                WhopSDK::Payment::Resolution::CustomerResponseAction
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          RESPOND =
+            T.let(
+              :respond,
+              WhopSDK::Payment::Resolution::CustomerResponseAction::TaggedSymbol
+            )
+          APPEAL =
+            T.let(
+              :appeal,
+              WhopSDK::Payment::Resolution::CustomerResponseAction::TaggedSymbol
+            )
+          WITHDRAW =
+            T.let(
+              :withdraw,
+              WhopSDK::Payment::Resolution::CustomerResponseAction::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                WhopSDK::Payment::Resolution::CustomerResponseAction::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # The category of the dispute.
+        module Issue
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias { T.all(Symbol, WhopSDK::Payment::Resolution::Issue) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          FORGOT_TO_CANCEL =
+            T.let(
+              :forgot_to_cancel,
+              WhopSDK::Payment::Resolution::Issue::TaggedSymbol
+            )
+          ITEM_NOT_RECEIVED =
+            T.let(
+              :item_not_received,
+              WhopSDK::Payment::Resolution::Issue::TaggedSymbol
+            )
+          SIGNIFICANTLY_NOT_AS_DESCRIBED =
+            T.let(
+              :significantly_not_as_described,
+              WhopSDK::Payment::Resolution::Issue::TaggedSymbol
+            )
+          UNAUTHORIZED_TRANSACTION =
+            T.let(
+              :unauthorized_transaction,
+              WhopSDK::Payment::Resolution::Issue::TaggedSymbol
+            )
+          PRODUCT_UNACCEPTABLE =
+            T.let(
+              :product_unacceptable,
+              WhopSDK::Payment::Resolution::Issue::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[WhopSDK::Payment::Resolution::Issue::TaggedSymbol]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # The types of responses a merchant can make to a resolution.
+        module MerchantResponseAction
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                WhopSDK::Payment::Resolution::MerchantResponseAction
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          ACCEPT =
+            T.let(
+              :accept,
+              WhopSDK::Payment::Resolution::MerchantResponseAction::TaggedSymbol
+            )
+          DENY =
+            T.let(
+              :deny,
+              WhopSDK::Payment::Resolution::MerchantResponseAction::TaggedSymbol
+            )
+          REQUEST_MORE_INFO =
+            T.let(
+              :request_more_info,
+              WhopSDK::Payment::Resolution::MerchantResponseAction::TaggedSymbol
+            )
+          APPEAL =
+            T.let(
+              :appeal,
+              WhopSDK::Payment::Resolution::MerchantResponseAction::TaggedSymbol
+            )
+          RESPOND =
+            T.let(
+              :respond,
+              WhopSDK::Payment::Resolution::MerchantResponseAction::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                WhopSDK::Payment::Resolution::MerchantResponseAction::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # The types of responses the platform can make to a resolution.
+        module PlatformResponseAction
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                WhopSDK::Payment::Resolution::PlatformResponseAction
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          REQUEST_BUYER_INFO =
+            T.let(
+              :request_buyer_info,
+              WhopSDK::Payment::Resolution::PlatformResponseAction::TaggedSymbol
+            )
+          REQUEST_MERCHANT_INFO =
+            T.let(
+              :request_merchant_info,
+              WhopSDK::Payment::Resolution::PlatformResponseAction::TaggedSymbol
+            )
+          MERCHANT_WINS =
+            T.let(
+              :merchant_wins,
+              WhopSDK::Payment::Resolution::PlatformResponseAction::TaggedSymbol
+            )
+          PLATFORM_REFUND =
+            T.let(
+              :platform_refund,
+              WhopSDK::Payment::Resolution::PlatformResponseAction::TaggedSymbol
+            )
+          MERCHANT_REFUND =
+            T.let(
+              :merchant_refund,
+              WhopSDK::Payment::Resolution::PlatformResponseAction::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                WhopSDK::Payment::Resolution::PlatformResponseAction::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # The current status of the resolution case, indicating which party needs to
+        # respond or if the case is closed.
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias { T.all(Symbol, WhopSDK::Payment::Resolution::Status) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          MERCHANT_RESPONSE_NEEDED =
+            T.let(
+              :merchant_response_needed,
+              WhopSDK::Payment::Resolution::Status::TaggedSymbol
+            )
+          CUSTOMER_RESPONSE_NEEDED =
+            T.let(
+              :customer_response_needed,
+              WhopSDK::Payment::Resolution::Status::TaggedSymbol
+            )
+          MERCHANT_INFO_NEEDED =
+            T.let(
+              :merchant_info_needed,
+              WhopSDK::Payment::Resolution::Status::TaggedSymbol
+            )
+          CUSTOMER_INFO_NEEDED =
+            T.let(
+              :customer_info_needed,
+              WhopSDK::Payment::Resolution::Status::TaggedSymbol
+            )
+          UNDER_PLATFORM_REVIEW =
+            T.let(
+              :under_platform_review,
+              WhopSDK::Payment::Resolution::Status::TaggedSymbol
+            )
+          CUSTOMER_WON =
+            T.let(
+              :customer_won,
+              WhopSDK::Payment::Resolution::Status::TaggedSymbol
+            )
+          MERCHANT_WON =
+            T.let(
+              :merchant_won,
+              WhopSDK::Payment::Resolution::Status::TaggedSymbol
+            )
+          CUSTOMER_WITHDREW =
+            T.let(
+              :customer_withdrew,
+              WhopSDK::Payment::Resolution::Status::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[WhopSDK::Payment::Resolution::Status::TaggedSymbol]
+            )
+          end
+          def self.values
+          end
+        end
+      end
+
       class User < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
@@ -905,15 +1672,16 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The email of the user
+        # The user's email address. Requires the member:email:read permission to access.
+        # Null if not authorized.
         sig { returns(T.nilable(String)) }
         attr_accessor :email
 
-        # The name of the user from their Whop account.
+        # The user's display name shown on their public profile.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
-        # The username of the user from their Whop account.
+        # The user's unique username shown on their public profile.
         sig { returns(String) }
         attr_accessor :username
 
@@ -929,11 +1697,12 @@ module WhopSDK
         def self.new(
           # The unique identifier for the user.
           id:,
-          # The email of the user
+          # The user's email address. Requires the member:email:read permission to access.
+          # Null if not authorized.
           email:,
-          # The name of the user from their Whop account.
+          # The user's display name shown on their public profile.
           name:,
-          # The username of the user from their Whop account.
+          # The user's unique username shown on their public profile.
           username:
         )
         end

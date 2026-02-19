@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class Memberships
-      # Retrieves a membership by ID or license key
+      # Retrieves the details of an existing membership.
       #
       # Required permissions:
       #
@@ -16,13 +16,13 @@ module WhopSDK
         ).returns(WhopSDK::Membership)
       end
       def retrieve(
-        # The ID of the membership or a license key
+        # The unique identifier of the membership, or a license key.
         id,
         request_options: {}
       )
       end
 
-      # Update a membership
+      # Update a membership's metadata or other mutable properties.
       #
       # Required permissions:
       #
@@ -37,15 +37,17 @@ module WhopSDK
         ).returns(WhopSDK::Membership)
       end
       def update(
-        # The ID of the membership.
+        # The unique identifier of the membership to update.
         id,
-        # The metadata to update the membership with.
+        # A JSON object of key-value pairs to store on the membership. Replaces any
+        # existing metadata.
         metadata: nil,
         request_options: {}
       )
       end
 
-      # Lists memberships
+      # Returns a paginated list of memberships, with optional filtering by product,
+      # plan, status, and user.
       #
       # Required permissions:
       #
@@ -78,13 +80,14 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The cancel options to filter the memberships by
+        # Filter to only memberships matching these cancellation reasons.
         cancel_options: nil,
-        # The ID of the company to list memberships for
+        # The unique identifier of the company to list memberships for. Required when
+        # using an API key.
         company_id: nil,
-        # The minimum creation date to filter by
+        # Only return memberships created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return memberships created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,
@@ -94,22 +97,22 @@ module WhopSDK
         last: nil,
         # Which columns can be used to sort.
         order: nil,
-        # The plan IDs to filter the memberships by
+        # Filter to only memberships belonging to these plan identifiers.
         plan_ids: nil,
-        # The product IDs to filter the memberships by
+        # Filter to only memberships belonging to these product identifiers.
         product_ids: nil,
-        # The promo code IDs to filter the memberships by
+        # Filter to only memberships that used these promo code identifiers.
         promo_code_ids: nil,
-        # The membership status to filter the memberships by
+        # Filter to only memberships matching these statuses.
         statuses: nil,
-        # Only return memberships from these whop user ids
+        # Filter to only memberships belonging to these user identifiers.
         user_ids: nil,
         request_options: {}
       )
       end
 
-      # Cancels a membership either immediately or at the end of the current billing
-      # period
+      # Cancel a membership either immediately or at the end of the current billing
+      # period. Immediate cancellation revokes access right away.
       #
       # Required permissions:
       #
@@ -127,7 +130,7 @@ module WhopSDK
         ).returns(WhopSDK::Membership)
       end
       def cancel(
-        # The ID of the membership.
+        # The unique identifier of the membership to cancel.
         id,
         # The mode of cancellation for a membership
         cancellation_mode: nil,
@@ -135,7 +138,8 @@ module WhopSDK
       )
       end
 
-      # Pauses a membership's payments
+      # Pause a membership's recurring payments. The customer retains access but will
+      # not be charged until the membership is resumed.
       #
       # Required permissions:
       #
@@ -150,16 +154,17 @@ module WhopSDK
         ).returns(WhopSDK::Membership)
       end
       def pause(
-        # The ID of the membership you want to pause.
+        # The unique identifier of the membership to pause.
         id,
-        # Whether to void past_due payments associated with the membership to prevent
-        # future payment attempts.
+        # Whether to void any outstanding past-due payments on this membership, preventing
+        # future collection attempts.
         void_payments: nil,
         request_options: {}
       )
       end
 
-      # Resumes a membership's payments
+      # Resume a previously paused membership's recurring payments. Billing resumes on
+      # the next cycle.
       #
       # Required permissions:
       #
@@ -173,13 +178,14 @@ module WhopSDK
         ).returns(WhopSDK::Membership)
       end
       def resume(
-        # The ID of the membership you want to resume.
+        # The unique identifier of the membership to resume.
         id,
         request_options: {}
       )
       end
 
-      # Uncancels a membership that was scheduled to cancel at period end
+      # Reverse a pending cancellation for a membership that was scheduled to cancel at
+      # period end.
       #
       # Required permissions:
       #
@@ -193,7 +199,7 @@ module WhopSDK
         ).returns(WhopSDK::Membership)
       end
       def uncancel(
-        # The ID of the membership.
+        # The unique identifier of the membership to uncancel.
         id,
         request_options: {}
       )

@@ -13,25 +13,28 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The converted member, if any.
+      # The company member record if this lead has converted into a paying customer.
+      # Null if the lead has not converted.
       sig { returns(T.nilable(WhopSDK::Lead::Member)) }
       attr_reader :member
 
       sig { params(member: T.nilable(WhopSDK::Lead::Member::OrHash)).void }
       attr_writer :member
 
-      # Custom metadata for the lead.
+      # Custom key-value pairs attached to this lead. Null if no metadata was provided.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
-      # The access pass the lead is interested in, if available.
+      # The product the lead expressed interest in. Null if the lead is not associated
+      # with a specific product.
       sig { returns(T.nilable(WhopSDK::Lead::Product)) }
       attr_reader :product
 
       sig { params(product: T.nilable(WhopSDK::Lead::Product::OrHash)).void }
       attr_writer :product
 
-      # The referrer URL that brought this lead.
+      # The URL of the page that referred this lead to the company. Null if no referrer
+      # was captured.
       sig { returns(T.nilable(String)) }
       attr_accessor :referrer
 
@@ -39,14 +42,15 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :updated_at
 
-      # The user who is the lead.
+      # The user account associated with this lead.
       sig { returns(WhopSDK::Lead::User) }
       attr_reader :user
 
       sig { params(user: WhopSDK::Lead::User::OrHash).void }
       attr_writer :user
 
-      # An object representing a lead (someone who is interested in a whop).
+      # A prospective customer who has expressed interest in a company or product but
+      # has not yet purchased.
       sig do
         params(
           id: String,
@@ -64,17 +68,20 @@ module WhopSDK
         id:,
         # The datetime the lead was created.
         created_at:,
-        # The converted member, if any.
+        # The company member record if this lead has converted into a paying customer.
+        # Null if the lead has not converted.
         member:,
-        # Custom metadata for the lead.
+        # Custom key-value pairs attached to this lead. Null if no metadata was provided.
         metadata:,
-        # The access pass the lead is interested in, if available.
+        # The product the lead expressed interest in. Null if the lead is not associated
+        # with a specific product.
         product:,
-        # The referrer URL that brought this lead.
+        # The URL of the page that referred this lead to the company. Null if no referrer
+        # was captured.
         referrer:,
         # The datetime the lead was last updated.
         updated_at:,
-        # The user who is the lead.
+        # The user account associated with this lead.
         user:
       )
       end
@@ -106,7 +113,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The converted member, if any.
+        # The company member record if this lead has converted into a paying customer.
+        # Null if the lead has not converted.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the company member.
@@ -129,16 +137,19 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The title of the product. Use for Whop 4.0.
+        # The display name of the product shown to customers on the product page and in
+        # search results.
         sig { returns(String) }
         attr_accessor :title
 
-        # The access pass the lead is interested in, if available.
+        # The product the lead expressed interest in. Null if the lead is not associated
+        # with a specific product.
         sig { params(id: String, title: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the product.
           id:,
-          # The title of the product. Use for Whop 4.0.
+          # The display name of the product shown to customers on the product page and in
+          # search results.
           title:
         )
         end
@@ -158,19 +169,20 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The email of the user
+        # The user's email address. Requires the member:email:read permission to access.
+        # Null if not authorized.
         sig { returns(T.nilable(String)) }
         attr_accessor :email
 
-        # The name of the user from their Whop account.
+        # The user's display name shown on their public profile.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
-        # The username of the user from their Whop account.
+        # The user's unique username shown on their public profile.
         sig { returns(String) }
         attr_accessor :username
 
-        # The user who is the lead.
+        # The user account associated with this lead.
         sig do
           params(
             id: String,
@@ -182,11 +194,12 @@ module WhopSDK
         def self.new(
           # The unique identifier for the user.
           id:,
-          # The email of the user
+          # The user's email address. Requires the member:email:read permission to access.
+          # Null if not authorized.
           email:,
-          # The name of the user from their Whop account.
+          # The user's display name shown on their public profile.
           name:,
-          # The username of the user from their Whop account.
+          # The user's unique username shown on their public profile.
           username:
         )
         end

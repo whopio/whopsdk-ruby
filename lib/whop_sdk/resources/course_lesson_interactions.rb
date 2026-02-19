@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class CourseLessonInteractions
-      # Retrieves a course lesson interaction by ID
+      # Retrieves the details of an existing course lesson interaction.
       #
       # Required permissions:
       #
@@ -12,7 +12,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID of the course lesson interaction
+      # @param id [String] The unique identifier of the lesson interaction to retrieve.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -28,7 +28,8 @@ module WhopSDK
         )
       end
 
-      # Lists course lesson interactions
+      # Returns a paginated list of lesson interactions, filtered by lesson, course,
+      # user, or completion status.
       #
       # Required permissions:
       #
@@ -41,17 +42,17 @@ module WhopSDK
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param completed [Boolean, nil] Whether the lesson has been completed by the user
+      # @param completed [Boolean, nil] Whether to filter for completed or in-progress lesson interactions.
       #
-      # @param course_id [String, nil] The ID of the course to list course lesson interactions for
+      # @param course_id [String, nil] The unique identifier of the course to filter interactions for.
       #
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param lesson_id [String, nil] The ID of the lesson to list course lesson interactions for
+      # @param lesson_id [String, nil] The unique identifier of the lesson to filter interactions for.
       #
-      # @param user_id [String, nil] The ID of the user to list course lesson interactions for
+      # @param user_id [String, nil] The unique identifier of the user to filter lesson interactions for.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

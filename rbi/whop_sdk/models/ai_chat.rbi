@@ -10,7 +10,7 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The total number of tokens used in the chat
+      # The total number of tokens consumed across all messages in this conversation.
       sig { returns(String) }
       attr_accessor :blended_token_usage
 
@@ -18,15 +18,17 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # When the last message was sent
+      # The timestamp of the most recent message in this conversation. Null if no
+      # messages have been sent yet.
       sig { returns(T.nilable(Time)) }
       attr_accessor :last_message_at
 
-      # The number of messages in the chat
+      # The total number of messages exchanged in this conversation.
       sig { returns(Integer) }
       attr_accessor :message_count
 
-      # The title of the AI chat
+      # A short descriptive title for this AI chat conversation. Null if no title has
+      # been set.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
@@ -34,14 +36,15 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :updated_at
 
-      # The user who owns the AI chat
+      # The user who owns this AI chat conversation.
       sig { returns(WhopSDK::AIChat::User) }
       attr_reader :user
 
       sig { params(user: WhopSDK::AIChat::User::OrHash).void }
       attr_writer :user
 
-      # An AI chat conversation belonging to a user
+      # An AI-powered chat conversation belonging to a user, with optional scheduled
+      # automation.
       sig do
         params(
           id: String,
@@ -57,19 +60,21 @@ module WhopSDK
       def self.new(
         # The unique identifier for the ai chat.
         id:,
-        # The total number of tokens used in the chat
+        # The total number of tokens consumed across all messages in this conversation.
         blended_token_usage:,
         # The datetime the ai chat was created.
         created_at:,
-        # When the last message was sent
+        # The timestamp of the most recent message in this conversation. Null if no
+        # messages have been sent yet.
         last_message_at:,
-        # The number of messages in the chat
+        # The total number of messages exchanged in this conversation.
         message_count:,
-        # The title of the AI chat
+        # A short descriptive title for this AI chat conversation. Null if no title has
+        # been set.
         title:,
         # The datetime the ai chat was last updated.
         updated_at:,
-        # The user who owns the AI chat
+        # The user who owns this AI chat conversation.
         user:
       )
       end
@@ -101,7 +106,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The user who owns the AI chat
+        # The user who owns this AI chat conversation.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The unique identifier for the user.

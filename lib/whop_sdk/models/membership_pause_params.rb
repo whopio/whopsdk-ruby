@@ -8,8 +8,8 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute void_payments
-      #   Whether to void past_due payments associated with the membership to prevent
-      #   future payment attempts.
+      #   Whether to void any outstanding past-due payments on this membership, preventing
+      #   future collection attempts.
       #
       #   @return [Boolean, nil]
       optional :void_payments, WhopSDK::Internal::Type::Boolean, nil?: true
@@ -18,7 +18,7 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::MembershipPauseParams} for more details.
       #
-      #   @param void_payments [Boolean, nil] Whether to void past_due payments associated with the membership to prevent futu
+      #   @param void_payments [Boolean, nil] Whether to void any outstanding past-due payments on this membership, preventing
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

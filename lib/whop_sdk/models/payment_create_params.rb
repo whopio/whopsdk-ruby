@@ -247,6 +247,12 @@ module WhopSDK
           #   @return [String, nil]
           optional :headline, String, nil?: true
 
+          # @!attribute industry_group
+          #   The different industry groups a company can be in.
+          #
+          #   @return [Symbol, WhopSDK::Models::IndustryGroups, nil]
+          optional :industry_group, enum: -> { WhopSDK::IndustryGroups }, nil?: true
+
           # @!attribute industry_type
           #   The different industry types a company can be in.
           #
@@ -277,7 +283,7 @@ module WhopSDK
           #   @return [Symbol, WhopSDK::Models::Visibility, nil]
           optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-          # @!method initialize(external_identifier:, title:, business_type: nil, collect_shipping_address: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil)
+          # @!method initialize(external_identifier:, title:, business_type: nil, collect_shipping_address: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_group: nil, industry_type: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::PaymentCreateParams::Plan::Product} for more details.
           #
@@ -302,6 +308,8 @@ module WhopSDK
           #   @param global_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for a product.
           #
           #   @param headline [String, nil] The headline of the product.
+          #
+          #   @param industry_group [Symbol, WhopSDK::Models::IndustryGroups, nil] The different industry groups a company can be in.
           #
           #   @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
           #

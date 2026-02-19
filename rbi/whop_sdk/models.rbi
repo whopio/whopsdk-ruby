@@ -63,8 +63,6 @@ module WhopSDK
 
   BillingReasons = WhopSDK::Models::BillingReasons
 
-  BotTokenTransactionTypes = WhopSDK::Models::BotTokenTransactionTypes
-
   BusinessTypes = WhopSDK::Models::BusinessTypes
 
   CancelOptions = WhopSDK::Models::CancelOptions
@@ -112,6 +110,8 @@ module WhopSDK
 
   CompanyTokenTransactionRetrieveParams =
     WhopSDK::Models::CompanyTokenTransactionRetrieveParams
+
+  CompanyTokenTransactionType = WhopSDK::Models::CompanyTokenTransactionType
 
   CompanyUpdateParams = WhopSDK::Models::CompanyUpdateParams
 
@@ -307,6 +307,8 @@ module WhopSDK
   FriendlyReceiptStatus = WhopSDK::Models::FriendlyReceiptStatus
 
   GlobalAffiliateStatus = WhopSDK::Models::GlobalAffiliateStatus
+
+  IndustryGroups = WhopSDK::Models::IndustryGroups
 
   IndustryTypes = WhopSDK::Models::IndustryTypes
 

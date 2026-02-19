@@ -14,30 +14,34 @@ module WhopSDK
           )
         end
 
-      # The positive amount of tokens
+      # The positive number of tokens to transact. For example, 100.0 for 100 tokens.
       sig { returns(Float) }
       attr_accessor :amount
 
-      # The company ID
+      # The unique identifier of the company to create the transaction in, starting with
+      # 'biz\_'.
       sig { returns(String) }
       attr_accessor :company_id
 
-      # Required for transfers - the user to receive tokens
+      # The unique identifier of the user receiving the tokens. Required when the
+      # transaction type is 'transfer'.
       sig { returns(String) }
       attr_accessor :destination_user_id
 
       sig { returns(Symbol) }
       attr_accessor :transaction_type
 
-      # The user ID whose balance will change
+      # The unique identifier of the user whose token balance will be affected, starting
+      # with 'user\_'.
       sig { returns(String) }
       attr_accessor :user_id
 
-      # Optional description for the transaction
+      # A human-readable description of why the transaction was created.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      # Optional key to prevent duplicate transactions
+      # A unique key to prevent duplicate transactions. Use a UUID or similar unique
+      # string.
       sig { returns(T.nilable(String)) }
       attr_accessor :idempotency_key
 
@@ -54,17 +58,21 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The positive amount of tokens
+        # The positive number of tokens to transact. For example, 100.0 for 100 tokens.
         amount:,
-        # The company ID
+        # The unique identifier of the company to create the transaction in, starting with
+        # 'biz\_'.
         company_id:,
-        # Required for transfers - the user to receive tokens
+        # The unique identifier of the user receiving the tokens. Required when the
+        # transaction type is 'transfer'.
         destination_user_id:,
-        # The user ID whose balance will change
+        # The unique identifier of the user whose token balance will be affected, starting
+        # with 'user\_'.
         user_id:,
-        # Optional description for the transaction
+        # A human-readable description of why the transaction was created.
         description: nil,
-        # Optional key to prevent duplicate transactions
+        # A unique key to prevent duplicate transactions. Use a UUID or similar unique
+        # string.
         idempotency_key: nil,
         transaction_type: :subtract,
         request_options: {}

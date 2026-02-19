@@ -6,31 +6,33 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::CompanyCreateParams} for more details.
       #
-      # Create a new company. Pass parent_company_id to create a sub-company under a
-      # platform, or omit it to create a company for the current user.
+      # Create a new company. Pass parent_company_id to create a connected account under
+      # a platform, or omit it to create a company for the current user.
       #
       # Required permissions:
       #
       # - `company:create`
       # - `company:basic:read`
       #
-      # @overload create(title:, business_type: nil, description: nil, email: nil, industry_type: nil, logo: nil, metadata: nil, parent_company_id: nil, send_customer_emails: nil, request_options: {})
+      # @overload create(title:, business_type: nil, description: nil, email: nil, industry_group: nil, industry_type: nil, logo: nil, metadata: nil, parent_company_id: nil, send_customer_emails: nil, request_options: {})
       #
-      # @param title [String] The name of the company being created.
+      # @param title [String] The display name of the company shown to customers.
       #
       # @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #
-      # @param description [String, nil] A description of what the company offers or does.
+      # @param description [String, nil] A promotional pitch displayed to potential customers on the company's store page
       #
-      # @param email [String, nil] The email of the user who the sub-company will belong to. Required when parent_c
+      # @param email [String, nil] The email address of the user who will own the connected account. Required when
+      #
+      # @param industry_group [Symbol, WhopSDK::Models::IndustryGroups, nil] The different industry groups a company can be in.
       #
       # @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
-      # @param logo [WhopSDK::Models::CompanyCreateParams::Logo, nil] The logo for the company in png, jpeg, or gif format
+      # @param logo [WhopSDK::Models::CompanyCreateParams::Logo, nil] The company's logo image. Accepts PNG, JPEG, or GIF format.
       #
-      # @param metadata [Hash{Symbol=>Object}, nil] Additional metadata for the company
+      # @param metadata [Hash{Symbol=>Object}, nil] A key-value JSON object of custom metadata to store on the company.
       #
-      # @param parent_company_id [String, nil] The company ID of the platform creating this sub-company. If omitted, the compan
+      # @param parent_company_id [String, nil] The unique identifier of the parent platform company. When provided, creates a c
       #
       # @param send_customer_emails [Boolean, nil] Whether Whop sends transactional emails to customers on behalf of this company.
       #
@@ -50,7 +52,7 @@ module WhopSDK
         )
       end
 
-      # Retrieves an company by ID or its url route
+      # Retrieves the details of an existing company.
       #
       # Required permissions:
       #
@@ -58,7 +60,7 @@ module WhopSDK
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The ID or route of the company
+      # @param id [String] The unique identifier or route slug of the company.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -77,31 +79,34 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::CompanyUpdateParams} for more details.
       #
-      # Update an existing company. Either a regular company, platform company, or one
-      # of a platform's connected accounts
+      # Update a company's title, description, logo, and other settings.
       #
       # Required permissions:
       #
       # - `company:update`
       # - `company:basic:read`
       #
-      # @overload update(id, banner_image: nil, business_type: nil, description: nil, industry_type: nil, logo: nil, send_customer_emails: nil, title: nil, request_options: {})
+      # @overload update(id, banner_image: nil, business_type: nil, description: nil, industry_group: nil, industry_type: nil, logo: nil, send_customer_emails: nil, target_audience: nil, title: nil, request_options: {})
       #
-      # @param id [String] The ID of the company to update
+      # @param id [String] The unique identifier of the company to update.
       #
-      # @param banner_image [WhopSDK::Models::CompanyUpdateParams::BannerImage, nil] The banner image for the company in png or jpeg format
+      # @param banner_image [WhopSDK::Models::CompanyUpdateParams::BannerImage, nil] The company's banner image. Accepts PNG or JPEG format.
       #
       # @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #
-      # @param description [String, nil] A description of what the company offers or does.
+      # @param description [String, nil] A promotional pitch displayed to potential customers on the company's store page
+      #
+      # @param industry_group [Symbol, WhopSDK::Models::IndustryGroups, nil] The different industry groups a company can be in.
       #
       # @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
-      # @param logo [WhopSDK::Models::CompanyUpdateParams::Logo, nil] The logo for the company in png, jpeg, or gif format
+      # @param logo [WhopSDK::Models::CompanyUpdateParams::Logo, nil] The company's logo image. Accepts PNG, JPEG, or GIF format.
       #
-      # @param send_customer_emails [Boolean, nil] Whether Whop sends transactional emails to customers on behalf of this company.
+      # @param send_customer_emails [Boolean, nil] Whether Whop sends transactional emails (receipts, renewals, cancelations) to cu
       #
-      # @param title [String, nil] The title of the company
+      # @param target_audience [String, nil] The target audience for this company (e.g., 'beginner day traders aged 18-25 loo
+      #
+      # @param title [String, nil] The display name of the company shown to customers.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -122,9 +127,9 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::CompanyListParams} for more details.
       #
-      # Lists companies. When parent_company_id is provided, lists connected accounts
-      # under that company. When omitted, lists companies the current user has access
-      # to.
+      # Returns a paginated list of companies. When parent_company_id is provided, lists
+      # connected accounts under that platform. When omitted, lists companies the
+      # current user has access to.
       #
       # Required permissions:
       #
@@ -136,9 +141,9 @@ module WhopSDK
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param created_after [Time, nil] The minimum creation date to filter by
+      # @param created_after [Time, nil] Only return companies created after this timestamp.
       #
-      # @param created_before [Time, nil] The maximum creation date to filter by
+      # @param created_before [Time, nil] Only return companies created before this timestamp.
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
@@ -146,7 +151,7 @@ module WhopSDK
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param parent_company_id [String, nil] The ID of the parent company to list connected accounts for. Omit to list the cu
+      # @param parent_company_id [String, nil] The unique identifier of the parent platform company. When provided, lists conne
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -4,6 +4,7 @@ module WhopSDK
       {
         experience_id: String,
         attachments: ::Array[WhopSDK::ForumPostCreateParams::Attachment]?,
+        company_id: String?,
         content: String?,
         is_mention: bool?,
         parent_id: String?,
@@ -23,6 +24,8 @@ module WhopSDK
       attr_accessor experience_id: String
 
       attr_accessor attachments: ::Array[WhopSDK::ForumPostCreateParams::Attachment]?
+
+      attr_accessor company_id: String?
 
       attr_accessor content: String?
 
@@ -45,6 +48,7 @@ module WhopSDK
       def initialize: (
         experience_id: String,
         ?attachments: ::Array[WhopSDK::ForumPostCreateParams::Attachment]?,
+        ?company_id: String?,
         ?content: String?,
         ?is_mention: bool?,
         ?parent_id: String?,
@@ -60,6 +64,7 @@ module WhopSDK
       def to_hash: -> {
         experience_id: String,
         attachments: ::Array[WhopSDK::ForumPostCreateParams::Attachment]?,
+        company_id: String?,
         content: String?,
         is_mention: bool?,
         parent_id: String?,

@@ -11,24 +11,27 @@ module WhopSDK
           T.any(WhopSDK::LeadCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the company to create a lead for.
+      # The unique identifier of the company to create the lead for, starting with
+      # 'biz\_'.
       sig { returns(String) }
       attr_accessor :company_id
 
-      # Custom metadata for the lead.
+      # A JSON object of custom metadata to attach to the lead for tracking purposes.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
-      # The ID of the product the lead is interested in.
+      # The unique identifier of the product the lead is interested in, starting with
+      # 'prod\_'.
       sig { returns(T.nilable(String)) }
       attr_accessor :product_id
 
-      # The url referrer of the lead, if any.
+      # The referral URL that brought the lead to the company, such as
+      # 'https://example.com/landing'.
       sig { returns(T.nilable(String)) }
       attr_accessor :referrer
 
-      # The ID of the user to create a lead for. If the request is made by a user, that
-      # user will be used.
+      # The unique identifier of the user to record as the lead. If authenticated as a
+      # user, that user is used automatically.
       sig { returns(T.nilable(String)) }
       attr_accessor :user_id
 
@@ -43,16 +46,19 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the company to create a lead for.
+        # The unique identifier of the company to create the lead for, starting with
+        # 'biz\_'.
         company_id:,
-        # Custom metadata for the lead.
+        # A JSON object of custom metadata to attach to the lead for tracking purposes.
         metadata: nil,
-        # The ID of the product the lead is interested in.
+        # The unique identifier of the product the lead is interested in, starting with
+        # 'prod\_'.
         product_id: nil,
-        # The url referrer of the lead, if any.
+        # The referral URL that brought the lead to the company, such as
+        # 'https://example.com/landing'.
         referrer: nil,
-        # The ID of the user to create a lead for. If the request is made by a user, that
-        # user will be used.
+        # The unique identifier of the user to record as the lead. If authenticated as a
+        # user, that user is used automatically.
         user_id: nil,
         request_options: {}
       )

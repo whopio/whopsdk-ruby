@@ -3,7 +3,8 @@
 module WhopSDK
   module Resources
     class FeeMarkups
-      # Creates or updates a fee markup for a company.
+      # Create or update a fee markup for a company. If a markup for the specified fee
+      # type already exists, it will be updated with the new values.
       #
       # Required permissions:
       #
@@ -20,23 +21,24 @@ module WhopSDK
         ).returns(WhopSDK::Models::FeeMarkupCreateResponse)
       end
       def create(
-        # The ID (tag) of the company you want to update the fee markup for.
+        # The unique identifier of the company to create or update the fee markup for.
         company_id:,
-        # The type of fee this markup applies to.
+        # The type of fee this markup applies to, such as processing or platform fees.
         fee_type:,
-        # The fixed fee in USD to charge (0-50).
+        # The fixed fee amount in USD to charge per transaction. Must be between 0 and 50.
         fixed_fee_usd: nil,
-        # Custom metadata to attach to this fee markup.
+        # Custom key-value metadata to attach to this fee markup.
         metadata: nil,
-        # Internal notes about this fee markup.
+        # Internal notes about this fee markup for record-keeping purposes.
         notes: nil,
-        # The percentage fee to charge (0-25).
+        # The percentage fee to charge per transaction. Must be between 0 and 25.
         percentage_fee: nil,
         request_options: {}
       )
       end
 
-      # Lists fee markups for a company.
+      # Returns a paginated list of fee markups configured for a company. If the company
+      # is a platform account, returns the platform default markups.
       #
       # Required permissions:
       #
@@ -54,8 +56,8 @@ module WhopSDK
         )
       end
       def list(
-        # The ID (tag) of the company you want to list the fee markups for. If you pass
-        # your platform account, you will get the platform default markups.
+        # The unique identifier of the company to list fee markups for. Pass a platform
+        # account identifier to retrieve platform default markups.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
@@ -69,7 +71,8 @@ module WhopSDK
       )
       end
 
-      # Deletes a fee markup for a company.
+      # Delete a fee markup configuration for a company. This removes the custom fee
+      # override and reverts to the parent company's default fees.
       #
       # Required permissions:
       #
@@ -81,7 +84,7 @@ module WhopSDK
         ).returns(T::Boolean)
       end
       def delete(
-        # The ID of the fee markup to delete.
+        # The unique identifier of the fee markup to delete.
         id,
         request_options: {}
       )

@@ -75,7 +75,8 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :transfer_fee
 
-      # Represents a LedgerAccount.
+      # A ledger account represents a financial account on Whop that can hold many
+      # balances.
       sig do
         params(
           id: String,
@@ -270,7 +271,7 @@ module WhopSDK
           sig { returns(String) }
           attr_accessor :id
 
-          # The name of the user from their Whop account.
+          # The user's display name shown on their public profile.
           sig { returns(T.nilable(String)) }
           attr_accessor :name
 
@@ -278,7 +279,7 @@ module WhopSDK
           sig { returns(Symbol) }
           attr_accessor :typename
 
-          # The username of the user from their Whop account.
+          # The user's unique username shown on their public profile.
           sig { returns(String) }
           attr_accessor :username
 
@@ -295,9 +296,9 @@ module WhopSDK
           def self.new(
             # The unique identifier for the user.
             id:,
-            # The name of the user from their Whop account.
+            # The user's display name shown on their public profile.
             name:,
-            # The username of the user from their Whop account.
+            # The user's unique username shown on their public profile.
             username:,
             # The typename of this object
             typename: :User
@@ -331,11 +332,11 @@ module WhopSDK
           sig { returns(String) }
           attr_accessor :id
 
-          # The slug/route of the company on the Whop site.
+          # The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
           sig { returns(String) }
           attr_accessor :route
 
-          # The title of the company.
+          # The display name of the company shown to customers.
           sig { returns(String) }
           attr_accessor :title
 
@@ -356,9 +357,9 @@ module WhopSDK
           def self.new(
             # The unique identifier for the company.
             id:,
-            # The slug/route of the company on the Whop site.
+            # The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
             route:,
-            # The title of the company.
+            # The display name of the company shown to customers.
             title:,
             # The typename of this object
             typename: :Company
@@ -736,11 +737,12 @@ module WhopSDK
           end
           attr_accessor :last_error_code
 
-          # The last error reason that occurred during the verification.
+          # A human-readable explanation of the most recent verification error. Null if no
+          # error has occurred.
           sig { returns(T.nilable(String)) }
           attr_accessor :last_error_reason
 
-          # The status of the verification.
+          # The current status of this verification session.
           sig { returns(WhopSDK::VerificationStatus::TaggedSymbol) }
           attr_accessor :status
 
@@ -759,9 +761,10 @@ module WhopSDK
             id:,
             # An error code for a verification attempt.
             last_error_code:,
-            # The last error reason that occurred during the verification.
+            # A human-readable explanation of the most recent verification error. Null if no
+            # error has occurred.
             last_error_reason:,
-            # The status of the verification.
+            # The current status of this verification session.
             status:
           )
           end

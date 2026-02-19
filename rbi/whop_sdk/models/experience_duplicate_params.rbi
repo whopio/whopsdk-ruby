@@ -11,7 +11,8 @@ module WhopSDK
           T.any(WhopSDK::ExperienceDuplicateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The name of the new experience
+      # The display name for the duplicated experience. Defaults to the original
+      # experience's name.
       sig { returns(T.nilable(String)) }
       attr_accessor :name
 
@@ -22,7 +23,8 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The name of the new experience
+        # The display name for the duplicated experience. Defaults to the original
+        # experience's name.
         name: nil,
         request_options: {}
       )

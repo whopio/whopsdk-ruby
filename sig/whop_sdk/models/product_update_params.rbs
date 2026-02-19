@@ -8,9 +8,11 @@ module WhopSDK
         custom_cta_url: String?,
         custom_statement_descriptor: String?,
         description: String?,
+        gallery_images: ::Array[WhopSDK::ProductUpdateParams::GalleryImage]?,
         global_affiliate_percentage: Float?,
         global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         headline: String?,
+        industry_group: WhopSDK::Models::industry_groups?,
         industry_type: WhopSDK::Models::industry_types?,
         member_affiliate_percentage: Float?,
         member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
@@ -39,11 +41,15 @@ module WhopSDK
 
       attr_accessor description: String?
 
+      attr_accessor gallery_images: ::Array[WhopSDK::ProductUpdateParams::GalleryImage]?
+
       attr_accessor global_affiliate_percentage: Float?
 
       attr_accessor global_affiliate_status: WhopSDK::Models::global_affiliate_status?
 
       attr_accessor headline: String?
+
+      attr_accessor industry_group: WhopSDK::Models::industry_groups?
 
       attr_accessor industry_type: WhopSDK::Models::industry_types?
 
@@ -70,9 +76,11 @@ module WhopSDK
         ?custom_cta_url: String?,
         ?custom_statement_descriptor: String?,
         ?description: String?,
+        ?gallery_images: ::Array[WhopSDK::ProductUpdateParams::GalleryImage]?,
         ?global_affiliate_percentage: Float?,
         ?global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         ?headline: String?,
+        ?industry_group: WhopSDK::Models::industry_groups?,
         ?industry_type: WhopSDK::Models::industry_types?,
         ?member_affiliate_percentage: Float?,
         ?member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
@@ -92,9 +100,11 @@ module WhopSDK
         custom_cta_url: String?,
         custom_statement_descriptor: String?,
         description: String?,
+        gallery_images: ::Array[WhopSDK::ProductUpdateParams::GalleryImage]?,
         global_affiliate_percentage: Float?,
         global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         headline: String?,
+        industry_group: WhopSDK::Models::industry_groups?,
         industry_type: WhopSDK::Models::industry_types?,
         member_affiliate_percentage: Float?,
         member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
@@ -106,6 +116,16 @@ module WhopSDK
         visibility: WhopSDK::Models::visibility?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type gallery_image = { id: String }
+
+      class GalleryImage < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
 
       type store_page_config = { custom_cta: String?, show_price: bool? }
 

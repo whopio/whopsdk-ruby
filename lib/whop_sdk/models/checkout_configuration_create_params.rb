@@ -8,13 +8,13 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute plan
-      #   Pass this object to create a new plan for this checkout configuration
+      #   The plan attributes to create a new plan inline for this checkout configuration.
       #
       #   @return [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan]
       required :plan, -> { WhopSDK::CheckoutConfigurationCreateParams::Plan }
 
       # @!attribute affiliate_code
-      #   The affiliate code to use for the checkout configuration
+      #   An affiliate tracking code to attribute the checkout to a specific affiliate.
       #
       #   @return [String, nil]
       optional :affiliate_code, String, nil?: true
@@ -26,7 +26,7 @@ module WhopSDK
       optional :currency, enum: -> { WhopSDK::Currency }, nil?: true
 
       # @!attribute metadata
-      #   The metadata to use for the checkout configuration
+      #   Custom key-value metadata to attach to the checkout configuration.
       #
       #   @return [Hash{Symbol=>Object}, nil]
       optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
@@ -37,9 +37,8 @@ module WhopSDK
       required :mode, const: :setup
 
       # @!attribute payment_method_configuration
-      #   This currently only works for configurations made in 'setup' mode. The explicit
-      #   payment method configuration for the checkout session. If not provided, the
-      #   platform or company's defaults will apply.
+      #   The explicit payment method configuration for the checkout session. Only applies
+      #   to setup mode. If not provided, the platform or company defaults will apply.
       #
       #   @return [WhopSDK::Models::CheckoutConfigurationCreateParams::PaymentMethodConfiguration, nil]
       optional :payment_method_configuration,
@@ -47,7 +46,7 @@ module WhopSDK
                nil?: true
 
       # @!attribute redirect_url
-      #   The URL to redirect the user to after the checkout configuration is created
+      #   The URL to redirect the user to after checkout is completed.
       #
       #   @return [String, nil]
       optional :redirect_url, String, nil?: true
@@ -59,14 +58,15 @@ module WhopSDK
       optional :source_url, String, nil?: true
 
       # @!attribute plan_id
-      #   The ID of the plan to use for the checkout configuration
+      #   The unique identifier of an existing plan to use for this checkout
+      #   configuration.
       #
       #   @return [String]
       required :plan_id, String
 
       # @!attribute company_id
-      #   The ID of the company for which to generate the checkout configuration. Only
-      #   required in setup mode.
+      #   The unique identifier of the company to create the checkout configuration for.
+      #   Only required in setup mode.
       #
       #   @return [String]
       required :company_id, String
@@ -75,21 +75,21 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CheckoutConfigurationCreateParams} for more details.
       #
-      #   @param plan [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan] Pass this object to create a new plan for this checkout configuration
+      #   @param plan [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan] The plan attributes to create a new plan inline for this checkout configuration.
       #
-      #   @param plan_id [String] The ID of the plan to use for the checkout configuration
+      #   @param plan_id [String] The unique identifier of an existing plan to use for this checkout configuration
       #
-      #   @param company_id [String] The ID of the company for which to generate the checkout configuration. Only req
+      #   @param company_id [String] The unique identifier of the company to create the checkout configuration for. O
       #
-      #   @param affiliate_code [String, nil] The affiliate code to use for the checkout configuration
+      #   @param affiliate_code [String, nil] An affiliate tracking code to attribute the checkout to a specific affiliate.
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] The metadata to use for the checkout configuration
+      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value metadata to attach to the checkout configuration.
       #
-      #   @param payment_method_configuration [WhopSDK::Models::CheckoutConfigurationCreateParams::PaymentMethodConfiguration, nil] This currently only works for configurations made in 'setup' mode. The explicit
+      #   @param payment_method_configuration [WhopSDK::Models::CheckoutConfigurationCreateParams::PaymentMethodConfiguration, nil] The explicit payment method configuration for the checkout session. Only applies
       #
-      #   @param redirect_url [String, nil] The URL to redirect the user to after the checkout configuration is created
+      #   @param redirect_url [String, nil] The URL to redirect the user to after checkout is completed.
       #
       #   @param source_url [String, nil] The URL of the page where the checkout is being initiated from.
       #
@@ -257,7 +257,7 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan} for more details.
         #
-        #   Pass this object to create a new plan for this checkout configuration
+        #   The plan attributes to create a new plan inline for this checkout configuration.
         #
         #   @param company_id [String] The company the plan should be created for.
         #
@@ -471,6 +471,12 @@ module WhopSDK
           #   @return [String, nil]
           optional :headline, String, nil?: true
 
+          # @!attribute industry_group
+          #   The different industry groups a company can be in.
+          #
+          #   @return [Symbol, WhopSDK::Models::IndustryGroups, nil]
+          optional :industry_group, enum: -> { WhopSDK::IndustryGroups }, nil?: true
+
           # @!attribute industry_type
           #   The different industry types a company can be in.
           #
@@ -501,7 +507,7 @@ module WhopSDK
           #   @return [Symbol, WhopSDK::Models::Visibility, nil]
           optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-          # @!method initialize(external_identifier:, title:, business_type: nil, collect_shipping_address: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_type: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil)
+          # @!method initialize(external_identifier:, title:, business_type: nil, collect_shipping_address: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_group: nil, industry_type: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Product} for more
           #   details.
@@ -527,6 +533,8 @@ module WhopSDK
           #   @param global_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for a product.
           #
           #   @param headline [String, nil] The headline of the product.
+          #
+          #   @param industry_group [Symbol, WhopSDK::Models::IndustryGroups, nil] The different industry groups a company can be in.
           #
           #   @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
           #
@@ -570,9 +578,8 @@ module WhopSDK
         #   {WhopSDK::Models::CheckoutConfigurationCreateParams::PaymentMethodConfiguration}
         #   for more details.
         #
-        #   This currently only works for configurations made in 'setup' mode. The explicit
-        #   payment method configuration for the checkout session. If not provided, the
-        #   platform or company's defaults will apply.
+        #   The explicit payment method configuration for the checkout session. Only applies
+        #   to setup mode. If not provided, the platform or company defaults will apply.
         #
         #   @param disabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly disabled. Only applie
         #

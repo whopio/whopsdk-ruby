@@ -19,19 +19,22 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The type of fee this markup applies to.
+      # The category of fee this markup applies to.
       sig { returns(WhopSDK::FeeMarkupType::TaggedSymbol) }
       attr_accessor :fee_type
 
-      # The fixed fee in USD to charge (0-50).
+      # A flat fee charged per transaction, in USD. Ranges from 0 to 50. Null if no
+      # fixed fee is configured.
       sig { returns(T.nilable(Float)) }
       attr_accessor :fixed_fee_usd
 
-      # Internal notes about this fee markup.
+      # Internal notes about this fee markup, visible only to administrators. Null if no
+      # notes have been added.
       sig { returns(T.nilable(String)) }
       attr_accessor :notes
 
-      # The percentage fee to charge (0-25).
+      # A percentage-based fee charged per transaction. Ranges from 0 to 25. Null if no
+      # percentage fee is configured.
       sig { returns(T.nilable(Float)) }
       attr_accessor :percentage_fee
 
@@ -39,7 +42,8 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :updated_at
 
-      # Represents a fee markup configuration for a company
+      # A fee markup configuration that defines additional charges applied to
+      # transactions for a platform's connected accounts.
       sig do
         params(
           id: String,
@@ -56,13 +60,16 @@ module WhopSDK
         id:,
         # The datetime the fee markup was created.
         created_at:,
-        # The type of fee this markup applies to.
+        # The category of fee this markup applies to.
         fee_type:,
-        # The fixed fee in USD to charge (0-50).
+        # A flat fee charged per transaction, in USD. Ranges from 0 to 50. Null if no
+        # fixed fee is configured.
         fixed_fee_usd:,
-        # Internal notes about this fee markup.
+        # Internal notes about this fee markup, visible only to administrators. Null if no
+        # notes have been added.
         notes:,
-        # The percentage fee to charge (0-25).
+        # A percentage-based fee charged per transaction. Ranges from 0 to 25. Null if no
+        # percentage fee is configured.
         percentage_fee:,
         # The datetime the fee markup was last updated.
         updated_at:

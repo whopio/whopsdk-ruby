@@ -14,7 +14,10 @@ module WhopSDK
         created_at: Time,
         currency: WhopSDK::Models::currency?,
         dispute_alerted_at: Time?,
+        disputes: ::Array[WhopSDK::Payment::Dispute]?,
         failure_message: String?,
+        financing_installments_count: Integer?,
+        financing_transactions: ::Array[WhopSDK::Payment::FinancingTransaction],
         last_payment_attempt: Time?,
         member: WhopSDK::Payment::Member?,
         membership: WhopSDK::Payment::Membership?,
@@ -30,6 +33,7 @@ module WhopSDK
         refundable: bool,
         refunded_amount: Float?,
         refunded_at: Time?,
+        resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
@@ -65,7 +69,13 @@ module WhopSDK
 
       attr_accessor dispute_alerted_at: Time?
 
+      attr_accessor disputes: ::Array[WhopSDK::Payment::Dispute]?
+
       attr_accessor failure_message: String?
+
+      attr_accessor financing_installments_count: Integer?
+
+      attr_accessor financing_transactions: ::Array[WhopSDK::Payment::FinancingTransaction]
 
       attr_accessor last_payment_attempt: Time?
 
@@ -97,6 +107,8 @@ module WhopSDK
 
       attr_accessor refunded_at: Time?
 
+      attr_accessor resolutions: ::Array[WhopSDK::Payment::Resolution]?
+
       attr_accessor retryable: bool
 
       attr_accessor status: WhopSDK::Models::receipt_status?
@@ -126,7 +138,10 @@ module WhopSDK
         created_at: Time,
         currency: WhopSDK::Models::currency?,
         dispute_alerted_at: Time?,
+        disputes: ::Array[WhopSDK::Payment::Dispute]?,
         failure_message: String?,
+        financing_installments_count: Integer?,
+        financing_transactions: ::Array[WhopSDK::Payment::FinancingTransaction],
         last_payment_attempt: Time?,
         member: WhopSDK::Payment::Member?,
         membership: WhopSDK::Payment::Membership?,
@@ -142,6 +157,7 @@ module WhopSDK
         refundable: bool,
         refunded_amount: Float?,
         refunded_at: Time?,
+        resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
@@ -165,7 +181,10 @@ module WhopSDK
         created_at: Time,
         currency: WhopSDK::Models::currency?,
         dispute_alerted_at: Time?,
+        disputes: ::Array[WhopSDK::Payment::Dispute]?,
         failure_message: String?,
+        financing_installments_count: Integer?,
+        financing_transactions: ::Array[WhopSDK::Payment::FinancingTransaction],
         last_payment_attempt: Time?,
         member: WhopSDK::Payment::Member?,
         membership: WhopSDK::Payment::Membership?,
@@ -181,6 +200,7 @@ module WhopSDK
         refundable: bool,
         refunded_amount: Float?,
         refunded_at: Time?,
+        resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
@@ -292,6 +312,155 @@ module WhopSDK
         def initialize: (id: String, route: String, title: String) -> void
 
         def to_hash: -> { id: String, route: String, title: String }
+      end
+
+      type dispute =
+        {
+          id: String,
+          amount: Float,
+          currency: WhopSDK::Models::currency,
+          editable: bool?,
+          needs_response_by: Time?,
+          notes: String?,
+          reason: String?,
+          status: WhopSDK::Models::dispute_statuses
+        }
+
+      class Dispute < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor amount: Float
+
+        attr_accessor currency: WhopSDK::Models::currency
+
+        attr_accessor editable: bool?
+
+        attr_accessor needs_response_by: Time?
+
+        attr_accessor notes: String?
+
+        attr_accessor reason: String?
+
+        attr_accessor status: WhopSDK::Models::dispute_statuses
+
+        def initialize: (
+          id: String,
+          amount: Float,
+          currency: WhopSDK::Models::currency,
+          editable: bool?,
+          needs_response_by: Time?,
+          notes: String?,
+          reason: String?,
+          status: WhopSDK::Models::dispute_statuses
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          amount: Float,
+          currency: WhopSDK::Models::currency,
+          editable: bool?,
+          needs_response_by: Time?,
+          notes: String?,
+          reason: String?,
+          status: WhopSDK::Models::dispute_statuses
+        }
+      end
+
+      type financing_transaction =
+        {
+          id: String,
+          amount: Float,
+          created_at: Time,
+          status: WhopSDK::Models::Payment::FinancingTransaction::status,
+          transaction_type: WhopSDK::Models::Payment::FinancingTransaction::transaction_type
+        }
+
+      class FinancingTransaction < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor amount: Float
+
+        attr_accessor created_at: Time
+
+        attr_accessor status: WhopSDK::Models::Payment::FinancingTransaction::status
+
+        attr_accessor transaction_type: WhopSDK::Models::Payment::FinancingTransaction::transaction_type
+
+        def initialize: (
+          id: String,
+          amount: Float,
+          created_at: Time,
+          status: WhopSDK::Models::Payment::FinancingTransaction::status,
+          transaction_type: WhopSDK::Models::Payment::FinancingTransaction::transaction_type
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          amount: Float,
+          created_at: Time,
+          status: WhopSDK::Models::Payment::FinancingTransaction::status,
+          transaction_type: WhopSDK::Models::Payment::FinancingTransaction::transaction_type
+        }
+
+        type status =
+          :succeeded
+          | :declined
+          | :error
+          | :pending
+          | :created
+          | :expired
+          | :won
+          | :rejected
+          | :lost
+          | :prevented
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          SUCCEEDED: :succeeded
+          DECLINED: :declined
+          ERROR: :error
+          PENDING: :pending
+          CREATED: :created
+          EXPIRED: :expired
+          WON: :won
+          REJECTED: :rejected
+          LOST: :lost
+          PREVENTED: :prevented
+
+          def self?.values: -> ::Array[WhopSDK::Models::Payment::FinancingTransaction::status]
+        end
+
+        type transaction_type =
+          :purchase
+          | :authorize
+          | :capture
+          | :refund
+          | :cancel
+          | :verify
+          | :chargeback
+          | :three_d_secure
+          | :fraud_screening
+          | :authorization
+          | :installment
+
+        module TransactionType
+          extend WhopSDK::Internal::Type::Enum
+
+          PURCHASE: :purchase
+          AUTHORIZE: :authorize
+          CAPTURE: :capture
+          REFUND: :refund
+          CANCEL: :cancel
+          VERIFY: :verify
+          CHARGEBACK: :chargeback
+          THREE_D_SECURE: :three_d_secure
+          FRAUD_SCREENING: :fraud_screening
+          AUTHORIZATION: :authorization
+          INSTALLMENT: :installment
+
+          def self?.values: -> ::Array[WhopSDK::Models::Payment::FinancingTransaction::transaction_type]
+        end
       end
 
       type member = { id: String, phone: String? }
@@ -453,6 +622,153 @@ module WhopSDK
           number_of_intervals: Integer?,
           promo_type: WhopSDK::Models::promo_type
         }
+      end
+
+      type resolution =
+        {
+          id: String,
+          customer_appealed: bool,
+          customer_response_actions: ::Array[WhopSDK::Models::Payment::Resolution::customer_response_action],
+          due_date: Time?,
+          issue: WhopSDK::Models::Payment::Resolution::issue,
+          merchant_appealed: bool,
+          merchant_response_actions: ::Array[WhopSDK::Models::Payment::Resolution::merchant_response_action],
+          platform_response_actions: ::Array[WhopSDK::Models::Payment::Resolution::platform_response_action],
+          status: WhopSDK::Models::Payment::Resolution::status
+        }
+
+      class Resolution < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor customer_appealed: bool
+
+        attr_accessor customer_response_actions: ::Array[WhopSDK::Models::Payment::Resolution::customer_response_action]
+
+        attr_accessor due_date: Time?
+
+        attr_accessor issue: WhopSDK::Models::Payment::Resolution::issue
+
+        attr_accessor merchant_appealed: bool
+
+        attr_accessor merchant_response_actions: ::Array[WhopSDK::Models::Payment::Resolution::merchant_response_action]
+
+        attr_accessor platform_response_actions: ::Array[WhopSDK::Models::Payment::Resolution::platform_response_action]
+
+        attr_accessor status: WhopSDK::Models::Payment::Resolution::status
+
+        def initialize: (
+          id: String,
+          customer_appealed: bool,
+          customer_response_actions: ::Array[WhopSDK::Models::Payment::Resolution::customer_response_action],
+          due_date: Time?,
+          issue: WhopSDK::Models::Payment::Resolution::issue,
+          merchant_appealed: bool,
+          merchant_response_actions: ::Array[WhopSDK::Models::Payment::Resolution::merchant_response_action],
+          platform_response_actions: ::Array[WhopSDK::Models::Payment::Resolution::platform_response_action],
+          status: WhopSDK::Models::Payment::Resolution::status
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          customer_appealed: bool,
+          customer_response_actions: ::Array[WhopSDK::Models::Payment::Resolution::customer_response_action],
+          due_date: Time?,
+          issue: WhopSDK::Models::Payment::Resolution::issue,
+          merchant_appealed: bool,
+          merchant_response_actions: ::Array[WhopSDK::Models::Payment::Resolution::merchant_response_action],
+          platform_response_actions: ::Array[WhopSDK::Models::Payment::Resolution::platform_response_action],
+          status: WhopSDK::Models::Payment::Resolution::status
+        }
+
+        type customer_response_action = :respond | :appeal | :withdraw
+
+        module CustomerResponseAction
+          extend WhopSDK::Internal::Type::Enum
+
+          RESPOND: :respond
+          APPEAL: :appeal
+          WITHDRAW: :withdraw
+
+          def self?.values: -> ::Array[WhopSDK::Models::Payment::Resolution::customer_response_action]
+        end
+
+        type issue =
+          :forgot_to_cancel
+          | :item_not_received
+          | :significantly_not_as_described
+          | :unauthorized_transaction
+          | :product_unacceptable
+
+        module Issue
+          extend WhopSDK::Internal::Type::Enum
+
+          FORGOT_TO_CANCEL: :forgot_to_cancel
+          ITEM_NOT_RECEIVED: :item_not_received
+          SIGNIFICANTLY_NOT_AS_DESCRIBED: :significantly_not_as_described
+          UNAUTHORIZED_TRANSACTION: :unauthorized_transaction
+          PRODUCT_UNACCEPTABLE: :product_unacceptable
+
+          def self?.values: -> ::Array[WhopSDK::Models::Payment::Resolution::issue]
+        end
+
+        type merchant_response_action =
+          :accept | :deny | :request_more_info | :appeal | :respond
+
+        module MerchantResponseAction
+          extend WhopSDK::Internal::Type::Enum
+
+          ACCEPT: :accept
+          DENY: :deny
+          REQUEST_MORE_INFO: :request_more_info
+          APPEAL: :appeal
+          RESPOND: :respond
+
+          def self?.values: -> ::Array[WhopSDK::Models::Payment::Resolution::merchant_response_action]
+        end
+
+        type platform_response_action =
+          :request_buyer_info
+          | :request_merchant_info
+          | :merchant_wins
+          | :platform_refund
+          | :merchant_refund
+
+        module PlatformResponseAction
+          extend WhopSDK::Internal::Type::Enum
+
+          REQUEST_BUYER_INFO: :request_buyer_info
+          REQUEST_MERCHANT_INFO: :request_merchant_info
+          MERCHANT_WINS: :merchant_wins
+          PLATFORM_REFUND: :platform_refund
+          MERCHANT_REFUND: :merchant_refund
+
+          def self?.values: -> ::Array[WhopSDK::Models::Payment::Resolution::platform_response_action]
+        end
+
+        type status =
+          :merchant_response_needed
+          | :customer_response_needed
+          | :merchant_info_needed
+          | :customer_info_needed
+          | :under_platform_review
+          | :customer_won
+          | :merchant_won
+          | :customer_withdrew
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          MERCHANT_RESPONSE_NEEDED: :merchant_response_needed
+          CUSTOMER_RESPONSE_NEEDED: :customer_response_needed
+          MERCHANT_INFO_NEEDED: :merchant_info_needed
+          CUSTOMER_INFO_NEEDED: :customer_info_needed
+          UNDER_PLATFORM_REVIEW: :under_platform_review
+          CUSTOMER_WON: :customer_won
+          MERCHANT_WON: :merchant_won
+          CUSTOMER_WITHDREW: :customer_withdrew
+
+          def self?.values: -> ::Array[WhopSDK::Models::Payment::Resolution::status]
+        end
       end
 
       type user =

@@ -14,7 +14,7 @@ module WhopSDK
           )
         end
 
-      # The ID of the company
+      # The unique identifier of the company to list token transactions for.
       sig { returns(String) }
       attr_accessor :company_id
 
@@ -35,10 +35,10 @@ module WhopSDK
       attr_accessor :last
 
       # The type of token transaction
-      sig { returns(T.nilable(WhopSDK::BotTokenTransactionTypes::OrSymbol)) }
+      sig { returns(T.nilable(WhopSDK::CompanyTokenTransactionType::OrSymbol)) }
       attr_accessor :transaction_type
 
-      # Filter by user ID
+      # Filter transactions to only those involving this specific user.
       sig { returns(T.nilable(String)) }
       attr_accessor :user_id
 
@@ -50,13 +50,13 @@ module WhopSDK
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           transaction_type:
-            T.nilable(WhopSDK::BotTokenTransactionTypes::OrSymbol),
+            T.nilable(WhopSDK::CompanyTokenTransactionType::OrSymbol),
           user_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the company
+        # The unique identifier of the company to list token transactions for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
@@ -68,7 +68,7 @@ module WhopSDK
         last: nil,
         # The type of token transaction
         transaction_type: nil,
-        # Filter by user ID
+        # Filter transactions to only those involving this specific user.
         user_id: nil,
         request_options: {}
       )
@@ -83,7 +83,7 @@ module WhopSDK
             first: T.nilable(Integer),
             last: T.nilable(Integer),
             transaction_type:
-              T.nilable(WhopSDK::BotTokenTransactionTypes::OrSymbol),
+              T.nilable(WhopSDK::CompanyTokenTransactionType::OrSymbol),
             user_id: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }

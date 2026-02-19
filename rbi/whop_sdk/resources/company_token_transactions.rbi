@@ -3,7 +3,8 @@
 module WhopSDK
   module Resources
     class CompanyTokenTransactions
-      # Create a token transaction (add/subtract/transfer) for a member
+      # Create a token transaction to add, subtract, or transfer tokens for a member
+      # within a company.
       #
       # Required permissions:
       #
@@ -23,24 +24,28 @@ module WhopSDK
         ).returns(WhopSDK::CompanyTokenTransaction)
       end
       def create(
-        # The positive amount of tokens
+        # The positive number of tokens to transact. For example, 100.0 for 100 tokens.
         amount:,
-        # The company ID
+        # The unique identifier of the company to create the transaction in, starting with
+        # 'biz\_'.
         company_id:,
-        # Required for transfers - the user to receive tokens
+        # The unique identifier of the user receiving the tokens. Required when the
+        # transaction type is 'transfer'.
         destination_user_id:,
-        # The user ID whose balance will change
+        # The unique identifier of the user whose token balance will be affected, starting
+        # with 'user\_'.
         user_id:,
-        # Optional description for the transaction
+        # A human-readable description of why the transaction was created.
         description: nil,
-        # Optional key to prevent duplicate transactions
+        # A unique key to prevent duplicate transactions. Use a UUID or similar unique
+        # string.
         idempotency_key: nil,
         transaction_type: :subtract,
         request_options: {}
       )
       end
 
-      # Retrieves a token transaction by ID
+      # Retrieves the details of an existing company token transaction.
       #
       # Required permissions:
       #
@@ -54,13 +59,15 @@ module WhopSDK
         ).returns(WhopSDK::CompanyTokenTransaction)
       end
       def retrieve(
-        # The ID of the transaction
+        # The unique identifier of the token transaction to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # Lists token transactions for a company
+      # Returns a paginated list of token transactions for a user or company, depending
+      # on the authenticated actor, with optional filtering by user and transaction
+      # type.
       #
       # Required permissions:
       #
@@ -75,7 +82,7 @@ module WhopSDK
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           transaction_type:
-            T.nilable(WhopSDK::BotTokenTransactionTypes::OrSymbol),
+            T.nilable(WhopSDK::CompanyTokenTransactionType::OrSymbol),
           user_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
@@ -85,7 +92,7 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the company
+        # The unique identifier of the company to list token transactions for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
@@ -97,7 +104,7 @@ module WhopSDK
         last: nil,
         # The type of token transaction
         transaction_type: nil,
-        # Filter by user ID
+        # Filter transactions to only those involving this specific user.
         user_id: nil,
         request_options: {}
       )

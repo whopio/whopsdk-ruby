@@ -8,32 +8,35 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute company_id
-      #   The ID of the company to create a lead for.
+      #   The unique identifier of the company to create the lead for, starting with
+      #   'biz\_'.
       #
       #   @return [String]
       required :company_id, String
 
       # @!attribute metadata
-      #   Custom metadata for the lead.
+      #   A JSON object of custom metadata to attach to the lead for tracking purposes.
       #
       #   @return [Hash{Symbol=>Object}, nil]
       optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
       # @!attribute product_id
-      #   The ID of the product the lead is interested in.
+      #   The unique identifier of the product the lead is interested in, starting with
+      #   'prod\_'.
       #
       #   @return [String, nil]
       optional :product_id, String, nil?: true
 
       # @!attribute referrer
-      #   The url referrer of the lead, if any.
+      #   The referral URL that brought the lead to the company, such as
+      #   'https://example.com/landing'.
       #
       #   @return [String, nil]
       optional :referrer, String, nil?: true
 
       # @!attribute user_id
-      #   The ID of the user to create a lead for. If the request is made by a user, that
-      #   user will be used.
+      #   The unique identifier of the user to record as the lead. If authenticated as a
+      #   user, that user is used automatically.
       #
       #   @return [String, nil]
       optional :user_id, String, nil?: true
@@ -42,15 +45,16 @@ module WhopSDK
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::LeadCreateParams} for more details.
       #
-      #   @param company_id [String] The ID of the company to create a lead for.
+      #   @param company_id [String] The unique identifier of the company to create the lead for, starting with
+      #   'biz\_
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] Custom metadata for the lead.
+      #   @param metadata [Hash{Symbol=>Object}, nil] A JSON object of custom metadata to attach to the lead for tracking purposes.
       #
-      #   @param product_id [String, nil] The ID of the product the lead is interested in.
+      #   @param product_id [String, nil] The unique identifier of the product the lead is interested in, starting with 'p
       #
-      #   @param referrer [String, nil] The url referrer of the lead, if any.
+      #   @param referrer [String, nil] The referral URL that brought the lead to the company, such as 'https://example.
       #
-      #   @param user_id [String, nil] The ID of the user to create a lead for. If the request is made by a user, that
+      #   @param user_id [String, nil] The unique identifier of the user to record as the lead. If authenticated as a u
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

@@ -19,11 +19,11 @@ module WhopSDK
       end
       attr_accessor :access_level
 
-      # Whether the experience is publicly accessible.
+      # Whether the experience is publicly accessible without a membership.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :is_public
 
-      # The logo for the experience
+      # A logo image displayed alongside the experience name.
       sig { returns(T.nilable(WhopSDK::ExperienceUpdateParams::Logo)) }
       attr_reader :logo
 
@@ -34,15 +34,15 @@ module WhopSDK
       end
       attr_writer :logo
 
-      # The name of the experience.
+      # The display name of the experience.
       sig { returns(T.nilable(String)) }
       attr_accessor :name
 
-      # The order of the experience in the section.
+      # The position of the experience within its section for display ordering.
       sig { returns(T.nilable(String)) }
       attr_accessor :order
 
-      # The ID of the section to update.
+      # The unique identifier of the section to move the experience into.
       sig { returns(T.nilable(String)) }
       attr_accessor :section_id
 
@@ -61,15 +61,15 @@ module WhopSDK
       def self.new(
         # The different access levels for experiences (PUBLIC IS NEVER USED ANYMORE).
         access_level: nil,
-        # Whether the experience is publicly accessible.
+        # Whether the experience is publicly accessible without a membership.
         is_public: nil,
-        # The logo for the experience
+        # A logo image displayed alongside the experience name.
         logo: nil,
-        # The name of the experience.
+        # The display name of the experience.
         name: nil,
-        # The order of the experience in the section.
+        # The position of the experience within its section for display ordering.
         order: nil,
-        # The ID of the section to update.
+        # The unique identifier of the section to move the experience into.
         section_id: nil,
         request_options: {}
       )
@@ -135,7 +135,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The logo for the experience
+        # A logo image displayed alongside the experience name.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.

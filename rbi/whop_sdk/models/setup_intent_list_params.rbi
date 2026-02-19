@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::SetupIntentListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the company to list setup intents for
+      # The unique identifier of the company to list setup intents for.
       sig { returns(String) }
       attr_accessor :company_id
 
@@ -23,11 +23,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # The minimum creation date to filter by
+      # Only return setup intents created after this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_after
 
-      # The maximum creation date to filter by
+      # Only return setup intents created before this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_before
 
@@ -57,15 +57,15 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the company to list setup intents for
+        # The unique identifier of the company to list setup intents for.
         company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The minimum creation date to filter by
+        # Only return setup intents created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return setup intents created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,

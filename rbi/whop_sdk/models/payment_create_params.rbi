@@ -293,6 +293,10 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :headline
 
+          # The different industry groups a company can be in.
+          sig { returns(T.nilable(WhopSDK::IndustryGroups::OrSymbol)) }
+          attr_accessor :industry_group
+
           # The different industry types a company can be in.
           sig { returns(T.nilable(WhopSDK::IndustryTypes::OrSymbol)) }
           attr_accessor :industry_type
@@ -327,6 +331,7 @@ module WhopSDK
               global_affiliate_status:
                 T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
               headline: T.nilable(String),
+              industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
               industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
               product_tax_code_id: T.nilable(String),
               redirect_purchase_url: T.nilable(String),
@@ -357,6 +362,8 @@ module WhopSDK
             global_affiliate_status: nil,
             # The headline of the product.
             headline: nil,
+            # The different industry groups a company can be in.
+            industry_group: nil,
             # The different industry types a company can be in.
             industry_type: nil,
             # The ID of the product tax code to apply to this product.
@@ -383,6 +390,7 @@ module WhopSDK
                 global_affiliate_status:
                   T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
                 headline: T.nilable(String),
+                industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
                 industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
                 product_tax_code_id: T.nilable(String),
                 redirect_purchase_url: T.nilable(String),

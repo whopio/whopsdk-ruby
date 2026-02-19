@@ -52,7 +52,8 @@ module WhopSDK
       required :transfer_fee, Float, nil?: true
 
       # @!method initialize(id:, balances:, ledger_type:, owner:, payments_approval_status:, payout_account_details:, transfer_fee:)
-      #   Represents a LedgerAccount.
+      #   A ledger account represents a financial account on Whop that can hold many
+      #   balances.
       #
       #   @param id [String] The unique identifier for the ledger account.
       #
@@ -140,7 +141,7 @@ module WhopSDK
           required :id, String
 
           # @!attribute name
-          #   The name of the user from their Whop account.
+          #   The user's display name shown on their public profile.
           #
           #   @return [String, nil]
           required :name, String, nil?: true
@@ -152,7 +153,7 @@ module WhopSDK
           required :typename, const: :User
 
           # @!attribute username
-          #   The username of the user from their Whop account.
+          #   The user's unique username shown on their public profile.
           #
           #   @return [String]
           required :username, String
@@ -163,9 +164,9 @@ module WhopSDK
           #
           #   @param id [String] The unique identifier for the user.
           #
-          #   @param name [String, nil] The name of the user from their Whop account.
+          #   @param name [String, nil] The user's display name shown on their public profile.
           #
-          #   @param username [String] The username of the user from their Whop account.
+          #   @param username [String] The user's unique username shown on their public profile.
           #
           #   @param typename [Symbol, :User] The typename of this object
         end
@@ -178,13 +179,13 @@ module WhopSDK
           required :id, String
 
           # @!attribute route
-          #   The slug/route of the company on the Whop site.
+          #   The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
           #
           #   @return [String]
           required :route, String
 
           # @!attribute title
-          #   The title of the company.
+          #   The display name of the company shown to customers.
           #
           #   @return [String]
           required :title, String
@@ -196,14 +197,18 @@ module WhopSDK
           required :typename, const: :Company
 
           # @!method initialize(id:, route:, title:, typename: :Company)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::LedgerAccountRetrieveResponse::Owner::Company} for more
+          #   details.
+          #
           #   A company is a seller on Whop. Companies own products, manage members, and
           #   receive payouts.
           #
           #   @param id [String] The unique identifier for the company.
           #
-          #   @param route [String] The slug/route of the company on the Whop site.
+          #   @param route [String] The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
           #
-          #   @param title [String] The title of the company.
+          #   @param title [String] The display name of the company shown to customers.
           #
           #   @param typename [Symbol, :Company] The typename of this object
         end
@@ -406,27 +411,32 @@ module WhopSDK
           required :last_error_code, enum: -> { WhopSDK::VerificationErrorCode }, nil?: true
 
           # @!attribute last_error_reason
-          #   The last error reason that occurred during the verification.
+          #   A human-readable explanation of the most recent verification error. Null if no
+          #   error has occurred.
           #
           #   @return [String, nil]
           required :last_error_reason, String, nil?: true
 
           # @!attribute status
-          #   The status of the verification.
+          #   The current status of this verification session.
           #
           #   @return [Symbol, WhopSDK::Models::VerificationStatus]
           required :status, enum: -> { WhopSDK::VerificationStatus }
 
           # @!method initialize(id:, last_error_code:, last_error_reason:, status:)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification}
+          #   for more details.
+          #
           #   The latest verification for the connected account.
           #
           #   @param id [String] The unique identifier for the verification.
           #
           #   @param last_error_code [Symbol, WhopSDK::Models::VerificationErrorCode, nil] An error code for a verification attempt.
           #
-          #   @param last_error_reason [String, nil] The last error reason that occurred during the verification.
+          #   @param last_error_reason [String, nil] A human-readable explanation of the most recent verification error. Null if no e
           #
-          #   @param status [Symbol, WhopSDK::Models::VerificationStatus] The status of the verification.
+          #   @param status [Symbol, WhopSDK::Models::VerificationStatus] The current status of this verification session.
         end
       end
     end

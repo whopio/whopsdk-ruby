@@ -3,8 +3,8 @@
 module WhopSDK
   module Resources
     class Companies
-      # Create a new company. Pass parent_company_id to create a sub-company under a
-      # platform, or omit it to create a company for the current user.
+      # Create a new company. Pass parent_company_id to create a connected account under
+      # a platform, or omit it to create a company for the current user.
       #
       # Required permissions:
       #
@@ -16,6 +16,7 @@ module WhopSDK
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           description: T.nilable(String),
           email: T.nilable(String),
+          industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
           industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           logo: T.nilable(WhopSDK::CompanyCreateParams::Logo::OrHash),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
@@ -25,32 +26,36 @@ module WhopSDK
         ).returns(WhopSDK::Company)
       end
       def create(
-        # The name of the company being created.
+        # The display name of the company shown to customers.
         title:,
         # The different business types a company can be.
         business_type: nil,
-        # A description of what the company offers or does.
+        # A promotional pitch displayed to potential customers on the company's store
+        # page.
         description: nil,
-        # The email of the user who the sub-company will belong to. Required when
+        # The email address of the user who will own the connected account. Required when
         # parent_company_id is provided.
         email: nil,
+        # The different industry groups a company can be in.
+        industry_group: nil,
         # The different industry types a company can be in.
         industry_type: nil,
-        # The logo for the company in png, jpeg, or gif format
+        # The company's logo image. Accepts PNG, JPEG, or GIF format.
         logo: nil,
-        # Additional metadata for the company
+        # A key-value JSON object of custom metadata to store on the company.
         metadata: nil,
-        # The company ID of the platform creating this sub-company. If omitted, the
-        # company is created for the current user.
+        # The unique identifier of the parent platform company. When provided, creates a
+        # connected account under that platform. Omit to create a company for the current
+        # user.
         parent_company_id: nil,
         # Whether Whop sends transactional emails to customers on behalf of this company.
-        # Only used when parent_company_id is provided.
+        # Only applies when creating a connected account.
         send_customer_emails: nil,
         request_options: {}
       )
       end
 
-      # Retrieves an company by ID or its url route
+      # Retrieves the details of an existing company.
       #
       # Required permissions:
       #
@@ -62,14 +67,13 @@ module WhopSDK
         ).returns(WhopSDK::Company)
       end
       def retrieve(
-        # The ID or route of the company
+        # The unique identifier or route slug of the company.
         id,
         request_options: {}
       )
       end
 
-      # Update an existing company. Either a regular company, platform company, or one
-      # of a platform's connected accounts
+      # Update a company's title, description, logo, and other settings.
       #
       # Required permissions:
       #
@@ -82,40 +86,46 @@ module WhopSDK
             T.nilable(WhopSDK::CompanyUpdateParams::BannerImage::OrHash),
           business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           description: T.nilable(String),
+          industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
           industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           logo: T.nilable(WhopSDK::CompanyUpdateParams::Logo::OrHash),
           send_customer_emails: T.nilable(T::Boolean),
+          target_audience: T.nilable(String),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Company)
       end
       def update(
-        # The ID of the company to update
+        # The unique identifier of the company to update.
         id,
-        # The banner image for the company in png or jpeg format
+        # The company's banner image. Accepts PNG or JPEG format.
         banner_image: nil,
         # The different business types a company can be.
         business_type: nil,
-        # A description of what the company offers or does.
+        # A promotional pitch displayed to potential customers on the company's store
+        # page.
         description: nil,
+        # The different industry groups a company can be in.
+        industry_group: nil,
         # The different industry types a company can be in.
         industry_type: nil,
-        # The logo for the company in png, jpeg, or gif format
+        # The company's logo image. Accepts PNG, JPEG, or GIF format.
         logo: nil,
-        # Whether Whop sends transactional emails to customers on behalf of this company.
-        # Includes: order confirmations, payment failures, refund notifications, upcoming
-        # renewals, and membership cancelations/expirations. When disabled, the platform
-        # is responsible for handling these communications.
+        # Whether Whop sends transactional emails (receipts, renewals, cancelations) to
+        # customers on behalf of this company.
         send_customer_emails: nil,
-        # The title of the company
+        # The target audience for this company (e.g., 'beginner day traders aged 18-25
+        # looking to learn options').
+        target_audience: nil,
+        # The display name of the company shown to customers.
         title: nil,
         request_options: {}
       )
       end
 
-      # Lists companies. When parent_company_id is provided, lists connected accounts
-      # under that company. When omitted, lists companies the current user has access
-      # to.
+      # Returns a paginated list of companies. When parent_company_id is provided, lists
+      # connected accounts under that platform. When omitted, lists companies the
+      # current user has access to.
       #
       # Required permissions:
       #
@@ -140,9 +150,9 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The minimum creation date to filter by
+        # Only return companies created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return companies created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,
@@ -150,8 +160,9 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The ID of the parent company to list connected accounts for. Omit to list the
-        # current user's own companies.
+        # The unique identifier of the parent platform company. When provided, lists
+        # connected accounts under that platform. Omit to list the current user's own
+        # companies.
         parent_company_id: nil,
         request_options: {}
       )

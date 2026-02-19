@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class CourseStudents
-      # Retrieves a course student by interaction ID
+      # Retrieves the details of an existing course student.
       #
       # Required permissions:
       #
@@ -16,13 +16,14 @@ module WhopSDK
         ).returns(WhopSDK::Models::CourseStudentRetrieveResponse)
       end
       def retrieve(
-        # The ID of the course student interaction
+        # The unique identifier of the course student record to retrieve.
         id,
         request_options: {}
       )
       end
 
-      # Lists students for a course
+      # Returns a paginated list of students enrolled in a course, with optional name
+      # filtering.
       #
       # Required permissions:
       #
@@ -44,7 +45,7 @@ module WhopSDK
         )
       end
       def list(
-        # The ID of the course
+        # The unique identifier of the course to list enrolled students for.
         course_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
@@ -52,7 +53,7 @@ module WhopSDK
         before: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
-        # Filter students by name - returns students whose names match the keyword
+        # A search term to filter students by name or username.
         keyword: nil,
         # Returns the last _n_ elements from the list.
         last: nil,

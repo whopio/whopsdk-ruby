@@ -19,19 +19,20 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # The cancel options to filter the memberships by
+      # Filter to only memberships matching these cancellation reasons.
       sig { returns(T.nilable(T::Array[WhopSDK::CancelOptions::OrSymbol])) }
       attr_accessor :cancel_options
 
-      # The ID of the company to list memberships for
+      # The unique identifier of the company to list memberships for. Required when
+      # using an API key.
       sig { returns(T.nilable(String)) }
       attr_accessor :company_id
 
-      # The minimum creation date to filter by
+      # Only return memberships created after this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_after
 
-      # The maximum creation date to filter by
+      # Only return memberships created before this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_before
 
@@ -51,23 +52,23 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::MembershipListParams::Order::OrSymbol)) }
       attr_accessor :order
 
-      # The plan IDs to filter the memberships by
+      # Filter to only memberships belonging to these plan identifiers.
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :plan_ids
 
-      # The product IDs to filter the memberships by
+      # Filter to only memberships belonging to these product identifiers.
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :product_ids
 
-      # The promo code IDs to filter the memberships by
+      # Filter to only memberships that used these promo code identifiers.
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :promo_code_ids
 
-      # The membership status to filter the memberships by
+      # Filter to only memberships matching these statuses.
       sig { returns(T.nilable(T::Array[WhopSDK::MembershipStatus::OrSymbol])) }
       attr_accessor :statuses
 
-      # Only return memberships from these whop user ids
+      # Filter to only memberships belonging to these user identifiers.
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :user_ids
 
@@ -96,13 +97,14 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The cancel options to filter the memberships by
+        # Filter to only memberships matching these cancellation reasons.
         cancel_options: nil,
-        # The ID of the company to list memberships for
+        # The unique identifier of the company to list memberships for. Required when
+        # using an API key.
         company_id: nil,
-        # The minimum creation date to filter by
+        # Only return memberships created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return memberships created before this timestamp.
         created_before: nil,
         # The direction of the sort.
         direction: nil,
@@ -112,15 +114,15 @@ module WhopSDK
         last: nil,
         # Which columns can be used to sort.
         order: nil,
-        # The plan IDs to filter the memberships by
+        # Filter to only memberships belonging to these plan identifiers.
         plan_ids: nil,
-        # The product IDs to filter the memberships by
+        # Filter to only memberships belonging to these product identifiers.
         product_ids: nil,
-        # The promo code IDs to filter the memberships by
+        # Filter to only memberships that used these promo code identifiers.
         promo_code_ids: nil,
-        # The membership status to filter the memberships by
+        # Filter to only memberships matching these statuses.
         statuses: nil,
-        # Only return memberships from these whop user ids
+        # Filter to only memberships belonging to these user identifiers.
         user_ids: nil,
         request_options: {}
       )

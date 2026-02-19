@@ -12,7 +12,7 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The attachments attached to the review.
+      # A list of files and media attached to the review.
       sig { returns(T::Array[WhopSDK::Models::ReviewListResponse::Attachment]) }
       attr_accessor :attachments
 
@@ -20,32 +20,34 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The description of the review.
+      # The body text of the review containing the user's detailed feedback. Returns an
+      # empty string if no description was provided.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      # The timestamp of when the user joined the product.
+      # The timestamp of when the reviewer first joined the product. Null if unknown.
       sig { returns(T.nilable(Time)) }
       attr_accessor :joined_at
 
-      # Whether or not the user paid for the product. If null, the payment status is
+      # Whether the reviewer paid for the product. Null if the payment status is
       # unknown.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :paid_for_product
 
-      # The timestamp of when the review was published.
+      # The timestamp of when the review was published. Null if the review has not been
+      # published yet.
       sig { returns(T.nilable(Time)) }
       attr_accessor :published_at
 
-      # The number of stars the user gave the product.
+      # The star rating given by the reviewer, from 1 to 5.
       sig { returns(Integer) }
       attr_accessor :stars
 
-      # The status of the review.
+      # The current moderation status of the review.
       sig { returns(WhopSDK::ReviewStatus::TaggedSymbol) }
       attr_accessor :status
 
-      # The title of the review.
+      # A short summary title for the review. Null if the reviewer did not provide one.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
@@ -53,7 +55,7 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :updated_at
 
-      # The user account that performed the action.
+      # The user account of the person who wrote this review.
       sig { returns(WhopSDK::Models::ReviewListResponse::User) }
       attr_reader :user
 
@@ -62,7 +64,8 @@ module WhopSDK
       end
       attr_writer :user
 
-      # An object representing a user review of a company.
+      # A user-submitted review of a company, including a star rating and optional text
+      # feedback.
       sig do
         params(
           id: String,
@@ -83,28 +86,30 @@ module WhopSDK
       def self.new(
         # The unique identifier for the review.
         id:,
-        # The attachments attached to the review.
+        # A list of files and media attached to the review.
         attachments:,
         # The datetime the review was created.
         created_at:,
-        # The description of the review.
+        # The body text of the review containing the user's detailed feedback. Returns an
+        # empty string if no description was provided.
         description:,
-        # The timestamp of when the user joined the product.
+        # The timestamp of when the reviewer first joined the product. Null if unknown.
         joined_at:,
-        # Whether or not the user paid for the product. If null, the payment status is
+        # Whether the reviewer paid for the product. Null if the payment status is
         # unknown.
         paid_for_product:,
-        # The timestamp of when the review was published.
+        # The timestamp of when the review was published. Null if the review has not been
+        # published yet.
         published_at:,
-        # The number of stars the user gave the product.
+        # The star rating given by the reviewer, from 1 to 5.
         stars:,
-        # The status of the review.
+        # The current moderation status of the review.
         status:,
-        # The title of the review.
+        # A short summary title for the review. Null if the reviewer did not provide one.
         title:,
         # The datetime the review was last updated.
         updated_at:,
-        # The user account that performed the action.
+        # The user account of the person who wrote this review.
         user:
       )
       end
@@ -140,20 +145,24 @@ module WhopSDK
             )
           end
 
-        # The ID of the attachment
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
         sig { returns(String) }
         attr_accessor :id
 
-        # The attachment's content type (e.g., image/jpg, video/mp4)
+        # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
         sig { returns(T.nilable(String)) }
         attr_accessor :content_type
 
-        # The name of the file
+        # The original filename of the uploaded attachment, including its file extension.
         sig { returns(T.nilable(String)) }
         attr_accessor :filename
 
-        # This is the URL you use to render optimized attachments on the client. This
-        # should be used for apps.
+        # A pre-optimized URL for rendering this attachment on the client. This should be
+        # used for displaying attachments in apps.
         sig { returns(T.nilable(String)) }
         attr_accessor :url
 
@@ -167,14 +176,18 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
-          # The ID of the attachment
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
           id:,
-          # The attachment's content type (e.g., image/jpg, video/mp4)
+          # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
           content_type:,
-          # The name of the file
+          # The original filename of the uploaded attachment, including its file extension.
           filename:,
-          # This is the URL you use to render optimized attachments on the client. This
-          # should be used for apps.
+          # A pre-optimized URL for rendering this attachment on the client. This should be
+          # used for displaying attachments in apps.
           url:
         )
         end
@@ -206,15 +219,15 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The name of the user from their Whop account.
+        # The user's display name shown on their public profile.
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
-        # The username of the user from their Whop account.
+        # The user's unique username shown on their public profile.
         sig { returns(String) }
         attr_accessor :username
 
-        # The user account that performed the action.
+        # The user account of the person who wrote this review.
         sig do
           params(id: String, name: T.nilable(String), username: String).returns(
             T.attached_class
@@ -223,9 +236,9 @@ module WhopSDK
         def self.new(
           # The unique identifier for the user.
           id:,
-          # The name of the user from their Whop account.
+          # The user's display name shown on their public profile.
           name:,
-          # The username of the user from their Whop account.
+          # The user's unique username shown on their public profile.
           username:
         )
         end

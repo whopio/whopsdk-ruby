@@ -3,7 +3,7 @@
 module WhopSDK
   module Resources
     class Users
-      # Retrieves a user by ID or username
+      # Retrieves the details of an existing user.
       sig do
         params(
           id: String,
@@ -11,13 +11,14 @@ module WhopSDK
         ).returns(WhopSDK::User)
       end
       def retrieve(
-        # The ID (user_xxx) or username of the user
+        # The unique identifier or username of the user.
         id,
         request_options: {}
       )
       end
 
-      # Check if a user has access (and their access level) to a resource
+      # Check whether a user has access to a specific resource, and return their access
+      # level.
       sig do
         params(
           resource_id: String,
@@ -26,16 +27,16 @@ module WhopSDK
         ).returns(WhopSDK::Models::UserCheckAccessResponse)
       end
       def check_access(
-        # The ID of the resource. Can be a company (biz_xxx), product (prod_xxx), or
-        # experience (exp_xxx)
+        # The unique identifier of the resource to check access for. Accepts a company,
+        # product, or experience identifier.
         resource_id,
-        # The ID (user_xxx) or username of the user
+        # The unique identifier or username of the user.
         id:,
         request_options: {}
       )
       end
 
-      # Updates the current user's profile
+      # Update the currently authenticated user's profile.
       #
       # Required permissions:
       #
@@ -51,13 +52,14 @@ module WhopSDK
         ).returns(WhopSDK::User)
       end
       def update_profile(
-        # User biography
+        # A short biography displayed on the user's public profile.
         bio: nil,
-        # Display name
+        # The user's display name shown on their public profile. Maximum 100 characters.
         name: nil,
-        # Profile picture
+        # The user's profile picture image attachment.
         profile_picture: nil,
-        # Username (alphanumeric and hyphens)
+        # The user's unique username. Alphanumeric characters and hyphens only. Maximum 42
+        # characters.
         username: nil,
         request_options: {}
       )

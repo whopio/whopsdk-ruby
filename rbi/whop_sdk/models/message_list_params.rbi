@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::MessageListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The ID of the channel or the experience ID to list messages for
+      # The unique identifier of the channel or experience to list messages for.
       sig { returns(String) }
       attr_accessor :channel_id
 
@@ -47,7 +47,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the channel or the experience ID to list messages for
+        # The unique identifier of the channel or experience to list messages for.
         channel_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,

@@ -19,15 +19,15 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # The ID of the company to list authorized users for
+      # The unique identifier of the company to list authorized users for.
       sig { returns(T.nilable(String)) }
       attr_accessor :company_id
 
-      # The minimum creation date to filter by
+      # Only return authorized users created after this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_after
 
-      # The maximum creation date to filter by
+      # Only return authorized users created before this timestamp.
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_before
 
@@ -43,7 +43,8 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::AuthorizedUserRoles::OrSymbol)) }
       attr_accessor :role
 
-      # Filter by the user ID to check if the user is an authorized user
+      # Filter results to a specific user to check if they are an authorized team
+      # member.
       sig { returns(T.nilable(String)) }
       attr_accessor :user_id
 
@@ -66,11 +67,11 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The ID of the company to list authorized users for
+        # The unique identifier of the company to list authorized users for.
         company_id: nil,
-        # The minimum creation date to filter by
+        # Only return authorized users created after this timestamp.
         created_after: nil,
-        # The maximum creation date to filter by
+        # Only return authorized users created before this timestamp.
         created_before: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
@@ -78,7 +79,8 @@ module WhopSDK
         last: nil,
         # Possible roles an authorized user can have
         role: nil,
-        # Filter by the user ID to check if the user is an authorized user
+        # Filter results to a specific user to check if they are an authorized team
+        # member.
         user_id: nil,
         request_options: {}
       )

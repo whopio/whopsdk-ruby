@@ -15,24 +15,26 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The ID of the DM channel
+      # The unique identifier of the messaging channel this membership belongs to.
       sig { returns(String) }
       attr_accessor :channel_id
 
-      # Timestamp when the member last viewed the channel (in milliseconds since Unix
-      # epoch)
+      # The timestamp when this member last viewed the channel, as a Unix timestamp in
+      # milliseconds. Null if the member has never viewed the channel.
       sig { returns(T.nilable(String)) }
       attr_accessor :last_viewed_at
 
-      # The status of the membership (requested, accepted, rejected)
+      # The current state of this membership: requested, accepted, hidden, closed, or
+      # archived.
       sig { returns(WhopSDK::DmFeedMemberStatuses::TaggedSymbol) }
       attr_accessor :status
 
-      # The ID of the user who is a member of the channel
+      # The unique identifier of the user who holds this channel membership.
       sig { returns(String) }
       attr_accessor :user_id
 
-      # Represents a member of a DM channel
+      # A user's membership record in a messaging channel, including notification
+      # preferences and read state.
       sig do
         params(
           id: String,
@@ -45,14 +47,15 @@ module WhopSDK
       def self.new(
         # The unique identifier for the entity
         id:,
-        # The ID of the DM channel
+        # The unique identifier of the messaging channel this membership belongs to.
         channel_id:,
-        # Timestamp when the member last viewed the channel (in milliseconds since Unix
-        # epoch)
+        # The timestamp when this member last viewed the channel, as a Unix timestamp in
+        # milliseconds. Null if the member has never viewed the channel.
         last_viewed_at:,
-        # The status of the membership (requested, accepted, rejected)
+        # The current state of this membership: requested, accepted, hidden, closed, or
+        # archived.
         status:,
-        # The ID of the user who is a member of the channel
+        # The unique identifier of the user who holds this channel membership.
         user_id:
       )
       end

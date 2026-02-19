@@ -40,8 +40,8 @@ module WhopSDK
       # @!attribute transaction_type
       #   The type of token transaction
       #
-      #   @return [Symbol, WhopSDK::Models::TransactionType, nil]
-      optional :transaction_type, enum: -> { WhopSDK::TransactionType }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::CompanyTokenTransactionType, nil]
+      optional :transaction_type, enum: -> { WhopSDK::CompanyTokenTransactionType }, nil?: true
 
       # @!attribute user_id
       #   Filter transactions to only those involving this specific user.
@@ -60,7 +60,7 @@ module WhopSDK
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      #   @param transaction_type [Symbol, WhopSDK::Models::TransactionType, nil] The type of token transaction
+      #   @param transaction_type [Symbol, WhopSDK::Models::CompanyTokenTransactionType, nil] The type of token transaction
       #
       #   @param user_id [String, nil] Filter transactions to only those involving this specific user.
       #

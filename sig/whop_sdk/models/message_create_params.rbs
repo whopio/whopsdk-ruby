@@ -5,6 +5,7 @@ module WhopSDK
         channel_id: String,
         content: String,
         attachments: ::Array[WhopSDK::MessageCreateParams::Attachment]?,
+        auto_detect_links: bool?,
         poll: WhopSDK::MessageCreateParams::Poll?,
         replying_to_message_id: String?
       }
@@ -20,6 +21,8 @@ module WhopSDK
 
       attr_accessor attachments: ::Array[WhopSDK::MessageCreateParams::Attachment]?
 
+      attr_accessor auto_detect_links: bool?
+
       attr_accessor poll: WhopSDK::MessageCreateParams::Poll?
 
       attr_accessor replying_to_message_id: String?
@@ -28,6 +31,7 @@ module WhopSDK
         channel_id: String,
         content: String,
         ?attachments: ::Array[WhopSDK::MessageCreateParams::Attachment]?,
+        ?auto_detect_links: bool?,
         ?poll: WhopSDK::MessageCreateParams::Poll?,
         ?replying_to_message_id: String?,
         ?request_options: WhopSDK::request_opts
@@ -37,6 +41,7 @@ module WhopSDK
         channel_id: String,
         content: String,
         attachments: ::Array[WhopSDK::MessageCreateParams::Attachment]?,
+        auto_detect_links: bool?,
         poll: WhopSDK::MessageCreateParams::Poll?,
         replying_to_message_id: String?,
         request_options: WhopSDK::RequestOptions

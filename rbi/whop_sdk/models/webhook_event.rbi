@@ -65,6 +65,8 @@ module WhopSDK
         T.let(:"refund.created", WhopSDK::WebhookEvent::TaggedSymbol)
       REFUND_UPDATED =
         T.let(:"refund.updated", WhopSDK::WebhookEvent::TaggedSymbol)
+      DISPUTE_ALERT_CREATED =
+        T.let(:"dispute_alert.created", WhopSDK::WebhookEvent::TaggedSymbol)
       MEMBERSHIP_CANCEL_AT_PERIOD_END_CHANGED =
         T.let(
           :"membership.cancel_at_period_end_changed",

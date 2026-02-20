@@ -32,6 +32,7 @@ module WhopSDK
       DISPUTE_UPDATED = :"dispute.updated"
       REFUND_CREATED = :"refund.created"
       REFUND_UPDATED = :"refund.updated"
+      DISPUTE_ALERT_CREATED = :"dispute_alert.created"
       MEMBERSHIP_CANCEL_AT_PERIOD_END_CHANGED = :"membership.cancel_at_period_end_changed"
 
       # @!method self.values

@@ -171,6 +171,8 @@ module WhopSDK
 
   class Dispute = WhopSDK::Models::Dispute
 
+  class DisputeAlertCreatedWebhookEvent = WhopSDK::Models::DisputeAlertCreatedWebhookEvent
+
   class DisputeCreatedWebhookEvent = WhopSDK::Models::DisputeCreatedWebhookEvent
 
   class DisputeListParams = WhopSDK::Models::DisputeListParams

@@ -34,6 +34,7 @@ module WhopSDK
             WhopSDK::DisputeUpdatedWebhookEvent,
             WhopSDK::RefundCreatedWebhookEvent,
             WhopSDK::RefundUpdatedWebhookEvent,
+            WhopSDK::DisputeAlertCreatedWebhookEvent,
             WhopSDK::MembershipCancelAtPeriodEndChangedWebhookEvent
           )
         end

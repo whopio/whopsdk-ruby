@@ -117,6 +117,7 @@ module WhopSDK
       | :tennis_coaching
       | :basketball_training
       | :soccer_training
+      | :racket_sports_coaching
       | :mental_health_coaching
       | :life_coaching
       | :biohacking
@@ -169,11 +170,6 @@ module WhopSDK
       | :women_entrepreneurship
       | :affiliate_marketing_education
       | :coaching_business_coaching
-      | :dark_pattern_subscriptions
-      | :income_guarantee_scheme
-      | :lifetime_access_offers
-      | :mlm_pyramid_scheme
-      | :negative_option_billing
       | :startup_newsletter
       | :ecommerce_newsletter
       | :marketing_newsletter
@@ -209,6 +205,7 @@ module WhopSDK
       | :webinar_marketing
       | :event_marketing
       | :saas_marketing_coaching
+      | :digital_marketing
       | :video_editing_education
       | :photography_coaching
       | :music_production
@@ -310,7 +307,7 @@ module WhopSDK
       | :leadership_development
       | :anger_management
       | :neurolinguistic_programming
-      | :kindle_publishing
+      | :appearance_and_grooming_coaching
       | :amazon_kdp
       | :self_publishing
       | :audiobook_publishing
@@ -368,6 +365,7 @@ module WhopSDK
       | :fashion_styling
       | :floral_design
       | :travel_planning_service
+      | :collectibles_coaching
       | :esports_coaching
       | :game_specific_coaching
       | :legal_education
@@ -397,7 +395,7 @@ module WhopSDK
       | :branding_agency
       | :video_marketing_agency
       | :amazon_marketing_agency
-      | :podcast_production_agency
+      | :podcast_marketing_agency
       | :tiktok_agency
       | :linkedin_agency
       | :local_marketing_agency
@@ -477,6 +475,7 @@ module WhopSDK
       | :multilingual_support_agency
       | :community_management_agency
       | :video_clipping_agency
+      | :video_production_agency
       | :ugc_agency
       | :content_writing_agency
       | :translation_agency
@@ -711,6 +710,7 @@ module WhopSDK
       | :scrubs_medical_apparel
       | :dance_performance_wear
       | :hunting_camo_apparel
+      | :casual_everyday_clothing
       | :protein_supplements
       | :vitamins_minerals
       | :pre_workout
@@ -947,7 +947,6 @@ module WhopSDK
       | :auto_parts_marketplace
       | :luxury_goods_marketplace
       | :collectibles_marketplace
-      | :nft_digital_marketplace
       | :wholesale_marketplace
       | :local_goods_marketplace
       | :sneaker_marketplace
@@ -1017,6 +1016,7 @@ module WhopSDK
       | :"3d_model_marketplace"
       | :prompt_marketplace
       | :code_snippet_marketplace
+      | :affiliate_marketing_platform
       | :game_account_selling
       | :game_cheats_hacks
       | :pirated_digital_content
@@ -1075,6 +1075,7 @@ module WhopSDK
       | :social_media_gig
       | :dj_gig
       | :face_painting_gig
+      | :clipping_gig
       | :consulting_gig
       | :accounting_gig
       | :legal_gig
@@ -1155,6 +1156,7 @@ module WhopSDK
       | :womens_fitness_community
       | :postpartum_fitness_group
       | :chronic_illness_support
+      | :skincare_community
       | :content_creator_community
       | :video_editing_community
       | :music_producer_community
@@ -1165,6 +1167,8 @@ module WhopSDK
       | :tiktok_creator_community
       | :podcast_community
       | :filmmaker_community
+      | :clipping_community
+      | :youtube_automation_community
       | :developer_community
       | :ai_community
       | :cybersecurity_community
@@ -1205,7 +1209,9 @@ module WhopSDK
       | :hunting_community
       | :diy_maker_community
       | :golf_community
+      | :collectibles_community
       | :sweepstakes_raffles
+      | :event_ticket_community
       | :forex_trading_bot
       | :stock_trading_platform
       | :crypto_trading_bot
@@ -1219,7 +1225,9 @@ module WhopSDK
       | :risk_management_software
       | :prop_trading_platform
       | :backtesting_software
+      | :trading_indicators
       | :market_data_feed
+      | :stock_research_tool
       | :banking_software
       | :lending_platform
       | :insurance_software
@@ -1278,6 +1286,8 @@ module WhopSDK
       | :shipping_software
       | :print_on_demand_software
       | :marketplace_seller_tool
+      | :resale_arbitrage_tool
+      | :reseller_management_tool
       | :product_review_software
       | :returns_management
       | :product_feed_management
@@ -1365,7 +1375,6 @@ module WhopSDK
       | :pest_control_software
       | :tattoo_studio_software
       | :cannabis_software
-      | :vpn_software
       | :password_manager
       | :cybersecurity_software
       | :identity_verification
@@ -1385,6 +1394,7 @@ module WhopSDK
       | :animation_software
       | :audio_editing_software
       | :screen_recording_software
+      | :sports_betting_tool
       | :fantasy_sports_paid_entry
       | :iptv_pirated_streaming
       | :loot_boxes_gacha
@@ -1394,6 +1404,8 @@ module WhopSDK
       | :customer_messaging
       | :digital_key_reselling
       | :streaming_account_reselling
+      | :subscription_account_sharing
+      | :account_generation_tool
       | :primary_care_telehealth
       | :urgent_care_telehealth
       | :pediatric_telehealth
@@ -1490,19 +1502,19 @@ module WhopSDK
       | :class_action_settlement
       | :mastermind_event
       | :webinar_event
+      | :virtual_summit
       | :bootcamp_event
-      | :convention_expo
-      | :conference_summit
       | :workshop_seminar
       | :hackathon
-      | :pitch_competition
+      | :corporate_training_event
       | :training_certification_event
+      | :convention_expo
+      | :conference_summit
+      | :industry_awards_event
       | :product_launch_event
       | :investor_demo_day
-      | :industry_awards_event
       | :panel_discussion_event
-      | :virtual_summit
-      | :corporate_training_event
+      | :pitch_competition
       | :meetup_event
       | :dinner_event
       | :alumni_event
@@ -1513,12 +1525,9 @@ module WhopSDK
       | :founders_dinner
       | :industry_mixer
       | :concert_event
-      | :party_event
       | :comedy_show
       | :theater_performance
       | :film_screening
-      | :art_exhibition
-      | :food_festival
       | :music_festival
       | :cultural_festival
       | :fashion_show
@@ -1526,10 +1535,13 @@ module WhopSDK
       | :magic_show
       | :dance_performance
       | :poetry_spoken_word
+      | :art_exhibition
+      | :party_event
       | :trivia_night
       | :wine_tasting_event
       | :beer_festival
       | :car_show
+      | :food_festival
       | :fitness_challenge_event
       | :marathon_race
       | :tournament_event
@@ -1649,24 +1661,11 @@ module WhopSDK
       | :equestrian_center
       | :fine_dining
       | :fast_casual_restaurant
-      | :fast_food
-      | :food_truck
-      | :bar_lounge
-      | :brewery_taproom
-      | :winery_tasting
-      | :coffee_shop_cafe
-      | :bakery
-      | :juice_smoothie_bar
-      | :pizza_shop
-      | :sushi_restaurant
-      | :ethnic_restaurant
-      | :catering_kitchen
-      | :ghost_kitchen
-      | :ice_cream_shop
-      | :donut_shop
-      | :deli_sandwich_shop
       | :steakhouse
       | :seafood_restaurant
+      | :pizza_shop
+      | :sushi_restaurant
+      | :deli_sandwich_shop
       | :bbq_restaurant
       | :mexican_restaurant
       | :italian_restaurant
@@ -1679,16 +1678,29 @@ module WhopSDK
       | :brunch_restaurant
       | :ramen_noodle_shop
       | :poke_bowl_shop
+      | :ethnic_restaurant
+      | :coffee_shop_cafe
+      | :bakery
+      | :juice_smoothie_bar
+      | :ice_cream_shop
+      | :donut_shop
       | :bubble_tea_shop
+      | :food_truck
+      | :fast_food
+      | :ghost_kitchen
+      | :food_hall_vendor
+      | :catering_kitchen
+      | :butcher_shop
+      | :cheese_shop
+      | :farmers_market_stall
+      | :bar_lounge
+      | :brewery_taproom
+      | :winery_tasting
       | :wine_bar
       | :cocktail_bar
       | :sports_bar
       | :hookah_lounge
       | :distillery
-      | :butcher_shop
-      | :cheese_shop
-      | :farmers_market_stall
-      | :food_hall_vendor
       | :commercial_farming
       | :livestock_ranching
       | :hydroponic_vertical_farming
@@ -1855,12 +1867,10 @@ module WhopSDK
       | :haunted_house
       | :water_park
       | :indoor_playground
-      | :trampoline_park_entertainment
       | :concert_venue
       | :drive_in_theater
       | :billiards_hall
       | :dart_bar
-      | :batting_cage_entertainment
       | :indoor_skydiving
       | :law_office
       | :real_estate_office
@@ -2051,6 +2061,7 @@ module WhopSDK
       TENNIS_COACHING: :tennis_coaching
       BASKETBALL_TRAINING: :basketball_training
       SOCCER_TRAINING: :soccer_training
+      RACKET_SPORTS_COACHING: :racket_sports_coaching
       MENTAL_HEALTH_COACHING: :mental_health_coaching
       LIFE_COACHING: :life_coaching
       BIOHACKING: :biohacking
@@ -2103,11 +2114,6 @@ module WhopSDK
       WOMEN_ENTREPRENEURSHIP: :women_entrepreneurship
       AFFILIATE_MARKETING_EDUCATION: :affiliate_marketing_education
       COACHING_BUSINESS_COACHING: :coaching_business_coaching
-      DARK_PATTERN_SUBSCRIPTIONS: :dark_pattern_subscriptions
-      INCOME_GUARANTEE_SCHEME: :income_guarantee_scheme
-      LIFETIME_ACCESS_OFFERS: :lifetime_access_offers
-      MLM_PYRAMID_SCHEME: :mlm_pyramid_scheme
-      NEGATIVE_OPTION_BILLING: :negative_option_billing
       STARTUP_NEWSLETTER: :startup_newsletter
       ECOMMERCE_NEWSLETTER: :ecommerce_newsletter
       MARKETING_NEWSLETTER: :marketing_newsletter
@@ -2143,6 +2149,7 @@ module WhopSDK
       WEBINAR_MARKETING: :webinar_marketing
       EVENT_MARKETING: :event_marketing
       SAAS_MARKETING_COACHING: :saas_marketing_coaching
+      DIGITAL_MARKETING: :digital_marketing
       VIDEO_EDITING_EDUCATION: :video_editing_education
       PHOTOGRAPHY_COACHING: :photography_coaching
       MUSIC_PRODUCTION: :music_production
@@ -2244,7 +2251,7 @@ module WhopSDK
       LEADERSHIP_DEVELOPMENT: :leadership_development
       ANGER_MANAGEMENT: :anger_management
       NEUROLINGUISTIC_PROGRAMMING: :neurolinguistic_programming
-      KINDLE_PUBLISHING: :kindle_publishing
+      APPEARANCE_AND_GROOMING_COACHING: :appearance_and_grooming_coaching
       AMAZON_KDP: :amazon_kdp
       SELF_PUBLISHING: :self_publishing
       AUDIOBOOK_PUBLISHING: :audiobook_publishing
@@ -2302,6 +2309,7 @@ module WhopSDK
       FASHION_STYLING: :fashion_styling
       FLORAL_DESIGN: :floral_design
       TRAVEL_PLANNING_SERVICE: :travel_planning_service
+      COLLECTIBLES_COACHING: :collectibles_coaching
       ESPORTS_COACHING: :esports_coaching
       GAME_SPECIFIC_COACHING: :game_specific_coaching
       LEGAL_EDUCATION: :legal_education
@@ -2331,7 +2339,7 @@ module WhopSDK
       BRANDING_AGENCY: :branding_agency
       VIDEO_MARKETING_AGENCY: :video_marketing_agency
       AMAZON_MARKETING_AGENCY: :amazon_marketing_agency
-      PODCAST_PRODUCTION_AGENCY: :podcast_production_agency
+      PODCAST_MARKETING_AGENCY: :podcast_marketing_agency
       TIKTOK_AGENCY: :tiktok_agency
       LINKEDIN_AGENCY: :linkedin_agency
       LOCAL_MARKETING_AGENCY: :local_marketing_agency
@@ -2411,6 +2419,7 @@ module WhopSDK
       MULTILINGUAL_SUPPORT_AGENCY: :multilingual_support_agency
       COMMUNITY_MANAGEMENT_AGENCY: :community_management_agency
       VIDEO_CLIPPING_AGENCY: :video_clipping_agency
+      VIDEO_PRODUCTION_AGENCY: :video_production_agency
       UGC_AGENCY: :ugc_agency
       CONTENT_WRITING_AGENCY: :content_writing_agency
       TRANSLATION_AGENCY: :translation_agency
@@ -2645,6 +2654,7 @@ module WhopSDK
       SCRUBS_MEDICAL_APPAREL: :scrubs_medical_apparel
       DANCE_PERFORMANCE_WEAR: :dance_performance_wear
       HUNTING_CAMO_APPAREL: :hunting_camo_apparel
+      CASUAL_EVERYDAY_CLOTHING: :casual_everyday_clothing
       PROTEIN_SUPPLEMENTS: :protein_supplements
       VITAMINS_MINERALS: :vitamins_minerals
       PRE_WORKOUT: :pre_workout
@@ -2881,7 +2891,6 @@ module WhopSDK
       AUTO_PARTS_MARKETPLACE: :auto_parts_marketplace
       LUXURY_GOODS_MARKETPLACE: :luxury_goods_marketplace
       COLLECTIBLES_MARKETPLACE: :collectibles_marketplace
-      NFT_DIGITAL_MARKETPLACE: :nft_digital_marketplace
       WHOLESALE_MARKETPLACE: :wholesale_marketplace
       LOCAL_GOODS_MARKETPLACE: :local_goods_marketplace
       SNEAKER_MARKETPLACE: :sneaker_marketplace
@@ -2951,6 +2960,7 @@ module WhopSDK
       INDUSTRY_TYPES_3D_MODEL_MARKETPLACE: :"3d_model_marketplace"
       PROMPT_MARKETPLACE: :prompt_marketplace
       CODE_SNIPPET_MARKETPLACE: :code_snippet_marketplace
+      AFFILIATE_MARKETING_PLATFORM: :affiliate_marketing_platform
       GAME_ACCOUNT_SELLING: :game_account_selling
       GAME_CHEATS_HACKS: :game_cheats_hacks
       PIRATED_DIGITAL_CONTENT: :pirated_digital_content
@@ -3009,6 +3019,7 @@ module WhopSDK
       SOCIAL_MEDIA_GIG: :social_media_gig
       DJ_GIG: :dj_gig
       FACE_PAINTING_GIG: :face_painting_gig
+      CLIPPING_GIG: :clipping_gig
       CONSULTING_GIG: :consulting_gig
       ACCOUNTING_GIG: :accounting_gig
       LEGAL_GIG: :legal_gig
@@ -3089,6 +3100,7 @@ module WhopSDK
       WOMENS_FITNESS_COMMUNITY: :womens_fitness_community
       POSTPARTUM_FITNESS_GROUP: :postpartum_fitness_group
       CHRONIC_ILLNESS_SUPPORT: :chronic_illness_support
+      SKINCARE_COMMUNITY: :skincare_community
       CONTENT_CREATOR_COMMUNITY: :content_creator_community
       VIDEO_EDITING_COMMUNITY: :video_editing_community
       MUSIC_PRODUCER_COMMUNITY: :music_producer_community
@@ -3099,6 +3111,8 @@ module WhopSDK
       TIKTOK_CREATOR_COMMUNITY: :tiktok_creator_community
       PODCAST_COMMUNITY: :podcast_community
       FILMMAKER_COMMUNITY: :filmmaker_community
+      CLIPPING_COMMUNITY: :clipping_community
+      YOUTUBE_AUTOMATION_COMMUNITY: :youtube_automation_community
       DEVELOPER_COMMUNITY: :developer_community
       AI_COMMUNITY: :ai_community
       CYBERSECURITY_COMMUNITY: :cybersecurity_community
@@ -3139,7 +3153,9 @@ module WhopSDK
       HUNTING_COMMUNITY: :hunting_community
       DIY_MAKER_COMMUNITY: :diy_maker_community
       GOLF_COMMUNITY: :golf_community
+      COLLECTIBLES_COMMUNITY: :collectibles_community
       SWEEPSTAKES_RAFFLES: :sweepstakes_raffles
+      EVENT_TICKET_COMMUNITY: :event_ticket_community
       FOREX_TRADING_BOT: :forex_trading_bot
       STOCK_TRADING_PLATFORM: :stock_trading_platform
       CRYPTO_TRADING_BOT: :crypto_trading_bot
@@ -3153,7 +3169,9 @@ module WhopSDK
       RISK_MANAGEMENT_SOFTWARE: :risk_management_software
       PROP_TRADING_PLATFORM: :prop_trading_platform
       BACKTESTING_SOFTWARE: :backtesting_software
+      TRADING_INDICATORS: :trading_indicators
       MARKET_DATA_FEED: :market_data_feed
+      STOCK_RESEARCH_TOOL: :stock_research_tool
       BANKING_SOFTWARE: :banking_software
       LENDING_PLATFORM: :lending_platform
       INSURANCE_SOFTWARE: :insurance_software
@@ -3212,6 +3230,8 @@ module WhopSDK
       SHIPPING_SOFTWARE: :shipping_software
       PRINT_ON_DEMAND_SOFTWARE: :print_on_demand_software
       MARKETPLACE_SELLER_TOOL: :marketplace_seller_tool
+      RESALE_ARBITRAGE_TOOL: :resale_arbitrage_tool
+      RESELLER_MANAGEMENT_TOOL: :reseller_management_tool
       PRODUCT_REVIEW_SOFTWARE: :product_review_software
       RETURNS_MANAGEMENT: :returns_management
       PRODUCT_FEED_MANAGEMENT: :product_feed_management
@@ -3299,7 +3319,6 @@ module WhopSDK
       PEST_CONTROL_SOFTWARE: :pest_control_software
       TATTOO_STUDIO_SOFTWARE: :tattoo_studio_software
       CANNABIS_SOFTWARE: :cannabis_software
-      VPN_SOFTWARE: :vpn_software
       PASSWORD_MANAGER: :password_manager
       CYBERSECURITY_SOFTWARE: :cybersecurity_software
       IDENTITY_VERIFICATION: :identity_verification
@@ -3319,6 +3338,7 @@ module WhopSDK
       ANIMATION_SOFTWARE: :animation_software
       AUDIO_EDITING_SOFTWARE: :audio_editing_software
       SCREEN_RECORDING_SOFTWARE: :screen_recording_software
+      SPORTS_BETTING_TOOL: :sports_betting_tool
       FANTASY_SPORTS_PAID_ENTRY: :fantasy_sports_paid_entry
       IPTV_PIRATED_STREAMING: :iptv_pirated_streaming
       LOOT_BOXES_GACHA: :loot_boxes_gacha
@@ -3328,6 +3348,8 @@ module WhopSDK
       CUSTOMER_MESSAGING: :customer_messaging
       DIGITAL_KEY_RESELLING: :digital_key_reselling
       STREAMING_ACCOUNT_RESELLING: :streaming_account_reselling
+      SUBSCRIPTION_ACCOUNT_SHARING: :subscription_account_sharing
+      ACCOUNT_GENERATION_TOOL: :account_generation_tool
       PRIMARY_CARE_TELEHEALTH: :primary_care_telehealth
       URGENT_CARE_TELEHEALTH: :urgent_care_telehealth
       PEDIATRIC_TELEHEALTH: :pediatric_telehealth
@@ -3424,19 +3446,19 @@ module WhopSDK
       CLASS_ACTION_SETTLEMENT: :class_action_settlement
       MASTERMIND_EVENT: :mastermind_event
       WEBINAR_EVENT: :webinar_event
+      VIRTUAL_SUMMIT: :virtual_summit
       BOOTCAMP_EVENT: :bootcamp_event
-      CONVENTION_EXPO: :convention_expo
-      CONFERENCE_SUMMIT: :conference_summit
       WORKSHOP_SEMINAR: :workshop_seminar
       HACKATHON: :hackathon
-      PITCH_COMPETITION: :pitch_competition
+      CORPORATE_TRAINING_EVENT: :corporate_training_event
       TRAINING_CERTIFICATION_EVENT: :training_certification_event
+      CONVENTION_EXPO: :convention_expo
+      CONFERENCE_SUMMIT: :conference_summit
+      INDUSTRY_AWARDS_EVENT: :industry_awards_event
       PRODUCT_LAUNCH_EVENT: :product_launch_event
       INVESTOR_DEMO_DAY: :investor_demo_day
-      INDUSTRY_AWARDS_EVENT: :industry_awards_event
       PANEL_DISCUSSION_EVENT: :panel_discussion_event
-      VIRTUAL_SUMMIT: :virtual_summit
-      CORPORATE_TRAINING_EVENT: :corporate_training_event
+      PITCH_COMPETITION: :pitch_competition
       MEETUP_EVENT: :meetup_event
       DINNER_EVENT: :dinner_event
       ALUMNI_EVENT: :alumni_event
@@ -3447,12 +3469,9 @@ module WhopSDK
       FOUNDERS_DINNER: :founders_dinner
       INDUSTRY_MIXER: :industry_mixer
       CONCERT_EVENT: :concert_event
-      PARTY_EVENT: :party_event
       COMEDY_SHOW: :comedy_show
       THEATER_PERFORMANCE: :theater_performance
       FILM_SCREENING: :film_screening
-      ART_EXHIBITION: :art_exhibition
-      FOOD_FESTIVAL: :food_festival
       MUSIC_FESTIVAL: :music_festival
       CULTURAL_FESTIVAL: :cultural_festival
       FASHION_SHOW: :fashion_show
@@ -3460,10 +3479,13 @@ module WhopSDK
       MAGIC_SHOW: :magic_show
       DANCE_PERFORMANCE: :dance_performance
       POETRY_SPOKEN_WORD: :poetry_spoken_word
+      ART_EXHIBITION: :art_exhibition
+      PARTY_EVENT: :party_event
       TRIVIA_NIGHT: :trivia_night
       WINE_TASTING_EVENT: :wine_tasting_event
       BEER_FESTIVAL: :beer_festival
       CAR_SHOW: :car_show
+      FOOD_FESTIVAL: :food_festival
       FITNESS_CHALLENGE_EVENT: :fitness_challenge_event
       MARATHON_RACE: :marathon_race
       TOURNAMENT_EVENT: :tournament_event
@@ -3583,24 +3605,11 @@ module WhopSDK
       EQUESTRIAN_CENTER: :equestrian_center
       FINE_DINING: :fine_dining
       FAST_CASUAL_RESTAURANT: :fast_casual_restaurant
-      FAST_FOOD: :fast_food
-      FOOD_TRUCK: :food_truck
-      BAR_LOUNGE: :bar_lounge
-      BREWERY_TAPROOM: :brewery_taproom
-      WINERY_TASTING: :winery_tasting
-      COFFEE_SHOP_CAFE: :coffee_shop_cafe
-      BAKERY: :bakery
-      JUICE_SMOOTHIE_BAR: :juice_smoothie_bar
-      PIZZA_SHOP: :pizza_shop
-      SUSHI_RESTAURANT: :sushi_restaurant
-      ETHNIC_RESTAURANT: :ethnic_restaurant
-      CATERING_KITCHEN: :catering_kitchen
-      GHOST_KITCHEN: :ghost_kitchen
-      ICE_CREAM_SHOP: :ice_cream_shop
-      DONUT_SHOP: :donut_shop
-      DELI_SANDWICH_SHOP: :deli_sandwich_shop
       STEAKHOUSE: :steakhouse
       SEAFOOD_RESTAURANT: :seafood_restaurant
+      PIZZA_SHOP: :pizza_shop
+      SUSHI_RESTAURANT: :sushi_restaurant
+      DELI_SANDWICH_SHOP: :deli_sandwich_shop
       BBQ_RESTAURANT: :bbq_restaurant
       MEXICAN_RESTAURANT: :mexican_restaurant
       ITALIAN_RESTAURANT: :italian_restaurant
@@ -3613,16 +3622,29 @@ module WhopSDK
       BRUNCH_RESTAURANT: :brunch_restaurant
       RAMEN_NOODLE_SHOP: :ramen_noodle_shop
       POKE_BOWL_SHOP: :poke_bowl_shop
+      ETHNIC_RESTAURANT: :ethnic_restaurant
+      COFFEE_SHOP_CAFE: :coffee_shop_cafe
+      BAKERY: :bakery
+      JUICE_SMOOTHIE_BAR: :juice_smoothie_bar
+      ICE_CREAM_SHOP: :ice_cream_shop
+      DONUT_SHOP: :donut_shop
       BUBBLE_TEA_SHOP: :bubble_tea_shop
+      FOOD_TRUCK: :food_truck
+      FAST_FOOD: :fast_food
+      GHOST_KITCHEN: :ghost_kitchen
+      FOOD_HALL_VENDOR: :food_hall_vendor
+      CATERING_KITCHEN: :catering_kitchen
+      BUTCHER_SHOP: :butcher_shop
+      CHEESE_SHOP: :cheese_shop
+      FARMERS_MARKET_STALL: :farmers_market_stall
+      BAR_LOUNGE: :bar_lounge
+      BREWERY_TAPROOM: :brewery_taproom
+      WINERY_TASTING: :winery_tasting
       WINE_BAR: :wine_bar
       COCKTAIL_BAR: :cocktail_bar
       SPORTS_BAR: :sports_bar
       HOOKAH_LOUNGE: :hookah_lounge
       DISTILLERY: :distillery
-      BUTCHER_SHOP: :butcher_shop
-      CHEESE_SHOP: :cheese_shop
-      FARMERS_MARKET_STALL: :farmers_market_stall
-      FOOD_HALL_VENDOR: :food_hall_vendor
       COMMERCIAL_FARMING: :commercial_farming
       LIVESTOCK_RANCHING: :livestock_ranching
       HYDROPONIC_VERTICAL_FARMING: :hydroponic_vertical_farming
@@ -3789,12 +3811,10 @@ module WhopSDK
       HAUNTED_HOUSE: :haunted_house
       WATER_PARK: :water_park
       INDOOR_PLAYGROUND: :indoor_playground
-      TRAMPOLINE_PARK_ENTERTAINMENT: :trampoline_park_entertainment
       CONCERT_VENUE: :concert_venue
       DRIVE_IN_THEATER: :drive_in_theater
       BILLIARDS_HALL: :billiards_hall
       DART_BAR: :dart_bar
-      BATTING_CAGE_ENTERTAINMENT: :batting_cage_entertainment
       INDOOR_SKYDIVING: :indoor_skydiving
       LAW_OFFICE: :law_office
       REAL_ESTATE_OFFICE: :real_estate_office

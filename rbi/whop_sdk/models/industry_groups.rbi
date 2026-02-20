@@ -34,6 +34,8 @@ module WhopSDK
         )
       BABY_AND_KIDS =
         T.let(:baby_and_kids, WhopSDK::IndustryGroups::TaggedSymbol)
+      BARS_AND_BREWERIES =
+        T.let(:bars_and_breweries, WhopSDK::IndustryGroups::TaggedSymbol)
       BEAUTY_AND_PERSONAL_CARE =
         T.let(:beauty_and_personal_care, WhopSDK::IndustryGroups::TaggedSymbol)
       BEAUTY_AND_WELLNESS =
@@ -45,6 +47,8 @@ module WhopSDK
         )
       BUSINESS_AND_MONEY_GROUPS =
         T.let(:business_and_money_groups, WhopSDK::IndustryGroups::TaggedSymbol)
+      CAFES_AND_QUICK_SERVICE =
+        T.let(:cafes_and_quick_service, WhopSDK::IndustryGroups::TaggedSymbol)
       CAREER_AND_PROFESSIONAL =
         T.let(:career_and_professional, WhopSDK::IndustryGroups::TaggedSymbol)
       CHARITY_AND_CAUSE_EVENTS =
@@ -61,6 +65,11 @@ module WhopSDK
       COMMUNITY_AND_EDUCATION_SOFTWARE =
         T.let(
           :community_and_education_software,
+          WhopSDK::IndustryGroups::TaggedSymbol
+        )
+      CONFERENCE_AND_EXPO_EVENTS =
+        T.let(
+          :conference_and_expo_events,
           WhopSDK::IndustryGroups::TaggedSymbol
         )
       CONSULTING = T.let(:consulting, WhopSDK::IndustryGroups::TaggedSymbol)
@@ -119,19 +128,17 @@ module WhopSDK
         )
       E_COMMERCE_SOFTWARE =
         T.let(:e_commerce_software, WhopSDK::IndustryGroups::TaggedSymbol)
-      EDUCATION_AND_BUSINESS_EVENTS =
-        T.let(
-          :education_and_business_events,
-          WhopSDK::IndustryGroups::TaggedSymbol
-        )
       EDUCATION_AND_CHILDCARE =
         T.let(:education_and_childcare, WhopSDK::IndustryGroups::TaggedSymbol)
+      EDUCATIONAL_TRAINING_EVENTS =
+        T.let(
+          :educational_training_events,
+          WhopSDK::IndustryGroups::TaggedSymbol
+        )
       ELECTRONICS_AND_GADGETS =
         T.let(:electronics_and_gadgets, WhopSDK::IndustryGroups::TaggedSymbol)
       ENTERTAINMENT_AND_LEISURE =
         T.let(:entertainment_and_leisure, WhopSDK::IndustryGroups::TaggedSymbol)
-      ENTERTAINMENT_EVENTS =
-        T.let(:entertainment_events, WhopSDK::IndustryGroups::TaggedSymbol)
       FAMILY_AND_COMMUNITY_EVENTS =
         T.let(
           :family_and_community_events,
@@ -150,8 +157,6 @@ module WhopSDK
           :fitness_equipment_and_gear,
           WhopSDK::IndustryGroups::TaggedSymbol
         )
-      FOOD_AND_BEVERAGE =
-        T.let(:food_and_beverage, WhopSDK::IndustryGroups::TaggedSymbol)
       FOOD_AND_BEVERAGES =
         T.let(:food_and_beverages, WhopSDK::IndustryGroups::TaggedSymbol)
       FOOD_AND_HOSPITALITY_MARKETPLACES =
@@ -275,6 +280,11 @@ module WhopSDK
         )
       OUTDOOR_AND_SPORTS =
         T.let(:outdoor_and_sports, WhopSDK::IndustryGroups::TaggedSymbol)
+      PERFORMANCE_AND_SHOW_EVENTS =
+        T.let(
+          :performance_and_show_events,
+          WhopSDK::IndustryGroups::TaggedSymbol
+        )
       PERSONAL_DEVELOPMENT =
         T.let(:personal_development, WhopSDK::IndustryGroups::TaggedSymbol)
       PERSONAL_FINANCE =
@@ -319,6 +329,7 @@ module WhopSDK
         )
       RENTAL_MARKETPLACES =
         T.let(:rental_marketplaces, WhopSDK::IndustryGroups::TaggedSymbol)
+      RESTAURANTS = T.let(:restaurants, WhopSDK::IndustryGroups::TaggedSymbol)
       RETAIL = T.let(:retail, WhopSDK::IndustryGroups::TaggedSymbol)
       SALES_AGENCIES =
         T.let(:sales_agencies, WhopSDK::IndustryGroups::TaggedSymbol)
@@ -344,6 +355,11 @@ module WhopSDK
       SOCIAL_AND_NETWORKING_EVENTS =
         T.let(
           :social_and_networking_events,
+          WhopSDK::IndustryGroups::TaggedSymbol
+        )
+      SOCIAL_ENTERTAINMENT_EVENTS =
+        T.let(
+          :social_entertainment_events,
           WhopSDK::IndustryGroups::TaggedSymbol
         )
       SPECIALIZED_GIGS =

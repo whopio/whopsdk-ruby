@@ -44,7 +44,7 @@ module WhopSDK
       type data =
         {
           id: String,
-          alert_type: WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::alert_type,
+          alert_type: WhopSDK::Models::dispute_alert_type,
           amount: Float,
           charge_for_alert: bool,
           created_at: Time,
@@ -57,7 +57,7 @@ module WhopSDK
       class Data < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
-        attr_accessor alert_type: WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::alert_type
+        attr_accessor alert_type: WhopSDK::Models::dispute_alert_type
 
         attr_accessor amount: Float
 
@@ -75,7 +75,7 @@ module WhopSDK
 
         def initialize: (
           id: String,
-          alert_type: WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::alert_type,
+          alert_type: WhopSDK::Models::dispute_alert_type,
           amount: Float,
           charge_for_alert: bool,
           created_at: Time,
@@ -87,7 +87,7 @@ module WhopSDK
 
         def to_hash: -> {
           id: String,
-          alert_type: WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::alert_type,
+          alert_type: WhopSDK::Models::dispute_alert_type,
           amount: Float,
           charge_for_alert: bool,
           created_at: Time,
@@ -96,18 +96,6 @@ module WhopSDK
           payment: WhopSDK::DisputeAlertCreatedWebhookEvent::Data::Payment?,
           transaction_date: Time?
         }
-
-        type alert_type = :dispute | :dispute_rdr | :fraud
-
-        module AlertType
-          extend WhopSDK::Internal::Type::Enum
-
-          DISPUTE: :dispute
-          DISPUTE_RDR: :dispute_rdr
-          FRAUD: :fraud
-
-          def self?.values: -> ::Array[WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::alert_type]
-        end
 
         type dispute =
           {

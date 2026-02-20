@@ -67,8 +67,8 @@ module WhopSDK
         # @!attribute alert_type
         #   The type of the dispute alert.
         #
-        #   @return [Symbol, WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::AlertType]
-        required :alert_type, enum: -> { WhopSDK::DisputeAlertCreatedWebhookEvent::Data::AlertType }
+        #   @return [Symbol, WhopSDK::Models::DisputeAlertType]
+        required :alert_type, enum: -> { WhopSDK::DisputeAlertType }
 
         # @!attribute amount
         #   The alerted amount in the specified currency.
@@ -118,7 +118,7 @@ module WhopSDK
         #
         #   @param id [String] The unique identifier of the dispute alert.
         #
-        #   @param alert_type [Symbol, WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::AlertType] The type of the dispute alert.
+        #   @param alert_type [Symbol, WhopSDK::Models::DisputeAlertType] The type of the dispute alert.
         #
         #   @param amount [Float] The alerted amount in the specified currency.
         #
@@ -133,20 +133,6 @@ module WhopSDK
         #   @param payment [WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data::Payment, nil] The payment associated with the dispute alert.
         #
         #   @param transaction_date [Time, nil] The date of the original transaction.
-
-        # The type of the dispute alert.
-        #
-        # @see WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data#alert_type
-        module AlertType
-          extend WhopSDK::Internal::Type::Enum
-
-          DISPUTE = :dispute
-          DISPUTE_RDR = :dispute_rdr
-          FRAUD = :fraud
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
 
         # @see WhopSDK::Models::DisputeAlertCreatedWebhookEvent::Data#dispute
         class Dispute < WhopSDK::Internal::Type::BaseModel

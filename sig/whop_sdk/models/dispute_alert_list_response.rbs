@@ -1,0 +1,80 @@
+module WhopSDK
+  module Models
+    type dispute_alert_list_response =
+      {
+        id: String,
+        alert_type: WhopSDK::Models::dispute_alert_type,
+        amount: Float,
+        charge_for_alert: bool,
+        created_at: Time,
+        currency: WhopSDK::Models::currency,
+        dispute: WhopSDK::Models::DisputeAlertListResponse::Dispute?,
+        payment: WhopSDK::Models::DisputeAlertListResponse::Payment?,
+        transaction_date: Time?
+      }
+
+    class DisputeAlertListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor alert_type: WhopSDK::Models::dispute_alert_type
+
+      attr_accessor amount: Float
+
+      attr_accessor charge_for_alert: bool
+
+      attr_accessor created_at: Time
+
+      attr_accessor currency: WhopSDK::Models::currency
+
+      attr_accessor dispute: WhopSDK::Models::DisputeAlertListResponse::Dispute?
+
+      attr_accessor payment: WhopSDK::Models::DisputeAlertListResponse::Payment?
+
+      attr_accessor transaction_date: Time?
+
+      def initialize: (
+        id: String,
+        alert_type: WhopSDK::Models::dispute_alert_type,
+        amount: Float,
+        charge_for_alert: bool,
+        created_at: Time,
+        currency: WhopSDK::Models::currency,
+        dispute: WhopSDK::Models::DisputeAlertListResponse::Dispute?,
+        payment: WhopSDK::Models::DisputeAlertListResponse::Payment?,
+        transaction_date: Time?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        alert_type: WhopSDK::Models::dispute_alert_type,
+        amount: Float,
+        charge_for_alert: bool,
+        created_at: Time,
+        currency: WhopSDK::Models::currency,
+        dispute: WhopSDK::Models::DisputeAlertListResponse::Dispute?,
+        payment: WhopSDK::Models::DisputeAlertListResponse::Payment?,
+        transaction_date: Time?
+      }
+
+      type dispute = { id: String }
+
+      class Dispute < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type payment = { id: String }
+
+      class Payment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+    end
+  end
+end

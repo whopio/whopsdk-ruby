@@ -168,6 +168,9 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::DmChannels) }
     attr_reader :dm_channels
 
+    sig { returns(WhopSDK::Resources::DisputeAlerts) }
+    attr_reader :dispute_alerts
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

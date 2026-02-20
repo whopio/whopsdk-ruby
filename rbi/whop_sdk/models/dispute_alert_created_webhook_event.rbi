@@ -99,11 +99,7 @@ module WhopSDK
         attr_accessor :id
 
         # The type of the dispute alert.
-        sig do
-          returns(
-            WhopSDK::DisputeAlertCreatedWebhookEvent::Data::AlertType::TaggedSymbol
-          )
-        end
+        sig { returns(WhopSDK::DisputeAlertType::TaggedSymbol) }
         attr_accessor :alert_type
 
         # The alerted amount in the specified currency.
@@ -167,8 +163,7 @@ module WhopSDK
         sig do
           params(
             id: String,
-            alert_type:
-              WhopSDK::DisputeAlertCreatedWebhookEvent::Data::AlertType::OrSymbol,
+            alert_type: WhopSDK::DisputeAlertType::OrSymbol,
             amount: Float,
             charge_for_alert: T::Boolean,
             created_at: Time,
@@ -210,8 +205,7 @@ module WhopSDK
           override.returns(
             {
               id: String,
-              alert_type:
-                WhopSDK::DisputeAlertCreatedWebhookEvent::Data::AlertType::TaggedSymbol,
+              alert_type: WhopSDK::DisputeAlertType::TaggedSymbol,
               amount: Float,
               charge_for_alert: T::Boolean,
               created_at: Time,
@@ -229,46 +223,6 @@ module WhopSDK
           )
         end
         def to_hash
-        end
-
-        # The type of the dispute alert.
-        module AlertType
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                WhopSDK::DisputeAlertCreatedWebhookEvent::Data::AlertType
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          DISPUTE =
-            T.let(
-              :dispute,
-              WhopSDK::DisputeAlertCreatedWebhookEvent::Data::AlertType::TaggedSymbol
-            )
-          DISPUTE_RDR =
-            T.let(
-              :dispute_rdr,
-              WhopSDK::DisputeAlertCreatedWebhookEvent::Data::AlertType::TaggedSymbol
-            )
-          FRAUD =
-            T.let(
-              :fraud,
-              WhopSDK::DisputeAlertCreatedWebhookEvent::Data::AlertType::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                WhopSDK::DisputeAlertCreatedWebhookEvent::Data::AlertType::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
         end
 
         class Dispute < WhopSDK::Internal::Type::BaseModel

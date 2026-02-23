@@ -42,6 +42,7 @@ module WhopSDK
       CHINA_UNION_PAYUZCARD = :china_union_payuzcard
       CODENSA = :codensa
       CABAL = :cabal
+      HIPERCARD = :hipercard
       UNKNOWN = :unknown
 
       # @!method self.values

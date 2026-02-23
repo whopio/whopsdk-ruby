@@ -91,6 +91,7 @@ module WhopSDK
       RUB = :rub
       BTC = :btc
       CNY = :cny
+      USDT = :usdt
 
       # @!method self.values
       #   @return [Array<Symbol>]

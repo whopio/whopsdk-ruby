@@ -48,6 +48,7 @@ module WhopSDK
         T.let(:china_union_payuzcard, WhopSDK::CardBrands::TaggedSymbol)
       CODENSA = T.let(:codensa, WhopSDK::CardBrands::TaggedSymbol)
       CABAL = T.let(:cabal, WhopSDK::CardBrands::TaggedSymbol)
+      HIPERCARD = T.let(:hipercard, WhopSDK::CardBrands::TaggedSymbol)
       UNKNOWN = T.let(:unknown, WhopSDK::CardBrands::TaggedSymbol)
 
       sig { override.returns(T::Array[WhopSDK::CardBrands::TaggedSymbol]) }

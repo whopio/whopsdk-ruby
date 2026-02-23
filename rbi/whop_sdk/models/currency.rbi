@@ -94,6 +94,7 @@ module WhopSDK
       RUB = T.let(:rub, WhopSDK::Currency::TaggedSymbol)
       BTC = T.let(:btc, WhopSDK::Currency::TaggedSymbol)
       CNY = T.let(:cny, WhopSDK::Currency::TaggedSymbol)
+      USDT = T.let(:usdt, WhopSDK::Currency::TaggedSymbol)
 
       sig { override.returns(T::Array[WhopSDK::Currency::TaggedSymbol]) }
       def self.values

@@ -17,6 +17,7 @@ module WhopSDK
       ADYEN = :adyen
       CLARITYPAY = :claritypay
       CHECKOUT_DOT_COM = :checkout_dot_com
+      AIRWALLEX = :airwallex
 
       # @!method self.values
       #   @return [Array<Symbol>]

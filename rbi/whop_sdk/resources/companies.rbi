@@ -89,6 +89,7 @@ module WhopSDK
           industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
           industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           logo: T.nilable(WhopSDK::CompanyUpdateParams::Logo::OrHash),
+          route: T.nilable(String),
           send_customer_emails: T.nilable(T::Boolean),
           target_audience: T.nilable(String),
           title: T.nilable(String),
@@ -111,6 +112,10 @@ module WhopSDK
         industry_type: nil,
         # The company's logo image. Accepts PNG, JPEG, or GIF format.
         logo: nil,
+        # The unique URL slug for the company's store page. Must be lowercase and can
+        # include hyphens (e.g., 'my-company'). If not provided, the route will remain
+        # unchanged.
+        route: nil,
         # Whether Whop sends transactional emails (receipts, renewals, cancelations) to
         # customers on behalf of this company.
         send_customer_emails: nil,

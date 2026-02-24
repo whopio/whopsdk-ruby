@@ -8,6 +8,7 @@ module WhopSDK
         industry_group: WhopSDK::Models::industry_groups?,
         industry_type: WhopSDK::Models::industry_types?,
         logo: WhopSDK::CompanyUpdateParams::Logo?,
+        route: String?,
         send_customer_emails: bool?,
         target_audience: String?,
         title: String?
@@ -30,6 +31,8 @@ module WhopSDK
 
       attr_accessor logo: WhopSDK::CompanyUpdateParams::Logo?
 
+      attr_accessor route: String?
+
       attr_accessor send_customer_emails: bool?
 
       attr_accessor target_audience: String?
@@ -43,6 +46,7 @@ module WhopSDK
         ?industry_group: WhopSDK::Models::industry_groups?,
         ?industry_type: WhopSDK::Models::industry_types?,
         ?logo: WhopSDK::CompanyUpdateParams::Logo?,
+        ?route: String?,
         ?send_customer_emails: bool?,
         ?target_audience: String?,
         ?title: String?,
@@ -56,6 +60,7 @@ module WhopSDK
         industry_group: WhopSDK::Models::industry_groups?,
         industry_type: WhopSDK::Models::industry_types?,
         logo: WhopSDK::CompanyUpdateParams::Logo?,
+        route: String?,
         send_customer_emails: bool?,
         target_audience: String?,
         title: String?,

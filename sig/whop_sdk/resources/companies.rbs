@@ -28,6 +28,7 @@ module WhopSDK
         ?industry_group: WhopSDK::Models::industry_groups?,
         ?industry_type: WhopSDK::Models::industry_types?,
         ?logo: WhopSDK::CompanyUpdateParams::Logo?,
+        ?route: String?,
         ?send_customer_emails: bool?,
         ?target_audience: String?,
         ?title: String?,

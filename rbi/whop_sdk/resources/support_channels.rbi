@@ -13,6 +13,7 @@ module WhopSDK
         params(
           company_id: String,
           user_id: String,
+          custom_name: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::SupportChannel)
       end
@@ -22,6 +23,8 @@ module WhopSDK
         # The user ID (e.g. 'user_xxxxx') or username of the customer to open a support
         # channel for.
         user_id:,
+        # Optional custom display name for the support channel.
+        custom_name: nil,
         request_options: {}
       )
       end

@@ -7,12 +7,6 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute business_type
-      #   The different business types a company can be.
-      #
-      #   @return [Symbol, WhopSDK::Models::BusinessTypes, nil]
-      optional :business_type, enum: -> { WhopSDK::BusinessTypes }, nil?: true
-
       # @!attribute collect_shipping_address
       #   Whether the checkout flow collects a shipping address from the customer.
       #
@@ -73,18 +67,6 @@ module WhopSDK
       #   @return [String, nil]
       optional :headline, String, nil?: true
 
-      # @!attribute industry_group
-      #   The different industry groups a company can be in.
-      #
-      #   @return [Symbol, WhopSDK::Models::IndustryGroups, nil]
-      optional :industry_group, enum: -> { WhopSDK::IndustryGroups }, nil?: true
-
-      # @!attribute industry_type
-      #   The different industry types a company can be in.
-      #
-      #   @return [Symbol, WhopSDK::Models::IndustryTypes, nil]
-      optional :industry_type, enum: -> { WhopSDK::IndustryTypes }, nil?: true
-
       # @!attribute member_affiliate_percentage
       #   The commission rate as a percentage that members earn through the member
       #   affiliate program.
@@ -134,11 +116,9 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility, nil]
       optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-      # @!method initialize(business_type: nil, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, gallery_images: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_group: nil, industry_type: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
+      # @!method initialize(collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, gallery_images: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ProductUpdateParams} for more details.
-      #
-      #   @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #
       #   @param collect_shipping_address [Boolean, nil] Whether the checkout flow collects a shipping address from the customer.
       #
@@ -157,10 +137,6 @@ module WhopSDK
       #   @param global_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for a product.
       #
       #   @param headline [String, nil] A short marketing headline displayed prominently on the product page.
-      #
-      #   @param industry_group [Symbol, WhopSDK::Models::IndustryGroups, nil] The different industry groups a company can be in.
-      #
-      #   @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
       #   @param member_affiliate_percentage [Float, nil] The commission rate as a percentage that members earn through the member affilia
       #

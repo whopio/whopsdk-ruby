@@ -9,12 +9,6 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
-      # @!attribute business_type
-      #   The different business types a company can be.
-      #
-      #   @return [Symbol, WhopSDK::Models::BusinessTypes, nil]
-      required :business_type, enum: -> { WhopSDK::BusinessTypes }, nil?: true
-
       # @!attribute created_at
       #   The datetime the company was created.
       #
@@ -27,12 +21,6 @@ module WhopSDK
       #
       #   @return [String, nil]
       required :description, String, nil?: true
-
-      # @!attribute industry_type
-      #   The different industry types a company can be in.
-      #
-      #   @return [Symbol, WhopSDK::Models::IndustryTypes, nil]
-      required :industry_type, enum: -> { WhopSDK::IndustryTypes }, nil?: true
 
       # @!attribute logo
       #   The company's logo.
@@ -105,7 +93,7 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, business_type:, created_at:, description:, industry_type:, logo:, member_count:, metadata:, owner_user:, published_reviews_count:, route:, send_customer_emails:, social_links:, title:, updated_at:, verified:)
+      # @!method initialize(id:, created_at:, description:, logo:, member_count:, metadata:, owner_user:, published_reviews_count:, route:, send_customer_emails:, social_links:, title:, updated_at:, verified:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Company}
       #   for more details.
       #
@@ -114,13 +102,9 @@ module WhopSDK
       #
       #   @param id [String] The unique identifier for the company.
       #
-      #   @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
-      #
       #   @param created_at [Time] The datetime the company was created.
       #
       #   @param description [String, nil] A promotional pitch written by the company creator, displayed to potential custo
-      #
-      #   @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
       #   @param logo [WhopSDK::Models::Company::Logo, nil] The company's logo.
       #

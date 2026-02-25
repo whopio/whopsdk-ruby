@@ -3,11 +3,8 @@ module WhopSDK
     type company_create_params =
       {
         title: String,
-        business_type: WhopSDK::Models::business_types?,
         description: String?,
         email: String?,
-        industry_group: WhopSDK::Models::industry_groups?,
-        industry_type: WhopSDK::Models::industry_types?,
         logo: WhopSDK::CompanyCreateParams::Logo?,
         metadata: ::Hash[Symbol, top]?,
         parent_company_id: String?,
@@ -21,15 +18,9 @@ module WhopSDK
 
       attr_accessor title: String
 
-      attr_accessor business_type: WhopSDK::Models::business_types?
-
       attr_accessor description: String?
 
       attr_accessor email: String?
-
-      attr_accessor industry_group: WhopSDK::Models::industry_groups?
-
-      attr_accessor industry_type: WhopSDK::Models::industry_types?
 
       attr_accessor logo: WhopSDK::CompanyCreateParams::Logo?
 
@@ -41,11 +32,8 @@ module WhopSDK
 
       def initialize: (
         title: String,
-        ?business_type: WhopSDK::Models::business_types?,
         ?description: String?,
         ?email: String?,
-        ?industry_group: WhopSDK::Models::industry_groups?,
-        ?industry_type: WhopSDK::Models::industry_types?,
         ?logo: WhopSDK::CompanyCreateParams::Logo?,
         ?metadata: ::Hash[Symbol, top]?,
         ?parent_company_id: String?,
@@ -55,11 +43,8 @@ module WhopSDK
 
       def to_hash: -> {
         title: String,
-        business_type: WhopSDK::Models::business_types?,
         description: String?,
         email: String?,
-        industry_group: WhopSDK::Models::industry_groups?,
-        industry_type: WhopSDK::Models::industry_types?,
         logo: WhopSDK::CompanyCreateParams::Logo?,
         metadata: ::Hash[Symbol, top]?,
         parent_company_id: String?,

@@ -3,10 +3,8 @@ module WhopSDK
     type company_list_response =
       {
         id: String,
-        business_type: WhopSDK::Models::business_types?,
         created_at: Time,
         description: String?,
-        industry_type: WhopSDK::Models::industry_types?,
         logo: WhopSDK::Models::CompanyListResponse::Logo?,
         member_count: Integer,
         metadata: ::Hash[Symbol, top]?,
@@ -22,13 +20,9 @@ module WhopSDK
     class CompanyListResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor business_type: WhopSDK::Models::business_types?
-
       attr_accessor created_at: Time
 
       attr_accessor description: String?
-
-      attr_accessor industry_type: WhopSDK::Models::industry_types?
 
       attr_accessor logo: WhopSDK::Models::CompanyListResponse::Logo?
 
@@ -52,10 +46,8 @@ module WhopSDK
 
       def initialize: (
         id: String,
-        business_type: WhopSDK::Models::business_types?,
         created_at: Time,
         description: String?,
-        industry_type: WhopSDK::Models::industry_types?,
         logo: WhopSDK::Models::CompanyListResponse::Logo?,
         member_count: Integer,
         metadata: ::Hash[Symbol, top]?,
@@ -70,10 +62,8 @@ module WhopSDK
 
       def to_hash: -> {
         id: String,
-        business_type: WhopSDK::Models::business_types?,
         created_at: Time,
         description: String?,
-        industry_type: WhopSDK::Models::industry_types?,
         logo: WhopSDK::Models::CompanyListResponse::Logo?,
         member_count: Integer,
         metadata: ::Hash[Symbol, top]?,

@@ -13,11 +13,8 @@ module WhopSDK
       sig do
         params(
           title: String,
-          business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           description: T.nilable(String),
           email: T.nilable(String),
-          industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
-          industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           logo: T.nilable(WhopSDK::CompanyCreateParams::Logo::OrHash),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
           parent_company_id: T.nilable(String),
@@ -28,18 +25,12 @@ module WhopSDK
       def create(
         # The display name of the company shown to customers.
         title:,
-        # The different business types a company can be.
-        business_type: nil,
         # A promotional pitch displayed to potential customers on the company's store
         # page.
         description: nil,
         # The email address of the user who will own the connected account. Required when
         # parent_company_id is provided.
         email: nil,
-        # The different industry groups a company can be in.
-        industry_group: nil,
-        # The different industry types a company can be in.
-        industry_type: nil,
         # The company's logo image. Accepts PNG, JPEG, or GIF format.
         logo: nil,
         # A key-value JSON object of custom metadata to store on the company.
@@ -84,10 +75,7 @@ module WhopSDK
           id: String,
           banner_image:
             T.nilable(WhopSDK::CompanyUpdateParams::BannerImage::OrHash),
-          business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           description: T.nilable(String),
-          industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
-          industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           logo: T.nilable(WhopSDK::CompanyUpdateParams::Logo::OrHash),
           route: T.nilable(String),
           send_customer_emails: T.nilable(T::Boolean),
@@ -101,15 +89,9 @@ module WhopSDK
         id,
         # The company's banner image. Accepts PNG or JPEG format.
         banner_image: nil,
-        # The different business types a company can be.
-        business_type: nil,
         # A promotional pitch displayed to potential customers on the company's store
         # page.
         description: nil,
-        # The different industry groups a company can be in.
-        industry_group: nil,
-        # The different industry types a company can be in.
-        industry_type: nil,
         # The company's logo image. Accepts PNG, JPEG, or GIF format.
         logo: nil,
         # The unique URL slug for the company's store page. Must be lowercase and can

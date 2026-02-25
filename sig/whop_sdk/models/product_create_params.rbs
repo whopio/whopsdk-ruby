@@ -4,7 +4,6 @@ module WhopSDK
       {
         company_id: String,
         title: String,
-        business_type: WhopSDK::Models::business_types?,
         collect_shipping_address: bool?,
         custom_cta: WhopSDK::Models::custom_cta?,
         custom_cta_url: String?,
@@ -14,8 +13,6 @@ module WhopSDK
         global_affiliate_percentage: Float?,
         global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         headline: String?,
-        industry_group: WhopSDK::Models::industry_groups?,
-        industry_type: WhopSDK::Models::industry_types?,
         member_affiliate_percentage: Float?,
         member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         plan_options: WhopSDK::ProductCreateParams::PlanOptions?,
@@ -33,8 +30,6 @@ module WhopSDK
       attr_accessor company_id: String
 
       attr_accessor title: String
-
-      attr_accessor business_type: WhopSDK::Models::business_types?
 
       attr_accessor collect_shipping_address: bool?
 
@@ -54,10 +49,6 @@ module WhopSDK
 
       attr_accessor headline: String?
 
-      attr_accessor industry_group: WhopSDK::Models::industry_groups?
-
-      attr_accessor industry_type: WhopSDK::Models::industry_types?
-
       attr_accessor member_affiliate_percentage: Float?
 
       attr_accessor member_affiliate_status: WhopSDK::Models::global_affiliate_status?
@@ -75,7 +66,6 @@ module WhopSDK
       def initialize: (
         company_id: String,
         title: String,
-        ?business_type: WhopSDK::Models::business_types?,
         ?collect_shipping_address: bool?,
         ?custom_cta: WhopSDK::Models::custom_cta?,
         ?custom_cta_url: String?,
@@ -85,8 +75,6 @@ module WhopSDK
         ?global_affiliate_percentage: Float?,
         ?global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         ?headline: String?,
-        ?industry_group: WhopSDK::Models::industry_groups?,
-        ?industry_type: WhopSDK::Models::industry_types?,
         ?member_affiliate_percentage: Float?,
         ?member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         ?plan_options: WhopSDK::ProductCreateParams::PlanOptions?,
@@ -100,7 +88,6 @@ module WhopSDK
       def to_hash: -> {
         company_id: String,
         title: String,
-        business_type: WhopSDK::Models::business_types?,
         collect_shipping_address: bool?,
         custom_cta: WhopSDK::Models::custom_cta?,
         custom_cta_url: String?,
@@ -110,8 +97,6 @@ module WhopSDK
         global_affiliate_percentage: Float?,
         global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         headline: String?,
-        industry_group: WhopSDK::Models::industry_groups?,
-        industry_type: WhopSDK::Models::industry_types?,
         member_affiliate_percentage: Float?,
         member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         plan_options: WhopSDK::ProductCreateParams::PlanOptions?,

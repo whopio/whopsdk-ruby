@@ -63,8 +63,6 @@ module WhopSDK
 
   BillingReasons = WhopSDK::Models::BillingReasons
 
-  BusinessTypes = WhopSDK::Models::BusinessTypes
-
   CancelOptions = WhopSDK::Models::CancelOptions
 
   CardBrands = WhopSDK::Models::CardBrands
@@ -316,10 +314,6 @@ module WhopSDK
   FriendlyReceiptStatus = WhopSDK::Models::FriendlyReceiptStatus
 
   GlobalAffiliateStatus = WhopSDK::Models::GlobalAffiliateStatus
-
-  IndustryGroups = WhopSDK::Models::IndustryGroups
-
-  IndustryTypes = WhopSDK::Models::IndustryTypes
 
   Invoice = WhopSDK::Models::Invoice
 

@@ -23,22 +23,10 @@ module WhopSDK
       end
       attr_writer :banner_image
 
-      # The different business types a company can be.
-      sig { returns(T.nilable(WhopSDK::BusinessTypes::OrSymbol)) }
-      attr_accessor :business_type
-
       # A promotional pitch displayed to potential customers on the company's store
       # page.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
-
-      # The different industry groups a company can be in.
-      sig { returns(T.nilable(WhopSDK::IndustryGroups::OrSymbol)) }
-      attr_accessor :industry_group
-
-      # The different industry types a company can be in.
-      sig { returns(T.nilable(WhopSDK::IndustryTypes::OrSymbol)) }
-      attr_accessor :industry_type
 
       # The company's logo image. Accepts PNG, JPEG, or GIF format.
       sig { returns(T.nilable(WhopSDK::CompanyUpdateParams::Logo)) }
@@ -73,10 +61,7 @@ module WhopSDK
         params(
           banner_image:
             T.nilable(WhopSDK::CompanyUpdateParams::BannerImage::OrHash),
-          business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           description: T.nilable(String),
-          industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
-          industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           logo: T.nilable(WhopSDK::CompanyUpdateParams::Logo::OrHash),
           route: T.nilable(String),
           send_customer_emails: T.nilable(T::Boolean),
@@ -88,15 +73,9 @@ module WhopSDK
       def self.new(
         # The company's banner image. Accepts PNG or JPEG format.
         banner_image: nil,
-        # The different business types a company can be.
-        business_type: nil,
         # A promotional pitch displayed to potential customers on the company's store
         # page.
         description: nil,
-        # The different industry groups a company can be in.
-        industry_group: nil,
-        # The different industry types a company can be in.
-        industry_type: nil,
         # The company's logo image. Accepts PNG, JPEG, or GIF format.
         logo: nil,
         # The unique URL slug for the company's store page. Must be lowercase and can
@@ -119,10 +98,7 @@ module WhopSDK
         override.returns(
           {
             banner_image: T.nilable(WhopSDK::CompanyUpdateParams::BannerImage),
-            business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
             description: T.nilable(String),
-            industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
-            industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
             logo: T.nilable(WhopSDK::CompanyUpdateParams::Logo),
             route: T.nilable(String),
             send_customer_emails: T.nilable(T::Boolean),

@@ -198,6 +198,8 @@ module WhopSDK
         T.let(:basketball_training, WhopSDK::IndustryTypes::TaggedSymbol)
       SOCCER_TRAINING =
         T.let(:soccer_training, WhopSDK::IndustryTypes::TaggedSymbol)
+      RACKET_SPORTS_COACHING =
+        T.let(:racket_sports_coaching, WhopSDK::IndustryTypes::TaggedSymbol)
       MENTAL_HEALTH_COACHING =
         T.let(:mental_health_coaching, WhopSDK::IndustryTypes::TaggedSymbol)
       LIFE_COACHING =
@@ -306,16 +308,6 @@ module WhopSDK
         )
       COACHING_BUSINESS_COACHING =
         T.let(:coaching_business_coaching, WhopSDK::IndustryTypes::TaggedSymbol)
-      DARK_PATTERN_SUBSCRIPTIONS =
-        T.let(:dark_pattern_subscriptions, WhopSDK::IndustryTypes::TaggedSymbol)
-      INCOME_GUARANTEE_SCHEME =
-        T.let(:income_guarantee_scheme, WhopSDK::IndustryTypes::TaggedSymbol)
-      LIFETIME_ACCESS_OFFERS =
-        T.let(:lifetime_access_offers, WhopSDK::IndustryTypes::TaggedSymbol)
-      MLM_PYRAMID_SCHEME =
-        T.let(:mlm_pyramid_scheme, WhopSDK::IndustryTypes::TaggedSymbol)
-      NEGATIVE_OPTION_BILLING =
-        T.let(:negative_option_billing, WhopSDK::IndustryTypes::TaggedSymbol)
       STARTUP_NEWSLETTER =
         T.let(:startup_newsletter, WhopSDK::IndustryTypes::TaggedSymbol)
       ECOMMERCE_NEWSLETTER =
@@ -387,6 +379,8 @@ module WhopSDK
         T.let(:event_marketing, WhopSDK::IndustryTypes::TaggedSymbol)
       SAAS_MARKETING_COACHING =
         T.let(:saas_marketing_coaching, WhopSDK::IndustryTypes::TaggedSymbol)
+      DIGITAL_MARKETING =
+        T.let(:digital_marketing, WhopSDK::IndustryTypes::TaggedSymbol)
       VIDEO_EDITING_EDUCATION =
         T.let(:video_editing_education, WhopSDK::IndustryTypes::TaggedSymbol)
       PHOTOGRAPHY_COACHING =
@@ -597,8 +591,11 @@ module WhopSDK
           :neurolinguistic_programming,
           WhopSDK::IndustryTypes::TaggedSymbol
         )
-      KINDLE_PUBLISHING =
-        T.let(:kindle_publishing, WhopSDK::IndustryTypes::TaggedSymbol)
+      APPEARANCE_AND_GROOMING_COACHING =
+        T.let(
+          :appearance_and_grooming_coaching,
+          WhopSDK::IndustryTypes::TaggedSymbol
+        )
       AMAZON_KDP = T.let(:amazon_kdp, WhopSDK::IndustryTypes::TaggedSymbol)
       SELF_PUBLISHING =
         T.let(:self_publishing, WhopSDK::IndustryTypes::TaggedSymbol)
@@ -706,6 +703,8 @@ module WhopSDK
         T.let(:floral_design, WhopSDK::IndustryTypes::TaggedSymbol)
       TRAVEL_PLANNING_SERVICE =
         T.let(:travel_planning_service, WhopSDK::IndustryTypes::TaggedSymbol)
+      COLLECTIBLES_COACHING =
+        T.let(:collectibles_coaching, WhopSDK::IndustryTypes::TaggedSymbol)
       ESPORTS_COACHING =
         T.let(:esports_coaching, WhopSDK::IndustryTypes::TaggedSymbol)
       GAME_SPECIFIC_COACHING =
@@ -765,8 +764,8 @@ module WhopSDK
         T.let(:video_marketing_agency, WhopSDK::IndustryTypes::TaggedSymbol)
       AMAZON_MARKETING_AGENCY =
         T.let(:amazon_marketing_agency, WhopSDK::IndustryTypes::TaggedSymbol)
-      PODCAST_PRODUCTION_AGENCY =
-        T.let(:podcast_production_agency, WhopSDK::IndustryTypes::TaggedSymbol)
+      PODCAST_MARKETING_AGENCY =
+        T.let(:podcast_marketing_agency, WhopSDK::IndustryTypes::TaggedSymbol)
       TIKTOK_AGENCY =
         T.let(:tiktok_agency, WhopSDK::IndustryTypes::TaggedSymbol)
       LINKEDIN_AGENCY =
@@ -948,6 +947,8 @@ module WhopSDK
         )
       VIDEO_CLIPPING_AGENCY =
         T.let(:video_clipping_agency, WhopSDK::IndustryTypes::TaggedSymbol)
+      VIDEO_PRODUCTION_AGENCY =
+        T.let(:video_production_agency, WhopSDK::IndustryTypes::TaggedSymbol)
       UGC_AGENCY = T.let(:ugc_agency, WhopSDK::IndustryTypes::TaggedSymbol)
       CONTENT_WRITING_AGENCY =
         T.let(:content_writing_agency, WhopSDK::IndustryTypes::TaggedSymbol)
@@ -1464,6 +1465,8 @@ module WhopSDK
         T.let(:dance_performance_wear, WhopSDK::IndustryTypes::TaggedSymbol)
       HUNTING_CAMO_APPAREL =
         T.let(:hunting_camo_apparel, WhopSDK::IndustryTypes::TaggedSymbol)
+      CASUAL_EVERYDAY_CLOTHING =
+        T.let(:casual_everyday_clothing, WhopSDK::IndustryTypes::TaggedSymbol)
       PROTEIN_SUPPLEMENTS =
         T.let(:protein_supplements, WhopSDK::IndustryTypes::TaggedSymbol)
       VITAMINS_MINERALS =
@@ -1932,8 +1935,6 @@ module WhopSDK
         T.let(:luxury_goods_marketplace, WhopSDK::IndustryTypes::TaggedSymbol)
       COLLECTIBLES_MARKETPLACE =
         T.let(:collectibles_marketplace, WhopSDK::IndustryTypes::TaggedSymbol)
-      NFT_DIGITAL_MARKETPLACE =
-        T.let(:nft_digital_marketplace, WhopSDK::IndustryTypes::TaggedSymbol)
       WHOLESALE_MARKETPLACE =
         T.let(:wholesale_marketplace, WhopSDK::IndustryTypes::TaggedSymbol)
       LOCAL_GOODS_MARKETPLACE =
@@ -2108,6 +2109,11 @@ module WhopSDK
         T.let(:prompt_marketplace, WhopSDK::IndustryTypes::TaggedSymbol)
       CODE_SNIPPET_MARKETPLACE =
         T.let(:code_snippet_marketplace, WhopSDK::IndustryTypes::TaggedSymbol)
+      AFFILIATE_MARKETING_PLATFORM =
+        T.let(
+          :affiliate_marketing_platform,
+          WhopSDK::IndustryTypes::TaggedSymbol
+        )
       GAME_ACCOUNT_SELLING =
         T.let(:game_account_selling, WhopSDK::IndustryTypes::TaggedSymbol)
       GAME_CHEATS_HACKS =
@@ -2226,6 +2232,7 @@ module WhopSDK
       DJ_GIG = T.let(:dj_gig, WhopSDK::IndustryTypes::TaggedSymbol)
       FACE_PAINTING_GIG =
         T.let(:face_painting_gig, WhopSDK::IndustryTypes::TaggedSymbol)
+      CLIPPING_GIG = T.let(:clipping_gig, WhopSDK::IndustryTypes::TaggedSymbol)
       CONSULTING_GIG =
         T.let(:consulting_gig, WhopSDK::IndustryTypes::TaggedSymbol)
       ACCOUNTING_GIG =
@@ -2396,6 +2403,8 @@ module WhopSDK
         T.let(:postpartum_fitness_group, WhopSDK::IndustryTypes::TaggedSymbol)
       CHRONIC_ILLNESS_SUPPORT =
         T.let(:chronic_illness_support, WhopSDK::IndustryTypes::TaggedSymbol)
+      SKINCARE_COMMUNITY =
+        T.let(:skincare_community, WhopSDK::IndustryTypes::TaggedSymbol)
       CONTENT_CREATOR_COMMUNITY =
         T.let(:content_creator_community, WhopSDK::IndustryTypes::TaggedSymbol)
       VIDEO_EDITING_COMMUNITY =
@@ -2416,6 +2425,13 @@ module WhopSDK
         T.let(:podcast_community, WhopSDK::IndustryTypes::TaggedSymbol)
       FILMMAKER_COMMUNITY =
         T.let(:filmmaker_community, WhopSDK::IndustryTypes::TaggedSymbol)
+      CLIPPING_COMMUNITY =
+        T.let(:clipping_community, WhopSDK::IndustryTypes::TaggedSymbol)
+      YOUTUBE_AUTOMATION_COMMUNITY =
+        T.let(
+          :youtube_automation_community,
+          WhopSDK::IndustryTypes::TaggedSymbol
+        )
       DEVELOPER_COMMUNITY =
         T.let(:developer_community, WhopSDK::IndustryTypes::TaggedSymbol)
       AI_COMMUNITY = T.let(:ai_community, WhopSDK::IndustryTypes::TaggedSymbol)
@@ -2498,8 +2514,12 @@ module WhopSDK
         T.let(:diy_maker_community, WhopSDK::IndustryTypes::TaggedSymbol)
       GOLF_COMMUNITY =
         T.let(:golf_community, WhopSDK::IndustryTypes::TaggedSymbol)
+      COLLECTIBLES_COMMUNITY =
+        T.let(:collectibles_community, WhopSDK::IndustryTypes::TaggedSymbol)
       SWEEPSTAKES_RAFFLES =
         T.let(:sweepstakes_raffles, WhopSDK::IndustryTypes::TaggedSymbol)
+      EVENT_TICKET_COMMUNITY =
+        T.let(:event_ticket_community, WhopSDK::IndustryTypes::TaggedSymbol)
       FOREX_TRADING_BOT =
         T.let(:forex_trading_bot, WhopSDK::IndustryTypes::TaggedSymbol)
       STOCK_TRADING_PLATFORM =
@@ -2528,8 +2548,12 @@ module WhopSDK
         T.let(:prop_trading_platform, WhopSDK::IndustryTypes::TaggedSymbol)
       BACKTESTING_SOFTWARE =
         T.let(:backtesting_software, WhopSDK::IndustryTypes::TaggedSymbol)
+      TRADING_INDICATORS =
+        T.let(:trading_indicators, WhopSDK::IndustryTypes::TaggedSymbol)
       MARKET_DATA_FEED =
         T.let(:market_data_feed, WhopSDK::IndustryTypes::TaggedSymbol)
+      STOCK_RESEARCH_TOOL =
+        T.let(:stock_research_tool, WhopSDK::IndustryTypes::TaggedSymbol)
       BANKING_SOFTWARE =
         T.let(:banking_software, WhopSDK::IndustryTypes::TaggedSymbol)
       LENDING_PLATFORM =
@@ -2649,6 +2673,10 @@ module WhopSDK
         T.let(:print_on_demand_software, WhopSDK::IndustryTypes::TaggedSymbol)
       MARKETPLACE_SELLER_TOOL =
         T.let(:marketplace_seller_tool, WhopSDK::IndustryTypes::TaggedSymbol)
+      RESALE_ARBITRAGE_TOOL =
+        T.let(:resale_arbitrage_tool, WhopSDK::IndustryTypes::TaggedSymbol)
+      RESELLER_MANAGEMENT_TOOL =
+        T.let(:reseller_management_tool, WhopSDK::IndustryTypes::TaggedSymbol)
       PRODUCT_REVIEW_SOFTWARE =
         T.let(:product_review_software, WhopSDK::IndustryTypes::TaggedSymbol)
       RETURNS_MANAGEMENT =
@@ -2822,7 +2850,6 @@ module WhopSDK
         T.let(:tattoo_studio_software, WhopSDK::IndustryTypes::TaggedSymbol)
       CANNABIS_SOFTWARE =
         T.let(:cannabis_software, WhopSDK::IndustryTypes::TaggedSymbol)
-      VPN_SOFTWARE = T.let(:vpn_software, WhopSDK::IndustryTypes::TaggedSymbol)
       PASSWORD_MANAGER =
         T.let(:password_manager, WhopSDK::IndustryTypes::TaggedSymbol)
       CYBERSECURITY_SOFTWARE =
@@ -2860,6 +2887,8 @@ module WhopSDK
         T.let(:audio_editing_software, WhopSDK::IndustryTypes::TaggedSymbol)
       SCREEN_RECORDING_SOFTWARE =
         T.let(:screen_recording_software, WhopSDK::IndustryTypes::TaggedSymbol)
+      SPORTS_BETTING_TOOL =
+        T.let(:sports_betting_tool, WhopSDK::IndustryTypes::TaggedSymbol)
       FANTASY_SPORTS_PAID_ENTRY =
         T.let(:fantasy_sports_paid_entry, WhopSDK::IndustryTypes::TaggedSymbol)
       IPTV_PIRATED_STREAMING =
@@ -2881,6 +2910,13 @@ module WhopSDK
           :streaming_account_reselling,
           WhopSDK::IndustryTypes::TaggedSymbol
         )
+      SUBSCRIPTION_ACCOUNT_SHARING =
+        T.let(
+          :subscription_account_sharing,
+          WhopSDK::IndustryTypes::TaggedSymbol
+        )
+      ACCOUNT_GENERATION_TOOL =
+        T.let(:account_generation_tool, WhopSDK::IndustryTypes::TaggedSymbol)
       PRIMARY_CARE_TELEHEALTH =
         T.let(:primary_care_telehealth, WhopSDK::IndustryTypes::TaggedSymbol)
       URGENT_CARE_TELEHEALTH =
@@ -3115,34 +3151,34 @@ module WhopSDK
         T.let(:mastermind_event, WhopSDK::IndustryTypes::TaggedSymbol)
       WEBINAR_EVENT =
         T.let(:webinar_event, WhopSDK::IndustryTypes::TaggedSymbol)
+      VIRTUAL_SUMMIT =
+        T.let(:virtual_summit, WhopSDK::IndustryTypes::TaggedSymbol)
       BOOTCAMP_EVENT =
         T.let(:bootcamp_event, WhopSDK::IndustryTypes::TaggedSymbol)
-      CONVENTION_EXPO =
-        T.let(:convention_expo, WhopSDK::IndustryTypes::TaggedSymbol)
-      CONFERENCE_SUMMIT =
-        T.let(:conference_summit, WhopSDK::IndustryTypes::TaggedSymbol)
       WORKSHOP_SEMINAR =
         T.let(:workshop_seminar, WhopSDK::IndustryTypes::TaggedSymbol)
       HACKATHON = T.let(:hackathon, WhopSDK::IndustryTypes::TaggedSymbol)
-      PITCH_COMPETITION =
-        T.let(:pitch_competition, WhopSDK::IndustryTypes::TaggedSymbol)
+      CORPORATE_TRAINING_EVENT =
+        T.let(:corporate_training_event, WhopSDK::IndustryTypes::TaggedSymbol)
       TRAINING_CERTIFICATION_EVENT =
         T.let(
           :training_certification_event,
           WhopSDK::IndustryTypes::TaggedSymbol
         )
+      CONVENTION_EXPO =
+        T.let(:convention_expo, WhopSDK::IndustryTypes::TaggedSymbol)
+      CONFERENCE_SUMMIT =
+        T.let(:conference_summit, WhopSDK::IndustryTypes::TaggedSymbol)
+      INDUSTRY_AWARDS_EVENT =
+        T.let(:industry_awards_event, WhopSDK::IndustryTypes::TaggedSymbol)
       PRODUCT_LAUNCH_EVENT =
         T.let(:product_launch_event, WhopSDK::IndustryTypes::TaggedSymbol)
       INVESTOR_DEMO_DAY =
         T.let(:investor_demo_day, WhopSDK::IndustryTypes::TaggedSymbol)
-      INDUSTRY_AWARDS_EVENT =
-        T.let(:industry_awards_event, WhopSDK::IndustryTypes::TaggedSymbol)
       PANEL_DISCUSSION_EVENT =
         T.let(:panel_discussion_event, WhopSDK::IndustryTypes::TaggedSymbol)
-      VIRTUAL_SUMMIT =
-        T.let(:virtual_summit, WhopSDK::IndustryTypes::TaggedSymbol)
-      CORPORATE_TRAINING_EVENT =
-        T.let(:corporate_training_event, WhopSDK::IndustryTypes::TaggedSymbol)
+      PITCH_COMPETITION =
+        T.let(:pitch_competition, WhopSDK::IndustryTypes::TaggedSymbol)
       MEETUP_EVENT = T.let(:meetup_event, WhopSDK::IndustryTypes::TaggedSymbol)
       DINNER_EVENT = T.let(:dinner_event, WhopSDK::IndustryTypes::TaggedSymbol)
       ALUMNI_EVENT = T.let(:alumni_event, WhopSDK::IndustryTypes::TaggedSymbol)
@@ -3160,16 +3196,11 @@ module WhopSDK
         T.let(:industry_mixer, WhopSDK::IndustryTypes::TaggedSymbol)
       CONCERT_EVENT =
         T.let(:concert_event, WhopSDK::IndustryTypes::TaggedSymbol)
-      PARTY_EVENT = T.let(:party_event, WhopSDK::IndustryTypes::TaggedSymbol)
       COMEDY_SHOW = T.let(:comedy_show, WhopSDK::IndustryTypes::TaggedSymbol)
       THEATER_PERFORMANCE =
         T.let(:theater_performance, WhopSDK::IndustryTypes::TaggedSymbol)
       FILM_SCREENING =
         T.let(:film_screening, WhopSDK::IndustryTypes::TaggedSymbol)
-      ART_EXHIBITION =
-        T.let(:art_exhibition, WhopSDK::IndustryTypes::TaggedSymbol)
-      FOOD_FESTIVAL =
-        T.let(:food_festival, WhopSDK::IndustryTypes::TaggedSymbol)
       MUSIC_FESTIVAL =
         T.let(:music_festival, WhopSDK::IndustryTypes::TaggedSymbol)
       CULTURAL_FESTIVAL =
@@ -3181,12 +3212,17 @@ module WhopSDK
         T.let(:dance_performance, WhopSDK::IndustryTypes::TaggedSymbol)
       POETRY_SPOKEN_WORD =
         T.let(:poetry_spoken_word, WhopSDK::IndustryTypes::TaggedSymbol)
+      ART_EXHIBITION =
+        T.let(:art_exhibition, WhopSDK::IndustryTypes::TaggedSymbol)
+      PARTY_EVENT = T.let(:party_event, WhopSDK::IndustryTypes::TaggedSymbol)
       TRIVIA_NIGHT = T.let(:trivia_night, WhopSDK::IndustryTypes::TaggedSymbol)
       WINE_TASTING_EVENT =
         T.let(:wine_tasting_event, WhopSDK::IndustryTypes::TaggedSymbol)
       BEER_FESTIVAL =
         T.let(:beer_festival, WhopSDK::IndustryTypes::TaggedSymbol)
       CAR_SHOW = T.let(:car_show, WhopSDK::IndustryTypes::TaggedSymbol)
+      FOOD_FESTIVAL =
+        T.let(:food_festival, WhopSDK::IndustryTypes::TaggedSymbol)
       FITNESS_CHALLENGE_EVENT =
         T.let(:fitness_challenge_event, WhopSDK::IndustryTypes::TaggedSymbol)
       MARATHON_RACE =
@@ -3431,35 +3467,14 @@ module WhopSDK
       FINE_DINING = T.let(:fine_dining, WhopSDK::IndustryTypes::TaggedSymbol)
       FAST_CASUAL_RESTAURANT =
         T.let(:fast_casual_restaurant, WhopSDK::IndustryTypes::TaggedSymbol)
-      FAST_FOOD = T.let(:fast_food, WhopSDK::IndustryTypes::TaggedSymbol)
-      FOOD_TRUCK = T.let(:food_truck, WhopSDK::IndustryTypes::TaggedSymbol)
-      BAR_LOUNGE = T.let(:bar_lounge, WhopSDK::IndustryTypes::TaggedSymbol)
-      BREWERY_TAPROOM =
-        T.let(:brewery_taproom, WhopSDK::IndustryTypes::TaggedSymbol)
-      WINERY_TASTING =
-        T.let(:winery_tasting, WhopSDK::IndustryTypes::TaggedSymbol)
-      COFFEE_SHOP_CAFE =
-        T.let(:coffee_shop_cafe, WhopSDK::IndustryTypes::TaggedSymbol)
-      BAKERY = T.let(:bakery, WhopSDK::IndustryTypes::TaggedSymbol)
-      JUICE_SMOOTHIE_BAR =
-        T.let(:juice_smoothie_bar, WhopSDK::IndustryTypes::TaggedSymbol)
-      PIZZA_SHOP = T.let(:pizza_shop, WhopSDK::IndustryTypes::TaggedSymbol)
-      SUSHI_RESTAURANT =
-        T.let(:sushi_restaurant, WhopSDK::IndustryTypes::TaggedSymbol)
-      ETHNIC_RESTAURANT =
-        T.let(:ethnic_restaurant, WhopSDK::IndustryTypes::TaggedSymbol)
-      CATERING_KITCHEN =
-        T.let(:catering_kitchen, WhopSDK::IndustryTypes::TaggedSymbol)
-      GHOST_KITCHEN =
-        T.let(:ghost_kitchen, WhopSDK::IndustryTypes::TaggedSymbol)
-      ICE_CREAM_SHOP =
-        T.let(:ice_cream_shop, WhopSDK::IndustryTypes::TaggedSymbol)
-      DONUT_SHOP = T.let(:donut_shop, WhopSDK::IndustryTypes::TaggedSymbol)
-      DELI_SANDWICH_SHOP =
-        T.let(:deli_sandwich_shop, WhopSDK::IndustryTypes::TaggedSymbol)
       STEAKHOUSE = T.let(:steakhouse, WhopSDK::IndustryTypes::TaggedSymbol)
       SEAFOOD_RESTAURANT =
         T.let(:seafood_restaurant, WhopSDK::IndustryTypes::TaggedSymbol)
+      PIZZA_SHOP = T.let(:pizza_shop, WhopSDK::IndustryTypes::TaggedSymbol)
+      SUSHI_RESTAURANT =
+        T.let(:sushi_restaurant, WhopSDK::IndustryTypes::TaggedSymbol)
+      DELI_SANDWICH_SHOP =
+        T.let(:deli_sandwich_shop, WhopSDK::IndustryTypes::TaggedSymbol)
       BBQ_RESTAURANT =
         T.let(:bbq_restaurant, WhopSDK::IndustryTypes::TaggedSymbol)
       MEXICAN_RESTAURANT =
@@ -3487,20 +3502,41 @@ module WhopSDK
         T.let(:ramen_noodle_shop, WhopSDK::IndustryTypes::TaggedSymbol)
       POKE_BOWL_SHOP =
         T.let(:poke_bowl_shop, WhopSDK::IndustryTypes::TaggedSymbol)
+      ETHNIC_RESTAURANT =
+        T.let(:ethnic_restaurant, WhopSDK::IndustryTypes::TaggedSymbol)
+      COFFEE_SHOP_CAFE =
+        T.let(:coffee_shop_cafe, WhopSDK::IndustryTypes::TaggedSymbol)
+      BAKERY = T.let(:bakery, WhopSDK::IndustryTypes::TaggedSymbol)
+      JUICE_SMOOTHIE_BAR =
+        T.let(:juice_smoothie_bar, WhopSDK::IndustryTypes::TaggedSymbol)
+      ICE_CREAM_SHOP =
+        T.let(:ice_cream_shop, WhopSDK::IndustryTypes::TaggedSymbol)
+      DONUT_SHOP = T.let(:donut_shop, WhopSDK::IndustryTypes::TaggedSymbol)
       BUBBLE_TEA_SHOP =
         T.let(:bubble_tea_shop, WhopSDK::IndustryTypes::TaggedSymbol)
+      FOOD_TRUCK = T.let(:food_truck, WhopSDK::IndustryTypes::TaggedSymbol)
+      FAST_FOOD = T.let(:fast_food, WhopSDK::IndustryTypes::TaggedSymbol)
+      GHOST_KITCHEN =
+        T.let(:ghost_kitchen, WhopSDK::IndustryTypes::TaggedSymbol)
+      FOOD_HALL_VENDOR =
+        T.let(:food_hall_vendor, WhopSDK::IndustryTypes::TaggedSymbol)
+      CATERING_KITCHEN =
+        T.let(:catering_kitchen, WhopSDK::IndustryTypes::TaggedSymbol)
+      BUTCHER_SHOP = T.let(:butcher_shop, WhopSDK::IndustryTypes::TaggedSymbol)
+      CHEESE_SHOP = T.let(:cheese_shop, WhopSDK::IndustryTypes::TaggedSymbol)
+      FARMERS_MARKET_STALL =
+        T.let(:farmers_market_stall, WhopSDK::IndustryTypes::TaggedSymbol)
+      BAR_LOUNGE = T.let(:bar_lounge, WhopSDK::IndustryTypes::TaggedSymbol)
+      BREWERY_TAPROOM =
+        T.let(:brewery_taproom, WhopSDK::IndustryTypes::TaggedSymbol)
+      WINERY_TASTING =
+        T.let(:winery_tasting, WhopSDK::IndustryTypes::TaggedSymbol)
       WINE_BAR = T.let(:wine_bar, WhopSDK::IndustryTypes::TaggedSymbol)
       COCKTAIL_BAR = T.let(:cocktail_bar, WhopSDK::IndustryTypes::TaggedSymbol)
       SPORTS_BAR = T.let(:sports_bar, WhopSDK::IndustryTypes::TaggedSymbol)
       HOOKAH_LOUNGE =
         T.let(:hookah_lounge, WhopSDK::IndustryTypes::TaggedSymbol)
       DISTILLERY = T.let(:distillery, WhopSDK::IndustryTypes::TaggedSymbol)
-      BUTCHER_SHOP = T.let(:butcher_shop, WhopSDK::IndustryTypes::TaggedSymbol)
-      CHEESE_SHOP = T.let(:cheese_shop, WhopSDK::IndustryTypes::TaggedSymbol)
-      FARMERS_MARKET_STALL =
-        T.let(:farmers_market_stall, WhopSDK::IndustryTypes::TaggedSymbol)
-      FOOD_HALL_VENDOR =
-        T.let(:food_hall_vendor, WhopSDK::IndustryTypes::TaggedSymbol)
       COMMERCIAL_FARMING =
         T.let(:commercial_farming, WhopSDK::IndustryTypes::TaggedSymbol)
       LIVESTOCK_RANCHING =
@@ -3788,11 +3824,6 @@ module WhopSDK
       WATER_PARK = T.let(:water_park, WhopSDK::IndustryTypes::TaggedSymbol)
       INDOOR_PLAYGROUND =
         T.let(:indoor_playground, WhopSDK::IndustryTypes::TaggedSymbol)
-      TRAMPOLINE_PARK_ENTERTAINMENT =
-        T.let(
-          :trampoline_park_entertainment,
-          WhopSDK::IndustryTypes::TaggedSymbol
-        )
       CONCERT_VENUE =
         T.let(:concert_venue, WhopSDK::IndustryTypes::TaggedSymbol)
       DRIVE_IN_THEATER =
@@ -3800,8 +3831,6 @@ module WhopSDK
       BILLIARDS_HALL =
         T.let(:billiards_hall, WhopSDK::IndustryTypes::TaggedSymbol)
       DART_BAR = T.let(:dart_bar, WhopSDK::IndustryTypes::TaggedSymbol)
-      BATTING_CAGE_ENTERTAINMENT =
-        T.let(:batting_cage_entertainment, WhopSDK::IndustryTypes::TaggedSymbol)
       INDOOR_SKYDIVING =
         T.let(:indoor_skydiving, WhopSDK::IndustryTypes::TaggedSymbol)
       LAW_OFFICE = T.let(:law_office, WhopSDK::IndustryTypes::TaggedSymbol)

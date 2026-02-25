@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::ReactionsTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.reactions.create(resource_id: "resource_id")
 
@@ -23,7 +23,7 @@ class WhopSDK::Test::Resources::ReactionsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.reactions.retrieve("reac_xxxxxxxxxxxxxxxxxxxxxx")
 
@@ -42,7 +42,7 @@ class WhopSDK::Test::Resources::ReactionsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_list_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.reactions.list(resource_id: "resource_id")
 
@@ -68,7 +68,7 @@ class WhopSDK::Test::Resources::ReactionsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.reactions.delete("reac_xxxxxxxxxxxxxxxxxxxxxx")
 

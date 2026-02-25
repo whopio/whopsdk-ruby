@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::LedgerAccountsTest < WhopSDK::Test::ResourceTest
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.ledger_accounts.retrieve("ldgr_xxxxxxxxxxxxx")
 

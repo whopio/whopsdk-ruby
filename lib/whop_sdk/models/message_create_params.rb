@@ -29,6 +29,12 @@ module WhopSDK
                -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::MessageCreateParams::Attachment] },
                nil?: true
 
+      # @!attribute auto_detect_links
+      #   Automatically detect URLs in the message and generate link previews.
+      #
+      #   @return [Boolean, nil]
+      optional :auto_detect_links, WhopSDK::Internal::Type::Boolean, nil?: true
+
       # @!attribute poll
       #   A poll to attach to this message, allowing recipients to vote on options.
       #
@@ -42,7 +48,7 @@ module WhopSDK
       #   @return [String, nil]
       optional :replying_to_message_id, String, nil?: true
 
-      # @!method initialize(channel_id:, content:, attachments: nil, poll: nil, replying_to_message_id: nil, request_options: {})
+      # @!method initialize(channel_id:, content:, attachments: nil, auto_detect_links: nil, poll: nil, replying_to_message_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::MessageCreateParams} for more details.
       #
@@ -51,6 +57,8 @@ module WhopSDK
       #   @param content [String] The body of the message in Markdown format. For example, 'Hello **world**'.
       #
       #   @param attachments [Array<WhopSDK::Models::MessageCreateParams::Attachment>, nil] A list of file attachments to include with the message, such as images or videos
+      #
+      #   @param auto_detect_links [Boolean, nil] Automatically detect URLs in the message and generate link previews.
       #
       #   @param poll [WhopSDK::Models::MessageCreateParams::Poll, nil] A poll to attach to this message, allowing recipients to vote on options.
       #

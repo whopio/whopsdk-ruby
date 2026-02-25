@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::DisputesTest < WhopSDK::Test::ResourceTest
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.disputes.retrieve("dspt_xxxxxxxxxxxxx")
 
@@ -46,7 +46,7 @@ class WhopSDK::Test::Resources::DisputesTest < WhopSDK::Test::ResourceTest
   end
 
   def test_list_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.disputes.list(company_id: "biz_xxxxxxxxxxxxxx")
 
@@ -81,7 +81,7 @@ class WhopSDK::Test::Resources::DisputesTest < WhopSDK::Test::ResourceTest
   end
 
   def test_submit_evidence
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.disputes.submit_evidence("dspt_xxxxxxxxxxxxx")
 
@@ -123,7 +123,7 @@ class WhopSDK::Test::Resources::DisputesTest < WhopSDK::Test::ResourceTest
   end
 
   def test_update_evidence
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.disputes.update_evidence("dspt_xxxxxxxxxxxxx")
 

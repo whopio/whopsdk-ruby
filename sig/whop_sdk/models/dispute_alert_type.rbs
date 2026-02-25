@@ -1,0 +1,15 @@
+module WhopSDK
+  module Models
+    type dispute_alert_type = :dispute | :dispute_rdr | :fraud
+
+    module DisputeAlertType
+      extend WhopSDK::Internal::Type::Enum
+
+      DISPUTE: :dispute
+      DISPUTE_RDR: :dispute_rdr
+      FRAUD: :fraud
+
+      def self?.values: -> ::Array[WhopSDK::Models::dispute_alert_type]
+    end
+  end
+end

@@ -86,7 +86,7 @@ module WhopSDK
       # - `company:update`
       # - `company:basic:read`
       #
-      # @overload update(id, banner_image: nil, business_type: nil, description: nil, industry_group: nil, industry_type: nil, logo: nil, send_customer_emails: nil, target_audience: nil, title: nil, request_options: {})
+      # @overload update(id, banner_image: nil, business_type: nil, description: nil, industry_group: nil, industry_type: nil, logo: nil, route: nil, send_customer_emails: nil, target_audience: nil, title: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the company to update.
       #
@@ -101,6 +101,8 @@ module WhopSDK
       # @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
       # @param logo [WhopSDK::Models::CompanyUpdateParams::Logo, nil] The company's logo image. Accepts PNG, JPEG, or GIF format.
+      #
+      # @param route [String, nil] The unique URL slug for the company's store page. Must be lowercase and can incl
       #
       # @param send_customer_emails [Boolean, nil] Whether Whop sends transactional emails (receipts, renewals, cancelations) to cu
       #

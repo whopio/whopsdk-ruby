@@ -110,6 +110,8 @@ module WhopSDK
 
     attr_reader dm_channels: WhopSDK::Resources::DmChannels
 
+    attr_reader dispute_alerts: WhopSDK::Resources::DisputeAlerts
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

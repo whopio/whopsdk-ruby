@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::AIChatsTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.ai_chats.create(message_text: "message_text")
 
@@ -27,7 +27,7 @@ class WhopSDK::Test::Resources::AIChatsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.ai_chats.retrieve("aich_xxxxxxxxxxxxx")
 
@@ -50,7 +50,7 @@ class WhopSDK::Test::Resources::AIChatsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.ai_chats.update("aich_xxxxxxxxxxxxx")
 
@@ -73,7 +73,7 @@ class WhopSDK::Test::Resources::AIChatsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.ai_chats.list
 
@@ -103,7 +103,7 @@ class WhopSDK::Test::Resources::AIChatsTest < WhopSDK::Test::ResourceTest
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.ai_chats.delete("aich_xxxxxxxxxxxxx")
 

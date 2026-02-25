@@ -85,10 +85,6 @@ module WhopSDK
 
       # Returns a paginated list of experiences belonging to a company, with optional
       # filtering by product and app.
-      #
-      # Required permissions:
-      #
-      # - `experience:hidden_experience:read`
       sig do
         params(
           company_id: String,

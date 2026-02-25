@@ -173,6 +173,9 @@ module WhopSDK
     # @return [WhopSDK::Resources::DmChannels]
     attr_reader :dm_channels
 
+    # @return [WhopSDK::Resources::DisputeAlerts]
+    attr_reader :dispute_alerts
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -280,6 +283,7 @@ module WhopSDK
       @dm_members = WhopSDK::Resources::DmMembers.new(client: self)
       @ai_chats = WhopSDK::Resources::AIChats.new(client: self)
       @dm_channels = WhopSDK::Resources::DmChannels.new(client: self)
+      @dispute_alerts = WhopSDK::Resources::DisputeAlerts.new(client: self)
     end
 
     # Verifies a Whop user token

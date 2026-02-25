@@ -13,13 +13,15 @@ module WhopSDK
       #
       # - `chat:message:create`
       #
-      # @overload create(channel_id:, content:, attachments: nil, poll: nil, replying_to_message_id: nil, request_options: {})
+      # @overload create(channel_id:, content:, attachments: nil, auto_detect_links: nil, poll: nil, replying_to_message_id: nil, request_options: {})
       #
       # @param channel_id [String] The unique identifier of the channel or experience to send the message in. For e
       #
       # @param content [String] The body of the message in Markdown format. For example, 'Hello **world**'.
       #
       # @param attachments [Array<WhopSDK::Models::MessageCreateParams::Attachment>, nil] A list of file attachments to include with the message, such as images or videos
+      #
+      # @param auto_detect_links [Boolean, nil] Automatically detect URLs in the message and generate link previews.
       #
       # @param poll [WhopSDK::Models::MessageCreateParams::Poll, nil] A poll to attach to this message, allowing recipients to vote on options.
       #

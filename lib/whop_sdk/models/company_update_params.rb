@@ -44,6 +44,14 @@ module WhopSDK
       #   @return [WhopSDK::Models::CompanyUpdateParams::Logo, nil]
       optional :logo, -> { WhopSDK::CompanyUpdateParams::Logo }, nil?: true
 
+      # @!attribute route
+      #   The unique URL slug for the company's store page. Must be lowercase and can
+      #   include hyphens (e.g., 'my-company'). If not provided, the route will remain
+      #   unchanged.
+      #
+      #   @return [String, nil]
+      optional :route, String, nil?: true
+
       # @!attribute send_customer_emails
       #   Whether Whop sends transactional emails (receipts, renewals, cancelations) to
       #   customers on behalf of this company.
@@ -64,7 +72,7 @@ module WhopSDK
       #   @return [String, nil]
       optional :title, String, nil?: true
 
-      # @!method initialize(banner_image: nil, business_type: nil, description: nil, industry_group: nil, industry_type: nil, logo: nil, send_customer_emails: nil, target_audience: nil, title: nil, request_options: {})
+      # @!method initialize(banner_image: nil, business_type: nil, description: nil, industry_group: nil, industry_type: nil, logo: nil, route: nil, send_customer_emails: nil, target_audience: nil, title: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CompanyUpdateParams} for more details.
       #
@@ -79,6 +87,8 @@ module WhopSDK
       #   @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
       #   @param logo [WhopSDK::Models::CompanyUpdateParams::Logo, nil] The company's logo image. Accepts PNG, JPEG, or GIF format.
+      #
+      #   @param route [String, nil] The unique URL slug for the company's store page. Must be lowercase and can incl
       #
       #   @param send_customer_emails [Boolean, nil] Whether Whop sends transactional emails (receipts, renewals, cancelations) to cu
       #

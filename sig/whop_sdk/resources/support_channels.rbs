@@ -4,6 +4,7 @@ module WhopSDK
       def create: (
         company_id: String,
         user_id: String,
+        ?custom_name: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::SupportChannel
 

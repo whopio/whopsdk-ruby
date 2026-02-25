@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::MessagesTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.messages.create(channel_id: "channel_id", content: "content")
 
@@ -32,7 +32,7 @@ class WhopSDK::Test::Resources::MessagesTest < WhopSDK::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.messages.retrieve("id")
 
@@ -60,7 +60,7 @@ class WhopSDK::Test::Resources::MessagesTest < WhopSDK::Test::ResourceTest
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.messages.update("id")
 
@@ -88,7 +88,7 @@ class WhopSDK::Test::Resources::MessagesTest < WhopSDK::Test::ResourceTest
   end
 
   def test_list_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.messages.list(channel_id: "channel_id")
 
@@ -123,7 +123,7 @@ class WhopSDK::Test::Resources::MessagesTest < WhopSDK::Test::ResourceTest
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @whop.messages.delete("id")
 

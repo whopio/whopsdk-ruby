@@ -15,7 +15,6 @@ class WhopSDK::Test::Resources::ProductsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        business_type: WhopSDK::BusinessTypes | nil,
         company: WhopSDK::Product::Company,
         created_at: Time,
         custom_cta: WhopSDK::CustomCta,
@@ -27,7 +26,6 @@ class WhopSDK::Test::Resources::ProductsTest < WhopSDK::Test::ResourceTest
         global_affiliate_percentage: Float | nil,
         global_affiliate_status: WhopSDK::GlobalAffiliateStatus,
         headline: String | nil,
-        industry_type: WhopSDK::IndustryTypes | nil,
         member_affiliate_percentage: Float | nil,
         member_affiliate_status: WhopSDK::GlobalAffiliateStatus,
         member_count: Integer,
@@ -55,7 +53,6 @@ class WhopSDK::Test::Resources::ProductsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        business_type: WhopSDK::BusinessTypes | nil,
         company: WhopSDK::Product::Company,
         created_at: Time,
         custom_cta: WhopSDK::CustomCta,
@@ -67,7 +64,6 @@ class WhopSDK::Test::Resources::ProductsTest < WhopSDK::Test::ResourceTest
         global_affiliate_percentage: Float | nil,
         global_affiliate_status: WhopSDK::GlobalAffiliateStatus,
         headline: String | nil,
-        industry_type: WhopSDK::IndustryTypes | nil,
         member_affiliate_percentage: Float | nil,
         member_affiliate_status: WhopSDK::GlobalAffiliateStatus,
         member_count: Integer,
@@ -95,7 +91,6 @@ class WhopSDK::Test::Resources::ProductsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        business_type: WhopSDK::BusinessTypes | nil,
         company: WhopSDK::Product::Company,
         created_at: Time,
         custom_cta: WhopSDK::CustomCta,
@@ -107,7 +102,6 @@ class WhopSDK::Test::Resources::ProductsTest < WhopSDK::Test::ResourceTest
         global_affiliate_percentage: Float | nil,
         global_affiliate_status: WhopSDK::GlobalAffiliateStatus,
         headline: String | nil,
-        industry_type: WhopSDK::IndustryTypes | nil,
         member_affiliate_percentage: Float | nil,
         member_affiliate_status: WhopSDK::GlobalAffiliateStatus,
         member_count: Integer,
@@ -142,11 +136,9 @@ class WhopSDK::Test::Resources::ProductsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
-        business_type: WhopSDK::BusinessTypes | nil,
         created_at: Time,
         external_identifier: String | nil,
         headline: String | nil,
-        industry_type: WhopSDK::IndustryTypes | nil,
         member_count: Integer,
         published_reviews_count: Integer,
         route: String,

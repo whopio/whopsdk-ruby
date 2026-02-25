@@ -10,10 +10,6 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The different business types a company can be.
-      sig { returns(T.nilable(WhopSDK::BusinessTypes::TaggedSymbol)) }
-      attr_accessor :business_type
-
       # The company this product belongs to.
       sig { returns(WhopSDK::Product::Company) }
       attr_reader :company
@@ -69,10 +65,6 @@ module WhopSDK
       # A short marketing headline displayed prominently on the product's product page.
       sig { returns(T.nilable(String)) }
       attr_accessor :headline
-
-      # The different industry types a company can be in.
-      sig { returns(T.nilable(WhopSDK::IndustryTypes::TaggedSymbol)) }
-      attr_accessor :industry_type
 
       # The commission rate (as a percentage) that existing members earn when referring
       # new customers through the member affiliate program. Null if the program is not
@@ -140,7 +132,6 @@ module WhopSDK
       sig do
         params(
           id: String,
-          business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           company: WhopSDK::Product::Company::OrHash,
           created_at: Time,
           custom_cta: WhopSDK::CustomCta::OrSymbol,
@@ -152,7 +143,6 @@ module WhopSDK
           global_affiliate_percentage: T.nilable(Float),
           global_affiliate_status: WhopSDK::GlobalAffiliateStatus::OrSymbol,
           headline: T.nilable(String),
-          industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           member_affiliate_percentage: T.nilable(Float),
           member_affiliate_status: WhopSDK::GlobalAffiliateStatus::OrSymbol,
           member_count: Integer,
@@ -169,8 +159,6 @@ module WhopSDK
       def self.new(
         # The unique identifier for the product.
         id:,
-        # The different business types a company can be.
-        business_type:,
         # The company this product belongs to.
         company:,
         # The datetime the product was created.
@@ -202,8 +190,6 @@ module WhopSDK
         global_affiliate_status:,
         # A short marketing headline displayed prominently on the product's product page.
         headline:,
-        # The different industry types a company can be in.
-        industry_type:,
         # The commission rate (as a percentage) that existing members earn when referring
         # new customers through the member affiliate program. Null if the program is not
         # active.
@@ -240,7 +226,6 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            business_type: T.nilable(WhopSDK::BusinessTypes::TaggedSymbol),
             company: WhopSDK::Product::Company,
             created_at: Time,
             custom_cta: WhopSDK::CustomCta::TaggedSymbol,
@@ -253,7 +238,6 @@ module WhopSDK
             global_affiliate_status:
               WhopSDK::GlobalAffiliateStatus::TaggedSymbol,
             headline: T.nilable(String),
-            industry_type: T.nilable(WhopSDK::IndustryTypes::TaggedSymbol),
             member_affiliate_percentage: T.nilable(Float),
             member_affiliate_status:
               WhopSDK::GlobalAffiliateStatus::TaggedSymbol,

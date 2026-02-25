@@ -13,12 +13,6 @@ module WhopSDK
       #   @return [String]
       required :title, String
 
-      # @!attribute business_type
-      #   The different business types a company can be.
-      #
-      #   @return [Symbol, WhopSDK::Models::BusinessTypes, nil]
-      optional :business_type, enum: -> { WhopSDK::BusinessTypes }, nil?: true
-
       # @!attribute description
       #   A promotional pitch displayed to potential customers on the company's store
       #   page.
@@ -32,18 +26,6 @@ module WhopSDK
       #
       #   @return [String, nil]
       optional :email, String, nil?: true
-
-      # @!attribute industry_group
-      #   The different industry groups a company can be in.
-      #
-      #   @return [Symbol, WhopSDK::Models::IndustryGroups, nil]
-      optional :industry_group, enum: -> { WhopSDK::IndustryGroups }, nil?: true
-
-      # @!attribute industry_type
-      #   The different industry types a company can be in.
-      #
-      #   @return [Symbol, WhopSDK::Models::IndustryTypes, nil]
-      optional :industry_type, enum: -> { WhopSDK::IndustryTypes }, nil?: true
 
       # @!attribute logo
       #   The company's logo image. Accepts PNG, JPEG, or GIF format.
@@ -72,21 +54,15 @@ module WhopSDK
       #   @return [Boolean, nil]
       optional :send_customer_emails, WhopSDK::Internal::Type::Boolean, nil?: true
 
-      # @!method initialize(title:, business_type: nil, description: nil, email: nil, industry_group: nil, industry_type: nil, logo: nil, metadata: nil, parent_company_id: nil, send_customer_emails: nil, request_options: {})
+      # @!method initialize(title:, description: nil, email: nil, logo: nil, metadata: nil, parent_company_id: nil, send_customer_emails: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CompanyCreateParams} for more details.
       #
       #   @param title [String] The display name of the company shown to customers.
       #
-      #   @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
-      #
       #   @param description [String, nil] A promotional pitch displayed to potential customers on the company's store page
       #
       #   @param email [String, nil] The email address of the user who will own the connected account. Required when
-      #
-      #   @param industry_group [Symbol, WhopSDK::Models::IndustryGroups, nil] The different industry groups a company can be in.
-      #
-      #   @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
       #   @param logo [WhopSDK::Models::CompanyCreateParams::Logo, nil] The company's logo image. Accepts PNG, JPEG, or GIF format.
       #

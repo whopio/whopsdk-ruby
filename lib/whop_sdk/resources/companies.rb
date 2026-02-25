@@ -14,19 +14,13 @@ module WhopSDK
       # - `company:create`
       # - `company:basic:read`
       #
-      # @overload create(title:, business_type: nil, description: nil, email: nil, industry_group: nil, industry_type: nil, logo: nil, metadata: nil, parent_company_id: nil, send_customer_emails: nil, request_options: {})
+      # @overload create(title:, description: nil, email: nil, logo: nil, metadata: nil, parent_company_id: nil, send_customer_emails: nil, request_options: {})
       #
       # @param title [String] The display name of the company shown to customers.
-      #
-      # @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #
       # @param description [String, nil] A promotional pitch displayed to potential customers on the company's store page
       #
       # @param email [String, nil] The email address of the user who will own the connected account. Required when
-      #
-      # @param industry_group [Symbol, WhopSDK::Models::IndustryGroups, nil] The different industry groups a company can be in.
-      #
-      # @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
       # @param logo [WhopSDK::Models::CompanyCreateParams::Logo, nil] The company's logo image. Accepts PNG, JPEG, or GIF format.
       #
@@ -86,19 +80,13 @@ module WhopSDK
       # - `company:update`
       # - `company:basic:read`
       #
-      # @overload update(id, banner_image: nil, business_type: nil, description: nil, industry_group: nil, industry_type: nil, logo: nil, route: nil, send_customer_emails: nil, target_audience: nil, title: nil, request_options: {})
+      # @overload update(id, banner_image: nil, description: nil, logo: nil, route: nil, send_customer_emails: nil, target_audience: nil, title: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the company to update.
       #
       # @param banner_image [WhopSDK::Models::CompanyUpdateParams::BannerImage, nil] The company's banner image. Accepts PNG or JPEG format.
       #
-      # @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
-      #
       # @param description [String, nil] A promotional pitch displayed to potential customers on the company's store page
-      #
-      # @param industry_group [Symbol, WhopSDK::Models::IndustryGroups, nil] The different industry groups a company can be in.
-      #
-      # @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
       # @param logo [WhopSDK::Models::CompanyUpdateParams::Logo, nil] The company's logo image. Accepts PNG, JPEG, or GIF format.
       #

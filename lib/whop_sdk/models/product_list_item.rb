@@ -9,12 +9,6 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
-      # @!attribute business_type
-      #   The different business types a company can be.
-      #
-      #   @return [Symbol, WhopSDK::Models::BusinessTypes, nil]
-      required :business_type, enum: -> { WhopSDK::BusinessTypes }, nil?: true
-
       # @!attribute created_at
       #   The datetime the product was created.
       #
@@ -34,12 +28,6 @@ module WhopSDK
       #
       #   @return [String, nil]
       required :headline, String, nil?: true
-
-      # @!attribute industry_type
-      #   The different industry types a company can be in.
-      #
-      #   @return [Symbol, WhopSDK::Models::IndustryTypes, nil]
-      required :industry_type, enum: -> { WhopSDK::IndustryTypes }, nil?: true
 
       # @!attribute member_count
       #   The number of users who currently hold an active membership to this product.
@@ -87,7 +75,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility]
       required :visibility, enum: -> { WhopSDK::Visibility }
 
-      # @!method initialize(id:, business_type:, created_at:, external_identifier:, headline:, industry_type:, member_count:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
+      # @!method initialize(id:, created_at:, external_identifier:, headline:, member_count:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ProductListItem} for more details.
       #
@@ -96,15 +84,11 @@ module WhopSDK
       #
       #   @param id [String] The unique identifier for the product.
       #
-      #   @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
-      #
       #   @param created_at [Time] The datetime the product was created.
       #
       #   @param external_identifier [String, nil] A unique identifier used to create or update products via the API. When provided
       #
       #   @param headline [String, nil] A short marketing headline displayed prominently on the product's product page.
-      #
-      #   @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
       #   @param member_count [Integer] The number of users who currently hold an active membership to this product. Ret
       #

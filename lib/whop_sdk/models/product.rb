@@ -9,12 +9,6 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
-      # @!attribute business_type
-      #   The different business types a company can be.
-      #
-      #   @return [Symbol, WhopSDK::Models::BusinessTypes, nil]
-      required :business_type, enum: -> { WhopSDK::BusinessTypes }, nil?: true
-
       # @!attribute company
       #   The company this product belongs to.
       #
@@ -90,12 +84,6 @@ module WhopSDK
       #   @return [String, nil]
       required :headline, String, nil?: true
 
-      # @!attribute industry_type
-      #   The different industry types a company can be in.
-      #
-      #   @return [Symbol, WhopSDK::Models::IndustryTypes, nil]
-      required :industry_type, enum: -> { WhopSDK::IndustryTypes }, nil?: true
-
       # @!attribute member_affiliate_percentage
       #   The commission rate (as a percentage) that existing members earn when referring
       #   new customers through the member affiliate program. Null if the program is not
@@ -169,7 +157,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility]
       required :visibility, enum: -> { WhopSDK::Visibility }
 
-      # @!method initialize(id:, business_type:, company:, created_at:, custom_cta:, custom_cta_url:, custom_statement_descriptor:, description:, external_identifier:, gallery_images:, global_affiliate_percentage:, global_affiliate_status:, headline:, industry_type:, member_affiliate_percentage:, member_affiliate_status:, member_count:, owner_user:, product_tax_code:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
+      # @!method initialize(id:, company:, created_at:, custom_cta:, custom_cta_url:, custom_statement_descriptor:, description:, external_identifier:, gallery_images:, global_affiliate_percentage:, global_affiliate_status:, headline:, member_affiliate_percentage:, member_affiliate_status:, member_count:, owner_user:, product_tax_code:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Product}
       #   for more details.
       #
@@ -177,8 +165,6 @@ module WhopSDK
       #   pricing and experiences for content delivery.
       #
       #   @param id [String] The unique identifier for the product.
-      #
-      #   @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
       #
       #   @param company [WhopSDK::Models::Product::Company] The company this product belongs to.
       #
@@ -201,8 +187,6 @@ module WhopSDK
       #   @param global_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus] The enrollment status of this product in the Whop marketplace global affiliate p
       #
       #   @param headline [String, nil] A short marketing headline displayed prominently on the product's product page.
-      #
-      #   @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
       #
       #   @param member_affiliate_percentage [Float, nil] The commission rate (as a percentage) that existing members earn when referring
       #

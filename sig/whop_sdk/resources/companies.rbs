@@ -3,11 +3,8 @@ module WhopSDK
     class Companies
       def create: (
         title: String,
-        ?business_type: WhopSDK::Models::business_types?,
         ?description: String?,
         ?email: String?,
-        ?industry_group: WhopSDK::Models::industry_groups?,
-        ?industry_type: WhopSDK::Models::industry_types?,
         ?logo: WhopSDK::CompanyCreateParams::Logo?,
         ?metadata: ::Hash[Symbol, top]?,
         ?parent_company_id: String?,
@@ -23,10 +20,7 @@ module WhopSDK
       def update: (
         String id,
         ?banner_image: WhopSDK::CompanyUpdateParams::BannerImage?,
-        ?business_type: WhopSDK::Models::business_types?,
         ?description: String?,
-        ?industry_group: WhopSDK::Models::industry_groups?,
-        ?industry_type: WhopSDK::Models::industry_types?,
         ?logo: WhopSDK::CompanyUpdateParams::Logo?,
         ?route: String?,
         ?send_customer_emails: bool?,

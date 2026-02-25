@@ -2,7 +2,6 @@ module WhopSDK
   module Models
     type product_update_params =
       {
-        business_type: WhopSDK::Models::business_types?,
         collect_shipping_address: bool?,
         custom_cta: WhopSDK::Models::custom_cta?,
         custom_cta_url: String?,
@@ -12,8 +11,6 @@ module WhopSDK
         global_affiliate_percentage: Float?,
         global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         headline: String?,
-        industry_group: WhopSDK::Models::industry_groups?,
-        industry_type: WhopSDK::Models::industry_types?,
         member_affiliate_percentage: Float?,
         member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         product_tax_code_id: String?,
@@ -28,8 +25,6 @@ module WhopSDK
     class ProductUpdateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
-
-      attr_accessor business_type: WhopSDK::Models::business_types?
 
       attr_accessor collect_shipping_address: bool?
 
@@ -49,10 +44,6 @@ module WhopSDK
 
       attr_accessor headline: String?
 
-      attr_accessor industry_group: WhopSDK::Models::industry_groups?
-
-      attr_accessor industry_type: WhopSDK::Models::industry_types?
-
       attr_accessor member_affiliate_percentage: Float?
 
       attr_accessor member_affiliate_status: WhopSDK::Models::global_affiliate_status?
@@ -70,7 +61,6 @@ module WhopSDK
       attr_accessor visibility: WhopSDK::Models::visibility?
 
       def initialize: (
-        ?business_type: WhopSDK::Models::business_types?,
         ?collect_shipping_address: bool?,
         ?custom_cta: WhopSDK::Models::custom_cta?,
         ?custom_cta_url: String?,
@@ -80,8 +70,6 @@ module WhopSDK
         ?global_affiliate_percentage: Float?,
         ?global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         ?headline: String?,
-        ?industry_group: WhopSDK::Models::industry_groups?,
-        ?industry_type: WhopSDK::Models::industry_types?,
         ?member_affiliate_percentage: Float?,
         ?member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         ?product_tax_code_id: String?,
@@ -94,7 +82,6 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
-        business_type: WhopSDK::Models::business_types?,
         collect_shipping_address: bool?,
         custom_cta: WhopSDK::Models::custom_cta?,
         custom_cta_url: String?,
@@ -104,8 +91,6 @@ module WhopSDK
         global_affiliate_percentage: Float?,
         global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         headline: String?,
-        industry_group: WhopSDK::Models::industry_groups?,
-        industry_type: WhopSDK::Models::industry_types?,
         member_affiliate_percentage: Float?,
         member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
         product_tax_code_id: String?,

@@ -238,6 +238,27 @@ module WhopSDK
           #   @return [Float, nil]
           required :subtotal, Float, nil?: true
 
+          # @!attribute tax_amount
+          #   The calculated amount of the sales/VAT tax (if applicable).
+          #
+          #   @return [Float, nil]
+          required :tax_amount, Float, nil?: true
+
+          # @!attribute tax_behavior
+          #   The type of tax inclusivity applied to the receipt, for determining whether the
+          #   tax is included in the final price, or paid on top.
+          #
+          #   @return [Symbol, WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment::TaxBehavior, nil]
+          required :tax_behavior,
+                   enum: -> { WhopSDK::RefundCreatedWebhookEvent::Data::Payment::TaxBehavior },
+                   nil?: true
+
+          # @!attribute tax_refunded_amount
+          #   The amount of tax that has been refunded (if applicable).
+          #
+          #   @return [Float, nil]
+          required :tax_refunded_amount, Float, nil?: true
+
           # @!attribute total
           #   The total to show to the creator (excluding buyer fees).
           #
@@ -256,7 +277,7 @@ module WhopSDK
           #   @return [WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment::User, nil]
           required :user, -> { WhopSDK::RefundCreatedWebhookEvent::Data::Payment::User }, nil?: true
 
-          # @!method initialize(id:, billing_reason:, card_brand:, card_last4:, created_at:, currency:, dispute_alerted_at:, member:, membership:, paid_at:, payment_method_type:, subtotal:, total:, usd_total:, user:)
+          # @!method initialize(id:, billing_reason:, card_brand:, card_last4:, created_at:, currency:, dispute_alerted_at:, member:, membership:, paid_at:, payment_method_type:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, total:, usd_total:, user:)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment} for more details.
           #
@@ -286,6 +307,12 @@ module WhopSDK
           #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes, nil] The different types of payment methods that can be used.
           #
           #   @param subtotal [Float, nil] The subtotal to show to the creator (excluding buyer fees).
+          #
+          #   @param tax_amount [Float, nil] The calculated amount of the sales/VAT tax (if applicable).
+          #
+          #   @param tax_behavior [Symbol, WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment::TaxBehavior, nil] The type of tax inclusivity applied to the receipt, for determining whether the
+          #
+          #   @param tax_refunded_amount [Float, nil] The amount of tax that has been refunded (if applicable).
           #
           #   @param total [Float, nil] The total to show to the creator (excluding buyer fees).
           #
@@ -335,6 +362,22 @@ module WhopSDK
             #   @param id [String] The unique identifier for the membership.
             #
             #   @param status [Symbol, WhopSDK::Models::MembershipStatus] The state of the membership.
+          end
+
+          # The type of tax inclusivity applied to the receipt, for determining whether the
+          # tax is included in the final price, or paid on top.
+          #
+          # @see WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment#tax_behavior
+          module TaxBehavior
+            extend WhopSDK::Internal::Type::Enum
+
+            EXCLUSIVE = :exclusive
+            INCLUSIVE = :inclusive
+            UNSPECIFIED = :unspecified
+            UNABLE_TO_COLLECT = :unable_to_collect
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           # @see WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment#user

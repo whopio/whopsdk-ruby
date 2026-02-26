@@ -3,7 +3,6 @@ module WhopSDK
     type product =
       {
         id: String,
-        business_type: WhopSDK::Models::business_types?,
         company: WhopSDK::Product::Company,
         created_at: Time,
         custom_cta: WhopSDK::Models::custom_cta,
@@ -15,7 +14,6 @@ module WhopSDK
         global_affiliate_percentage: Float?,
         global_affiliate_status: WhopSDK::Models::global_affiliate_status,
         headline: String?,
-        industry_type: WhopSDK::Models::industry_types?,
         member_affiliate_percentage: Float?,
         member_affiliate_status: WhopSDK::Models::global_affiliate_status,
         member_count: Integer,
@@ -31,8 +29,6 @@ module WhopSDK
 
     class Product < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
-
-      attr_accessor business_type: WhopSDK::Models::business_types?
 
       attr_accessor company: WhopSDK::Product::Company
 
@@ -55,8 +51,6 @@ module WhopSDK
       attr_accessor global_affiliate_status: WhopSDK::Models::global_affiliate_status
 
       attr_accessor headline: String?
-
-      attr_accessor industry_type: WhopSDK::Models::industry_types?
 
       attr_accessor member_affiliate_percentage: Float?
 
@@ -82,7 +76,6 @@ module WhopSDK
 
       def initialize: (
         id: String,
-        business_type: WhopSDK::Models::business_types?,
         company: WhopSDK::Product::Company,
         created_at: Time,
         custom_cta: WhopSDK::Models::custom_cta,
@@ -94,7 +87,6 @@ module WhopSDK
         global_affiliate_percentage: Float?,
         global_affiliate_status: WhopSDK::Models::global_affiliate_status,
         headline: String?,
-        industry_type: WhopSDK::Models::industry_types?,
         member_affiliate_percentage: Float?,
         member_affiliate_status: WhopSDK::Models::global_affiliate_status,
         member_count: Integer,
@@ -110,7 +102,6 @@ module WhopSDK
 
       def to_hash: -> {
         id: String,
-        business_type: WhopSDK::Models::business_types?,
         company: WhopSDK::Product::Company,
         created_at: Time,
         custom_cta: WhopSDK::Models::custom_cta,
@@ -122,7 +113,6 @@ module WhopSDK
         global_affiliate_percentage: Float?,
         global_affiliate_status: WhopSDK::Models::global_affiliate_status,
         headline: String?,
-        industry_type: WhopSDK::Models::industry_types?,
         member_affiliate_percentage: Float?,
         member_affiliate_status: WhopSDK::Models::global_affiliate_status,
         member_count: Integer,

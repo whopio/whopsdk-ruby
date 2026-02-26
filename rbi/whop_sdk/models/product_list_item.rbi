@@ -12,10 +12,6 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The different business types a company can be.
-      sig { returns(T.nilable(WhopSDK::BusinessTypes::TaggedSymbol)) }
-      attr_accessor :business_type
-
       # The datetime the product was created.
       sig { returns(Time) }
       attr_accessor :created_at
@@ -29,10 +25,6 @@ module WhopSDK
       # A short marketing headline displayed prominently on the product's product page.
       sig { returns(T.nilable(String)) }
       attr_accessor :headline
-
-      # The different industry types a company can be in.
-      sig { returns(T.nilable(WhopSDK::IndustryTypes::TaggedSymbol)) }
-      attr_accessor :industry_type
 
       # The number of users who currently hold an active membership to this product.
       # Returns 0 if the company has disabled public member counts.
@@ -71,11 +63,9 @@ module WhopSDK
       sig do
         params(
           id: String,
-          business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           created_at: Time,
           external_identifier: T.nilable(String),
           headline: T.nilable(String),
-          industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           member_count: Integer,
           published_reviews_count: Integer,
           route: String,
@@ -88,8 +78,6 @@ module WhopSDK
       def self.new(
         # The unique identifier for the product.
         id:,
-        # The different business types a company can be.
-        business_type:,
         # The datetime the product was created.
         created_at:,
         # A unique identifier used to create or update products via the API. When provided
@@ -98,8 +86,6 @@ module WhopSDK
         external_identifier:,
         # A short marketing headline displayed prominently on the product's product page.
         headline:,
-        # The different industry types a company can be in.
-        industry_type:,
         # The number of users who currently hold an active membership to this product.
         # Returns 0 if the company has disabled public member counts.
         member_count:,
@@ -125,11 +111,9 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            business_type: T.nilable(WhopSDK::BusinessTypes::TaggedSymbol),
             created_at: Time,
             external_identifier: T.nilable(String),
             headline: T.nilable(String),
-            industry_type: T.nilable(WhopSDK::IndustryTypes::TaggedSymbol),
             member_count: Integer,
             published_reviews_count: Integer,
             route: String,

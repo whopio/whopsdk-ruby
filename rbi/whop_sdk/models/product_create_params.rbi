@@ -19,10 +19,6 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :title
 
-      # The different business types a company can be.
-      sig { returns(T.nilable(WhopSDK::BusinessTypes::OrSymbol)) }
-      attr_accessor :business_type
-
       # Whether the checkout flow collects a shipping address from the customer.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :collect_shipping_address
@@ -62,14 +58,6 @@ module WhopSDK
       # A short marketing headline displayed prominently on the product page.
       sig { returns(T.nilable(String)) }
       attr_accessor :headline
-
-      # The different industry groups a company can be in.
-      sig { returns(T.nilable(WhopSDK::IndustryGroups::OrSymbol)) }
-      attr_accessor :industry_group
-
-      # The different industry types a company can be in.
-      sig { returns(T.nilable(WhopSDK::IndustryTypes::OrSymbol)) }
-      attr_accessor :industry_type
 
       # The commission rate as a percentage that members earn through the member
       # affiliate program.
@@ -112,7 +100,6 @@ module WhopSDK
         params(
           company_id: String,
           title: String,
-          business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           collect_shipping_address: T.nilable(T::Boolean),
           custom_cta: T.nilable(WhopSDK::CustomCta::OrSymbol),
           custom_cta_url: T.nilable(String),
@@ -123,8 +110,6 @@ module WhopSDK
           global_affiliate_status:
             T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
           headline: T.nilable(String),
-          industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
-          industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           member_affiliate_percentage: T.nilable(Float),
           member_affiliate_status:
             T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
@@ -142,8 +127,6 @@ module WhopSDK
         company_id:,
         # The display name of the product. Maximum 40 characters.
         title:,
-        # The different business types a company can be.
-        business_type: nil,
         # Whether the checkout flow collects a shipping address from the customer.
         collect_shipping_address: nil,
         # The different types of custom CTAs that can be selected.
@@ -166,10 +149,6 @@ module WhopSDK
         global_affiliate_status: nil,
         # A short marketing headline displayed prominently on the product page.
         headline: nil,
-        # The different industry groups a company can be in.
-        industry_group: nil,
-        # The different industry types a company can be in.
-        industry_type: nil,
         # The commission rate as a percentage that members earn through the member
         # affiliate program.
         member_affiliate_percentage: nil,
@@ -194,7 +173,6 @@ module WhopSDK
           {
             company_id: String,
             title: String,
-            business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
             collect_shipping_address: T.nilable(T::Boolean),
             custom_cta: T.nilable(WhopSDK::CustomCta::OrSymbol),
             custom_cta_url: T.nilable(String),
@@ -205,8 +183,6 @@ module WhopSDK
             global_affiliate_status:
               T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
             headline: T.nilable(String),
-            industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
-            industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
             member_affiliate_percentage: T.nilable(Float),
             member_affiliate_status:
               T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),

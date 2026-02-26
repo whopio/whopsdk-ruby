@@ -15,10 +15,8 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        business_type: WhopSDK::BusinessTypes | nil,
         created_at: Time,
         description: String | nil,
-        industry_type: WhopSDK::IndustryTypes | nil,
         logo: WhopSDK::Company::Logo | nil,
         member_count: Integer,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
@@ -46,10 +44,8 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        business_type: WhopSDK::BusinessTypes | nil,
         created_at: Time,
         description: String | nil,
-        industry_type: WhopSDK::IndustryTypes | nil,
         logo: WhopSDK::Company::Logo | nil,
         member_count: Integer,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
@@ -77,10 +73,8 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        business_type: WhopSDK::BusinessTypes | nil,
         created_at: Time,
         description: String | nil,
-        industry_type: WhopSDK::IndustryTypes | nil,
         logo: WhopSDK::Company::Logo | nil,
         member_count: Integer,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
@@ -115,10 +109,8 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
-        business_type: WhopSDK::BusinessTypes | nil,
         created_at: Time,
         description: String | nil,
-        industry_type: WhopSDK::IndustryTypes | nil,
         logo: WhopSDK::Models::CompanyListResponse::Logo | nil,
         member_count: Integer,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,

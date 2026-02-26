@@ -427,12 +427,6 @@ module WhopSDK
           #   @return [String]
           required :title, String
 
-          # @!attribute business_type
-          #   The different business types a company can be.
-          #
-          #   @return [Symbol, WhopSDK::Models::BusinessTypes, nil]
-          optional :business_type, enum: -> { WhopSDK::BusinessTypes }, nil?: true
-
           # @!attribute collect_shipping_address
           #   Whether or not to collect shipping information at checkout from the customer.
           #
@@ -471,18 +465,6 @@ module WhopSDK
           #   @return [String, nil]
           optional :headline, String, nil?: true
 
-          # @!attribute industry_group
-          #   The different industry groups a company can be in.
-          #
-          #   @return [Symbol, WhopSDK::Models::IndustryGroups, nil]
-          optional :industry_group, enum: -> { WhopSDK::IndustryGroups }, nil?: true
-
-          # @!attribute industry_type
-          #   The different industry types a company can be in.
-          #
-          #   @return [Symbol, WhopSDK::Models::IndustryTypes, nil]
-          optional :industry_type, enum: -> { WhopSDK::IndustryTypes }, nil?: true
-
           # @!attribute product_tax_code_id
           #   The ID of the product tax code to apply to this product.
           #
@@ -507,7 +489,7 @@ module WhopSDK
           #   @return [Symbol, WhopSDK::Models::Visibility, nil]
           optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-          # @!method initialize(external_identifier:, title:, business_type: nil, collect_shipping_address: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, industry_group: nil, industry_type: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil)
+          # @!method initialize(external_identifier:, title:, collect_shipping_address: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, visibility: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Plan::Product} for more
           #   details.
@@ -518,8 +500,6 @@ module WhopSDK
           #   @param external_identifier [String] A unique ID used to find or create a product. When provided during creation, we
           #
           #   @param title [String] The title of the product.
-          #
-          #   @param business_type [Symbol, WhopSDK::Models::BusinessTypes, nil] The different business types a company can be.
           #
           #   @param collect_shipping_address [Boolean, nil] Whether or not to collect shipping information at checkout from the customer.
           #
@@ -533,10 +513,6 @@ module WhopSDK
           #   @param global_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for a product.
           #
           #   @param headline [String, nil] The headline of the product.
-          #
-          #   @param industry_group [Symbol, WhopSDK::Models::IndustryGroups, nil] The different industry groups a company can be in.
-          #
-          #   @param industry_type [Symbol, WhopSDK::Models::IndustryTypes, nil] The different industry types a company can be in.
           #
           #   @param product_tax_code_id [String, nil] The ID of the product tax code to apply to this product.
           #

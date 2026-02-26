@@ -276,15 +276,12 @@ module WhopSDK
           {
             external_identifier: String,
             title: String,
-            business_type: WhopSDK::Models::business_types?,
             collect_shipping_address: bool?,
             custom_statement_descriptor: String?,
             description: String?,
             global_affiliate_percentage: Float?,
             global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
             headline: String?,
-            industry_group: WhopSDK::Models::industry_groups?,
-            industry_type: WhopSDK::Models::industry_types?,
             product_tax_code_id: String?,
             redirect_purchase_url: String?,
             route: String?,
@@ -295,8 +292,6 @@ module WhopSDK
           attr_accessor external_identifier: String
 
           attr_accessor title: String
-
-          attr_accessor business_type: WhopSDK::Models::business_types?
 
           attr_accessor collect_shipping_address: bool?
 
@@ -310,10 +305,6 @@ module WhopSDK
 
           attr_accessor headline: String?
 
-          attr_accessor industry_group: WhopSDK::Models::industry_groups?
-
-          attr_accessor industry_type: WhopSDK::Models::industry_types?
-
           attr_accessor product_tax_code_id: String?
 
           attr_accessor redirect_purchase_url: String?
@@ -325,15 +316,12 @@ module WhopSDK
           def initialize: (
             external_identifier: String,
             title: String,
-            ?business_type: WhopSDK::Models::business_types?,
             ?collect_shipping_address: bool?,
             ?custom_statement_descriptor: String?,
             ?description: String?,
             ?global_affiliate_percentage: Float?,
             ?global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
             ?headline: String?,
-            ?industry_group: WhopSDK::Models::industry_groups?,
-            ?industry_type: WhopSDK::Models::industry_types?,
             ?product_tax_code_id: String?,
             ?redirect_purchase_url: String?,
             ?route: String?,
@@ -343,15 +331,12 @@ module WhopSDK
           def to_hash: -> {
             external_identifier: String,
             title: String,
-            business_type: WhopSDK::Models::business_types?,
             collect_shipping_address: bool?,
             custom_statement_descriptor: String?,
             description: String?,
             global_affiliate_percentage: Float?,
             global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
             headline: String?,
-            industry_group: WhopSDK::Models::industry_groups?,
-            industry_type: WhopSDK::Models::industry_types?,
             product_tax_code_id: String?,
             redirect_purchase_url: String?,
             route: String?,

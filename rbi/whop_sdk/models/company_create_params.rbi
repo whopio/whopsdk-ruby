@@ -15,10 +15,6 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :title
 
-      # The different business types a company can be.
-      sig { returns(T.nilable(WhopSDK::BusinessTypes::OrSymbol)) }
-      attr_accessor :business_type
-
       # A promotional pitch displayed to potential customers on the company's store
       # page.
       sig { returns(T.nilable(String)) }
@@ -28,14 +24,6 @@ module WhopSDK
       # parent_company_id is provided.
       sig { returns(T.nilable(String)) }
       attr_accessor :email
-
-      # The different industry groups a company can be in.
-      sig { returns(T.nilable(WhopSDK::IndustryGroups::OrSymbol)) }
-      attr_accessor :industry_group
-
-      # The different industry types a company can be in.
-      sig { returns(T.nilable(WhopSDK::IndustryTypes::OrSymbol)) }
-      attr_accessor :industry_type
 
       # The company's logo image. Accepts PNG, JPEG, or GIF format.
       sig { returns(T.nilable(WhopSDK::CompanyCreateParams::Logo)) }
@@ -64,11 +52,8 @@ module WhopSDK
       sig do
         params(
           title: String,
-          business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           description: T.nilable(String),
           email: T.nilable(String),
-          industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
-          industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           logo: T.nilable(WhopSDK::CompanyCreateParams::Logo::OrHash),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
           parent_company_id: T.nilable(String),
@@ -79,18 +64,12 @@ module WhopSDK
       def self.new(
         # The display name of the company shown to customers.
         title:,
-        # The different business types a company can be.
-        business_type: nil,
         # A promotional pitch displayed to potential customers on the company's store
         # page.
         description: nil,
         # The email address of the user who will own the connected account. Required when
         # parent_company_id is provided.
         email: nil,
-        # The different industry groups a company can be in.
-        industry_group: nil,
-        # The different industry types a company can be in.
-        industry_type: nil,
         # The company's logo image. Accepts PNG, JPEG, or GIF format.
         logo: nil,
         # A key-value JSON object of custom metadata to store on the company.
@@ -110,11 +89,8 @@ module WhopSDK
         override.returns(
           {
             title: String,
-            business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
             description: T.nilable(String),
             email: T.nilable(String),
-            industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
-            industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
             logo: T.nilable(WhopSDK::CompanyCreateParams::Logo),
             metadata: T.nilable(T::Hash[Symbol, T.anything]),
             parent_company_id: T.nilable(String),

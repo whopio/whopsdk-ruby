@@ -645,10 +645,6 @@ module WhopSDK
           sig { returns(String) }
           attr_accessor :title
 
-          # The different business types a company can be.
-          sig { returns(T.nilable(WhopSDK::BusinessTypes::OrSymbol)) }
-          attr_accessor :business_type
-
           # Whether or not to collect shipping information at checkout from the customer.
           sig { returns(T.nilable(T::Boolean)) }
           attr_accessor :collect_shipping_address
@@ -675,14 +671,6 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :headline
 
-          # The different industry groups a company can be in.
-          sig { returns(T.nilable(WhopSDK::IndustryGroups::OrSymbol)) }
-          attr_accessor :industry_group
-
-          # The different industry types a company can be in.
-          sig { returns(T.nilable(WhopSDK::IndustryTypes::OrSymbol)) }
-          attr_accessor :industry_type
-
           # The ID of the product tax code to apply to this product.
           sig { returns(T.nilable(String)) }
           attr_accessor :product_tax_code_id
@@ -705,7 +693,6 @@ module WhopSDK
             params(
               external_identifier: String,
               title: String,
-              business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
               collect_shipping_address: T.nilable(T::Boolean),
               custom_statement_descriptor: T.nilable(String),
               description: T.nilable(String),
@@ -713,8 +700,6 @@ module WhopSDK
               global_affiliate_status:
                 T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
               headline: T.nilable(String),
-              industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
-              industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
               product_tax_code_id: T.nilable(String),
               redirect_purchase_url: T.nilable(String),
               route: T.nilable(String),
@@ -728,8 +713,6 @@ module WhopSDK
             external_identifier:,
             # The title of the product.
             title:,
-            # The different business types a company can be.
-            business_type: nil,
             # Whether or not to collect shipping information at checkout from the customer.
             collect_shipping_address: nil,
             # The custom statement descriptor for the product i.e. WHOP\*SPORTS, must be
@@ -744,10 +727,6 @@ module WhopSDK
             global_affiliate_status: nil,
             # The headline of the product.
             headline: nil,
-            # The different industry groups a company can be in.
-            industry_group: nil,
-            # The different industry types a company can be in.
-            industry_type: nil,
             # The ID of the product tax code to apply to this product.
             product_tax_code_id: nil,
             # The URL to redirect the customer to after a purchase.
@@ -764,7 +743,6 @@ module WhopSDK
               {
                 external_identifier: String,
                 title: String,
-                business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
                 collect_shipping_address: T.nilable(T::Boolean),
                 custom_statement_descriptor: T.nilable(String),
                 description: T.nilable(String),
@@ -772,8 +750,6 @@ module WhopSDK
                 global_affiliate_status:
                   T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
                 headline: T.nilable(String),
-                industry_group: T.nilable(WhopSDK::IndustryGroups::OrSymbol),
-                industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
                 product_tax_code_id: T.nilable(String),
                 redirect_purchase_url: T.nilable(String),
                 route: T.nilable(String),

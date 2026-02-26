@@ -15,10 +15,6 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The different business types a company can be.
-      sig { returns(T.nilable(WhopSDK::BusinessTypes::TaggedSymbol)) }
-      attr_accessor :business_type
-
       # The datetime the company was created.
       sig { returns(Time) }
       attr_accessor :created_at
@@ -27,10 +23,6 @@ module WhopSDK
       # customers on the store page.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
-
-      # The different industry types a company can be in.
-      sig { returns(T.nilable(WhopSDK::IndustryTypes::TaggedSymbol)) }
-      attr_accessor :industry_type
 
       # The company's logo.
       sig { returns(T.nilable(WhopSDK::Models::CompanyListResponse::Logo)) }
@@ -95,10 +87,8 @@ module WhopSDK
       sig do
         params(
           id: String,
-          business_type: T.nilable(WhopSDK::BusinessTypes::OrSymbol),
           created_at: Time,
           description: T.nilable(String),
-          industry_type: T.nilable(WhopSDK::IndustryTypes::OrSymbol),
           logo: T.nilable(WhopSDK::Models::CompanyListResponse::Logo::OrHash),
           member_count: Integer,
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
@@ -114,15 +104,11 @@ module WhopSDK
       def self.new(
         # The unique identifier for the company.
         id:,
-        # The different business types a company can be.
-        business_type:,
         # The datetime the company was created.
         created_at:,
         # A promotional pitch written by the company creator, displayed to potential
         # customers on the store page.
         description:,
-        # The different industry types a company can be in.
-        industry_type:,
         # The company's logo.
         logo:,
         # The total number of users who currently hold active memberships across all of
@@ -154,10 +140,8 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            business_type: T.nilable(WhopSDK::BusinessTypes::TaggedSymbol),
             created_at: Time,
             description: T.nilable(String),
-            industry_type: T.nilable(WhopSDK::IndustryTypes::TaggedSymbol),
             logo: T.nilable(WhopSDK::Models::CompanyListResponse::Logo),
             member_count: Integer,
             metadata: T.nilable(T::Hash[Symbol, T.anything]),

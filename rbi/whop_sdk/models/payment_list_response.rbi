@@ -233,6 +233,21 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :subtotal
 
+      # The calculated amount of the sales/VAT tax (if applicable).
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :tax_amount
+
+      # The type of tax inclusivity applied to the receipt, for determining whether the
+      # tax is included in the final price, or paid on top.
+      sig do
+        returns(
+          T.nilable(
+            WhopSDK::Models::PaymentListResponse::TaxBehavior::TaggedSymbol
+          )
+        )
+      end
+      attr_accessor :tax_behavior
+
       # The total to show to the creator (excluding buyer fees).
       sig { returns(T.nilable(Float)) }
       attr_accessor :total
@@ -307,6 +322,11 @@ module WhopSDK
           status: T.nilable(WhopSDK::ReceiptStatus::OrSymbol),
           substatus: WhopSDK::FriendlyReceiptStatus::OrSymbol,
           subtotal: T.nilable(Float),
+          tax_amount: T.nilable(Float),
+          tax_behavior:
+            T.nilable(
+              WhopSDK::Models::PaymentListResponse::TaxBehavior::OrSymbol
+            ),
           total: T.nilable(Float),
           usd_total: T.nilable(Float),
           user: T.nilable(WhopSDK::Models::PaymentListResponse::User::OrHash),
@@ -385,6 +405,11 @@ module WhopSDK
         substatus:,
         # The subtotal to show to the creator (excluding buyer fees).
         subtotal:,
+        # The calculated amount of the sales/VAT tax (if applicable).
+        tax_amount:,
+        # The type of tax inclusivity applied to the receipt, for determining whether the
+        # tax is included in the final price, or paid on top.
+        tax_behavior:,
         # The total to show to the creator (excluding buyer fees).
         total:,
         # The total in USD to show to the creator (excluding buyer fees).
@@ -438,6 +463,11 @@ module WhopSDK
             status: T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol),
             substatus: WhopSDK::FriendlyReceiptStatus::TaggedSymbol,
             subtotal: T.nilable(Float),
+            tax_amount: T.nilable(Float),
+            tax_behavior:
+              T.nilable(
+                WhopSDK::Models::PaymentListResponse::TaxBehavior::TaggedSymbol
+              ),
             total: T.nilable(Float),
             usd_total: T.nilable(Float),
             user: T.nilable(WhopSDK::Models::PaymentListResponse::User),
@@ -1017,6 +1047,49 @@ module WhopSDK
           )
         end
         def to_hash
+        end
+      end
+
+      # The type of tax inclusivity applied to the receipt, for determining whether the
+      # tax is included in the final price, or paid on top.
+      module TaxBehavior
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::Models::PaymentListResponse::TaxBehavior)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        EXCLUSIVE =
+          T.let(
+            :exclusive,
+            WhopSDK::Models::PaymentListResponse::TaxBehavior::TaggedSymbol
+          )
+        INCLUSIVE =
+          T.let(
+            :inclusive,
+            WhopSDK::Models::PaymentListResponse::TaxBehavior::TaggedSymbol
+          )
+        UNSPECIFIED =
+          T.let(
+            :unspecified,
+            WhopSDK::Models::PaymentListResponse::TaxBehavior::TaggedSymbol
+          )
+        UNABLE_TO_COLLECT =
+          T.let(
+            :unable_to_collect,
+            WhopSDK::Models::PaymentListResponse::TaxBehavior::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::Models::PaymentListResponse::TaxBehavior::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
         end
       end
 

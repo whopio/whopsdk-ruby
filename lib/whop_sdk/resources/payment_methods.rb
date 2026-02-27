@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Payment methods
     class PaymentMethods
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::PaymentMethodRetrieveParams} for more details.

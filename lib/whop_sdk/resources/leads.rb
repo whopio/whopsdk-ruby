@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Leads
     class Leads
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::LeadCreateParams} for more details.

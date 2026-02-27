@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Companies
     class Companies
       # Create a new company. Pass parent_company_id to create a connected account under
       # a platform, or omit it to create a company for the current user.

@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Authorized users
     class AuthorizedUsers
       # Retrieves the details of an existing authorized user.
       #

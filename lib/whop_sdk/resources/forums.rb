@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Forums
     class Forums
       # Retrieves the details of an existing forum.
       #

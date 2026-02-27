@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Transfers
     class Transfers
       # Transfer funds between two ledger accounts, such as from a company balance to a
       # user balance.

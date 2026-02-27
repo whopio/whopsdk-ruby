@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Payments
     class Payments
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::PaymentCreateParams} for more details.

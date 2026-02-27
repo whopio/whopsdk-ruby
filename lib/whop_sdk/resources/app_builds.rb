@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # App builds
     class AppBuilds
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::AppBuildCreateParams} for more details.

@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Notifications
     class Notifications
       # Send a push notification to users in an experience or company team. The
       # notification is processed asynchronously and supports targeting specific users.

@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Company token transactions
     class CompanyTokenTransactions
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::CompanyTokenTransactionCreateParams} for more details.

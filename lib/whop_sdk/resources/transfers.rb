@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Transfers
     class Transfers
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::TransferCreateParams} for more details.

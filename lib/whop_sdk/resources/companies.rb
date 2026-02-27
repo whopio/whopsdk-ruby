@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Companies
     class Companies
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::CompanyCreateParams} for more details.

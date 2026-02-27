@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Webhooks
     class Webhooks
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::WebhookCreateParams} for more details.

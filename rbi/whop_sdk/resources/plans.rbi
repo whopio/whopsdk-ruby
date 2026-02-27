@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Plans
     class Plans
       # Create a new pricing plan for a product. The plan defines the billing interval,
       # price, and availability for customers.

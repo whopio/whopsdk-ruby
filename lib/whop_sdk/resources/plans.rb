@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Plans
     class Plans
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::PlanCreateParams} for more details.

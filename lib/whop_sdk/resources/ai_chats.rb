@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Ai chats
     class AIChats
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::AIChatCreateParams} for more details.

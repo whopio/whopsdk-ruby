@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Setup intents
     class SetupIntents
       # Retrieves the details of an existing setup intent.
       #

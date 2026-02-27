@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Checkout configurations
     class CheckoutConfigurations
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::CheckoutConfigurationCreateParams} for more details.

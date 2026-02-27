@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Leads
     class Leads
       # Record a new lead for a company, capturing a potential customer's interest in a
       # specific product.

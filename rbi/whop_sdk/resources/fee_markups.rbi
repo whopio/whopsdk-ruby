@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Fee markups
     class FeeMarkups
       # Create or update a fee markup for a company. If a markup for the specified fee
       # type already exists, it will be updated with the new values.

@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Entries
     class Entries
       # Retrieves the details of an existing waitlist entry.
       #

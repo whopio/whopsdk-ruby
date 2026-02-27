@@ -71,10 +71,11 @@ module WhopSDK
       # @see WhopSDK::Models::DisputeListParams
       def list(params)
         parsed, options = WhopSDK::DisputeListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "disputes",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::DisputeListResponse,
           options: options

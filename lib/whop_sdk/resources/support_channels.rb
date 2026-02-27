@@ -96,10 +96,11 @@ module WhopSDK
       # @see WhopSDK::Models::SupportChannelListParams
       def list(params)
         parsed, options = WhopSDK::SupportChannelListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "support_channels",
-          query: parsed.transform_keys(open_: "open"),
+          query: query.transform_keys(open_: "open"),
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::SupportChannelListResponse,
           options: options

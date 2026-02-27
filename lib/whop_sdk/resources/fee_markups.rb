@@ -72,10 +72,11 @@ module WhopSDK
       # @see WhopSDK::Models::FeeMarkupListParams
       def list(params)
         parsed, options = WhopSDK::FeeMarkupListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "fee_markups",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::FeeMarkupListResponse,
           options: options

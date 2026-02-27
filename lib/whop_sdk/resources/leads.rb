@@ -137,10 +137,11 @@ module WhopSDK
       # @see WhopSDK::Models::LeadListParams
       def list(params)
         parsed, options = WhopSDK::LeadListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "leads",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::LeadListResponse,
           options: options

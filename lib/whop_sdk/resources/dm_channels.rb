@@ -118,10 +118,11 @@ module WhopSDK
       # @see WhopSDK::Models::DmChannelListParams
       def list(params = {})
         parsed, options = WhopSDK::DmChannelListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "dm_channels",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::DmChannelListResponse,
           options: options

@@ -209,10 +209,11 @@ module WhopSDK
       # @see WhopSDK::Models::PlanListParams
       def list(params)
         parsed, options = WhopSDK::PlanListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "plans",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::PlanListResponse,
           options: options

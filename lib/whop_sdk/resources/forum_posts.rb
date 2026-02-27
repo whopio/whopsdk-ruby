@@ -151,10 +151,11 @@ module WhopSDK
       # @see WhopSDK::Models::ForumPostListParams
       def list(params)
         parsed, options = WhopSDK::ForumPostListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "forum_posts",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::ForumPostListResponse,
           options: options

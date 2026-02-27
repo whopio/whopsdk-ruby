@@ -53,10 +53,11 @@ module WhopSDK
       # @see WhopSDK::Models::PayoutMethodListParams
       def list(params)
         parsed, options = WhopSDK::PayoutMethodListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "payout_methods",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::PayoutMethodListResponse,
           options: options

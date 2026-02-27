@@ -116,10 +116,11 @@ module WhopSDK
       # @see WhopSDK::Models::DmMemberListParams
       def list(params)
         parsed, options = WhopSDK::DmMemberListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "dm_members",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::DmMemberListResponse,
           options: options

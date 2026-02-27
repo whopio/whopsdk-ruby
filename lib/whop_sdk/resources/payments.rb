@@ -148,10 +148,11 @@ module WhopSDK
       # @see WhopSDK::Models::PaymentListParams
       def list(params = {})
         parsed, options = WhopSDK::PaymentListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "payments",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::PaymentListResponse,
           options: options
@@ -184,10 +185,11 @@ module WhopSDK
       # @see WhopSDK::Models::PaymentListFeesParams
       def list_fees(id, params = {})
         parsed, options = WhopSDK::PaymentListFeesParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["payments/%1$s/fees", id],
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::PaymentListFeesResponse,
           options: options

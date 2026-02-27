@@ -69,10 +69,11 @@ module WhopSDK
       # @see WhopSDK::Models::EntryListParams
       def list(params)
         parsed, options = WhopSDK::EntryListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "entries",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::EntryListResponse,
           options: options

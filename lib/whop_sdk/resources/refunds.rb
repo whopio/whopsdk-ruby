@@ -62,10 +62,11 @@ module WhopSDK
       # @see WhopSDK::Models::RefundListParams
       def list(params)
         parsed, options = WhopSDK::RefundListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "refunds",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::RefundListResponse,
           options: options

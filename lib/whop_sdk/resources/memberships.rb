@@ -111,10 +111,11 @@ module WhopSDK
       # @see WhopSDK::Models::MembershipListParams
       def list(params = {})
         parsed, options = WhopSDK::MembershipListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "memberships",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::MembershipListResponse,
           options: options

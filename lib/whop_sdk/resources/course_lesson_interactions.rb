@@ -61,10 +61,11 @@ module WhopSDK
       # @see WhopSDK::Models::CourseLessonInteractionListParams
       def list(params = {})
         parsed, options = WhopSDK::CourseLessonInteractionListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "course_lesson_interactions",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::CourseLessonInteractionListItem,
           options: options

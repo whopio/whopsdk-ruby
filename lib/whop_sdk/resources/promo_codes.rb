@@ -125,10 +125,11 @@ module WhopSDK
       # @see WhopSDK::Models::PromoCodeListParams
       def list(params)
         parsed, options = WhopSDK::PromoCodeListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "promo_codes",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::PromoCodeListResponse,
           options: options

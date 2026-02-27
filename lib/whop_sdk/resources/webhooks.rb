@@ -128,10 +128,11 @@ module WhopSDK
       # @see WhopSDK::Models::WebhookListParams
       def list(params)
         parsed, options = WhopSDK::WebhookListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "webhooks",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::WebhookListResponse,
           options: options

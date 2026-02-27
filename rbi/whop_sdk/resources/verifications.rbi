@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Verifications
     class Verifications
       # Retrieves the details of an existing verification.
       #

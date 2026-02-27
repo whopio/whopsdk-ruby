@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Course lessons
     class CourseLessons
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::CourseLessonCreateParams} for more details.

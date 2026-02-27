@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Dm members
     class DmMembers
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::DmMemberCreateParams} for more details.

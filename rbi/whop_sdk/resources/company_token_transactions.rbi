@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Company token transactions
     class CompanyTokenTransactions
       # Create a token transaction to add, subtract, or transfer tokens for a member
       # within a company.

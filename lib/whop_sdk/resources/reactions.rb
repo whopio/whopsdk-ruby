@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Reactions
     class Reactions
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::ReactionCreateParams} for more details.

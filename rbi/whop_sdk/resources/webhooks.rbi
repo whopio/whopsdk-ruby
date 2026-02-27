@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Webhooks
     class Webhooks
       # Creates a new webhook
       #

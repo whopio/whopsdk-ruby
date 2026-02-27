@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Apps
     class Apps
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::AppCreateParams} for more details.

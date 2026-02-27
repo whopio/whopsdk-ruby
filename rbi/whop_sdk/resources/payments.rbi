@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Payments
     class Payments
       # Charge an existing member off-session using one of their stored payment methods.
       # You can provide an existing plan, or create a new one in-line. This endpoint

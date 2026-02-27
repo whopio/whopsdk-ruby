@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Products
     class Products
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::ProductCreateParams} for more details.

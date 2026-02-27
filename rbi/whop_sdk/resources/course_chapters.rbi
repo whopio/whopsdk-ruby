@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Course chapters
     class CourseChapters
       # Create a new chapter within a course to organize lessons into sections.
       #

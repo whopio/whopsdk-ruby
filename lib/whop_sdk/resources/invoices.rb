@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Invoices
     class Invoices
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::InvoiceCreateParams} for more details.

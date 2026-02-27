@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Withdrawals
     class Withdrawals
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::WithdrawalCreateParams} for more details.

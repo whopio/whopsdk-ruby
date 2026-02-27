@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Withdrawals
     class Withdrawals
       # Creates a withdrawal request for a ledger account
       #

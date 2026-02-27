@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Shipments
     class Shipments
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::ShipmentCreateParams} for more details.

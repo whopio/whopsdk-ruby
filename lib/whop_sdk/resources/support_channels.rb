@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Support channels
     class SupportChannels
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::SupportChannelCreateParams} for more details.

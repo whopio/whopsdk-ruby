@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Checkout configurations
     class CheckoutConfigurations
       # Creates a new checkout configuration
       #

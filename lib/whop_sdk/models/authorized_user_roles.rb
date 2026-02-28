@@ -13,6 +13,7 @@ module WhopSDK
       APP_MANAGER = :app_manager
       SUPPORT = :support
       MANAGER = :manager
+      CUSTOM = :custom
 
       # @!method self.values
       #   @return [Array<Symbol>]

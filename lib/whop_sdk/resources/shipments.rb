@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Shipments
     class Shipments
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::ShipmentCreateParams} for more details.
@@ -94,10 +95,11 @@ module WhopSDK
       # @see WhopSDK::Models::ShipmentListParams
       def list(params = {})
         parsed, options = WhopSDK::ShipmentListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "shipments",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::ShipmentListResponse,
           options: options

@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Ai chats
     class AIChats
       # Create a new AI chat thread and send the first message to the AI agent.
       #

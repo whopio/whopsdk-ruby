@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Promo codes
     class PromoCodes
       # Create a new promo code that applies a discount at checkout. Can be scoped to
       # specific products or plans.

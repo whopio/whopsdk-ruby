@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Notifications
     class Notifications
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::NotificationCreateParams} for more details.

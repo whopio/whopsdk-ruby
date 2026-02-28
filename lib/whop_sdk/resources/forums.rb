@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Forums
     class Forums
       # Retrieves the details of an existing forum.
       #
@@ -94,10 +95,11 @@ module WhopSDK
       # @see WhopSDK::Models::ForumListParams
       def list(params)
         parsed, options = WhopSDK::ForumListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "forums",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::ForumListResponse,
           options: options

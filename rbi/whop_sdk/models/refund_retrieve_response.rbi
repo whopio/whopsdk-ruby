@@ -231,6 +231,25 @@ module WhopSDK
         sig { returns(T.nilable(Float)) }
         attr_accessor :subtotal
 
+        # The calculated amount of the sales/VAT tax (if applicable).
+        sig { returns(T.nilable(Float)) }
+        attr_accessor :tax_amount
+
+        # The type of tax inclusivity applied to the receipt, for determining whether the
+        # tax is included in the final price, or paid on top.
+        sig do
+          returns(
+            T.nilable(
+              WhopSDK::Models::RefundRetrieveResponse::Payment::TaxBehavior::TaggedSymbol
+            )
+          )
+        end
+        attr_accessor :tax_behavior
+
+        # The amount of tax that has been refunded (if applicable).
+        sig { returns(T.nilable(Float)) }
+        attr_accessor :tax_refunded_amount
+
         # The total to show to the creator (excluding buyer fees).
         sig { returns(T.nilable(Float)) }
         attr_accessor :total
@@ -280,6 +299,12 @@ module WhopSDK
             payment_method_type:
               T.nilable(WhopSDK::PaymentMethodTypes::OrSymbol),
             subtotal: T.nilable(Float),
+            tax_amount: T.nilable(Float),
+            tax_behavior:
+              T.nilable(
+                WhopSDK::Models::RefundRetrieveResponse::Payment::TaxBehavior::OrSymbol
+              ),
+            tax_refunded_amount: T.nilable(Float),
             total: T.nilable(Float),
             usd_total: T.nilable(Float),
             user:
@@ -315,6 +340,13 @@ module WhopSDK
           payment_method_type:,
           # The subtotal to show to the creator (excluding buyer fees).
           subtotal:,
+          # The calculated amount of the sales/VAT tax (if applicable).
+          tax_amount:,
+          # The type of tax inclusivity applied to the receipt, for determining whether the
+          # tax is included in the final price, or paid on top.
+          tax_behavior:,
+          # The amount of tax that has been refunded (if applicable).
+          tax_refunded_amount:,
           # The total to show to the creator (excluding buyer fees).
           total:,
           # The total in USD to show to the creator (excluding buyer fees).
@@ -346,6 +378,12 @@ module WhopSDK
               payment_method_type:
                 T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol),
               subtotal: T.nilable(Float),
+              tax_amount: T.nilable(Float),
+              tax_behavior:
+                T.nilable(
+                  WhopSDK::Models::RefundRetrieveResponse::Payment::TaxBehavior::TaggedSymbol
+                ),
+              tax_refunded_amount: T.nilable(Float),
               total: T.nilable(Float),
               usd_total: T.nilable(Float),
               user:
@@ -432,6 +470,52 @@ module WhopSDK
             )
           end
           def to_hash
+          end
+        end
+
+        # The type of tax inclusivity applied to the receipt, for determining whether the
+        # tax is included in the final price, or paid on top.
+        module TaxBehavior
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                WhopSDK::Models::RefundRetrieveResponse::Payment::TaxBehavior
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          EXCLUSIVE =
+            T.let(
+              :exclusive,
+              WhopSDK::Models::RefundRetrieveResponse::Payment::TaxBehavior::TaggedSymbol
+            )
+          INCLUSIVE =
+            T.let(
+              :inclusive,
+              WhopSDK::Models::RefundRetrieveResponse::Payment::TaxBehavior::TaggedSymbol
+            )
+          UNSPECIFIED =
+            T.let(
+              :unspecified,
+              WhopSDK::Models::RefundRetrieveResponse::Payment::TaxBehavior::TaggedSymbol
+            )
+          UNABLE_TO_COLLECT =
+            T.let(
+              :unable_to_collect,
+              WhopSDK::Models::RefundRetrieveResponse::Payment::TaxBehavior::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                WhopSDK::Models::RefundRetrieveResponse::Payment::TaxBehavior::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
           end
         end
 

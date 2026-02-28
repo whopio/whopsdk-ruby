@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Course students
     class CourseStudents
       # Retrieves the details of an existing course student.
       #
@@ -57,10 +58,11 @@ module WhopSDK
       # @see WhopSDK::Models::CourseStudentListParams
       def list(params)
         parsed, options = WhopSDK::CourseStudentListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "course_students",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::CourseStudentListResponse,
           options: options

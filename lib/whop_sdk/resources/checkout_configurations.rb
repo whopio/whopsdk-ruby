@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Checkout configurations
     class CheckoutConfigurations
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::CheckoutConfigurationCreateParams} for more details.
@@ -115,10 +116,11 @@ module WhopSDK
       # @see WhopSDK::Models::CheckoutConfigurationListParams
       def list(params)
         parsed, options = WhopSDK::CheckoutConfigurationListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "checkout_configurations",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::CheckoutConfigurationListResponse,
           options: options

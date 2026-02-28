@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Reactions
     class Reactions
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::ReactionCreateParams} for more details.
@@ -87,10 +88,11 @@ module WhopSDK
       # @see WhopSDK::Models::ReactionListParams
       def list(params)
         parsed, options = WhopSDK::ReactionListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "reactions",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::ReactionListResponse,
           options: options
@@ -120,10 +122,11 @@ module WhopSDK
       # @see WhopSDK::Models::ReactionDeleteParams
       def delete(id, params = {})
         parsed, options = WhopSDK::ReactionDeleteParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :delete,
           path: ["reactions/%1$s", id],
-          query: parsed,
+          query: query,
           model: WhopSDK::Internal::Type::Boolean,
           options: options
         )

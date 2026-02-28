@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.1.0 (2026-02-28)
+
+Full Changelog: [v0.0.30...v0.1.0](https://github.com/whopio/whopsdk-ruby/compare/v0.0.30...v0.1.0)
+
+### Features
+
+* **api:** api update ([48686b8](https://github.com/whopio/whopsdk-ruby/commit/48686b8f81ec64ca9a0d9cdf565aec87a9cb39f0))
+* **api:** api update ([22b529c](https://github.com/whopio/whopsdk-ruby/commit/22b529c27ef47cee7558624dd6dfb054a5f4cdb7))
+* **api:** api update ([9c7f0e8](https://github.com/whopio/whopsdk-ruby/commit/9c7f0e85bebbef5fb68638f9cd29a0220546dd57))
+* **api:** api update ([051bd43](https://github.com/whopio/whopsdk-ruby/commit/051bd4316d11702316041255f4daa521a79bf4d1))
+
+
+### Bug Fixes
+
+* **client:** serialize query parameters properly ([c67de63](https://github.com/whopio/whopsdk-ruby/commit/c67de634dc68db1f96a06555ec8f9fd268064e2e))
+* properly mock time in ruby ci tests ([0717eb1](https://github.com/whopio/whopsdk-ruby/commit/0717eb1ff7f8e041304b300cdeae305ce033933c))
+
+
+### Chores
+
+* **docs:** add missing descriptions ([8e324e8](https://github.com/whopio/whopsdk-ruby/commit/8e324e869df0043e3423a685b6666b83ccbd1dfc))
+
 ## 0.0.30 (2026-02-26)
 
 Full Changelog: [v0.0.29...v0.0.30](https://github.com/whopio/whopsdk-ruby/compare/v0.0.29...v0.0.30)

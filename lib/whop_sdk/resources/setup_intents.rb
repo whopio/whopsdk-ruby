@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Setup intents
     class SetupIntents
       # Retrieves the details of an existing setup intent.
       #
@@ -64,10 +65,11 @@ module WhopSDK
       # @see WhopSDK::Models::SetupIntentListParams
       def list(params)
         parsed, options = WhopSDK::SetupIntentListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "setup_intents",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::SetupIntentListResponse,
           options: options

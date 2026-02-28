@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Courses
     class Courses
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::CourseCreateParams} for more details.
@@ -149,10 +150,11 @@ module WhopSDK
       # @see WhopSDK::Models::CourseListParams
       def list(params = {})
         parsed, options = WhopSDK::CourseListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "courses",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::CourseListResponse,
           options: options

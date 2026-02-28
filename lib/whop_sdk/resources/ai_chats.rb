@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Ai chats
     class AIChats
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::AIChatCreateParams} for more details.
@@ -112,10 +113,11 @@ module WhopSDK
       # @see WhopSDK::Models::AIChatListParams
       def list(params = {})
         parsed, options = WhopSDK::AIChatListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "ai_chats",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::AIChatListResponse,
           options: options

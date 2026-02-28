@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Invoices
     class Invoices
       # Create an invoice for a customer. The invoice can be charged automatically using
       # a stored payment method, or sent to the customer for manual payment.

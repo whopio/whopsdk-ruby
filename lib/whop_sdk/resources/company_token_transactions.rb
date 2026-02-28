@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Company token transactions
     class CompanyTokenTransactions
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::CompanyTokenTransactionCreateParams} for more details.
@@ -106,10 +107,11 @@ module WhopSDK
       # @see WhopSDK::Models::CompanyTokenTransactionListParams
       def list(params)
         parsed, options = WhopSDK::CompanyTokenTransactionListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "company_token_transactions",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::CompanyTokenTransactionListResponse,
           options: options

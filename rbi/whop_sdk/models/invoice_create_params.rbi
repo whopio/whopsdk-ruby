@@ -203,6 +203,31 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :internal_notes
 
+        # Whether this plan uses legacy payment method controls
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_accessor :legacy_payment_method_controls
+
+        # The explicit payment method configuration for the plan. If not provided, the
+        # platform or company's defaults will apply.
+        sig do
+          returns(
+            T.nilable(
+              WhopSDK::InvoiceCreateParams::Plan::PaymentMethodConfiguration
+            )
+          )
+        end
+        attr_reader :payment_method_configuration
+
+        sig do
+          params(
+            payment_method_configuration:
+              T.nilable(
+                WhopSDK::InvoiceCreateParams::Plan::PaymentMethodConfiguration::OrHash
+              )
+          ).void
+        end
+        attr_writer :payment_method_configuration
+
         # The type of plan that can be attached to a product
         sig { returns(T.nilable(WhopSDK::PlanType::OrSymbol)) }
         attr_accessor :plan_type
@@ -248,6 +273,11 @@ module WhopSDK
             expiration_days: T.nilable(Integer),
             initial_price: T.nilable(Float),
             internal_notes: T.nilable(String),
+            legacy_payment_method_controls: T.nilable(T::Boolean),
+            payment_method_configuration:
+              T.nilable(
+                WhopSDK::InvoiceCreateParams::Plan::PaymentMethodConfiguration::OrHash
+              ),
             plan_type: T.nilable(WhopSDK::PlanType::OrSymbol),
             release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
             renewal_price: T.nilable(Float),
@@ -273,6 +303,11 @@ module WhopSDK
           initial_price: nil,
           # A personal description or notes section for the business.
           internal_notes: nil,
+          # Whether this plan uses legacy payment method controls
+          legacy_payment_method_controls: nil,
+          # The explicit payment method configuration for the plan. If not provided, the
+          # platform or company's defaults will apply.
+          payment_method_configuration: nil,
           # The type of plan that can be attached to a product
           plan_type: nil,
           # The methods of how a plan can be released.
@@ -304,6 +339,11 @@ module WhopSDK
               expiration_days: T.nilable(Integer),
               initial_price: T.nilable(Float),
               internal_notes: T.nilable(String),
+              legacy_payment_method_controls: T.nilable(T::Boolean),
+              payment_method_configuration:
+                T.nilable(
+                  WhopSDK::InvoiceCreateParams::Plan::PaymentMethodConfiguration
+                ),
               plan_type: T.nilable(WhopSDK::PlanType::OrSymbol),
               release_method: T.nilable(WhopSDK::ReleaseMethod::OrSymbol),
               renewal_price: T.nilable(Float),
@@ -385,6 +425,71 @@ module WhopSDK
                 order: T.nilable(Integer),
                 placeholder: T.nilable(String),
                 required: T.nilable(T::Boolean)
+              }
+            )
+          end
+          def to_hash
+          end
+        end
+
+        class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::InvoiceCreateParams::Plan::PaymentMethodConfiguration,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # An array of payment method identifiers that are explicitly disabled. Only
+          # applies if the include_platform_defaults is true.
+          sig { returns(T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]) }
+          attr_accessor :disabled
+
+          # An array of payment method identifiers that are explicitly enabled. This means
+          # these payment methods will be shown on checkout. Example use case is to only
+          # enable a specific payment method like cashapp, or extending the platform
+          # defaults with additional methods.
+          sig { returns(T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]) }
+          attr_accessor :enabled
+
+          # Whether Whop's platform default payment method enablement settings are included
+          # in this configuration. The full list of default payment methods can be found in
+          # the documentation at docs.whop.com/payments.
+          sig { returns(T::Boolean) }
+          attr_accessor :include_platform_defaults
+
+          # The explicit payment method configuration for the plan. If not provided, the
+          # platform or company's defaults will apply.
+          sig do
+            params(
+              disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+              enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+              include_platform_defaults: T::Boolean
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # An array of payment method identifiers that are explicitly disabled. Only
+            # applies if the include_platform_defaults is true.
+            disabled:,
+            # An array of payment method identifiers that are explicitly enabled. This means
+            # these payment methods will be shown on checkout. Example use case is to only
+            # enable a specific payment method like cashapp, or extending the platform
+            # defaults with additional methods.
+            enabled:,
+            # Whether Whop's platform default payment method enablement settings are included
+            # in this configuration. The full list of default payment methods can be found in
+            # the documentation at docs.whop.com/payments.
+            include_platform_defaults:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+                enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+                include_platform_defaults: T::Boolean
               }
             )
           end

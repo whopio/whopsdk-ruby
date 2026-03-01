@@ -90,6 +90,8 @@ module WhopSDK
           expiration_days: Integer?,
           initial_price: Float?,
           internal_notes: String?,
+          legacy_payment_method_controls: bool?,
+          payment_method_configuration: WhopSDK::InvoiceCreateParams::Plan::PaymentMethodConfiguration?,
           plan_type: WhopSDK::Models::plan_type?,
           release_method: WhopSDK::Models::release_method?,
           renewal_price: Float?,
@@ -112,6 +114,10 @@ module WhopSDK
 
         attr_accessor internal_notes: String?
 
+        attr_accessor legacy_payment_method_controls: bool?
+
+        attr_accessor payment_method_configuration: WhopSDK::InvoiceCreateParams::Plan::PaymentMethodConfiguration?
+
         attr_accessor plan_type: WhopSDK::Models::plan_type?
 
         attr_accessor release_method: WhopSDK::Models::release_method?
@@ -133,6 +139,8 @@ module WhopSDK
           ?expiration_days: Integer?,
           ?initial_price: Float?,
           ?internal_notes: String?,
+          ?legacy_payment_method_controls: bool?,
+          ?payment_method_configuration: WhopSDK::InvoiceCreateParams::Plan::PaymentMethodConfiguration?,
           ?plan_type: WhopSDK::Models::plan_type?,
           ?release_method: WhopSDK::Models::release_method?,
           ?renewal_price: Float?,
@@ -149,6 +157,8 @@ module WhopSDK
           expiration_days: Integer?,
           initial_price: Float?,
           internal_notes: String?,
+          legacy_payment_method_controls: bool?,
+          payment_method_configuration: WhopSDK::InvoiceCreateParams::Plan::PaymentMethodConfiguration?,
           plan_type: WhopSDK::Models::plan_type?,
           release_method: WhopSDK::Models::release_method?,
           renewal_price: Float?,
@@ -197,6 +207,33 @@ module WhopSDK
             order: Integer?,
             placeholder: String?,
             required: bool?
+          }
+        end
+
+        type payment_method_configuration =
+          {
+            disabled: ::Array[WhopSDK::Models::payment_method_types],
+            enabled: ::Array[WhopSDK::Models::payment_method_types],
+            include_platform_defaults: bool
+          }
+
+        class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+          attr_accessor disabled: ::Array[WhopSDK::Models::payment_method_types]
+
+          attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
+
+          attr_accessor include_platform_defaults: bool
+
+          def initialize: (
+            disabled: ::Array[WhopSDK::Models::payment_method_types],
+            enabled: ::Array[WhopSDK::Models::payment_method_types],
+            include_platform_defaults: bool
+          ) -> void
+
+          def to_hash: -> {
+            disabled: ::Array[WhopSDK::Models::payment_method_types],
+            enabled: ::Array[WhopSDK::Models::payment_method_types],
+            include_platform_defaults: bool
           }
         end
       end

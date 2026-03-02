@@ -13,6 +13,12 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
+      # @!attribute attachments
+      #   All file attachments on this post, such as images, documents, and videos.
+      #
+      #   @return [Array<WhopSDK::Models::ForumPost::Attachment>]
+      required :attachments, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::ForumPost::Attachment] }
+
       # @!attribute comment_count
       #   The total number of direct comments on this post.
       #
@@ -86,7 +92,7 @@ module WhopSDK
       #   @return [Integer, nil]
       required :view_count, Integer, nil?: true
 
-      # @!method initialize(id:, comment_count:, content:, created_at:, is_edited:, is_pinned:, is_poster_admin:, like_count:, parent_id:, title:, updated_at:, user:, view_count:)
+      # @!method initialize(id:, attachments:, comment_count:, content:, created_at:, is_edited:, is_pinned:, is_poster_admin:, like_count:, parent_id:, title:, updated_at:, user:, view_count:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ForumPost} for more details.
       #
@@ -94,6 +100,8 @@ module WhopSDK
       #   reactions.
       #
       #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+      #
+      #   @param attachments [Array<WhopSDK::Models::ForumPost::Attachment>] All file attachments on this post, such as images, documents, and videos.
       #
       #   @param comment_count [Integer] The total number of direct comments on this post.
       #
@@ -118,6 +126,51 @@ module WhopSDK
       #   @param user [WhopSDK::Models::ForumPost::User] The user who authored this forum post.
       #
       #   @param view_count [Integer, nil] The total number of times this post has been viewed by users.
+
+      class Attachment < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   Represents a unique identifier that is Base64 obfuscated. It is often used to
+        #   refetch an object or as key for a cache. The ID type appears in a JSON response
+        #   as a String; however, it is not intended to be human-readable. When expected as
+        #   an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        #   input value will be accepted as an ID.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute content_type
+        #   The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
+        #
+        #   @return [String, nil]
+        required :content_type, String, nil?: true
+
+        # @!attribute filename
+        #   The original filename of the uploaded attachment, including its file extension.
+        #
+        #   @return [String, nil]
+        required :filename, String, nil?: true
+
+        # @!attribute url
+        #   A pre-optimized URL for rendering this attachment on the client. This should be
+        #   used for displaying attachments in apps.
+        #
+        #   @return [String, nil]
+        required :url, String, nil?: true
+
+        # @!method initialize(id:, content_type:, filename:, url:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::ForumPost::Attachment} for more details.
+        #
+        #   Represents an image attachment
+        #
+        #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+        #
+        #   @param content_type [String, nil] The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
+        #
+        #   @param filename [String, nil] The original filename of the uploaded attachment, including its file extension.
+        #
+        #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
+      end
 
       # @see WhopSDK::Models::ForumPost#user
       class User < WhopSDK::Internal::Type::BaseModel

@@ -35,13 +35,20 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::AIChatCreateParams::MessageSource, nil]
       optional :message_source, enum: -> { WhopSDK::AIChatCreateParams::MessageSource }, nil?: true
 
+      # @!attribute suggestion_type
+      #   The type of suggestion prompt that was clicked, when message_source is
+      #   'suggestion'.
+      #
+      #   @return [String, nil]
+      optional :suggestion_type, String, nil?: true
+
       # @!attribute title
       #   An optional display title for the AI chat thread (e.g., "Help with billing").
       #
       #   @return [String, nil]
       optional :title, String, nil?: true
 
-      # @!method initialize(message_text:, current_company_id: nil, message_attachments: nil, message_source: nil, title: nil, request_options: {})
+      # @!method initialize(message_text:, current_company_id: nil, message_attachments: nil, message_source: nil, suggestion_type: nil, title: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AIChatCreateParams} for more details.
       #
@@ -52,6 +59,8 @@ module WhopSDK
       #   @param message_attachments [Array<WhopSDK::Models::AIChatCreateParams::MessageAttachment>, nil] A list of previously uploaded file attachments to include with the first message
       #
       #   @param message_source [Symbol, WhopSDK::Models::AIChatCreateParams::MessageSource, nil] The source of an AI chat message
+      #
+      #   @param suggestion_type [String, nil] The type of suggestion prompt that was clicked, when message_source is 'suggesti
       #
       #   @param title [String, nil] An optional display title for the AI chat thread (e.g., "Help with billing").
       #

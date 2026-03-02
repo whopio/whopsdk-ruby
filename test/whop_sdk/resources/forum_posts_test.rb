@@ -15,6 +15,7 @@ class WhopSDK::Test::Resources::ForumPostsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        attachments: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::ForumPost::Attachment]),
         comment_count: Integer,
         content: String | nil,
         created_at: Time,
@@ -43,6 +44,7 @@ class WhopSDK::Test::Resources::ForumPostsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        attachments: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::ForumPost::Attachment]),
         comment_count: Integer,
         content: String | nil,
         created_at: Time,
@@ -71,6 +73,7 @@ class WhopSDK::Test::Resources::ForumPostsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        attachments: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::ForumPost::Attachment]),
         comment_count: Integer,
         content: String | nil,
         created_at: Time,
@@ -106,6 +109,7 @@ class WhopSDK::Test::Resources::ForumPostsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
+        attachments: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::ForumPostListResponse::Attachment]),
         comment_count: Integer,
         content: String | nil,
         created_at: Time,

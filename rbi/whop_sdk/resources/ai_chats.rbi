@@ -19,6 +19,7 @@ module WhopSDK
             ),
           message_source:
             T.nilable(WhopSDK::AIChatCreateParams::MessageSource::OrSymbol),
+          suggestion_type: T.nilable(String),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::AIChat)
@@ -34,6 +35,9 @@ module WhopSDK
         message_attachments: nil,
         # The source of an AI chat message
         message_source: nil,
+        # The type of suggestion prompt that was clicked, when message_source is
+        # 'suggestion'.
+        suggestion_type: nil,
         # An optional display title for the AI chat thread (e.g., "Help with billing").
         title: nil,
         request_options: {}

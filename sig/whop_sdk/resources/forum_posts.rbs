@@ -12,6 +12,7 @@ module WhopSDK
         ?paywall_currency: WhopSDK::Models::currency?,
         ?pinned: bool?,
         ?poll: WhopSDK::ForumPostCreateParams::Poll?,
+        ?rich_content: String?,
         ?title: String?,
         ?visibility: WhopSDK::Models::forum_post_visibility_type?,
         ?request_options: WhopSDK::request_opts

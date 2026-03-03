@@ -26,6 +26,7 @@ module WhopSDK
           paywall_currency: T.nilable(WhopSDK::Currency::OrSymbol),
           pinned: T.nilable(T::Boolean),
           poll: T.nilable(WhopSDK::ForumPostCreateParams::Poll::OrHash),
+          rich_content: T.nilable(String),
           title: T.nilable(String),
           visibility: T.nilable(WhopSDK::ForumPostVisibilityType::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -60,6 +61,9 @@ module WhopSDK
         pinned: nil,
         # A poll to attach to this post, allowing members to vote on options.
         poll: nil,
+        # The rich content of the post in Tiptap JSON format. When provided, takes
+        # priority over the markdown content field for rendering.
+        rich_content: nil,
         # The title of the post, displayed prominently at the top. Required for paywalled
         # posts as it remains visible to non-purchasers.
         title: nil,

@@ -38,9 +38,11 @@ module WhopSDK
       #
       # - `forum:moderate`
       #
-      # @overload update(id, email_notification_preference: nil, who_can_comment: nil, who_can_post: nil, request_options: {})
+      # @overload update(id, banner_image: nil, email_notification_preference: nil, who_can_comment: nil, who_can_post: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the forum to update. Accepts either an experience ID (e
+      #
+      # @param banner_image [WhopSDK::Models::ForumUpdateParams::BannerImage, nil] The banner image displayed at the top of the forum page. Pass null to remove the
       #
       # @param email_notification_preference [Symbol, WhopSDK::Models::EmailNotificationPreferences, nil] Email notification preference option for a forum feed
       #

@@ -11,6 +11,19 @@ module WhopSDK
           T.any(WhopSDK::ForumUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
+      # The banner image displayed at the top of the forum page. Pass null to remove the
+      # existing banner.
+      sig { returns(T.nilable(WhopSDK::ForumUpdateParams::BannerImage)) }
+      attr_reader :banner_image
+
+      sig do
+        params(
+          banner_image:
+            T.nilable(WhopSDK::ForumUpdateParams::BannerImage::OrHash)
+        ).void
+      end
+      attr_writer :banner_image
+
       # Email notification preference option for a forum feed
       sig do
         returns(T.nilable(WhopSDK::EmailNotificationPreferences::OrSymbol))
@@ -27,6 +40,8 @@ module WhopSDK
 
       sig do
         params(
+          banner_image:
+            T.nilable(WhopSDK::ForumUpdateParams::BannerImage::OrHash),
           email_notification_preference:
             T.nilable(WhopSDK::EmailNotificationPreferences::OrSymbol),
           who_can_comment: T.nilable(WhopSDK::WhoCanCommentTypes::OrSymbol),
@@ -35,6 +50,9 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        # The banner image displayed at the top of the forum page. Pass null to remove the
+        # existing banner.
+        banner_image: nil,
         # Email notification preference option for a forum feed
         email_notification_preference: nil,
         # Who can comment on a forum feed
@@ -48,6 +66,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            banner_image: T.nilable(WhopSDK::ForumUpdateParams::BannerImage),
             email_notification_preference:
               T.nilable(WhopSDK::EmailNotificationPreferences::OrSymbol),
             who_can_comment: T.nilable(WhopSDK::WhoCanCommentTypes::OrSymbol),
@@ -57,6 +76,33 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      class BannerImage < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::ForumUpdateParams::BannerImage,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The ID of an existing file object.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The banner image displayed at the top of the forum page. Pass null to remove the
+        # existing banner.
+        sig { params(id: String).returns(T.attached_class) }
+        def self.new(
+          # The ID of an existing file object.
+          id:
+        )
+        end
+
+        sig { override.returns({ id: String }) }
+        def to_hash
+        end
       end
     end
   end

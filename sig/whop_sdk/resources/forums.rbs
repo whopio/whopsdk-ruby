@@ -8,6 +8,7 @@ module WhopSDK
 
       def update: (
         String id,
+        ?banner_image: WhopSDK::ForumUpdateParams::BannerImage?,
         ?email_notification_preference: WhopSDK::Models::email_notification_preferences?,
         ?who_can_comment: WhopSDK::Models::who_can_comment_types?,
         ?who_can_post: WhopSDK::Models::who_can_post_types?,

@@ -11,6 +11,9 @@ module WhopSDK
           T.any(WhopSDK::ExperienceDuplicateParams, WhopSDK::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # The display name for the duplicated experience. Defaults to the original
       # experience's name.
       sig { returns(T.nilable(String)) }
@@ -18,11 +21,13 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           name: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # The display name for the duplicated experience. Defaults to the original
         # experience's name.
         name: nil,
@@ -32,7 +37,11 @@ module WhopSDK
 
       sig do
         override.returns(
-          { name: T.nilable(String), request_options: WhopSDK::RequestOptions }
+          {
+            id: String,
+            name: T.nilable(String),
+            request_options: WhopSDK::RequestOptions
+          }
         )
       end
       def to_hash

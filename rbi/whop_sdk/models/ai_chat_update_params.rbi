@@ -11,6 +11,9 @@ module WhopSDK
           T.any(WhopSDK::AIChatUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # The unique identifier of the company to set as context for the AI chat (e.g.,
       # "biz_XXXXX").
       sig { returns(T.nilable(String)) }
@@ -22,12 +25,14 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           current_company_id: T.nilable(String),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # The unique identifier of the company to set as context for the AI chat (e.g.,
         # "biz_XXXXX").
         current_company_id: nil,
@@ -40,6 +45,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             current_company_id: T.nilable(String),
             title: T.nilable(String),
             request_options: WhopSDK::RequestOptions

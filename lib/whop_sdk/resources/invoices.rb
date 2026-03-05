@@ -4,9 +4,6 @@ module WhopSDK
   module Resources
     # Invoices
     class Invoices
-      # Some parameter documentations has been truncated, see
-      # {WhopSDK::Models::InvoiceCreateParams} for more details.
-      #
       # Create an invoice for a customer. The invoice can be charged automatically using
       # a stored payment method, or sent to the customer for manual payment.
       #
@@ -15,34 +12,9 @@ module WhopSDK
       # - `invoice:create`
       # - `plan:basic:read`
       #
-      # @overload create(collection_method:, company_id:, due_date:, member_id:, plan:, product:, email_address:, product_id:, automatically_finalizes_at: nil, charge_buyer_fee: nil, customer_name: nil, payment_method_id: nil, payment_token_id: nil, request_options: {})
+      # @overload create(body:, request_options: {})
       #
-      # @param collection_method [Symbol, WhopSDK::Models::CollectionMethod] How the invoice should be collected. Use charge_automatically to charge a stored
-      #
-      # @param company_id [String] The unique identifier of the company to create this invoice for.
-      #
-      # @param due_date [Time] The date by which the invoice must be paid.
-      #
-      # @param member_id [String] The unique identifier of an existing member to create this invoice for. If not p
-      #
-      # @param plan [WhopSDK::Models::InvoiceCreateParams::Plan] The plan attributes defining the price, currency, and billing interval for this
-      #
-      # @param product [WhopSDK::Models::InvoiceCreateParams::Product] The properties of the product to create for this invoice. Provide this to create
-      #
-      # @param email_address [String] The email address of the customer. Required when creating an invoice for a custo
-      #
-      # @param product_id [String] The unique identifier of an existing product to create this invoice for.
-      #
-      # @param automatically_finalizes_at [Time, nil] The date and time when the invoice will be automatically finalized and charged.
-      #
-      # @param charge_buyer_fee [Boolean, nil] Whether to charge the customer a buyer fee on this invoice.
-      #
-      # @param customer_name [String, nil] The name of the customer. Required when creating an invoice for a customer who i
-      #
-      # @param payment_method_id [String, nil] The unique identifier of the payment method to charge. Required when
-      # collection\_
-      #
-      # @param payment_token_id [String, nil] The payment token ID to use for this invoice. If using charge_automatically, you
+      # @param body [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress] Parameters for CreateInvoice
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -54,7 +26,7 @@ module WhopSDK
         @client.request(
           method: :post,
           path: "invoices",
-          body: parsed,
+          body: parsed[:body],
           model: WhopSDK::Invoice,
           options: options
         )

@@ -7,7 +7,13 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute lesson_id
+      #
+      #   @return [String]
+      required :lesson_id, String
+
+      # @!method initialize(lesson_id:, request_options: {})
+      #   @param lesson_id [String]
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end
   end

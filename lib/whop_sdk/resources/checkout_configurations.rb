@@ -4,9 +4,6 @@ module WhopSDK
   module Resources
     # Checkout configurations
     class CheckoutConfigurations
-      # Some parameter documentations has been truncated, see
-      # {WhopSDK::Models::CheckoutConfigurationCreateParams} for more details.
-      #
       # Creates a new checkout configuration
       #
       # Required permissions:
@@ -17,27 +14,9 @@ module WhopSDK
       # - `access_pass:update`
       # - `checkout_configuration:basic:read`
       #
-      # @overload create(plan:, plan_id:, company_id:, affiliate_code: nil, currency: nil, metadata: nil, payment_method_configuration: nil, redirect_url: nil, source_url: nil, mode: :setup, request_options: {})
+      # @overload create(body:, request_options: {})
       #
-      # @param plan [WhopSDK::Models::CheckoutConfigurationCreateParams::Plan] The plan attributes to create a new plan inline for this checkout configuration.
-      #
-      # @param plan_id [String] The unique identifier of an existing plan to use for this checkout configuration
-      #
-      # @param company_id [String] The unique identifier of the company to create the checkout configuration for. O
-      #
-      # @param affiliate_code [String, nil] An affiliate tracking code to attribute the checkout to a specific affiliate.
-      #
-      # @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
-      #
-      # @param metadata [Hash{Symbol=>Object}, nil] Custom key-value metadata to attach to the checkout configuration.
-      #
-      # @param payment_method_configuration [WhopSDK::Models::CheckoutConfigurationCreateParams::PaymentMethodConfiguration, nil] The explicit payment method configuration for the checkout session. Only applies
-      #
-      # @param redirect_url [String, nil] The URL to redirect the user to after checkout is completed.
-      #
-      # @param source_url [String, nil] The URL of the page where the checkout is being initiated from.
-      #
-      # @param mode [Symbol, :setup]
+      # @param body [WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup] Parameters for CreateCheckoutSession
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -49,7 +28,7 @@ module WhopSDK
         @client.request(
           method: :post,
           path: "checkout_configurations",
-          body: parsed,
+          body: parsed[:body],
           model: WhopSDK::CheckoutConfiguration,
           options: options
         )

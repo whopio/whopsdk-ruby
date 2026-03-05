@@ -8,10 +8,12 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
 
     response =
       @whop.payments.create(
-        company_id: "biz_xxxxxxxxxxxxxx",
-        member_id: "mber_xxxxxxxxxxxxx",
-        payment_method_id: "pmt_xxxxxxxxxxxxxx",
-        plan: {currency: :usd}
+        body: {
+          company_id: "biz_xxxxxxxxxxxxxx",
+          member_id: "mber_xxxxxxxxxxxxx",
+          payment_method_id: "pmt_xxxxxxxxxxxxxx",
+          plan: {currency: :usd}
+        }
       )
 
     assert_pattern do

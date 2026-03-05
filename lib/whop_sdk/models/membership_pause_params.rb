@@ -7,6 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute void_payments
       #   Whether to void any outstanding past-due payments on this membership, preventing
       #   future collection attempts.
@@ -14,9 +19,11 @@ module WhopSDK
       #   @return [Boolean, nil]
       optional :void_payments, WhopSDK::Internal::Type::Boolean, nil?: true
 
-      # @!method initialize(void_payments: nil, request_options: {})
+      # @!method initialize(id:, void_payments: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::MembershipPauseParams} for more details.
+      #
+      #   @param id [String]
       #
       #   @param void_payments [Boolean, nil] Whether to void any outstanding past-due payments on this membership, preventing
       #

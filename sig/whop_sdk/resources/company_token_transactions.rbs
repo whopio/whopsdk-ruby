@@ -2,13 +2,7 @@ module WhopSDK
   module Resources
     class CompanyTokenTransactions
       def create: (
-        amount: Float,
-        company_id: String,
-        destination_user_id: String,
-        user_id: String,
-        ?description: String?,
-        ?idempotency_key: String?,
-        ?transaction_type: :subtract,
+        body: WhopSDK::Models::CompanyTokenTransactionCreateParams::body,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::CompanyTokenTransaction
 

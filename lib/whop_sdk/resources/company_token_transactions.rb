@@ -4,9 +4,6 @@ module WhopSDK
   module Resources
     # Company token transactions
     class CompanyTokenTransactions
-      # Some parameter documentations has been truncated, see
-      # {WhopSDK::Models::CompanyTokenTransactionCreateParams} for more details.
-      #
       # Create a token transaction to add, subtract, or transfer tokens for a member
       # within a company.
       #
@@ -16,21 +13,9 @@ module WhopSDK
       # - `member:basic:read`
       # - `company:basic:read`
       #
-      # @overload create(amount:, company_id:, destination_user_id:, user_id:, description: nil, idempotency_key: nil, transaction_type: :subtract, request_options: {})
+      # @overload create(body:, request_options: {})
       #
-      # @param amount [Float] The positive number of tokens to transact. For example, 100.0 for 100 tokens.
-      #
-      # @param company_id [String] The unique identifier of the company to create the transaction in, starting with
-      #
-      # @param destination_user_id [String] The unique identifier of the user receiving the tokens. Required when the transa
-      #
-      # @param user_id [String] The unique identifier of the user whose token balance will be affected, starting
-      #
-      # @param description [String, nil] A human-readable description of why the transaction was created.
-      #
-      # @param idempotency_key [String, nil] A unique key to prevent duplicate transactions. Use a UUID or similar unique str
-      #
-      # @param transaction_type [Symbol, :subtract]
+      # @param body [WhopSDK::Models::CompanyTokenTransactionCreateParams::Body::CreateCompanyTokenTransactionInputTransactionTypeTransfer, WhopSDK::Models::CompanyTokenTransactionCreateParams::Body::CreateCompanyTokenTransactionInputTransactionTypeAdd, WhopSDK::Models::CompanyTokenTransactionCreateParams::Body::CreateCompanyTokenTransactionInputTransactionTypeSubtract] Parameters for CreateCompanyTokenTransaction
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -42,7 +27,7 @@ module WhopSDK
         @client.request(
           method: :post,
           path: "company_token_transactions",
-          body: parsed,
+          body: parsed[:body],
           model: WhopSDK::CompanyTokenTransaction,
           options: options
         )

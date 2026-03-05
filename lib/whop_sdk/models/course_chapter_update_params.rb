@@ -7,13 +7,20 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute title
       #   The new display title of the chapter (e.g., "Module 1: Introduction").
       #
       #   @return [String]
       required :title, String
 
-      # @!method initialize(title:, request_options: {})
+      # @!method initialize(id:, title:, request_options: {})
+      #   @param id [String]
+      #
       #   @param title [String] The new display title of the chapter (e.g., "Module 1: Introduction").
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]

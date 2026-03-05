@@ -7,13 +7,20 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute product_id
       #   The unique identifier of the product to detach the experience from.
       #
       #   @return [String]
       required :product_id, String
 
-      # @!method initialize(product_id:, request_options: {})
+      # @!method initialize(id:, product_id:, request_options: {})
+      #   @param id [String]
+      #
       #   @param product_id [String] The unique identifier of the product to detach the experience from.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]

@@ -6,7 +6,8 @@ class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::Reso
   def test_create_required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.checkout_configurations.create(company_id: "biz_xxxxxxxxxxxxxx", mode: :setup)
+    response =
+      @whop.checkout_configurations.create(body: {plan: {company_id: "biz_xxxxxxxxxxxxxx", currency: :usd}})
 
     assert_pattern do
       response => WhopSDK::CheckoutConfiguration

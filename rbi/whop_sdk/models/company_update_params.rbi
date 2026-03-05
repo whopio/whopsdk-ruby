@@ -11,6 +11,9 @@ module WhopSDK
           T.any(WhopSDK::CompanyUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # The company's banner image. Accepts PNG or JPEG format.
       sig { returns(T.nilable(WhopSDK::CompanyUpdateParams::BannerImage)) }
       attr_reader :banner_image
@@ -59,6 +62,7 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           banner_image:
             T.nilable(WhopSDK::CompanyUpdateParams::BannerImage::OrHash),
           description: T.nilable(String),
@@ -71,6 +75,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # The company's banner image. Accepts PNG or JPEG format.
         banner_image: nil,
         # A promotional pitch displayed to potential customers on the company's store
@@ -97,6 +102,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             banner_image: T.nilable(WhopSDK::CompanyUpdateParams::BannerImage),
             description: T.nilable(String),
             logo: T.nilable(WhopSDK::CompanyUpdateParams::Logo),

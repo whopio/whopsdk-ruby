@@ -2,6 +2,7 @@ module WhopSDK
   module Models
     type message_update_params =
       {
+        id: String,
         attachments: ::Array[WhopSDK::MessageUpdateParams::Attachment]?,
         content: String?,
         is_pinned: bool?
@@ -12,6 +13,8 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      attr_accessor id: String
+
       attr_accessor attachments: ::Array[WhopSDK::MessageUpdateParams::Attachment]?
 
       attr_accessor content: String?
@@ -19,6 +22,7 @@ module WhopSDK
       attr_accessor is_pinned: bool?
 
       def initialize: (
+        id: String,
         ?attachments: ::Array[WhopSDK::MessageUpdateParams::Attachment]?,
         ?content: String?,
         ?is_pinned: bool?,
@@ -26,6 +30,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
+        id: String,
         attachments: ::Array[WhopSDK::MessageUpdateParams::Attachment]?,
         content: String?,
         is_pinned: bool?,

@@ -7,6 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute collect_shipping_address
       #   Whether the checkout flow collects a shipping address from the customer.
       #
@@ -116,9 +121,11 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility, nil]
       optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-      # @!method initialize(collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, gallery_images: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
+      # @!method initialize(id:, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, gallery_images: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ProductUpdateParams} for more details.
+      #
+      #   @param id [String]
       #
       #   @param collect_shipping_address [Boolean, nil] Whether the checkout flow collects a shipping address from the customer.
       #

@@ -11,6 +11,9 @@ module WhopSDK
           T.any(WhopSDK::MembershipPauseParams, WhopSDK::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # Whether to void any outstanding past-due payments on this membership, preventing
       # future collection attempts.
       sig { returns(T.nilable(T::Boolean)) }
@@ -18,11 +21,13 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           void_payments: T.nilable(T::Boolean),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # Whether to void any outstanding past-due payments on this membership, preventing
         # future collection attempts.
         void_payments: nil,
@@ -33,6 +38,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             void_payments: T.nilable(T::Boolean),
             request_options: WhopSDK::RequestOptions
           }

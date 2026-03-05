@@ -1,20 +1,25 @@
 module WhopSDK
   module Models
     type payment_refund_params =
-      { partial_amount: Float? } & WhopSDK::Internal::Type::request_parameters
+      { id: String, partial_amount: Float? }
+      & WhopSDK::Internal::Type::request_parameters
 
     class PaymentRefundParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      attr_accessor id: String
+
       attr_accessor partial_amount: Float?
 
       def initialize: (
+        id: String,
         ?partial_amount: Float?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
+        id: String,
         partial_amount: Float?,
         request_options: WhopSDK::RequestOptions
       }

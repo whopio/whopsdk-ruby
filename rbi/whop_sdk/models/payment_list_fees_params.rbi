@@ -11,6 +11,9 @@ module WhopSDK
           T.any(WhopSDK::PaymentListFeesParams, WhopSDK::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_accessor :after
@@ -29,6 +32,7 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           after: T.nilable(String),
           before: T.nilable(String),
           first: T.nilable(Integer),
@@ -37,6 +41,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
@@ -52,6 +57,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             after: T.nilable(String),
             before: T.nilable(String),
             first: T.nilable(Integer),

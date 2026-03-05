@@ -7,6 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute banner_image
       #   The company's banner image. Accepts PNG or JPEG format.
       #
@@ -54,9 +59,11 @@ module WhopSDK
       #   @return [String, nil]
       optional :title, String, nil?: true
 
-      # @!method initialize(banner_image: nil, description: nil, logo: nil, route: nil, send_customer_emails: nil, target_audience: nil, title: nil, request_options: {})
+      # @!method initialize(id:, banner_image: nil, description: nil, logo: nil, route: nil, send_customer_emails: nil, target_audience: nil, title: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CompanyUpdateParams} for more details.
+      #
+      #   @param id [String]
       #
       #   @param banner_image [WhopSDK::Models::CompanyUpdateParams::BannerImage, nil] The company's banner image. Accepts PNG or JPEG format.
       #

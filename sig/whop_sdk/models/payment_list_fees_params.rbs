@@ -1,12 +1,20 @@
 module WhopSDK
   module Models
     type payment_list_fees_params =
-      { after: String?, before: String?, first: Integer?, last: Integer? }
+      {
+        id: String,
+        after: String?,
+        before: String?,
+        first: Integer?,
+        last: Integer?
+      }
       & WhopSDK::Internal::Type::request_parameters
 
     class PaymentListFeesParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
 
       attr_accessor after: String?
 
@@ -17,6 +25,7 @@ module WhopSDK
       attr_accessor last: Integer?
 
       def initialize: (
+        id: String,
         ?after: String?,
         ?before: String?,
         ?first: Integer?,
@@ -25,6 +34,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
+        id: String,
         after: String?,
         before: String?,
         first: Integer?,

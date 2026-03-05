@@ -7,6 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute company_id
       #   The unique identifier of the company. Provide either this or member_id, not
       #   both.
@@ -21,9 +26,11 @@ module WhopSDK
       #   @return [String, nil]
       optional :member_id, String, nil?: true
 
-      # @!method initialize(company_id: nil, member_id: nil, request_options: {})
+      # @!method initialize(id:, company_id: nil, member_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentMethodRetrieveParams} for more details.
+      #
+      #   @param id [String]
       #
       #   @param company_id [String, nil] The unique identifier of the company. Provide either this or member_id, not both
       #

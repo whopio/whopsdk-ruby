@@ -2,12 +2,7 @@ module WhopSDK
   module Resources
     class Payments
       def create: (
-        company_id: String,
-        member_id: String,
-        payment_method_id: String,
-        plan: WhopSDK::PaymentCreateParams::Plan,
-        plan_id: String,
-        ?metadata: ::Hash[Symbol, top]?,
+        body: WhopSDK::Models::PaymentCreateParams::body,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Payment
 

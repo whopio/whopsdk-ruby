@@ -11,6 +11,9 @@ module WhopSDK
           T.any(WhopSDK::MembershipCancelParams, WhopSDK::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # The mode of cancellation for a membership
       sig do
         returns(
@@ -21,6 +24,7 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           cancellation_mode:
             T.nilable(
               WhopSDK::MembershipCancelParams::CancellationMode::OrSymbol
@@ -29,6 +33,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # The mode of cancellation for a membership
         cancellation_mode: nil,
         request_options: {}
@@ -38,6 +43,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             cancellation_mode:
               T.nilable(
                 WhopSDK::MembershipCancelParams::CancellationMode::OrSymbol

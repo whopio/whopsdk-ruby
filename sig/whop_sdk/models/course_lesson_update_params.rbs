@@ -2,6 +2,7 @@ module WhopSDK
   module Models
     type course_lesson_update_params =
       {
+        id: String,
         assessment_completion_requirement: WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement?,
         assessment_questions: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion]?,
         attachments: ::Array[WhopSDK::CourseLessonUpdateParams::Attachment]?,
@@ -22,6 +23,8 @@ module WhopSDK
     class CourseLessonUpdateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
 
       attr_accessor assessment_completion_requirement: WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement?
 
@@ -52,6 +55,7 @@ module WhopSDK
       attr_accessor visibility: WhopSDK::Models::lesson_visibilities?
 
       def initialize: (
+        id: String,
         ?assessment_completion_requirement: WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement?,
         ?assessment_questions: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion]?,
         ?attachments: ::Array[WhopSDK::CourseLessonUpdateParams::Attachment]?,
@@ -70,6 +74,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
+        id: String,
         assessment_completion_requirement: WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement?,
         assessment_questions: ::Array[WhopSDK::CourseLessonUpdateParams::AssessmentQuestion]?,
         attachments: ::Array[WhopSDK::CourseLessonUpdateParams::Attachment]?,

@@ -2,6 +2,7 @@ module WhopSDK
   module Models
     type chat_channel_update_params =
       {
+        id: String,
         ban_media: bool?,
         ban_urls: bool?,
         banned_words: ::Array[String]?,
@@ -14,6 +15,8 @@ module WhopSDK
     class ChatChannelUpdateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
 
       attr_accessor ban_media: bool?
 
@@ -28,6 +31,7 @@ module WhopSDK
       attr_accessor who_can_react: WhopSDK::Models::who_can_react?
 
       def initialize: (
+        id: String,
         ?ban_media: bool?,
         ?ban_urls: bool?,
         ?banned_words: ::Array[String]?,
@@ -38,6 +42,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
+        id: String,
         ban_media: bool?,
         ban_urls: bool?,
         banned_words: ::Array[String]?,

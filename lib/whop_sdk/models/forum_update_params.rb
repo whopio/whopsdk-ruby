@@ -7,6 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute banner_image
       #   The banner image displayed at the top of the forum page. Pass null to remove the
       #   existing banner.
@@ -32,9 +37,11 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::WhoCanPostTypes, nil]
       optional :who_can_post, enum: -> { WhopSDK::WhoCanPostTypes }, nil?: true
 
-      # @!method initialize(banner_image: nil, email_notification_preference: nil, who_can_comment: nil, who_can_post: nil, request_options: {})
+      # @!method initialize(id:, banner_image: nil, email_notification_preference: nil, who_can_comment: nil, who_can_post: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ForumUpdateParams} for more details.
+      #
+      #   @param id [String]
       #
       #   @param banner_image [WhopSDK::Models::ForumUpdateParams::BannerImage, nil] The banner image displayed at the top of the forum page. Pass null to remove the
       #

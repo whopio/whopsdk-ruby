@@ -11,6 +11,9 @@ module WhopSDK
           T.any(WhopSDK::DmMemberUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # The notification preferences for a DMs feed member
       sig do
         returns(
@@ -25,6 +28,7 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           notification_preference:
             T.nilable(WhopSDK::DmFeedMemberNotificationPreferences::OrSymbol),
           status: T.nilable(WhopSDK::DmFeedMemberStatuses::OrSymbol),
@@ -32,6 +36,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # The notification preferences for a DMs feed member
         notification_preference: nil,
         # The statuses of a DMs feed member
@@ -43,6 +48,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             notification_preference:
               T.nilable(WhopSDK::DmFeedMemberNotificationPreferences::OrSymbol),
             status: T.nilable(WhopSDK::DmFeedMemberStatuses::OrSymbol),

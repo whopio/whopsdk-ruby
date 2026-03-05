@@ -1,375 +1,572 @@
 module WhopSDK
   module Models
     type checkout_configuration_create_params =
-      {
-        plan: WhopSDK::CheckoutConfigurationCreateParams::Plan,
-        affiliate_code: String?,
-        currency: WhopSDK::Models::currency?,
-        metadata: ::Hash[Symbol, top]?,
-        mode: :setup,
-        payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration?,
-        redirect_url: String?,
-        source_url: String?,
-        plan_id: String,
-        company_id: String
-      }
+      { body: WhopSDK::Models::CheckoutConfigurationCreateParams::body }
       & WhopSDK::Internal::Type::request_parameters
 
     class CheckoutConfigurationCreateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor plan: WhopSDK::CheckoutConfigurationCreateParams::Plan
-
-      attr_accessor affiliate_code: String?
-
-      attr_accessor currency: WhopSDK::Models::currency?
-
-      attr_accessor metadata: ::Hash[Symbol, top]?
-
-      attr_accessor mode: :setup
-
-      attr_accessor payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration?
-
-      attr_accessor redirect_url: String?
-
-      attr_accessor source_url: String?
-
-      attr_accessor plan_id: String
-
-      attr_accessor company_id: String
+      attr_accessor body: WhopSDK::Models::CheckoutConfigurationCreateParams::body
 
       def initialize: (
-        plan: WhopSDK::CheckoutConfigurationCreateParams::Plan,
-        plan_id: String,
-        company_id: String,
-        ?affiliate_code: String?,
-        ?currency: WhopSDK::Models::currency?,
-        ?metadata: ::Hash[Symbol, top]?,
-        ?payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration?,
-        ?redirect_url: String?,
-        ?source_url: String?,
-        ?mode: :setup,
+        body: WhopSDK::Models::CheckoutConfigurationCreateParams::body,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        plan: WhopSDK::CheckoutConfigurationCreateParams::Plan,
-        affiliate_code: String?,
-        currency: WhopSDK::Models::currency?,
-        metadata: ::Hash[Symbol, top]?,
-        mode: :setup,
-        payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration?,
-        redirect_url: String?,
-        source_url: String?,
-        plan_id: String,
-        company_id: String,
+        body: WhopSDK::Models::CheckoutConfigurationCreateParams::body,
         request_options: WhopSDK::RequestOptions
       }
 
-      type plan =
-        {
-          company_id: String,
-          currency: WhopSDK::Models::currency,
-          application_fee_amount: Float?,
-          billing_period: Integer?,
-          custom_fields: ::Array[WhopSDK::CheckoutConfigurationCreateParams::Plan::CustomField]?,
-          description: String?,
-          expiration_days: Integer?,
-          force_create_new_plan: bool?,
-          image: WhopSDK::CheckoutConfigurationCreateParams::Plan::Image?,
-          initial_price: Float?,
-          internal_notes: String?,
-          override_tax_type: WhopSDK::Models::tax_type?,
-          payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Plan::PaymentMethodConfiguration?,
-          plan_type: WhopSDK::Models::plan_type?,
-          product: WhopSDK::CheckoutConfigurationCreateParams::Plan::Product?,
-          product_id: String?,
-          release_method: WhopSDK::Models::release_method?,
-          renewal_price: Float?,
-          split_pay_required_payments: Integer?,
-          stock: Integer?,
-          title: String?,
-          trial_period_days: Integer?,
-          visibility: WhopSDK::Models::visibility?
-        }
+      type body =
+        WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan
+        | WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID
+        | WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup
 
-      class Plan < WhopSDK::Internal::Type::BaseModel
-        attr_accessor company_id: String
+      module Body
+        extend WhopSDK::Internal::Type::Union
 
-        attr_accessor currency: WhopSDK::Models::currency
-
-        attr_accessor application_fee_amount: Float?
-
-        attr_accessor billing_period: Integer?
-
-        attr_accessor custom_fields: ::Array[WhopSDK::CheckoutConfigurationCreateParams::Plan::CustomField]?
-
-        attr_accessor description: String?
-
-        attr_accessor expiration_days: Integer?
-
-        attr_accessor force_create_new_plan: bool?
-
-        attr_accessor image: WhopSDK::CheckoutConfigurationCreateParams::Plan::Image?
-
-        attr_accessor initial_price: Float?
-
-        attr_accessor internal_notes: String?
-
-        attr_accessor override_tax_type: WhopSDK::Models::tax_type?
-
-        attr_accessor payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Plan::PaymentMethodConfiguration?
-
-        attr_accessor plan_type: WhopSDK::Models::plan_type?
-
-        attr_accessor product: WhopSDK::CheckoutConfigurationCreateParams::Plan::Product?
-
-        attr_accessor product_id: String?
-
-        attr_accessor release_method: WhopSDK::Models::release_method?
-
-        attr_accessor renewal_price: Float?
-
-        attr_accessor split_pay_required_payments: Integer?
-
-        attr_accessor stock: Integer?
-
-        attr_accessor title: String?
-
-        attr_accessor trial_period_days: Integer?
-
-        attr_accessor visibility: WhopSDK::Models::visibility?
-
-        def initialize: (
-          company_id: String,
-          currency: WhopSDK::Models::currency,
-          ?application_fee_amount: Float?,
-          ?billing_period: Integer?,
-          ?custom_fields: ::Array[WhopSDK::CheckoutConfigurationCreateParams::Plan::CustomField]?,
-          ?description: String?,
-          ?expiration_days: Integer?,
-          ?force_create_new_plan: bool?,
-          ?image: WhopSDK::CheckoutConfigurationCreateParams::Plan::Image?,
-          ?initial_price: Float?,
-          ?internal_notes: String?,
-          ?override_tax_type: WhopSDK::Models::tax_type?,
-          ?payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Plan::PaymentMethodConfiguration?,
-          ?plan_type: WhopSDK::Models::plan_type?,
-          ?product: WhopSDK::CheckoutConfigurationCreateParams::Plan::Product?,
-          ?product_id: String?,
-          ?release_method: WhopSDK::Models::release_method?,
-          ?renewal_price: Float?,
-          ?split_pay_required_payments: Integer?,
-          ?stock: Integer?,
-          ?title: String?,
-          ?trial_period_days: Integer?,
-          ?visibility: WhopSDK::Models::visibility?
-        ) -> void
-
-        def to_hash: -> {
-          company_id: String,
-          currency: WhopSDK::Models::currency,
-          application_fee_amount: Float?,
-          billing_period: Integer?,
-          custom_fields: ::Array[WhopSDK::CheckoutConfigurationCreateParams::Plan::CustomField]?,
-          description: String?,
-          expiration_days: Integer?,
-          force_create_new_plan: bool?,
-          image: WhopSDK::CheckoutConfigurationCreateParams::Plan::Image?,
-          initial_price: Float?,
-          internal_notes: String?,
-          override_tax_type: WhopSDK::Models::tax_type?,
-          payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Plan::PaymentMethodConfiguration?,
-          plan_type: WhopSDK::Models::plan_type?,
-          product: WhopSDK::CheckoutConfigurationCreateParams::Plan::Product?,
-          product_id: String?,
-          release_method: WhopSDK::Models::release_method?,
-          renewal_price: Float?,
-          split_pay_required_payments: Integer?,
-          stock: Integer?,
-          title: String?,
-          trial_period_days: Integer?,
-          visibility: WhopSDK::Models::visibility?
-        }
-
-        type custom_field =
+        type create_checkout_session_input_mode_payment_with_plan =
           {
-            field_type: :text,
-            name: String,
-            id: String?,
-            order: Integer?,
-            placeholder: String?,
-            required: bool?
+            plan: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan,
+            affiliate_code: String?,
+            currency: WhopSDK::Models::currency?,
+            metadata: ::Hash[Symbol, top]?,
+            mode: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::mode,
+            payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::PaymentMethodConfiguration?,
+            redirect_url: String?,
+            source_url: String?
           }
 
-        class CustomField < WhopSDK::Internal::Type::BaseModel
-          attr_accessor field_type: :text
+        class CreateCheckoutSessionInputModePaymentWithPlan < WhopSDK::Internal::Type::BaseModel
+          attr_accessor plan: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan
 
-          attr_accessor name: String
+          attr_accessor affiliate_code: String?
 
-          attr_accessor id: String?
+          attr_accessor currency: WhopSDK::Models::currency?
 
-          attr_accessor order: Integer?
+          attr_accessor metadata: ::Hash[Symbol, top]?
 
-          attr_accessor placeholder: String?
+          attr_reader mode: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::mode?
 
-          attr_accessor required: bool?
+          def mode=: (
+            WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::mode
+          ) -> WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::mode
+
+          attr_accessor payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::PaymentMethodConfiguration?
+
+          attr_accessor redirect_url: String?
+
+          attr_accessor source_url: String?
 
           def initialize: (
-            name: String,
-            ?id: String?,
-            ?order: Integer?,
-            ?placeholder: String?,
-            ?required: bool?,
-            ?field_type: :text
+            plan: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan,
+            ?affiliate_code: String?,
+            ?currency: WhopSDK::Models::currency?,
+            ?metadata: ::Hash[Symbol, top]?,
+            ?mode: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::mode,
+            ?payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::PaymentMethodConfiguration?,
+            ?redirect_url: String?,
+            ?source_url: String?
           ) -> void
 
           def to_hash: -> {
-            field_type: :text,
-            name: String,
-            id: String?,
-            order: Integer?,
-            placeholder: String?,
-            required: bool?
+            plan: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan,
+            affiliate_code: String?,
+            currency: WhopSDK::Models::currency?,
+            metadata: ::Hash[Symbol, top]?,
+            mode: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::mode,
+            payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::PaymentMethodConfiguration?,
+            redirect_url: String?,
+            source_url: String?
           }
+
+          type plan =
+            {
+              company_id: String,
+              currency: WhopSDK::Models::currency,
+              application_fee_amount: Float?,
+              billing_period: Integer?,
+              custom_fields: ::Array[WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::CustomField]?,
+              description: String?,
+              expiration_days: Integer?,
+              force_create_new_plan: bool?,
+              image: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::Image?,
+              initial_price: Float?,
+              internal_notes: String?,
+              override_tax_type: WhopSDK::Models::tax_type?,
+              payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::PaymentMethodConfiguration?,
+              plan_type: WhopSDK::Models::plan_type?,
+              product: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::Product?,
+              product_id: String?,
+              release_method: WhopSDK::Models::release_method?,
+              renewal_price: Float?,
+              split_pay_required_payments: Integer?,
+              stock: Integer?,
+              title: String?,
+              trial_period_days: Integer?,
+              visibility: WhopSDK::Models::visibility?
+            }
+
+          class Plan < WhopSDK::Internal::Type::BaseModel
+            attr_accessor company_id: String
+
+            attr_accessor currency: WhopSDK::Models::currency
+
+            attr_accessor application_fee_amount: Float?
+
+            attr_accessor billing_period: Integer?
+
+            attr_accessor custom_fields: ::Array[WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::CustomField]?
+
+            attr_accessor description: String?
+
+            attr_accessor expiration_days: Integer?
+
+            attr_accessor force_create_new_plan: bool?
+
+            attr_accessor image: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::Image?
+
+            attr_accessor initial_price: Float?
+
+            attr_accessor internal_notes: String?
+
+            attr_accessor override_tax_type: WhopSDK::Models::tax_type?
+
+            attr_accessor payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::PaymentMethodConfiguration?
+
+            attr_accessor plan_type: WhopSDK::Models::plan_type?
+
+            attr_accessor product: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::Product?
+
+            attr_accessor product_id: String?
+
+            attr_accessor release_method: WhopSDK::Models::release_method?
+
+            attr_accessor renewal_price: Float?
+
+            attr_accessor split_pay_required_payments: Integer?
+
+            attr_accessor stock: Integer?
+
+            attr_accessor title: String?
+
+            attr_accessor trial_period_days: Integer?
+
+            attr_accessor visibility: WhopSDK::Models::visibility?
+
+            def initialize: (
+              company_id: String,
+              currency: WhopSDK::Models::currency,
+              ?application_fee_amount: Float?,
+              ?billing_period: Integer?,
+              ?custom_fields: ::Array[WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::CustomField]?,
+              ?description: String?,
+              ?expiration_days: Integer?,
+              ?force_create_new_plan: bool?,
+              ?image: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::Image?,
+              ?initial_price: Float?,
+              ?internal_notes: String?,
+              ?override_tax_type: WhopSDK::Models::tax_type?,
+              ?payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::PaymentMethodConfiguration?,
+              ?plan_type: WhopSDK::Models::plan_type?,
+              ?product: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::Product?,
+              ?product_id: String?,
+              ?release_method: WhopSDK::Models::release_method?,
+              ?renewal_price: Float?,
+              ?split_pay_required_payments: Integer?,
+              ?stock: Integer?,
+              ?title: String?,
+              ?trial_period_days: Integer?,
+              ?visibility: WhopSDK::Models::visibility?
+            ) -> void
+
+            def to_hash: -> {
+              company_id: String,
+              currency: WhopSDK::Models::currency,
+              application_fee_amount: Float?,
+              billing_period: Integer?,
+              custom_fields: ::Array[WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::CustomField]?,
+              description: String?,
+              expiration_days: Integer?,
+              force_create_new_plan: bool?,
+              image: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::Image?,
+              initial_price: Float?,
+              internal_notes: String?,
+              override_tax_type: WhopSDK::Models::tax_type?,
+              payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::PaymentMethodConfiguration?,
+              plan_type: WhopSDK::Models::plan_type?,
+              product: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::Product?,
+              product_id: String?,
+              release_method: WhopSDK::Models::release_method?,
+              renewal_price: Float?,
+              split_pay_required_payments: Integer?,
+              stock: Integer?,
+              title: String?,
+              trial_period_days: Integer?,
+              visibility: WhopSDK::Models::visibility?
+            }
+
+            type custom_field =
+              {
+                field_type: :text,
+                name: String,
+                id: String?,
+                order: Integer?,
+                placeholder: String?,
+                required: bool?
+              }
+
+            class CustomField < WhopSDK::Internal::Type::BaseModel
+              attr_accessor field_type: :text
+
+              attr_accessor name: String
+
+              attr_accessor id: String?
+
+              attr_accessor order: Integer?
+
+              attr_accessor placeholder: String?
+
+              attr_accessor required: bool?
+
+              def initialize: (
+                name: String,
+                ?id: String?,
+                ?order: Integer?,
+                ?placeholder: String?,
+                ?required: bool?,
+                ?field_type: :text
+              ) -> void
+
+              def to_hash: -> {
+                field_type: :text,
+                name: String,
+                id: String?,
+                order: Integer?,
+                placeholder: String?,
+                required: bool?
+              }
+            end
+
+            type image = { id: String }
+
+            class Image < WhopSDK::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              def initialize: (id: String) -> void
+
+              def to_hash: -> { id: String }
+            end
+
+            type payment_method_configuration =
+              {
+                disabled: ::Array[WhopSDK::Models::payment_method_types],
+                enabled: ::Array[WhopSDK::Models::payment_method_types],
+                include_platform_defaults: bool
+              }
+
+            class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+              attr_accessor disabled: ::Array[WhopSDK::Models::payment_method_types]
+
+              attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
+
+              attr_accessor include_platform_defaults: bool
+
+              def initialize: (
+                disabled: ::Array[WhopSDK::Models::payment_method_types],
+                enabled: ::Array[WhopSDK::Models::payment_method_types],
+                include_platform_defaults: bool
+              ) -> void
+
+              def to_hash: -> {
+                disabled: ::Array[WhopSDK::Models::payment_method_types],
+                enabled: ::Array[WhopSDK::Models::payment_method_types],
+                include_platform_defaults: bool
+              }
+            end
+
+            type product =
+              {
+                external_identifier: String,
+                title: String,
+                collect_shipping_address: bool?,
+                custom_statement_descriptor: String?,
+                description: String?,
+                global_affiliate_percentage: Float?,
+                global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
+                headline: String?,
+                product_tax_code_id: String?,
+                redirect_purchase_url: String?,
+                route: String?,
+                visibility: WhopSDK::Models::visibility?
+              }
+
+            class Product < WhopSDK::Internal::Type::BaseModel
+              attr_accessor external_identifier: String
+
+              attr_accessor title: String
+
+              attr_accessor collect_shipping_address: bool?
+
+              attr_accessor custom_statement_descriptor: String?
+
+              attr_accessor description: String?
+
+              attr_accessor global_affiliate_percentage: Float?
+
+              attr_accessor global_affiliate_status: WhopSDK::Models::global_affiliate_status?
+
+              attr_accessor headline: String?
+
+              attr_accessor product_tax_code_id: String?
+
+              attr_accessor redirect_purchase_url: String?
+
+              attr_accessor route: String?
+
+              attr_accessor visibility: WhopSDK::Models::visibility?
+
+              def initialize: (
+                external_identifier: String,
+                title: String,
+                ?collect_shipping_address: bool?,
+                ?custom_statement_descriptor: String?,
+                ?description: String?,
+                ?global_affiliate_percentage: Float?,
+                ?global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
+                ?headline: String?,
+                ?product_tax_code_id: String?,
+                ?redirect_purchase_url: String?,
+                ?route: String?,
+                ?visibility: WhopSDK::Models::visibility?
+              ) -> void
+
+              def to_hash: -> {
+                external_identifier: String,
+                title: String,
+                collect_shipping_address: bool?,
+                custom_statement_descriptor: String?,
+                description: String?,
+                global_affiliate_percentage: Float?,
+                global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
+                headline: String?,
+                product_tax_code_id: String?,
+                redirect_purchase_url: String?,
+                route: String?,
+                visibility: WhopSDK::Models::visibility?
+              }
+            end
+          end
+
+          type mode = :payment
+
+          module Mode
+            extend WhopSDK::Internal::Type::Enum
+
+            PAYMENT: :payment
+
+            def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::mode]
+          end
+
+          type payment_method_configuration =
+            {
+              disabled: ::Array[WhopSDK::Models::payment_method_types],
+              enabled: ::Array[WhopSDK::Models::payment_method_types],
+              include_platform_defaults: bool
+            }
+
+          class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+            attr_accessor disabled: ::Array[WhopSDK::Models::payment_method_types]
+
+            attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
+
+            attr_accessor include_platform_defaults: bool
+
+            def initialize: (
+              disabled: ::Array[WhopSDK::Models::payment_method_types],
+              enabled: ::Array[WhopSDK::Models::payment_method_types],
+              include_platform_defaults: bool
+            ) -> void
+
+            def to_hash: -> {
+              disabled: ::Array[WhopSDK::Models::payment_method_types],
+              enabled: ::Array[WhopSDK::Models::payment_method_types],
+              include_platform_defaults: bool
+            }
+          end
         end
 
-        type image = { id: String }
-
-        class Image < WhopSDK::Internal::Type::BaseModel
-          attr_accessor id: String
-
-          def initialize: (id: String) -> void
-
-          def to_hash: -> { id: String }
-        end
-
-        type payment_method_configuration =
+        type create_checkout_session_input_mode_payment_with_plan_id =
           {
-            disabled: ::Array[WhopSDK::Models::payment_method_types],
-            enabled: ::Array[WhopSDK::Models::payment_method_types],
-            include_platform_defaults: bool
+            plan_id: String,
+            affiliate_code: String?,
+            currency: WhopSDK::Models::currency?,
+            metadata: ::Hash[Symbol, top]?,
+            mode: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::mode,
+            payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::PaymentMethodConfiguration?,
+            redirect_url: String?,
+            source_url: String?
           }
 
-        class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
-          attr_accessor disabled: ::Array[WhopSDK::Models::payment_method_types]
+        class CreateCheckoutSessionInputModePaymentWithPlanID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor plan_id: String
 
-          attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
+          attr_accessor affiliate_code: String?
 
-          attr_accessor include_platform_defaults: bool
+          attr_accessor currency: WhopSDK::Models::currency?
+
+          attr_accessor metadata: ::Hash[Symbol, top]?
+
+          attr_reader mode: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::mode?
+
+          def mode=: (
+            WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::mode
+          ) -> WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::mode
+
+          attr_accessor payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::PaymentMethodConfiguration?
+
+          attr_accessor redirect_url: String?
+
+          attr_accessor source_url: String?
 
           def initialize: (
-            disabled: ::Array[WhopSDK::Models::payment_method_types],
-            enabled: ::Array[WhopSDK::Models::payment_method_types],
-            include_platform_defaults: bool
+            plan_id: String,
+            ?affiliate_code: String?,
+            ?currency: WhopSDK::Models::currency?,
+            ?metadata: ::Hash[Symbol, top]?,
+            ?mode: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::mode,
+            ?payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::PaymentMethodConfiguration?,
+            ?redirect_url: String?,
+            ?source_url: String?
           ) -> void
 
           def to_hash: -> {
-            disabled: ::Array[WhopSDK::Models::payment_method_types],
-            enabled: ::Array[WhopSDK::Models::payment_method_types],
-            include_platform_defaults: bool
+            plan_id: String,
+            affiliate_code: String?,
+            currency: WhopSDK::Models::currency?,
+            metadata: ::Hash[Symbol, top]?,
+            mode: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::mode,
+            payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::PaymentMethodConfiguration?,
+            redirect_url: String?,
+            source_url: String?
           }
+
+          type mode = :payment
+
+          module Mode
+            extend WhopSDK::Internal::Type::Enum
+
+            PAYMENT: :payment
+
+            def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::mode]
+          end
+
+          type payment_method_configuration =
+            {
+              disabled: ::Array[WhopSDK::Models::payment_method_types],
+              enabled: ::Array[WhopSDK::Models::payment_method_types],
+              include_platform_defaults: bool
+            }
+
+          class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+            attr_accessor disabled: ::Array[WhopSDK::Models::payment_method_types]
+
+            attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
+
+            attr_accessor include_platform_defaults: bool
+
+            def initialize: (
+              disabled: ::Array[WhopSDK::Models::payment_method_types],
+              enabled: ::Array[WhopSDK::Models::payment_method_types],
+              include_platform_defaults: bool
+            ) -> void
+
+            def to_hash: -> {
+              disabled: ::Array[WhopSDK::Models::payment_method_types],
+              enabled: ::Array[WhopSDK::Models::payment_method_types],
+              include_platform_defaults: bool
+            }
+          end
         end
 
-        type product =
+        type create_checkout_session_input_mode_setup =
           {
-            external_identifier: String,
-            title: String,
-            collect_shipping_address: bool?,
-            custom_statement_descriptor: String?,
-            description: String?,
-            global_affiliate_percentage: Float?,
-            global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
-            headline: String?,
-            product_tax_code_id: String?,
-            redirect_purchase_url: String?,
-            route: String?,
-            visibility: WhopSDK::Models::visibility?
+            company_id: String,
+            mode: :setup,
+            currency: WhopSDK::Models::currency?,
+            metadata: ::Hash[Symbol, top]?,
+            payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::PaymentMethodConfiguration?,
+            redirect_url: String?,
+            source_url: String?
           }
 
-        class Product < WhopSDK::Internal::Type::BaseModel
-          attr_accessor external_identifier: String
+        class CreateCheckoutSessionInputModeSetup < WhopSDK::Internal::Type::BaseModel
+          attr_accessor company_id: String
 
-          attr_accessor title: String
+          attr_accessor mode: :setup
 
-          attr_accessor collect_shipping_address: bool?
+          attr_accessor currency: WhopSDK::Models::currency?
 
-          attr_accessor custom_statement_descriptor: String?
+          attr_accessor metadata: ::Hash[Symbol, top]?
 
-          attr_accessor description: String?
+          attr_accessor payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::PaymentMethodConfiguration?
 
-          attr_accessor global_affiliate_percentage: Float?
+          attr_accessor redirect_url: String?
 
-          attr_accessor global_affiliate_status: WhopSDK::Models::global_affiliate_status?
-
-          attr_accessor headline: String?
-
-          attr_accessor product_tax_code_id: String?
-
-          attr_accessor redirect_purchase_url: String?
-
-          attr_accessor route: String?
-
-          attr_accessor visibility: WhopSDK::Models::visibility?
+          attr_accessor source_url: String?
 
           def initialize: (
-            external_identifier: String,
-            title: String,
-            ?collect_shipping_address: bool?,
-            ?custom_statement_descriptor: String?,
-            ?description: String?,
-            ?global_affiliate_percentage: Float?,
-            ?global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
-            ?headline: String?,
-            ?product_tax_code_id: String?,
-            ?redirect_purchase_url: String?,
-            ?route: String?,
-            ?visibility: WhopSDK::Models::visibility?
+            company_id: String,
+            ?currency: WhopSDK::Models::currency?,
+            ?metadata: ::Hash[Symbol, top]?,
+            ?payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::PaymentMethodConfiguration?,
+            ?redirect_url: String?,
+            ?source_url: String?,
+            ?mode: :setup
           ) -> void
 
           def to_hash: -> {
-            external_identifier: String,
-            title: String,
-            collect_shipping_address: bool?,
-            custom_statement_descriptor: String?,
-            description: String?,
-            global_affiliate_percentage: Float?,
-            global_affiliate_status: WhopSDK::Models::global_affiliate_status?,
-            headline: String?,
-            product_tax_code_id: String?,
-            redirect_purchase_url: String?,
-            route: String?,
-            visibility: WhopSDK::Models::visibility?
+            company_id: String,
+            mode: :setup,
+            currency: WhopSDK::Models::currency?,
+            metadata: ::Hash[Symbol, top]?,
+            payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::PaymentMethodConfiguration?,
+            redirect_url: String?,
+            source_url: String?
           }
+
+          type payment_method_configuration =
+            {
+              disabled: ::Array[WhopSDK::Models::payment_method_types],
+              enabled: ::Array[WhopSDK::Models::payment_method_types],
+              include_platform_defaults: bool
+            }
+
+          class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+            attr_accessor disabled: ::Array[WhopSDK::Models::payment_method_types]
+
+            attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
+
+            attr_accessor include_platform_defaults: bool
+
+            def initialize: (
+              disabled: ::Array[WhopSDK::Models::payment_method_types],
+              enabled: ::Array[WhopSDK::Models::payment_method_types],
+              include_platform_defaults: bool
+            ) -> void
+
+            def to_hash: -> {
+              disabled: ::Array[WhopSDK::Models::payment_method_types],
+              enabled: ::Array[WhopSDK::Models::payment_method_types],
+              include_platform_defaults: bool
+            }
+          end
         end
-      end
 
-      type payment_method_configuration =
-        {
-          disabled: ::Array[WhopSDK::Models::payment_method_types],
-          enabled: ::Array[WhopSDK::Models::payment_method_types],
-          include_platform_defaults: bool
-        }
-
-      class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
-        attr_accessor disabled: ::Array[WhopSDK::Models::payment_method_types]
-
-        attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
-
-        attr_accessor include_platform_defaults: bool
-
-        def initialize: (
-          disabled: ::Array[WhopSDK::Models::payment_method_types],
-          enabled: ::Array[WhopSDK::Models::payment_method_types],
-          include_platform_defaults: bool
-        ) -> void
-
-        def to_hash: -> {
-          disabled: ::Array[WhopSDK::Models::payment_method_types],
-          enabled: ::Array[WhopSDK::Models::payment_method_types],
-          include_platform_defaults: bool
-        }
+        def self?.variants: -> ::Array[WhopSDK::Models::CheckoutConfigurationCreateParams::body]
       end
     end
   end

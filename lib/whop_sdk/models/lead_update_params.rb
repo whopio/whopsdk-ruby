@@ -7,6 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute metadata
       #   A JSON object of custom metadata to set on the lead, replacing any existing
       #   metadata.
@@ -20,9 +25,11 @@ module WhopSDK
       #   @return [String, nil]
       optional :referrer, String, nil?: true
 
-      # @!method initialize(metadata: nil, referrer: nil, request_options: {})
+      # @!method initialize(id:, metadata: nil, referrer: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::LeadUpdateParams} for more details.
+      #
+      #   @param id [String]
       #
       #   @param metadata [Hash{Symbol=>Object}, nil] A JSON object of custom metadata to set on the lead, replacing any existing meta
       #

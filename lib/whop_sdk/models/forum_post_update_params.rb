@@ -7,6 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute attachments
       #   A replacement list of file attachments for this post, such as images or videos.
       #
@@ -43,9 +48,11 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::ForumPostVisibilityType, nil]
       optional :visibility, enum: -> { WhopSDK::ForumPostVisibilityType }, nil?: true
 
-      # @!method initialize(attachments: nil, content: nil, is_pinned: nil, title: nil, visibility: nil, request_options: {})
+      # @!method initialize(id:, attachments: nil, content: nil, is_pinned: nil, title: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ForumPostUpdateParams} for more details.
+      #
+      #   @param id [String]
       #
       #   @param attachments [Array<WhopSDK::Models::ForumPostUpdateParams::Attachment>, nil] A replacement list of file attachments for this post, such as images or videos.
       #

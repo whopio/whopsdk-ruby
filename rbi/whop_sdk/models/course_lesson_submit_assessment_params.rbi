@@ -14,6 +14,9 @@ module WhopSDK
           )
         end
 
+      sig { returns(String) }
+      attr_accessor :lesson_id
+
       # The list of answers to submit for each assessment question.
       sig do
         returns(T::Array[WhopSDK::CourseLessonSubmitAssessmentParams::Answer])
@@ -22,6 +25,7 @@ module WhopSDK
 
       sig do
         params(
+          lesson_id: String,
           answers:
             T::Array[
               WhopSDK::CourseLessonSubmitAssessmentParams::Answer::OrHash
@@ -30,6 +34,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        lesson_id:,
         # The list of answers to submit for each assessment question.
         answers:,
         request_options: {}
@@ -39,6 +44,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            lesson_id: String,
             answers:
               T::Array[WhopSDK::CourseLessonSubmitAssessmentParams::Answer],
             request_options: WhopSDK::RequestOptions

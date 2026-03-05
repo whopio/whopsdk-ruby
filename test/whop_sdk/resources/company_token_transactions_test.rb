@@ -8,11 +8,13 @@ class WhopSDK::Test::Resources::CompanyTokenTransactionsTest < WhopSDK::Test::Re
 
     response =
       @whop.company_token_transactions.create(
-        amount: 6.9,
-        company_id: "biz_xxxxxxxxxxxxxx",
-        destination_user_id: "destination_user_id",
-        transaction_type: :transfer,
-        user_id: "user_xxxxxxxxxxxxx"
+        body: {
+          amount: 6.9,
+          company_id: "biz_xxxxxxxxxxxxxx",
+          destination_user_id: "destination_user_id",
+          transaction_type: :transfer,
+          user_id: "user_xxxxxxxxxxxxx"
+        }
       )
 
     assert_pattern do

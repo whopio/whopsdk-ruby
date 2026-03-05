@@ -7,6 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute lesson_id
+      #
+      #   @return [String]
+      required :lesson_id, String
+
       # @!attribute answers
       #   The list of answers to submit for each assessment question.
       #
@@ -14,7 +19,9 @@ module WhopSDK
       required :answers,
                -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::CourseLessonSubmitAssessmentParams::Answer] }
 
-      # @!method initialize(answers:, request_options: {})
+      # @!method initialize(lesson_id:, answers:, request_options: {})
+      #   @param lesson_id [String]
+      #
       #   @param answers [Array<WhopSDK::Models::CourseLessonSubmitAssessmentParams::Answer>] The list of answers to submit for each assessment question.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]

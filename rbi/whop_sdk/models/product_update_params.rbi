@@ -11,6 +11,9 @@ module WhopSDK
           T.any(WhopSDK::ProductUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # Whether the checkout flow collects a shipping address from the customer.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :collect_shipping_address
@@ -96,6 +99,7 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           collect_shipping_address: T.nilable(T::Boolean),
           custom_cta: T.nilable(WhopSDK::CustomCta::OrSymbol),
           custom_cta_url: T.nilable(String),
@@ -123,6 +127,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # Whether the checkout flow collects a shipping address from the customer.
         collect_shipping_address: nil,
         # The different types of custom CTAs that can be selected.
@@ -169,6 +174,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             collect_shipping_address: T.nilable(T::Boolean),
             custom_cta: T.nilable(WhopSDK::CustomCta::OrSymbol),
             custom_cta_url: T.nilable(String),

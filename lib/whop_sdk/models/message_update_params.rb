@@ -7,6 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute attachments
       #   A replacement list of file attachments for this message, such as images or
       #   videos.
@@ -29,9 +34,11 @@ module WhopSDK
       #   @return [Boolean, nil]
       optional :is_pinned, WhopSDK::Internal::Type::Boolean, nil?: true
 
-      # @!method initialize(attachments: nil, content: nil, is_pinned: nil, request_options: {})
+      # @!method initialize(id:, attachments: nil, content: nil, is_pinned: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::MessageUpdateParams} for more details.
+      #
+      #   @param id [String]
       #
       #   @param attachments [Array<WhopSDK::Models::MessageUpdateParams::Attachment>, nil] A replacement list of file attachments for this message, such as images or video
       #

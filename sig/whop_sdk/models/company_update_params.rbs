@@ -2,6 +2,7 @@ module WhopSDK
   module Models
     type company_update_params =
       {
+        id: String,
         banner_image: WhopSDK::CompanyUpdateParams::BannerImage?,
         description: String?,
         logo: WhopSDK::CompanyUpdateParams::Logo?,
@@ -15,6 +16,8 @@ module WhopSDK
     class CompanyUpdateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
 
       attr_accessor banner_image: WhopSDK::CompanyUpdateParams::BannerImage?
 
@@ -31,6 +34,7 @@ module WhopSDK
       attr_accessor title: String?
 
       def initialize: (
+        id: String,
         ?banner_image: WhopSDK::CompanyUpdateParams::BannerImage?,
         ?description: String?,
         ?logo: WhopSDK::CompanyUpdateParams::Logo?,
@@ -42,6 +46,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
+        id: String,
         banner_image: WhopSDK::CompanyUpdateParams::BannerImage?,
         description: String?,
         logo: WhopSDK::CompanyUpdateParams::Logo?,

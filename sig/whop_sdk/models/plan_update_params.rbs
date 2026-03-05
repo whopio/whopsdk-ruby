@@ -2,6 +2,7 @@ module WhopSDK
   module Models
     type plan_update_params =
       {
+        id: String,
         billing_period: Integer?,
         currency: WhopSDK::Models::currency?,
         custom_fields: ::Array[WhopSDK::PlanUpdateParams::CustomField]?,
@@ -28,6 +29,8 @@ module WhopSDK
     class PlanUpdateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
 
       attr_accessor billing_period: Integer?
 
@@ -70,6 +73,7 @@ module WhopSDK
       attr_accessor visibility: WhopSDK::Models::visibility?
 
       def initialize: (
+        id: String,
         ?billing_period: Integer?,
         ?currency: WhopSDK::Models::currency?,
         ?custom_fields: ::Array[WhopSDK::PlanUpdateParams::CustomField]?,
@@ -94,6 +98,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
+        id: String,
         billing_period: Integer?,
         currency: WhopSDK::Models::currency?,
         custom_fields: ::Array[WhopSDK::PlanUpdateParams::CustomField]?,

@@ -11,6 +11,9 @@ module WhopSDK
           T.any(WhopSDK::LeadUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # A JSON object of custom metadata to set on the lead, replacing any existing
       # metadata.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
@@ -22,12 +25,14 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
           referrer: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # A JSON object of custom metadata to set on the lead, replacing any existing
         # metadata.
         metadata: nil,
@@ -40,6 +45,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             metadata: T.nilable(T::Hash[Symbol, T.anything]),
             referrer: T.nilable(String),
             request_options: WhopSDK::RequestOptions

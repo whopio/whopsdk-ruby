@@ -11,6 +11,9 @@ module WhopSDK
           T.any(WhopSDK::WebhookUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # The different API versions
       sig { returns(T.nilable(WhopSDK::APIVersion::OrSymbol)) }
       attr_accessor :api_version
@@ -33,6 +36,7 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           api_version: T.nilable(WhopSDK::APIVersion::OrSymbol),
           child_resource_events: T.nilable(T::Boolean),
           enabled: T.nilable(T::Boolean),
@@ -42,6 +46,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # The different API versions
         api_version: nil,
         # Whether or not to send events for child resources.
@@ -59,6 +64,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             api_version: T.nilable(WhopSDK::APIVersion::OrSymbol),
             child_resource_events: T.nilable(T::Boolean),
             enabled: T.nilable(T::Boolean),

@@ -2,6 +2,7 @@ module WhopSDK
   module Models
     type dm_member_update_params =
       {
+        id: String,
         notification_preference: WhopSDK::Models::dm_feed_member_notification_preferences?,
         status: WhopSDK::Models::dm_feed_member_statuses?
       }
@@ -11,17 +12,21 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      attr_accessor id: String
+
       attr_accessor notification_preference: WhopSDK::Models::dm_feed_member_notification_preferences?
 
       attr_accessor status: WhopSDK::Models::dm_feed_member_statuses?
 
       def initialize: (
+        id: String,
         ?notification_preference: WhopSDK::Models::dm_feed_member_notification_preferences?,
         ?status: WhopSDK::Models::dm_feed_member_statuses?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
+        id: String,
         notification_preference: WhopSDK::Models::dm_feed_member_notification_preferences?,
         status: WhopSDK::Models::dm_feed_member_statuses?,
         request_options: WhopSDK::RequestOptions

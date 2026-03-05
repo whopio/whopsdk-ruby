@@ -7,6 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute app_store_description
       #   The detailed description shown on the app store's in-depth app view page.
       #
@@ -90,9 +95,11 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::AppStatuses, nil]
       optional :status, enum: -> { WhopSDK::AppStatuses }, nil?: true
 
-      # @!method initialize(app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, oauth_client_type: nil, redirect_uris: nil, required_scopes: nil, status: nil, request_options: {})
+      # @!method initialize(id:, app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, oauth_client_type: nil, redirect_uris: nil, required_scopes: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AppUpdateParams} for more details.
+      #
+      #   @param id [String]
       #
       #   @param app_store_description [String, nil] The detailed description shown on the app store's in-depth app view page.
       #

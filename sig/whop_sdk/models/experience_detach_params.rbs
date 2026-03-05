@@ -1,20 +1,25 @@
 module WhopSDK
   module Models
     type experience_detach_params =
-      { product_id: String } & WhopSDK::Internal::Type::request_parameters
+      { id: String, product_id: String }
+      & WhopSDK::Internal::Type::request_parameters
 
     class ExperienceDetachParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      attr_accessor id: String
+
       attr_accessor product_id: String
 
       def initialize: (
+        id: String,
         product_id: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
+        id: String,
         product_id: String,
         request_options: WhopSDK::RequestOptions
       }

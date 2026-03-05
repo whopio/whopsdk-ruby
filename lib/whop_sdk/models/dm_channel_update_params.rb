@@ -7,15 +7,22 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute custom_name
       #   A new custom display name for the DM channel. For example, 'Project Discussion'.
       #
       #   @return [String, nil]
       optional :custom_name, String, nil?: true
 
-      # @!method initialize(custom_name: nil, request_options: {})
+      # @!method initialize(id:, custom_name: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::DmChannelUpdateParams} for more details.
+      #
+      #   @param id [String]
       #
       #   @param custom_name [String, nil] A new custom display name for the DM channel. For example, 'Project Discussion'.
       #

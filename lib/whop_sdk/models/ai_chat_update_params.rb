@@ -7,6 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute current_company_id
       #   The unique identifier of the company to set as context for the AI chat (e.g.,
       #   "biz_XXXXX").
@@ -20,9 +25,11 @@ module WhopSDK
       #   @return [String, nil]
       optional :title, String, nil?: true
 
-      # @!method initialize(current_company_id: nil, title: nil, request_options: {})
+      # @!method initialize(id:, current_company_id: nil, title: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AIChatUpdateParams} for more details.
+      #
+      #   @param id [String]
       #
       #   @param current_company_id [String, nil] The unique identifier of the company to set as context for the AI chat (e.g., "b
       #

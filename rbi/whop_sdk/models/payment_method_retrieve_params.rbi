@@ -14,6 +14,9 @@ module WhopSDK
           )
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # The unique identifier of the company. Provide either this or member_id, not
       # both.
       sig { returns(T.nilable(String)) }
@@ -26,12 +29,14 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           company_id: T.nilable(String),
           member_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # The unique identifier of the company. Provide either this or member_id, not
         # both.
         company_id: nil,
@@ -45,6 +50,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             company_id: T.nilable(String),
             member_id: T.nilable(String),
             request_options: WhopSDK::RequestOptions

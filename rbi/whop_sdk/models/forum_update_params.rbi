@@ -11,6 +11,9 @@ module WhopSDK
           T.any(WhopSDK::ForumUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # The banner image displayed at the top of the forum page. Pass null to remove the
       # existing banner.
       sig { returns(T.nilable(WhopSDK::ForumUpdateParams::BannerImage)) }
@@ -40,6 +43,7 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           banner_image:
             T.nilable(WhopSDK::ForumUpdateParams::BannerImage::OrHash),
           email_notification_preference:
@@ -50,6 +54,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # The banner image displayed at the top of the forum page. Pass null to remove the
         # existing banner.
         banner_image: nil,
@@ -66,6 +71,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             banner_image: T.nilable(WhopSDK::ForumUpdateParams::BannerImage),
             email_notification_preference:
               T.nilable(WhopSDK::EmailNotificationPreferences::OrSymbol),

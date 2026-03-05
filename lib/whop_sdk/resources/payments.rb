@@ -4,9 +4,6 @@ module WhopSDK
   module Resources
     # Payments
     class Payments
-      # Some parameter documentations has been truncated, see
-      # {WhopSDK::Models::PaymentCreateParams} for more details.
-      #
       # Charge an existing member off-session using one of their stored payment methods.
       # You can provide an existing plan, or create a new one in-line. This endpoint
       # will respond with a payment object immediately, but the payment is processed
@@ -28,19 +25,9 @@ module WhopSDK
       # - `payment:dispute:read`
       # - `payment:resolution_center_case:read`
       #
-      # @overload create(company_id:, member_id:, payment_method_id:, plan:, plan_id:, metadata: nil, request_options: {})
+      # @overload create(body:, request_options: {})
       #
-      # @param company_id [String] The ID of the company to create the payment for.
-      #
-      # @param member_id [String] The ID of the member to create the payment for.
-      #
-      # @param payment_method_id [String] The ID of the payment method to use for the payment. It must be connected to the
-      #
-      # @param plan [WhopSDK::Models::PaymentCreateParams::Plan] Pass this object to create a new plan for this payment
-      #
-      # @param plan_id [String] An ID of an existing plan to use for the payment.
-      #
-      # @param metadata [Hash{Symbol=>Object}, nil] Custom metadata to attach to the payment.
+      # @param body [WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlan, WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlanID] Parameters for CreatePayment
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -52,7 +39,7 @@ module WhopSDK
         @client.request(
           method: :post,
           path: "payments",
-          body: parsed,
+          body: parsed[:body],
           model: WhopSDK::Payment,
           options: options
         )

@@ -7,6 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute access_activity_log
       #   An IP access activity log showing the customer used the service.
       #
@@ -100,9 +105,11 @@ module WhopSDK
                -> { WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment },
                nil?: true
 
-      # @!method initialize(access_activity_log: nil, billing_address: nil, cancellation_policy_attachment: nil, cancellation_policy_disclosure: nil, customer_communication_attachment: nil, customer_email_address: nil, customer_name: nil, notes: nil, product_description: nil, refund_policy_attachment: nil, refund_policy_disclosure: nil, refund_refusal_explanation: nil, service_date: nil, uncategorized_attachment: nil, request_options: {})
+      # @!method initialize(id:, access_activity_log: nil, billing_address: nil, cancellation_policy_attachment: nil, cancellation_policy_disclosure: nil, customer_communication_attachment: nil, customer_email_address: nil, customer_name: nil, notes: nil, product_description: nil, refund_policy_attachment: nil, refund_policy_disclosure: nil, refund_refusal_explanation: nil, service_date: nil, uncategorized_attachment: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::DisputeUpdateEvidenceParams} for more details.
+      #
+      #   @param id [String]
       #
       #   @param access_activity_log [String, nil] An IP access activity log showing the customer used the service.
       #

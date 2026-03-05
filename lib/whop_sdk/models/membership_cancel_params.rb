@@ -7,13 +7,20 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute cancellation_mode
       #   The mode of cancellation for a membership
       #
       #   @return [Symbol, WhopSDK::Models::MembershipCancelParams::CancellationMode, nil]
       optional :cancellation_mode, enum: -> { WhopSDK::MembershipCancelParams::CancellationMode }, nil?: true
 
-      # @!method initialize(cancellation_mode: nil, request_options: {})
+      # @!method initialize(id:, cancellation_mode: nil, request_options: {})
+      #   @param id [String]
+      #
       #   @param cancellation_mode [Symbol, WhopSDK::Models::MembershipCancelParams::CancellationMode, nil] The mode of cancellation for a membership
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]

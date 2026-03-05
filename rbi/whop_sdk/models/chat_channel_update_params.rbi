@@ -11,6 +11,9 @@ module WhopSDK
           T.any(WhopSDK::ChatChannelUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # Whether media uploads such as images and videos are banned in this chat channel.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :ban_media
@@ -39,6 +42,7 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           ban_media: T.nilable(T::Boolean),
           ban_urls: T.nilable(T::Boolean),
           banned_words: T.nilable(T::Array[String]),
@@ -49,6 +53,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # Whether media uploads such as images and videos are banned in this chat channel.
         ban_media: nil,
         # Whether URLs and links are banned from being posted in this chat channel.
@@ -70,6 +75,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             ban_media: T.nilable(T::Boolean),
             ban_urls: T.nilable(T::Boolean),
             banned_words: T.nilable(T::Array[String]),

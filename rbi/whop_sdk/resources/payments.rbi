@@ -26,29 +26,17 @@ module WhopSDK
       # - `payment:resolution_center_case:read`
       sig do
         params(
-          company_id: String,
-          member_id: String,
-          payment_method_id: String,
-          plan: WhopSDK::PaymentCreateParams::Plan::OrHash,
-          plan_id: String,
-          metadata: T.nilable(T::Hash[Symbol, T.anything]),
+          body:
+            T.any(
+              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::OrHash,
+              WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlanID::OrHash
+            ),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Payment)
       end
       def create(
-        # The ID of the company to create the payment for.
-        company_id:,
-        # The ID of the member to create the payment for.
-        member_id:,
-        # The ID of the payment method to use for the payment. It must be connected to the
-        # Member being charged.
-        payment_method_id:,
-        # Pass this object to create a new plan for this payment
-        plan:,
-        # An ID of an existing plan to use for the payment.
-        plan_id:,
-        # Custom metadata to attach to the payment.
-        metadata: nil,
+        # Parameters for CreatePayment
+        body:,
         request_options: {}
       )
       end

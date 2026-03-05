@@ -2,6 +2,7 @@ module WhopSDK
   module Models
     type membership_cancel_params =
       {
+        id: String,
         cancellation_mode: WhopSDK::Models::MembershipCancelParams::cancellation_mode?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -10,14 +11,18 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      attr_accessor id: String
+
       attr_accessor cancellation_mode: WhopSDK::Models::MembershipCancelParams::cancellation_mode?
 
       def initialize: (
+        id: String,
         ?cancellation_mode: WhopSDK::Models::MembershipCancelParams::cancellation_mode?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
+        id: String,
         cancellation_mode: WhopSDK::Models::MembershipCancelParams::cancellation_mode?,
         request_options: WhopSDK::RequestOptions
       }

@@ -11,6 +11,9 @@ module WhopSDK
           T.any(WhopSDK::ForumPostUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # A replacement list of file attachments for this post, such as images or videos.
       sig do
         returns(T.nilable(T::Array[WhopSDK::ForumPostUpdateParams::Attachment]))
@@ -39,6 +42,7 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           attachments:
             T.nilable(
               T::Array[WhopSDK::ForumPostUpdateParams::Attachment::OrHash]
@@ -51,6 +55,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # A replacement list of file attachments for this post, such as images or videos.
         attachments: nil,
         # The updated body of the post in Markdown format. For example, 'Check out this
@@ -72,6 +77,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             attachments:
               T.nilable(T::Array[WhopSDK::ForumPostUpdateParams::Attachment]),
             content: T.nilable(String),

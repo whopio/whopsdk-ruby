@@ -7,6 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute access_level
       #   The different access levels for experiences (PUBLIC IS NEVER USED ANYMORE).
       #
@@ -43,7 +48,9 @@ module WhopSDK
       #   @return [String, nil]
       optional :section_id, String, nil?: true
 
-      # @!method initialize(access_level: nil, is_public: nil, logo: nil, name: nil, order: nil, section_id: nil, request_options: {})
+      # @!method initialize(id:, access_level: nil, is_public: nil, logo: nil, name: nil, order: nil, section_id: nil, request_options: {})
+      #   @param id [String]
+      #
       #   @param access_level [Symbol, WhopSDK::Models::ExperienceUpdateParams::AccessLevel, nil] The different access levels for experiences (PUBLIC IS NEVER USED ANYMORE).
       #
       #   @param is_public [Boolean, nil] Whether the experience is publicly accessible without a membership.

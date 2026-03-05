@@ -14,6 +14,9 @@ module WhopSDK
           )
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # An IP access activity log showing the customer used the service.
       sig { returns(T.nilable(String)) }
       attr_accessor :access_activity_log
@@ -137,6 +140,7 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           access_activity_log: T.nilable(String),
           billing_address: T.nilable(String),
           cancellation_policy_attachment:
@@ -167,6 +171,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # An IP access activity log showing the customer used the service.
         access_activity_log: nil,
         # The billing address associated with the customer's payment method.
@@ -203,6 +208,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             access_activity_log: T.nilable(String),
             billing_address: T.nilable(String),
             cancellation_policy_attachment:

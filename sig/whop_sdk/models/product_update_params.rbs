@@ -2,6 +2,7 @@ module WhopSDK
   module Models
     type product_update_params =
       {
+        id: String,
         collect_shipping_address: bool?,
         custom_cta: WhopSDK::Models::custom_cta?,
         custom_cta_url: String?,
@@ -25,6 +26,8 @@ module WhopSDK
     class ProductUpdateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
 
       attr_accessor collect_shipping_address: bool?
 
@@ -61,6 +64,7 @@ module WhopSDK
       attr_accessor visibility: WhopSDK::Models::visibility?
 
       def initialize: (
+        id: String,
         ?collect_shipping_address: bool?,
         ?custom_cta: WhopSDK::Models::custom_cta?,
         ?custom_cta_url: String?,
@@ -82,6 +86,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
+        id: String,
         collect_shipping_address: bool?,
         custom_cta: WhopSDK::Models::custom_cta?,
         custom_cta_url: String?,

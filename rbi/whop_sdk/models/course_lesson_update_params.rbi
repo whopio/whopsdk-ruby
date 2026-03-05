@@ -11,6 +11,9 @@ module WhopSDK
           T.any(WhopSDK::CourseLessonUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # The passing criteria for quiz or knowledge check lessons, such as minimum grade
       # or correct answers.
       sig do
@@ -118,6 +121,7 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           assessment_completion_requirement:
             T.nilable(
               WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement::OrHash
@@ -149,6 +153,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # The passing criteria for quiz or knowledge check lessons, such as minimum grade
         # or correct answers.
         assessment_completion_requirement: nil,
@@ -191,6 +196,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             assessment_completion_requirement:
               T.nilable(
                 WhopSDK::CourseLessonUpdateParams::AssessmentCompletionRequirement

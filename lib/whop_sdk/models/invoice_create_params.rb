@@ -7,378 +7,1460 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute collection_method
-      #   How the invoice should be collected. Use charge_automatically to charge a stored
-      #   payment method, or send_invoice to email the customer.
+      # @!attribute body
+      #   Parameters for CreateInvoice
       #
-      #   @return [Symbol, WhopSDK::Models::CollectionMethod]
-      required :collection_method, enum: -> { WhopSDK::CollectionMethod }
+      #   @return [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress]
+      required :body, union: -> { WhopSDK::InvoiceCreateParams::Body }
 
-      # @!attribute company_id
-      #   The unique identifier of the company to create this invoice for.
-      #
-      #   @return [String]
-      required :company_id, String
-
-      # @!attribute due_date
-      #   The date by which the invoice must be paid.
-      #
-      #   @return [Time]
-      required :due_date, Time
-
-      # @!attribute member_id
-      #   The unique identifier of an existing member to create this invoice for. If not
-      #   provided, you must supply an email_address and customer_name.
-      #
-      #   @return [String]
-      required :member_id, String
-
-      # @!attribute plan
-      #   The plan attributes defining the price, currency, and billing interval for this
-      #   invoice.
-      #
-      #   @return [WhopSDK::Models::InvoiceCreateParams::Plan]
-      required :plan, -> { WhopSDK::InvoiceCreateParams::Plan }
-
-      # @!attribute product
-      #   The properties of the product to create for this invoice. Provide this to create
-      #   a new product inline.
-      #
-      #   @return [WhopSDK::Models::InvoiceCreateParams::Product]
-      required :product, -> { WhopSDK::InvoiceCreateParams::Product }
-
-      # @!attribute automatically_finalizes_at
-      #   The date and time when the invoice will be automatically finalized and charged.
-      #   Only valid when collection_method is charge_automatically. If not provided, the
-      #   charge will be processed immediately.
-      #
-      #   @return [Time, nil]
-      optional :automatically_finalizes_at, Time, nil?: true
-
-      # @!attribute charge_buyer_fee
-      #   Whether to charge the customer a buyer fee on this invoice.
-      #
-      #   @return [Boolean, nil]
-      optional :charge_buyer_fee, WhopSDK::Internal::Type::Boolean, nil?: true
-
-      # @!attribute customer_name
-      #   The name of the customer. Required when creating an invoice for a customer who
-      #   is not yet a member of the company.
-      #
-      #   @return [String, nil]
-      optional :customer_name, String, nil?: true
-
-      # @!attribute payment_method_id
-      #   The unique identifier of the payment method to charge. Required when
-      #   collection_method is charge_automatically.
-      #
-      #   @return [String, nil]
-      optional :payment_method_id, String, nil?: true
-
-      # @!attribute payment_token_id
-      #   The payment token ID to use for this invoice. If using charge_automatically, you
-      #   must provide a payment_token.
-      #
-      #   @return [String, nil]
-      optional :payment_token_id, String, nil?: true
-
-      # @!attribute email_address
-      #   The email address of the customer. Required when creating an invoice for a
-      #   customer who is not yet a member of the company.
-      #
-      #   @return [String]
-      required :email_address, String
-
-      # @!attribute product_id
-      #   The unique identifier of an existing product to create this invoice for.
-      #
-      #   @return [String]
-      required :product_id, String
-
-      # @!method initialize(collection_method:, company_id:, due_date:, member_id:, plan:, product:, email_address:, product_id:, automatically_finalizes_at: nil, charge_buyer_fee: nil, customer_name: nil, payment_method_id: nil, payment_token_id: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {WhopSDK::Models::InvoiceCreateParams} for more details.
-      #
-      #   @param collection_method [Symbol, WhopSDK::Models::CollectionMethod] How the invoice should be collected. Use charge_automatically to charge a stored
-      #
-      #   @param company_id [String] The unique identifier of the company to create this invoice for.
-      #
-      #   @param due_date [Time] The date by which the invoice must be paid.
-      #
-      #   @param member_id [String] The unique identifier of an existing member to create this invoice for. If not p
-      #
-      #   @param plan [WhopSDK::Models::InvoiceCreateParams::Plan] The plan attributes defining the price, currency, and billing interval for this
-      #
-      #   @param product [WhopSDK::Models::InvoiceCreateParams::Product] The properties of the product to create for this invoice. Provide this to create
-      #
-      #   @param email_address [String] The email address of the customer. Required when creating an invoice for a custo
-      #
-      #   @param product_id [String] The unique identifier of an existing product to create this invoice for.
-      #
-      #   @param automatically_finalizes_at [Time, nil] The date and time when the invoice will be automatically finalized and charged.
-      #
-      #   @param charge_buyer_fee [Boolean, nil] Whether to charge the customer a buyer fee on this invoice.
-      #
-      #   @param customer_name [String, nil] The name of the customer. Required when creating an invoice for a customer who i
-      #
-      #   @param payment_method_id [String, nil] The unique identifier of the payment method to charge. Required when
-      #   collection\_
-      #
-      #   @param payment_token_id [String, nil] The payment token ID to use for this invoice. If using charge_automatically, you
+      # @!method initialize(body:, request_options: {})
+      #   @param body [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress] Parameters for CreateInvoice
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      class Plan < WhopSDK::Internal::Type::BaseModel
-        # @!attribute billing_period
-        #   The interval in days at which the plan charges (renewal plans).
-        #
-        #   @return [Integer, nil]
-        optional :billing_period, Integer, nil?: true
+      # Parameters for CreateInvoice
+      module Body
+        extend WhopSDK::Internal::Type::Union
 
-        # @!attribute custom_fields
-        #   An array of custom field objects.
-        #
-        #   @return [Array<WhopSDK::Models::InvoiceCreateParams::Plan::CustomField>, nil]
-        optional :custom_fields,
-                 -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::InvoiceCreateParams::Plan::CustomField] },
-                 nil?: true
+        # Autogenerated input type of CreateInvoice
+        variant -> { WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID }
 
-        # @!attribute description
-        #   The description of the plan.
-        #
-        #   @return [String, nil]
-        optional :description, String, nil?: true
+        # Autogenerated input type of CreateInvoice
+        variant -> { WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress }
 
-        # @!attribute expiration_days
-        #   The number of days until the membership expires and revokes access (expiration
-        #   plans). For example, 365 for a one-year access period.
-        #
-        #   @return [Integer, nil]
-        optional :expiration_days, Integer, nil?: true
+        # Autogenerated input type of CreateInvoice
+        variant -> { WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID }
 
-        # @!attribute initial_price
-        #   An additional amount charged upon first purchase. Use only if a one time payment
-        #   OR you want to charge an additional amount on top of the renewal price. Provided
-        #   as a number in the specified currency. Eg: 10.43 for $10.43
-        #
-        #   @return [Float, nil]
-        optional :initial_price, Float, nil?: true
+        # Autogenerated input type of CreateInvoice
+        variant -> { WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress }
 
-        # @!attribute internal_notes
-        #   A personal description or notes section for the business.
-        #
-        #   @return [String, nil]
-        optional :internal_notes, String, nil?: true
-
-        # @!attribute legacy_payment_method_controls
-        #   Whether this plan uses legacy payment method controls
-        #
-        #   @return [Boolean, nil]
-        optional :legacy_payment_method_controls, WhopSDK::Internal::Type::Boolean, nil?: true
-
-        # @!attribute payment_method_configuration
-        #   The explicit payment method configuration for the plan. If not provided, the
-        #   platform or company's defaults will apply.
-        #
-        #   @return [WhopSDK::Models::InvoiceCreateParams::Plan::PaymentMethodConfiguration, nil]
-        optional :payment_method_configuration,
-                 -> { WhopSDK::InvoiceCreateParams::Plan::PaymentMethodConfiguration },
-                 nil?: true
-
-        # @!attribute plan_type
-        #   The type of plan that can be attached to a product
-        #
-        #   @return [Symbol, WhopSDK::Models::PlanType, nil]
-        optional :plan_type, enum: -> { WhopSDK::PlanType }, nil?: true
-
-        # @!attribute release_method
-        #   The methods of how a plan can be released.
-        #
-        #   @return [Symbol, WhopSDK::Models::ReleaseMethod, nil]
-        optional :release_method, enum: -> { WhopSDK::ReleaseMethod }, nil?: true
-
-        # @!attribute renewal_price
-        #   The amount the customer is charged every billing period. Use only if a recurring
-        #   payment. Provided as a number in the specified currency. Eg: 10.43 for $10.43
-        #
-        #   @return [Float, nil]
-        optional :renewal_price, Float, nil?: true
-
-        # @!attribute stock
-        #   The number of units available for purchase.
-        #
-        #   @return [Integer, nil]
-        optional :stock, Integer, nil?: true
-
-        # @!attribute trial_period_days
-        #   The number of free trial days added before a renewal plan.
-        #
-        #   @return [Integer, nil]
-        optional :trial_period_days, Integer, nil?: true
-
-        # @!attribute unlimited_stock
-        #   When true, the plan has unlimited stock (stock field is ignored). When false,
-        #   purchases are limited by the stock field.
-        #
-        #   @return [Boolean, nil]
-        optional :unlimited_stock, WhopSDK::Internal::Type::Boolean, nil?: true
-
-        # @!attribute visibility
-        #   Visibility of a resource
-        #
-        #   @return [Symbol, WhopSDK::Models::Visibility, nil]
-        optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
-
-        # @!method initialize(billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::InvoiceCreateParams::Plan} for more details.
-        #
-        #   The plan attributes defining the price, currency, and billing interval for this
-        #   invoice.
-        #
-        #   @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans).
-        #
-        #   @param custom_fields [Array<WhopSDK::Models::InvoiceCreateParams::Plan::CustomField>, nil] An array of custom field objects.
-        #
-        #   @param description [String, nil] The description of the plan.
-        #
-        #   @param expiration_days [Integer, nil] The number of days until the membership expires and revokes access (expiration p
-        #
-        #   @param initial_price [Float, nil] An additional amount charged upon first purchase. Use only if a one time payment
-        #
-        #   @param internal_notes [String, nil] A personal description or notes section for the business.
-        #
-        #   @param legacy_payment_method_controls [Boolean, nil] Whether this plan uses legacy payment method controls
-        #
-        #   @param payment_method_configuration [WhopSDK::Models::InvoiceCreateParams::Plan::PaymentMethodConfiguration, nil] The explicit payment method configuration for the plan. If not provided, the pla
-        #
-        #   @param plan_type [Symbol, WhopSDK::Models::PlanType, nil] The type of plan that can be attached to a product
-        #
-        #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod, nil] The methods of how a plan can be released.
-        #
-        #   @param renewal_price [Float, nil] The amount the customer is charged every billing period. Use only if a recurring
-        #
-        #   @param stock [Integer, nil] The number of units available for purchase.
-        #
-        #   @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
-        #
-        #   @param unlimited_stock [Boolean, nil] When true, the plan has unlimited stock (stock field is ignored). When false, pu
-        #
-        #   @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
-
-        class CustomField < WhopSDK::Internal::Type::BaseModel
-          # @!attribute field_type
-          #   The type of the custom field.
+        class CreateInvoiceInputWithProductAndMemberID < WhopSDK::Internal::Type::BaseModel
+          # @!attribute collection_method
+          #   How the invoice should be collected. Use charge_automatically to charge a stored
+          #   payment method, or send_invoice to email the customer.
           #
-          #   @return [Symbol, :text]
-          required :field_type, const: :text
+          #   @return [Symbol, WhopSDK::Models::CollectionMethod]
+          required :collection_method, enum: -> { WhopSDK::CollectionMethod }
 
-          # @!attribute name
-          #   The name of the custom field.
+          # @!attribute company_id
+          #   The unique identifier of the company to create this invoice for.
           #
           #   @return [String]
-          required :name, String
+          required :company_id, String
 
-          # @!attribute id
-          #   The ID of the custom field (if being updated)
+          # @!attribute due_date
+          #   The date by which the invoice must be paid.
           #
-          #   @return [String, nil]
-          optional :id, String, nil?: true
+          #   @return [Time]
+          required :due_date, Time
 
-          # @!attribute order
-          #   The order of the field.
+          # @!attribute member_id
+          #   The unique identifier of an existing member to create this invoice for. If not
+          #   provided, you must supply an email_address and customer_name.
           #
-          #   @return [Integer, nil]
-          optional :order, Integer, nil?: true
+          #   @return [String]
+          required :member_id, String
 
-          # @!attribute placeholder
-          #   The placeholder value of the field.
+          # @!attribute plan
+          #   The plan attributes defining the price, currency, and billing interval for this
+          #   invoice.
           #
-          #   @return [String, nil]
-          optional :placeholder, String, nil?: true
+          #   @return [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan]
+          required :plan, -> { WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan }
 
-          # @!attribute required
-          #   Whether or not the field is required.
+          # @!attribute product
+          #   The properties of the product to create for this invoice. Provide this to create
+          #   a new product inline.
+          #
+          #   @return [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Product]
+          required :product,
+                   -> { WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Product }
+
+          # @!attribute automatically_finalizes_at
+          #   The date and time when the invoice will be automatically finalized and charged.
+          #   Only valid when collection_method is charge_automatically. If not provided, the
+          #   charge will be processed immediately.
+          #
+          #   @return [Time, nil]
+          optional :automatically_finalizes_at, Time, nil?: true
+
+          # @!attribute charge_buyer_fee
+          #   Whether to charge the customer a buyer fee on this invoice.
           #
           #   @return [Boolean, nil]
-          optional :required, WhopSDK::Internal::Type::Boolean, nil?: true
+          optional :charge_buyer_fee, WhopSDK::Internal::Type::Boolean, nil?: true
 
-          # @!method initialize(name:, id: nil, order: nil, placeholder: nil, required: nil, field_type: :text)
-          #   @param name [String] The name of the custom field.
+          # @!attribute customer_name
+          #   The name of the customer. Required when creating an invoice for a customer who
+          #   is not yet a member of the company.
           #
-          #   @param id [String, nil] The ID of the custom field (if being updated)
-          #
-          #   @param order [Integer, nil] The order of the field.
-          #
-          #   @param placeholder [String, nil] The placeholder value of the field.
-          #
-          #   @param required [Boolean, nil] Whether or not the field is required.
-          #
-          #   @param field_type [Symbol, :text] The type of the custom field.
-        end
+          #   @return [String, nil]
+          optional :customer_name, String, nil?: true
 
-        # @see WhopSDK::Models::InvoiceCreateParams::Plan#payment_method_configuration
-        class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
-          # @!attribute disabled
-          #   An array of payment method identifiers that are explicitly disabled. Only
-          #   applies if the include_platform_defaults is true.
+          # @!attribute payment_method_id
+          #   The unique identifier of the payment method to charge. Required when
+          #   collection_method is charge_automatically.
           #
-          #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
-          required :disabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+          #   @return [String, nil]
+          optional :payment_method_id, String, nil?: true
 
-          # @!attribute enabled
-          #   An array of payment method identifiers that are explicitly enabled. This means
-          #   these payment methods will be shown on checkout. Example use case is to only
-          #   enable a specific payment method like cashapp, or extending the platform
-          #   defaults with additional methods.
+          # @!attribute payment_token_id
+          #   The payment token ID to use for this invoice. If using charge_automatically, you
+          #   must provide a payment_token.
           #
-          #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
-          required :enabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+          #   @return [String, nil]
+          optional :payment_token_id, String, nil?: true
 
-          # @!attribute include_platform_defaults
-          #   Whether Whop's platform default payment method enablement settings are included
-          #   in this configuration. The full list of default payment methods can be found in
-          #   the documentation at docs.whop.com/payments.
-          #
-          #   @return [Boolean]
-          required :include_platform_defaults, WhopSDK::Internal::Type::Boolean
-
-          # @!method initialize(disabled:, enabled:, include_platform_defaults:)
+          # @!method initialize(collection_method:, company_id:, due_date:, member_id:, plan:, product:, automatically_finalizes_at: nil, charge_buyer_fee: nil, customer_name: nil, payment_method_id: nil, payment_token_id: nil)
           #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::InvoiceCreateParams::Plan::PaymentMethodConfiguration} for
-          #   more details.
+          #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID}
+          #   for more details.
           #
-          #   The explicit payment method configuration for the plan. If not provided, the
-          #   platform or company's defaults will apply.
+          #   Autogenerated input type of CreateInvoice
           #
-          #   @param disabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly disabled. Only applie
+          #   @param collection_method [Symbol, WhopSDK::Models::CollectionMethod] How the invoice should be collected. Use charge_automatically to charge a stored
           #
-          #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
+          #   @param company_id [String] The unique identifier of the company to create this invoice for.
           #
-          #   @param include_platform_defaults [Boolean] Whether Whop's platform default payment method enablement settings are included
+          #   @param due_date [Time] The date by which the invoice must be paid.
+          #
+          #   @param member_id [String] The unique identifier of an existing member to create this invoice for. If not p
+          #
+          #   @param plan [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan] The plan attributes defining the price, currency, and billing interval for this
+          #
+          #   @param product [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Product] The properties of the product to create for this invoice. Provide this to create
+          #
+          #   @param automatically_finalizes_at [Time, nil] The date and time when the invoice will be automatically finalized and charged.
+          #
+          #   @param charge_buyer_fee [Boolean, nil] Whether to charge the customer a buyer fee on this invoice.
+          #
+          #   @param customer_name [String, nil] The name of the customer. Required when creating an invoice for a customer who i
+          #
+          #   @param payment_method_id [String, nil] The unique identifier of the payment method to charge. Required when
+          #   collection\_
+          #
+          #   @param payment_token_id [String, nil] The payment token ID to use for this invoice. If using charge_automatically, you
+
+          # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID#plan
+          class Plan < WhopSDK::Internal::Type::BaseModel
+            # @!attribute billing_period
+            #   The interval in days at which the plan charges (renewal plans).
+            #
+            #   @return [Integer, nil]
+            optional :billing_period, Integer, nil?: true
+
+            # @!attribute custom_fields
+            #   An array of custom field objects.
+            #
+            #   @return [Array<WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan::CustomField>, nil]
+            optional :custom_fields,
+                     -> {
+                       WhopSDK::Internal::Type::ArrayOf[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan::CustomField]
+                     },
+                     nil?: true
+
+            # @!attribute description
+            #   The description of the plan.
+            #
+            #   @return [String, nil]
+            optional :description, String, nil?: true
+
+            # @!attribute expiration_days
+            #   The number of days until the membership expires and revokes access (expiration
+            #   plans). For example, 365 for a one-year access period.
+            #
+            #   @return [Integer, nil]
+            optional :expiration_days, Integer, nil?: true
+
+            # @!attribute initial_price
+            #   An additional amount charged upon first purchase. Use only if a one time payment
+            #   OR you want to charge an additional amount on top of the renewal price. Provided
+            #   as a number in the specified currency. Eg: 10.43 for $10.43
+            #
+            #   @return [Float, nil]
+            optional :initial_price, Float, nil?: true
+
+            # @!attribute internal_notes
+            #   A personal description or notes section for the business.
+            #
+            #   @return [String, nil]
+            optional :internal_notes, String, nil?: true
+
+            # @!attribute legacy_payment_method_controls
+            #   Whether this plan uses legacy payment method controls
+            #
+            #   @return [Boolean, nil]
+            optional :legacy_payment_method_controls, WhopSDK::Internal::Type::Boolean, nil?: true
+
+            # @!attribute payment_method_configuration
+            #   The explicit payment method configuration for the plan. If not provided, the
+            #   platform or company's defaults will apply.
+            #
+            #   @return [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan::PaymentMethodConfiguration, nil]
+            optional :payment_method_configuration,
+                     -> {
+                       WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan::PaymentMethodConfiguration
+                     },
+                     nil?: true
+
+            # @!attribute plan_type
+            #   The type of plan that can be attached to a product
+            #
+            #   @return [Symbol, WhopSDK::Models::PlanType, nil]
+            optional :plan_type, enum: -> { WhopSDK::PlanType }, nil?: true
+
+            # @!attribute release_method
+            #   The methods of how a plan can be released.
+            #
+            #   @return [Symbol, WhopSDK::Models::ReleaseMethod, nil]
+            optional :release_method, enum: -> { WhopSDK::ReleaseMethod }, nil?: true
+
+            # @!attribute renewal_price
+            #   The amount the customer is charged every billing period. Use only if a recurring
+            #   payment. Provided as a number in the specified currency. Eg: 10.43 for $10.43
+            #
+            #   @return [Float, nil]
+            optional :renewal_price, Float, nil?: true
+
+            # @!attribute stock
+            #   The number of units available for purchase.
+            #
+            #   @return [Integer, nil]
+            optional :stock, Integer, nil?: true
+
+            # @!attribute trial_period_days
+            #   The number of free trial days added before a renewal plan.
+            #
+            #   @return [Integer, nil]
+            optional :trial_period_days, Integer, nil?: true
+
+            # @!attribute unlimited_stock
+            #   When true, the plan has unlimited stock (stock field is ignored). When false,
+            #   purchases are limited by the stock field.
+            #
+            #   @return [Boolean, nil]
+            optional :unlimited_stock, WhopSDK::Internal::Type::Boolean, nil?: true
+
+            # @!attribute visibility
+            #   Visibility of a resource
+            #
+            #   @return [Symbol, WhopSDK::Models::Visibility, nil]
+            optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
+
+            # @!method initialize(billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan}
+            #   for more details.
+            #
+            #   The plan attributes defining the price, currency, and billing interval for this
+            #   invoice.
+            #
+            #   @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans).
+            #
+            #   @param custom_fields [Array<WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan::CustomField>, nil] An array of custom field objects.
+            #
+            #   @param description [String, nil] The description of the plan.
+            #
+            #   @param expiration_days [Integer, nil] The number of days until the membership expires and revokes access (expiration p
+            #
+            #   @param initial_price [Float, nil] An additional amount charged upon first purchase. Use only if a one time payment
+            #
+            #   @param internal_notes [String, nil] A personal description or notes section for the business.
+            #
+            #   @param legacy_payment_method_controls [Boolean, nil] Whether this plan uses legacy payment method controls
+            #
+            #   @param payment_method_configuration [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan::PaymentMethodConfiguration, nil] The explicit payment method configuration for the plan. If not provided, the pla
+            #
+            #   @param plan_type [Symbol, WhopSDK::Models::PlanType, nil] The type of plan that can be attached to a product
+            #
+            #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod, nil] The methods of how a plan can be released.
+            #
+            #   @param renewal_price [Float, nil] The amount the customer is charged every billing period. Use only if a recurring
+            #
+            #   @param stock [Integer, nil] The number of units available for purchase.
+            #
+            #   @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
+            #
+            #   @param unlimited_stock [Boolean, nil] When true, the plan has unlimited stock (stock field is ignored). When false, pu
+            #
+            #   @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
+
+            class CustomField < WhopSDK::Internal::Type::BaseModel
+              # @!attribute field_type
+              #   The type of the custom field.
+              #
+              #   @return [Symbol, :text]
+              required :field_type, const: :text
+
+              # @!attribute name
+              #   The name of the custom field.
+              #
+              #   @return [String]
+              required :name, String
+
+              # @!attribute id
+              #   The ID of the custom field (if being updated)
+              #
+              #   @return [String, nil]
+              optional :id, String, nil?: true
+
+              # @!attribute order
+              #   The order of the field.
+              #
+              #   @return [Integer, nil]
+              optional :order, Integer, nil?: true
+
+              # @!attribute placeholder
+              #   The placeholder value of the field.
+              #
+              #   @return [String, nil]
+              optional :placeholder, String, nil?: true
+
+              # @!attribute required
+              #   Whether or not the field is required.
+              #
+              #   @return [Boolean, nil]
+              optional :required, WhopSDK::Internal::Type::Boolean, nil?: true
+
+              # @!method initialize(name:, id: nil, order: nil, placeholder: nil, required: nil, field_type: :text)
+              #   @param name [String] The name of the custom field.
+              #
+              #   @param id [String, nil] The ID of the custom field (if being updated)
+              #
+              #   @param order [Integer, nil] The order of the field.
+              #
+              #   @param placeholder [String, nil] The placeholder value of the field.
+              #
+              #   @param required [Boolean, nil] Whether or not the field is required.
+              #
+              #   @param field_type [Symbol, :text] The type of the custom field.
+            end
+
+            # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan#payment_method_configuration
+            class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+              # @!attribute disabled
+              #   An array of payment method identifiers that are explicitly disabled. Only
+              #   applies if the include_platform_defaults is true.
+              #
+              #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
+              required :disabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+
+              # @!attribute enabled
+              #   An array of payment method identifiers that are explicitly enabled. This means
+              #   these payment methods will be shown on checkout. Example use case is to only
+              #   enable a specific payment method like cashapp, or extending the platform
+              #   defaults with additional methods.
+              #
+              #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
+              required :enabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+
+              # @!attribute include_platform_defaults
+              #   Whether Whop's platform default payment method enablement settings are included
+              #   in this configuration. The full list of default payment methods can be found in
+              #   the documentation at docs.whop.com/payments.
+              #
+              #   @return [Boolean]
+              required :include_platform_defaults, WhopSDK::Internal::Type::Boolean
+
+              # @!method initialize(disabled:, enabled:, include_platform_defaults:)
+              #   Some parameter documentations has been truncated, see
+              #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan::PaymentMethodConfiguration}
+              #   for more details.
+              #
+              #   The explicit payment method configuration for the plan. If not provided, the
+              #   platform or company's defaults will apply.
+              #
+              #   @param disabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly disabled. Only applie
+              #
+              #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
+              #
+              #   @param include_platform_defaults [Boolean] Whether Whop's platform default payment method enablement settings are included
+            end
+          end
+
+          # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID#product
+          class Product < WhopSDK::Internal::Type::BaseModel
+            # @!attribute title
+            #   The title of the product.
+            #
+            #   @return [String]
+            required :title, String
+
+            # @!attribute product_tax_code_id
+            #   The ID of the product tax code to apply to this product.
+            #
+            #   @return [String, nil]
+            optional :product_tax_code_id, String, nil?: true
+
+            # @!method initialize(title:, product_tax_code_id: nil)
+            #   The properties of the product to create for this invoice. Provide this to create
+            #   a new product inline.
+            #
+            #   @param title [String] The title of the product.
+            #
+            #   @param product_tax_code_id [String, nil] The ID of the product tax code to apply to this product.
+          end
         end
-      end
 
-      class Product < WhopSDK::Internal::Type::BaseModel
-        # @!attribute title
-        #   The title of the product.
-        #
-        #   @return [String]
-        required :title, String
+        class CreateInvoiceInputWithProductAndEmailAddress < WhopSDK::Internal::Type::BaseModel
+          # @!attribute collection_method
+          #   How the invoice should be collected. Use charge_automatically to charge a stored
+          #   payment method, or send_invoice to email the customer.
+          #
+          #   @return [Symbol, WhopSDK::Models::CollectionMethod]
+          required :collection_method, enum: -> { WhopSDK::CollectionMethod }
 
-        # @!attribute product_tax_code_id
-        #   The ID of the product tax code to apply to this product.
-        #
-        #   @return [String, nil]
-        optional :product_tax_code_id, String, nil?: true
+          # @!attribute company_id
+          #   The unique identifier of the company to create this invoice for.
+          #
+          #   @return [String]
+          required :company_id, String
 
-        # @!method initialize(title:, product_tax_code_id: nil)
-        #   The properties of the product to create for this invoice. Provide this to create
-        #   a new product inline.
-        #
-        #   @param title [String] The title of the product.
-        #
-        #   @param product_tax_code_id [String, nil] The ID of the product tax code to apply to this product.
+          # @!attribute due_date
+          #   The date by which the invoice must be paid.
+          #
+          #   @return [Time]
+          required :due_date, Time
+
+          # @!attribute email_address
+          #   The email address of the customer. Required when creating an invoice for a
+          #   customer who is not yet a member of the company.
+          #
+          #   @return [String]
+          required :email_address, String
+
+          # @!attribute plan
+          #   The plan attributes defining the price, currency, and billing interval for this
+          #   invoice.
+          #
+          #   @return [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan]
+          required :plan,
+                   -> { WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan }
+
+          # @!attribute product
+          #   The properties of the product to create for this invoice. Provide this to create
+          #   a new product inline.
+          #
+          #   @return [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Product]
+          required :product,
+                   -> { WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Product }
+
+          # @!attribute automatically_finalizes_at
+          #   The date and time when the invoice will be automatically finalized and charged.
+          #   Only valid when collection_method is charge_automatically. If not provided, the
+          #   charge will be processed immediately.
+          #
+          #   @return [Time, nil]
+          optional :automatically_finalizes_at, Time, nil?: true
+
+          # @!attribute charge_buyer_fee
+          #   Whether to charge the customer a buyer fee on this invoice.
+          #
+          #   @return [Boolean, nil]
+          optional :charge_buyer_fee, WhopSDK::Internal::Type::Boolean, nil?: true
+
+          # @!attribute customer_name
+          #   The name of the customer. Required when creating an invoice for a customer who
+          #   is not yet a member of the company.
+          #
+          #   @return [String, nil]
+          optional :customer_name, String, nil?: true
+
+          # @!attribute payment_method_id
+          #   The unique identifier of the payment method to charge. Required when
+          #   collection_method is charge_automatically.
+          #
+          #   @return [String, nil]
+          optional :payment_method_id, String, nil?: true
+
+          # @!attribute payment_token_id
+          #   The payment token ID to use for this invoice. If using charge_automatically, you
+          #   must provide a payment_token.
+          #
+          #   @return [String, nil]
+          optional :payment_token_id, String, nil?: true
+
+          # @!method initialize(collection_method:, company_id:, due_date:, email_address:, plan:, product:, automatically_finalizes_at: nil, charge_buyer_fee: nil, customer_name: nil, payment_method_id: nil, payment_token_id: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress}
+          #   for more details.
+          #
+          #   Autogenerated input type of CreateInvoice
+          #
+          #   @param collection_method [Symbol, WhopSDK::Models::CollectionMethod] How the invoice should be collected. Use charge_automatically to charge a stored
+          #
+          #   @param company_id [String] The unique identifier of the company to create this invoice for.
+          #
+          #   @param due_date [Time] The date by which the invoice must be paid.
+          #
+          #   @param email_address [String] The email address of the customer. Required when creating an invoice for a custo
+          #
+          #   @param plan [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan] The plan attributes defining the price, currency, and billing interval for this
+          #
+          #   @param product [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Product] The properties of the product to create for this invoice. Provide this to create
+          #
+          #   @param automatically_finalizes_at [Time, nil] The date and time when the invoice will be automatically finalized and charged.
+          #
+          #   @param charge_buyer_fee [Boolean, nil] Whether to charge the customer a buyer fee on this invoice.
+          #
+          #   @param customer_name [String, nil] The name of the customer. Required when creating an invoice for a customer who i
+          #
+          #   @param payment_method_id [String, nil] The unique identifier of the payment method to charge. Required when
+          #   collection\_
+          #
+          #   @param payment_token_id [String, nil] The payment token ID to use for this invoice. If using charge_automatically, you
+
+          # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress#plan
+          class Plan < WhopSDK::Internal::Type::BaseModel
+            # @!attribute billing_period
+            #   The interval in days at which the plan charges (renewal plans).
+            #
+            #   @return [Integer, nil]
+            optional :billing_period, Integer, nil?: true
+
+            # @!attribute custom_fields
+            #   An array of custom field objects.
+            #
+            #   @return [Array<WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan::CustomField>, nil]
+            optional :custom_fields,
+                     -> {
+                       WhopSDK::Internal::Type::ArrayOf[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan::CustomField]
+                     },
+                     nil?: true
+
+            # @!attribute description
+            #   The description of the plan.
+            #
+            #   @return [String, nil]
+            optional :description, String, nil?: true
+
+            # @!attribute expiration_days
+            #   The number of days until the membership expires and revokes access (expiration
+            #   plans). For example, 365 for a one-year access period.
+            #
+            #   @return [Integer, nil]
+            optional :expiration_days, Integer, nil?: true
+
+            # @!attribute initial_price
+            #   An additional amount charged upon first purchase. Use only if a one time payment
+            #   OR you want to charge an additional amount on top of the renewal price. Provided
+            #   as a number in the specified currency. Eg: 10.43 for $10.43
+            #
+            #   @return [Float, nil]
+            optional :initial_price, Float, nil?: true
+
+            # @!attribute internal_notes
+            #   A personal description or notes section for the business.
+            #
+            #   @return [String, nil]
+            optional :internal_notes, String, nil?: true
+
+            # @!attribute legacy_payment_method_controls
+            #   Whether this plan uses legacy payment method controls
+            #
+            #   @return [Boolean, nil]
+            optional :legacy_payment_method_controls, WhopSDK::Internal::Type::Boolean, nil?: true
+
+            # @!attribute payment_method_configuration
+            #   The explicit payment method configuration for the plan. If not provided, the
+            #   platform or company's defaults will apply.
+            #
+            #   @return [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan::PaymentMethodConfiguration, nil]
+            optional :payment_method_configuration,
+                     -> {
+                       WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan::PaymentMethodConfiguration
+                     },
+                     nil?: true
+
+            # @!attribute plan_type
+            #   The type of plan that can be attached to a product
+            #
+            #   @return [Symbol, WhopSDK::Models::PlanType, nil]
+            optional :plan_type, enum: -> { WhopSDK::PlanType }, nil?: true
+
+            # @!attribute release_method
+            #   The methods of how a plan can be released.
+            #
+            #   @return [Symbol, WhopSDK::Models::ReleaseMethod, nil]
+            optional :release_method, enum: -> { WhopSDK::ReleaseMethod }, nil?: true
+
+            # @!attribute renewal_price
+            #   The amount the customer is charged every billing period. Use only if a recurring
+            #   payment. Provided as a number in the specified currency. Eg: 10.43 for $10.43
+            #
+            #   @return [Float, nil]
+            optional :renewal_price, Float, nil?: true
+
+            # @!attribute stock
+            #   The number of units available for purchase.
+            #
+            #   @return [Integer, nil]
+            optional :stock, Integer, nil?: true
+
+            # @!attribute trial_period_days
+            #   The number of free trial days added before a renewal plan.
+            #
+            #   @return [Integer, nil]
+            optional :trial_period_days, Integer, nil?: true
+
+            # @!attribute unlimited_stock
+            #   When true, the plan has unlimited stock (stock field is ignored). When false,
+            #   purchases are limited by the stock field.
+            #
+            #   @return [Boolean, nil]
+            optional :unlimited_stock, WhopSDK::Internal::Type::Boolean, nil?: true
+
+            # @!attribute visibility
+            #   Visibility of a resource
+            #
+            #   @return [Symbol, WhopSDK::Models::Visibility, nil]
+            optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
+
+            # @!method initialize(billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan}
+            #   for more details.
+            #
+            #   The plan attributes defining the price, currency, and billing interval for this
+            #   invoice.
+            #
+            #   @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans).
+            #
+            #   @param custom_fields [Array<WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan::CustomField>, nil] An array of custom field objects.
+            #
+            #   @param description [String, nil] The description of the plan.
+            #
+            #   @param expiration_days [Integer, nil] The number of days until the membership expires and revokes access (expiration p
+            #
+            #   @param initial_price [Float, nil] An additional amount charged upon first purchase. Use only if a one time payment
+            #
+            #   @param internal_notes [String, nil] A personal description or notes section for the business.
+            #
+            #   @param legacy_payment_method_controls [Boolean, nil] Whether this plan uses legacy payment method controls
+            #
+            #   @param payment_method_configuration [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan::PaymentMethodConfiguration, nil] The explicit payment method configuration for the plan. If not provided, the pla
+            #
+            #   @param plan_type [Symbol, WhopSDK::Models::PlanType, nil] The type of plan that can be attached to a product
+            #
+            #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod, nil] The methods of how a plan can be released.
+            #
+            #   @param renewal_price [Float, nil] The amount the customer is charged every billing period. Use only if a recurring
+            #
+            #   @param stock [Integer, nil] The number of units available for purchase.
+            #
+            #   @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
+            #
+            #   @param unlimited_stock [Boolean, nil] When true, the plan has unlimited stock (stock field is ignored). When false, pu
+            #
+            #   @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
+
+            class CustomField < WhopSDK::Internal::Type::BaseModel
+              # @!attribute field_type
+              #   The type of the custom field.
+              #
+              #   @return [Symbol, :text]
+              required :field_type, const: :text
+
+              # @!attribute name
+              #   The name of the custom field.
+              #
+              #   @return [String]
+              required :name, String
+
+              # @!attribute id
+              #   The ID of the custom field (if being updated)
+              #
+              #   @return [String, nil]
+              optional :id, String, nil?: true
+
+              # @!attribute order
+              #   The order of the field.
+              #
+              #   @return [Integer, nil]
+              optional :order, Integer, nil?: true
+
+              # @!attribute placeholder
+              #   The placeholder value of the field.
+              #
+              #   @return [String, nil]
+              optional :placeholder, String, nil?: true
+
+              # @!attribute required
+              #   Whether or not the field is required.
+              #
+              #   @return [Boolean, nil]
+              optional :required, WhopSDK::Internal::Type::Boolean, nil?: true
+
+              # @!method initialize(name:, id: nil, order: nil, placeholder: nil, required: nil, field_type: :text)
+              #   @param name [String] The name of the custom field.
+              #
+              #   @param id [String, nil] The ID of the custom field (if being updated)
+              #
+              #   @param order [Integer, nil] The order of the field.
+              #
+              #   @param placeholder [String, nil] The placeholder value of the field.
+              #
+              #   @param required [Boolean, nil] Whether or not the field is required.
+              #
+              #   @param field_type [Symbol, :text] The type of the custom field.
+            end
+
+            # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan#payment_method_configuration
+            class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+              # @!attribute disabled
+              #   An array of payment method identifiers that are explicitly disabled. Only
+              #   applies if the include_platform_defaults is true.
+              #
+              #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
+              required :disabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+
+              # @!attribute enabled
+              #   An array of payment method identifiers that are explicitly enabled. This means
+              #   these payment methods will be shown on checkout. Example use case is to only
+              #   enable a specific payment method like cashapp, or extending the platform
+              #   defaults with additional methods.
+              #
+              #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
+              required :enabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+
+              # @!attribute include_platform_defaults
+              #   Whether Whop's platform default payment method enablement settings are included
+              #   in this configuration. The full list of default payment methods can be found in
+              #   the documentation at docs.whop.com/payments.
+              #
+              #   @return [Boolean]
+              required :include_platform_defaults, WhopSDK::Internal::Type::Boolean
+
+              # @!method initialize(disabled:, enabled:, include_platform_defaults:)
+              #   Some parameter documentations has been truncated, see
+              #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan::PaymentMethodConfiguration}
+              #   for more details.
+              #
+              #   The explicit payment method configuration for the plan. If not provided, the
+              #   platform or company's defaults will apply.
+              #
+              #   @param disabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly disabled. Only applie
+              #
+              #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
+              #
+              #   @param include_platform_defaults [Boolean] Whether Whop's platform default payment method enablement settings are included
+            end
+          end
+
+          # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress#product
+          class Product < WhopSDK::Internal::Type::BaseModel
+            # @!attribute title
+            #   The title of the product.
+            #
+            #   @return [String]
+            required :title, String
+
+            # @!attribute product_tax_code_id
+            #   The ID of the product tax code to apply to this product.
+            #
+            #   @return [String, nil]
+            optional :product_tax_code_id, String, nil?: true
+
+            # @!method initialize(title:, product_tax_code_id: nil)
+            #   The properties of the product to create for this invoice. Provide this to create
+            #   a new product inline.
+            #
+            #   @param title [String] The title of the product.
+            #
+            #   @param product_tax_code_id [String, nil] The ID of the product tax code to apply to this product.
+          end
+        end
+
+        class CreateInvoiceInputWithProductIDAndMemberID < WhopSDK::Internal::Type::BaseModel
+          # @!attribute collection_method
+          #   How the invoice should be collected. Use charge_automatically to charge a stored
+          #   payment method, or send_invoice to email the customer.
+          #
+          #   @return [Symbol, WhopSDK::Models::CollectionMethod]
+          required :collection_method, enum: -> { WhopSDK::CollectionMethod }
+
+          # @!attribute company_id
+          #   The unique identifier of the company to create this invoice for.
+          #
+          #   @return [String]
+          required :company_id, String
+
+          # @!attribute due_date
+          #   The date by which the invoice must be paid.
+          #
+          #   @return [Time]
+          required :due_date, Time
+
+          # @!attribute member_id
+          #   The unique identifier of an existing member to create this invoice for. If not
+          #   provided, you must supply an email_address and customer_name.
+          #
+          #   @return [String]
+          required :member_id, String
+
+          # @!attribute plan
+          #   The plan attributes defining the price, currency, and billing interval for this
+          #   invoice.
+          #
+          #   @return [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan]
+          required :plan,
+                   -> { WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan }
+
+          # @!attribute product_id
+          #   The unique identifier of an existing product to create this invoice for.
+          #
+          #   @return [String]
+          required :product_id, String
+
+          # @!attribute automatically_finalizes_at
+          #   The date and time when the invoice will be automatically finalized and charged.
+          #   Only valid when collection_method is charge_automatically. If not provided, the
+          #   charge will be processed immediately.
+          #
+          #   @return [Time, nil]
+          optional :automatically_finalizes_at, Time, nil?: true
+
+          # @!attribute charge_buyer_fee
+          #   Whether to charge the customer a buyer fee on this invoice.
+          #
+          #   @return [Boolean, nil]
+          optional :charge_buyer_fee, WhopSDK::Internal::Type::Boolean, nil?: true
+
+          # @!attribute customer_name
+          #   The name of the customer. Required when creating an invoice for a customer who
+          #   is not yet a member of the company.
+          #
+          #   @return [String, nil]
+          optional :customer_name, String, nil?: true
+
+          # @!attribute payment_method_id
+          #   The unique identifier of the payment method to charge. Required when
+          #   collection_method is charge_automatically.
+          #
+          #   @return [String, nil]
+          optional :payment_method_id, String, nil?: true
+
+          # @!attribute payment_token_id
+          #   The payment token ID to use for this invoice. If using charge_automatically, you
+          #   must provide a payment_token.
+          #
+          #   @return [String, nil]
+          optional :payment_token_id, String, nil?: true
+
+          # @!method initialize(collection_method:, company_id:, due_date:, member_id:, plan:, product_id:, automatically_finalizes_at: nil, charge_buyer_fee: nil, customer_name: nil, payment_method_id: nil, payment_token_id: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID}
+          #   for more details.
+          #
+          #   Autogenerated input type of CreateInvoice
+          #
+          #   @param collection_method [Symbol, WhopSDK::Models::CollectionMethod] How the invoice should be collected. Use charge_automatically to charge a stored
+          #
+          #   @param company_id [String] The unique identifier of the company to create this invoice for.
+          #
+          #   @param due_date [Time] The date by which the invoice must be paid.
+          #
+          #   @param member_id [String] The unique identifier of an existing member to create this invoice for. If not p
+          #
+          #   @param plan [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan] The plan attributes defining the price, currency, and billing interval for this
+          #
+          #   @param product_id [String] The unique identifier of an existing product to create this invoice for.
+          #
+          #   @param automatically_finalizes_at [Time, nil] The date and time when the invoice will be automatically finalized and charged.
+          #
+          #   @param charge_buyer_fee [Boolean, nil] Whether to charge the customer a buyer fee on this invoice.
+          #
+          #   @param customer_name [String, nil] The name of the customer. Required when creating an invoice for a customer who i
+          #
+          #   @param payment_method_id [String, nil] The unique identifier of the payment method to charge. Required when
+          #   collection\_
+          #
+          #   @param payment_token_id [String, nil] The payment token ID to use for this invoice. If using charge_automatically, you
+
+          # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID#plan
+          class Plan < WhopSDK::Internal::Type::BaseModel
+            # @!attribute billing_period
+            #   The interval in days at which the plan charges (renewal plans).
+            #
+            #   @return [Integer, nil]
+            optional :billing_period, Integer, nil?: true
+
+            # @!attribute custom_fields
+            #   An array of custom field objects.
+            #
+            #   @return [Array<WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan::CustomField>, nil]
+            optional :custom_fields,
+                     -> {
+                       WhopSDK::Internal::Type::ArrayOf[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan::CustomField]
+                     },
+                     nil?: true
+
+            # @!attribute description
+            #   The description of the plan.
+            #
+            #   @return [String, nil]
+            optional :description, String, nil?: true
+
+            # @!attribute expiration_days
+            #   The number of days until the membership expires and revokes access (expiration
+            #   plans). For example, 365 for a one-year access period.
+            #
+            #   @return [Integer, nil]
+            optional :expiration_days, Integer, nil?: true
+
+            # @!attribute initial_price
+            #   An additional amount charged upon first purchase. Use only if a one time payment
+            #   OR you want to charge an additional amount on top of the renewal price. Provided
+            #   as a number in the specified currency. Eg: 10.43 for $10.43
+            #
+            #   @return [Float, nil]
+            optional :initial_price, Float, nil?: true
+
+            # @!attribute internal_notes
+            #   A personal description or notes section for the business.
+            #
+            #   @return [String, nil]
+            optional :internal_notes, String, nil?: true
+
+            # @!attribute legacy_payment_method_controls
+            #   Whether this plan uses legacy payment method controls
+            #
+            #   @return [Boolean, nil]
+            optional :legacy_payment_method_controls, WhopSDK::Internal::Type::Boolean, nil?: true
+
+            # @!attribute payment_method_configuration
+            #   The explicit payment method configuration for the plan. If not provided, the
+            #   platform or company's defaults will apply.
+            #
+            #   @return [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan::PaymentMethodConfiguration, nil]
+            optional :payment_method_configuration,
+                     -> {
+                       WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan::PaymentMethodConfiguration
+                     },
+                     nil?: true
+
+            # @!attribute plan_type
+            #   The type of plan that can be attached to a product
+            #
+            #   @return [Symbol, WhopSDK::Models::PlanType, nil]
+            optional :plan_type, enum: -> { WhopSDK::PlanType }, nil?: true
+
+            # @!attribute release_method
+            #   The methods of how a plan can be released.
+            #
+            #   @return [Symbol, WhopSDK::Models::ReleaseMethod, nil]
+            optional :release_method, enum: -> { WhopSDK::ReleaseMethod }, nil?: true
+
+            # @!attribute renewal_price
+            #   The amount the customer is charged every billing period. Use only if a recurring
+            #   payment. Provided as a number in the specified currency. Eg: 10.43 for $10.43
+            #
+            #   @return [Float, nil]
+            optional :renewal_price, Float, nil?: true
+
+            # @!attribute stock
+            #   The number of units available for purchase.
+            #
+            #   @return [Integer, nil]
+            optional :stock, Integer, nil?: true
+
+            # @!attribute trial_period_days
+            #   The number of free trial days added before a renewal plan.
+            #
+            #   @return [Integer, nil]
+            optional :trial_period_days, Integer, nil?: true
+
+            # @!attribute unlimited_stock
+            #   When true, the plan has unlimited stock (stock field is ignored). When false,
+            #   purchases are limited by the stock field.
+            #
+            #   @return [Boolean, nil]
+            optional :unlimited_stock, WhopSDK::Internal::Type::Boolean, nil?: true
+
+            # @!attribute visibility
+            #   Visibility of a resource
+            #
+            #   @return [Symbol, WhopSDK::Models::Visibility, nil]
+            optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
+
+            # @!method initialize(billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan}
+            #   for more details.
+            #
+            #   The plan attributes defining the price, currency, and billing interval for this
+            #   invoice.
+            #
+            #   @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans).
+            #
+            #   @param custom_fields [Array<WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan::CustomField>, nil] An array of custom field objects.
+            #
+            #   @param description [String, nil] The description of the plan.
+            #
+            #   @param expiration_days [Integer, nil] The number of days until the membership expires and revokes access (expiration p
+            #
+            #   @param initial_price [Float, nil] An additional amount charged upon first purchase. Use only if a one time payment
+            #
+            #   @param internal_notes [String, nil] A personal description or notes section for the business.
+            #
+            #   @param legacy_payment_method_controls [Boolean, nil] Whether this plan uses legacy payment method controls
+            #
+            #   @param payment_method_configuration [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan::PaymentMethodConfiguration, nil] The explicit payment method configuration for the plan. If not provided, the pla
+            #
+            #   @param plan_type [Symbol, WhopSDK::Models::PlanType, nil] The type of plan that can be attached to a product
+            #
+            #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod, nil] The methods of how a plan can be released.
+            #
+            #   @param renewal_price [Float, nil] The amount the customer is charged every billing period. Use only if a recurring
+            #
+            #   @param stock [Integer, nil] The number of units available for purchase.
+            #
+            #   @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
+            #
+            #   @param unlimited_stock [Boolean, nil] When true, the plan has unlimited stock (stock field is ignored). When false, pu
+            #
+            #   @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
+
+            class CustomField < WhopSDK::Internal::Type::BaseModel
+              # @!attribute field_type
+              #   The type of the custom field.
+              #
+              #   @return [Symbol, :text]
+              required :field_type, const: :text
+
+              # @!attribute name
+              #   The name of the custom field.
+              #
+              #   @return [String]
+              required :name, String
+
+              # @!attribute id
+              #   The ID of the custom field (if being updated)
+              #
+              #   @return [String, nil]
+              optional :id, String, nil?: true
+
+              # @!attribute order
+              #   The order of the field.
+              #
+              #   @return [Integer, nil]
+              optional :order, Integer, nil?: true
+
+              # @!attribute placeholder
+              #   The placeholder value of the field.
+              #
+              #   @return [String, nil]
+              optional :placeholder, String, nil?: true
+
+              # @!attribute required
+              #   Whether or not the field is required.
+              #
+              #   @return [Boolean, nil]
+              optional :required, WhopSDK::Internal::Type::Boolean, nil?: true
+
+              # @!method initialize(name:, id: nil, order: nil, placeholder: nil, required: nil, field_type: :text)
+              #   @param name [String] The name of the custom field.
+              #
+              #   @param id [String, nil] The ID of the custom field (if being updated)
+              #
+              #   @param order [Integer, nil] The order of the field.
+              #
+              #   @param placeholder [String, nil] The placeholder value of the field.
+              #
+              #   @param required [Boolean, nil] Whether or not the field is required.
+              #
+              #   @param field_type [Symbol, :text] The type of the custom field.
+            end
+
+            # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan#payment_method_configuration
+            class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+              # @!attribute disabled
+              #   An array of payment method identifiers that are explicitly disabled. Only
+              #   applies if the include_platform_defaults is true.
+              #
+              #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
+              required :disabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+
+              # @!attribute enabled
+              #   An array of payment method identifiers that are explicitly enabled. This means
+              #   these payment methods will be shown on checkout. Example use case is to only
+              #   enable a specific payment method like cashapp, or extending the platform
+              #   defaults with additional methods.
+              #
+              #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
+              required :enabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+
+              # @!attribute include_platform_defaults
+              #   Whether Whop's platform default payment method enablement settings are included
+              #   in this configuration. The full list of default payment methods can be found in
+              #   the documentation at docs.whop.com/payments.
+              #
+              #   @return [Boolean]
+              required :include_platform_defaults, WhopSDK::Internal::Type::Boolean
+
+              # @!method initialize(disabled:, enabled:, include_platform_defaults:)
+              #   Some parameter documentations has been truncated, see
+              #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan::PaymentMethodConfiguration}
+              #   for more details.
+              #
+              #   The explicit payment method configuration for the plan. If not provided, the
+              #   platform or company's defaults will apply.
+              #
+              #   @param disabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly disabled. Only applie
+              #
+              #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
+              #
+              #   @param include_platform_defaults [Boolean] Whether Whop's platform default payment method enablement settings are included
+            end
+          end
+        end
+
+        class CreateInvoiceInputWithProductIDAndEmailAddress < WhopSDK::Internal::Type::BaseModel
+          # @!attribute collection_method
+          #   How the invoice should be collected. Use charge_automatically to charge a stored
+          #   payment method, or send_invoice to email the customer.
+          #
+          #   @return [Symbol, WhopSDK::Models::CollectionMethod]
+          required :collection_method, enum: -> { WhopSDK::CollectionMethod }
+
+          # @!attribute company_id
+          #   The unique identifier of the company to create this invoice for.
+          #
+          #   @return [String]
+          required :company_id, String
+
+          # @!attribute due_date
+          #   The date by which the invoice must be paid.
+          #
+          #   @return [Time]
+          required :due_date, Time
+
+          # @!attribute email_address
+          #   The email address of the customer. Required when creating an invoice for a
+          #   customer who is not yet a member of the company.
+          #
+          #   @return [String]
+          required :email_address, String
+
+          # @!attribute plan
+          #   The plan attributes defining the price, currency, and billing interval for this
+          #   invoice.
+          #
+          #   @return [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan]
+          required :plan,
+                   -> { WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan }
+
+          # @!attribute product_id
+          #   The unique identifier of an existing product to create this invoice for.
+          #
+          #   @return [String]
+          required :product_id, String
+
+          # @!attribute automatically_finalizes_at
+          #   The date and time when the invoice will be automatically finalized and charged.
+          #   Only valid when collection_method is charge_automatically. If not provided, the
+          #   charge will be processed immediately.
+          #
+          #   @return [Time, nil]
+          optional :automatically_finalizes_at, Time, nil?: true
+
+          # @!attribute charge_buyer_fee
+          #   Whether to charge the customer a buyer fee on this invoice.
+          #
+          #   @return [Boolean, nil]
+          optional :charge_buyer_fee, WhopSDK::Internal::Type::Boolean, nil?: true
+
+          # @!attribute customer_name
+          #   The name of the customer. Required when creating an invoice for a customer who
+          #   is not yet a member of the company.
+          #
+          #   @return [String, nil]
+          optional :customer_name, String, nil?: true
+
+          # @!attribute payment_method_id
+          #   The unique identifier of the payment method to charge. Required when
+          #   collection_method is charge_automatically.
+          #
+          #   @return [String, nil]
+          optional :payment_method_id, String, nil?: true
+
+          # @!attribute payment_token_id
+          #   The payment token ID to use for this invoice. If using charge_automatically, you
+          #   must provide a payment_token.
+          #
+          #   @return [String, nil]
+          optional :payment_token_id, String, nil?: true
+
+          # @!method initialize(collection_method:, company_id:, due_date:, email_address:, plan:, product_id:, automatically_finalizes_at: nil, charge_buyer_fee: nil, customer_name: nil, payment_method_id: nil, payment_token_id: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress}
+          #   for more details.
+          #
+          #   Autogenerated input type of CreateInvoice
+          #
+          #   @param collection_method [Symbol, WhopSDK::Models::CollectionMethod] How the invoice should be collected. Use charge_automatically to charge a stored
+          #
+          #   @param company_id [String] The unique identifier of the company to create this invoice for.
+          #
+          #   @param due_date [Time] The date by which the invoice must be paid.
+          #
+          #   @param email_address [String] The email address of the customer. Required when creating an invoice for a custo
+          #
+          #   @param plan [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan] The plan attributes defining the price, currency, and billing interval for this
+          #
+          #   @param product_id [String] The unique identifier of an existing product to create this invoice for.
+          #
+          #   @param automatically_finalizes_at [Time, nil] The date and time when the invoice will be automatically finalized and charged.
+          #
+          #   @param charge_buyer_fee [Boolean, nil] Whether to charge the customer a buyer fee on this invoice.
+          #
+          #   @param customer_name [String, nil] The name of the customer. Required when creating an invoice for a customer who i
+          #
+          #   @param payment_method_id [String, nil] The unique identifier of the payment method to charge. Required when
+          #   collection\_
+          #
+          #   @param payment_token_id [String, nil] The payment token ID to use for this invoice. If using charge_automatically, you
+
+          # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress#plan
+          class Plan < WhopSDK::Internal::Type::BaseModel
+            # @!attribute billing_period
+            #   The interval in days at which the plan charges (renewal plans).
+            #
+            #   @return [Integer, nil]
+            optional :billing_period, Integer, nil?: true
+
+            # @!attribute custom_fields
+            #   An array of custom field objects.
+            #
+            #   @return [Array<WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan::CustomField>, nil]
+            optional :custom_fields,
+                     -> {
+                       WhopSDK::Internal::Type::ArrayOf[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan::CustomField]
+                     },
+                     nil?: true
+
+            # @!attribute description
+            #   The description of the plan.
+            #
+            #   @return [String, nil]
+            optional :description, String, nil?: true
+
+            # @!attribute expiration_days
+            #   The number of days until the membership expires and revokes access (expiration
+            #   plans). For example, 365 for a one-year access period.
+            #
+            #   @return [Integer, nil]
+            optional :expiration_days, Integer, nil?: true
+
+            # @!attribute initial_price
+            #   An additional amount charged upon first purchase. Use only if a one time payment
+            #   OR you want to charge an additional amount on top of the renewal price. Provided
+            #   as a number in the specified currency. Eg: 10.43 for $10.43
+            #
+            #   @return [Float, nil]
+            optional :initial_price, Float, nil?: true
+
+            # @!attribute internal_notes
+            #   A personal description or notes section for the business.
+            #
+            #   @return [String, nil]
+            optional :internal_notes, String, nil?: true
+
+            # @!attribute legacy_payment_method_controls
+            #   Whether this plan uses legacy payment method controls
+            #
+            #   @return [Boolean, nil]
+            optional :legacy_payment_method_controls, WhopSDK::Internal::Type::Boolean, nil?: true
+
+            # @!attribute payment_method_configuration
+            #   The explicit payment method configuration for the plan. If not provided, the
+            #   platform or company's defaults will apply.
+            #
+            #   @return [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan::PaymentMethodConfiguration, nil]
+            optional :payment_method_configuration,
+                     -> {
+                       WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan::PaymentMethodConfiguration
+                     },
+                     nil?: true
+
+            # @!attribute plan_type
+            #   The type of plan that can be attached to a product
+            #
+            #   @return [Symbol, WhopSDK::Models::PlanType, nil]
+            optional :plan_type, enum: -> { WhopSDK::PlanType }, nil?: true
+
+            # @!attribute release_method
+            #   The methods of how a plan can be released.
+            #
+            #   @return [Symbol, WhopSDK::Models::ReleaseMethod, nil]
+            optional :release_method, enum: -> { WhopSDK::ReleaseMethod }, nil?: true
+
+            # @!attribute renewal_price
+            #   The amount the customer is charged every billing period. Use only if a recurring
+            #   payment. Provided as a number in the specified currency. Eg: 10.43 for $10.43
+            #
+            #   @return [Float, nil]
+            optional :renewal_price, Float, nil?: true
+
+            # @!attribute stock
+            #   The number of units available for purchase.
+            #
+            #   @return [Integer, nil]
+            optional :stock, Integer, nil?: true
+
+            # @!attribute trial_period_days
+            #   The number of free trial days added before a renewal plan.
+            #
+            #   @return [Integer, nil]
+            optional :trial_period_days, Integer, nil?: true
+
+            # @!attribute unlimited_stock
+            #   When true, the plan has unlimited stock (stock field is ignored). When false,
+            #   purchases are limited by the stock field.
+            #
+            #   @return [Boolean, nil]
+            optional :unlimited_stock, WhopSDK::Internal::Type::Boolean, nil?: true
+
+            # @!attribute visibility
+            #   Visibility of a resource
+            #
+            #   @return [Symbol, WhopSDK::Models::Visibility, nil]
+            optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
+
+            # @!method initialize(billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan}
+            #   for more details.
+            #
+            #   The plan attributes defining the price, currency, and billing interval for this
+            #   invoice.
+            #
+            #   @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans).
+            #
+            #   @param custom_fields [Array<WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan::CustomField>, nil] An array of custom field objects.
+            #
+            #   @param description [String, nil] The description of the plan.
+            #
+            #   @param expiration_days [Integer, nil] The number of days until the membership expires and revokes access (expiration p
+            #
+            #   @param initial_price [Float, nil] An additional amount charged upon first purchase. Use only if a one time payment
+            #
+            #   @param internal_notes [String, nil] A personal description or notes section for the business.
+            #
+            #   @param legacy_payment_method_controls [Boolean, nil] Whether this plan uses legacy payment method controls
+            #
+            #   @param payment_method_configuration [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan::PaymentMethodConfiguration, nil] The explicit payment method configuration for the plan. If not provided, the pla
+            #
+            #   @param plan_type [Symbol, WhopSDK::Models::PlanType, nil] The type of plan that can be attached to a product
+            #
+            #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod, nil] The methods of how a plan can be released.
+            #
+            #   @param renewal_price [Float, nil] The amount the customer is charged every billing period. Use only if a recurring
+            #
+            #   @param stock [Integer, nil] The number of units available for purchase.
+            #
+            #   @param trial_period_days [Integer, nil] The number of free trial days added before a renewal plan.
+            #
+            #   @param unlimited_stock [Boolean, nil] When true, the plan has unlimited stock (stock field is ignored). When false, pu
+            #
+            #   @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
+
+            class CustomField < WhopSDK::Internal::Type::BaseModel
+              # @!attribute field_type
+              #   The type of the custom field.
+              #
+              #   @return [Symbol, :text]
+              required :field_type, const: :text
+
+              # @!attribute name
+              #   The name of the custom field.
+              #
+              #   @return [String]
+              required :name, String
+
+              # @!attribute id
+              #   The ID of the custom field (if being updated)
+              #
+              #   @return [String, nil]
+              optional :id, String, nil?: true
+
+              # @!attribute order
+              #   The order of the field.
+              #
+              #   @return [Integer, nil]
+              optional :order, Integer, nil?: true
+
+              # @!attribute placeholder
+              #   The placeholder value of the field.
+              #
+              #   @return [String, nil]
+              optional :placeholder, String, nil?: true
+
+              # @!attribute required
+              #   Whether or not the field is required.
+              #
+              #   @return [Boolean, nil]
+              optional :required, WhopSDK::Internal::Type::Boolean, nil?: true
+
+              # @!method initialize(name:, id: nil, order: nil, placeholder: nil, required: nil, field_type: :text)
+              #   @param name [String] The name of the custom field.
+              #
+              #   @param id [String, nil] The ID of the custom field (if being updated)
+              #
+              #   @param order [Integer, nil] The order of the field.
+              #
+              #   @param placeholder [String, nil] The placeholder value of the field.
+              #
+              #   @param required [Boolean, nil] Whether or not the field is required.
+              #
+              #   @param field_type [Symbol, :text] The type of the custom field.
+            end
+
+            # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan#payment_method_configuration
+            class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+              # @!attribute disabled
+              #   An array of payment method identifiers that are explicitly disabled. Only
+              #   applies if the include_platform_defaults is true.
+              #
+              #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
+              required :disabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+
+              # @!attribute enabled
+              #   An array of payment method identifiers that are explicitly enabled. This means
+              #   these payment methods will be shown on checkout. Example use case is to only
+              #   enable a specific payment method like cashapp, or extending the platform
+              #   defaults with additional methods.
+              #
+              #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
+              required :enabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+
+              # @!attribute include_platform_defaults
+              #   Whether Whop's platform default payment method enablement settings are included
+              #   in this configuration. The full list of default payment methods can be found in
+              #   the documentation at docs.whop.com/payments.
+              #
+              #   @return [Boolean]
+              required :include_platform_defaults, WhopSDK::Internal::Type::Boolean
+
+              # @!method initialize(disabled:, enabled:, include_platform_defaults:)
+              #   Some parameter documentations has been truncated, see
+              #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan::PaymentMethodConfiguration}
+              #   for more details.
+              #
+              #   The explicit payment method configuration for the plan. If not provided, the
+              #   platform or company's defaults will apply.
+              #
+              #   @param disabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly disabled. Only applie
+              #
+              #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
+              #
+              #   @param include_platform_defaults [Boolean] Whether Whop's platform default payment method enablement settings are included
+            end
+          end
+        end
+
+        # @!method self.variants
+        #   @return [Array(WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress)]
       end
     end
   end

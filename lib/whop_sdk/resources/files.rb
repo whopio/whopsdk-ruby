@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Files
     class Files
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::FileCreateParams} for more details.

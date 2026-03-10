@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Course chapters
     class CourseChapters
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::CourseChapterCreateParams} for more details.
@@ -111,10 +112,11 @@ module WhopSDK
       # @see WhopSDK::Models::CourseChapterListParams
       def list(params)
         parsed, options = WhopSDK::CourseChapterListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "course_chapters",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::CourseChapterListResponse,
           options: options

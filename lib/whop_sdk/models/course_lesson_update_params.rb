@@ -7,6 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute assessment_completion_requirement
       #   The passing criteria for quiz or knowledge check lessons, such as minimum grade
       #   or correct answers.
@@ -104,9 +109,11 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::LessonVisibilities, nil]
       optional :visibility, enum: -> { WhopSDK::LessonVisibilities }, nil?: true
 
-      # @!method initialize(assessment_completion_requirement: nil, assessment_questions: nil, attachments: nil, content: nil, days_from_course_start_until_unlock: nil, embed_id: nil, embed_type: nil, lesson_type: nil, main_pdf: nil, max_attempts: nil, mux_asset_id: nil, thumbnail: nil, title: nil, visibility: nil, request_options: {})
+      # @!method initialize(id:, assessment_completion_requirement: nil, assessment_questions: nil, attachments: nil, content: nil, days_from_course_start_until_unlock: nil, embed_id: nil, embed_type: nil, lesson_type: nil, main_pdf: nil, max_attempts: nil, mux_asset_id: nil, thumbnail: nil, title: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CourseLessonUpdateParams} for more details.
+      #
+      #   @param id [String]
       #
       #   @param assessment_completion_requirement [WhopSDK::Models::CourseLessonUpdateParams::AssessmentCompletionRequirement, nil] The passing criteria for quiz or knowledge check lessons, such as minimum grade
       #

@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Products
     class Products
       # Create a new product for a company. The product serves as the top-level
       # container for plans and experiences.

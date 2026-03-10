@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # App builds
     class AppBuilds
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::AppBuildCreateParams} for more details.
@@ -101,10 +102,11 @@ module WhopSDK
       # @see WhopSDK::Models::AppBuildListParams
       def list(params)
         parsed, options = WhopSDK::AppBuildListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "app_builds",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::AppBuildListResponse,
           options: options

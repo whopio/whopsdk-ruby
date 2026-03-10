@@ -1,216 +1,957 @@
 module WhopSDK
   module Models
     type invoice_create_params =
-      {
-        collection_method: WhopSDK::Models::collection_method,
-        company_id: String,
-        due_date: Time,
-        member_id: String,
-        plan: WhopSDK::InvoiceCreateParams::Plan,
-        product: WhopSDK::InvoiceCreateParams::Product,
-        automatically_finalizes_at: Time?,
-        charge_buyer_fee: bool?,
-        customer_name: String?,
-        payment_method_id: String?,
-        payment_token_id: String?,
-        email_address: String,
-        product_id: String
-      }
+      { body: WhopSDK::Models::InvoiceCreateParams::body }
       & WhopSDK::Internal::Type::request_parameters
 
     class InvoiceCreateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor collection_method: WhopSDK::Models::collection_method
-
-      attr_accessor company_id: String
-
-      attr_accessor due_date: Time
-
-      attr_accessor member_id: String
-
-      attr_accessor plan: WhopSDK::InvoiceCreateParams::Plan
-
-      attr_accessor product: WhopSDK::InvoiceCreateParams::Product
-
-      attr_accessor automatically_finalizes_at: Time?
-
-      attr_accessor charge_buyer_fee: bool?
-
-      attr_accessor customer_name: String?
-
-      attr_accessor payment_method_id: String?
-
-      attr_accessor payment_token_id: String?
-
-      attr_accessor email_address: String
-
-      attr_accessor product_id: String
+      attr_accessor body: WhopSDK::Models::InvoiceCreateParams::body
 
       def initialize: (
-        collection_method: WhopSDK::Models::collection_method,
-        company_id: String,
-        due_date: Time,
-        member_id: String,
-        plan: WhopSDK::InvoiceCreateParams::Plan,
-        product: WhopSDK::InvoiceCreateParams::Product,
-        email_address: String,
-        product_id: String,
-        ?automatically_finalizes_at: Time?,
-        ?charge_buyer_fee: bool?,
-        ?customer_name: String?,
-        ?payment_method_id: String?,
-        ?payment_token_id: String?,
+        body: WhopSDK::Models::InvoiceCreateParams::body,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        collection_method: WhopSDK::Models::collection_method,
-        company_id: String,
-        due_date: Time,
-        member_id: String,
-        plan: WhopSDK::InvoiceCreateParams::Plan,
-        product: WhopSDK::InvoiceCreateParams::Product,
-        automatically_finalizes_at: Time?,
-        charge_buyer_fee: bool?,
-        customer_name: String?,
-        payment_method_id: String?,
-        payment_token_id: String?,
-        email_address: String,
-        product_id: String,
+        body: WhopSDK::Models::InvoiceCreateParams::body,
         request_options: WhopSDK::RequestOptions
       }
 
-      type plan =
-        {
-          billing_period: Integer?,
-          custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Plan::CustomField]?,
-          description: String?,
-          expiration_days: Integer?,
-          initial_price: Float?,
-          internal_notes: String?,
-          plan_type: WhopSDK::Models::plan_type?,
-          release_method: WhopSDK::Models::release_method?,
-          renewal_price: Float?,
-          stock: Integer?,
-          trial_period_days: Integer?,
-          unlimited_stock: bool?,
-          visibility: WhopSDK::Models::visibility?
-        }
+      type body =
+        WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID
+        | WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress
+        | WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID
+        | WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress
 
-      class Plan < WhopSDK::Internal::Type::BaseModel
-        attr_accessor billing_period: Integer?
+      module Body
+        extend WhopSDK::Internal::Type::Union
 
-        attr_accessor custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Plan::CustomField]?
-
-        attr_accessor description: String?
-
-        attr_accessor expiration_days: Integer?
-
-        attr_accessor initial_price: Float?
-
-        attr_accessor internal_notes: String?
-
-        attr_accessor plan_type: WhopSDK::Models::plan_type?
-
-        attr_accessor release_method: WhopSDK::Models::release_method?
-
-        attr_accessor renewal_price: Float?
-
-        attr_accessor stock: Integer?
-
-        attr_accessor trial_period_days: Integer?
-
-        attr_accessor unlimited_stock: bool?
-
-        attr_accessor visibility: WhopSDK::Models::visibility?
-
-        def initialize: (
-          ?billing_period: Integer?,
-          ?custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Plan::CustomField]?,
-          ?description: String?,
-          ?expiration_days: Integer?,
-          ?initial_price: Float?,
-          ?internal_notes: String?,
-          ?plan_type: WhopSDK::Models::plan_type?,
-          ?release_method: WhopSDK::Models::release_method?,
-          ?renewal_price: Float?,
-          ?stock: Integer?,
-          ?trial_period_days: Integer?,
-          ?unlimited_stock: bool?,
-          ?visibility: WhopSDK::Models::visibility?
-        ) -> void
-
-        def to_hash: -> {
-          billing_period: Integer?,
-          custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Plan::CustomField]?,
-          description: String?,
-          expiration_days: Integer?,
-          initial_price: Float?,
-          internal_notes: String?,
-          plan_type: WhopSDK::Models::plan_type?,
-          release_method: WhopSDK::Models::release_method?,
-          renewal_price: Float?,
-          stock: Integer?,
-          trial_period_days: Integer?,
-          unlimited_stock: bool?,
-          visibility: WhopSDK::Models::visibility?
-        }
-
-        type custom_field =
+        type create_invoice_input_with_product_and_member_id =
           {
-            field_type: :text,
-            name: String,
-            id: String?,
-            order: Integer?,
-            placeholder: String?,
-            required: bool?
+            collection_method: WhopSDK::Models::collection_method,
+            company_id: String,
+            due_date: Time,
+            member_id: String,
+            plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan,
+            product: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Product,
+            automatically_finalizes_at: Time?,
+            charge_buyer_fee: bool?,
+            customer_name: String?,
+            payment_method_id: String?,
+            payment_token_id: String?
           }
 
-        class CustomField < WhopSDK::Internal::Type::BaseModel
-          attr_accessor field_type: :text
+        class CreateInvoiceInputWithProductAndMemberID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor collection_method: WhopSDK::Models::collection_method
 
-          attr_accessor name: String
+          attr_accessor company_id: String
 
-          attr_accessor id: String?
+          attr_accessor due_date: Time
 
-          attr_accessor order: Integer?
+          attr_accessor member_id: String
 
-          attr_accessor placeholder: String?
+          attr_accessor plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan
 
-          attr_accessor required: bool?
+          attr_accessor product: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Product
+
+          attr_accessor automatically_finalizes_at: Time?
+
+          attr_accessor charge_buyer_fee: bool?
+
+          attr_accessor customer_name: String?
+
+          attr_accessor payment_method_id: String?
+
+          attr_accessor payment_token_id: String?
 
           def initialize: (
-            name: String,
-            ?id: String?,
-            ?order: Integer?,
-            ?placeholder: String?,
-            ?required: bool?,
-            ?field_type: :text
+            collection_method: WhopSDK::Models::collection_method,
+            company_id: String,
+            due_date: Time,
+            member_id: String,
+            plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan,
+            product: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Product,
+            ?automatically_finalizes_at: Time?,
+            ?charge_buyer_fee: bool?,
+            ?customer_name: String?,
+            ?payment_method_id: String?,
+            ?payment_token_id: String?
           ) -> void
 
           def to_hash: -> {
-            field_type: :text,
-            name: String,
-            id: String?,
-            order: Integer?,
-            placeholder: String?,
-            required: bool?
+            collection_method: WhopSDK::Models::collection_method,
+            company_id: String,
+            due_date: Time,
+            member_id: String,
+            plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan,
+            product: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Product,
+            automatically_finalizes_at: Time?,
+            charge_buyer_fee: bool?,
+            customer_name: String?,
+            payment_method_id: String?,
+            payment_token_id: String?
           }
+
+          type plan =
+            {
+              billing_period: Integer?,
+              custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan::CustomField]?,
+              description: String?,
+              expiration_days: Integer?,
+              initial_price: Float?,
+              internal_notes: String?,
+              legacy_payment_method_controls: bool?,
+              payment_method_configuration: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan::PaymentMethodConfiguration?,
+              plan_type: WhopSDK::Models::plan_type?,
+              release_method: WhopSDK::Models::release_method?,
+              renewal_price: Float?,
+              stock: Integer?,
+              trial_period_days: Integer?,
+              unlimited_stock: bool?,
+              visibility: WhopSDK::Models::visibility?
+            }
+
+          class Plan < WhopSDK::Internal::Type::BaseModel
+            attr_accessor billing_period: Integer?
+
+            attr_accessor custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan::CustomField]?
+
+            attr_accessor description: String?
+
+            attr_accessor expiration_days: Integer?
+
+            attr_accessor initial_price: Float?
+
+            attr_accessor internal_notes: String?
+
+            attr_accessor legacy_payment_method_controls: bool?
+
+            attr_accessor payment_method_configuration: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan::PaymentMethodConfiguration?
+
+            attr_accessor plan_type: WhopSDK::Models::plan_type?
+
+            attr_accessor release_method: WhopSDK::Models::release_method?
+
+            attr_accessor renewal_price: Float?
+
+            attr_accessor stock: Integer?
+
+            attr_accessor trial_period_days: Integer?
+
+            attr_accessor unlimited_stock: bool?
+
+            attr_accessor visibility: WhopSDK::Models::visibility?
+
+            def initialize: (
+              ?billing_period: Integer?,
+              ?custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan::CustomField]?,
+              ?description: String?,
+              ?expiration_days: Integer?,
+              ?initial_price: Float?,
+              ?internal_notes: String?,
+              ?legacy_payment_method_controls: bool?,
+              ?payment_method_configuration: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan::PaymentMethodConfiguration?,
+              ?plan_type: WhopSDK::Models::plan_type?,
+              ?release_method: WhopSDK::Models::release_method?,
+              ?renewal_price: Float?,
+              ?stock: Integer?,
+              ?trial_period_days: Integer?,
+              ?unlimited_stock: bool?,
+              ?visibility: WhopSDK::Models::visibility?
+            ) -> void
+
+            def to_hash: -> {
+              billing_period: Integer?,
+              custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan::CustomField]?,
+              description: String?,
+              expiration_days: Integer?,
+              initial_price: Float?,
+              internal_notes: String?,
+              legacy_payment_method_controls: bool?,
+              payment_method_configuration: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::Plan::PaymentMethodConfiguration?,
+              plan_type: WhopSDK::Models::plan_type?,
+              release_method: WhopSDK::Models::release_method?,
+              renewal_price: Float?,
+              stock: Integer?,
+              trial_period_days: Integer?,
+              unlimited_stock: bool?,
+              visibility: WhopSDK::Models::visibility?
+            }
+
+            type custom_field =
+              {
+                field_type: :text,
+                name: String,
+                id: String?,
+                order: Integer?,
+                placeholder: String?,
+                required: bool?
+              }
+
+            class CustomField < WhopSDK::Internal::Type::BaseModel
+              attr_accessor field_type: :text
+
+              attr_accessor name: String
+
+              attr_accessor id: String?
+
+              attr_accessor order: Integer?
+
+              attr_accessor placeholder: String?
+
+              attr_accessor required: bool?
+
+              def initialize: (
+                name: String,
+                ?id: String?,
+                ?order: Integer?,
+                ?placeholder: String?,
+                ?required: bool?,
+                ?field_type: :text
+              ) -> void
+
+              def to_hash: -> {
+                field_type: :text,
+                name: String,
+                id: String?,
+                order: Integer?,
+                placeholder: String?,
+                required: bool?
+              }
+            end
+
+            type payment_method_configuration =
+              {
+                disabled: ::Array[WhopSDK::Models::payment_method_types],
+                enabled: ::Array[WhopSDK::Models::payment_method_types],
+                include_platform_defaults: bool
+              }
+
+            class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+              attr_accessor disabled: ::Array[WhopSDK::Models::payment_method_types]
+
+              attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
+
+              attr_accessor include_platform_defaults: bool
+
+              def initialize: (
+                disabled: ::Array[WhopSDK::Models::payment_method_types],
+                enabled: ::Array[WhopSDK::Models::payment_method_types],
+                include_platform_defaults: bool
+              ) -> void
+
+              def to_hash: -> {
+                disabled: ::Array[WhopSDK::Models::payment_method_types],
+                enabled: ::Array[WhopSDK::Models::payment_method_types],
+                include_platform_defaults: bool
+              }
+            end
+          end
+
+          type product = { title: String, product_tax_code_id: String? }
+
+          class Product < WhopSDK::Internal::Type::BaseModel
+            attr_accessor title: String
+
+            attr_accessor product_tax_code_id: String?
+
+            def initialize: (
+              title: String,
+              ?product_tax_code_id: String?
+            ) -> void
+
+            def to_hash: -> { title: String, product_tax_code_id: String? }
+          end
         end
-      end
 
-      type product = { title: String, product_tax_code_id: String? }
+        type create_invoice_input_with_product_and_email_address =
+          {
+            collection_method: WhopSDK::Models::collection_method,
+            company_id: String,
+            due_date: Time,
+            email_address: String,
+            plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan,
+            product: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Product,
+            automatically_finalizes_at: Time?,
+            charge_buyer_fee: bool?,
+            customer_name: String?,
+            payment_method_id: String?,
+            payment_token_id: String?
+          }
 
-      class Product < WhopSDK::Internal::Type::BaseModel
-        attr_accessor title: String
+        class CreateInvoiceInputWithProductAndEmailAddress < WhopSDK::Internal::Type::BaseModel
+          attr_accessor collection_method: WhopSDK::Models::collection_method
 
-        attr_accessor product_tax_code_id: String?
+          attr_accessor company_id: String
 
-        def initialize: (title: String, ?product_tax_code_id: String?) -> void
+          attr_accessor due_date: Time
 
-        def to_hash: -> { title: String, product_tax_code_id: String? }
+          attr_accessor email_address: String
+
+          attr_accessor plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan
+
+          attr_accessor product: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Product
+
+          attr_accessor automatically_finalizes_at: Time?
+
+          attr_accessor charge_buyer_fee: bool?
+
+          attr_accessor customer_name: String?
+
+          attr_accessor payment_method_id: String?
+
+          attr_accessor payment_token_id: String?
+
+          def initialize: (
+            collection_method: WhopSDK::Models::collection_method,
+            company_id: String,
+            due_date: Time,
+            email_address: String,
+            plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan,
+            product: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Product,
+            ?automatically_finalizes_at: Time?,
+            ?charge_buyer_fee: bool?,
+            ?customer_name: String?,
+            ?payment_method_id: String?,
+            ?payment_token_id: String?
+          ) -> void
+
+          def to_hash: -> {
+            collection_method: WhopSDK::Models::collection_method,
+            company_id: String,
+            due_date: Time,
+            email_address: String,
+            plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan,
+            product: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Product,
+            automatically_finalizes_at: Time?,
+            charge_buyer_fee: bool?,
+            customer_name: String?,
+            payment_method_id: String?,
+            payment_token_id: String?
+          }
+
+          type plan =
+            {
+              billing_period: Integer?,
+              custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan::CustomField]?,
+              description: String?,
+              expiration_days: Integer?,
+              initial_price: Float?,
+              internal_notes: String?,
+              legacy_payment_method_controls: bool?,
+              payment_method_configuration: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan::PaymentMethodConfiguration?,
+              plan_type: WhopSDK::Models::plan_type?,
+              release_method: WhopSDK::Models::release_method?,
+              renewal_price: Float?,
+              stock: Integer?,
+              trial_period_days: Integer?,
+              unlimited_stock: bool?,
+              visibility: WhopSDK::Models::visibility?
+            }
+
+          class Plan < WhopSDK::Internal::Type::BaseModel
+            attr_accessor billing_period: Integer?
+
+            attr_accessor custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan::CustomField]?
+
+            attr_accessor description: String?
+
+            attr_accessor expiration_days: Integer?
+
+            attr_accessor initial_price: Float?
+
+            attr_accessor internal_notes: String?
+
+            attr_accessor legacy_payment_method_controls: bool?
+
+            attr_accessor payment_method_configuration: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan::PaymentMethodConfiguration?
+
+            attr_accessor plan_type: WhopSDK::Models::plan_type?
+
+            attr_accessor release_method: WhopSDK::Models::release_method?
+
+            attr_accessor renewal_price: Float?
+
+            attr_accessor stock: Integer?
+
+            attr_accessor trial_period_days: Integer?
+
+            attr_accessor unlimited_stock: bool?
+
+            attr_accessor visibility: WhopSDK::Models::visibility?
+
+            def initialize: (
+              ?billing_period: Integer?,
+              ?custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan::CustomField]?,
+              ?description: String?,
+              ?expiration_days: Integer?,
+              ?initial_price: Float?,
+              ?internal_notes: String?,
+              ?legacy_payment_method_controls: bool?,
+              ?payment_method_configuration: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan::PaymentMethodConfiguration?,
+              ?plan_type: WhopSDK::Models::plan_type?,
+              ?release_method: WhopSDK::Models::release_method?,
+              ?renewal_price: Float?,
+              ?stock: Integer?,
+              ?trial_period_days: Integer?,
+              ?unlimited_stock: bool?,
+              ?visibility: WhopSDK::Models::visibility?
+            ) -> void
+
+            def to_hash: -> {
+              billing_period: Integer?,
+              custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan::CustomField]?,
+              description: String?,
+              expiration_days: Integer?,
+              initial_price: Float?,
+              internal_notes: String?,
+              legacy_payment_method_controls: bool?,
+              payment_method_configuration: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::Plan::PaymentMethodConfiguration?,
+              plan_type: WhopSDK::Models::plan_type?,
+              release_method: WhopSDK::Models::release_method?,
+              renewal_price: Float?,
+              stock: Integer?,
+              trial_period_days: Integer?,
+              unlimited_stock: bool?,
+              visibility: WhopSDK::Models::visibility?
+            }
+
+            type custom_field =
+              {
+                field_type: :text,
+                name: String,
+                id: String?,
+                order: Integer?,
+                placeholder: String?,
+                required: bool?
+              }
+
+            class CustomField < WhopSDK::Internal::Type::BaseModel
+              attr_accessor field_type: :text
+
+              attr_accessor name: String
+
+              attr_accessor id: String?
+
+              attr_accessor order: Integer?
+
+              attr_accessor placeholder: String?
+
+              attr_accessor required: bool?
+
+              def initialize: (
+                name: String,
+                ?id: String?,
+                ?order: Integer?,
+                ?placeholder: String?,
+                ?required: bool?,
+                ?field_type: :text
+              ) -> void
+
+              def to_hash: -> {
+                field_type: :text,
+                name: String,
+                id: String?,
+                order: Integer?,
+                placeholder: String?,
+                required: bool?
+              }
+            end
+
+            type payment_method_configuration =
+              {
+                disabled: ::Array[WhopSDK::Models::payment_method_types],
+                enabled: ::Array[WhopSDK::Models::payment_method_types],
+                include_platform_defaults: bool
+              }
+
+            class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+              attr_accessor disabled: ::Array[WhopSDK::Models::payment_method_types]
+
+              attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
+
+              attr_accessor include_platform_defaults: bool
+
+              def initialize: (
+                disabled: ::Array[WhopSDK::Models::payment_method_types],
+                enabled: ::Array[WhopSDK::Models::payment_method_types],
+                include_platform_defaults: bool
+              ) -> void
+
+              def to_hash: -> {
+                disabled: ::Array[WhopSDK::Models::payment_method_types],
+                enabled: ::Array[WhopSDK::Models::payment_method_types],
+                include_platform_defaults: bool
+              }
+            end
+          end
+
+          type product = { title: String, product_tax_code_id: String? }
+
+          class Product < WhopSDK::Internal::Type::BaseModel
+            attr_accessor title: String
+
+            attr_accessor product_tax_code_id: String?
+
+            def initialize: (
+              title: String,
+              ?product_tax_code_id: String?
+            ) -> void
+
+            def to_hash: -> { title: String, product_tax_code_id: String? }
+          end
+        end
+
+        type create_invoice_input_with_product_id_and_member_id =
+          {
+            collection_method: WhopSDK::Models::collection_method,
+            company_id: String,
+            due_date: Time,
+            member_id: String,
+            plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan,
+            product_id: String,
+            automatically_finalizes_at: Time?,
+            charge_buyer_fee: bool?,
+            customer_name: String?,
+            payment_method_id: String?,
+            payment_token_id: String?
+          }
+
+        class CreateInvoiceInputWithProductIDAndMemberID < WhopSDK::Internal::Type::BaseModel
+          attr_accessor collection_method: WhopSDK::Models::collection_method
+
+          attr_accessor company_id: String
+
+          attr_accessor due_date: Time
+
+          attr_accessor member_id: String
+
+          attr_accessor plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan
+
+          attr_accessor product_id: String
+
+          attr_accessor automatically_finalizes_at: Time?
+
+          attr_accessor charge_buyer_fee: bool?
+
+          attr_accessor customer_name: String?
+
+          attr_accessor payment_method_id: String?
+
+          attr_accessor payment_token_id: String?
+
+          def initialize: (
+            collection_method: WhopSDK::Models::collection_method,
+            company_id: String,
+            due_date: Time,
+            member_id: String,
+            plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan,
+            product_id: String,
+            ?automatically_finalizes_at: Time?,
+            ?charge_buyer_fee: bool?,
+            ?customer_name: String?,
+            ?payment_method_id: String?,
+            ?payment_token_id: String?
+          ) -> void
+
+          def to_hash: -> {
+            collection_method: WhopSDK::Models::collection_method,
+            company_id: String,
+            due_date: Time,
+            member_id: String,
+            plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan,
+            product_id: String,
+            automatically_finalizes_at: Time?,
+            charge_buyer_fee: bool?,
+            customer_name: String?,
+            payment_method_id: String?,
+            payment_token_id: String?
+          }
+
+          type plan =
+            {
+              billing_period: Integer?,
+              custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan::CustomField]?,
+              description: String?,
+              expiration_days: Integer?,
+              initial_price: Float?,
+              internal_notes: String?,
+              legacy_payment_method_controls: bool?,
+              payment_method_configuration: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan::PaymentMethodConfiguration?,
+              plan_type: WhopSDK::Models::plan_type?,
+              release_method: WhopSDK::Models::release_method?,
+              renewal_price: Float?,
+              stock: Integer?,
+              trial_period_days: Integer?,
+              unlimited_stock: bool?,
+              visibility: WhopSDK::Models::visibility?
+            }
+
+          class Plan < WhopSDK::Internal::Type::BaseModel
+            attr_accessor billing_period: Integer?
+
+            attr_accessor custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan::CustomField]?
+
+            attr_accessor description: String?
+
+            attr_accessor expiration_days: Integer?
+
+            attr_accessor initial_price: Float?
+
+            attr_accessor internal_notes: String?
+
+            attr_accessor legacy_payment_method_controls: bool?
+
+            attr_accessor payment_method_configuration: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan::PaymentMethodConfiguration?
+
+            attr_accessor plan_type: WhopSDK::Models::plan_type?
+
+            attr_accessor release_method: WhopSDK::Models::release_method?
+
+            attr_accessor renewal_price: Float?
+
+            attr_accessor stock: Integer?
+
+            attr_accessor trial_period_days: Integer?
+
+            attr_accessor unlimited_stock: bool?
+
+            attr_accessor visibility: WhopSDK::Models::visibility?
+
+            def initialize: (
+              ?billing_period: Integer?,
+              ?custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan::CustomField]?,
+              ?description: String?,
+              ?expiration_days: Integer?,
+              ?initial_price: Float?,
+              ?internal_notes: String?,
+              ?legacy_payment_method_controls: bool?,
+              ?payment_method_configuration: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan::PaymentMethodConfiguration?,
+              ?plan_type: WhopSDK::Models::plan_type?,
+              ?release_method: WhopSDK::Models::release_method?,
+              ?renewal_price: Float?,
+              ?stock: Integer?,
+              ?trial_period_days: Integer?,
+              ?unlimited_stock: bool?,
+              ?visibility: WhopSDK::Models::visibility?
+            ) -> void
+
+            def to_hash: -> {
+              billing_period: Integer?,
+              custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan::CustomField]?,
+              description: String?,
+              expiration_days: Integer?,
+              initial_price: Float?,
+              internal_notes: String?,
+              legacy_payment_method_controls: bool?,
+              payment_method_configuration: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::Plan::PaymentMethodConfiguration?,
+              plan_type: WhopSDK::Models::plan_type?,
+              release_method: WhopSDK::Models::release_method?,
+              renewal_price: Float?,
+              stock: Integer?,
+              trial_period_days: Integer?,
+              unlimited_stock: bool?,
+              visibility: WhopSDK::Models::visibility?
+            }
+
+            type custom_field =
+              {
+                field_type: :text,
+                name: String,
+                id: String?,
+                order: Integer?,
+                placeholder: String?,
+                required: bool?
+              }
+
+            class CustomField < WhopSDK::Internal::Type::BaseModel
+              attr_accessor field_type: :text
+
+              attr_accessor name: String
+
+              attr_accessor id: String?
+
+              attr_accessor order: Integer?
+
+              attr_accessor placeholder: String?
+
+              attr_accessor required: bool?
+
+              def initialize: (
+                name: String,
+                ?id: String?,
+                ?order: Integer?,
+                ?placeholder: String?,
+                ?required: bool?,
+                ?field_type: :text
+              ) -> void
+
+              def to_hash: -> {
+                field_type: :text,
+                name: String,
+                id: String?,
+                order: Integer?,
+                placeholder: String?,
+                required: bool?
+              }
+            end
+
+            type payment_method_configuration =
+              {
+                disabled: ::Array[WhopSDK::Models::payment_method_types],
+                enabled: ::Array[WhopSDK::Models::payment_method_types],
+                include_platform_defaults: bool
+              }
+
+            class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+              attr_accessor disabled: ::Array[WhopSDK::Models::payment_method_types]
+
+              attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
+
+              attr_accessor include_platform_defaults: bool
+
+              def initialize: (
+                disabled: ::Array[WhopSDK::Models::payment_method_types],
+                enabled: ::Array[WhopSDK::Models::payment_method_types],
+                include_platform_defaults: bool
+              ) -> void
+
+              def to_hash: -> {
+                disabled: ::Array[WhopSDK::Models::payment_method_types],
+                enabled: ::Array[WhopSDK::Models::payment_method_types],
+                include_platform_defaults: bool
+              }
+            end
+          end
+        end
+
+        type create_invoice_input_with_product_id_and_email_address =
+          {
+            collection_method: WhopSDK::Models::collection_method,
+            company_id: String,
+            due_date: Time,
+            email_address: String,
+            plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan,
+            product_id: String,
+            automatically_finalizes_at: Time?,
+            charge_buyer_fee: bool?,
+            customer_name: String?,
+            payment_method_id: String?,
+            payment_token_id: String?
+          }
+
+        class CreateInvoiceInputWithProductIDAndEmailAddress < WhopSDK::Internal::Type::BaseModel
+          attr_accessor collection_method: WhopSDK::Models::collection_method
+
+          attr_accessor company_id: String
+
+          attr_accessor due_date: Time
+
+          attr_accessor email_address: String
+
+          attr_accessor plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan
+
+          attr_accessor product_id: String
+
+          attr_accessor automatically_finalizes_at: Time?
+
+          attr_accessor charge_buyer_fee: bool?
+
+          attr_accessor customer_name: String?
+
+          attr_accessor payment_method_id: String?
+
+          attr_accessor payment_token_id: String?
+
+          def initialize: (
+            collection_method: WhopSDK::Models::collection_method,
+            company_id: String,
+            due_date: Time,
+            email_address: String,
+            plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan,
+            product_id: String,
+            ?automatically_finalizes_at: Time?,
+            ?charge_buyer_fee: bool?,
+            ?customer_name: String?,
+            ?payment_method_id: String?,
+            ?payment_token_id: String?
+          ) -> void
+
+          def to_hash: -> {
+            collection_method: WhopSDK::Models::collection_method,
+            company_id: String,
+            due_date: Time,
+            email_address: String,
+            plan: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan,
+            product_id: String,
+            automatically_finalizes_at: Time?,
+            charge_buyer_fee: bool?,
+            customer_name: String?,
+            payment_method_id: String?,
+            payment_token_id: String?
+          }
+
+          type plan =
+            {
+              billing_period: Integer?,
+              custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan::CustomField]?,
+              description: String?,
+              expiration_days: Integer?,
+              initial_price: Float?,
+              internal_notes: String?,
+              legacy_payment_method_controls: bool?,
+              payment_method_configuration: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan::PaymentMethodConfiguration?,
+              plan_type: WhopSDK::Models::plan_type?,
+              release_method: WhopSDK::Models::release_method?,
+              renewal_price: Float?,
+              stock: Integer?,
+              trial_period_days: Integer?,
+              unlimited_stock: bool?,
+              visibility: WhopSDK::Models::visibility?
+            }
+
+          class Plan < WhopSDK::Internal::Type::BaseModel
+            attr_accessor billing_period: Integer?
+
+            attr_accessor custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan::CustomField]?
+
+            attr_accessor description: String?
+
+            attr_accessor expiration_days: Integer?
+
+            attr_accessor initial_price: Float?
+
+            attr_accessor internal_notes: String?
+
+            attr_accessor legacy_payment_method_controls: bool?
+
+            attr_accessor payment_method_configuration: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan::PaymentMethodConfiguration?
+
+            attr_accessor plan_type: WhopSDK::Models::plan_type?
+
+            attr_accessor release_method: WhopSDK::Models::release_method?
+
+            attr_accessor renewal_price: Float?
+
+            attr_accessor stock: Integer?
+
+            attr_accessor trial_period_days: Integer?
+
+            attr_accessor unlimited_stock: bool?
+
+            attr_accessor visibility: WhopSDK::Models::visibility?
+
+            def initialize: (
+              ?billing_period: Integer?,
+              ?custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan::CustomField]?,
+              ?description: String?,
+              ?expiration_days: Integer?,
+              ?initial_price: Float?,
+              ?internal_notes: String?,
+              ?legacy_payment_method_controls: bool?,
+              ?payment_method_configuration: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan::PaymentMethodConfiguration?,
+              ?plan_type: WhopSDK::Models::plan_type?,
+              ?release_method: WhopSDK::Models::release_method?,
+              ?renewal_price: Float?,
+              ?stock: Integer?,
+              ?trial_period_days: Integer?,
+              ?unlimited_stock: bool?,
+              ?visibility: WhopSDK::Models::visibility?
+            ) -> void
+
+            def to_hash: -> {
+              billing_period: Integer?,
+              custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan::CustomField]?,
+              description: String?,
+              expiration_days: Integer?,
+              initial_price: Float?,
+              internal_notes: String?,
+              legacy_payment_method_controls: bool?,
+              payment_method_configuration: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::Plan::PaymentMethodConfiguration?,
+              plan_type: WhopSDK::Models::plan_type?,
+              release_method: WhopSDK::Models::release_method?,
+              renewal_price: Float?,
+              stock: Integer?,
+              trial_period_days: Integer?,
+              unlimited_stock: bool?,
+              visibility: WhopSDK::Models::visibility?
+            }
+
+            type custom_field =
+              {
+                field_type: :text,
+                name: String,
+                id: String?,
+                order: Integer?,
+                placeholder: String?,
+                required: bool?
+              }
+
+            class CustomField < WhopSDK::Internal::Type::BaseModel
+              attr_accessor field_type: :text
+
+              attr_accessor name: String
+
+              attr_accessor id: String?
+
+              attr_accessor order: Integer?
+
+              attr_accessor placeholder: String?
+
+              attr_accessor required: bool?
+
+              def initialize: (
+                name: String,
+                ?id: String?,
+                ?order: Integer?,
+                ?placeholder: String?,
+                ?required: bool?,
+                ?field_type: :text
+              ) -> void
+
+              def to_hash: -> {
+                field_type: :text,
+                name: String,
+                id: String?,
+                order: Integer?,
+                placeholder: String?,
+                required: bool?
+              }
+            end
+
+            type payment_method_configuration =
+              {
+                disabled: ::Array[WhopSDK::Models::payment_method_types],
+                enabled: ::Array[WhopSDK::Models::payment_method_types],
+                include_platform_defaults: bool
+              }
+
+            class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
+              attr_accessor disabled: ::Array[WhopSDK::Models::payment_method_types]
+
+              attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
+
+              attr_accessor include_platform_defaults: bool
+
+              def initialize: (
+                disabled: ::Array[WhopSDK::Models::payment_method_types],
+                enabled: ::Array[WhopSDK::Models::payment_method_types],
+                include_platform_defaults: bool
+              ) -> void
+
+              def to_hash: -> {
+                disabled: ::Array[WhopSDK::Models::payment_method_types],
+                enabled: ::Array[WhopSDK::Models::payment_method_types],
+                include_platform_defaults: bool
+              }
+            end
+          end
+        end
+
+        def self?.variants: -> ::Array[WhopSDK::Models::InvoiceCreateParams::body]
       end
     end
   end

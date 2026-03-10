@@ -7,6 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute certificate_after_completion_enabled
       #   Whether the course awards students a PDF certificate after completing all
       #   lessons.
@@ -74,9 +79,11 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::CourseVisibilities, nil]
       optional :visibility, enum: -> { WhopSDK::CourseVisibilities }, nil?: true
 
-      # @!method initialize(certificate_after_completion_enabled: nil, chapters: nil, description: nil, language: nil, order: nil, require_completing_lessons_in_order: nil, tagline: nil, thumbnail: nil, title: nil, visibility: nil, request_options: {})
+      # @!method initialize(id:, certificate_after_completion_enabled: nil, chapters: nil, description: nil, language: nil, order: nil, require_completing_lessons_in_order: nil, tagline: nil, thumbnail: nil, title: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CourseUpdateParams} for more details.
+      #
+      #   @param id [String]
       #
       #   @param certificate_after_completion_enabled [Boolean, nil] Whether the course awards students a PDF certificate after completing all lesson
       #

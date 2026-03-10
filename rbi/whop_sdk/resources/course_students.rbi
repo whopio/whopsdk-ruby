@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Course students
     class CourseStudents
       # Retrieves the details of an existing course student.
       #

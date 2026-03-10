@@ -39,6 +39,19 @@ module WhopSDK
       #   @return [Boolean]
       required :is_pinned, WhopSDK::Internal::Type::Boolean
 
+      # @!attribute mentions
+      #   A list of user IDs that are explicitly mentioned in this message.
+      #
+      #   @return [Array<String>]
+      required :mentions, WhopSDK::Internal::Type::ArrayOf[String]
+
+      # @!attribute mentions_everyone
+      #   Whether the message includes an @everyone mention that notifies all channel
+      #   members.
+      #
+      #   @return [Boolean]
+      required :mentions_everyone, WhopSDK::Internal::Type::Boolean
+
       # @!attribute message_type
       #   The classification of this message: regular, system, or automated.
       #
@@ -93,7 +106,7 @@ module WhopSDK
       #   @return [Integer, nil]
       required :view_count, Integer, nil?: true
 
-      # @!method initialize(id:, content:, created_at:, is_edited:, is_pinned:, message_type:, poll:, poll_votes:, reaction_counts:, replying_to_message_id:, updated_at:, user:, view_count:)
+      # @!method initialize(id:, content:, created_at:, is_edited:, is_pinned:, mentions:, mentions_everyone:, message_type:, poll:, poll_votes:, reaction_counts:, replying_to_message_id:, updated_at:, user:, view_count:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::MessageListResponse} for more details.
       #
@@ -108,6 +121,10 @@ module WhopSDK
       #   @param is_edited [Boolean] Whether the message content has been edited after it was originally sent.
       #
       #   @param is_pinned [Boolean] Whether this message is pinned to the top of the channel for easy access.
+      #
+      #   @param mentions [Array<String>] A list of user IDs that are explicitly mentioned in this message.
+      #
+      #   @param mentions_everyone [Boolean] Whether the message includes an @everyone mention that notifies all channel memb
       #
       #   @param message_type [Symbol, WhopSDK::Models::DmsPostTypes] The classification of this message: regular, system, or automated.
       #

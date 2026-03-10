@@ -11,6 +11,9 @@ module WhopSDK
           T.any(WhopSDK::CourseUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # Whether the course awards students a PDF certificate after completing all
       # lessons.
       sig { returns(T.nilable(T::Boolean)) }
@@ -65,6 +68,7 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           certificate_after_completion_enabled: T.nilable(T::Boolean),
           chapters:
             T.nilable(T::Array[WhopSDK::CourseUpdateParams::Chapter::OrHash]),
@@ -80,6 +84,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # Whether the course awards students a PDF certificate after completing all
         # lessons.
         certificate_after_completion_enabled: nil,
@@ -112,6 +117,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             certificate_after_completion_enabled: T.nilable(T::Boolean),
             chapters: T.nilable(T::Array[WhopSDK::CourseUpdateParams::Chapter]),
             description: T.nilable(String),

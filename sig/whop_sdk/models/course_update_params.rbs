@@ -2,6 +2,7 @@ module WhopSDK
   module Models
     type course_update_params =
       {
+        id: String,
         certificate_after_completion_enabled: bool?,
         chapters: ::Array[WhopSDK::CourseUpdateParams::Chapter]?,
         description: String?,
@@ -18,6 +19,8 @@ module WhopSDK
     class CourseUpdateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
 
       attr_accessor certificate_after_completion_enabled: bool?
 
@@ -40,6 +43,7 @@ module WhopSDK
       attr_accessor visibility: WhopSDK::Models::course_visibilities?
 
       def initialize: (
+        id: String,
         ?certificate_after_completion_enabled: bool?,
         ?chapters: ::Array[WhopSDK::CourseUpdateParams::Chapter]?,
         ?description: String?,
@@ -54,6 +58,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
+        id: String,
         certificate_after_completion_enabled: bool?,
         chapters: ::Array[WhopSDK::CourseUpdateParams::Chapter]?,
         description: String?,

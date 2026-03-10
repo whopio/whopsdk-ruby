@@ -2,6 +2,7 @@ module WhopSDK
   module Models
     type app_update_params =
       {
+        id: String,
         app_store_description: String?,
         app_type: WhopSDK::Models::app_type?,
         base_url: String?,
@@ -21,6 +22,8 @@ module WhopSDK
     class AppUpdateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
 
       attr_accessor app_store_description: String?
 
@@ -49,6 +52,7 @@ module WhopSDK
       attr_accessor status: WhopSDK::Models::app_statuses?
 
       def initialize: (
+        id: String,
         ?app_store_description: String?,
         ?app_type: WhopSDK::Models::app_type?,
         ?base_url: String?,
@@ -66,6 +70,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
+        id: String,
         app_store_description: String?,
         app_type: WhopSDK::Models::app_type?,
         base_url: String?,

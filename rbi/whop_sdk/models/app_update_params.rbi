@@ -11,6 +11,9 @@ module WhopSDK
           T.any(WhopSDK::AppUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # The detailed description shown on the app store's in-depth app view page.
       sig { returns(T.nilable(String)) }
       attr_accessor :app_store_description
@@ -79,6 +82,7 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           app_store_description: T.nilable(String),
           app_type: T.nilable(WhopSDK::AppType::OrSymbol),
           base_url: T.nilable(String),
@@ -100,6 +104,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # The detailed description shown on the app store's in-depth app view page.
         app_store_description: nil,
         # The type of end-user an app is built for
@@ -136,6 +141,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             app_store_description: T.nilable(String),
             app_type: T.nilable(WhopSDK::AppType::OrSymbol),
             base_url: T.nilable(String),

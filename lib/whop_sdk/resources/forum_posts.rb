@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Forum posts
     class ForumPosts
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::ForumPostCreateParams} for more details.
@@ -14,7 +15,7 @@ module WhopSDK
       #
       # - `forum:post:create`
       #
-      # @overload create(experience_id:, attachments: nil, company_id: nil, content: nil, is_mention: nil, parent_id: nil, paywall_amount: nil, paywall_currency: nil, pinned: nil, poll: nil, title: nil, visibility: nil, request_options: {})
+      # @overload create(experience_id:, attachments: nil, company_id: nil, content: nil, is_mention: nil, parent_id: nil, paywall_amount: nil, paywall_currency: nil, pinned: nil, poll: nil, rich_content: nil, title: nil, visibility: nil, request_options: {})
       #
       # @param experience_id [String] The unique identifier of the experience to create this post in. For example, 'ex
       #
@@ -36,6 +37,8 @@ module WhopSDK
       # @param pinned [Boolean, nil] Whether this post should be pinned to the top of the forum.
       #
       # @param poll [WhopSDK::Models::ForumPostCreateParams::Poll, nil] A poll to attach to this post, allowing members to vote on options.
+      #
+      # @param rich_content [String, nil] The rich content of the post in Tiptap JSON format. When provided, takes priorit
       #
       # @param title [String, nil] The title of the post, displayed prominently at the top. Required for paywalled
       #
@@ -151,10 +154,11 @@ module WhopSDK
       # @see WhopSDK::Models::ForumPostListParams
       def list(params)
         parsed, options = WhopSDK::ForumPostListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "forum_posts",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::ForumPostListResponse,
           options: options

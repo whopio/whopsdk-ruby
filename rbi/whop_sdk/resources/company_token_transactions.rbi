@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Company token transactions
     class CompanyTokenTransactions
       # Create a token transaction to add, subtract, or transfer tokens for a member
       # within a company.
@@ -13,34 +14,18 @@ module WhopSDK
       # - `company:basic:read`
       sig do
         params(
-          amount: Float,
-          company_id: String,
-          destination_user_id: String,
-          user_id: String,
-          description: T.nilable(String),
-          idempotency_key: T.nilable(String),
-          transaction_type: Symbol,
+          body:
+            T.any(
+              WhopSDK::CompanyTokenTransactionCreateParams::Body::CreateCompanyTokenTransactionInputTransactionTypeTransfer::OrHash,
+              WhopSDK::CompanyTokenTransactionCreateParams::Body::CreateCompanyTokenTransactionInputTransactionTypeAdd::OrHash,
+              WhopSDK::CompanyTokenTransactionCreateParams::Body::CreateCompanyTokenTransactionInputTransactionTypeSubtract::OrHash
+            ),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::CompanyTokenTransaction)
       end
       def create(
-        # The positive number of tokens to transact. For example, 100.0 for 100 tokens.
-        amount:,
-        # The unique identifier of the company to create the transaction in, starting with
-        # 'biz\_'.
-        company_id:,
-        # The unique identifier of the user receiving the tokens. Required when the
-        # transaction type is 'transfer'.
-        destination_user_id:,
-        # The unique identifier of the user whose token balance will be affected, starting
-        # with 'user\_'.
-        user_id:,
-        # A human-readable description of why the transaction was created.
-        description: nil,
-        # A unique key to prevent duplicate transactions. Use a UUID or similar unique
-        # string.
-        idempotency_key: nil,
-        transaction_type: :subtract,
+        # Parameters for CreateCompanyTokenTransaction
+        body:,
         request_options: {}
       )
       end

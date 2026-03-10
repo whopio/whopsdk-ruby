@@ -8,12 +8,14 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
 
     response =
       @whop.invoices.create(
-        collection_method: :send_invoice,
-        company_id: "biz_xxxxxxxxxxxxxx",
-        due_date: "2023-12-01T05:00:00.401Z",
-        member_id: "mber_xxxxxxxxxxxxx",
-        plan: {},
-        product: {title: "title"}
+        body: {
+          collection_method: :send_invoice,
+          company_id: "biz_xxxxxxxxxxxxxx",
+          due_date: "2023-12-01T05:00:00.401Z",
+          member_id: "mber_xxxxxxxxxxxxx",
+          plan: {},
+          product: {title: "title"}
+        }
       )
 
     assert_pattern do
@@ -59,10 +61,10 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
     end
   end
 
-  def test_list_required_params
+  def test_list
     skip("Mock server tests are disabled")
 
-    response = @whop.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.invoices.list
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage

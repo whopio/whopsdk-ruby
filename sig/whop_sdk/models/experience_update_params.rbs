@@ -2,6 +2,7 @@ module WhopSDK
   module Models
     type experience_update_params =
       {
+        id: String,
         access_level: WhopSDK::Models::ExperienceUpdateParams::access_level?,
         is_public: bool?,
         logo: WhopSDK::ExperienceUpdateParams::Logo?,
@@ -14,6 +15,8 @@ module WhopSDK
     class ExperienceUpdateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
 
       attr_accessor access_level: WhopSDK::Models::ExperienceUpdateParams::access_level?
 
@@ -28,6 +31,7 @@ module WhopSDK
       attr_accessor section_id: String?
 
       def initialize: (
+        id: String,
         ?access_level: WhopSDK::Models::ExperienceUpdateParams::access_level?,
         ?is_public: bool?,
         ?logo: WhopSDK::ExperienceUpdateParams::Logo?,
@@ -38,6 +42,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
+        id: String,
         access_level: WhopSDK::Models::ExperienceUpdateParams::access_level?,
         is_public: bool?,
         logo: WhopSDK::ExperienceUpdateParams::Logo?,

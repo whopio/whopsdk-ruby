@@ -203,6 +203,19 @@ module WhopSDK
       #   @return [Float, nil]
       required :subtotal, Float, nil?: true
 
+      # @!attribute tax_amount
+      #   The calculated amount of the sales/VAT tax (if applicable).
+      #
+      #   @return [Float, nil]
+      required :tax_amount, Float, nil?: true
+
+      # @!attribute tax_behavior
+      #   The type of tax inclusivity applied to the receipt, for determining whether the
+      #   tax is included in the final price, or paid on top.
+      #
+      #   @return [Symbol, WhopSDK::Models::ReceiptTaxBehavior, nil]
+      required :tax_behavior, enum: -> { WhopSDK::ReceiptTaxBehavior }, nil?: true
+
       # @!attribute total
       #   The total to show to the creator (excluding buyer fees).
       #
@@ -228,7 +241,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, company:, created_at:, currency:, dispute_alerted_at:, failure_message:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, status:, substatus:, subtotal:, total:, usd_total:, user:, voidable:)
+      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, company:, created_at:, currency:, dispute_alerted_at:, failure_message:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, total:, usd_total:, user:, voidable:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentListResponse} for more details.
       #
@@ -298,6 +311,10 @@ module WhopSDK
       #   @param substatus [Symbol, WhopSDK::Models::FriendlyReceiptStatus] The friendly status of the payment.
       #
       #   @param subtotal [Float, nil] The subtotal to show to the creator (excluding buyer fees).
+      #
+      #   @param tax_amount [Float, nil] The calculated amount of the sales/VAT tax (if applicable).
+      #
+      #   @param tax_behavior [Symbol, WhopSDK::Models::ReceiptTaxBehavior, nil] The type of tax inclusivity applied to the receipt, for determining whether the
       #
       #   @param total [Float, nil] The total to show to the creator (excluding buyer fees).
       #

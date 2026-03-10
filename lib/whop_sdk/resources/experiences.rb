@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Experiences
     class Experiences
       # Required permissions:
       #
@@ -123,10 +124,11 @@ module WhopSDK
       # @see WhopSDK::Models::ExperienceListParams
       def list(params)
         parsed, options = WhopSDK::ExperienceListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "experiences",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::ExperienceListResponse,
           options: options

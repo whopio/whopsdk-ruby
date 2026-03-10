@@ -31,6 +31,15 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :is_pinned
 
+      # A list of user IDs that are explicitly mentioned in this message.
+      sig { returns(T::Array[String]) }
+      attr_accessor :mentions
+
+      # Whether the message includes an @everyone mention that notifies all channel
+      # members.
+      sig { returns(T::Boolean) }
+      attr_accessor :mentions_everyone
+
       # The classification of this message: regular, system, or automated.
       sig { returns(WhopSDK::DmsPostTypes::TaggedSymbol) }
       attr_accessor :message_type
@@ -81,6 +90,8 @@ module WhopSDK
           created_at: Time,
           is_edited: T::Boolean,
           is_pinned: T::Boolean,
+          mentions: T::Array[String],
+          mentions_everyone: T::Boolean,
           message_type: WhopSDK::DmsPostTypes::OrSymbol,
           poll: T.nilable(WhopSDK::Message::Poll::OrHash),
           poll_votes: T::Array[WhopSDK::Message::PollVote::OrHash],
@@ -107,6 +118,11 @@ module WhopSDK
         is_edited:,
         # Whether this message is pinned to the top of the channel for easy access.
         is_pinned:,
+        # A list of user IDs that are explicitly mentioned in this message.
+        mentions:,
+        # Whether the message includes an @everyone mention that notifies all channel
+        # members.
+        mentions_everyone:,
         # The classification of this message: regular, system, or automated.
         message_type:,
         # A poll attached to this message. Null if the message does not contain a poll.
@@ -138,6 +154,8 @@ module WhopSDK
             created_at: Time,
             is_edited: T::Boolean,
             is_pinned: T::Boolean,
+            mentions: T::Array[String],
+            mentions_everyone: T::Boolean,
             message_type: WhopSDK::DmsPostTypes::TaggedSymbol,
             poll: T.nilable(WhopSDK::Message::Poll),
             poll_votes: T::Array[WhopSDK::Message::PollVote],

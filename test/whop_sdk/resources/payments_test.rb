@@ -8,10 +8,12 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
 
     response =
       @whop.payments.create(
-        company_id: "biz_xxxxxxxxxxxxxx",
-        member_id: "mber_xxxxxxxxxxxxx",
-        payment_method_id: "pmt_xxxxxxxxxxxxxx",
-        plan: {currency: :usd}
+        body: {
+          company_id: "biz_xxxxxxxxxxxxxx",
+          member_id: "mber_xxxxxxxxxxxxx",
+          payment_method_id: "pmt_xxxxxxxxxxxxxx",
+          plan: {currency: :usd}
+        }
       )
 
     assert_pattern do
@@ -56,6 +58,9 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         status: WhopSDK::ReceiptStatus | nil,
         substatus: WhopSDK::FriendlyReceiptStatus,
         subtotal: Float | nil,
+        tax_amount: Float | nil,
+        tax_behavior: WhopSDK::ReceiptTaxBehavior | nil,
+        tax_refunded_amount: Float | nil,
         total: Float | nil,
         usd_total: Float | nil,
         user: WhopSDK::Payment::User | nil,
@@ -111,6 +116,9 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         status: WhopSDK::ReceiptStatus | nil,
         substatus: WhopSDK::FriendlyReceiptStatus,
         subtotal: Float | nil,
+        tax_amount: Float | nil,
+        tax_behavior: WhopSDK::ReceiptTaxBehavior | nil,
+        tax_refunded_amount: Float | nil,
         total: Float | nil,
         usd_total: Float | nil,
         user: WhopSDK::Payment::User | nil,
@@ -169,6 +177,8 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         status: WhopSDK::ReceiptStatus | nil,
         substatus: WhopSDK::FriendlyReceiptStatus,
         subtotal: Float | nil,
+        tax_amount: Float | nil,
+        tax_behavior: WhopSDK::ReceiptTaxBehavior | nil,
         total: Float | nil,
         usd_total: Float | nil,
         user: WhopSDK::Models::PaymentListResponse::User | nil,
@@ -250,6 +260,9 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         status: WhopSDK::ReceiptStatus | nil,
         substatus: WhopSDK::FriendlyReceiptStatus,
         subtotal: Float | nil,
+        tax_amount: Float | nil,
+        tax_behavior: WhopSDK::ReceiptTaxBehavior | nil,
+        tax_refunded_amount: Float | nil,
         total: Float | nil,
         usd_total: Float | nil,
         user: WhopSDK::Payment::User | nil,
@@ -305,6 +318,9 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         status: WhopSDK::ReceiptStatus | nil,
         substatus: WhopSDK::FriendlyReceiptStatus,
         subtotal: Float | nil,
+        tax_amount: Float | nil,
+        tax_behavior: WhopSDK::ReceiptTaxBehavior | nil,
+        tax_refunded_amount: Float | nil,
         total: Float | nil,
         usd_total: Float | nil,
         user: WhopSDK::Payment::User | nil,
@@ -360,6 +376,9 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         status: WhopSDK::ReceiptStatus | nil,
         substatus: WhopSDK::FriendlyReceiptStatus,
         subtotal: Float | nil,
+        tax_amount: Float | nil,
+        tax_behavior: WhopSDK::ReceiptTaxBehavior | nil,
+        tax_refunded_amount: Float | nil,
         total: Float | nil,
         usd_total: Float | nil,
         user: WhopSDK::Payment::User | nil,

@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Users
     class Users
       # Retrieves the details of an existing user.
       sig do

@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Access tokens
     class AccessTokens
       # Create a short-lived access token for authenticating API requests. When using
       # API key authentication, provide company_id or user_id. When using OAuth, the

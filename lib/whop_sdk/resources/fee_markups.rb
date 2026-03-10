@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Fee markups
     class FeeMarkups
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::FeeMarkupCreateParams} for more details.
@@ -72,10 +73,11 @@ module WhopSDK
       # @see WhopSDK::Models::FeeMarkupListParams
       def list(params)
         parsed, options = WhopSDK::FeeMarkupListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "fee_markups",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::FeeMarkupListResponse,
           options: options

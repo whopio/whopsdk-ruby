@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Payment methods
     class PaymentMethods
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::PaymentMethodRetrieveParams} for more details.
@@ -27,10 +28,11 @@ module WhopSDK
       # @see WhopSDK::Models::PaymentMethodRetrieveParams
       def retrieve(id, params = {})
         parsed, options = WhopSDK::PaymentMethodRetrieveParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["payment_methods/%1$s", id],
-          query: parsed,
+          query: query,
           model: WhopSDK::Models::PaymentMethodRetrieveResponse,
           options: options
         )
@@ -75,10 +77,11 @@ module WhopSDK
       # @see WhopSDK::Models::PaymentMethodListParams
       def list(params = {})
         parsed, options = WhopSDK::PaymentMethodListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "payment_methods",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::PaymentMethodListResponse,
           options: options

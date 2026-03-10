@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Transfers
     class Transfers
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::TransferCreateParams} for more details.
@@ -108,10 +109,11 @@ module WhopSDK
       # @see WhopSDK::Models::TransferListParams
       def list(params = {})
         parsed, options = WhopSDK::TransferListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "transfers",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::TransferListResponse,
           options: options

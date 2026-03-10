@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Companies
     class Companies
       # Create a new company. Pass parent_company_id to create a connected account under
       # a platform, or omit it to create a company for the current user.
@@ -79,6 +80,10 @@ module WhopSDK
           logo: T.nilable(WhopSDK::CompanyUpdateParams::Logo::OrHash),
           route: T.nilable(String),
           send_customer_emails: T.nilable(T::Boolean),
+          social_links:
+            T.nilable(
+              T::Array[WhopSDK::CompanyUpdateParams::SocialLink::OrHash]
+            ),
           target_audience: T.nilable(String),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -101,6 +106,9 @@ module WhopSDK
         # Whether Whop sends transactional emails (receipts, renewals, cancelations) to
         # customers on behalf of this company.
         send_customer_emails: nil,
+        # The social media links to display on the company's store page. Pass the full
+        # list of desired social links — any existing links not included will be removed.
+        social_links: nil,
         # The target audience for this company (e.g., 'beginner day traders aged 18-25
         # looking to learn options').
         target_audience: nil,

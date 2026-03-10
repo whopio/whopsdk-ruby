@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Ledger accounts
     class LedgerAccounts
       # Retrieves the details of an existing ledger account.
       #

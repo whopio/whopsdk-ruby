@@ -121,6 +121,9 @@ module WhopSDK
             paid_at: Time?,
             payment_method_type: WhopSDK::Models::payment_method_types?,
             subtotal: Float?,
+            tax_amount: Float?,
+            tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
+            tax_refunded_amount: Float?,
             total: Float?,
             usd_total: Float?,
             user: WhopSDK::RefundCreatedWebhookEvent::Data::Payment::User?
@@ -151,6 +154,12 @@ module WhopSDK
 
           attr_accessor subtotal: Float?
 
+          attr_accessor tax_amount: Float?
+
+          attr_accessor tax_behavior: WhopSDK::Models::receipt_tax_behavior?
+
+          attr_accessor tax_refunded_amount: Float?
+
           attr_accessor total: Float?
 
           attr_accessor usd_total: Float?
@@ -170,6 +179,9 @@ module WhopSDK
             paid_at: Time?,
             payment_method_type: WhopSDK::Models::payment_method_types?,
             subtotal: Float?,
+            tax_amount: Float?,
+            tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
+            tax_refunded_amount: Float?,
             total: Float?,
             usd_total: Float?,
             user: WhopSDK::RefundCreatedWebhookEvent::Data::Payment::User?
@@ -188,6 +200,9 @@ module WhopSDK
             paid_at: Time?,
             payment_method_type: WhopSDK::Models::payment_method_types?,
             subtotal: Float?,
+            tax_amount: Float?,
+            tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
+            tax_refunded_amount: Float?,
             total: Float?,
             usd_total: Float?,
             user: WhopSDK::RefundCreatedWebhookEvent::Data::Payment::User?

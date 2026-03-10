@@ -2,11 +2,13 @@ module WhopSDK
   module Models
     type company_update_params =
       {
+        id: String,
         banner_image: WhopSDK::CompanyUpdateParams::BannerImage?,
         description: String?,
         logo: WhopSDK::CompanyUpdateParams::Logo?,
         route: String?,
         send_customer_emails: bool?,
+        social_links: ::Array[WhopSDK::CompanyUpdateParams::SocialLink]?,
         target_audience: String?,
         title: String?
       }
@@ -15,6 +17,8 @@ module WhopSDK
     class CompanyUpdateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
 
       attr_accessor banner_image: WhopSDK::CompanyUpdateParams::BannerImage?
 
@@ -26,27 +30,33 @@ module WhopSDK
 
       attr_accessor send_customer_emails: bool?
 
+      attr_accessor social_links: ::Array[WhopSDK::CompanyUpdateParams::SocialLink]?
+
       attr_accessor target_audience: String?
 
       attr_accessor title: String?
 
       def initialize: (
+        id: String,
         ?banner_image: WhopSDK::CompanyUpdateParams::BannerImage?,
         ?description: String?,
         ?logo: WhopSDK::CompanyUpdateParams::Logo?,
         ?route: String?,
         ?send_customer_emails: bool?,
+        ?social_links: ::Array[WhopSDK::CompanyUpdateParams::SocialLink]?,
         ?target_audience: String?,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
+        id: String,
         banner_image: WhopSDK::CompanyUpdateParams::BannerImage?,
         description: String?,
         logo: WhopSDK::CompanyUpdateParams::Logo?,
         route: String?,
         send_customer_emails: bool?,
+        social_links: ::Array[WhopSDK::CompanyUpdateParams::SocialLink]?,
         target_audience: String?,
         title: String?,
         request_options: WhopSDK::RequestOptions
@@ -70,6 +80,58 @@ module WhopSDK
         def initialize: (id: String) -> void
 
         def to_hash: -> { id: String }
+      end
+
+      type social_link =
+        {
+          url: String,
+          website: WhopSDK::Models::social_link_websites,
+          image: WhopSDK::CompanyUpdateParams::SocialLink::Image?,
+          order: String?,
+          title: String?,
+          website_order: String?
+        }
+
+      class SocialLink < WhopSDK::Internal::Type::BaseModel
+        attr_accessor url: String
+
+        attr_accessor website: WhopSDK::Models::social_link_websites
+
+        attr_accessor image: WhopSDK::CompanyUpdateParams::SocialLink::Image?
+
+        attr_accessor order: String?
+
+        attr_accessor title: String?
+
+        attr_accessor website_order: String?
+
+        def initialize: (
+          url: String,
+          website: WhopSDK::Models::social_link_websites,
+          ?image: WhopSDK::CompanyUpdateParams::SocialLink::Image?,
+          ?order: String?,
+          ?title: String?,
+          ?website_order: String?
+        ) -> void
+
+        def to_hash: -> {
+          url: String,
+          website: WhopSDK::Models::social_link_websites,
+          image: WhopSDK::CompanyUpdateParams::SocialLink::Image?,
+          order: String?,
+          title: String?,
+          website_order: String?
+        }
+
+        type image = { id: String }
+
+        class Image < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
       end
     end
   end

@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Products
     class Products
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::ProductCreateParams} for more details.
@@ -194,10 +195,11 @@ module WhopSDK
       # @see WhopSDK::Models::ProductListParams
       def list(params)
         parsed, options = WhopSDK::ProductListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "products",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::ProductListItem,
           options: options

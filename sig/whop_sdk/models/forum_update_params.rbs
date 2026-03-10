@@ -2,6 +2,8 @@ module WhopSDK
   module Models
     type forum_update_params =
       {
+        id: String,
+        banner_image: WhopSDK::ForumUpdateParams::BannerImage?,
         email_notification_preference: WhopSDK::Models::email_notification_preferences?,
         who_can_comment: WhopSDK::Models::who_can_comment_types?,
         who_can_post: WhopSDK::Models::who_can_post_types?
@@ -12,6 +14,10 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      attr_accessor id: String
+
+      attr_accessor banner_image: WhopSDK::ForumUpdateParams::BannerImage?
+
       attr_accessor email_notification_preference: WhopSDK::Models::email_notification_preferences?
 
       attr_accessor who_can_comment: WhopSDK::Models::who_can_comment_types?
@@ -19,6 +25,8 @@ module WhopSDK
       attr_accessor who_can_post: WhopSDK::Models::who_can_post_types?
 
       def initialize: (
+        id: String,
+        ?banner_image: WhopSDK::ForumUpdateParams::BannerImage?,
         ?email_notification_preference: WhopSDK::Models::email_notification_preferences?,
         ?who_can_comment: WhopSDK::Models::who_can_comment_types?,
         ?who_can_post: WhopSDK::Models::who_can_post_types?,
@@ -26,11 +34,23 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
+        id: String,
+        banner_image: WhopSDK::ForumUpdateParams::BannerImage?,
         email_notification_preference: WhopSDK::Models::email_notification_preferences?,
         who_can_comment: WhopSDK::Models::who_can_comment_types?,
         who_can_post: WhopSDK::Models::who_can_post_types?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type banner_image = { id: String }
+
+      class BannerImage < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
     end
   end
 end

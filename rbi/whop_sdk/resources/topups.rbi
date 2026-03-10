@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Topups
     class Topups
       # Add funds to a company's platform balance by charging a stored payment method.
       # Top-ups have no fees or taxes and do not count as revenue.

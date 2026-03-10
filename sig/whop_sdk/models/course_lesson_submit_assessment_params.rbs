@@ -1,21 +1,28 @@
 module WhopSDK
   module Models
     type course_lesson_submit_assessment_params =
-      { answers: ::Array[WhopSDK::CourseLessonSubmitAssessmentParams::Answer] }
+      {
+        lesson_id: String,
+        answers: ::Array[WhopSDK::CourseLessonSubmitAssessmentParams::Answer]
+      }
       & WhopSDK::Internal::Type::request_parameters
 
     class CourseLessonSubmitAssessmentParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      attr_accessor lesson_id: String
+
       attr_accessor answers: ::Array[WhopSDK::CourseLessonSubmitAssessmentParams::Answer]
 
       def initialize: (
+        lesson_id: String,
         answers: ::Array[WhopSDK::CourseLessonSubmitAssessmentParams::Answer],
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
+        lesson_id: String,
         answers: ::Array[WhopSDK::CourseLessonSubmitAssessmentParams::Answer],
         request_options: WhopSDK::RequestOptions
       }

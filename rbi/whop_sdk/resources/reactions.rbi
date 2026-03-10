@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Reactions
     class Reactions
       # Add an emoji reaction or poll vote to a message or forum post. In forums, the
       # reaction is always a like.

@@ -231,6 +231,19 @@ module WhopSDK
         sig { returns(T.nilable(Float)) }
         attr_accessor :subtotal
 
+        # The calculated amount of the sales/VAT tax (if applicable).
+        sig { returns(T.nilable(Float)) }
+        attr_accessor :tax_amount
+
+        # The type of tax inclusivity applied to the receipt, for determining whether the
+        # tax is included in the final price, or paid on top.
+        sig { returns(T.nilable(WhopSDK::ReceiptTaxBehavior::TaggedSymbol)) }
+        attr_accessor :tax_behavior
+
+        # The amount of tax that has been refunded (if applicable).
+        sig { returns(T.nilable(Float)) }
+        attr_accessor :tax_refunded_amount
+
         # The total to show to the creator (excluding buyer fees).
         sig { returns(T.nilable(Float)) }
         attr_accessor :total
@@ -280,6 +293,9 @@ module WhopSDK
             payment_method_type:
               T.nilable(WhopSDK::PaymentMethodTypes::OrSymbol),
             subtotal: T.nilable(Float),
+            tax_amount: T.nilable(Float),
+            tax_behavior: T.nilable(WhopSDK::ReceiptTaxBehavior::OrSymbol),
+            tax_refunded_amount: T.nilable(Float),
             total: T.nilable(Float),
             usd_total: T.nilable(Float),
             user:
@@ -315,6 +331,13 @@ module WhopSDK
           payment_method_type:,
           # The subtotal to show to the creator (excluding buyer fees).
           subtotal:,
+          # The calculated amount of the sales/VAT tax (if applicable).
+          tax_amount:,
+          # The type of tax inclusivity applied to the receipt, for determining whether the
+          # tax is included in the final price, or paid on top.
+          tax_behavior:,
+          # The amount of tax that has been refunded (if applicable).
+          tax_refunded_amount:,
           # The total to show to the creator (excluding buyer fees).
           total:,
           # The total in USD to show to the creator (excluding buyer fees).
@@ -346,6 +369,10 @@ module WhopSDK
               payment_method_type:
                 T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol),
               subtotal: T.nilable(Float),
+              tax_amount: T.nilable(Float),
+              tax_behavior:
+                T.nilable(WhopSDK::ReceiptTaxBehavior::TaggedSymbol),
+              tax_refunded_amount: T.nilable(Float),
               total: T.nilable(Float),
               usd_total: T.nilable(Float),
               user:

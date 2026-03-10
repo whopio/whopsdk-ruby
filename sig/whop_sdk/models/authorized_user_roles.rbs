@@ -8,6 +8,7 @@ module WhopSDK
       | :app_manager
       | :support
       | :manager
+      | :custom
 
     module AuthorizedUserRoles
       extend WhopSDK::Internal::Type::Enum
@@ -19,6 +20,7 @@ module WhopSDK
       APP_MANAGER: :app_manager
       SUPPORT: :support
       MANAGER: :manager
+      CUSTOM: :custom
 
       def self?.values: -> ::Array[WhopSDK::Models::authorized_user_roles]
     end

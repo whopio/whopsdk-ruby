@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Ai chats
     class AIChats
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::AIChatCreateParams} for more details.
@@ -12,7 +13,7 @@ module WhopSDK
       #
       # - `ai_chat:create`
       #
-      # @overload create(message_text:, current_company_id: nil, message_attachments: nil, message_source: nil, title: nil, request_options: {})
+      # @overload create(message_text:, current_company_id: nil, message_attachments: nil, message_source: nil, suggestion_type: nil, title: nil, request_options: {})
       #
       # @param message_text [String] The text content of the first message to send to the AI agent.
       #
@@ -21,6 +22,8 @@ module WhopSDK
       # @param message_attachments [Array<WhopSDK::Models::AIChatCreateParams::MessageAttachment>, nil] A list of previously uploaded file attachments to include with the first message
       #
       # @param message_source [Symbol, WhopSDK::Models::AIChatCreateParams::MessageSource, nil] The source of an AI chat message
+      #
+      # @param suggestion_type [String, nil] The type of suggestion prompt that was clicked, when message_source is 'suggesti
       #
       # @param title [String, nil] An optional display title for the AI chat thread (e.g., "Help with billing").
       #
@@ -112,10 +115,11 @@ module WhopSDK
       # @see WhopSDK::Models::AIChatListParams
       def list(params = {})
         parsed, options = WhopSDK::AIChatListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "ai_chats",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::AIChatListResponse,
           options: options

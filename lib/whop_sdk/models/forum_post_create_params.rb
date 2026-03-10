@@ -77,6 +77,13 @@ module WhopSDK
       #   @return [WhopSDK::Models::ForumPostCreateParams::Poll, nil]
       optional :poll, -> { WhopSDK::ForumPostCreateParams::Poll }, nil?: true
 
+      # @!attribute rich_content
+      #   The rich content of the post in Tiptap JSON format. When provided, takes
+      #   priority over the markdown content field for rendering.
+      #
+      #   @return [String, nil]
+      optional :rich_content, String, nil?: true
+
       # @!attribute title
       #   The title of the post, displayed prominently at the top. Required for paywalled
       #   posts as it remains visible to non-purchasers.
@@ -90,7 +97,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::ForumPostVisibilityType, nil]
       optional :visibility, enum: -> { WhopSDK::ForumPostVisibilityType }, nil?: true
 
-      # @!method initialize(experience_id:, attachments: nil, company_id: nil, content: nil, is_mention: nil, parent_id: nil, paywall_amount: nil, paywall_currency: nil, pinned: nil, poll: nil, title: nil, visibility: nil, request_options: {})
+      # @!method initialize(experience_id:, attachments: nil, company_id: nil, content: nil, is_mention: nil, parent_id: nil, paywall_amount: nil, paywall_currency: nil, pinned: nil, poll: nil, rich_content: nil, title: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ForumPostCreateParams} for more details.
       #
@@ -114,6 +121,8 @@ module WhopSDK
       #   @param pinned [Boolean, nil] Whether this post should be pinned to the top of the forum.
       #
       #   @param poll [WhopSDK::Models::ForumPostCreateParams::Poll, nil] A poll to attach to this post, allowing members to vote on options.
+      #
+      #   @param rich_content [String, nil] The rich content of the post in Tiptap JSON format. When provided, takes priorit
       #
       #   @param title [String, nil] The title of the post, displayed prominently at the top. Required for paywalled
       #

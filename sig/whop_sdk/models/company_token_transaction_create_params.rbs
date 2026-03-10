@@ -1,56 +1,166 @@
 module WhopSDK
   module Models
     type company_token_transaction_create_params =
-      {
-        amount: Float,
-        company_id: String,
-        destination_user_id: String,
-        transaction_type: :subtract,
-        user_id: String,
-        description: String?,
-        idempotency_key: String?
-      }
+      { body: WhopSDK::Models::CompanyTokenTransactionCreateParams::body }
       & WhopSDK::Internal::Type::request_parameters
 
     class CompanyTokenTransactionCreateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor amount: Float
-
-      attr_accessor company_id: String
-
-      attr_accessor destination_user_id: String
-
-      attr_accessor transaction_type: :subtract
-
-      attr_accessor user_id: String
-
-      attr_accessor description: String?
-
-      attr_accessor idempotency_key: String?
+      attr_accessor body: WhopSDK::Models::CompanyTokenTransactionCreateParams::body
 
       def initialize: (
-        amount: Float,
-        company_id: String,
-        destination_user_id: String,
-        user_id: String,
-        ?description: String?,
-        ?idempotency_key: String?,
-        ?transaction_type: :subtract,
+        body: WhopSDK::Models::CompanyTokenTransactionCreateParams::body,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        amount: Float,
-        company_id: String,
-        destination_user_id: String,
-        transaction_type: :subtract,
-        user_id: String,
-        description: String?,
-        idempotency_key: String?,
+        body: WhopSDK::Models::CompanyTokenTransactionCreateParams::body,
         request_options: WhopSDK::RequestOptions
       }
+
+      type body =
+        WhopSDK::CompanyTokenTransactionCreateParams::Body::CreateCompanyTokenTransactionInputTransactionTypeTransfer
+        | WhopSDK::CompanyTokenTransactionCreateParams::Body::CreateCompanyTokenTransactionInputTransactionTypeAdd
+        | WhopSDK::CompanyTokenTransactionCreateParams::Body::CreateCompanyTokenTransactionInputTransactionTypeSubtract
+
+      module Body
+        extend WhopSDK::Internal::Type::Union
+
+        type create_company_token_transaction_input_transaction_type_transfer =
+          {
+            amount: Float,
+            company_id: String,
+            destination_user_id: String,
+            transaction_type: :transfer,
+            user_id: String,
+            description: String?,
+            idempotency_key: String?
+          }
+
+        class CreateCompanyTokenTransactionInputTransactionTypeTransfer < WhopSDK::Internal::Type::BaseModel
+          attr_accessor amount: Float
+
+          attr_accessor company_id: String
+
+          attr_accessor destination_user_id: String
+
+          attr_accessor transaction_type: :transfer
+
+          attr_accessor user_id: String
+
+          attr_accessor description: String?
+
+          attr_accessor idempotency_key: String?
+
+          def initialize: (
+            amount: Float,
+            company_id: String,
+            destination_user_id: String,
+            user_id: String,
+            ?description: String?,
+            ?idempotency_key: String?,
+            ?transaction_type: :transfer
+          ) -> void
+
+          def to_hash: -> {
+            amount: Float,
+            company_id: String,
+            destination_user_id: String,
+            transaction_type: :transfer,
+            user_id: String,
+            description: String?,
+            idempotency_key: String?
+          }
+        end
+
+        type create_company_token_transaction_input_transaction_type_add =
+          {
+            amount: Float,
+            company_id: String,
+            transaction_type: :add,
+            user_id: String,
+            description: String?,
+            idempotency_key: String?
+          }
+
+        class CreateCompanyTokenTransactionInputTransactionTypeAdd < WhopSDK::Internal::Type::BaseModel
+          attr_accessor amount: Float
+
+          attr_accessor company_id: String
+
+          attr_accessor transaction_type: :add
+
+          attr_accessor user_id: String
+
+          attr_accessor description: String?
+
+          attr_accessor idempotency_key: String?
+
+          def initialize: (
+            amount: Float,
+            company_id: String,
+            user_id: String,
+            ?description: String?,
+            ?idempotency_key: String?,
+            ?transaction_type: :add
+          ) -> void
+
+          def to_hash: -> {
+            amount: Float,
+            company_id: String,
+            transaction_type: :add,
+            user_id: String,
+            description: String?,
+            idempotency_key: String?
+          }
+        end
+
+        type create_company_token_transaction_input_transaction_type_subtract =
+          {
+            amount: Float,
+            company_id: String,
+            transaction_type: :subtract,
+            user_id: String,
+            description: String?,
+            idempotency_key: String?
+          }
+
+        class CreateCompanyTokenTransactionInputTransactionTypeSubtract < WhopSDK::Internal::Type::BaseModel
+          attr_accessor amount: Float
+
+          attr_accessor company_id: String
+
+          attr_accessor transaction_type: :subtract
+
+          attr_accessor user_id: String
+
+          attr_accessor description: String?
+
+          attr_accessor idempotency_key: String?
+
+          def initialize: (
+            amount: Float,
+            company_id: String,
+            user_id: String,
+            ?description: String?,
+            ?idempotency_key: String?,
+            ?transaction_type: :subtract
+          ) -> void
+
+          def to_hash: -> {
+            amount: Float,
+            company_id: String,
+            transaction_type: :subtract,
+            user_id: String,
+            description: String?,
+            idempotency_key: String?
+          }
+        end
+
+        def self?.variants: -> ::Array[WhopSDK::Models::CompanyTokenTransactionCreateParams::body]
+      end
     end
   end
 end

@@ -11,6 +11,9 @@ module WhopSDK
           T.any(WhopSDK::MessageUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # A replacement list of file attachments for this message, such as images or
       # videos.
       sig do
@@ -29,6 +32,7 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           attachments:
             T.nilable(
               T::Array[WhopSDK::MessageUpdateParams::Attachment::OrHash]
@@ -39,6 +43,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # A replacement list of file attachments for this message, such as images or
         # videos.
         attachments: nil,
@@ -54,6 +59,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             attachments:
               T.nilable(T::Array[WhopSDK::MessageUpdateParams::Attachment]),
             content: T.nilable(String),

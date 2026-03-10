@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Payout methods
     class PayoutMethods
       # Retrieves the details of an existing payout method.
       #

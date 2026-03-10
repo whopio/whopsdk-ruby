@@ -7,6 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute api_version
       #   The different API versions
       #
@@ -37,7 +42,9 @@ module WhopSDK
       #   @return [String, nil]
       optional :url, String, nil?: true
 
-      # @!method initialize(api_version: nil, child_resource_events: nil, enabled: nil, events: nil, url: nil, request_options: {})
+      # @!method initialize(id:, api_version: nil, child_resource_events: nil, enabled: nil, events: nil, url: nil, request_options: {})
+      #   @param id [String]
+      #
       #   @param api_version [Symbol, WhopSDK::Models::APIVersion, nil] The different API versions
       #
       #   @param child_resource_events [Boolean, nil] Whether or not to send events for child resources.

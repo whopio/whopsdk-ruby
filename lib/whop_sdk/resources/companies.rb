@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Companies
     class Companies
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::CompanyCreateParams} for more details.
@@ -80,7 +81,7 @@ module WhopSDK
       # - `company:update`
       # - `company:basic:read`
       #
-      # @overload update(id, banner_image: nil, description: nil, logo: nil, route: nil, send_customer_emails: nil, target_audience: nil, title: nil, request_options: {})
+      # @overload update(id, banner_image: nil, description: nil, logo: nil, route: nil, send_customer_emails: nil, social_links: nil, target_audience: nil, title: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the company to update.
       #
@@ -93,6 +94,8 @@ module WhopSDK
       # @param route [String, nil] The unique URL slug for the company's store page. Must be lowercase and can incl
       #
       # @param send_customer_emails [Boolean, nil] Whether Whop sends transactional emails (receipts, renewals, cancelations) to cu
+      #
+      # @param social_links [Array<WhopSDK::Models::CompanyUpdateParams::SocialLink>, nil] The social media links to display on the company's store page. Pass the full lis
       #
       # @param target_audience [String, nil] The target audience for this company (e.g., 'beginner day traders aged 18-25 loo
       #
@@ -150,10 +153,11 @@ module WhopSDK
       # @see WhopSDK::Models::CompanyListParams
       def list(params = {})
         parsed, options = WhopSDK::CompanyListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "companies",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::CompanyListResponse,
           options: options

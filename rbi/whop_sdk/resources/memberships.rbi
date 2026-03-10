@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Memberships
     class Memberships
       # Retrieves the details of an existing membership.
       #
@@ -111,12 +112,37 @@ module WhopSDK
       )
       end
 
+      # Add free days to extend a membership's current billing period, expiration date,
+      # or Stripe trial.
+      #
+      # Required permissions:
+      #
+      # - `member:manage`
+      # - `member:email:read`
+      # - `member:basic:read`
+      sig do
+        params(
+          id: String,
+          free_days: Integer,
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::Membership)
+      end
+      def add_free_days(
+        # The unique identifier of the membership.
+        id,
+        # The number of free days to add (1-1095). Extends the billing period, expiration
+        # date, or Stripe trial depending on plan type.
+        free_days:,
+        request_options: {}
+      )
+      end
+
       # Cancel a membership either immediately or at the end of the current billing
       # period. Immediate cancellation revokes access right away.
       #
       # Required permissions:
       #
-      # - `member:manage`
+      # - `membership:cancel`
       # - `member:email:read`
       # - `member:basic:read`
       sig do

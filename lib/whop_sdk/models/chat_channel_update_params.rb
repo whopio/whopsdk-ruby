@@ -7,6 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute ban_media
       #   Whether media uploads such as images and videos are banned in this chat channel.
       #
@@ -45,9 +50,11 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::WhoCanReact, nil]
       optional :who_can_react, enum: -> { WhopSDK::WhoCanReact }, nil?: true
 
-      # @!method initialize(ban_media: nil, ban_urls: nil, banned_words: nil, user_posts_cooldown_seconds: nil, who_can_post: nil, who_can_react: nil, request_options: {})
+      # @!method initialize(id:, ban_media: nil, ban_urls: nil, banned_words: nil, user_posts_cooldown_seconds: nil, who_can_post: nil, who_can_react: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ChatChannelUpdateParams} for more details.
+      #
+      #   @param id [String]
       #
       #   @param ban_media [Boolean, nil] Whether media uploads such as images and videos are banned in this chat channel.
       #

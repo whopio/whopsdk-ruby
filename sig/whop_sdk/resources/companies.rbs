@@ -24,6 +24,7 @@ module WhopSDK
         ?logo: WhopSDK::CompanyUpdateParams::Logo?,
         ?route: String?,
         ?send_customer_emails: bool?,
+        ?social_links: ::Array[WhopSDK::CompanyUpdateParams::SocialLink]?,
         ?target_audience: String?,
         ?title: String?,
         ?request_options: WhopSDK::request_opts

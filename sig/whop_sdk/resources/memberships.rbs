@@ -31,6 +31,12 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::MembershipListResponse]
 
+      def add_free_days: (
+        String id,
+        free_days: Integer,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Membership
+
       def cancel: (
         String id,
         ?cancellation_mode: WhopSDK::Models::MembershipCancelParams::cancellation_mode?,

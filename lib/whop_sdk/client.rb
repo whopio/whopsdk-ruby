@@ -26,153 +26,203 @@ module WhopSDK
     # @return [String, nil]
     attr_reader :app_id
 
+    # Apps
     # @return [WhopSDK::Resources::Apps]
     attr_reader :apps
 
+    # Invoices
     # @return [WhopSDK::Resources::Invoices]
     attr_reader :invoices
 
+    # Course lesson interactions
     # @return [WhopSDK::Resources::CourseLessonInteractions]
     attr_reader :course_lesson_interactions
 
+    # Products
     # @return [WhopSDK::Resources::Products]
     attr_reader :products
 
+    # Companies
     # @return [WhopSDK::Resources::Companies]
     attr_reader :companies
 
+    # Webhooks
     # @return [WhopSDK::Resources::Webhooks]
     attr_reader :webhooks
 
+    # Plans
     # @return [WhopSDK::Resources::Plans]
     attr_reader :plans
 
+    # Entries
     # @return [WhopSDK::Resources::Entries]
     attr_reader :entries
 
+    # Forum posts
     # @return [WhopSDK::Resources::ForumPosts]
     attr_reader :forum_posts
 
+    # Transfers
     # @return [WhopSDK::Resources::Transfers]
     attr_reader :transfers
 
+    # Ledger accounts
     # @return [WhopSDK::Resources::LedgerAccounts]
     attr_reader :ledger_accounts
 
+    # Memberships
     # @return [WhopSDK::Resources::Memberships]
     attr_reader :memberships
 
+    # Authorized users
     # @return [WhopSDK::Resources::AuthorizedUsers]
     attr_reader :authorized_users
 
+    # App builds
     # @return [WhopSDK::Resources::AppBuilds]
     attr_reader :app_builds
 
+    # Shipments
     # @return [WhopSDK::Resources::Shipments]
     attr_reader :shipments
 
+    # Checkout configurations
     # @return [WhopSDK::Resources::CheckoutConfigurations]
     attr_reader :checkout_configurations
 
+    # Messages
     # @return [WhopSDK::Resources::Messages]
     attr_reader :messages
 
+    # Chat channels
     # @return [WhopSDK::Resources::ChatChannels]
     attr_reader :chat_channels
 
+    # Users
     # @return [WhopSDK::Resources::Users]
     attr_reader :users
 
+    # Payments
     # @return [WhopSDK::Resources::Payments]
     attr_reader :payments
 
+    # Support channels
     # @return [WhopSDK::Resources::SupportChannels]
     attr_reader :support_channels
 
+    # Experiences
     # @return [WhopSDK::Resources::Experiences]
     attr_reader :experiences
 
+    # Reactions
     # @return [WhopSDK::Resources::Reactions]
     attr_reader :reactions
 
+    # Members
     # @return [WhopSDK::Resources::Members]
     attr_reader :members
 
+    # Forums
     # @return [WhopSDK::Resources::Forums]
     attr_reader :forums
 
+    # Promo codes
     # @return [WhopSDK::Resources::PromoCodes]
     attr_reader :promo_codes
 
+    # Courses
     # @return [WhopSDK::Resources::Courses]
     attr_reader :courses
 
+    # Course chapters
     # @return [WhopSDK::Resources::CourseChapters]
     attr_reader :course_chapters
 
+    # Course lessons
     # @return [WhopSDK::Resources::CourseLessons]
     attr_reader :course_lessons
 
+    # Reviews
     # @return [WhopSDK::Resources::Reviews]
     attr_reader :reviews
 
+    # Course students
     # @return [WhopSDK::Resources::CourseStudents]
     attr_reader :course_students
 
+    # Access tokens
     # @return [WhopSDK::Resources::AccessTokens]
     attr_reader :access_tokens
 
+    # Notifications
     # @return [WhopSDK::Resources::Notifications]
     attr_reader :notifications
 
+    # Disputes
     # @return [WhopSDK::Resources::Disputes]
     attr_reader :disputes
 
+    # Refunds
     # @return [WhopSDK::Resources::Refunds]
     attr_reader :refunds
 
+    # Withdrawals
     # @return [WhopSDK::Resources::Withdrawals]
     attr_reader :withdrawals
 
+    # Account links
     # @return [WhopSDK::Resources::AccountLinks]
     attr_reader :account_links
 
+    # Setup intents
     # @return [WhopSDK::Resources::SetupIntents]
     attr_reader :setup_intents
 
+    # Payment methods
     # @return [WhopSDK::Resources::PaymentMethods]
     attr_reader :payment_methods
 
+    # Fee markups
     # @return [WhopSDK::Resources::FeeMarkups]
     attr_reader :fee_markups
 
+    # Payout methods
     # @return [WhopSDK::Resources::PayoutMethods]
     attr_reader :payout_methods
 
+    # Verifications
     # @return [WhopSDK::Resources::Verifications]
     attr_reader :verifications
 
+    # Leads
     # @return [WhopSDK::Resources::Leads]
     attr_reader :leads
 
+    # Topups
     # @return [WhopSDK::Resources::Topups]
     attr_reader :topups
 
+    # Files
     # @return [WhopSDK::Resources::Files]
     attr_reader :files
 
+    # Company token transactions
     # @return [WhopSDK::Resources::CompanyTokenTransactions]
     attr_reader :company_token_transactions
 
+    # Dm members
     # @return [WhopSDK::Resources::DmMembers]
     attr_reader :dm_members
 
+    # Ai chats
     # @return [WhopSDK::Resources::AIChats]
     attr_reader :ai_chats
 
+    # Dm channels
     # @return [WhopSDK::Resources::DmChannels]
     attr_reader :dm_channels
 
+    # Dispute alerts
     # @return [WhopSDK::Resources::DisputeAlerts]
     attr_reader :dispute_alerts
 

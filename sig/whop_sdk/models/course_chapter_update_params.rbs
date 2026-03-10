@@ -1,20 +1,25 @@
 module WhopSDK
   module Models
     type course_chapter_update_params =
-      { title: String } & WhopSDK::Internal::Type::request_parameters
+      { id: String, title: String }
+      & WhopSDK::Internal::Type::request_parameters
 
     class CourseChapterUpdateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      attr_accessor id: String
+
       attr_accessor title: String
 
       def initialize: (
+        id: String,
         title: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
+        id: String,
         title: String,
         request_options: WhopSDK::RequestOptions
       }

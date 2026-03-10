@@ -2,6 +2,7 @@ module WhopSDK
   module Models
     type dispute_update_evidence_params =
       {
+        id: String,
         access_activity_log: String?,
         billing_address: String?,
         cancellation_policy_attachment: WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment?,
@@ -22,6 +23,8 @@ module WhopSDK
     class DisputeUpdateEvidenceParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
 
       attr_accessor access_activity_log: String?
 
@@ -52,6 +55,7 @@ module WhopSDK
       attr_accessor uncategorized_attachment: WhopSDK::DisputeUpdateEvidenceParams::UncategorizedAttachment?
 
       def initialize: (
+        id: String,
         ?access_activity_log: String?,
         ?billing_address: String?,
         ?cancellation_policy_attachment: WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment?,
@@ -70,6 +74,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
+        id: String,
         access_activity_log: String?,
         billing_address: String?,
         cancellation_policy_attachment: WhopSDK::DisputeUpdateEvidenceParams::CancellationPolicyAttachment?,

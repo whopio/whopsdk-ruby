@@ -7,6 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute banner_image
       #   The company's banner image. Accepts PNG or JPEG format.
       #
@@ -41,6 +46,15 @@ module WhopSDK
       #   @return [Boolean, nil]
       optional :send_customer_emails, WhopSDK::Internal::Type::Boolean, nil?: true
 
+      # @!attribute social_links
+      #   The social media links to display on the company's store page. Pass the full
+      #   list of desired social links — any existing links not included will be removed.
+      #
+      #   @return [Array<WhopSDK::Models::CompanyUpdateParams::SocialLink>, nil]
+      optional :social_links,
+               -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::CompanyUpdateParams::SocialLink] },
+               nil?: true
+
       # @!attribute target_audience
       #   The target audience for this company (e.g., 'beginner day traders aged 18-25
       #   looking to learn options').
@@ -54,9 +68,11 @@ module WhopSDK
       #   @return [String, nil]
       optional :title, String, nil?: true
 
-      # @!method initialize(banner_image: nil, description: nil, logo: nil, route: nil, send_customer_emails: nil, target_audience: nil, title: nil, request_options: {})
+      # @!method initialize(id:, banner_image: nil, description: nil, logo: nil, route: nil, send_customer_emails: nil, social_links: nil, target_audience: nil, title: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CompanyUpdateParams} for more details.
+      #
+      #   @param id [String]
       #
       #   @param banner_image [WhopSDK::Models::CompanyUpdateParams::BannerImage, nil] The company's banner image. Accepts PNG or JPEG format.
       #
@@ -67,6 +83,8 @@ module WhopSDK
       #   @param route [String, nil] The unique URL slug for the company's store page. Must be lowercase and can incl
       #
       #   @param send_customer_emails [Boolean, nil] Whether Whop sends transactional emails (receipts, renewals, cancelations) to cu
+      #
+      #   @param social_links [Array<WhopSDK::Models::CompanyUpdateParams::SocialLink>, nil] The social media links to display on the company's store page. Pass the full lis
       #
       #   @param target_audience [String, nil] The target audience for this company (e.g., 'beginner day traders aged 18-25 loo
       #
@@ -98,6 +116,73 @@ module WhopSDK
         #   The company's logo image. Accepts PNG, JPEG, or GIF format.
         #
         #   @param id [String] The ID of an existing file object.
+      end
+
+      class SocialLink < WhopSDK::Internal::Type::BaseModel
+        # @!attribute url
+        #   The URL of the social link
+        #
+        #   @return [String]
+        required :url, String
+
+        # @!attribute website
+        #   The website this link is for
+        #
+        #   @return [Symbol, WhopSDK::Models::SocialLinkWebsites]
+        required :website, enum: -> { WhopSDK::SocialLinkWebsites }
+
+        # @!attribute image
+        #   The custom image for the social link
+        #
+        #   @return [WhopSDK::Models::CompanyUpdateParams::SocialLink::Image, nil]
+        optional :image, -> { WhopSDK::CompanyUpdateParams::SocialLink::Image }, nil?: true
+
+        # @!attribute order
+        #   The order of the social link
+        #
+        #   @return [String, nil]
+        optional :order, String, nil?: true
+
+        # @!attribute title
+        #   The title of the social link
+        #
+        #   @return [String, nil]
+        optional :title, String, nil?: true
+
+        # @!attribute website_order
+        #   The order of the website social link
+        #
+        #   @return [String, nil]
+        optional :website_order, String, nil?: true
+
+        # @!method initialize(url:, website:, image: nil, order: nil, title: nil, website_order: nil)
+        #   Input for creating a social link for a company
+        #
+        #   @param url [String] The URL of the social link
+        #
+        #   @param website [Symbol, WhopSDK::Models::SocialLinkWebsites] The website this link is for
+        #
+        #   @param image [WhopSDK::Models::CompanyUpdateParams::SocialLink::Image, nil] The custom image for the social link
+        #
+        #   @param order [String, nil] The order of the social link
+        #
+        #   @param title [String, nil] The title of the social link
+        #
+        #   @param website_order [String, nil] The order of the website social link
+
+        # @see WhopSDK::Models::CompanyUpdateParams::SocialLink#image
+        class Image < WhopSDK::Internal::Type::BaseModel
+          # @!attribute id
+          #   The ID of an existing file object.
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!method initialize(id:)
+          #   The custom image for the social link
+          #
+          #   @param id [String] The ID of an existing file object.
+        end
       end
     end
   end

@@ -7,6 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute name
       #   The display name for the duplicated experience. Defaults to the original
       #   experience's name.
@@ -14,9 +19,11 @@ module WhopSDK
       #   @return [String, nil]
       optional :name, String, nil?: true
 
-      # @!method initialize(name: nil, request_options: {})
+      # @!method initialize(id:, name: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ExperienceDuplicateParams} for more details.
+      #
+      #   @param id [String]
       #
       #   @param name [String, nil] The display name for the duplicated experience. Defaults to the original experie
       #

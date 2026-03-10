@@ -1,24 +1,28 @@
 module WhopSDK
   module Models
     type payment_method_retrieve_params =
-      { company_id: String?, member_id: String? }
+      { id: String, company_id: String?, member_id: String? }
       & WhopSDK::Internal::Type::request_parameters
 
     class PaymentMethodRetrieveParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      attr_accessor id: String
+
       attr_accessor company_id: String?
 
       attr_accessor member_id: String?
 
       def initialize: (
+        id: String,
         ?company_id: String?,
         ?member_id: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
+        id: String,
         company_id: String?,
         member_id: String?,
         request_options: WhopSDK::RequestOptions

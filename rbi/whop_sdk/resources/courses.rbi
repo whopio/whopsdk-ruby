@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Courses
     class Courses
       # Create a new course within an experience, with optional chapters, lessons, and a
       # certificate.

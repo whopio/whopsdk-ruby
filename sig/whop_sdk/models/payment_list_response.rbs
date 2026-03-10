@@ -34,6 +34,8 @@ module WhopSDK
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
+        tax_amount: Float?,
+        tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         total: Float?,
         usd_total: Float?,
         user: WhopSDK::Models::PaymentListResponse::User?,
@@ -105,6 +107,10 @@ module WhopSDK
 
       attr_accessor subtotal: Float?
 
+      attr_accessor tax_amount: Float?
+
+      attr_accessor tax_behavior: WhopSDK::Models::receipt_tax_behavior?
+
       attr_accessor total: Float?
 
       attr_accessor usd_total: Float?
@@ -146,6 +152,8 @@ module WhopSDK
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
+        tax_amount: Float?,
+        tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         total: Float?,
         usd_total: Float?,
         user: WhopSDK::Models::PaymentListResponse::User?,
@@ -185,6 +193,8 @@ module WhopSDK
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
+        tax_amount: Float?,
+        tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         total: Float?,
         usd_total: Float?,
         user: WhopSDK::Models::PaymentListResponse::User?,

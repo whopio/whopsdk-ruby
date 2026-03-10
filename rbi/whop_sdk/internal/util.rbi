@@ -303,6 +303,26 @@ module WhopSDK
       class << self
         # @api private
         sig do
+          params(query: WhopSDK::Internal::AnyHash).returns(
+            WhopSDK::Internal::AnyHash
+          )
+        end
+        def encode_query_params(query)
+        end
+
+        # @api private
+        sig do
+          params(
+            collection: WhopSDK::Internal::AnyHash,
+            key: String,
+            element: T.anything
+          ).void
+        end
+        private def write_query_param_element!(collection, key, element)
+        end
+
+        # @api private
+        sig do
           params(
             y: Enumerator::Yielder,
             val: T.anything,

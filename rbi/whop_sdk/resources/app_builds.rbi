@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # App builds
     class AppBuilds
       # Upload a new build artifact for an app. The build must include a compiled code
       # bundle for the specified platform.

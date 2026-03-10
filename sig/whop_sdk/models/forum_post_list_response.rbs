@@ -3,6 +3,7 @@ module WhopSDK
     type forum_post_list_response =
       {
         id: String,
+        attachments: ::Array[WhopSDK::Models::ForumPostListResponse::Attachment],
         comment_count: Integer,
         content: String?,
         created_at: Time,
@@ -19,6 +20,8 @@ module WhopSDK
 
     class ForumPostListResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor attachments: ::Array[WhopSDK::Models::ForumPostListResponse::Attachment]
 
       attr_accessor comment_count: Integer
 
@@ -46,6 +49,7 @@ module WhopSDK
 
       def initialize: (
         id: String,
+        attachments: ::Array[WhopSDK::Models::ForumPostListResponse::Attachment],
         comment_count: Integer,
         content: String?,
         created_at: Time,
@@ -62,6 +66,7 @@ module WhopSDK
 
       def to_hash: -> {
         id: String,
+        attachments: ::Array[WhopSDK::Models::ForumPostListResponse::Attachment],
         comment_count: Integer,
         content: String?,
         created_at: Time,
@@ -75,6 +80,33 @@ module WhopSDK
         user: WhopSDK::Models::ForumPostListResponse::User,
         view_count: Integer?
       }
+
+      type attachment =
+        { id: String, content_type: String?, filename: String?, url: String? }
+
+      class Attachment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor content_type: String?
+
+        attr_accessor filename: String?
+
+        attr_accessor url: String?
+
+        def initialize: (
+          id: String,
+          content_type: String?,
+          filename: String?,
+          url: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          content_type: String?,
+          filename: String?,
+          url: String?
+        }
+      end
 
       type user = { id: String, name: String?, username: String }
 

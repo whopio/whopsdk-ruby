@@ -7,6 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute notification_preference
       #   The notification preferences for a DMs feed member
       #
@@ -19,7 +24,9 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::DmFeedMemberStatuses, nil]
       optional :status, enum: -> { WhopSDK::DmFeedMemberStatuses }, nil?: true
 
-      # @!method initialize(notification_preference: nil, status: nil, request_options: {})
+      # @!method initialize(id:, notification_preference: nil, status: nil, request_options: {})
+      #   @param id [String]
+      #
       #   @param notification_preference [Symbol, WhopSDK::Models::DmFeedMemberNotificationPreferences, nil] The notification preferences for a DMs feed member
       #
       #   @param status [Symbol, WhopSDK::Models::DmFeedMemberStatuses, nil] The statuses of a DMs feed member

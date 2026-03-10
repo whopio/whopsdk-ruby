@@ -11,6 +11,9 @@ module WhopSDK
           T.any(WhopSDK::ExperienceUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # The different access levels for experiences (PUBLIC IS NEVER USED ANYMORE).
       sig do
         returns(
@@ -48,6 +51,7 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           access_level:
             T.nilable(WhopSDK::ExperienceUpdateParams::AccessLevel::OrSymbol),
           is_public: T.nilable(T::Boolean),
@@ -59,6 +63,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # The different access levels for experiences (PUBLIC IS NEVER USED ANYMORE).
         access_level: nil,
         # Whether the experience is publicly accessible without a membership.
@@ -78,6 +83,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             access_level:
               T.nilable(WhopSDK::ExperienceUpdateParams::AccessLevel::OrSymbol),
             is_public: T.nilable(T::Boolean),

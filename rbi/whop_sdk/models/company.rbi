@@ -238,7 +238,7 @@ module WhopSDK
         attr_accessor :url
 
         # The website
-        sig { returns(WhopSDK::Company::SocialLink::Website::TaggedSymbol) }
+        sig { returns(WhopSDK::SocialLinkWebsites::TaggedSymbol) }
         attr_accessor :website
 
         # A social link attached to a resource on the site.
@@ -246,7 +246,7 @@ module WhopSDK
           params(
             id: String,
             url: String,
-            website: WhopSDK::Company::SocialLink::Website::OrSymbol
+            website: WhopSDK::SocialLinkWebsites::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(
@@ -264,57 +264,11 @@ module WhopSDK
             {
               id: String,
               url: String,
-              website: WhopSDK::Company::SocialLink::Website::TaggedSymbol
+              website: WhopSDK::SocialLinkWebsites::TaggedSymbol
             }
           )
         end
         def to_hash
-        end
-
-        # The website
-        module Website
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, WhopSDK::Company::SocialLink::Website)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          X = T.let(:x, WhopSDK::Company::SocialLink::Website::TaggedSymbol)
-          INSTAGRAM =
-            T.let(
-              :instagram,
-              WhopSDK::Company::SocialLink::Website::TaggedSymbol
-            )
-          FACEBOOK =
-            T.let(
-              :facebook,
-              WhopSDK::Company::SocialLink::Website::TaggedSymbol
-            )
-          TIKTOK =
-            T.let(:tiktok, WhopSDK::Company::SocialLink::Website::TaggedSymbol)
-          YOUTUBE =
-            T.let(:youtube, WhopSDK::Company::SocialLink::Website::TaggedSymbol)
-          LINKEDIN =
-            T.let(
-              :linkedin,
-              WhopSDK::Company::SocialLink::Website::TaggedSymbol
-            )
-          TWITCH =
-            T.let(:twitch, WhopSDK::Company::SocialLink::Website::TaggedSymbol)
-          WEBSITE =
-            T.let(:website, WhopSDK::Company::SocialLink::Website::TaggedSymbol)
-          CUSTOM =
-            T.let(:custom, WhopSDK::Company::SocialLink::Website::TaggedSymbol)
-
-          sig do
-            override.returns(
-              T::Array[WhopSDK::Company::SocialLink::Website::TaggedSymbol]
-            )
-          end
-          def self.values
-          end
         end
       end
     end

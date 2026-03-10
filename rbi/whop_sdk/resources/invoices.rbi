@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Invoices
     class Invoices
       # Create an invoice for a customer. The invoice can be charged automatically using
       # a stored payment method, or sent to the customer for manual payment.
@@ -9,62 +10,21 @@ module WhopSDK
       # Required permissions:
       #
       # - `invoice:create`
-      # - `plan:basic:read`
       sig do
         params(
-          collection_method: WhopSDK::CollectionMethod::OrSymbol,
-          company_id: String,
-          due_date: Time,
-          member_id: String,
-          plan: WhopSDK::InvoiceCreateParams::Plan::OrHash,
-          product: WhopSDK::InvoiceCreateParams::Product::OrHash,
-          email_address: String,
-          product_id: String,
-          automatically_finalizes_at: T.nilable(Time),
-          charge_buyer_fee: T.nilable(T::Boolean),
-          customer_name: T.nilable(String),
-          payment_method_id: T.nilable(String),
-          payment_token_id: T.nilable(String),
+          body:
+            T.any(
+              WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::OrHash,
+              WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::OrHash,
+              WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::OrHash,
+              WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::OrHash
+            ),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Invoice)
       end
       def create(
-        # How the invoice should be collected. Use charge_automatically to charge a stored
-        # payment method, or send_invoice to email the customer.
-        collection_method:,
-        # The unique identifier of the company to create this invoice for.
-        company_id:,
-        # The date by which the invoice must be paid.
-        due_date:,
-        # The unique identifier of an existing member to create this invoice for. If not
-        # provided, you must supply an email_address and customer_name.
-        member_id:,
-        # The plan attributes defining the price, currency, and billing interval for this
-        # invoice.
-        plan:,
-        # The properties of the product to create for this invoice. Provide this to create
-        # a new product inline.
-        product:,
-        # The email address of the customer. Required when creating an invoice for a
-        # customer who is not yet a member of the company.
-        email_address:,
-        # The unique identifier of an existing product to create this invoice for.
-        product_id:,
-        # The date and time when the invoice will be automatically finalized and charged.
-        # Only valid when collection_method is charge_automatically. If not provided, the
-        # charge will be processed immediately.
-        automatically_finalizes_at: nil,
-        # Whether to charge the customer a buyer fee on this invoice.
-        charge_buyer_fee: nil,
-        # The name of the customer. Required when creating an invoice for a customer who
-        # is not yet a member of the company.
-        customer_name: nil,
-        # The unique identifier of the payment method to charge. Required when
-        # collection_method is charge_automatically.
-        payment_method_id: nil,
-        # The payment token ID to use for this invoice. If using charge_automatically, you
-        # must provide a payment_token.
-        payment_token_id: nil,
+        # Parameters for CreateInvoice
+        body:,
         request_options: {}
       )
       end
@@ -74,7 +34,6 @@ module WhopSDK
       # Required permissions:
       #
       # - `invoice:basic:read`
-      # - `plan:basic:read`
       sig do
         params(
           id: String,
@@ -94,14 +53,13 @@ module WhopSDK
       # Required permissions:
       #
       # - `invoice:basic:read`
-      # - `plan:basic:read`
       sig do
         params(
-          company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
           collection_methods:
             T.nilable(T::Array[WhopSDK::CollectionMethod::OrSymbol]),
+          company_id: T.nilable(String),
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
           direction: T.nilable(WhopSDK::Direction::OrSymbol),
@@ -114,14 +72,14 @@ module WhopSDK
         ).returns(WhopSDK::Internal::CursorPage[WhopSDK::InvoiceListItem])
       end
       def list(
-        # The unique identifier of the company to list invoices for.
-        company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
         # Filter invoices by their collection method.
         collection_methods: nil,
+        # The unique identifier of the company to list invoices for.
+        company_id: nil,
         # Only return invoices created after this timestamp.
         created_after: nil,
         # Only return invoices created before this timestamp.

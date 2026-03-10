@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Forums
     class Forums
       # Retrieves the details of an existing forum.
       #
@@ -30,6 +31,8 @@ module WhopSDK
       sig do
         params(
           id: String,
+          banner_image:
+            T.nilable(WhopSDK::ForumUpdateParams::BannerImage::OrHash),
           email_notification_preference:
             T.nilable(WhopSDK::EmailNotificationPreferences::OrSymbol),
           who_can_comment: T.nilable(WhopSDK::WhoCanCommentTypes::OrSymbol),
@@ -41,6 +44,9 @@ module WhopSDK
         # The unique identifier of the forum to update. Accepts either an experience ID
         # (e.g. 'exp_xxxxx') or a forum ID.
         id,
+        # The banner image displayed at the top of the forum page. Pass null to remove the
+        # existing banner.
+        banner_image: nil,
         # Email notification preference option for a forum feed
         email_notification_preference: nil,
         # Who can comment on a forum feed

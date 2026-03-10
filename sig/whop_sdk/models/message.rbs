@@ -7,6 +7,8 @@ module WhopSDK
         created_at: Time,
         is_edited: bool,
         is_pinned: bool,
+        mentions: ::Array[String],
+        mentions_everyone: bool,
         message_type: WhopSDK::Models::dms_post_types,
         poll: WhopSDK::Message::Poll?,
         poll_votes: ::Array[WhopSDK::Message::PollVote],
@@ -27,6 +29,10 @@ module WhopSDK
       attr_accessor is_edited: bool
 
       attr_accessor is_pinned: bool
+
+      attr_accessor mentions: ::Array[String]
+
+      attr_accessor mentions_everyone: bool
 
       attr_accessor message_type: WhopSDK::Models::dms_post_types
 
@@ -50,6 +56,8 @@ module WhopSDK
         created_at: Time,
         is_edited: bool,
         is_pinned: bool,
+        mentions: ::Array[String],
+        mentions_everyone: bool,
         message_type: WhopSDK::Models::dms_post_types,
         poll: WhopSDK::Message::Poll?,
         poll_votes: ::Array[WhopSDK::Message::PollVote],
@@ -66,6 +74,8 @@ module WhopSDK
         created_at: Time,
         is_edited: bool,
         is_pinned: bool,
+        mentions: ::Array[String],
+        mentions_everyone: bool,
         message_type: WhopSDK::Models::dms_post_types,
         poll: WhopSDK::Message::Poll?,
         poll_votes: ::Array[WhopSDK::Message::PollVote],

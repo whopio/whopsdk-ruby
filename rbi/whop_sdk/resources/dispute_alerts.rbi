@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Dispute alerts
     class DisputeAlerts
       # Retrieves the details of an existing dispute alert.
       #

@@ -1,0 +1,30 @@
+module WhopSDK
+  module Models
+    type social_link_websites =
+      :x
+      | :instagram
+      | :facebook
+      | :tiktok
+      | :youtube
+      | :linkedin
+      | :twitch
+      | :website
+      | :custom
+
+    module SocialLinkWebsites
+      extend WhopSDK::Internal::Type::Enum
+
+      X: :x
+      INSTAGRAM: :instagram
+      FACEBOOK: :facebook
+      TIKTOK: :tiktok
+      YOUTUBE: :youtube
+      LINKEDIN: :linkedin
+      TWITCH: :twitch
+      WEBSITE: :website
+      CUSTOM: :custom
+
+      def self?.values: -> ::Array[WhopSDK::Models::social_link_websites]
+    end
+  end
+end

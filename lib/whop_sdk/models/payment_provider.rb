@@ -18,6 +18,7 @@ module WhopSDK
       CLARITYPAY = :claritypay
       CHECKOUT_DOT_COM = :checkout_dot_com
       AIRWALLEX = :airwallex
+      COINFLOW = :coinflow
 
       # @!method self.values
       #   @return [Array<Symbol>]

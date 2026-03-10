@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Payment methods
     class PaymentMethods
       # Retrieves the details of an existing payment method.
       #

@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Dm members
     class DmMembers
       # Add a new user to an existing DM channel. Only an admin of the channel can add
       # members.

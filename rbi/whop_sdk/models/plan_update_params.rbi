@@ -11,6 +11,9 @@ module WhopSDK
           T.any(WhopSDK::PlanUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # The number of days between recurring charges. For example, 30 for monthly or 365
       # for yearly.
       sig { returns(T.nilable(Integer)) }
@@ -123,6 +126,7 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           billing_period: T.nilable(Integer),
           currency: T.nilable(WhopSDK::Currency::OrSymbol),
           custom_fields:
@@ -151,6 +155,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # The number of days between recurring charges. For example, 30 for monthly or 365
         # for yearly.
         billing_period: nil,
@@ -207,6 +212,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             billing_period: T.nilable(Integer),
             currency: T.nilable(WhopSDK::Currency::OrSymbol),
             custom_fields:

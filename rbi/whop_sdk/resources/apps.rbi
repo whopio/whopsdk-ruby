@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Apps
     class Apps
       # Register a new app on the Whop developer platform. Apps provide custom
       # experiences that can be added to products.

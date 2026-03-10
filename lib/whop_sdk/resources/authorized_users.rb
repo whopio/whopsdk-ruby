@@ -2,7 +2,44 @@
 
 module WhopSDK
   module Resources
+    # Authorized users
     class AuthorizedUsers
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::AuthorizedUserCreateParams} for more details.
+      #
+      # Add a new authorized user to a company.
+      #
+      # Required permissions:
+      #
+      # - `authorized_user:create`
+      # - `member:email:read`
+      #
+      # @overload create(company_id:, role:, user_id:, send_emails: nil, request_options: {})
+      #
+      # @param company_id [String] The ID of the company to add the authorized user to.
+      #
+      # @param role [Symbol, WhopSDK::Models::AuthorizedUserRoles] The role to assign to the authorized user within the company. Supported roles: '
+      #
+      # @param user_id [String] The ID of the user to add as an authorized user.
+      #
+      # @param send_emails [Boolean, nil] Whether to send notification emails to the user on creation.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::AuthorizedUserCreateResponse]
+      #
+      # @see WhopSDK::Models::AuthorizedUserCreateParams
+      def create(params)
+        parsed, options = WhopSDK::AuthorizedUserCreateParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: "authorized_users",
+          body: parsed,
+          model: WhopSDK::Models::AuthorizedUserCreateResponse,
+          options: options
+        )
+      end
+
       # Retrieves the details of an existing authorized user.
       #
       # Required permissions:
@@ -66,12 +103,45 @@ module WhopSDK
       # @see WhopSDK::Models::AuthorizedUserListParams
       def list(params = {})
         parsed, options = WhopSDK::AuthorizedUserListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "authorized_users",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::AuthorizedUserListResponse,
+          options: options
+        )
+      end
+
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::AuthorizedUserDeleteParams} for more details.
+      #
+      # Remove an authorized user from a company.
+      #
+      # Required permissions:
+      #
+      # - `authorized_user:delete`
+      #
+      # @overload delete(id, company_id: nil, request_options: {})
+      #
+      # @param id [String] The ID of the authorized user or user to remove.
+      #
+      # @param company_id [String, nil] The ID of the company the authorized user belongs to. Optional if the authorized
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Boolean]
+      #
+      # @see WhopSDK::Models::AuthorizedUserDeleteParams
+      def delete(id, params = {})
+        parsed, options = WhopSDK::AuthorizedUserDeleteParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
+        @client.request(
+          method: :delete,
+          path: ["authorized_users/%1$s", id],
+          query: query,
+          model: WhopSDK::Internal::Type::Boolean,
           options: options
         )
       end

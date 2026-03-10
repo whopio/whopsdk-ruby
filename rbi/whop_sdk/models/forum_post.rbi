@@ -14,6 +14,10 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
+      # All file attachments on this post, such as images, documents, and videos.
+      sig { returns(T::Array[WhopSDK::ForumPost::Attachment]) }
+      attr_accessor :attachments
+
       # The total number of direct comments on this post.
       sig { returns(Integer) }
       attr_accessor :comment_count
@@ -71,6 +75,7 @@ module WhopSDK
       sig do
         params(
           id: String,
+          attachments: T::Array[WhopSDK::ForumPost::Attachment::OrHash],
           comment_count: Integer,
           content: T.nilable(String),
           created_at: Time,
@@ -92,6 +97,8 @@ module WhopSDK
         # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
         # input value will be accepted as an ID.
         id:,
+        # All file attachments on this post, such as images, documents, and videos.
+        attachments:,
         # The total number of direct comments on this post.
         comment_count:,
         # The body of the forum post in Markdown format. Null if the post is paywalled and
@@ -124,6 +131,7 @@ module WhopSDK
         override.returns(
           {
             id: String,
+            attachments: T::Array[WhopSDK::ForumPost::Attachment],
             comment_count: Integer,
             content: T.nilable(String),
             created_at: Time,
@@ -140,6 +148,73 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      class Attachment < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::ForumPost::Attachment, WhopSDK::Internal::AnyHash)
+          end
+
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :content_type
+
+        # The original filename of the uploaded attachment, including its file extension.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :filename
+
+        # A pre-optimized URL for rendering this attachment on the client. This should be
+        # used for displaying attachments in apps.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :url
+
+        # Represents an image attachment
+        sig do
+          params(
+            id: String,
+            content_type: T.nilable(String),
+            filename: T.nilable(String),
+            url: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
+          id:,
+          # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
+          content_type:,
+          # The original filename of the uploaded attachment, including its file extension.
+          filename:,
+          # A pre-optimized URL for rendering this attachment on the client. This should be
+          # used for displaying attachments in apps.
+          url:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              content_type: T.nilable(String),
+              filename: T.nilable(String),
+              url: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
+        end
       end
 
       class User < WhopSDK::Internal::Type::BaseModel

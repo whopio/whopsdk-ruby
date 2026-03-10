@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Memberships
     class Memberships
       # Retrieves the details of an existing membership.
       #
@@ -111,12 +112,47 @@ module WhopSDK
       # @see WhopSDK::Models::MembershipListParams
       def list(params = {})
         parsed, options = WhopSDK::MembershipListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "memberships",
-          query: parsed,
+          query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::MembershipListResponse,
+          options: options
+        )
+      end
+
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::MembershipAddFreeDaysParams} for more details.
+      #
+      # Add free days to extend a membership's current billing period, expiration date,
+      # or Stripe trial.
+      #
+      # Required permissions:
+      #
+      # - `member:manage`
+      # - `member:email:read`
+      # - `member:basic:read`
+      #
+      # @overload add_free_days(id, free_days:, request_options: {})
+      #
+      # @param id [String] The unique identifier of the membership.
+      #
+      # @param free_days [Integer] The number of free days to add (1-1095). Extends the billing period, expiration
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::Membership]
+      #
+      # @see WhopSDK::Models::MembershipAddFreeDaysParams
+      def add_free_days(id, params)
+        parsed, options = WhopSDK::MembershipAddFreeDaysParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: ["memberships/%1$s/add_free_days", id],
+          body: parsed,
+          model: WhopSDK::Membership,
           options: options
         )
       end
@@ -126,7 +162,7 @@ module WhopSDK
       #
       # Required permissions:
       #
-      # - `member:manage`
+      # - `membership:cancel`
       # - `member:email:read`
       # - `member:basic:read`
       #

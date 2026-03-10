@@ -2,6 +2,7 @@
 
 module WhopSDK
   module Resources
+    # Course lesson interactions
     class CourseLessonInteractions
       # Retrieves the details of an existing course lesson interaction.
       #

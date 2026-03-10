@@ -12,8 +12,14 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
-      # @!method initialize(id:, request_options: {})
+      # @!attribute resource_id
+      #
+      #   @return [String]
+      required :resource_id, String
+
+      # @!method initialize(id:, resource_id:, request_options: {})
       #   @param id [String]
+      #   @param resource_id [String]
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end
   end

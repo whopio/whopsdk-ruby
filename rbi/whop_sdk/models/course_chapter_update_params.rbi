@@ -11,17 +11,22 @@ module WhopSDK
           T.any(WhopSDK::CourseChapterUpdateParams, WhopSDK::Internal::AnyHash)
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       # The new display title of the chapter (e.g., "Module 1: Introduction").
       sig { returns(String) }
       attr_accessor :title
 
       sig do
         params(
+          id: String,
           title: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # The new display title of the chapter (e.g., "Module 1: Introduction").
         title:,
         request_options: {}
@@ -30,7 +35,11 @@ module WhopSDK
 
       sig do
         override.returns(
-          { title: String, request_options: WhopSDK::RequestOptions }
+          {
+            id: String,
+            title: String,
+            request_options: WhopSDK::RequestOptions
+          }
         )
       end
       def to_hash

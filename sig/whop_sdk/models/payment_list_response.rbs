@@ -35,7 +35,7 @@ module WhopSDK
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
         tax_amount: Float?,
-        tax_behavior: WhopSDK::Models::PaymentListResponse::tax_behavior?,
+        tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         total: Float?,
         usd_total: Float?,
         user: WhopSDK::Models::PaymentListResponse::User?,
@@ -109,7 +109,7 @@ module WhopSDK
 
       attr_accessor tax_amount: Float?
 
-      attr_accessor tax_behavior: WhopSDK::Models::PaymentListResponse::tax_behavior?
+      attr_accessor tax_behavior: WhopSDK::Models::receipt_tax_behavior?
 
       attr_accessor total: Float?
 
@@ -153,7 +153,7 @@ module WhopSDK
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
         tax_amount: Float?,
-        tax_behavior: WhopSDK::Models::PaymentListResponse::tax_behavior?,
+        tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         total: Float?,
         usd_total: Float?,
         user: WhopSDK::Models::PaymentListResponse::User?,
@@ -194,7 +194,7 @@ module WhopSDK
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
         tax_amount: Float?,
-        tax_behavior: WhopSDK::Models::PaymentListResponse::tax_behavior?,
+        tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         total: Float?,
         usd_total: Float?,
         user: WhopSDK::Models::PaymentListResponse::User?,
@@ -463,20 +463,6 @@ module WhopSDK
           number_of_intervals: Integer?,
           promo_type: WhopSDK::Models::promo_type
         }
-      end
-
-      type tax_behavior =
-        :exclusive | :inclusive | :unspecified | :unable_to_collect
-
-      module TaxBehavior
-        extend WhopSDK::Internal::Type::Enum
-
-        EXCLUSIVE: :exclusive
-        INCLUSIVE: :inclusive
-        UNSPECIFIED: :unspecified
-        UNABLE_TO_COLLECT: :unable_to_collect
-
-        def self?.values: -> ::Array[WhopSDK::Models::PaymentListResponse::tax_behavior]
       end
 
       type user =

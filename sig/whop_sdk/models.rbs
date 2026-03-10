@@ -53,6 +53,10 @@ module WhopSDK
 
   module AssessmentQuestionTypes = WhopSDK::Models::AssessmentQuestionTypes
 
+  class AuthorizedUserCreateParams = WhopSDK::Models::AuthorizedUserCreateParams
+
+  class AuthorizedUserDeleteParams = WhopSDK::Models::AuthorizedUserDeleteParams
+
   class AuthorizedUserListParams = WhopSDK::Models::AuthorizedUserListParams
 
   class AuthorizedUserRetrieveParams = WhopSDK::Models::AuthorizedUserRetrieveParams
@@ -351,6 +355,8 @@ module WhopSDK
 
   class MembershipActivatedWebhookEvent = WhopSDK::Models::MembershipActivatedWebhookEvent
 
+  class MembershipAddFreeDaysParams = WhopSDK::Models::MembershipAddFreeDaysParams
+
   class MembershipCancelAtPeriodEndChangedWebhookEvent = WhopSDK::Models::MembershipCancelAtPeriodEndChangedWebhookEvent
 
   class MembershipCancelParams = WhopSDK::Models::MembershipCancelParams
@@ -485,6 +491,8 @@ module WhopSDK
 
   module ReceiptStatus = WhopSDK::Models::ReceiptStatus
 
+  module ReceiptTaxBehavior = WhopSDK::Models::ReceiptTaxBehavior
+
   class RefundCreatedWebhookEvent = WhopSDK::Models::RefundCreatedWebhookEvent
 
   class RefundListParams = WhopSDK::Models::RefundListParams
@@ -534,6 +542,8 @@ module WhopSDK
   module ShipmentStatus = WhopSDK::Models::ShipmentStatus
 
   module ShipmentSubstatus = WhopSDK::Models::ShipmentSubstatus
+
+  module SocialLinkWebsites = WhopSDK::Models::SocialLinkWebsites
 
   class SupportChannel = WhopSDK::Models::SupportChannel
 

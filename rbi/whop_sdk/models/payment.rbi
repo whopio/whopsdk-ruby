@@ -211,7 +211,7 @@ module WhopSDK
 
       # The type of tax inclusivity applied to the receipt, for determining whether the
       # tax is included in the final price, or paid on top.
-      sig { returns(T.nilable(WhopSDK::Payment::TaxBehavior::TaggedSymbol)) }
+      sig { returns(T.nilable(WhopSDK::ReceiptTaxBehavior::TaggedSymbol)) }
       attr_accessor :tax_behavior
 
       # The amount of tax that has been refunded (if applicable).
@@ -281,7 +281,7 @@ module WhopSDK
           substatus: WhopSDK::FriendlyReceiptStatus::OrSymbol,
           subtotal: T.nilable(Float),
           tax_amount: T.nilable(Float),
-          tax_behavior: T.nilable(WhopSDK::Payment::TaxBehavior::OrSymbol),
+          tax_behavior: T.nilable(WhopSDK::ReceiptTaxBehavior::OrSymbol),
           tax_refunded_amount: T.nilable(Float),
           total: T.nilable(Float),
           usd_total: T.nilable(Float),
@@ -435,8 +435,7 @@ module WhopSDK
             substatus: WhopSDK::FriendlyReceiptStatus::TaggedSymbol,
             subtotal: T.nilable(Float),
             tax_amount: T.nilable(Float),
-            tax_behavior:
-              T.nilable(WhopSDK::Payment::TaxBehavior::TaggedSymbol),
+            tax_behavior: T.nilable(WhopSDK::ReceiptTaxBehavior::TaggedSymbol),
             tax_refunded_amount: T.nilable(Float),
             total: T.nilable(Float),
             usd_total: T.nilable(Float),
@@ -1686,33 +1685,6 @@ module WhopSDK
           end
           def self.values
           end
-        end
-      end
-
-      # The type of tax inclusivity applied to the receipt, for determining whether the
-      # tax is included in the final price, or paid on top.
-      module TaxBehavior
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, WhopSDK::Payment::TaxBehavior) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        EXCLUSIVE =
-          T.let(:exclusive, WhopSDK::Payment::TaxBehavior::TaggedSymbol)
-        INCLUSIVE =
-          T.let(:inclusive, WhopSDK::Payment::TaxBehavior::TaggedSymbol)
-        UNSPECIFIED =
-          T.let(:unspecified, WhopSDK::Payment::TaxBehavior::TaggedSymbol)
-        UNABLE_TO_COLLECT =
-          T.let(:unable_to_collect, WhopSDK::Payment::TaxBehavior::TaggedSymbol)
-
-        sig do
-          override.returns(
-            T::Array[WhopSDK::Payment::TaxBehavior::TaggedSymbol]
-          )
-        end
-        def self.values
         end
       end
 

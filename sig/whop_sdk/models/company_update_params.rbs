@@ -85,7 +85,7 @@ module WhopSDK
       type social_link =
         {
           url: String,
-          website: WhopSDK::Models::CompanyUpdateParams::SocialLink::website,
+          website: WhopSDK::Models::social_link_websites,
           image: WhopSDK::CompanyUpdateParams::SocialLink::Image?,
           order: String?,
           title: String?,
@@ -95,7 +95,7 @@ module WhopSDK
       class SocialLink < WhopSDK::Internal::Type::BaseModel
         attr_accessor url: String
 
-        attr_accessor website: WhopSDK::Models::CompanyUpdateParams::SocialLink::website
+        attr_accessor website: WhopSDK::Models::social_link_websites
 
         attr_accessor image: WhopSDK::CompanyUpdateParams::SocialLink::Image?
 
@@ -107,7 +107,7 @@ module WhopSDK
 
         def initialize: (
           url: String,
-          website: WhopSDK::Models::CompanyUpdateParams::SocialLink::website,
+          website: WhopSDK::Models::social_link_websites,
           ?image: WhopSDK::CompanyUpdateParams::SocialLink::Image?,
           ?order: String?,
           ?title: String?,
@@ -116,39 +116,12 @@ module WhopSDK
 
         def to_hash: -> {
           url: String,
-          website: WhopSDK::Models::CompanyUpdateParams::SocialLink::website,
+          website: WhopSDK::Models::social_link_websites,
           image: WhopSDK::CompanyUpdateParams::SocialLink::Image?,
           order: String?,
           title: String?,
           website_order: String?
         }
-
-        type website =
-          :x
-          | :instagram
-          | :facebook
-          | :tiktok
-          | :youtube
-          | :linkedin
-          | :twitch
-          | :website
-          | :custom
-
-        module Website
-          extend WhopSDK::Internal::Type::Enum
-
-          X: :x
-          INSTAGRAM: :instagram
-          FACEBOOK: :facebook
-          TIKTOK: :tiktok
-          YOUTUBE: :youtube
-          LINKEDIN: :linkedin
-          TWITCH: :twitch
-          WEBSITE: :website
-          CUSTOM: :custom
-
-          def self?.values: -> ::Array[WhopSDK::Models::CompanyUpdateParams::SocialLink::website]
-        end
 
         type image = { id: String }
 

@@ -1,0 +1,17 @@
+module WhopSDK
+  module Models
+    type receipt_tax_behavior =
+      :exclusive | :inclusive | :unspecified | :unable_to_collect
+
+    module ReceiptTaxBehavior
+      extend WhopSDK::Internal::Type::Enum
+
+      EXCLUSIVE: :exclusive
+      INCLUSIVE: :inclusive
+      UNSPECIFIED: :unspecified
+      UNABLE_TO_COLLECT: :unable_to_collect
+
+      def self?.values: -> ::Array[WhopSDK::Models::receipt_tax_behavior]
+    end
+  end
+end

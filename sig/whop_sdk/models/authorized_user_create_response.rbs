@@ -1,0 +1,74 @@
+module WhopSDK
+  module Models
+    type authorized_user_create_response =
+      {
+        id: String,
+        company: WhopSDK::Models::AuthorizedUserCreateResponse::Company,
+        role: WhopSDK::Models::authorized_user_roles,
+        user: WhopSDK::Models::AuthorizedUserCreateResponse::User
+      }
+
+    class AuthorizedUserCreateResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor company: WhopSDK::Models::AuthorizedUserCreateResponse::Company
+
+      attr_accessor role: WhopSDK::Models::authorized_user_roles
+
+      attr_accessor user: WhopSDK::Models::AuthorizedUserCreateResponse::User
+
+      def initialize: (
+        id: String,
+        company: WhopSDK::Models::AuthorizedUserCreateResponse::Company,
+        role: WhopSDK::Models::authorized_user_roles,
+        user: WhopSDK::Models::AuthorizedUserCreateResponse::User
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        company: WhopSDK::Models::AuthorizedUserCreateResponse::Company,
+        role: WhopSDK::Models::authorized_user_roles,
+        user: WhopSDK::Models::AuthorizedUserCreateResponse::User
+      }
+
+      type company = { id: String, title: String }
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type user =
+        { id: String, email: String?, name: String?, username: String }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor email: String?
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (
+          id: String,
+          email: String?,
+          name: String?,
+          username: String
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          email: String?,
+          name: String?,
+          username: String
+        }
+      end
+    end
+  end
+end

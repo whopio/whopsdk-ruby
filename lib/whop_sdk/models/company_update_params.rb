@@ -128,8 +128,8 @@ module WhopSDK
         # @!attribute website
         #   The website this link is for
         #
-        #   @return [Symbol, WhopSDK::Models::CompanyUpdateParams::SocialLink::Website]
-        required :website, enum: -> { WhopSDK::CompanyUpdateParams::SocialLink::Website }
+        #   @return [Symbol, WhopSDK::Models::SocialLinkWebsites]
+        required :website, enum: -> { WhopSDK::SocialLinkWebsites }
 
         # @!attribute image
         #   The custom image for the social link
@@ -160,7 +160,7 @@ module WhopSDK
         #
         #   @param url [String] The URL of the social link
         #
-        #   @param website [Symbol, WhopSDK::Models::CompanyUpdateParams::SocialLink::Website] The website this link is for
+        #   @param website [Symbol, WhopSDK::Models::SocialLinkWebsites] The website this link is for
         #
         #   @param image [WhopSDK::Models::CompanyUpdateParams::SocialLink::Image, nil] The custom image for the social link
         #
@@ -169,26 +169,6 @@ module WhopSDK
         #   @param title [String, nil] The title of the social link
         #
         #   @param website_order [String, nil] The order of the website social link
-
-        # The website this link is for
-        #
-        # @see WhopSDK::Models::CompanyUpdateParams::SocialLink#website
-        module Website
-          extend WhopSDK::Internal::Type::Enum
-
-          X = :x
-          INSTAGRAM = :instagram
-          FACEBOOK = :facebook
-          TIKTOK = :tiktok
-          YOUTUBE = :youtube
-          LINKEDIN = :linkedin
-          TWITCH = :twitch
-          WEBSITE = :website
-          CUSTOM = :custom
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
 
         # @see WhopSDK::Models::CompanyUpdateParams::SocialLink#image
         class Image < WhopSDK::Internal::Type::BaseModel

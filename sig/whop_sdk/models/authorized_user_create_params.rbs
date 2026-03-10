@@ -1,0 +1,41 @@
+module WhopSDK
+  module Models
+    type authorized_user_create_params =
+      {
+        company_id: String,
+        role: WhopSDK::Models::authorized_user_roles,
+        user_id: String,
+        send_emails: bool?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class AuthorizedUserCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor role: WhopSDK::Models::authorized_user_roles
+
+      attr_accessor user_id: String
+
+      attr_accessor send_emails: bool?
+
+      def initialize: (
+        company_id: String,
+        role: WhopSDK::Models::authorized_user_roles,
+        user_id: String,
+        ?send_emails: bool?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        role: WhopSDK::Models::authorized_user_roles,
+        user_id: String,
+        send_emails: bool?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

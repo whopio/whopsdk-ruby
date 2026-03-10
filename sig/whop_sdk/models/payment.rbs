@@ -39,7 +39,7 @@ module WhopSDK
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
         tax_amount: Float?,
-        tax_behavior: WhopSDK::Models::Payment::tax_behavior?,
+        tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         tax_refunded_amount: Float?,
         total: Float?,
         usd_total: Float?,
@@ -122,7 +122,7 @@ module WhopSDK
 
       attr_accessor tax_amount: Float?
 
-      attr_accessor tax_behavior: WhopSDK::Models::Payment::tax_behavior?
+      attr_accessor tax_behavior: WhopSDK::Models::receipt_tax_behavior?
 
       attr_accessor tax_refunded_amount: Float?
 
@@ -172,7 +172,7 @@ module WhopSDK
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
         tax_amount: Float?,
-        tax_behavior: WhopSDK::Models::Payment::tax_behavior?,
+        tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         tax_refunded_amount: Float?,
         total: Float?,
         usd_total: Float?,
@@ -218,7 +218,7 @@ module WhopSDK
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
         tax_amount: Float?,
-        tax_behavior: WhopSDK::Models::Payment::tax_behavior?,
+        tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         tax_refunded_amount: Float?,
         total: Float?,
         usd_total: Float?,
@@ -784,20 +784,6 @@ module WhopSDK
 
           def self?.values: -> ::Array[WhopSDK::Models::Payment::Resolution::status]
         end
-      end
-
-      type tax_behavior =
-        :exclusive | :inclusive | :unspecified | :unable_to_collect
-
-      module TaxBehavior
-        extend WhopSDK::Internal::Type::Enum
-
-        EXCLUSIVE: :exclusive
-        INCLUSIVE: :inclusive
-        UNSPECIFIED: :unspecified
-        UNABLE_TO_COLLECT: :unable_to_collect
-
-        def self?.values: -> ::Array[WhopSDK::Models::Payment::tax_behavior]
       end
 
       type user =

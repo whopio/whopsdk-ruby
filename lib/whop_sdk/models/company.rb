@@ -192,8 +192,8 @@ module WhopSDK
         # @!attribute website
         #   The website
         #
-        #   @return [Symbol, WhopSDK::Models::Company::SocialLink::Website]
-        required :website, enum: -> { WhopSDK::Company::SocialLink::Website }
+        #   @return [Symbol, WhopSDK::Models::SocialLinkWebsites]
+        required :website, enum: -> { WhopSDK::SocialLinkWebsites }
 
         # @!method initialize(id:, url:, website:)
         #   A social link attached to a resource on the site.
@@ -202,27 +202,7 @@ module WhopSDK
         #
         #   @param url [String] The URL of the social media profile or external link.
         #
-        #   @param website [Symbol, WhopSDK::Models::Company::SocialLink::Website] The website
-
-        # The website
-        #
-        # @see WhopSDK::Models::Company::SocialLink#website
-        module Website
-          extend WhopSDK::Internal::Type::Enum
-
-          X = :x
-          INSTAGRAM = :instagram
-          FACEBOOK = :facebook
-          TIKTOK = :tiktok
-          YOUTUBE = :youtube
-          LINKEDIN = :linkedin
-          TWITCH = :twitch
-          WEBSITE = :website
-          CUSTOM = :custom
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
+        #   @param website [Symbol, WhopSDK::Models::SocialLinkWebsites] The website
       end
     end
   end

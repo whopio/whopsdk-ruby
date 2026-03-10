@@ -2,10 +2,10 @@ module WhopSDK
   module Models
     type invoice_list_params =
       {
-        company_id: String,
         after: String?,
         before: String?,
         collection_methods: ::Array[WhopSDK::Models::collection_method]?,
+        company_id: String?,
         created_after: Time?,
         created_before: Time?,
         direction: WhopSDK::Models::direction?,
@@ -21,13 +21,13 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor company_id: String
-
       attr_accessor after: String?
 
       attr_accessor before: String?
 
       attr_accessor collection_methods: ::Array[WhopSDK::Models::collection_method]?
+
+      attr_accessor company_id: String?
 
       attr_accessor created_after: Time?
 
@@ -46,10 +46,10 @@ module WhopSDK
       attr_accessor statuses: ::Array[WhopSDK::Models::invoice_status]?
 
       def initialize: (
-        company_id: String,
         ?after: String?,
         ?before: String?,
         ?collection_methods: ::Array[WhopSDK::Models::collection_method]?,
+        ?company_id: String?,
         ?created_after: Time?,
         ?created_before: Time?,
         ?direction: WhopSDK::Models::direction?,
@@ -62,10 +62,10 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
-        company_id: String,
         after: String?,
         before: String?,
         collection_methods: ::Array[WhopSDK::Models::collection_method]?,
+        company_id: String?,
         created_after: Time?,
         created_before: Time?,
         direction: WhopSDK::Models::direction?,

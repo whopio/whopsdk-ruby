@@ -213,8 +213,8 @@ module WhopSDK
       #   The type of tax inclusivity applied to the receipt, for determining whether the
       #   tax is included in the final price, or paid on top.
       #
-      #   @return [Symbol, WhopSDK::Models::PaymentListResponse::TaxBehavior, nil]
-      required :tax_behavior, enum: -> { WhopSDK::Models::PaymentListResponse::TaxBehavior }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::ReceiptTaxBehavior, nil]
+      required :tax_behavior, enum: -> { WhopSDK::ReceiptTaxBehavior }, nil?: true
 
       # @!attribute total
       #   The total to show to the creator (excluding buyer fees).
@@ -314,7 +314,7 @@ module WhopSDK
       #
       #   @param tax_amount [Float, nil] The calculated amount of the sales/VAT tax (if applicable).
       #
-      #   @param tax_behavior [Symbol, WhopSDK::Models::PaymentListResponse::TaxBehavior, nil] The type of tax inclusivity applied to the receipt, for determining whether the
+      #   @param tax_behavior [Symbol, WhopSDK::Models::ReceiptTaxBehavior, nil] The type of tax inclusivity applied to the receipt, for determining whether the
       #
       #   @param total [Float, nil] The total to show to the creator (excluding buyer fees).
       #
@@ -704,22 +704,6 @@ module WhopSDK
         #   @param number_of_intervals [Integer, nil] The number of months the promo is applied for.
         #
         #   @param promo_type [Symbol, WhopSDK::Models::PromoType] The type (% or flat amount) of the promo.
-      end
-
-      # The type of tax inclusivity applied to the receipt, for determining whether the
-      # tax is included in the final price, or paid on top.
-      #
-      # @see WhopSDK::Models::PaymentListResponse#tax_behavior
-      module TaxBehavior
-        extend WhopSDK::Internal::Type::Enum
-
-        EXCLUSIVE = :exclusive
-        INCLUSIVE = :inclusive
-        UNSPECIFIED = :unspecified
-        UNABLE_TO_COLLECT = :unable_to_collect
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
 
       # @see WhopSDK::Models::PaymentListResponse#user

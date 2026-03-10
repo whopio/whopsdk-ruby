@@ -199,9 +199,7 @@ module WhopSDK
         attr_accessor :url
 
         # The website this link is for
-        sig do
-          returns(WhopSDK::CompanyUpdateParams::SocialLink::Website::OrSymbol)
-        end
+        sig { returns(WhopSDK::SocialLinkWebsites::OrSymbol) }
         attr_accessor :website
 
         # The custom image for the social link
@@ -234,8 +232,7 @@ module WhopSDK
         sig do
           params(
             url: String,
-            website:
-              WhopSDK::CompanyUpdateParams::SocialLink::Website::OrSymbol,
+            website: WhopSDK::SocialLinkWebsites::OrSymbol,
             image:
               T.nilable(
                 WhopSDK::CompanyUpdateParams::SocialLink::Image::OrHash
@@ -265,8 +262,7 @@ module WhopSDK
           override.returns(
             {
               url: String,
-              website:
-                WhopSDK::CompanyUpdateParams::SocialLink::Website::OrSymbol,
+              website: WhopSDK::SocialLinkWebsites::OrSymbol,
               image: T.nilable(WhopSDK::CompanyUpdateParams::SocialLink::Image),
               order: T.nilable(String),
               title: T.nilable(String),
@@ -275,73 +271,6 @@ module WhopSDK
           )
         end
         def to_hash
-        end
-
-        # The website this link is for
-        module Website
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, WhopSDK::CompanyUpdateParams::SocialLink::Website)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          X =
-            T.let(
-              :x,
-              WhopSDK::CompanyUpdateParams::SocialLink::Website::TaggedSymbol
-            )
-          INSTAGRAM =
-            T.let(
-              :instagram,
-              WhopSDK::CompanyUpdateParams::SocialLink::Website::TaggedSymbol
-            )
-          FACEBOOK =
-            T.let(
-              :facebook,
-              WhopSDK::CompanyUpdateParams::SocialLink::Website::TaggedSymbol
-            )
-          TIKTOK =
-            T.let(
-              :tiktok,
-              WhopSDK::CompanyUpdateParams::SocialLink::Website::TaggedSymbol
-            )
-          YOUTUBE =
-            T.let(
-              :youtube,
-              WhopSDK::CompanyUpdateParams::SocialLink::Website::TaggedSymbol
-            )
-          LINKEDIN =
-            T.let(
-              :linkedin,
-              WhopSDK::CompanyUpdateParams::SocialLink::Website::TaggedSymbol
-            )
-          TWITCH =
-            T.let(
-              :twitch,
-              WhopSDK::CompanyUpdateParams::SocialLink::Website::TaggedSymbol
-            )
-          WEBSITE =
-            T.let(
-              :website,
-              WhopSDK::CompanyUpdateParams::SocialLink::Website::TaggedSymbol
-            )
-          CUSTOM =
-            T.let(
-              :custom,
-              WhopSDK::CompanyUpdateParams::SocialLink::Website::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                WhopSDK::CompanyUpdateParams::SocialLink::Website::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
         end
 
         class Image < WhopSDK::Internal::Type::BaseModel

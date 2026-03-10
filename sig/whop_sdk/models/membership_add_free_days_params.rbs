@@ -1,0 +1,28 @@
+module WhopSDK
+  module Models
+    type membership_add_free_days_params =
+      { id: String, free_days: Integer }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class MembershipAddFreeDaysParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_accessor free_days: Integer
+
+      def initialize: (
+        id: String,
+        free_days: Integer,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        free_days: Integer,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

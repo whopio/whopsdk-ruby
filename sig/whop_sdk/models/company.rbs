@@ -109,7 +109,7 @@ module WhopSDK
         {
           id: String,
           url: String,
-          website: WhopSDK::Models::Company::SocialLink::website
+          website: WhopSDK::Models::social_link_websites
         }
 
       class SocialLink < WhopSDK::Internal::Type::BaseModel
@@ -117,46 +117,19 @@ module WhopSDK
 
         attr_accessor url: String
 
-        attr_accessor website: WhopSDK::Models::Company::SocialLink::website
+        attr_accessor website: WhopSDK::Models::social_link_websites
 
         def initialize: (
           id: String,
           url: String,
-          website: WhopSDK::Models::Company::SocialLink::website
+          website: WhopSDK::Models::social_link_websites
         ) -> void
 
         def to_hash: -> {
           id: String,
           url: String,
-          website: WhopSDK::Models::Company::SocialLink::website
+          website: WhopSDK::Models::social_link_websites
         }
-
-        type website =
-          :x
-          | :instagram
-          | :facebook
-          | :tiktok
-          | :youtube
-          | :linkedin
-          | :twitch
-          | :website
-          | :custom
-
-        module Website
-          extend WhopSDK::Internal::Type::Enum
-
-          X: :x
-          INSTAGRAM: :instagram
-          FACEBOOK: :facebook
-          TIKTOK: :tiktok
-          YOUTUBE: :youtube
-          LINKEDIN: :linkedin
-          TWITCH: :twitch
-          WEBSITE: :website
-          CUSTOM: :custom
-
-          def self?.values: -> ::Array[WhopSDK::Models::Company::SocialLink::website]
-        end
       end
     end
   end

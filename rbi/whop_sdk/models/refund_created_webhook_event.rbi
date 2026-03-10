@@ -322,13 +322,7 @@ module WhopSDK
 
           # The type of tax inclusivity applied to the receipt, for determining whether the
           # tax is included in the final price, or paid on top.
-          sig do
-            returns(
-              T.nilable(
-                WhopSDK::RefundCreatedWebhookEvent::Data::Payment::TaxBehavior::TaggedSymbol
-              )
-            )
-          end
+          sig { returns(T.nilable(WhopSDK::ReceiptTaxBehavior::TaggedSymbol)) }
           attr_accessor :tax_behavior
 
           # The amount of tax that has been refunded (if applicable).
@@ -385,10 +379,7 @@ module WhopSDK
                 T.nilable(WhopSDK::PaymentMethodTypes::OrSymbol),
               subtotal: T.nilable(Float),
               tax_amount: T.nilable(Float),
-              tax_behavior:
-                T.nilable(
-                  WhopSDK::RefundCreatedWebhookEvent::Data::Payment::TaxBehavior::OrSymbol
-                ),
+              tax_behavior: T.nilable(WhopSDK::ReceiptTaxBehavior::OrSymbol),
               tax_refunded_amount: T.nilable(Float),
               total: T.nilable(Float),
               usd_total: T.nilable(Float),
@@ -466,9 +457,7 @@ module WhopSDK
                 subtotal: T.nilable(Float),
                 tax_amount: T.nilable(Float),
                 tax_behavior:
-                  T.nilable(
-                    WhopSDK::RefundCreatedWebhookEvent::Data::Payment::TaxBehavior::TaggedSymbol
-                  ),
+                  T.nilable(WhopSDK::ReceiptTaxBehavior::TaggedSymbol),
                 tax_refunded_amount: T.nilable(Float),
                 total: T.nilable(Float),
                 usd_total: T.nilable(Float),
@@ -556,52 +545,6 @@ module WhopSDK
               )
             end
             def to_hash
-            end
-          end
-
-          # The type of tax inclusivity applied to the receipt, for determining whether the
-          # tax is included in the final price, or paid on top.
-          module TaxBehavior
-            extend WhopSDK::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  WhopSDK::RefundCreatedWebhookEvent::Data::Payment::TaxBehavior
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            EXCLUSIVE =
-              T.let(
-                :exclusive,
-                WhopSDK::RefundCreatedWebhookEvent::Data::Payment::TaxBehavior::TaggedSymbol
-              )
-            INCLUSIVE =
-              T.let(
-                :inclusive,
-                WhopSDK::RefundCreatedWebhookEvent::Data::Payment::TaxBehavior::TaggedSymbol
-              )
-            UNSPECIFIED =
-              T.let(
-                :unspecified,
-                WhopSDK::RefundCreatedWebhookEvent::Data::Payment::TaxBehavior::TaggedSymbol
-              )
-            UNABLE_TO_COLLECT =
-              T.let(
-                :unable_to_collect,
-                WhopSDK::RefundCreatedWebhookEvent::Data::Payment::TaxBehavior::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  WhopSDK::RefundCreatedWebhookEvent::Data::Payment::TaxBehavior::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
             end
           end
 

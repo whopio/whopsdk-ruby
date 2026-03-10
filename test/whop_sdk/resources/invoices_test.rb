@@ -61,10 +61,10 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
     end
   end
 
-  def test_list_required_params
+  def test_list
     skip("Mock server tests are disabled")
 
-    response = @whop.invoices.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.invoices.list
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage

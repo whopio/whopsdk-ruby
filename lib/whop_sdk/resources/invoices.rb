@@ -10,7 +10,6 @@ module WhopSDK
       # Required permissions:
       #
       # - `invoice:create`
-      # - `plan:basic:read`
       #
       # @overload create(body:, request_options: {})
       #
@@ -37,7 +36,6 @@ module WhopSDK
       # Required permissions:
       #
       # - `invoice:basic:read`
-      # - `plan:basic:read`
       #
       # @overload retrieve(id, request_options: {})
       #
@@ -66,17 +64,16 @@ module WhopSDK
       # Required permissions:
       #
       # - `invoice:basic:read`
-      # - `plan:basic:read`
       #
-      # @overload list(company_id:, after: nil, before: nil, collection_methods: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, product_ids: nil, statuses: nil, request_options: {})
-      #
-      # @param company_id [String] The unique identifier of the company to list invoices for.
+      # @overload list(after: nil, before: nil, collection_methods: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, product_ids: nil, statuses: nil, request_options: {})
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
       # @param collection_methods [Array<Symbol, WhopSDK::Models::CollectionMethod>, nil] Filter invoices by their collection method.
+      #
+      # @param company_id [String, nil] The unique identifier of the company to list invoices for.
       #
       # @param created_after [Time, nil] Only return invoices created after this timestamp.
       #
@@ -99,7 +96,7 @@ module WhopSDK
       # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::InvoiceListItem>]
       #
       # @see WhopSDK::Models::InvoiceListParams
-      def list(params)
+      def list(params = {})
         parsed, options = WhopSDK::InvoiceListParams.dump_request(params)
         query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(

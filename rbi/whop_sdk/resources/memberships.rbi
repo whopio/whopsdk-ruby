@@ -117,7 +117,7 @@ module WhopSDK
       #
       # Required permissions:
       #
-      # - `member:manage`
+      # - `membership:cancel`
       # - `member:email:read`
       # - `member:basic:read`
       sig do

@@ -1,5 +1,39 @@
 # Changelog
 
+## 0.0.31 (2026-03-10)
+
+Full Changelog: [v0.0.30...v0.0.31](https://github.com/whopio/whopsdk-ruby/compare/v0.0.30...v0.0.31)
+
+### Features
+
+* **api:** api update ([cfbc149](https://github.com/whopio/whopsdk-ruby/commit/cfbc149e2b0212f55e888bb030126c141bc0147b))
+* **api:** api update ([c5257d7](https://github.com/whopio/whopsdk-ruby/commit/c5257d7d6aeb459d11b975b6966a61a58b58a98d))
+* **api:** api update ([e7f061c](https://github.com/whopio/whopsdk-ruby/commit/e7f061c3bd04aca34654bb6f637378946a19f488))
+* **api:** api update ([8aa1e48](https://github.com/whopio/whopsdk-ruby/commit/8aa1e48f210d307088da960217527484c318c882))
+* **api:** api update ([212d623](https://github.com/whopio/whopsdk-ruby/commit/212d623cefe5dc0e1cf81c5cfc327114942abcd0))
+* **api:** api update ([1781282](https://github.com/whopio/whopsdk-ruby/commit/1781282af3755c852d8c6538c77b38fc6c0c5917))
+* **api:** api update ([9689f97](https://github.com/whopio/whopsdk-ruby/commit/9689f97136938405f6428ecaef07f4aac8046fce))
+* **api:** api update ([4ae8dad](https://github.com/whopio/whopsdk-ruby/commit/4ae8dad3855139c55096405ab233014d6224fdc8))
+* **api:** api update ([48686b8](https://github.com/whopio/whopsdk-ruby/commit/48686b8f81ec64ca9a0d9cdf565aec87a9cb39f0))
+* **api:** api update ([22b529c](https://github.com/whopio/whopsdk-ruby/commit/22b529c27ef47cee7558624dd6dfb054a5f4cdb7))
+* **api:** api update ([9c7f0e8](https://github.com/whopio/whopsdk-ruby/commit/9c7f0e85bebbef5fb68638f9cd29a0220546dd57))
+* **api:** api update ([051bd43](https://github.com/whopio/whopsdk-ruby/commit/051bd4316d11702316041255f4daa521a79bf4d1))
+* **api:** manual updates ([67d2e24](https://github.com/whopio/whopsdk-ruby/commit/67d2e2493e3d3c329f39dfbc853a845c434dbff7))
+
+
+### Bug Fixes
+
+* **client:** add types for path params, and update structure of unions nested in params ([156885b](https://github.com/whopio/whopsdk-ruby/commit/156885bde82bb87a22fa8f91b82cd9cdfbc8af41))
+* **client:** serialize query parameters properly ([c67de63](https://github.com/whopio/whopsdk-ruby/commit/c67de634dc68db1f96a06555ec8f9fd268064e2e))
+* properly mock time in ruby ci tests ([0717eb1](https://github.com/whopio/whopsdk-ruby/commit/0717eb1ff7f8e041304b300cdeae305ce033933c))
+
+
+### Chores
+
+* **ci:** add build step ([3040feb](https://github.com/whopio/whopsdk-ruby/commit/3040febe0229103fd9293a0f4d724abddfd01a2b))
+* **ci:** skip uploading artifacts on stainless-internal branches ([37d8165](https://github.com/whopio/whopsdk-ruby/commit/37d8165ec58ec494e0135c49c17e34fd48272d94))
+* **docs:** add missing descriptions ([8e324e8](https://github.com/whopio/whopsdk-ruby/commit/8e324e869df0043e3423a685b6666b83ccbd1dfc))
+
 ## 0.0.30 (2026-02-26)
 
 Full Changelog: [v0.0.29...v0.0.30](https://github.com/whopio/whopsdk-ruby/compare/v0.0.29...v0.0.30)

@@ -23,6 +23,7 @@ module WhopSDK
       CHECKOUT_DOT_COM =
         T.let(:checkout_dot_com, WhopSDK::PaymentProvider::TaggedSymbol)
       AIRWALLEX = T.let(:airwallex, WhopSDK::PaymentProvider::TaggedSymbol)
+      COINFLOW = T.let(:coinflow, WhopSDK::PaymentProvider::TaggedSymbol)
 
       sig { override.returns(T::Array[WhopSDK::PaymentProvider::TaggedSymbol]) }
       def self.values

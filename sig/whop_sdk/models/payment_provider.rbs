@@ -13,6 +13,7 @@ module WhopSDK
       | :claritypay
       | :checkout_dot_com
       | :airwallex
+      | :coinflow
 
     module PaymentProvider
       extend WhopSDK::Internal::Type::Enum
@@ -29,6 +30,7 @@ module WhopSDK
       CLARITYPAY: :claritypay
       CHECKOUT_DOT_COM: :checkout_dot_com
       AIRWALLEX: :airwallex
+      COINFLOW: :coinflow
 
       def self?.values: -> ::Array[WhopSDK::Models::payment_provider]
     end

@@ -32,6 +32,7 @@ module WhopSDK
       CASHAPP = T.let(:cashapp, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       CLARITYPAY = T.let(:claritypay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       COINBASE = T.let(:coinbase, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      COINFLOW = T.let(:coinflow, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       CRYPTO = T.let(:crypto, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       CUSTOM = T.let(:custom, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       CUSTOMER_BALANCE =

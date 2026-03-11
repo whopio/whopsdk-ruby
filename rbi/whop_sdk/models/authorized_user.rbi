@@ -2,13 +2,10 @@
 
 module WhopSDK
   module Models
-    class AuthorizedUserCreateResponse < WhopSDK::Internal::Type::BaseModel
+    class AuthorizedUser < WhopSDK::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(
-            WhopSDK::Models::AuthorizedUserCreateResponse,
-            WhopSDK::Internal::AnyHash
-          )
+          T.any(WhopSDK::AuthorizedUser, WhopSDK::Internal::AnyHash)
         end
 
       # The unique identifier for the authorized user.
@@ -16,15 +13,10 @@ module WhopSDK
       attr_accessor :id
 
       # The company this authorized user has access to.
-      sig { returns(WhopSDK::Models::AuthorizedUserCreateResponse::Company) }
+      sig { returns(WhopSDK::AuthorizedUser::Company) }
       attr_reader :company
 
-      sig do
-        params(
-          company:
-            WhopSDK::Models::AuthorizedUserCreateResponse::Company::OrHash
-        ).void
-      end
+      sig { params(company: WhopSDK::AuthorizedUser::Company::OrHash).void }
       attr_writer :company
 
       # The permission role assigned to this authorized user within the company.
@@ -32,14 +24,10 @@ module WhopSDK
       attr_accessor :role
 
       # The user account linked to this authorized user record.
-      sig { returns(WhopSDK::Models::AuthorizedUserCreateResponse::User) }
+      sig { returns(WhopSDK::AuthorizedUser::User) }
       attr_reader :user
 
-      sig do
-        params(
-          user: WhopSDK::Models::AuthorizedUserCreateResponse::User::OrHash
-        ).void
-      end
+      sig { params(user: WhopSDK::AuthorizedUser::User::OrHash).void }
       attr_writer :user
 
       # A user who has been granted administrative access to manage a company's
@@ -47,10 +35,9 @@ module WhopSDK
       sig do
         params(
           id: String,
-          company:
-            WhopSDK::Models::AuthorizedUserCreateResponse::Company::OrHash,
+          company: WhopSDK::AuthorizedUser::Company::OrHash,
           role: WhopSDK::AuthorizedUserRoles::OrSymbol,
-          user: WhopSDK::Models::AuthorizedUserCreateResponse::User::OrHash
+          user: WhopSDK::AuthorizedUser::User::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -69,9 +56,9 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            company: WhopSDK::Models::AuthorizedUserCreateResponse::Company,
+            company: WhopSDK::AuthorizedUser::Company,
             role: WhopSDK::AuthorizedUserRoles::TaggedSymbol,
-            user: WhopSDK::Models::AuthorizedUserCreateResponse::User
+            user: WhopSDK::AuthorizedUser::User
           }
         )
       end
@@ -81,10 +68,7 @@ module WhopSDK
       class Company < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(
-              WhopSDK::Models::AuthorizedUserCreateResponse::Company,
-              WhopSDK::Internal::AnyHash
-            )
+            T.any(WhopSDK::AuthorizedUser::Company, WhopSDK::Internal::AnyHash)
           end
 
         # The unique identifier for the company.
@@ -113,10 +97,7 @@ module WhopSDK
       class User < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(
-              WhopSDK::Models::AuthorizedUserCreateResponse::User,
-              WhopSDK::Internal::AnyHash
-            )
+            T.any(WhopSDK::AuthorizedUser::User, WhopSDK::Internal::AnyHash)
           end
 
         # The unique identifier for the user.

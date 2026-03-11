@@ -1,0 +1,16 @@
+module WhopSDK
+  module Models
+    type resolution_center_case_customer_response =
+      :respond | :appeal | :withdraw
+
+    module ResolutionCenterCaseCustomerResponse
+      extend WhopSDK::Internal::Type::Enum
+
+      RESPOND: :respond
+      APPEAL: :appeal
+      WITHDRAW: :withdraw
+
+      def self?.values: -> ::Array[WhopSDK::Models::resolution_center_case_customer_response]
+    end
+  end
+end

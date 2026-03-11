@@ -1,0 +1,22 @@
+module WhopSDK
+  module Models
+    type resolution_center_case_issue_type =
+      :forgot_to_cancel
+      | :item_not_received
+      | :significantly_not_as_described
+      | :unauthorized_transaction
+      | :product_unacceptable
+
+    module ResolutionCenterCaseIssueType
+      extend WhopSDK::Internal::Type::Enum
+
+      FORGOT_TO_CANCEL: :forgot_to_cancel
+      ITEM_NOT_RECEIVED: :item_not_received
+      SIGNIFICANTLY_NOT_AS_DESCRIBED: :significantly_not_as_described
+      UNAUTHORIZED_TRANSACTION: :unauthorized_transaction
+      PRODUCT_UNACCEPTABLE: :product_unacceptable
+
+      def self?.values: -> ::Array[WhopSDK::Models::resolution_center_case_issue_type]
+    end
+  end
+end

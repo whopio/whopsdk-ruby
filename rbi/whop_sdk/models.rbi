@@ -55,6 +55,8 @@ module WhopSDK
 
   AssessmentQuestionTypes = WhopSDK::Models::AssessmentQuestionTypes
 
+  AuthorizedUser = WhopSDK::Models::AuthorizedUser
+
   AuthorizedUserCreateParams = WhopSDK::Models::AuthorizedUserCreateParams
 
   AuthorizedUserDeleteParams = WhopSDK::Models::AuthorizedUserDeleteParams
@@ -528,6 +530,25 @@ module WhopSDK
   RefundUpdatedWebhookEvent = WhopSDK::Models::RefundUpdatedWebhookEvent
 
   ReleaseMethod = WhopSDK::Models::ReleaseMethod
+
+  ResolutionCenterCaseCustomerResponse =
+    WhopSDK::Models::ResolutionCenterCaseCustomerResponse
+
+  ResolutionCenterCaseIssueType = WhopSDK::Models::ResolutionCenterCaseIssueType
+
+  ResolutionCenterCaseListParams =
+    WhopSDK::Models::ResolutionCenterCaseListParams
+
+  ResolutionCenterCaseMerchantResponse =
+    WhopSDK::Models::ResolutionCenterCaseMerchantResponse
+
+  ResolutionCenterCasePlatformResponse =
+    WhopSDK::Models::ResolutionCenterCasePlatformResponse
+
+  ResolutionCenterCaseRetrieveParams =
+    WhopSDK::Models::ResolutionCenterCaseRetrieveParams
+
+  ResolutionCenterCaseStatus = WhopSDK::Models::ResolutionCenterCaseStatus
 
   ReviewListParams = WhopSDK::Models::ReviewListParams
 

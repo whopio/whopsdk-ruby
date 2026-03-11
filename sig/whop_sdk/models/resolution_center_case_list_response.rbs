@@ -1,0 +1,116 @@
+module WhopSDK
+  module Models
+    type resolution_center_case_list_response =
+      {
+        id: String,
+        company: WhopSDK::Models::ResolutionCenterCaseListResponse::Company?,
+        created_at: Time,
+        customer_appealed: bool,
+        customer_response_actions: ::Array[WhopSDK::Models::resolution_center_case_customer_response],
+        due_date: Time?,
+        issue: WhopSDK::Models::resolution_center_case_issue_type,
+        merchant_appealed: bool,
+        merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response],
+        payment: WhopSDK::Models::ResolutionCenterCaseListResponse::Payment,
+        status: WhopSDK::Models::resolution_center_case_status,
+        updated_at: Time,
+        user: WhopSDK::Models::ResolutionCenterCaseListResponse::User
+      }
+
+    class ResolutionCenterCaseListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor company: WhopSDK::Models::ResolutionCenterCaseListResponse::Company?
+
+      attr_accessor created_at: Time
+
+      attr_accessor customer_appealed: bool
+
+      attr_accessor customer_response_actions: ::Array[WhopSDK::Models::resolution_center_case_customer_response]
+
+      attr_accessor due_date: Time?
+
+      attr_accessor issue: WhopSDK::Models::resolution_center_case_issue_type
+
+      attr_accessor merchant_appealed: bool
+
+      attr_accessor merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response]
+
+      attr_accessor payment: WhopSDK::Models::ResolutionCenterCaseListResponse::Payment
+
+      attr_accessor status: WhopSDK::Models::resolution_center_case_status
+
+      attr_accessor updated_at: Time
+
+      attr_accessor user: WhopSDK::Models::ResolutionCenterCaseListResponse::User
+
+      def initialize: (
+        id: String,
+        company: WhopSDK::Models::ResolutionCenterCaseListResponse::Company?,
+        created_at: Time,
+        customer_appealed: bool,
+        customer_response_actions: ::Array[WhopSDK::Models::resolution_center_case_customer_response],
+        due_date: Time?,
+        issue: WhopSDK::Models::resolution_center_case_issue_type,
+        merchant_appealed: bool,
+        merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response],
+        payment: WhopSDK::Models::ResolutionCenterCaseListResponse::Payment,
+        status: WhopSDK::Models::resolution_center_case_status,
+        updated_at: Time,
+        user: WhopSDK::Models::ResolutionCenterCaseListResponse::User
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        company: WhopSDK::Models::ResolutionCenterCaseListResponse::Company?,
+        created_at: Time,
+        customer_appealed: bool,
+        customer_response_actions: ::Array[WhopSDK::Models::resolution_center_case_customer_response],
+        due_date: Time?,
+        issue: WhopSDK::Models::resolution_center_case_issue_type,
+        merchant_appealed: bool,
+        merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response],
+        payment: WhopSDK::Models::ResolutionCenterCaseListResponse::Payment,
+        status: WhopSDK::Models::resolution_center_case_status,
+        updated_at: Time,
+        user: WhopSDK::Models::ResolutionCenterCaseListResponse::User
+      }
+
+      type company = { id: String, title: String }
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type payment = { id: String }
+
+      class Payment < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type user = { id: String, name: String?, username: String }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
+      end
+    end
+  end
+end

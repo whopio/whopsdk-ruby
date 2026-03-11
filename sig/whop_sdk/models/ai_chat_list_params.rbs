@@ -1,7 +1,13 @@
 module WhopSDK
   module Models
     type ai_chat_list_params =
-      { after: String?, before: String?, first: Integer?, last: Integer? }
+      {
+        after: String?,
+        before: String?,
+        first: Integer?,
+        last: Integer?,
+        only_active_crons: bool?
+      }
       & WhopSDK::Internal::Type::request_parameters
 
     class AIChatListParams < WhopSDK::Internal::Type::BaseModel
@@ -16,11 +22,14 @@ module WhopSDK
 
       attr_accessor last: Integer?
 
+      attr_accessor only_active_crons: bool?
+
       def initialize: (
         ?after: String?,
         ?before: String?,
         ?first: Integer?,
         ?last: Integer?,
+        ?only_active_crons: bool?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -29,6 +38,7 @@ module WhopSDK
         before: String?,
         first: Integer?,
         last: Integer?,
+        only_active_crons: bool?,
         request_options: WhopSDK::RequestOptions
       }
     end

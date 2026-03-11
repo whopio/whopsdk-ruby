@@ -90,6 +90,7 @@ module WhopSDK
           before: T.nilable(String),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
+          only_active_crons: T.nilable(T::Boolean),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::AIChatListResponse]
@@ -104,6 +105,8 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
+        # When true, returns only chats with an active cron schedule
+        only_active_crons: nil,
         request_options: {}
       )
       end

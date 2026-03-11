@@ -103,6 +103,13 @@ module WhopSDK
       #   @return [String, nil]
       optional :route, String, nil?: true
 
+      # @!attribute send_welcome_message
+      #   Whether to send an automated welcome message via support chat when a user joins
+      #   this product.
+      #
+      #   @return [Boolean, nil]
+      optional :send_welcome_message, WhopSDK::Internal::Type::Boolean, nil?: true
+
       # @!attribute store_page_config
       #   Layout and display configuration for this product on the company's store page.
       #
@@ -121,7 +128,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility, nil]
       optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-      # @!method initialize(id:, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, gallery_images: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
+      # @!method initialize(id:, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, gallery_images: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, send_welcome_message: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ProductUpdateParams} for more details.
       #
@@ -154,6 +161,8 @@ module WhopSDK
       #   @param redirect_purchase_url [String, nil] A URL to redirect the customer to after completing a purchase.
       #
       #   @param route [String, nil] The URL slug for the product's public link.
+      #
+      #   @param send_welcome_message [Boolean, nil] Whether to send an automated welcome message via support chat when a user joins
       #
       #   @param store_page_config [WhopSDK::Models::ProductUpdateParams::StorePageConfig, nil] Layout and display configuration for this product on the company's store page.
       #

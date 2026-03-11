@@ -77,6 +77,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :route
 
+      # Whether to send an automated welcome message via support chat when a user joins
+      # this product.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :send_welcome_message
+
       # Layout and display configuration for this product on the company's store page.
       sig { returns(T.nilable(WhopSDK::ProductUpdateParams::StorePageConfig)) }
       attr_reader :store_page_config
@@ -119,6 +124,7 @@ module WhopSDK
           product_tax_code_id: T.nilable(String),
           redirect_purchase_url: T.nilable(String),
           route: T.nilable(String),
+          send_welcome_message: T.nilable(T::Boolean),
           store_page_config:
             T.nilable(WhopSDK::ProductUpdateParams::StorePageConfig::OrHash),
           title: T.nilable(String),
@@ -161,6 +167,9 @@ module WhopSDK
         redirect_purchase_url: nil,
         # The URL slug for the product's public link.
         route: nil,
+        # Whether to send an automated welcome message via support chat when a user joins
+        # this product.
+        send_welcome_message: nil,
         # Layout and display configuration for this product on the company's store page.
         store_page_config: nil,
         # The display name of the product. Maximum 40 characters.
@@ -192,6 +201,7 @@ module WhopSDK
             product_tax_code_id: T.nilable(String),
             redirect_purchase_url: T.nilable(String),
             route: T.nilable(String),
+            send_welcome_message: T.nilable(T::Boolean),
             store_page_config:
               T.nilable(WhopSDK::ProductUpdateParams::StorePageConfig),
             title: T.nilable(String),

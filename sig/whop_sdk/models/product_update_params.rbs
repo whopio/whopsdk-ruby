@@ -17,6 +17,7 @@ module WhopSDK
         product_tax_code_id: String?,
         redirect_purchase_url: String?,
         route: String?,
+        send_welcome_message: bool?,
         store_page_config: WhopSDK::ProductUpdateParams::StorePageConfig?,
         title: String?,
         visibility: WhopSDK::Models::visibility?
@@ -57,6 +58,8 @@ module WhopSDK
 
       attr_accessor route: String?
 
+      attr_accessor send_welcome_message: bool?
+
       attr_accessor store_page_config: WhopSDK::ProductUpdateParams::StorePageConfig?
 
       attr_accessor title: String?
@@ -79,6 +82,7 @@ module WhopSDK
         ?product_tax_code_id: String?,
         ?redirect_purchase_url: String?,
         ?route: String?,
+        ?send_welcome_message: bool?,
         ?store_page_config: WhopSDK::ProductUpdateParams::StorePageConfig?,
         ?title: String?,
         ?visibility: WhopSDK::Models::visibility?,
@@ -101,6 +105,7 @@ module WhopSDK
         product_tax_code_id: String?,
         redirect_purchase_url: String?,
         route: String?,
+        send_welcome_message: bool?,
         store_page_config: WhopSDK::ProductUpdateParams::StorePageConfig?,
         title: String?,
         visibility: WhopSDK::Models::visibility?,

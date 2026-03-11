@@ -92,6 +92,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :route
 
+      # Whether to send an automated welcome message via support chat when a user joins
+      # this product. Defaults to true.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :send_welcome_message
+
       # Visibility of a resource
       sig { returns(T.nilable(WhopSDK::Visibility::OrSymbol)) }
       attr_accessor :visibility
@@ -118,6 +123,7 @@ module WhopSDK
           product_tax_code_id: T.nilable(String),
           redirect_purchase_url: T.nilable(String),
           route: T.nilable(String),
+          send_welcome_message: T.nilable(T::Boolean),
           visibility: T.nilable(WhopSDK::Visibility::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -162,6 +168,9 @@ module WhopSDK
         redirect_purchase_url: nil,
         # The URL slug for the product's public link.
         route: nil,
+        # Whether to send an automated welcome message via support chat when a user joins
+        # this product. Defaults to true.
+        send_welcome_message: nil,
         # Visibility of a resource
         visibility: nil,
         request_options: {}
@@ -190,6 +199,7 @@ module WhopSDK
             product_tax_code_id: T.nilable(String),
             redirect_purchase_url: T.nilable(String),
             route: T.nilable(String),
+            send_welcome_message: T.nilable(T::Boolean),
             visibility: T.nilable(WhopSDK::Visibility::OrSymbol),
             request_options: WhopSDK::RequestOptions
           }

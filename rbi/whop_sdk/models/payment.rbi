@@ -1369,8 +1369,8 @@ module WhopSDK
         sig { returns(WhopSDK::Payment::Resolution::Status::TaggedSymbol) }
         attr_accessor :status
 
-        # A resolution is a dispute or support case between a buyer and seller, tracking
-        # the issue, status, and outcome.
+        # A resolution center case is a dispute or support case between a user and a
+        # company, tracking the issue, status, and outcome.
         sig do
           params(
             id: String,

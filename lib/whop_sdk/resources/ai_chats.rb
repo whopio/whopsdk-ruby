@@ -98,7 +98,7 @@ module WhopSDK
 
       # Returns a paginated list of AI chat threads for the current authenticated user.
       #
-      # @overload list(after: nil, before: nil, first: nil, last: nil, request_options: {})
+      # @overload list(after: nil, before: nil, first: nil, last: nil, only_active_crons: nil, request_options: {})
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -107,6 +107,8 @@ module WhopSDK
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #
+      # @param only_active_crons [Boolean, nil] When true, returns only chats with an active cron schedule
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

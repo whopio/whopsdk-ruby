@@ -7,12 +7,12 @@ module WhopSDK
         user_id: String,
         ?send_emails: bool?,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::AuthorizedUserCreateResponse
+      ) -> WhopSDK::AuthorizedUser
 
       def retrieve: (
         String id,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::AuthorizedUserRetrieveResponse
+      ) -> WhopSDK::AuthorizedUser
 
       def list: (
         ?after: String?,

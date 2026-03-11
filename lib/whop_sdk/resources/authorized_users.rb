@@ -26,7 +26,7 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::AuthorizedUserCreateResponse]
+      # @return [WhopSDK::Models::AuthorizedUser]
       #
       # @see WhopSDK::Models::AuthorizedUserCreateParams
       def create(params)
@@ -35,7 +35,7 @@ module WhopSDK
           method: :post,
           path: "authorized_users",
           body: parsed,
-          model: WhopSDK::Models::AuthorizedUserCreateResponse,
+          model: WhopSDK::AuthorizedUser,
           options: options
         )
       end
@@ -53,14 +53,14 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::AuthorizedUserRetrieveResponse]
+      # @return [WhopSDK::Models::AuthorizedUser]
       #
       # @see WhopSDK::Models::AuthorizedUserRetrieveParams
       def retrieve(id, params = {})
         @client.request(
           method: :get,
           path: ["authorized_users/%1$s", id],
-          model: WhopSDK::Models::AuthorizedUserRetrieveResponse,
+          model: WhopSDK::AuthorizedUser,
           options: params[:request_options]
         )
       end

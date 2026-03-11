@@ -27,12 +27,17 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
+      # When true, returns only chats with an active cron schedule
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :only_active_crons
+
       sig do
         params(
           after: T.nilable(String),
           before: T.nilable(String),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
+          only_active_crons: T.nilable(T::Boolean),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -45,6 +50,8 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
+        # When true, returns only chats with an active cron schedule
+        only_active_crons: nil,
         request_options: {}
       )
       end
@@ -56,6 +63,7 @@ module WhopSDK
             before: T.nilable(String),
             first: T.nilable(Integer),
             last: T.nilable(Integer),
+            only_active_crons: T.nilable(T::Boolean),
             request_options: WhopSDK::RequestOptions
           }
         )

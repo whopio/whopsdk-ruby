@@ -19,6 +19,7 @@ module WhopSDK
         product_tax_code_id: String?,
         redirect_purchase_url: String?,
         route: String?,
+        send_welcome_message: bool?,
         visibility: WhopSDK::Models::visibility?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -61,6 +62,8 @@ module WhopSDK
 
       attr_accessor route: String?
 
+      attr_accessor send_welcome_message: bool?
+
       attr_accessor visibility: WhopSDK::Models::visibility?
 
       def initialize: (
@@ -81,6 +84,7 @@ module WhopSDK
         ?product_tax_code_id: String?,
         ?redirect_purchase_url: String?,
         ?route: String?,
+        ?send_welcome_message: bool?,
         ?visibility: WhopSDK::Models::visibility?,
         ?request_options: WhopSDK::request_opts
       ) -> void
@@ -103,6 +107,7 @@ module WhopSDK
         product_tax_code_id: String?,
         redirect_purchase_url: String?,
         route: String?,
+        send_welcome_message: bool?,
         visibility: WhopSDK::Models::visibility?,
         request_options: WhopSDK::RequestOptions
       }

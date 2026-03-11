@@ -932,9 +932,9 @@ module WhopSDK
         # @!attribute customer_response_actions
         #   The list of actions currently available to the customer.
         #
-        #   @return [Array<Symbol, WhopSDK::Models::Payment::Resolution::CustomerResponseAction>]
+        #   @return [Array<Symbol, WhopSDK::Models::ResolutionCenterCaseCustomerResponse>]
         required :customer_response_actions,
-                 -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::Payment::Resolution::CustomerResponseAction] }
+                 -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::ResolutionCenterCaseCustomerResponse] }
 
         # @!attribute due_date
         #   The deadline by which the next response is required. Null if no deadline is
@@ -946,8 +946,8 @@ module WhopSDK
         # @!attribute issue
         #   The category of the dispute.
         #
-        #   @return [Symbol, WhopSDK::Models::Payment::Resolution::Issue]
-        required :issue, enum: -> { WhopSDK::Payment::Resolution::Issue }
+        #   @return [Symbol, WhopSDK::Models::ResolutionCenterCaseIssueType]
+        required :issue, enum: -> { WhopSDK::ResolutionCenterCaseIssueType }
 
         # @!attribute merchant_appealed
         #   Whether the merchant has filed an appeal after the initial resolution decision.
@@ -958,125 +958,49 @@ module WhopSDK
         # @!attribute merchant_response_actions
         #   The list of actions currently available to the merchant.
         #
-        #   @return [Array<Symbol, WhopSDK::Models::Payment::Resolution::MerchantResponseAction>]
+        #   @return [Array<Symbol, WhopSDK::Models::ResolutionCenterCaseMerchantResponse>]
         required :merchant_response_actions,
-                 -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::Payment::Resolution::MerchantResponseAction] }
+                 -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::ResolutionCenterCaseMerchantResponse] }
 
         # @!attribute platform_response_actions
         #   The list of actions currently available to the Whop platform for moderating this
         #   resolution.
         #
-        #   @return [Array<Symbol, WhopSDK::Models::Payment::Resolution::PlatformResponseAction>]
+        #   @return [Array<Symbol, WhopSDK::Models::ResolutionCenterCasePlatformResponse>]
         required :platform_response_actions,
-                 -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::Payment::Resolution::PlatformResponseAction] }
+                 -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::ResolutionCenterCasePlatformResponse] }
 
         # @!attribute status
         #   The current status of the resolution case, indicating which party needs to
         #   respond or if the case is closed.
         #
-        #   @return [Symbol, WhopSDK::Models::Payment::Resolution::Status]
-        required :status, enum: -> { WhopSDK::Payment::Resolution::Status }
+        #   @return [Symbol, WhopSDK::Models::ResolutionCenterCaseStatus]
+        required :status, enum: -> { WhopSDK::ResolutionCenterCaseStatus }
 
         # @!method initialize(id:, customer_appealed:, customer_response_actions:, due_date:, issue:, merchant_appealed:, merchant_response_actions:, platform_response_actions:, status:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::Payment::Resolution} for more details.
         #
-        #   A resolution is a dispute or support case between a buyer and seller, tracking
-        #   the issue, status, and outcome.
+        #   A resolution center case is a dispute or support case between a user and a
+        #   company, tracking the issue, status, and outcome.
         #
         #   @param id [String] The unique identifier for the resolution.
         #
         #   @param customer_appealed [Boolean] Whether the customer has filed an appeal after the initial resolution decision.
         #
-        #   @param customer_response_actions [Array<Symbol, WhopSDK::Models::Payment::Resolution::CustomerResponseAction>] The list of actions currently available to the customer.
+        #   @param customer_response_actions [Array<Symbol, WhopSDK::Models::ResolutionCenterCaseCustomerResponse>] The list of actions currently available to the customer.
         #
         #   @param due_date [Time, nil] The deadline by which the next response is required. Null if no deadline is curr
         #
-        #   @param issue [Symbol, WhopSDK::Models::Payment::Resolution::Issue] The category of the dispute.
+        #   @param issue [Symbol, WhopSDK::Models::ResolutionCenterCaseIssueType] The category of the dispute.
         #
         #   @param merchant_appealed [Boolean] Whether the merchant has filed an appeal after the initial resolution decision.
         #
-        #   @param merchant_response_actions [Array<Symbol, WhopSDK::Models::Payment::Resolution::MerchantResponseAction>] The list of actions currently available to the merchant.
+        #   @param merchant_response_actions [Array<Symbol, WhopSDK::Models::ResolutionCenterCaseMerchantResponse>] The list of actions currently available to the merchant.
         #
-        #   @param platform_response_actions [Array<Symbol, WhopSDK::Models::Payment::Resolution::PlatformResponseAction>] The list of actions currently available to the Whop platform for moderating this
+        #   @param platform_response_actions [Array<Symbol, WhopSDK::Models::ResolutionCenterCasePlatformResponse>] The list of actions currently available to the Whop platform for moderating this
         #
-        #   @param status [Symbol, WhopSDK::Models::Payment::Resolution::Status] The current status of the resolution case, indicating which party needs to respo
-
-        # The types of responses a customer can make to a resolution.
-        module CustomerResponseAction
-          extend WhopSDK::Internal::Type::Enum
-
-          RESPOND = :respond
-          APPEAL = :appeal
-          WITHDRAW = :withdraw
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-
-        # The category of the dispute.
-        #
-        # @see WhopSDK::Models::Payment::Resolution#issue
-        module Issue
-          extend WhopSDK::Internal::Type::Enum
-
-          FORGOT_TO_CANCEL = :forgot_to_cancel
-          ITEM_NOT_RECEIVED = :item_not_received
-          SIGNIFICANTLY_NOT_AS_DESCRIBED = :significantly_not_as_described
-          UNAUTHORIZED_TRANSACTION = :unauthorized_transaction
-          PRODUCT_UNACCEPTABLE = :product_unacceptable
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-
-        # The types of responses a merchant can make to a resolution.
-        module MerchantResponseAction
-          extend WhopSDK::Internal::Type::Enum
-
-          ACCEPT = :accept
-          DENY = :deny
-          REQUEST_MORE_INFO = :request_more_info
-          APPEAL = :appeal
-          RESPOND = :respond
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-
-        # The types of responses the platform can make to a resolution.
-        module PlatformResponseAction
-          extend WhopSDK::Internal::Type::Enum
-
-          REQUEST_BUYER_INFO = :request_buyer_info
-          REQUEST_MERCHANT_INFO = :request_merchant_info
-          MERCHANT_WINS = :merchant_wins
-          PLATFORM_REFUND = :platform_refund
-          MERCHANT_REFUND = :merchant_refund
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-
-        # The current status of the resolution case, indicating which party needs to
-        # respond or if the case is closed.
-        #
-        # @see WhopSDK::Models::Payment::Resolution#status
-        module Status
-          extend WhopSDK::Internal::Type::Enum
-
-          MERCHANT_RESPONSE_NEEDED = :merchant_response_needed
-          CUSTOMER_RESPONSE_NEEDED = :customer_response_needed
-          MERCHANT_INFO_NEEDED = :merchant_info_needed
-          CUSTOMER_INFO_NEEDED = :customer_info_needed
-          UNDER_PLATFORM_REVIEW = :under_platform_review
-          CUSTOMER_WON = :customer_won
-          MERCHANT_WON = :merchant_won
-          CUSTOMER_WITHDREW = :customer_withdrew
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
+        #   @param status [Symbol, WhopSDK::Models::ResolutionCenterCaseStatus] The current status of the resolution case, indicating which party needs to respo
       end
 
       # @see WhopSDK::Models::Payment#user

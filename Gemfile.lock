@@ -11,9 +11,10 @@ GIT
 PATH
   remote: .
   specs:
-    whop_sdk (0.0.31)
+    whop_sdk (0.0.32)
       cgi
       connection_pool
+      standardwebhooks
       jwt
       openssl
 
@@ -148,6 +149,7 @@ GEM
       rexml (>= 3.2.6)
       sorbet-static-and-runtime (>= 0.5.10187)
       thor (>= 0.19.2)
+    standardwebhooks (1.0.1)
     steep (1.10.0)
       activesupport (>= 5.1)
       concurrent-ruby (>= 1.1.10)

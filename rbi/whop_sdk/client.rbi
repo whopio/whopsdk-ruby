@@ -16,6 +16,9 @@ module WhopSDK
     sig { returns(String) }
     attr_reader :api_key
 
+    sig { returns(T.nilable(String)) }
+    attr_reader :webhook_key
+
     # When using the SDK in app mode pass this parameter to allow verifying user
     # tokens
     sig { returns(T.nilable(String)) }
@@ -221,6 +224,10 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::DisputeAlerts) }
     attr_reader :dispute_alerts
 
+    # Resolution center cases
+    sig { returns(WhopSDK::Resources::ResolutionCenterCases) }
+    attr_reader :resolution_center_cases
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers
@@ -230,6 +237,7 @@ module WhopSDK
     sig do
       params(
         api_key: T.nilable(String),
+        webhook_key: T.nilable(String),
         app_id: T.nilable(String),
         base_url: T.nilable(String),
         max_retries: Integer,
@@ -243,6 +251,8 @@ module WhopSDK
       # must prepend your key/token with the word 'Bearer', which will look like
       # `Bearer ***************************` Defaults to `ENV["WHOP_API_KEY"]`
       api_key: ENV["WHOP_API_KEY"],
+      # Defaults to `ENV["WHOP_WEBHOOK_SECRET"]`
+      webhook_key: ENV["WHOP_WEBHOOK_SECRET"],
       # When using the SDK in app mode pass this parameter to allow verifying user
       # tokens Defaults to `ENV["WHOP_APP_ID"]`
       app_id: ENV["WHOP_APP_ID"],

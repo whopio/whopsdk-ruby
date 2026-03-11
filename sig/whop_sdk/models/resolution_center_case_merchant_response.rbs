@@ -1,0 +1,18 @@
+module WhopSDK
+  module Models
+    type resolution_center_case_merchant_response =
+      :accept | :deny | :request_more_info | :appeal | :respond
+
+    module ResolutionCenterCaseMerchantResponse
+      extend WhopSDK::Internal::Type::Enum
+
+      ACCEPT: :accept
+      DENY: :deny
+      REQUEST_MORE_INFO: :request_more_info
+      APPEAL: :appeal
+      RESPOND: :respond
+
+      def self?.values: -> ::Array[WhopSDK::Models::resolution_center_case_merchant_response]
+    end
+  end
+end

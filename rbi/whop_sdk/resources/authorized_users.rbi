@@ -17,7 +17,7 @@ module WhopSDK
           user_id: String,
           send_emails: T.nilable(T::Boolean),
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::AuthorizedUserCreateResponse)
+        ).returns(WhopSDK::AuthorizedUser)
       end
       def create(
         # The ID of the company to add the authorized user to.
@@ -43,7 +43,7 @@ module WhopSDK
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::AuthorizedUserRetrieveResponse)
+        ).returns(WhopSDK::AuthorizedUser)
       end
       def retrieve(
         # The unique identifier of the authorized user to retrieve.

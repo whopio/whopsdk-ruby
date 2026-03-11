@@ -1,34 +1,34 @@
 module WhopSDK
   module Models
-    type authorized_user_create_response =
+    type authorized_user =
       {
         id: String,
-        company: WhopSDK::Models::AuthorizedUserCreateResponse::Company,
+        company: WhopSDK::AuthorizedUser::Company,
         role: WhopSDK::Models::authorized_user_roles,
-        user: WhopSDK::Models::AuthorizedUserCreateResponse::User
+        user: WhopSDK::AuthorizedUser::User
       }
 
-    class AuthorizedUserCreateResponse < WhopSDK::Internal::Type::BaseModel
+    class AuthorizedUser < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor company: WhopSDK::Models::AuthorizedUserCreateResponse::Company
+      attr_accessor company: WhopSDK::AuthorizedUser::Company
 
       attr_accessor role: WhopSDK::Models::authorized_user_roles
 
-      attr_accessor user: WhopSDK::Models::AuthorizedUserCreateResponse::User
+      attr_accessor user: WhopSDK::AuthorizedUser::User
 
       def initialize: (
         id: String,
-        company: WhopSDK::Models::AuthorizedUserCreateResponse::Company,
+        company: WhopSDK::AuthorizedUser::Company,
         role: WhopSDK::Models::authorized_user_roles,
-        user: WhopSDK::Models::AuthorizedUserCreateResponse::User
+        user: WhopSDK::AuthorizedUser::User
       ) -> void
 
       def to_hash: -> {
         id: String,
-        company: WhopSDK::Models::AuthorizedUserCreateResponse::Company,
+        company: WhopSDK::AuthorizedUser::Company,
         role: WhopSDK::Models::authorized_user_roles,
-        user: WhopSDK::Models::AuthorizedUserCreateResponse::User
+        user: WhopSDK::AuthorizedUser::User
       }
 
       type company = { id: String, title: String }

@@ -224,6 +224,10 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::DisputeAlerts) }
     attr_reader :dispute_alerts
 
+    # Resolution center cases
+    sig { returns(WhopSDK::Resources::ResolutionCenterCases) }
+    attr_reader :resolution_center_cases
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

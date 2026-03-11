@@ -1,0 +1,22 @@
+module WhopSDK
+  module Models
+    type resolution_center_case_platform_response =
+      :request_buyer_info
+      | :request_merchant_info
+      | :merchant_wins
+      | :platform_refund
+      | :merchant_refund
+
+    module ResolutionCenterCasePlatformResponse
+      extend WhopSDK::Internal::Type::Enum
+
+      REQUEST_BUYER_INFO: :request_buyer_info
+      REQUEST_MERCHANT_INFO: :request_merchant_info
+      MERCHANT_WINS: :merchant_wins
+      PLATFORM_REFUND: :platform_refund
+      MERCHANT_REFUND: :merchant_refund
+
+      def self?.values: -> ::Array[WhopSDK::Models::resolution_center_case_platform_response]
+    end
+  end
+end

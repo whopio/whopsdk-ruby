@@ -14,15 +14,15 @@ class WhopSDK::Test::Resources::AuthorizedUsersTest < WhopSDK::Test::ResourceTes
       )
 
     assert_pattern do
-      response => WhopSDK::Models::AuthorizedUserCreateResponse
+      response => WhopSDK::AuthorizedUser
     end
 
     assert_pattern do
       response => {
         id: String,
-        company: WhopSDK::Models::AuthorizedUserCreateResponse::Company,
+        company: WhopSDK::AuthorizedUser::Company,
         role: WhopSDK::AuthorizedUserRoles,
-        user: WhopSDK::Models::AuthorizedUserCreateResponse::User
+        user: WhopSDK::AuthorizedUser::User
       }
     end
   end
@@ -33,15 +33,15 @@ class WhopSDK::Test::Resources::AuthorizedUsersTest < WhopSDK::Test::ResourceTes
     response = @whop.authorized_users.retrieve("ausr_xxxxxxxxxxxxx")
 
     assert_pattern do
-      response => WhopSDK::Models::AuthorizedUserRetrieveResponse
+      response => WhopSDK::AuthorizedUser
     end
 
     assert_pattern do
       response => {
         id: String,
-        company: WhopSDK::Models::AuthorizedUserRetrieveResponse::Company,
+        company: WhopSDK::AuthorizedUser::Company,
         role: WhopSDK::AuthorizedUserRoles,
-        user: WhopSDK::Models::AuthorizedUserRetrieveResponse::User
+        user: WhopSDK::AuthorizedUser::User
       }
     end
   end

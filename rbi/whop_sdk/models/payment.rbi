@@ -1324,7 +1324,7 @@ module WhopSDK
         sig do
           returns(
             T::Array[
-              WhopSDK::Payment::Resolution::CustomerResponseAction::TaggedSymbol
+              WhopSDK::ResolutionCenterCaseCustomerResponse::TaggedSymbol
             ]
           )
         end
@@ -1336,7 +1336,7 @@ module WhopSDK
         attr_accessor :due_date
 
         # The category of the dispute.
-        sig { returns(WhopSDK::Payment::Resolution::Issue::TaggedSymbol) }
+        sig { returns(WhopSDK::ResolutionCenterCaseIssueType::TaggedSymbol) }
         attr_accessor :issue
 
         # Whether the merchant has filed an appeal after the initial resolution decision.
@@ -1347,7 +1347,7 @@ module WhopSDK
         sig do
           returns(
             T::Array[
-              WhopSDK::Payment::Resolution::MerchantResponseAction::TaggedSymbol
+              WhopSDK::ResolutionCenterCaseMerchantResponse::TaggedSymbol
             ]
           )
         end
@@ -1358,7 +1358,7 @@ module WhopSDK
         sig do
           returns(
             T::Array[
-              WhopSDK::Payment::Resolution::PlatformResponseAction::TaggedSymbol
+              WhopSDK::ResolutionCenterCasePlatformResponse::TaggedSymbol
             ]
           )
         end
@@ -1366,7 +1366,7 @@ module WhopSDK
 
         # The current status of the resolution case, indicating which party needs to
         # respond or if the case is closed.
-        sig { returns(WhopSDK::Payment::Resolution::Status::TaggedSymbol) }
+        sig { returns(WhopSDK::ResolutionCenterCaseStatus::TaggedSymbol) }
         attr_accessor :status
 
         # A resolution center case is a dispute or support case between a user and a
@@ -1376,21 +1376,15 @@ module WhopSDK
             id: String,
             customer_appealed: T::Boolean,
             customer_response_actions:
-              T::Array[
-                WhopSDK::Payment::Resolution::CustomerResponseAction::OrSymbol
-              ],
+              T::Array[WhopSDK::ResolutionCenterCaseCustomerResponse::OrSymbol],
             due_date: T.nilable(Time),
-            issue: WhopSDK::Payment::Resolution::Issue::OrSymbol,
+            issue: WhopSDK::ResolutionCenterCaseIssueType::OrSymbol,
             merchant_appealed: T::Boolean,
             merchant_response_actions:
-              T::Array[
-                WhopSDK::Payment::Resolution::MerchantResponseAction::OrSymbol
-              ],
+              T::Array[WhopSDK::ResolutionCenterCaseMerchantResponse::OrSymbol],
             platform_response_actions:
-              T::Array[
-                WhopSDK::Payment::Resolution::PlatformResponseAction::OrSymbol
-              ],
-            status: WhopSDK::Payment::Resolution::Status::OrSymbol
+              T::Array[WhopSDK::ResolutionCenterCasePlatformResponse::OrSymbol],
+            status: WhopSDK::ResolutionCenterCaseStatus::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(
@@ -1425,266 +1419,24 @@ module WhopSDK
               customer_appealed: T::Boolean,
               customer_response_actions:
                 T::Array[
-                  WhopSDK::Payment::Resolution::CustomerResponseAction::TaggedSymbol
+                  WhopSDK::ResolutionCenterCaseCustomerResponse::TaggedSymbol
                 ],
               due_date: T.nilable(Time),
-              issue: WhopSDK::Payment::Resolution::Issue::TaggedSymbol,
+              issue: WhopSDK::ResolutionCenterCaseIssueType::TaggedSymbol,
               merchant_appealed: T::Boolean,
               merchant_response_actions:
                 T::Array[
-                  WhopSDK::Payment::Resolution::MerchantResponseAction::TaggedSymbol
+                  WhopSDK::ResolutionCenterCaseMerchantResponse::TaggedSymbol
                 ],
               platform_response_actions:
                 T::Array[
-                  WhopSDK::Payment::Resolution::PlatformResponseAction::TaggedSymbol
+                  WhopSDK::ResolutionCenterCasePlatformResponse::TaggedSymbol
                 ],
-              status: WhopSDK::Payment::Resolution::Status::TaggedSymbol
+              status: WhopSDK::ResolutionCenterCaseStatus::TaggedSymbol
             }
           )
         end
         def to_hash
-        end
-
-        # The types of responses a customer can make to a resolution.
-        module CustomerResponseAction
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                WhopSDK::Payment::Resolution::CustomerResponseAction
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          RESPOND =
-            T.let(
-              :respond,
-              WhopSDK::Payment::Resolution::CustomerResponseAction::TaggedSymbol
-            )
-          APPEAL =
-            T.let(
-              :appeal,
-              WhopSDK::Payment::Resolution::CustomerResponseAction::TaggedSymbol
-            )
-          WITHDRAW =
-            T.let(
-              :withdraw,
-              WhopSDK::Payment::Resolution::CustomerResponseAction::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                WhopSDK::Payment::Resolution::CustomerResponseAction::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
-        end
-
-        # The category of the dispute.
-        module Issue
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias { T.all(Symbol, WhopSDK::Payment::Resolution::Issue) }
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          FORGOT_TO_CANCEL =
-            T.let(
-              :forgot_to_cancel,
-              WhopSDK::Payment::Resolution::Issue::TaggedSymbol
-            )
-          ITEM_NOT_RECEIVED =
-            T.let(
-              :item_not_received,
-              WhopSDK::Payment::Resolution::Issue::TaggedSymbol
-            )
-          SIGNIFICANTLY_NOT_AS_DESCRIBED =
-            T.let(
-              :significantly_not_as_described,
-              WhopSDK::Payment::Resolution::Issue::TaggedSymbol
-            )
-          UNAUTHORIZED_TRANSACTION =
-            T.let(
-              :unauthorized_transaction,
-              WhopSDK::Payment::Resolution::Issue::TaggedSymbol
-            )
-          PRODUCT_UNACCEPTABLE =
-            T.let(
-              :product_unacceptable,
-              WhopSDK::Payment::Resolution::Issue::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[WhopSDK::Payment::Resolution::Issue::TaggedSymbol]
-            )
-          end
-          def self.values
-          end
-        end
-
-        # The types of responses a merchant can make to a resolution.
-        module MerchantResponseAction
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                WhopSDK::Payment::Resolution::MerchantResponseAction
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          ACCEPT =
-            T.let(
-              :accept,
-              WhopSDK::Payment::Resolution::MerchantResponseAction::TaggedSymbol
-            )
-          DENY =
-            T.let(
-              :deny,
-              WhopSDK::Payment::Resolution::MerchantResponseAction::TaggedSymbol
-            )
-          REQUEST_MORE_INFO =
-            T.let(
-              :request_more_info,
-              WhopSDK::Payment::Resolution::MerchantResponseAction::TaggedSymbol
-            )
-          APPEAL =
-            T.let(
-              :appeal,
-              WhopSDK::Payment::Resolution::MerchantResponseAction::TaggedSymbol
-            )
-          RESPOND =
-            T.let(
-              :respond,
-              WhopSDK::Payment::Resolution::MerchantResponseAction::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                WhopSDK::Payment::Resolution::MerchantResponseAction::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
-        end
-
-        # The types of responses the platform can make to a resolution.
-        module PlatformResponseAction
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                WhopSDK::Payment::Resolution::PlatformResponseAction
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          REQUEST_BUYER_INFO =
-            T.let(
-              :request_buyer_info,
-              WhopSDK::Payment::Resolution::PlatformResponseAction::TaggedSymbol
-            )
-          REQUEST_MERCHANT_INFO =
-            T.let(
-              :request_merchant_info,
-              WhopSDK::Payment::Resolution::PlatformResponseAction::TaggedSymbol
-            )
-          MERCHANT_WINS =
-            T.let(
-              :merchant_wins,
-              WhopSDK::Payment::Resolution::PlatformResponseAction::TaggedSymbol
-            )
-          PLATFORM_REFUND =
-            T.let(
-              :platform_refund,
-              WhopSDK::Payment::Resolution::PlatformResponseAction::TaggedSymbol
-            )
-          MERCHANT_REFUND =
-            T.let(
-              :merchant_refund,
-              WhopSDK::Payment::Resolution::PlatformResponseAction::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                WhopSDK::Payment::Resolution::PlatformResponseAction::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
-        end
-
-        # The current status of the resolution case, indicating which party needs to
-        # respond or if the case is closed.
-        module Status
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias { T.all(Symbol, WhopSDK::Payment::Resolution::Status) }
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          MERCHANT_RESPONSE_NEEDED =
-            T.let(
-              :merchant_response_needed,
-              WhopSDK::Payment::Resolution::Status::TaggedSymbol
-            )
-          CUSTOMER_RESPONSE_NEEDED =
-            T.let(
-              :customer_response_needed,
-              WhopSDK::Payment::Resolution::Status::TaggedSymbol
-            )
-          MERCHANT_INFO_NEEDED =
-            T.let(
-              :merchant_info_needed,
-              WhopSDK::Payment::Resolution::Status::TaggedSymbol
-            )
-          CUSTOMER_INFO_NEEDED =
-            T.let(
-              :customer_info_needed,
-              WhopSDK::Payment::Resolution::Status::TaggedSymbol
-            )
-          UNDER_PLATFORM_REVIEW =
-            T.let(
-              :under_platform_review,
-              WhopSDK::Payment::Resolution::Status::TaggedSymbol
-            )
-          CUSTOMER_WON =
-            T.let(
-              :customer_won,
-              WhopSDK::Payment::Resolution::Status::TaggedSymbol
-            )
-          MERCHANT_WON =
-            T.let(
-              :merchant_won,
-              WhopSDK::Payment::Resolution::Status::TaggedSymbol
-            )
-          CUSTOMER_WITHDREW =
-            T.let(
-              :customer_withdrew,
-              WhopSDK::Payment::Resolution::Status::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[WhopSDK::Payment::Resolution::Status::TaggedSymbol]
-            )
-          end
-          def self.values
-          end
         end
       end
 

@@ -114,6 +114,8 @@ module WhopSDK
 
     attr_reader dispute_alerts: WhopSDK::Resources::DisputeAlerts
 
+    attr_reader resolution_center_cases: WhopSDK::Resources::ResolutionCenterCases
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

@@ -166,8 +166,18 @@ module WhopSDK
 
       # @param payload [String] The raw webhook payload as a string
       #
+      # @param headers [Hash{String=>String}] The raw HTTP headers that came with the payload
+      #
+      # @param key [String, nil] The webhook signing key
+      #
       # @return [WhopSDK::Models::InvoiceCreatedWebhookEvent, WhopSDK::Models::InvoicePaidWebhookEvent, WhopSDK::Models::InvoicePastDueWebhookEvent, WhopSDK::Models::InvoiceVoidedWebhookEvent, WhopSDK::Models::MembershipActivatedWebhookEvent, WhopSDK::Models::MembershipDeactivatedWebhookEvent, WhopSDK::Models::EntryCreatedWebhookEvent, WhopSDK::Models::EntryApprovedWebhookEvent, WhopSDK::Models::EntryDeniedWebhookEvent, WhopSDK::Models::EntryDeletedWebhookEvent, WhopSDK::Models::SetupIntentRequiresActionWebhookEvent, WhopSDK::Models::SetupIntentSucceededWebhookEvent, WhopSDK::Models::SetupIntentCanceledWebhookEvent, WhopSDK::Models::WithdrawalCreatedWebhookEvent, WhopSDK::Models::WithdrawalUpdatedWebhookEvent, WhopSDK::Models::CourseLessonInteractionCompletedWebhookEvent, WhopSDK::Models::PayoutMethodCreatedWebhookEvent, WhopSDK::Models::VerificationSucceededWebhookEvent, WhopSDK::Models::PaymentCreatedWebhookEvent, WhopSDK::Models::PaymentSucceededWebhookEvent, WhopSDK::Models::PaymentFailedWebhookEvent, WhopSDK::Models::PaymentPendingWebhookEvent, WhopSDK::Models::DisputeCreatedWebhookEvent, WhopSDK::Models::DisputeUpdatedWebhookEvent, WhopSDK::Models::RefundCreatedWebhookEvent, WhopSDK::Models::RefundUpdatedWebhookEvent, WhopSDK::Models::DisputeAlertCreatedWebhookEvent, WhopSDK::Models::MembershipCancelAtPeriodEndChangedWebhookEvent]
-      def unwrap(payload)
+      def unwrap(payload, headers:, key: @client.webhook_key)
+        if key.nil?
+          raise ArgumentError.new("Cannot verify a webhook without a key on either the client's webhook_key or passed in as an argument")
+        end
+
+        ::StandardWebhooks::Webhook.new(key).verify(payload, headers)
+
         parsed = JSON.parse(payload, symbolize_names: true)
         WhopSDK::Internal::Type::Converter.coerce(WhopSDK::Models::UnwrapWebhookEvent, parsed)
       end

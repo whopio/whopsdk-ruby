@@ -21,6 +21,9 @@ module WhopSDK
     # @return [String]
     attr_reader :api_key
 
+    # @return [String, nil]
+    attr_reader :webhook_key
+
     # When using the SDK in app mode pass this parameter to allow verifying user
     # tokens
     # @return [String, nil]
@@ -241,6 +244,8 @@ module WhopSDK
     # must prepend your key/token with the word 'Bearer', which will look like
     # `Bearer ***************************` Defaults to `ENV["WHOP_API_KEY"]`
     #
+    # @param webhook_key [String, nil] Defaults to `ENV["WHOP_WEBHOOK_SECRET"]`
+    #
     # @param app_id [String, nil] When using the SDK in app mode pass this parameter to allow verifying user
     # tokens Defaults to `ENV["WHOP_APP_ID"]`
     #
@@ -256,6 +261,7 @@ module WhopSDK
     # @param max_retry_delay [Float]
     def initialize(
       api_key: ENV["WHOP_API_KEY"],
+      webhook_key: ENV["WHOP_WEBHOOK_SECRET"],
       app_id: ENV["WHOP_APP_ID"],
       base_url: ENV["WHOP_BASE_URL"],
       max_retries: self.class::DEFAULT_MAX_RETRIES,
@@ -274,6 +280,7 @@ module WhopSDK
       }
 
       @api_key = api_key.to_s
+      @webhook_key = webhook_key&.to_s
 
       super(
         base_url: base_url,

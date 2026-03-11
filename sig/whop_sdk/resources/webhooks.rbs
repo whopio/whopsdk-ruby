@@ -38,7 +38,9 @@ module WhopSDK
       def delete: (String id, ?request_options: WhopSDK::request_opts) -> bool
 
       def unwrap: (
-        String payload
+        String payload,
+        headers: ::Hash[String, String],
+        ?key: String?
       ) -> (WhopSDK::InvoiceCreatedWebhookEvent
       | WhopSDK::InvoicePaidWebhookEvent
       | WhopSDK::InvoicePastDueWebhookEvent

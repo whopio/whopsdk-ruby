@@ -516,6 +516,15 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :phone
 
+        # The granular calculated statuses reflecting payout account KYC and withdrawal
+        # readiness.
+        sig do
+          returns(
+            T.nilable(WhopSDK::PayoutAccountCalculatedStatuses::TaggedSymbol)
+          )
+        end
+        attr_accessor :status
+
         # The payout account associated with the LedgerAccount, if any.
         sig do
           params(
@@ -534,7 +543,9 @@ module WhopSDK
               T.nilable(
                 WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification::OrHash
               ),
-            phone: T.nilable(String)
+            phone: T.nilable(String),
+            status:
+              T.nilable(WhopSDK::PayoutAccountCalculatedStatuses::OrSymbol)
           ).returns(T.attached_class)
         end
         def self.new(
@@ -551,7 +562,10 @@ module WhopSDK
           # The latest verification for the connected account.
           latest_verification:,
           # The business representative's phone
-          phone:
+          phone:,
+          # The granular calculated statuses reflecting payout account KYC and withdrawal
+          # readiness.
+          status:
         )
         end
 
@@ -573,7 +587,11 @@ module WhopSDK
                 T.nilable(
                   WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification
                 ),
-              phone: T.nilable(String)
+              phone: T.nilable(String),
+              status:
+                T.nilable(
+                  WhopSDK::PayoutAccountCalculatedStatuses::TaggedSymbol
+                )
             }
           )
         end

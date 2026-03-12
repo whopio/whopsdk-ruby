@@ -471,6 +471,12 @@ module WhopSDK
 
   PaymentVoidParams = WhopSDK::Models::PaymentVoidParams
 
+  PayoutAccountCalculatedStatuses = WhopSDK::Models::PayoutAccountCalculatedStatuses
+
+  PayoutAccountRetrieveParams = WhopSDK::Models::PayoutAccountRetrieveParams
+
+  PayoutAccountStatusUpdatedWebhookEvent = WhopSDK::Models::PayoutAccountStatusUpdatedWebhookEvent
+
   PayoutDestinationCategory = WhopSDK::Models::PayoutDestinationCategory
 
   PayoutMethodCreatedWebhookEvent = WhopSDK::Models::PayoutMethodCreatedWebhookEvent
@@ -636,6 +642,8 @@ module WhopSDK
   UserUpdateProfileParams = WhopSDK::Models::UserUpdateProfileParams
 
   VerificationErrorCode = WhopSDK::Models::VerificationErrorCode
+
+  VerificationListParams = WhopSDK::Models::VerificationListParams
 
   VerificationRetrieveParams = WhopSDK::Models::VerificationRetrieveParams
 

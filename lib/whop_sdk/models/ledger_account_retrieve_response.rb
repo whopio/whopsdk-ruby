@@ -282,7 +282,18 @@ module WhopSDK
         #   @return [String, nil]
         required :phone, String, nil?: true
 
-        # @!method initialize(id:, address:, business_name:, business_representative:, email:, latest_verification:, phone:)
+        # @!attribute status
+        #   The granular calculated statuses reflecting payout account KYC and withdrawal
+        #   readiness.
+        #
+        #   @return [Symbol, WhopSDK::Models::PayoutAccountCalculatedStatuses, nil]
+        required :status, enum: -> { WhopSDK::PayoutAccountCalculatedStatuses }, nil?: true
+
+        # @!method initialize(id:, address:, business_name:, business_representative:, email:, latest_verification:, phone:, status:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails} for more
+        #   details.
+        #
         #   The payout account associated with the LedgerAccount, if any.
         #
         #   @param id [String] The unique identifier for the payout account.
@@ -298,6 +309,8 @@ module WhopSDK
         #   @param latest_verification [WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification, nil] The latest verification for the connected account.
         #
         #   @param phone [String, nil] The business representative's phone
+        #
+        #   @param status [Symbol, WhopSDK::Models::PayoutAccountCalculatedStatuses, nil] The granular calculated statuses reflecting payout account KYC and withdrawal re
 
         # @see WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails#address
         class Address < WhopSDK::Internal::Type::BaseModel

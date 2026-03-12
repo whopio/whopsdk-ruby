@@ -175,7 +175,8 @@ module WhopSDK
           business_representative: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative?,
           email: String?,
           latest_verification: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification?,
-          phone: String?
+          phone: String?,
+          status: WhopSDK::Models::payout_account_calculated_statuses?
         }
 
       class PayoutAccountDetails < WhopSDK::Internal::Type::BaseModel
@@ -193,6 +194,8 @@ module WhopSDK
 
         attr_accessor phone: String?
 
+        attr_accessor status: WhopSDK::Models::payout_account_calculated_statuses?
+
         def initialize: (
           id: String,
           address: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Address?,
@@ -200,7 +203,8 @@ module WhopSDK
           business_representative: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative?,
           email: String?,
           latest_verification: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification?,
-          phone: String?
+          phone: String?,
+          status: WhopSDK::Models::payout_account_calculated_statuses?
         ) -> void
 
         def to_hash: -> {
@@ -210,7 +214,8 @@ module WhopSDK
           business_representative: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative?,
           email: String?,
           latest_verification: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification?,
-          phone: String?
+          phone: String?,
+          status: WhopSDK::Models::payout_account_calculated_statuses?
         }
 
         type address =

@@ -24,6 +24,7 @@ module WhopSDK
       COURSE_LESSON_INTERACTION_COMPLETED = :"course_lesson_interaction.completed"
       PAYOUT_METHOD_CREATED = :"payout_method.created"
       VERIFICATION_SUCCEEDED = :"verification.succeeded"
+      PAYOUT_ACCOUNT_STATUS_UPDATED = :"payout_account.status_updated"
       PAYMENT_CREATED = :"payment.created"
       PAYMENT_SUCCEEDED = :"payment.succeeded"
       PAYMENT_FAILED = :"payment.failed"

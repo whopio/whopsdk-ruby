@@ -282,7 +282,20 @@ module WhopSDK
         #   @return [String, nil]
         required :phone, String, nil?: true
 
-        # @!method initialize(id:, address:, business_name:, business_representative:, email:, latest_verification:, phone:)
+        # @!attribute status
+        #   The granular calculated statuses reflecting payout account KYC and withdrawal
+        #   readiness.
+        #
+        #   @return [Symbol, WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Status, nil]
+        required :status,
+                 enum: -> { WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Status },
+                 nil?: true
+
+        # @!method initialize(id:, address:, business_name:, business_representative:, email:, latest_verification:, phone:, status:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails} for more
+        #   details.
+        #
         #   The payout account associated with the LedgerAccount, if any.
         #
         #   @param id [String] The unique identifier for the payout account.
@@ -298,6 +311,8 @@ module WhopSDK
         #   @param latest_verification [WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification, nil] The latest verification for the connected account.
         #
         #   @param phone [String, nil] The business representative's phone
+        #
+        #   @param status [Symbol, WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Status, nil] The granular calculated statuses reflecting payout account KYC and withdrawal re
 
         # @see WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails#address
         class Address < WhopSDK::Internal::Type::BaseModel
@@ -437,6 +452,24 @@ module WhopSDK
           #   @param last_error_reason [String, nil] A human-readable explanation of the most recent verification error. Null if no e
           #
           #   @param status [Symbol, WhopSDK::Models::VerificationStatus] The current status of this verification session.
+        end
+
+        # The granular calculated statuses reflecting payout account KYC and withdrawal
+        # readiness.
+        #
+        # @see WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails#status
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          CONNECTED = :connected
+          DISABLED = :disabled
+          ACTION_REQUIRED = :action_required
+          PENDING_VERIFICATION = :pending_verification
+          VERIFICATION_FAILED = :verification_failed
+          NOT_STARTED = :not_started
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
     end

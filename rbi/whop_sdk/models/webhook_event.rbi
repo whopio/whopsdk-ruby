@@ -49,6 +49,11 @@ module WhopSDK
         T.let(:"payout_method.created", WhopSDK::WebhookEvent::TaggedSymbol)
       VERIFICATION_SUCCEEDED =
         T.let(:"verification.succeeded", WhopSDK::WebhookEvent::TaggedSymbol)
+      PAYOUT_ACCOUNT_STATUS_UPDATED =
+        T.let(
+          :"payout_account.status_updated",
+          WhopSDK::WebhookEvent::TaggedSymbol
+        )
       PAYMENT_CREATED =
         T.let(:"payment.created", WhopSDK::WebhookEvent::TaggedSymbol)
       PAYMENT_SUCCEEDED =

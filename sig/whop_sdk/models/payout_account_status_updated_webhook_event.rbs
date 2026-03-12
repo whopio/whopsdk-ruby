@@ -1,0 +1,224 @@
+module WhopSDK
+  module Models
+    type payout_account_status_updated_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"payout_account.status_updated",
+        company_id: String?
+      }
+
+    class PayoutAccountStatusUpdatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor data: WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"payout_account.status_updated"
+
+      attr_accessor company_id: String?
+
+      def initialize: (
+        id: String,
+        data: WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data,
+        timestamp: Time,
+        ?company_id: String?,
+        ?api_version: :v1,
+        ?type: :"payout_account.status_updated"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"payout_account.status_updated",
+        company_id: String?
+      }
+
+      type data =
+        {
+          id: String,
+          address: WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::Address?,
+          business_name: String?,
+          business_representative: WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::BusinessRepresentative?,
+          email: String?,
+          latest_verification: WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::LatestVerification?,
+          phone: String?,
+          status: WhopSDK::Models::PayoutAccountStatusUpdatedWebhookEvent::Data::status?
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor address: WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::Address?
+
+        attr_accessor business_name: String?
+
+        attr_accessor business_representative: WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::BusinessRepresentative?
+
+        attr_accessor email: String?
+
+        attr_accessor latest_verification: WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::LatestVerification?
+
+        attr_accessor phone: String?
+
+        attr_accessor status: WhopSDK::Models::PayoutAccountStatusUpdatedWebhookEvent::Data::status?
+
+        def initialize: (
+          id: String,
+          address: WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::Address?,
+          business_name: String?,
+          business_representative: WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::BusinessRepresentative?,
+          email: String?,
+          latest_verification: WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::LatestVerification?,
+          phone: String?,
+          status: WhopSDK::Models::PayoutAccountStatusUpdatedWebhookEvent::Data::status?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          address: WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::Address?,
+          business_name: String?,
+          business_representative: WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::BusinessRepresentative?,
+          email: String?,
+          latest_verification: WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::LatestVerification?,
+          phone: String?,
+          status: WhopSDK::Models::PayoutAccountStatusUpdatedWebhookEvent::Data::status?
+        }
+
+        type address =
+          {
+            city: String?,
+            country: String?,
+            :line1 => String?,
+            :line2 => String?,
+            postal_code: String?,
+            state: String?
+          }
+
+        class Address < WhopSDK::Internal::Type::BaseModel
+          attr_accessor city: String?
+
+          attr_accessor country: String?
+
+          attr_accessor line1: String?
+
+          attr_accessor line2: String?
+
+          attr_accessor postal_code: String?
+
+          attr_accessor state: String?
+
+          def initialize: (
+            city: String?,
+            country: String?,
+            line1: String?,
+            line2: String?,
+            postal_code: String?,
+            state: String?
+          ) -> void
+
+          def to_hash: -> {
+            city: String?,
+            country: String?,
+            :line1 => String?,
+            :line2 => String?,
+            postal_code: String?,
+            state: String?
+          }
+        end
+
+        type business_representative =
+          {
+            date_of_birth: String?,
+            first_name: String?,
+            last_name: String?,
+            middle_name: String?
+          }
+
+        class BusinessRepresentative < WhopSDK::Internal::Type::BaseModel
+          attr_accessor date_of_birth: String?
+
+          attr_accessor first_name: String?
+
+          attr_accessor last_name: String?
+
+          attr_accessor middle_name: String?
+
+          def initialize: (
+            date_of_birth: String?,
+            first_name: String?,
+            last_name: String?,
+            middle_name: String?
+          ) -> void
+
+          def to_hash: -> {
+            date_of_birth: String?,
+            first_name: String?,
+            last_name: String?,
+            middle_name: String?
+          }
+        end
+
+        type latest_verification =
+          {
+            id: String,
+            last_error_code: WhopSDK::Models::verification_error_code?,
+            last_error_reason: String?,
+            status: WhopSDK::Models::verification_status
+          }
+
+        class LatestVerification < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor last_error_code: WhopSDK::Models::verification_error_code?
+
+          attr_accessor last_error_reason: String?
+
+          attr_accessor status: WhopSDK::Models::verification_status
+
+          def initialize: (
+            id: String,
+            last_error_code: WhopSDK::Models::verification_error_code?,
+            last_error_reason: String?,
+            status: WhopSDK::Models::verification_status
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            last_error_code: WhopSDK::Models::verification_error_code?,
+            last_error_reason: String?,
+            status: WhopSDK::Models::verification_status
+          }
+        end
+
+        type status =
+          :connected
+          | :disabled
+          | :action_required
+          | :pending_verification
+          | :verification_failed
+          | :not_started
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          CONNECTED: :connected
+          DISABLED: :disabled
+          ACTION_REQUIRED: :action_required
+          PENDING_VERIFICATION: :pending_verification
+          VERIFICATION_FAILED: :verification_failed
+          NOT_STARTED: :not_started
+
+          def self?.values: -> ::Array[WhopSDK::Models::PayoutAccountStatusUpdatedWebhookEvent::Data::status]
+        end
+      end
+    end
+  end
+end

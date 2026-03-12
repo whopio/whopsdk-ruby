@@ -471,6 +471,8 @@ module WhopSDK
 
   PaymentVoidParams = WhopSDK::Models::PaymentVoidParams
 
+  PayoutAccountStatusUpdatedWebhookEvent = WhopSDK::Models::PayoutAccountStatusUpdatedWebhookEvent
+
   PayoutDestinationCategory = WhopSDK::Models::PayoutDestinationCategory
 
   PayoutMethodCreatedWebhookEvent = WhopSDK::Models::PayoutMethodCreatedWebhookEvent

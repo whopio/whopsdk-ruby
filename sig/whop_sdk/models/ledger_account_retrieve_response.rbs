@@ -175,7 +175,8 @@ module WhopSDK
           business_representative: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative?,
           email: String?,
           latest_verification: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification?,
-          phone: String?
+          phone: String?,
+          status: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::status?
         }
 
       class PayoutAccountDetails < WhopSDK::Internal::Type::BaseModel
@@ -193,6 +194,8 @@ module WhopSDK
 
         attr_accessor phone: String?
 
+        attr_accessor status: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::status?
+
         def initialize: (
           id: String,
           address: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::Address?,
@@ -200,7 +203,8 @@ module WhopSDK
           business_representative: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative?,
           email: String?,
           latest_verification: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification?,
-          phone: String?
+          phone: String?,
+          status: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::status?
         ) -> void
 
         def to_hash: -> {
@@ -210,7 +214,8 @@ module WhopSDK
           business_representative: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::BusinessRepresentative?,
           email: String?,
           latest_verification: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::LatestVerification?,
-          phone: String?
+          phone: String?,
+          status: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::status?
         }
 
         type address =
@@ -317,6 +322,27 @@ module WhopSDK
             last_error_reason: String?,
             status: WhopSDK::Models::verification_status
           }
+        end
+
+        type status =
+          :connected
+          | :disabled
+          | :action_required
+          | :pending_verification
+          | :verification_failed
+          | :not_started
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          CONNECTED: :connected
+          DISABLED: :disabled
+          ACTION_REQUIRED: :action_required
+          PENDING_VERIFICATION: :pending_verification
+          VERIFICATION_FAILED: :verification_failed
+          NOT_STARTED: :not_started
+
+          def self?.values: -> ::Array[WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::status]
         end
       end
     end

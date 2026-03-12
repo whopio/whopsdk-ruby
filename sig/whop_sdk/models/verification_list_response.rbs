@@ -1,0 +1,35 @@
+module WhopSDK
+  module Models
+    type verification_list_response =
+      {
+        id: String,
+        last_error_code: WhopSDK::Models::verification_error_code?,
+        last_error_reason: String?,
+        status: WhopSDK::Models::verification_status
+      }
+
+    class VerificationListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor last_error_code: WhopSDK::Models::verification_error_code?
+
+      attr_accessor last_error_reason: String?
+
+      attr_accessor status: WhopSDK::Models::verification_status
+
+      def initialize: (
+        id: String,
+        last_error_code: WhopSDK::Models::verification_error_code?,
+        last_error_reason: String?,
+        status: WhopSDK::Models::verification_status
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        last_error_code: WhopSDK::Models::verification_error_code?,
+        last_error_reason: String?,
+        status: WhopSDK::Models::verification_status
+      }
+    end
+  end
+end

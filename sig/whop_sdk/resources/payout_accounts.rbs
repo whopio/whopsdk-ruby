@@ -1,0 +1,12 @@
+module WhopSDK
+  module Resources
+    class PayoutAccounts
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::PayoutAccountRetrieveResponse
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

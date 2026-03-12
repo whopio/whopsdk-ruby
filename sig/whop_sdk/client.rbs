@@ -116,6 +116,8 @@ module WhopSDK
 
     attr_reader resolution_center_cases: WhopSDK::Resources::ResolutionCenterCases
 
+    attr_reader payout_accounts: WhopSDK::Resources::PayoutAccounts
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

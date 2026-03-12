@@ -172,9 +172,7 @@ module WhopSDK
         # readiness.
         sig do
           returns(
-            T.nilable(
-              WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::Status::TaggedSymbol
-            )
+            T.nilable(WhopSDK::PayoutAccountCalculatedStatuses::TaggedSymbol)
           )
         end
         attr_accessor :status
@@ -199,9 +197,7 @@ module WhopSDK
               ),
             phone: T.nilable(String),
             status:
-              T.nilable(
-                WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::Status::OrSymbol
-              )
+              T.nilable(WhopSDK::PayoutAccountCalculatedStatuses::OrSymbol)
           ).returns(T.attached_class)
         end
         def self.new(
@@ -246,7 +242,7 @@ module WhopSDK
               phone: T.nilable(String),
               status:
                 T.nilable(
-                  WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::Status::TaggedSymbol
+                  WhopSDK::PayoutAccountCalculatedStatuses::TaggedSymbol
                 )
             }
           )
@@ -455,62 +451,6 @@ module WhopSDK
             )
           end
           def to_hash
-          end
-        end
-
-        # The granular calculated statuses reflecting payout account KYC and withdrawal
-        # readiness.
-        module Status
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::Status
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          CONNECTED =
-            T.let(
-              :connected,
-              WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::Status::TaggedSymbol
-            )
-          DISABLED =
-            T.let(
-              :disabled,
-              WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::Status::TaggedSymbol
-            )
-          ACTION_REQUIRED =
-            T.let(
-              :action_required,
-              WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::Status::TaggedSymbol
-            )
-          PENDING_VERIFICATION =
-            T.let(
-              :pending_verification,
-              WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::Status::TaggedSymbol
-            )
-          VERIFICATION_FAILED =
-            T.let(
-              :verification_failed,
-              WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::Status::TaggedSymbol
-            )
-          NOT_STARTED =
-            T.let(
-              :not_started,
-              WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::Status::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                WhopSDK::PayoutAccountStatusUpdatedWebhookEvent::Data::Status::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
           end
         end
       end

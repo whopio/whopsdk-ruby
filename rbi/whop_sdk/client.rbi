@@ -228,6 +228,10 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::ResolutionCenterCases) }
     attr_reader :resolution_center_cases
 
+    # Payout accounts
+    sig { returns(WhopSDK::Resources::PayoutAccounts) }
+    attr_reader :payout_accounts
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

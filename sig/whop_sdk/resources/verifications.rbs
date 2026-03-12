@@ -6,6 +6,15 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::VerificationRetrieveResponse
 
+      def list: (
+        payout_account_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::VerificationListResponse]
+
       def initialize: (client: WhopSDK::Client) -> void
     end
   end

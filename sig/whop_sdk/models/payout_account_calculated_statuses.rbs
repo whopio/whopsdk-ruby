@@ -1,0 +1,24 @@
+module WhopSDK
+  module Models
+    type payout_account_calculated_statuses =
+      :connected
+      | :disabled
+      | :action_required
+      | :pending_verification
+      | :verification_failed
+      | :not_started
+
+    module PayoutAccountCalculatedStatuses
+      extend WhopSDK::Internal::Type::Enum
+
+      CONNECTED: :connected
+      DISABLED: :disabled
+      ACTION_REQUIRED: :action_required
+      PENDING_VERIFICATION: :pending_verification
+      VERIFICATION_FAILED: :verification_failed
+      NOT_STARTED: :not_started
+
+      def self?.values: -> ::Array[WhopSDK::Models::payout_account_calculated_statuses]
+    end
+  end
+end

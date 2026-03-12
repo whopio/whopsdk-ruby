@@ -233,6 +233,10 @@ module WhopSDK
     # @return [WhopSDK::Resources::ResolutionCenterCases]
     attr_reader :resolution_center_cases
 
+    # Payout accounts
+    # @return [WhopSDK::Resources::PayoutAccounts]
+    attr_reader :payout_accounts
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -346,6 +350,7 @@ module WhopSDK
       @dm_channels = WhopSDK::Resources::DmChannels.new(client: self)
       @dispute_alerts = WhopSDK::Resources::DisputeAlerts.new(client: self)
       @resolution_center_cases = WhopSDK::Resources::ResolutionCenterCases.new(client: self)
+      @payout_accounts = WhopSDK::Resources::PayoutAccounts.new(client: self)
     end
   end
 end

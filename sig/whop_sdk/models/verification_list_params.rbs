@@ -1,0 +1,46 @@
+module WhopSDK
+  module Models
+    type verification_list_params =
+      {
+        payout_account_id: String,
+        after: String?,
+        before: String?,
+        first: Integer?,
+        last: Integer?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class VerificationListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor payout_account_id: String
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      def initialize: (
+        payout_account_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        payout_account_id: String,
+        after: String?,
+        before: String?,
+        first: Integer?,
+        last: Integer?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

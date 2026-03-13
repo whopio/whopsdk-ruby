@@ -18,6 +18,35 @@ module WhopSDK
       )
       end
 
+      # Search for users by name or username, ranked by social proximity to the
+      # authenticated user.
+      sig do
+        params(
+          after: T.nilable(String),
+          before: T.nilable(String),
+          first: T.nilable(Integer),
+          last: T.nilable(Integer),
+          query: T.nilable(String),
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(
+          WhopSDK::Internal::CursorPage[WhopSDK::Models::UserListResponse]
+        )
+      end
+      def list(
+        # Returns the elements in the list that come after the specified cursor.
+        after: nil,
+        # Returns the elements in the list that come before the specified cursor.
+        before: nil,
+        # Returns the first _n_ elements from the list.
+        first: nil,
+        # Returns the last _n_ elements from the list.
+        last: nil,
+        # Search term to filter by name or username.
+        query: nil,
+        request_options: {}
+      )
+      end
+
       # Check whether a user has access to a specific resource, and return their access
       # level.
       sig do

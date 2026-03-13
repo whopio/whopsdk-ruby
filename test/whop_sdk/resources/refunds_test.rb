@@ -29,10 +29,10 @@ class WhopSDK::Test::Resources::RefundsTest < WhopSDK::Test::ResourceTest
     end
   end
 
-  def test_list_required_params
+  def test_list
     skip("Mock server tests are disabled")
 
-    response = @whop.refunds.list(payment_id: "pay_xxxxxxxxxxxxxx")
+    response = @whop.refunds.list
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage

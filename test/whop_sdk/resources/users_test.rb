@@ -24,6 +24,34 @@ class WhopSDK::Test::Resources::UsersTest < WhopSDK::Test::ResourceTest
     end
   end
 
+  def test_list
+    skip("Mock server tests are disabled")
+
+    response = @whop.users.list
+
+    assert_pattern do
+      response => WhopSDK::Internal::CursorPage
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => WhopSDK::Models::UserListResponse
+    end
+
+    assert_pattern do
+      row => {
+        id: String,
+        bio: String | nil,
+        created_at: Time,
+        name: String | nil,
+        profile_picture: WhopSDK::Models::UserListResponse::ProfilePicture | nil,
+        username: String
+      }
+    end
+  end
+
   def test_check_access_required_params
     skip("Mock server tests are disabled")
 

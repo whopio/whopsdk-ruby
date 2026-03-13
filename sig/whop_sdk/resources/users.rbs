@@ -6,6 +6,15 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::User
 
+      def list: (
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?query: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::UserListResponse]
+
       def check_access: (
         String resource_id,
         id: String,

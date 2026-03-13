@@ -637,6 +637,8 @@ module WhopSDK
 
   UserCheckAccessParams = WhopSDK::Models::UserCheckAccessParams
 
+  UserListParams = WhopSDK::Models::UserListParams
+
   UserRetrieveParams = WhopSDK::Models::UserRetrieveParams
 
   UserUpdateProfileParams = WhopSDK::Models::UserUpdateProfileParams

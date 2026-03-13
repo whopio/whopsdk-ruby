@@ -11,10 +11,6 @@ module WhopSDK
           T.any(WhopSDK::RefundListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The unique identifier of the payment to list refunds for.
-      sig { returns(String) }
-      attr_accessor :payment_id
-
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_accessor :after
@@ -22,6 +18,10 @@ module WhopSDK
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_accessor :before
+
+      # Filter refunds to only those belonging to this company.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :company_id
 
       # Only return refunds created after this timestamp.
       sig { returns(T.nilable(Time)) }
@@ -43,26 +43,36 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
+      # Filter refunds to only those associated with this specific payment.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :payment_id
+
+      # Filter refunds to only those associated with this specific user.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :user_id
+
       sig do
         params(
-          payment_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
+          company_id: T.nilable(String),
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
           direction: T.nilable(WhopSDK::Direction::OrSymbol),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
+          payment_id: T.nilable(String),
+          user_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier of the payment to list refunds for.
-        payment_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
+        # Filter refunds to only those belonging to this company.
+        company_id: nil,
         # Only return refunds created after this timestamp.
         created_after: nil,
         # Only return refunds created before this timestamp.
@@ -73,6 +83,10 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
+        # Filter refunds to only those associated with this specific payment.
+        payment_id: nil,
+        # Filter refunds to only those associated with this specific user.
+        user_id: nil,
         request_options: {}
       )
       end
@@ -80,14 +94,16 @@ module WhopSDK
       sig do
         override.returns(
           {
-            payment_id: String,
             after: T.nilable(String),
             before: T.nilable(String),
+            company_id: T.nilable(String),
             created_after: T.nilable(Time),
             created_before: T.nilable(Time),
             direction: T.nilable(WhopSDK::Direction::OrSymbol),
             first: T.nilable(Integer),
             last: T.nilable(Integer),
+            payment_id: T.nilable(String),
+            user_id: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }
         )

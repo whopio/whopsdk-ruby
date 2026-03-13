@@ -31,20 +31,20 @@ module WhopSDK
         )
       end
 
-      # Returns a paginated list of refunds for a specific payment, with optional
-      # filtering by creation date.
+      # Returns a paginated list of refunds, with optional filtering by payment,
+      # company, user, and creation date.
       #
       # Required permissions:
       #
       # - `payment:basic:read`
       #
-      # @overload list(payment_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, request_options: {})
-      #
-      # @param payment_id [String] The unique identifier of the payment to list refunds for.
+      # @overload list(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, payment_id: nil, user_id: nil, request_options: {})
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      # @param company_id [String, nil] Filter refunds to only those belonging to this company.
       #
       # @param created_after [Time, nil] Only return refunds created after this timestamp.
       #
@@ -56,12 +56,16 @@ module WhopSDK
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
+      # @param payment_id [String, nil] Filter refunds to only those associated with this specific payment.
+      #
+      # @param user_id [String, nil] Filter refunds to only those associated with this specific user.
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::RefundListResponse>]
       #
       # @see WhopSDK::Models::RefundListParams
-      def list(params)
+      def list(params = {})
         parsed, options = WhopSDK::RefundListParams.dump_request(params)
         query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(

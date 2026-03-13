@@ -7,14 +7,16 @@ module WhopSDK
       ) -> WhopSDK::Models::RefundRetrieveResponse
 
       def list: (
-        payment_id: String,
         ?after: String?,
         ?before: String?,
+        ?company_id: String?,
         ?created_after: Time?,
         ?created_before: Time?,
         ?direction: WhopSDK::Models::direction?,
         ?first: Integer?,
         ?last: Integer?,
+        ?payment_id: String?,
+        ?user_id: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::RefundListResponse]
 

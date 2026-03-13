@@ -25,34 +25,36 @@ module WhopSDK
       )
       end
 
-      # Returns a paginated list of refunds for a specific payment, with optional
-      # filtering by creation date.
+      # Returns a paginated list of refunds, with optional filtering by payment,
+      # company, user, and creation date.
       #
       # Required permissions:
       #
       # - `payment:basic:read`
       sig do
         params(
-          payment_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
+          company_id: T.nilable(String),
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
           direction: T.nilable(WhopSDK::Direction::OrSymbol),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
+          payment_id: T.nilable(String),
+          user_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::RefundListResponse]
         )
       end
       def list(
-        # The unique identifier of the payment to list refunds for.
-        payment_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
+        # Filter refunds to only those belonging to this company.
+        company_id: nil,
         # Only return refunds created after this timestamp.
         created_after: nil,
         # Only return refunds created before this timestamp.
@@ -63,6 +65,10 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
+        # Filter refunds to only those associated with this specific payment.
+        payment_id: nil,
+        # Filter refunds to only those associated with this specific user.
+        user_id: nil,
         request_options: {}
       )
       end

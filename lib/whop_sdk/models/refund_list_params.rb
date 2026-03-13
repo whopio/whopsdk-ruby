@@ -7,12 +7,6 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute payment_id
-      #   The unique identifier of the payment to list refunds for.
-      #
-      #   @return [String]
-      required :payment_id, String
-
       # @!attribute after
       #   Returns the elements in the list that come after the specified cursor.
       #
@@ -24,6 +18,12 @@ module WhopSDK
       #
       #   @return [String, nil]
       optional :before, String, nil?: true
+
+      # @!attribute company_id
+      #   Filter refunds to only those belonging to this company.
+      #
+      #   @return [String, nil]
+      optional :company_id, String, nil?: true
 
       # @!attribute created_after
       #   Only return refunds created after this timestamp.
@@ -55,12 +55,24 @@ module WhopSDK
       #   @return [Integer, nil]
       optional :last, Integer, nil?: true
 
-      # @!method initialize(payment_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, request_options: {})
-      #   @param payment_id [String] The unique identifier of the payment to list refunds for.
+      # @!attribute payment_id
+      #   Filter refunds to only those associated with this specific payment.
       #
+      #   @return [String, nil]
+      optional :payment_id, String, nil?: true
+
+      # @!attribute user_id
+      #   Filter refunds to only those associated with this specific user.
+      #
+      #   @return [String, nil]
+      optional :user_id, String, nil?: true
+
+      # @!method initialize(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, payment_id: nil, user_id: nil, request_options: {})
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      #   @param company_id [String, nil] Filter refunds to only those belonging to this company.
       #
       #   @param created_after [Time, nil] Only return refunds created after this timestamp.
       #
@@ -71,6 +83,10 @@ module WhopSDK
       #   @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #
+      #   @param payment_id [String, nil] Filter refunds to only those associated with this specific payment.
+      #
+      #   @param user_id [String, nil] Filter refunds to only those associated with this specific user.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

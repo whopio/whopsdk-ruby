@@ -24,6 +24,39 @@ module WhopSDK
         )
       end
 
+      # Search for users by name or username, ranked by social proximity to the
+      # authenticated user.
+      #
+      # @overload list(after: nil, before: nil, first: nil, last: nil, query: nil, request_options: {})
+      #
+      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      #
+      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      #
+      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #
+      # @param query [String, nil] Search term to filter by name or username.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::UserListResponse>]
+      #
+      # @see WhopSDK::Models::UserListParams
+      def list(params = {})
+        parsed, options = WhopSDK::UserListParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
+        @client.request(
+          method: :get,
+          path: "users",
+          query: query,
+          page: WhopSDK::Internal::CursorPage,
+          model: WhopSDK::Models::UserListResponse,
+          options: options
+        )
+      end
+
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::UserCheckAccessParams} for more details.
       #

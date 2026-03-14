@@ -670,6 +670,7 @@ module WhopSDK
           CANCEL = :cancel
           VERIFY = :verify
           CHARGEBACK = :chargeback
+          PRE_CHARGEBACK = :pre_chargeback
           THREE_D_SECURE = :three_d_secure
           FRAUD_SCREENING = :fraud_screening
           AUTHORIZATION = :authorization

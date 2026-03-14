@@ -19,6 +19,7 @@ module WhopSDK
       def update: (
         String id,
         ?current_company_id: String?,
+        ?notification_preference: WhopSDK::Models::AIChatUpdateParams::notification_preference?,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::AIChat

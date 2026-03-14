@@ -35,6 +35,14 @@ module WhopSDK
       #   @return [Integer]
       required :message_count, Integer
 
+      # @!attribute notification_preference
+      #   The notification preference for this AI chat. `all` delivers AI chat
+      #   notifications and badges, while `none` mutes them.
+      #
+      #   @return [Symbol, WhopSDK::Models::AIChatListResponse::NotificationPreference]
+      required :notification_preference,
+               enum: -> { WhopSDK::Models::AIChatListResponse::NotificationPreference }
+
       # @!attribute title
       #   A short descriptive title for this AI chat conversation. Null if no title has
       #   been set.
@@ -54,7 +62,7 @@ module WhopSDK
       #   @return [WhopSDK::Models::AIChatListResponse::User]
       required :user, -> { WhopSDK::Models::AIChatListResponse::User }
 
-      # @!method initialize(id:, blended_token_usage:, created_at:, last_message_at:, message_count:, title:, updated_at:, user:)
+      # @!method initialize(id:, blended_token_usage:, created_at:, last_message_at:, message_count:, notification_preference:, title:, updated_at:, user:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AIChatListResponse} for more details.
       #
@@ -71,11 +79,27 @@ module WhopSDK
       #
       #   @param message_count [Integer] The total number of messages exchanged in this conversation.
       #
+      #   @param notification_preference [Symbol, WhopSDK::Models::AIChatListResponse::NotificationPreference] The notification preference for this AI chat. `all` delivers AI chat notificatio
+      #
       #   @param title [String, nil] A short descriptive title for this AI chat conversation. Null if no title has be
       #
       #   @param updated_at [Time] The datetime the ai chat was last updated.
       #
       #   @param user [WhopSDK::Models::AIChatListResponse::User] The user who owns this AI chat conversation.
+
+      # The notification preference for this AI chat. `all` delivers AI chat
+      # notifications and badges, while `none` mutes them.
+      #
+      # @see WhopSDK::Models::AIChatListResponse#notification_preference
+      module NotificationPreference
+        extend WhopSDK::Internal::Type::Enum
+
+        ALL = :all
+        NONE = :none
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
 
       # @see WhopSDK::Models::AIChatListResponse#user
       class User < WhopSDK::Internal::Type::BaseModel

@@ -27,6 +27,11 @@ module WhopSDK
       sig { returns(Integer) }
       attr_accessor :message_count
 
+      # The notification preference for this AI chat. `all` delivers AI chat
+      # notifications and badges, while `none` mutes them.
+      sig { returns(WhopSDK::AIChat::NotificationPreference::TaggedSymbol) }
+      attr_accessor :notification_preference
+
       # A short descriptive title for this AI chat conversation. Null if no title has
       # been set.
       sig { returns(T.nilable(String)) }
@@ -52,6 +57,8 @@ module WhopSDK
           created_at: Time,
           last_message_at: T.nilable(Time),
           message_count: Integer,
+          notification_preference:
+            WhopSDK::AIChat::NotificationPreference::OrSymbol,
           title: T.nilable(String),
           updated_at: Time,
           user: WhopSDK::AIChat::User::OrHash
@@ -69,6 +76,9 @@ module WhopSDK
         last_message_at:,
         # The total number of messages exchanged in this conversation.
         message_count:,
+        # The notification preference for this AI chat. `all` delivers AI chat
+        # notifications and badges, while `none` mutes them.
+        notification_preference:,
         # A short descriptive title for this AI chat conversation. Null if no title has
         # been set.
         title:,
@@ -87,6 +97,8 @@ module WhopSDK
             created_at: Time,
             last_message_at: T.nilable(Time),
             message_count: Integer,
+            notification_preference:
+              WhopSDK::AIChat::NotificationPreference::TaggedSymbol,
             title: T.nilable(String),
             updated_at: Time,
             user: WhopSDK::AIChat::User
@@ -94,6 +106,30 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      # The notification preference for this AI chat. `all` delivers AI chat
+      # notifications and badges, while `none` mutes them.
+      module NotificationPreference
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::AIChat::NotificationPreference)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        ALL = T.let(:all, WhopSDK::AIChat::NotificationPreference::TaggedSymbol)
+        NONE =
+          T.let(:none, WhopSDK::AIChat::NotificationPreference::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::AIChat::NotificationPreference::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
 
       class User < WhopSDK::Internal::Type::BaseModel

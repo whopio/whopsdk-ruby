@@ -43,6 +43,7 @@ module WhopSDK
       CODENSA = :codensa
       CABAL = :cabal
       HIPERCARD = :hipercard
+      JCBLANKAPAY = :jcblankapay
       UNKNOWN = :unknown
 
       # @!method self.values

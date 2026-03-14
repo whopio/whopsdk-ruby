@@ -934,6 +934,11 @@ module WhopSDK
               :chargeback,
               WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
             )
+          PRE_CHARGEBACK =
+            T.let(
+              :pre_chargeback,
+              WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
+            )
           THREE_D_SECURE =
             T.let(
               :three_d_secure,

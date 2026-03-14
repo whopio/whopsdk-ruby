@@ -38,6 +38,7 @@ module WhopSDK
       | :codensa
       | :cabal
       | :hipercard
+      | :jcblankapay
       | :unknown
 
     module CardBrands
@@ -80,6 +81,7 @@ module WhopSDK
       CODENSA: :codensa
       CABAL: :cabal
       HIPERCARD: :hipercard
+      JCBLANKAPAY: :jcblankapay
       UNKNOWN: :unknown
 
       def self?.values: -> ::Array[WhopSDK::Models::card_brands]

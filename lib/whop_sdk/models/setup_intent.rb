@@ -200,13 +200,19 @@ module WhopSDK
         #   @return [Time]
         required :created_at, Time
 
+        # @!attribute mailing_address
+        #   The mailing address associated with the payment method's user
+        #
+        #   @return [WhopSDK::Models::SetupIntent::PaymentMethod::MailingAddress, nil]
+        required :mailing_address, -> { WhopSDK::SetupIntent::PaymentMethod::MailingAddress }, nil?: true
+
         # @!attribute payment_method_type
         #   The payment method type of the payment method
         #
         #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes]
         required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }
 
-        # @!method initialize(id:, card:, created_at:, payment_method_type:)
+        # @!method initialize(id:, card:, created_at:, mailing_address:, payment_method_type:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::SetupIntent::PaymentMethod} for more details.
         #
@@ -218,6 +224,8 @@ module WhopSDK
         #   @param card [WhopSDK::Models::SetupIntent::PaymentMethod::Card, nil] The card data associated with the payment method, if its a debit or credit card.
         #
         #   @param created_at [Time] The datetime the payment token was created.
+        #
+        #   @param mailing_address [WhopSDK::Models::SetupIntent::PaymentMethod::MailingAddress, nil] The mailing address associated with the payment method's user
         #
         #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes] The payment method type of the payment method
 
@@ -261,6 +269,68 @@ module WhopSDK
           #   @param exp_year [Integer, nil] The two-digit expiration year of the card (e.g., 27 for 2027). Null if not avail
           #
           #   @param last4 [String, nil] The last four digits of the card number. Null if not available.
+        end
+
+        # @see WhopSDK::Models::SetupIntent::PaymentMethod#mailing_address
+        class MailingAddress < WhopSDK::Internal::Type::BaseModel
+          # @!attribute city
+          #   The city of the address.
+          #
+          #   @return [String, nil]
+          required :city, String, nil?: true
+
+          # @!attribute country
+          #   The country of the address.
+          #
+          #   @return [String, nil]
+          required :country, String, nil?: true
+
+          # @!attribute line1
+          #   The line 1 of the address.
+          #
+          #   @return [String, nil]
+          required :line1, String, nil?: true
+
+          # @!attribute line2
+          #   The line 2 of the address.
+          #
+          #   @return [String, nil]
+          required :line2, String, nil?: true
+
+          # @!attribute name
+          #   The name of the customer.
+          #
+          #   @return [String, nil]
+          required :name, String, nil?: true
+
+          # @!attribute postal_code
+          #   The postal code of the address.
+          #
+          #   @return [String, nil]
+          required :postal_code, String, nil?: true
+
+          # @!attribute state
+          #   The state of the address.
+          #
+          #   @return [String, nil]
+          required :state, String, nil?: true
+
+          # @!method initialize(city:, country:, line1:, line2:, name:, postal_code:, state:)
+          #   The mailing address associated with the payment method's user
+          #
+          #   @param city [String, nil] The city of the address.
+          #
+          #   @param country [String, nil] The country of the address.
+          #
+          #   @param line1 [String, nil] The line 1 of the address.
+          #
+          #   @param line2 [String, nil] The line 2 of the address.
+          #
+          #   @param name [String, nil] The name of the customer.
+          #
+          #   @param postal_code [String, nil] The postal code of the address.
+          #
+          #   @param state [String, nil] The state of the address.
         end
       end
     end

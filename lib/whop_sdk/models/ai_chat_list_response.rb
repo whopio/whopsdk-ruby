@@ -35,6 +35,13 @@ module WhopSDK
       #   @return [Integer]
       required :message_count, Integer
 
+      # @!attribute notification_preference
+      #   The notification preference for this AI chat. `all` delivers AI chat
+      #   notifications and badges, while `none` mutes them.
+      #
+      #   @return [Symbol, WhopSDK::Models::NotificationPreferences]
+      required :notification_preference, enum: -> { WhopSDK::NotificationPreferences }
+
       # @!attribute title
       #   A short descriptive title for this AI chat conversation. Null if no title has
       #   been set.
@@ -54,7 +61,7 @@ module WhopSDK
       #   @return [WhopSDK::Models::AIChatListResponse::User]
       required :user, -> { WhopSDK::Models::AIChatListResponse::User }
 
-      # @!method initialize(id:, blended_token_usage:, created_at:, last_message_at:, message_count:, title:, updated_at:, user:)
+      # @!method initialize(id:, blended_token_usage:, created_at:, last_message_at:, message_count:, notification_preference:, title:, updated_at:, user:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AIChatListResponse} for more details.
       #
@@ -70,6 +77,8 @@ module WhopSDK
       #   @param last_message_at [Time, nil] The timestamp of the most recent message in this conversation. Null if no messag
       #
       #   @param message_count [Integer] The total number of messages exchanged in this conversation.
+      #
+      #   @param notification_preference [Symbol, WhopSDK::Models::NotificationPreferences] The notification preference for this AI chat. `all` delivers AI chat notificatio
       #
       #   @param title [String, nil] A short descriptive title for this AI chat conversation. Null if no title has be
       #

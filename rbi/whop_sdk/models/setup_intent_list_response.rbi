@@ -397,6 +397,26 @@ module WhopSDK
         sig { returns(Time) }
         attr_accessor :created_at
 
+        # The mailing address associated with the payment method's user
+        sig do
+          returns(
+            T.nilable(
+              WhopSDK::Models::SetupIntentListResponse::PaymentMethod::MailingAddress
+            )
+          )
+        end
+        attr_reader :mailing_address
+
+        sig do
+          params(
+            mailing_address:
+              T.nilable(
+                WhopSDK::Models::SetupIntentListResponse::PaymentMethod::MailingAddress::OrHash
+              )
+          ).void
+        end
+        attr_writer :mailing_address
+
         # The payment method type of the payment method
         sig { returns(WhopSDK::PaymentMethodTypes::TaggedSymbol) }
         attr_accessor :payment_method_type
@@ -411,6 +431,10 @@ module WhopSDK
                 WhopSDK::Models::SetupIntentListResponse::PaymentMethod::Card::OrHash
               ),
             created_at: Time,
+            mailing_address:
+              T.nilable(
+                WhopSDK::Models::SetupIntentListResponse::PaymentMethod::MailingAddress::OrHash
+              ),
             payment_method_type: WhopSDK::PaymentMethodTypes::OrSymbol
           ).returns(T.attached_class)
         end
@@ -421,6 +445,8 @@ module WhopSDK
           card:,
           # The datetime the payment token was created.
           created_at:,
+          # The mailing address associated with the payment method's user
+          mailing_address:,
           # The payment method type of the payment method
           payment_method_type:
         )
@@ -435,6 +461,10 @@ module WhopSDK
                   WhopSDK::Models::SetupIntentListResponse::PaymentMethod::Card
                 ),
               created_at: Time,
+              mailing_address:
+                T.nilable(
+                  WhopSDK::Models::SetupIntentListResponse::PaymentMethod::MailingAddress
+                ),
               payment_method_type: WhopSDK::PaymentMethodTypes::TaggedSymbol
             }
           )
@@ -497,6 +527,90 @@ module WhopSDK
                 exp_month: T.nilable(Integer),
                 exp_year: T.nilable(Integer),
                 last4: T.nilable(String)
+              }
+            )
+          end
+          def to_hash
+          end
+        end
+
+        class MailingAddress < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::Models::SetupIntentListResponse::PaymentMethod::MailingAddress,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The city of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :city
+
+          # The country of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :country
+
+          # The line 1 of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :line1
+
+          # The line 2 of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :line2
+
+          # The name of the customer.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :name
+
+          # The postal code of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :postal_code
+
+          # The state of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :state
+
+          # The mailing address associated with the payment method's user
+          sig do
+            params(
+              city: T.nilable(String),
+              country: T.nilable(String),
+              line1: T.nilable(String),
+              line2: T.nilable(String),
+              name: T.nilable(String),
+              postal_code: T.nilable(String),
+              state: T.nilable(String)
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The city of the address.
+            city:,
+            # The country of the address.
+            country:,
+            # The line 1 of the address.
+            line1:,
+            # The line 2 of the address.
+            line2:,
+            # The name of the customer.
+            name:,
+            # The postal code of the address.
+            postal_code:,
+            # The state of the address.
+            state:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                city: T.nilable(String),
+                country: T.nilable(String),
+                line1: T.nilable(String),
+                line2: T.nilable(String),
+                name: T.nilable(String),
+                postal_code: T.nilable(String),
+                state: T.nilable(String)
               }
             )
           end

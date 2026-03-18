@@ -1,0 +1,241 @@
+# typed: strong
+
+module WhopSDK
+  module Models
+    class AffiliateListResponse < WhopSDK::Internal::Type::BaseModel
+      OrHash =
+        T.type_alias do
+          T.any(
+            WhopSDK::Models::AffiliateListResponse,
+            WhopSDK::Internal::AnyHash
+          )
+        end
+
+      # The unique identifier for the affiliate.
+      sig { returns(String) }
+      attr_accessor :id
+
+      # The total active members of the affiliate
+      sig { returns(Integer) }
+      attr_accessor :active_members_count
+
+      # The company attached to this affiliate
+      sig { returns(WhopSDK::Models::AffiliateListResponse::Company) }
+      attr_reader :company
+
+      sig do
+        params(
+          company: WhopSDK::Models::AffiliateListResponse::Company::OrHash
+        ).void
+      end
+      attr_writer :company
+
+      # The datetime the affiliate was created.
+      sig { returns(Time) }
+      attr_accessor :created_at
+
+      # How many referrals have remained since they joined as members
+      sig { returns(String) }
+      attr_accessor :customer_retention_rate
+
+      # A rolling 90-day retention rate for this affiliate
+      sig { returns(String) }
+      attr_accessor :customer_retention_rate_ninety_days
+
+      # The total MRR of the affiliate
+      sig { returns(String) }
+      attr_accessor :monthly_recurring_revenue_usd
+
+      # Statuses for resources
+      sig { returns(T.nilable(WhopSDK::Status::TaggedSymbol)) }
+      attr_accessor :status
+
+      # The total count of all overrides for this affiliate
+      sig { returns(Integer) }
+      attr_accessor :total_overrides_count
+
+      # The total earnings of the affiliate from the users they referred
+      sig { returns(String) }
+      attr_accessor :total_referral_earnings_usd
+
+      # The total referrals of the affiliate
+      sig { returns(Integer) }
+      attr_accessor :total_referrals_count
+
+      # The total revenue of the affiliate from their referrals
+      sig { returns(String) }
+      attr_accessor :total_revenue_usd
+
+      # The datetime the affiliate was last updated.
+      sig { returns(Time) }
+      attr_accessor :updated_at
+
+      # The user attached to this affiliate
+      sig { returns(WhopSDK::Models::AffiliateListResponse::User) }
+      attr_reader :user
+
+      sig do
+        params(user: WhopSDK::Models::AffiliateListResponse::User::OrHash).void
+      end
+      attr_writer :user
+
+      # An affiliate of a company or a global affiliate
+      sig do
+        params(
+          id: String,
+          active_members_count: Integer,
+          company: WhopSDK::Models::AffiliateListResponse::Company::OrHash,
+          created_at: Time,
+          customer_retention_rate: String,
+          customer_retention_rate_ninety_days: String,
+          monthly_recurring_revenue_usd: String,
+          status: T.nilable(WhopSDK::Status::OrSymbol),
+          total_overrides_count: Integer,
+          total_referral_earnings_usd: String,
+          total_referrals_count: Integer,
+          total_revenue_usd: String,
+          updated_at: Time,
+          user: WhopSDK::Models::AffiliateListResponse::User::OrHash
+        ).returns(T.attached_class)
+      end
+      def self.new(
+        # The unique identifier for the affiliate.
+        id:,
+        # The total active members of the affiliate
+        active_members_count:,
+        # The company attached to this affiliate
+        company:,
+        # The datetime the affiliate was created.
+        created_at:,
+        # How many referrals have remained since they joined as members
+        customer_retention_rate:,
+        # A rolling 90-day retention rate for this affiliate
+        customer_retention_rate_ninety_days:,
+        # The total MRR of the affiliate
+        monthly_recurring_revenue_usd:,
+        # Statuses for resources
+        status:,
+        # The total count of all overrides for this affiliate
+        total_overrides_count:,
+        # The total earnings of the affiliate from the users they referred
+        total_referral_earnings_usd:,
+        # The total referrals of the affiliate
+        total_referrals_count:,
+        # The total revenue of the affiliate from their referrals
+        total_revenue_usd:,
+        # The datetime the affiliate was last updated.
+        updated_at:,
+        # The user attached to this affiliate
+        user:
+      )
+      end
+
+      sig do
+        override.returns(
+          {
+            id: String,
+            active_members_count: Integer,
+            company: WhopSDK::Models::AffiliateListResponse::Company,
+            created_at: Time,
+            customer_retention_rate: String,
+            customer_retention_rate_ninety_days: String,
+            monthly_recurring_revenue_usd: String,
+            status: T.nilable(WhopSDK::Status::TaggedSymbol),
+            total_overrides_count: Integer,
+            total_referral_earnings_usd: String,
+            total_referrals_count: Integer,
+            total_revenue_usd: String,
+            updated_at: Time,
+            user: WhopSDK::Models::AffiliateListResponse::User
+          }
+        )
+      end
+      def to_hash
+      end
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Models::AffiliateListResponse::Company,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The unique identifier for the company.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The written name of the company.
+        sig { returns(String) }
+        attr_accessor :title
+
+        # The company attached to this affiliate
+        sig { params(id: String, title: String).returns(T.attached_class) }
+        def self.new(
+          # The unique identifier for the company.
+          id:,
+          # The written name of the company.
+          title:
+        )
+        end
+
+        sig { override.returns({ id: String, title: String }) }
+        def to_hash
+        end
+      end
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Models::AffiliateListResponse::User,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The unique identifier for the user.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The display name set on the user's Whop profile. Null if the user has not set a
+        # name.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
+        # The unique username chosen by the user for their Whop profile. Null if the user
+        # has not set a username.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :username
+
+        # The user attached to this affiliate
+        sig do
+          params(
+            id: String,
+            name: T.nilable(String),
+            username: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The unique identifier for the user.
+          id:,
+          # The display name set on the user's Whop profile. Null if the user has not set a
+          # name.
+          name:,
+          # The unique username chosen by the user for their Whop profile. Null if the user
+          # has not set a username.
+          username:
+        )
+        end
+
+        sig do
+          override.returns(
+            { id: String, name: T.nilable(String), username: T.nilable(String) }
+          )
+        end
+        def to_hash
+        end
+      end
+    end
+  end
+end

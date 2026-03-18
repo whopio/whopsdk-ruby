@@ -58,7 +58,8 @@ module WhopSDK
       )
       end
 
-      # Update an AI chat's title or associated company context.
+      # Update an AI chat's title, notification preferences, or associated company
+      # context.
       #
       # Required permissions:
       #
@@ -67,6 +68,8 @@ module WhopSDK
         params(
           id: String,
           current_company_id: T.nilable(String),
+          notification_preference:
+            T.nilable(WhopSDK::NotificationPreferences::OrSymbol),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::AIChat)
@@ -77,6 +80,8 @@ module WhopSDK
         # The unique identifier of the company to set as context for the AI chat (e.g.,
         # "biz_XXXXX").
         current_company_id: nil,
+        # The notification preference for an AI chat
+        notification_preference: nil,
         # The new display title for the AI chat thread (e.g., "Help with billing").
         title: nil,
         request_options: {}

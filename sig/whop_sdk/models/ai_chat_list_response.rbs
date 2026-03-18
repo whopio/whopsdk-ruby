@@ -7,6 +7,7 @@ module WhopSDK
         created_at: Time,
         last_message_at: Time?,
         message_count: Integer,
+        notification_preference: WhopSDK::Models::notification_preferences,
         title: String?,
         updated_at: Time,
         user: WhopSDK::Models::AIChatListResponse::User
@@ -23,6 +24,8 @@ module WhopSDK
 
       attr_accessor message_count: Integer
 
+      attr_accessor notification_preference: WhopSDK::Models::notification_preferences
+
       attr_accessor title: String?
 
       attr_accessor updated_at: Time
@@ -35,6 +38,7 @@ module WhopSDK
         created_at: Time,
         last_message_at: Time?,
         message_count: Integer,
+        notification_preference: WhopSDK::Models::notification_preferences,
         title: String?,
         updated_at: Time,
         user: WhopSDK::Models::AIChatListResponse::User
@@ -46,6 +50,7 @@ module WhopSDK
         created_at: Time,
         last_message_at: Time?,
         message_count: Integer,
+        notification_preference: WhopSDK::Models::notification_preferences,
         title: String?,
         updated_at: Time,
         user: WhopSDK::Models::AIChatListResponse::User

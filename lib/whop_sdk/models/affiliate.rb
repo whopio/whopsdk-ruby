@@ -1,0 +1,180 @@
+# frozen_string_literal: true
+
+module WhopSDK
+  module Models
+    # @see WhopSDK::Resources::Affiliates#create
+    class Affiliate < WhopSDK::Internal::Type::BaseModel
+      # @!attribute id
+      #   The unique identifier for the affiliate.
+      #
+      #   @return [String]
+      required :id, String
+
+      # @!attribute active_members_count
+      #   The total active members of the affiliate
+      #
+      #   @return [Integer]
+      required :active_members_count, Integer
+
+      # @!attribute company
+      #   The company attached to this affiliate
+      #
+      #   @return [WhopSDK::Models::Affiliate::Company]
+      required :company, -> { WhopSDK::Affiliate::Company }
+
+      # @!attribute created_at
+      #   The datetime the affiliate was created.
+      #
+      #   @return [Time]
+      required :created_at, Time
+
+      # @!attribute customer_retention_rate
+      #   How many referrals have remained since they joined as members
+      #
+      #   @return [String]
+      required :customer_retention_rate, String
+
+      # @!attribute customer_retention_rate_ninety_days
+      #   A rolling 90-day retention rate for this affiliate
+      #
+      #   @return [String]
+      required :customer_retention_rate_ninety_days, String
+
+      # @!attribute monthly_recurring_revenue_usd
+      #   The total MRR of the affiliate
+      #
+      #   @return [String]
+      required :monthly_recurring_revenue_usd, String
+
+      # @!attribute status
+      #   Statuses for resources
+      #
+      #   @return [Symbol, WhopSDK::Models::Status, nil]
+      required :status, enum: -> { WhopSDK::Status }, nil?: true
+
+      # @!attribute total_overrides_count
+      #   The total count of all overrides for this affiliate
+      #
+      #   @return [Integer]
+      required :total_overrides_count, Integer
+
+      # @!attribute total_referral_earnings_usd
+      #   The total earnings of the affiliate from the users they referred
+      #
+      #   @return [String]
+      required :total_referral_earnings_usd, String
+
+      # @!attribute total_referrals_count
+      #   The total referrals of the affiliate
+      #
+      #   @return [Integer]
+      required :total_referrals_count, Integer
+
+      # @!attribute total_revenue_usd
+      #   The total revenue of the affiliate from their referrals
+      #
+      #   @return [String]
+      required :total_revenue_usd, String
+
+      # @!attribute updated_at
+      #   The datetime the affiliate was last updated.
+      #
+      #   @return [Time]
+      required :updated_at, Time
+
+      # @!attribute user
+      #   The user attached to this affiliate
+      #
+      #   @return [WhopSDK::Models::Affiliate::User]
+      required :user, -> { WhopSDK::Affiliate::User }
+
+      # @!method initialize(id:, active_members_count:, company:, created_at:, customer_retention_rate:, customer_retention_rate_ninety_days:, monthly_recurring_revenue_usd:, status:, total_overrides_count:, total_referral_earnings_usd:, total_referrals_count:, total_revenue_usd:, updated_at:, user:)
+      #   An affiliate of a company or a global affiliate
+      #
+      #   @param id [String] The unique identifier for the affiliate.
+      #
+      #   @param active_members_count [Integer] The total active members of the affiliate
+      #
+      #   @param company [WhopSDK::Models::Affiliate::Company] The company attached to this affiliate
+      #
+      #   @param created_at [Time] The datetime the affiliate was created.
+      #
+      #   @param customer_retention_rate [String] How many referrals have remained since they joined as members
+      #
+      #   @param customer_retention_rate_ninety_days [String] A rolling 90-day retention rate for this affiliate
+      #
+      #   @param monthly_recurring_revenue_usd [String] The total MRR of the affiliate
+      #
+      #   @param status [Symbol, WhopSDK::Models::Status, nil] Statuses for resources
+      #
+      #   @param total_overrides_count [Integer] The total count of all overrides for this affiliate
+      #
+      #   @param total_referral_earnings_usd [String] The total earnings of the affiliate from the users they referred
+      #
+      #   @param total_referrals_count [Integer] The total referrals of the affiliate
+      #
+      #   @param total_revenue_usd [String] The total revenue of the affiliate from their referrals
+      #
+      #   @param updated_at [Time] The datetime the affiliate was last updated.
+      #
+      #   @param user [WhopSDK::Models::Affiliate::User] The user attached to this affiliate
+
+      # @see WhopSDK::Models::Affiliate#company
+      class Company < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The unique identifier for the company.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute title
+        #   The written name of the company.
+        #
+        #   @return [String]
+        required :title, String
+
+        # @!method initialize(id:, title:)
+        #   The company attached to this affiliate
+        #
+        #   @param id [String] The unique identifier for the company.
+        #
+        #   @param title [String] The written name of the company.
+      end
+
+      # @see WhopSDK::Models::Affiliate#user
+      class User < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The unique identifier for the user.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute name
+        #   The display name set on the user's Whop profile. Null if the user has not set a
+        #   name.
+        #
+        #   @return [String, nil]
+        required :name, String, nil?: true
+
+        # @!attribute username
+        #   The unique username chosen by the user for their Whop profile. Null if the user
+        #   has not set a username.
+        #
+        #   @return [String, nil]
+        required :username, String, nil?: true
+
+        # @!method initialize(id:, name:, username:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Affiliate::User} for more details.
+        #
+        #   The user attached to this affiliate
+        #
+        #   @param id [String] The unique identifier for the user.
+        #
+        #   @param name [String, nil] The display name set on the user's Whop profile. Null if the user has not set a
+        #
+        #   @param username [String, nil] The unique username chosen by the user for their Whop profile. Null if the user
+      end
+    end
+  end
+end

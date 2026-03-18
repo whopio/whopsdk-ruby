@@ -1,0 +1,111 @@
+module WhopSDK
+  module Models
+    type affiliate =
+      {
+        id: String,
+        active_members_count: Integer,
+        company: WhopSDK::Affiliate::Company,
+        created_at: Time,
+        customer_retention_rate: String,
+        customer_retention_rate_ninety_days: String,
+        monthly_recurring_revenue_usd: String,
+        status: WhopSDK::Models::status?,
+        total_overrides_count: Integer,
+        total_referral_earnings_usd: String,
+        total_referrals_count: Integer,
+        total_revenue_usd: String,
+        updated_at: Time,
+        user: WhopSDK::Affiliate::User
+      }
+
+    class Affiliate < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor active_members_count: Integer
+
+      attr_accessor company: WhopSDK::Affiliate::Company
+
+      attr_accessor created_at: Time
+
+      attr_accessor customer_retention_rate: String
+
+      attr_accessor customer_retention_rate_ninety_days: String
+
+      attr_accessor monthly_recurring_revenue_usd: String
+
+      attr_accessor status: WhopSDK::Models::status?
+
+      attr_accessor total_overrides_count: Integer
+
+      attr_accessor total_referral_earnings_usd: String
+
+      attr_accessor total_referrals_count: Integer
+
+      attr_accessor total_revenue_usd: String
+
+      attr_accessor updated_at: Time
+
+      attr_accessor user: WhopSDK::Affiliate::User
+
+      def initialize: (
+        id: String,
+        active_members_count: Integer,
+        company: WhopSDK::Affiliate::Company,
+        created_at: Time,
+        customer_retention_rate: String,
+        customer_retention_rate_ninety_days: String,
+        monthly_recurring_revenue_usd: String,
+        status: WhopSDK::Models::status?,
+        total_overrides_count: Integer,
+        total_referral_earnings_usd: String,
+        total_referrals_count: Integer,
+        total_revenue_usd: String,
+        updated_at: Time,
+        user: WhopSDK::Affiliate::User
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        active_members_count: Integer,
+        company: WhopSDK::Affiliate::Company,
+        created_at: Time,
+        customer_retention_rate: String,
+        customer_retention_rate_ninety_days: String,
+        monthly_recurring_revenue_usd: String,
+        status: WhopSDK::Models::status?,
+        total_overrides_count: Integer,
+        total_referral_earnings_usd: String,
+        total_referrals_count: Integer,
+        total_revenue_usd: String,
+        updated_at: Time,
+        user: WhopSDK::Affiliate::User
+      }
+
+      type company = { id: String, title: String }
+
+      class Company < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, title: String) -> void
+
+        def to_hash: -> { id: String, title: String }
+      end
+
+      type user = { id: String, name: String?, username: String? }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String?
+
+        def initialize: (id: String, name: String?, username: String?) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String? }
+      end
+    end
+  end
+end

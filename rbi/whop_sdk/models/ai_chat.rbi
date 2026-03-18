@@ -27,6 +27,11 @@ module WhopSDK
       sig { returns(Integer) }
       attr_accessor :message_count
 
+      # The notification preference for this AI chat. `all` delivers AI chat
+      # notifications and badges, while `none` mutes them.
+      sig { returns(WhopSDK::NotificationPreferences::TaggedSymbol) }
+      attr_accessor :notification_preference
+
       # A short descriptive title for this AI chat conversation. Null if no title has
       # been set.
       sig { returns(T.nilable(String)) }
@@ -52,6 +57,7 @@ module WhopSDK
           created_at: Time,
           last_message_at: T.nilable(Time),
           message_count: Integer,
+          notification_preference: WhopSDK::NotificationPreferences::OrSymbol,
           title: T.nilable(String),
           updated_at: Time,
           user: WhopSDK::AIChat::User::OrHash
@@ -69,6 +75,9 @@ module WhopSDK
         last_message_at:,
         # The total number of messages exchanged in this conversation.
         message_count:,
+        # The notification preference for this AI chat. `all` delivers AI chat
+        # notifications and badges, while `none` mutes them.
+        notification_preference:,
         # A short descriptive title for this AI chat conversation. Null if no title has
         # been set.
         title:,
@@ -87,6 +96,8 @@ module WhopSDK
             created_at: Time,
             last_message_at: T.nilable(Time),
             message_count: Integer,
+            notification_preference:
+              WhopSDK::NotificationPreferences::TaggedSymbol,
             title: T.nilable(String),
             updated_at: Time,
             user: WhopSDK::AIChat::User

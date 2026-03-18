@@ -1,0 +1,30 @@
+module WhopSDK
+  module Models
+    module Affiliates
+      type override_retrieve_params =
+        { id: String, override_id: String }
+        & WhopSDK::Internal::Type::request_parameters
+
+      class OverrideRetrieveParams < WhopSDK::Internal::Type::BaseModel
+        extend WhopSDK::Internal::Type::RequestParameters::Converter
+        include WhopSDK::Internal::Type::RequestParameters
+
+        attr_accessor id: String
+
+        attr_accessor override_id: String
+
+        def initialize: (
+          id: String,
+          override_id: String,
+          ?request_options: WhopSDK::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          override_id: String,
+          request_options: WhopSDK::RequestOptions
+        }
+      end
+    end
+  end
+end

@@ -1,0 +1,18 @@
+module WhopSDK
+  module Models
+    module AffiliatePayoutTypes = Affiliates::AffiliatePayoutTypes
+
+    module Affiliates
+      type affiliate_payout_types = :percentage | :flat_fee
+
+      module AffiliatePayoutTypes
+        extend WhopSDK::Internal::Type::Enum
+
+        PERCENTAGE: :percentage
+        FLAT_FEE: :flat_fee
+
+        def self?.values: -> ::Array[WhopSDK::Models::Affiliates::affiliate_payout_types]
+      end
+    end
+  end
+end

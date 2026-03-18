@@ -1,0 +1,18 @@
+module WhopSDK
+  module Models
+    module AffiliateAppliesToProducts = Affiliates::AffiliateAppliesToProducts
+
+    module Affiliates
+      type affiliate_applies_to_products = :single_product | :all_products
+
+      module AffiliateAppliesToProducts
+        extend WhopSDK::Internal::Type::Enum
+
+        SINGLE_PRODUCT: :single_product
+        ALL_PRODUCTS: :all_products
+
+        def self?.values: -> ::Array[WhopSDK::Models::Affiliates::affiliate_applies_to_products]
+      end
+    end
+  end
+end

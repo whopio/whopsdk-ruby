@@ -1,0 +1,77 @@
+module WhopSDK
+  module Models
+    module Affiliates
+      type override_create_response =
+        {
+          id: String,
+          applies_to_payments: WhopSDK::Models::Affiliates::affiliate_applies_to_payments?,
+          applies_to_products: WhopSDK::Models::Affiliates::affiliate_applies_to_products?,
+          checkout_direct_link: String?,
+          commission_type: WhopSDK::Models::Affiliates::affiliate_payout_types,
+          commission_value: Float,
+          override_type: WhopSDK::Models::Affiliates::affiliate_override_roles,
+          plan_id: String?,
+          product_direct_link: String?,
+          product_id: String?,
+          revenue_basis: WhopSDK::Models::Affiliates::affiliate_revenue_bases?,
+          total_referral_earnings_usd: Float
+        }
+
+      class OverrideCreateResponse < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor applies_to_payments: WhopSDK::Models::Affiliates::affiliate_applies_to_payments?
+
+        attr_accessor applies_to_products: WhopSDK::Models::Affiliates::affiliate_applies_to_products?
+
+        attr_accessor checkout_direct_link: String?
+
+        attr_accessor commission_type: WhopSDK::Models::Affiliates::affiliate_payout_types
+
+        attr_accessor commission_value: Float
+
+        attr_accessor override_type: WhopSDK::Models::Affiliates::affiliate_override_roles
+
+        attr_accessor plan_id: String?
+
+        attr_accessor product_direct_link: String?
+
+        attr_accessor product_id: String?
+
+        attr_accessor revenue_basis: WhopSDK::Models::Affiliates::affiliate_revenue_bases?
+
+        attr_accessor total_referral_earnings_usd: Float
+
+        def initialize: (
+          id: String,
+          applies_to_payments: WhopSDK::Models::Affiliates::affiliate_applies_to_payments?,
+          applies_to_products: WhopSDK::Models::Affiliates::affiliate_applies_to_products?,
+          checkout_direct_link: String?,
+          commission_type: WhopSDK::Models::Affiliates::affiliate_payout_types,
+          commission_value: Float,
+          override_type: WhopSDK::Models::Affiliates::affiliate_override_roles,
+          plan_id: String?,
+          product_direct_link: String?,
+          product_id: String?,
+          revenue_basis: WhopSDK::Models::Affiliates::affiliate_revenue_bases?,
+          total_referral_earnings_usd: Float
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          applies_to_payments: WhopSDK::Models::Affiliates::affiliate_applies_to_payments?,
+          applies_to_products: WhopSDK::Models::Affiliates::affiliate_applies_to_products?,
+          checkout_direct_link: String?,
+          commission_type: WhopSDK::Models::Affiliates::affiliate_payout_types,
+          commission_value: Float,
+          override_type: WhopSDK::Models::Affiliates::affiliate_override_roles,
+          plan_id: String?,
+          product_direct_link: String?,
+          product_id: String?,
+          revenue_basis: WhopSDK::Models::Affiliates::affiliate_revenue_bases?,
+          total_referral_earnings_usd: Float
+        }
+      end
+    end
+  end
+end

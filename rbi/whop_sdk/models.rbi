@@ -9,6 +9,20 @@ module WhopSDK
 
   AccountLinkCreateParams = WhopSDK::Models::AccountLinkCreateParams
 
+  Affiliate = WhopSDK::Models::Affiliate
+
+  AffiliateArchiveParams = WhopSDK::Models::AffiliateArchiveParams
+
+  AffiliateCreateParams = WhopSDK::Models::AffiliateCreateParams
+
+  AffiliateListParams = WhopSDK::Models::AffiliateListParams
+
+  AffiliateRetrieveParams = WhopSDK::Models::AffiliateRetrieveParams
+
+  Affiliates = WhopSDK::Models::Affiliates
+
+  AffiliateUnarchiveParams = WhopSDK::Models::AffiliateUnarchiveParams
+
   AIChat = WhopSDK::Models::AIChat
 
   AIChatCreateParams = WhopSDK::Models::AIChatCreateParams
@@ -414,6 +428,8 @@ module WhopSDK
 
   NotificationCreateParams = WhopSDK::Models::NotificationCreateParams
 
+  NotificationPreferences = WhopSDK::Models::NotificationPreferences
+
   PageInfo = WhopSDK::Models::PageInfo
 
   Payment = WhopSDK::Models::Payment
@@ -596,6 +612,8 @@ module WhopSDK
   ShipmentSubstatus = WhopSDK::Models::ShipmentSubstatus
 
   SocialLinkWebsites = WhopSDK::Models::SocialLinkWebsites
+
+  Status = WhopSDK::Models::Status
 
   SupportChannel = WhopSDK::Models::SupportChannel
 

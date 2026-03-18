@@ -3,6 +3,8 @@
 module WhopSDK
   module Test
     module Resources
+      module Affiliates
+      end
     end
   end
 end

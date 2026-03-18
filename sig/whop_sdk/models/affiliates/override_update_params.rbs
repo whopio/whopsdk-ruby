@@ -1,0 +1,53 @@
+module WhopSDK
+  module Models
+    module Affiliates
+      type override_update_params =
+        {
+          id: String,
+          override_id: String,
+          applies_to_payments: WhopSDK::Models::Affiliates::affiliate_applies_to_payments?,
+          commission_type: WhopSDK::Models::Affiliates::affiliate_payout_types?,
+          commission_value: Float?,
+          revenue_basis: WhopSDK::Models::Affiliates::affiliate_revenue_bases?
+        }
+        & WhopSDK::Internal::Type::request_parameters
+
+      class OverrideUpdateParams < WhopSDK::Internal::Type::BaseModel
+        extend WhopSDK::Internal::Type::RequestParameters::Converter
+        include WhopSDK::Internal::Type::RequestParameters
+
+        attr_accessor id: String
+
+        attr_accessor override_id: String
+
+        attr_accessor applies_to_payments: WhopSDK::Models::Affiliates::affiliate_applies_to_payments?
+
+        attr_accessor commission_type: WhopSDK::Models::Affiliates::affiliate_payout_types?
+
+        attr_accessor commission_value: Float?
+
+        attr_accessor revenue_basis: WhopSDK::Models::Affiliates::affiliate_revenue_bases?
+
+        def initialize: (
+          id: String,
+          override_id: String,
+          ?applies_to_payments: WhopSDK::Models::Affiliates::affiliate_applies_to_payments?,
+          ?commission_type: WhopSDK::Models::Affiliates::affiliate_payout_types?,
+          ?commission_value: Float?,
+          ?revenue_basis: WhopSDK::Models::Affiliates::affiliate_revenue_bases?,
+          ?request_options: WhopSDK::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          override_id: String,
+          applies_to_payments: WhopSDK::Models::Affiliates::affiliate_applies_to_payments?,
+          commission_type: WhopSDK::Models::Affiliates::affiliate_payout_types?,
+          commission_value: Float?,
+          revenue_basis: WhopSDK::Models::Affiliates::affiliate_revenue_bases?,
+          request_options: WhopSDK::RequestOptions
+        }
+      end
+    end
+  end
+end

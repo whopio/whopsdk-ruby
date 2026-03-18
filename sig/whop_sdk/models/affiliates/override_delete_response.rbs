@@ -1,0 +1,7 @@
+module WhopSDK
+  module Models
+    module Affiliates
+      OverrideDeleteResponse: WhopSDK::Internal::Type::Converter
+    end
+  end
+end

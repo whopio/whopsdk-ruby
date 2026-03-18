@@ -79,7 +79,7 @@ module WhopSDK
       #
       # @param current_company_id [String, nil] The unique identifier of the company to set as context for the AI chat (e.g., "b
       #
-      # @param notification_preference [Symbol, WhopSDK::Models::AIChatUpdateParams::NotificationPreference, nil] The notification preference for an AI chat
+      # @param notification_preference [Symbol, WhopSDK::Models::NotificationPreferences, nil] The notification preference for an AI chat
       #
       # @param title [String, nil] The new display title for the AI chat thread (e.g., "Help with billing").
       #

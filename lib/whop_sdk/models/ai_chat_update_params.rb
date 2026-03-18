@@ -22,10 +22,8 @@ module WhopSDK
       # @!attribute notification_preference
       #   The notification preference for an AI chat
       #
-      #   @return [Symbol, WhopSDK::Models::AIChatUpdateParams::NotificationPreference, nil]
-      optional :notification_preference,
-               enum: -> { WhopSDK::AIChatUpdateParams::NotificationPreference },
-               nil?: true
+      #   @return [Symbol, WhopSDK::Models::NotificationPreferences, nil]
+      optional :notification_preference, enum: -> { WhopSDK::NotificationPreferences }, nil?: true
 
       # @!attribute title
       #   The new display title for the AI chat thread (e.g., "Help with billing").
@@ -41,22 +39,11 @@ module WhopSDK
       #
       #   @param current_company_id [String, nil] The unique identifier of the company to set as context for the AI chat (e.g., "b
       #
-      #   @param notification_preference [Symbol, WhopSDK::Models::AIChatUpdateParams::NotificationPreference, nil] The notification preference for an AI chat
+      #   @param notification_preference [Symbol, WhopSDK::Models::NotificationPreferences, nil] The notification preference for an AI chat
       #
       #   @param title [String, nil] The new display title for the AI chat thread (e.g., "Help with billing").
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
-
-      # The notification preference for an AI chat
-      module NotificationPreference
-        extend WhopSDK::Internal::Type::Enum
-
-        ALL = :all
-        NONE = :none
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
     end
   end
 end

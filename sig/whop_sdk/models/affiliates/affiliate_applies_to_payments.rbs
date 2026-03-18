@@ -1,0 +1,18 @@
+module WhopSDK
+  module Models
+    module AffiliateAppliesToPayments = Affiliates::AffiliateAppliesToPayments
+
+    module Affiliates
+      type affiliate_applies_to_payments = :first_payment | :all_payments
+
+      module AffiliateAppliesToPayments
+        extend WhopSDK::Internal::Type::Enum
+
+        FIRST_PAYMENT: :first_payment
+        ALL_PAYMENTS: :all_payments
+
+        def self?.values: -> ::Array[WhopSDK::Models::Affiliates::affiliate_applies_to_payments]
+      end
+    end
+  end
+end

@@ -69,9 +69,7 @@ module WhopSDK
           id: String,
           current_company_id: T.nilable(String),
           notification_preference:
-            T.nilable(
-              WhopSDK::AIChatUpdateParams::NotificationPreference::OrSymbol
-            ),
+            T.nilable(WhopSDK::NotificationPreferences::OrSymbol),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::AIChat)

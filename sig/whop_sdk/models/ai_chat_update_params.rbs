@@ -4,7 +4,7 @@ module WhopSDK
       {
         id: String,
         current_company_id: String?,
-        notification_preference: WhopSDK::Models::AIChatUpdateParams::notification_preference?,
+        notification_preference: WhopSDK::Models::notification_preferences?,
         title: String?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -17,14 +17,14 @@ module WhopSDK
 
       attr_accessor current_company_id: String?
 
-      attr_accessor notification_preference: WhopSDK::Models::AIChatUpdateParams::notification_preference?
+      attr_accessor notification_preference: WhopSDK::Models::notification_preferences?
 
       attr_accessor title: String?
 
       def initialize: (
         id: String,
         ?current_company_id: String?,
-        ?notification_preference: WhopSDK::Models::AIChatUpdateParams::notification_preference?,
+        ?notification_preference: WhopSDK::Models::notification_preferences?,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
@@ -32,21 +32,10 @@ module WhopSDK
       def to_hash: -> {
         id: String,
         current_company_id: String?,
-        notification_preference: WhopSDK::Models::AIChatUpdateParams::notification_preference?,
+        notification_preference: WhopSDK::Models::notification_preferences?,
         title: String?,
         request_options: WhopSDK::RequestOptions
       }
-
-      type notification_preference = :all | :none
-
-      module NotificationPreference
-        extend WhopSDK::Internal::Type::Enum
-
-        ALL: :all
-        NONE: :none
-
-        def self?.values: -> ::Array[WhopSDK::Models::AIChatUpdateParams::notification_preference]
-      end
     end
   end
 end

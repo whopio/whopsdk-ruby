@@ -19,7 +19,7 @@ class WhopSDK::Test::Resources::AIChatsTest < WhopSDK::Test::ResourceTest
         created_at: Time,
         last_message_at: Time | nil,
         message_count: Integer,
-        notification_preference: WhopSDK::AIChat::NotificationPreference,
+        notification_preference: WhopSDK::NotificationPreferences,
         title: String | nil,
         updated_at: Time,
         user: WhopSDK::AIChat::User
@@ -43,7 +43,7 @@ class WhopSDK::Test::Resources::AIChatsTest < WhopSDK::Test::ResourceTest
         created_at: Time,
         last_message_at: Time | nil,
         message_count: Integer,
-        notification_preference: WhopSDK::AIChat::NotificationPreference,
+        notification_preference: WhopSDK::NotificationPreferences,
         title: String | nil,
         updated_at: Time,
         user: WhopSDK::AIChat::User
@@ -67,7 +67,7 @@ class WhopSDK::Test::Resources::AIChatsTest < WhopSDK::Test::ResourceTest
         created_at: Time,
         last_message_at: Time | nil,
         message_count: Integer,
-        notification_preference: WhopSDK::AIChat::NotificationPreference,
+        notification_preference: WhopSDK::NotificationPreferences,
         title: String | nil,
         updated_at: Time,
         user: WhopSDK::AIChat::User
@@ -98,7 +98,7 @@ class WhopSDK::Test::Resources::AIChatsTest < WhopSDK::Test::ResourceTest
         created_at: Time,
         last_message_at: Time | nil,
         message_count: Integer,
-        notification_preference: WhopSDK::Models::AIChatListResponse::NotificationPreference,
+        notification_preference: WhopSDK::NotificationPreferences,
         title: String | nil,
         updated_at: Time,
         user: WhopSDK::Models::AIChatListResponse::User

@@ -20,13 +20,7 @@ module WhopSDK
       attr_accessor :current_company_id
 
       # The notification preference for an AI chat
-      sig do
-        returns(
-          T.nilable(
-            WhopSDK::AIChatUpdateParams::NotificationPreference::OrSymbol
-          )
-        )
-      end
+      sig { returns(T.nilable(WhopSDK::NotificationPreferences::OrSymbol)) }
       attr_accessor :notification_preference
 
       # The new display title for the AI chat thread (e.g., "Help with billing").
@@ -38,9 +32,7 @@ module WhopSDK
           id: String,
           current_company_id: T.nilable(String),
           notification_preference:
-            T.nilable(
-              WhopSDK::AIChatUpdateParams::NotificationPreference::OrSymbol
-            ),
+            T.nilable(WhopSDK::NotificationPreferences::OrSymbol),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -64,47 +56,13 @@ module WhopSDK
             id: String,
             current_company_id: T.nilable(String),
             notification_preference:
-              T.nilable(
-                WhopSDK::AIChatUpdateParams::NotificationPreference::OrSymbol
-              ),
+              T.nilable(WhopSDK::NotificationPreferences::OrSymbol),
             title: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }
         )
       end
       def to_hash
-      end
-
-      # The notification preference for an AI chat
-      module NotificationPreference
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::AIChatUpdateParams::NotificationPreference)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        ALL =
-          T.let(
-            :all,
-            WhopSDK::AIChatUpdateParams::NotificationPreference::TaggedSymbol
-          )
-        NONE =
-          T.let(
-            :none,
-            WhopSDK::AIChatUpdateParams::NotificationPreference::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::AIChatUpdateParams::NotificationPreference::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
-        end
       end
     end
   end

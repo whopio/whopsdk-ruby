@@ -31,11 +31,7 @@ module WhopSDK
 
       # The notification preference for this AI chat. `all` delivers AI chat
       # notifications and badges, while `none` mutes them.
-      sig do
-        returns(
-          WhopSDK::Models::AIChatListResponse::NotificationPreference::TaggedSymbol
-        )
-      end
+      sig { returns(WhopSDK::NotificationPreferences::TaggedSymbol) }
       attr_accessor :notification_preference
 
       # A short descriptive title for this AI chat conversation. Null if no title has
@@ -65,8 +61,7 @@ module WhopSDK
           created_at: Time,
           last_message_at: T.nilable(Time),
           message_count: Integer,
-          notification_preference:
-            WhopSDK::Models::AIChatListResponse::NotificationPreference::OrSymbol,
+          notification_preference: WhopSDK::NotificationPreferences::OrSymbol,
           title: T.nilable(String),
           updated_at: Time,
           user: WhopSDK::Models::AIChatListResponse::User::OrHash
@@ -106,7 +101,7 @@ module WhopSDK
             last_message_at: T.nilable(Time),
             message_count: Integer,
             notification_preference:
-              WhopSDK::Models::AIChatListResponse::NotificationPreference::TaggedSymbol,
+              WhopSDK::NotificationPreferences::TaggedSymbol,
             title: T.nilable(String),
             updated_at: Time,
             user: WhopSDK::Models::AIChatListResponse::User
@@ -114,42 +109,6 @@ module WhopSDK
         )
       end
       def to_hash
-      end
-
-      # The notification preference for this AI chat. `all` delivers AI chat
-      # notifications and badges, while `none` mutes them.
-      module NotificationPreference
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(
-              Symbol,
-              WhopSDK::Models::AIChatListResponse::NotificationPreference
-            )
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        ALL =
-          T.let(
-            :all,
-            WhopSDK::Models::AIChatListResponse::NotificationPreference::TaggedSymbol
-          )
-        NONE =
-          T.let(
-            :none,
-            WhopSDK::Models::AIChatListResponse::NotificationPreference::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::Models::AIChatListResponse::NotificationPreference::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
-        end
       end
 
       class User < WhopSDK::Internal::Type::BaseModel

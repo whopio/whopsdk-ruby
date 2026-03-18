@@ -232,6 +232,10 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::PayoutAccounts) }
     attr_reader :payout_accounts
 
+    # Affiliates
+    sig { returns(WhopSDK::Resources::Affiliates) }
+    attr_reader :affiliates
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

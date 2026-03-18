@@ -1,0 +1,28 @@
+module WhopSDK
+  module Models
+    type affiliate_create_params =
+      { company_id: String, user_identifier: String }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class AffiliateCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor user_identifier: String
+
+      def initialize: (
+        company_id: String,
+        user_identifier: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        user_identifier: String,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

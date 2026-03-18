@@ -3,8 +3,10 @@ module WhopSDK
     type company =
       {
         id: String,
+        affiliate_instructions: String?,
         created_at: Time,
         description: String?,
+        featured_affiliate_product: WhopSDK::Company::FeaturedAffiliateProduct?,
         logo: WhopSDK::Company::Logo?,
         member_count: Integer,
         metadata: ::Hash[Symbol, top]?,
@@ -21,9 +23,13 @@ module WhopSDK
     class Company < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
+      attr_accessor affiliate_instructions: String?
+
       attr_accessor created_at: Time
 
       attr_accessor description: String?
+
+      attr_accessor featured_affiliate_product: WhopSDK::Company::FeaturedAffiliateProduct?
 
       attr_accessor logo: WhopSDK::Company::Logo?
 
@@ -49,8 +55,10 @@ module WhopSDK
 
       def initialize: (
         id: String,
+        affiliate_instructions: String?,
         created_at: Time,
         description: String?,
+        featured_affiliate_product: WhopSDK::Company::FeaturedAffiliateProduct?,
         logo: WhopSDK::Company::Logo?,
         member_count: Integer,
         metadata: ::Hash[Symbol, top]?,
@@ -66,8 +74,10 @@ module WhopSDK
 
       def to_hash: -> {
         id: String,
+        affiliate_instructions: String?,
         created_at: Time,
         description: String?,
+        featured_affiliate_product: WhopSDK::Company::FeaturedAffiliateProduct?,
         logo: WhopSDK::Company::Logo?,
         member_count: Integer,
         metadata: ::Hash[Symbol, top]?,
@@ -80,6 +90,18 @@ module WhopSDK
         updated_at: Time,
         verified: bool
       }
+
+      type featured_affiliate_product = { id: String, name: String }
+
+      class FeaturedAffiliateProduct < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String
+
+        def initialize: (id: String, name: String) -> void
+
+        def to_hash: -> { id: String, name: String }
+      end
 
       type logo = { url: String? }
 

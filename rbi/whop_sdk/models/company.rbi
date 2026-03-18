@@ -10,6 +10,11 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
+      # Guidelines and instructions provided to affiliates explaining how to promote
+      # this company's products.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :affiliate_instructions
+
       # The datetime the company was created.
       sig { returns(Time) }
       attr_accessor :created_at
@@ -18,6 +23,19 @@ module WhopSDK
       # customers on the store page.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
+
+      # The product featured for affiliates to promote on this company's affiliate page.
+      # Null if none is configured.
+      sig { returns(T.nilable(WhopSDK::Company::FeaturedAffiliateProduct)) }
+      attr_reader :featured_affiliate_product
+
+      sig do
+        params(
+          featured_affiliate_product:
+            T.nilable(WhopSDK::Company::FeaturedAffiliateProduct::OrHash)
+        ).void
+      end
+      attr_writer :featured_affiliate_product
 
       # The company's logo.
       sig { returns(T.nilable(WhopSDK::Company::Logo)) }
@@ -79,8 +97,11 @@ module WhopSDK
       sig do
         params(
           id: String,
+          affiliate_instructions: T.nilable(String),
           created_at: Time,
           description: T.nilable(String),
+          featured_affiliate_product:
+            T.nilable(WhopSDK::Company::FeaturedAffiliateProduct::OrHash),
           logo: T.nilable(WhopSDK::Company::Logo::OrHash),
           member_count: Integer,
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
@@ -97,11 +118,17 @@ module WhopSDK
       def self.new(
         # The unique identifier for the company.
         id:,
+        # Guidelines and instructions provided to affiliates explaining how to promote
+        # this company's products.
+        affiliate_instructions:,
         # The datetime the company was created.
         created_at:,
         # A promotional pitch written by the company creator, displayed to potential
         # customers on the store page.
         description:,
+        # The product featured for affiliates to promote on this company's affiliate page.
+        # Null if none is configured.
+        featured_affiliate_product:,
         # The company's logo.
         logo:,
         # The total number of users who currently hold active memberships across all of
@@ -136,8 +163,11 @@ module WhopSDK
         override.returns(
           {
             id: String,
+            affiliate_instructions: T.nilable(String),
             created_at: Time,
             description: T.nilable(String),
+            featured_affiliate_product:
+              T.nilable(WhopSDK::Company::FeaturedAffiliateProduct),
             logo: T.nilable(WhopSDK::Company::Logo),
             member_count: Integer,
             metadata: T.nilable(T::Hash[Symbol, T.anything]),
@@ -153,6 +183,39 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      class FeaturedAffiliateProduct < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Company::FeaturedAffiliateProduct,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The unique identifier for the product.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The display name of the product shown to customers. Maximum 50 characters.
+        sig { returns(String) }
+        attr_accessor :name
+
+        # The product featured for affiliates to promote on this company's affiliate page.
+        # Null if none is configured.
+        sig { params(id: String, name: String).returns(T.attached_class) }
+        def self.new(
+          # The unique identifier for the product.
+          id:,
+          # The display name of the product shown to customers. Maximum 50 characters.
+          name:
+        )
+        end
+
+        sig { override.returns({ id: String, name: String }) }
+        def to_hash
+        end
       end
 
       class Logo < WhopSDK::Internal::Type::BaseModel

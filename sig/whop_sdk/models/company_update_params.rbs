@@ -3,8 +3,11 @@ module WhopSDK
     type company_update_params =
       {
         id: String,
+        affiliate_application_required: bool?,
+        affiliate_instructions: String?,
         banner_image: WhopSDK::CompanyUpdateParams::BannerImage?,
         description: String?,
+        featured_affiliate_product_id: String?,
         logo: WhopSDK::CompanyUpdateParams::Logo?,
         route: String?,
         send_customer_emails: bool?,
@@ -20,9 +23,15 @@ module WhopSDK
 
       attr_accessor id: String
 
+      attr_accessor affiliate_application_required: bool?
+
+      attr_accessor affiliate_instructions: String?
+
       attr_accessor banner_image: WhopSDK::CompanyUpdateParams::BannerImage?
 
       attr_accessor description: String?
+
+      attr_accessor featured_affiliate_product_id: String?
 
       attr_accessor logo: WhopSDK::CompanyUpdateParams::Logo?
 
@@ -38,8 +47,11 @@ module WhopSDK
 
       def initialize: (
         id: String,
+        ?affiliate_application_required: bool?,
+        ?affiliate_instructions: String?,
         ?banner_image: WhopSDK::CompanyUpdateParams::BannerImage?,
         ?description: String?,
+        ?featured_affiliate_product_id: String?,
         ?logo: WhopSDK::CompanyUpdateParams::Logo?,
         ?route: String?,
         ?send_customer_emails: bool?,
@@ -51,8 +63,11 @@ module WhopSDK
 
       def to_hash: -> {
         id: String,
+        affiliate_application_required: bool?,
+        affiliate_instructions: String?,
         banner_image: WhopSDK::CompanyUpdateParams::BannerImage?,
         description: String?,
+        featured_affiliate_product_id: String?,
         logo: WhopSDK::CompanyUpdateParams::Logo?,
         route: String?,
         send_customer_emails: bool?,

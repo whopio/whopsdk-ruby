@@ -74,9 +74,12 @@ module WhopSDK
       sig do
         params(
           id: String,
+          affiliate_application_required: T.nilable(T::Boolean),
+          affiliate_instructions: T.nilable(String),
           banner_image:
             T.nilable(WhopSDK::CompanyUpdateParams::BannerImage::OrHash),
           description: T.nilable(String),
+          featured_affiliate_product_id: T.nilable(String),
           logo: T.nilable(WhopSDK::CompanyUpdateParams::Logo::OrHash),
           route: T.nilable(String),
           send_customer_emails: T.nilable(T::Boolean),
@@ -92,11 +95,20 @@ module WhopSDK
       def update(
         # The unique identifier of the company to update.
         id,
+        # Whether prospective affiliates must submit an application before they can
+        # promote this company.
+        affiliate_application_required: nil,
+        # Guidelines and instructions shown to affiliates explaining how to promote this
+        # company's products.
+        affiliate_instructions: nil,
         # The company's banner image. Accepts PNG or JPEG format.
         banner_image: nil,
         # A promotional pitch displayed to potential customers on the company's store
         # page.
         description: nil,
+        # The ID of the product to feature on this company's affiliate page. Pass null to
+        # clear.
+        featured_affiliate_product_id: nil,
         # The company's logo image. Accepts PNG, JPEG, or GIF format.
         logo: nil,
         # The unique URL slug for the company's store page. Must be lowercase and can

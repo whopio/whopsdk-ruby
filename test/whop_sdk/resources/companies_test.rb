@@ -15,8 +15,10 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        affiliate_instructions: String | nil,
         created_at: Time,
         description: String | nil,
+        featured_affiliate_product: WhopSDK::Company::FeaturedAffiliateProduct | nil,
         logo: WhopSDK::Company::Logo | nil,
         member_count: Integer,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
@@ -44,8 +46,10 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        affiliate_instructions: String | nil,
         created_at: Time,
         description: String | nil,
+        featured_affiliate_product: WhopSDK::Company::FeaturedAffiliateProduct | nil,
         logo: WhopSDK::Company::Logo | nil,
         member_count: Integer,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
@@ -73,8 +77,10 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        affiliate_instructions: String | nil,
         created_at: Time,
         description: String | nil,
+        featured_affiliate_product: WhopSDK::Company::FeaturedAffiliateProduct | nil,
         logo: WhopSDK::Company::Logo | nil,
         member_count: Integer,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,

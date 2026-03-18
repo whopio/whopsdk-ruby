@@ -12,6 +12,20 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
+      # @!attribute affiliate_application_required
+      #   Whether prospective affiliates must submit an application before they can
+      #   promote this company.
+      #
+      #   @return [Boolean, nil]
+      optional :affiliate_application_required, WhopSDK::Internal::Type::Boolean, nil?: true
+
+      # @!attribute affiliate_instructions
+      #   Guidelines and instructions shown to affiliates explaining how to promote this
+      #   company's products.
+      #
+      #   @return [String, nil]
+      optional :affiliate_instructions, String, nil?: true
+
       # @!attribute banner_image
       #   The company's banner image. Accepts PNG or JPEG format.
       #
@@ -24,6 +38,13 @@ module WhopSDK
       #
       #   @return [String, nil]
       optional :description, String, nil?: true
+
+      # @!attribute featured_affiliate_product_id
+      #   The ID of the product to feature on this company's affiliate page. Pass null to
+      #   clear.
+      #
+      #   @return [String, nil]
+      optional :featured_affiliate_product_id, String, nil?: true
 
       # @!attribute logo
       #   The company's logo image. Accepts PNG, JPEG, or GIF format.
@@ -68,15 +89,21 @@ module WhopSDK
       #   @return [String, nil]
       optional :title, String, nil?: true
 
-      # @!method initialize(id:, banner_image: nil, description: nil, logo: nil, route: nil, send_customer_emails: nil, social_links: nil, target_audience: nil, title: nil, request_options: {})
+      # @!method initialize(id:, affiliate_application_required: nil, affiliate_instructions: nil, banner_image: nil, description: nil, featured_affiliate_product_id: nil, logo: nil, route: nil, send_customer_emails: nil, social_links: nil, target_audience: nil, title: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CompanyUpdateParams} for more details.
       #
       #   @param id [String]
       #
+      #   @param affiliate_application_required [Boolean, nil] Whether prospective affiliates must submit an application before they can promot
+      #
+      #   @param affiliate_instructions [String, nil] Guidelines and instructions shown to affiliates explaining how to promote this c
+      #
       #   @param banner_image [WhopSDK::Models::CompanyUpdateParams::BannerImage, nil] The company's banner image. Accepts PNG or JPEG format.
       #
       #   @param description [String, nil] A promotional pitch displayed to potential customers on the company's store page
+      #
+      #   @param featured_affiliate_product_id [String, nil] The ID of the product to feature on this company's affiliate page. Pass null to
       #
       #   @param logo [WhopSDK::Models::CompanyUpdateParams::Logo, nil] The company's logo image. Accepts PNG, JPEG, or GIF format.
       #

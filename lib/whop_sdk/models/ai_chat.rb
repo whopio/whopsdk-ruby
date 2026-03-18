@@ -39,8 +39,8 @@ module WhopSDK
       #   The notification preference for this AI chat. `all` delivers AI chat
       #   notifications and badges, while `none` mutes them.
       #
-      #   @return [Symbol, WhopSDK::Models::AIChat::NotificationPreference]
-      required :notification_preference, enum: -> { WhopSDK::AIChat::NotificationPreference }
+      #   @return [Symbol, WhopSDK::Models::NotificationPreferences]
+      required :notification_preference, enum: -> { WhopSDK::NotificationPreferences }
 
       # @!attribute title
       #   A short descriptive title for this AI chat conversation. Null if no title has
@@ -78,27 +78,13 @@ module WhopSDK
       #
       #   @param message_count [Integer] The total number of messages exchanged in this conversation.
       #
-      #   @param notification_preference [Symbol, WhopSDK::Models::AIChat::NotificationPreference] The notification preference for this AI chat. `all` delivers AI chat notificatio
+      #   @param notification_preference [Symbol, WhopSDK::Models::NotificationPreferences] The notification preference for this AI chat. `all` delivers AI chat notificatio
       #
       #   @param title [String, nil] A short descriptive title for this AI chat conversation. Null if no title has be
       #
       #   @param updated_at [Time] The datetime the ai chat was last updated.
       #
       #   @param user [WhopSDK::Models::AIChat::User] The user who owns this AI chat conversation.
-
-      # The notification preference for this AI chat. `all` delivers AI chat
-      # notifications and badges, while `none` mutes them.
-      #
-      # @see WhopSDK::Models::AIChat#notification_preference
-      module NotificationPreference
-        extend WhopSDK::Internal::Type::Enum
-
-        ALL = :all
-        NONE = :none
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
 
       # @see WhopSDK::Models::AIChat#user
       class User < WhopSDK::Internal::Type::BaseModel

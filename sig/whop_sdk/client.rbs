@@ -118,6 +118,8 @@ module WhopSDK
 
     attr_reader payout_accounts: WhopSDK::Resources::PayoutAccounts
 
+    attr_reader affiliates: WhopSDK::Resources::Affiliates
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

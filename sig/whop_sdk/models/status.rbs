@@ -1,0 +1,15 @@
+module WhopSDK
+  module Models
+    type status = :active | :archived | :deleted
+
+    module Status
+      extend WhopSDK::Internal::Type::Enum
+
+      ACTIVE: :active
+      ARCHIVED: :archived
+      DELETED: :deleted
+
+      def self?.values: -> ::Array[WhopSDK::Models::status]
+    end
+  end
+end

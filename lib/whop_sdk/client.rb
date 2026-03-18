@@ -237,6 +237,10 @@ module WhopSDK
     # @return [WhopSDK::Resources::PayoutAccounts]
     attr_reader :payout_accounts
 
+    # Affiliates
+    # @return [WhopSDK::Resources::Affiliates]
+    attr_reader :affiliates
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -351,6 +355,7 @@ module WhopSDK
       @dispute_alerts = WhopSDK::Resources::DisputeAlerts.new(client: self)
       @resolution_center_cases = WhopSDK::Resources::ResolutionCenterCases.new(client: self)
       @payout_accounts = WhopSDK::Resources::PayoutAccounts.new(client: self)
+      @affiliates = WhopSDK::Resources::Affiliates.new(client: self)
     end
   end
 end

@@ -1,0 +1,18 @@
+module WhopSDK
+  module Models
+    module AffiliateRevenueBases = Affiliates::AffiliateRevenueBases
+
+    module Affiliates
+      type affiliate_revenue_bases = :pre_fees | :post_fees
+
+      module AffiliateRevenueBases
+        extend WhopSDK::Internal::Type::Enum
+
+        PRE_FEES: :pre_fees
+        POST_FEES: :post_fees
+
+        def self?.values: -> ::Array[WhopSDK::Models::Affiliates::affiliate_revenue_bases]
+      end
+    end
+  end
+end

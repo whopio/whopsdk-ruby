@@ -1,0 +1,53 @@
+module WhopSDK
+  module Models
+    module Affiliates
+      type override_list_params =
+        {
+          id: String,
+          after: String?,
+          before: String?,
+          first: Integer?,
+          last: Integer?,
+          override_type: WhopSDK::Models::Affiliates::affiliate_override_roles?
+        }
+        & WhopSDK::Internal::Type::request_parameters
+
+      class OverrideListParams < WhopSDK::Internal::Type::BaseModel
+        extend WhopSDK::Internal::Type::RequestParameters::Converter
+        include WhopSDK::Internal::Type::RequestParameters
+
+        attr_accessor id: String
+
+        attr_accessor after: String?
+
+        attr_accessor before: String?
+
+        attr_accessor first: Integer?
+
+        attr_accessor last: Integer?
+
+        attr_accessor override_type: WhopSDK::Models::Affiliates::affiliate_override_roles?
+
+        def initialize: (
+          id: String,
+          ?after: String?,
+          ?before: String?,
+          ?first: Integer?,
+          ?last: Integer?,
+          ?override_type: WhopSDK::Models::Affiliates::affiliate_override_roles?,
+          ?request_options: WhopSDK::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          after: String?,
+          before: String?,
+          first: Integer?,
+          last: Integer?,
+          override_type: WhopSDK::Models::Affiliates::affiliate_override_roles?,
+          request_options: WhopSDK::RequestOptions
+        }
+      end
+    end
+  end
+end

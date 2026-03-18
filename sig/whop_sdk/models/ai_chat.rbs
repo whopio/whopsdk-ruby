@@ -7,7 +7,7 @@ module WhopSDK
         created_at: Time,
         last_message_at: Time?,
         message_count: Integer,
-        notification_preference: WhopSDK::Models::AIChat::notification_preference,
+        notification_preference: WhopSDK::Models::notification_preferences,
         title: String?,
         updated_at: Time,
         user: WhopSDK::AIChat::User
@@ -24,7 +24,7 @@ module WhopSDK
 
       attr_accessor message_count: Integer
 
-      attr_accessor notification_preference: WhopSDK::Models::AIChat::notification_preference
+      attr_accessor notification_preference: WhopSDK::Models::notification_preferences
 
       attr_accessor title: String?
 
@@ -38,7 +38,7 @@ module WhopSDK
         created_at: Time,
         last_message_at: Time?,
         message_count: Integer,
-        notification_preference: WhopSDK::Models::AIChat::notification_preference,
+        notification_preference: WhopSDK::Models::notification_preferences,
         title: String?,
         updated_at: Time,
         user: WhopSDK::AIChat::User
@@ -50,22 +50,11 @@ module WhopSDK
         created_at: Time,
         last_message_at: Time?,
         message_count: Integer,
-        notification_preference: WhopSDK::Models::AIChat::notification_preference,
+        notification_preference: WhopSDK::Models::notification_preferences,
         title: String?,
         updated_at: Time,
         user: WhopSDK::AIChat::User
       }
-
-      type notification_preference = :all | :none
-
-      module NotificationPreference
-        extend WhopSDK::Internal::Type::Enum
-
-        ALL: :all
-        NONE: :none
-
-        def self?.values: -> ::Array[WhopSDK::Models::AIChat::notification_preference]
-      end
 
       type user = { id: String }
 

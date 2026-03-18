@@ -1,0 +1,47 @@
+module WhopSDK
+  module Resources
+    class Affiliates
+      class Overrides
+        def create: (
+          String id,
+          body: WhopSDK::Models::Affiliates::OverrideCreateParams::body,
+          ?request_options: WhopSDK::request_opts
+        ) -> WhopSDK::Models::Affiliates::OverrideCreateResponse
+
+        def retrieve: (
+          String override_id,
+          id: String,
+          ?request_options: WhopSDK::request_opts
+        ) -> WhopSDK::Models::Affiliates::OverrideRetrieveResponse
+
+        def update: (
+          String override_id,
+          id: String,
+          ?applies_to_payments: WhopSDK::Models::Affiliates::affiliate_applies_to_payments?,
+          ?commission_type: WhopSDK::Models::Affiliates::affiliate_payout_types?,
+          ?commission_value: Float?,
+          ?revenue_basis: WhopSDK::Models::Affiliates::affiliate_revenue_bases?,
+          ?request_options: WhopSDK::request_opts
+        ) -> WhopSDK::Models::Affiliates::OverrideUpdateResponse
+
+        def list: (
+          String id,
+          ?after: String?,
+          ?before: String?,
+          ?first: Integer?,
+          ?last: Integer?,
+          ?override_type: WhopSDK::Models::Affiliates::affiliate_override_roles?,
+          ?request_options: WhopSDK::request_opts
+        ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::Affiliates::OverrideListResponse]
+
+        def delete: (
+          String override_id,
+          id: String,
+          ?request_options: WhopSDK::request_opts
+        ) -> bool
+
+        def initialize: (client: WhopSDK::Client) -> void
+      end
+    end
+  end
+end

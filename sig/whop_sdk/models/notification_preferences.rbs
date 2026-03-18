@@ -1,0 +1,14 @@
+module WhopSDK
+  module Models
+    type notification_preferences = :all | :none
+
+    module NotificationPreferences
+      extend WhopSDK::Internal::Type::Enum
+
+      ALL: :all
+      NONE: :none
+
+      def self?.values: -> ::Array[WhopSDK::Models::notification_preferences]
+    end
+  end
+end

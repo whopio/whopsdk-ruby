@@ -15,6 +15,7 @@ module WhopSDK
         route: String,
         send_customer_emails: bool,
         social_links: ::Array[WhopSDK::Company::SocialLink],
+        target_audience: String?,
         title: String,
         updated_at: Time,
         verified: bool
@@ -47,6 +48,8 @@ module WhopSDK
 
       attr_accessor social_links: ::Array[WhopSDK::Company::SocialLink]
 
+      attr_accessor target_audience: String?
+
       attr_accessor title: String
 
       attr_accessor updated_at: Time
@@ -67,6 +70,7 @@ module WhopSDK
         route: String,
         send_customer_emails: bool,
         social_links: ::Array[WhopSDK::Company::SocialLink],
+        target_audience: String?,
         title: String,
         updated_at: Time,
         verified: bool
@@ -86,6 +90,7 @@ module WhopSDK
         route: String,
         send_customer_emails: bool,
         social_links: ::Array[WhopSDK::Company::SocialLink],
+        target_audience: String?,
         title: String,
         updated_at: Time,
         verified: bool

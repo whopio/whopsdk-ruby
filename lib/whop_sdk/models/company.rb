@@ -89,6 +89,12 @@ module WhopSDK
       #   @return [Array<WhopSDK::Models::Company::SocialLink>]
       required :social_links, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Company::SocialLink] }
 
+      # @!attribute target_audience
+      #   The target audience for the company. Null if not set.
+      #
+      #   @return [String, nil]
+      required :target_audience, String, nil?: true
+
       # @!attribute title
       #   The display name of the company shown to customers.
       #
@@ -107,7 +113,7 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, affiliate_instructions:, created_at:, description:, featured_affiliate_product:, logo:, member_count:, metadata:, owner_user:, published_reviews_count:, route:, send_customer_emails:, social_links:, title:, updated_at:, verified:)
+      # @!method initialize(id:, affiliate_instructions:, created_at:, description:, featured_affiliate_product:, logo:, member_count:, metadata:, owner_user:, published_reviews_count:, route:, send_customer_emails:, social_links:, target_audience:, title:, updated_at:, verified:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Company}
       #   for more details.
       #
@@ -139,6 +145,8 @@ module WhopSDK
       #   @param send_customer_emails [Boolean] Whether Whop sends transactional emails (receipts, updates) to customers on beha
       #
       #   @param social_links [Array<WhopSDK::Models::Company::SocialLink>] The list of social media accounts and external links associated with this compan
+      #
+      #   @param target_audience [String, nil] The target audience for the company. Null if not set.
       #
       #   @param title [String] The display name of the company shown to customers.
       #

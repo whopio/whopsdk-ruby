@@ -70,6 +70,10 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :send_customer_emails
 
+      # The target audience for the company. Null if not set.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :target_audience
+
       # The display name of the company shown to customers.
       sig { returns(String) }
       attr_accessor :title
@@ -96,6 +100,7 @@ module WhopSDK
           published_reviews_count: Integer,
           route: String,
           send_customer_emails: T::Boolean,
+          target_audience: T.nilable(String),
           title: String,
           updated_at: Time,
           verified: T::Boolean
@@ -127,6 +132,8 @@ module WhopSDK
         # Whether Whop sends transactional emails (receipts, updates) to customers on
         # behalf of this company.
         send_customer_emails:,
+        # The target audience for the company. Null if not set.
+        target_audience:,
         # The display name of the company shown to customers.
         title:,
         # The datetime the company was last updated.
@@ -149,6 +156,7 @@ module WhopSDK
             published_reviews_count: Integer,
             route: String,
             send_customer_emails: T::Boolean,
+            target_audience: T.nilable(String),
             title: String,
             updated_at: Time,
             verified: T::Boolean

@@ -27,6 +27,7 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
         route: String,
         send_customer_emails: WhopSDK::Internal::Type::Boolean,
         social_links: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Company::SocialLink]),
+        target_audience: String | nil,
         title: String,
         updated_at: Time,
         verified: WhopSDK::Internal::Type::Boolean
@@ -58,6 +59,7 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
         route: String,
         send_customer_emails: WhopSDK::Internal::Type::Boolean,
         social_links: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Company::SocialLink]),
+        target_audience: String | nil,
         title: String,
         updated_at: Time,
         verified: WhopSDK::Internal::Type::Boolean
@@ -89,6 +91,7 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
         route: String,
         send_customer_emails: WhopSDK::Internal::Type::Boolean,
         social_links: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Company::SocialLink]),
+        target_audience: String | nil,
         title: String,
         updated_at: Time,
         verified: WhopSDK::Internal::Type::Boolean
@@ -124,6 +127,7 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
         published_reviews_count: Integer,
         route: String,
         send_customer_emails: WhopSDK::Internal::Type::Boolean,
+        target_audience: String | nil,
         title: String,
         updated_at: Time,
         verified: WhopSDK::Internal::Type::Boolean

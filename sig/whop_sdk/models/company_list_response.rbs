@@ -12,6 +12,7 @@ module WhopSDK
         published_reviews_count: Integer,
         route: String,
         send_customer_emails: bool,
+        target_audience: String?,
         title: String,
         updated_at: Time,
         verified: bool
@@ -38,6 +39,8 @@ module WhopSDK
 
       attr_accessor send_customer_emails: bool
 
+      attr_accessor target_audience: String?
+
       attr_accessor title: String
 
       attr_accessor updated_at: Time
@@ -55,6 +58,7 @@ module WhopSDK
         published_reviews_count: Integer,
         route: String,
         send_customer_emails: bool,
+        target_audience: String?,
         title: String,
         updated_at: Time,
         verified: bool
@@ -71,6 +75,7 @@ module WhopSDK
         published_reviews_count: Integer,
         route: String,
         send_customer_emails: bool,
+        target_audience: String?,
         title: String,
         updated_at: Time,
         verified: bool

@@ -80,6 +80,10 @@ module WhopSDK
       sig { returns(T::Array[WhopSDK::Company::SocialLink]) }
       attr_accessor :social_links
 
+      # The target audience for the company. Null if not set.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :target_audience
+
       # The display name of the company shown to customers.
       sig { returns(String) }
       attr_accessor :title
@@ -110,6 +114,7 @@ module WhopSDK
           route: String,
           send_customer_emails: T::Boolean,
           social_links: T::Array[WhopSDK::Company::SocialLink::OrHash],
+          target_audience: T.nilable(String),
           title: String,
           updated_at: Time,
           verified: T::Boolean
@@ -150,6 +155,8 @@ module WhopSDK
         # The list of social media accounts and external links associated with this
         # company.
         social_links:,
+        # The target audience for the company. Null if not set.
+        target_audience:,
         # The display name of the company shown to customers.
         title:,
         # The datetime the company was last updated.
@@ -176,6 +183,7 @@ module WhopSDK
             route: String,
             send_customer_emails: T::Boolean,
             social_links: T::Array[WhopSDK::Company::SocialLink],
+            target_audience: T.nilable(String),
             title: String,
             updated_at: Time,
             verified: T::Boolean

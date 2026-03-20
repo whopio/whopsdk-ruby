@@ -69,6 +69,12 @@ module WhopSDK
       #   @return [Boolean]
       required :send_customer_emails, WhopSDK::Internal::Type::Boolean
 
+      # @!attribute target_audience
+      #   The target audience for the company. Null if not set.
+      #
+      #   @return [String, nil]
+      required :target_audience, String, nil?: true
+
       # @!attribute title
       #   The display name of the company shown to customers.
       #
@@ -87,7 +93,7 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, created_at:, description:, logo:, member_count:, metadata:, owner_user:, published_reviews_count:, route:, send_customer_emails:, title:, updated_at:, verified:)
+      # @!method initialize(id:, created_at:, description:, logo:, member_count:, metadata:, owner_user:, published_reviews_count:, route:, send_customer_emails:, target_audience:, title:, updated_at:, verified:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CompanyListResponse} for more details.
       #
@@ -113,6 +119,8 @@ module WhopSDK
       #   @param route [String] The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
       #
       #   @param send_customer_emails [Boolean] Whether Whop sends transactional emails (receipts, updates) to customers on beha
+      #
+      #   @param target_audience [String, nil] The target audience for the company. Null if not set.
       #
       #   @param title [String] The display name of the company shown to customers.
       #

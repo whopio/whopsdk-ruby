@@ -19,8 +19,11 @@ module WhopSDK
 
       def update: (
         String id,
+        ?affiliate_application_required: bool?,
+        ?affiliate_instructions: String?,
         ?banner_image: WhopSDK::CompanyUpdateParams::BannerImage?,
         ?description: String?,
+        ?featured_affiliate_product_id: String?,
         ?logo: WhopSDK::CompanyUpdateParams::Logo?,
         ?route: String?,
         ?send_customer_emails: bool?,

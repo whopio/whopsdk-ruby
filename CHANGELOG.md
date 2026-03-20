@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.0.36 (2026-03-20)
+
+Full Changelog: [v0.0.35...v0.0.36](https://github.com/whopio/whopsdk-ruby/compare/v0.0.35...v0.0.36)
+
+### Features
+
+* **api:** api update ([c1ce4e0](https://github.com/whopio/whopsdk-ruby/commit/c1ce4e08b7a1c33b6e43da9c81d00a4cba547067))
+* **api:** api update ([bc8226e](https://github.com/whopio/whopsdk-ruby/commit/bc8226e36a365d09cd1503725ca24106f45633a6))
+
 ## 0.0.35 (2026-03-18)
 
 Full Changelog: [v0.0.34...v0.0.35](https://github.com/whopio/whopsdk-ruby/compare/v0.0.34...v0.0.35)

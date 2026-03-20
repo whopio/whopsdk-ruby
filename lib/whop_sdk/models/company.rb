@@ -9,6 +9,13 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
+      # @!attribute affiliate_instructions
+      #   Guidelines and instructions provided to affiliates explaining how to promote
+      #   this company's products.
+      #
+      #   @return [String, nil]
+      required :affiliate_instructions, String, nil?: true
+
       # @!attribute created_at
       #   The datetime the company was created.
       #
@@ -21,6 +28,13 @@ module WhopSDK
       #
       #   @return [String, nil]
       required :description, String, nil?: true
+
+      # @!attribute featured_affiliate_product
+      #   The product featured for affiliates to promote on this company's affiliate page.
+      #   Null if none is configured.
+      #
+      #   @return [WhopSDK::Models::Company::FeaturedAffiliateProduct, nil]
+      required :featured_affiliate_product, -> { WhopSDK::Company::FeaturedAffiliateProduct }, nil?: true
 
       # @!attribute logo
       #   The company's logo.
@@ -75,6 +89,12 @@ module WhopSDK
       #   @return [Array<WhopSDK::Models::Company::SocialLink>]
       required :social_links, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Company::SocialLink] }
 
+      # @!attribute target_audience
+      #   The target audience for the company. Null if not set.
+      #
+      #   @return [String, nil]
+      required :target_audience, String, nil?: true
+
       # @!attribute title
       #   The display name of the company shown to customers.
       #
@@ -93,7 +113,7 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, created_at:, description:, logo:, member_count:, metadata:, owner_user:, published_reviews_count:, route:, send_customer_emails:, social_links:, title:, updated_at:, verified:)
+      # @!method initialize(id:, affiliate_instructions:, created_at:, description:, featured_affiliate_product:, logo:, member_count:, metadata:, owner_user:, published_reviews_count:, route:, send_customer_emails:, social_links:, target_audience:, title:, updated_at:, verified:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Company}
       #   for more details.
       #
@@ -102,9 +122,13 @@ module WhopSDK
       #
       #   @param id [String] The unique identifier for the company.
       #
+      #   @param affiliate_instructions [String, nil] Guidelines and instructions provided to affiliates explaining how to promote thi
+      #
       #   @param created_at [Time] The datetime the company was created.
       #
       #   @param description [String, nil] A promotional pitch written by the company creator, displayed to potential custo
+      #
+      #   @param featured_affiliate_product [WhopSDK::Models::Company::FeaturedAffiliateProduct, nil] The product featured for affiliates to promote on this company's affiliate page.
       #
       #   @param logo [WhopSDK::Models::Company::Logo, nil] The company's logo.
       #
@@ -122,11 +146,36 @@ module WhopSDK
       #
       #   @param social_links [Array<WhopSDK::Models::Company::SocialLink>] The list of social media accounts and external links associated with this compan
       #
+      #   @param target_audience [String, nil] The target audience for the company. Null if not set.
+      #
       #   @param title [String] The display name of the company shown to customers.
       #
       #   @param updated_at [Time] The datetime the company was last updated.
       #
       #   @param verified [Boolean] Whether this company has been verified by Whop's trust and safety team.
+
+      # @see WhopSDK::Models::Company#featured_affiliate_product
+      class FeaturedAffiliateProduct < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The unique identifier for the product.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute name
+        #   The display name of the product shown to customers. Maximum 50 characters.
+        #
+        #   @return [String]
+        required :name, String
+
+        # @!method initialize(id:, name:)
+        #   The product featured for affiliates to promote on this company's affiliate page.
+        #   Null if none is configured.
+        #
+        #   @param id [String] The unique identifier for the product.
+        #
+        #   @param name [String] The display name of the product shown to customers. Maximum 50 characters.
+      end
 
       # @see WhopSDK::Models::Company#logo
       class Logo < WhopSDK::Internal::Type::BaseModel

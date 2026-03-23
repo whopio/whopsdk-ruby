@@ -27,8 +27,11 @@ class WhopSDK::Test::Resources::AppsTest < WhopSDK::Test::ResourceTest
         experience_path: String | nil,
         icon: WhopSDK::App::Icon | nil,
         name: String,
+        openapi_path: String | nil,
+        origin: String | nil,
         redirect_uris: ^(WhopSDK::Internal::Type::ArrayOf[String]),
         requested_permissions: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::App::RequestedPermission]),
+        skills_path: String | nil,
         stats: WhopSDK::App::Stats | nil,
         status: WhopSDK::AppStatuses,
         verified: WhopSDK::Internal::Type::Boolean
@@ -60,8 +63,11 @@ class WhopSDK::Test::Resources::AppsTest < WhopSDK::Test::ResourceTest
         experience_path: String | nil,
         icon: WhopSDK::App::Icon | nil,
         name: String,
+        openapi_path: String | nil,
+        origin: String | nil,
         redirect_uris: ^(WhopSDK::Internal::Type::ArrayOf[String]),
         requested_permissions: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::App::RequestedPermission]),
+        skills_path: String | nil,
         stats: WhopSDK::App::Stats | nil,
         status: WhopSDK::AppStatuses,
         verified: WhopSDK::Internal::Type::Boolean
@@ -93,8 +99,11 @@ class WhopSDK::Test::Resources::AppsTest < WhopSDK::Test::ResourceTest
         experience_path: String | nil,
         icon: WhopSDK::App::Icon | nil,
         name: String,
+        openapi_path: String | nil,
+        origin: String | nil,
         redirect_uris: ^(WhopSDK::Internal::Type::ArrayOf[String]),
         requested_permissions: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::App::RequestedPermission]),
+        skills_path: String | nil,
         stats: WhopSDK::App::Stats | nil,
         status: WhopSDK::AppStatuses,
         verified: WhopSDK::Internal::Type::Boolean
@@ -132,6 +141,9 @@ class WhopSDK::Test::Resources::AppsTest < WhopSDK::Test::ResourceTest
         experience_path: String | nil,
         icon: WhopSDK::Models::AppListResponse::Icon | nil,
         name: String,
+        openapi_path: String | nil,
+        origin: String | nil,
+        skills_path: String | nil,
         status: WhopSDK::AppStatuses,
         verified: WhopSDK::Internal::Type::Boolean
       }

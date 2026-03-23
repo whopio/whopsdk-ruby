@@ -11,6 +11,8 @@ module WhopSDK
       DASH = :dash
       DASHBOARD = :dashboard
       ANALYTICS = :analytics
+      SKILLS = :skills
+      OPENAPI = :openapi
 
       # @!method self.values
       #   @return [Array<Symbol>]

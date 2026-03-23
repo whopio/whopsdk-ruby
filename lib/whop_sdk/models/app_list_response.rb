@@ -88,6 +88,29 @@ module WhopSDK
       #   @return [String]
       required :name, String
 
+      # @!attribute openapi_path
+      #   The URL path template for a specific view of this app, appended to the base
+      #   domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+      #   not configured.
+      #
+      #   @return [String, nil]
+      required :openapi_path, String, nil?: true
+
+      # @!attribute origin
+      #   The full origin URL for this app's proxied domain (e.g.,
+      #   'https://myapp.apps.whop.com'). Null if no proxy domain is configured.
+      #
+      #   @return [String, nil]
+      required :origin, String, nil?: true
+
+      # @!attribute skills_path
+      #   The URL path template for a specific view of this app, appended to the base
+      #   domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+      #   not configured.
+      #
+      #   @return [String, nil]
+      required :skills_path, String, nil?: true
+
       # @!attribute status
       #   The current visibility status of this app on the Whop app store. 'live' means
       #   publicly discoverable, 'unlisted' means accessible only via direct link, and
@@ -103,7 +126,7 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, app_type:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, icon:, name:, status:, verified:)
+      # @!method initialize(id:, app_type:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, icon:, name:, openapi_path:, origin:, skills_path:, status:, verified:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AppListResponse} for more details.
       #
@@ -133,6 +156,12 @@ module WhopSDK
       #   @param icon [WhopSDK::Models::AppListResponse::Icon, nil] The icon image for this app, displayed on the app store, product pages, checkout
       #
       #   @param name [String] The display name of this app shown on the app store and in experience navigation
+      #
+      #   @param openapi_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
+      #
+      #   @param origin [String, nil] The full origin URL for this app's proxied domain (e.g., 'https://myapp.apps.who
+      #
+      #   @param skills_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
       #
       #   @param status [Symbol, WhopSDK::Models::AppStatuses] The current visibility status of this app on the Whop app store. 'live' means pu
       #

@@ -14,6 +14,8 @@ module WhopSDK
       DASH = T.let(:dash, WhopSDK::AppViewType::TaggedSymbol)
       DASHBOARD = T.let(:dashboard, WhopSDK::AppViewType::TaggedSymbol)
       ANALYTICS = T.let(:analytics, WhopSDK::AppViewType::TaggedSymbol)
+      SKILLS = T.let(:skills, WhopSDK::AppViewType::TaggedSymbol)
+      OPENAPI = T.let(:openapi, WhopSDK::AppViewType::TaggedSymbol)
 
       sig { override.returns(T::Array[WhopSDK::AppViewType::TaggedSymbol]) }
       def self.values

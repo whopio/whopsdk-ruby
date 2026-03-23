@@ -94,6 +94,21 @@ module WhopSDK
       #   @return [String]
       required :name, String
 
+      # @!attribute openapi_path
+      #   The URL path template for a specific view of this app, appended to the base
+      #   domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+      #   not configured.
+      #
+      #   @return [String, nil]
+      required :openapi_path, String, nil?: true
+
+      # @!attribute origin
+      #   The full origin URL for this app's proxied domain (e.g.,
+      #   'https://myapp.apps.whop.com'). Null if no proxy domain is configured.
+      #
+      #   @return [String, nil]
+      required :origin, String, nil?: true
+
       # @!attribute redirect_uris
       #   The whitelisted OAuth callback URLs that users are redirected to after
       #   authorizing the app.
@@ -108,6 +123,14 @@ module WhopSDK
       #   @return [Array<WhopSDK::Models::App::RequestedPermission>]
       required :requested_permissions,
                -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::App::RequestedPermission] }
+
+      # @!attribute skills_path
+      #   The URL path template for a specific view of this app, appended to the base
+      #   domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+      #   not configured.
+      #
+      #   @return [String, nil]
+      required :skills_path, String, nil?: true
 
       # @!attribute stats
       #   Aggregate usage statistics for this app, including daily, weekly, and monthly
@@ -131,7 +154,7 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, api_key:, app_type:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, icon:, name:, redirect_uris:, requested_permissions:, stats:, status:, verified:)
+      # @!method initialize(id:, api_key:, app_type:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, icon:, name:, openapi_path:, origin:, redirect_uris:, requested_permissions:, skills_path:, stats:, status:, verified:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::App} for
       #   more details.
       #
@@ -164,9 +187,15 @@ module WhopSDK
       #
       #   @param name [String] The display name of this app shown on the app store and in experience navigation
       #
+      #   @param openapi_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
+      #
+      #   @param origin [String, nil] The full origin URL for this app's proxied domain (e.g., 'https://myapp.apps.who
+      #
       #   @param redirect_uris [Array<String>] The whitelisted OAuth callback URLs that users are redirected to after authorizi
       #
       #   @param requested_permissions [Array<WhopSDK::Models::App::RequestedPermission>] The list of permissions this app requests when installed, including both require
+      #
+      #   @param skills_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
       #
       #   @param stats [WhopSDK::Models::App::Stats, nil] Aggregate usage statistics for this app, including daily, weekly, and monthly ac
       #

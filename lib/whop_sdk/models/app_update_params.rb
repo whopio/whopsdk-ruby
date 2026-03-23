@@ -74,6 +74,13 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::AppUpdateParams::OAuthClientType, nil]
       optional :oauth_client_type, enum: -> { WhopSDK::AppUpdateParams::OAuthClientType }, nil?: true
 
+      # @!attribute openapi_path
+      #   The URL path to the OpenAPI spec file of the app, such as
+      #   '/assets/openapi.json'.
+      #
+      #   @return [String, nil]
+      optional :openapi_path, String, nil?: true
+
       # @!attribute redirect_uris
       #   The whitelisted OAuth callback URLs that users are redirected to after
       #   authorizing the app
@@ -89,13 +96,19 @@ module WhopSDK
                -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::AppUpdateParams::RequiredScope] },
                nil?: true
 
+      # @!attribute skills_path
+      #   The URL path to the skills directory of the app, such as '/assets/skills/'.
+      #
+      #   @return [String, nil]
+      optional :skills_path, String, nil?: true
+
       # @!attribute status
       #   The status of an experience interface
       #
       #   @return [Symbol, WhopSDK::Models::AppStatuses, nil]
       optional :status, enum: -> { WhopSDK::AppStatuses }, nil?: true
 
-      # @!method initialize(id:, app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, oauth_client_type: nil, redirect_uris: nil, required_scopes: nil, status: nil, request_options: {})
+      # @!method initialize(id:, app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, oauth_client_type: nil, openapi_path: nil, redirect_uris: nil, required_scopes: nil, skills_path: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AppUpdateParams} for more details.
       #
@@ -121,9 +134,13 @@ module WhopSDK
       #
       #   @param oauth_client_type [Symbol, WhopSDK::Models::AppUpdateParams::OAuthClientType, nil] How this app authenticates at the OAuth token endpoint.
       #
+      #   @param openapi_path [String, nil] The URL path to the OpenAPI spec file of the app, such as '/assets/openapi.json'
+      #
       #   @param redirect_uris [Array<String>, nil] The whitelisted OAuth callback URLs that users are redirected to after authorizi
       #
       #   @param required_scopes [Array<Symbol, WhopSDK::Models::AppUpdateParams::RequiredScope>, nil] The permission scopes the app will request from users when they install it.
+      #
+      #   @param skills_path [String, nil] The URL path to the skills directory of the app, such as '/assets/skills/'.
       #
       #   @param status [Symbol, WhopSDK::Models::AppStatuses, nil] The status of an experience interface
       #

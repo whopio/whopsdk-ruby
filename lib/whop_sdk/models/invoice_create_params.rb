@@ -84,6 +84,17 @@ module WhopSDK
           #   @return [Time, nil]
           optional :automatically_finalizes_at, Time, nil?: true
 
+          # @!attribute billing_address
+          #   Inline billing address to create a new mailing address for this invoice. Cannot
+          #   be used together with mailing_address_id.
+          #
+          #   @return [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::BillingAddress, nil]
+          optional :billing_address,
+                   -> {
+                     WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::BillingAddress
+                   },
+                   nil?: true
+
           # @!attribute charge_buyer_fee
           #   Whether to charge the customer a buyer fee on this invoice.
           #
@@ -96,6 +107,13 @@ module WhopSDK
           #
           #   @return [String, nil]
           optional :customer_name, String, nil?: true
+
+          # @!attribute mailing_address_id
+          #   The unique identifier of an existing mailing address to attach to this invoice.
+          #   Cannot be used together with billing_address.
+          #
+          #   @return [String, nil]
+          optional :mailing_address_id, String, nil?: true
 
           # @!attribute payment_method_id
           #   The unique identifier of the payment method to charge. Required when
@@ -111,7 +129,7 @@ module WhopSDK
           #   @return [String, nil]
           optional :payment_token_id, String, nil?: true
 
-          # @!method initialize(collection_method:, company_id:, due_date:, member_id:, plan:, product:, automatically_finalizes_at: nil, charge_buyer_fee: nil, customer_name: nil, payment_method_id: nil, payment_token_id: nil)
+          # @!method initialize(collection_method:, company_id:, due_date:, member_id:, plan:, product:, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, customer_name: nil, mailing_address_id: nil, payment_method_id: nil, payment_token_id: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID}
           #   for more details.
@@ -132,9 +150,13 @@ module WhopSDK
           #
           #   @param automatically_finalizes_at [Time, nil] The date and time when the invoice will be automatically finalized and charged.
           #
+          #   @param billing_address [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::BillingAddress, nil] Inline billing address to create a new mailing address for this invoice. Cannot
+          #
           #   @param charge_buyer_fee [Boolean, nil] Whether to charge the customer a buyer fee on this invoice.
           #
           #   @param customer_name [String, nil] The name of the customer. Required when creating an invoice for a customer who i
+          #
+          #   @param mailing_address_id [String, nil] The unique identifier of an existing mailing address to attach to this invoice.
           #
           #   @param payment_method_id [String, nil] The unique identifier of the payment method to charge. Required when
           #   collection\_
@@ -400,6 +422,219 @@ module WhopSDK
             #
             #   @param product_tax_code_id [String, nil] The ID of the product tax code to apply to this product.
           end
+
+          # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID#billing_address
+          class BillingAddress < WhopSDK::Internal::Type::BaseModel
+            # @!attribute city
+            #   The city of the address.
+            #
+            #   @return [String, nil]
+            optional :city, String, nil?: true
+
+            # @!attribute country
+            #   The country of the address.
+            #
+            #   @return [String, nil]
+            optional :country, String, nil?: true
+
+            # @!attribute line1
+            #   The line 1 of the address.
+            #
+            #   @return [String, nil]
+            optional :line1, String, nil?: true
+
+            # @!attribute line2
+            #   The line 2 of the address.
+            #
+            #   @return [String, nil]
+            optional :line2, String, nil?: true
+
+            # @!attribute name
+            #   The name of the customer.
+            #
+            #   @return [String, nil]
+            optional :name, String, nil?: true
+
+            # @!attribute phone
+            #   The phone number of the customer.
+            #
+            #   @return [String, nil]
+            optional :phone, String, nil?: true
+
+            # @!attribute postal_code
+            #   The postal code of the address.
+            #
+            #   @return [String, nil]
+            optional :postal_code, String, nil?: true
+
+            # @!attribute state
+            #   The state of the address.
+            #
+            #   @return [String, nil]
+            optional :state, String, nil?: true
+
+            # @!attribute tax_id_type
+            #   The type of tax identifier
+            #
+            #   @return [Symbol, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::BillingAddress::TaxIDType, nil]
+            optional :tax_id_type,
+                     enum: -> {
+                       WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::BillingAddress::TaxIDType
+                     },
+                     nil?: true
+
+            # @!attribute tax_id_value
+            #   The value of the tax identifier.
+            #
+            #   @return [String, nil]
+            optional :tax_id_value, String, nil?: true
+
+            # @!method initialize(city: nil, country: nil, line1: nil, line2: nil, name: nil, phone: nil, postal_code: nil, state: nil, tax_id_type: nil, tax_id_value: nil)
+            #   Inline billing address to create a new mailing address for this invoice. Cannot
+            #   be used together with mailing_address_id.
+            #
+            #   @param city [String, nil] The city of the address.
+            #
+            #   @param country [String, nil] The country of the address.
+            #
+            #   @param line1 [String, nil] The line 1 of the address.
+            #
+            #   @param line2 [String, nil] The line 2 of the address.
+            #
+            #   @param name [String, nil] The name of the customer.
+            #
+            #   @param phone [String, nil] The phone number of the customer.
+            #
+            #   @param postal_code [String, nil] The postal code of the address.
+            #
+            #   @param state [String, nil] The state of the address.
+            #
+            #   @param tax_id_type [Symbol, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::BillingAddress::TaxIDType, nil] The type of tax identifier
+            #
+            #   @param tax_id_value [String, nil] The value of the tax identifier.
+
+            # The type of tax identifier
+            #
+            # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::BillingAddress#tax_id_type
+            module TaxIDType
+              extend WhopSDK::Internal::Type::Enum
+
+              AD_NRT = :ad_nrt
+              AO_TIN = :ao_tin
+              AR_CUIT = :ar_cuit
+              AM_TIN = :am_tin
+              AW_TIN = :aw_tin
+              AU_ABN = :au_abn
+              AU_ARN = :au_arn
+              EU_VAT = :eu_vat
+              AZ_TIN = :az_tin
+              BS_TIN = :bs_tin
+              BH_VAT = :bh_vat
+              BD_BIN = :bd_bin
+              BB_TIN = :bb_tin
+              BY_TIN = :by_tin
+              BJ_IFU = :bj_ifu
+              BO_TIN = :bo_tin
+              BA_TIN = :ba_tin
+              BR_CNPJ = :br_cnpj
+              BR_CPF = :br_cpf
+              BG_UIC = :bg_uic
+              BF_IFU = :bf_ifu
+              KH_TIN = :kh_tin
+              CM_NIU = :cm_niu
+              CA_BN = :ca_bn
+              CA_GST_HST = :ca_gst_hst
+              CA_PST_BC = :ca_pst_bc
+              CA_PST_MB = :ca_pst_mb
+              CA_PST_SK = :ca_pst_sk
+              CA_QST = :ca_qst
+              CV_NIF = :cv_nif
+              CL_TIN = :cl_tin
+              CN_TIN = :cn_tin
+              CO_NIT = :co_nit
+              CD_NIF = :cd_nif
+              CR_TIN = :cr_tin
+              HR_OIB = :hr_oib
+              DO_RCN = :do_rcn
+              EC_RUC = :ec_ruc
+              EG_TIN = :eg_tin
+              SV_NIT = :sv_nit
+              ET_TIN = :et_tin
+              EU_OSS_VAT = :eu_oss_vat
+              GE_VAT = :ge_vat
+              DE_STN = :de_stn
+              GB_VAT = :gb_vat
+              GN_NIF = :gn_nif
+              HK_BR = :hk_br
+              HU_TIN = :hu_tin
+              IS_VAT = :is_vat
+              IN_GST = :in_gst
+              ID_NPWP = :id_npwp
+              IL_VAT = :il_vat
+              JP_CN = :jp_cn
+              JP_RN = :jp_rn
+              JP_TRN = :jp_trn
+              KZ_BIN = :kz_bin
+              KE_PIN = :ke_pin
+              KG_TIN = :kg_tin
+              LA_TIN = :la_tin
+              LI_UID = :li_uid
+              LI_VAT = :li_vat
+              MY_FRP = :my_frp
+              MY_ITN = :my_itn
+              MY_SST = :my_sst
+              MR_NIF = :mr_nif
+              MX_RFC = :mx_rfc
+              MD_VAT = :md_vat
+              ME_PIB = :me_pib
+              MA_VAT = :ma_vat
+              NP_PAN = :np_pan
+              NZ_GST = :nz_gst
+              NG_TIN = :ng_tin
+              MK_VAT = :mk_vat
+              NO_VAT = :no_vat
+              NO_VOEC = :no_voec
+              OM_VAT = :om_vat
+              PE_RUC = :pe_ruc
+              PH_TIN = :ph_tin
+              PL_NIP = :pl_nip
+              RO_TIN = :ro_tin
+              RU_INN = :ru_inn
+              RU_KPP = :ru_kpp
+              SA_VAT = :sa_vat
+              SN_NINEA = :sn_ninea
+              RS_PIB = :rs_pib
+              SG_GST = :sg_gst
+              SG_UEN = :sg_uen
+              SI_TIN = :si_tin
+              ZA_VAT = :za_vat
+              KR_BRN = :kr_brn
+              ES_CIF = :es_cif
+              CH_UID = :ch_uid
+              CH_VAT = :ch_vat
+              TW_VAT = :tw_vat
+              TJ_TIN = :tj_tin
+              TZ_VAT = :tz_vat
+              TH_VAT = :th_vat
+              TR_TIN = :tr_tin
+              UG_TIN = :ug_tin
+              UA_VAT = :ua_vat
+              AE_TRN = :ae_trn
+              US_EIN = :us_ein
+              UY_RUC = :uy_ruc
+              UZ_TIN = :uz_tin
+              UZ_VAT = :uz_vat
+              VE_RIF = :ve_rif
+              VN_TIN = :vn_tin
+              ZM_TIN = :zm_tin
+              ZW_TIN = :zw_tin
+              SR_FIN = :sr_fin
+              XI_VAT = :xi_vat
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
         end
 
         class CreateInvoiceInputWithProductAndEmailAddress < WhopSDK::Internal::Type::BaseModel
@@ -453,6 +688,17 @@ module WhopSDK
           #   @return [Time, nil]
           optional :automatically_finalizes_at, Time, nil?: true
 
+          # @!attribute billing_address
+          #   Inline billing address to create a new mailing address for this invoice. Cannot
+          #   be used together with mailing_address_id.
+          #
+          #   @return [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::BillingAddress, nil]
+          optional :billing_address,
+                   -> {
+                     WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::BillingAddress
+                   },
+                   nil?: true
+
           # @!attribute charge_buyer_fee
           #   Whether to charge the customer a buyer fee on this invoice.
           #
@@ -465,6 +711,13 @@ module WhopSDK
           #
           #   @return [String, nil]
           optional :customer_name, String, nil?: true
+
+          # @!attribute mailing_address_id
+          #   The unique identifier of an existing mailing address to attach to this invoice.
+          #   Cannot be used together with billing_address.
+          #
+          #   @return [String, nil]
+          optional :mailing_address_id, String, nil?: true
 
           # @!attribute payment_method_id
           #   The unique identifier of the payment method to charge. Required when
@@ -480,7 +733,7 @@ module WhopSDK
           #   @return [String, nil]
           optional :payment_token_id, String, nil?: true
 
-          # @!method initialize(collection_method:, company_id:, due_date:, email_address:, plan:, product:, automatically_finalizes_at: nil, charge_buyer_fee: nil, customer_name: nil, payment_method_id: nil, payment_token_id: nil)
+          # @!method initialize(collection_method:, company_id:, due_date:, email_address:, plan:, product:, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, customer_name: nil, mailing_address_id: nil, payment_method_id: nil, payment_token_id: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress}
           #   for more details.
@@ -501,9 +754,13 @@ module WhopSDK
           #
           #   @param automatically_finalizes_at [Time, nil] The date and time when the invoice will be automatically finalized and charged.
           #
+          #   @param billing_address [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::BillingAddress, nil] Inline billing address to create a new mailing address for this invoice. Cannot
+          #
           #   @param charge_buyer_fee [Boolean, nil] Whether to charge the customer a buyer fee on this invoice.
           #
           #   @param customer_name [String, nil] The name of the customer. Required when creating an invoice for a customer who i
+          #
+          #   @param mailing_address_id [String, nil] The unique identifier of an existing mailing address to attach to this invoice.
           #
           #   @param payment_method_id [String, nil] The unique identifier of the payment method to charge. Required when
           #   collection\_
@@ -769,6 +1026,219 @@ module WhopSDK
             #
             #   @param product_tax_code_id [String, nil] The ID of the product tax code to apply to this product.
           end
+
+          # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress#billing_address
+          class BillingAddress < WhopSDK::Internal::Type::BaseModel
+            # @!attribute city
+            #   The city of the address.
+            #
+            #   @return [String, nil]
+            optional :city, String, nil?: true
+
+            # @!attribute country
+            #   The country of the address.
+            #
+            #   @return [String, nil]
+            optional :country, String, nil?: true
+
+            # @!attribute line1
+            #   The line 1 of the address.
+            #
+            #   @return [String, nil]
+            optional :line1, String, nil?: true
+
+            # @!attribute line2
+            #   The line 2 of the address.
+            #
+            #   @return [String, nil]
+            optional :line2, String, nil?: true
+
+            # @!attribute name
+            #   The name of the customer.
+            #
+            #   @return [String, nil]
+            optional :name, String, nil?: true
+
+            # @!attribute phone
+            #   The phone number of the customer.
+            #
+            #   @return [String, nil]
+            optional :phone, String, nil?: true
+
+            # @!attribute postal_code
+            #   The postal code of the address.
+            #
+            #   @return [String, nil]
+            optional :postal_code, String, nil?: true
+
+            # @!attribute state
+            #   The state of the address.
+            #
+            #   @return [String, nil]
+            optional :state, String, nil?: true
+
+            # @!attribute tax_id_type
+            #   The type of tax identifier
+            #
+            #   @return [Symbol, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::BillingAddress::TaxIDType, nil]
+            optional :tax_id_type,
+                     enum: -> {
+                       WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::BillingAddress::TaxIDType
+                     },
+                     nil?: true
+
+            # @!attribute tax_id_value
+            #   The value of the tax identifier.
+            #
+            #   @return [String, nil]
+            optional :tax_id_value, String, nil?: true
+
+            # @!method initialize(city: nil, country: nil, line1: nil, line2: nil, name: nil, phone: nil, postal_code: nil, state: nil, tax_id_type: nil, tax_id_value: nil)
+            #   Inline billing address to create a new mailing address for this invoice. Cannot
+            #   be used together with mailing_address_id.
+            #
+            #   @param city [String, nil] The city of the address.
+            #
+            #   @param country [String, nil] The country of the address.
+            #
+            #   @param line1 [String, nil] The line 1 of the address.
+            #
+            #   @param line2 [String, nil] The line 2 of the address.
+            #
+            #   @param name [String, nil] The name of the customer.
+            #
+            #   @param phone [String, nil] The phone number of the customer.
+            #
+            #   @param postal_code [String, nil] The postal code of the address.
+            #
+            #   @param state [String, nil] The state of the address.
+            #
+            #   @param tax_id_type [Symbol, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::BillingAddress::TaxIDType, nil] The type of tax identifier
+            #
+            #   @param tax_id_value [String, nil] The value of the tax identifier.
+
+            # The type of tax identifier
+            #
+            # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::BillingAddress#tax_id_type
+            module TaxIDType
+              extend WhopSDK::Internal::Type::Enum
+
+              AD_NRT = :ad_nrt
+              AO_TIN = :ao_tin
+              AR_CUIT = :ar_cuit
+              AM_TIN = :am_tin
+              AW_TIN = :aw_tin
+              AU_ABN = :au_abn
+              AU_ARN = :au_arn
+              EU_VAT = :eu_vat
+              AZ_TIN = :az_tin
+              BS_TIN = :bs_tin
+              BH_VAT = :bh_vat
+              BD_BIN = :bd_bin
+              BB_TIN = :bb_tin
+              BY_TIN = :by_tin
+              BJ_IFU = :bj_ifu
+              BO_TIN = :bo_tin
+              BA_TIN = :ba_tin
+              BR_CNPJ = :br_cnpj
+              BR_CPF = :br_cpf
+              BG_UIC = :bg_uic
+              BF_IFU = :bf_ifu
+              KH_TIN = :kh_tin
+              CM_NIU = :cm_niu
+              CA_BN = :ca_bn
+              CA_GST_HST = :ca_gst_hst
+              CA_PST_BC = :ca_pst_bc
+              CA_PST_MB = :ca_pst_mb
+              CA_PST_SK = :ca_pst_sk
+              CA_QST = :ca_qst
+              CV_NIF = :cv_nif
+              CL_TIN = :cl_tin
+              CN_TIN = :cn_tin
+              CO_NIT = :co_nit
+              CD_NIF = :cd_nif
+              CR_TIN = :cr_tin
+              HR_OIB = :hr_oib
+              DO_RCN = :do_rcn
+              EC_RUC = :ec_ruc
+              EG_TIN = :eg_tin
+              SV_NIT = :sv_nit
+              ET_TIN = :et_tin
+              EU_OSS_VAT = :eu_oss_vat
+              GE_VAT = :ge_vat
+              DE_STN = :de_stn
+              GB_VAT = :gb_vat
+              GN_NIF = :gn_nif
+              HK_BR = :hk_br
+              HU_TIN = :hu_tin
+              IS_VAT = :is_vat
+              IN_GST = :in_gst
+              ID_NPWP = :id_npwp
+              IL_VAT = :il_vat
+              JP_CN = :jp_cn
+              JP_RN = :jp_rn
+              JP_TRN = :jp_trn
+              KZ_BIN = :kz_bin
+              KE_PIN = :ke_pin
+              KG_TIN = :kg_tin
+              LA_TIN = :la_tin
+              LI_UID = :li_uid
+              LI_VAT = :li_vat
+              MY_FRP = :my_frp
+              MY_ITN = :my_itn
+              MY_SST = :my_sst
+              MR_NIF = :mr_nif
+              MX_RFC = :mx_rfc
+              MD_VAT = :md_vat
+              ME_PIB = :me_pib
+              MA_VAT = :ma_vat
+              NP_PAN = :np_pan
+              NZ_GST = :nz_gst
+              NG_TIN = :ng_tin
+              MK_VAT = :mk_vat
+              NO_VAT = :no_vat
+              NO_VOEC = :no_voec
+              OM_VAT = :om_vat
+              PE_RUC = :pe_ruc
+              PH_TIN = :ph_tin
+              PL_NIP = :pl_nip
+              RO_TIN = :ro_tin
+              RU_INN = :ru_inn
+              RU_KPP = :ru_kpp
+              SA_VAT = :sa_vat
+              SN_NINEA = :sn_ninea
+              RS_PIB = :rs_pib
+              SG_GST = :sg_gst
+              SG_UEN = :sg_uen
+              SI_TIN = :si_tin
+              ZA_VAT = :za_vat
+              KR_BRN = :kr_brn
+              ES_CIF = :es_cif
+              CH_UID = :ch_uid
+              CH_VAT = :ch_vat
+              TW_VAT = :tw_vat
+              TJ_TIN = :tj_tin
+              TZ_VAT = :tz_vat
+              TH_VAT = :th_vat
+              TR_TIN = :tr_tin
+              UG_TIN = :ug_tin
+              UA_VAT = :ua_vat
+              AE_TRN = :ae_trn
+              US_EIN = :us_ein
+              UY_RUC = :uy_ruc
+              UZ_TIN = :uz_tin
+              UZ_VAT = :uz_vat
+              VE_RIF = :ve_rif
+              VN_TIN = :vn_tin
+              ZM_TIN = :zm_tin
+              ZW_TIN = :zw_tin
+              SR_FIN = :sr_fin
+              XI_VAT = :xi_vat
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
         end
 
         class CreateInvoiceInputWithProductIDAndMemberID < WhopSDK::Internal::Type::BaseModel
@@ -820,6 +1290,17 @@ module WhopSDK
           #   @return [Time, nil]
           optional :automatically_finalizes_at, Time, nil?: true
 
+          # @!attribute billing_address
+          #   Inline billing address to create a new mailing address for this invoice. Cannot
+          #   be used together with mailing_address_id.
+          #
+          #   @return [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::BillingAddress, nil]
+          optional :billing_address,
+                   -> {
+                     WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::BillingAddress
+                   },
+                   nil?: true
+
           # @!attribute charge_buyer_fee
           #   Whether to charge the customer a buyer fee on this invoice.
           #
@@ -832,6 +1313,13 @@ module WhopSDK
           #
           #   @return [String, nil]
           optional :customer_name, String, nil?: true
+
+          # @!attribute mailing_address_id
+          #   The unique identifier of an existing mailing address to attach to this invoice.
+          #   Cannot be used together with billing_address.
+          #
+          #   @return [String, nil]
+          optional :mailing_address_id, String, nil?: true
 
           # @!attribute payment_method_id
           #   The unique identifier of the payment method to charge. Required when
@@ -847,7 +1335,7 @@ module WhopSDK
           #   @return [String, nil]
           optional :payment_token_id, String, nil?: true
 
-          # @!method initialize(collection_method:, company_id:, due_date:, member_id:, plan:, product_id:, automatically_finalizes_at: nil, charge_buyer_fee: nil, customer_name: nil, payment_method_id: nil, payment_token_id: nil)
+          # @!method initialize(collection_method:, company_id:, due_date:, member_id:, plan:, product_id:, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, customer_name: nil, mailing_address_id: nil, payment_method_id: nil, payment_token_id: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID}
           #   for more details.
@@ -868,9 +1356,13 @@ module WhopSDK
           #
           #   @param automatically_finalizes_at [Time, nil] The date and time when the invoice will be automatically finalized and charged.
           #
+          #   @param billing_address [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::BillingAddress, nil] Inline billing address to create a new mailing address for this invoice. Cannot
+          #
           #   @param charge_buyer_fee [Boolean, nil] Whether to charge the customer a buyer fee on this invoice.
           #
           #   @param customer_name [String, nil] The name of the customer. Required when creating an invoice for a customer who i
+          #
+          #   @param mailing_address_id [String, nil] The unique identifier of an existing mailing address to attach to this invoice.
           #
           #   @param payment_method_id [String, nil] The unique identifier of the payment method to charge. Required when
           #   collection\_
@@ -1113,6 +1605,219 @@ module WhopSDK
               #   @param include_platform_defaults [Boolean] Whether Whop's platform default payment method enablement settings are included
             end
           end
+
+          # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID#billing_address
+          class BillingAddress < WhopSDK::Internal::Type::BaseModel
+            # @!attribute city
+            #   The city of the address.
+            #
+            #   @return [String, nil]
+            optional :city, String, nil?: true
+
+            # @!attribute country
+            #   The country of the address.
+            #
+            #   @return [String, nil]
+            optional :country, String, nil?: true
+
+            # @!attribute line1
+            #   The line 1 of the address.
+            #
+            #   @return [String, nil]
+            optional :line1, String, nil?: true
+
+            # @!attribute line2
+            #   The line 2 of the address.
+            #
+            #   @return [String, nil]
+            optional :line2, String, nil?: true
+
+            # @!attribute name
+            #   The name of the customer.
+            #
+            #   @return [String, nil]
+            optional :name, String, nil?: true
+
+            # @!attribute phone
+            #   The phone number of the customer.
+            #
+            #   @return [String, nil]
+            optional :phone, String, nil?: true
+
+            # @!attribute postal_code
+            #   The postal code of the address.
+            #
+            #   @return [String, nil]
+            optional :postal_code, String, nil?: true
+
+            # @!attribute state
+            #   The state of the address.
+            #
+            #   @return [String, nil]
+            optional :state, String, nil?: true
+
+            # @!attribute tax_id_type
+            #   The type of tax identifier
+            #
+            #   @return [Symbol, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::BillingAddress::TaxIDType, nil]
+            optional :tax_id_type,
+                     enum: -> {
+                       WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::BillingAddress::TaxIDType
+                     },
+                     nil?: true
+
+            # @!attribute tax_id_value
+            #   The value of the tax identifier.
+            #
+            #   @return [String, nil]
+            optional :tax_id_value, String, nil?: true
+
+            # @!method initialize(city: nil, country: nil, line1: nil, line2: nil, name: nil, phone: nil, postal_code: nil, state: nil, tax_id_type: nil, tax_id_value: nil)
+            #   Inline billing address to create a new mailing address for this invoice. Cannot
+            #   be used together with mailing_address_id.
+            #
+            #   @param city [String, nil] The city of the address.
+            #
+            #   @param country [String, nil] The country of the address.
+            #
+            #   @param line1 [String, nil] The line 1 of the address.
+            #
+            #   @param line2 [String, nil] The line 2 of the address.
+            #
+            #   @param name [String, nil] The name of the customer.
+            #
+            #   @param phone [String, nil] The phone number of the customer.
+            #
+            #   @param postal_code [String, nil] The postal code of the address.
+            #
+            #   @param state [String, nil] The state of the address.
+            #
+            #   @param tax_id_type [Symbol, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::BillingAddress::TaxIDType, nil] The type of tax identifier
+            #
+            #   @param tax_id_value [String, nil] The value of the tax identifier.
+
+            # The type of tax identifier
+            #
+            # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::BillingAddress#tax_id_type
+            module TaxIDType
+              extend WhopSDK::Internal::Type::Enum
+
+              AD_NRT = :ad_nrt
+              AO_TIN = :ao_tin
+              AR_CUIT = :ar_cuit
+              AM_TIN = :am_tin
+              AW_TIN = :aw_tin
+              AU_ABN = :au_abn
+              AU_ARN = :au_arn
+              EU_VAT = :eu_vat
+              AZ_TIN = :az_tin
+              BS_TIN = :bs_tin
+              BH_VAT = :bh_vat
+              BD_BIN = :bd_bin
+              BB_TIN = :bb_tin
+              BY_TIN = :by_tin
+              BJ_IFU = :bj_ifu
+              BO_TIN = :bo_tin
+              BA_TIN = :ba_tin
+              BR_CNPJ = :br_cnpj
+              BR_CPF = :br_cpf
+              BG_UIC = :bg_uic
+              BF_IFU = :bf_ifu
+              KH_TIN = :kh_tin
+              CM_NIU = :cm_niu
+              CA_BN = :ca_bn
+              CA_GST_HST = :ca_gst_hst
+              CA_PST_BC = :ca_pst_bc
+              CA_PST_MB = :ca_pst_mb
+              CA_PST_SK = :ca_pst_sk
+              CA_QST = :ca_qst
+              CV_NIF = :cv_nif
+              CL_TIN = :cl_tin
+              CN_TIN = :cn_tin
+              CO_NIT = :co_nit
+              CD_NIF = :cd_nif
+              CR_TIN = :cr_tin
+              HR_OIB = :hr_oib
+              DO_RCN = :do_rcn
+              EC_RUC = :ec_ruc
+              EG_TIN = :eg_tin
+              SV_NIT = :sv_nit
+              ET_TIN = :et_tin
+              EU_OSS_VAT = :eu_oss_vat
+              GE_VAT = :ge_vat
+              DE_STN = :de_stn
+              GB_VAT = :gb_vat
+              GN_NIF = :gn_nif
+              HK_BR = :hk_br
+              HU_TIN = :hu_tin
+              IS_VAT = :is_vat
+              IN_GST = :in_gst
+              ID_NPWP = :id_npwp
+              IL_VAT = :il_vat
+              JP_CN = :jp_cn
+              JP_RN = :jp_rn
+              JP_TRN = :jp_trn
+              KZ_BIN = :kz_bin
+              KE_PIN = :ke_pin
+              KG_TIN = :kg_tin
+              LA_TIN = :la_tin
+              LI_UID = :li_uid
+              LI_VAT = :li_vat
+              MY_FRP = :my_frp
+              MY_ITN = :my_itn
+              MY_SST = :my_sst
+              MR_NIF = :mr_nif
+              MX_RFC = :mx_rfc
+              MD_VAT = :md_vat
+              ME_PIB = :me_pib
+              MA_VAT = :ma_vat
+              NP_PAN = :np_pan
+              NZ_GST = :nz_gst
+              NG_TIN = :ng_tin
+              MK_VAT = :mk_vat
+              NO_VAT = :no_vat
+              NO_VOEC = :no_voec
+              OM_VAT = :om_vat
+              PE_RUC = :pe_ruc
+              PH_TIN = :ph_tin
+              PL_NIP = :pl_nip
+              RO_TIN = :ro_tin
+              RU_INN = :ru_inn
+              RU_KPP = :ru_kpp
+              SA_VAT = :sa_vat
+              SN_NINEA = :sn_ninea
+              RS_PIB = :rs_pib
+              SG_GST = :sg_gst
+              SG_UEN = :sg_uen
+              SI_TIN = :si_tin
+              ZA_VAT = :za_vat
+              KR_BRN = :kr_brn
+              ES_CIF = :es_cif
+              CH_UID = :ch_uid
+              CH_VAT = :ch_vat
+              TW_VAT = :tw_vat
+              TJ_TIN = :tj_tin
+              TZ_VAT = :tz_vat
+              TH_VAT = :th_vat
+              TR_TIN = :tr_tin
+              UG_TIN = :ug_tin
+              UA_VAT = :ua_vat
+              AE_TRN = :ae_trn
+              US_EIN = :us_ein
+              UY_RUC = :uy_ruc
+              UZ_TIN = :uz_tin
+              UZ_VAT = :uz_vat
+              VE_RIF = :ve_rif
+              VN_TIN = :vn_tin
+              ZM_TIN = :zm_tin
+              ZW_TIN = :zw_tin
+              SR_FIN = :sr_fin
+              XI_VAT = :xi_vat
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
         end
 
         class CreateInvoiceInputWithProductIDAndEmailAddress < WhopSDK::Internal::Type::BaseModel
@@ -1164,6 +1869,17 @@ module WhopSDK
           #   @return [Time, nil]
           optional :automatically_finalizes_at, Time, nil?: true
 
+          # @!attribute billing_address
+          #   Inline billing address to create a new mailing address for this invoice. Cannot
+          #   be used together with mailing_address_id.
+          #
+          #   @return [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::BillingAddress, nil]
+          optional :billing_address,
+                   -> {
+                     WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::BillingAddress
+                   },
+                   nil?: true
+
           # @!attribute charge_buyer_fee
           #   Whether to charge the customer a buyer fee on this invoice.
           #
@@ -1176,6 +1892,13 @@ module WhopSDK
           #
           #   @return [String, nil]
           optional :customer_name, String, nil?: true
+
+          # @!attribute mailing_address_id
+          #   The unique identifier of an existing mailing address to attach to this invoice.
+          #   Cannot be used together with billing_address.
+          #
+          #   @return [String, nil]
+          optional :mailing_address_id, String, nil?: true
 
           # @!attribute payment_method_id
           #   The unique identifier of the payment method to charge. Required when
@@ -1191,7 +1914,7 @@ module WhopSDK
           #   @return [String, nil]
           optional :payment_token_id, String, nil?: true
 
-          # @!method initialize(collection_method:, company_id:, due_date:, email_address:, plan:, product_id:, automatically_finalizes_at: nil, charge_buyer_fee: nil, customer_name: nil, payment_method_id: nil, payment_token_id: nil)
+          # @!method initialize(collection_method:, company_id:, due_date:, email_address:, plan:, product_id:, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, customer_name: nil, mailing_address_id: nil, payment_method_id: nil, payment_token_id: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress}
           #   for more details.
@@ -1212,9 +1935,13 @@ module WhopSDK
           #
           #   @param automatically_finalizes_at [Time, nil] The date and time when the invoice will be automatically finalized and charged.
           #
+          #   @param billing_address [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::BillingAddress, nil] Inline billing address to create a new mailing address for this invoice. Cannot
+          #
           #   @param charge_buyer_fee [Boolean, nil] Whether to charge the customer a buyer fee on this invoice.
           #
           #   @param customer_name [String, nil] The name of the customer. Required when creating an invoice for a customer who i
+          #
+          #   @param mailing_address_id [String, nil] The unique identifier of an existing mailing address to attach to this invoice.
           #
           #   @param payment_method_id [String, nil] The unique identifier of the payment method to charge. Required when
           #   collection\_
@@ -1455,6 +2182,219 @@ module WhopSDK
               #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
               #
               #   @param include_platform_defaults [Boolean] Whether Whop's platform default payment method enablement settings are included
+            end
+          end
+
+          # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress#billing_address
+          class BillingAddress < WhopSDK::Internal::Type::BaseModel
+            # @!attribute city
+            #   The city of the address.
+            #
+            #   @return [String, nil]
+            optional :city, String, nil?: true
+
+            # @!attribute country
+            #   The country of the address.
+            #
+            #   @return [String, nil]
+            optional :country, String, nil?: true
+
+            # @!attribute line1
+            #   The line 1 of the address.
+            #
+            #   @return [String, nil]
+            optional :line1, String, nil?: true
+
+            # @!attribute line2
+            #   The line 2 of the address.
+            #
+            #   @return [String, nil]
+            optional :line2, String, nil?: true
+
+            # @!attribute name
+            #   The name of the customer.
+            #
+            #   @return [String, nil]
+            optional :name, String, nil?: true
+
+            # @!attribute phone
+            #   The phone number of the customer.
+            #
+            #   @return [String, nil]
+            optional :phone, String, nil?: true
+
+            # @!attribute postal_code
+            #   The postal code of the address.
+            #
+            #   @return [String, nil]
+            optional :postal_code, String, nil?: true
+
+            # @!attribute state
+            #   The state of the address.
+            #
+            #   @return [String, nil]
+            optional :state, String, nil?: true
+
+            # @!attribute tax_id_type
+            #   The type of tax identifier
+            #
+            #   @return [Symbol, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::BillingAddress::TaxIDType, nil]
+            optional :tax_id_type,
+                     enum: -> {
+                       WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::BillingAddress::TaxIDType
+                     },
+                     nil?: true
+
+            # @!attribute tax_id_value
+            #   The value of the tax identifier.
+            #
+            #   @return [String, nil]
+            optional :tax_id_value, String, nil?: true
+
+            # @!method initialize(city: nil, country: nil, line1: nil, line2: nil, name: nil, phone: nil, postal_code: nil, state: nil, tax_id_type: nil, tax_id_value: nil)
+            #   Inline billing address to create a new mailing address for this invoice. Cannot
+            #   be used together with mailing_address_id.
+            #
+            #   @param city [String, nil] The city of the address.
+            #
+            #   @param country [String, nil] The country of the address.
+            #
+            #   @param line1 [String, nil] The line 1 of the address.
+            #
+            #   @param line2 [String, nil] The line 2 of the address.
+            #
+            #   @param name [String, nil] The name of the customer.
+            #
+            #   @param phone [String, nil] The phone number of the customer.
+            #
+            #   @param postal_code [String, nil] The postal code of the address.
+            #
+            #   @param state [String, nil] The state of the address.
+            #
+            #   @param tax_id_type [Symbol, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::BillingAddress::TaxIDType, nil] The type of tax identifier
+            #
+            #   @param tax_id_value [String, nil] The value of the tax identifier.
+
+            # The type of tax identifier
+            #
+            # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::BillingAddress#tax_id_type
+            module TaxIDType
+              extend WhopSDK::Internal::Type::Enum
+
+              AD_NRT = :ad_nrt
+              AO_TIN = :ao_tin
+              AR_CUIT = :ar_cuit
+              AM_TIN = :am_tin
+              AW_TIN = :aw_tin
+              AU_ABN = :au_abn
+              AU_ARN = :au_arn
+              EU_VAT = :eu_vat
+              AZ_TIN = :az_tin
+              BS_TIN = :bs_tin
+              BH_VAT = :bh_vat
+              BD_BIN = :bd_bin
+              BB_TIN = :bb_tin
+              BY_TIN = :by_tin
+              BJ_IFU = :bj_ifu
+              BO_TIN = :bo_tin
+              BA_TIN = :ba_tin
+              BR_CNPJ = :br_cnpj
+              BR_CPF = :br_cpf
+              BG_UIC = :bg_uic
+              BF_IFU = :bf_ifu
+              KH_TIN = :kh_tin
+              CM_NIU = :cm_niu
+              CA_BN = :ca_bn
+              CA_GST_HST = :ca_gst_hst
+              CA_PST_BC = :ca_pst_bc
+              CA_PST_MB = :ca_pst_mb
+              CA_PST_SK = :ca_pst_sk
+              CA_QST = :ca_qst
+              CV_NIF = :cv_nif
+              CL_TIN = :cl_tin
+              CN_TIN = :cn_tin
+              CO_NIT = :co_nit
+              CD_NIF = :cd_nif
+              CR_TIN = :cr_tin
+              HR_OIB = :hr_oib
+              DO_RCN = :do_rcn
+              EC_RUC = :ec_ruc
+              EG_TIN = :eg_tin
+              SV_NIT = :sv_nit
+              ET_TIN = :et_tin
+              EU_OSS_VAT = :eu_oss_vat
+              GE_VAT = :ge_vat
+              DE_STN = :de_stn
+              GB_VAT = :gb_vat
+              GN_NIF = :gn_nif
+              HK_BR = :hk_br
+              HU_TIN = :hu_tin
+              IS_VAT = :is_vat
+              IN_GST = :in_gst
+              ID_NPWP = :id_npwp
+              IL_VAT = :il_vat
+              JP_CN = :jp_cn
+              JP_RN = :jp_rn
+              JP_TRN = :jp_trn
+              KZ_BIN = :kz_bin
+              KE_PIN = :ke_pin
+              KG_TIN = :kg_tin
+              LA_TIN = :la_tin
+              LI_UID = :li_uid
+              LI_VAT = :li_vat
+              MY_FRP = :my_frp
+              MY_ITN = :my_itn
+              MY_SST = :my_sst
+              MR_NIF = :mr_nif
+              MX_RFC = :mx_rfc
+              MD_VAT = :md_vat
+              ME_PIB = :me_pib
+              MA_VAT = :ma_vat
+              NP_PAN = :np_pan
+              NZ_GST = :nz_gst
+              NG_TIN = :ng_tin
+              MK_VAT = :mk_vat
+              NO_VAT = :no_vat
+              NO_VOEC = :no_voec
+              OM_VAT = :om_vat
+              PE_RUC = :pe_ruc
+              PH_TIN = :ph_tin
+              PL_NIP = :pl_nip
+              RO_TIN = :ro_tin
+              RU_INN = :ru_inn
+              RU_KPP = :ru_kpp
+              SA_VAT = :sa_vat
+              SN_NINEA = :sn_ninea
+              RS_PIB = :rs_pib
+              SG_GST = :sg_gst
+              SG_UEN = :sg_uen
+              SI_TIN = :si_tin
+              ZA_VAT = :za_vat
+              KR_BRN = :kr_brn
+              ES_CIF = :es_cif
+              CH_UID = :ch_uid
+              CH_VAT = :ch_vat
+              TW_VAT = :tw_vat
+              TJ_TIN = :tj_tin
+              TZ_VAT = :tz_vat
+              TH_VAT = :th_vat
+              TR_TIN = :tr_tin
+              UG_TIN = :ug_tin
+              UA_VAT = :ua_vat
+              AE_TRN = :ae_trn
+              US_EIN = :us_ein
+              UY_RUC = :uy_ruc
+              UZ_TIN = :uz_tin
+              UZ_VAT = :uz_vat
+              VE_RIF = :ve_rif
+              VN_TIN = :vn_tin
+              ZM_TIN = :zm_tin
+              ZW_TIN = :zw_tin
+              SR_FIN = :sr_fin
+              XI_VAT = :xi_vat
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
             end
           end
         end

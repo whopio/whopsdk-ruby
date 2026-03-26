@@ -667,7 +667,7 @@ module WhopSDK
           AUTHORIZE = :authorize
           CAPTURE = :capture
           REFUND = :refund
-          CANCEL = :cancel
+          CANCELED = :canceled
           VERIFY = :verify
           CHARGEBACK = :chargeback
           PRE_CHARGEBACK = :pre_chargeback

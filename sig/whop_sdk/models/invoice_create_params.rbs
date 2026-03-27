@@ -41,6 +41,7 @@ module WhopSDK
             billing_address: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::BillingAddress?,
             charge_buyer_fee: bool?,
             customer_name: String?,
+            line_items: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::LineItem]?,
             mailing_address_id: String?,
             payment_method_id: String?,
             payment_token_id: String?
@@ -67,6 +68,8 @@ module WhopSDK
 
           attr_accessor customer_name: String?
 
+          attr_accessor line_items: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::LineItem]?
+
           attr_accessor mailing_address_id: String?
 
           attr_accessor payment_method_id: String?
@@ -84,6 +87,7 @@ module WhopSDK
             ?billing_address: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::BillingAddress?,
             ?charge_buyer_fee: bool?,
             ?customer_name: String?,
+            ?line_items: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::LineItem]?,
             ?mailing_address_id: String?,
             ?payment_method_id: String?,
             ?payment_token_id: String?
@@ -100,6 +104,7 @@ module WhopSDK
             billing_address: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::BillingAddress?,
             charge_buyer_fee: bool?,
             customer_name: String?,
+            line_items: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::LineItem]?,
             mailing_address_id: String?,
             payment_method_id: String?,
             payment_token_id: String?
@@ -568,6 +573,29 @@ module WhopSDK
               def self?.values: -> ::Array[WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::BillingAddress::tax_id_type]
             end
           end
+
+          type line_item =
+            { label: String, unit_price: Float, quantity: Float? }
+
+          class LineItem < WhopSDK::Internal::Type::BaseModel
+            attr_accessor label: String
+
+            attr_accessor unit_price: Float
+
+            attr_accessor quantity: Float?
+
+            def initialize: (
+              label: String,
+              unit_price: Float,
+              ?quantity: Float?
+            ) -> void
+
+            def to_hash: -> {
+              label: String,
+              unit_price: Float,
+              quantity: Float?
+            }
+          end
         end
 
         type create_invoice_input_with_product_and_email_address =
@@ -582,6 +610,7 @@ module WhopSDK
             billing_address: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::BillingAddress?,
             charge_buyer_fee: bool?,
             customer_name: String?,
+            line_items: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::LineItem]?,
             mailing_address_id: String?,
             payment_method_id: String?,
             payment_token_id: String?
@@ -608,6 +637,8 @@ module WhopSDK
 
           attr_accessor customer_name: String?
 
+          attr_accessor line_items: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::LineItem]?
+
           attr_accessor mailing_address_id: String?
 
           attr_accessor payment_method_id: String?
@@ -625,6 +656,7 @@ module WhopSDK
             ?billing_address: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::BillingAddress?,
             ?charge_buyer_fee: bool?,
             ?customer_name: String?,
+            ?line_items: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::LineItem]?,
             ?mailing_address_id: String?,
             ?payment_method_id: String?,
             ?payment_token_id: String?
@@ -641,6 +673,7 @@ module WhopSDK
             billing_address: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::BillingAddress?,
             charge_buyer_fee: bool?,
             customer_name: String?,
+            line_items: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::LineItem]?,
             mailing_address_id: String?,
             payment_method_id: String?,
             payment_token_id: String?
@@ -1109,6 +1142,29 @@ module WhopSDK
               def self?.values: -> ::Array[WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::BillingAddress::tax_id_type]
             end
           end
+
+          type line_item =
+            { label: String, unit_price: Float, quantity: Float? }
+
+          class LineItem < WhopSDK::Internal::Type::BaseModel
+            attr_accessor label: String
+
+            attr_accessor unit_price: Float
+
+            attr_accessor quantity: Float?
+
+            def initialize: (
+              label: String,
+              unit_price: Float,
+              ?quantity: Float?
+            ) -> void
+
+            def to_hash: -> {
+              label: String,
+              unit_price: Float,
+              quantity: Float?
+            }
+          end
         end
 
         type create_invoice_input_with_product_id_and_member_id =
@@ -1123,6 +1179,7 @@ module WhopSDK
             billing_address: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::BillingAddress?,
             charge_buyer_fee: bool?,
             customer_name: String?,
+            line_items: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::LineItem]?,
             mailing_address_id: String?,
             payment_method_id: String?,
             payment_token_id: String?
@@ -1149,6 +1206,8 @@ module WhopSDK
 
           attr_accessor customer_name: String?
 
+          attr_accessor line_items: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::LineItem]?
+
           attr_accessor mailing_address_id: String?
 
           attr_accessor payment_method_id: String?
@@ -1166,6 +1225,7 @@ module WhopSDK
             ?billing_address: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::BillingAddress?,
             ?charge_buyer_fee: bool?,
             ?customer_name: String?,
+            ?line_items: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::LineItem]?,
             ?mailing_address_id: String?,
             ?payment_method_id: String?,
             ?payment_token_id: String?
@@ -1182,6 +1242,7 @@ module WhopSDK
             billing_address: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::BillingAddress?,
             charge_buyer_fee: bool?,
             customer_name: String?,
+            line_items: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::LineItem]?,
             mailing_address_id: String?,
             payment_method_id: String?,
             payment_token_id: String?
@@ -1635,6 +1696,29 @@ module WhopSDK
               def self?.values: -> ::Array[WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::BillingAddress::tax_id_type]
             end
           end
+
+          type line_item =
+            { label: String, unit_price: Float, quantity: Float? }
+
+          class LineItem < WhopSDK::Internal::Type::BaseModel
+            attr_accessor label: String
+
+            attr_accessor unit_price: Float
+
+            attr_accessor quantity: Float?
+
+            def initialize: (
+              label: String,
+              unit_price: Float,
+              ?quantity: Float?
+            ) -> void
+
+            def to_hash: -> {
+              label: String,
+              unit_price: Float,
+              quantity: Float?
+            }
+          end
         end
 
         type create_invoice_input_with_product_id_and_email_address =
@@ -1649,6 +1733,7 @@ module WhopSDK
             billing_address: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::BillingAddress?,
             charge_buyer_fee: bool?,
             customer_name: String?,
+            line_items: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::LineItem]?,
             mailing_address_id: String?,
             payment_method_id: String?,
             payment_token_id: String?
@@ -1675,6 +1760,8 @@ module WhopSDK
 
           attr_accessor customer_name: String?
 
+          attr_accessor line_items: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::LineItem]?
+
           attr_accessor mailing_address_id: String?
 
           attr_accessor payment_method_id: String?
@@ -1692,6 +1779,7 @@ module WhopSDK
             ?billing_address: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::BillingAddress?,
             ?charge_buyer_fee: bool?,
             ?customer_name: String?,
+            ?line_items: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::LineItem]?,
             ?mailing_address_id: String?,
             ?payment_method_id: String?,
             ?payment_token_id: String?
@@ -1708,6 +1796,7 @@ module WhopSDK
             billing_address: WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::BillingAddress?,
             charge_buyer_fee: bool?,
             customer_name: String?,
+            line_items: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::LineItem]?,
             mailing_address_id: String?,
             payment_method_id: String?,
             payment_token_id: String?
@@ -2160,6 +2249,29 @@ module WhopSDK
 
               def self?.values: -> ::Array[WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::BillingAddress::tax_id_type]
             end
+          end
+
+          type line_item =
+            { label: String, unit_price: Float, quantity: Float? }
+
+          class LineItem < WhopSDK::Internal::Type::BaseModel
+            attr_accessor label: String
+
+            attr_accessor unit_price: Float
+
+            attr_accessor quantity: Float?
+
+            def initialize: (
+              label: String,
+              unit_price: Float,
+              ?quantity: Float?
+            ) -> void
+
+            def to_hash: -> {
+              label: String,
+              unit_price: Float,
+              quantity: Float?
+            }
           end
         end
 

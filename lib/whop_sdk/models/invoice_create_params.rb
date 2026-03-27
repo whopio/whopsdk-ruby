@@ -108,6 +108,17 @@ module WhopSDK
           #   @return [String, nil]
           optional :customer_name, String, nil?: true
 
+          # @!attribute line_items
+          #   Optional line items that break down the invoice total. When provided, the sum of
+          #   (quantity \* unit_price) for all items must equal the plan price.
+          #
+          #   @return [Array<WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::LineItem>, nil]
+          optional :line_items,
+                   -> {
+                     WhopSDK::Internal::Type::ArrayOf[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::LineItem]
+                   },
+                   nil?: true
+
           # @!attribute mailing_address_id
           #   The unique identifier of an existing mailing address to attach to this invoice.
           #   Cannot be used together with billing_address.
@@ -129,7 +140,7 @@ module WhopSDK
           #   @return [String, nil]
           optional :payment_token_id, String, nil?: true
 
-          # @!method initialize(collection_method:, company_id:, due_date:, member_id:, plan:, product:, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, customer_name: nil, mailing_address_id: nil, payment_method_id: nil, payment_token_id: nil)
+          # @!method initialize(collection_method:, company_id:, due_date:, member_id:, plan:, product:, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, customer_name: nil, line_items: nil, mailing_address_id: nil, payment_method_id: nil, payment_token_id: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID}
           #   for more details.
@@ -155,6 +166,8 @@ module WhopSDK
           #   @param charge_buyer_fee [Boolean, nil] Whether to charge the customer a buyer fee on this invoice.
           #
           #   @param customer_name [String, nil] The name of the customer. Required when creating an invoice for a customer who i
+          #
+          #   @param line_items [Array<WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::LineItem>, nil] Optional line items that break down the invoice total. When provided, the sum of
           #
           #   @param mailing_address_id [String, nil] The unique identifier of an existing mailing address to attach to this invoice.
           #
@@ -635,6 +648,41 @@ module WhopSDK
               #   @return [Array<Symbol>]
             end
           end
+
+          class LineItem < WhopSDK::Internal::Type::BaseModel
+            # @!attribute label
+            #   The label or description for this line item.
+            #
+            #   @return [String]
+            required :label, String
+
+            # @!attribute unit_price
+            #   The unit price for this line item. Provided as a number in the specified
+            #   currency. Eg: 10.43 for $10.43
+            #
+            #   @return [Float]
+            required :unit_price, Float
+
+            # @!attribute quantity
+            #   The quantity of this line item. Defaults to 1.
+            #
+            #   @return [Float, nil]
+            optional :quantity, Float, nil?: true
+
+            # @!method initialize(label:, unit_price:, quantity: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::LineItem}
+            #   for more details.
+            #
+            #   A single line item to include on the invoice, with a label, quantity, and unit
+            #   price.
+            #
+            #   @param label [String] The label or description for this line item.
+            #
+            #   @param unit_price [Float] The unit price for this line item. Provided as a number in the specified currenc
+            #
+            #   @param quantity [Float, nil] The quantity of this line item. Defaults to 1.
+          end
         end
 
         class CreateInvoiceInputWithProductAndEmailAddress < WhopSDK::Internal::Type::BaseModel
@@ -712,6 +760,17 @@ module WhopSDK
           #   @return [String, nil]
           optional :customer_name, String, nil?: true
 
+          # @!attribute line_items
+          #   Optional line items that break down the invoice total. When provided, the sum of
+          #   (quantity \* unit_price) for all items must equal the plan price.
+          #
+          #   @return [Array<WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::LineItem>, nil]
+          optional :line_items,
+                   -> {
+                     WhopSDK::Internal::Type::ArrayOf[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::LineItem]
+                   },
+                   nil?: true
+
           # @!attribute mailing_address_id
           #   The unique identifier of an existing mailing address to attach to this invoice.
           #   Cannot be used together with billing_address.
@@ -733,7 +792,7 @@ module WhopSDK
           #   @return [String, nil]
           optional :payment_token_id, String, nil?: true
 
-          # @!method initialize(collection_method:, company_id:, due_date:, email_address:, plan:, product:, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, customer_name: nil, mailing_address_id: nil, payment_method_id: nil, payment_token_id: nil)
+          # @!method initialize(collection_method:, company_id:, due_date:, email_address:, plan:, product:, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, customer_name: nil, line_items: nil, mailing_address_id: nil, payment_method_id: nil, payment_token_id: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress}
           #   for more details.
@@ -759,6 +818,8 @@ module WhopSDK
           #   @param charge_buyer_fee [Boolean, nil] Whether to charge the customer a buyer fee on this invoice.
           #
           #   @param customer_name [String, nil] The name of the customer. Required when creating an invoice for a customer who i
+          #
+          #   @param line_items [Array<WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::LineItem>, nil] Optional line items that break down the invoice total. When provided, the sum of
           #
           #   @param mailing_address_id [String, nil] The unique identifier of an existing mailing address to attach to this invoice.
           #
@@ -1239,6 +1300,41 @@ module WhopSDK
               #   @return [Array<Symbol>]
             end
           end
+
+          class LineItem < WhopSDK::Internal::Type::BaseModel
+            # @!attribute label
+            #   The label or description for this line item.
+            #
+            #   @return [String]
+            required :label, String
+
+            # @!attribute unit_price
+            #   The unit price for this line item. Provided as a number in the specified
+            #   currency. Eg: 10.43 for $10.43
+            #
+            #   @return [Float]
+            required :unit_price, Float
+
+            # @!attribute quantity
+            #   The quantity of this line item. Defaults to 1.
+            #
+            #   @return [Float, nil]
+            optional :quantity, Float, nil?: true
+
+            # @!method initialize(label:, unit_price:, quantity: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::LineItem}
+            #   for more details.
+            #
+            #   A single line item to include on the invoice, with a label, quantity, and unit
+            #   price.
+            #
+            #   @param label [String] The label or description for this line item.
+            #
+            #   @param unit_price [Float] The unit price for this line item. Provided as a number in the specified currenc
+            #
+            #   @param quantity [Float, nil] The quantity of this line item. Defaults to 1.
+          end
         end
 
         class CreateInvoiceInputWithProductIDAndMemberID < WhopSDK::Internal::Type::BaseModel
@@ -1314,6 +1410,17 @@ module WhopSDK
           #   @return [String, nil]
           optional :customer_name, String, nil?: true
 
+          # @!attribute line_items
+          #   Optional line items that break down the invoice total. When provided, the sum of
+          #   (quantity \* unit_price) for all items must equal the plan price.
+          #
+          #   @return [Array<WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::LineItem>, nil]
+          optional :line_items,
+                   -> {
+                     WhopSDK::Internal::Type::ArrayOf[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::LineItem]
+                   },
+                   nil?: true
+
           # @!attribute mailing_address_id
           #   The unique identifier of an existing mailing address to attach to this invoice.
           #   Cannot be used together with billing_address.
@@ -1335,7 +1442,7 @@ module WhopSDK
           #   @return [String, nil]
           optional :payment_token_id, String, nil?: true
 
-          # @!method initialize(collection_method:, company_id:, due_date:, member_id:, plan:, product_id:, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, customer_name: nil, mailing_address_id: nil, payment_method_id: nil, payment_token_id: nil)
+          # @!method initialize(collection_method:, company_id:, due_date:, member_id:, plan:, product_id:, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, customer_name: nil, line_items: nil, mailing_address_id: nil, payment_method_id: nil, payment_token_id: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID}
           #   for more details.
@@ -1361,6 +1468,8 @@ module WhopSDK
           #   @param charge_buyer_fee [Boolean, nil] Whether to charge the customer a buyer fee on this invoice.
           #
           #   @param customer_name [String, nil] The name of the customer. Required when creating an invoice for a customer who i
+          #
+          #   @param line_items [Array<WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::LineItem>, nil] Optional line items that break down the invoice total. When provided, the sum of
           #
           #   @param mailing_address_id [String, nil] The unique identifier of an existing mailing address to attach to this invoice.
           #
@@ -1818,6 +1927,41 @@ module WhopSDK
               #   @return [Array<Symbol>]
             end
           end
+
+          class LineItem < WhopSDK::Internal::Type::BaseModel
+            # @!attribute label
+            #   The label or description for this line item.
+            #
+            #   @return [String]
+            required :label, String
+
+            # @!attribute unit_price
+            #   The unit price for this line item. Provided as a number in the specified
+            #   currency. Eg: 10.43 for $10.43
+            #
+            #   @return [Float]
+            required :unit_price, Float
+
+            # @!attribute quantity
+            #   The quantity of this line item. Defaults to 1.
+            #
+            #   @return [Float, nil]
+            optional :quantity, Float, nil?: true
+
+            # @!method initialize(label:, unit_price:, quantity: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::LineItem}
+            #   for more details.
+            #
+            #   A single line item to include on the invoice, with a label, quantity, and unit
+            #   price.
+            #
+            #   @param label [String] The label or description for this line item.
+            #
+            #   @param unit_price [Float] The unit price for this line item. Provided as a number in the specified currenc
+            #
+            #   @param quantity [Float, nil] The quantity of this line item. Defaults to 1.
+          end
         end
 
         class CreateInvoiceInputWithProductIDAndEmailAddress < WhopSDK::Internal::Type::BaseModel
@@ -1893,6 +2037,17 @@ module WhopSDK
           #   @return [String, nil]
           optional :customer_name, String, nil?: true
 
+          # @!attribute line_items
+          #   Optional line items that break down the invoice total. When provided, the sum of
+          #   (quantity \* unit_price) for all items must equal the plan price.
+          #
+          #   @return [Array<WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::LineItem>, nil]
+          optional :line_items,
+                   -> {
+                     WhopSDK::Internal::Type::ArrayOf[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::LineItem]
+                   },
+                   nil?: true
+
           # @!attribute mailing_address_id
           #   The unique identifier of an existing mailing address to attach to this invoice.
           #   Cannot be used together with billing_address.
@@ -1914,7 +2069,7 @@ module WhopSDK
           #   @return [String, nil]
           optional :payment_token_id, String, nil?: true
 
-          # @!method initialize(collection_method:, company_id:, due_date:, email_address:, plan:, product_id:, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, customer_name: nil, mailing_address_id: nil, payment_method_id: nil, payment_token_id: nil)
+          # @!method initialize(collection_method:, company_id:, due_date:, email_address:, plan:, product_id:, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, customer_name: nil, line_items: nil, mailing_address_id: nil, payment_method_id: nil, payment_token_id: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress}
           #   for more details.
@@ -1940,6 +2095,8 @@ module WhopSDK
           #   @param charge_buyer_fee [Boolean, nil] Whether to charge the customer a buyer fee on this invoice.
           #
           #   @param customer_name [String, nil] The name of the customer. Required when creating an invoice for a customer who i
+          #
+          #   @param line_items [Array<WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::LineItem>, nil] Optional line items that break down the invoice total. When provided, the sum of
           #
           #   @param mailing_address_id [String, nil] The unique identifier of an existing mailing address to attach to this invoice.
           #
@@ -2396,6 +2553,41 @@ module WhopSDK
               # @!method self.values
               #   @return [Array<Symbol>]
             end
+          end
+
+          class LineItem < WhopSDK::Internal::Type::BaseModel
+            # @!attribute label
+            #   The label or description for this line item.
+            #
+            #   @return [String]
+            required :label, String
+
+            # @!attribute unit_price
+            #   The unit price for this line item. Provided as a number in the specified
+            #   currency. Eg: 10.43 for $10.43
+            #
+            #   @return [Float]
+            required :unit_price, Float
+
+            # @!attribute quantity
+            #   The quantity of this line item. Defaults to 1.
+            #
+            #   @return [Float, nil]
+            optional :quantity, Float, nil?: true
+
+            # @!method initialize(label:, unit_price:, quantity: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::LineItem}
+            #   for more details.
+            #
+            #   A single line item to include on the invoice, with a label, quantity, and unit
+            #   price.
+            #
+            #   @param label [String] The label or description for this line item.
+            #
+            #   @param unit_price [Float] The unit price for this line item. Provided as a number in the specified currenc
+            #
+            #   @param quantity [Float, nil] The quantity of this line item. Defaults to 1.
           end
         end
 

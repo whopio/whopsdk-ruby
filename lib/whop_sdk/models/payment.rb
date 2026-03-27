@@ -652,6 +652,7 @@ module WhopSDK
           REJECTED = :rejected
           LOST = :lost
           PREVENTED = :prevented
+          CANCELED = :canceled
 
           # @!method self.values
           #   @return [Array<Symbol>]

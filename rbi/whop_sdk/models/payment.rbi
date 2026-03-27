@@ -874,6 +874,11 @@ module WhopSDK
               :prevented,
               WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
             )
+          CANCELED =
+            T.let(
+              :canceled,
+              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
+            )
 
           sig do
             override.returns(

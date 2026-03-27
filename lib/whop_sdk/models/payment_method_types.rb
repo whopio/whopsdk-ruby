@@ -26,7 +26,6 @@ module WhopSDK
       CASHAPP = :cashapp
       CLARITYPAY = :claritypay
       COINBASE = :coinbase
-      COINFLOW = :coinflow
       CRYPTO = :crypto
       CUSTOM = :custom
       CUSTOMER_BALANCE = :customer_balance
@@ -96,6 +95,7 @@ module WhopSDK
       VIPPS = :vipps
       WECHAT_PAY = :wechat_pay
       ZIP = :zip
+      COINFLOW = :coinflow
       UNKNOWN = :unknown
 
       # @!method self.values

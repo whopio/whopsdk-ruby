@@ -171,6 +171,19 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :customer_name
 
+          # Optional line items that break down the invoice total. When provided, the sum of
+          # (quantity \* unit_price) for all items must equal the plan price.
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::LineItem
+                ]
+              )
+            )
+          end
+          attr_accessor :line_items
+
           # The unique identifier of an existing mailing address to attach to this invoice.
           # Cannot be used together with billing_address.
           sig { returns(T.nilable(String)) }
@@ -204,6 +217,12 @@ module WhopSDK
                 ),
               charge_buyer_fee: T.nilable(T::Boolean),
               customer_name: T.nilable(String),
+              line_items:
+                T.nilable(
+                  T::Array[
+                    WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::LineItem::OrHash
+                  ]
+                ),
               mailing_address_id: T.nilable(String),
               payment_method_id: T.nilable(String),
               payment_token_id: T.nilable(String)
@@ -238,6 +257,9 @@ module WhopSDK
             # The name of the customer. Required when creating an invoice for a customer who
             # is not yet a member of the company.
             customer_name: nil,
+            # Optional line items that break down the invoice total. When provided, the sum of
+            # (quantity \* unit_price) for all items must equal the plan price.
+            line_items: nil,
             # The unique identifier of an existing mailing address to attach to this invoice.
             # Cannot be used together with billing_address.
             mailing_address_id: nil,
@@ -268,6 +290,12 @@ module WhopSDK
                   ),
                 charge_buyer_fee: T.nilable(T::Boolean),
                 customer_name: T.nilable(String),
+                line_items:
+                  T.nilable(
+                    T::Array[
+                      WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::LineItem
+                    ]
+                  ),
                 mailing_address_id: T.nilable(String),
                 payment_method_id: T.nilable(String),
                 payment_token_id: T.nilable(String)
@@ -1360,6 +1388,57 @@ module WhopSDK
               end
             end
           end
+
+          class LineItem < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::LineItem,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The label or description for this line item.
+            sig { returns(String) }
+            attr_accessor :label
+
+            # The unit price for this line item. Provided as a number in the specified
+            # currency. Eg: 10.43 for $10.43
+            sig { returns(Float) }
+            attr_accessor :unit_price
+
+            # The quantity of this line item. Defaults to 1.
+            sig { returns(T.nilable(Float)) }
+            attr_accessor :quantity
+
+            # A single line item to include on the invoice, with a label, quantity, and unit
+            # price.
+            sig do
+              params(
+                label: String,
+                unit_price: Float,
+                quantity: T.nilable(Float)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The label or description for this line item.
+              label:,
+              # The unit price for this line item. Provided as a number in the specified
+              # currency. Eg: 10.43 for $10.43
+              unit_price:,
+              # The quantity of this line item. Defaults to 1.
+              quantity: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                { label: String, unit_price: Float, quantity: T.nilable(Float) }
+              )
+            end
+            def to_hash
+            end
+          end
         end
 
         class CreateInvoiceInputWithProductAndEmailAddress < WhopSDK::Internal::Type::BaseModel
@@ -1459,6 +1538,19 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :customer_name
 
+          # Optional line items that break down the invoice total. When provided, the sum of
+          # (quantity \* unit_price) for all items must equal the plan price.
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::LineItem
+                ]
+              )
+            )
+          end
+          attr_accessor :line_items
+
           # The unique identifier of an existing mailing address to attach to this invoice.
           # Cannot be used together with billing_address.
           sig { returns(T.nilable(String)) }
@@ -1492,6 +1584,12 @@ module WhopSDK
                 ),
               charge_buyer_fee: T.nilable(T::Boolean),
               customer_name: T.nilable(String),
+              line_items:
+                T.nilable(
+                  T::Array[
+                    WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::LineItem::OrHash
+                  ]
+                ),
               mailing_address_id: T.nilable(String),
               payment_method_id: T.nilable(String),
               payment_token_id: T.nilable(String)
@@ -1526,6 +1624,9 @@ module WhopSDK
             # The name of the customer. Required when creating an invoice for a customer who
             # is not yet a member of the company.
             customer_name: nil,
+            # Optional line items that break down the invoice total. When provided, the sum of
+            # (quantity \* unit_price) for all items must equal the plan price.
+            line_items: nil,
             # The unique identifier of an existing mailing address to attach to this invoice.
             # Cannot be used together with billing_address.
             mailing_address_id: nil,
@@ -1556,6 +1657,12 @@ module WhopSDK
                   ),
                 charge_buyer_fee: T.nilable(T::Boolean),
                 customer_name: T.nilable(String),
+                line_items:
+                  T.nilable(
+                    T::Array[
+                      WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::LineItem
+                    ]
+                  ),
                 mailing_address_id: T.nilable(String),
                 payment_method_id: T.nilable(String),
                 payment_token_id: T.nilable(String)
@@ -2648,6 +2755,57 @@ module WhopSDK
               end
             end
           end
+
+          class LineItem < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::LineItem,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The label or description for this line item.
+            sig { returns(String) }
+            attr_accessor :label
+
+            # The unit price for this line item. Provided as a number in the specified
+            # currency. Eg: 10.43 for $10.43
+            sig { returns(Float) }
+            attr_accessor :unit_price
+
+            # The quantity of this line item. Defaults to 1.
+            sig { returns(T.nilable(Float)) }
+            attr_accessor :quantity
+
+            # A single line item to include on the invoice, with a label, quantity, and unit
+            # price.
+            sig do
+              params(
+                label: String,
+                unit_price: Float,
+                quantity: T.nilable(Float)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The label or description for this line item.
+              label:,
+              # The unit price for this line item. Provided as a number in the specified
+              # currency. Eg: 10.43 for $10.43
+              unit_price:,
+              # The quantity of this line item. Defaults to 1.
+              quantity: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                { label: String, unit_price: Float, quantity: T.nilable(Float) }
+              )
+            end
+            def to_hash
+            end
+          end
         end
 
         class CreateInvoiceInputWithProductIDAndMemberID < WhopSDK::Internal::Type::BaseModel
@@ -2734,6 +2892,19 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :customer_name
 
+          # Optional line items that break down the invoice total. When provided, the sum of
+          # (quantity \* unit_price) for all items must equal the plan price.
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::LineItem
+                ]
+              )
+            )
+          end
+          attr_accessor :line_items
+
           # The unique identifier of an existing mailing address to attach to this invoice.
           # Cannot be used together with billing_address.
           sig { returns(T.nilable(String)) }
@@ -2766,6 +2937,12 @@ module WhopSDK
                 ),
               charge_buyer_fee: T.nilable(T::Boolean),
               customer_name: T.nilable(String),
+              line_items:
+                T.nilable(
+                  T::Array[
+                    WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::LineItem::OrHash
+                  ]
+                ),
               mailing_address_id: T.nilable(String),
               payment_method_id: T.nilable(String),
               payment_token_id: T.nilable(String)
@@ -2799,6 +2976,9 @@ module WhopSDK
             # The name of the customer. Required when creating an invoice for a customer who
             # is not yet a member of the company.
             customer_name: nil,
+            # Optional line items that break down the invoice total. When provided, the sum of
+            # (quantity \* unit_price) for all items must equal the plan price.
+            line_items: nil,
             # The unique identifier of an existing mailing address to attach to this invoice.
             # Cannot be used together with billing_address.
             mailing_address_id: nil,
@@ -2828,6 +3008,12 @@ module WhopSDK
                   ),
                 charge_buyer_fee: T.nilable(T::Boolean),
                 customer_name: T.nilable(String),
+                line_items:
+                  T.nilable(
+                    T::Array[
+                      WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::LineItem
+                    ]
+                  ),
                 mailing_address_id: T.nilable(String),
                 payment_method_id: T.nilable(String),
                 payment_token_id: T.nilable(String)
@@ -3878,6 +4064,57 @@ module WhopSDK
               end
             end
           end
+
+          class LineItem < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::LineItem,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The label or description for this line item.
+            sig { returns(String) }
+            attr_accessor :label
+
+            # The unit price for this line item. Provided as a number in the specified
+            # currency. Eg: 10.43 for $10.43
+            sig { returns(Float) }
+            attr_accessor :unit_price
+
+            # The quantity of this line item. Defaults to 1.
+            sig { returns(T.nilable(Float)) }
+            attr_accessor :quantity
+
+            # A single line item to include on the invoice, with a label, quantity, and unit
+            # price.
+            sig do
+              params(
+                label: String,
+                unit_price: Float,
+                quantity: T.nilable(Float)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The label or description for this line item.
+              label:,
+              # The unit price for this line item. Provided as a number in the specified
+              # currency. Eg: 10.43 for $10.43
+              unit_price:,
+              # The quantity of this line item. Defaults to 1.
+              quantity: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                { label: String, unit_price: Float, quantity: T.nilable(Float) }
+              )
+            end
+            def to_hash
+            end
+          end
         end
 
         class CreateInvoiceInputWithProductIDAndEmailAddress < WhopSDK::Internal::Type::BaseModel
@@ -3964,6 +4201,19 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :customer_name
 
+          # Optional line items that break down the invoice total. When provided, the sum of
+          # (quantity \* unit_price) for all items must equal the plan price.
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::LineItem
+                ]
+              )
+            )
+          end
+          attr_accessor :line_items
+
           # The unique identifier of an existing mailing address to attach to this invoice.
           # Cannot be used together with billing_address.
           sig { returns(T.nilable(String)) }
@@ -3996,6 +4246,12 @@ module WhopSDK
                 ),
               charge_buyer_fee: T.nilable(T::Boolean),
               customer_name: T.nilable(String),
+              line_items:
+                T.nilable(
+                  T::Array[
+                    WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::LineItem::OrHash
+                  ]
+                ),
               mailing_address_id: T.nilable(String),
               payment_method_id: T.nilable(String),
               payment_token_id: T.nilable(String)
@@ -4029,6 +4285,9 @@ module WhopSDK
             # The name of the customer. Required when creating an invoice for a customer who
             # is not yet a member of the company.
             customer_name: nil,
+            # Optional line items that break down the invoice total. When provided, the sum of
+            # (quantity \* unit_price) for all items must equal the plan price.
+            line_items: nil,
             # The unique identifier of an existing mailing address to attach to this invoice.
             # Cannot be used together with billing_address.
             mailing_address_id: nil,
@@ -4058,6 +4317,12 @@ module WhopSDK
                   ),
                 charge_buyer_fee: T.nilable(T::Boolean),
                 customer_name: T.nilable(String),
+                line_items:
+                  T.nilable(
+                    T::Array[
+                      WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::LineItem
+                    ]
+                  ),
                 mailing_address_id: T.nilable(String),
                 payment_method_id: T.nilable(String),
                 payment_token_id: T.nilable(String)
@@ -5106,6 +5371,57 @@ module WhopSDK
               end
               def self.values
               end
+            end
+          end
+
+          class LineItem < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::LineItem,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The label or description for this line item.
+            sig { returns(String) }
+            attr_accessor :label
+
+            # The unit price for this line item. Provided as a number in the specified
+            # currency. Eg: 10.43 for $10.43
+            sig { returns(Float) }
+            attr_accessor :unit_price
+
+            # The quantity of this line item. Defaults to 1.
+            sig { returns(T.nilable(Float)) }
+            attr_accessor :quantity
+
+            # A single line item to include on the invoice, with a label, quantity, and unit
+            # price.
+            sig do
+              params(
+                label: String,
+                unit_price: Float,
+                quantity: T.nilable(Float)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The label or description for this line item.
+              label:,
+              # The unit price for this line item. Provided as a number in the specified
+              # currency. Eg: 10.43 for $10.43
+              unit_price:,
+              # The quantity of this line item. Defaults to 1.
+              quantity: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                { label: String, unit_price: Float, quantity: T.nilable(Float) }
+              )
+            end
+            def to_hash
             end
           end
         end

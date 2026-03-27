@@ -428,6 +428,7 @@ module WhopSDK
           | :rejected
           | :lost
           | :prevented
+          | :canceled
 
         module Status
           extend WhopSDK::Internal::Type::Enum
@@ -442,6 +443,7 @@ module WhopSDK
           REJECTED: :rejected
           LOST: :lost
           PREVENTED: :prevented
+          CANCELED: :canceled
 
           def self?.values: -> ::Array[WhopSDK::Models::Payment::FinancingTransaction::status]
         end

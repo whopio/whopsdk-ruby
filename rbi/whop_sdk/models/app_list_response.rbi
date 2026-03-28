@@ -85,6 +85,23 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :name
 
+      # The URL path template for a specific view of this app, appended to the base
+      # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+      # not configured.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :openapi_path
+
+      # The full origin URL for this app's proxied domain (e.g.,
+      # 'https://myapp.apps.whop.com'). Null if no proxy domain is configured.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :origin
+
+      # The URL path template for a specific view of this app, appended to the base
+      # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+      # not configured.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :skills_path
+
       # The current visibility status of this app on the Whop app store. 'live' means
       # publicly discoverable, 'unlisted' means accessible only via direct link, and
       # 'hidden' means not visible anywhere.
@@ -112,6 +129,9 @@ module WhopSDK
           experience_path: T.nilable(String),
           icon: T.nilable(WhopSDK::Models::AppListResponse::Icon::OrHash),
           name: String,
+          openapi_path: T.nilable(String),
+          origin: T.nilable(String),
+          skills_path: T.nilable(String),
           status: WhopSDK::AppStatuses::OrSymbol,
           verified: T::Boolean
         ).returns(T.attached_class)
@@ -153,6 +173,17 @@ module WhopSDK
         # The display name of this app shown on the app store and in experience
         # navigation. Maximum 30 characters.
         name:,
+        # The URL path template for a specific view of this app, appended to the base
+        # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+        # not configured.
+        openapi_path:,
+        # The full origin URL for this app's proxied domain (e.g.,
+        # 'https://myapp.apps.whop.com'). Null if no proxy domain is configured.
+        origin:,
+        # The URL path template for a specific view of this app, appended to the base
+        # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+        # not configured.
+        skills_path:,
         # The current visibility status of this app on the Whop app store. 'live' means
         # publicly discoverable, 'unlisted' means accessible only via direct link, and
         # 'hidden' means not visible anywhere.
@@ -178,6 +209,9 @@ module WhopSDK
             experience_path: T.nilable(String),
             icon: T.nilable(WhopSDK::Models::AppListResponse::Icon),
             name: String,
+            openapi_path: T.nilable(String),
+            origin: T.nilable(String),
+            skills_path: T.nilable(String),
             status: WhopSDK::AppStatuses::TaggedSymbol,
             verified: T::Boolean
           }

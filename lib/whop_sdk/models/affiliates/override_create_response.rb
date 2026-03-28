@@ -44,7 +44,8 @@ module WhopSDK
         required :commission_type, enum: -> { WhopSDK::Affiliates::AffiliatePayoutTypes }
 
         # @!attribute commission_value
-        #   The commission value (percentage 1-100 or flat fee in dollars).
+        #   The commission amount. A percentage (1-100) when commission_type is percentage,
+        #   or a dollar amount when flat_fee.
         #
         #   @return [Float]
         required :commission_value, Float
@@ -90,7 +91,8 @@ module WhopSDK
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::Affiliates::OverrideCreateResponse} for more details.
         #
-        #   An object storing information about the affiliate
+        #   A commission configuration for an affiliate, defining payout terms for a
+        #   specific plan or revenue share
         #
         #   @param id [String] The unique identifier for the affiliate override.
         #
@@ -102,7 +104,7 @@ module WhopSDK
         #
         #   @param commission_type [Symbol, WhopSDK::Models::Affiliates::AffiliatePayoutTypes] The type of commission (percentage or flat_fee).
         #
-        #   @param commission_value [Float] The commission value (percentage 1-100 or flat fee in dollars).
+        #   @param commission_value [Float] The commission amount. A percentage (1-100) when commission_type is percentage,
         #
         #   @param override_type [Symbol, WhopSDK::Models::Affiliates::AffiliateOverrideRoles] The type of override (standard or rev_share).
         #

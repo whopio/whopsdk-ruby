@@ -78,11 +78,13 @@ module WhopSDK
           name: T.nilable(String),
           oauth_client_type:
             T.nilable(WhopSDK::AppUpdateParams::OAuthClientType::OrSymbol),
+          openapi_path: T.nilable(String),
           redirect_uris: T.nilable(T::Array[String]),
           required_scopes:
             T.nilable(
               T::Array[WhopSDK::AppUpdateParams::RequiredScope::OrSymbol]
             ),
+          skills_path: T.nilable(String),
           status: T.nilable(WhopSDK::AppStatuses::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::App)
@@ -112,11 +114,16 @@ module WhopSDK
         name: nil,
         # How this app authenticates at the OAuth token endpoint.
         oauth_client_type: nil,
+        # The URL path to the OpenAPI spec file of the app, such as
+        # '/assets/openapi.json'.
+        openapi_path: nil,
         # The whitelisted OAuth callback URLs that users are redirected to after
         # authorizing the app
         redirect_uris: nil,
         # The permission scopes the app will request from users when they install it.
         required_scopes: nil,
+        # The URL path to the skills directory of the app, such as '/assets/skills/'.
+        skills_path: nil,
         # The status of an experience interface
         status: nil,
         request_options: {}

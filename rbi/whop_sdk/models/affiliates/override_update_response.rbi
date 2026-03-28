@@ -44,7 +44,8 @@ module WhopSDK
         sig { returns(WhopSDK::Affiliates::AffiliatePayoutTypes::TaggedSymbol) }
         attr_accessor :commission_type
 
-        # The commission value (percentage 1-100 or flat fee in dollars).
+        # The commission amount. A percentage (1-100) when commission_type is percentage,
+        # or a dollar amount when flat_fee.
         sig { returns(Float) }
         attr_accessor :commission_value
 
@@ -79,7 +80,8 @@ module WhopSDK
         sig { returns(Float) }
         attr_accessor :total_referral_earnings_usd
 
-        # An object storing information about the affiliate
+        # A commission configuration for an affiliate, defining payout terms for a
+        # specific plan or revenue share
         sig do
           params(
             id: String,
@@ -116,7 +118,8 @@ module WhopSDK
           checkout_direct_link:,
           # The type of commission (percentage or flat_fee).
           commission_type:,
-          # The commission value (percentage 1-100 or flat fee in dollars).
+          # The commission amount. A percentage (1-100) when commission_type is percentage,
+          # or a dollar amount when flat_fee.
           commission_value:,
           # The type of override (standard or rev_share).
           override_type:,

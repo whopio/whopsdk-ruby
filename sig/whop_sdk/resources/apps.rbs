@@ -27,8 +27,10 @@ module WhopSDK
         ?icon: WhopSDK::AppUpdateParams::Icon?,
         ?name: String?,
         ?oauth_client_type: WhopSDK::Models::AppUpdateParams::oauth_client_type?,
+        ?openapi_path: String?,
         ?redirect_uris: ::Array[String]?,
         ?required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
+        ?skills_path: String?,
         ?status: WhopSDK::Models::app_statuses?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::App

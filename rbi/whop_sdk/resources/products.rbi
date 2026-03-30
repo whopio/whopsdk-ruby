@@ -41,7 +41,7 @@ module WhopSDK
       def create(
         # The unique identifier of the company to create this product for.
         company_id:,
-        # The display name of the product. Maximum 40 characters.
+        # The display name of the product. Maximum 150 characters.
         title:,
         # Whether the checkout flow collects a shipping address from the customer.
         collect_shipping_address: nil,
@@ -182,7 +182,7 @@ module WhopSDK
         send_welcome_message: nil,
         # Layout and display configuration for this product on the company's store page.
         store_page_config: nil,
-        # The display name of the product. Maximum 40 characters.
+        # The display name of the product. Maximum 150 characters.
         title: nil,
         # Visibility of a resource
         visibility: nil,

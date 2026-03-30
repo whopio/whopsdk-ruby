@@ -117,7 +117,7 @@ module WhopSDK
       optional :store_page_config, -> { WhopSDK::ProductUpdateParams::StorePageConfig }, nil?: true
 
       # @!attribute title
-      #   The display name of the product. Maximum 40 characters.
+      #   The display name of the product. Maximum 150 characters.
       #
       #   @return [String, nil]
       optional :title, String, nil?: true
@@ -166,7 +166,7 @@ module WhopSDK
       #
       #   @param store_page_config [WhopSDK::Models::ProductUpdateParams::StorePageConfig, nil] Layout and display configuration for this product on the company's store page.
       #
-      #   @param title [String, nil] The display name of the product. Maximum 40 characters.
+      #   @param title [String, nil] The display name of the product. Maximum 150 characters.
       #
       #   @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
       #

@@ -533,7 +533,11 @@ module WhopSDK
 
   module ReleaseMethod = WhopSDK::Models::ReleaseMethod
 
+  class ResolutionCenterCaseCreatedWebhookEvent = WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent
+
   module ResolutionCenterCaseCustomerResponse = WhopSDK::Models::ResolutionCenterCaseCustomerResponse
+
+  class ResolutionCenterCaseDecidedWebhookEvent = WhopSDK::Models::ResolutionCenterCaseDecidedWebhookEvent
 
   module ResolutionCenterCaseIssueType = WhopSDK::Models::ResolutionCenterCaseIssueType
 
@@ -546,6 +550,8 @@ module WhopSDK
   class ResolutionCenterCaseRetrieveParams = WhopSDK::Models::ResolutionCenterCaseRetrieveParams
 
   module ResolutionCenterCaseStatus = WhopSDK::Models::ResolutionCenterCaseStatus
+
+  class ResolutionCenterCaseUpdatedWebhookEvent = WhopSDK::Models::ResolutionCenterCaseUpdatedWebhookEvent
 
   class ReviewListParams = WhopSDK::Models::ReviewListParams
 

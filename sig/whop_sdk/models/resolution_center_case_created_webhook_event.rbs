@@ -1,0 +1,296 @@
+module WhopSDK
+  module Models
+    type resolution_center_case_created_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"resolution_center_case.created",
+        company_id: String?
+      }
+
+    class ResolutionCenterCaseCreatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor data: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"resolution_center_case.created"
+
+      attr_accessor company_id: String?
+
+      def initialize: (
+        id: String,
+        data: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data,
+        timestamp: Time,
+        ?company_id: String?,
+        ?api_version: :v1,
+        ?type: :"resolution_center_case.created"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"resolution_center_case.created",
+        company_id: String?
+      }
+
+      type data =
+        {
+          id: String,
+          company: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Company?,
+          created_at: Time,
+          customer_appealed: bool,
+          customer_response_actions: ::Array[WhopSDK::Models::resolution_center_case_customer_response],
+          due_date: Time?,
+          issue: WhopSDK::Models::resolution_center_case_issue_type,
+          member: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Member?,
+          merchant_appealed: bool,
+          merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response],
+          payment: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Payment,
+          platform_response_actions: ::Array[WhopSDK::Models::resolution_center_case_platform_response],
+          resolution_events: ::Array[WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent],
+          status: WhopSDK::Models::resolution_center_case_status,
+          updated_at: Time,
+          user: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::User
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor company: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Company?
+
+        attr_accessor created_at: Time
+
+        attr_accessor customer_appealed: bool
+
+        attr_accessor customer_response_actions: ::Array[WhopSDK::Models::resolution_center_case_customer_response]
+
+        attr_accessor due_date: Time?
+
+        attr_accessor issue: WhopSDK::Models::resolution_center_case_issue_type
+
+        attr_accessor member: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Member?
+
+        attr_accessor merchant_appealed: bool
+
+        attr_accessor merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response]
+
+        attr_accessor payment: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Payment
+
+        attr_accessor platform_response_actions: ::Array[WhopSDK::Models::resolution_center_case_platform_response]
+
+        attr_accessor resolution_events: ::Array[WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent]
+
+        attr_accessor status: WhopSDK::Models::resolution_center_case_status
+
+        attr_accessor updated_at: Time
+
+        attr_accessor user: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::User
+
+        def initialize: (
+          id: String,
+          company: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Company?,
+          created_at: Time,
+          customer_appealed: bool,
+          customer_response_actions: ::Array[WhopSDK::Models::resolution_center_case_customer_response],
+          due_date: Time?,
+          issue: WhopSDK::Models::resolution_center_case_issue_type,
+          member: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Member?,
+          merchant_appealed: bool,
+          merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response],
+          payment: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Payment,
+          platform_response_actions: ::Array[WhopSDK::Models::resolution_center_case_platform_response],
+          resolution_events: ::Array[WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent],
+          status: WhopSDK::Models::resolution_center_case_status,
+          updated_at: Time,
+          user: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::User
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          company: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Company?,
+          created_at: Time,
+          customer_appealed: bool,
+          customer_response_actions: ::Array[WhopSDK::Models::resolution_center_case_customer_response],
+          due_date: Time?,
+          issue: WhopSDK::Models::resolution_center_case_issue_type,
+          member: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Member?,
+          merchant_appealed: bool,
+          merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response],
+          payment: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::Payment,
+          platform_response_actions: ::Array[WhopSDK::Models::resolution_center_case_platform_response],
+          resolution_events: ::Array[WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent],
+          status: WhopSDK::Models::resolution_center_case_status,
+          updated_at: Time,
+          user: WhopSDK::ResolutionCenterCaseCreatedWebhookEvent::Data::User
+        }
+
+        type company = { id: String, title: String }
+
+        class Company < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor title: String
+
+          def initialize: (id: String, title: String) -> void
+
+          def to_hash: -> { id: String, title: String }
+        end
+
+        type member = { id: String }
+
+        class Member < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          def initialize: (id: String) -> void
+
+          def to_hash: -> { id: String }
+        end
+
+        type payment =
+          {
+            id: String,
+            created_at: Time,
+            currency: WhopSDK::Models::currency?,
+            paid_at: Time?,
+            subtotal: Float?,
+            total: Float
+          }
+
+        class Payment < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor created_at: Time
+
+          attr_accessor currency: WhopSDK::Models::currency?
+
+          attr_accessor paid_at: Time?
+
+          attr_accessor subtotal: Float?
+
+          attr_accessor total: Float
+
+          def initialize: (
+            id: String,
+            created_at: Time,
+            currency: WhopSDK::Models::currency?,
+            paid_at: Time?,
+            subtotal: Float?,
+            total: Float
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            created_at: Time,
+            currency: WhopSDK::Models::currency?,
+            paid_at: Time?,
+            subtotal: Float?,
+            total: Float
+          }
+        end
+
+        type resolution_event =
+          {
+            id: String,
+            action: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent::action,
+            created_at: Time,
+            details: String?,
+            reporter_type: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent::reporter_type
+          }
+
+        class ResolutionEvent < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor action: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent::action
+
+          attr_accessor created_at: Time
+
+          attr_accessor details: String?
+
+          attr_accessor reporter_type: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent::reporter_type
+
+          def initialize: (
+            id: String,
+            action: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent::action,
+            created_at: Time,
+            details: String?,
+            reporter_type: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent::reporter_type
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            action: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent::action,
+            created_at: Time,
+            details: String?,
+            reporter_type: WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent::reporter_type
+          }
+
+          type action =
+            :created
+            | :responded
+            | :accepted
+            | :denied
+            | :appealed
+            | :withdrew
+            | :requested_more_info
+            | :escalated
+            | :dispute_opened
+            | :dispute_customer_won
+            | :dispute_merchant_won
+
+          module Action
+            extend WhopSDK::Internal::Type::Enum
+
+            CREATED: :created
+            RESPONDED: :responded
+            ACCEPTED: :accepted
+            DENIED: :denied
+            APPEALED: :appealed
+            WITHDREW: :withdrew
+            REQUESTED_MORE_INFO: :requested_more_info
+            ESCALATED: :escalated
+            DISPUTE_OPENED: :dispute_opened
+            DISPUTE_CUSTOMER_WON: :dispute_customer_won
+            DISPUTE_MERCHANT_WON: :dispute_merchant_won
+
+            def self?.values: -> ::Array[WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent::action]
+          end
+
+          type reporter_type = :merchant | :customer | :platform | :system
+
+          module ReporterType
+            extend WhopSDK::Internal::Type::Enum
+
+            MERCHANT: :merchant
+            CUSTOMER: :customer
+            PLATFORM: :platform
+            SYSTEM: :system
+
+            def self?.values: -> ::Array[WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent::Data::ResolutionEvent::reporter_type]
+          end
+        end
+
+        type user = { id: String, name: String?, username: String }
+
+        class User < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor name: String?
+
+          attr_accessor username: String
+
+          def initialize: (id: String, name: String?, username: String) -> void
+
+          def to_hash: -> { id: String, name: String?, username: String }
+        end
+      end
+    end
+  end
+end

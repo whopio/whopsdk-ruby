@@ -54,6 +54,21 @@ module WhopSDK
           :"payout_account.status_updated",
           WhopSDK::WebhookEvent::TaggedSymbol
         )
+      RESOLUTION_CENTER_CASE_CREATED =
+        T.let(
+          :"resolution_center_case.created",
+          WhopSDK::WebhookEvent::TaggedSymbol
+        )
+      RESOLUTION_CENTER_CASE_UPDATED =
+        T.let(
+          :"resolution_center_case.updated",
+          WhopSDK::WebhookEvent::TaggedSymbol
+        )
+      RESOLUTION_CENTER_CASE_DECIDED =
+        T.let(
+          :"resolution_center_case.decided",
+          WhopSDK::WebhookEvent::TaggedSymbol
+        )
       PAYMENT_CREATED =
         T.let(:"payment.created", WhopSDK::WebhookEvent::TaggedSymbol)
       PAYMENT_SUCCEEDED =

@@ -66,6 +66,7 @@ module WhopSDK
           type plan =
             {
               currency: WhopSDK::Models::currency,
+              application_fee_amount: Float?,
               billing_period: Integer?,
               description: String?,
               expiration_days: Integer?,
@@ -83,6 +84,8 @@ module WhopSDK
 
           class Plan < WhopSDK::Internal::Type::BaseModel
             attr_accessor currency: WhopSDK::Models::currency
+
+            attr_accessor application_fee_amount: Float?
 
             attr_accessor billing_period: Integer?
 
@@ -112,6 +115,7 @@ module WhopSDK
 
             def initialize: (
               currency: WhopSDK::Models::currency,
+              ?application_fee_amount: Float?,
               ?billing_period: Integer?,
               ?description: String?,
               ?expiration_days: Integer?,
@@ -129,6 +133,7 @@ module WhopSDK
 
             def to_hash: -> {
               currency: WhopSDK::Models::currency,
+              application_fee_amount: Float?,
               billing_period: Integer?,
               description: String?,
               expiration_days: Integer?,

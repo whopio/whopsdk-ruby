@@ -85,6 +85,15 @@ module WhopSDK
             #   @return [Symbol, WhopSDK::Models::Currency]
             required :currency, enum: -> { WhopSDK::Currency }
 
+            # @!attribute application_fee_amount
+            #   The application fee amount collected by the platform from this connected
+            #   account. Provided as a number in dollars (e.g., 5.00 for $5.00). Must be less
+            #   than the total payment amount. Only valid for connected accounts with a parent
+            #   company.
+            #
+            #   @return [Float, nil]
+            optional :application_fee_amount, Float, nil?: true
+
             # @!attribute billing_period
             #   The interval in days at which the plan charges (renewal plans). For example, 30
             #   for monthly billing.
@@ -171,7 +180,7 @@ module WhopSDK
             #   @return [Symbol, WhopSDK::Models::Visibility, nil]
             optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-            # @!method initialize(currency:, billing_period: nil, description: nil, expiration_days: nil, force_create_new_plan: nil, initial_price: nil, internal_notes: nil, plan_type: nil, product: nil, product_id: nil, renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil)
+            # @!method initialize(currency:, application_fee_amount: nil, billing_period: nil, description: nil, expiration_days: nil, force_create_new_plan: nil, initial_price: nil, internal_notes: nil, plan_type: nil, product: nil, product_id: nil, renewal_price: nil, title: nil, trial_period_days: nil, visibility: nil)
             #   Some parameter documentations has been truncated, see
             #   {WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan}
             #   for more details.
@@ -179,6 +188,8 @@ module WhopSDK
             #   Pass this object to create a new plan for this payment
             #
             #   @param currency [Symbol, WhopSDK::Models::Currency] The respective currency identifier for the plan.
+            #
+            #   @param application_fee_amount [Float, nil] The application fee amount collected by the platform from this connected account
             #
             #   @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans). For example, 30
             #

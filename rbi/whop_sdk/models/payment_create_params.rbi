@@ -162,6 +162,13 @@ module WhopSDK
             sig { returns(WhopSDK::Currency::OrSymbol) }
             attr_accessor :currency
 
+            # The application fee amount collected by the platform from this connected
+            # account. Provided as a number in dollars (e.g., 5.00 for $5.00). Must be less
+            # than the total payment amount. Only valid for connected accounts with a parent
+            # company.
+            sig { returns(T.nilable(Float)) }
+            attr_accessor :application_fee_amount
+
             # The interval in days at which the plan charges (renewal plans). For example, 30
             # for monthly billing.
             sig { returns(T.nilable(Integer)) }
@@ -240,6 +247,7 @@ module WhopSDK
             sig do
               params(
                 currency: WhopSDK::Currency::OrSymbol,
+                application_fee_amount: T.nilable(Float),
                 billing_period: T.nilable(Integer),
                 description: T.nilable(String),
                 expiration_days: T.nilable(Integer),
@@ -261,6 +269,11 @@ module WhopSDK
             def self.new(
               # The respective currency identifier for the plan.
               currency:,
+              # The application fee amount collected by the platform from this connected
+              # account. Provided as a number in dollars (e.g., 5.00 for $5.00). Must be less
+              # than the total payment amount. Only valid for connected accounts with a parent
+              # company.
+              application_fee_amount: nil,
               # The interval in days at which the plan charges (renewal plans). For example, 30
               # for monthly billing.
               billing_period: nil,
@@ -300,6 +313,7 @@ module WhopSDK
               override.returns(
                 {
                   currency: WhopSDK::Currency::OrSymbol,
+                  application_fee_amount: T.nilable(Float),
                   billing_period: T.nilable(Integer),
                   description: T.nilable(String),
                   expiration_days: T.nilable(Integer),

@@ -83,6 +83,14 @@ module WhopSDK
       end
       attr_accessor :substatuses
 
+      # Only return payments last updated after this timestamp.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :updated_after
+
+      # Only return payments last updated before this timestamp.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :updated_before
+
       sig do
         params(
           after: T.nilable(String),
@@ -104,6 +112,8 @@ module WhopSDK
           statuses: T.nilable(T::Array[WhopSDK::ReceiptStatus::OrSymbol]),
           substatuses:
             T.nilable(T::Array[WhopSDK::FriendlyReceiptStatus::OrSymbol]),
+          updated_after: T.nilable(Time),
+          updated_before: T.nilable(Time),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -144,6 +154,10 @@ module WhopSDK
         statuses: nil,
         # Filter payments by their current substatus for more granular filtering.
         substatuses: nil,
+        # Only return payments last updated after this timestamp.
+        updated_after: nil,
+        # Only return payments last updated before this timestamp.
+        updated_before: nil,
         request_options: {}
       )
       end
@@ -170,6 +184,8 @@ module WhopSDK
             statuses: T.nilable(T::Array[WhopSDK::ReceiptStatus::OrSymbol]),
             substatuses:
               T.nilable(T::Array[WhopSDK::FriendlyReceiptStatus::OrSymbol]),
+            updated_after: T.nilable(Time),
+            updated_before: T.nilable(Time),
             request_options: WhopSDK::RequestOptions
           }
         )

@@ -329,6 +329,8 @@ module WhopSDK
 
   class InvoiceListParams = WhopSDK::Models::InvoiceListParams
 
+  class InvoiceMarkedUncollectibleWebhookEvent = WhopSDK::Models::InvoiceMarkedUncollectibleWebhookEvent
+
   class InvoicePaidWebhookEvent = WhopSDK::Models::InvoicePaidWebhookEvent
 
   class InvoicePastDueWebhookEvent = WhopSDK::Models::InvoicePastDueWebhookEvent

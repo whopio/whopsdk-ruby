@@ -1,0 +1,45 @@
+module WhopSDK
+  module Models
+    type invoice_marked_uncollectible_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::Invoice,
+        timestamp: Time,
+        type: :"invoice.marked_uncollectible",
+        company_id: String?
+      }
+
+    class InvoiceMarkedUncollectibleWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor data: WhopSDK::Invoice
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"invoice.marked_uncollectible"
+
+      attr_accessor company_id: String?
+
+      def initialize: (
+        id: String,
+        data: WhopSDK::Invoice,
+        timestamp: Time,
+        ?company_id: String?,
+        ?api_version: :v1,
+        ?type: :"invoice.marked_uncollectible"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::Invoice,
+        timestamp: Time,
+        type: :"invoice.marked_uncollectible",
+        company_id: String?
+      }
+    end
+  end
+end

@@ -7,6 +7,7 @@ module WhopSDK
       extend WhopSDK::Internal::Type::Enum
 
       INVOICE_CREATED = :"invoice.created"
+      INVOICE_MARKED_UNCOLLECTIBLE = :"invoice.marked_uncollectible"
       INVOICE_PAID = :"invoice.paid"
       INVOICE_PAST_DUE = :"invoice.past_due"
       INVOICE_VOIDED = :"invoice.voided"

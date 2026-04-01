@@ -9,6 +9,7 @@ module WhopSDK
         T.type_alias do
           T.any(
             WhopSDK::InvoiceCreatedWebhookEvent,
+            WhopSDK::InvoiceMarkedUncollectibleWebhookEvent,
             WhopSDK::InvoicePaidWebhookEvent,
             WhopSDK::InvoicePastDueWebhookEvent,
             WhopSDK::InvoiceVoidedWebhookEvent,

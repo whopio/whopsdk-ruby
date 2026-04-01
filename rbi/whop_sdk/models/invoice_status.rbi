@@ -13,6 +13,8 @@ module WhopSDK
       OPEN = T.let(:open, WhopSDK::InvoiceStatus::TaggedSymbol)
       PAID = T.let(:paid, WhopSDK::InvoiceStatus::TaggedSymbol)
       PAST_DUE = T.let(:past_due, WhopSDK::InvoiceStatus::TaggedSymbol)
+      UNCOLLECTIBLE =
+        T.let(:uncollectible, WhopSDK::InvoiceStatus::TaggedSymbol)
       VOID = T.let(:void, WhopSDK::InvoiceStatus::TaggedSymbol)
 
       sig { override.returns(T::Array[WhopSDK::InvoiceStatus::TaggedSymbol]) }

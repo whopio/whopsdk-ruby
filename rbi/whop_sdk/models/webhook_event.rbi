@@ -11,6 +11,11 @@ module WhopSDK
 
       INVOICE_CREATED =
         T.let(:"invoice.created", WhopSDK::WebhookEvent::TaggedSymbol)
+      INVOICE_MARKED_UNCOLLECTIBLE =
+        T.let(
+          :"invoice.marked_uncollectible",
+          WhopSDK::WebhookEvent::TaggedSymbol
+        )
       INVOICE_PAID = T.let(:"invoice.paid", WhopSDK::WebhookEvent::TaggedSymbol)
       INVOICE_PAST_DUE =
         T.let(:"invoice.past_due", WhopSDK::WebhookEvent::TaggedSymbol)

@@ -42,6 +42,7 @@ module WhopSDK
         headers: ::Hash[String, String],
         ?key: String?
       ) -> (WhopSDK::InvoiceCreatedWebhookEvent
+      | WhopSDK::InvoiceMarkedUncollectibleWebhookEvent
       | WhopSDK::InvoicePaidWebhookEvent
       | WhopSDK::InvoicePastDueWebhookEvent
       | WhopSDK::InvoiceVoidedWebhookEvent

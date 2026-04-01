@@ -2,6 +2,7 @@ module WhopSDK
   module Models
     type webhook_event =
       :"invoice.created"
+      | :"invoice.marked_uncollectible"
       | :"invoice.paid"
       | :"invoice.past_due"
       | :"invoice.voided"
@@ -38,6 +39,7 @@ module WhopSDK
       extend WhopSDK::Internal::Type::Enum
 
       INVOICE_CREATED: :"invoice.created"
+      INVOICE_MARKED_UNCOLLECTIBLE: :"invoice.marked_uncollectible"
       INVOICE_PAID: :"invoice.paid"
       INVOICE_PAST_DUE: :"invoice.past_due"
       INVOICE_VOIDED: :"invoice.voided"

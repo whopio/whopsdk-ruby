@@ -149,6 +149,7 @@ module WhopSDK
         ).returns(
           T.any(
             WhopSDK::InvoiceCreatedWebhookEvent,
+            WhopSDK::InvoiceMarkedUncollectibleWebhookEvent,
             WhopSDK::InvoicePaidWebhookEvent,
             WhopSDK::InvoicePastDueWebhookEvent,
             WhopSDK::InvoiceVoidedWebhookEvent,

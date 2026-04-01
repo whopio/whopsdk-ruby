@@ -10,6 +10,7 @@ module WhopSDK
       OPEN = :open
       PAID = :paid
       PAST_DUE = :past_due
+      UNCOLLECTIBLE = :uncollectible
       VOID = :void
 
       # @!method self.values

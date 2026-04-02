@@ -7,6 +7,7 @@ module WhopSDK
       extend WhopSDK::Internal::Type::Enum
 
       INVOICE_CREATED = :"invoice.created"
+      INVOICE_MARKED_UNCOLLECTIBLE = :"invoice.marked_uncollectible"
       INVOICE_PAID = :"invoice.paid"
       INVOICE_PAST_DUE = :"invoice.past_due"
       INVOICE_VOIDED = :"invoice.voided"
@@ -25,6 +26,9 @@ module WhopSDK
       PAYOUT_METHOD_CREATED = :"payout_method.created"
       VERIFICATION_SUCCEEDED = :"verification.succeeded"
       PAYOUT_ACCOUNT_STATUS_UPDATED = :"payout_account.status_updated"
+      RESOLUTION_CENTER_CASE_CREATED = :"resolution_center_case.created"
+      RESOLUTION_CENTER_CASE_UPDATED = :"resolution_center_case.updated"
+      RESOLUTION_CENTER_CASE_DECIDED = :"resolution_center_case.decided"
       PAYMENT_CREATED = :"payment.created"
       PAYMENT_SUCCEEDED = :"payment.succeeded"
       PAYMENT_FAILED = :"payment.failed"

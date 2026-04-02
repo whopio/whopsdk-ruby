@@ -42,6 +42,7 @@ module WhopSDK
         tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         tax_refunded_amount: Float?,
         total: Float?,
+        updated_at: Time,
         usd_total: Float?,
         user: WhopSDK::Payment::User?,
         voidable: bool
@@ -128,6 +129,8 @@ module WhopSDK
 
       attr_accessor total: Float?
 
+      attr_accessor updated_at: Time
+
       attr_accessor usd_total: Float?
 
       attr_accessor user: WhopSDK::Payment::User?
@@ -175,6 +178,7 @@ module WhopSDK
         tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         tax_refunded_amount: Float?,
         total: Float?,
+        updated_at: Time,
         usd_total: Float?,
         user: WhopSDK::Payment::User?,
         voidable: bool
@@ -221,6 +225,7 @@ module WhopSDK
         tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         tax_refunded_amount: Float?,
         total: Float?,
+        updated_at: Time,
         usd_total: Float?,
         user: WhopSDK::Payment::User?,
         voidable: bool
@@ -428,6 +433,7 @@ module WhopSDK
           | :rejected
           | :lost
           | :prevented
+          | :canceled
 
         module Status
           extend WhopSDK::Internal::Type::Enum
@@ -442,6 +448,7 @@ module WhopSDK
           REJECTED: :rejected
           LOST: :lost
           PREVENTED: :prevented
+          CANCELED: :canceled
 
           def self?.values: -> ::Array[WhopSDK::Models::Payment::FinancingTransaction::status]
         end
@@ -451,7 +458,7 @@ module WhopSDK
           | :authorize
           | :capture
           | :refund
-          | :cancel
+          | :canceled
           | :verify
           | :chargeback
           | :pre_chargeback
@@ -467,7 +474,7 @@ module WhopSDK
           AUTHORIZE: :authorize
           CAPTURE: :capture
           REFUND: :refund
-          CANCEL: :cancel
+          CANCELED: :canceled
           VERIFY: :verify
           CHARGEBACK: :chargeback
           PRE_CHARGEBACK: :pre_chargeback

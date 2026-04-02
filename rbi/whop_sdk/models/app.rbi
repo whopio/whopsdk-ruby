@@ -82,6 +82,17 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :name
 
+      # The URL path template for a specific view of this app, appended to the base
+      # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+      # not configured.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :openapi_path
+
+      # The full origin URL for this app's proxied domain (e.g.,
+      # 'https://myapp.apps.whop.com'). Null if no proxy domain is configured.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :origin
+
       # The whitelisted OAuth callback URLs that users are redirected to after
       # authorizing the app.
       sig { returns(T::Array[String]) }
@@ -91,6 +102,12 @@ module WhopSDK
       # required and optional permissions with justifications.
       sig { returns(T::Array[WhopSDK::App::RequestedPermission]) }
       attr_accessor :requested_permissions
+
+      # The URL path template for a specific view of this app, appended to the base
+      # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+      # not configured.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :skills_path
 
       # Aggregate usage statistics for this app, including daily, weekly, and monthly
       # active user counts.
@@ -128,9 +145,12 @@ module WhopSDK
           experience_path: T.nilable(String),
           icon: T.nilable(WhopSDK::App::Icon::OrHash),
           name: String,
+          openapi_path: T.nilable(String),
+          origin: T.nilable(String),
           redirect_uris: T::Array[String],
           requested_permissions:
             T::Array[WhopSDK::App::RequestedPermission::OrHash],
+          skills_path: T.nilable(String),
           stats: T.nilable(WhopSDK::App::Stats::OrHash),
           status: WhopSDK::AppStatuses::OrSymbol,
           verified: T::Boolean
@@ -176,12 +196,23 @@ module WhopSDK
         # The display name of this app shown on the app store and in experience
         # navigation. Maximum 30 characters.
         name:,
+        # The URL path template for a specific view of this app, appended to the base
+        # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+        # not configured.
+        openapi_path:,
+        # The full origin URL for this app's proxied domain (e.g.,
+        # 'https://myapp.apps.whop.com'). Null if no proxy domain is configured.
+        origin:,
         # The whitelisted OAuth callback URLs that users are redirected to after
         # authorizing the app.
         redirect_uris:,
         # The list of permissions this app requests when installed, including both
         # required and optional permissions with justifications.
         requested_permissions:,
+        # The URL path template for a specific view of this app, appended to the base
+        # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
+        # not configured.
+        skills_path:,
         # Aggregate usage statistics for this app, including daily, weekly, and monthly
         # active user counts.
         stats:,
@@ -211,8 +242,11 @@ module WhopSDK
             experience_path: T.nilable(String),
             icon: T.nilable(WhopSDK::App::Icon),
             name: String,
+            openapi_path: T.nilable(String),
+            origin: T.nilable(String),
             redirect_uris: T::Array[String],
             requested_permissions: T::Array[WhopSDK::App::RequestedPermission],
+            skills_path: T.nilable(String),
             stats: T.nilable(WhopSDK::App::Stats),
             status: WhopSDK::AppStatuses::TaggedSymbol,
             verified: T::Boolean

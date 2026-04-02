@@ -11,6 +11,11 @@ module WhopSDK
 
       INVOICE_CREATED =
         T.let(:"invoice.created", WhopSDK::WebhookEvent::TaggedSymbol)
+      INVOICE_MARKED_UNCOLLECTIBLE =
+        T.let(
+          :"invoice.marked_uncollectible",
+          WhopSDK::WebhookEvent::TaggedSymbol
+        )
       INVOICE_PAID = T.let(:"invoice.paid", WhopSDK::WebhookEvent::TaggedSymbol)
       INVOICE_PAST_DUE =
         T.let(:"invoice.past_due", WhopSDK::WebhookEvent::TaggedSymbol)
@@ -52,6 +57,21 @@ module WhopSDK
       PAYOUT_ACCOUNT_STATUS_UPDATED =
         T.let(
           :"payout_account.status_updated",
+          WhopSDK::WebhookEvent::TaggedSymbol
+        )
+      RESOLUTION_CENTER_CASE_CREATED =
+        T.let(
+          :"resolution_center_case.created",
+          WhopSDK::WebhookEvent::TaggedSymbol
+        )
+      RESOLUTION_CENTER_CASE_UPDATED =
+        T.let(
+          :"resolution_center_case.updated",
+          WhopSDK::WebhookEvent::TaggedSymbol
+        )
+      RESOLUTION_CENTER_CASE_DECIDED =
+        T.let(
+          :"resolution_center_case.decided",
           WhopSDK::WebhookEvent::TaggedSymbol
         )
       PAYMENT_CREATED =

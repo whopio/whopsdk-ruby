@@ -19,7 +19,7 @@ module WhopSDK
       #
       # @param company_id [String] The unique identifier of the company to create this product for.
       #
-      # @param title [String] The display name of the product. Maximum 40 characters.
+      # @param title [String] The display name of the product. Maximum 80 characters.
       #
       # @param collect_shipping_address [Boolean, nil] Whether the checkout flow collects a shipping address from the customer.
       #
@@ -141,7 +141,7 @@ module WhopSDK
       #
       # @param store_page_config [WhopSDK::Models::ProductUpdateParams::StorePageConfig, nil] Layout and display configuration for this product on the company's store page.
       #
-      # @param title [String, nil] The display name of the product. Maximum 40 characters.
+      # @param title [String, nil] The display name of the product. Maximum 80 characters.
       #
       # @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
       #

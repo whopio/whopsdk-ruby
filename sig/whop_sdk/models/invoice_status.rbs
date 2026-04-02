@@ -1,6 +1,7 @@
 module WhopSDK
   module Models
-    type invoice_status = :draft | :open | :paid | :past_due | :void
+    type invoice_status =
+      :draft | :open | :paid | :past_due | :uncollectible | :void
 
     module InvoiceStatus
       extend WhopSDK::Internal::Type::Enum
@@ -9,6 +10,7 @@ module WhopSDK
       OPEN: :open
       PAID: :paid
       PAST_DUE: :past_due
+      UNCOLLECTIBLE: :uncollectible
       VOID: :void
 
       def self?.values: -> ::Array[WhopSDK::Models::invoice_status]

@@ -44,6 +44,7 @@ module WhopSDK
       CABAL = :cabal
       HIPERCARD = :hipercard
       JCBLANKAPAY = :jcblankapay
+      CMI = :cmi
       UNKNOWN = :unknown
 
       # @!method self.values

@@ -246,6 +246,10 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :total
 
+      # The datetime the payment was last updated.
+      sig { returns(Time) }
+      attr_accessor :updated_at
+
       # The total in USD to show to the creator (excluding buyer fees).
       sig { returns(T.nilable(Float)) }
       attr_accessor :usd_total
@@ -319,6 +323,7 @@ module WhopSDK
           tax_amount: T.nilable(Float),
           tax_behavior: T.nilable(WhopSDK::ReceiptTaxBehavior::OrSymbol),
           total: T.nilable(Float),
+          updated_at: Time,
           usd_total: T.nilable(Float),
           user: T.nilable(WhopSDK::Models::PaymentListResponse::User::OrHash),
           voidable: T::Boolean
@@ -403,6 +408,8 @@ module WhopSDK
         tax_behavior:,
         # The total to show to the creator (excluding buyer fees).
         total:,
+        # The datetime the payment was last updated.
+        updated_at:,
         # The total in USD to show to the creator (excluding buyer fees).
         usd_total:,
         # The user that made this payment.
@@ -457,6 +464,7 @@ module WhopSDK
             tax_amount: T.nilable(Float),
             tax_behavior: T.nilable(WhopSDK::ReceiptTaxBehavior::TaggedSymbol),
             total: T.nilable(Float),
+            updated_at: Time,
             usd_total: T.nilable(Float),
             user: T.nilable(WhopSDK::Models::PaymentListResponse::User),
             voidable: T::Boolean

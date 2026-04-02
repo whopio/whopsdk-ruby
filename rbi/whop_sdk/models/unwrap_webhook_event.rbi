@@ -9,6 +9,7 @@ module WhopSDK
         T.type_alias do
           T.any(
             WhopSDK::InvoiceCreatedWebhookEvent,
+            WhopSDK::InvoiceMarkedUncollectibleWebhookEvent,
             WhopSDK::InvoicePaidWebhookEvent,
             WhopSDK::InvoicePastDueWebhookEvent,
             WhopSDK::InvoiceVoidedWebhookEvent,
@@ -27,6 +28,9 @@ module WhopSDK
             WhopSDK::PayoutMethodCreatedWebhookEvent,
             WhopSDK::VerificationSucceededWebhookEvent,
             WhopSDK::PayoutAccountStatusUpdatedWebhookEvent,
+            WhopSDK::ResolutionCenterCaseCreatedWebhookEvent,
+            WhopSDK::ResolutionCenterCaseUpdatedWebhookEvent,
+            WhopSDK::ResolutionCenterCaseDecidedWebhookEvent,
             WhopSDK::PaymentCreatedWebhookEvent,
             WhopSDK::PaymentSucceededWebhookEvent,
             WhopSDK::PaymentFailedWebhookEvent,

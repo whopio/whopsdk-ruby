@@ -29,6 +29,8 @@ module WhopSDK
         ?query: String?,
         ?statuses: ::Array[WhopSDK::Models::receipt_status]?,
         ?substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?,
+        ?updated_after: Time?,
+        ?updated_before: Time?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::PaymentListResponse]
 

@@ -94,7 +94,7 @@ module WhopSDK
       end
       attr_writer :store_page_config
 
-      # The display name of the product. Maximum 40 characters.
+      # The display name of the product. Maximum 80 characters.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
@@ -172,7 +172,7 @@ module WhopSDK
         send_welcome_message: nil,
         # Layout and display configuration for this product on the company's store page.
         store_page_config: nil,
-        # The display name of the product. Maximum 40 characters.
+        # The display name of the product. Maximum 80 characters.
         title: nil,
         # Visibility of a resource
         visibility: nil,

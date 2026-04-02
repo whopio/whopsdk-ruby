@@ -19,6 +19,7 @@ module WhopSDK
       CHECKOUT_DOT_COM = :checkout_dot_com
       AIRWALLEX = :airwallex
       COINFLOW = :coinflow
+      SEQURA = :sequra
 
       # @!method self.values
       #   @return [Array<Symbol>]

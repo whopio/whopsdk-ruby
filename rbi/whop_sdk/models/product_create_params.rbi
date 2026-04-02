@@ -15,7 +15,7 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :company_id
 
-      # The display name of the product. Maximum 40 characters.
+      # The display name of the product. Maximum 80 characters.
       sig { returns(String) }
       attr_accessor :title
 
@@ -131,7 +131,7 @@ module WhopSDK
       def self.new(
         # The unique identifier of the company to create this product for.
         company_id:,
-        # The display name of the product. Maximum 40 characters.
+        # The display name of the product. Maximum 80 characters.
         title:,
         # Whether the checkout flow collects a shipping address from the customer.
         collect_shipping_address: nil,

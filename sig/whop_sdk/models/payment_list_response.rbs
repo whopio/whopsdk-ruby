@@ -37,6 +37,7 @@ module WhopSDK
         tax_amount: Float?,
         tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         total: Float?,
+        updated_at: Time,
         usd_total: Float?,
         user: WhopSDK::Models::PaymentListResponse::User?,
         voidable: bool
@@ -113,6 +114,8 @@ module WhopSDK
 
       attr_accessor total: Float?
 
+      attr_accessor updated_at: Time
+
       attr_accessor usd_total: Float?
 
       attr_accessor user: WhopSDK::Models::PaymentListResponse::User?
@@ -155,6 +158,7 @@ module WhopSDK
         tax_amount: Float?,
         tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         total: Float?,
+        updated_at: Time,
         usd_total: Float?,
         user: WhopSDK::Models::PaymentListResponse::User?,
         voidable: bool
@@ -196,6 +200,7 @@ module WhopSDK
         tax_amount: Float?,
         tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         total: Float?,
+        updated_at: Time,
         usd_total: Float?,
         user: WhopSDK::Models::PaymentListResponse::User?,
         voidable: bool

@@ -222,6 +222,10 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :total
 
+      # The datetime the payment was last updated.
+      sig { returns(Time) }
+      attr_accessor :updated_at
+
       # The total in USD to show to the creator (excluding buyer fees).
       sig { returns(T.nilable(Float)) }
       attr_accessor :usd_total
@@ -284,6 +288,7 @@ module WhopSDK
           tax_behavior: T.nilable(WhopSDK::ReceiptTaxBehavior::OrSymbol),
           tax_refunded_amount: T.nilable(Float),
           total: T.nilable(Float),
+          updated_at: Time,
           usd_total: T.nilable(Float),
           user: T.nilable(WhopSDK::Payment::User::OrHash),
           voidable: T::Boolean
@@ -383,6 +388,8 @@ module WhopSDK
         tax_refunded_amount:,
         # The total to show to the creator (excluding buyer fees).
         total:,
+        # The datetime the payment was last updated.
+        updated_at:,
         # The total in USD to show to the creator (excluding buyer fees).
         usd_total:,
         # The user that made this payment.
@@ -438,6 +445,7 @@ module WhopSDK
             tax_behavior: T.nilable(WhopSDK::ReceiptTaxBehavior::TaggedSymbol),
             tax_refunded_amount: T.nilable(Float),
             total: T.nilable(Float),
+            updated_at: Time,
             usd_total: T.nilable(Float),
             user: T.nilable(WhopSDK::Payment::User),
             voidable: T::Boolean
@@ -874,6 +882,11 @@ module WhopSDK
               :prevented,
               WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
             )
+          CANCELED =
+            T.let(
+              :canceled,
+              WhopSDK::Payment::FinancingTransaction::Status::TaggedSymbol
+            )
 
           sig do
             override.returns(
@@ -919,9 +932,9 @@ module WhopSDK
               :refund,
               WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
             )
-          CANCEL =
+          CANCELED =
             T.let(
-              :cancel,
+              :canceled,
               WhopSDK::Payment::FinancingTransaction::TransactionType::TaggedSymbol
             )
           VERIFY =

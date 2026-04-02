@@ -18,7 +18,9 @@ module WhopSDK
         product_ids: ::Array[String]?,
         query: String?,
         statuses: ::Array[WhopSDK::Models::receipt_status]?,
-        substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?
+        substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?,
+        updated_after: Time?,
+        updated_before: Time?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -60,6 +62,10 @@ module WhopSDK
 
       attr_accessor substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?
 
+      attr_accessor updated_after: Time?
+
+      attr_accessor updated_before: Time?
+
       def initialize: (
         ?after: String?,
         ?before: String?,
@@ -78,6 +84,8 @@ module WhopSDK
         ?query: String?,
         ?statuses: ::Array[WhopSDK::Models::receipt_status]?,
         ?substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?,
+        ?updated_after: Time?,
+        ?updated_before: Time?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -99,6 +107,8 @@ module WhopSDK
         query: String?,
         statuses: ::Array[WhopSDK::Models::receipt_status]?,
         substatuses: ::Array[WhopSDK::Models::friendly_receipt_status]?,
+        updated_after: Time?,
+        updated_before: Time?,
         request_options: WhopSDK::RequestOptions
       }
 

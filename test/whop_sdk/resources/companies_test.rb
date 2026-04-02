@@ -15,8 +15,10 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        affiliate_instructions: String | nil,
         created_at: Time,
         description: String | nil,
+        featured_affiliate_product: WhopSDK::Company::FeaturedAffiliateProduct | nil,
         logo: WhopSDK::Company::Logo | nil,
         member_count: Integer,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
@@ -25,6 +27,7 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
         route: String,
         send_customer_emails: WhopSDK::Internal::Type::Boolean,
         social_links: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Company::SocialLink]),
+        target_audience: String | nil,
         title: String,
         updated_at: Time,
         verified: WhopSDK::Internal::Type::Boolean
@@ -44,8 +47,10 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        affiliate_instructions: String | nil,
         created_at: Time,
         description: String | nil,
+        featured_affiliate_product: WhopSDK::Company::FeaturedAffiliateProduct | nil,
         logo: WhopSDK::Company::Logo | nil,
         member_count: Integer,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
@@ -54,6 +59,7 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
         route: String,
         send_customer_emails: WhopSDK::Internal::Type::Boolean,
         social_links: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Company::SocialLink]),
+        target_audience: String | nil,
         title: String,
         updated_at: Time,
         verified: WhopSDK::Internal::Type::Boolean
@@ -73,8 +79,10 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        affiliate_instructions: String | nil,
         created_at: Time,
         description: String | nil,
+        featured_affiliate_product: WhopSDK::Company::FeaturedAffiliateProduct | nil,
         logo: WhopSDK::Company::Logo | nil,
         member_count: Integer,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
@@ -83,6 +91,7 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
         route: String,
         send_customer_emails: WhopSDK::Internal::Type::Boolean,
         social_links: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Company::SocialLink]),
+        target_audience: String | nil,
         title: String,
         updated_at: Time,
         verified: WhopSDK::Internal::Type::Boolean
@@ -118,6 +127,7 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
         published_reviews_count: Integer,
         route: String,
         send_customer_emails: WhopSDK::Internal::Type::Boolean,
+        target_audience: String | nil,
         title: String,
         updated_at: Time,
         verified: WhopSDK::Internal::Type::Boolean

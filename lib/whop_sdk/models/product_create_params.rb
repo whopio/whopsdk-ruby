@@ -14,7 +14,7 @@ module WhopSDK
       required :company_id, String
 
       # @!attribute title
-      #   The display name of the product. Maximum 40 characters.
+      #   The display name of the product. Maximum 80 characters.
       #
       #   @return [String]
       required :title, String
@@ -133,7 +133,7 @@ module WhopSDK
       #
       #   @param company_id [String] The unique identifier of the company to create this product for.
       #
-      #   @param title [String] The display name of the product. Maximum 40 characters.
+      #   @param title [String] The display name of the product. Maximum 80 characters.
       #
       #   @param collect_shipping_address [Boolean, nil] Whether the checkout flow collects a shipping address from the customer.
       #

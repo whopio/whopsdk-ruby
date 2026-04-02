@@ -62,6 +62,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         tax_behavior: WhopSDK::ReceiptTaxBehavior | nil,
         tax_refunded_amount: Float | nil,
         total: Float | nil,
+        updated_at: Time,
         usd_total: Float | nil,
         user: WhopSDK::Payment::User | nil,
         voidable: WhopSDK::Internal::Type::Boolean
@@ -120,6 +121,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         tax_behavior: WhopSDK::ReceiptTaxBehavior | nil,
         tax_refunded_amount: Float | nil,
         total: Float | nil,
+        updated_at: Time,
         usd_total: Float | nil,
         user: WhopSDK::Payment::User | nil,
         voidable: WhopSDK::Internal::Type::Boolean
@@ -180,6 +182,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         tax_amount: Float | nil,
         tax_behavior: WhopSDK::ReceiptTaxBehavior | nil,
         total: Float | nil,
+        updated_at: Time,
         usd_total: Float | nil,
         user: WhopSDK::Models::PaymentListResponse::User | nil,
         voidable: WhopSDK::Internal::Type::Boolean
@@ -264,6 +267,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         tax_behavior: WhopSDK::ReceiptTaxBehavior | nil,
         tax_refunded_amount: Float | nil,
         total: Float | nil,
+        updated_at: Time,
         usd_total: Float | nil,
         user: WhopSDK::Payment::User | nil,
         voidable: WhopSDK::Internal::Type::Boolean
@@ -322,6 +326,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         tax_behavior: WhopSDK::ReceiptTaxBehavior | nil,
         tax_refunded_amount: Float | nil,
         total: Float | nil,
+        updated_at: Time,
         usd_total: Float | nil,
         user: WhopSDK::Payment::User | nil,
         voidable: WhopSDK::Internal::Type::Boolean
@@ -380,6 +385,7 @@ class WhopSDK::Test::Resources::PaymentsTest < WhopSDK::Test::ResourceTest
         tax_behavior: WhopSDK::ReceiptTaxBehavior | nil,
         tax_refunded_amount: Float | nil,
         total: Float | nil,
+        updated_at: Time,
         usd_total: Float | nil,
         user: WhopSDK::Payment::User | nil,
         voidable: WhopSDK::Internal::Type::Boolean

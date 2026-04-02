@@ -1,5 +1,42 @@
 # Changelog
 
+## 0.0.36 (2026-04-01)
+
+Full Changelog: [v0.0.35...v0.0.36](https://github.com/whopio/whopsdk-ruby/compare/v0.0.35...v0.0.36)
+
+### Features
+
+* **api:** api update ([ff045f2](https://github.com/whopio/whopsdk-ruby/commit/ff045f241a4b159b3e2701a260666f968fc218a9))
+* **api:** api update ([82f671a](https://github.com/whopio/whopsdk-ruby/commit/82f671a64f6290642af4ef888a696eeeb414cc39))
+* **api:** api update ([0904666](https://github.com/whopio/whopsdk-ruby/commit/0904666825216c11a018402de7ea7b6fde55ebcd))
+* **api:** api update ([bd6996b](https://github.com/whopio/whopsdk-ruby/commit/bd6996b215315a72bce3b457a84b2127990a9a48))
+* **api:** api update ([77b3977](https://github.com/whopio/whopsdk-ruby/commit/77b397710fca468ccb60b0977fea756ffe72af8d))
+* **api:** api update ([9d9d279](https://github.com/whopio/whopsdk-ruby/commit/9d9d279cd5461a69d40513a7140cd935655a3e7f))
+* **api:** api update ([861ff42](https://github.com/whopio/whopsdk-ruby/commit/861ff42ed47f7e8e9f13ae9d93655dcc004cf1b2))
+* **api:** api update ([041bebb](https://github.com/whopio/whopsdk-ruby/commit/041bebb9ad2dcb4dc09feec04f22c79e1e26b376))
+* **api:** api update ([c6da015](https://github.com/whopio/whopsdk-ruby/commit/c6da0152cd1dde833a05724f76a0e80ecd999203))
+* **api:** api update ([fd1f6e4](https://github.com/whopio/whopsdk-ruby/commit/fd1f6e45955543fd67d086ff7e6c946afde283ee))
+* **api:** api update ([7e4abda](https://github.com/whopio/whopsdk-ruby/commit/7e4abdab5a1764be25995aa622b871754de6a985))
+* **api:** api update ([070576e](https://github.com/whopio/whopsdk-ruby/commit/070576e3e8a321f85a1c8546bd0f3e5355a7e452))
+* **api:** api update ([9be2f31](https://github.com/whopio/whopsdk-ruby/commit/9be2f31407db03106bea259ac4da78e8c1407962))
+* **api:** api update ([eaacc3d](https://github.com/whopio/whopsdk-ruby/commit/eaacc3d5f6a85e8fa2a13d4b9cb57eb390801b90))
+* **api:** api update ([c1ce4e0](https://github.com/whopio/whopsdk-ruby/commit/c1ce4e08b7a1c33b6e43da9c81d00a4cba547067))
+* **api:** api update ([bc8226e](https://github.com/whopio/whopsdk-ruby/commit/bc8226e36a365d09cd1503725ca24106f45633a6))
+
+
+### Bug Fixes
+
+* align path encoding with RFC 3986 section 3.3 ([c355b7f](https://github.com/whopio/whopsdk-ruby/commit/c355b7ff9dc90431096753bb761f0d705f9c43d4))
+* **internal:** correct multipart form field name encoding ([ffcbbd3](https://github.com/whopio/whopsdk-ruby/commit/ffcbbd34b2068a3b2fed37a80422bb1023a9df5d))
+* variable name typo ([2c4b26c](https://github.com/whopio/whopsdk-ruby/commit/2c4b26c0ffda6d22c4fcc450b9fb351ce91e9af1))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([772c7bb](https://github.com/whopio/whopsdk-ruby/commit/772c7bb1c831c69ddb68b779c053276189ddf287))
+* **ci:** support opting out of skipping builds on metadata-only commits ([1910434](https://github.com/whopio/whopsdk-ruby/commit/1910434440c5a7d2841770cc2a1e7352dbfa545a))
+* **internal:** update gitignore ([70a6981](https://github.com/whopio/whopsdk-ruby/commit/70a69813a7a9afdeebf401362aa020f851cc4ac8))
+
 ## 0.0.35 (2026-03-18)
 
 Full Changelog: [v0.0.34...v0.0.35](https://github.com/whopio/whopsdk-ruby/compare/v0.0.34...v0.0.35)

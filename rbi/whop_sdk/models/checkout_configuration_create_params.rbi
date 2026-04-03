@@ -102,6 +102,27 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :affiliate_code
 
+          # Checkout styling overrides for this session. Overrides plan and company
+          # defaults.
+          sig do
+            returns(
+              T.nilable(
+                WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling
+              )
+            )
+          end
+          attr_reader :checkout_styling
+
+          sig do
+            params(
+              checkout_styling:
+                T.nilable(
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::OrHash
+                )
+            ).void
+          end
+          attr_writer :checkout_styling
+
           # The available currencies on the platform
           sig { returns(T.nilable(WhopSDK::Currency::OrSymbol)) }
           attr_accessor :currency
@@ -162,6 +183,10 @@ module WhopSDK
               plan:
                 WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::OrHash,
               affiliate_code: T.nilable(String),
+              checkout_styling:
+                T.nilable(
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::OrHash
+                ),
               currency: T.nilable(WhopSDK::Currency::OrSymbol),
               metadata: T.nilable(T::Hash[Symbol, T.anything]),
               mode:
@@ -179,6 +204,9 @@ module WhopSDK
             plan:,
             # An affiliate tracking code to attribute the checkout to a specific affiliate.
             affiliate_code: nil,
+            # Checkout styling overrides for this session. Overrides plan and company
+            # defaults.
+            checkout_styling: nil,
             # The available currencies on the platform
             currency: nil,
             # Custom key-value metadata to attach to the checkout configuration.
@@ -200,6 +228,10 @@ module WhopSDK
                 plan:
                   WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan,
                 affiliate_code: T.nilable(String),
+                checkout_styling:
+                  T.nilable(
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling
+                  ),
                 currency: T.nilable(WhopSDK::Currency::OrSymbol),
                 metadata: T.nilable(T::Hash[Symbol, T.anything]),
                 mode:
@@ -837,6 +869,163 @@ module WhopSDK
             end
           end
 
+          class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The hex color code for the accent color on checkout pages.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :accent_color
+
+            # The different font families available for checkout pages.
+            sig do
+              returns(
+                T.nilable(
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Font::OrSymbol
+                )
+              )
+            end
+            attr_accessor :font
+
+            # The different border-radius styles available for checkout pages.
+            sig do
+              returns(
+                T.nilable(
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Shape::OrSymbol
+                )
+              )
+            end
+            attr_accessor :shape
+
+            # Checkout styling overrides for this session. Overrides plan and company
+            # defaults.
+            sig do
+              params(
+                accent_color: T.nilable(String),
+                font:
+                  T.nilable(
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Font::OrSymbol
+                  ),
+                shape:
+                  T.nilable(
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Shape::OrSymbol
+                  )
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The hex color code for the accent color on checkout pages.
+              accent_color: nil,
+              # The different font families available for checkout pages.
+              font: nil,
+              # The different border-radius styles available for checkout pages.
+              shape: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  accent_color: T.nilable(String),
+                  font:
+                    T.nilable(
+                      WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Font::OrSymbol
+                    ),
+                  shape:
+                    T.nilable(
+                      WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Shape::OrSymbol
+                    )
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The different font families available for checkout pages.
+            module Font
+              extend WhopSDK::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Font
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              SYSTEM =
+                T.let(
+                  :system,
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Font::TaggedSymbol
+                )
+              ROBOTO =
+                T.let(
+                  :roboto,
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Font::TaggedSymbol
+                )
+              OPEN_SANS =
+                T.let(
+                  :open_sans,
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Font::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Font::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            # The different border-radius styles available for checkout pages.
+            module Shape
+              extend WhopSDK::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Shape
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              ROUNDED =
+                T.let(
+                  :rounded,
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Shape::TaggedSymbol
+                )
+              PILL =
+                T.let(
+                  :pill,
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Shape::TaggedSymbol
+                )
+              RECTANGULAR =
+                T.let(
+                  :rectangular,
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Shape::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Shape::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
           module Mode
             extend WhopSDK::Internal::Type::Enum
 
@@ -950,6 +1139,27 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :affiliate_code
 
+          # Checkout styling overrides for this session. Overrides plan and company
+          # defaults.
+          sig do
+            returns(
+              T.nilable(
+                WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling
+              )
+            )
+          end
+          attr_reader :checkout_styling
+
+          sig do
+            params(
+              checkout_styling:
+                T.nilable(
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::OrHash
+                )
+            ).void
+          end
+          attr_writer :checkout_styling
+
           # The available currencies on the platform
           sig { returns(T.nilable(WhopSDK::Currency::OrSymbol)) }
           attr_accessor :currency
@@ -1009,6 +1219,10 @@ module WhopSDK
             params(
               plan_id: String,
               affiliate_code: T.nilable(String),
+              checkout_styling:
+                T.nilable(
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::OrHash
+                ),
               currency: T.nilable(WhopSDK::Currency::OrSymbol),
               metadata: T.nilable(T::Hash[Symbol, T.anything]),
               mode:
@@ -1027,6 +1241,9 @@ module WhopSDK
             plan_id:,
             # An affiliate tracking code to attribute the checkout to a specific affiliate.
             affiliate_code: nil,
+            # Checkout styling overrides for this session. Overrides plan and company
+            # defaults.
+            checkout_styling: nil,
             # The available currencies on the platform
             currency: nil,
             # Custom key-value metadata to attach to the checkout configuration.
@@ -1047,6 +1264,10 @@ module WhopSDK
               {
                 plan_id: String,
                 affiliate_code: T.nilable(String),
+                checkout_styling:
+                  T.nilable(
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling
+                  ),
                 currency: T.nilable(WhopSDK::Currency::OrSymbol),
                 metadata: T.nilable(T::Hash[Symbol, T.anything]),
                 mode:
@@ -1061,6 +1282,163 @@ module WhopSDK
             )
           end
           def to_hash
+          end
+
+          class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The hex color code for the accent color on checkout pages.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :accent_color
+
+            # The different font families available for checkout pages.
+            sig do
+              returns(
+                T.nilable(
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Font::OrSymbol
+                )
+              )
+            end
+            attr_accessor :font
+
+            # The different border-radius styles available for checkout pages.
+            sig do
+              returns(
+                T.nilable(
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Shape::OrSymbol
+                )
+              )
+            end
+            attr_accessor :shape
+
+            # Checkout styling overrides for this session. Overrides plan and company
+            # defaults.
+            sig do
+              params(
+                accent_color: T.nilable(String),
+                font:
+                  T.nilable(
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Font::OrSymbol
+                  ),
+                shape:
+                  T.nilable(
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Shape::OrSymbol
+                  )
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The hex color code for the accent color on checkout pages.
+              accent_color: nil,
+              # The different font families available for checkout pages.
+              font: nil,
+              # The different border-radius styles available for checkout pages.
+              shape: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  accent_color: T.nilable(String),
+                  font:
+                    T.nilable(
+                      WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Font::OrSymbol
+                    ),
+                  shape:
+                    T.nilable(
+                      WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Shape::OrSymbol
+                    )
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The different font families available for checkout pages.
+            module Font
+              extend WhopSDK::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Font
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              SYSTEM =
+                T.let(
+                  :system,
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Font::TaggedSymbol
+                )
+              ROBOTO =
+                T.let(
+                  :roboto,
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Font::TaggedSymbol
+                )
+              OPEN_SANS =
+                T.let(
+                  :open_sans,
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Font::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Font::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            # The different border-radius styles available for checkout pages.
+            module Shape
+              extend WhopSDK::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Shape
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              ROUNDED =
+                T.let(
+                  :rounded,
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Shape::TaggedSymbol
+                )
+              PILL =
+                T.let(
+                  :pill,
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Shape::TaggedSymbol
+                )
+              RECTANGULAR =
+                T.let(
+                  :rectangular,
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Shape::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Shape::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
           end
 
           module Mode
@@ -1175,6 +1553,27 @@ module WhopSDK
           sig { returns(Symbol) }
           attr_accessor :mode
 
+          # Checkout styling overrides for this session. Overrides plan and company
+          # defaults.
+          sig do
+            returns(
+              T.nilable(
+                WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling
+              )
+            )
+          end
+          attr_reader :checkout_styling
+
+          sig do
+            params(
+              checkout_styling:
+                T.nilable(
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::OrHash
+                )
+            ).void
+          end
+          attr_writer :checkout_styling
+
           # The available currencies on the platform
           sig { returns(T.nilable(WhopSDK::Currency::OrSymbol)) }
           attr_accessor :currency
@@ -1216,6 +1615,10 @@ module WhopSDK
           sig do
             params(
               company_id: String,
+              checkout_styling:
+                T.nilable(
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::OrHash
+                ),
               currency: T.nilable(WhopSDK::Currency::OrSymbol),
               metadata: T.nilable(T::Hash[Symbol, T.anything]),
               payment_method_configuration:
@@ -1231,6 +1634,9 @@ module WhopSDK
             # The unique identifier of the company to create the checkout configuration for.
             # Only required in setup mode.
             company_id:,
+            # Checkout styling overrides for this session. Overrides plan and company
+            # defaults.
+            checkout_styling: nil,
             # The available currencies on the platform
             currency: nil,
             # Custom key-value metadata to attach to the checkout configuration.
@@ -1251,6 +1657,10 @@ module WhopSDK
               {
                 company_id: String,
                 mode: Symbol,
+                checkout_styling:
+                  T.nilable(
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling
+                  ),
                 currency: T.nilable(WhopSDK::Currency::OrSymbol),
                 metadata: T.nilable(T::Hash[Symbol, T.anything]),
                 payment_method_configuration:
@@ -1263,6 +1673,163 @@ module WhopSDK
             )
           end
           def to_hash
+          end
+
+          class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The hex color code for the accent color on checkout pages.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :accent_color
+
+            # The different font families available for checkout pages.
+            sig do
+              returns(
+                T.nilable(
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Font::OrSymbol
+                )
+              )
+            end
+            attr_accessor :font
+
+            # The different border-radius styles available for checkout pages.
+            sig do
+              returns(
+                T.nilable(
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Shape::OrSymbol
+                )
+              )
+            end
+            attr_accessor :shape
+
+            # Checkout styling overrides for this session. Overrides plan and company
+            # defaults.
+            sig do
+              params(
+                accent_color: T.nilable(String),
+                font:
+                  T.nilable(
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Font::OrSymbol
+                  ),
+                shape:
+                  T.nilable(
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Shape::OrSymbol
+                  )
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The hex color code for the accent color on checkout pages.
+              accent_color: nil,
+              # The different font families available for checkout pages.
+              font: nil,
+              # The different border-radius styles available for checkout pages.
+              shape: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  accent_color: T.nilable(String),
+                  font:
+                    T.nilable(
+                      WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Font::OrSymbol
+                    ),
+                  shape:
+                    T.nilable(
+                      WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Shape::OrSymbol
+                    )
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # The different font families available for checkout pages.
+            module Font
+              extend WhopSDK::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Font
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              SYSTEM =
+                T.let(
+                  :system,
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Font::TaggedSymbol
+                )
+              ROBOTO =
+                T.let(
+                  :roboto,
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Font::TaggedSymbol
+                )
+              OPEN_SANS =
+                T.let(
+                  :open_sans,
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Font::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Font::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            # The different border-radius styles available for checkout pages.
+            module Shape
+              extend WhopSDK::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Shape
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              ROUNDED =
+                T.let(
+                  :rounded,
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Shape::TaggedSymbol
+                )
+              PILL =
+                T.let(
+                  :pill,
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Shape::TaggedSymbol
+                )
+              RECTANGULAR =
+                T.let(
+                  :rectangular,
+                  WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Shape::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Shape::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
           end
 
           class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel

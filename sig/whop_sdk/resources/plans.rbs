@@ -5,6 +5,7 @@ module WhopSDK
         company_id: String,
         product_id: String,
         ?billing_period: Integer?,
+        ?checkout_styling: WhopSDK::PlanCreateParams::CheckoutStyling?,
         ?currency: WhopSDK::Models::currency?,
         ?custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?,
         ?description: String?,
@@ -35,6 +36,7 @@ module WhopSDK
       def update: (
         String id,
         ?billing_period: Integer?,
+        ?checkout_styling: WhopSDK::PlanUpdateParams::CheckoutStyling?,
         ?currency: WhopSDK::Models::currency?,
         ?custom_fields: ::Array[WhopSDK::PlanUpdateParams::CustomField]?,
         ?description: String?,

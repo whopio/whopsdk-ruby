@@ -5,6 +5,7 @@ module WhopSDK
         company_id: String,
         product_id: String,
         billing_period: Integer?,
+        checkout_styling: WhopSDK::PlanCreateParams::CheckoutStyling?,
         currency: WhopSDK::Models::currency?,
         custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?,
         description: String?,
@@ -36,6 +37,8 @@ module WhopSDK
       attr_accessor product_id: String
 
       attr_accessor billing_period: Integer?
+
+      attr_accessor checkout_styling: WhopSDK::PlanCreateParams::CheckoutStyling?
 
       attr_accessor currency: WhopSDK::Models::currency?
 
@@ -79,6 +82,7 @@ module WhopSDK
         company_id: String,
         product_id: String,
         ?billing_period: Integer?,
+        ?checkout_styling: WhopSDK::PlanCreateParams::CheckoutStyling?,
         ?currency: WhopSDK::Models::currency?,
         ?custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?,
         ?description: String?,
@@ -105,6 +109,7 @@ module WhopSDK
         company_id: String,
         product_id: String,
         billing_period: Integer?,
+        checkout_styling: WhopSDK::PlanCreateParams::CheckoutStyling?,
         currency: WhopSDK::Models::currency?,
         custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?,
         description: String?,
@@ -126,6 +131,57 @@ module WhopSDK
         visibility: WhopSDK::Models::visibility?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type checkout_styling =
+        {
+          accent_color: String?,
+          font: WhopSDK::Models::PlanCreateParams::CheckoutStyling::font?,
+          shape: WhopSDK::Models::PlanCreateParams::CheckoutStyling::shape?
+        }
+
+      class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+        attr_accessor accent_color: String?
+
+        attr_accessor font: WhopSDK::Models::PlanCreateParams::CheckoutStyling::font?
+
+        attr_accessor shape: WhopSDK::Models::PlanCreateParams::CheckoutStyling::shape?
+
+        def initialize: (
+          ?accent_color: String?,
+          ?font: WhopSDK::Models::PlanCreateParams::CheckoutStyling::font?,
+          ?shape: WhopSDK::Models::PlanCreateParams::CheckoutStyling::shape?
+        ) -> void
+
+        def to_hash: -> {
+          accent_color: String?,
+          font: WhopSDK::Models::PlanCreateParams::CheckoutStyling::font?,
+          shape: WhopSDK::Models::PlanCreateParams::CheckoutStyling::shape?
+        }
+
+        type font = :system | :roboto | :open_sans
+
+        module Font
+          extend WhopSDK::Internal::Type::Enum
+
+          SYSTEM: :system
+          ROBOTO: :roboto
+          OPEN_SANS: :open_sans
+
+          def self?.values: -> ::Array[WhopSDK::Models::PlanCreateParams::CheckoutStyling::font]
+        end
+
+        type shape = :rounded | :pill | :rectangular
+
+        module Shape
+          extend WhopSDK::Internal::Type::Enum
+
+          ROUNDED: :rounded
+          PILL: :pill
+          RECTANGULAR: :rectangular
+
+          def self?.values: -> ::Array[WhopSDK::Models::PlanCreateParams::CheckoutStyling::shape]
+        end
+      end
 
       type custom_field =
         {

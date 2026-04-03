@@ -109,6 +109,54 @@ module WhopSDK
         )
       end
 
+      # Mark an open invoice as paid when payment was collected outside of Whop.
+      #
+      # Required permissions:
+      #
+      # - `invoice:update`
+      #
+      # @overload mark_paid(id, request_options: {})
+      #
+      # @param id [String] The unique identifier of the invoice to mark as paid.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Boolean]
+      #
+      # @see WhopSDK::Models::InvoiceMarkPaidParams
+      def mark_paid(id, params = {})
+        @client.request(
+          method: :post,
+          path: ["invoices/%1$s/mark_paid", id],
+          model: WhopSDK::Internal::Type::Boolean,
+          options: params[:request_options]
+        )
+      end
+
+      # Mark an open invoice as uncollectible when payment is not expected.
+      #
+      # Required permissions:
+      #
+      # - `invoice:update`
+      #
+      # @overload mark_uncollectible(id, request_options: {})
+      #
+      # @param id [String] The unique identifier of the invoice to mark as uncollectible.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Boolean]
+      #
+      # @see WhopSDK::Models::InvoiceMarkUncollectibleParams
+      def mark_uncollectible(id, params = {})
+        @client.request(
+          method: :post,
+          path: ["invoices/%1$s/mark_uncollectible", id],
+          model: WhopSDK::Internal::Type::Boolean,
+          options: params[:request_options]
+        )
+      end
+
       # Void an open invoice so it can no longer be paid. Voiding is permanent and
       # cannot be undone.
       #

@@ -348,6 +348,11 @@ module WhopSDK
   InvoiceMarkedUncollectibleWebhookEvent =
     WhopSDK::Models::InvoiceMarkedUncollectibleWebhookEvent
 
+  InvoiceMarkPaidParams = WhopSDK::Models::InvoiceMarkPaidParams
+
+  InvoiceMarkUncollectibleParams =
+    WhopSDK::Models::InvoiceMarkUncollectibleParams
+
   InvoicePaidWebhookEvent = WhopSDK::Models::InvoicePaidWebhookEvent
 
   InvoicePastDueWebhookEvent = WhopSDK::Models::InvoicePastDueWebhookEvent
@@ -634,6 +639,8 @@ module WhopSDK
   SupportChannelListParams = WhopSDK::Models::SupportChannelListParams
 
   SupportChannelRetrieveParams = WhopSDK::Models::SupportChannelRetrieveParams
+
+  TaxIdentifierType = WhopSDK::Models::TaxIdentifierType
 
   TaxType = WhopSDK::Models::TaxType
 

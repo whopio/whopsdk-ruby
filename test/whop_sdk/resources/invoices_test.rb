@@ -92,6 +92,26 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
     end
   end
 
+  def test_mark_paid
+    skip("Mock server tests are disabled")
+
+    response = @whop.invoices.mark_paid("inv_xxxxxxxxxxxxxx")
+
+    assert_pattern do
+      response => WhopSDK::Internal::Type::Boolean
+    end
+  end
+
+  def test_mark_uncollectible
+    skip("Mock server tests are disabled")
+
+    response = @whop.invoices.mark_uncollectible("inv_xxxxxxxxxxxxxx")
+
+    assert_pattern do
+      response => WhopSDK::Internal::Type::Boolean
+    end
+  end
+
   def test_void
     skip("Mock server tests are disabled")
 

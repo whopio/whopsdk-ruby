@@ -27,6 +27,16 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::InvoiceListItem]
 
+      def mark_paid: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> bool
+
+      def mark_uncollectible: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> bool
+
       def `void`: (String id, ?request_options: WhopSDK::request_opts) -> bool
 
       def initialize: (client: WhopSDK::Client) -> void

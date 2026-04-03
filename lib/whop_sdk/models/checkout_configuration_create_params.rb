@@ -45,6 +45,17 @@ module WhopSDK
           #   @return [String, nil]
           optional :affiliate_code, String, nil?: true
 
+          # @!attribute checkout_styling
+          #   Checkout styling overrides for this session. Overrides plan and company
+          #   defaults.
+          #
+          #   @return [WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling, nil]
+          optional :checkout_styling,
+                   -> {
+                     WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling
+                   },
+                   nil?: true
+
           # @!attribute currency
           #   The available currencies on the platform
           #
@@ -86,7 +97,7 @@ module WhopSDK
           #   @return [String, nil]
           optional :source_url, String, nil?: true
 
-          # @!method initialize(plan:, affiliate_code: nil, currency: nil, metadata: nil, mode: nil, payment_method_configuration: nil, redirect_url: nil, source_url: nil)
+          # @!method initialize(plan:, affiliate_code: nil, checkout_styling: nil, currency: nil, metadata: nil, mode: nil, payment_method_configuration: nil, redirect_url: nil, source_url: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan}
           #   for more details.
@@ -96,6 +107,8 @@ module WhopSDK
           #   @param plan [WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan] The plan attributes to create a new plan inline for this checkout configuration.
           #
           #   @param affiliate_code [String, nil] An affiliate tracking code to attribute the checkout to a specific affiliate.
+          #
+          #   @param checkout_styling [WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling, nil] Checkout styling overrides for this session. Overrides plan and company defaults
           #
           #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
           #
@@ -550,6 +563,73 @@ module WhopSDK
             end
           end
 
+          # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan#checkout_styling
+          class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+            # @!attribute accent_color
+            #   The hex color code for the accent color on checkout pages.
+            #
+            #   @return [String, nil]
+            optional :accent_color, String, nil?: true
+
+            # @!attribute font
+            #   The different font families available for checkout pages.
+            #
+            #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Font, nil]
+            optional :font,
+                     enum: -> {
+                       WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Font
+                     },
+                     nil?: true
+
+            # @!attribute shape
+            #   The different border-radius styles available for checkout pages.
+            #
+            #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Shape, nil]
+            optional :shape,
+                     enum: -> {
+                       WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Shape
+                     },
+                     nil?: true
+
+            # @!method initialize(accent_color: nil, font: nil, shape: nil)
+            #   Checkout styling overrides for this session. Overrides plan and company
+            #   defaults.
+            #
+            #   @param accent_color [String, nil] The hex color code for the accent color on checkout pages.
+            #
+            #   @param font [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Font, nil] The different font families available for checkout pages.
+            #
+            #   @param shape [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Shape, nil] The different border-radius styles available for checkout pages.
+
+            # The different font families available for checkout pages.
+            #
+            # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling#font
+            module Font
+              extend WhopSDK::Internal::Type::Enum
+
+              SYSTEM = :system
+              ROBOTO = :roboto
+              OPEN_SANS = :open_sans
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # The different border-radius styles available for checkout pages.
+            #
+            # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling#shape
+            module Shape
+              extend WhopSDK::Internal::Type::Enum
+
+              ROUNDED = :rounded
+              PILL = :pill
+              RECTANGULAR = :rectangular
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
+
           # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan#mode
           module Mode
             extend WhopSDK::Internal::Type::Enum
@@ -616,6 +696,17 @@ module WhopSDK
           #   @return [String, nil]
           optional :affiliate_code, String, nil?: true
 
+          # @!attribute checkout_styling
+          #   Checkout styling overrides for this session. Overrides plan and company
+          #   defaults.
+          #
+          #   @return [WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling, nil]
+          optional :checkout_styling,
+                   -> {
+                     WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling
+                   },
+                   nil?: true
+
           # @!attribute currency
           #   The available currencies on the platform
           #
@@ -657,7 +748,7 @@ module WhopSDK
           #   @return [String, nil]
           optional :source_url, String, nil?: true
 
-          # @!method initialize(plan_id:, affiliate_code: nil, currency: nil, metadata: nil, mode: nil, payment_method_configuration: nil, redirect_url: nil, source_url: nil)
+          # @!method initialize(plan_id:, affiliate_code: nil, checkout_styling: nil, currency: nil, metadata: nil, mode: nil, payment_method_configuration: nil, redirect_url: nil, source_url: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID}
           #   for more details.
@@ -667,6 +758,8 @@ module WhopSDK
           #   @param plan_id [String] The unique identifier of an existing plan to use for this checkout configuration
           #
           #   @param affiliate_code [String, nil] An affiliate tracking code to attribute the checkout to a specific affiliate.
+          #
+          #   @param checkout_styling [WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling, nil] Checkout styling overrides for this session. Overrides plan and company defaults
           #
           #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
           #
@@ -679,6 +772,73 @@ module WhopSDK
           #   @param redirect_url [String, nil] The URL to redirect the user to after checkout is completed.
           #
           #   @param source_url [String, nil] The URL of the page where the checkout is being initiated from.
+
+          # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID#checkout_styling
+          class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+            # @!attribute accent_color
+            #   The hex color code for the accent color on checkout pages.
+            #
+            #   @return [String, nil]
+            optional :accent_color, String, nil?: true
+
+            # @!attribute font
+            #   The different font families available for checkout pages.
+            #
+            #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Font, nil]
+            optional :font,
+                     enum: -> {
+                       WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Font
+                     },
+                     nil?: true
+
+            # @!attribute shape
+            #   The different border-radius styles available for checkout pages.
+            #
+            #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Shape, nil]
+            optional :shape,
+                     enum: -> {
+                       WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Shape
+                     },
+                     nil?: true
+
+            # @!method initialize(accent_color: nil, font: nil, shape: nil)
+            #   Checkout styling overrides for this session. Overrides plan and company
+            #   defaults.
+            #
+            #   @param accent_color [String, nil] The hex color code for the accent color on checkout pages.
+            #
+            #   @param font [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Font, nil] The different font families available for checkout pages.
+            #
+            #   @param shape [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Shape, nil] The different border-radius styles available for checkout pages.
+
+            # The different font families available for checkout pages.
+            #
+            # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling#font
+            module Font
+              extend WhopSDK::Internal::Type::Enum
+
+              SYSTEM = :system
+              ROBOTO = :roboto
+              OPEN_SANS = :open_sans
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # The different border-radius styles available for checkout pages.
+            #
+            # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling#shape
+            module Shape
+              extend WhopSDK::Internal::Type::Enum
+
+              ROUNDED = :rounded
+              PILL = :pill
+              RECTANGULAR = :rectangular
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
 
           # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID#mode
           module Mode
@@ -745,6 +905,17 @@ module WhopSDK
           #   @return [Symbol, :setup]
           required :mode, const: :setup
 
+          # @!attribute checkout_styling
+          #   Checkout styling overrides for this session. Overrides plan and company
+          #   defaults.
+          #
+          #   @return [WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling, nil]
+          optional :checkout_styling,
+                   -> {
+                     WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling
+                   },
+                   nil?: true
+
           # @!attribute currency
           #   The available currencies on the platform
           #
@@ -780,7 +951,7 @@ module WhopSDK
           #   @return [String, nil]
           optional :source_url, String, nil?: true
 
-          # @!method initialize(company_id:, currency: nil, metadata: nil, payment_method_configuration: nil, redirect_url: nil, source_url: nil, mode: :setup)
+          # @!method initialize(company_id:, checkout_styling: nil, currency: nil, metadata: nil, payment_method_configuration: nil, redirect_url: nil, source_url: nil, mode: :setup)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup}
           #   for more details.
@@ -788,6 +959,8 @@ module WhopSDK
           #   Autogenerated input type of CreateCheckoutSession
           #
           #   @param company_id [String] The unique identifier of the company to create the checkout configuration for. O
+          #
+          #   @param checkout_styling [WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling, nil] Checkout styling overrides for this session. Overrides plan and company defaults
           #
           #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
           #
@@ -800,6 +973,73 @@ module WhopSDK
           #   @param source_url [String, nil] The URL of the page where the checkout is being initiated from.
           #
           #   @param mode [Symbol, :setup]
+
+          # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup#checkout_styling
+          class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+            # @!attribute accent_color
+            #   The hex color code for the accent color on checkout pages.
+            #
+            #   @return [String, nil]
+            optional :accent_color, String, nil?: true
+
+            # @!attribute font
+            #   The different font families available for checkout pages.
+            #
+            #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Font, nil]
+            optional :font,
+                     enum: -> {
+                       WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Font
+                     },
+                     nil?: true
+
+            # @!attribute shape
+            #   The different border-radius styles available for checkout pages.
+            #
+            #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Shape, nil]
+            optional :shape,
+                     enum: -> {
+                       WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Shape
+                     },
+                     nil?: true
+
+            # @!method initialize(accent_color: nil, font: nil, shape: nil)
+            #   Checkout styling overrides for this session. Overrides plan and company
+            #   defaults.
+            #
+            #   @param accent_color [String, nil] The hex color code for the accent color on checkout pages.
+            #
+            #   @param font [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Font, nil] The different font families available for checkout pages.
+            #
+            #   @param shape [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Shape, nil] The different border-radius styles available for checkout pages.
+
+            # The different font families available for checkout pages.
+            #
+            # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling#font
+            module Font
+              extend WhopSDK::Internal::Type::Enum
+
+              SYSTEM = :system
+              ROBOTO = :roboto
+              OPEN_SANS = :open_sans
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # The different border-radius styles available for checkout pages.
+            #
+            # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling#shape
+            module Shape
+              extend WhopSDK::Internal::Type::Enum
+
+              ROUNDED = :rounded
+              PILL = :pill
+              RECTANGULAR = :rectangular
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
 
           # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup#payment_method_configuration
           class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel

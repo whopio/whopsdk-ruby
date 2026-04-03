@@ -17,6 +17,8 @@ module WhopSDK
           company_id: String,
           product_id: String,
           billing_period: T.nilable(Integer),
+          checkout_styling:
+            T.nilable(WhopSDK::PlanCreateParams::CheckoutStyling::OrHash),
           currency: T.nilable(WhopSDK::Currency::OrSymbol),
           custom_fields:
             T.nilable(T::Array[WhopSDK::PlanCreateParams::CustomField::OrHash]),
@@ -51,6 +53,9 @@ module WhopSDK
         # The number of days between recurring charges. For example, 30 for monthly or 365
         # for yearly.
         billing_period: nil,
+        # Checkout styling overrides for this plan. Pass null to inherit from the company
+        # default.
+        checkout_styling: nil,
         # The available currencies on the platform
         currency: nil,
         # An array of custom field definitions to collect from customers at checkout.
@@ -131,6 +136,8 @@ module WhopSDK
         params(
           id: String,
           billing_period: T.nilable(Integer),
+          checkout_styling:
+            T.nilable(WhopSDK::PlanUpdateParams::CheckoutStyling::OrHash),
           currency: T.nilable(WhopSDK::Currency::OrSymbol),
           custom_fields:
             T.nilable(T::Array[WhopSDK::PlanUpdateParams::CustomField::OrHash]),
@@ -163,6 +170,9 @@ module WhopSDK
         # The number of days between recurring charges. For example, 30 for monthly or 365
         # for yearly.
         billing_period: nil,
+        # Checkout styling overrides for this plan. Pass null to remove all overrides and
+        # inherit from the company default.
+        checkout_styling: nil,
         # The available currencies on the platform
         currency: nil,
         # An array of custom field definitions to collect from customers at checkout.

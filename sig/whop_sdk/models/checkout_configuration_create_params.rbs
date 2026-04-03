@@ -32,6 +32,7 @@ module WhopSDK
           {
             plan: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan,
             affiliate_code: String?,
+            checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling?,
             currency: WhopSDK::Models::currency?,
             metadata: ::Hash[Symbol, top]?,
             mode: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::mode,
@@ -44,6 +45,8 @@ module WhopSDK
           attr_accessor plan: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan
 
           attr_accessor affiliate_code: String?
+
+          attr_accessor checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling?
 
           attr_accessor currency: WhopSDK::Models::currency?
 
@@ -64,6 +67,7 @@ module WhopSDK
           def initialize: (
             plan: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan,
             ?affiliate_code: String?,
+            ?checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling?,
             ?currency: WhopSDK::Models::currency?,
             ?metadata: ::Hash[Symbol, top]?,
             ?mode: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::mode,
@@ -75,6 +79,7 @@ module WhopSDK
           def to_hash: -> {
             plan: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan,
             affiliate_code: String?,
+            checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling?,
             currency: WhopSDK::Models::currency?,
             metadata: ::Hash[Symbol, top]?,
             mode: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::mode,
@@ -361,6 +366,57 @@ module WhopSDK
             end
           end
 
+          type checkout_styling =
+            {
+              accent_color: String?,
+              font: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::font?,
+              shape: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::shape?
+            }
+
+          class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+            attr_accessor accent_color: String?
+
+            attr_accessor font: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::font?
+
+            attr_accessor shape: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::shape?
+
+            def initialize: (
+              ?accent_color: String?,
+              ?font: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::font?,
+              ?shape: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::shape?
+            ) -> void
+
+            def to_hash: -> {
+              accent_color: String?,
+              font: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::font?,
+              shape: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::shape?
+            }
+
+            type font = :system | :roboto | :open_sans
+
+            module Font
+              extend WhopSDK::Internal::Type::Enum
+
+              SYSTEM: :system
+              ROBOTO: :roboto
+              OPEN_SANS: :open_sans
+
+              def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::font]
+            end
+
+            type shape = :rounded | :pill | :rectangular
+
+            module Shape
+              extend WhopSDK::Internal::Type::Enum
+
+              ROUNDED: :rounded
+              PILL: :pill
+              RECTANGULAR: :rectangular
+
+              def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::shape]
+            end
+          end
+
           type mode = :payment
 
           module Mode
@@ -403,6 +459,7 @@ module WhopSDK
           {
             plan_id: String,
             affiliate_code: String?,
+            checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling?,
             currency: WhopSDK::Models::currency?,
             metadata: ::Hash[Symbol, top]?,
             mode: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::mode,
@@ -415,6 +472,8 @@ module WhopSDK
           attr_accessor plan_id: String
 
           attr_accessor affiliate_code: String?
+
+          attr_accessor checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling?
 
           attr_accessor currency: WhopSDK::Models::currency?
 
@@ -435,6 +494,7 @@ module WhopSDK
           def initialize: (
             plan_id: String,
             ?affiliate_code: String?,
+            ?checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling?,
             ?currency: WhopSDK::Models::currency?,
             ?metadata: ::Hash[Symbol, top]?,
             ?mode: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::mode,
@@ -446,6 +506,7 @@ module WhopSDK
           def to_hash: -> {
             plan_id: String,
             affiliate_code: String?,
+            checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling?,
             currency: WhopSDK::Models::currency?,
             metadata: ::Hash[Symbol, top]?,
             mode: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::mode,
@@ -453,6 +514,57 @@ module WhopSDK
             redirect_url: String?,
             source_url: String?
           }
+
+          type checkout_styling =
+            {
+              accent_color: String?,
+              font: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::font?,
+              shape: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::shape?
+            }
+
+          class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+            attr_accessor accent_color: String?
+
+            attr_accessor font: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::font?
+
+            attr_accessor shape: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::shape?
+
+            def initialize: (
+              ?accent_color: String?,
+              ?font: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::font?,
+              ?shape: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::shape?
+            ) -> void
+
+            def to_hash: -> {
+              accent_color: String?,
+              font: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::font?,
+              shape: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::shape?
+            }
+
+            type font = :system | :roboto | :open_sans
+
+            module Font
+              extend WhopSDK::Internal::Type::Enum
+
+              SYSTEM: :system
+              ROBOTO: :roboto
+              OPEN_SANS: :open_sans
+
+              def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::font]
+            end
+
+            type shape = :rounded | :pill | :rectangular
+
+            module Shape
+              extend WhopSDK::Internal::Type::Enum
+
+              ROUNDED: :rounded
+              PILL: :pill
+              RECTANGULAR: :rectangular
+
+              def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::shape]
+            end
+          end
 
           type mode = :payment
 
@@ -496,6 +608,7 @@ module WhopSDK
           {
             company_id: String,
             mode: :setup,
+            checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling?,
             currency: WhopSDK::Models::currency?,
             metadata: ::Hash[Symbol, top]?,
             payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::PaymentMethodConfiguration?,
@@ -507,6 +620,8 @@ module WhopSDK
           attr_accessor company_id: String
 
           attr_accessor mode: :setup
+
+          attr_accessor checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling?
 
           attr_accessor currency: WhopSDK::Models::currency?
 
@@ -520,6 +635,7 @@ module WhopSDK
 
           def initialize: (
             company_id: String,
+            ?checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling?,
             ?currency: WhopSDK::Models::currency?,
             ?metadata: ::Hash[Symbol, top]?,
             ?payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::PaymentMethodConfiguration?,
@@ -531,12 +647,64 @@ module WhopSDK
           def to_hash: -> {
             company_id: String,
             mode: :setup,
+            checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling?,
             currency: WhopSDK::Models::currency?,
             metadata: ::Hash[Symbol, top]?,
             payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::PaymentMethodConfiguration?,
             redirect_url: String?,
             source_url: String?
           }
+
+          type checkout_styling =
+            {
+              accent_color: String?,
+              font: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::font?,
+              shape: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::shape?
+            }
+
+          class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+            attr_accessor accent_color: String?
+
+            attr_accessor font: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::font?
+
+            attr_accessor shape: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::shape?
+
+            def initialize: (
+              ?accent_color: String?,
+              ?font: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::font?,
+              ?shape: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::shape?
+            ) -> void
+
+            def to_hash: -> {
+              accent_color: String?,
+              font: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::font?,
+              shape: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::shape?
+            }
+
+            type font = :system | :roboto | :open_sans
+
+            module Font
+              extend WhopSDK::Internal::Type::Enum
+
+              SYSTEM: :system
+              ROBOTO: :roboto
+              OPEN_SANS: :open_sans
+
+              def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::font]
+            end
+
+            type shape = :rounded | :pill | :rectangular
+
+            module Shape
+              extend WhopSDK::Internal::Type::Enum
+
+              ROUNDED: :rounded
+              PILL: :pill
+              RECTANGULAR: :rectangular
+
+              def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::shape]
+            end
+          end
 
           type payment_method_configuration =
             {

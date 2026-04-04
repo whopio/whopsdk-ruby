@@ -203,57 +203,61 @@ module WhopSDK
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
       class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
-        # @!attribute accent_color
-        #   The hex color code for the accent color on checkout pages.
-        #
-        #   @return [String, nil]
-        optional :accent_color, String, nil?: true
-
-        # @!attribute font
-        #   The different font families available for checkout pages.
-        #
-        #   @return [Symbol, WhopSDK::Models::PlanUpdateParams::CheckoutStyling::Font, nil]
-        optional :font, enum: -> { WhopSDK::PlanUpdateParams::CheckoutStyling::Font }, nil?: true
-
-        # @!attribute shape
+        # @!attribute border_style
         #   The different border-radius styles available for checkout pages.
         #
-        #   @return [Symbol, WhopSDK::Models::PlanUpdateParams::CheckoutStyling::Shape, nil]
-        optional :shape, enum: -> { WhopSDK::PlanUpdateParams::CheckoutStyling::Shape }, nil?: true
+        #   @return [Symbol, WhopSDK::Models::PlanUpdateParams::CheckoutStyling::BorderStyle, nil]
+        optional :border_style,
+                 enum: -> {
+                   WhopSDK::PlanUpdateParams::CheckoutStyling::BorderStyle
+                 },
+                 nil?: true
 
-        # @!method initialize(accent_color: nil, font: nil, shape: nil)
+        # @!attribute button_color
+        #   A hex color code for the button color (e.g. #FF5733).
+        #
+        #   @return [String, nil]
+        optional :button_color, String, nil?: true
+
+        # @!attribute font_family
+        #   The different font families available for checkout pages.
+        #
+        #   @return [Symbol, WhopSDK::Models::PlanUpdateParams::CheckoutStyling::FontFamily, nil]
+        optional :font_family, enum: -> { WhopSDK::PlanUpdateParams::CheckoutStyling::FontFamily }, nil?: true
+
+        # @!method initialize(border_style: nil, button_color: nil, font_family: nil)
         #   Checkout styling overrides for this plan. Pass null to remove all overrides and
         #   inherit from the company default.
         #
-        #   @param accent_color [String, nil] The hex color code for the accent color on checkout pages.
+        #   @param border_style [Symbol, WhopSDK::Models::PlanUpdateParams::CheckoutStyling::BorderStyle, nil] The different border-radius styles available for checkout pages.
         #
-        #   @param font [Symbol, WhopSDK::Models::PlanUpdateParams::CheckoutStyling::Font, nil] The different font families available for checkout pages.
+        #   @param button_color [String, nil] A hex color code for the button color (e.g. #FF5733).
         #
-        #   @param shape [Symbol, WhopSDK::Models::PlanUpdateParams::CheckoutStyling::Shape, nil] The different border-radius styles available for checkout pages.
-
-        # The different font families available for checkout pages.
-        #
-        # @see WhopSDK::Models::PlanUpdateParams::CheckoutStyling#font
-        module Font
-          extend WhopSDK::Internal::Type::Enum
-
-          SYSTEM = :system
-          ROBOTO = :roboto
-          OPEN_SANS = :open_sans
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
+        #   @param font_family [Symbol, WhopSDK::Models::PlanUpdateParams::CheckoutStyling::FontFamily, nil] The different font families available for checkout pages.
 
         # The different border-radius styles available for checkout pages.
         #
-        # @see WhopSDK::Models::PlanUpdateParams::CheckoutStyling#shape
-        module Shape
+        # @see WhopSDK::Models::PlanUpdateParams::CheckoutStyling#border_style
+        module BorderStyle
           extend WhopSDK::Internal::Type::Enum
 
           ROUNDED = :rounded
           PILL = :pill
           RECTANGULAR = :rectangular
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # The different font families available for checkout pages.
+        #
+        # @see WhopSDK::Models::PlanUpdateParams::CheckoutStyling#font_family
+        module FontFamily
+          extend WhopSDK::Internal::Type::Enum
+
+          SYSTEM = :system
+          ROBOTO = :roboto
+          OPEN_SANS = :open_sans
 
           # @!method self.values
           #   @return [Array<Symbol>]

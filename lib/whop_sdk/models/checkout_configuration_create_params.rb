@@ -565,65 +565,65 @@ module WhopSDK
 
           # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan#checkout_styling
           class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
-            # @!attribute accent_color
-            #   The hex color code for the accent color on checkout pages.
-            #
-            #   @return [String, nil]
-            optional :accent_color, String, nil?: true
-
-            # @!attribute font
-            #   The different font families available for checkout pages.
-            #
-            #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Font, nil]
-            optional :font,
-                     enum: -> {
-                       WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Font
-                     },
-                     nil?: true
-
-            # @!attribute shape
+            # @!attribute border_style
             #   The different border-radius styles available for checkout pages.
             #
-            #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Shape, nil]
-            optional :shape,
+            #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::BorderStyle, nil]
+            optional :border_style,
                      enum: -> {
-                       WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Shape
+                       WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::BorderStyle
                      },
                      nil?: true
 
-            # @!method initialize(accent_color: nil, font: nil, shape: nil)
+            # @!attribute button_color
+            #   A hex color code for the button color (e.g. #FF5733).
+            #
+            #   @return [String, nil]
+            optional :button_color, String, nil?: true
+
+            # @!attribute font_family
+            #   The different font families available for checkout pages.
+            #
+            #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::FontFamily, nil]
+            optional :font_family,
+                     enum: -> {
+                       WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::FontFamily
+                     },
+                     nil?: true
+
+            # @!method initialize(border_style: nil, button_color: nil, font_family: nil)
             #   Checkout styling overrides for this session. Overrides plan and company
             #   defaults.
             #
-            #   @param accent_color [String, nil] The hex color code for the accent color on checkout pages.
+            #   @param border_style [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::BorderStyle, nil] The different border-radius styles available for checkout pages.
             #
-            #   @param font [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Font, nil] The different font families available for checkout pages.
+            #   @param button_color [String, nil] A hex color code for the button color (e.g. #FF5733).
             #
-            #   @param shape [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::Shape, nil] The different border-radius styles available for checkout pages.
-
-            # The different font families available for checkout pages.
-            #
-            # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling#font
-            module Font
-              extend WhopSDK::Internal::Type::Enum
-
-              SYSTEM = :system
-              ROBOTO = :roboto
-              OPEN_SANS = :open_sans
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
+            #   @param font_family [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::FontFamily, nil] The different font families available for checkout pages.
 
             # The different border-radius styles available for checkout pages.
             #
-            # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling#shape
-            module Shape
+            # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling#border_style
+            module BorderStyle
               extend WhopSDK::Internal::Type::Enum
 
               ROUNDED = :rounded
               PILL = :pill
               RECTANGULAR = :rectangular
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # The different font families available for checkout pages.
+            #
+            # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling#font_family
+            module FontFamily
+              extend WhopSDK::Internal::Type::Enum
+
+              SYSTEM = :system
+              ROBOTO = :roboto
+              OPEN_SANS = :open_sans
 
               # @!method self.values
               #   @return [Array<Symbol>]
@@ -775,65 +775,65 @@ module WhopSDK
 
           # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID#checkout_styling
           class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
-            # @!attribute accent_color
-            #   The hex color code for the accent color on checkout pages.
-            #
-            #   @return [String, nil]
-            optional :accent_color, String, nil?: true
-
-            # @!attribute font
-            #   The different font families available for checkout pages.
-            #
-            #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Font, nil]
-            optional :font,
-                     enum: -> {
-                       WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Font
-                     },
-                     nil?: true
-
-            # @!attribute shape
+            # @!attribute border_style
             #   The different border-radius styles available for checkout pages.
             #
-            #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Shape, nil]
-            optional :shape,
+            #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::BorderStyle, nil]
+            optional :border_style,
                      enum: -> {
-                       WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Shape
+                       WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::BorderStyle
                      },
                      nil?: true
 
-            # @!method initialize(accent_color: nil, font: nil, shape: nil)
+            # @!attribute button_color
+            #   A hex color code for the button color (e.g. #FF5733).
+            #
+            #   @return [String, nil]
+            optional :button_color, String, nil?: true
+
+            # @!attribute font_family
+            #   The different font families available for checkout pages.
+            #
+            #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::FontFamily, nil]
+            optional :font_family,
+                     enum: -> {
+                       WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::FontFamily
+                     },
+                     nil?: true
+
+            # @!method initialize(border_style: nil, button_color: nil, font_family: nil)
             #   Checkout styling overrides for this session. Overrides plan and company
             #   defaults.
             #
-            #   @param accent_color [String, nil] The hex color code for the accent color on checkout pages.
+            #   @param border_style [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::BorderStyle, nil] The different border-radius styles available for checkout pages.
             #
-            #   @param font [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Font, nil] The different font families available for checkout pages.
+            #   @param button_color [String, nil] A hex color code for the button color (e.g. #FF5733).
             #
-            #   @param shape [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::Shape, nil] The different border-radius styles available for checkout pages.
-
-            # The different font families available for checkout pages.
-            #
-            # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling#font
-            module Font
-              extend WhopSDK::Internal::Type::Enum
-
-              SYSTEM = :system
-              ROBOTO = :roboto
-              OPEN_SANS = :open_sans
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
+            #   @param font_family [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::FontFamily, nil] The different font families available for checkout pages.
 
             # The different border-radius styles available for checkout pages.
             #
-            # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling#shape
-            module Shape
+            # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling#border_style
+            module BorderStyle
               extend WhopSDK::Internal::Type::Enum
 
               ROUNDED = :rounded
               PILL = :pill
               RECTANGULAR = :rectangular
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # The different font families available for checkout pages.
+            #
+            # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling#font_family
+            module FontFamily
+              extend WhopSDK::Internal::Type::Enum
+
+              SYSTEM = :system
+              ROBOTO = :roboto
+              OPEN_SANS = :open_sans
 
               # @!method self.values
               #   @return [Array<Symbol>]
@@ -976,65 +976,65 @@ module WhopSDK
 
           # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup#checkout_styling
           class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
-            # @!attribute accent_color
-            #   The hex color code for the accent color on checkout pages.
-            #
-            #   @return [String, nil]
-            optional :accent_color, String, nil?: true
-
-            # @!attribute font
-            #   The different font families available for checkout pages.
-            #
-            #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Font, nil]
-            optional :font,
-                     enum: -> {
-                       WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Font
-                     },
-                     nil?: true
-
-            # @!attribute shape
+            # @!attribute border_style
             #   The different border-radius styles available for checkout pages.
             #
-            #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Shape, nil]
-            optional :shape,
+            #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::BorderStyle, nil]
+            optional :border_style,
                      enum: -> {
-                       WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Shape
+                       WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::BorderStyle
                      },
                      nil?: true
 
-            # @!method initialize(accent_color: nil, font: nil, shape: nil)
+            # @!attribute button_color
+            #   A hex color code for the button color (e.g. #FF5733).
+            #
+            #   @return [String, nil]
+            optional :button_color, String, nil?: true
+
+            # @!attribute font_family
+            #   The different font families available for checkout pages.
+            #
+            #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::FontFamily, nil]
+            optional :font_family,
+                     enum: -> {
+                       WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::FontFamily
+                     },
+                     nil?: true
+
+            # @!method initialize(border_style: nil, button_color: nil, font_family: nil)
             #   Checkout styling overrides for this session. Overrides plan and company
             #   defaults.
             #
-            #   @param accent_color [String, nil] The hex color code for the accent color on checkout pages.
+            #   @param border_style [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::BorderStyle, nil] The different border-radius styles available for checkout pages.
             #
-            #   @param font [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Font, nil] The different font families available for checkout pages.
+            #   @param button_color [String, nil] A hex color code for the button color (e.g. #FF5733).
             #
-            #   @param shape [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::Shape, nil] The different border-radius styles available for checkout pages.
-
-            # The different font families available for checkout pages.
-            #
-            # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling#font
-            module Font
-              extend WhopSDK::Internal::Type::Enum
-
-              SYSTEM = :system
-              ROBOTO = :roboto
-              OPEN_SANS = :open_sans
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
+            #   @param font_family [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::FontFamily, nil] The different font families available for checkout pages.
 
             # The different border-radius styles available for checkout pages.
             #
-            # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling#shape
-            module Shape
+            # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling#border_style
+            module BorderStyle
               extend WhopSDK::Internal::Type::Enum
 
               ROUNDED = :rounded
               PILL = :pill
               RECTANGULAR = :rectangular
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # The different font families available for checkout pages.
+            #
+            # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling#font_family
+            module FontFamily
+              extend WhopSDK::Internal::Type::Enum
+
+              SYSTEM = :system
+              ROBOTO = :roboto
+              OPEN_SANS = :open_sans
 
               # @!method self.values
               #   @return [Array<Symbol>]

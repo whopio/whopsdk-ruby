@@ -271,66 +271,66 @@ module WhopSDK
             )
           end
 
-        # The hex color code for the accent color on checkout pages.
+        # The different border-radius styles available for checkout pages.
+        sig do
+          returns(
+            T.nilable(
+              WhopSDK::PlanUpdateParams::CheckoutStyling::BorderStyle::OrSymbol
+            )
+          )
+        end
+        attr_accessor :border_style
+
+        # A hex color code for the button color (e.g. #FF5733).
         sig { returns(T.nilable(String)) }
-        attr_accessor :accent_color
+        attr_accessor :button_color
 
         # The different font families available for checkout pages.
         sig do
           returns(
             T.nilable(
-              WhopSDK::PlanUpdateParams::CheckoutStyling::Font::OrSymbol
+              WhopSDK::PlanUpdateParams::CheckoutStyling::FontFamily::OrSymbol
             )
           )
         end
-        attr_accessor :font
-
-        # The different border-radius styles available for checkout pages.
-        sig do
-          returns(
-            T.nilable(
-              WhopSDK::PlanUpdateParams::CheckoutStyling::Shape::OrSymbol
-            )
-          )
-        end
-        attr_accessor :shape
+        attr_accessor :font_family
 
         # Checkout styling overrides for this plan. Pass null to remove all overrides and
         # inherit from the company default.
         sig do
           params(
-            accent_color: T.nilable(String),
-            font:
+            border_style:
               T.nilable(
-                WhopSDK::PlanUpdateParams::CheckoutStyling::Font::OrSymbol
+                WhopSDK::PlanUpdateParams::CheckoutStyling::BorderStyle::OrSymbol
               ),
-            shape:
+            button_color: T.nilable(String),
+            font_family:
               T.nilable(
-                WhopSDK::PlanUpdateParams::CheckoutStyling::Shape::OrSymbol
+                WhopSDK::PlanUpdateParams::CheckoutStyling::FontFamily::OrSymbol
               )
           ).returns(T.attached_class)
         end
         def self.new(
-          # The hex color code for the accent color on checkout pages.
-          accent_color: nil,
-          # The different font families available for checkout pages.
-          font: nil,
           # The different border-radius styles available for checkout pages.
-          shape: nil
+          border_style: nil,
+          # A hex color code for the button color (e.g. #FF5733).
+          button_color: nil,
+          # The different font families available for checkout pages.
+          font_family: nil
         )
         end
 
         sig do
           override.returns(
             {
-              accent_color: T.nilable(String),
-              font:
+              border_style:
                 T.nilable(
-                  WhopSDK::PlanUpdateParams::CheckoutStyling::Font::OrSymbol
+                  WhopSDK::PlanUpdateParams::CheckoutStyling::BorderStyle::OrSymbol
                 ),
-              shape:
+              button_color: T.nilable(String),
+              font_family:
                 T.nilable(
-                  WhopSDK::PlanUpdateParams::CheckoutStyling::Shape::OrSymbol
+                  WhopSDK::PlanUpdateParams::CheckoutStyling::FontFamily::OrSymbol
                 )
             }
           )
@@ -338,36 +338,39 @@ module WhopSDK
         def to_hash
         end
 
-        # The different font families available for checkout pages.
-        module Font
+        # The different border-radius styles available for checkout pages.
+        module BorderStyle
           extend WhopSDK::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias do
-              T.all(Symbol, WhopSDK::PlanUpdateParams::CheckoutStyling::Font)
+              T.all(
+                Symbol,
+                WhopSDK::PlanUpdateParams::CheckoutStyling::BorderStyle
+              )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          SYSTEM =
+          ROUNDED =
             T.let(
-              :system,
-              WhopSDK::PlanUpdateParams::CheckoutStyling::Font::TaggedSymbol
+              :rounded,
+              WhopSDK::PlanUpdateParams::CheckoutStyling::BorderStyle::TaggedSymbol
             )
-          ROBOTO =
+          PILL =
             T.let(
-              :roboto,
-              WhopSDK::PlanUpdateParams::CheckoutStyling::Font::TaggedSymbol
+              :pill,
+              WhopSDK::PlanUpdateParams::CheckoutStyling::BorderStyle::TaggedSymbol
             )
-          OPEN_SANS =
+          RECTANGULAR =
             T.let(
-              :open_sans,
-              WhopSDK::PlanUpdateParams::CheckoutStyling::Font::TaggedSymbol
+              :rectangular,
+              WhopSDK::PlanUpdateParams::CheckoutStyling::BorderStyle::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::PlanUpdateParams::CheckoutStyling::Font::TaggedSymbol
+                WhopSDK::PlanUpdateParams::CheckoutStyling::BorderStyle::TaggedSymbol
               ]
             )
           end
@@ -375,36 +378,39 @@ module WhopSDK
           end
         end
 
-        # The different border-radius styles available for checkout pages.
-        module Shape
+        # The different font families available for checkout pages.
+        module FontFamily
           extend WhopSDK::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias do
-              T.all(Symbol, WhopSDK::PlanUpdateParams::CheckoutStyling::Shape)
+              T.all(
+                Symbol,
+                WhopSDK::PlanUpdateParams::CheckoutStyling::FontFamily
+              )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          ROUNDED =
+          SYSTEM =
             T.let(
-              :rounded,
-              WhopSDK::PlanUpdateParams::CheckoutStyling::Shape::TaggedSymbol
+              :system,
+              WhopSDK::PlanUpdateParams::CheckoutStyling::FontFamily::TaggedSymbol
             )
-          PILL =
+          ROBOTO =
             T.let(
-              :pill,
-              WhopSDK::PlanUpdateParams::CheckoutStyling::Shape::TaggedSymbol
+              :roboto,
+              WhopSDK::PlanUpdateParams::CheckoutStyling::FontFamily::TaggedSymbol
             )
-          RECTANGULAR =
+          OPEN_SANS =
             T.let(
-              :rectangular,
-              WhopSDK::PlanUpdateParams::CheckoutStyling::Shape::TaggedSymbol
+              :open_sans,
+              WhopSDK::PlanUpdateParams::CheckoutStyling::FontFamily::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::PlanUpdateParams::CheckoutStyling::Shape::TaggedSymbol
+                WhopSDK::PlanUpdateParams::CheckoutStyling::FontFamily::TaggedSymbol
               ]
             )
           end

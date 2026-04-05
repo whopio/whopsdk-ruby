@@ -19,6 +19,13 @@ module WhopSDK
       #   @return [Integer, nil]
       optional :billing_period, Integer, nil?: true
 
+      # @!attribute checkout_styling
+      #   Checkout styling overrides for this plan. Pass null to remove all overrides and
+      #   inherit from the company default.
+      #
+      #   @return [WhopSDK::Models::PlanUpdateParams::CheckoutStyling, nil]
+      optional :checkout_styling, -> { WhopSDK::PlanUpdateParams::CheckoutStyling }, nil?: true
+
       # @!attribute currency
       #   The available currencies on the platform
       #
@@ -145,13 +152,15 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility, nil]
       optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-      # @!method initialize(id:, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, offer_cancel_discount: nil, override_tax_type: nil, payment_method_configuration: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
+      # @!method initialize(id:, billing_period: nil, checkout_styling: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, offer_cancel_discount: nil, override_tax_type: nil, payment_method_configuration: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PlanUpdateParams} for more details.
       #
       #   @param id [String]
       #
       #   @param billing_period [Integer, nil] The number of days between recurring charges. For example, 30 for monthly or 365
+      #
+      #   @param checkout_styling [WhopSDK::Models::PlanUpdateParams::CheckoutStyling, nil] Checkout styling overrides for this plan. Pass null to remove all overrides and
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #
@@ -192,6 +201,68 @@ module WhopSDK
       #   @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+        # @!attribute border_style
+        #   The different border-radius styles available for checkout pages.
+        #
+        #   @return [Symbol, WhopSDK::Models::PlanUpdateParams::CheckoutStyling::BorderStyle, nil]
+        optional :border_style,
+                 enum: -> {
+                   WhopSDK::PlanUpdateParams::CheckoutStyling::BorderStyle
+                 },
+                 nil?: true
+
+        # @!attribute button_color
+        #   A hex color code for the button color (e.g. #FF5733).
+        #
+        #   @return [String, nil]
+        optional :button_color, String, nil?: true
+
+        # @!attribute font_family
+        #   The different font families available for checkout pages.
+        #
+        #   @return [Symbol, WhopSDK::Models::PlanUpdateParams::CheckoutStyling::FontFamily, nil]
+        optional :font_family, enum: -> { WhopSDK::PlanUpdateParams::CheckoutStyling::FontFamily }, nil?: true
+
+        # @!method initialize(border_style: nil, button_color: nil, font_family: nil)
+        #   Checkout styling overrides for this plan. Pass null to remove all overrides and
+        #   inherit from the company default.
+        #
+        #   @param border_style [Symbol, WhopSDK::Models::PlanUpdateParams::CheckoutStyling::BorderStyle, nil] The different border-radius styles available for checkout pages.
+        #
+        #   @param button_color [String, nil] A hex color code for the button color (e.g. #FF5733).
+        #
+        #   @param font_family [Symbol, WhopSDK::Models::PlanUpdateParams::CheckoutStyling::FontFamily, nil] The different font families available for checkout pages.
+
+        # The different border-radius styles available for checkout pages.
+        #
+        # @see WhopSDK::Models::PlanUpdateParams::CheckoutStyling#border_style
+        module BorderStyle
+          extend WhopSDK::Internal::Type::Enum
+
+          ROUNDED = :rounded
+          PILL = :pill
+          RECTANGULAR = :rectangular
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # The different font families available for checkout pages.
+        #
+        # @see WhopSDK::Models::PlanUpdateParams::CheckoutStyling#font_family
+        module FontFamily
+          extend WhopSDK::Internal::Type::Enum
+
+          SYSTEM = :system
+          ROBOTO = :roboto
+          OPEN_SANS = :open_sans
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
 
       class CustomField < WhopSDK::Internal::Type::BaseModel
         # @!attribute field_type

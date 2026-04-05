@@ -24,6 +24,19 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :billing_period
 
+      # Checkout styling overrides for this plan. Pass null to inherit from the company
+      # default.
+      sig { returns(T.nilable(WhopSDK::PlanCreateParams::CheckoutStyling)) }
+      attr_reader :checkout_styling
+
+      sig do
+        params(
+          checkout_styling:
+            T.nilable(WhopSDK::PlanCreateParams::CheckoutStyling::OrHash)
+        ).void
+      end
+      attr_writer :checkout_styling
+
       # The available currencies on the platform
       sig { returns(T.nilable(WhopSDK::Currency::OrSymbol)) }
       attr_accessor :currency
@@ -134,6 +147,8 @@ module WhopSDK
           company_id: String,
           product_id: String,
           billing_period: T.nilable(Integer),
+          checkout_styling:
+            T.nilable(WhopSDK::PlanCreateParams::CheckoutStyling::OrHash),
           currency: T.nilable(WhopSDK::Currency::OrSymbol),
           custom_fields:
             T.nilable(T::Array[WhopSDK::PlanCreateParams::CustomField::OrHash]),
@@ -168,6 +183,9 @@ module WhopSDK
         # The number of days between recurring charges. For example, 30 for monthly or 365
         # for yearly.
         billing_period: nil,
+        # Checkout styling overrides for this plan. Pass null to inherit from the company
+        # default.
+        checkout_styling: nil,
         # The available currencies on the platform
         currency: nil,
         # An array of custom field definitions to collect from customers at checkout.
@@ -224,6 +242,8 @@ module WhopSDK
             company_id: String,
             product_id: String,
             billing_period: T.nilable(Integer),
+            checkout_styling:
+              T.nilable(WhopSDK::PlanCreateParams::CheckoutStyling),
             currency: T.nilable(WhopSDK::Currency::OrSymbol),
             custom_fields:
               T.nilable(T::Array[WhopSDK::PlanCreateParams::CustomField]),
@@ -250,6 +270,163 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::PlanCreateParams::CheckoutStyling,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The different border-radius styles available for checkout pages.
+        sig do
+          returns(
+            T.nilable(
+              WhopSDK::PlanCreateParams::CheckoutStyling::BorderStyle::OrSymbol
+            )
+          )
+        end
+        attr_accessor :border_style
+
+        # A hex color code for the button color (e.g. #FF5733).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :button_color
+
+        # The different font families available for checkout pages.
+        sig do
+          returns(
+            T.nilable(
+              WhopSDK::PlanCreateParams::CheckoutStyling::FontFamily::OrSymbol
+            )
+          )
+        end
+        attr_accessor :font_family
+
+        # Checkout styling overrides for this plan. Pass null to inherit from the company
+        # default.
+        sig do
+          params(
+            border_style:
+              T.nilable(
+                WhopSDK::PlanCreateParams::CheckoutStyling::BorderStyle::OrSymbol
+              ),
+            button_color: T.nilable(String),
+            font_family:
+              T.nilable(
+                WhopSDK::PlanCreateParams::CheckoutStyling::FontFamily::OrSymbol
+              )
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The different border-radius styles available for checkout pages.
+          border_style: nil,
+          # A hex color code for the button color (e.g. #FF5733).
+          button_color: nil,
+          # The different font families available for checkout pages.
+          font_family: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              border_style:
+                T.nilable(
+                  WhopSDK::PlanCreateParams::CheckoutStyling::BorderStyle::OrSymbol
+                ),
+              button_color: T.nilable(String),
+              font_family:
+                T.nilable(
+                  WhopSDK::PlanCreateParams::CheckoutStyling::FontFamily::OrSymbol
+                )
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # The different border-radius styles available for checkout pages.
+        module BorderStyle
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                WhopSDK::PlanCreateParams::CheckoutStyling::BorderStyle
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          ROUNDED =
+            T.let(
+              :rounded,
+              WhopSDK::PlanCreateParams::CheckoutStyling::BorderStyle::TaggedSymbol
+            )
+          PILL =
+            T.let(
+              :pill,
+              WhopSDK::PlanCreateParams::CheckoutStyling::BorderStyle::TaggedSymbol
+            )
+          RECTANGULAR =
+            T.let(
+              :rectangular,
+              WhopSDK::PlanCreateParams::CheckoutStyling::BorderStyle::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                WhopSDK::PlanCreateParams::CheckoutStyling::BorderStyle::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # The different font families available for checkout pages.
+        module FontFamily
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                WhopSDK::PlanCreateParams::CheckoutStyling::FontFamily
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          SYSTEM =
+            T.let(
+              :system,
+              WhopSDK::PlanCreateParams::CheckoutStyling::FontFamily::TaggedSymbol
+            )
+          ROBOTO =
+            T.let(
+              :roboto,
+              WhopSDK::PlanCreateParams::CheckoutStyling::FontFamily::TaggedSymbol
+            )
+          OPEN_SANS =
+            T.let(
+              :open_sans,
+              WhopSDK::PlanCreateParams::CheckoutStyling::FontFamily::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                WhopSDK::PlanCreateParams::CheckoutStyling::FontFamily::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
       end
 
       class CustomField < WhopSDK::Internal::Type::BaseModel

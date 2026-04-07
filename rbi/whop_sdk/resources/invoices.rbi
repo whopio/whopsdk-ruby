@@ -14,10 +14,8 @@ module WhopSDK
         params(
           body:
             T.any(
-              WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID::OrHash,
-              WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress::OrHash,
-              WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID::OrHash,
-              WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress::OrHash
+              WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct::OrHash,
+              WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductID::OrHash
             ),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Invoice)

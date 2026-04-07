@@ -13,7 +13,7 @@ module WhopSDK
       #
       # @overload create(body:, request_options: {})
       #
-      # @param body [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress] Parameters for CreateInvoice
+      # @param body [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductID] Parameters for CreateInvoice
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

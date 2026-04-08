@@ -95,8 +95,8 @@ module WhopSDK
       #   Custom key-value pairs for the membership (commonly used for software licensing,
       #   e.g., HWID). Max 50 keys, 500 chars per key, 5000 chars per value.
       #
-      #   @return [Hash{Symbol=>Object}]
-      required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]
+      #   @return [Hash{Symbol=>Object}, nil]
+      required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
       # @!attribute payment_collection_paused
       #   Whether recurring payment collection for this membership is temporarily paused
@@ -190,7 +190,7 @@ module WhopSDK
       #
       #   @param member [WhopSDK::Models::Membership::Member, nil] The member record linking the user to the company for this membership. Null if t
       #
-      #   @param metadata [Hash{Symbol=>Object}] Custom key-value pairs for the membership (commonly used for software licensing,
+      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs for the membership (commonly used for software licensing,
       #
       #   @param payment_collection_paused [Boolean] Whether recurring payment collection for this membership is temporarily paused b
       #

@@ -77,7 +77,7 @@ module WhopSDK
 
       # Custom key-value pairs for the membership (commonly used for software licensing,
       # e.g., HWID). Max 50 keys, 500 chars per key, 5000 chars per value.
-      sig { returns(T::Hash[Symbol, T.anything]) }
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
       # Whether recurring payment collection for this membership is temporarily paused
@@ -155,7 +155,7 @@ module WhopSDK
           license_key: T.nilable(String),
           manage_url: T.nilable(String),
           member: T.nilable(WhopSDK::Membership::Member::OrHash),
-          metadata: T::Hash[Symbol, T.anything],
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
           payment_collection_paused: T::Boolean,
           plan: WhopSDK::Membership::Plan::OrHash,
           product: WhopSDK::Membership::Product::OrHash,
@@ -249,7 +249,7 @@ module WhopSDK
             license_key: T.nilable(String),
             manage_url: T.nilable(String),
             member: T.nilable(WhopSDK::Membership::Member),
-            metadata: T::Hash[Symbol, T.anything],
+            metadata: T.nilable(T::Hash[Symbol, T.anything]),
             payment_collection_paused: T::Boolean,
             plan: WhopSDK::Membership::Plan,
             product: WhopSDK::Membership::Product,

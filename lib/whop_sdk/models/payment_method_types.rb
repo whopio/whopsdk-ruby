@@ -16,6 +16,7 @@ module WhopSDK
       APPLE_PAY = :apple_pay
       AU_BECS_DEBIT = :au_becs_debit
       BACS_DEBIT = :bacs_debit
+      BANCOLOMBIA = :bancolombia
       BANCONTACT = :bancontact
       BILLIE = :billie
       BIZUM = :bizum
@@ -30,6 +31,7 @@ module WhopSDK
       CUSTOM = :custom
       CUSTOMER_BALANCE = :customer_balance
       DEMO_PAY = :demo_pay
+      EFECTY = :efecty
       EPS = :eps
       EU_BANK_TRANSFER = :eu_bank_transfer
       FPX = :fpx
@@ -48,10 +50,12 @@ module WhopSDK
       KRIYA = :kriya
       LINK = :link
       MB_WAY = :mb_way
+      MERCADO_PAGO = :mercado_pago
       MOBILEPAY = :mobilepay
       MONDU = :mondu
       MULTIBANCO = :multibanco
       NAVER_PAY = :naver_pay
+      NEQUI = :nequi
       NETBANKING = :netbanking
       NG_BANK = :ng_bank
       NG_BANK_TRANSFER = :ng_bank_transfer
@@ -62,6 +66,7 @@ module WhopSDK
       NZ_BANK_ACCOUNT = :nz_bank_account
       OXXO = :oxxo
       P24 = :p24
+      PSE = :pse
       PAY_BY_BANK = :pay_by_bank
       PAYCO = :payco
       PAYNOW = :paynow
@@ -84,6 +89,7 @@ module WhopSDK
       SHOPEEPAY = :shopeepay
       SOFORT = :sofort
       SOUTH_KOREA_MARKET = :south_korea_market
+      SPEI = :spei
       SPLITIT = :splitit
       SUNBIT = :sunbit
       SWISH = :swish

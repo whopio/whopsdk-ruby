@@ -15,6 +15,7 @@ module WhopSDK
       | :airwallex
       | :coinflow
       | :sequra
+      | :dlocal
 
     module PaymentProvider
       extend WhopSDK::Internal::Type::Enum
@@ -33,6 +34,7 @@ module WhopSDK
       AIRWALLEX: :airwallex
       COINFLOW: :coinflow
       SEQURA: :sequra
+      DLOCAL: :dlocal
 
       def self?.values: -> ::Array[WhopSDK::Models::payment_provider]
     end

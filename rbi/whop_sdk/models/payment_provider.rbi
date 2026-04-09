@@ -25,6 +25,7 @@ module WhopSDK
       AIRWALLEX = T.let(:airwallex, WhopSDK::PaymentProvider::TaggedSymbol)
       COINFLOW = T.let(:coinflow, WhopSDK::PaymentProvider::TaggedSymbol)
       SEQURA = T.let(:sequra, WhopSDK::PaymentProvider::TaggedSymbol)
+      DLOCAL = T.let(:dlocal, WhopSDK::PaymentProvider::TaggedSymbol)
 
       sig { override.returns(T::Array[WhopSDK::PaymentProvider::TaggedSymbol]) }
       def self.values

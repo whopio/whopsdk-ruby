@@ -134,53 +134,29 @@ module WhopSDK
 
       type checkout_styling =
         {
-          border_style: WhopSDK::Models::PlanCreateParams::CheckoutStyling::border_style?,
+          border_style: WhopSDK::Models::checkout_shape?,
           button_color: String?,
-          font_family: WhopSDK::Models::PlanCreateParams::CheckoutStyling::font_family?
+          font_family: WhopSDK::Models::checkout_font?
         }
 
       class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
-        attr_accessor border_style: WhopSDK::Models::PlanCreateParams::CheckoutStyling::border_style?
+        attr_accessor border_style: WhopSDK::Models::checkout_shape?
 
         attr_accessor button_color: String?
 
-        attr_accessor font_family: WhopSDK::Models::PlanCreateParams::CheckoutStyling::font_family?
+        attr_accessor font_family: WhopSDK::Models::checkout_font?
 
         def initialize: (
-          ?border_style: WhopSDK::Models::PlanCreateParams::CheckoutStyling::border_style?,
+          ?border_style: WhopSDK::Models::checkout_shape?,
           ?button_color: String?,
-          ?font_family: WhopSDK::Models::PlanCreateParams::CheckoutStyling::font_family?
+          ?font_family: WhopSDK::Models::checkout_font?
         ) -> void
 
         def to_hash: -> {
-          border_style: WhopSDK::Models::PlanCreateParams::CheckoutStyling::border_style?,
+          border_style: WhopSDK::Models::checkout_shape?,
           button_color: String?,
-          font_family: WhopSDK::Models::PlanCreateParams::CheckoutStyling::font_family?
+          font_family: WhopSDK::Models::checkout_font?
         }
-
-        type border_style = :rounded | :pill | :rectangular
-
-        module BorderStyle
-          extend WhopSDK::Internal::Type::Enum
-
-          ROUNDED: :rounded
-          PILL: :pill
-          RECTANGULAR: :rectangular
-
-          def self?.values: -> ::Array[WhopSDK::Models::PlanCreateParams::CheckoutStyling::border_style]
-        end
-
-        type font_family = :system | :roboto | :open_sans
-
-        module FontFamily
-          extend WhopSDK::Internal::Type::Enum
-
-          SYSTEM: :system
-          ROBOTO: :roboto
-          OPEN_SANS: :open_sans
-
-          def self?.values: -> ::Array[WhopSDK::Models::PlanCreateParams::CheckoutStyling::font_family]
-        end
       end
 
       type custom_field =

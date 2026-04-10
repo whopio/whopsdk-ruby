@@ -59,6 +59,30 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
     end
   end
 
+  def test_update
+    skip("Mock server tests are disabled")
+
+    response = @whop.invoices.update("inv_xxxxxxxxxxxxxx")
+
+    assert_pattern do
+      response => WhopSDK::Invoice
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        created_at: Time,
+        current_plan: WhopSDK::Invoice::CurrentPlan,
+        due_date: Time | nil,
+        email_address: String | nil,
+        fetch_invoice_token: String,
+        number: String,
+        status: WhopSDK::InvoiceStatus,
+        user: WhopSDK::Invoice::User | nil
+      }
+    end
+  end
+
   def test_list
     skip("Mock server tests are disabled")
 
@@ -87,6 +111,16 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
         status: WhopSDK::InvoiceStatus,
         user: WhopSDK::InvoiceListItem::User | nil
       }
+    end
+  end
+
+  def test_delete
+    skip("Mock server tests are disabled")
+
+    response = @whop.invoices.delete("inv_xxxxxxxxxxxxxx")
+
+    assert_pattern do
+      response => WhopSDK::Internal::Type::Boolean
     end
   end
 

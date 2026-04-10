@@ -1,0 +1,15 @@
+module WhopSDK
+  module Models
+    type checkout_font = :system | :roboto | :open_sans
+
+    module CheckoutFont
+      extend WhopSDK::Internal::Type::Enum
+
+      SYSTEM: :system
+      ROBOTO: :roboto
+      OPEN_SANS: :open_sans
+
+      def self?.values: -> ::Array[WhopSDK::Models::checkout_font]
+    end
+  end
+end

@@ -11,6 +11,23 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Invoice
 
+      def update: (
+        String id,
+        ?automatically_finalizes_at: Time?,
+        ?billing_address: WhopSDK::InvoiceUpdateParams::BillingAddress?,
+        ?charge_buyer_fee: bool?,
+        ?collection_method: WhopSDK::Models::collection_method?,
+        ?customer_name: String?,
+        ?due_date: Time?,
+        ?email_address: String?,
+        ?line_items: ::Array[WhopSDK::InvoiceUpdateParams::LineItem]?,
+        ?mailing_address_id: String?,
+        ?member_id: String?,
+        ?payment_method_id: String?,
+        ?plan: WhopSDK::InvoiceUpdateParams::Plan?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Invoice
+
       def list: (
         ?after: String?,
         ?before: String?,
@@ -26,6 +43,8 @@ module WhopSDK
         ?statuses: ::Array[WhopSDK::Models::invoice_status]?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::InvoiceListItem]
+
+      def delete: (String id, ?request_options: WhopSDK::request_opts) -> bool
 
       def mark_paid: (
         String id,

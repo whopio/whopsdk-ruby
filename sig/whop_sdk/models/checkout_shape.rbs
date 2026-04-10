@@ -1,0 +1,15 @@
+module WhopSDK
+  module Models
+    type checkout_shape = :rounded | :pill | :rectangular
+
+    module CheckoutShape
+      extend WhopSDK::Internal::Type::Enum
+
+      ROUNDED: :rounded
+      PILL: :pill
+      RECTANGULAR: :rectangular
+
+      def self?.values: -> ::Array[WhopSDK::Models::checkout_shape]
+    end
+  end
+end

@@ -101,7 +101,11 @@ module WhopSDK
 
   class CheckoutConfigurationRetrieveParams = WhopSDK::Models::CheckoutConfigurationRetrieveParams
 
+  module CheckoutFont = WhopSDK::Models::CheckoutFont
+
   module CheckoutModes = WhopSDK::Models::CheckoutModes
+
+  module CheckoutShape = WhopSDK::Models::CheckoutShape
 
   module CollectionMethod = WhopSDK::Models::CollectionMethod
 
@@ -325,6 +329,8 @@ module WhopSDK
 
   class InvoiceCreateParams = WhopSDK::Models::InvoiceCreateParams
 
+  class InvoiceDeleteParams = WhopSDK::Models::InvoiceDeleteParams
+
   class InvoiceListItem = WhopSDK::Models::InvoiceListItem
 
   class InvoiceListParams = WhopSDK::Models::InvoiceListParams
@@ -342,6 +348,8 @@ module WhopSDK
   class InvoiceRetrieveParams = WhopSDK::Models::InvoiceRetrieveParams
 
   module InvoiceStatus = WhopSDK::Models::InvoiceStatus
+
+  class InvoiceUpdateParams = WhopSDK::Models::InvoiceUpdateParams
 
   class InvoiceVoidedWebhookEvent = WhopSDK::Models::InvoiceVoidedWebhookEvent
 

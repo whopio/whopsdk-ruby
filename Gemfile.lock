@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    whop_sdk (0.0.36)
+    whop_sdk (0.0.37)
       cgi
       connection_pool
       standardwebhooks

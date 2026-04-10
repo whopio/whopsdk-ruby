@@ -20,6 +20,7 @@ module WhopSDK
       AIRWALLEX = :airwallex
       COINFLOW = :coinflow
       SEQURA = :sequra
+      DLOCAL = :dlocal
 
       # @!method self.values
       #   @return [Array<Symbol>]

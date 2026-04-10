@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.0.37 (2026-04-10)
+
+Full Changelog: [v0.0.36...v0.0.37](https://github.com/whopio/whopsdk-ruby/compare/v0.0.36...v0.0.37)
+
+### Features
+
+* **api:** api update ([4130e50](https://github.com/whopio/whopsdk-ruby/commit/4130e501162d6ba1a80de15a056950aca35508ad))
+* **api:** api update ([1bac626](https://github.com/whopio/whopsdk-ruby/commit/1bac6269c3270ac68a86e36e9fedba945b43084c))
+* **api:** api update ([cd88f35](https://github.com/whopio/whopsdk-ruby/commit/cd88f351641bdca8bb65efea98998f80590ccf8f))
+* **api:** api update ([346d6ab](https://github.com/whopio/whopsdk-ruby/commit/346d6ab266c7382e3e17e5afcd6823558b155a81))
+* **api:** api update ([25ceb03](https://github.com/whopio/whopsdk-ruby/commit/25ceb03fe003bcc96db811fd444989cd7266d37f))
+* **api:** manual updates ([df60228](https://github.com/whopio/whopsdk-ruby/commit/df6022818f7e90ff309bf0c54d278f6244e981b9))
+* **api:** manual updates ([a3ed550](https://github.com/whopio/whopsdk-ruby/commit/a3ed550169ba398cfc6581d9281eb81fce212802))
+
+
+### Bug Fixes
+
+* multipart encoding for file arrays ([feee3d1](https://github.com/whopio/whopsdk-ruby/commit/feee3d1be0bb3f387d1c5cb7c61459442c762d94))
+
 ## 0.0.36 (2026-04-01)
 
 Full Changelog: [v0.0.35...v0.0.36](https://github.com/whopio/whopsdk-ruby/compare/v0.0.35...v0.0.36)

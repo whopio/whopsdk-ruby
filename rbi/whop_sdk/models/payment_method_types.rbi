@@ -21,6 +21,8 @@ module WhopSDK
       AU_BECS_DEBIT =
         T.let(:au_becs_debit, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       BACS_DEBIT = T.let(:bacs_debit, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      BANCOLOMBIA =
+        T.let(:bancolombia, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       BANCONTACT = T.let(:bancontact, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       BILLIE = T.let(:billie, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       BIZUM = T.let(:bizum, WhopSDK::PaymentMethodTypes::TaggedSymbol)
@@ -37,6 +39,7 @@ module WhopSDK
       CUSTOMER_BALANCE =
         T.let(:customer_balance, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       DEMO_PAY = T.let(:demo_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      EFECTY = T.let(:efecty, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       EPS = T.let(:eps, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       EU_BANK_TRANSFER =
         T.let(:eu_bank_transfer, WhopSDK::PaymentMethodTypes::TaggedSymbol)
@@ -57,10 +60,13 @@ module WhopSDK
       KRIYA = T.let(:kriya, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       LINK = T.let(:link, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       MB_WAY = T.let(:mb_way, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      MERCADO_PAGO =
+        T.let(:mercado_pago, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       MOBILEPAY = T.let(:mobilepay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       MONDU = T.let(:mondu, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       MULTIBANCO = T.let(:multibanco, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       NAVER_PAY = T.let(:naver_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      NEQUI = T.let(:nequi, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       NETBANKING = T.let(:netbanking, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       NG_BANK = T.let(:ng_bank, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       NG_BANK_TRANSFER =
@@ -73,6 +79,7 @@ module WhopSDK
         T.let(:nz_bank_account, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       OXXO = T.let(:oxxo, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       P24 = T.let(:p24, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      PSE = T.let(:pse, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       PAY_BY_BANK =
         T.let(:pay_by_bank, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       PAYCO = T.let(:payco, WhopSDK::PaymentMethodTypes::TaggedSymbol)
@@ -100,6 +107,7 @@ module WhopSDK
       SOFORT = T.let(:sofort, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       SOUTH_KOREA_MARKET =
         T.let(:south_korea_market, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      SPEI = T.let(:spei, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       SPLITIT = T.let(:splitit, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       SUNBIT = T.let(:sunbit, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       SWISH = T.let(:swish, WhopSDK::PaymentMethodTypes::TaggedSymbol)

@@ -13,7 +13,7 @@ module WhopSDK
       #
       # @overload create(body:, request_options: {})
       #
-      # @param body [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndMemberID, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductAndEmailAddress, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndMemberID, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductIDAndEmailAddress] Parameters for CreateInvoice
+      # @param body [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct, WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductID] Parameters for CreateInvoice
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -52,6 +52,56 @@ module WhopSDK
           path: ["invoices/%1$s", id],
           model: WhopSDK::Invoice,
           options: params[:request_options]
+        )
+      end
+
+      # Update a draft invoice's details.
+      #
+      # Required permissions:
+      #
+      # - `invoice:update`
+      #
+      # @overload update(id, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, collection_method: nil, customer_name: nil, due_date: nil, email_address: nil, line_items: nil, mailing_address_id: nil, member_id: nil, payment_method_id: nil, plan: nil, request_options: {})
+      #
+      # @param id [String] The unique identifier of the invoice to update.
+      #
+      # @param automatically_finalizes_at [Time, nil] The date and time when the invoice will be automatically finalized and charged.
+      #
+      # @param billing_address [WhopSDK::Models::InvoiceUpdateParams::BillingAddress, nil] Inline billing address to create or update a mailing address for this invoice.
+      #
+      # @param charge_buyer_fee [Boolean, nil] Whether to charge the customer a buyer fee on this invoice.
+      #
+      # @param collection_method [Symbol, WhopSDK::Models::CollectionMethod, nil] The method of collection for an invoice.
+      #
+      # @param customer_name [String, nil] The name of the customer.
+      #
+      # @param due_date [Time, nil] The date by which the invoice must be paid.
+      #
+      # @param email_address [String, nil] The email address of the customer.
+      #
+      # @param line_items [Array<WhopSDK::Models::InvoiceUpdateParams::LineItem>, nil] Line items that break down the invoice total.
+      #
+      # @param mailing_address_id [String, nil] The unique identifier of an existing mailing address to attach.
+      #
+      # @param member_id [String, nil] The unique identifier of a member to assign as the customer.
+      #
+      # @param payment_method_id [String, nil] The unique identifier of the payment method to charge.
+      #
+      # @param plan [WhopSDK::Models::InvoiceUpdateParams::Plan, nil] Updated plan attributes.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::Invoice]
+      #
+      # @see WhopSDK::Models::InvoiceUpdateParams
+      def update(id, params = {})
+        parsed, options = WhopSDK::InvoiceUpdateParams.dump_request(params)
+        @client.request(
+          method: :patch,
+          path: ["invoices/%1$s", id],
+          body: parsed,
+          model: WhopSDK::Invoice,
+          options: options
         )
       end
 
@@ -106,6 +156,78 @@ module WhopSDK
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::InvoiceListItem,
           options: options
+        )
+      end
+
+      # Delete a draft invoice.
+      #
+      # Required permissions:
+      #
+      # - `invoice:update`
+      #
+      # @overload delete(id, request_options: {})
+      #
+      # @param id [String] The unique identifier of the draft invoice to delete.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Boolean]
+      #
+      # @see WhopSDK::Models::InvoiceDeleteParams
+      def delete(id, params = {})
+        @client.request(
+          method: :delete,
+          path: ["invoices/%1$s", id],
+          model: WhopSDK::Internal::Type::Boolean,
+          options: params[:request_options]
+        )
+      end
+
+      # Mark an open invoice as paid when payment was collected outside of Whop.
+      #
+      # Required permissions:
+      #
+      # - `invoice:update`
+      #
+      # @overload mark_paid(id, request_options: {})
+      #
+      # @param id [String] The unique identifier of the invoice to mark as paid.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Boolean]
+      #
+      # @see WhopSDK::Models::InvoiceMarkPaidParams
+      def mark_paid(id, params = {})
+        @client.request(
+          method: :post,
+          path: ["invoices/%1$s/mark_paid", id],
+          model: WhopSDK::Internal::Type::Boolean,
+          options: params[:request_options]
+        )
+      end
+
+      # Mark an open invoice as uncollectible when payment is not expected.
+      #
+      # Required permissions:
+      #
+      # - `invoice:update`
+      #
+      # @overload mark_uncollectible(id, request_options: {})
+      #
+      # @param id [String] The unique identifier of the invoice to mark as uncollectible.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Boolean]
+      #
+      # @see WhopSDK::Models::InvoiceMarkUncollectibleParams
+      def mark_uncollectible(id, params = {})
+        @client.request(
+          method: :post,
+          path: ["invoices/%1$s/mark_uncollectible", id],
+          model: WhopSDK::Internal::Type::Boolean,
+          options: params[:request_options]
         )
       end
 

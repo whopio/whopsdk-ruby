@@ -141,7 +141,11 @@ module WhopSDK
 
   CheckoutConfigurationRetrieveParams = WhopSDK::Models::CheckoutConfigurationRetrieveParams
 
+  CheckoutFont = WhopSDK::Models::CheckoutFont
+
   CheckoutModes = WhopSDK::Models::CheckoutModes
+
+  CheckoutShape = WhopSDK::Models::CheckoutShape
 
   CollectionMethod = WhopSDK::Models::CollectionMethod
 
@@ -366,11 +370,17 @@ module WhopSDK
 
   InvoiceCreateParams = WhopSDK::Models::InvoiceCreateParams
 
+  InvoiceDeleteParams = WhopSDK::Models::InvoiceDeleteParams
+
   InvoiceListItem = WhopSDK::Models::InvoiceListItem
 
   InvoiceListParams = WhopSDK::Models::InvoiceListParams
 
   InvoiceMarkedUncollectibleWebhookEvent = WhopSDK::Models::InvoiceMarkedUncollectibleWebhookEvent
+
+  InvoiceMarkPaidParams = WhopSDK::Models::InvoiceMarkPaidParams
+
+  InvoiceMarkUncollectibleParams = WhopSDK::Models::InvoiceMarkUncollectibleParams
 
   InvoicePaidWebhookEvent = WhopSDK::Models::InvoicePaidWebhookEvent
 
@@ -379,6 +389,8 @@ module WhopSDK
   InvoiceRetrieveParams = WhopSDK::Models::InvoiceRetrieveParams
 
   InvoiceStatus = WhopSDK::Models::InvoiceStatus
+
+  InvoiceUpdateParams = WhopSDK::Models::InvoiceUpdateParams
 
   InvoiceVoidedWebhookEvent = WhopSDK::Models::InvoiceVoidedWebhookEvent
 
@@ -642,6 +654,8 @@ module WhopSDK
   SupportChannelListParams = WhopSDK::Models::SupportChannelListParams
 
   SupportChannelRetrieveParams = WhopSDK::Models::SupportChannelRetrieveParams
+
+  TaxIdentifierType = WhopSDK::Models::TaxIdentifierType
 
   TaxType = WhopSDK::Models::TaxType
 

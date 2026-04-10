@@ -4,6 +4,7 @@ module WhopSDK
       {
         id: String,
         billing_period: Integer?,
+        checkout_styling: WhopSDK::PlanUpdateParams::CheckoutStyling?,
         currency: WhopSDK::Models::currency?,
         custom_fields: ::Array[WhopSDK::PlanUpdateParams::CustomField]?,
         description: String?,
@@ -33,6 +34,8 @@ module WhopSDK
       attr_accessor id: String
 
       attr_accessor billing_period: Integer?
+
+      attr_accessor checkout_styling: WhopSDK::PlanUpdateParams::CheckoutStyling?
 
       attr_accessor currency: WhopSDK::Models::currency?
 
@@ -75,6 +78,7 @@ module WhopSDK
       def initialize: (
         id: String,
         ?billing_period: Integer?,
+        ?checkout_styling: WhopSDK::PlanUpdateParams::CheckoutStyling?,
         ?currency: WhopSDK::Models::currency?,
         ?custom_fields: ::Array[WhopSDK::PlanUpdateParams::CustomField]?,
         ?description: String?,
@@ -100,6 +104,7 @@ module WhopSDK
       def to_hash: -> {
         id: String,
         billing_period: Integer?,
+        checkout_styling: WhopSDK::PlanUpdateParams::CheckoutStyling?,
         currency: WhopSDK::Models::currency?,
         custom_fields: ::Array[WhopSDK::PlanUpdateParams::CustomField]?,
         description: String?,
@@ -121,6 +126,33 @@ module WhopSDK
         visibility: WhopSDK::Models::visibility?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type checkout_styling =
+        {
+          border_style: WhopSDK::Models::checkout_shape?,
+          button_color: String?,
+          font_family: WhopSDK::Models::checkout_font?
+        }
+
+      class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+        attr_accessor border_style: WhopSDK::Models::checkout_shape?
+
+        attr_accessor button_color: String?
+
+        attr_accessor font_family: WhopSDK::Models::checkout_font?
+
+        def initialize: (
+          ?border_style: WhopSDK::Models::checkout_shape?,
+          ?button_color: String?,
+          ?font_family: WhopSDK::Models::checkout_font?
+        ) -> void
+
+        def to_hash: -> {
+          border_style: WhopSDK::Models::checkout_shape?,
+          button_color: String?,
+          font_family: WhopSDK::Models::checkout_font?
+        }
+      end
 
       type custom_field =
         {

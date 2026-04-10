@@ -15,7 +15,7 @@ module WhopSDK
         license_key: String?,
         manage_url: String?,
         member: WhopSDK::Membership::Member?,
-        metadata: ::Hash[Symbol, top],
+        metadata: ::Hash[Symbol, top]?,
         payment_collection_paused: bool,
         plan: WhopSDK::Membership::Plan,
         product: WhopSDK::Membership::Product,
@@ -54,7 +54,7 @@ module WhopSDK
 
       attr_accessor member: WhopSDK::Membership::Member?
 
-      attr_accessor metadata: ::Hash[Symbol, top]
+      attr_accessor metadata: ::Hash[Symbol, top]?
 
       attr_accessor payment_collection_paused: bool
 
@@ -88,7 +88,7 @@ module WhopSDK
         license_key: String?,
         manage_url: String?,
         member: WhopSDK::Membership::Member?,
-        metadata: ::Hash[Symbol, top],
+        metadata: ::Hash[Symbol, top]?,
         payment_collection_paused: bool,
         plan: WhopSDK::Membership::Plan,
         product: WhopSDK::Membership::Product,
@@ -114,7 +114,7 @@ module WhopSDK
         license_key: String?,
         manage_url: String?,
         member: WhopSDK::Membership::Member?,
-        metadata: ::Hash[Symbol, top],
+        metadata: ::Hash[Symbol, top]?,
         payment_collection_paused: bool,
         plan: WhopSDK::Membership::Plan,
         product: WhopSDK::Membership::Product,

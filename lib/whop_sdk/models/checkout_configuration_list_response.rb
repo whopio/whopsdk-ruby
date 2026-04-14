@@ -16,6 +16,13 @@ module WhopSDK
       #   @return [String, nil]
       required :affiliate_code, String, nil?: true
 
+      # @!attribute allow_promo_codes
+      #   Whether the checkout configuration allows promo codes. When false, the promo
+      #   code input is hidden and promo codes are rejected.
+      #
+      #   @return [Boolean]
+      required :allow_promo_codes, WhopSDK::Internal::Type::Boolean
+
       # @!attribute company_id
       #   The ID of the company to use for the checkout configuration
       #
@@ -69,7 +76,7 @@ module WhopSDK
       #   @return [String, nil]
       required :redirect_url, String, nil?: true
 
-      # @!method initialize(id:, affiliate_code:, company_id:, currency:, metadata:, mode:, payment_method_configuration:, plan:, purchase_url:, redirect_url:)
+      # @!method initialize(id:, affiliate_code:, allow_promo_codes:, company_id:, currency:, metadata:, mode:, payment_method_configuration:, plan:, purchase_url:, redirect_url:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::CheckoutConfigurationListResponse} for more details.
       #
@@ -80,6 +87,8 @@ module WhopSDK
       #   @param id [String] The unique identifier for the checkout session.
       #
       #   @param affiliate_code [String, nil] The affiliate code to use for the checkout configuration
+      #
+      #   @param allow_promo_codes [Boolean] Whether the checkout configuration allows promo codes. When false, the promo cod
       #
       #   @param company_id [String] The ID of the company to use for the checkout configuration
       #

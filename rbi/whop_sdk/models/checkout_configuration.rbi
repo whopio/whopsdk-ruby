@@ -16,6 +16,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :affiliate_code
 
+      # Whether the checkout configuration allows promo codes. When false, the promo
+      # code input is hidden and promo codes are rejected.
+      sig { returns(T::Boolean) }
+      attr_accessor :allow_promo_codes
+
       # The ID of the company to use for the checkout configuration
       sig { returns(String) }
       attr_accessor :company_id
@@ -79,6 +84,7 @@ module WhopSDK
         params(
           id: String,
           affiliate_code: T.nilable(String),
+          allow_promo_codes: T::Boolean,
           company_id: String,
           currency: T.nilable(WhopSDK::Currency::OrSymbol),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
@@ -97,6 +103,9 @@ module WhopSDK
         id:,
         # The affiliate code to use for the checkout configuration
         affiliate_code:,
+        # Whether the checkout configuration allows promo codes. When false, the promo
+        # code input is hidden and promo codes are rejected.
+        allow_promo_codes:,
         # The ID of the company to use for the checkout configuration
         company_id:,
         # The available currencies on the platform
@@ -124,6 +133,7 @@ module WhopSDK
           {
             id: String,
             affiliate_code: T.nilable(String),
+            allow_promo_codes: T::Boolean,
             company_id: String,
             currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
             metadata: T.nilable(T::Hash[Symbol, T.anything]),

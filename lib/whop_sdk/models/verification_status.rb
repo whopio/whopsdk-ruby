@@ -19,6 +19,7 @@ module WhopSDK
       EXPIRED = :expired
       ABANDONED = :abandoned
       REVIEW = :review
+      ACTION_REQUIRED = :action_required
 
       # @!method self.values
       #   @return [Array<Symbol>]

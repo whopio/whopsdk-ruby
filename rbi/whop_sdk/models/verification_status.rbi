@@ -27,6 +27,8 @@ module WhopSDK
       EXPIRED = T.let(:expired, WhopSDK::VerificationStatus::TaggedSymbol)
       ABANDONED = T.let(:abandoned, WhopSDK::VerificationStatus::TaggedSymbol)
       REVIEW = T.let(:review, WhopSDK::VerificationStatus::TaggedSymbol)
+      ACTION_REQUIRED =
+        T.let(:action_required, WhopSDK::VerificationStatus::TaggedSymbol)
 
       sig do
         override.returns(T::Array[WhopSDK::VerificationStatus::TaggedSymbol])

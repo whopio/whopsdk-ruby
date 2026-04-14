@@ -102,6 +102,11 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :affiliate_code
 
+          # Whether the checkout should show the promo code input field and accept promo
+          # codes. Defaults to true.
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_accessor :allow_promo_codes
+
           # Checkout styling overrides for this session. Overrides plan and company
           # defaults.
           sig do
@@ -183,6 +188,7 @@ module WhopSDK
               plan:
                 WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::OrHash,
               affiliate_code: T.nilable(String),
+              allow_promo_codes: T.nilable(T::Boolean),
               checkout_styling:
                 T.nilable(
                   WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling::OrHash
@@ -204,6 +210,9 @@ module WhopSDK
             plan:,
             # An affiliate tracking code to attribute the checkout to a specific affiliate.
             affiliate_code: nil,
+            # Whether the checkout should show the promo code input field and accept promo
+            # codes. Defaults to true.
+            allow_promo_codes: nil,
             # Checkout styling overrides for this session. Overrides plan and company
             # defaults.
             checkout_styling: nil,
@@ -228,6 +237,7 @@ module WhopSDK
                 plan:
                   WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan,
                 affiliate_code: T.nilable(String),
+                allow_promo_codes: T.nilable(T::Boolean),
                 checkout_styling:
                   T.nilable(
                     WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling
@@ -1035,6 +1045,11 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :affiliate_code
 
+          # Whether the checkout should show the promo code input field and accept promo
+          # codes. Defaults to true.
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_accessor :allow_promo_codes
+
           # Checkout styling overrides for this session. Overrides plan and company
           # defaults.
           sig do
@@ -1115,6 +1130,7 @@ module WhopSDK
             params(
               plan_id: String,
               affiliate_code: T.nilable(String),
+              allow_promo_codes: T.nilable(T::Boolean),
               checkout_styling:
                 T.nilable(
                   WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling::OrHash
@@ -1137,6 +1153,9 @@ module WhopSDK
             plan_id:,
             # An affiliate tracking code to attribute the checkout to a specific affiliate.
             affiliate_code: nil,
+            # Whether the checkout should show the promo code input field and accept promo
+            # codes. Defaults to true.
+            allow_promo_codes: nil,
             # Checkout styling overrides for this session. Overrides plan and company
             # defaults.
             checkout_styling: nil,
@@ -1160,6 +1179,7 @@ module WhopSDK
               {
                 plan_id: String,
                 affiliate_code: T.nilable(String),
+                allow_promo_codes: T.nilable(T::Boolean),
                 checkout_styling:
                   T.nilable(
                     WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling
@@ -1345,6 +1365,11 @@ module WhopSDK
           sig { returns(Symbol) }
           attr_accessor :mode
 
+          # Whether the checkout should show the promo code input field and accept promo
+          # codes. Defaults to true.
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_accessor :allow_promo_codes
+
           # Checkout styling overrides for this session. Overrides plan and company
           # defaults.
           sig do
@@ -1407,6 +1432,7 @@ module WhopSDK
           sig do
             params(
               company_id: String,
+              allow_promo_codes: T.nilable(T::Boolean),
               checkout_styling:
                 T.nilable(
                   WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling::OrHash
@@ -1426,6 +1452,9 @@ module WhopSDK
             # The unique identifier of the company to create the checkout configuration for.
             # Only required in setup mode.
             company_id:,
+            # Whether the checkout should show the promo code input field and accept promo
+            # codes. Defaults to true.
+            allow_promo_codes: nil,
             # Checkout styling overrides for this session. Overrides plan and company
             # defaults.
             checkout_styling: nil,
@@ -1449,6 +1478,7 @@ module WhopSDK
               {
                 company_id: String,
                 mode: Symbol,
+                allow_promo_codes: T.nilable(T::Boolean),
                 checkout_styling:
                   T.nilable(
                     WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling

@@ -13,7 +13,9 @@ module WhopSDK
       required :id, String
 
       # @!attribute automatically_finalizes_at
-      #   The date and time when the invoice will be automatically finalized and charged.
+      #   The date and time when the invoice will be automatically finalized. For
+      #   charge_automatically, triggers an automatic charge. For send_invoice, sends the
+      #   invoice email at the specified time.
       #
       #   @return [Time, nil]
       optional :automatically_finalizes_at, Time, nil?: true
@@ -86,10 +88,19 @@ module WhopSDK
       #   @return [WhopSDK::Models::InvoiceUpdateParams::Plan, nil]
       optional :plan, -> { WhopSDK::InvoiceUpdateParams::Plan }, nil?: true
 
-      # @!method initialize(id:, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, collection_method: nil, customer_name: nil, due_date: nil, email_address: nil, line_items: nil, mailing_address_id: nil, member_id: nil, payment_method_id: nil, plan: nil, request_options: {})
+      # @!attribute subscription_billing_anchor_at
+      #   The date that defines when the subscription billing cycle should start.
+      #
+      #   @return [Time, nil]
+      optional :subscription_billing_anchor_at, Time, nil?: true
+
+      # @!method initialize(id:, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, collection_method: nil, customer_name: nil, due_date: nil, email_address: nil, line_items: nil, mailing_address_id: nil, member_id: nil, payment_method_id: nil, plan: nil, subscription_billing_anchor_at: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::InvoiceUpdateParams} for more details.
+      #
       #   @param id [String]
       #
-      #   @param automatically_finalizes_at [Time, nil] The date and time when the invoice will be automatically finalized and charged.
+      #   @param automatically_finalizes_at [Time, nil] The date and time when the invoice will be automatically finalized. For charge_a
       #
       #   @param billing_address [WhopSDK::Models::InvoiceUpdateParams::BillingAddress, nil] Inline billing address to create or update a mailing address for this invoice.
       #
@@ -112,6 +123,8 @@ module WhopSDK
       #   @param payment_method_id [String, nil] The unique identifier of the payment method to charge.
       #
       #   @param plan [WhopSDK::Models::InvoiceUpdateParams::Plan, nil] Updated plan attributes.
+      #
+      #   @param subscription_billing_anchor_at [Time, nil] The date that defines when the subscription billing cycle should start.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 

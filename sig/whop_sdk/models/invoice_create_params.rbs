@@ -44,7 +44,8 @@ module WhopSDK
             member_id: String?,
             payment_method_id: String?,
             payment_token_id: String?,
-            save_as_draft: bool?
+            save_as_draft: bool?,
+            subscription_billing_anchor_at: Time?
           }
 
         class CreateInvoiceInputWithProduct < WhopSDK::Internal::Type::BaseModel
@@ -80,6 +81,8 @@ module WhopSDK
 
           attr_accessor save_as_draft: bool?
 
+          attr_accessor subscription_billing_anchor_at: Time?
+
           def initialize: (
             collection_method: WhopSDK::Models::collection_method,
             company_id: String,
@@ -96,7 +99,8 @@ module WhopSDK
             ?member_id: String?,
             ?payment_method_id: String?,
             ?payment_token_id: String?,
-            ?save_as_draft: bool?
+            ?save_as_draft: bool?,
+            ?subscription_billing_anchor_at: Time?
           ) -> void
 
           def to_hash: -> {
@@ -115,7 +119,8 @@ module WhopSDK
             member_id: String?,
             payment_method_id: String?,
             payment_token_id: String?,
-            save_as_draft: bool?
+            save_as_draft: bool?,
+            subscription_billing_anchor_at: Time?
           }
 
           type plan =
@@ -392,7 +397,8 @@ module WhopSDK
             member_id: String?,
             payment_method_id: String?,
             payment_token_id: String?,
-            save_as_draft: bool?
+            save_as_draft: bool?,
+            subscription_billing_anchor_at: Time?
           }
 
         class CreateInvoiceInputWithProductID < WhopSDK::Internal::Type::BaseModel
@@ -428,6 +434,8 @@ module WhopSDK
 
           attr_accessor save_as_draft: bool?
 
+          attr_accessor subscription_billing_anchor_at: Time?
+
           def initialize: (
             collection_method: WhopSDK::Models::collection_method,
             company_id: String,
@@ -444,7 +452,8 @@ module WhopSDK
             ?member_id: String?,
             ?payment_method_id: String?,
             ?payment_token_id: String?,
-            ?save_as_draft: bool?
+            ?save_as_draft: bool?,
+            ?subscription_billing_anchor_at: Time?
           ) -> void
 
           def to_hash: -> {
@@ -463,7 +472,8 @@ module WhopSDK
             member_id: String?,
             payment_method_id: String?,
             payment_token_id: String?,
-            save_as_draft: bool?
+            save_as_draft: bool?,
+            subscription_billing_anchor_at: Time?
           }
 
           type plan =

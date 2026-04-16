@@ -57,9 +57,9 @@ module WhopSDK
           required :product, -> { WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct::Product }
 
           # @!attribute automatically_finalizes_at
-          #   The date and time when the invoice will be automatically finalized and charged.
-          #   Only valid when collection_method is charge_automatically. If not provided, the
-          #   charge will be processed immediately.
+          #   The date and time when the invoice will be automatically finalized. For
+          #   charge_automatically, triggers an automatic charge. For send_invoice, sends the
+          #   invoice email to the customer at the specified time.
           #
           #   @return [Time, nil]
           optional :automatically_finalizes_at, Time, nil?: true
@@ -146,7 +146,14 @@ module WhopSDK
           #   @return [Boolean, nil]
           optional :save_as_draft, WhopSDK::Internal::Type::Boolean, nil?: true
 
-          # @!method initialize(collection_method:, company_id:, plan:, product:, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, customer_name: nil, due_date: nil, email_address: nil, line_items: nil, mailing_address_id: nil, member_id: nil, payment_method_id: nil, payment_token_id: nil, save_as_draft: nil)
+          # @!attribute subscription_billing_anchor_at
+          #   The date that defines when the subscription billing cycle should start. When set
+          #   on a renewal plan invoice, this anchors all future billing periods to this date.
+          #
+          #   @return [Time, nil]
+          optional :subscription_billing_anchor_at, Time, nil?: true
+
+          # @!method initialize(collection_method:, company_id:, plan:, product:, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, customer_name: nil, due_date: nil, email_address: nil, line_items: nil, mailing_address_id: nil, member_id: nil, payment_method_id: nil, payment_token_id: nil, save_as_draft: nil, subscription_billing_anchor_at: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct} for
           #   more details.
@@ -161,7 +168,7 @@ module WhopSDK
           #
           #   @param product [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct::Product] The properties of the product to create for this invoice. Provide this to create
           #
-          #   @param automatically_finalizes_at [Time, nil] The date and time when the invoice will be automatically finalized and charged.
+          #   @param automatically_finalizes_at [Time, nil] The date and time when the invoice will be automatically finalized. For charge_a
           #
           #   @param billing_address [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct::BillingAddress, nil] Inline billing address to create a new mailing address for this invoice. Cannot
           #
@@ -185,6 +192,8 @@ module WhopSDK
           #   @param payment_token_id [String, nil] The payment token ID to use for this invoice. If using charge_automatically, you
           #
           #   @param save_as_draft [Boolean, nil] When true, creates the invoice as a draft without sending or charging. Relaxes c
+          #
+          #   @param subscription_billing_anchor_at [Time, nil] The date that defines when the subscription billing cycle should start. When set
 
           # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct#plan
           class Plan < WhopSDK::Internal::Type::BaseModel
@@ -597,9 +606,9 @@ module WhopSDK
           required :product_id, String
 
           # @!attribute automatically_finalizes_at
-          #   The date and time when the invoice will be automatically finalized and charged.
-          #   Only valid when collection_method is charge_automatically. If not provided, the
-          #   charge will be processed immediately.
+          #   The date and time when the invoice will be automatically finalized. For
+          #   charge_automatically, triggers an automatic charge. For send_invoice, sends the
+          #   invoice email to the customer at the specified time.
           #
           #   @return [Time, nil]
           optional :automatically_finalizes_at, Time, nil?: true
@@ -686,7 +695,14 @@ module WhopSDK
           #   @return [Boolean, nil]
           optional :save_as_draft, WhopSDK::Internal::Type::Boolean, nil?: true
 
-          # @!method initialize(collection_method:, company_id:, plan:, product_id:, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, customer_name: nil, due_date: nil, email_address: nil, line_items: nil, mailing_address_id: nil, member_id: nil, payment_method_id: nil, payment_token_id: nil, save_as_draft: nil)
+          # @!attribute subscription_billing_anchor_at
+          #   The date that defines when the subscription billing cycle should start. When set
+          #   on a renewal plan invoice, this anchors all future billing periods to this date.
+          #
+          #   @return [Time, nil]
+          optional :subscription_billing_anchor_at, Time, nil?: true
+
+          # @!method initialize(collection_method:, company_id:, plan:, product_id:, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, customer_name: nil, due_date: nil, email_address: nil, line_items: nil, mailing_address_id: nil, member_id: nil, payment_method_id: nil, payment_token_id: nil, save_as_draft: nil, subscription_billing_anchor_at: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductID}
           #   for more details.
@@ -701,7 +717,7 @@ module WhopSDK
           #
           #   @param product_id [String] The unique identifier of an existing product to create this invoice for.
           #
-          #   @param automatically_finalizes_at [Time, nil] The date and time when the invoice will be automatically finalized and charged.
+          #   @param automatically_finalizes_at [Time, nil] The date and time when the invoice will be automatically finalized. For charge_a
           #
           #   @param billing_address [WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductID::BillingAddress, nil] Inline billing address to create a new mailing address for this invoice. Cannot
           #
@@ -725,6 +741,8 @@ module WhopSDK
           #   @param payment_token_id [String, nil] The payment token ID to use for this invoice. If using charge_automatically, you
           #
           #   @param save_as_draft [Boolean, nil] When true, creates the invoice as a draft without sending or charging. Relaxes c
+          #
+          #   @param subscription_billing_anchor_at [Time, nil] The date that defines when the subscription billing cycle should start. When set
 
           # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductID#plan
           class Plan < WhopSDK::Internal::Type::BaseModel

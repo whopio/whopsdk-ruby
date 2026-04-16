@@ -14,6 +14,11 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
+      # A list of words that are automatically blocked from posts in this forum. For
+      # example, ['spam', 'scam'].
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_accessor :banned_words
+
       # The banner image displayed at the top of the forum page. Pass null to remove the
       # existing banner.
       sig { returns(T.nilable(WhopSDK::ForumUpdateParams::BannerImage)) }
@@ -44,6 +49,7 @@ module WhopSDK
       sig do
         params(
           id: String,
+          banned_words: T.nilable(T::Array[String]),
           banner_image:
             T.nilable(WhopSDK::ForumUpdateParams::BannerImage::OrHash),
           email_notification_preference:
@@ -55,6 +61,9 @@ module WhopSDK
       end
       def self.new(
         id:,
+        # A list of words that are automatically blocked from posts in this forum. For
+        # example, ['spam', 'scam'].
+        banned_words: nil,
         # The banner image displayed at the top of the forum page. Pass null to remove the
         # existing banner.
         banner_image: nil,
@@ -72,6 +81,7 @@ module WhopSDK
         override.returns(
           {
             id: String,
+            banned_words: T.nilable(T::Array[String]),
             banner_image: T.nilable(WhopSDK::ForumUpdateParams::BannerImage),
             email_notification_preference:
               T.nilable(WhopSDK::EmailNotificationPreferences::OrSymbol),

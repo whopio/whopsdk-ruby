@@ -38,7 +38,7 @@ module WhopSDK
       sig { returns(WhopSDK::Currency::TaggedSymbol) }
       attr_accessor :currency
 
-      # A text description of the plan visible to customers. Maximum 500 characters.
+      # A text description of the plan visible to customers. Maximum 1000 characters.
       # Null if no description is set.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
@@ -215,7 +215,7 @@ module WhopSDK
         # The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
         # amounts on the plan are denominated in this currency.
         currency:,
-        # A text description of the plan visible to customers. Maximum 500 characters.
+        # A text description of the plan visible to customers. Maximum 1000 characters.
         # Null if no description is set.
         description:,
         # The number of days until the membership expires (for expiration-based plans).

@@ -1191,15 +1191,27 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
+        # A personal description or notes section for the business.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :internal_notes
+
         # The plan attached to this payment.
-        sig { params(id: String).returns(T.attached_class) }
+        sig do
+          params(id: String, internal_notes: T.nilable(String)).returns(
+            T.attached_class
+          )
+        end
         def self.new(
           # The unique identifier for the plan.
-          id:
+          id:,
+          # A personal description or notes section for the business.
+          internal_notes:
         )
         end
 
-        sig { override.returns({ id: String }) }
+        sig do
+          override.returns({ id: String, internal_notes: T.nilable(String) })
+        end
         def to_hash
         end
       end

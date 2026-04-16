@@ -38,7 +38,7 @@ module WhopSDK
       required :currency, enum: -> { WhopSDK::Currency }
 
       # @!attribute description
-      #   A text description of the plan visible to customers. Maximum 500 characters.
+      #   A text description of the plan visible to customers. Maximum 1000 characters.
       #   Null if no description is set.
       #
       #   @return [String, nil]
@@ -191,7 +191,7 @@ module WhopSDK
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency] The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
       #
-      #   @param description [String, nil] A text description of the plan visible to customers. Maximum 500 characters. Nul
+      #   @param description [String, nil] A text description of the plan visible to customers. Maximum 1000 characters. Nu
       #
       #   @param expiration_days [Integer, nil] The number of days until the membership expires (for expiration-based plans). Fo
       #

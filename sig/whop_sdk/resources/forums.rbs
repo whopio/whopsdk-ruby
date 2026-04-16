@@ -8,6 +8,7 @@ module WhopSDK
 
       def update: (
         String id,
+        ?banned_words: ::Array[String]?,
         ?banner_image: WhopSDK::ForumUpdateParams::BannerImage?,
         ?email_notification_preference: WhopSDK::Models::email_notification_preferences?,
         ?who_can_comment: WhopSDK::Models::who_can_comment_types?,

@@ -582,14 +582,16 @@ module WhopSDK
         end
       end
 
-      type plan = { id: String }
+      type plan = { id: String, internal_notes: String? }
 
       class Plan < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
-        def initialize: (id: String) -> void
+        attr_accessor internal_notes: String?
 
-        def to_hash: -> { id: String }
+        def initialize: (id: String, internal_notes: String?) -> void
+
+        def to_hash: -> { id: String, internal_notes: String? }
       end
 
       type product = { id: String, route: String, title: String }

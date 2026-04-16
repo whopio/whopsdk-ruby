@@ -614,10 +614,18 @@ module WhopSDK
         #   @return [String]
         required :id, String
 
-        # @!method initialize(id:)
+        # @!attribute internal_notes
+        #   A personal description or notes section for the business.
+        #
+        #   @return [String, nil]
+        required :internal_notes, String, nil?: true
+
+        # @!method initialize(id:, internal_notes:)
         #   The plan attached to this payment.
         #
         #   @param id [String] The unique identifier for the plan.
+        #
+        #   @param internal_notes [String, nil] A personal description or notes section for the business.
       end
 
       # @see WhopSDK::Models::PaymentListResponse#product

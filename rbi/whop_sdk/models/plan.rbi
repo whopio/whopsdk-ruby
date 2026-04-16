@@ -41,7 +41,7 @@ module WhopSDK
       sig { returns(T::Array[WhopSDK::Plan::CustomField]) }
       attr_accessor :custom_fields
 
-      # A text description of the plan visible to customers. Maximum 500 characters.
+      # A text description of the plan visible to customers. Maximum 1000 characters.
       # Null if no description is set.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
@@ -211,7 +211,7 @@ module WhopSDK
         # Custom input fields displayed on the checkout form that collect additional
         # information from the buyer.
         custom_fields:,
-        # A text description of the plan visible to customers. Maximum 500 characters.
+        # A text description of the plan visible to customers. Maximum 1000 characters.
         # Null if no description is set.
         description:,
         # The number of days until the membership expires (for expiration-based plans).

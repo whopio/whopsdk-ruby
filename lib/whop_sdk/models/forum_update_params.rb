@@ -12,6 +12,13 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
+      # @!attribute banned_words
+      #   A list of words that are automatically blocked from posts in this forum. For
+      #   example, ['spam', 'scam'].
+      #
+      #   @return [Array<String>, nil]
+      optional :banned_words, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
+
       # @!attribute banner_image
       #   The banner image displayed at the top of the forum page. Pass null to remove the
       #   existing banner.
@@ -37,11 +44,13 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::WhoCanPostTypes, nil]
       optional :who_can_post, enum: -> { WhopSDK::WhoCanPostTypes }, nil?: true
 
-      # @!method initialize(id:, banner_image: nil, email_notification_preference: nil, who_can_comment: nil, who_can_post: nil, request_options: {})
+      # @!method initialize(id:, banned_words: nil, banner_image: nil, email_notification_preference: nil, who_can_comment: nil, who_can_post: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ForumUpdateParams} for more details.
       #
       #   @param id [String]
+      #
+      #   @param banned_words [Array<String>, nil] A list of words that are automatically blocked from posts in this forum. For exa
       #
       #   @param banner_image [WhopSDK::Models::ForumUpdateParams::BannerImage, nil] The banner image displayed at the top of the forum page. Pass null to remove the
       #

@@ -14,6 +14,7 @@ module WhopSDK
       AMAZON_PAY = :amazon_pay
       APPLE = :apple
       APPLE_PAY = :apple_pay
+      AU_BANK_TRANSFER = :au_bank_transfer
       AU_BECS_DEBIT = :au_becs_debit
       BACS_DEBIT = :bacs_debit
       BANCOLOMBIA = :bancolombia
@@ -35,6 +36,7 @@ module WhopSDK
       EPS = :eps
       EU_BANK_TRANSFER = :eu_bank_transfer
       FPX = :fpx
+      GB_BANK_TRANSFER = :gb_bank_transfer
       GIROPAY = :giropay
       GOOGLE_PAY = :google_pay
       GOPAY = :gopay
@@ -50,6 +52,7 @@ module WhopSDK
       KRIYA = :kriya
       LINK = :link
       MB_WAY = :mb_way
+      M_PESA = :m_pesa
       MERCADO_PAGO = :mercado_pago
       MOBILEPAY = :mobilepay
       MONDU = :mondu
@@ -97,6 +100,7 @@ module WhopSDK
       TWINT = :twint
       UPI = :upi
       US_BANK_ACCOUNT = :us_bank_account
+      US_BANK_TRANSFER = :us_bank_transfer
       VENMO = :venmo
       VIPPS = :vipps
       WECHAT_PAY = :wechat_pay

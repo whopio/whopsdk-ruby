@@ -18,6 +18,8 @@ module WhopSDK
       AMAZON_PAY = T.let(:amazon_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       APPLE = T.let(:apple, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       APPLE_PAY = T.let(:apple_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      AU_BANK_TRANSFER =
+        T.let(:au_bank_transfer, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       AU_BECS_DEBIT =
         T.let(:au_becs_debit, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       BACS_DEBIT = T.let(:bacs_debit, WhopSDK::PaymentMethodTypes::TaggedSymbol)
@@ -44,6 +46,8 @@ module WhopSDK
       EU_BANK_TRANSFER =
         T.let(:eu_bank_transfer, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       FPX = T.let(:fpx, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      GB_BANK_TRANSFER =
+        T.let(:gb_bank_transfer, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       GIROPAY = T.let(:giropay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       GOOGLE_PAY = T.let(:google_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       GOPAY = T.let(:gopay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
@@ -60,6 +64,7 @@ module WhopSDK
       KRIYA = T.let(:kriya, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       LINK = T.let(:link, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       MB_WAY = T.let(:mb_way, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      M_PESA = T.let(:m_pesa, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       MERCADO_PAGO =
         T.let(:mercado_pago, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       MOBILEPAY = T.let(:mobilepay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
@@ -116,6 +121,8 @@ module WhopSDK
       UPI = T.let(:upi, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       US_BANK_ACCOUNT =
         T.let(:us_bank_account, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      US_BANK_TRANSFER =
+        T.let(:us_bank_transfer, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       VENMO = T.let(:venmo, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       VIPPS = T.let(:vipps, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       WECHAT_PAY = T.let(:wechat_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)

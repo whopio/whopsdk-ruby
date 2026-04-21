@@ -46,6 +46,7 @@ module WhopSDK
       INTERAC = :interac
       KAKAO_PAY = :kakao_pay
       KLARNA = :klarna
+      KLARNA_PAY_NOW = :klarna_pay_now
       KONBINI = :konbini
       KR_CARD = :kr_card
       KR_MARKET = :kr_market

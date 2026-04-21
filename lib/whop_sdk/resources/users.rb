@@ -32,6 +32,45 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::UserUpdateParams} for more details.
+      #
+      # Update a user's profile by their ID.
+      #
+      # Required permissions:
+      #
+      # - `user:profile:update`
+      #
+      # @overload update(id, bio: nil, company_id: nil, name: nil, profile_picture: nil, username: nil, request_options: {})
+      #
+      # @param id [String] The unique identifier of the user to update. Accepts 'me', a user tag, or a user
+      #
+      # @param bio [String, nil] A short biography displayed on the user's public profile.
+      #
+      # @param company_id [String, nil] When provided, updates the user's profile overrides for this company instead of
+      #
+      # @param name [String, nil] The user's display name shown on their public profile. Maximum 100 characters.
+      #
+      # @param profile_picture [WhopSDK::Models::UserUpdateParams::ProfilePicture, nil] The user's profile picture image attachment.
+      #
+      # @param username [String, nil] The user's unique username. Alphanumeric characters and hyphens only. Maximum 42
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::User]
+      #
+      # @see WhopSDK::Models::UserUpdateParams
+      def update(id, params = {})
+        parsed, options = WhopSDK::UserUpdateParams.dump_request(params)
+        @client.request(
+          method: :patch,
+          path: ["users/%1$s", id],
+          body: parsed,
+          model: WhopSDK::User,
+          options: options
+        )
+      end
+
       # Search for users by name or username, ranked by social proximity to the
       # authenticated user.
       #

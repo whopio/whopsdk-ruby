@@ -7,6 +7,16 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::User
 
+      def update: (
+        String id,
+        ?bio: String?,
+        ?company_id: String?,
+        ?name: String?,
+        ?profile_picture: WhopSDK::UserUpdateParams::ProfilePicture?,
+        ?username: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::User
+
       def list: (
         ?after: String?,
         ?before: String?,

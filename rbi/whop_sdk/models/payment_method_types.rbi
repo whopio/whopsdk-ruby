@@ -58,6 +58,8 @@ module WhopSDK
       INTERAC = T.let(:interac, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       KAKAO_PAY = T.let(:kakao_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       KLARNA = T.let(:klarna, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      KLARNA_PAY_NOW =
+        T.let(:klarna_pay_now, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       KONBINI = T.let(:konbini, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       KR_CARD = T.let(:kr_card, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       KR_MARKET = T.let(:kr_market, WhopSDK::PaymentMethodTypes::TaggedSymbol)

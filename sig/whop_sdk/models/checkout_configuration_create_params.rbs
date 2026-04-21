@@ -32,6 +32,7 @@ module WhopSDK
           {
             plan: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan,
             affiliate_code: String?,
+            allow_promo_codes: bool?,
             checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling?,
             currency: WhopSDK::Models::currency?,
             metadata: ::Hash[Symbol, top]?,
@@ -45,6 +46,8 @@ module WhopSDK
           attr_accessor plan: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan
 
           attr_accessor affiliate_code: String?
+
+          attr_accessor allow_promo_codes: bool?
 
           attr_accessor checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling?
 
@@ -67,6 +70,7 @@ module WhopSDK
           def initialize: (
             plan: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan,
             ?affiliate_code: String?,
+            ?allow_promo_codes: bool?,
             ?checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling?,
             ?currency: WhopSDK::Models::currency?,
             ?metadata: ::Hash[Symbol, top]?,
@@ -79,6 +83,7 @@ module WhopSDK
           def to_hash: -> {
             plan: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan,
             affiliate_code: String?,
+            allow_promo_codes: bool?,
             checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling?,
             currency: WhopSDK::Models::currency?,
             metadata: ::Hash[Symbol, top]?,
@@ -435,6 +440,7 @@ module WhopSDK
           {
             plan_id: String,
             affiliate_code: String?,
+            allow_promo_codes: bool?,
             checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling?,
             currency: WhopSDK::Models::currency?,
             metadata: ::Hash[Symbol, top]?,
@@ -448,6 +454,8 @@ module WhopSDK
           attr_accessor plan_id: String
 
           attr_accessor affiliate_code: String?
+
+          attr_accessor allow_promo_codes: bool?
 
           attr_accessor checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling?
 
@@ -470,6 +478,7 @@ module WhopSDK
           def initialize: (
             plan_id: String,
             ?affiliate_code: String?,
+            ?allow_promo_codes: bool?,
             ?checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling?,
             ?currency: WhopSDK::Models::currency?,
             ?metadata: ::Hash[Symbol, top]?,
@@ -482,6 +491,7 @@ module WhopSDK
           def to_hash: -> {
             plan_id: String,
             affiliate_code: String?,
+            allow_promo_codes: bool?,
             checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling?,
             currency: WhopSDK::Models::currency?,
             metadata: ::Hash[Symbol, top]?,
@@ -560,6 +570,7 @@ module WhopSDK
           {
             company_id: String,
             mode: :setup,
+            allow_promo_codes: bool?,
             checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling?,
             currency: WhopSDK::Models::currency?,
             metadata: ::Hash[Symbol, top]?,
@@ -572,6 +583,8 @@ module WhopSDK
           attr_accessor company_id: String
 
           attr_accessor mode: :setup
+
+          attr_accessor allow_promo_codes: bool?
 
           attr_accessor checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling?
 
@@ -587,6 +600,7 @@ module WhopSDK
 
           def initialize: (
             company_id: String,
+            ?allow_promo_codes: bool?,
             ?checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling?,
             ?currency: WhopSDK::Models::currency?,
             ?metadata: ::Hash[Symbol, top]?,
@@ -599,6 +613,7 @@ module WhopSDK
           def to_hash: -> {
             company_id: String,
             mode: :setup,
+            allow_promo_codes: bool?,
             checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling?,
             currency: WhopSDK::Models::currency?,
             metadata: ::Hash[Symbol, top]?,

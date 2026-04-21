@@ -24,6 +24,27 @@ class WhopSDK::Test::Resources::UsersTest < WhopSDK::Test::ResourceTest
     end
   end
 
+  def test_update
+    skip("Mock server tests are disabled")
+
+    response = @whop.users.update("user_xxxxxxxxxxxxx")
+
+    assert_pattern do
+      response => WhopSDK::User
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        bio: String | nil,
+        created_at: Time,
+        name: String | nil,
+        profile_picture: WhopSDK::User::ProfilePicture | nil,
+        username: String
+      }
+    end
+  end
+
   def test_list
     skip("Mock server tests are disabled")
 
@@ -65,27 +86,6 @@ class WhopSDK::Test::Resources::UsersTest < WhopSDK::Test::ResourceTest
       response => {
         access_level: WhopSDK::AccessLevel,
         has_access: WhopSDK::Internal::Type::Boolean
-      }
-    end
-  end
-
-  def test_update_profile
-    skip("Mock server tests are disabled")
-
-    response = @whop.users.update_profile
-
-    assert_pattern do
-      response => WhopSDK::User
-    end
-
-    assert_pattern do
-      response => {
-        id: String,
-        bio: String | nil,
-        created_at: Time,
-        name: String | nil,
-        profile_picture: WhopSDK::User::ProfilePicture | nil,
-        username: String
       }
     end
   end

@@ -8,12 +8,54 @@ module WhopSDK
       sig do
         params(
           id: String,
+          company_id: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::User)
       end
       def retrieve(
         # The unique identifier or username of the user.
         id,
+        # When provided, returns the user's company-specific profile overrides (name,
+        # profile picture) instead of their global profile.
+        company_id: nil,
+        request_options: {}
+      )
+      end
+
+      # Update a user's profile by their ID.
+      #
+      # Required permissions:
+      #
+      # - `user:profile:update`
+      sig do
+        params(
+          id: String,
+          bio: T.nilable(String),
+          company_id: T.nilable(String),
+          name: T.nilable(String),
+          profile_picture:
+            T.nilable(WhopSDK::UserUpdateParams::ProfilePicture::OrHash),
+          username: T.nilable(String),
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::User)
+      end
+      def update(
+        # The unique identifier of the user to update. Accepts 'me', a user tag, or a
+        # username.
+        id,
+        # A short biography displayed on the user's public profile.
+        bio: nil,
+        # When provided, updates the user's profile overrides for this company instead of
+        # the global profile. Pass name and profile_picture to set overrides, or null to
+        # clear them.
+        company_id: nil,
+        # The user's display name shown on their public profile. Maximum 100 characters.
+        name: nil,
+        # The user's profile picture image attachment.
+        profile_picture: nil,
+        # The user's unique username. Alphanumeric characters and hyphens only. Maximum 42
+        # characters.
+        username: nil,
         request_options: {}
       )
       end
@@ -62,35 +104,6 @@ module WhopSDK
         resource_id,
         # The unique identifier or username of the user.
         id:,
-        request_options: {}
-      )
-      end
-
-      # Update the currently authenticated user's profile.
-      #
-      # Required permissions:
-      #
-      # - `user:profile:update`
-      sig do
-        params(
-          bio: T.nilable(String),
-          name: T.nilable(String),
-          profile_picture:
-            T.nilable(WhopSDK::UserUpdateProfileParams::ProfilePicture::OrHash),
-          username: T.nilable(String),
-          request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::User)
-      end
-      def update_profile(
-        # A short biography displayed on the user's public profile.
-        bio: nil,
-        # The user's display name shown on their public profile. Maximum 100 characters.
-        name: nil,
-        # The user's profile picture image attachment.
-        profile_picture: nil,
-        # The user's unique username. Alphanumeric characters and hyphens only. Maximum 42
-        # characters.
-        username: nil,
         request_options: {}
       )
       end

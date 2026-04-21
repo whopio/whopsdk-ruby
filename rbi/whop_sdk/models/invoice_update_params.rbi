@@ -14,7 +14,9 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The date and time when the invoice will be automatically finalized and charged.
+      # The date and time when the invoice will be automatically finalized. For
+      # charge_automatically, triggers an automatic charge. For send_invoice, sends the
+      # invoice email at the specified time.
       sig { returns(T.nilable(Time)) }
       attr_accessor :automatically_finalizes_at
 
@@ -77,6 +79,10 @@ module WhopSDK
       end
       attr_writer :plan
 
+      # The date that defines when the subscription billing cycle should start.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :subscription_billing_anchor_at
+
       sig do
         params(
           id: String,
@@ -94,12 +100,15 @@ module WhopSDK
           member_id: T.nilable(String),
           payment_method_id: T.nilable(String),
           plan: T.nilable(WhopSDK::InvoiceUpdateParams::Plan::OrHash),
+          subscription_billing_anchor_at: T.nilable(Time),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
         id:,
-        # The date and time when the invoice will be automatically finalized and charged.
+        # The date and time when the invoice will be automatically finalized. For
+        # charge_automatically, triggers an automatic charge. For send_invoice, sends the
+        # invoice email at the specified time.
         automatically_finalizes_at: nil,
         # Inline billing address to create or update a mailing address for this invoice.
         billing_address: nil,
@@ -123,6 +132,8 @@ module WhopSDK
         payment_method_id: nil,
         # Updated plan attributes.
         plan: nil,
+        # The date that defines when the subscription billing cycle should start.
+        subscription_billing_anchor_at: nil,
         request_options: {}
       )
       end
@@ -145,6 +156,7 @@ module WhopSDK
             member_id: T.nilable(String),
             payment_method_id: T.nilable(String),
             plan: T.nilable(WhopSDK::InvoiceUpdateParams::Plan),
+            subscription_billing_anchor_at: T.nilable(Time),
             request_options: WhopSDK::RequestOptions
           }
         )

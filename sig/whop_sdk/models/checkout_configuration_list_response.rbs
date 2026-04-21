@@ -4,6 +4,7 @@ module WhopSDK
       {
         id: String,
         affiliate_code: String?,
+        allow_promo_codes: bool,
         company_id: String,
         currency: WhopSDK::Models::currency?,
         metadata: ::Hash[Symbol, top]?,
@@ -18,6 +19,8 @@ module WhopSDK
       attr_accessor id: String
 
       attr_accessor affiliate_code: String?
+
+      attr_accessor allow_promo_codes: bool
 
       attr_accessor company_id: String
 
@@ -38,6 +41,7 @@ module WhopSDK
       def initialize: (
         id: String,
         affiliate_code: String?,
+        allow_promo_codes: bool,
         company_id: String,
         currency: WhopSDK::Models::currency?,
         metadata: ::Hash[Symbol, top]?,
@@ -51,6 +55,7 @@ module WhopSDK
       def to_hash: -> {
         id: String,
         affiliate_code: String?,
+        allow_promo_codes: bool,
         company_id: String,
         currency: WhopSDK::Models::currency?,
         metadata: ::Hash[Symbol, top]?,

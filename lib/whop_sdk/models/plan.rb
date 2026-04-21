@@ -51,7 +51,7 @@ module WhopSDK
       required :custom_fields, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Plan::CustomField] }
 
       # @!attribute description
-      #   A text description of the plan visible to customers. Maximum 500 characters.
+      #   A text description of the plan visible to customers. Maximum 1000 characters.
       #   Null if no description is set.
       #
       #   @return [String, nil]
@@ -213,7 +213,7 @@ module WhopSDK
       #
       #   @param custom_fields [Array<WhopSDK::Models::Plan::CustomField>] Custom input fields displayed on the checkout form that collect additional infor
       #
-      #   @param description [String, nil] A text description of the plan visible to customers. Maximum 500 characters. Nul
+      #   @param description [String, nil] A text description of the plan visible to customers. Maximum 1000 characters. Nu
       #
       #   @param expiration_days [Integer, nil] The number of days until the membership expires (for expiration-based plans). Fo
       #

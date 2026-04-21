@@ -2,33 +2,40 @@
 
 module WhopSDK
   module Models
-    class UserUpdateProfileParams < WhopSDK::Internal::Type::BaseModel
+    class UserUpdateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(WhopSDK::UserUpdateProfileParams, WhopSDK::Internal::AnyHash)
+          T.any(WhopSDK::UserUpdateParams, WhopSDK::Internal::AnyHash)
         end
+
+      sig { returns(String) }
+      attr_accessor :id
 
       # A short biography displayed on the user's public profile.
       sig { returns(T.nilable(String)) }
       attr_accessor :bio
+
+      # When provided, updates the user's profile overrides for this company instead of
+      # the global profile. Pass name and profile_picture to set overrides, or null to
+      # clear them.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :company_id
 
       # The user's display name shown on their public profile. Maximum 100 characters.
       sig { returns(T.nilable(String)) }
       attr_accessor :name
 
       # The user's profile picture image attachment.
-      sig do
-        returns(T.nilable(WhopSDK::UserUpdateProfileParams::ProfilePicture))
-      end
+      sig { returns(T.nilable(WhopSDK::UserUpdateParams::ProfilePicture)) }
       attr_reader :profile_picture
 
       sig do
         params(
           profile_picture:
-            T.nilable(WhopSDK::UserUpdateProfileParams::ProfilePicture::OrHash)
+            T.nilable(WhopSDK::UserUpdateParams::ProfilePicture::OrHash)
         ).void
       end
       attr_writer :profile_picture
@@ -40,17 +47,24 @@ module WhopSDK
 
       sig do
         params(
+          id: String,
           bio: T.nilable(String),
+          company_id: T.nilable(String),
           name: T.nilable(String),
           profile_picture:
-            T.nilable(WhopSDK::UserUpdateProfileParams::ProfilePicture::OrHash),
+            T.nilable(WhopSDK::UserUpdateParams::ProfilePicture::OrHash),
           username: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # A short biography displayed on the user's public profile.
         bio: nil,
+        # When provided, updates the user's profile overrides for this company instead of
+        # the global profile. Pass name and profile_picture to set overrides, or null to
+        # clear them.
+        company_id: nil,
         # The user's display name shown on their public profile. Maximum 100 characters.
         name: nil,
         # The user's profile picture image attachment.
@@ -65,10 +79,12 @@ module WhopSDK
       sig do
         override.returns(
           {
+            id: String,
             bio: T.nilable(String),
+            company_id: T.nilable(String),
             name: T.nilable(String),
             profile_picture:
-              T.nilable(WhopSDK::UserUpdateProfileParams::ProfilePicture),
+              T.nilable(WhopSDK::UserUpdateParams::ProfilePicture),
             username: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }
@@ -81,7 +97,7 @@ module WhopSDK
         OrHash =
           T.type_alias do
             T.any(
-              WhopSDK::UserUpdateProfileParams::ProfilePicture,
+              WhopSDK::UserUpdateParams::ProfilePicture,
               WhopSDK::Internal::AnyHash
             )
           end

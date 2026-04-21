@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.0.38 (2026-04-21)
+
+Full Changelog: [v0.0.37...v0.0.38](https://github.com/whopio/whopsdk-ruby/compare/v0.0.37...v0.0.38)
+
+### Features
+
+* **api:** api update ([fa1a45f](https://github.com/whopio/whopsdk-ruby/commit/fa1a45f492c238b6ff849440c3c910bc4ea72754))
+* **api:** api update ([f9181a4](https://github.com/whopio/whopsdk-ruby/commit/f9181a4a772ce4828d8332928508109089656648))
+* **api:** api update ([a8e3560](https://github.com/whopio/whopsdk-ruby/commit/a8e35601fcf0ee79bcc2333e5c323682471f3b91))
+* **api:** api update ([516c14b](https://github.com/whopio/whopsdk-ruby/commit/516c14bc5edc25bf46049ea42ae1968f9bf0d782))
+* **api:** api update ([a58e4b0](https://github.com/whopio/whopsdk-ruby/commit/a58e4b0fb68546c017cfa027a6645b906c0acca6))
+* **api:** api update ([2ae4543](https://github.com/whopio/whopsdk-ruby/commit/2ae45431715186177b61e5089136242652cf54a1))
+* **api:** manual updates ([943f900](https://github.com/whopio/whopsdk-ruby/commit/943f9009a1a288e0ac8a139fb090c1dcd7a6440e))
+
+
+### Bug Fixes
+
+* **helpers:** verify_user_token uses remote JWKS with module-level caching ([#44](https://github.com/whopio/whopsdk-ruby/issues/44)) ([107a289](https://github.com/whopio/whopsdk-ruby/commit/107a2898be09866f50e59f402ed08748662c4185))
+
 ## 0.0.37 (2026-04-10)
 
 Full Changelog: [v0.0.36...v0.0.37](https://github.com/whopio/whopsdk-ruby/compare/v0.0.36...v0.0.37)

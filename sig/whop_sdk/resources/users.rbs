@@ -3,6 +3,7 @@ module WhopSDK
     class Users
       def retrieve: (
         String id,
+        ?company_id: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::User
 
@@ -20,14 +21,6 @@ module WhopSDK
         id: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::UserCheckAccessResponse
-
-      def update_profile: (
-        ?bio: String?,
-        ?name: String?,
-        ?profile_picture: WhopSDK::UserUpdateProfileParams::ProfilePicture?,
-        ?username: String?,
-        ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::User
 
       def initialize: (client: WhopSDK::Client) -> void
     end

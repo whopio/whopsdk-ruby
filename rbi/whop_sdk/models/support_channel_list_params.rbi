@@ -11,10 +11,6 @@ module WhopSDK
           T.any(WhopSDK::SupportChannelListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The unique identifier of the company to list support channels for.
-      sig { returns(String) }
-      attr_accessor :company_id
-
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_accessor :after
@@ -22,6 +18,11 @@ module WhopSDK
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_accessor :before
+
+      # The unique identifier of the company to list support channels for. When omitted,
+      # returns support channels across all companies the user has access to.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :company_id
 
       # The direction of the sort.
       sig { returns(T.nilable(WhopSDK::Direction::OrSymbol)) }
@@ -46,26 +47,34 @@ module WhopSDK
       end
       attr_accessor :order
 
+      # The perspective to filter support channels by.
+      sig do
+        returns(T.nilable(WhopSDK::SupportChannelListParams::View::OrSymbol))
+      end
+      attr_accessor :view
+
       sig do
         params(
-          company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
+          company_id: T.nilable(String),
           direction: T.nilable(WhopSDK::Direction::OrSymbol),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           open_: T.nilable(T::Boolean),
           order: T.nilable(WhopSDK::SupportChannelListParams::Order::OrSymbol),
+          view: T.nilable(WhopSDK::SupportChannelListParams::View::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier of the company to list support channels for.
-        company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
+        # The unique identifier of the company to list support channels for. When omitted,
+        # returns support channels across all companies the user has access to.
+        company_id: nil,
         # The direction of the sort.
         direction: nil,
         # Returns the first _n_ elements from the list.
@@ -77,6 +86,8 @@ module WhopSDK
         open_: nil,
         # Sort options for message channels
         order: nil,
+        # The perspective to filter support channels by.
+        view: nil,
         request_options: {}
       )
       end
@@ -84,15 +95,16 @@ module WhopSDK
       sig do
         override.returns(
           {
-            company_id: String,
             after: T.nilable(String),
             before: T.nilable(String),
+            company_id: T.nilable(String),
             direction: T.nilable(WhopSDK::Direction::OrSymbol),
             first: T.nilable(Integer),
             last: T.nilable(Integer),
             open_: T.nilable(T::Boolean),
             order:
               T.nilable(WhopSDK::SupportChannelListParams::Order::OrSymbol),
+            view: T.nilable(WhopSDK::SupportChannelListParams::View::OrSymbol),
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -124,6 +136,34 @@ module WhopSDK
         sig do
           override.returns(
             T::Array[WhopSDK::SupportChannelListParams::Order::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # The perspective to filter support channels by.
+      module View
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::SupportChannelListParams::View)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        ALL = T.let(:all, WhopSDK::SupportChannelListParams::View::TaggedSymbol)
+        ADMIN =
+          T.let(:admin, WhopSDK::SupportChannelListParams::View::TaggedSymbol)
+        CUSTOMER =
+          T.let(
+            :customer,
+            WhopSDK::SupportChannelListParams::View::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::SupportChannelListParams::View::TaggedSymbol]
           )
         end
         def self.values

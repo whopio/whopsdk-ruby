@@ -14,14 +14,15 @@ module WhopSDK
       ) -> WhopSDK::SupportChannel
 
       def list: (
-        company_id: String,
         ?after: String?,
         ?before: String?,
+        ?company_id: String?,
         ?direction: WhopSDK::Models::direction?,
         ?first: Integer?,
         ?last: Integer?,
         ?open_: bool?,
         ?order: WhopSDK::Models::SupportChannelListParams::order?,
+        ?view: WhopSDK::Models::SupportChannelListParams::view?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::SupportChannelListResponse]
 

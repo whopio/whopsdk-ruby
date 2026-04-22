@@ -72,13 +72,13 @@ module WhopSDK
       #
       # - `support_chat:read`
       #
-      # @overload list(company_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, open_: nil, order: nil, request_options: {})
-      #
-      # @param company_id [String] The unique identifier of the company to list support channels for.
+      # @overload list(after: nil, before: nil, company_id: nil, direction: nil, first: nil, last: nil, open_: nil, order: nil, view: nil, request_options: {})
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      # @param company_id [String, nil] The unique identifier of the company to list support channels for. When omitted,
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
@@ -90,12 +90,14 @@ module WhopSDK
       #
       # @param order [Symbol, WhopSDK::Models::SupportChannelListParams::Order, nil] Sort options for message channels
       #
+      # @param view [Symbol, WhopSDK::Models::SupportChannelListParams::View, nil] The perspective to filter support channels by.
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::SupportChannelListResponse>]
       #
       # @see WhopSDK::Models::SupportChannelListParams
-      def list(params)
+      def list(params = {})
         parsed, options = WhopSDK::SupportChannelListParams.dump_request(params)
         query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(

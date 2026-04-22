@@ -2,14 +2,15 @@ module WhopSDK
   module Models
     type support_channel_list_params =
       {
-        company_id: String,
         after: String?,
         before: String?,
+        company_id: String?,
         direction: WhopSDK::Models::direction?,
         first: Integer?,
         last: Integer?,
         open_: bool?,
-        order: WhopSDK::Models::SupportChannelListParams::order?
+        order: WhopSDK::Models::SupportChannelListParams::order?,
+        view: WhopSDK::Models::SupportChannelListParams::view?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -17,11 +18,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor company_id: String
-
       attr_accessor after: String?
 
       attr_accessor before: String?
+
+      attr_accessor company_id: String?
 
       attr_accessor direction: WhopSDK::Models::direction?
 
@@ -33,27 +34,31 @@ module WhopSDK
 
       attr_accessor order: WhopSDK::Models::SupportChannelListParams::order?
 
+      attr_accessor view: WhopSDK::Models::SupportChannelListParams::view?
+
       def initialize: (
-        company_id: String,
         ?after: String?,
         ?before: String?,
+        ?company_id: String?,
         ?direction: WhopSDK::Models::direction?,
         ?first: Integer?,
         ?last: Integer?,
         ?open_: bool?,
         ?order: WhopSDK::Models::SupportChannelListParams::order?,
+        ?view: WhopSDK::Models::SupportChannelListParams::view?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        company_id: String,
         after: String?,
         before: String?,
+        company_id: String?,
         direction: WhopSDK::Models::direction?,
         first: Integer?,
         last: Integer?,
         open_: bool?,
         order: WhopSDK::Models::SupportChannelListParams::order?,
+        view: WhopSDK::Models::SupportChannelListParams::view?,
         request_options: WhopSDK::RequestOptions
       }
 
@@ -66,6 +71,18 @@ module WhopSDK
         LAST_POST_SENT_AT: :last_post_sent_at
 
         def self?.values: -> ::Array[WhopSDK::Models::SupportChannelListParams::order]
+      end
+
+      type view = :all | :admin | :customer
+
+      module View
+        extend WhopSDK::Internal::Type::Enum
+
+        ALL: :all
+        ADMIN: :admin
+        CUSTOMER: :customer
+
+        def self?.values: -> ::Array[WhopSDK::Models::SupportChannelListParams::view]
       end
     end
   end

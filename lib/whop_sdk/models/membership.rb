@@ -37,6 +37,14 @@ module WhopSDK
       #   @return [String, nil]
       required :cancellation_reason, String, nil?: true
 
+      # @!attribute checkout_configuration_id
+      #   The ID of the checkout session/configuration that produced this membership, if
+      #   any. Use this to map memberships back to the checkout configuration that created
+      #   them.
+      #
+      #   @return [String, nil]
+      required :checkout_configuration_id, String, nil?: true
+
       # @!attribute company
       #   The company this membership belongs to.
       #
@@ -157,7 +165,7 @@ module WhopSDK
       #   @return [WhopSDK::Models::Membership::User, nil]
       required :user, -> { WhopSDK::Membership::User }, nil?: true
 
-      # @!method initialize(id:, cancel_at_period_end:, cancel_option:, canceled_at:, cancellation_reason:, company:, created_at:, currency:, custom_field_responses:, joined_at:, license_key:, manage_url:, member:, metadata:, payment_collection_paused:, plan:, product:, promo_code:, renewal_period_end:, renewal_period_start:, status:, updated_at:, user:)
+      # @!method initialize(id:, cancel_at_period_end:, cancel_option:, canceled_at:, cancellation_reason:, checkout_configuration_id:, company:, created_at:, currency:, custom_field_responses:, joined_at:, license_key:, manage_url:, member:, metadata:, payment_collection_paused:, plan:, product:, promo_code:, renewal_period_end:, renewal_period_start:, status:, updated_at:, user:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::Membership} for more details.
       #
@@ -173,6 +181,8 @@ module WhopSDK
       #   @param canceled_at [Time, nil] The time the customer initiated cancellation of this membership. As a Unix times
       #
       #   @param cancellation_reason [String, nil] Free-text explanation provided by the customer when canceling. Null if the custo
+      #
+      #   @param checkout_configuration_id [String, nil] The ID of the checkout session/configuration that produced this membership, if a
       #
       #   @param company [WhopSDK::Models::Membership::Company] The company this membership belongs to.
       #

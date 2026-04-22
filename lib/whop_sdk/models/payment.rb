@@ -52,6 +52,13 @@ module WhopSDK
       #   @return [String, nil]
       required :card_last4, String, nil?: true
 
+      # @!attribute checkout_configuration_id
+      #   The ID of the checkout session/configuration that produced this payment, if any.
+      #   Use this to map payments back to the checkout configuration that created them.
+      #
+      #   @return [String, nil]
+      required :checkout_configuration_id, String, nil?: true
+
       # @!attribute company
       #   The company for the payment.
       #
@@ -282,7 +289,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, company:, created_at:, currency:, dispute_alerted_at:, disputes:, failure_message:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, resolutions:, retryable:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, total:, updated_at:, usd_total:, user:, voidable:)
+      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, dispute_alerted_at:, disputes:, failure_message:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, resolutions:, retryable:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, total:, updated_at:, usd_total:, user:, voidable:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Payment}
       #   for more details.
       #
@@ -304,6 +311,8 @@ module WhopSDK
       #   @param card_brand [Symbol, WhopSDK::Models::CardBrands, nil] Possible card brands that a payment token can have
       #
       #   @param card_last4 [String, nil] The last four digits of the card used to make this payment. Null if the payment
+      #
+      #   @param checkout_configuration_id [String, nil] The ID of the checkout session/configuration that produced this payment, if any.
       #
       #   @param company [WhopSDK::Models::Payment::Company, nil] The company for the payment.
       #

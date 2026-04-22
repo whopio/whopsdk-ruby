@@ -68,6 +68,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :card_last4
 
+      # The ID of the checkout session/configuration that produced this payment, if any.
+      # Use this to map payments back to the checkout configuration that created them.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :checkout_configuration_id
+
       # The company for the payment.
       sig { returns(T.nilable(WhopSDK::Models::PaymentListResponse::Company)) }
       attr_reader :company
@@ -288,6 +293,7 @@ module WhopSDK
           billing_reason: T.nilable(WhopSDK::BillingReasons::OrSymbol),
           card_brand: T.nilable(WhopSDK::CardBrands::OrSymbol),
           card_last4: T.nilable(String),
+          checkout_configuration_id: T.nilable(String),
           company:
             T.nilable(WhopSDK::Models::PaymentListResponse::Company::OrHash),
           created_at: Time,
@@ -347,6 +353,9 @@ module WhopSDK
         # The last four digits of the card used to make this payment. Null if the payment
         # was not made with a card.
         card_last4:,
+        # The ID of the checkout session/configuration that produced this payment, if any.
+        # Use this to map payments back to the checkout configuration that created them.
+        checkout_configuration_id:,
         # The company for the payment.
         company:,
         # The datetime the payment was created.
@@ -433,6 +442,7 @@ module WhopSDK
             billing_reason: T.nilable(WhopSDK::BillingReasons::TaggedSymbol),
             card_brand: T.nilable(WhopSDK::CardBrands::TaggedSymbol),
             card_last4: T.nilable(String),
+            checkout_configuration_id: T.nilable(String),
             company: T.nilable(WhopSDK::Models::PaymentListResponse::Company),
             created_at: Time,
             currency: T.nilable(WhopSDK::Currency::TaggedSymbol),

@@ -10,6 +10,7 @@ module WhopSDK
         billing_reason: WhopSDK::Models::billing_reasons?,
         card_brand: WhopSDK::Models::card_brands?,
         :card_last4 => String?,
+        checkout_configuration_id: String?,
         company: WhopSDK::Payment::Company?,
         created_at: Time,
         currency: WhopSDK::Models::currency?,
@@ -64,6 +65,8 @@ module WhopSDK
       attr_accessor card_brand: WhopSDK::Models::card_brands?
 
       attr_accessor card_last4: String?
+
+      attr_accessor checkout_configuration_id: String?
 
       attr_accessor company: WhopSDK::Payment::Company?
 
@@ -146,6 +149,7 @@ module WhopSDK
         billing_reason: WhopSDK::Models::billing_reasons?,
         card_brand: WhopSDK::Models::card_brands?,
         card_last4: String?,
+        checkout_configuration_id: String?,
         company: WhopSDK::Payment::Company?,
         created_at: Time,
         currency: WhopSDK::Models::currency?,
@@ -193,6 +197,7 @@ module WhopSDK
         billing_reason: WhopSDK::Models::billing_reasons?,
         card_brand: WhopSDK::Models::card_brands?,
         :card_last4 => String?,
+        checkout_configuration_id: String?,
         company: WhopSDK::Payment::Company?,
         created_at: Time,
         currency: WhopSDK::Models::currency?,

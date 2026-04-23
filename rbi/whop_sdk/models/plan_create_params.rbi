@@ -447,7 +447,7 @@ module WhopSDK
         # Whether Whop's platform default payment method enablement settings are included
         # in this configuration. The full list of default payment methods can be found in
         # the documentation at docs.whop.com/payments.
-        sig { returns(T::Boolean) }
+        sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :include_platform_defaults
 
         # Explicit payment method configuration for the plan. When not provided, the
@@ -456,7 +456,7 @@ module WhopSDK
           params(
             disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
             enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
-            include_platform_defaults: T::Boolean
+            include_platform_defaults: T.nilable(T::Boolean)
           ).returns(T.attached_class)
         end
         def self.new(
@@ -471,7 +471,7 @@ module WhopSDK
           # Whether Whop's platform default payment method enablement settings are included
           # in this configuration. The full list of default payment methods can be found in
           # the documentation at docs.whop.com/payments.
-          include_platform_defaults:
+          include_platform_defaults: nil
         )
         end
 
@@ -480,7 +480,7 @@ module WhopSDK
             {
               disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
               enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
-              include_platform_defaults: T::Boolean
+              include_platform_defaults: T.nilable(T::Boolean)
             }
           )
         end

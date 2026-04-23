@@ -458,10 +458,10 @@ module WhopSDK
           #   in this configuration. The full list of default payment methods can be found in
           #   the documentation at docs.whop.com/payments.
           #
-          #   @return [Boolean]
-          required :include_platform_defaults, WhopSDK::Internal::Type::Boolean
+          #   @return [Boolean, nil]
+          optional :include_platform_defaults, WhopSDK::Internal::Type::Boolean, nil?: true
 
-          # @!method initialize(disabled:, enabled:, include_platform_defaults:)
+          # @!method initialize(disabled:, enabled:, include_platform_defaults: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::InvoiceUpdateParams::Plan::PaymentMethodConfiguration} for
           #   more details.
@@ -473,7 +473,7 @@ module WhopSDK
           #
           #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
           #
-          #   @param include_platform_defaults [Boolean] Whether Whop's platform default payment method enablement settings are included
+          #   @param include_platform_defaults [Boolean, nil] Whether Whop's platform default payment method enablement settings are included
         end
       end
     end

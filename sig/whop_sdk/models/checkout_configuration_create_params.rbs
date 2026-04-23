@@ -275,7 +275,7 @@ module WhopSDK
               {
                 disabled: ::Array[WhopSDK::Models::payment_method_types],
                 enabled: ::Array[WhopSDK::Models::payment_method_types],
-                include_platform_defaults: bool
+                include_platform_defaults: bool?
               }
 
             class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
@@ -283,18 +283,18 @@ module WhopSDK
 
               attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
 
-              attr_accessor include_platform_defaults: bool
+              attr_accessor include_platform_defaults: bool?
 
               def initialize: (
                 disabled: ::Array[WhopSDK::Models::payment_method_types],
                 enabled: ::Array[WhopSDK::Models::payment_method_types],
-                include_platform_defaults: bool
+                ?include_platform_defaults: bool?
               ) -> void
 
               def to_hash: -> {
                 disabled: ::Array[WhopSDK::Models::payment_method_types],
                 enabled: ::Array[WhopSDK::Models::payment_method_types],
-                include_platform_defaults: bool
+                include_platform_defaults: bool?
               }
             end
 
@@ -412,7 +412,7 @@ module WhopSDK
             {
               disabled: ::Array[WhopSDK::Models::payment_method_types],
               enabled: ::Array[WhopSDK::Models::payment_method_types],
-              include_platform_defaults: bool
+              include_platform_defaults: bool?
             }
 
           class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
@@ -420,18 +420,18 @@ module WhopSDK
 
             attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
 
-            attr_accessor include_platform_defaults: bool
+            attr_accessor include_platform_defaults: bool?
 
             def initialize: (
               disabled: ::Array[WhopSDK::Models::payment_method_types],
               enabled: ::Array[WhopSDK::Models::payment_method_types],
-              include_platform_defaults: bool
+              ?include_platform_defaults: bool?
             ) -> void
 
             def to_hash: -> {
               disabled: ::Array[WhopSDK::Models::payment_method_types],
               enabled: ::Array[WhopSDK::Models::payment_method_types],
-              include_platform_defaults: bool
+              include_platform_defaults: bool?
             }
           end
         end
@@ -542,7 +542,7 @@ module WhopSDK
             {
               disabled: ::Array[WhopSDK::Models::payment_method_types],
               enabled: ::Array[WhopSDK::Models::payment_method_types],
-              include_platform_defaults: bool
+              include_platform_defaults: bool?
             }
 
           class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
@@ -550,18 +550,18 @@ module WhopSDK
 
             attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
 
-            attr_accessor include_platform_defaults: bool
+            attr_accessor include_platform_defaults: bool?
 
             def initialize: (
               disabled: ::Array[WhopSDK::Models::payment_method_types],
               enabled: ::Array[WhopSDK::Models::payment_method_types],
-              include_platform_defaults: bool
+              ?include_platform_defaults: bool?
             ) -> void
 
             def to_hash: -> {
               disabled: ::Array[WhopSDK::Models::payment_method_types],
               enabled: ::Array[WhopSDK::Models::payment_method_types],
-              include_platform_defaults: bool
+              include_platform_defaults: bool?
             }
           end
         end
@@ -653,7 +653,7 @@ module WhopSDK
             {
               disabled: ::Array[WhopSDK::Models::payment_method_types],
               enabled: ::Array[WhopSDK::Models::payment_method_types],
-              include_platform_defaults: bool
+              include_platform_defaults: bool?
             }
 
           class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
@@ -661,18 +661,18 @@ module WhopSDK
 
             attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
 
-            attr_accessor include_platform_defaults: bool
+            attr_accessor include_platform_defaults: bool?
 
             def initialize: (
               disabled: ::Array[WhopSDK::Models::payment_method_types],
               enabled: ::Array[WhopSDK::Models::payment_method_types],
-              include_platform_defaults: bool
+              ?include_platform_defaults: bool?
             ) -> void
 
             def to_hash: -> {
               disabled: ::Array[WhopSDK::Models::payment_method_types],
               enabled: ::Array[WhopSDK::Models::payment_method_types],
-              include_platform_defaults: bool
+              include_platform_defaults: bool?
             }
           end
         end

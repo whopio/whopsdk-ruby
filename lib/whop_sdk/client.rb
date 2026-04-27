@@ -290,6 +290,17 @@ module WhopSDK
       headers = {
         "x-whop-app-id" => (@app_id = app_id&.to_s)
       }
+      custom_headers_env = ENV["WHOP_CUSTOM_HEADERS"]
+      unless custom_headers_env.nil?
+        parsed = {}
+        custom_headers_env.split("\n").each do |line|
+          colon = line.index(":")
+          unless colon.nil?
+            parsed[line[0...colon].strip] = line[(colon + 1)..].strip
+          end
+        end
+        headers = parsed.merge(headers)
+      end
 
       @api_key = api_key.to_s
       @webhook_key = webhook_key&.to_s

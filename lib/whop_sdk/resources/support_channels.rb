@@ -78,7 +78,7 @@ module WhopSDK
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param company_id [String, nil] The unique identifier of the company to list support channels for. When omitted,
+      # @param company_id [String, nil] The unique identifier of the company to list support channels for. Includes chan
       #
       # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #

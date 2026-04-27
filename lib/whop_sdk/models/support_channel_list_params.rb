@@ -20,8 +20,9 @@ module WhopSDK
       optional :before, String, nil?: true
 
       # @!attribute company_id
-      #   The unique identifier of the company to list support channels for. When omitted,
-      #   returns support channels across all companies the user has access to.
+      #   The unique identifier of the company to list support channels for. Includes
+      #   channels of child companies. When omitted, returns support channels across all
+      #   companies the user has access to.
       #
       #   @return [String, nil]
       optional :company_id, String, nil?: true
@@ -71,7 +72,7 @@ module WhopSDK
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param company_id [String, nil] The unique identifier of the company to list support channels for. When omitted,
+      #   @param company_id [String, nil] The unique identifier of the company to list support channels for. Includes chan
       #
       #   @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #

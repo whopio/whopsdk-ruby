@@ -19,8 +19,9 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # The unique identifier of the company to list support channels for. When omitted,
-      # returns support channels across all companies the user has access to.
+      # The unique identifier of the company to list support channels for. Includes
+      # channels of child companies. When omitted, returns support channels across all
+      # companies the user has access to.
       sig { returns(T.nilable(String)) }
       attr_accessor :company_id
 
@@ -72,8 +73,9 @@ module WhopSDK
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # The unique identifier of the company to list support channels for. When omitted,
-        # returns support channels across all companies the user has access to.
+        # The unique identifier of the company to list support channels for. Includes
+        # channels of child companies. When omitted, returns support channels across all
+        # companies the user has access to.
         company_id: nil,
         # The direction of the sort.
         direction: nil,

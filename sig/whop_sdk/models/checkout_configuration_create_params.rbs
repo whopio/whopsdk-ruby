@@ -373,12 +373,15 @@ module WhopSDK
 
           type checkout_styling =
             {
+              background_color: String?,
               border_style: WhopSDK::Models::checkout_shape?,
               button_color: String?,
               font_family: WhopSDK::Models::checkout_font?
             }
 
           class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+            attr_accessor background_color: String?
+
             attr_accessor border_style: WhopSDK::Models::checkout_shape?
 
             attr_accessor button_color: String?
@@ -386,12 +389,14 @@ module WhopSDK
             attr_accessor font_family: WhopSDK::Models::checkout_font?
 
             def initialize: (
+              ?background_color: String?,
               ?border_style: WhopSDK::Models::checkout_shape?,
               ?button_color: String?,
               ?font_family: WhopSDK::Models::checkout_font?
             ) -> void
 
             def to_hash: -> {
+              background_color: String?,
               border_style: WhopSDK::Models::checkout_shape?,
               button_color: String?,
               font_family: WhopSDK::Models::checkout_font?
@@ -503,12 +508,15 @@ module WhopSDK
 
           type checkout_styling =
             {
+              background_color: String?,
               border_style: WhopSDK::Models::checkout_shape?,
               button_color: String?,
               font_family: WhopSDK::Models::checkout_font?
             }
 
           class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+            attr_accessor background_color: String?
+
             attr_accessor border_style: WhopSDK::Models::checkout_shape?
 
             attr_accessor button_color: String?
@@ -516,12 +524,14 @@ module WhopSDK
             attr_accessor font_family: WhopSDK::Models::checkout_font?
 
             def initialize: (
+              ?background_color: String?,
               ?border_style: WhopSDK::Models::checkout_shape?,
               ?button_color: String?,
               ?font_family: WhopSDK::Models::checkout_font?
             ) -> void
 
             def to_hash: -> {
+              background_color: String?,
               border_style: WhopSDK::Models::checkout_shape?,
               button_color: String?,
               font_family: WhopSDK::Models::checkout_font?
@@ -624,12 +634,15 @@ module WhopSDK
 
           type checkout_styling =
             {
+              background_color: String?,
               border_style: WhopSDK::Models::checkout_shape?,
               button_color: String?,
               font_family: WhopSDK::Models::checkout_font?
             }
 
           class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+            attr_accessor background_color: String?
+
             attr_accessor border_style: WhopSDK::Models::checkout_shape?
 
             attr_accessor button_color: String?
@@ -637,12 +650,14 @@ module WhopSDK
             attr_accessor font_family: WhopSDK::Models::checkout_font?
 
             def initialize: (
+              ?background_color: String?,
               ?border_style: WhopSDK::Models::checkout_shape?,
               ?button_color: String?,
               ?font_family: WhopSDK::Models::checkout_font?
             ) -> void
 
             def to_hash: -> {
+              background_color: String?,
               border_style: WhopSDK::Models::checkout_shape?,
               button_color: String?,
               font_family: WhopSDK::Models::checkout_font?

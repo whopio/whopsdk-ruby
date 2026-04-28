@@ -888,6 +888,11 @@ module WhopSDK
                 )
               end
 
+            # A hex color code for the checkout page background, applied to the order summary
+            # panel (e.g. #F4F4F5).
+            sig { returns(T.nilable(String)) }
+            attr_accessor :background_color
+
             # The different border-radius styles available for checkout pages.
             sig { returns(T.nilable(WhopSDK::CheckoutShape::OrSymbol)) }
             attr_accessor :border_style
@@ -904,12 +909,16 @@ module WhopSDK
             # defaults.
             sig do
               params(
+                background_color: T.nilable(String),
                 border_style: T.nilable(WhopSDK::CheckoutShape::OrSymbol),
                 button_color: T.nilable(String),
                 font_family: T.nilable(WhopSDK::CheckoutFont::OrSymbol)
               ).returns(T.attached_class)
             end
             def self.new(
+              # A hex color code for the checkout page background, applied to the order summary
+              # panel (e.g. #F4F4F5).
+              background_color: nil,
               # The different border-radius styles available for checkout pages.
               border_style: nil,
               # A hex color code for the button color (e.g. #FF5733).
@@ -922,6 +931,7 @@ module WhopSDK
             sig do
               override.returns(
                 {
+                  background_color: T.nilable(String),
                   border_style: T.nilable(WhopSDK::CheckoutShape::OrSymbol),
                   button_color: T.nilable(String),
                   font_family: T.nilable(WhopSDK::CheckoutFont::OrSymbol)
@@ -1209,6 +1219,11 @@ module WhopSDK
                 )
               end
 
+            # A hex color code for the checkout page background, applied to the order summary
+            # panel (e.g. #F4F4F5).
+            sig { returns(T.nilable(String)) }
+            attr_accessor :background_color
+
             # The different border-radius styles available for checkout pages.
             sig { returns(T.nilable(WhopSDK::CheckoutShape::OrSymbol)) }
             attr_accessor :border_style
@@ -1225,12 +1240,16 @@ module WhopSDK
             # defaults.
             sig do
               params(
+                background_color: T.nilable(String),
                 border_style: T.nilable(WhopSDK::CheckoutShape::OrSymbol),
                 button_color: T.nilable(String),
                 font_family: T.nilable(WhopSDK::CheckoutFont::OrSymbol)
               ).returns(T.attached_class)
             end
             def self.new(
+              # A hex color code for the checkout page background, applied to the order summary
+              # panel (e.g. #F4F4F5).
+              background_color: nil,
               # The different border-radius styles available for checkout pages.
               border_style: nil,
               # A hex color code for the button color (e.g. #FF5733).
@@ -1243,6 +1262,7 @@ module WhopSDK
             sig do
               override.returns(
                 {
+                  background_color: T.nilable(String),
                   border_style: T.nilable(WhopSDK::CheckoutShape::OrSymbol),
                   button_color: T.nilable(String),
                   font_family: T.nilable(WhopSDK::CheckoutFont::OrSymbol)
@@ -1506,6 +1526,11 @@ module WhopSDK
                 )
               end
 
+            # A hex color code for the checkout page background, applied to the order summary
+            # panel (e.g. #F4F4F5).
+            sig { returns(T.nilable(String)) }
+            attr_accessor :background_color
+
             # The different border-radius styles available for checkout pages.
             sig { returns(T.nilable(WhopSDK::CheckoutShape::OrSymbol)) }
             attr_accessor :border_style
@@ -1522,12 +1547,16 @@ module WhopSDK
             # defaults.
             sig do
               params(
+                background_color: T.nilable(String),
                 border_style: T.nilable(WhopSDK::CheckoutShape::OrSymbol),
                 button_color: T.nilable(String),
                 font_family: T.nilable(WhopSDK::CheckoutFont::OrSymbol)
               ).returns(T.attached_class)
             end
             def self.new(
+              # A hex color code for the checkout page background, applied to the order summary
+              # panel (e.g. #F4F4F5).
+              background_color: nil,
               # The different border-radius styles available for checkout pages.
               border_style: nil,
               # A hex color code for the button color (e.g. #FF5733).
@@ -1540,6 +1569,7 @@ module WhopSDK
             sig do
               override.returns(
                 {
+                  background_color: T.nilable(String),
                   border_style: T.nilable(WhopSDK::CheckoutShape::OrSymbol),
                   button_color: T.nilable(String),
                   font_family: T.nilable(WhopSDK::CheckoutFont::OrSymbol)

@@ -212,6 +212,13 @@ module WhopSDK
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
       class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+        # @!attribute background_color
+        #   A hex color code for the checkout page background, applied to the order summary
+        #   panel (e.g. #F4F4F5).
+        #
+        #   @return [String, nil]
+        optional :background_color, String, nil?: true
+
         # @!attribute border_style
         #   The different border-radius styles available for checkout pages.
         #
@@ -230,9 +237,14 @@ module WhopSDK
         #   @return [Symbol, WhopSDK::Models::CheckoutFont, nil]
         optional :font_family, enum: -> { WhopSDK::CheckoutFont }, nil?: true
 
-        # @!method initialize(border_style: nil, button_color: nil, font_family: nil)
+        # @!method initialize(background_color: nil, border_style: nil, button_color: nil, font_family: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::PlanCreateParams::CheckoutStyling} for more details.
+        #
         #   Checkout styling overrides for this plan. Pass null to inherit from the company
         #   default.
+        #
+        #   @param background_color [String, nil] A hex color code for the checkout page background, applied to the order summary
         #
         #   @param border_style [Symbol, WhopSDK::Models::CheckoutShape, nil] The different border-radius styles available for checkout pages.
         #

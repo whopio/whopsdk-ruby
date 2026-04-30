@@ -3,6 +3,7 @@ module WhopSDK
     class Files
       def create: (
         filename: String,
+        ?visibility: WhopSDK::Models::FileCreateParams::visibility?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::FileCreateResponse
 

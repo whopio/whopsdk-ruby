@@ -6,6 +6,7 @@ module WhopSDK
         after: String?,
         before: String?,
         first: Integer?,
+        include_bounty_anchors: bool?,
         last: Integer?,
         parent_id: String?,
         pinned: bool?
@@ -24,6 +25,8 @@ module WhopSDK
 
       attr_accessor first: Integer?
 
+      attr_accessor include_bounty_anchors: bool?
+
       attr_accessor last: Integer?
 
       attr_accessor parent_id: String?
@@ -35,6 +38,7 @@ module WhopSDK
         ?after: String?,
         ?before: String?,
         ?first: Integer?,
+        ?include_bounty_anchors: bool?,
         ?last: Integer?,
         ?parent_id: String?,
         ?pinned: bool?,
@@ -46,6 +50,7 @@ module WhopSDK
         after: String?,
         before: String?,
         first: Integer?,
+        include_bounty_anchors: bool?,
         last: Integer?,
         parent_id: String?,
         pinned: bool?,

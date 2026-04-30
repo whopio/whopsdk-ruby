@@ -131,7 +131,7 @@ module WhopSDK
       #
       # - `forum:read`
       #
-      # @overload list(experience_id:, after: nil, before: nil, first: nil, last: nil, parent_id: nil, pinned: nil, request_options: {})
+      # @overload list(experience_id:, after: nil, before: nil, first: nil, include_bounty_anchors: nil, last: nil, parent_id: nil, pinned: nil, request_options: {})
       #
       # @param experience_id [String] The unique identifier of the experience to list forum posts for.
       #
@@ -140,6 +140,8 @@ module WhopSDK
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      #
+      # @param include_bounty_anchors [Boolean, nil] Whether to include top-level bounty discussion anchors as rich forum items.
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #

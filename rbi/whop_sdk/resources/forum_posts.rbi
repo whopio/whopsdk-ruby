@@ -140,6 +140,7 @@ module WhopSDK
           after: T.nilable(String),
           before: T.nilable(String),
           first: T.nilable(Integer),
+          include_bounty_anchors: T.nilable(T::Boolean),
           last: T.nilable(Integer),
           parent_id: T.nilable(String),
           pinned: T.nilable(T::Boolean),
@@ -157,6 +158,8 @@ module WhopSDK
         before: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
+        # Whether to include top-level bounty discussion anchors as rich forum items.
+        include_bounty_anchors: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
         # The unique identifier of a parent post to list comments for. When set, returns

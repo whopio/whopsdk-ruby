@@ -92,6 +92,7 @@ module WhopSDK
       BTC = :btc
       CNY = :cny
       USDT = :usdt
+      KZT = :kzt
 
       # @!method self.values
       #   @return [Array<Symbol>]

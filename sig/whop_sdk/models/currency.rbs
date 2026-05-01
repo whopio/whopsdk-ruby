@@ -87,6 +87,7 @@ module WhopSDK
       | :btc
       | :cny
       | :usdt
+      | :kzt
 
     module Currency
       extend WhopSDK::Internal::Type::Enum
@@ -177,6 +178,7 @@ module WhopSDK
       BTC: :btc
       CNY: :cny
       USDT: :usdt
+      KZT: :kzt
 
       def self?.values: -> ::Array[WhopSDK::Models::currency]
     end

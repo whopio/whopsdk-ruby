@@ -4,6 +4,7 @@ module WhopSDK
       def create: (
         company_id: String,
         product_id: String,
+        ?adaptive_pricing_enabled: bool?,
         ?billing_period: Integer?,
         ?checkout_styling: WhopSDK::PlanCreateParams::CheckoutStyling?,
         ?currency: WhopSDK::Models::currency?,
@@ -35,6 +36,7 @@ module WhopSDK
 
       def update: (
         String id,
+        ?adaptive_pricing_enabled: bool?,
         ?billing_period: Integer?,
         ?checkout_styling: WhopSDK::PlanUpdateParams::CheckoutStyling?,
         ?currency: WhopSDK::Models::currency?,

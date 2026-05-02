@@ -19,6 +19,12 @@ module WhopSDK
       #   @return [String]
       required :product_id, String
 
+      # @!attribute adaptive_pricing_enabled
+      #   Whether this plan accepts local currency payments via adaptive pricing.
+      #
+      #   @return [Boolean, nil]
+      optional :adaptive_pricing_enabled, WhopSDK::Internal::Type::Boolean, nil?: true
+
       # @!attribute billing_period
       #   The number of days between recurring charges. For example, 30 for monthly or 365
       #   for yearly.
@@ -159,13 +165,15 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility, nil]
       optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-      # @!method initialize(company_id:, product_id:, billing_period: nil, checkout_styling: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, split_pay_required_payments: nil, stock: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
+      # @!method initialize(company_id:, product_id:, adaptive_pricing_enabled: nil, billing_period: nil, checkout_styling: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, split_pay_required_payments: nil, stock: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PlanCreateParams} for more details.
       #
       #   @param company_id [String] The unique identifier of the company to create this plan for.
       #
       #   @param product_id [String] The unique identifier of the product to attach this plan to.
+      #
+      #   @param adaptive_pricing_enabled [Boolean, nil] Whether this plan accepts local currency payments via adaptive pricing.
       #
       #   @param billing_period [Integer, nil] The number of days between recurring charges. For example, 30 for monthly or 365
       #

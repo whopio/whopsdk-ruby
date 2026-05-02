@@ -15,6 +15,7 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        adaptive_pricing_enabled: WhopSDK::Internal::Type::Boolean,
         billing_period: Integer | nil,
         collect_tax: WhopSDK::Internal::Type::Boolean,
         company: WhopSDK::Plan::Company | nil,
@@ -57,6 +58,7 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        adaptive_pricing_enabled: WhopSDK::Internal::Type::Boolean,
         billing_period: Integer | nil,
         collect_tax: WhopSDK::Internal::Type::Boolean,
         company: WhopSDK::Plan::Company | nil,
@@ -99,6 +101,7 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        adaptive_pricing_enabled: WhopSDK::Internal::Type::Boolean,
         billing_period: Integer | nil,
         collect_tax: WhopSDK::Internal::Type::Boolean,
         company: WhopSDK::Plan::Company | nil,
@@ -148,6 +151,7 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
+        adaptive_pricing_enabled: WhopSDK::Internal::Type::Boolean,
         billing_period: Integer | nil,
         company: WhopSDK::Models::PlanListResponse::Company | nil,
         created_at: Time,

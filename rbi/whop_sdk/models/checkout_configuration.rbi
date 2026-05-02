@@ -230,6 +230,11 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
+        # Whether the creator has turned on adaptive pricing for this plan. Raw setting —
+        # does not check processor compatibility or feature flags.
+        sig { returns(T::Boolean) }
+        attr_accessor :adaptive_pricing_enabled
+
         # The number of days between each recurring charge. Null for one-time plans. For
         # example, 30 for monthly or 365 for annual billing.
         sig { returns(T.nilable(Integer)) }
@@ -281,6 +286,7 @@ module WhopSDK
         sig do
           params(
             id: String,
+            adaptive_pricing_enabled: T::Boolean,
             billing_period: T.nilable(Integer),
             currency: WhopSDK::Currency::OrSymbol,
             expiration_days: T.nilable(Integer),
@@ -295,6 +301,9 @@ module WhopSDK
         def self.new(
           # The unique identifier for the plan.
           id:,
+          # Whether the creator has turned on adaptive pricing for this plan. Raw setting —
+          # does not check processor compatibility or feature flags.
+          adaptive_pricing_enabled:,
           # The number of days between each recurring charge. Null for one-time plans. For
           # example, 30 for monthly or 365 for annual billing.
           billing_period:,
@@ -331,6 +340,7 @@ module WhopSDK
           override.returns(
             {
               id: String,
+              adaptive_pricing_enabled: T::Boolean,
               billing_period: T.nilable(Integer),
               currency: WhopSDK::Currency::TaggedSymbol,
               expiration_days: T.nilable(Integer),

@@ -96,6 +96,7 @@ module WhopSDK
       type plan =
         {
           id: String,
+          adaptive_pricing_enabled: bool,
           billing_period: Integer?,
           currency: WhopSDK::Models::currency,
           expiration_days: Integer?,
@@ -109,6 +110,8 @@ module WhopSDK
 
       class Plan < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
+
+        attr_accessor adaptive_pricing_enabled: bool
 
         attr_accessor billing_period: Integer?
 
@@ -130,6 +133,7 @@ module WhopSDK
 
         def initialize: (
           id: String,
+          adaptive_pricing_enabled: bool,
           billing_period: Integer?,
           currency: WhopSDK::Models::currency,
           expiration_days: Integer?,
@@ -143,6 +147,7 @@ module WhopSDK
 
         def to_hash: -> {
           id: String,
+          adaptive_pricing_enabled: bool,
           billing_period: Integer?,
           currency: WhopSDK::Models::currency,
           expiration_days: Integer?,

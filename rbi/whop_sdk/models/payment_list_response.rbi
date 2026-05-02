@@ -226,6 +226,12 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :retryable
 
+      # The currency in which the creator receives payouts and fees are charged (e.g.,
+      # 'usd', 'eur'). For multi-currency payments this differs from the payment
+      # currency.
+      sig { returns(String) }
+      attr_accessor :settlement_currency
+
       # The status of a receipt
       sig { returns(T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol)) }
       attr_accessor :status
@@ -323,6 +329,7 @@ module WhopSDK
           refunded_amount: T.nilable(Float),
           refunded_at: T.nilable(Time),
           retryable: T::Boolean,
+          settlement_currency: String,
           status: T.nilable(WhopSDK::ReceiptStatus::OrSymbol),
           substatus: WhopSDK::FriendlyReceiptStatus::OrSymbol,
           subtotal: T.nilable(Float),
@@ -404,6 +411,10 @@ module WhopSDK
         # retry-eligible states (`active`, `trialing`, `completed`, or `past_due`);
         # otherwise false. Used to decide if Whop can attempt the charge again.
         retryable:,
+        # The currency in which the creator receives payouts and fees are charged (e.g.,
+        # 'usd', 'eur'). For multi-currency payments this differs from the payment
+        # currency.
+        settlement_currency:,
         # The status of a receipt
         status:,
         # The friendly status of the payment.
@@ -468,6 +479,7 @@ module WhopSDK
             refunded_amount: T.nilable(Float),
             refunded_at: T.nilable(Time),
             retryable: T::Boolean,
+            settlement_currency: String,
             status: T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol),
             substatus: WhopSDK::FriendlyReceiptStatus::TaggedSymbol,
             subtotal: T.nilable(Float),

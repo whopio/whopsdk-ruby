@@ -97,6 +97,7 @@ module WhopSDK
             {
               company_id: String,
               currency: WhopSDK::Models::currency,
+              adaptive_pricing_enabled: bool?,
               application_fee_amount: Float?,
               billing_period: Integer?,
               custom_fields: ::Array[WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::CustomField]?,
@@ -124,6 +125,8 @@ module WhopSDK
             attr_accessor company_id: String
 
             attr_accessor currency: WhopSDK::Models::currency
+
+            attr_accessor adaptive_pricing_enabled: bool?
 
             attr_accessor application_fee_amount: Float?
 
@@ -170,6 +173,7 @@ module WhopSDK
             def initialize: (
               company_id: String,
               currency: WhopSDK::Models::currency,
+              ?adaptive_pricing_enabled: bool?,
               ?application_fee_amount: Float?,
               ?billing_period: Integer?,
               ?custom_fields: ::Array[WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::CustomField]?,
@@ -196,6 +200,7 @@ module WhopSDK
             def to_hash: -> {
               company_id: String,
               currency: WhopSDK::Models::currency,
+              adaptive_pricing_enabled: bool?,
               application_fee_amount: Float?,
               billing_period: Integer?,
               custom_fields: ::Array[WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::CustomField]?,

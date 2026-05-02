@@ -36,6 +36,9 @@ module WhopSDK
         refunded_at: Time?,
         resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
+        settlement_amount: Float,
+        settlement_currency: String,
+        settlement_exchange_rate: Float?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
@@ -118,6 +121,12 @@ module WhopSDK
 
       attr_accessor retryable: bool
 
+      attr_accessor settlement_amount: Float
+
+      attr_accessor settlement_currency: String
+
+      attr_accessor settlement_exchange_rate: Float?
+
       attr_accessor status: WhopSDK::Models::receipt_status?
 
       attr_accessor substatus: WhopSDK::Models::friendly_receipt_status
@@ -175,6 +184,9 @@ module WhopSDK
         refunded_at: Time?,
         resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
+        settlement_amount: Float,
+        settlement_currency: String,
+        settlement_exchange_rate: Float?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
@@ -223,6 +235,9 @@ module WhopSDK
         refunded_at: Time?,
         resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
+        settlement_amount: Float,
+        settlement_currency: String,
+        settlement_exchange_rate: Float?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,

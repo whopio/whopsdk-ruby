@@ -221,6 +221,28 @@ module WhopSDK
       #   @return [Boolean]
       required :retryable, WhopSDK::Internal::Type::Boolean
 
+      # @!attribute settlement_amount
+      #   The payment amount in the creator's settlement currency (what the creator priced
+      #   in). Equal to final_amount for single-currency payments.
+      #
+      #   @return [Float]
+      required :settlement_amount, Float
+
+      # @!attribute settlement_currency
+      #   The currency in which the creator receives payouts and fees are charged (e.g.,
+      #   'usd', 'eur'). For multi-currency payments this differs from the payment
+      #   currency.
+      #
+      #   @return [String]
+      required :settlement_currency, String
+
+      # @!attribute settlement_exchange_rate
+      #   The locked exchange rate used to convert from the buyer's payment currency to
+      #   the creator's settlement currency. Null for single-currency payments.
+      #
+      #   @return [Float, nil]
+      required :settlement_exchange_rate, Float, nil?: true
+
       # @!attribute status
       #   The status of a receipt
       #
@@ -289,7 +311,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, dispute_alerted_at:, disputes:, failure_message:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, resolutions:, retryable:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, total:, updated_at:, usd_total:, user:, voidable:)
+      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, dispute_alerted_at:, disputes:, failure_message:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, resolutions:, retryable:, settlement_amount:, settlement_currency:, settlement_exchange_rate:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, total:, updated_at:, usd_total:, user:, voidable:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Payment}
       #   for more details.
       #
@@ -363,6 +385,12 @@ module WhopSDK
       #   @param resolutions [Array<WhopSDK::Models::Payment::Resolution>, nil] The resolution center cases opened by the customer on this payment. Null if the
       #
       #   @param retryable [Boolean] True when the payment status is `open` and its membership is in one of the retry
+      #
+      #   @param settlement_amount [Float] The payment amount in the creator's settlement currency (what the creator priced
+      #
+      #   @param settlement_currency [String] The currency in which the creator receives payouts and fees are charged (e.g., '
+      #
+      #   @param settlement_exchange_rate [Float, nil] The locked exchange rate used to convert from the buyer's payment currency to th
       #
       #   @param status [Symbol, WhopSDK::Models::ReceiptStatus, nil] The status of a receipt
       #

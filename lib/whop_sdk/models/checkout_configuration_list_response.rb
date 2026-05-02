@@ -156,6 +156,13 @@ module WhopSDK
         #   @return [String]
         required :id, String
 
+        # @!attribute adaptive_pricing_enabled
+        #   Whether the creator has turned on adaptive pricing for this plan. Raw setting —
+        #   does not check processor compatibility or feature flags.
+        #
+        #   @return [Boolean]
+        required :adaptive_pricing_enabled, WhopSDK::Internal::Type::Boolean
+
         # @!attribute billing_period
         #   The number of days between each recurring charge. Null for one-time plans. For
         #   example, 30 for monthly or 365 for annual billing.
@@ -221,13 +228,15 @@ module WhopSDK
         #   @return [Symbol, WhopSDK::Models::Visibility]
         required :visibility, enum: -> { WhopSDK::Visibility }
 
-        # @!method initialize(id:, billing_period:, currency:, expiration_days:, initial_price:, plan_type:, release_method:, renewal_price:, trial_period_days:, visibility:)
+        # @!method initialize(id:, adaptive_pricing_enabled:, billing_period:, currency:, expiration_days:, initial_price:, plan_type:, release_method:, renewal_price:, trial_period_days:, visibility:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::CheckoutConfigurationListResponse::Plan} for more details.
         #
         #   The plan to use for the checkout configuration
         #
         #   @param id [String] The unique identifier for the plan.
+        #
+        #   @param adaptive_pricing_enabled [Boolean] Whether the creator has turned on adaptive pricing for this plan. Raw setting —
         #
         #   @param billing_period [Integer, nil] The number of days between each recurring charge. Null for one-time plans. For e
         #

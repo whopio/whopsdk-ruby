@@ -9,6 +9,13 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
+      # @!attribute adaptive_pricing_enabled
+      #   Whether the creator has turned on adaptive pricing for this plan. Raw setting —
+      #   does not check processor compatibility or feature flags.
+      #
+      #   @return [Boolean]
+      required :adaptive_pricing_enabled, WhopSDK::Internal::Type::Boolean
+
       # @!attribute billing_period
       #   The number of days between each recurring charge. Null for one-time plans. For
       #   example, 30 for monthly or 365 for annual billing.
@@ -191,7 +198,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility]
       required :visibility, enum: -> { WhopSDK::Visibility }
 
-      # @!method initialize(id:, billing_period:, collect_tax:, company:, created_at:, currency:, custom_fields:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, payment_method_configuration:, plan_type:, product:, purchase_url:, release_method:, renewal_price:, split_pay_required_payments:, stock:, tax_type:, title:, trial_period_days:, unlimited_stock:, updated_at:, visibility:)
+      # @!method initialize(id:, adaptive_pricing_enabled:, billing_period:, collect_tax:, company:, created_at:, currency:, custom_fields:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, payment_method_configuration:, plan_type:, product:, purchase_url:, release_method:, renewal_price:, split_pay_required_payments:, stock:, tax_type:, title:, trial_period_days:, unlimited_stock:, updated_at:, visibility:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Plan}
       #   for more details.
       #
@@ -200,6 +207,8 @@ module WhopSDK
       #   one-time payments, recurring subscriptions, or free trials.
       #
       #   @param id [String] The unique identifier for the plan.
+      #
+      #   @param adaptive_pricing_enabled [Boolean] Whether the creator has turned on adaptive pricing for this plan. Raw setting —
       #
       #   @param billing_period [Integer, nil] The number of days between each recurring charge. Null for one-time plans. For e
       #

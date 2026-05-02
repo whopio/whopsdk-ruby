@@ -3,6 +3,7 @@ module WhopSDK
     type plan_list_response =
       {
         id: String,
+        adaptive_pricing_enabled: bool,
         billing_period: Integer?,
         company: WhopSDK::Models::PlanListResponse::Company?,
         created_at: Time,
@@ -30,6 +31,8 @@ module WhopSDK
 
     class PlanListResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor adaptive_pricing_enabled: bool
 
       attr_accessor billing_period: Integer?
 
@@ -79,6 +82,7 @@ module WhopSDK
 
       def initialize: (
         id: String,
+        adaptive_pricing_enabled: bool,
         billing_period: Integer?,
         company: WhopSDK::Models::PlanListResponse::Company?,
         created_at: Time,
@@ -106,6 +110,7 @@ module WhopSDK
 
       def to_hash: -> {
         id: String,
+        adaptive_pricing_enabled: bool,
         billing_period: Integer?,
         company: WhopSDK::Models::PlanListResponse::Company?,
         created_at: Time,

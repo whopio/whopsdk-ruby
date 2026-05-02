@@ -3,6 +3,7 @@ module WhopSDK
     type plan_update_params =
       {
         id: String,
+        adaptive_pricing_enabled: bool?,
         billing_period: Integer?,
         checkout_styling: WhopSDK::PlanUpdateParams::CheckoutStyling?,
         currency: WhopSDK::Models::currency?,
@@ -32,6 +33,8 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       attr_accessor id: String
+
+      attr_accessor adaptive_pricing_enabled: bool?
 
       attr_accessor billing_period: Integer?
 
@@ -77,6 +80,7 @@ module WhopSDK
 
       def initialize: (
         id: String,
+        ?adaptive_pricing_enabled: bool?,
         ?billing_period: Integer?,
         ?checkout_styling: WhopSDK::PlanUpdateParams::CheckoutStyling?,
         ?currency: WhopSDK::Models::currency?,
@@ -103,6 +107,7 @@ module WhopSDK
 
       def to_hash: -> {
         id: String,
+        adaptive_pricing_enabled: bool?,
         billing_period: Integer?,
         checkout_styling: WhopSDK::PlanUpdateParams::CheckoutStyling?,
         currency: WhopSDK::Models::currency?,

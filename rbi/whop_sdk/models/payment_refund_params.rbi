@@ -14,8 +14,9 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # The amount to refund in the payment currency. If omitted, the full payment
-      # amount is refunded.
+      # The amount to refund. For multi-currency payments, this is in the charge
+      # currency (what the buyer paid). For single-currency, this is in the payment
+      # currency. If omitted, the full payment amount is refunded.
       sig { returns(T.nilable(Float)) }
       attr_accessor :partial_amount
 
@@ -28,8 +29,9 @@ module WhopSDK
       end
       def self.new(
         id:,
-        # The amount to refund in the payment currency. If omitted, the full payment
-        # amount is refunded.
+        # The amount to refund. For multi-currency payments, this is in the charge
+        # currency (what the buyer paid). For single-currency, this is in the payment
+        # currency. If omitted, the full payment amount is refunded.
         partial_amount: nil,
         request_options: {}
       )

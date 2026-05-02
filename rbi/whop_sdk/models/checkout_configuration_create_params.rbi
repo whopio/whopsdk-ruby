@@ -275,6 +275,10 @@ module WhopSDK
             sig { returns(WhopSDK::Currency::OrSymbol) }
             attr_accessor :currency
 
+            # Whether this plan accepts local currency payments via adaptive pricing.
+            sig { returns(T.nilable(T::Boolean)) }
+            attr_accessor :adaptive_pricing_enabled
+
             # The application fee amount collected by the platform from this connected
             # account. Provided as a number in dollars (e.g., 5.00 for $5.00). Must be less
             # than the total payment amount. Only valid for connected accounts with a parent
@@ -431,6 +435,7 @@ module WhopSDK
               params(
                 company_id: String,
                 currency: WhopSDK::Currency::OrSymbol,
+                adaptive_pricing_enabled: T.nilable(T::Boolean),
                 application_fee_amount: T.nilable(Float),
                 billing_period: T.nilable(Integer),
                 custom_fields:
@@ -473,6 +478,8 @@ module WhopSDK
               company_id:,
               # The respective currency identifier for the plan.
               currency:,
+              # Whether this plan accepts local currency payments via adaptive pricing.
+              adaptive_pricing_enabled: nil,
               # The application fee amount collected by the platform from this connected
               # account. Provided as a number in dollars (e.g., 5.00 for $5.00). Must be less
               # than the total payment amount. Only valid for connected accounts with a parent
@@ -534,6 +541,7 @@ module WhopSDK
                 {
                   company_id: String,
                   currency: WhopSDK::Currency::OrSymbol,
+                  adaptive_pricing_enabled: T.nilable(T::Boolean),
                   application_fee_amount: T.nilable(Float),
                   billing_period: T.nilable(Integer),
                   custom_fields:

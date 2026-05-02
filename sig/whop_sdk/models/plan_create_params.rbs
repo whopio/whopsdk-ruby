@@ -4,6 +4,7 @@ module WhopSDK
       {
         company_id: String,
         product_id: String,
+        adaptive_pricing_enabled: bool?,
         billing_period: Integer?,
         checkout_styling: WhopSDK::PlanCreateParams::CheckoutStyling?,
         currency: WhopSDK::Models::currency?,
@@ -35,6 +36,8 @@ module WhopSDK
       attr_accessor company_id: String
 
       attr_accessor product_id: String
+
+      attr_accessor adaptive_pricing_enabled: bool?
 
       attr_accessor billing_period: Integer?
 
@@ -81,6 +84,7 @@ module WhopSDK
       def initialize: (
         company_id: String,
         product_id: String,
+        ?adaptive_pricing_enabled: bool?,
         ?billing_period: Integer?,
         ?checkout_styling: WhopSDK::PlanCreateParams::CheckoutStyling?,
         ?currency: WhopSDK::Models::currency?,
@@ -108,6 +112,7 @@ module WhopSDK
       def to_hash: -> {
         company_id: String,
         product_id: String,
+        adaptive_pricing_enabled: bool?,
         billing_period: Integer?,
         checkout_styling: WhopSDK::PlanCreateParams::CheckoutStyling?,
         currency: WhopSDK::Models::currency?,

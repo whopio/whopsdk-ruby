@@ -145,6 +145,12 @@ module WhopSDK
             #   @return [Symbol, WhopSDK::Models::Currency]
             required :currency, enum: -> { WhopSDK::Currency }
 
+            # @!attribute adaptive_pricing_enabled
+            #   Whether this plan accepts local currency payments via adaptive pricing.
+            #
+            #   @return [Boolean, nil]
+            optional :adaptive_pricing_enabled, WhopSDK::Internal::Type::Boolean, nil?: true
+
             # @!attribute application_fee_amount
             #   The application fee amount collected by the platform from this connected
             #   account. Provided as a number in dollars (e.g., 5.00 for $5.00). Must be less
@@ -300,7 +306,7 @@ module WhopSDK
             #   @return [Symbol, WhopSDK::Models::Visibility, nil]
             optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-            # @!method initialize(company_id:, currency:, application_fee_amount: nil, billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, force_create_new_plan: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, product: nil, product_id: nil, release_method: nil, renewal_price: nil, split_pay_required_payments: nil, stock: nil, title: nil, trial_period_days: nil, visibility: nil)
+            # @!method initialize(company_id:, currency:, adaptive_pricing_enabled: nil, application_fee_amount: nil, billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, force_create_new_plan: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, product: nil, product_id: nil, release_method: nil, renewal_price: nil, split_pay_required_payments: nil, stock: nil, title: nil, trial_period_days: nil, visibility: nil)
             #   Some parameter documentations has been truncated, see
             #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan}
             #   for more details.
@@ -310,6 +316,8 @@ module WhopSDK
             #   @param company_id [String] The company the plan should be created for.
             #
             #   @param currency [Symbol, WhopSDK::Models::Currency] The respective currency identifier for the plan.
+            #
+            #   @param adaptive_pricing_enabled [Boolean, nil] Whether this plan accepts local currency payments via adaptive pricing.
             #
             #   @param application_fee_amount [Float, nil] The application fee amount collected by the platform from this connected account
             #

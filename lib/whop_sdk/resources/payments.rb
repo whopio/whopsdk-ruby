@@ -210,7 +210,7 @@ module WhopSDK
       #
       # @param id [String] The unique identifier of the payment to refund.
       #
-      # @param partial_amount [Float, nil] The amount to refund in the payment currency. If omitted, the full payment amoun
+      # @param partial_amount [Float, nil] The amount to refund. For multi-currency payments, this is in the charge currenc
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

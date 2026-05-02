@@ -192,6 +192,14 @@ module WhopSDK
       #   @return [Boolean]
       required :retryable, WhopSDK::Internal::Type::Boolean
 
+      # @!attribute settlement_currency
+      #   The currency in which the creator receives payouts and fees are charged (e.g.,
+      #   'usd', 'eur'). For multi-currency payments this differs from the payment
+      #   currency.
+      #
+      #   @return [String]
+      required :settlement_currency, String
+
       # @!attribute status
       #   The status of a receipt
       #
@@ -254,7 +262,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, dispute_alerted_at:, failure_message:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, total:, updated_at:, usd_total:, user:, voidable:)
+      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, dispute_alerted_at:, failure_message:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, settlement_currency:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, total:, updated_at:, usd_total:, user:, voidable:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentListResponse} for more details.
       #
@@ -320,6 +328,8 @@ module WhopSDK
       #   @param refunded_at [Time, nil] When the payment was refunded (if applicable).
       #
       #   @param retryable [Boolean] True when the payment status is `open` and its membership is in one of the retry
+      #
+      #   @param settlement_currency [String] The currency in which the creator receives payouts and fees are charged (e.g., '
       #
       #   @param status [Symbol, WhopSDK::Models::ReceiptStatus, nil] The status of a receipt
       #

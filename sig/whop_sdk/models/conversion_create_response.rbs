@@ -1,0 +1,13 @@
+module WhopSDK
+  module Models
+    type conversion_create_response = { id: String }
+
+    class ConversionCreateResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      def initialize: (id: String) -> void
+
+      def to_hash: -> { id: String }
+    end
+  end
+end

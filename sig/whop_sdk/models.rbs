@@ -7,6 +7,34 @@ module WhopSDK
 
   class AccountLinkCreateParams = WhopSDK::Models::AccountLinkCreateParams
 
+  class AdCampaignCreateParams = WhopSDK::Models::AdCampaignCreateParams
+
+  class AdCampaignListParams = WhopSDK::Models::AdCampaignListParams
+
+  class AdCampaignPauseParams = WhopSDK::Models::AdCampaignPauseParams
+
+  class AdCampaignRetrieveParams = WhopSDK::Models::AdCampaignRetrieveParams
+
+  class AdCampaignUnpauseParams = WhopSDK::Models::AdCampaignUnpauseParams
+
+  class AdCampaignUpdateParams = WhopSDK::Models::AdCampaignUpdateParams
+
+  class AdCreateParams = WhopSDK::Models::AdCreateParams
+
+  class AdGroupCreateParams = WhopSDK::Models::AdGroupCreateParams
+
+  class AdGroupDeleteParams = WhopSDK::Models::AdGroupDeleteParams
+
+  class AdGroupListParams = WhopSDK::Models::AdGroupListParams
+
+  class AdGroupRetrieveParams = WhopSDK::Models::AdGroupRetrieveParams
+
+  class AdGroupUpdateParams = WhopSDK::Models::AdGroupUpdateParams
+
+  class AdListParams = WhopSDK::Models::AdListParams
+
+  class AdRetrieveParams = WhopSDK::Models::AdRetrieveParams
+
   class Affiliate = WhopSDK::Models::Affiliate
 
   class AffiliateArchiveParams = WhopSDK::Models::AffiliateArchiveParams
@@ -81,6 +109,12 @@ module WhopSDK
 
   module BillingReasons = WhopSDK::Models::BillingReasons
 
+  class BountyCreateParams = WhopSDK::Models::BountyCreateParams
+
+  class BountyListParams = WhopSDK::Models::BountyListParams
+
+  class BountyRetrieveParams = WhopSDK::Models::BountyRetrieveParams
+
   module CancelOptions = WhopSDK::Models::CancelOptions
 
   module CardBrands = WhopSDK::Models::CardBrands
@@ -111,6 +145,8 @@ module WhopSDK
 
   class Company = WhopSDK::Models::Company
 
+  class CompanyCreateAPIKeyParams = WhopSDK::Models::CompanyCreateAPIKeyParams
+
   class CompanyCreateParams = WhopSDK::Models::CompanyCreateParams
 
   class CompanyListParams = WhopSDK::Models::CompanyListParams
@@ -128,6 +164,8 @@ module WhopSDK
   module CompanyTokenTransactionType = WhopSDK::Models::CompanyTokenTransactionType
 
   class CompanyUpdateParams = WhopSDK::Models::CompanyUpdateParams
+
+  class ConversionCreateParams = WhopSDK::Models::ConversionCreateParams
 
   class Course = WhopSDK::Models::Course
 
@@ -602,6 +640,14 @@ module WhopSDK
   module ShipmentSubstatus = WhopSDK::Models::ShipmentSubstatus
 
   module SocialLinkWebsites = WhopSDK::Models::SocialLinkWebsites
+
+  class StatDescribeParams = WhopSDK::Models::StatDescribeParams
+
+  class StatQueryMetricParams = WhopSDK::Models::StatQueryMetricParams
+
+  class StatQueryRawParams = WhopSDK::Models::StatQueryRawParams
+
+  class StatRunSqlParams = WhopSDK::Models::StatRunSqlParams
 
   module Status = WhopSDK::Models::Status
 

@@ -1,0 +1,87 @@
+module WhopSDK
+  module Models
+    type ad_group_list_params =
+      {
+        after: String?,
+        before: String?,
+        campaign_id: String?,
+        company_id: String?,
+        created_after: Time?,
+        created_before: Time?,
+        first: Integer?,
+        last: Integer?,
+        query: String?,
+        status: WhopSDK::Models::AdGroupListParams::status?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class AdGroupListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor campaign_id: String?
+
+      attr_accessor company_id: String?
+
+      attr_accessor created_after: Time?
+
+      attr_accessor created_before: Time?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      attr_accessor query: String?
+
+      attr_accessor status: WhopSDK::Models::AdGroupListParams::status?
+
+      def initialize: (
+        ?after: String?,
+        ?before: String?,
+        ?campaign_id: String?,
+        ?company_id: String?,
+        ?created_after: Time?,
+        ?created_before: Time?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?query: String?,
+        ?status: WhopSDK::Models::AdGroupListParams::status?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        after: String?,
+        before: String?,
+        campaign_id: String?,
+        company_id: String?,
+        created_after: Time?,
+        created_before: Time?,
+        first: Integer?,
+        last: Integer?,
+        query: String?,
+        status: WhopSDK::Models::AdGroupListParams::status?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type status =
+        :active | :paused | :inactive | :in_review | :rejected | :flagged
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        ACTIVE: :active
+        PAUSED: :paused
+        INACTIVE: :inactive
+        IN_REVIEW: :in_review
+        REJECTED: :rejected
+        FLAGGED: :flagged
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroupListParams::status]
+      end
+    end
+  end
+end

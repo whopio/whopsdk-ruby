@@ -1,0 +1,73 @@
+module WhopSDK
+  module Models
+    type stat_query_metric_response =
+      {
+        columns: ::Array[String]?,
+        data: ::Array[::Hash[Symbol, top]]?,
+        debug: WhopSDK::Models::StatQueryMetricResponse::Debug?,
+        node: String?,
+        pagination: WhopSDK::Models::StatQueryMetricResponse::Pagination?,
+        typename: :Result
+      }
+
+    class StatQueryMetricResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor columns: ::Array[String]?
+
+      attr_accessor data: ::Array[::Hash[Symbol, top]]?
+
+      attr_accessor debug: WhopSDK::Models::StatQueryMetricResponse::Debug?
+
+      attr_accessor node: String?
+
+      attr_accessor pagination: WhopSDK::Models::StatQueryMetricResponse::Pagination?
+
+      attr_accessor typename: :Result
+
+      def initialize: (
+        columns: ::Array[String]?,
+        data: ::Array[::Hash[Symbol, top]]?,
+        debug: WhopSDK::Models::StatQueryMetricResponse::Debug?,
+        node: String?,
+        pagination: WhopSDK::Models::StatQueryMetricResponse::Pagination?,
+        ?typename: :Result
+      ) -> void
+
+      def to_hash: -> {
+        columns: ::Array[String]?,
+        data: ::Array[::Hash[Symbol, top]]?,
+        debug: WhopSDK::Models::StatQueryMetricResponse::Debug?,
+        node: String?,
+        pagination: WhopSDK::Models::StatQueryMetricResponse::Pagination?,
+        typename: :Result
+      }
+
+      type debug = { engine: String?, request_id: String?, sql: String? }
+
+      class Debug < WhopSDK::Internal::Type::BaseModel
+        attr_accessor engine: String?
+
+        attr_accessor request_id: String?
+
+        attr_accessor sql: String?
+
+        def initialize: (
+          engine: String?,
+          request_id: String?,
+          sql: String?
+        ) -> void
+
+        def to_hash: -> { engine: String?, request_id: String?, sql: String? }
+      end
+
+      type pagination = { next_cursor: String? }
+
+      class Pagination < WhopSDK::Internal::Type::BaseModel
+        attr_accessor next_cursor: String?
+
+        def initialize: (next_cursor: String?) -> void
+
+        def to_hash: -> { next_cursor: String? }
+      end
+    end
+  end
+end

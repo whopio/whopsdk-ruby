@@ -1,0 +1,52 @@
+module WhopSDK
+  module Resources
+    class AdGroups
+      def create: (
+        campaign_id: String,
+        ?budget: Float?,
+        ?budget_type: WhopSDK::Models::AdGroupCreateParams::budget_type?,
+        ?config: WhopSDK::AdGroupCreateParams::Config?,
+        ?daily_budget: Float?,
+        ?name: String?,
+        ?platform_config: WhopSDK::AdGroupCreateParams::PlatformConfig?,
+        ?status: WhopSDK::Models::AdGroupCreateParams::status?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::AdGroupCreateResponse
+
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::AdGroupRetrieveResponse
+
+      def update: (
+        String id,
+        ?budget: Float?,
+        ?budget_type: WhopSDK::Models::AdGroupUpdateParams::budget_type?,
+        ?config: WhopSDK::AdGroupUpdateParams::Config?,
+        ?daily_budget: Float?,
+        ?name: String?,
+        ?platform_config: WhopSDK::AdGroupUpdateParams::PlatformConfig?,
+        ?status: WhopSDK::Models::AdGroupUpdateParams::status?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::AdGroupUpdateResponse
+
+      def list: (
+        ?after: String?,
+        ?before: String?,
+        ?campaign_id: String?,
+        ?company_id: String?,
+        ?created_after: Time?,
+        ?created_before: Time?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?query: String?,
+        ?status: WhopSDK::Models::AdGroupListParams::status?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::AdGroupListResponse]
+
+      def delete: (String id, ?request_options: WhopSDK::request_opts) -> bool
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

@@ -9,6 +9,34 @@ module WhopSDK
 
   AccountLinkCreateParams = WhopSDK::Models::AccountLinkCreateParams
 
+  AdCampaignCreateParams = WhopSDK::Models::AdCampaignCreateParams
+
+  AdCampaignListParams = WhopSDK::Models::AdCampaignListParams
+
+  AdCampaignPauseParams = WhopSDK::Models::AdCampaignPauseParams
+
+  AdCampaignRetrieveParams = WhopSDK::Models::AdCampaignRetrieveParams
+
+  AdCampaignUnpauseParams = WhopSDK::Models::AdCampaignUnpauseParams
+
+  AdCampaignUpdateParams = WhopSDK::Models::AdCampaignUpdateParams
+
+  AdCreateParams = WhopSDK::Models::AdCreateParams
+
+  AdGroupCreateParams = WhopSDK::Models::AdGroupCreateParams
+
+  AdGroupDeleteParams = WhopSDK::Models::AdGroupDeleteParams
+
+  AdGroupListParams = WhopSDK::Models::AdGroupListParams
+
+  AdGroupRetrieveParams = WhopSDK::Models::AdGroupRetrieveParams
+
+  AdGroupUpdateParams = WhopSDK::Models::AdGroupUpdateParams
+
+  AdListParams = WhopSDK::Models::AdListParams
+
+  AdRetrieveParams = WhopSDK::Models::AdRetrieveParams
+
   Affiliate = WhopSDK::Models::Affiliate
 
   AffiliateArchiveParams = WhopSDK::Models::AffiliateArchiveParams
@@ -83,6 +111,12 @@ module WhopSDK
 
   BillingReasons = WhopSDK::Models::BillingReasons
 
+  BountyCreateParams = WhopSDK::Models::BountyCreateParams
+
+  BountyListParams = WhopSDK::Models::BountyListParams
+
+  BountyRetrieveParams = WhopSDK::Models::BountyRetrieveParams
+
   CancelOptions = WhopSDK::Models::CancelOptions
 
   CardBrands = WhopSDK::Models::CardBrands
@@ -116,6 +150,8 @@ module WhopSDK
 
   Company = WhopSDK::Models::Company
 
+  CompanyCreateAPIKeyParams = WhopSDK::Models::CompanyCreateAPIKeyParams
+
   CompanyCreateParams = WhopSDK::Models::CompanyCreateParams
 
   CompanyListParams = WhopSDK::Models::CompanyListParams
@@ -136,6 +172,8 @@ module WhopSDK
   CompanyTokenTransactionType = WhopSDK::Models::CompanyTokenTransactionType
 
   CompanyUpdateParams = WhopSDK::Models::CompanyUpdateParams
+
+  ConversionCreateParams = WhopSDK::Models::ConversionCreateParams
 
   Course = WhopSDK::Models::Course
 
@@ -637,6 +675,14 @@ module WhopSDK
   ShipmentSubstatus = WhopSDK::Models::ShipmentSubstatus
 
   SocialLinkWebsites = WhopSDK::Models::SocialLinkWebsites
+
+  StatDescribeParams = WhopSDK::Models::StatDescribeParams
+
+  StatQueryMetricParams = WhopSDK::Models::StatQueryMetricParams
+
+  StatQueryRawParams = WhopSDK::Models::StatQueryRawParams
+
+  StatRunSqlParams = WhopSDK::Models::StatRunSqlParams
 
   Status = WhopSDK::Models::Status
 

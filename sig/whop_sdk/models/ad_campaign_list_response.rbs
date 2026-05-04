@@ -1,0 +1,167 @@
+module WhopSDK
+  module Models
+    type ad_campaign_list_response =
+      {
+        id: String,
+        available_budget: Float,
+        clicks_count: Integer,
+        created_at: Time,
+        daily_budget: Float?,
+        impressions_count: Integer,
+        paused_until: Time?,
+        platform: WhopSDK::Models::AdCampaignListResponse::platform?,
+        product: WhopSDK::Models::AdCampaignListResponse::Product?,
+        purchases_count: Integer,
+        remaining_balance: Float,
+        return_on_ad_spend: Float,
+        revenue: Float,
+        status: WhopSDK::Models::AdCampaignListResponse::status,
+        target_country_codes: ::Array[String],
+        title: String,
+        todays_spend: Float,
+        total_credits: Float,
+        total_spend: Float,
+        updated_at: Time
+      }
+
+    class AdCampaignListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor available_budget: Float
+
+      attr_accessor clicks_count: Integer
+
+      attr_accessor created_at: Time
+
+      attr_accessor daily_budget: Float?
+
+      attr_accessor impressions_count: Integer
+
+      attr_accessor paused_until: Time?
+
+      attr_accessor platform: WhopSDK::Models::AdCampaignListResponse::platform?
+
+      attr_accessor product: WhopSDK::Models::AdCampaignListResponse::Product?
+
+      attr_accessor purchases_count: Integer
+
+      attr_accessor remaining_balance: Float
+
+      attr_accessor return_on_ad_spend: Float
+
+      attr_accessor revenue: Float
+
+      attr_accessor status: WhopSDK::Models::AdCampaignListResponse::status
+
+      attr_accessor target_country_codes: ::Array[String]
+
+      attr_accessor title: String
+
+      attr_accessor todays_spend: Float
+
+      attr_accessor total_credits: Float
+
+      attr_accessor total_spend: Float
+
+      attr_accessor updated_at: Time
+
+      def initialize: (
+        id: String,
+        available_budget: Float,
+        clicks_count: Integer,
+        created_at: Time,
+        daily_budget: Float?,
+        impressions_count: Integer,
+        paused_until: Time?,
+        platform: WhopSDK::Models::AdCampaignListResponse::platform?,
+        product: WhopSDK::Models::AdCampaignListResponse::Product?,
+        purchases_count: Integer,
+        remaining_balance: Float,
+        return_on_ad_spend: Float,
+        revenue: Float,
+        status: WhopSDK::Models::AdCampaignListResponse::status,
+        target_country_codes: ::Array[String],
+        title: String,
+        todays_spend: Float,
+        total_credits: Float,
+        total_spend: Float,
+        updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        available_budget: Float,
+        clicks_count: Integer,
+        created_at: Time,
+        daily_budget: Float?,
+        impressions_count: Integer,
+        paused_until: Time?,
+        platform: WhopSDK::Models::AdCampaignListResponse::platform?,
+        product: WhopSDK::Models::AdCampaignListResponse::Product?,
+        purchases_count: Integer,
+        remaining_balance: Float,
+        return_on_ad_spend: Float,
+        revenue: Float,
+        status: WhopSDK::Models::AdCampaignListResponse::status,
+        target_country_codes: ::Array[String],
+        title: String,
+        todays_spend: Float,
+        total_credits: Float,
+        total_spend: Float,
+        updated_at: Time
+      }
+
+      type platform = :meta | :tiktok
+
+      module Platform
+        extend WhopSDK::Internal::Type::Enum
+
+        META: :meta
+        TIKTOK: :tiktok
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdCampaignListResponse::platform]
+      end
+
+      type product = { id: String, route: String, title: String }
+
+      class Product < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor route: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, route: String, title: String) -> void
+
+        def to_hash: -> { id: String, route: String, title: String }
+      end
+
+      type status =
+        :active
+        | :paused
+        | :inactive
+        | :stale
+        | :pending_refund
+        | :payment_failed
+        | :draft
+        | :in_review
+        | :flagged
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        ACTIVE: :active
+        PAUSED: :paused
+        INACTIVE: :inactive
+        STALE: :stale
+        PENDING_REFUND: :pending_refund
+        PAYMENT_FAILED: :payment_failed
+        DRAFT: :draft
+        IN_REVIEW: :in_review
+        FLAGGED: :flagged
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdCampaignListResponse::status]
+      end
+    end
+  end
+end

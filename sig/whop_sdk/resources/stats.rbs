@@ -1,0 +1,54 @@
+module WhopSDK
+  module Resources
+    class Stats
+      def describe: (
+        ?company_id: String?,
+        ?resource: String?,
+        ?user_id: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::stat_describe_response?
+
+      def query_metric: (
+        resource: String,
+        ?breakdowns: ::Array[String]?,
+        ?company_id: String?,
+        ?filters: ::Hash[Symbol, top]?,
+        ?from: Time?,
+        ?granularity: String?,
+        ?time_zone: String?,
+        ?to: Time?,
+        ?user_id: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::StatQueryMetricResponse
+
+      def query_raw: (
+        resource: String,
+        ?company_id: String?,
+        ?cursor: String?,
+        ?from: Time?,
+        ?limit: Integer?,
+        ?sort: String?,
+        ?sort_direction: WhopSDK::Models::direction?,
+        ?to: Time?,
+        ?user_id: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::StatQueryRawResponse
+
+      def run_sql: (
+        resource: String,
+        sql: String,
+        ?company_id: String?,
+        ?cursor: String?,
+        ?from: Time?,
+        ?limit: Integer?,
+        ?sort: String?,
+        ?sort_direction: WhopSDK::Models::direction?,
+        ?to: Time?,
+        ?user_id: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::StatRunSqlResponse
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

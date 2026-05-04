@@ -387,6 +387,11 @@ module WhopSDK
                 :EVENT_RSVP,
                 WhopSDK::Models::AdListResponse::PlatformConfig::MetaAdPlatformConfigType::CallToActionType::TaggedSymbol
               )
+            SEE_DETAILS =
+              T.let(
+                :SEE_DETAILS,
+                WhopSDK::Models::AdListResponse::PlatformConfig::MetaAdPlatformConfigType::CallToActionType::TaggedSymbol
+              )
 
             sig do
               override.returns(

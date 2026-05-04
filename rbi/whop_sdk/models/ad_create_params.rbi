@@ -530,6 +530,11 @@ module WhopSDK
                 :EVENT_RSVP,
                 WhopSDK::AdCreateParams::PlatformConfig::Meta::CallToActionType::TaggedSymbol
               )
+            SEE_DETAILS =
+              T.let(
+                :SEE_DETAILS,
+                WhopSDK::AdCreateParams::PlatformConfig::Meta::CallToActionType::TaggedSymbol
+              )
 
             sig do
               override.returns(

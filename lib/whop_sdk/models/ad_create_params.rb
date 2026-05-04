@@ -283,6 +283,7 @@ module WhopSDK
             SEE_MENU = :SEE_MENU
             REQUEST_TIME = :REQUEST_TIME
             EVENT_RSVP = :EVENT_RSVP
+            SEE_DETAILS = :SEE_DETAILS
 
             # @!method self.values
             #   @return [Array<Symbol>]

@@ -197,6 +197,7 @@ module WhopSDK
             | :SEE_MENU
             | :REQUEST_TIME
             | :EVENT_RSVP
+            | :SEE_DETAILS
 
           module CallToActionType
             extend WhopSDK::Internal::Type::Enum
@@ -230,6 +231,7 @@ module WhopSDK
             SEE_MENU: :SEE_MENU
             REQUEST_TIME: :REQUEST_TIME
             EVENT_RSVP: :EVENT_RSVP
+            SEE_DETAILS: :SEE_DETAILS
 
             def self?.values: -> ::Array[WhopSDK::Models::AdCreateResponse::PlatformConfig::MetaAdPlatformConfigType::call_to_action_type]
           end

@@ -236,6 +236,30 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::Affiliates) }
     attr_reader :affiliates
 
+    # Bounties
+    sig { returns(WhopSDK::Resources::Bounties) }
+    attr_reader :bounties
+
+    # Stats
+    sig { returns(WhopSDK::Resources::Stats) }
+    attr_reader :stats
+
+    # Ad campaigns
+    sig { returns(WhopSDK::Resources::AdCampaigns) }
+    attr_reader :ad_campaigns
+
+    # Ad groups
+    sig { returns(WhopSDK::Resources::AdGroups) }
+    attr_reader :ad_groups
+
+    # Ads
+    sig { returns(WhopSDK::Resources::Ads) }
+    attr_reader :ads
+
+    # Conversions
+    sig { returns(WhopSDK::Resources::Conversions) }
+    attr_reader :conversions
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

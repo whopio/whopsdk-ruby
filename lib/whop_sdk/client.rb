@@ -241,6 +241,30 @@ module WhopSDK
     # @return [WhopSDK::Resources::Affiliates]
     attr_reader :affiliates
 
+    # Bounties
+    # @return [WhopSDK::Resources::Bounties]
+    attr_reader :bounties
+
+    # Stats
+    # @return [WhopSDK::Resources::Stats]
+    attr_reader :stats
+
+    # Ad campaigns
+    # @return [WhopSDK::Resources::AdCampaigns]
+    attr_reader :ad_campaigns
+
+    # Ad groups
+    # @return [WhopSDK::Resources::AdGroups]
+    attr_reader :ad_groups
+
+    # Ads
+    # @return [WhopSDK::Resources::Ads]
+    attr_reader :ads
+
+    # Conversions
+    # @return [WhopSDK::Resources::Conversions]
+    attr_reader :conversions
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -367,6 +391,12 @@ module WhopSDK
       @resolution_center_cases = WhopSDK::Resources::ResolutionCenterCases.new(client: self)
       @payout_accounts = WhopSDK::Resources::PayoutAccounts.new(client: self)
       @affiliates = WhopSDK::Resources::Affiliates.new(client: self)
+      @bounties = WhopSDK::Resources::Bounties.new(client: self)
+      @stats = WhopSDK::Resources::Stats.new(client: self)
+      @ad_campaigns = WhopSDK::Resources::AdCampaigns.new(client: self)
+      @ad_groups = WhopSDK::Resources::AdGroups.new(client: self)
+      @ads = WhopSDK::Resources::Ads.new(client: self)
+      @conversions = WhopSDK::Resources::Conversions.new(client: self)
     end
   end
 end

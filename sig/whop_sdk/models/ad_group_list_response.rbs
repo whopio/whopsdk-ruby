@@ -1,0 +1,907 @@
+module WhopSDK
+  module Models
+    type ad_group_list_response =
+      {
+        id: String,
+        config: WhopSDK::Models::AdGroupListResponse::Config?,
+        created_at: Time,
+        daily_budget: Float?,
+        name: String?,
+        platform_config: WhopSDK::Models::AdGroupListResponse::platform_config?,
+        status: WhopSDK::Models::AdGroupListResponse::status,
+        updated_at: Time
+      }
+
+    class AdGroupListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor config: WhopSDK::Models::AdGroupListResponse::Config?
+
+      attr_accessor created_at: Time
+
+      attr_accessor daily_budget: Float?
+
+      attr_accessor name: String?
+
+      attr_accessor platform_config: WhopSDK::Models::AdGroupListResponse::platform_config?
+
+      attr_accessor status: WhopSDK::Models::AdGroupListResponse::status
+
+      attr_accessor updated_at: Time
+
+      def initialize: (
+        id: String,
+        config: WhopSDK::Models::AdGroupListResponse::Config?,
+        created_at: Time,
+        daily_budget: Float?,
+        name: String?,
+        platform_config: WhopSDK::Models::AdGroupListResponse::platform_config?,
+        status: WhopSDK::Models::AdGroupListResponse::status,
+        updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        config: WhopSDK::Models::AdGroupListResponse::Config?,
+        created_at: Time,
+        daily_budget: Float?,
+        name: String?,
+        platform_config: WhopSDK::Models::AdGroupListResponse::platform_config?,
+        status: WhopSDK::Models::AdGroupListResponse::status,
+        updated_at: Time
+      }
+
+      type config =
+        {
+          bid_amount: Integer?,
+          bid_strategy: WhopSDK::Models::AdGroupListResponse::Config::bid_strategy?,
+          billing_event: WhopSDK::Models::AdGroupListResponse::Config::billing_event?,
+          end_time: String?,
+          frequency_cap: Integer?,
+          frequency_cap_interval_days: Integer?,
+          optimization_goal: WhopSDK::Models::AdGroupListResponse::Config::optimization_goal?,
+          pacing: WhopSDK::Models::AdGroupListResponse::Config::pacing?,
+          start_time: String?,
+          targeting: WhopSDK::Models::AdGroupListResponse::Config::Targeting?
+        }
+
+      class Config < WhopSDK::Internal::Type::BaseModel
+        attr_accessor bid_amount: Integer?
+
+        attr_accessor bid_strategy: WhopSDK::Models::AdGroupListResponse::Config::bid_strategy?
+
+        attr_accessor billing_event: WhopSDK::Models::AdGroupListResponse::Config::billing_event?
+
+        attr_accessor end_time: String?
+
+        attr_accessor frequency_cap: Integer?
+
+        attr_accessor frequency_cap_interval_days: Integer?
+
+        attr_accessor optimization_goal: WhopSDK::Models::AdGroupListResponse::Config::optimization_goal?
+
+        attr_accessor pacing: WhopSDK::Models::AdGroupListResponse::Config::pacing?
+
+        attr_accessor start_time: String?
+
+        attr_accessor targeting: WhopSDK::Models::AdGroupListResponse::Config::Targeting?
+
+        def initialize: (
+          bid_amount: Integer?,
+          bid_strategy: WhopSDK::Models::AdGroupListResponse::Config::bid_strategy?,
+          billing_event: WhopSDK::Models::AdGroupListResponse::Config::billing_event?,
+          end_time: String?,
+          frequency_cap: Integer?,
+          frequency_cap_interval_days: Integer?,
+          optimization_goal: WhopSDK::Models::AdGroupListResponse::Config::optimization_goal?,
+          pacing: WhopSDK::Models::AdGroupListResponse::Config::pacing?,
+          start_time: String?,
+          targeting: WhopSDK::Models::AdGroupListResponse::Config::Targeting?
+        ) -> void
+
+        def to_hash: -> {
+          bid_amount: Integer?,
+          bid_strategy: WhopSDK::Models::AdGroupListResponse::Config::bid_strategy?,
+          billing_event: WhopSDK::Models::AdGroupListResponse::Config::billing_event?,
+          end_time: String?,
+          frequency_cap: Integer?,
+          frequency_cap_interval_days: Integer?,
+          optimization_goal: WhopSDK::Models::AdGroupListResponse::Config::optimization_goal?,
+          pacing: WhopSDK::Models::AdGroupListResponse::Config::pacing?,
+          start_time: String?,
+          targeting: WhopSDK::Models::AdGroupListResponse::Config::Targeting?
+        }
+
+        type bid_strategy = :lowest_cost | :bid_cap | :cost_cap
+
+        module BidStrategy
+          extend WhopSDK::Internal::Type::Enum
+
+          LOWEST_COST: :lowest_cost
+          BID_CAP: :bid_cap
+          COST_CAP: :cost_cap
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::Config::bid_strategy]
+        end
+
+        type billing_event =
+          :impressions | :clicks | :optimized_cpm | :video_views
+
+        module BillingEvent
+          extend WhopSDK::Internal::Type::Enum
+
+          IMPRESSIONS: :impressions
+          CLICKS: :clicks
+          OPTIMIZED_CPM: :optimized_cpm
+          VIDEO_VIEWS: :video_views
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::Config::billing_event]
+        end
+
+        type optimization_goal =
+          :conversions
+          | :link_clicks
+          | :landing_page_views
+          | :reach
+          | :impressions
+          | :app_installs
+          | :video_views
+          | :lead_generation
+          | :value
+          | :page_likes
+          | :conversations
+          | :ad_recall_lift
+          | :two_second_continuous_video_views
+          | :post_engagement
+          | :event_responses
+          | :reminders_set
+          | :quality_lead
+
+        module OptimizationGoal
+          extend WhopSDK::Internal::Type::Enum
+
+          CONVERSIONS: :conversions
+          LINK_CLICKS: :link_clicks
+          LANDING_PAGE_VIEWS: :landing_page_views
+          REACH: :reach
+          IMPRESSIONS: :impressions
+          APP_INSTALLS: :app_installs
+          VIDEO_VIEWS: :video_views
+          LEAD_GENERATION: :lead_generation
+          VALUE: :value
+          PAGE_LIKES: :page_likes
+          CONVERSATIONS: :conversations
+          AD_RECALL_LIFT: :ad_recall_lift
+          TWO_SECOND_CONTINUOUS_VIDEO_VIEWS: :two_second_continuous_video_views
+          POST_ENGAGEMENT: :post_engagement
+          EVENT_RESPONSES: :event_responses
+          REMINDERS_SET: :reminders_set
+          QUALITY_LEAD: :quality_lead
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::Config::optimization_goal]
+        end
+
+        type pacing = :standard | :accelerated
+
+        module Pacing
+          extend WhopSDK::Internal::Type::Enum
+
+          STANDARD: :standard
+          ACCELERATED: :accelerated
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::Config::pacing]
+        end
+
+        type targeting =
+          {
+            age_max: Integer?,
+            age_min: Integer?,
+            countries: ::Array[String]?,
+            device_platforms: ::Array[WhopSDK::Models::AdGroupListResponse::Config::Targeting::device_platform]?,
+            exclude_audience_ids: ::Array[String]?,
+            genders: ::Array[WhopSDK::Models::AdGroupListResponse::Config::Targeting::gender]?,
+            include_audience_ids: ::Array[String]?,
+            interest_ids: ::Array[String]?,
+            languages: ::Array[String]?,
+            placement_type: WhopSDK::Models::AdGroupListResponse::Config::Targeting::placement_type?
+          }
+
+        class Targeting < WhopSDK::Internal::Type::BaseModel
+          attr_accessor age_max: Integer?
+
+          attr_accessor age_min: Integer?
+
+          attr_accessor countries: ::Array[String]?
+
+          attr_accessor device_platforms: ::Array[WhopSDK::Models::AdGroupListResponse::Config::Targeting::device_platform]?
+
+          attr_accessor exclude_audience_ids: ::Array[String]?
+
+          attr_accessor genders: ::Array[WhopSDK::Models::AdGroupListResponse::Config::Targeting::gender]?
+
+          attr_accessor include_audience_ids: ::Array[String]?
+
+          attr_accessor interest_ids: ::Array[String]?
+
+          attr_accessor languages: ::Array[String]?
+
+          attr_accessor placement_type: WhopSDK::Models::AdGroupListResponse::Config::Targeting::placement_type?
+
+          def initialize: (
+            age_max: Integer?,
+            age_min: Integer?,
+            countries: ::Array[String]?,
+            device_platforms: ::Array[WhopSDK::Models::AdGroupListResponse::Config::Targeting::device_platform]?,
+            exclude_audience_ids: ::Array[String]?,
+            genders: ::Array[WhopSDK::Models::AdGroupListResponse::Config::Targeting::gender]?,
+            include_audience_ids: ::Array[String]?,
+            interest_ids: ::Array[String]?,
+            languages: ::Array[String]?,
+            placement_type: WhopSDK::Models::AdGroupListResponse::Config::Targeting::placement_type?
+          ) -> void
+
+          def to_hash: -> {
+            age_max: Integer?,
+            age_min: Integer?,
+            countries: ::Array[String]?,
+            device_platforms: ::Array[WhopSDK::Models::AdGroupListResponse::Config::Targeting::device_platform]?,
+            exclude_audience_ids: ::Array[String]?,
+            genders: ::Array[WhopSDK::Models::AdGroupListResponse::Config::Targeting::gender]?,
+            include_audience_ids: ::Array[String]?,
+            interest_ids: ::Array[String]?,
+            languages: ::Array[String]?,
+            placement_type: WhopSDK::Models::AdGroupListResponse::Config::Targeting::placement_type?
+          }
+
+          type device_platform = :mobile | :desktop
+
+          module DevicePlatform
+            extend WhopSDK::Internal::Type::Enum
+
+            MOBILE: :mobile
+            DESKTOP: :desktop
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::Config::Targeting::device_platform]
+          end
+
+          type gender = :male | :female | :all
+
+          module Gender
+            extend WhopSDK::Internal::Type::Enum
+
+            MALE: :male
+            FEMALE: :female
+            ALL: :all
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::Config::Targeting::gender]
+          end
+
+          type placement_type = :automatic | :manual
+
+          module PlacementType
+            extend WhopSDK::Internal::Type::Enum
+
+            AUTOMATIC: :automatic
+            MANUAL: :manual
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::Config::Targeting::placement_type]
+          end
+        end
+      end
+
+      type platform_config =
+        (WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType
+        | WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType)?
+
+      module PlatformConfig
+        extend WhopSDK::Internal::Type::Union
+
+        type meta_ad_group_platform_config_type =
+          {
+            attribution_spec: ::Array[::Hash[Symbol, top]]?,
+            bid_amount: Integer?,
+            bid_strategy: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::bid_strategy?,
+            billing_event: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::billing_event?,
+            daily_budget: Integer?,
+            destination_type: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::destination_type?,
+            end_time: String?,
+            excluded_geo_locations: ::Hash[Symbol, top]?,
+            facebook_positions: ::Array[String]?,
+            geo_locations: ::Hash[Symbol, top]?,
+            instagram_actor_id: String?,
+            instagram_positions: ::Array[String]?,
+            lifetime_budget: Integer?,
+            optimization_goal: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::optimization_goal?,
+            page_id: String?,
+            platform: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::platform,
+            promoted_object: ::Hash[Symbol, top]?,
+            publisher_platforms: ::Array[String]?,
+            status: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::status?,
+            targeting_automation: ::Hash[Symbol, top]?,
+            typename: :MetaAdGroupPlatformConfigType
+          }
+
+        class MetaAdGroupPlatformConfigType < WhopSDK::Internal::Type::BaseModel
+          attr_accessor attribution_spec: ::Array[::Hash[Symbol, top]]?
+
+          attr_accessor bid_amount: Integer?
+
+          attr_accessor bid_strategy: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::bid_strategy?
+
+          attr_accessor billing_event: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::billing_event?
+
+          attr_accessor daily_budget: Integer?
+
+          attr_accessor destination_type: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::destination_type?
+
+          attr_accessor end_time: String?
+
+          attr_accessor excluded_geo_locations: ::Hash[Symbol, top]?
+
+          attr_accessor facebook_positions: ::Array[String]?
+
+          attr_accessor geo_locations: ::Hash[Symbol, top]?
+
+          attr_accessor instagram_actor_id: String?
+
+          attr_accessor instagram_positions: ::Array[String]?
+
+          attr_accessor lifetime_budget: Integer?
+
+          attr_accessor optimization_goal: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::optimization_goal?
+
+          attr_accessor page_id: String?
+
+          attr_accessor platform: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::platform
+
+          attr_accessor promoted_object: ::Hash[Symbol, top]?
+
+          attr_accessor publisher_platforms: ::Array[String]?
+
+          attr_accessor status: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::status?
+
+          attr_accessor targeting_automation: ::Hash[Symbol, top]?
+
+          attr_accessor typename: :MetaAdGroupPlatformConfigType
+
+          def initialize: (
+            attribution_spec: ::Array[::Hash[Symbol, top]]?,
+            bid_amount: Integer?,
+            bid_strategy: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::bid_strategy?,
+            billing_event: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::billing_event?,
+            daily_budget: Integer?,
+            destination_type: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::destination_type?,
+            end_time: String?,
+            excluded_geo_locations: ::Hash[Symbol, top]?,
+            facebook_positions: ::Array[String]?,
+            geo_locations: ::Hash[Symbol, top]?,
+            instagram_actor_id: String?,
+            instagram_positions: ::Array[String]?,
+            lifetime_budget: Integer?,
+            optimization_goal: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::optimization_goal?,
+            page_id: String?,
+            platform: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::platform,
+            promoted_object: ::Hash[Symbol, top]?,
+            publisher_platforms: ::Array[String]?,
+            status: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::status?,
+            targeting_automation: ::Hash[Symbol, top]?,
+            ?typename: :MetaAdGroupPlatformConfigType
+          ) -> void
+
+          def to_hash: -> {
+            attribution_spec: ::Array[::Hash[Symbol, top]]?,
+            bid_amount: Integer?,
+            bid_strategy: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::bid_strategy?,
+            billing_event: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::billing_event?,
+            daily_budget: Integer?,
+            destination_type: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::destination_type?,
+            end_time: String?,
+            excluded_geo_locations: ::Hash[Symbol, top]?,
+            facebook_positions: ::Array[String]?,
+            geo_locations: ::Hash[Symbol, top]?,
+            instagram_actor_id: String?,
+            instagram_positions: ::Array[String]?,
+            lifetime_budget: Integer?,
+            optimization_goal: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::optimization_goal?,
+            page_id: String?,
+            platform: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::platform,
+            promoted_object: ::Hash[Symbol, top]?,
+            publisher_platforms: ::Array[String]?,
+            status: WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::status?,
+            targeting_automation: ::Hash[Symbol, top]?,
+            typename: :MetaAdGroupPlatformConfigType
+          }
+
+          type bid_strategy =
+            :LOWEST_COST_WITHOUT_CAP
+            | :LOWEST_COST_WITH_BID_CAP
+            | :COST_CAP
+            | :LOWEST_COST_WITH_MIN_ROAS
+
+          module BidStrategy
+            extend WhopSDK::Internal::Type::Enum
+
+            LOWEST_COST_WITHOUT_CAP: :LOWEST_COST_WITHOUT_CAP
+            LOWEST_COST_WITH_BID_CAP: :LOWEST_COST_WITH_BID_CAP
+            COST_CAP: :COST_CAP
+            LOWEST_COST_WITH_MIN_ROAS: :LOWEST_COST_WITH_MIN_ROAS
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::bid_strategy]
+          end
+
+          type billing_event =
+            :APP_INSTALLS
+            | :CLICKS
+            | :IMPRESSIONS
+            | :LINK_CLICKS
+            | :NONE
+            | :OFFER_CLAIMS
+            | :PAGE_LIKES
+            | :POST_ENGAGEMENT
+            | :THRUPLAY
+            | :PURCHASE
+            | :LISTING_INTERACTION
+
+          module BillingEvent
+            extend WhopSDK::Internal::Type::Enum
+
+            APP_INSTALLS: :APP_INSTALLS
+            CLICKS: :CLICKS
+            IMPRESSIONS: :IMPRESSIONS
+            LINK_CLICKS: :LINK_CLICKS
+            NONE: :NONE
+            OFFER_CLAIMS: :OFFER_CLAIMS
+            PAGE_LIKES: :PAGE_LIKES
+            POST_ENGAGEMENT: :POST_ENGAGEMENT
+            THRUPLAY: :THRUPLAY
+            PURCHASE: :PURCHASE
+            LISTING_INTERACTION: :LISTING_INTERACTION
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::billing_event]
+          end
+
+          type destination_type =
+            :UNDEFINED
+            | :WEBSITE
+            | :APP
+            | :FACEBOOK
+            | :MESSENGER
+            | :WHATSAPP
+            | :INSTAGRAM_DIRECT
+            | :INSTAGRAM_PROFILE
+            | :PHONE_CALL
+            | :SHOP_AUTOMATIC
+            | :APPLINKS_AUTOMATIC
+            | :ON_AD
+            | :ON_POST
+            | :ON_VIDEO
+            | :ON_PAGE
+            | :ON_EVENT
+            | :MESSAGING_MESSENGER_WHATSAPP
+            | :MESSAGING_INSTAGRAM_DIRECT_MESSENGER
+            | :MESSAGING_INSTAGRAM_DIRECT_WHATSAPP
+            | :MESSAGING_INSTAGRAM_DIRECT_MESSENGER_WHATSAPP
+            | :INSTAGRAM_PROFILE_AND_FACEBOOK_PAGE
+            | :FACEBOOK_PAGE
+            | :INSTAGRAM_LIVE
+            | :FACEBOOK_LIVE
+            | :IMAGINE
+            | :LEAD_FROM_IG_DIRECT
+            | :LEAD_FROM_MESSENGER
+            | :WEBSITE_AND_LEAD_FORM
+            | :WEBSITE_AND_PHONE_CALL
+            | :BROADCAST_CHANNEL
+
+          module DestinationType
+            extend WhopSDK::Internal::Type::Enum
+
+            UNDEFINED: :UNDEFINED
+            WEBSITE: :WEBSITE
+            APP: :APP
+            FACEBOOK: :FACEBOOK
+            MESSENGER: :MESSENGER
+            WHATSAPP: :WHATSAPP
+            INSTAGRAM_DIRECT: :INSTAGRAM_DIRECT
+            INSTAGRAM_PROFILE: :INSTAGRAM_PROFILE
+            PHONE_CALL: :PHONE_CALL
+            SHOP_AUTOMATIC: :SHOP_AUTOMATIC
+            APPLINKS_AUTOMATIC: :APPLINKS_AUTOMATIC
+            ON_AD: :ON_AD
+            ON_POST: :ON_POST
+            ON_VIDEO: :ON_VIDEO
+            ON_PAGE: :ON_PAGE
+            ON_EVENT: :ON_EVENT
+            MESSAGING_MESSENGER_WHATSAPP: :MESSAGING_MESSENGER_WHATSAPP
+            MESSAGING_INSTAGRAM_DIRECT_MESSENGER: :MESSAGING_INSTAGRAM_DIRECT_MESSENGER
+            MESSAGING_INSTAGRAM_DIRECT_WHATSAPP: :MESSAGING_INSTAGRAM_DIRECT_WHATSAPP
+            MESSAGING_INSTAGRAM_DIRECT_MESSENGER_WHATSAPP: :MESSAGING_INSTAGRAM_DIRECT_MESSENGER_WHATSAPP
+            INSTAGRAM_PROFILE_AND_FACEBOOK_PAGE: :INSTAGRAM_PROFILE_AND_FACEBOOK_PAGE
+            FACEBOOK_PAGE: :FACEBOOK_PAGE
+            INSTAGRAM_LIVE: :INSTAGRAM_LIVE
+            FACEBOOK_LIVE: :FACEBOOK_LIVE
+            IMAGINE: :IMAGINE
+            LEAD_FROM_IG_DIRECT: :LEAD_FROM_IG_DIRECT
+            LEAD_FROM_MESSENGER: :LEAD_FROM_MESSENGER
+            WEBSITE_AND_LEAD_FORM: :WEBSITE_AND_LEAD_FORM
+            WEBSITE_AND_PHONE_CALL: :WEBSITE_AND_PHONE_CALL
+            BROADCAST_CHANNEL: :BROADCAST_CHANNEL
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::destination_type]
+          end
+
+          type optimization_goal =
+            :NONE
+            | :APP_INSTALLS
+            | :AD_RECALL_LIFT
+            | :ENGAGED_USERS
+            | :EVENT_RESPONSES
+            | :IMPRESSIONS
+            | :LEAD_GENERATION
+            | :QUALITY_LEAD
+            | :LINK_CLICKS
+            | :OFFSITE_CONVERSIONS
+            | :PAGE_LIKES
+            | :POST_ENGAGEMENT
+            | :QUALITY_CALL
+            | :REACH
+            | :LANDING_PAGE_VIEWS
+            | :VISIT_INSTAGRAM_PROFILE
+            | :VALUE
+            | :THRUPLAY
+            | :DERIVED_EVENTS
+            | :APP_INSTALLS_AND_OFFSITE_CONVERSIONS
+            | :CONVERSATIONS
+            | :IN_APP_VALUE
+            | :MESSAGING_PURCHASE_CONVERSION
+            | :SUBSCRIBERS
+            | :REMINDERS_SET
+            | :MEANINGFUL_CALL_ATTEMPT
+            | :PROFILE_VISIT
+            | :PROFILE_AND_PAGE_ENGAGEMENT
+            | :TWO_SECOND_CONTINUOUS_VIDEO_VIEWS
+            | :ENGAGED_REACH
+            | :ENGAGED_PAGE_VIEWS
+            | :MESSAGING_DEEP_CONVERSATION_AND_FOLLOW
+            | :ADVERTISER_SILOED_VALUE
+            | :AUTOMATIC_OBJECTIVE
+            | :MESSAGING_APPOINTMENT_CONVERSION
+
+          module OptimizationGoal
+            extend WhopSDK::Internal::Type::Enum
+
+            NONE: :NONE
+            APP_INSTALLS: :APP_INSTALLS
+            AD_RECALL_LIFT: :AD_RECALL_LIFT
+            ENGAGED_USERS: :ENGAGED_USERS
+            EVENT_RESPONSES: :EVENT_RESPONSES
+            IMPRESSIONS: :IMPRESSIONS
+            LEAD_GENERATION: :LEAD_GENERATION
+            QUALITY_LEAD: :QUALITY_LEAD
+            LINK_CLICKS: :LINK_CLICKS
+            OFFSITE_CONVERSIONS: :OFFSITE_CONVERSIONS
+            PAGE_LIKES: :PAGE_LIKES
+            POST_ENGAGEMENT: :POST_ENGAGEMENT
+            QUALITY_CALL: :QUALITY_CALL
+            REACH: :REACH
+            LANDING_PAGE_VIEWS: :LANDING_PAGE_VIEWS
+            VISIT_INSTAGRAM_PROFILE: :VISIT_INSTAGRAM_PROFILE
+            VALUE: :VALUE
+            THRUPLAY: :THRUPLAY
+            DERIVED_EVENTS: :DERIVED_EVENTS
+            APP_INSTALLS_AND_OFFSITE_CONVERSIONS: :APP_INSTALLS_AND_OFFSITE_CONVERSIONS
+            CONVERSATIONS: :CONVERSATIONS
+            IN_APP_VALUE: :IN_APP_VALUE
+            MESSAGING_PURCHASE_CONVERSION: :MESSAGING_PURCHASE_CONVERSION
+            SUBSCRIBERS: :SUBSCRIBERS
+            REMINDERS_SET: :REMINDERS_SET
+            MEANINGFUL_CALL_ATTEMPT: :MEANINGFUL_CALL_ATTEMPT
+            PROFILE_VISIT: :PROFILE_VISIT
+            PROFILE_AND_PAGE_ENGAGEMENT: :PROFILE_AND_PAGE_ENGAGEMENT
+            TWO_SECOND_CONTINUOUS_VIDEO_VIEWS: :TWO_SECOND_CONTINUOUS_VIDEO_VIEWS
+            ENGAGED_REACH: :ENGAGED_REACH
+            ENGAGED_PAGE_VIEWS: :ENGAGED_PAGE_VIEWS
+            MESSAGING_DEEP_CONVERSATION_AND_FOLLOW: :MESSAGING_DEEP_CONVERSATION_AND_FOLLOW
+            ADVERTISER_SILOED_VALUE: :ADVERTISER_SILOED_VALUE
+            AUTOMATIC_OBJECTIVE: :AUTOMATIC_OBJECTIVE
+            MESSAGING_APPOINTMENT_CONVERSION: :MESSAGING_APPOINTMENT_CONVERSION
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::optimization_goal]
+          end
+
+          type platform = :meta | :tiktok
+
+          module Platform
+            extend WhopSDK::Internal::Type::Enum
+
+            META: :meta
+            TIKTOK: :tiktok
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::platform]
+          end
+
+          type status = :ACTIVE | :PAUSED
+
+          module Status
+            extend WhopSDK::Internal::Type::Enum
+
+            ACTIVE: :ACTIVE
+            PAUSED: :PAUSED
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::PlatformConfig::MetaAdGroupPlatformConfigType::status]
+          end
+        end
+
+        type tiktok_ad_group_platform_config_type =
+          {
+            bid_price: Float?,
+            bid_type: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::bid_type?,
+            billing_event: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::billing_event?,
+            budget_mode: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::budget_mode?,
+            conversion_bid_price: Float?,
+            identity_id: String?,
+            identity_type: String?,
+            operation_status: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::operation_status?,
+            optimization_event: String?,
+            optimization_goal: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::optimization_goal?,
+            pacing: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::pacing?,
+            pixel_id: String?,
+            placement_type: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::placement_type?,
+            placements: ::Array[String]?,
+            platform: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::platform,
+            schedule_end_time: String?,
+            schedule_start_time: String?,
+            schedule_type: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::schedule_type?,
+            typename: :TiktokAdGroupPlatformConfigType
+          }
+
+        class TiktokAdGroupPlatformConfigType < WhopSDK::Internal::Type::BaseModel
+          attr_accessor bid_price: Float?
+
+          attr_accessor bid_type: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::bid_type?
+
+          attr_accessor billing_event: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::billing_event?
+
+          attr_accessor budget_mode: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::budget_mode?
+
+          attr_accessor conversion_bid_price: Float?
+
+          attr_accessor identity_id: String?
+
+          attr_accessor identity_type: String?
+
+          attr_accessor operation_status: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::operation_status?
+
+          attr_accessor optimization_event: String?
+
+          attr_accessor optimization_goal: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::optimization_goal?
+
+          attr_accessor pacing: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::pacing?
+
+          attr_accessor pixel_id: String?
+
+          attr_accessor placement_type: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::placement_type?
+
+          attr_accessor placements: ::Array[String]?
+
+          attr_accessor platform: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::platform
+
+          attr_accessor schedule_end_time: String?
+
+          attr_accessor schedule_start_time: String?
+
+          attr_accessor schedule_type: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::schedule_type?
+
+          attr_accessor typename: :TiktokAdGroupPlatformConfigType
+
+          def initialize: (
+            bid_price: Float?,
+            bid_type: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::bid_type?,
+            billing_event: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::billing_event?,
+            budget_mode: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::budget_mode?,
+            conversion_bid_price: Float?,
+            identity_id: String?,
+            identity_type: String?,
+            operation_status: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::operation_status?,
+            optimization_event: String?,
+            optimization_goal: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::optimization_goal?,
+            pacing: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::pacing?,
+            pixel_id: String?,
+            placement_type: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::placement_type?,
+            placements: ::Array[String]?,
+            platform: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::platform,
+            schedule_end_time: String?,
+            schedule_start_time: String?,
+            schedule_type: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::schedule_type?,
+            ?typename: :TiktokAdGroupPlatformConfigType
+          ) -> void
+
+          def to_hash: -> {
+            bid_price: Float?,
+            bid_type: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::bid_type?,
+            billing_event: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::billing_event?,
+            budget_mode: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::budget_mode?,
+            conversion_bid_price: Float?,
+            identity_id: String?,
+            identity_type: String?,
+            operation_status: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::operation_status?,
+            optimization_event: String?,
+            optimization_goal: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::optimization_goal?,
+            pacing: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::pacing?,
+            pixel_id: String?,
+            placement_type: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::placement_type?,
+            placements: ::Array[String]?,
+            platform: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::platform,
+            schedule_end_time: String?,
+            schedule_start_time: String?,
+            schedule_type: WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::schedule_type?,
+            typename: :TiktokAdGroupPlatformConfigType
+          }
+
+          type bid_type = :BID_TYPE_NO_BID | :BID_TYPE_CUSTOM
+
+          module BidType
+            extend WhopSDK::Internal::Type::Enum
+
+            BID_TYPE_NO_BID: :BID_TYPE_NO_BID
+            BID_TYPE_CUSTOM: :BID_TYPE_CUSTOM
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::bid_type]
+          end
+
+          type billing_event = :CPC | :CPM | :OCPM | :CPV
+
+          module BillingEvent
+            extend WhopSDK::Internal::Type::Enum
+
+            CPC: :CPC
+            CPM: :CPM
+            OCPM: :OCPM
+            CPV: :CPV
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::billing_event]
+          end
+
+          type budget_mode =
+            :BUDGET_MODE_DAY
+            | :BUDGET_MODE_TOTAL
+            | :BUDGET_MODE_DYNAMIC_DAILY_BUDGET
+
+          module BudgetMode
+            extend WhopSDK::Internal::Type::Enum
+
+            BUDGET_MODE_DAY: :BUDGET_MODE_DAY
+            BUDGET_MODE_TOTAL: :BUDGET_MODE_TOTAL
+            BUDGET_MODE_DYNAMIC_DAILY_BUDGET: :BUDGET_MODE_DYNAMIC_DAILY_BUDGET
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::budget_mode]
+          end
+
+          type operation_status = :ENABLE | :DISABLE
+
+          module OperationStatus
+            extend WhopSDK::Internal::Type::Enum
+
+            ENABLE: :ENABLE
+            DISABLE: :DISABLE
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::operation_status]
+          end
+
+          type optimization_goal =
+            :CLICK
+            | :CONVERT
+            | :INSTALL
+            | :IN_APP_EVENT
+            | :REACH
+            | :SHOW
+            | :VIDEO_VIEW
+            | :ENGAGED_VIEW
+            | :ENGAGED_VIEW_FIFTEEN
+            | :LEAD_GENERATION
+            | :PREFERRED_LEAD
+            | :CONVERSATION
+            | :FOLLOWERS
+            | :PROFILE_VIEWS
+            | :PAGE_VISIT
+            | :VALUE
+            | :AUTOMATIC_VALUE_OPTIMIZATION
+            | :TRAFFIC_LANDING_PAGE_VIEW
+            | :DESTINATION_VISIT
+            | :MT_LIVE_ROOM
+            | :PRODUCT_CLICK_IN_LIVE
+
+          module OptimizationGoal
+            extend WhopSDK::Internal::Type::Enum
+
+            CLICK: :CLICK
+            CONVERT: :CONVERT
+            INSTALL: :INSTALL
+            IN_APP_EVENT: :IN_APP_EVENT
+            REACH: :REACH
+            SHOW: :SHOW
+            VIDEO_VIEW: :VIDEO_VIEW
+            ENGAGED_VIEW: :ENGAGED_VIEW
+            ENGAGED_VIEW_FIFTEEN: :ENGAGED_VIEW_FIFTEEN
+            LEAD_GENERATION: :LEAD_GENERATION
+            PREFERRED_LEAD: :PREFERRED_LEAD
+            CONVERSATION: :CONVERSATION
+            FOLLOWERS: :FOLLOWERS
+            PROFILE_VIEWS: :PROFILE_VIEWS
+            PAGE_VISIT: :PAGE_VISIT
+            VALUE: :VALUE
+            AUTOMATIC_VALUE_OPTIMIZATION: :AUTOMATIC_VALUE_OPTIMIZATION
+            TRAFFIC_LANDING_PAGE_VIEW: :TRAFFIC_LANDING_PAGE_VIEW
+            DESTINATION_VISIT: :DESTINATION_VISIT
+            MT_LIVE_ROOM: :MT_LIVE_ROOM
+            PRODUCT_CLICK_IN_LIVE: :PRODUCT_CLICK_IN_LIVE
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::optimization_goal]
+          end
+
+          type pacing = :PACING_MODE_SMOOTH | :PACING_MODE_FAST
+
+          module Pacing
+            extend WhopSDK::Internal::Type::Enum
+
+            PACING_MODE_SMOOTH: :PACING_MODE_SMOOTH
+            PACING_MODE_FAST: :PACING_MODE_FAST
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::pacing]
+          end
+
+          type placement_type =
+            :PLACEMENT_TYPE_AUTOMATIC | :PLACEMENT_TYPE_NORMAL
+
+          module PlacementType
+            extend WhopSDK::Internal::Type::Enum
+
+            PLACEMENT_TYPE_AUTOMATIC: :PLACEMENT_TYPE_AUTOMATIC
+            PLACEMENT_TYPE_NORMAL: :PLACEMENT_TYPE_NORMAL
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::placement_type]
+          end
+
+          type platform = :meta | :tiktok
+
+          module Platform
+            extend WhopSDK::Internal::Type::Enum
+
+            META: :meta
+            TIKTOK: :tiktok
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::platform]
+          end
+
+          type schedule_type = :SCHEDULE_START_END | :SCHEDULE_FROM_NOW
+
+          module ScheduleType
+            extend WhopSDK::Internal::Type::Enum
+
+            SCHEDULE_START_END: :SCHEDULE_START_END
+            SCHEDULE_FROM_NOW: :SCHEDULE_FROM_NOW
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::PlatformConfig::TiktokAdGroupPlatformConfigType::schedule_type]
+          end
+        end
+
+        def self?.variants: -> ::Array[WhopSDK::Models::AdGroupListResponse::platform_config]
+      end
+
+      type status =
+        :active | :paused | :inactive | :in_review | :rejected | :flagged
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        ACTIVE: :active
+        PAUSED: :paused
+        INACTIVE: :inactive
+        IN_REVIEW: :in_review
+        REJECTED: :rejected
+        FLAGGED: :flagged
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::status]
+      end
+    end
+  end
+end

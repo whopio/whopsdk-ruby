@@ -1,0 +1,93 @@
+module WhopSDK
+  module Models
+    type bounty_list_response =
+      {
+        id: String,
+        bounty_type: WhopSDK::Models::BountyListResponse::bounty_type,
+        created_at: Time,
+        currency: WhopSDK::Models::currency,
+        description: String,
+        status: WhopSDK::Models::BountyListResponse::status,
+        title: String,
+        total_available: Float,
+        total_paid: Float,
+        updated_at: Time,
+        vote_threshold: Integer
+      }
+
+    class BountyListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor bounty_type: WhopSDK::Models::BountyListResponse::bounty_type
+
+      attr_accessor created_at: Time
+
+      attr_accessor currency: WhopSDK::Models::currency
+
+      attr_accessor description: String
+
+      attr_accessor status: WhopSDK::Models::BountyListResponse::status
+
+      attr_accessor title: String
+
+      attr_accessor total_available: Float
+
+      attr_accessor total_paid: Float
+
+      attr_accessor updated_at: Time
+
+      attr_accessor vote_threshold: Integer
+
+      def initialize: (
+        id: String,
+        bounty_type: WhopSDK::Models::BountyListResponse::bounty_type,
+        created_at: Time,
+        currency: WhopSDK::Models::currency,
+        description: String,
+        status: WhopSDK::Models::BountyListResponse::status,
+        title: String,
+        total_available: Float,
+        total_paid: Float,
+        updated_at: Time,
+        vote_threshold: Integer
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        bounty_type: WhopSDK::Models::BountyListResponse::bounty_type,
+        created_at: Time,
+        currency: WhopSDK::Models::currency,
+        description: String,
+        status: WhopSDK::Models::BountyListResponse::status,
+        title: String,
+        total_available: Float,
+        total_paid: Float,
+        updated_at: Time,
+        vote_threshold: Integer
+      }
+
+      type bounty_type = :classic | :user_funded | :workforce
+
+      module BountyType
+        extend WhopSDK::Internal::Type::Enum
+
+        CLASSIC: :classic
+        USER_FUNDED: :user_funded
+        WORKFORCE: :workforce
+
+        def self?.values: -> ::Array[WhopSDK::Models::BountyListResponse::bounty_type]
+      end
+
+      type status = :published | :archived
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        PUBLISHED: :published
+        ARCHIVED: :archived
+
+        def self?.values: -> ::Array[WhopSDK::Models::BountyListResponse::status]
+      end
+    end
+  end
+end

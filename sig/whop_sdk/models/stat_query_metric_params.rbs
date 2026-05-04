@@ -1,0 +1,66 @@
+module WhopSDK
+  module Models
+    type stat_query_metric_params =
+      {
+        resource: String,
+        breakdowns: ::Array[String]?,
+        company_id: String?,
+        filters: ::Hash[Symbol, top]?,
+        from: Time?,
+        granularity: String?,
+        time_zone: String?,
+        to: Time?,
+        user_id: String?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class StatQueryMetricParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor resource: String
+
+      attr_accessor breakdowns: ::Array[String]?
+
+      attr_accessor company_id: String?
+
+      attr_accessor filters: ::Hash[Symbol, top]?
+
+      attr_accessor from: Time?
+
+      attr_accessor granularity: String?
+
+      attr_accessor time_zone: String?
+
+      attr_accessor to: Time?
+
+      attr_accessor user_id: String?
+
+      def initialize: (
+        resource: String,
+        ?breakdowns: ::Array[String]?,
+        ?company_id: String?,
+        ?filters: ::Hash[Symbol, top]?,
+        ?from: Time?,
+        ?granularity: String?,
+        ?time_zone: String?,
+        ?to: Time?,
+        ?user_id: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        resource: String,
+        breakdowns: ::Array[String]?,
+        company_id: String?,
+        filters: ::Hash[Symbol, top]?,
+        from: Time?,
+        granularity: String?,
+        time_zone: String?,
+        to: Time?,
+        user_id: String?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

@@ -1,0 +1,83 @@
+module WhopSDK
+  module Models
+    type company_create_api_key_params =
+      {
+        parent_company_id: String,
+        child_company_id: String,
+        name: String?,
+        permissions: ::Array[WhopSDK::CompanyCreateAPIKeyParams::Permission]?,
+        role: WhopSDK::Models::CompanyCreateAPIKeyParams::role?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class CompanyCreateAPIKeyParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor parent_company_id: String
+
+      attr_accessor child_company_id: String
+
+      attr_accessor name: String?
+
+      attr_accessor permissions: ::Array[WhopSDK::CompanyCreateAPIKeyParams::Permission]?
+
+      attr_accessor role: WhopSDK::Models::CompanyCreateAPIKeyParams::role?
+
+      def initialize: (
+        parent_company_id: String,
+        child_company_id: String,
+        ?name: String?,
+        ?permissions: ::Array[WhopSDK::CompanyCreateAPIKeyParams::Permission]?,
+        ?role: WhopSDK::Models::CompanyCreateAPIKeyParams::role?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        parent_company_id: String,
+        child_company_id: String,
+        name: String?,
+        permissions: ::Array[WhopSDK::CompanyCreateAPIKeyParams::Permission]?,
+        role: WhopSDK::Models::CompanyCreateAPIKeyParams::role?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type permission =
+        { actions: ::Array[String], grant: bool, resources: ::Array[String] }
+
+      class Permission < WhopSDK::Internal::Type::BaseModel
+        attr_accessor actions: ::Array[String]
+
+        attr_accessor grant: bool
+
+        attr_accessor resources: ::Array[String]
+
+        def initialize: (
+          actions: ::Array[String],
+          grant: bool,
+          resources: ::Array[String]
+        ) -> void
+
+        def to_hash: -> {
+          actions: ::Array[String],
+          grant: bool,
+          resources: ::Array[String]
+        }
+      end
+
+      type role = :owner | :admin | :moderator | :sales_manager | :advertiser
+
+      module Role
+        extend WhopSDK::Internal::Type::Enum
+
+        OWNER: :owner
+        ADMIN: :admin
+        MODERATOR: :moderator
+        SALES_MANAGER: :sales_manager
+        ADVERTISER: :advertiser
+
+        def self?.values: -> ::Array[WhopSDK::Models::CompanyCreateAPIKeyParams::role]
+      end
+    end
+  end
+end

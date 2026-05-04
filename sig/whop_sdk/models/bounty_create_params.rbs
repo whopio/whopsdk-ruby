@@ -1,0 +1,61 @@
+module WhopSDK
+  module Models
+    type bounty_create_params =
+      {
+        base_unit_amount: Float,
+        currency: WhopSDK::Models::currency,
+        description: String,
+        title: String,
+        accepted_submissions_limit: Integer?,
+        allowed_country_codes: ::Array[String]?,
+        experience_id: String?,
+        origin_account_id: String?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class BountyCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor base_unit_amount: Float
+
+      attr_accessor currency: WhopSDK::Models::currency
+
+      attr_accessor description: String
+
+      attr_accessor title: String
+
+      attr_accessor accepted_submissions_limit: Integer?
+
+      attr_accessor allowed_country_codes: ::Array[String]?
+
+      attr_accessor experience_id: String?
+
+      attr_accessor origin_account_id: String?
+
+      def initialize: (
+        base_unit_amount: Float,
+        currency: WhopSDK::Models::currency,
+        description: String,
+        title: String,
+        ?accepted_submissions_limit: Integer?,
+        ?allowed_country_codes: ::Array[String]?,
+        ?experience_id: String?,
+        ?origin_account_id: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        base_unit_amount: Float,
+        currency: WhopSDK::Models::currency,
+        description: String,
+        title: String,
+        accepted_submissions_limit: Integer?,
+        allowed_country_codes: ::Array[String]?,
+        experience_id: String?,
+        origin_account_id: String?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

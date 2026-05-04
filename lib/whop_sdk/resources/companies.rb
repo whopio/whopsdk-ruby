@@ -170,6 +170,40 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::CompanyCreateAPIKeyParams} for more details.
+      #
+      # Create an API key for a connected account (child company) owned by a parent
+      # company.
+      #
+      # @overload create_api_key(parent_company_id, child_company_id:, name: nil, permissions: nil, role: nil, request_options: {})
+      #
+      # @param parent_company_id [String] The unique identifier of the parent platform company (e.g. 'biz_xxx').
+      #
+      # @param child_company_id [String] The unique identifier of the connected account to create the API key for (e.g. '
+      #
+      # @param name [String, nil] A human-readable name for the API key, such as 'Production API Key'.
+      #
+      # @param permissions [Array<WhopSDK::Models::CompanyCreateAPIKeyParams::Permission>, nil] Granular permission statements defining which actions this API key can perform.
+      #
+      # @param role [Symbol, WhopSDK::Models::CompanyCreateAPIKeyParams::Role, nil] The different system roles that can be assigned.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::CompanyCreateAPIKeyResponse]
+      #
+      # @see WhopSDK::Models::CompanyCreateAPIKeyParams
+      def create_api_key(parent_company_id, params)
+        parsed, options = WhopSDK::CompanyCreateAPIKeyParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: ["companies/%1$s/api_keys", parent_company_id],
+          body: parsed,
+          model: WhopSDK::Models::CompanyCreateAPIKeyResponse,
+          options: options
+        )
+      end
+
       # @api private
       #
       # @param client [WhopSDK::Client]

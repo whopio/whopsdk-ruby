@@ -1,0 +1,438 @@
+module WhopSDK
+  module Models
+    type ad_retrieve_response =
+      {
+        id: String,
+        created_at: Time,
+        external_ad_creative_set: WhopSDK::Models::AdRetrieveResponse::ExternalAdCreativeSet?,
+        external_ad_group: WhopSDK::Models::AdRetrieveResponse::ExternalAdGroup,
+        platform_config: WhopSDK::Models::AdRetrieveResponse::platform_config?,
+        status: WhopSDK::Models::AdRetrieveResponse::status,
+        updated_at: Time
+      }
+
+    class AdRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor external_ad_creative_set: WhopSDK::Models::AdRetrieveResponse::ExternalAdCreativeSet?
+
+      attr_accessor external_ad_group: WhopSDK::Models::AdRetrieveResponse::ExternalAdGroup
+
+      attr_accessor platform_config: WhopSDK::Models::AdRetrieveResponse::platform_config?
+
+      attr_accessor status: WhopSDK::Models::AdRetrieveResponse::status
+
+      attr_accessor updated_at: Time
+
+      def initialize: (
+        id: String,
+        created_at: Time,
+        external_ad_creative_set: WhopSDK::Models::AdRetrieveResponse::ExternalAdCreativeSet?,
+        external_ad_group: WhopSDK::Models::AdRetrieveResponse::ExternalAdGroup,
+        platform_config: WhopSDK::Models::AdRetrieveResponse::platform_config?,
+        status: WhopSDK::Models::AdRetrieveResponse::status,
+        updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        external_ad_creative_set: WhopSDK::Models::AdRetrieveResponse::ExternalAdCreativeSet?,
+        external_ad_group: WhopSDK::Models::AdRetrieveResponse::ExternalAdGroup,
+        platform_config: WhopSDK::Models::AdRetrieveResponse::platform_config?,
+        status: WhopSDK::Models::AdRetrieveResponse::status,
+        updated_at: Time
+      }
+
+      type external_ad_creative_set = { id: String }
+
+      class ExternalAdCreativeSet < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type external_ad_group =
+        {
+          id: String,
+          name: String?,
+          status: WhopSDK::Models::AdRetrieveResponse::ExternalAdGroup::status
+        }
+
+      class ExternalAdGroup < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor status: WhopSDK::Models::AdRetrieveResponse::ExternalAdGroup::status
+
+        def initialize: (
+          id: String,
+          name: String?,
+          status: WhopSDK::Models::AdRetrieveResponse::ExternalAdGroup::status
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          name: String?,
+          status: WhopSDK::Models::AdRetrieveResponse::ExternalAdGroup::status
+        }
+
+        type status =
+          :active | :paused | :inactive | :in_review | :rejected | :flagged
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          PAUSED: :paused
+          INACTIVE: :inactive
+          IN_REVIEW: :in_review
+          REJECTED: :rejected
+          FLAGGED: :flagged
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdRetrieveResponse::ExternalAdGroup::status]
+        end
+      end
+
+      type platform_config =
+        (WhopSDK::Models::AdRetrieveResponse::PlatformConfig::MetaAdPlatformConfigType
+        | WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType)?
+
+      module PlatformConfig
+        extend WhopSDK::Internal::Type::Union
+
+        type meta_ad_platform_config_type =
+          {
+            call_to_action_type: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::MetaAdPlatformConfigType::call_to_action_type?,
+            headline: String?,
+            instagram_actor_id: String?,
+            link_url: String?,
+            name: String?,
+            page_id: String?,
+            platform: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::MetaAdPlatformConfigType::platform,
+            primary_text: String?,
+            typename: :MetaAdPlatformConfigType,
+            url_tags: String?
+          }
+
+        class MetaAdPlatformConfigType < WhopSDK::Internal::Type::BaseModel
+          attr_accessor call_to_action_type: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::MetaAdPlatformConfigType::call_to_action_type?
+
+          attr_accessor headline: String?
+
+          attr_accessor instagram_actor_id: String?
+
+          attr_accessor link_url: String?
+
+          attr_accessor name: String?
+
+          attr_accessor page_id: String?
+
+          attr_accessor platform: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::MetaAdPlatformConfigType::platform
+
+          attr_accessor primary_text: String?
+
+          attr_accessor typename: :MetaAdPlatformConfigType
+
+          attr_accessor url_tags: String?
+
+          def initialize: (
+            call_to_action_type: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::MetaAdPlatformConfigType::call_to_action_type?,
+            headline: String?,
+            instagram_actor_id: String?,
+            link_url: String?,
+            name: String?,
+            page_id: String?,
+            platform: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::MetaAdPlatformConfigType::platform,
+            primary_text: String?,
+            url_tags: String?,
+            ?typename: :MetaAdPlatformConfigType
+          ) -> void
+
+          def to_hash: -> {
+            call_to_action_type: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::MetaAdPlatformConfigType::call_to_action_type?,
+            headline: String?,
+            instagram_actor_id: String?,
+            link_url: String?,
+            name: String?,
+            page_id: String?,
+            platform: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::MetaAdPlatformConfigType::platform,
+            primary_text: String?,
+            typename: :MetaAdPlatformConfigType,
+            url_tags: String?
+          }
+
+          type call_to_action_type =
+            :LEARN_MORE
+            | :SHOP_NOW
+            | :SIGN_UP
+            | :SUBSCRIBE
+            | :GET_STARTED
+            | :BOOK_NOW
+            | :APPLY_NOW
+            | :CONTACT_US
+            | :DOWNLOAD
+            | :ORDER_NOW
+            | :BUY_NOW
+            | :GET_QUOTE
+            | :MESSAGE_PAGE
+            | :WHATSAPP_MESSAGE
+            | :INSTAGRAM_MESSAGE
+            | :CALL_NOW
+            | :GET_DIRECTIONS
+            | :SEND_UPDATES
+            | :GET_OFFER
+            | :WATCH_MORE
+            | :LISTEN_NOW
+            | :PLAY_GAME
+            | :OPEN_LINK
+            | :NO_BUTTON
+            | :GET_OFFER_VIEW
+            | :GET_EVENT_TICKETS
+            | :SEE_MENU
+            | :REQUEST_TIME
+            | :EVENT_RSVP
+
+          module CallToActionType
+            extend WhopSDK::Internal::Type::Enum
+
+            LEARN_MORE: :LEARN_MORE
+            SHOP_NOW: :SHOP_NOW
+            SIGN_UP: :SIGN_UP
+            SUBSCRIBE: :SUBSCRIBE
+            GET_STARTED: :GET_STARTED
+            BOOK_NOW: :BOOK_NOW
+            APPLY_NOW: :APPLY_NOW
+            CONTACT_US: :CONTACT_US
+            DOWNLOAD: :DOWNLOAD
+            ORDER_NOW: :ORDER_NOW
+            BUY_NOW: :BUY_NOW
+            GET_QUOTE: :GET_QUOTE
+            MESSAGE_PAGE: :MESSAGE_PAGE
+            WHATSAPP_MESSAGE: :WHATSAPP_MESSAGE
+            INSTAGRAM_MESSAGE: :INSTAGRAM_MESSAGE
+            CALL_NOW: :CALL_NOW
+            GET_DIRECTIONS: :GET_DIRECTIONS
+            SEND_UPDATES: :SEND_UPDATES
+            GET_OFFER: :GET_OFFER
+            WATCH_MORE: :WATCH_MORE
+            LISTEN_NOW: :LISTEN_NOW
+            PLAY_GAME: :PLAY_GAME
+            OPEN_LINK: :OPEN_LINK
+            NO_BUTTON: :NO_BUTTON
+            GET_OFFER_VIEW: :GET_OFFER_VIEW
+            GET_EVENT_TICKETS: :GET_EVENT_TICKETS
+            SEE_MENU: :SEE_MENU
+            REQUEST_TIME: :REQUEST_TIME
+            EVENT_RSVP: :EVENT_RSVP
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdRetrieveResponse::PlatformConfig::MetaAdPlatformConfigType::call_to_action_type]
+          end
+
+          type platform = :meta | :tiktok
+
+          module Platform
+            extend WhopSDK::Internal::Type::Enum
+
+            META: :meta
+            TIKTOK: :tiktok
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdRetrieveResponse::PlatformConfig::MetaAdPlatformConfigType::platform]
+          end
+        end
+
+        type tiktok_ad_platform_config_type =
+          {
+            ad_format: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType::ad_format?,
+            ad_name: String?,
+            ad_text: String?,
+            call_to_action: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType::call_to_action?,
+            identity_authorized_bc_id: String?,
+            identity_id: String?,
+            identity_type: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType::identity_type?,
+            image_ids: ::Array[String]?,
+            landing_page_url: String?,
+            platform: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType::platform,
+            typename: :TiktokAdPlatformConfigType,
+            video_id: String?
+          }
+
+        class TiktokAdPlatformConfigType < WhopSDK::Internal::Type::BaseModel
+          attr_accessor ad_format: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType::ad_format?
+
+          attr_accessor ad_name: String?
+
+          attr_accessor ad_text: String?
+
+          attr_accessor call_to_action: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType::call_to_action?
+
+          attr_accessor identity_authorized_bc_id: String?
+
+          attr_accessor identity_id: String?
+
+          attr_accessor identity_type: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType::identity_type?
+
+          attr_accessor image_ids: ::Array[String]?
+
+          attr_accessor landing_page_url: String?
+
+          attr_accessor platform: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType::platform
+
+          attr_accessor typename: :TiktokAdPlatformConfigType
+
+          attr_accessor video_id: String?
+
+          def initialize: (
+            ad_format: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType::ad_format?,
+            ad_name: String?,
+            ad_text: String?,
+            call_to_action: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType::call_to_action?,
+            identity_authorized_bc_id: String?,
+            identity_id: String?,
+            identity_type: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType::identity_type?,
+            image_ids: ::Array[String]?,
+            landing_page_url: String?,
+            platform: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType::platform,
+            video_id: String?,
+            ?typename: :TiktokAdPlatformConfigType
+          ) -> void
+
+          def to_hash: -> {
+            ad_format: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType::ad_format?,
+            ad_name: String?,
+            ad_text: String?,
+            call_to_action: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType::call_to_action?,
+            identity_authorized_bc_id: String?,
+            identity_id: String?,
+            identity_type: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType::identity_type?,
+            image_ids: ::Array[String]?,
+            landing_page_url: String?,
+            platform: WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType::platform,
+            typename: :TiktokAdPlatformConfigType,
+            video_id: String?
+          }
+
+          type ad_format =
+            :SINGLE_IMAGE
+            | :SINGLE_VIDEO
+            | :CAROUSEL_ADS
+            | :CATALOG_CAROUSEL
+            | :LIVE_CONTENT
+
+          module AdFormat
+            extend WhopSDK::Internal::Type::Enum
+
+            SINGLE_IMAGE: :SINGLE_IMAGE
+            SINGLE_VIDEO: :SINGLE_VIDEO
+            CAROUSEL_ADS: :CAROUSEL_ADS
+            CATALOG_CAROUSEL: :CATALOG_CAROUSEL
+            LIVE_CONTENT: :LIVE_CONTENT
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType::ad_format]
+          end
+
+          type call_to_action =
+            :LEARN_MORE
+            | :DOWNLOAD
+            | :SHOP_NOW
+            | :SIGN_UP
+            | :CONTACT_US
+            | :APPLY_NOW
+            | :BOOK_NOW
+            | :PLAY_GAME
+            | :WATCH_NOW
+            | :READ_MORE
+            | :VIEW_NOW
+            | :GET_QUOTE
+            | :ORDER_NOW
+            | :INSTALL_NOW
+            | :GET_SHOWTIMES
+            | :LISTEN_NOW
+            | :INTERESTED
+            | :SUBSCRIBE
+            | :GET_TICKETS_NOW
+            | :EXPERIENCE_NOW
+            | :PRE_ORDER_NOW
+            | :VISIT_STORE
+
+          module CallToAction
+            extend WhopSDK::Internal::Type::Enum
+
+            LEARN_MORE: :LEARN_MORE
+            DOWNLOAD: :DOWNLOAD
+            SHOP_NOW: :SHOP_NOW
+            SIGN_UP: :SIGN_UP
+            CONTACT_US: :CONTACT_US
+            APPLY_NOW: :APPLY_NOW
+            BOOK_NOW: :BOOK_NOW
+            PLAY_GAME: :PLAY_GAME
+            WATCH_NOW: :WATCH_NOW
+            READ_MORE: :READ_MORE
+            VIEW_NOW: :VIEW_NOW
+            GET_QUOTE: :GET_QUOTE
+            ORDER_NOW: :ORDER_NOW
+            INSTALL_NOW: :INSTALL_NOW
+            GET_SHOWTIMES: :GET_SHOWTIMES
+            LISTEN_NOW: :LISTEN_NOW
+            INTERESTED: :INTERESTED
+            SUBSCRIBE: :SUBSCRIBE
+            GET_TICKETS_NOW: :GET_TICKETS_NOW
+            EXPERIENCE_NOW: :EXPERIENCE_NOW
+            PRE_ORDER_NOW: :PRE_ORDER_NOW
+            VISIT_STORE: :VISIT_STORE
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType::call_to_action]
+          end
+
+          type identity_type =
+            :CUSTOMIZED_USER | :AUTH_CODE | :TT_USER | :BC_AUTH_TT
+
+          module IdentityType
+            extend WhopSDK::Internal::Type::Enum
+
+            CUSTOMIZED_USER: :CUSTOMIZED_USER
+            AUTH_CODE: :AUTH_CODE
+            TT_USER: :TT_USER
+            BC_AUTH_TT: :BC_AUTH_TT
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType::identity_type]
+          end
+
+          type platform = :meta | :tiktok
+
+          module Platform
+            extend WhopSDK::Internal::Type::Enum
+
+            META: :meta
+            TIKTOK: :tiktok
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdRetrieveResponse::PlatformConfig::TiktokAdPlatformConfigType::platform]
+          end
+        end
+
+        def self?.variants: -> ::Array[WhopSDK::Models::AdRetrieveResponse::platform_config]
+      end
+
+      type status =
+        :active | :paused | :inactive | :in_review | :rejected | :flagged
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        ACTIVE: :active
+        PAUSED: :paused
+        INACTIVE: :inactive
+        IN_REVIEW: :in_review
+        REJECTED: :rejected
+        FLAGGED: :flagged
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdRetrieveResponse::status]
+      end
+    end
+  end
+end

@@ -1,0 +1,642 @@
+module WhopSDK
+  module Models
+    type ad_campaign_retrieve_response =
+      {
+        id: String,
+        available_budget: Float,
+        billing_ledger_account: WhopSDK::Models::AdCampaignRetrieveResponse::BillingLedgerAccount?,
+        clicks_count: Integer,
+        config: WhopSDK::Models::AdCampaignRetrieveResponse::Config?,
+        created_at: Time,
+        created_by_user: WhopSDK::Models::AdCampaignRetrieveResponse::CreatedByUser,
+        daily_budget: Float?,
+        impressions_count: Integer,
+        paused_until: Time?,
+        payment_method: WhopSDK::Models::AdCampaignRetrieveResponse::payment_method?,
+        platform: WhopSDK::Models::AdCampaignRetrieveResponse::platform?,
+        product: WhopSDK::Models::AdCampaignRetrieveResponse::Product?,
+        purchases_count: Integer,
+        remaining_balance: Float,
+        return_on_ad_spend: Float,
+        revenue: Float,
+        status: WhopSDK::Models::AdCampaignRetrieveResponse::status,
+        target_country_codes: ::Array[String],
+        title: String,
+        todays_spend: Float,
+        total_credits: Float,
+        total_spend: Float,
+        updated_at: Time
+      }
+
+    class AdCampaignRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor available_budget: Float
+
+      attr_accessor billing_ledger_account: WhopSDK::Models::AdCampaignRetrieveResponse::BillingLedgerAccount?
+
+      attr_accessor clicks_count: Integer
+
+      attr_accessor config: WhopSDK::Models::AdCampaignRetrieveResponse::Config?
+
+      attr_accessor created_at: Time
+
+      attr_accessor created_by_user: WhopSDK::Models::AdCampaignRetrieveResponse::CreatedByUser
+
+      attr_accessor daily_budget: Float?
+
+      attr_accessor impressions_count: Integer
+
+      attr_accessor paused_until: Time?
+
+      attr_accessor payment_method: WhopSDK::Models::AdCampaignRetrieveResponse::payment_method?
+
+      attr_accessor platform: WhopSDK::Models::AdCampaignRetrieveResponse::platform?
+
+      attr_accessor product: WhopSDK::Models::AdCampaignRetrieveResponse::Product?
+
+      attr_accessor purchases_count: Integer
+
+      attr_accessor remaining_balance: Float
+
+      attr_accessor return_on_ad_spend: Float
+
+      attr_accessor revenue: Float
+
+      attr_accessor status: WhopSDK::Models::AdCampaignRetrieveResponse::status
+
+      attr_accessor target_country_codes: ::Array[String]
+
+      attr_accessor title: String
+
+      attr_accessor todays_spend: Float
+
+      attr_accessor total_credits: Float
+
+      attr_accessor total_spend: Float
+
+      attr_accessor updated_at: Time
+
+      def initialize: (
+        id: String,
+        available_budget: Float,
+        billing_ledger_account: WhopSDK::Models::AdCampaignRetrieveResponse::BillingLedgerAccount?,
+        clicks_count: Integer,
+        config: WhopSDK::Models::AdCampaignRetrieveResponse::Config?,
+        created_at: Time,
+        created_by_user: WhopSDK::Models::AdCampaignRetrieveResponse::CreatedByUser,
+        daily_budget: Float?,
+        impressions_count: Integer,
+        paused_until: Time?,
+        payment_method: WhopSDK::Models::AdCampaignRetrieveResponse::payment_method?,
+        platform: WhopSDK::Models::AdCampaignRetrieveResponse::platform?,
+        product: WhopSDK::Models::AdCampaignRetrieveResponse::Product?,
+        purchases_count: Integer,
+        remaining_balance: Float,
+        return_on_ad_spend: Float,
+        revenue: Float,
+        status: WhopSDK::Models::AdCampaignRetrieveResponse::status,
+        target_country_codes: ::Array[String],
+        title: String,
+        todays_spend: Float,
+        total_credits: Float,
+        total_spend: Float,
+        updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        available_budget: Float,
+        billing_ledger_account: WhopSDK::Models::AdCampaignRetrieveResponse::BillingLedgerAccount?,
+        clicks_count: Integer,
+        config: WhopSDK::Models::AdCampaignRetrieveResponse::Config?,
+        created_at: Time,
+        created_by_user: WhopSDK::Models::AdCampaignRetrieveResponse::CreatedByUser,
+        daily_budget: Float?,
+        impressions_count: Integer,
+        paused_until: Time?,
+        payment_method: WhopSDK::Models::AdCampaignRetrieveResponse::payment_method?,
+        platform: WhopSDK::Models::AdCampaignRetrieveResponse::platform?,
+        product: WhopSDK::Models::AdCampaignRetrieveResponse::Product?,
+        purchases_count: Integer,
+        remaining_balance: Float,
+        return_on_ad_spend: Float,
+        revenue: Float,
+        status: WhopSDK::Models::AdCampaignRetrieveResponse::status,
+        target_country_codes: ::Array[String],
+        title: String,
+        todays_spend: Float,
+        total_credits: Float,
+        total_spend: Float,
+        updated_at: Time
+      }
+
+      type billing_ledger_account = { id: String }
+
+      class BillingLedgerAccount < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type config =
+        {
+          bid_amount: Integer?,
+          bid_strategy: WhopSDK::Models::AdCampaignRetrieveResponse::Config::bid_strategy?,
+          budget_optimization: bool?,
+          end_time: String?,
+          objective: WhopSDK::Models::AdCampaignRetrieveResponse::Config::objective?,
+          special_categories: ::Array[String]?,
+          start_time: String?,
+          status: WhopSDK::Models::AdCampaignRetrieveResponse::Config::status?
+        }
+
+      class Config < WhopSDK::Internal::Type::BaseModel
+        attr_accessor bid_amount: Integer?
+
+        attr_accessor bid_strategy: WhopSDK::Models::AdCampaignRetrieveResponse::Config::bid_strategy?
+
+        attr_accessor budget_optimization: bool?
+
+        attr_accessor end_time: String?
+
+        attr_accessor objective: WhopSDK::Models::AdCampaignRetrieveResponse::Config::objective?
+
+        attr_accessor special_categories: ::Array[String]?
+
+        attr_accessor start_time: String?
+
+        attr_accessor status: WhopSDK::Models::AdCampaignRetrieveResponse::Config::status?
+
+        def initialize: (
+          bid_amount: Integer?,
+          bid_strategy: WhopSDK::Models::AdCampaignRetrieveResponse::Config::bid_strategy?,
+          budget_optimization: bool?,
+          end_time: String?,
+          objective: WhopSDK::Models::AdCampaignRetrieveResponse::Config::objective?,
+          special_categories: ::Array[String]?,
+          start_time: String?,
+          status: WhopSDK::Models::AdCampaignRetrieveResponse::Config::status?
+        ) -> void
+
+        def to_hash: -> {
+          bid_amount: Integer?,
+          bid_strategy: WhopSDK::Models::AdCampaignRetrieveResponse::Config::bid_strategy?,
+          budget_optimization: bool?,
+          end_time: String?,
+          objective: WhopSDK::Models::AdCampaignRetrieveResponse::Config::objective?,
+          special_categories: ::Array[String]?,
+          start_time: String?,
+          status: WhopSDK::Models::AdCampaignRetrieveResponse::Config::status?
+        }
+
+        type bid_strategy = :lowest_cost | :bid_cap | :cost_cap
+
+        module BidStrategy
+          extend WhopSDK::Internal::Type::Enum
+
+          LOWEST_COST: :lowest_cost
+          BID_CAP: :bid_cap
+          COST_CAP: :cost_cap
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignRetrieveResponse::Config::bid_strategy]
+        end
+
+        type objective = :awareness | :traffic | :engagement | :leads | :sales
+
+        module Objective
+          extend WhopSDK::Internal::Type::Enum
+
+          AWARENESS: :awareness
+          TRAFFIC: :traffic
+          ENGAGEMENT: :engagement
+          LEADS: :leads
+          SALES: :sales
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignRetrieveResponse::Config::objective]
+        end
+
+        type status = :active | :paused
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          PAUSED: :paused
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignRetrieveResponse::Config::status]
+        end
+      end
+
+      type created_by_user = { id: String, name: String?, username: String }
+
+      class CreatedByUser < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
+      end
+
+      type payment_method =
+        (WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::BasePaymentMethod
+        | WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::CardPaymentMethod
+        | WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::UsBankAccountPaymentMethod
+        | WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::CashappPaymentMethod
+        | WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::IdealPaymentMethod
+        | WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::SepaDebitPaymentMethod)?
+
+      module PaymentMethod
+        extend WhopSDK::Internal::Type::Union
+
+        type base_payment_method =
+          {
+            id: String,
+            created_at: Time,
+            payment_method_type: WhopSDK::Models::payment_method_types,
+            typename: :BasePaymentMethod
+          }
+
+        class BasePaymentMethod < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor created_at: Time
+
+          attr_accessor payment_method_type: WhopSDK::Models::payment_method_types
+
+          attr_accessor typename: :BasePaymentMethod
+
+          def initialize: (
+            id: String,
+            created_at: Time,
+            payment_method_type: WhopSDK::Models::payment_method_types,
+            ?typename: :BasePaymentMethod
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            created_at: Time,
+            payment_method_type: WhopSDK::Models::payment_method_types,
+            typename: :BasePaymentMethod
+          }
+        end
+
+        type card_payment_method =
+          {
+            id: String,
+            card: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::CardPaymentMethod::Card,
+            created_at: Time,
+            payment_method_type: WhopSDK::Models::payment_method_types,
+            typename: :CardPaymentMethod
+          }
+
+        class CardPaymentMethod < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor card: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::CardPaymentMethod::Card
+
+          attr_accessor created_at: Time
+
+          attr_accessor payment_method_type: WhopSDK::Models::payment_method_types
+
+          attr_accessor typename: :CardPaymentMethod
+
+          def initialize: (
+            id: String,
+            card: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::CardPaymentMethod::Card,
+            created_at: Time,
+            payment_method_type: WhopSDK::Models::payment_method_types,
+            ?typename: :CardPaymentMethod
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            card: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::CardPaymentMethod::Card,
+            created_at: Time,
+            payment_method_type: WhopSDK::Models::payment_method_types,
+            typename: :CardPaymentMethod
+          }
+
+          type card =
+            {
+              brand: WhopSDK::Models::card_brands?,
+              exp_month: Integer?,
+              exp_year: Integer?,
+              :last4 => String?
+            }
+
+          class Card < WhopSDK::Internal::Type::BaseModel
+            attr_accessor brand: WhopSDK::Models::card_brands?
+
+            attr_accessor exp_month: Integer?
+
+            attr_accessor exp_year: Integer?
+
+            attr_accessor last4: String?
+
+            def initialize: (
+              brand: WhopSDK::Models::card_brands?,
+              exp_month: Integer?,
+              exp_year: Integer?,
+              last4: String?
+            ) -> void
+
+            def to_hash: -> {
+              brand: WhopSDK::Models::card_brands?,
+              exp_month: Integer?,
+              exp_year: Integer?,
+              :last4 => String?
+            }
+          end
+        end
+
+        type us_bank_account_payment_method =
+          {
+            id: String,
+            created_at: Time,
+            payment_method_type: WhopSDK::Models::payment_method_types,
+            typename: :UsBankAccountPaymentMethod,
+            us_bank_account: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::UsBankAccountPaymentMethod::UsBankAccount
+          }
+
+        class UsBankAccountPaymentMethod < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor created_at: Time
+
+          attr_accessor payment_method_type: WhopSDK::Models::payment_method_types
+
+          attr_accessor typename: :UsBankAccountPaymentMethod
+
+          attr_accessor us_bank_account: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::UsBankAccountPaymentMethod::UsBankAccount
+
+          def initialize: (
+            id: String,
+            created_at: Time,
+            payment_method_type: WhopSDK::Models::payment_method_types,
+            us_bank_account: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::UsBankAccountPaymentMethod::UsBankAccount,
+            ?typename: :UsBankAccountPaymentMethod
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            created_at: Time,
+            payment_method_type: WhopSDK::Models::payment_method_types,
+            typename: :UsBankAccountPaymentMethod,
+            us_bank_account: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::UsBankAccountPaymentMethod::UsBankAccount
+          }
+
+          type us_bank_account =
+            { account_type: String, bank_name: String, :last4 => String }
+
+          class UsBankAccount < WhopSDK::Internal::Type::BaseModel
+            attr_accessor account_type: String
+
+            attr_accessor bank_name: String
+
+            attr_accessor last4: String
+
+            def initialize: (
+              account_type: String,
+              bank_name: String,
+              last4: String
+            ) -> void
+
+            def to_hash: -> {
+              account_type: String,
+              bank_name: String,
+              :last4 => String
+            }
+          end
+        end
+
+        type cashapp_payment_method =
+          {
+            id: String,
+            cashapp: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::CashappPaymentMethod::Cashapp,
+            created_at: Time,
+            payment_method_type: WhopSDK::Models::payment_method_types,
+            typename: :CashappPaymentMethod
+          }
+
+        class CashappPaymentMethod < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor cashapp: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::CashappPaymentMethod::Cashapp
+
+          attr_accessor created_at: Time
+
+          attr_accessor payment_method_type: WhopSDK::Models::payment_method_types
+
+          attr_accessor typename: :CashappPaymentMethod
+
+          def initialize: (
+            id: String,
+            cashapp: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::CashappPaymentMethod::Cashapp,
+            created_at: Time,
+            payment_method_type: WhopSDK::Models::payment_method_types,
+            ?typename: :CashappPaymentMethod
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            cashapp: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::CashappPaymentMethod::Cashapp,
+            created_at: Time,
+            payment_method_type: WhopSDK::Models::payment_method_types,
+            typename: :CashappPaymentMethod
+          }
+
+          type cashapp = { buyer_id: String?, cashtag: String? }
+
+          class Cashapp < WhopSDK::Internal::Type::BaseModel
+            attr_accessor buyer_id: String?
+
+            attr_accessor cashtag: String?
+
+            def initialize: (buyer_id: String?, cashtag: String?) -> void
+
+            def to_hash: -> { buyer_id: String?, cashtag: String? }
+          end
+        end
+
+        type ideal_payment_method =
+          {
+            id: String,
+            created_at: Time,
+            ideal: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::IdealPaymentMethod::Ideal,
+            payment_method_type: WhopSDK::Models::payment_method_types,
+            typename: :IdealPaymentMethod
+          }
+
+        class IdealPaymentMethod < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor created_at: Time
+
+          attr_accessor ideal: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::IdealPaymentMethod::Ideal
+
+          attr_accessor payment_method_type: WhopSDK::Models::payment_method_types
+
+          attr_accessor typename: :IdealPaymentMethod
+
+          def initialize: (
+            id: String,
+            created_at: Time,
+            ideal: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::IdealPaymentMethod::Ideal,
+            payment_method_type: WhopSDK::Models::payment_method_types,
+            ?typename: :IdealPaymentMethod
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            created_at: Time,
+            ideal: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::IdealPaymentMethod::Ideal,
+            payment_method_type: WhopSDK::Models::payment_method_types,
+            typename: :IdealPaymentMethod
+          }
+
+          type ideal = { bank: String?, bic: String? }
+
+          class Ideal < WhopSDK::Internal::Type::BaseModel
+            attr_accessor bank: String?
+
+            attr_accessor bic: String?
+
+            def initialize: (bank: String?, bic: String?) -> void
+
+            def to_hash: -> { bank: String?, bic: String? }
+          end
+        end
+
+        type sepa_debit_payment_method =
+          {
+            id: String,
+            created_at: Time,
+            payment_method_type: WhopSDK::Models::payment_method_types,
+            sepa_debit: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::SepaDebitPaymentMethod::SepaDebit,
+            typename: :SepaDebitPaymentMethod
+          }
+
+        class SepaDebitPaymentMethod < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor created_at: Time
+
+          attr_accessor payment_method_type: WhopSDK::Models::payment_method_types
+
+          attr_accessor sepa_debit: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::SepaDebitPaymentMethod::SepaDebit
+
+          attr_accessor typename: :SepaDebitPaymentMethod
+
+          def initialize: (
+            id: String,
+            created_at: Time,
+            payment_method_type: WhopSDK::Models::payment_method_types,
+            sepa_debit: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::SepaDebitPaymentMethod::SepaDebit,
+            ?typename: :SepaDebitPaymentMethod
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            created_at: Time,
+            payment_method_type: WhopSDK::Models::payment_method_types,
+            sepa_debit: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod::SepaDebitPaymentMethod::SepaDebit,
+            typename: :SepaDebitPaymentMethod
+          }
+
+          type sepa_debit =
+            {
+              bank_code: String?,
+              branch_code: String?,
+              country: String?,
+              :last4 => String?
+            }
+
+          class SepaDebit < WhopSDK::Internal::Type::BaseModel
+            attr_accessor bank_code: String?
+
+            attr_accessor branch_code: String?
+
+            attr_accessor country: String?
+
+            attr_accessor last4: String?
+
+            def initialize: (
+              bank_code: String?,
+              branch_code: String?,
+              country: String?,
+              last4: String?
+            ) -> void
+
+            def to_hash: -> {
+              bank_code: String?,
+              branch_code: String?,
+              country: String?,
+              :last4 => String?
+            }
+          end
+        end
+
+        def self?.variants: -> ::Array[WhopSDK::Models::AdCampaignRetrieveResponse::payment_method]
+      end
+
+      type platform = :meta | :tiktok
+
+      module Platform
+        extend WhopSDK::Internal::Type::Enum
+
+        META: :meta
+        TIKTOK: :tiktok
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdCampaignRetrieveResponse::platform]
+      end
+
+      type product = { id: String, route: String, title: String }
+
+      class Product < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor route: String
+
+        attr_accessor title: String
+
+        def initialize: (id: String, route: String, title: String) -> void
+
+        def to_hash: -> { id: String, route: String, title: String }
+      end
+
+      type status =
+        :active
+        | :paused
+        | :inactive
+        | :stale
+        | :pending_refund
+        | :payment_failed
+        | :draft
+        | :in_review
+        | :flagged
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        ACTIVE: :active
+        PAUSED: :paused
+        INACTIVE: :inactive
+        STALE: :stale
+        PENDING_REFUND: :pending_refund
+        PAYMENT_FAILED: :payment_failed
+        DRAFT: :draft
+        IN_REVIEW: :in_review
+        FLAGGED: :flagged
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdCampaignRetrieveResponse::status]
+      end
+    end
+  end
+end

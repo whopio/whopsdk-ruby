@@ -134,4 +134,22 @@ class WhopSDK::Test::Resources::CompaniesTest < WhopSDK::Test::ResourceTest
       }
     end
   end
+
+  def test_create_api_key_required_params
+    skip("Mock server tests are disabled")
+
+    response = @whop.companies.create_api_key("parent_company_id", child_company_id: "child_company_id")
+
+    assert_pattern do
+      response => WhopSDK::Models::CompanyCreateAPIKeyResponse
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        name: String | nil,
+        secret_key: String
+      }
+    end
+  end
 end

@@ -1,0 +1,171 @@
+module WhopSDK
+  module Models
+    type ad_campaign_update_params =
+      {
+        id: String,
+        ad_creative_set_ids: ::Array[String]?,
+        budget: Float?,
+        budget_type: WhopSDK::Models::AdCampaignUpdateParams::budget_type?,
+        config: WhopSDK::AdCampaignUpdateParams::Config?,
+        daily_budget: Float?,
+        product_id: String?,
+        target_country_codes: ::Array[String]?,
+        title: String?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class AdCampaignUpdateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_accessor ad_creative_set_ids: ::Array[String]?
+
+      attr_accessor budget: Float?
+
+      attr_accessor budget_type: WhopSDK::Models::AdCampaignUpdateParams::budget_type?
+
+      attr_accessor config: WhopSDK::AdCampaignUpdateParams::Config?
+
+      attr_accessor daily_budget: Float?
+
+      attr_accessor product_id: String?
+
+      attr_accessor target_country_codes: ::Array[String]?
+
+      attr_accessor title: String?
+
+      def initialize: (
+        id: String,
+        ?ad_creative_set_ids: ::Array[String]?,
+        ?budget: Float?,
+        ?budget_type: WhopSDK::Models::AdCampaignUpdateParams::budget_type?,
+        ?config: WhopSDK::AdCampaignUpdateParams::Config?,
+        ?daily_budget: Float?,
+        ?product_id: String?,
+        ?target_country_codes: ::Array[String]?,
+        ?title: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        ad_creative_set_ids: ::Array[String]?,
+        budget: Float?,
+        budget_type: WhopSDK::Models::AdCampaignUpdateParams::budget_type?,
+        config: WhopSDK::AdCampaignUpdateParams::Config?,
+        daily_budget: Float?,
+        product_id: String?,
+        target_country_codes: ::Array[String]?,
+        title: String?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type budget_type = :daily | :lifetime
+
+      module BudgetType
+        extend WhopSDK::Internal::Type::Enum
+
+        DAILY: :daily
+        LIFETIME: :lifetime
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdCampaignUpdateParams::budget_type]
+      end
+
+      type config =
+        {
+          bid_amount: Integer?,
+          bid_strategy: WhopSDK::Models::AdCampaignUpdateParams::Config::bid_strategy?,
+          budget_optimization: bool?,
+          end_time: String?,
+          lifetime_budget: Integer?,
+          objective: WhopSDK::Models::AdCampaignUpdateParams::Config::objective?,
+          special_categories: ::Array[String]?,
+          start_time: String?,
+          status: WhopSDK::Models::AdCampaignUpdateParams::Config::status?
+        }
+
+      class Config < WhopSDK::Internal::Type::BaseModel
+        attr_accessor bid_amount: Integer?
+
+        attr_accessor bid_strategy: WhopSDK::Models::AdCampaignUpdateParams::Config::bid_strategy?
+
+        attr_accessor budget_optimization: bool?
+
+        attr_accessor end_time: String?
+
+        attr_accessor lifetime_budget: Integer?
+
+        attr_accessor objective: WhopSDK::Models::AdCampaignUpdateParams::Config::objective?
+
+        attr_accessor special_categories: ::Array[String]?
+
+        attr_accessor start_time: String?
+
+        attr_accessor status: WhopSDK::Models::AdCampaignUpdateParams::Config::status?
+
+        def initialize: (
+          ?bid_amount: Integer?,
+          ?bid_strategy: WhopSDK::Models::AdCampaignUpdateParams::Config::bid_strategy?,
+          ?budget_optimization: bool?,
+          ?end_time: String?,
+          ?lifetime_budget: Integer?,
+          ?objective: WhopSDK::Models::AdCampaignUpdateParams::Config::objective?,
+          ?special_categories: ::Array[String]?,
+          ?start_time: String?,
+          ?status: WhopSDK::Models::AdCampaignUpdateParams::Config::status?
+        ) -> void
+
+        def to_hash: -> {
+          bid_amount: Integer?,
+          bid_strategy: WhopSDK::Models::AdCampaignUpdateParams::Config::bid_strategy?,
+          budget_optimization: bool?,
+          end_time: String?,
+          lifetime_budget: Integer?,
+          objective: WhopSDK::Models::AdCampaignUpdateParams::Config::objective?,
+          special_categories: ::Array[String]?,
+          start_time: String?,
+          status: WhopSDK::Models::AdCampaignUpdateParams::Config::status?
+        }
+
+        type bid_strategy = :lowest_cost | :bid_cap | :cost_cap
+
+        module BidStrategy
+          extend WhopSDK::Internal::Type::Enum
+
+          LOWEST_COST: :lowest_cost
+          BID_CAP: :bid_cap
+          COST_CAP: :cost_cap
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignUpdateParams::Config::bid_strategy]
+        end
+
+        type objective = :awareness | :traffic | :engagement | :leads | :sales
+
+        module Objective
+          extend WhopSDK::Internal::Type::Enum
+
+          AWARENESS: :awareness
+          TRAFFIC: :traffic
+          ENGAGEMENT: :engagement
+          LEADS: :leads
+          SALES: :sales
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignUpdateParams::Config::objective]
+        end
+
+        type status = :active | :paused
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          PAUSED: :paused
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignUpdateParams::Config::status]
+        end
+      end
+    end
+  end
+end

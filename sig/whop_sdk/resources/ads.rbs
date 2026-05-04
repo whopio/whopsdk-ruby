@@ -1,0 +1,36 @@
+module WhopSDK
+  module Resources
+    class Ads
+      def create: (
+        ad_group_id: String,
+        ?creative_set_id: String?,
+        ?existing_instagram_media_id: String?,
+        ?existing_post_id: String?,
+        ?platform_config: WhopSDK::AdCreateParams::PlatformConfig?,
+        ?status: WhopSDK::Models::AdCreateParams::status?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::AdCreateResponse
+
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::AdRetrieveResponse
+
+      def list: (
+        ?ad_group_id: String?,
+        ?after: String?,
+        ?before: String?,
+        ?campaign_id: String?,
+        ?company_id: String?,
+        ?created_after: Time?,
+        ?created_before: Time?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?status: WhopSDK::Models::AdListParams::status?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::AdListResponse]
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

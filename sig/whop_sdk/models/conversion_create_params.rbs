@@ -1,0 +1,349 @@
+module WhopSDK
+  module Models
+    type conversion_create_params =
+      {
+        company_id: String,
+        event_name: WhopSDK::Models::ConversionCreateParams::event_name,
+        action_source: WhopSDK::Models::ConversionCreateParams::action_source?,
+        context: WhopSDK::ConversionCreateParams::Context?,
+        currency: WhopSDK::Models::currency?,
+        custom_name: String?,
+        event_id: String?,
+        event_time: Time?,
+        plan_id: String?,
+        product_id: String?,
+        referrer_url: String?,
+        url: String?,
+        user: WhopSDK::ConversionCreateParams::User?,
+        value: Float?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class ConversionCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor event_name: WhopSDK::Models::ConversionCreateParams::event_name
+
+      attr_accessor action_source: WhopSDK::Models::ConversionCreateParams::action_source?
+
+      attr_accessor context: WhopSDK::ConversionCreateParams::Context?
+
+      attr_accessor currency: WhopSDK::Models::currency?
+
+      attr_accessor custom_name: String?
+
+      attr_accessor event_id: String?
+
+      attr_accessor event_time: Time?
+
+      attr_accessor plan_id: String?
+
+      attr_accessor product_id: String?
+
+      attr_accessor referrer_url: String?
+
+      attr_accessor url: String?
+
+      attr_accessor user: WhopSDK::ConversionCreateParams::User?
+
+      attr_accessor value: Float?
+
+      def initialize: (
+        company_id: String,
+        event_name: WhopSDK::Models::ConversionCreateParams::event_name,
+        ?action_source: WhopSDK::Models::ConversionCreateParams::action_source?,
+        ?context: WhopSDK::ConversionCreateParams::Context?,
+        ?currency: WhopSDK::Models::currency?,
+        ?custom_name: String?,
+        ?event_id: String?,
+        ?event_time: Time?,
+        ?plan_id: String?,
+        ?product_id: String?,
+        ?referrer_url: String?,
+        ?url: String?,
+        ?user: WhopSDK::ConversionCreateParams::User?,
+        ?value: Float?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        event_name: WhopSDK::Models::ConversionCreateParams::event_name,
+        action_source: WhopSDK::Models::ConversionCreateParams::action_source?,
+        context: WhopSDK::ConversionCreateParams::Context?,
+        currency: WhopSDK::Models::currency?,
+        custom_name: String?,
+        event_id: String?,
+        event_time: Time?,
+        plan_id: String?,
+        product_id: String?,
+        referrer_url: String?,
+        url: String?,
+        user: WhopSDK::ConversionCreateParams::User?,
+        value: Float?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type event_name =
+        :lead
+        | :submit_application
+        | :contact
+        | :complete_registration
+        | :schedule
+        | :custom
+
+      module EventName
+        extend WhopSDK::Internal::Type::Enum
+
+        LEAD: :lead
+        SUBMIT_APPLICATION: :submit_application
+        CONTACT: :contact
+        COMPLETE_REGISTRATION: :complete_registration
+        SCHEDULE: :schedule
+        CUSTOM: :custom
+
+        def self?.values: -> ::Array[WhopSDK::Models::ConversionCreateParams::event_name]
+      end
+
+      type action_source =
+        :email
+        | :website
+        | :app
+        | :phone_call
+        | :chat
+        | :physical_store
+        | :system_generated
+        | :business_messaging
+        | :other
+
+      module ActionSource
+        extend WhopSDK::Internal::Type::Enum
+
+        EMAIL: :email
+        WEBSITE: :website
+        APP: :app
+        PHONE_CALL: :phone_call
+        CHAT: :chat
+        PHYSICAL_STORE: :physical_store
+        SYSTEM_GENERATED: :system_generated
+        BUSINESS_MESSAGING: :business_messaging
+        OTHER: :other
+
+        def self?.values: -> ::Array[WhopSDK::Models::ConversionCreateParams::action_source]
+      end
+
+      type context =
+        {
+          ad_campaign_id: String?,
+          ad_id: String?,
+          ad_set_id: String?,
+          fbclid: String?,
+          fbp: String?,
+          ga: String?,
+          gclid: String?,
+          ig_sid: String?,
+          ip_address: String?,
+          ttclid: String?,
+          ttp: String?,
+          user_agent: String?,
+          utm_campaign: String?,
+          utm_content: String?,
+          utm_id: String?,
+          utm_medium: String?,
+          utm_source: String?,
+          utm_term: String?
+        }
+
+      class Context < WhopSDK::Internal::Type::BaseModel
+        attr_accessor ad_campaign_id: String?
+
+        attr_accessor ad_id: String?
+
+        attr_accessor ad_set_id: String?
+
+        attr_accessor fbclid: String?
+
+        attr_accessor fbp: String?
+
+        attr_accessor ga: String?
+
+        attr_accessor gclid: String?
+
+        attr_accessor ig_sid: String?
+
+        attr_accessor ip_address: String?
+
+        attr_accessor ttclid: String?
+
+        attr_accessor ttp: String?
+
+        attr_accessor user_agent: String?
+
+        attr_accessor utm_campaign: String?
+
+        attr_accessor utm_content: String?
+
+        attr_accessor utm_id: String?
+
+        attr_accessor utm_medium: String?
+
+        attr_accessor utm_source: String?
+
+        attr_accessor utm_term: String?
+
+        def initialize: (
+          ?ad_campaign_id: String?,
+          ?ad_id: String?,
+          ?ad_set_id: String?,
+          ?fbclid: String?,
+          ?fbp: String?,
+          ?ga: String?,
+          ?gclid: String?,
+          ?ig_sid: String?,
+          ?ip_address: String?,
+          ?ttclid: String?,
+          ?ttp: String?,
+          ?user_agent: String?,
+          ?utm_campaign: String?,
+          ?utm_content: String?,
+          ?utm_id: String?,
+          ?utm_medium: String?,
+          ?utm_source: String?,
+          ?utm_term: String?
+        ) -> void
+
+        def to_hash: -> {
+          ad_campaign_id: String?,
+          ad_id: String?,
+          ad_set_id: String?,
+          fbclid: String?,
+          fbp: String?,
+          ga: String?,
+          gclid: String?,
+          ig_sid: String?,
+          ip_address: String?,
+          ttclid: String?,
+          ttp: String?,
+          user_agent: String?,
+          utm_campaign: String?,
+          utm_content: String?,
+          utm_id: String?,
+          utm_medium: String?,
+          utm_source: String?,
+          utm_term: String?
+        }
+      end
+
+      type user =
+        {
+          anonymous_id: String?,
+          birthdate: String?,
+          city: String?,
+          country: String?,
+          email: String?,
+          external_id: String?,
+          first_name: String?,
+          gender: WhopSDK::Models::ConversionCreateParams::User::gender?,
+          last_name: String?,
+          member_id: String?,
+          membership_id: String?,
+          name: String?,
+          phone: String?,
+          postal_code: String?,
+          state: String?,
+          user_id: String?,
+          username: String?
+        }
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        attr_accessor anonymous_id: String?
+
+        attr_accessor birthdate: String?
+
+        attr_accessor city: String?
+
+        attr_accessor country: String?
+
+        attr_accessor email: String?
+
+        attr_accessor external_id: String?
+
+        attr_accessor first_name: String?
+
+        attr_accessor gender: WhopSDK::Models::ConversionCreateParams::User::gender?
+
+        attr_accessor last_name: String?
+
+        attr_accessor member_id: String?
+
+        attr_accessor membership_id: String?
+
+        attr_accessor name: String?
+
+        attr_accessor phone: String?
+
+        attr_accessor postal_code: String?
+
+        attr_accessor state: String?
+
+        attr_accessor user_id: String?
+
+        attr_accessor username: String?
+
+        def initialize: (
+          ?anonymous_id: String?,
+          ?birthdate: String?,
+          ?city: String?,
+          ?country: String?,
+          ?email: String?,
+          ?external_id: String?,
+          ?first_name: String?,
+          ?gender: WhopSDK::Models::ConversionCreateParams::User::gender?,
+          ?last_name: String?,
+          ?member_id: String?,
+          ?membership_id: String?,
+          ?name: String?,
+          ?phone: String?,
+          ?postal_code: String?,
+          ?state: String?,
+          ?user_id: String?,
+          ?username: String?
+        ) -> void
+
+        def to_hash: -> {
+          anonymous_id: String?,
+          birthdate: String?,
+          city: String?,
+          country: String?,
+          email: String?,
+          external_id: String?,
+          first_name: String?,
+          gender: WhopSDK::Models::ConversionCreateParams::User::gender?,
+          last_name: String?,
+          member_id: String?,
+          membership_id: String?,
+          name: String?,
+          phone: String?,
+          postal_code: String?,
+          state: String?,
+          user_id: String?,
+          username: String?
+        }
+
+        type gender = :male | :female
+
+        module Gender
+          extend WhopSDK::Internal::Type::Enum
+
+          MALE: :male
+          FEMALE: :female
+
+          def self?.values: -> ::Array[WhopSDK::Models::ConversionCreateParams::User::gender]
+        end
+      end
+    end
+  end
+end

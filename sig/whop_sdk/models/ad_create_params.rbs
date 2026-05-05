@@ -200,6 +200,7 @@ module WhopSDK
             | :REQUEST_TIME
             | :EVENT_RSVP
             | :SEE_DETAILS
+            | :VIEW_INSTAGRAM_PROFILE
 
           module CallToActionType
             extend WhopSDK::Internal::Type::Enum
@@ -234,6 +235,7 @@ module WhopSDK
             REQUEST_TIME: :REQUEST_TIME
             EVENT_RSVP: :EVENT_RSVP
             SEE_DETAILS: :SEE_DETAILS
+            VIEW_INSTAGRAM_PROFILE: :VIEW_INSTAGRAM_PROFILE
 
             def self?.values: -> ::Array[WhopSDK::Models::AdCreateParams::PlatformConfig::Meta::call_to_action_type]
           end

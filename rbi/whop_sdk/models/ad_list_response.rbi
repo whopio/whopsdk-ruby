@@ -392,6 +392,11 @@ module WhopSDK
                 :SEE_DETAILS,
                 WhopSDK::Models::AdListResponse::PlatformConfig::MetaAdPlatformConfigType::CallToActionType::TaggedSymbol
               )
+            VIEW_INSTAGRAM_PROFILE =
+              T.let(
+                :VIEW_INSTAGRAM_PROFILE,
+                WhopSDK::Models::AdListResponse::PlatformConfig::MetaAdPlatformConfigType::CallToActionType::TaggedSymbol
+              )
 
             sig do
               override.returns(

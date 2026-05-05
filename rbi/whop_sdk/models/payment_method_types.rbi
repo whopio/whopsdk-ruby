@@ -30,6 +30,8 @@ module WhopSDK
       BIZUM = T.let(:bizum, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       BLIK = T.let(:blik, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       BOLETO = T.let(:boleto, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      CA_BANK_TRANSFER =
+        T.let(:ca_bank_transfer, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       CAPCHASE_PAY =
         T.let(:capchase_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       CARD = T.let(:card, WhopSDK::PaymentMethodTypes::TaggedSymbol)

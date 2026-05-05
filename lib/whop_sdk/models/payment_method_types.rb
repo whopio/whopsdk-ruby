@@ -23,6 +23,7 @@ module WhopSDK
       BIZUM = :bizum
       BLIK = :blik
       BOLETO = :boleto
+      CA_BANK_TRANSFER = :ca_bank_transfer
       CAPCHASE_PAY = :capchase_pay
       CARD = :card
       CASHAPP = :cashapp

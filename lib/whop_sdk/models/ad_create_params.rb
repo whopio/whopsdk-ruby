@@ -284,6 +284,7 @@ module WhopSDK
             REQUEST_TIME = :REQUEST_TIME
             EVENT_RSVP = :EVENT_RSVP
             SEE_DETAILS = :SEE_DETAILS
+            VIEW_INSTAGRAM_PROFILE = :VIEW_INSTAGRAM_PROFILE
 
             # @!method self.values
             #   @return [Array<Symbol>]

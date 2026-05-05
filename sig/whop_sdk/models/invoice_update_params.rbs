@@ -15,6 +15,7 @@ module WhopSDK
         member_id: String?,
         payment_method_id: String?,
         plan: WhopSDK::InvoiceUpdateParams::Plan?,
+        product_id: String?,
         subscription_billing_anchor_at: Time?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -49,6 +50,8 @@ module WhopSDK
 
       attr_accessor plan: WhopSDK::InvoiceUpdateParams::Plan?
 
+      attr_accessor product_id: String?
+
       attr_accessor subscription_billing_anchor_at: Time?
 
       def initialize: (
@@ -65,6 +68,7 @@ module WhopSDK
         ?member_id: String?,
         ?payment_method_id: String?,
         ?plan: WhopSDK::InvoiceUpdateParams::Plan?,
+        ?product_id: String?,
         ?subscription_billing_anchor_at: Time?,
         ?request_options: WhopSDK::request_opts
       ) -> void
@@ -83,6 +87,7 @@ module WhopSDK
         member_id: String?,
         payment_method_id: String?,
         plan: WhopSDK::InvoiceUpdateParams::Plan?,
+        product_id: String?,
         subscription_billing_anchor_at: Time?,
         request_options: WhopSDK::RequestOptions
       }

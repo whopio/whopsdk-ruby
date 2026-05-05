@@ -64,7 +64,7 @@ module WhopSDK
       #
       # - `invoice:update`
       #
-      # @overload update(id, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, collection_method: nil, customer_name: nil, due_date: nil, email_address: nil, line_items: nil, mailing_address_id: nil, member_id: nil, payment_method_id: nil, plan: nil, subscription_billing_anchor_at: nil, request_options: {})
+      # @overload update(id, automatically_finalizes_at: nil, billing_address: nil, charge_buyer_fee: nil, collection_method: nil, customer_name: nil, due_date: nil, email_address: nil, line_items: nil, mailing_address_id: nil, member_id: nil, payment_method_id: nil, plan: nil, product_id: nil, subscription_billing_anchor_at: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the invoice to update.
       #
@@ -91,6 +91,8 @@ module WhopSDK
       # @param payment_method_id [String, nil] The unique identifier of the payment method to charge.
       #
       # @param plan [WhopSDK::Models::InvoiceUpdateParams::Plan, nil] Updated plan attributes.
+      #
+      # @param product_id [String, nil] The unique identifier of an existing product to attach to this invoice. Only all
       #
       # @param subscription_billing_anchor_at [Time, nil] The date that defines when the subscription billing cycle should start.
       #

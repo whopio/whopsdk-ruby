@@ -67,6 +67,7 @@ module WhopSDK
           member_id: T.nilable(String),
           payment_method_id: T.nilable(String),
           plan: T.nilable(WhopSDK::InvoiceUpdateParams::Plan::OrHash),
+          product_id: T.nilable(String),
           subscription_billing_anchor_at: T.nilable(Time),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Invoice)
@@ -100,6 +101,9 @@ module WhopSDK
         payment_method_id: nil,
         # Updated plan attributes.
         plan: nil,
+        # The unique identifier of an existing product to attach to this invoice. Only
+        # allowed while the invoice is still a draft.
+        product_id: nil,
         # The date that defines when the subscription billing cycle should start.
         subscription_billing_anchor_at: nil,
         request_options: {}

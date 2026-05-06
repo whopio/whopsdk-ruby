@@ -35,6 +35,18 @@ module WhopSDK
       CAPCHASE_PAY =
         T.let(:capchase_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       CARD = T.let(:card, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      CARD_INSTALLMENTS_THREE =
+        T.let(
+          :card_installments_three,
+          WhopSDK::PaymentMethodTypes::TaggedSymbol
+        )
+      CARD_INSTALLMENTS_SIX =
+        T.let(:card_installments_six, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      CARD_INSTALLMENTS_TWELVE =
+        T.let(
+          :card_installments_twelve,
+          WhopSDK::PaymentMethodTypes::TaggedSymbol
+        )
       CASHAPP = T.let(:cashapp, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       CLARITYPAY = T.let(:claritypay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       COINBASE = T.let(:coinbase, WhopSDK::PaymentMethodTypes::TaggedSymbol)

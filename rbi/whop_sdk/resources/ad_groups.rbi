@@ -158,7 +158,7 @@ module WhopSDK
       #
       # Required permissions:
       #
-      # - `ad_campaign:delete`
+      # - `ad_campaign:update`
       sig do
         params(
           id: String,

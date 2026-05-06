@@ -48,6 +48,16 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :origin_account_id
 
+      # Optional markdown body for the anchor forum post. Falls back to the bounty
+      # description when omitted.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :post_markdown_content
+
+      # Optional title for the anchor forum post. Falls back to the bounty title when
+      # omitted.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :post_title
+
       sig do
         params(
           base_unit_amount: Float,
@@ -58,6 +68,8 @@ module WhopSDK
           allowed_country_codes: T.nilable(T::Array[String]),
           experience_id: T.nilable(String),
           origin_account_id: T.nilable(String),
+          post_markdown_content: T.nilable(String),
+          post_title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -83,6 +95,12 @@ module WhopSDK
         # Defaults to the requester's personal balance when omitted. The requester must be
         # the user themself or an owner/admin of the company.
         origin_account_id: nil,
+        # Optional markdown body for the anchor forum post. Falls back to the bounty
+        # description when omitted.
+        post_markdown_content: nil,
+        # Optional title for the anchor forum post. Falls back to the bounty title when
+        # omitted.
+        post_title: nil,
         request_options: {}
       )
       end
@@ -98,6 +116,8 @@ module WhopSDK
             allowed_country_codes: T.nilable(T::Array[String]),
             experience_id: T.nilable(String),
             origin_account_id: T.nilable(String),
+            post_markdown_content: T.nilable(String),
+            post_title: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }
         )

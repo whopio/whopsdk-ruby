@@ -60,7 +60,21 @@ module WhopSDK
       #   @return [String, nil]
       optional :origin_account_id, String, nil?: true
 
-      # @!method initialize(base_unit_amount:, currency:, description:, title:, accepted_submissions_limit: nil, allowed_country_codes: nil, experience_id: nil, origin_account_id: nil, request_options: {})
+      # @!attribute post_markdown_content
+      #   Optional markdown body for the anchor forum post. Falls back to the bounty
+      #   description when omitted.
+      #
+      #   @return [String, nil]
+      optional :post_markdown_content, String, nil?: true
+
+      # @!attribute post_title
+      #   Optional title for the anchor forum post. Falls back to the bounty title when
+      #   omitted.
+      #
+      #   @return [String, nil]
+      optional :post_title, String, nil?: true
+
+      # @!method initialize(base_unit_amount:, currency:, description:, title:, accepted_submissions_limit: nil, allowed_country_codes: nil, experience_id: nil, origin_account_id: nil, post_markdown_content: nil, post_title: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::BountyCreateParams} for more details.
       #
@@ -80,6 +94,10 @@ module WhopSDK
       #
       #   @param origin_account_id [String, nil] The user (user*\*) or company (biz*\*) tag whose balance funds this bounty pool.
       #   D
+      #
+      #   @param post_markdown_content [String, nil] Optional markdown body for the anchor forum post. Falls back to the bounty descr
+      #
+      #   @param post_title [String, nil] Optional title for the anchor forum post. Falls back to the bounty title when om
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

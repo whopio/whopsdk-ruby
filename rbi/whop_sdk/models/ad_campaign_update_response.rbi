@@ -1632,6 +1632,11 @@ module WhopSDK
             :flagged,
             WhopSDK::Models::AdCampaignUpdateResponse::Status::TaggedSymbol
           )
+        IMPORTING =
+          T.let(
+            :importing,
+            WhopSDK::Models::AdCampaignUpdateResponse::Status::TaggedSymbol
+          )
 
         sig do
           override.returns(

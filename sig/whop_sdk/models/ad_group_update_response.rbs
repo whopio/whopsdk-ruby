@@ -108,6 +108,7 @@ module WhopSDK
           | :draft
           | :in_review
           | :flagged
+          | :importing
 
         module Status
           extend WhopSDK::Internal::Type::Enum
@@ -121,6 +122,7 @@ module WhopSDK
           DRAFT: :draft
           IN_REVIEW: :in_review
           FLAGGED: :flagged
+          IMPORTING: :importing
 
           def self?.values: -> ::Array[WhopSDK::Models::AdGroupUpdateResponse::AdCampaign::status]
         end

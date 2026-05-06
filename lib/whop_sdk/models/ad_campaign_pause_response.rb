@@ -980,6 +980,7 @@ module WhopSDK
         DRAFT = :draft
         IN_REVIEW = :in_review
         FLAGGED = :flagged
+        IMPORTING = :importing
 
         # @!method self.values
         #   @return [Array<Symbol>]

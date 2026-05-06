@@ -137,6 +137,8 @@ module WhopSDK
           T.let(:in_review, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
         FLAGGED =
           T.let(:flagged, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
+        IMPORTING =
+          T.let(:importing, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
 
         sig do
           override.returns(

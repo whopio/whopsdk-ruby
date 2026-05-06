@@ -161,7 +161,7 @@ module WhopSDK
       #
       # Required permissions:
       #
-      # - `ad_campaign:delete`
+      # - `ad_campaign:update`
       #
       # @overload delete(id, request_options: {})
       #

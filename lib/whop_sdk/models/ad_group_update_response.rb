@@ -149,6 +149,7 @@ module WhopSDK
           IN_REVIEW = :in_review
           FLAGGED = :flagged
           IMPORTING = :importing
+          IMPORTED = :imported
 
           # @!method self.values
           #   @return [Array<Symbol>]

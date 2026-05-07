@@ -30,6 +30,7 @@ module WhopSDK
       BIZUM = T.let(:bizum, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       BLIK = T.let(:blik, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       BOLETO = T.let(:boleto, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      BRE_B = T.let(:bre_b, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       CA_BANK_TRANSFER =
         T.let(:ca_bank_transfer, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       CAPCHASE_PAY =
@@ -78,6 +79,7 @@ module WhopSDK
       KR_CARD = T.let(:kr_card, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       KR_MARKET = T.let(:kr_market, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       KRIYA = T.let(:kriya, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      KUESKI = T.let(:kueski, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       LINK = T.let(:link, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       MB_WAY = T.let(:mb_way, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       M_PESA = T.let(:m_pesa, WhopSDK::PaymentMethodTypes::TaggedSymbol)
@@ -100,6 +102,8 @@ module WhopSDK
         T.let(:nz_bank_account, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       OXXO = T.let(:oxxo, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       P24 = T.let(:p24, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      PAGO_EFECTIVO =
+        T.let(:pago_efectivo, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       PSE = T.let(:pse, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       PAY_BY_BANK =
         T.let(:pay_by_bank, WhopSDK::PaymentMethodTypes::TaggedSymbol)
@@ -120,8 +124,10 @@ module WhopSDK
         T.let(:samsung_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       SATISPAY = T.let(:satispay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       SCALAPAY = T.let(:scalapay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      SENCILLITO = T.let(:sencillito, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       SEPA_DEBIT = T.let(:sepa_debit, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       SEQURA = T.let(:sequra, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      SERVIPAG = T.let(:servipag, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       SEZZLE = T.let(:sezzle, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       SHOP_PAY = T.let(:shop_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       SHOPEEPAY = T.let(:shopeepay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
@@ -141,7 +147,9 @@ module WhopSDK
         T.let(:us_bank_transfer, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       VENMO = T.let(:venmo, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       VIPPS = T.let(:vipps, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      WEBPAY = T.let(:webpay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       WECHAT_PAY = T.let(:wechat_pay, WhopSDK::PaymentMethodTypes::TaggedSymbol)
+      YAPE = T.let(:yape, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       ZIP = T.let(:zip, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       COINFLOW = T.let(:coinflow, WhopSDK::PaymentMethodTypes::TaggedSymbol)
       UNKNOWN = T.let(:unknown, WhopSDK::PaymentMethodTypes::TaggedSymbol)

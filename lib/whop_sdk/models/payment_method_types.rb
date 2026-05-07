@@ -23,6 +23,7 @@ module WhopSDK
       BIZUM = :bizum
       BLIK = :blik
       BOLETO = :boleto
+      BRE_B = :bre_b
       CA_BANK_TRANSFER = :ca_bank_transfer
       CAPCHASE_PAY = :capchase_pay
       CARD = :card
@@ -55,6 +56,7 @@ module WhopSDK
       KR_CARD = :kr_card
       KR_MARKET = :kr_market
       KRIYA = :kriya
+      KUESKI = :kueski
       LINK = :link
       MB_WAY = :mb_way
       M_PESA = :m_pesa
@@ -74,6 +76,7 @@ module WhopSDK
       NZ_BANK_ACCOUNT = :nz_bank_account
       OXXO = :oxxo
       P24 = :p24
+      PAGO_EFECTIVO = :pago_efectivo
       PSE = :pse
       PAY_BY_BANK = :pay_by_bank
       PAYCO = :payco
@@ -90,8 +93,10 @@ module WhopSDK
       SAMSUNG_PAY = :samsung_pay
       SATISPAY = :satispay
       SCALAPAY = :scalapay
+      SENCILLITO = :sencillito
       SEPA_DEBIT = :sepa_debit
       SEQURA = :sequra
+      SERVIPAG = :servipag
       SEZZLE = :sezzle
       SHOP_PAY = :shop_pay
       SHOPEEPAY = :shopeepay
@@ -108,7 +113,9 @@ module WhopSDK
       US_BANK_TRANSFER = :us_bank_transfer
       VENMO = :venmo
       VIPPS = :vipps
+      WEBPAY = :webpay
       WECHAT_PAY = :wechat_pay
+      YAPE = :yape
       ZIP = :zip
       COINFLOW = :coinflow
       UNKNOWN = :unknown

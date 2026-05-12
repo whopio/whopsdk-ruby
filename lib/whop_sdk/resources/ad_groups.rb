@@ -4,47 +4,6 @@ module WhopSDK
   module Resources
     # Ad groups
     class AdGroups
-      # Creates a new ad group within a campaign.
-      #
-      # Required permissions:
-      #
-      # - `ad_campaign:create`
-      # - `ad_campaign:basic:read`
-      #
-      # @overload create(campaign_id:, budget: nil, budget_type: nil, config: nil, daily_budget: nil, name: nil, platform_config: nil, status: nil, request_options: {})
-      #
-      # @param campaign_id [String] The ad campaign to create this ad group within.
-      #
-      # @param budget [Float, nil] Budget amount in dollars.
-      #
-      # @param budget_type [Symbol, WhopSDK::Models::AdGroupCreateParams::BudgetType, nil] The budget type for an ad campaign or ad group.
-      #
-      # @param config [WhopSDK::Models::AdGroupCreateParams::Config, nil] Unified ad group configuration (bidding, optimization, targeting).
-      #
-      # @param daily_budget [Float, nil] Daily budget in dollars.
-      #
-      # @param name [String, nil] Human-readable ad group name.
-      #
-      # @param platform_config [WhopSDK::Models::AdGroupCreateParams::PlatformConfig, nil] Platform-specific ad group configuration.
-      #
-      # @param status [Symbol, WhopSDK::Models::AdGroupCreateParams::Status, nil] The status of an external ad group.
-      #
-      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [WhopSDK::Models::AdGroupCreateResponse]
-      #
-      # @see WhopSDK::Models::AdGroupCreateParams
-      def create(params)
-        parsed, options = WhopSDK::AdGroupCreateParams.dump_request(params)
-        @client.request(
-          method: :post,
-          path: "ad_groups",
-          body: parsed,
-          model: WhopSDK::Models::AdGroupCreateResponse,
-          options: options
-        )
-      end
-
       # Retrieves a single ad group by its unique identifier.
       #
       # Required permissions:

@@ -17,10 +17,6 @@ module WhopSDK
 
   class AdCampaignUpdateParams = WhopSDK::Models::AdCampaignUpdateParams
 
-  class AdCreateParams = WhopSDK::Models::AdCreateParams
-
-  class AdGroupCreateParams = WhopSDK::Models::AdGroupCreateParams
-
   class AdGroupDeleteParams = WhopSDK::Models::AdGroupDeleteParams
 
   class AdGroupListParams = WhopSDK::Models::AdGroupListParams

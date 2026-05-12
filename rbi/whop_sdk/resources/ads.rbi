@@ -4,43 +4,6 @@ module WhopSDK
   module Resources
     # Ads
     class Ads
-      # Create an ad within an ad group.
-      #
-      # Required permissions:
-      #
-      # - `ad_campaign:create`
-      # - `ad_campaign:basic:read`
-      sig do
-        params(
-          ad_group_id: String,
-          creative_set_id: T.nilable(String),
-          existing_instagram_media_id: T.nilable(String),
-          existing_post_id: T.nilable(String),
-          platform_config:
-            T.nilable(WhopSDK::AdCreateParams::PlatformConfig::OrHash),
-          status: T.nilable(WhopSDK::AdCreateParams::Status::OrSymbol),
-          request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::AdCreateResponse)
-      end
-      def create(
-        # The unique identifier of the ad group to create this ad in.
-        ad_group_id:,
-        # The unique identifier of the creative set to use.
-        creative_set_id: nil,
-        # ID of an existing Instagram media item to use as the ad creative (instead of a
-        # creative set or Facebook post).
-        existing_instagram_media_id: nil,
-        # ID of an existing Facebook post to use as the ad creative (instead of a creative
-        # set).
-        existing_post_id: nil,
-        # Platform-specific configuration. Must match the campaign platform.
-        platform_config: nil,
-        # The status of an external ad.
-        status: nil,
-        request_options: {}
-      )
-      end
-
       # Retrieve an ad by its unique identifier.
       #
       # Required permissions:

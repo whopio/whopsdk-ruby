@@ -1,7 +1,11 @@
 module WhopSDK
   module Models
     type file_create_params =
-      { filename: String } & WhopSDK::Internal::Type::request_parameters
+      {
+        filename: String,
+        visibility: WhopSDK::Models::FileCreateParams::visibility?
+      }
+      & WhopSDK::Internal::Type::request_parameters
 
     class FileCreateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
@@ -9,15 +13,30 @@ module WhopSDK
 
       attr_accessor filename: String
 
+      attr_accessor visibility: WhopSDK::Models::FileCreateParams::visibility?
+
       def initialize: (
         filename: String,
+        ?visibility: WhopSDK::Models::FileCreateParams::visibility?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         filename: String,
+        visibility: WhopSDK::Models::FileCreateParams::visibility?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type visibility = :public | :private
+
+      module Visibility
+        extend WhopSDK::Internal::Type::Enum
+
+        PUBLIC: :public
+        PRIVATE: :private
+
+        def self?.values: -> ::Array[WhopSDK::Models::FileCreateParams::visibility]
+      end
     end
   end
 end

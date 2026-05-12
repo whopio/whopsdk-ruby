@@ -35,12 +35,20 @@ module WhopSDK
       required :upload_status, enum: -> { WhopSDK::UploadStatus }
 
       # @!attribute url
-      #   The CDN URL for accessing the file. Null if the file has not finished uploading.
+      #   The URL for accessing the file. For public files, this is a permanent CDN URL.
+      #   For private files, this is a signed URL that expires. Null if the file has not
+      #   finished uploading.
       #
       #   @return [String, nil]
       required :url, String, nil?: true
 
-      # @!method initialize(id:, content_type:, filename:, size:, upload_status:, url:)
+      # @!attribute visibility
+      #   Whether the file is publicly accessible or requires authentication.
+      #
+      #   @return [Symbol, WhopSDK::Models::FileRetrieveResponse::Visibility]
+      required :visibility, enum: -> { WhopSDK::Models::FileRetrieveResponse::Visibility }
+
+      # @!method initialize(id:, content_type:, filename:, size:, upload_status:, url:, visibility:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::FileRetrieveResponse} for more details.
       #
@@ -56,7 +64,22 @@ module WhopSDK
       #
       #   @param upload_status [Symbol, WhopSDK::Models::UploadStatus] The current upload status of the file (e.g., pending, ready).
       #
-      #   @param url [String, nil] The CDN URL for accessing the file. Null if the file has not finished uploading.
+      #   @param url [String, nil] The URL for accessing the file. For public files, this is a permanent CDN URL. F
+      #
+      #   @param visibility [Symbol, WhopSDK::Models::FileRetrieveResponse::Visibility] Whether the file is publicly accessible or requires authentication.
+
+      # Whether the file is publicly accessible or requires authentication.
+      #
+      # @see WhopSDK::Models::FileRetrieveResponse#visibility
+      module Visibility
+        extend WhopSDK::Internal::Type::Enum
+
+        PUBLIC = :public
+        PRIVATE = :private
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

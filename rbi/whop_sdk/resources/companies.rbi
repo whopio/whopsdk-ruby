@@ -175,6 +175,38 @@ module WhopSDK
       )
       end
 
+      # Create an API key for a connected account (child company) owned by a parent
+      # company.
+      sig do
+        params(
+          parent_company_id: String,
+          child_company_id: String,
+          name: T.nilable(String),
+          permissions:
+            T.nilable(
+              T::Array[WhopSDK::CompanyCreateAPIKeyParams::Permission::OrHash]
+            ),
+          role: T.nilable(WhopSDK::CompanyCreateAPIKeyParams::Role::OrSymbol),
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::Models::CompanyCreateAPIKeyResponse)
+      end
+      def create_api_key(
+        # The unique identifier of the parent platform company (e.g. 'biz_xxx').
+        parent_company_id,
+        # The unique identifier of the connected account to create the API key for (e.g.
+        # 'biz_xxx').
+        child_company_id:,
+        # A human-readable name for the API key, such as 'Production API Key'.
+        name: nil,
+        # Granular permission statements defining which actions this API key can perform.
+        # Either permissions or role must be provided.
+        permissions: nil,
+        # The different system roles that can be assigned.
+        role: nil,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: WhopSDK::Client).returns(T.attached_class) }
       def self.new(client:)

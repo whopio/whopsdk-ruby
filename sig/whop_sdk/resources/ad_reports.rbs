@@ -1,0 +1,18 @@
+module WhopSDK
+  module Resources
+    class AdReports
+      def retrieve: (
+        from: Time,
+        to: Time,
+        ?ad_campaign_id: String?,
+        ?ad_group_id: String?,
+        ?ad_id: String?,
+        ?currency: String?,
+        ?include_daily: bool?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::AdReportRetrieveResponse
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

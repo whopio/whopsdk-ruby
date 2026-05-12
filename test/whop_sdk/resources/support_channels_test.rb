@@ -45,10 +45,10 @@ class WhopSDK::Test::Resources::SupportChannelsTest < WhopSDK::Test::ResourceTes
     end
   end
 
-  def test_list_required_params
+  def test_list
     skip("Mock server tests are disabled")
 
-    response = @whop.support_channels.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.support_channels.list
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage

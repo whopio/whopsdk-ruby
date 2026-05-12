@@ -10,6 +10,7 @@ module WhopSDK
       ADMIN = :admin
       SALES_MANAGER = :sales_manager
       MODERATOR = :moderator
+      ADVERTISER = :advertiser
       APP_MANAGER = :app_manager
       SUPPORT = :support
       MANAGER = :manager

@@ -9,6 +9,8 @@ module WhopSDK
       sig do
         params(
           filename: String,
+          visibility:
+            T.nilable(WhopSDK::FileCreateParams::Visibility::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::FileCreateResponse)
       end
@@ -16,6 +18,9 @@ module WhopSDK
         # The name of the file including its extension (e.g., "photo.png" or
         # "document.pdf").
         filename:,
+        # Controls whether an uploaded file is publicly accessible or requires
+        # authentication to access.
+        visibility: nil,
         request_options: {}
       )
       end

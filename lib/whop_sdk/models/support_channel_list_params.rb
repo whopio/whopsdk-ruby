@@ -7,12 +7,6 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute company_id
-      #   The unique identifier of the company to list support channels for.
-      #
-      #   @return [String]
-      required :company_id, String
-
       # @!attribute after
       #   Returns the elements in the list that come after the specified cursor.
       #
@@ -24,6 +18,14 @@ module WhopSDK
       #
       #   @return [String, nil]
       optional :before, String, nil?: true
+
+      # @!attribute company_id
+      #   The unique identifier of the company to list support channels for. Includes
+      #   channels of child companies. When omitted, returns support channels across all
+      #   companies the user has access to.
+      #
+      #   @return [String, nil]
+      optional :company_id, String, nil?: true
 
       # @!attribute direction
       #   The direction of the sort.
@@ -56,15 +58,21 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::SupportChannelListParams::Order, nil]
       optional :order, enum: -> { WhopSDK::SupportChannelListParams::Order }, nil?: true
 
-      # @!method initialize(company_id:, after: nil, before: nil, direction: nil, first: nil, last: nil, open_: nil, order: nil, request_options: {})
+      # @!attribute view
+      #   The perspective to filter support channels by.
+      #
+      #   @return [Symbol, WhopSDK::Models::SupportChannelListParams::View, nil]
+      optional :view, enum: -> { WhopSDK::SupportChannelListParams::View }, nil?: true
+
+      # @!method initialize(after: nil, before: nil, company_id: nil, direction: nil, first: nil, last: nil, open_: nil, order: nil, view: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::SupportChannelListParams} for more details.
-      #
-      #   @param company_id [String] The unique identifier of the company to list support channels for.
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      #   @param company_id [String, nil] The unique identifier of the company to list support channels for. Includes chan
       #
       #   @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
@@ -76,6 +84,8 @@ module WhopSDK
       #
       #   @param order [Symbol, WhopSDK::Models::SupportChannelListParams::Order, nil] Sort options for message channels
       #
+      #   @param view [Symbol, WhopSDK::Models::SupportChannelListParams::View, nil] The perspective to filter support channels by.
+      #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
       # Sort options for message channels
@@ -84,6 +94,18 @@ module WhopSDK
 
         CREATED_AT = :created_at
         LAST_POST_SENT_AT = :last_post_sent_at
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # The perspective to filter support channels by.
+      module View
+        extend WhopSDK::Internal::Type::Enum
+
+        ALL = :all
+        ADMIN = :admin
+        CUSTOMER = :customer
 
         # @!method self.values
         #   @return [Array<Symbol>]

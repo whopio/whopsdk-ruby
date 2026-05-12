@@ -7,6 +7,7 @@ module WhopSDK
         cancel_option: WhopSDK::Models::cancel_options?,
         canceled_at: Time?,
         cancellation_reason: String?,
+        checkout_configuration_id: String?,
         company: WhopSDK::Models::MembershipListResponse::Company,
         created_at: Time,
         currency: WhopSDK::Models::currency?,
@@ -36,6 +37,8 @@ module WhopSDK
       attr_accessor canceled_at: Time?
 
       attr_accessor cancellation_reason: String?
+
+      attr_accessor checkout_configuration_id: String?
 
       attr_accessor company: WhopSDK::Models::MembershipListResponse::Company
 
@@ -77,6 +80,7 @@ module WhopSDK
         cancel_option: WhopSDK::Models::cancel_options?,
         canceled_at: Time?,
         cancellation_reason: String?,
+        checkout_configuration_id: String?,
         company: WhopSDK::Models::MembershipListResponse::Company,
         created_at: Time,
         currency: WhopSDK::Models::currency?,
@@ -102,6 +106,7 @@ module WhopSDK
         cancel_option: WhopSDK::Models::cancel_options?,
         canceled_at: Time?,
         cancellation_reason: String?,
+        checkout_configuration_id: String?,
         company: WhopSDK::Models::MembershipListResponse::Company,
         created_at: Time,
         currency: WhopSDK::Models::currency?,

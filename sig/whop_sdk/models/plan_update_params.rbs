@@ -3,6 +3,7 @@ module WhopSDK
     type plan_update_params =
       {
         id: String,
+        adaptive_pricing_enabled: bool?,
         billing_period: Integer?,
         checkout_styling: WhopSDK::PlanUpdateParams::CheckoutStyling?,
         currency: WhopSDK::Models::currency?,
@@ -32,6 +33,8 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       attr_accessor id: String
+
+      attr_accessor adaptive_pricing_enabled: bool?
 
       attr_accessor billing_period: Integer?
 
@@ -77,6 +80,7 @@ module WhopSDK
 
       def initialize: (
         id: String,
+        ?adaptive_pricing_enabled: bool?,
         ?billing_period: Integer?,
         ?checkout_styling: WhopSDK::PlanUpdateParams::CheckoutStyling?,
         ?currency: WhopSDK::Models::currency?,
@@ -103,6 +107,7 @@ module WhopSDK
 
       def to_hash: -> {
         id: String,
+        adaptive_pricing_enabled: bool?,
         billing_period: Integer?,
         checkout_styling: WhopSDK::PlanUpdateParams::CheckoutStyling?,
         currency: WhopSDK::Models::currency?,
@@ -129,12 +134,15 @@ module WhopSDK
 
       type checkout_styling =
         {
+          background_color: String?,
           border_style: WhopSDK::Models::checkout_shape?,
           button_color: String?,
           font_family: WhopSDK::Models::checkout_font?
         }
 
       class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+        attr_accessor background_color: String?
+
         attr_accessor border_style: WhopSDK::Models::checkout_shape?
 
         attr_accessor button_color: String?
@@ -142,12 +150,14 @@ module WhopSDK
         attr_accessor font_family: WhopSDK::Models::checkout_font?
 
         def initialize: (
+          ?background_color: String?,
           ?border_style: WhopSDK::Models::checkout_shape?,
           ?button_color: String?,
           ?font_family: WhopSDK::Models::checkout_font?
         ) -> void
 
         def to_hash: -> {
+          background_color: String?,
           border_style: WhopSDK::Models::checkout_shape?,
           button_color: String?,
           font_family: WhopSDK::Models::checkout_font?
@@ -210,7 +220,7 @@ module WhopSDK
         {
           disabled: ::Array[WhopSDK::Models::payment_method_types],
           enabled: ::Array[WhopSDK::Models::payment_method_types],
-          include_platform_defaults: bool
+          include_platform_defaults: bool?
         }
 
       class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
@@ -218,18 +228,18 @@ module WhopSDK
 
         attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
 
-        attr_accessor include_platform_defaults: bool
+        attr_accessor include_platform_defaults: bool?
 
         def initialize: (
           disabled: ::Array[WhopSDK::Models::payment_method_types],
           enabled: ::Array[WhopSDK::Models::payment_method_types],
-          include_platform_defaults: bool
+          ?include_platform_defaults: bool?
         ) -> void
 
         def to_hash: -> {
           disabled: ::Array[WhopSDK::Models::payment_method_types],
           enabled: ::Array[WhopSDK::Models::payment_method_types],
-          include_platform_defaults: bool
+          include_platform_defaults: bool?
         }
       end
     end

@@ -68,6 +68,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :card_last4
 
+      # The ID of the checkout session/configuration that produced this payment, if any.
+      # Use this to map payments back to the checkout configuration that created them.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :checkout_configuration_id
+
       # The company for the payment.
       sig { returns(T.nilable(WhopSDK::Models::PaymentListResponse::Company)) }
       attr_reader :company
@@ -221,6 +226,12 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :retryable
 
+      # The currency in which the creator receives payouts and fees are charged (e.g.,
+      # 'usd', 'eur'). For multi-currency payments this differs from the payment
+      # currency.
+      sig { returns(String) }
+      attr_accessor :settlement_currency
+
       # The status of a receipt
       sig { returns(T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol)) }
       attr_accessor :status
@@ -288,6 +299,7 @@ module WhopSDK
           billing_reason: T.nilable(WhopSDK::BillingReasons::OrSymbol),
           card_brand: T.nilable(WhopSDK::CardBrands::OrSymbol),
           card_last4: T.nilable(String),
+          checkout_configuration_id: T.nilable(String),
           company:
             T.nilable(WhopSDK::Models::PaymentListResponse::Company::OrHash),
           created_at: Time,
@@ -317,6 +329,7 @@ module WhopSDK
           refunded_amount: T.nilable(Float),
           refunded_at: T.nilable(Time),
           retryable: T::Boolean,
+          settlement_currency: String,
           status: T.nilable(WhopSDK::ReceiptStatus::OrSymbol),
           substatus: WhopSDK::FriendlyReceiptStatus::OrSymbol,
           subtotal: T.nilable(Float),
@@ -347,6 +360,9 @@ module WhopSDK
         # The last four digits of the card used to make this payment. Null if the payment
         # was not made with a card.
         card_last4:,
+        # The ID of the checkout session/configuration that produced this payment, if any.
+        # Use this to map payments back to the checkout configuration that created them.
+        checkout_configuration_id:,
         # The company for the payment.
         company:,
         # The datetime the payment was created.
@@ -395,6 +411,10 @@ module WhopSDK
         # retry-eligible states (`active`, `trialing`, `completed`, or `past_due`);
         # otherwise false. Used to decide if Whop can attempt the charge again.
         retryable:,
+        # The currency in which the creator receives payouts and fees are charged (e.g.,
+        # 'usd', 'eur'). For multi-currency payments this differs from the payment
+        # currency.
+        settlement_currency:,
         # The status of a receipt
         status:,
         # The friendly status of the payment.
@@ -433,6 +453,7 @@ module WhopSDK
             billing_reason: T.nilable(WhopSDK::BillingReasons::TaggedSymbol),
             card_brand: T.nilable(WhopSDK::CardBrands::TaggedSymbol),
             card_last4: T.nilable(String),
+            checkout_configuration_id: T.nilable(String),
             company: T.nilable(WhopSDK::Models::PaymentListResponse::Company),
             created_at: Time,
             currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
@@ -458,6 +479,7 @@ module WhopSDK
             refunded_amount: T.nilable(Float),
             refunded_at: T.nilable(Time),
             retryable: T::Boolean,
+            settlement_currency: String,
             status: T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol),
             substatus: WhopSDK::FriendlyReceiptStatus::TaggedSymbol,
             subtotal: T.nilable(Float),

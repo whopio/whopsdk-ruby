@@ -30,6 +30,12 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :cancellation_reason
 
+      # The ID of the checkout session/configuration that produced this membership, if
+      # any. Use this to map memberships back to the checkout configuration that created
+      # them.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :checkout_configuration_id
+
       # The company this membership belongs to.
       sig { returns(WhopSDK::Membership::Company) }
       attr_reader :company
@@ -146,6 +152,7 @@ module WhopSDK
           cancel_option: T.nilable(WhopSDK::CancelOptions::OrSymbol),
           canceled_at: T.nilable(Time),
           cancellation_reason: T.nilable(String),
+          checkout_configuration_id: T.nilable(String),
           company: WhopSDK::Membership::Company::OrHash,
           created_at: Time,
           currency: T.nilable(WhopSDK::Currency::OrSymbol),
@@ -182,6 +189,10 @@ module WhopSDK
         # Free-text explanation provided by the customer when canceling. Null if the
         # customer did not provide a reason.
         cancellation_reason:,
+        # The ID of the checkout session/configuration that produced this membership, if
+        # any. Use this to map memberships back to the checkout configuration that created
+        # them.
+        checkout_configuration_id:,
         # The company this membership belongs to.
         company:,
         # The datetime the membership was created.
@@ -240,6 +251,7 @@ module WhopSDK
             cancel_option: T.nilable(WhopSDK::CancelOptions::TaggedSymbol),
             canceled_at: T.nilable(Time),
             cancellation_reason: T.nilable(String),
+            checkout_configuration_id: T.nilable(String),
             company: WhopSDK::Membership::Company,
             created_at: Time,
             currency: T.nilable(WhopSDK::Currency::TaggedSymbol),

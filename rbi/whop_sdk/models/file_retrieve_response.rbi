@@ -31,9 +31,17 @@ module WhopSDK
       sig { returns(WhopSDK::UploadStatus::TaggedSymbol) }
       attr_accessor :upload_status
 
-      # The CDN URL for accessing the file. Null if the file has not finished uploading.
+      # The URL for accessing the file. For public files, this is a permanent CDN URL.
+      # For private files, this is a signed URL that expires. Null if the file has not
+      # finished uploading.
       sig { returns(T.nilable(String)) }
       attr_accessor :url
+
+      # Whether the file is publicly accessible or requires authentication.
+      sig do
+        returns(WhopSDK::Models::FileRetrieveResponse::Visibility::TaggedSymbol)
+      end
+      attr_accessor :visibility
 
       # A file that has been uploaded or is pending upload.
       sig do
@@ -43,7 +51,9 @@ module WhopSDK
           filename: T.nilable(String),
           size: T.nilable(String),
           upload_status: WhopSDK::UploadStatus::OrSymbol,
-          url: T.nilable(String)
+          url: T.nilable(String),
+          visibility:
+            WhopSDK::Models::FileRetrieveResponse::Visibility::OrSymbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -57,8 +67,12 @@ module WhopSDK
         size:,
         # The current upload status of the file (e.g., pending, ready).
         upload_status:,
-        # The CDN URL for accessing the file. Null if the file has not finished uploading.
-        url:
+        # The URL for accessing the file. For public files, this is a permanent CDN URL.
+        # For private files, this is a signed URL that expires. Null if the file has not
+        # finished uploading.
+        url:,
+        # Whether the file is publicly accessible or requires authentication.
+        visibility:
       )
       end
 
@@ -70,11 +84,45 @@ module WhopSDK
             filename: T.nilable(String),
             size: T.nilable(String),
             upload_status: WhopSDK::UploadStatus::TaggedSymbol,
-            url: T.nilable(String)
+            url: T.nilable(String),
+            visibility:
+              WhopSDK::Models::FileRetrieveResponse::Visibility::TaggedSymbol
           }
         )
       end
       def to_hash
+      end
+
+      # Whether the file is publicly accessible or requires authentication.
+      module Visibility
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::Models::FileRetrieveResponse::Visibility)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        PUBLIC =
+          T.let(
+            :public,
+            WhopSDK::Models::FileRetrieveResponse::Visibility::TaggedSymbol
+          )
+        PRIVATE =
+          T.let(
+            :private,
+            WhopSDK::Models::FileRetrieveResponse::Visibility::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::Models::FileRetrieveResponse::Visibility::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
       end
     end
   end

@@ -56,14 +56,15 @@ module WhopSDK
       # - `support_chat:read`
       sig do
         params(
-          company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
+          company_id: T.nilable(String),
           direction: T.nilable(WhopSDK::Direction::OrSymbol),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           open_: T.nilable(T::Boolean),
           order: T.nilable(WhopSDK::SupportChannelListParams::Order::OrSymbol),
+          view: T.nilable(WhopSDK::SupportChannelListParams::View::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[
@@ -72,12 +73,14 @@ module WhopSDK
         )
       end
       def list(
-        # The unique identifier of the company to list support channels for.
-        company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
+        # The unique identifier of the company to list support channels for. Includes
+        # channels of child companies. When omitted, returns support channels across all
+        # companies the user has access to.
+        company_id: nil,
         # The direction of the sort.
         direction: nil,
         # Returns the first _n_ elements from the list.
@@ -89,6 +92,8 @@ module WhopSDK
         open_: nil,
         # Sort options for message channels
         order: nil,
+        # The perspective to filter support channels by.
+        view: nil,
         request_options: {}
       )
       end

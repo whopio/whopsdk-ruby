@@ -1,0 +1,25 @@
+module WhopSDK
+  module Resources
+    class Conversions
+      def create: (
+        company_id: String,
+        event_name: WhopSDK::Models::ConversionCreateParams::event_name,
+        ?action_source: WhopSDK::Models::ConversionCreateParams::action_source?,
+        ?context: WhopSDK::ConversionCreateParams::Context?,
+        ?currency: WhopSDK::Models::currency?,
+        ?custom_name: String?,
+        ?event_id: String?,
+        ?event_time: Time?,
+        ?plan_id: String?,
+        ?product_id: String?,
+        ?referrer_url: String?,
+        ?url: String?,
+        ?user: WhopSDK::ConversionCreateParams::User?,
+        ?value: Float?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::ConversionCreateResponse
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

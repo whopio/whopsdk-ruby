@@ -12,6 +12,12 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
+      # @!attribute adaptive_pricing_enabled
+      #   Whether this plan accepts local currency payments via adaptive pricing.
+      #
+      #   @return [Boolean, nil]
+      optional :adaptive_pricing_enabled, WhopSDK::Internal::Type::Boolean, nil?: true
+
       # @!attribute billing_period
       #   The number of days between recurring charges. For example, 30 for monthly or 365
       #   for yearly.
@@ -152,11 +158,13 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility, nil]
       optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-      # @!method initialize(id:, billing_period: nil, checkout_styling: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, offer_cancel_discount: nil, override_tax_type: nil, payment_method_configuration: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
+      # @!method initialize(id:, adaptive_pricing_enabled: nil, billing_period: nil, checkout_styling: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, offer_cancel_discount: nil, override_tax_type: nil, payment_method_configuration: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PlanUpdateParams} for more details.
       #
       #   @param id [String]
+      #
+      #   @param adaptive_pricing_enabled [Boolean, nil] Whether this plan accepts local currency payments via adaptive pricing.
       #
       #   @param billing_period [Integer, nil] The number of days between recurring charges. For example, 30 for monthly or 365
       #
@@ -203,6 +211,13 @@ module WhopSDK
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
       class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+        # @!attribute background_color
+        #   A hex color code for the checkout page background, applied to the order summary
+        #   panel (e.g. #F4F4F5).
+        #
+        #   @return [String, nil]
+        optional :background_color, String, nil?: true
+
         # @!attribute border_style
         #   The different border-radius styles available for checkout pages.
         #
@@ -221,9 +236,14 @@ module WhopSDK
         #   @return [Symbol, WhopSDK::Models::CheckoutFont, nil]
         optional :font_family, enum: -> { WhopSDK::CheckoutFont }, nil?: true
 
-        # @!method initialize(border_style: nil, button_color: nil, font_family: nil)
+        # @!method initialize(background_color: nil, border_style: nil, button_color: nil, font_family: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::PlanUpdateParams::CheckoutStyling} for more details.
+        #
         #   Checkout styling overrides for this plan. Pass null to remove all overrides and
         #   inherit from the company default.
+        #
+        #   @param background_color [String, nil] A hex color code for the checkout page background, applied to the order summary
         #
         #   @param border_style [Symbol, WhopSDK::Models::CheckoutShape, nil] The different border-radius styles available for checkout pages.
         #
@@ -318,10 +338,10 @@ module WhopSDK
         #   in this configuration. The full list of default payment methods can be found in
         #   the documentation at docs.whop.com/payments.
         #
-        #   @return [Boolean]
-        required :include_platform_defaults, WhopSDK::Internal::Type::Boolean
+        #   @return [Boolean, nil]
+        optional :include_platform_defaults, WhopSDK::Internal::Type::Boolean, nil?: true
 
-        # @!method initialize(disabled:, enabled:, include_platform_defaults:)
+        # @!method initialize(disabled:, enabled:, include_platform_defaults: nil)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::PlanUpdateParams::PaymentMethodConfiguration} for more
         #   details.
@@ -333,7 +353,7 @@ module WhopSDK
         #
         #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
         #
-        #   @param include_platform_defaults [Boolean] Whether Whop's platform default payment method enablement settings are included
+        #   @param include_platform_defaults [Boolean, nil] Whether Whop's platform default payment method enablement settings are included
       end
     end
   end

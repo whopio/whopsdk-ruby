@@ -1,0 +1,93 @@
+module WhopSDK
+  module Models
+    type ad_group_list_response =
+      {
+        id: String,
+        budget: Float?,
+        budget_type: WhopSDK::Models::AdGroupListResponse::budget_type?,
+        created_at: Time,
+        platform: WhopSDK::Models::AdGroupListResponse::platform,
+        status: WhopSDK::Models::AdGroupListResponse::status,
+        title: String?,
+        updated_at: Time
+      }
+
+    class AdGroupListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor budget: Float?
+
+      attr_accessor budget_type: WhopSDK::Models::AdGroupListResponse::budget_type?
+
+      attr_accessor created_at: Time
+
+      attr_accessor platform: WhopSDK::Models::AdGroupListResponse::platform
+
+      attr_accessor status: WhopSDK::Models::AdGroupListResponse::status
+
+      attr_accessor title: String?
+
+      attr_accessor updated_at: Time
+
+      def initialize: (
+        id: String,
+        budget: Float?,
+        budget_type: WhopSDK::Models::AdGroupListResponse::budget_type?,
+        created_at: Time,
+        platform: WhopSDK::Models::AdGroupListResponse::platform,
+        status: WhopSDK::Models::AdGroupListResponse::status,
+        title: String?,
+        updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        budget: Float?,
+        budget_type: WhopSDK::Models::AdGroupListResponse::budget_type?,
+        created_at: Time,
+        platform: WhopSDK::Models::AdGroupListResponse::platform,
+        status: WhopSDK::Models::AdGroupListResponse::status,
+        title: String?,
+        updated_at: Time
+      }
+
+      type budget_type = :daily | :lifetime
+
+      module BudgetType
+        extend WhopSDK::Internal::Type::Enum
+
+        DAILY: :daily
+        LIFETIME: :lifetime
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::budget_type]
+      end
+
+      type platform = :meta | :tiktok
+
+      module Platform
+        extend WhopSDK::Internal::Type::Enum
+
+        META: :meta
+        TIKTOK: :tiktok
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::platform]
+      end
+
+      type status =
+        :active | :paused | :inactive | :in_review | :rejected | :flagged
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        ACTIVE: :active
+        PAUSED: :paused
+        INACTIVE: :inactive
+        IN_REVIEW: :in_review
+        REJECTED: :rejected
+        FLAGGED: :flagged
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::status]
+      end
+    end
+  end
+end

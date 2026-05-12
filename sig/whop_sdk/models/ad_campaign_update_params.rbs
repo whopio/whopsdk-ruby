@@ -1,0 +1,28 @@
+module WhopSDK
+  module Models
+    type ad_campaign_update_params =
+      { id: String, budget: Float? }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class AdCampaignUpdateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_accessor budget: Float?
+
+      def initialize: (
+        id: String,
+        ?budget: Float?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        budget: Float?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

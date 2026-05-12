@@ -19,6 +19,10 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :product_id
 
+      # Whether this plan accepts local currency payments via adaptive pricing.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :adaptive_pricing_enabled
+
       # The number of days between recurring charges. For example, 30 for monthly or 365
       # for yearly.
       sig { returns(T.nilable(Integer)) }
@@ -146,6 +150,7 @@ module WhopSDK
         params(
           company_id: String,
           product_id: String,
+          adaptive_pricing_enabled: T.nilable(T::Boolean),
           billing_period: T.nilable(Integer),
           checkout_styling:
             T.nilable(WhopSDK::PlanCreateParams::CheckoutStyling::OrHash),
@@ -180,6 +185,8 @@ module WhopSDK
         company_id:,
         # The unique identifier of the product to attach this plan to.
         product_id:,
+        # Whether this plan accepts local currency payments via adaptive pricing.
+        adaptive_pricing_enabled: nil,
         # The number of days between recurring charges. For example, 30 for monthly or 365
         # for yearly.
         billing_period: nil,
@@ -241,6 +248,7 @@ module WhopSDK
           {
             company_id: String,
             product_id: String,
+            adaptive_pricing_enabled: T.nilable(T::Boolean),
             billing_period: T.nilable(Integer),
             checkout_styling:
               T.nilable(WhopSDK::PlanCreateParams::CheckoutStyling),
@@ -281,6 +289,11 @@ module WhopSDK
             )
           end
 
+        # A hex color code for the checkout page background, applied to the order summary
+        # panel (e.g. #F4F4F5).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :background_color
+
         # The different border-radius styles available for checkout pages.
         sig { returns(T.nilable(WhopSDK::CheckoutShape::OrSymbol)) }
         attr_accessor :border_style
@@ -297,12 +310,16 @@ module WhopSDK
         # default.
         sig do
           params(
+            background_color: T.nilable(String),
             border_style: T.nilable(WhopSDK::CheckoutShape::OrSymbol),
             button_color: T.nilable(String),
             font_family: T.nilable(WhopSDK::CheckoutFont::OrSymbol)
           ).returns(T.attached_class)
         end
         def self.new(
+          # A hex color code for the checkout page background, applied to the order summary
+          # panel (e.g. #F4F4F5).
+          background_color: nil,
           # The different border-radius styles available for checkout pages.
           border_style: nil,
           # A hex color code for the button color (e.g. #FF5733).
@@ -315,6 +332,7 @@ module WhopSDK
         sig do
           override.returns(
             {
+              background_color: T.nilable(String),
               border_style: T.nilable(WhopSDK::CheckoutShape::OrSymbol),
               button_color: T.nilable(String),
               font_family: T.nilable(WhopSDK::CheckoutFont::OrSymbol)
@@ -447,7 +465,7 @@ module WhopSDK
         # Whether Whop's platform default payment method enablement settings are included
         # in this configuration. The full list of default payment methods can be found in
         # the documentation at docs.whop.com/payments.
-        sig { returns(T::Boolean) }
+        sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :include_platform_defaults
 
         # Explicit payment method configuration for the plan. When not provided, the
@@ -456,7 +474,7 @@ module WhopSDK
           params(
             disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
             enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
-            include_platform_defaults: T::Boolean
+            include_platform_defaults: T.nilable(T::Boolean)
           ).returns(T.attached_class)
         end
         def self.new(
@@ -471,7 +489,7 @@ module WhopSDK
           # Whether Whop's platform default payment method enablement settings are included
           # in this configuration. The full list of default payment methods can be found in
           # the documentation at docs.whop.com/payments.
-          include_platform_defaults:
+          include_platform_defaults: nil
         )
         end
 
@@ -480,7 +498,7 @@ module WhopSDK
             {
               disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
               enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
-              include_platform_defaults: T::Boolean
+              include_platform_defaults: T.nilable(T::Boolean)
             }
           )
         end

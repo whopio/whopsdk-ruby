@@ -16,6 +16,7 @@ module WhopSDK
         params(
           company_id: String,
           product_id: String,
+          adaptive_pricing_enabled: T.nilable(T::Boolean),
           billing_period: T.nilable(Integer),
           checkout_styling:
             T.nilable(WhopSDK::PlanCreateParams::CheckoutStyling::OrHash),
@@ -50,6 +51,8 @@ module WhopSDK
         company_id:,
         # The unique identifier of the product to attach this plan to.
         product_id:,
+        # Whether this plan accepts local currency payments via adaptive pricing.
+        adaptive_pricing_enabled: nil,
         # The number of days between recurring charges. For example, 30 for monthly or 365
         # for yearly.
         billing_period: nil,
@@ -135,6 +138,7 @@ module WhopSDK
       sig do
         params(
           id: String,
+          adaptive_pricing_enabled: T.nilable(T::Boolean),
           billing_period: T.nilable(Integer),
           checkout_styling:
             T.nilable(WhopSDK::PlanUpdateParams::CheckoutStyling::OrHash),
@@ -167,6 +171,8 @@ module WhopSDK
       def update(
         # The unique identifier of the plan to update.
         id,
+        # Whether this plan accepts local currency payments via adaptive pricing.
+        adaptive_pricing_enabled: nil,
         # The number of days between recurring charges. For example, 30 for monthly or 365
         # for yearly.
         billing_period: nil,

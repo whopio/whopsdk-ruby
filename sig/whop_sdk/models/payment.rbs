@@ -10,6 +10,7 @@ module WhopSDK
         billing_reason: WhopSDK::Models::billing_reasons?,
         card_brand: WhopSDK::Models::card_brands?,
         :card_last4 => String?,
+        checkout_configuration_id: String?,
         company: WhopSDK::Payment::Company?,
         created_at: Time,
         currency: WhopSDK::Models::currency?,
@@ -35,6 +36,9 @@ module WhopSDK
         refunded_at: Time?,
         resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
+        settlement_amount: Float,
+        settlement_currency: String,
+        settlement_exchange_rate: Float?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
@@ -64,6 +68,8 @@ module WhopSDK
       attr_accessor card_brand: WhopSDK::Models::card_brands?
 
       attr_accessor card_last4: String?
+
+      attr_accessor checkout_configuration_id: String?
 
       attr_accessor company: WhopSDK::Payment::Company?
 
@@ -115,6 +121,12 @@ module WhopSDK
 
       attr_accessor retryable: bool
 
+      attr_accessor settlement_amount: Float
+
+      attr_accessor settlement_currency: String
+
+      attr_accessor settlement_exchange_rate: Float?
+
       attr_accessor status: WhopSDK::Models::receipt_status?
 
       attr_accessor substatus: WhopSDK::Models::friendly_receipt_status
@@ -146,6 +158,7 @@ module WhopSDK
         billing_reason: WhopSDK::Models::billing_reasons?,
         card_brand: WhopSDK::Models::card_brands?,
         card_last4: String?,
+        checkout_configuration_id: String?,
         company: WhopSDK::Payment::Company?,
         created_at: Time,
         currency: WhopSDK::Models::currency?,
@@ -171,6 +184,9 @@ module WhopSDK
         refunded_at: Time?,
         resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
+        settlement_amount: Float,
+        settlement_currency: String,
+        settlement_exchange_rate: Float?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
@@ -193,6 +209,7 @@ module WhopSDK
         billing_reason: WhopSDK::Models::billing_reasons?,
         card_brand: WhopSDK::Models::card_brands?,
         :card_last4 => String?,
+        checkout_configuration_id: String?,
         company: WhopSDK::Payment::Company?,
         created_at: Time,
         currency: WhopSDK::Models::currency?,
@@ -218,6 +235,9 @@ module WhopSDK
         refunded_at: Time?,
         resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
+        settlement_amount: Float,
+        settlement_currency: String,
+        settlement_exchange_rate: Float?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,

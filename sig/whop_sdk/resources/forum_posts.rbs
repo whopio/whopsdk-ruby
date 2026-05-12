@@ -38,6 +38,7 @@ module WhopSDK
         ?after: String?,
         ?before: String?,
         ?first: Integer?,
+        ?include_bounty_anchors: bool?,
         ?last: Integer?,
         ?parent_id: String?,
         ?pinned: bool?,

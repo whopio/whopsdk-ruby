@@ -1,0 +1,82 @@
+module WhopSDK
+  module Models
+    type ad_campaign_list_params =
+      {
+        company_id: String,
+        after: String?,
+        before: String?,
+        created_after: Time?,
+        created_before: Time?,
+        first: Integer?,
+        last: Integer?,
+        query: String?,
+        status: WhopSDK::Models::AdCampaignListParams::status?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class AdCampaignListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor company_id: String
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor created_after: Time?
+
+      attr_accessor created_before: Time?
+
+      attr_accessor first: Integer?
+
+      attr_accessor last: Integer?
+
+      attr_accessor query: String?
+
+      attr_accessor status: WhopSDK::Models::AdCampaignListParams::status?
+
+      def initialize: (
+        company_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?created_after: Time?,
+        ?created_before: Time?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?query: String?,
+        ?status: WhopSDK::Models::AdCampaignListParams::status?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        company_id: String,
+        after: String?,
+        before: String?,
+        created_after: Time?,
+        created_before: Time?,
+        first: Integer?,
+        last: Integer?,
+        query: String?,
+        status: WhopSDK::Models::AdCampaignListParams::status?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type status =
+        :active | :paused | :payment_failed | :draft | :in_review | :flagged
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        ACTIVE: :active
+        PAUSED: :paused
+        PAYMENT_FAILED: :payment_failed
+        DRAFT: :draft
+        IN_REVIEW: :in_review
+        FLAGGED: :flagged
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdCampaignListParams::status]
+      end
+    end
+  end
+end

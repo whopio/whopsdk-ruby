@@ -10,6 +10,7 @@ module WhopSDK
         billing_reason: WhopSDK::Models::billing_reasons?,
         card_brand: WhopSDK::Models::card_brands?,
         :card_last4 => String?,
+        checkout_configuration_id: String?,
         company: WhopSDK::Models::PaymentListResponse::Company?,
         created_at: Time,
         currency: WhopSDK::Models::currency?,
@@ -31,6 +32,7 @@ module WhopSDK
         refunded_amount: Float?,
         refunded_at: Time?,
         retryable: bool,
+        settlement_currency: String,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
@@ -59,6 +61,8 @@ module WhopSDK
       attr_accessor card_brand: WhopSDK::Models::card_brands?
 
       attr_accessor card_last4: String?
+
+      attr_accessor checkout_configuration_id: String?
 
       attr_accessor company: WhopSDK::Models::PaymentListResponse::Company?
 
@@ -102,6 +106,8 @@ module WhopSDK
 
       attr_accessor retryable: bool
 
+      attr_accessor settlement_currency: String
+
       attr_accessor status: WhopSDK::Models::receipt_status?
 
       attr_accessor substatus: WhopSDK::Models::friendly_receipt_status
@@ -131,6 +137,7 @@ module WhopSDK
         billing_reason: WhopSDK::Models::billing_reasons?,
         card_brand: WhopSDK::Models::card_brands?,
         card_last4: String?,
+        checkout_configuration_id: String?,
         company: WhopSDK::Models::PaymentListResponse::Company?,
         created_at: Time,
         currency: WhopSDK::Models::currency?,
@@ -152,6 +159,7 @@ module WhopSDK
         refunded_amount: Float?,
         refunded_at: Time?,
         retryable: bool,
+        settlement_currency: String,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
@@ -173,6 +181,7 @@ module WhopSDK
         billing_reason: WhopSDK::Models::billing_reasons?,
         card_brand: WhopSDK::Models::card_brands?,
         :card_last4 => String?,
+        checkout_configuration_id: String?,
         company: WhopSDK::Models::PaymentListResponse::Company?,
         created_at: Time,
         currency: WhopSDK::Models::currency?,
@@ -194,6 +203,7 @@ module WhopSDK
         refunded_amount: Float?,
         refunded_at: Time?,
         retryable: bool,
+        settlement_currency: String,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,

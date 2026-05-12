@@ -25,6 +25,7 @@ module WhopSDK
         ?member_id: String?,
         ?payment_method_id: String?,
         ?plan: WhopSDK::InvoiceUpdateParams::Plan?,
+        ?product_id: String?,
         ?subscription_billing_anchor_at: Time?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Invoice

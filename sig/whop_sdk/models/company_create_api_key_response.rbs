@@ -1,0 +1,18 @@
+module WhopSDK
+  module Models
+    type company_create_api_key_response =
+      { id: String, name: String?, secret_key: String }
+
+    class CompanyCreateAPIKeyResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor name: String?
+
+      attr_accessor secret_key: String
+
+      def initialize: (id: String, name: String?, secret_key: String) -> void
+
+      def to_hash: -> { id: String, name: String?, secret_key: String }
+    end
+  end
+end

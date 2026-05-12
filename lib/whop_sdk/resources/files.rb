@@ -10,9 +10,11 @@ module WhopSDK
       # Create a new file record and receive a presigned URL for uploading content to
       # S3.
       #
-      # @overload create(filename:, request_options: {})
+      # @overload create(filename:, visibility: nil, request_options: {})
       #
       # @param filename [String] The name of the file including its extension (e.g., "photo.png" or "document.pdf
+      #
+      # @param visibility [Symbol, WhopSDK::Models::FileCreateParams::Visibility, nil] Controls whether an uploaded file is publicly accessible or requires authenticat
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

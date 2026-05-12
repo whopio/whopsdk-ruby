@@ -53,6 +53,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :card_last4
 
+      # The ID of the checkout session/configuration that produced this payment, if any.
+      # Use this to map payments back to the checkout configuration that created them.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :checkout_configuration_id
+
       # The company for the payment.
       sig { returns(T.nilable(WhopSDK::Payment::Company)) }
       attr_reader :company
@@ -193,6 +198,22 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :retryable
 
+      # The payment amount in the creator's settlement currency (what the creator priced
+      # in). Equal to final_amount for single-currency payments.
+      sig { returns(Float) }
+      attr_accessor :settlement_amount
+
+      # The currency in which the creator receives payouts and fees are charged (e.g.,
+      # 'usd', 'eur'). For multi-currency payments this differs from the payment
+      # currency.
+      sig { returns(String) }
+      attr_accessor :settlement_currency
+
+      # The locked exchange rate used to convert from the buyer's payment currency to
+      # the creator's settlement currency. Null for single-currency payments.
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :settlement_exchange_rate
+
       # The status of a receipt
       sig { returns(T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol)) }
       attr_accessor :status
@@ -254,6 +275,7 @@ module WhopSDK
           billing_reason: T.nilable(WhopSDK::BillingReasons::OrSymbol),
           card_brand: T.nilable(WhopSDK::CardBrands::OrSymbol),
           card_last4: T.nilable(String),
+          checkout_configuration_id: T.nilable(String),
           company: T.nilable(WhopSDK::Payment::Company::OrHash),
           created_at: Time,
           currency: T.nilable(WhopSDK::Currency::OrSymbol),
@@ -281,6 +303,9 @@ module WhopSDK
           resolutions:
             T.nilable(T::Array[WhopSDK::Payment::Resolution::OrHash]),
           retryable: T::Boolean,
+          settlement_amount: Float,
+          settlement_currency: String,
+          settlement_exchange_rate: T.nilable(Float),
           status: T.nilable(WhopSDK::ReceiptStatus::OrSymbol),
           substatus: WhopSDK::FriendlyReceiptStatus::OrSymbol,
           subtotal: T.nilable(Float),
@@ -312,6 +337,9 @@ module WhopSDK
         # The last four digits of the card used to make this payment. Null if the payment
         # was not made with a card.
         card_last4:,
+        # The ID of the checkout session/configuration that produced this payment, if any.
+        # Use this to map payments back to the checkout configuration that created them.
+        checkout_configuration_id:,
         # The company for the payment.
         company:,
         # The datetime the payment was created.
@@ -373,6 +401,16 @@ module WhopSDK
         # retry-eligible states (`active`, `trialing`, `completed`, or `past_due`);
         # otherwise false. Used to decide if Whop can attempt the charge again.
         retryable:,
+        # The payment amount in the creator's settlement currency (what the creator priced
+        # in). Equal to final_amount for single-currency payments.
+        settlement_amount:,
+        # The currency in which the creator receives payouts and fees are charged (e.g.,
+        # 'usd', 'eur'). For multi-currency payments this differs from the payment
+        # currency.
+        settlement_currency:,
+        # The locked exchange rate used to convert from the buyer's payment currency to
+        # the creator's settlement currency. Null for single-currency payments.
+        settlement_exchange_rate:,
         # The status of a receipt
         status:,
         # The friendly status of the payment.
@@ -411,6 +449,7 @@ module WhopSDK
             billing_reason: T.nilable(WhopSDK::BillingReasons::TaggedSymbol),
             card_brand: T.nilable(WhopSDK::CardBrands::TaggedSymbol),
             card_last4: T.nilable(String),
+            checkout_configuration_id: T.nilable(String),
             company: T.nilable(WhopSDK::Payment::Company),
             created_at: Time,
             currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
@@ -438,6 +477,9 @@ module WhopSDK
             refunded_at: T.nilable(Time),
             resolutions: T.nilable(T::Array[WhopSDK::Payment::Resolution]),
             retryable: T::Boolean,
+            settlement_amount: Float,
+            settlement_currency: String,
+            settlement_exchange_rate: T.nilable(Float),
             status: T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol),
             substatus: WhopSDK::FriendlyReceiptStatus::TaggedSymbol,
             subtotal: T.nilable(Float),

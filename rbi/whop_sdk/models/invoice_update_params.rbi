@@ -79,6 +79,11 @@ module WhopSDK
       end
       attr_writer :plan
 
+      # The unique identifier of an existing product to attach to this invoice. Only
+      # allowed while the invoice is still a draft.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :product_id
+
       # The date that defines when the subscription billing cycle should start.
       sig { returns(T.nilable(Time)) }
       attr_accessor :subscription_billing_anchor_at
@@ -100,6 +105,7 @@ module WhopSDK
           member_id: T.nilable(String),
           payment_method_id: T.nilable(String),
           plan: T.nilable(WhopSDK::InvoiceUpdateParams::Plan::OrHash),
+          product_id: T.nilable(String),
           subscription_billing_anchor_at: T.nilable(Time),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -132,6 +138,9 @@ module WhopSDK
         payment_method_id: nil,
         # Updated plan attributes.
         plan: nil,
+        # The unique identifier of an existing product to attach to this invoice. Only
+        # allowed while the invoice is still a draft.
+        product_id: nil,
         # The date that defines when the subscription billing cycle should start.
         subscription_billing_anchor_at: nil,
         request_options: {}
@@ -156,6 +165,7 @@ module WhopSDK
             member_id: T.nilable(String),
             payment_method_id: T.nilable(String),
             plan: T.nilable(WhopSDK::InvoiceUpdateParams::Plan),
+            product_id: T.nilable(String),
             subscription_billing_anchor_at: T.nilable(Time),
             request_options: WhopSDK::RequestOptions
           }
@@ -615,7 +625,7 @@ module WhopSDK
           # Whether Whop's platform default payment method enablement settings are included
           # in this configuration. The full list of default payment methods can be found in
           # the documentation at docs.whop.com/payments.
-          sig { returns(T::Boolean) }
+          sig { returns(T.nilable(T::Boolean)) }
           attr_accessor :include_platform_defaults
 
           # The explicit payment method configuration for the plan. If not provided, the
@@ -624,7 +634,7 @@ module WhopSDK
             params(
               disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
               enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
-              include_platform_defaults: T::Boolean
+              include_platform_defaults: T.nilable(T::Boolean)
             ).returns(T.attached_class)
           end
           def self.new(
@@ -639,7 +649,7 @@ module WhopSDK
             # Whether Whop's platform default payment method enablement settings are included
             # in this configuration. The full list of default payment methods can be found in
             # the documentation at docs.whop.com/payments.
-            include_platform_defaults:
+            include_platform_defaults: nil
           )
           end
 
@@ -648,7 +658,7 @@ module WhopSDK
               {
                 disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
                 enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
-                include_platform_defaults: T::Boolean
+                include_platform_defaults: T.nilable(T::Boolean)
               }
             )
           end

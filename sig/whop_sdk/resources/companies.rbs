@@ -45,6 +45,15 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::CompanyListResponse]
 
+      def create_api_key: (
+        String parent_company_id,
+        child_company_id: String,
+        ?name: String?,
+        ?permissions: ::Array[WhopSDK::CompanyCreateAPIKeyParams::Permission]?,
+        ?role: WhopSDK::Models::CompanyCreateAPIKeyParams::role?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::CompanyCreateAPIKeyResponse
+
       def initialize: (client: WhopSDK::Client) -> void
     end
   end

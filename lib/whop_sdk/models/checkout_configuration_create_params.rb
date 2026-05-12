@@ -145,6 +145,12 @@ module WhopSDK
             #   @return [Symbol, WhopSDK::Models::Currency]
             required :currency, enum: -> { WhopSDK::Currency }
 
+            # @!attribute adaptive_pricing_enabled
+            #   Whether this plan accepts local currency payments via adaptive pricing.
+            #
+            #   @return [Boolean, nil]
+            optional :adaptive_pricing_enabled, WhopSDK::Internal::Type::Boolean, nil?: true
+
             # @!attribute application_fee_amount
             #   The application fee amount collected by the platform from this connected
             #   account. Provided as a number in dollars (e.g., 5.00 for $5.00). Must be less
@@ -300,7 +306,7 @@ module WhopSDK
             #   @return [Symbol, WhopSDK::Models::Visibility, nil]
             optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-            # @!method initialize(company_id:, currency:, application_fee_amount: nil, billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, force_create_new_plan: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, product: nil, product_id: nil, release_method: nil, renewal_price: nil, split_pay_required_payments: nil, stock: nil, title: nil, trial_period_days: nil, visibility: nil)
+            # @!method initialize(company_id:, currency:, adaptive_pricing_enabled: nil, application_fee_amount: nil, billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, force_create_new_plan: nil, image: nil, initial_price: nil, internal_notes: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, product: nil, product_id: nil, release_method: nil, renewal_price: nil, split_pay_required_payments: nil, stock: nil, title: nil, trial_period_days: nil, visibility: nil)
             #   Some parameter documentations has been truncated, see
             #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan}
             #   for more details.
@@ -310,6 +316,8 @@ module WhopSDK
             #   @param company_id [String] The company the plan should be created for.
             #
             #   @param currency [Symbol, WhopSDK::Models::Currency] The respective currency identifier for the plan.
+            #
+            #   @param adaptive_pricing_enabled [Boolean, nil] Whether this plan accepts local currency payments via adaptive pricing.
             #
             #   @param application_fee_amount [Float, nil] The application fee amount collected by the platform from this connected account
             #
@@ -441,10 +449,10 @@ module WhopSDK
               #   in this configuration. The full list of default payment methods can be found in
               #   the documentation at docs.whop.com/payments.
               #
-              #   @return [Boolean]
-              required :include_platform_defaults, WhopSDK::Internal::Type::Boolean
+              #   @return [Boolean, nil]
+              optional :include_platform_defaults, WhopSDK::Internal::Type::Boolean, nil?: true
 
-              # @!method initialize(disabled:, enabled:, include_platform_defaults:)
+              # @!method initialize(disabled:, enabled:, include_platform_defaults: nil)
               #   Some parameter documentations has been truncated, see
               #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan::PaymentMethodConfiguration}
               #   for more details.
@@ -456,7 +464,7 @@ module WhopSDK
               #
               #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
               #
-              #   @param include_platform_defaults [Boolean] Whether Whop's platform default payment method enablement settings are included
+              #   @param include_platform_defaults [Boolean, nil] Whether Whop's platform default payment method enablement settings are included
             end
 
             # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan#product
@@ -574,6 +582,13 @@ module WhopSDK
 
           # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan#checkout_styling
           class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+            # @!attribute background_color
+            #   A hex color code for the checkout page background, applied to the order summary
+            #   panel (e.g. #F4F4F5).
+            #
+            #   @return [String, nil]
+            optional :background_color, String, nil?: true
+
             # @!attribute border_style
             #   The different border-radius styles available for checkout pages.
             #
@@ -592,9 +607,15 @@ module WhopSDK
             #   @return [Symbol, WhopSDK::Models::CheckoutFont, nil]
             optional :font_family, enum: -> { WhopSDK::CheckoutFont }, nil?: true
 
-            # @!method initialize(border_style: nil, button_color: nil, font_family: nil)
+            # @!method initialize(background_color: nil, border_style: nil, button_color: nil, font_family: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling}
+            #   for more details.
+            #
             #   Checkout styling overrides for this session. Overrides plan and company
             #   defaults.
+            #
+            #   @param background_color [String, nil] A hex color code for the checkout page background, applied to the order summary
             #
             #   @param border_style [Symbol, WhopSDK::Models::CheckoutShape, nil] The different border-radius styles available for checkout pages.
             #
@@ -636,10 +657,10 @@ module WhopSDK
             #   in this configuration. The full list of default payment methods can be found in
             #   the documentation at docs.whop.com/payments.
             #
-            #   @return [Boolean]
-            required :include_platform_defaults, WhopSDK::Internal::Type::Boolean
+            #   @return [Boolean, nil]
+            optional :include_platform_defaults, WhopSDK::Internal::Type::Boolean, nil?: true
 
-            # @!method initialize(disabled:, enabled:, include_platform_defaults:)
+            # @!method initialize(disabled:, enabled:, include_platform_defaults: nil)
             #   Some parameter documentations has been truncated, see
             #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::PaymentMethodConfiguration}
             #   for more details.
@@ -651,7 +672,7 @@ module WhopSDK
             #
             #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
             #
-            #   @param include_platform_defaults [Boolean] Whether Whop's platform default payment method enablement settings are included
+            #   @param include_platform_defaults [Boolean, nil] Whether Whop's platform default payment method enablement settings are included
           end
         end
 
@@ -757,6 +778,13 @@ module WhopSDK
 
           # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID#checkout_styling
           class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+            # @!attribute background_color
+            #   A hex color code for the checkout page background, applied to the order summary
+            #   panel (e.g. #F4F4F5).
+            #
+            #   @return [String, nil]
+            optional :background_color, String, nil?: true
+
             # @!attribute border_style
             #   The different border-radius styles available for checkout pages.
             #
@@ -775,9 +803,15 @@ module WhopSDK
             #   @return [Symbol, WhopSDK::Models::CheckoutFont, nil]
             optional :font_family, enum: -> { WhopSDK::CheckoutFont }, nil?: true
 
-            # @!method initialize(border_style: nil, button_color: nil, font_family: nil)
+            # @!method initialize(background_color: nil, border_style: nil, button_color: nil, font_family: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling}
+            #   for more details.
+            #
             #   Checkout styling overrides for this session. Overrides plan and company
             #   defaults.
+            #
+            #   @param background_color [String, nil] A hex color code for the checkout page background, applied to the order summary
             #
             #   @param border_style [Symbol, WhopSDK::Models::CheckoutShape, nil] The different border-radius styles available for checkout pages.
             #
@@ -819,10 +853,10 @@ module WhopSDK
             #   in this configuration. The full list of default payment methods can be found in
             #   the documentation at docs.whop.com/payments.
             #
-            #   @return [Boolean]
-            required :include_platform_defaults, WhopSDK::Internal::Type::Boolean
+            #   @return [Boolean, nil]
+            optional :include_platform_defaults, WhopSDK::Internal::Type::Boolean, nil?: true
 
-            # @!method initialize(disabled:, enabled:, include_platform_defaults:)
+            # @!method initialize(disabled:, enabled:, include_platform_defaults: nil)
             #   Some parameter documentations has been truncated, see
             #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::PaymentMethodConfiguration}
             #   for more details.
@@ -834,7 +868,7 @@ module WhopSDK
             #
             #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
             #
-            #   @param include_platform_defaults [Boolean] Whether Whop's platform default payment method enablement settings are included
+            #   @param include_platform_defaults [Boolean, nil] Whether Whop's platform default payment method enablement settings are included
           end
         end
 
@@ -931,6 +965,13 @@ module WhopSDK
 
           # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup#checkout_styling
           class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
+            # @!attribute background_color
+            #   A hex color code for the checkout page background, applied to the order summary
+            #   panel (e.g. #F4F4F5).
+            #
+            #   @return [String, nil]
+            optional :background_color, String, nil?: true
+
             # @!attribute border_style
             #   The different border-radius styles available for checkout pages.
             #
@@ -949,9 +990,15 @@ module WhopSDK
             #   @return [Symbol, WhopSDK::Models::CheckoutFont, nil]
             optional :font_family, enum: -> { WhopSDK::CheckoutFont }, nil?: true
 
-            # @!method initialize(border_style: nil, button_color: nil, font_family: nil)
+            # @!method initialize(background_color: nil, border_style: nil, button_color: nil, font_family: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling}
+            #   for more details.
+            #
             #   Checkout styling overrides for this session. Overrides plan and company
             #   defaults.
+            #
+            #   @param background_color [String, nil] A hex color code for the checkout page background, applied to the order summary
             #
             #   @param border_style [Symbol, WhopSDK::Models::CheckoutShape, nil] The different border-radius styles available for checkout pages.
             #
@@ -983,10 +1030,10 @@ module WhopSDK
             #   in this configuration. The full list of default payment methods can be found in
             #   the documentation at docs.whop.com/payments.
             #
-            #   @return [Boolean]
-            required :include_platform_defaults, WhopSDK::Internal::Type::Boolean
+            #   @return [Boolean, nil]
+            optional :include_platform_defaults, WhopSDK::Internal::Type::Boolean, nil?: true
 
-            # @!method initialize(disabled:, enabled:, include_platform_defaults:)
+            # @!method initialize(disabled:, enabled:, include_platform_defaults: nil)
             #   Some parameter documentations has been truncated, see
             #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::PaymentMethodConfiguration}
             #   for more details.
@@ -998,7 +1045,7 @@ module WhopSDK
             #
             #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
             #
-            #   @param include_platform_defaults [Boolean] Whether Whop's platform default payment method enablement settings are included
+            #   @param include_platform_defaults [Boolean, nil] Whether Whop's platform default payment method enablement settings are included
           end
         end
 

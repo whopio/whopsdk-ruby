@@ -1,0 +1,72 @@
+module WhopSDK
+  module Models
+    type ad_list_response =
+      {
+        id: String,
+        created_at: Time,
+        platform: WhopSDK::Models::AdListResponse::platform,
+        status: WhopSDK::Models::AdListResponse::status,
+        title: String?,
+        updated_at: Time
+      }
+
+    class AdListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor platform: WhopSDK::Models::AdListResponse::platform
+
+      attr_accessor status: WhopSDK::Models::AdListResponse::status
+
+      attr_accessor title: String?
+
+      attr_accessor updated_at: Time
+
+      def initialize: (
+        id: String,
+        created_at: Time,
+        platform: WhopSDK::Models::AdListResponse::platform,
+        status: WhopSDK::Models::AdListResponse::status,
+        title: String?,
+        updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        platform: WhopSDK::Models::AdListResponse::platform,
+        status: WhopSDK::Models::AdListResponse::status,
+        title: String?,
+        updated_at: Time
+      }
+
+      type platform = :meta | :tiktok
+
+      module Platform
+        extend WhopSDK::Internal::Type::Enum
+
+        META: :meta
+        TIKTOK: :tiktok
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdListResponse::platform]
+      end
+
+      type status =
+        :active | :paused | :inactive | :in_review | :rejected | :flagged
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        ACTIVE: :active
+        PAUSED: :paused
+        INACTIVE: :inactive
+        IN_REVIEW: :in_review
+        REJECTED: :rejected
+        FLAGGED: :flagged
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdListResponse::status]
+      end
+    end
+  end
+end

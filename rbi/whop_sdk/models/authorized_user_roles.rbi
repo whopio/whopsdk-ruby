@@ -15,6 +15,8 @@ module WhopSDK
       SALES_MANAGER =
         T.let(:sales_manager, WhopSDK::AuthorizedUserRoles::TaggedSymbol)
       MODERATOR = T.let(:moderator, WhopSDK::AuthorizedUserRoles::TaggedSymbol)
+      ADVERTISER =
+        T.let(:advertiser, WhopSDK::AuthorizedUserRoles::TaggedSymbol)
       APP_MANAGER =
         T.let(:app_manager, WhopSDK::AuthorizedUserRoles::TaggedSymbol)
       SUPPORT = T.let(:support, WhopSDK::AuthorizedUserRoles::TaggedSymbol)

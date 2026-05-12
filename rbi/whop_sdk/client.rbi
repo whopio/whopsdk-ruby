@@ -236,6 +236,10 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::Affiliates) }
     attr_reader :affiliates
 
+    # Bounties
+    sig { returns(WhopSDK::Resources::Bounties) }
+    attr_reader :bounties
+
     # Ad campaigns
     sig { returns(WhopSDK::Resources::AdCampaigns) }
     attr_reader :ad_campaigns

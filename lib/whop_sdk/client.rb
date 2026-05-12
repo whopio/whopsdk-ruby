@@ -253,6 +253,10 @@ module WhopSDK
     # @return [WhopSDK::Resources::Affiliates]
     attr_reader :affiliates
 
+    # Bounties
+    # @return [WhopSDK::Resources::Bounties]
+    attr_reader :bounties
+
     # Ad campaigns
     # @return [WhopSDK::Resources::AdCampaigns]
     attr_reader :ad_campaigns
@@ -410,6 +414,7 @@ module WhopSDK
       @resolution_center_cases = WhopSDK::Resources::ResolutionCenterCases.new(client: self)
       @payout_accounts = WhopSDK::Resources::PayoutAccounts.new(client: self)
       @affiliates = WhopSDK::Resources::Affiliates.new(client: self)
+      @bounties = WhopSDK::Resources::Bounties.new(client: self)
       @ad_campaigns = WhopSDK::Resources::AdCampaigns.new(client: self)
       @ad_groups = WhopSDK::Resources::AdGroups.new(client: self)
       @ads = WhopSDK::Resources::Ads.new(client: self)

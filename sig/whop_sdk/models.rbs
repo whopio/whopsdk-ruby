@@ -109,6 +109,12 @@ module WhopSDK
 
   module BillingReasons = WhopSDK::Models::BillingReasons
 
+  class BountyCreateParams = WhopSDK::Models::BountyCreateParams
+
+  class BountyListParams = WhopSDK::Models::BountyListParams
+
+  class BountyRetrieveParams = WhopSDK::Models::BountyRetrieveParams
+
   module CancelOptions = WhopSDK::Models::CancelOptions
 
   module CardBrands = WhopSDK::Models::CardBrands

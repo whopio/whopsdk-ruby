@@ -4,48 +4,6 @@ module WhopSDK
   module Resources
     # Ad groups
     class AdGroups
-      # Creates a new ad group within a campaign.
-      #
-      # Required permissions:
-      #
-      # - `ad_campaign:create`
-      # - `ad_campaign:basic:read`
-      sig do
-        params(
-          campaign_id: String,
-          budget: T.nilable(Float),
-          budget_type:
-            T.nilable(WhopSDK::AdGroupCreateParams::BudgetType::OrSymbol),
-          config: T.nilable(WhopSDK::AdGroupCreateParams::Config::OrHash),
-          daily_budget: T.nilable(Float),
-          name: T.nilable(String),
-          platform_config:
-            T.nilable(WhopSDK::AdGroupCreateParams::PlatformConfig::OrHash),
-          status: T.nilable(WhopSDK::AdGroupCreateParams::Status::OrSymbol),
-          request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::AdGroupCreateResponse)
-      end
-      def create(
-        # The ad campaign to create this ad group within.
-        campaign_id:,
-        # Budget amount in dollars.
-        budget: nil,
-        # The budget type for an ad campaign or ad group.
-        budget_type: nil,
-        # Unified ad group configuration (bidding, optimization, targeting).
-        config: nil,
-        # Daily budget in dollars.
-        daily_budget: nil,
-        # Human-readable ad group name.
-        name: nil,
-        # Platform-specific ad group configuration.
-        platform_config: nil,
-        # The status of an external ad group.
-        status: nil,
-        request_options: {}
-      )
-      end
-
       # Retrieves a single ad group by its unique identifier.
       #
       # Required permissions:

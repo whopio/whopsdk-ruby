@@ -4,46 +4,6 @@ module WhopSDK
   module Resources
     # Ads
     class Ads
-      # Some parameter documentations has been truncated, see
-      # {WhopSDK::Models::AdCreateParams} for more details.
-      #
-      # Create an ad within an ad group.
-      #
-      # Required permissions:
-      #
-      # - `ad_campaign:create`
-      # - `ad_campaign:basic:read`
-      #
-      # @overload create(ad_group_id:, creative_set_id: nil, existing_instagram_media_id: nil, existing_post_id: nil, platform_config: nil, status: nil, request_options: {})
-      #
-      # @param ad_group_id [String] The unique identifier of the ad group to create this ad in.
-      #
-      # @param creative_set_id [String, nil] The unique identifier of the creative set to use.
-      #
-      # @param existing_instagram_media_id [String, nil] ID of an existing Instagram media item to use as the ad creative (instead of a c
-      #
-      # @param existing_post_id [String, nil] ID of an existing Facebook post to use as the ad creative (instead of a creative
-      #
-      # @param platform_config [WhopSDK::Models::AdCreateParams::PlatformConfig, nil] Platform-specific configuration. Must match the campaign platform.
-      #
-      # @param status [Symbol, WhopSDK::Models::AdCreateParams::Status, nil] The status of an external ad.
-      #
-      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [WhopSDK::Models::AdCreateResponse]
-      #
-      # @see WhopSDK::Models::AdCreateParams
-      def create(params)
-        parsed, options = WhopSDK::AdCreateParams.dump_request(params)
-        @client.request(
-          method: :post,
-          path: "ads",
-          body: parsed,
-          model: WhopSDK::Models::AdCreateResponse,
-          options: options
-        )
-      end
-
       # Retrieve an ad by its unique identifier.
       #
       # Required permissions:

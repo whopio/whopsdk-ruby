@@ -3,29 +3,6 @@
 require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::AdsTest < WhopSDK::Test::ResourceTest
-  def test_create_required_params
-    skip("Mock server tests are disabled")
-
-    response = @whop.ads.create(ad_group_id: "ad_group_id")
-
-    assert_pattern do
-      response => WhopSDK::Models::AdCreateResponse
-    end
-
-    assert_pattern do
-      response => {
-        id: String,
-        ad_campaign: WhopSDK::Models::AdCreateResponse::AdCampaign,
-        ad_group: WhopSDK::Models::AdCreateResponse::AdGroup,
-        created_at: Time,
-        platform: WhopSDK::Models::AdCreateResponse::Platform,
-        status: WhopSDK::Models::AdCreateResponse::Status,
-        title: String | nil,
-        updated_at: Time
-      }
-    end
-  end
-
   def test_retrieve
     skip("Mock server tests are disabled")
 

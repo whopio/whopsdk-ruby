@@ -1,16 +1,6 @@
 module WhopSDK
   module Resources
     class Ads
-      def create: (
-        ad_group_id: String,
-        ?creative_set_id: String?,
-        ?existing_instagram_media_id: String?,
-        ?existing_post_id: String?,
-        ?platform_config: WhopSDK::AdCreateParams::PlatformConfig?,
-        ?status: WhopSDK::Models::AdCreateParams::status?,
-        ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::AdCreateResponse
-
       def retrieve: (
         String id,
         ?request_options: WhopSDK::request_opts

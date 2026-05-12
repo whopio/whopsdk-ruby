@@ -120,6 +120,8 @@ module WhopSDK
 
     attr_reader affiliates: WhopSDK::Resources::Affiliates
 
+    attr_reader bounties: WhopSDK::Resources::Bounties
+
     attr_reader ad_campaigns: WhopSDK::Resources::AdCampaigns
 
     attr_reader ad_groups: WhopSDK::Resources::AdGroups

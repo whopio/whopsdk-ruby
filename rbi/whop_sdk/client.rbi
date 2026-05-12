@@ -260,6 +260,10 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::Conversions) }
     attr_reader :conversions
 
+    # Ad reports
+    sig { returns(WhopSDK::Resources::AdReports) }
+    attr_reader :ad_reports
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers

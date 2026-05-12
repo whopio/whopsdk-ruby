@@ -265,6 +265,10 @@ module WhopSDK
     # @return [WhopSDK::Resources::Conversions]
     attr_reader :conversions
 
+    # Ad reports
+    # @return [WhopSDK::Resources::AdReports]
+    attr_reader :ad_reports
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -397,6 +401,7 @@ module WhopSDK
       @ad_groups = WhopSDK::Resources::AdGroups.new(client: self)
       @ads = WhopSDK::Resources::Ads.new(client: self)
       @conversions = WhopSDK::Resources::Conversions.new(client: self)
+      @ad_reports = WhopSDK::Resources::AdReports.new(client: self)
     end
   end
 end

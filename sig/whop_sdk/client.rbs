@@ -132,6 +132,8 @@ module WhopSDK
 
     attr_reader conversions: WhopSDK::Resources::Conversions
 
+    attr_reader ad_reports: WhopSDK::Resources::AdReports
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

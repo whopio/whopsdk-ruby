@@ -1,0 +1,56 @@
+module WhopSDK
+  module Models
+    type ad_report_retrieve_params =
+      {
+        from: Time,
+        to: Time,
+        ad_campaign_id: String?,
+        ad_group_id: String?,
+        ad_id: String?,
+        currency: String?,
+        include_daily: bool?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class AdReportRetrieveParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor from: Time
+
+      attr_accessor to: Time
+
+      attr_accessor ad_campaign_id: String?
+
+      attr_accessor ad_group_id: String?
+
+      attr_accessor ad_id: String?
+
+      attr_accessor currency: String?
+
+      attr_accessor include_daily: bool?
+
+      def initialize: (
+        from: Time,
+        to: Time,
+        ?ad_campaign_id: String?,
+        ?ad_group_id: String?,
+        ?ad_id: String?,
+        ?currency: String?,
+        ?include_daily: bool?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        from: Time,
+        to: Time,
+        ad_campaign_id: String?,
+        ad_group_id: String?,
+        ad_id: String?,
+        currency: String?,
+        include_daily: bool?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

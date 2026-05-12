@@ -71,6 +71,8 @@ module WhopSDK
 
   AdListParams = WhopSDK::Models::AdListParams
 
+  AdReportRetrieveParams = WhopSDK::Models::AdReportRetrieveParams
+
   AdRetrieveParams = WhopSDK::Models::AdRetrieveParams
 
   Affiliate = WhopSDK::Models::Affiliate

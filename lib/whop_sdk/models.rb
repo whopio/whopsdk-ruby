@@ -149,12 +149,6 @@ module WhopSDK
 
   BillingReasons = WhopSDK::Models::BillingReasons
 
-  BountyCreateParams = WhopSDK::Models::BountyCreateParams
-
-  BountyListParams = WhopSDK::Models::BountyListParams
-
-  BountyRetrieveParams = WhopSDK::Models::BountyRetrieveParams
-
   CancelOptions = WhopSDK::Models::CancelOptions
 
   CardBrands = WhopSDK::Models::CardBrands
@@ -682,14 +676,6 @@ module WhopSDK
   ShipmentSubstatus = WhopSDK::Models::ShipmentSubstatus
 
   SocialLinkWebsites = WhopSDK::Models::SocialLinkWebsites
-
-  StatDescribeParams = WhopSDK::Models::StatDescribeParams
-
-  StatQueryMetricParams = WhopSDK::Models::StatQueryMetricParams
-
-  StatQueryRawParams = WhopSDK::Models::StatQueryRawParams
-
-  StatRunSqlParams = WhopSDK::Models::StatRunSqlParams
 
   Status = WhopSDK::Models::Status
 

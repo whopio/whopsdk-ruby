@@ -63,32 +63,17 @@ module WhopSDK
       }
 
       type status =
-        :active
-        | :paused
-        | :inactive
-        | :stale
-        | :pending_refund
-        | :payment_failed
-        | :draft
-        | :in_review
-        | :flagged
-        | :importing
-        | :imported
+        :active | :paused | :payment_failed | :draft | :in_review | :flagged
 
       module Status
         extend WhopSDK::Internal::Type::Enum
 
         ACTIVE: :active
         PAUSED: :paused
-        INACTIVE: :inactive
-        STALE: :stale
-        PENDING_REFUND: :pending_refund
         PAYMENT_FAILED: :payment_failed
         DRAFT: :draft
         IN_REVIEW: :in_review
         FLAGGED: :flagged
-        IMPORTING: :importing
-        IMPORTED: :imported
 
         def self?.values: -> ::Array[WhopSDK::Models::AdCampaignListParams::status]
       end

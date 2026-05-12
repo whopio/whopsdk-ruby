@@ -1,20 +1,6 @@
 module WhopSDK
   module Resources
     class AdCampaigns
-      def create: (
-        company_id: String,
-        config: WhopSDK::AdCampaignCreateParams::Config,
-        platform: WhopSDK::Models::AdCampaignCreateParams::platform,
-        title: String,
-        ?ad_creative_set_ids: ::Array[String]?,
-        ?budget: Float?,
-        ?budget_type: WhopSDK::Models::AdCampaignCreateParams::budget_type?,
-        ?daily_budget: Float?,
-        ?product_id: String?,
-        ?target_country_codes: ::Array[String]?,
-        ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::AdCampaignCreateResponse
-
       def retrieve: (
         String id,
         ?request_options: WhopSDK::request_opts
@@ -22,14 +8,7 @@ module WhopSDK
 
       def update: (
         String id,
-        ?ad_creative_set_ids: ::Array[String]?,
         ?budget: Float?,
-        ?budget_type: WhopSDK::Models::AdCampaignUpdateParams::budget_type?,
-        ?config: WhopSDK::AdCampaignUpdateParams::Config?,
-        ?daily_budget: Float?,
-        ?product_id: String?,
-        ?target_country_codes: ::Array[String]?,
-        ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::AdCampaignUpdateResponse
 

@@ -3,46 +3,6 @@
 require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::AdCampaignsTest < WhopSDK::Test::ResourceTest
-  def test_create_required_params
-    skip("Mock server tests are disabled")
-
-    response =
-      @whop.ad_campaigns.create(company_id: "biz_xxxxxxxxxxxxxx", config: {}, platform: :meta, title: "title")
-
-    assert_pattern do
-      response => WhopSDK::Models::AdCampaignCreateResponse
-    end
-
-    assert_pattern do
-      response => {
-        id: String,
-        available_budget: Float,
-        billing_ledger_account: WhopSDK::Models::AdCampaignCreateResponse::BillingLedgerAccount | nil,
-        clicks_count: Integer,
-        config: WhopSDK::Models::AdCampaignCreateResponse::Config | nil,
-        created_at: Time,
-        created_by_user: WhopSDK::Models::AdCampaignCreateResponse::CreatedByUser,
-        daily_budget: Float | nil,
-        impressions_count: Integer,
-        paused_until: Time | nil,
-        payment_method: WhopSDK::Models::AdCampaignCreateResponse::PaymentMethod,
-        platform: WhopSDK::Models::AdCampaignCreateResponse::Platform | nil,
-        product: WhopSDK::Models::AdCampaignCreateResponse::Product | nil,
-        purchases_count: Integer,
-        remaining_balance: Float,
-        return_on_ad_spend: Float,
-        revenue: Float,
-        status: WhopSDK::Models::AdCampaignCreateResponse::Status,
-        target_country_codes: ^(WhopSDK::Internal::Type::ArrayOf[String]),
-        title: String,
-        todays_spend: Float,
-        total_credits: Float,
-        total_spend: Float,
-        updated_at: Time
-      }
-    end
-  end
-
   def test_retrieve
     skip("Mock server tests are disabled")
 
@@ -55,27 +15,14 @@ class WhopSDK::Test::Resources::AdCampaignsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        available_budget: Float,
-        billing_ledger_account: WhopSDK::Models::AdCampaignRetrieveResponse::BillingLedgerAccount | nil,
-        clicks_count: Integer,
-        config: WhopSDK::Models::AdCampaignRetrieveResponse::Config | nil,
+        budget: Float | nil,
+        budget_type: WhopSDK::Models::AdCampaignRetrieveResponse::BudgetType | nil,
         created_at: Time,
         created_by_user: WhopSDK::Models::AdCampaignRetrieveResponse::CreatedByUser,
-        daily_budget: Float | nil,
-        impressions_count: Integer,
-        paused_until: Time | nil,
-        payment_method: WhopSDK::Models::AdCampaignRetrieveResponse::PaymentMethod,
-        platform: WhopSDK::Models::AdCampaignRetrieveResponse::Platform | nil,
-        product: WhopSDK::Models::AdCampaignRetrieveResponse::Product | nil,
-        purchases_count: Integer,
-        remaining_balance: Float,
-        return_on_ad_spend: Float,
-        revenue: Float,
+        meta_config: WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig | nil,
+        platform: WhopSDK::Models::AdCampaignRetrieveResponse::Platform,
         status: WhopSDK::Models::AdCampaignRetrieveResponse::Status,
-        target_country_codes: ^(WhopSDK::Internal::Type::ArrayOf[String]),
         title: String,
-        todays_spend: Float,
-        total_credits: Float,
         total_spend: Float,
         updated_at: Time
       }
@@ -94,27 +41,14 @@ class WhopSDK::Test::Resources::AdCampaignsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        available_budget: Float,
-        billing_ledger_account: WhopSDK::Models::AdCampaignUpdateResponse::BillingLedgerAccount | nil,
-        clicks_count: Integer,
-        config: WhopSDK::Models::AdCampaignUpdateResponse::Config | nil,
+        budget: Float | nil,
+        budget_type: WhopSDK::Models::AdCampaignUpdateResponse::BudgetType | nil,
         created_at: Time,
         created_by_user: WhopSDK::Models::AdCampaignUpdateResponse::CreatedByUser,
-        daily_budget: Float | nil,
-        impressions_count: Integer,
-        paused_until: Time | nil,
-        payment_method: WhopSDK::Models::AdCampaignUpdateResponse::PaymentMethod,
-        platform: WhopSDK::Models::AdCampaignUpdateResponse::Platform | nil,
-        product: WhopSDK::Models::AdCampaignUpdateResponse::Product | nil,
-        purchases_count: Integer,
-        remaining_balance: Float,
-        return_on_ad_spend: Float,
-        revenue: Float,
+        meta_config: WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig | nil,
+        platform: WhopSDK::Models::AdCampaignUpdateResponse::Platform,
         status: WhopSDK::Models::AdCampaignUpdateResponse::Status,
-        target_country_codes: ^(WhopSDK::Internal::Type::ArrayOf[String]),
         title: String,
-        todays_spend: Float,
-        total_credits: Float,
         total_spend: Float,
         updated_at: Time
       }
@@ -140,23 +74,12 @@ class WhopSDK::Test::Resources::AdCampaignsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
-        available_budget: Float,
-        clicks_count: Integer,
+        budget: Float | nil,
+        budget_type: WhopSDK::Models::AdCampaignListResponse::BudgetType | nil,
         created_at: Time,
-        daily_budget: Float | nil,
-        impressions_count: Integer,
-        paused_until: Time | nil,
-        platform: WhopSDK::Models::AdCampaignListResponse::Platform | nil,
-        product: WhopSDK::Models::AdCampaignListResponse::Product | nil,
-        purchases_count: Integer,
-        remaining_balance: Float,
-        return_on_ad_spend: Float,
-        revenue: Float,
+        platform: WhopSDK::Models::AdCampaignListResponse::Platform,
         status: WhopSDK::Models::AdCampaignListResponse::Status,
-        target_country_codes: ^(WhopSDK::Internal::Type::ArrayOf[String]),
         title: String,
-        todays_spend: Float,
-        total_credits: Float,
         total_spend: Float,
         updated_at: Time
       }
@@ -175,27 +98,14 @@ class WhopSDK::Test::Resources::AdCampaignsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        available_budget: Float,
-        billing_ledger_account: WhopSDK::Models::AdCampaignPauseResponse::BillingLedgerAccount | nil,
-        clicks_count: Integer,
-        config: WhopSDK::Models::AdCampaignPauseResponse::Config | nil,
+        budget: Float | nil,
+        budget_type: WhopSDK::Models::AdCampaignPauseResponse::BudgetType | nil,
         created_at: Time,
         created_by_user: WhopSDK::Models::AdCampaignPauseResponse::CreatedByUser,
-        daily_budget: Float | nil,
-        impressions_count: Integer,
-        paused_until: Time | nil,
-        payment_method: WhopSDK::Models::AdCampaignPauseResponse::PaymentMethod,
-        platform: WhopSDK::Models::AdCampaignPauseResponse::Platform | nil,
-        product: WhopSDK::Models::AdCampaignPauseResponse::Product | nil,
-        purchases_count: Integer,
-        remaining_balance: Float,
-        return_on_ad_spend: Float,
-        revenue: Float,
+        meta_config: WhopSDK::Models::AdCampaignPauseResponse::MetaConfig | nil,
+        platform: WhopSDK::Models::AdCampaignPauseResponse::Platform,
         status: WhopSDK::Models::AdCampaignPauseResponse::Status,
-        target_country_codes: ^(WhopSDK::Internal::Type::ArrayOf[String]),
         title: String,
-        todays_spend: Float,
-        total_credits: Float,
         total_spend: Float,
         updated_at: Time
       }
@@ -214,27 +124,14 @@ class WhopSDK::Test::Resources::AdCampaignsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        available_budget: Float,
-        billing_ledger_account: WhopSDK::Models::AdCampaignUnpauseResponse::BillingLedgerAccount | nil,
-        clicks_count: Integer,
-        config: WhopSDK::Models::AdCampaignUnpauseResponse::Config | nil,
+        budget: Float | nil,
+        budget_type: WhopSDK::Models::AdCampaignUnpauseResponse::BudgetType | nil,
         created_at: Time,
         created_by_user: WhopSDK::Models::AdCampaignUnpauseResponse::CreatedByUser,
-        daily_budget: Float | nil,
-        impressions_count: Integer,
-        paused_until: Time | nil,
-        payment_method: WhopSDK::Models::AdCampaignUnpauseResponse::PaymentMethod,
-        platform: WhopSDK::Models::AdCampaignUnpauseResponse::Platform | nil,
-        product: WhopSDK::Models::AdCampaignUnpauseResponse::Product | nil,
-        purchases_count: Integer,
-        remaining_balance: Float,
-        return_on_ad_spend: Float,
-        revenue: Float,
+        meta_config: WhopSDK::Models::AdCampaignUnpauseResponse::MetaConfig | nil,
+        platform: WhopSDK::Models::AdCampaignUnpauseResponse::Platform,
         status: WhopSDK::Models::AdCampaignUnpauseResponse::Status,
-        target_country_codes: ^(WhopSDK::Internal::Type::ArrayOf[String]),
         title: String,
-        todays_spend: Float,
-        total_credits: Float,
         total_spend: Float,
         updated_at: Time
       }

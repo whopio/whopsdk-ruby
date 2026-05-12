@@ -7,8 +7,6 @@ module WhopSDK
 
   class AccountLinkCreateParams = WhopSDK::Models::AccountLinkCreateParams
 
-  class AdCampaignCreateParams = WhopSDK::Models::AdCampaignCreateParams
-
   class AdCampaignListParams = WhopSDK::Models::AdCampaignListParams
 
   class AdCampaignPauseParams = WhopSDK::Models::AdCampaignPauseParams

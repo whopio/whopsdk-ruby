@@ -12,6 +12,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `ad_campaign:create`
+      # - `ad_campaign:basic:read`
       #
       # @overload create(ad_group_id:, creative_set_id: nil, existing_instagram_media_id: nil, existing_post_id: nil, platform_config: nil, status: nil, request_options: {})
       #

@@ -15,11 +15,12 @@ class WhopSDK::Test::Resources::AdsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        ad_campaign: WhopSDK::Models::AdCreateResponse::AdCampaign,
+        ad_group: WhopSDK::Models::AdCreateResponse::AdGroup,
         created_at: Time,
-        external_ad_creative_set: WhopSDK::Models::AdCreateResponse::ExternalAdCreativeSet | nil,
-        external_ad_group: WhopSDK::Models::AdCreateResponse::ExternalAdGroup,
-        platform_config: WhopSDK::Models::AdCreateResponse::PlatformConfig,
+        platform: WhopSDK::Models::AdCreateResponse::Platform,
         status: WhopSDK::Models::AdCreateResponse::Status,
+        title: String | nil,
         updated_at: Time
       }
     end
@@ -28,7 +29,7 @@ class WhopSDK::Test::Resources::AdsTest < WhopSDK::Test::ResourceTest
   def test_retrieve
     skip("Mock server tests are disabled")
 
-    response = @whop.ads.retrieve("xad_xxxxxxxxxxxxxx")
+    response = @whop.ads.retrieve("ad_xxxxxxxxxxxxxxx")
 
     assert_pattern do
       response => WhopSDK::Models::AdRetrieveResponse
@@ -37,11 +38,12 @@ class WhopSDK::Test::Resources::AdsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        ad_campaign: WhopSDK::Models::AdRetrieveResponse::AdCampaign,
+        ad_group: WhopSDK::Models::AdRetrieveResponse::AdGroup,
         created_at: Time,
-        external_ad_creative_set: WhopSDK::Models::AdRetrieveResponse::ExternalAdCreativeSet | nil,
-        external_ad_group: WhopSDK::Models::AdRetrieveResponse::ExternalAdGroup,
-        platform_config: WhopSDK::Models::AdRetrieveResponse::PlatformConfig,
+        platform: WhopSDK::Models::AdRetrieveResponse::Platform,
         status: WhopSDK::Models::AdRetrieveResponse::Status,
+        title: String | nil,
         updated_at: Time
       }
     end
@@ -67,8 +69,9 @@ class WhopSDK::Test::Resources::AdsTest < WhopSDK::Test::ResourceTest
       row => {
         id: String,
         created_at: Time,
-        platform_config: WhopSDK::Models::AdListResponse::PlatformConfig,
+        platform: WhopSDK::Models::AdListResponse::Platform,
         status: WhopSDK::Models::AdListResponse::Status,
+        title: String | nil,
         updated_at: Time
       }
     end

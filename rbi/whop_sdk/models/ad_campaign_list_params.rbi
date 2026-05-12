@@ -117,15 +117,6 @@ module WhopSDK
           T.let(:active, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
         PAUSED =
           T.let(:paused, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
-        INACTIVE =
-          T.let(:inactive, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
-        STALE =
-          T.let(:stale, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
-        PENDING_REFUND =
-          T.let(
-            :pending_refund,
-            WhopSDK::AdCampaignListParams::Status::TaggedSymbol
-          )
         PAYMENT_FAILED =
           T.let(
             :payment_failed,
@@ -137,10 +128,6 @@ module WhopSDK
           T.let(:in_review, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
         FLAGGED =
           T.let(:flagged, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
-        IMPORTING =
-          T.let(:importing, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
-        IMPORTED =
-          T.let(:imported, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
 
         sig do
           override.returns(

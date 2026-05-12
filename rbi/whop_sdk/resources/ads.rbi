@@ -9,6 +9,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `ad_campaign:create`
+      # - `ad_campaign:basic:read`
       sig do
         params(
           ad_group_id: String,

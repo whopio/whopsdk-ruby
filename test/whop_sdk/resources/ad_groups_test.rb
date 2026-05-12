@@ -16,12 +16,12 @@ class WhopSDK::Test::Resources::AdGroupsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         ad_campaign: WhopSDK::Models::AdGroupCreateResponse::AdCampaign,
-        config: WhopSDK::Models::AdGroupCreateResponse::Config | nil,
+        budget: Float | nil,
+        budget_type: WhopSDK::Models::AdGroupCreateResponse::BudgetType | nil,
         created_at: Time,
-        daily_budget: Float | nil,
-        name: String | nil,
-        platform_config: WhopSDK::Models::AdGroupCreateResponse::PlatformConfig,
+        platform: WhopSDK::Models::AdGroupCreateResponse::Platform,
         status: WhopSDK::Models::AdGroupCreateResponse::Status,
+        title: String | nil,
         updated_at: Time
       }
     end
@@ -40,12 +40,12 @@ class WhopSDK::Test::Resources::AdGroupsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         ad_campaign: WhopSDK::Models::AdGroupRetrieveResponse::AdCampaign,
-        config: WhopSDK::Models::AdGroupRetrieveResponse::Config | nil,
+        budget: Float | nil,
+        budget_type: WhopSDK::Models::AdGroupRetrieveResponse::BudgetType | nil,
         created_at: Time,
-        daily_budget: Float | nil,
-        name: String | nil,
-        platform_config: WhopSDK::Models::AdGroupRetrieveResponse::PlatformConfig,
+        platform: WhopSDK::Models::AdGroupRetrieveResponse::Platform,
         status: WhopSDK::Models::AdGroupRetrieveResponse::Status,
+        title: String | nil,
         updated_at: Time
       }
     end
@@ -64,12 +64,12 @@ class WhopSDK::Test::Resources::AdGroupsTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         ad_campaign: WhopSDK::Models::AdGroupUpdateResponse::AdCampaign,
-        config: WhopSDK::Models::AdGroupUpdateResponse::Config | nil,
+        budget: Float | nil,
+        budget_type: WhopSDK::Models::AdGroupUpdateResponse::BudgetType | nil,
         created_at: Time,
-        daily_budget: Float | nil,
-        name: String | nil,
-        platform_config: WhopSDK::Models::AdGroupUpdateResponse::PlatformConfig,
+        platform: WhopSDK::Models::AdGroupUpdateResponse::Platform,
         status: WhopSDK::Models::AdGroupUpdateResponse::Status,
+        title: String | nil,
         updated_at: Time
       }
     end
@@ -94,12 +94,12 @@ class WhopSDK::Test::Resources::AdGroupsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
-        config: WhopSDK::Models::AdGroupListResponse::Config | nil,
+        budget: Float | nil,
+        budget_type: WhopSDK::Models::AdGroupListResponse::BudgetType | nil,
         created_at: Time,
-        daily_budget: Float | nil,
-        name: String | nil,
-        platform_config: WhopSDK::Models::AdGroupListResponse::PlatformConfig,
+        platform: WhopSDK::Models::AdGroupListResponse::Platform,
         status: WhopSDK::Models::AdGroupListResponse::Status,
+        title: String | nil,
         updated_at: Time
       }
     end

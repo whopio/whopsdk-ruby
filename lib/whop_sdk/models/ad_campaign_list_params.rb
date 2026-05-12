@@ -88,15 +88,10 @@ module WhopSDK
 
         ACTIVE = :active
         PAUSED = :paused
-        INACTIVE = :inactive
-        STALE = :stale
-        PENDING_REFUND = :pending_refund
         PAYMENT_FAILED = :payment_failed
         DRAFT = :draft
         IN_REVIEW = :in_review
         FLAGGED = :flagged
-        IMPORTING = :importing
-        IMPORTED = :imported
 
         # @!method self.values
         #   @return [Array<Symbol>]

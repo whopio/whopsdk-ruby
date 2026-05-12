@@ -4,62 +4,11 @@ module WhopSDK
   module Resources
     # Ad campaigns
     class AdCampaigns
-      # Creates a new ad campaign for a product.
-      #
-      # Required permissions:
-      #
-      # - `ad_campaign:create`
-      # - `access_pass:basic:read`
-      # - `company:balance:read`
-      sig do
-        params(
-          company_id: String,
-          config: WhopSDK::AdCampaignCreateParams::Config::OrHash,
-          platform: WhopSDK::AdCampaignCreateParams::Platform::OrSymbol,
-          title: String,
-          ad_creative_set_ids: T.nilable(T::Array[String]),
-          budget: T.nilable(Float),
-          budget_type:
-            T.nilable(WhopSDK::AdCampaignCreateParams::BudgetType::OrSymbol),
-          daily_budget: T.nilable(Float),
-          product_id: T.nilable(String),
-          target_country_codes: T.nilable(T::Array[String]),
-          request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::AdCampaignCreateResponse)
-      end
-      def create(
-        # The company ID to create this ad campaign for.
-        company_id:,
-        # Unified campaign configuration (conversion goal, budget, bidding, etc.).
-        config:,
-        # The ad platform to run on (e.g., meta, tiktok).
-        platform:,
-        # The title of the ad campaign. Must be max 100 characters.
-        title:,
-        # Array of creative set IDs to link to this campaign.
-        ad_creative_set_ids: nil,
-        # Budget amount in dollars.
-        budget: nil,
-        # The budget type for an ad campaign or ad group.
-        budget_type: nil,
-        # Daily budget in dollars (minimum $5). Required unless lifetime_budget is set in
-        # config.
-        daily_budget: nil,
-        # The unique identifier of the product to promote.
-        product_id: nil,
-        # Array of ISO3166 country codes for territory targeting.
-        target_country_codes: nil,
-        request_options: {}
-      )
-      end
-
       # Retrieves a single ad campaign by its unique identifier.
       #
       # Required permissions:
       #
       # - `ad_campaign:basic:read`
-      # - `access_pass:basic:read`
-      # - `company:balance:read`
       sig do
         params(
           id: String,
@@ -73,47 +22,24 @@ module WhopSDK
       )
       end
 
-      # Updates an existing ad campaign.
+      # Updates an ad campaign synchronously.
       #
       # Required permissions:
       #
       # - `ad_campaign:update`
-      # - `access_pass:basic:read`
-      # - `company:balance:read`
       sig do
         params(
           id: String,
-          ad_creative_set_ids: T.nilable(T::Array[String]),
           budget: T.nilable(Float),
-          budget_type:
-            T.nilable(WhopSDK::AdCampaignUpdateParams::BudgetType::OrSymbol),
-          config: T.nilable(WhopSDK::AdCampaignUpdateParams::Config::OrHash),
-          daily_budget: T.nilable(Float),
-          product_id: T.nilable(String),
-          target_country_codes: T.nilable(T::Array[String]),
-          title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::AdCampaignUpdateResponse)
       end
       def update(
         # The unique identifier of the ad campaign to update.
         id,
-        # Array of creative set IDs to link to this campaign.
-        ad_creative_set_ids: nil,
-        # Budget amount in dollars.
+        # The campaign budget in dollars. The interpretation (daily or lifetime) follows
+        # the campaign's existing budget type.
         budget: nil,
-        # The budget type for an ad campaign or ad group.
-        budget_type: nil,
-        # Unified campaign configuration (conversion goal, budget, bidding, etc.).
-        config: nil,
-        # Daily budget in dollars (minimum $5).
-        daily_budget: nil,
-        # The unique identifier of the product (access pass) to promote.
-        product_id: nil,
-        # Array of ISO3166 country codes for territory targeting.
-        target_country_codes: nil,
-        # The title of the ad campaign. Must be max 100 characters.
-        title: nil,
         request_options: {}
       )
       end
@@ -124,7 +50,6 @@ module WhopSDK
       # Required permissions:
       #
       # - `ad_campaign:basic:read`
-      # - `access_pass:basic:read`
       sig do
         params(
           company_id: String,
@@ -169,8 +94,6 @@ module WhopSDK
       # Required permissions:
       #
       # - `ad_campaign:update`
-      # - `access_pass:basic:read`
-      # - `company:balance:read`
       sig do
         params(
           id: String,
@@ -189,8 +112,6 @@ module WhopSDK
       # Required permissions:
       #
       # - `ad_campaign:update`
-      # - `access_pass:basic:read`
-      # - `company:balance:read`
       sig do
         params(
           id: String,

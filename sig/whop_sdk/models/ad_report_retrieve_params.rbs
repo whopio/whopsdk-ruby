@@ -7,8 +7,8 @@ module WhopSDK
         ad_campaign_id: String?,
         ad_group_id: String?,
         ad_id: String?,
-        currency: String?,
-        include_daily: bool?
+        breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown?,
+        currency: String?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -26,9 +26,9 @@ module WhopSDK
 
       attr_accessor ad_id: String?
 
-      attr_accessor currency: String?
+      attr_accessor breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown?
 
-      attr_accessor include_daily: bool?
+      attr_accessor currency: String?
 
       def initialize: (
         from: Time,
@@ -36,8 +36,8 @@ module WhopSDK
         ?ad_campaign_id: String?,
         ?ad_group_id: String?,
         ?ad_id: String?,
+        ?breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown?,
         ?currency: String?,
-        ?include_daily: bool?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -47,10 +47,21 @@ module WhopSDK
         ad_campaign_id: String?,
         ad_group_id: String?,
         ad_id: String?,
+        breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown?,
         currency: String?,
-        include_daily: bool?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type breakdown = :daily | :hourly
+
+      module Breakdown
+        extend WhopSDK::Internal::Type::Enum
+
+        DAILY: :daily
+        HOURLY: :hourly
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdReportRetrieveParams::breakdown]
+      end
     end
   end
 end

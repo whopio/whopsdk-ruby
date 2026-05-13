@@ -2,40 +2,47 @@ module WhopSDK
   module Models
     type ad_report_retrieve_response =
       {
-        daily: ::Array[WhopSDK::Models::AdReportRetrieveResponse::Daily]?,
+        breakdown: ::Array[WhopSDK::Models::AdReportRetrieveResponse::Breakdown]?,
         summary: WhopSDK::Models::AdReportRetrieveResponse::Summary
       }
 
     class AdReportRetrieveResponse < WhopSDK::Internal::Type::BaseModel
-      attr_accessor daily: ::Array[WhopSDK::Models::AdReportRetrieveResponse::Daily]?
+      attr_accessor breakdown: ::Array[WhopSDK::Models::AdReportRetrieveResponse::Breakdown]?
 
       attr_accessor summary: WhopSDK::Models::AdReportRetrieveResponse::Summary
 
       def initialize: (
-        daily: ::Array[WhopSDK::Models::AdReportRetrieveResponse::Daily]?,
+        breakdown: ::Array[WhopSDK::Models::AdReportRetrieveResponse::Breakdown]?,
         summary: WhopSDK::Models::AdReportRetrieveResponse::Summary
       ) -> void
 
       def to_hash: -> {
-        daily: ::Array[WhopSDK::Models::AdReportRetrieveResponse::Daily]?,
+        breakdown: ::Array[WhopSDK::Models::AdReportRetrieveResponse::Breakdown]?,
         summary: WhopSDK::Models::AdReportRetrieveResponse::Summary
       }
 
-      type daily =
+      type breakdown =
         {
+          bucket_start: Time,
           clicks: Integer,
+          granularity: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::granularity,
           impressions: Integer,
           reach: Integer,
           result_count: Integer?,
-          result_label_key: WhopSDK::Models::AdReportRetrieveResponse::Daily::result_label_key?,
+          result_label_key: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::result_label_key?,
           result_label_override: String?,
           spend: Float,
           spend_currency: WhopSDK::Models::currency,
-          stat_date: Time
+          stat_date: Time,
+          stat_hour: Integer?
         }
 
-      class Daily < WhopSDK::Internal::Type::BaseModel
+      class Breakdown < WhopSDK::Internal::Type::BaseModel
+        attr_accessor bucket_start: Time
+
         attr_accessor clicks: Integer
+
+        attr_accessor granularity: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::granularity
 
         attr_accessor impressions: Integer
 
@@ -43,7 +50,7 @@ module WhopSDK
 
         attr_accessor result_count: Integer?
 
-        attr_accessor result_label_key: WhopSDK::Models::AdReportRetrieveResponse::Daily::result_label_key?
+        attr_accessor result_label_key: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::result_label_key?
 
         attr_accessor result_label_override: String?
 
@@ -53,29 +60,48 @@ module WhopSDK
 
         attr_accessor stat_date: Time
 
+        attr_accessor stat_hour: Integer?
+
         def initialize: (
+          bucket_start: Time,
           clicks: Integer,
+          granularity: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::granularity,
           impressions: Integer,
           reach: Integer,
           result_count: Integer?,
-          result_label_key: WhopSDK::Models::AdReportRetrieveResponse::Daily::result_label_key?,
+          result_label_key: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::result_label_key?,
           result_label_override: String?,
           spend: Float,
           spend_currency: WhopSDK::Models::currency,
-          stat_date: Time
+          stat_date: Time,
+          stat_hour: Integer?
         ) -> void
 
         def to_hash: -> {
+          bucket_start: Time,
           clicks: Integer,
+          granularity: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::granularity,
           impressions: Integer,
           reach: Integer,
           result_count: Integer?,
-          result_label_key: WhopSDK::Models::AdReportRetrieveResponse::Daily::result_label_key?,
+          result_label_key: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::result_label_key?,
           result_label_override: String?,
           spend: Float,
           spend_currency: WhopSDK::Models::currency,
-          stat_date: Time
+          stat_date: Time,
+          stat_hour: Integer?
         }
+
+        type granularity = :daily | :hourly
+
+        module Granularity
+          extend WhopSDK::Internal::Type::Enum
+
+          DAILY: :daily
+          HOURLY: :hourly
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdReportRetrieveResponse::Breakdown::granularity]
+        end
 
         type result_label_key =
           :app_installs
@@ -131,7 +157,7 @@ module WhopSDK
           WEBSITE_SUBMIT_APPLICATIONS: :website_submit_applications
           CUSTOM: :custom
 
-          def self?.values: -> ::Array[WhopSDK::Models::AdReportRetrieveResponse::Daily::result_label_key]
+          def self?.values: -> ::Array[WhopSDK::Models::AdReportRetrieveResponse::Breakdown::result_label_key]
         end
       end
 

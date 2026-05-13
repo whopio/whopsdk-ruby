@@ -40,6 +40,12 @@ module WhopSDK
       #   @return [String, nil]
       optional :ad_id, String, nil?: true
 
+      # @!attribute breakdown
+      #   Bucket size for external ad stat rows.
+      #
+      #   @return [Symbol, WhopSDK::Models::AdReportRetrieveParams::Breakdown, nil]
+      optional :breakdown, enum: -> { WhopSDK::AdReportRetrieveParams::Breakdown }, nil?: true
+
       # @!attribute currency
       #   ISO 4217 currency code to report `spend` in. Defaults to the company's ads
       #   reporting currency.
@@ -47,13 +53,7 @@ module WhopSDK
       #   @return [String, nil]
       optional :currency, String, nil?: true
 
-      # @!attribute include_daily
-      #   When true, includes a per-day breakdown alongside the summary.
-      #
-      #   @return [Boolean, nil]
-      optional :include_daily, WhopSDK::Internal::Type::Boolean, nil?: true
-
-      # @!method initialize(from:, to:, ad_campaign_id: nil, ad_group_id: nil, ad_id: nil, currency: nil, include_daily: nil, request_options: {})
+      # @!method initialize(from:, to:, ad_campaign_id: nil, ad_group_id: nil, ad_id: nil, breakdown: nil, currency: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AdReportRetrieveParams} for more details.
       #
@@ -67,11 +67,22 @@ module WhopSDK
       #
       #   @param ad_id [String, nil] The unique identifier of an ad. Mutually exclusive with `adCampaignId` and `adGr
       #
+      #   @param breakdown [Symbol, WhopSDK::Models::AdReportRetrieveParams::Breakdown, nil] Bucket size for external ad stat rows.
+      #
       #   @param currency [String, nil] ISO 4217 currency code to report `spend` in. Defaults to the company's ads repor
       #
-      #   @param include_daily [Boolean, nil] When true, includes a per-day breakdown alongside the summary.
-      #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      # Bucket size for external ad stat rows.
+      module Breakdown
+        extend WhopSDK::Internal::Type::Enum
+
+        DAILY = :daily
+        HOURLY = :hourly
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

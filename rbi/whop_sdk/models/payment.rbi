@@ -702,8 +702,7 @@ module WhopSDK
         sig { returns(WhopSDK::Currency::TaggedSymbol) }
         attr_accessor :currency
 
-        # Whether the dispute evidence can still be edited and submitted. Returns true
-        # only when the dispute status requires a response.
+        # Whether the dispute evidence can still be edited and submitted.
         sig { returns(T.nilable(T::Boolean)) }
         attr_accessor :editable
 
@@ -747,8 +746,7 @@ module WhopSDK
           amount:,
           # The three-letter ISO currency code for the disputed amount.
           currency:,
-          # Whether the dispute evidence can still be edited and submitted. Returns true
-          # only when the dispute status requires a response.
+          # Whether the dispute evidence can still be edited and submitted.
           editable:,
           # The deadline by which dispute evidence must be submitted. Null if no response
           # deadline is set.

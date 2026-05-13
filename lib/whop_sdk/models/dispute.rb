@@ -88,8 +88,7 @@ module WhopSDK
       required :customer_name, String, nil?: true
 
       # @!attribute editable
-      #   Whether the dispute evidence can still be edited and submitted. Returns true
-      #   only when the dispute status requires a response.
+      #   Whether the dispute evidence can still be edited and submitted.
       #
       #   @return [Boolean, nil]
       required :editable, WhopSDK::Internal::Type::Boolean, nil?: true
@@ -220,7 +219,7 @@ module WhopSDK
       #
       #   @param customer_name [String, nil] The customer's full name from their payment details, included in the evidence pa
       #
-      #   @param editable [Boolean, nil] Whether the dispute evidence can still be edited and submitted. Returns true onl
+      #   @param editable [Boolean, nil] Whether the dispute evidence can still be edited and submitted.
       #
       #   @param needs_response_by [Time, nil] The deadline by which dispute evidence must be submitted. Null if no response de
       #

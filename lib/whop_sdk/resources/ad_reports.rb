@@ -8,14 +8,14 @@ module WhopSDK
       # {WhopSDK::Models::AdReportRetrieveParams} for more details.
       #
       # Performance report for an ad campaign, ad group, or ad. Returns aggregate totals
-      # and an optional per-day breakdown. Exactly one of `adCampaignId`, `adGroupId`,
-      # or `adId` must be provided.
+      # and, when `breakdown` is set, a per-bucket time series at that grain. Exactly
+      # one of `adCampaignId`, `adGroupId`, or `adId` must be provided.
       #
       # Required permissions:
       #
       # - `ad_campaign:stats:read`
       #
-      # @overload retrieve(from:, to:, ad_campaign_id: nil, ad_group_id: nil, ad_id: nil, currency: nil, include_daily: nil, request_options: {})
+      # @overload retrieve(from:, to:, ad_campaign_id: nil, ad_group_id: nil, ad_id: nil, breakdown: nil, currency: nil, request_options: {})
       #
       # @param from [Time] Inclusive start of the reporting window.
       #
@@ -27,9 +27,9 @@ module WhopSDK
       #
       # @param ad_id [String, nil] The unique identifier of an ad. Mutually exclusive with `adCampaignId` and `adGr
       #
-      # @param currency [String, nil] ISO 4217 currency code to report `spend` in. Defaults to the company's ads repor
+      # @param breakdown [Symbol, WhopSDK::Models::AdReportRetrieveParams::Breakdown, nil] Bucket size for external ad stat rows.
       #
-      # @param include_daily [Boolean, nil] When true, includes a per-day breakdown alongside the summary.
+      # @param currency [String, nil] ISO 4217 currency code to report `spend` in. Defaults to the company's ads repor
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

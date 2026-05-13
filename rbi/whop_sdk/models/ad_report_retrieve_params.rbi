@@ -34,14 +34,16 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :ad_id
 
+      # Bucket size for external ad stat rows.
+      sig do
+        returns(T.nilable(WhopSDK::AdReportRetrieveParams::Breakdown::OrSymbol))
+      end
+      attr_accessor :breakdown
+
       # ISO 4217 currency code to report `spend` in. Defaults to the company's ads
       # reporting currency.
       sig { returns(T.nilable(String)) }
       attr_accessor :currency
-
-      # When true, includes a per-day breakdown alongside the summary.
-      sig { returns(T.nilable(T::Boolean)) }
-      attr_accessor :include_daily
 
       sig do
         params(
@@ -50,8 +52,9 @@ module WhopSDK
           ad_campaign_id: T.nilable(String),
           ad_group_id: T.nilable(String),
           ad_id: T.nilable(String),
+          breakdown:
+            T.nilable(WhopSDK::AdReportRetrieveParams::Breakdown::OrSymbol),
           currency: T.nilable(String),
-          include_daily: T.nilable(T::Boolean),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -69,11 +72,11 @@ module WhopSDK
         # The unique identifier of an ad. Mutually exclusive with `adCampaignId` and
         # `adGroupId`.
         ad_id: nil,
+        # Bucket size for external ad stat rows.
+        breakdown: nil,
         # ISO 4217 currency code to report `spend` in. Defaults to the company's ads
         # reporting currency.
         currency: nil,
-        # When true, includes a per-day breakdown alongside the summary.
-        include_daily: nil,
         request_options: {}
       )
       end
@@ -86,13 +89,44 @@ module WhopSDK
             ad_campaign_id: T.nilable(String),
             ad_group_id: T.nilable(String),
             ad_id: T.nilable(String),
+            breakdown:
+              T.nilable(WhopSDK::AdReportRetrieveParams::Breakdown::OrSymbol),
             currency: T.nilable(String),
-            include_daily: T.nilable(T::Boolean),
             request_options: WhopSDK::RequestOptions
           }
         )
       end
       def to_hash
+      end
+
+      # Bucket size for external ad stat rows.
+      module Breakdown
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::AdReportRetrieveParams::Breakdown)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        DAILY =
+          T.let(
+            :daily,
+            WhopSDK::AdReportRetrieveParams::Breakdown::TaggedSymbol
+          )
+        HOURLY =
+          T.let(
+            :hourly,
+            WhopSDK::AdReportRetrieveParams::Breakdown::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::AdReportRetrieveParams::Breakdown::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
     end
   end

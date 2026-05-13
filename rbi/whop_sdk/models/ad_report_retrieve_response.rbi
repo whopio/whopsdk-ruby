@@ -11,14 +11,17 @@ module WhopSDK
           )
         end
 
-      # Per-day breakdown over the date range, ordered ascending. Null when
-      # `includeDaily` is false.
+      # Per-bucket breakdown over the date range, ordered ascending by `bucketStart`.
+      # `null` when the `breakdown` arg on `adReport` is omitted; otherwise contains
+      # rows at the requested grain (`daily` or `hourly`).
       sig do
         returns(
-          T.nilable(T::Array[WhopSDK::Models::AdReportRetrieveResponse::Daily])
+          T.nilable(
+            T::Array[WhopSDK::Models::AdReportRetrieveResponse::Breakdown]
+          )
         )
       end
-      attr_accessor :daily
+      attr_accessor :breakdown
 
       # Aggregate totals and rates over the date range.
       sig { returns(WhopSDK::Models::AdReportRetrieveResponse::Summary) }
@@ -31,21 +34,24 @@ module WhopSDK
       end
       attr_writer :summary
 
-      # An ads performance report. Returns a summary; daily breakdown is included when
-      # `includeDaily` is true.
+      # An ads performance report. Returns a summary; the time-series breakdown is
+      # included when the `breakdown` arg is set on `adReport`.
       sig do
         params(
-          daily:
+          breakdown:
             T.nilable(
-              T::Array[WhopSDK::Models::AdReportRetrieveResponse::Daily::OrHash]
+              T::Array[
+                WhopSDK::Models::AdReportRetrieveResponse::Breakdown::OrHash
+              ]
             ),
           summary: WhopSDK::Models::AdReportRetrieveResponse::Summary::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # Per-day breakdown over the date range, ordered ascending. Null when
-        # `includeDaily` is false.
-        daily:,
+        # Per-bucket breakdown over the date range, ordered ascending by `bucketStart`.
+        # `null` when the `breakdown` arg on `adReport` is omitted; otherwise contains
+        # rows at the requested grain (`daily` or `hourly`).
+        breakdown:,
         # Aggregate totals and rates over the date range.
         summary:
       )
@@ -54,9 +60,9 @@ module WhopSDK
       sig do
         override.returns(
           {
-            daily:
+            breakdown:
               T.nilable(
-                T::Array[WhopSDK::Models::AdReportRetrieveResponse::Daily]
+                T::Array[WhopSDK::Models::AdReportRetrieveResponse::Breakdown]
               ),
             summary: WhopSDK::Models::AdReportRetrieveResponse::Summary
           }
@@ -65,28 +71,43 @@ module WhopSDK
       def to_hash
       end
 
-      class Daily < WhopSDK::Internal::Type::BaseModel
+      class Breakdown < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              WhopSDK::Models::AdReportRetrieveResponse::Daily,
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown,
               WhopSDK::Internal::AnyHash
             )
           end
 
-        # Clicks on this date.
+        # The bucket's start time as a real UTC instant. `(statDate, statHour)` resolved
+        # in the ad account's reporting timezone — render this in the viewer's local
+        # timezone.
+        sig { returns(Time) }
+        attr_accessor :bucket_start
+
+        # Clicks in this bucket.
         sig { returns(Integer) }
         attr_accessor :clicks
 
-        # Impressions on this date.
+        # The bucket size of this row (`daily` or `hourly`).
+        sig do
+          returns(
+            WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity::TaggedSymbol
+          )
+        end
+        attr_accessor :granularity
+
+        # Impressions in this bucket.
         sig { returns(Integer) }
         attr_accessor :impressions
 
-        # Unique users reached on this date.
+        # Unique users reached in this bucket. Always `0` for hourly rows (Meta does not
+        # return reach at hourly grain).
         sig { returns(Integer) }
         attr_accessor :reach
 
-        # Count of the primary optimization result on this date.
+        # Count of the primary optimization result in this bucket.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :result_count
 
@@ -94,7 +115,7 @@ module WhopSDK
         sig do
           returns(
             T.nilable(
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           )
         end
@@ -104,7 +125,7 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :result_label_override
 
-        # Charged spend on this date in the requested reporting currency — the amount
+        # Charged spend in this bucket in the requested reporting currency — the amount
         # billed including platform fees, not the platform-side net spend.
         sig { returns(Float) }
         attr_accessor :spend
@@ -113,69 +134,130 @@ module WhopSDK
         sig { returns(WhopSDK::Currency::TaggedSymbol) }
         attr_accessor :spend_currency
 
-        # The date these stats cover (midnight UTC).
+        # The date these stats cover (midnight UTC). For hourly rows, see `statHour` and
+        # `bucketStart`.
         sig { returns(Time) }
         attr_accessor :stat_date
 
-        # Per-day ad performance for an ad campaign, ad group, or ad.
+        # Hour of the day in the ad account's reporting timezone (0-23). `null` for daily
+        # rows.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :stat_hour
+
+        # Per-bucket ad performance for an ad campaign, ad group, or ad. Bucket grain is
+        # set by the `ad_report` query's `granularity` argument.
         sig do
           params(
+            bucket_start: Time,
             clicks: Integer,
+            granularity:
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity::OrSymbol,
             impressions: Integer,
             reach: Integer,
             result_count: T.nilable(Integer),
             result_label_key:
               T.nilable(
-                WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::OrSymbol
+                WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::OrSymbol
               ),
             result_label_override: T.nilable(String),
             spend: Float,
             spend_currency: WhopSDK::Currency::OrSymbol,
-            stat_date: Time
+            stat_date: Time,
+            stat_hour: T.nilable(Integer)
           ).returns(T.attached_class)
         end
         def self.new(
-          # Clicks on this date.
+          # The bucket's start time as a real UTC instant. `(statDate, statHour)` resolved
+          # in the ad account's reporting timezone — render this in the viewer's local
+          # timezone.
+          bucket_start:,
+          # Clicks in this bucket.
           clicks:,
-          # Impressions on this date.
+          # The bucket size of this row (`daily` or `hourly`).
+          granularity:,
+          # Impressions in this bucket.
           impressions:,
-          # Unique users reached on this date.
+          # Unique users reached in this bucket. Always `0` for hourly rows (Meta does not
+          # return reach at hourly grain).
           reach:,
-          # Count of the primary optimization result on this date.
+          # Count of the primary optimization result in this bucket.
           result_count:,
           # Types of optimization results tracked from external ad platforms
           result_label_key:,
           # Advertiser-defined label for the result when `resultLabelKey` is `custom`.
           result_label_override:,
-          # Charged spend on this date in the requested reporting currency — the amount
+          # Charged spend in this bucket in the requested reporting currency — the amount
           # billed including platform fees, not the platform-side net spend.
           spend:,
           # Currency of the `spend` value.
           spend_currency:,
-          # The date these stats cover (midnight UTC).
-          stat_date:
+          # The date these stats cover (midnight UTC). For hourly rows, see `statHour` and
+          # `bucketStart`.
+          stat_date:,
+          # Hour of the day in the ad account's reporting timezone (0-23). `null` for daily
+          # rows.
+          stat_hour:
         )
         end
 
         sig do
           override.returns(
             {
+              bucket_start: Time,
               clicks: Integer,
+              granularity:
+                WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity::TaggedSymbol,
               impressions: Integer,
               reach: Integer,
               result_count: T.nilable(Integer),
               result_label_key:
                 T.nilable(
-                  WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+                  WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
                 ),
               result_label_override: T.nilable(String),
               spend: Float,
               spend_currency: WhopSDK::Currency::TaggedSymbol,
-              stat_date: Time
+              stat_date: Time,
+              stat_hour: T.nilable(Integer)
             }
           )
         end
         def to_hash
+        end
+
+        # The bucket size of this row (`daily` or `hourly`).
+        module Granularity
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          DAILY =
+            T.let(
+              :daily,
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity::TaggedSymbol
+            )
+          HOURLY =
+            T.let(
+              :hourly,
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
 
         # Types of optimization results tracked from external ad platforms
@@ -186,7 +268,7 @@ module WhopSDK
             T.type_alias do
               T.all(
                 Symbol,
-                WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey
+                WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -194,128 +276,128 @@ module WhopSDK
           APP_INSTALLS =
             T.let(
               :app_installs,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           MESSAGING_CONVERSATIONS_STARTED =
             T.let(
               :messaging_conversations_started,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           POST_ENGAGEMENT =
             T.let(
               :post_engagement,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           EVENT_RESPONSES =
             T.let(
               :event_responses,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           IMPRESSIONS =
             T.let(
               :impressions,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           WEBSITE_PURCHASES =
             T.let(
               :website_purchases,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           LANDING_PAGE_VIEWS =
             T.let(
               :landing_page_views,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           LEADS =
             T.let(
               :leads,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           LINK_CLICKS =
             T.let(
               :link_clicks,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           QUALITY_CALLS =
             T.let(
               :quality_calls,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           APPOINTMENTS_BOOKED =
             T.let(
               :appointments_booked,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           MESSAGING_PURCHASES =
             T.let(
               :messaging_purchases,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           PAGE_LIKES =
             T.let(
               :page_likes,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           INSTAGRAM_PROFILE_VISITS =
             T.let(
               :instagram_profile_visits,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           REACH =
             T.let(
               :reach,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           REMINDERS_SET =
             T.let(
               :reminders_set,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           NEW_SUBSCRIBERS =
             T.let(
               :new_subscribers,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           VIDEO_VIEWS =
             T.let(
               :video_views,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           REGISTRATIONS =
             T.let(
               :registrations,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           CONTENT_VIEWS =
             T.let(
               :content_views,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           SEARCHES =
             T.let(
               :searches,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           WEBSITE_SCHEDULES =
             T.let(
               :website_schedules,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           WEBSITE_SUBMIT_APPLICATIONS =
             T.let(
               :website_submit_applications,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
           CUSTOM =
             T.let(
               :custom,
-              WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey::TaggedSymbol
+                WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
               ]
             )
           end

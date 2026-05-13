@@ -4,13 +4,14 @@ module WhopSDK
   module Models
     # @see WhopSDK::Resources::AdReports#retrieve
     class AdReportRetrieveResponse < WhopSDK::Internal::Type::BaseModel
-      # @!attribute daily
-      #   Per-day breakdown over the date range, ordered ascending. Null when
-      #   `includeDaily` is false.
+      # @!attribute breakdown
+      #   Per-bucket breakdown over the date range, ordered ascending by `bucketStart`.
+      #   `null` when the `breakdown` arg on `adReport` is omitted; otherwise contains
+      #   rows at the requested grain (`daily` or `hourly`).
       #
-      #   @return [Array<WhopSDK::Models::AdReportRetrieveResponse::Daily>, nil]
-      required :daily,
-               -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::AdReportRetrieveResponse::Daily] },
+      #   @return [Array<WhopSDK::Models::AdReportRetrieveResponse::Breakdown>, nil]
+      required :breakdown,
+               -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::AdReportRetrieveResponse::Breakdown] },
                nil?: true
 
       # @!attribute summary
@@ -19,38 +20,53 @@ module WhopSDK
       #   @return [WhopSDK::Models::AdReportRetrieveResponse::Summary]
       required :summary, -> { WhopSDK::Models::AdReportRetrieveResponse::Summary }
 
-      # @!method initialize(daily:, summary:)
+      # @!method initialize(breakdown:, summary:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AdReportRetrieveResponse} for more details.
       #
-      #   An ads performance report. Returns a summary; daily breakdown is included when
-      #   `includeDaily` is true.
+      #   An ads performance report. Returns a summary; the time-series breakdown is
+      #   included when the `breakdown` arg is set on `adReport`.
       #
-      #   @param daily [Array<WhopSDK::Models::AdReportRetrieveResponse::Daily>, nil] Per-day breakdown over the date range, ordered ascending. Null when `includeDail
+      #   @param breakdown [Array<WhopSDK::Models::AdReportRetrieveResponse::Breakdown>, nil] Per-bucket breakdown over the date range, ordered ascending by `bucketStart`. `n
       #
       #   @param summary [WhopSDK::Models::AdReportRetrieveResponse::Summary] Aggregate totals and rates over the date range.
 
-      class Daily < WhopSDK::Internal::Type::BaseModel
+      class Breakdown < WhopSDK::Internal::Type::BaseModel
+        # @!attribute bucket_start
+        #   The bucket's start time as a real UTC instant. `(statDate, statHour)` resolved
+        #   in the ad account's reporting timezone — render this in the viewer's local
+        #   timezone.
+        #
+        #   @return [Time]
+        required :bucket_start, Time
+
         # @!attribute clicks
-        #   Clicks on this date.
+        #   Clicks in this bucket.
         #
         #   @return [Integer]
         required :clicks, Integer
 
+        # @!attribute granularity
+        #   The bucket size of this row (`daily` or `hourly`).
+        #
+        #   @return [Symbol, WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity]
+        required :granularity, enum: -> { WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity }
+
         # @!attribute impressions
-        #   Impressions on this date.
+        #   Impressions in this bucket.
         #
         #   @return [Integer]
         required :impressions, Integer
 
         # @!attribute reach
-        #   Unique users reached on this date.
+        #   Unique users reached in this bucket. Always `0` for hourly rows (Meta does not
+        #   return reach at hourly grain).
         #
         #   @return [Integer]
         required :reach, Integer
 
         # @!attribute result_count
-        #   Count of the primary optimization result on this date.
+        #   Count of the primary optimization result in this bucket.
         #
         #   @return [Integer, nil]
         required :result_count, Integer, nil?: true
@@ -58,9 +74,9 @@ module WhopSDK
         # @!attribute result_label_key
         #   Types of optimization results tracked from external ad platforms
         #
-        #   @return [Symbol, WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey, nil]
+        #   @return [Symbol, WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey, nil]
         required :result_label_key,
-                 enum: -> { WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey },
+                 enum: -> { WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey },
                  nil?: true
 
         # @!attribute result_label_override
@@ -70,7 +86,7 @@ module WhopSDK
         required :result_label_override, String, nil?: true
 
         # @!attribute spend
-        #   Charged spend on this date in the requested reporting currency — the amount
+        #   Charged spend in this bucket in the requested reporting currency — the amount
         #   billed including platform fees, not the platform-side net spend.
         #
         #   @return [Float]
@@ -83,38 +99,66 @@ module WhopSDK
         required :spend_currency, enum: -> { WhopSDK::Currency }
 
         # @!attribute stat_date
-        #   The date these stats cover (midnight UTC).
+        #   The date these stats cover (midnight UTC). For hourly rows, see `statHour` and
+        #   `bucketStart`.
         #
         #   @return [Time]
         required :stat_date, Time
 
-        # @!method initialize(clicks:, impressions:, reach:, result_count:, result_label_key:, result_label_override:, spend:, spend_currency:, stat_date:)
+        # @!attribute stat_hour
+        #   Hour of the day in the ad account's reporting timezone (0-23). `null` for daily
+        #   rows.
+        #
+        #   @return [Integer, nil]
+        required :stat_hour, Integer, nil?: true
+
+        # @!method initialize(bucket_start:, clicks:, granularity:, impressions:, reach:, result_count:, result_label_key:, result_label_override:, spend:, spend_currency:, stat_date:, stat_hour:)
         #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::AdReportRetrieveResponse::Daily} for more details.
+        #   {WhopSDK::Models::AdReportRetrieveResponse::Breakdown} for more details.
         #
-        #   Per-day ad performance for an ad campaign, ad group, or ad.
+        #   Per-bucket ad performance for an ad campaign, ad group, or ad. Bucket grain is
+        #   set by the `ad_report` query's `granularity` argument.
         #
-        #   @param clicks [Integer] Clicks on this date.
+        #   @param bucket_start [Time] The bucket's start time as a real UTC instant. `(statDate, statHour)` resolved i
         #
-        #   @param impressions [Integer] Impressions on this date.
+        #   @param clicks [Integer] Clicks in this bucket.
         #
-        #   @param reach [Integer] Unique users reached on this date.
+        #   @param granularity [Symbol, WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity] The bucket size of this row (`daily` or `hourly`).
         #
-        #   @param result_count [Integer, nil] Count of the primary optimization result on this date.
+        #   @param impressions [Integer] Impressions in this bucket.
         #
-        #   @param result_label_key [Symbol, WhopSDK::Models::AdReportRetrieveResponse::Daily::ResultLabelKey, nil] Types of optimization results tracked from external ad platforms
+        #   @param reach [Integer] Unique users reached in this bucket. Always `0` for hourly rows (Meta does not r
+        #
+        #   @param result_count [Integer, nil] Count of the primary optimization result in this bucket.
+        #
+        #   @param result_label_key [Symbol, WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey, nil] Types of optimization results tracked from external ad platforms
         #
         #   @param result_label_override [String, nil] Advertiser-defined label for the result when `resultLabelKey` is `custom`.
         #
-        #   @param spend [Float] Charged spend on this date in the requested reporting currency — the amount bill
+        #   @param spend [Float] Charged spend in this bucket in the requested reporting currency — the amount bi
         #
         #   @param spend_currency [Symbol, WhopSDK::Models::Currency] Currency of the `spend` value.
         #
-        #   @param stat_date [Time] The date these stats cover (midnight UTC).
+        #   @param stat_date [Time] The date these stats cover (midnight UTC). For hourly rows, see `statHour` and `
+        #
+        #   @param stat_hour [Integer, nil] Hour of the day in the ad account's reporting timezone (0-23). `null` for daily
+
+        # The bucket size of this row (`daily` or `hourly`).
+        #
+        # @see WhopSDK::Models::AdReportRetrieveResponse::Breakdown#granularity
+        module Granularity
+          extend WhopSDK::Internal::Type::Enum
+
+          DAILY = :daily
+          HOURLY = :hourly
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
 
         # Types of optimization results tracked from external ad platforms
         #
-        # @see WhopSDK::Models::AdReportRetrieveResponse::Daily#result_label_key
+        # @see WhopSDK::Models::AdReportRetrieveResponse::Breakdown#result_label_key
         module ResultLabelKey
           extend WhopSDK::Internal::Type::Enum
 

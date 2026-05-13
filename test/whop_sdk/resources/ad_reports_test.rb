@@ -14,7 +14,7 @@ class WhopSDK::Test::Resources::AdReportsTest < WhopSDK::Test::ResourceTest
 
     assert_pattern do
       response => {
-        daily: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::AdReportRetrieveResponse::Daily]) | nil,
+        breakdown: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::AdReportRetrieveResponse::Breakdown]) | nil,
         summary: WhopSDK::Models::AdReportRetrieveResponse::Summary
       }
     end

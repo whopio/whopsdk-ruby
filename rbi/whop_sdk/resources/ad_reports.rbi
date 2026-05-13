@@ -5,8 +5,8 @@ module WhopSDK
     # Ad reports
     class AdReports
       # Performance report for an ad campaign, ad group, or ad. Returns aggregate totals
-      # and an optional per-day breakdown. Exactly one of `adCampaignId`, `adGroupId`,
-      # or `adId` must be provided.
+      # and, when `breakdown` is set, a per-bucket time series at that grain. Exactly
+      # one of `adCampaignId`, `adGroupId`, or `adId` must be provided.
       #
       # Required permissions:
       #
@@ -18,8 +18,9 @@ module WhopSDK
           ad_campaign_id: T.nilable(String),
           ad_group_id: T.nilable(String),
           ad_id: T.nilable(String),
+          breakdown:
+            T.nilable(WhopSDK::AdReportRetrieveParams::Breakdown::OrSymbol),
           currency: T.nilable(String),
-          include_daily: T.nilable(T::Boolean),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::AdReportRetrieveResponse)
       end
@@ -37,11 +38,11 @@ module WhopSDK
         # The unique identifier of an ad. Mutually exclusive with `adCampaignId` and
         # `adGroupId`.
         ad_id: nil,
+        # Bucket size for external ad stat rows.
+        breakdown: nil,
         # ISO 4217 currency code to report `spend` in. Defaults to the company's ads
         # reporting currency.
         currency: nil,
-        # When true, includes a per-day breakdown alongside the summary.
-        include_daily: nil,
         request_options: {}
       )
       end

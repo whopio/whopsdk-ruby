@@ -67,8 +67,8 @@ module WhopSDK
       # @!attribute status
       #   The status of an external ad.
       #
-      #   @return [Symbol, WhopSDK::Models::AdListParams::Status, nil]
-      optional :status, enum: -> { WhopSDK::AdListParams::Status }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::ExternalAdStatus, nil]
+      optional :status, enum: -> { WhopSDK::ExternalAdStatus }, nil?: true
 
       # @!method initialize(ad_group_id: nil, after: nil, before: nil, campaign_id: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, last: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
@@ -92,24 +92,9 @@ module WhopSDK
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      #   @param status [Symbol, WhopSDK::Models::AdListParams::Status, nil] The status of an external ad.
+      #   @param status [Symbol, WhopSDK::Models::ExternalAdStatus, nil] The status of an external ad.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
-
-      # The status of an external ad.
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        ACTIVE = :active
-        PAUSED = :paused
-        INACTIVE = :inactive
-        IN_REVIEW = :in_review
-        REJECTED = :rejected
-        FLAGGED = :flagged
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
     end
   end
 end

@@ -25,11 +25,11 @@ module WhopSDK
         {
           bucket_start: Time,
           clicks: Integer,
-          granularity: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::granularity,
+          granularity: WhopSDK::Models::granularities,
           impressions: Integer,
           reach: Integer,
           result_count: Integer?,
-          result_label_key: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::result_label_key?,
+          result_label_key: WhopSDK::Models::result_label_keys?,
           result_label_override: String?,
           spend: Float,
           spend_currency: WhopSDK::Models::currency,
@@ -42,7 +42,7 @@ module WhopSDK
 
         attr_accessor clicks: Integer
 
-        attr_accessor granularity: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::granularity
+        attr_accessor granularity: WhopSDK::Models::granularities
 
         attr_accessor impressions: Integer
 
@@ -50,7 +50,7 @@ module WhopSDK
 
         attr_accessor result_count: Integer?
 
-        attr_accessor result_label_key: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::result_label_key?
+        attr_accessor result_label_key: WhopSDK::Models::result_label_keys?
 
         attr_accessor result_label_override: String?
 
@@ -65,11 +65,11 @@ module WhopSDK
         def initialize: (
           bucket_start: Time,
           clicks: Integer,
-          granularity: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::granularity,
+          granularity: WhopSDK::Models::granularities,
           impressions: Integer,
           reach: Integer,
           result_count: Integer?,
-          result_label_key: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::result_label_key?,
+          result_label_key: WhopSDK::Models::result_label_keys?,
           result_label_override: String?,
           spend: Float,
           spend_currency: WhopSDK::Models::currency,
@@ -80,85 +80,17 @@ module WhopSDK
         def to_hash: -> {
           bucket_start: Time,
           clicks: Integer,
-          granularity: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::granularity,
+          granularity: WhopSDK::Models::granularities,
           impressions: Integer,
           reach: Integer,
           result_count: Integer?,
-          result_label_key: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::result_label_key?,
+          result_label_key: WhopSDK::Models::result_label_keys?,
           result_label_override: String?,
           spend: Float,
           spend_currency: WhopSDK::Models::currency,
           stat_date: Time,
           stat_hour: Integer?
         }
-
-        type granularity = :daily | :hourly
-
-        module Granularity
-          extend WhopSDK::Internal::Type::Enum
-
-          DAILY: :daily
-          HOURLY: :hourly
-
-          def self?.values: -> ::Array[WhopSDK::Models::AdReportRetrieveResponse::Breakdown::granularity]
-        end
-
-        type result_label_key =
-          :app_installs
-          | :messaging_conversations_started
-          | :post_engagement
-          | :event_responses
-          | :impressions
-          | :website_purchases
-          | :landing_page_views
-          | :leads
-          | :link_clicks
-          | :quality_calls
-          | :appointments_booked
-          | :messaging_purchases
-          | :page_likes
-          | :instagram_profile_visits
-          | :reach
-          | :reminders_set
-          | :new_subscribers
-          | :video_views
-          | :registrations
-          | :content_views
-          | :searches
-          | :website_schedules
-          | :website_submit_applications
-          | :custom
-
-        module ResultLabelKey
-          extend WhopSDK::Internal::Type::Enum
-
-          APP_INSTALLS: :app_installs
-          MESSAGING_CONVERSATIONS_STARTED: :messaging_conversations_started
-          POST_ENGAGEMENT: :post_engagement
-          EVENT_RESPONSES: :event_responses
-          IMPRESSIONS: :impressions
-          WEBSITE_PURCHASES: :website_purchases
-          LANDING_PAGE_VIEWS: :landing_page_views
-          LEADS: :leads
-          LINK_CLICKS: :link_clicks
-          QUALITY_CALLS: :quality_calls
-          APPOINTMENTS_BOOKED: :appointments_booked
-          MESSAGING_PURCHASES: :messaging_purchases
-          PAGE_LIKES: :page_likes
-          INSTAGRAM_PROFILE_VISITS: :instagram_profile_visits
-          REACH: :reach
-          REMINDERS_SET: :reminders_set
-          NEW_SUBSCRIBERS: :new_subscribers
-          VIDEO_VIEWS: :video_views
-          REGISTRATIONS: :registrations
-          CONTENT_VIEWS: :content_views
-          SEARCHES: :searches
-          WEBSITE_SCHEDULES: :website_schedules
-          WEBSITE_SUBMIT_APPLICATIONS: :website_submit_applications
-          CUSTOM: :custom
-
-          def self?.values: -> ::Array[WhopSDK::Models::AdReportRetrieveResponse::Breakdown::result_label_key]
-        end
       end
 
       type summary =
@@ -172,7 +104,7 @@ module WhopSDK
           impressions: Integer,
           reach: Integer,
           result_count: Integer?,
-          result_label_key: WhopSDK::Models::AdReportRetrieveResponse::Summary::result_label_key?,
+          result_label_key: WhopSDK::Models::result_label_keys?,
           result_label_override: String?,
           roas: Float?,
           spend: Float,
@@ -198,7 +130,7 @@ module WhopSDK
 
         attr_accessor result_count: Integer?
 
-        attr_accessor result_label_key: WhopSDK::Models::AdReportRetrieveResponse::Summary::result_label_key?
+        attr_accessor result_label_key: WhopSDK::Models::result_label_keys?
 
         attr_accessor result_label_override: String?
 
@@ -218,7 +150,7 @@ module WhopSDK
           impressions: Integer,
           reach: Integer,
           result_count: Integer?,
-          result_label_key: WhopSDK::Models::AdReportRetrieveResponse::Summary::result_label_key?,
+          result_label_key: WhopSDK::Models::result_label_keys?,
           result_label_override: String?,
           roas: Float?,
           spend: Float,
@@ -235,69 +167,12 @@ module WhopSDK
           impressions: Integer,
           reach: Integer,
           result_count: Integer?,
-          result_label_key: WhopSDK::Models::AdReportRetrieveResponse::Summary::result_label_key?,
+          result_label_key: WhopSDK::Models::result_label_keys?,
           result_label_override: String?,
           roas: Float?,
           spend: Float,
           spend_currency: WhopSDK::Models::currency?
         }
-
-        type result_label_key =
-          :app_installs
-          | :messaging_conversations_started
-          | :post_engagement
-          | :event_responses
-          | :impressions
-          | :website_purchases
-          | :landing_page_views
-          | :leads
-          | :link_clicks
-          | :quality_calls
-          | :appointments_booked
-          | :messaging_purchases
-          | :page_likes
-          | :instagram_profile_visits
-          | :reach
-          | :reminders_set
-          | :new_subscribers
-          | :video_views
-          | :registrations
-          | :content_views
-          | :searches
-          | :website_schedules
-          | :website_submit_applications
-          | :custom
-
-        module ResultLabelKey
-          extend WhopSDK::Internal::Type::Enum
-
-          APP_INSTALLS: :app_installs
-          MESSAGING_CONVERSATIONS_STARTED: :messaging_conversations_started
-          POST_ENGAGEMENT: :post_engagement
-          EVENT_RESPONSES: :event_responses
-          IMPRESSIONS: :impressions
-          WEBSITE_PURCHASES: :website_purchases
-          LANDING_PAGE_VIEWS: :landing_page_views
-          LEADS: :leads
-          LINK_CLICKS: :link_clicks
-          QUALITY_CALLS: :quality_calls
-          APPOINTMENTS_BOOKED: :appointments_booked
-          MESSAGING_PURCHASES: :messaging_purchases
-          PAGE_LIKES: :page_likes
-          INSTAGRAM_PROFILE_VISITS: :instagram_profile_visits
-          REACH: :reach
-          REMINDERS_SET: :reminders_set
-          NEW_SUBSCRIBERS: :new_subscribers
-          VIDEO_VIEWS: :video_views
-          REGISTRATIONS: :registrations
-          CONTENT_VIEWS: :content_views
-          SEARCHES: :searches
-          WEBSITE_SCHEDULES: :website_schedules
-          WEBSITE_SUBMIT_APPLICATIONS: :website_submit_applications
-          CUSTOM: :custom
-
-          def self?.values: -> ::Array[WhopSDK::Models::AdReportRetrieveResponse::Summary::result_label_key]
-        end
       end
     end
   end

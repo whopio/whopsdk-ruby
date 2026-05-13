@@ -35,9 +35,7 @@ module WhopSDK
       attr_accessor :ad_id
 
       # Bucket size for external ad stat rows.
-      sig do
-        returns(T.nilable(WhopSDK::AdReportRetrieveParams::Breakdown::OrSymbol))
-      end
+      sig { returns(T.nilable(WhopSDK::Granularities::OrSymbol)) }
       attr_accessor :breakdown
 
       # ISO 4217 currency code to report `spend` in. Defaults to the company's ads
@@ -52,8 +50,7 @@ module WhopSDK
           ad_campaign_id: T.nilable(String),
           ad_group_id: T.nilable(String),
           ad_id: T.nilable(String),
-          breakdown:
-            T.nilable(WhopSDK::AdReportRetrieveParams::Breakdown::OrSymbol),
+          breakdown: T.nilable(WhopSDK::Granularities::OrSymbol),
           currency: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -89,44 +86,13 @@ module WhopSDK
             ad_campaign_id: T.nilable(String),
             ad_group_id: T.nilable(String),
             ad_id: T.nilable(String),
-            breakdown:
-              T.nilable(WhopSDK::AdReportRetrieveParams::Breakdown::OrSymbol),
+            breakdown: T.nilable(WhopSDK::Granularities::OrSymbol),
             currency: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }
         )
       end
       def to_hash
-      end
-
-      # Bucket size for external ad stat rows.
-      module Breakdown
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::AdReportRetrieveParams::Breakdown)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        DAILY =
-          T.let(
-            :daily,
-            WhopSDK::AdReportRetrieveParams::Breakdown::TaggedSymbol
-          )
-        HOURLY =
-          T.let(
-            :hourly,
-            WhopSDK::AdReportRetrieveParams::Breakdown::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[WhopSDK::AdReportRetrieveParams::Breakdown::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
       end
     end
   end

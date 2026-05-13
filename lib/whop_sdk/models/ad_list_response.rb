@@ -19,14 +19,14 @@ module WhopSDK
       # @!attribute platform
       #   The external ad platform this ad is running on (e.g., meta, tiktok).
       #
-      #   @return [Symbol, WhopSDK::Models::AdListResponse::Platform]
-      required :platform, enum: -> { WhopSDK::Models::AdListResponse::Platform }
+      #   @return [Symbol, WhopSDK::Models::AdCampaignPlatform]
+      required :platform, enum: -> { WhopSDK::AdCampaignPlatform }
 
       # @!attribute status
       #   Current delivery status of the ad.
       #
-      #   @return [Symbol, WhopSDK::Models::AdListResponse::Status]
-      required :status, enum: -> { WhopSDK::Models::AdListResponse::Status }
+      #   @return [Symbol, WhopSDK::Models::ExternalAdStatus]
+      required :status, enum: -> { WhopSDK::ExternalAdStatus }
 
       # @!attribute title
       #   The display title of the ad. Falls back to the creative set caption when unset.
@@ -47,43 +47,13 @@ module WhopSDK
       #
       #   @param created_at [Time] When the ad was created.
       #
-      #   @param platform [Symbol, WhopSDK::Models::AdListResponse::Platform] The external ad platform this ad is running on (e.g., meta, tiktok).
+      #   @param platform [Symbol, WhopSDK::Models::AdCampaignPlatform] The external ad platform this ad is running on (e.g., meta, tiktok).
       #
-      #   @param status [Symbol, WhopSDK::Models::AdListResponse::Status] Current delivery status of the ad.
+      #   @param status [Symbol, WhopSDK::Models::ExternalAdStatus] Current delivery status of the ad.
       #
       #   @param title [String, nil] The display title of the ad. Falls back to the creative set caption when unset.
       #
       #   @param updated_at [Time] When the ad was last updated.
-
-      # The external ad platform this ad is running on (e.g., meta, tiktok).
-      #
-      # @see WhopSDK::Models::AdListResponse#platform
-      module Platform
-        extend WhopSDK::Internal::Type::Enum
-
-        META = :meta
-        TIKTOK = :tiktok
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
-
-      # Current delivery status of the ad.
-      #
-      # @see WhopSDK::Models::AdListResponse#status
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        ACTIVE = :active
-        PAUSED = :paused
-        INACTIVE = :inactive
-        IN_REVIEW = :in_review
-        REJECTED = :rejected
-        FLAGGED = :flagged
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
     end
   end
 end

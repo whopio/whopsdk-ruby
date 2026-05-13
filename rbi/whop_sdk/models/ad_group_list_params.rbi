@@ -48,7 +48,7 @@ module WhopSDK
       attr_accessor :query
 
       # The status of an external ad group.
-      sig { returns(T.nilable(WhopSDK::AdGroupListParams::Status::OrSymbol)) }
+      sig { returns(T.nilable(WhopSDK::AdGroupStatus::OrSymbol)) }
       attr_accessor :status
 
       sig do
@@ -62,7 +62,7 @@ module WhopSDK
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           query: T.nilable(String),
-          status: T.nilable(WhopSDK::AdGroupListParams::Status::OrSymbol),
+          status: T.nilable(WhopSDK::AdGroupStatus::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -103,42 +103,12 @@ module WhopSDK
             first: T.nilable(Integer),
             last: T.nilable(Integer),
             query: T.nilable(String),
-            status: T.nilable(WhopSDK::AdGroupListParams::Status::OrSymbol),
+            status: T.nilable(WhopSDK::AdGroupStatus::OrSymbol),
             request_options: WhopSDK::RequestOptions
           }
         )
       end
       def to_hash
-      end
-
-      # The status of an external ad group.
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, WhopSDK::AdGroupListParams::Status) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        ACTIVE =
-          T.let(:active, WhopSDK::AdGroupListParams::Status::TaggedSymbol)
-        PAUSED =
-          T.let(:paused, WhopSDK::AdGroupListParams::Status::TaggedSymbol)
-        INACTIVE =
-          T.let(:inactive, WhopSDK::AdGroupListParams::Status::TaggedSymbol)
-        IN_REVIEW =
-          T.let(:in_review, WhopSDK::AdGroupListParams::Status::TaggedSymbol)
-        REJECTED =
-          T.let(:rejected, WhopSDK::AdGroupListParams::Status::TaggedSymbol)
-        FLAGGED =
-          T.let(:flagged, WhopSDK::AdGroupListParams::Status::TaggedSymbol)
-
-        sig do
-          override.returns(
-            T::Array[WhopSDK::AdGroupListParams::Status::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
       end
     end
   end

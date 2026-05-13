@@ -9,18 +9,18 @@ class WhopSDK::Test::Resources::AdGroupsTest < WhopSDK::Test::ResourceTest
     response = @whop.ad_groups.retrieve("adgrp_xxxxxxxxxxxx")
 
     assert_pattern do
-      response => WhopSDK::Models::AdGroupRetrieveResponse
+      response => WhopSDK::AdGroup
     end
 
     assert_pattern do
       response => {
         id: String,
-        ad_campaign: WhopSDK::Models::AdGroupRetrieveResponse::AdCampaign,
+        ad_campaign: WhopSDK::AdGroup::AdCampaign,
         budget: Float | nil,
-        budget_type: WhopSDK::Models::AdGroupRetrieveResponse::BudgetType | nil,
+        budget_type: WhopSDK::AdBudgetType | nil,
         created_at: Time,
-        platform: WhopSDK::Models::AdGroupRetrieveResponse::Platform,
-        status: WhopSDK::Models::AdGroupRetrieveResponse::Status,
+        platform: WhopSDK::AdCampaignPlatform,
+        status: WhopSDK::AdGroupStatus,
         title: String | nil,
         updated_at: Time
       }
@@ -33,18 +33,18 @@ class WhopSDK::Test::Resources::AdGroupsTest < WhopSDK::Test::ResourceTest
     response = @whop.ad_groups.update("adgrp_xxxxxxxxxxxx")
 
     assert_pattern do
-      response => WhopSDK::Models::AdGroupUpdateResponse
+      response => WhopSDK::AdGroup
     end
 
     assert_pattern do
       response => {
         id: String,
-        ad_campaign: WhopSDK::Models::AdGroupUpdateResponse::AdCampaign,
+        ad_campaign: WhopSDK::AdGroup::AdCampaign,
         budget: Float | nil,
-        budget_type: WhopSDK::Models::AdGroupUpdateResponse::BudgetType | nil,
+        budget_type: WhopSDK::AdBudgetType | nil,
         created_at: Time,
-        platform: WhopSDK::Models::AdGroupUpdateResponse::Platform,
-        status: WhopSDK::Models::AdGroupUpdateResponse::Status,
+        platform: WhopSDK::AdCampaignPlatform,
+        status: WhopSDK::AdGroupStatus,
         title: String | nil,
         updated_at: Time
       }
@@ -71,10 +71,10 @@ class WhopSDK::Test::Resources::AdGroupsTest < WhopSDK::Test::ResourceTest
       row => {
         id: String,
         budget: Float | nil,
-        budget_type: WhopSDK::Models::AdGroupListResponse::BudgetType | nil,
+        budget_type: WhopSDK::AdBudgetType | nil,
         created_at: Time,
-        platform: WhopSDK::Models::AdGroupListResponse::Platform,
-        status: WhopSDK::Models::AdGroupListResponse::Status,
+        platform: WhopSDK::AdCampaignPlatform,
+        status: WhopSDK::AdGroupStatus,
         title: String | nil,
         updated_at: Time
       }
@@ -88,6 +88,54 @@ class WhopSDK::Test::Resources::AdGroupsTest < WhopSDK::Test::ResourceTest
 
     assert_pattern do
       response => WhopSDK::Internal::Type::Boolean
+    end
+  end
+
+  def test_pause
+    skip("Mock server tests are disabled")
+
+    response = @whop.ad_groups.pause("adgrp_xxxxxxxxxxxx")
+
+    assert_pattern do
+      response => WhopSDK::AdGroup
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        ad_campaign: WhopSDK::AdGroup::AdCampaign,
+        budget: Float | nil,
+        budget_type: WhopSDK::AdBudgetType | nil,
+        created_at: Time,
+        platform: WhopSDK::AdCampaignPlatform,
+        status: WhopSDK::AdGroupStatus,
+        title: String | nil,
+        updated_at: Time
+      }
+    end
+  end
+
+  def test_unpause
+    skip("Mock server tests are disabled")
+
+    response = @whop.ad_groups.unpause("adgrp_xxxxxxxxxxxx")
+
+    assert_pattern do
+      response => WhopSDK::AdGroup
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        ad_campaign: WhopSDK::AdGroup::AdCampaign,
+        budget: Float | nil,
+        budget_type: WhopSDK::AdBudgetType | nil,
+        created_at: Time,
+        platform: WhopSDK::AdCampaignPlatform,
+        status: WhopSDK::AdGroupStatus,
+        title: String | nil,
+        updated_at: Time
+      }
     end
   end
 end

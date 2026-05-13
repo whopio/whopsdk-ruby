@@ -18,8 +18,7 @@ module WhopSDK
           ad_campaign_id: T.nilable(String),
           ad_group_id: T.nilable(String),
           ad_id: T.nilable(String),
-          breakdown:
-            T.nilable(WhopSDK::AdReportRetrieveParams::Breakdown::OrSymbol),
+          breakdown: T.nilable(WhopSDK::Granularities::OrSymbol),
           currency: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::AdReportRetrieveResponse)

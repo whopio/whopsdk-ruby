@@ -73,10 +73,10 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute currency
-      #   The available currencies on the platform
+      #   The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
       #
-      #   @return [Symbol, WhopSDK::Models::Currency, nil]
-      required :currency, enum: -> { WhopSDK::Currency }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::Currency]
+      required :currency, enum: -> { WhopSDK::Currency }
 
       # @!attribute dispute_alerted_at
       #   When an alert came in that this transaction will be disputed
@@ -193,12 +193,10 @@ module WhopSDK
       required :retryable, WhopSDK::Internal::Type::Boolean
 
       # @!attribute settlement_currency
-      #   The currency in which the creator receives payouts and fees are charged (e.g.,
-      #   'usd', 'eur'). For multi-currency payments this differs from the payment
-      #   currency.
+      #   The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
       #
-      #   @return [String]
-      required :settlement_currency, String
+      #   @return [Symbol, WhopSDK::Models::Currency]
+      required :settlement_currency, enum: -> { WhopSDK::Currency }
 
       # @!attribute status
       #   The status of a receipt
@@ -291,7 +289,7 @@ module WhopSDK
       #
       #   @param created_at [Time] The datetime the payment was created.
       #
-      #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
+      #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
       #
       #   @param dispute_alerted_at [Time, nil] When an alert came in that this transaction will be disputed
       #
@@ -329,7 +327,7 @@ module WhopSDK
       #
       #   @param retryable [Boolean] True when the payment status is `open` and its membership is in one of the retry
       #
-      #   @param settlement_currency [String] The currency in which the creator receives payouts and fees are charged (e.g., '
+      #   @param settlement_currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
       #
       #   @param status [Symbol, WhopSDK::Models::ReceiptStatus, nil] The status of a receipt
       #

@@ -13,7 +13,7 @@ module WhopSDK
         checkout_configuration_id: String?,
         company: WhopSDK::Models::PaymentListResponse::Company?,
         created_at: Time,
-        currency: WhopSDK::Models::currency?,
+        currency: WhopSDK::Models::currency,
         dispute_alerted_at: Time?,
         failure_message: String?,
         last_payment_attempt: Time?,
@@ -32,7 +32,7 @@ module WhopSDK
         refunded_amount: Float?,
         refunded_at: Time?,
         retryable: bool,
-        settlement_currency: String,
+        settlement_currency: WhopSDK::Models::currency,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
@@ -68,7 +68,7 @@ module WhopSDK
 
       attr_accessor created_at: Time
 
-      attr_accessor currency: WhopSDK::Models::currency?
+      attr_accessor currency: WhopSDK::Models::currency
 
       attr_accessor dispute_alerted_at: Time?
 
@@ -106,7 +106,7 @@ module WhopSDK
 
       attr_accessor retryable: bool
 
-      attr_accessor settlement_currency: String
+      attr_accessor settlement_currency: WhopSDK::Models::currency
 
       attr_accessor status: WhopSDK::Models::receipt_status?
 
@@ -140,7 +140,7 @@ module WhopSDK
         checkout_configuration_id: String?,
         company: WhopSDK::Models::PaymentListResponse::Company?,
         created_at: Time,
-        currency: WhopSDK::Models::currency?,
+        currency: WhopSDK::Models::currency,
         dispute_alerted_at: Time?,
         failure_message: String?,
         last_payment_attempt: Time?,
@@ -159,7 +159,7 @@ module WhopSDK
         refunded_amount: Float?,
         refunded_at: Time?,
         retryable: bool,
-        settlement_currency: String,
+        settlement_currency: WhopSDK::Models::currency,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
@@ -184,7 +184,7 @@ module WhopSDK
         checkout_configuration_id: String?,
         company: WhopSDK::Models::PaymentListResponse::Company?,
         created_at: Time,
-        currency: WhopSDK::Models::currency?,
+        currency: WhopSDK::Models::currency,
         dispute_alerted_at: Time?,
         failure_message: String?,
         last_payment_attempt: Time?,
@@ -203,7 +203,7 @@ module WhopSDK
         refunded_amount: Float?,
         refunded_at: Time?,
         retryable: bool,
-        settlement_currency: String,
+        settlement_currency: WhopSDK::Models::currency,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,

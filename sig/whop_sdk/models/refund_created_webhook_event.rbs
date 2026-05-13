@@ -114,7 +114,7 @@ module WhopSDK
             card_brand: WhopSDK::Models::card_brands?,
             :card_last4 => String?,
             created_at: Time,
-            currency: WhopSDK::Models::currency?,
+            currency: WhopSDK::Models::currency,
             dispute_alerted_at: Time?,
             member: WhopSDK::RefundCreatedWebhookEvent::Data::Payment::Member?,
             membership: WhopSDK::RefundCreatedWebhookEvent::Data::Payment::Membership?,
@@ -140,7 +140,7 @@ module WhopSDK
 
           attr_accessor created_at: Time
 
-          attr_accessor currency: WhopSDK::Models::currency?
+          attr_accessor currency: WhopSDK::Models::currency
 
           attr_accessor dispute_alerted_at: Time?
 
@@ -172,7 +172,7 @@ module WhopSDK
             card_brand: WhopSDK::Models::card_brands?,
             card_last4: String?,
             created_at: Time,
-            currency: WhopSDK::Models::currency?,
+            currency: WhopSDK::Models::currency,
             dispute_alerted_at: Time?,
             member: WhopSDK::RefundCreatedWebhookEvent::Data::Payment::Member?,
             membership: WhopSDK::RefundCreatedWebhookEvent::Data::Payment::Membership?,
@@ -193,7 +193,7 @@ module WhopSDK
             card_brand: WhopSDK::Models::card_brands?,
             :card_last4 => String?,
             created_at: Time,
-            currency: WhopSDK::Models::currency?,
+            currency: WhopSDK::Models::currency,
             dispute_alerted_at: Time?,
             member: WhopSDK::RefundCreatedWebhookEvent::Data::Payment::Member?,
             membership: WhopSDK::RefundCreatedWebhookEvent::Data::Payment::Membership?,

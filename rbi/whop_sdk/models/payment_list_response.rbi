@@ -89,8 +89,8 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The available currencies on the platform
-      sig { returns(T.nilable(WhopSDK::Currency::TaggedSymbol)) }
+      # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
+      sig { returns(WhopSDK::Currency::TaggedSymbol) }
       attr_accessor :currency
 
       # When an alert came in that this transaction will be disputed
@@ -226,10 +226,8 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :retryable
 
-      # The currency in which the creator receives payouts and fees are charged (e.g.,
-      # 'usd', 'eur'). For multi-currency payments this differs from the payment
-      # currency.
-      sig { returns(String) }
+      # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
+      sig { returns(WhopSDK::Currency::TaggedSymbol) }
       attr_accessor :settlement_currency
 
       # The status of a receipt
@@ -303,7 +301,7 @@ module WhopSDK
           company:
             T.nilable(WhopSDK::Models::PaymentListResponse::Company::OrHash),
           created_at: Time,
-          currency: T.nilable(WhopSDK::Currency::OrSymbol),
+          currency: WhopSDK::Currency::OrSymbol,
           dispute_alerted_at: T.nilable(Time),
           failure_message: T.nilable(String),
           last_payment_attempt: T.nilable(Time),
@@ -329,7 +327,7 @@ module WhopSDK
           refunded_amount: T.nilable(Float),
           refunded_at: T.nilable(Time),
           retryable: T::Boolean,
-          settlement_currency: String,
+          settlement_currency: WhopSDK::Currency::OrSymbol,
           status: T.nilable(WhopSDK::ReceiptStatus::OrSymbol),
           substatus: WhopSDK::FriendlyReceiptStatus::OrSymbol,
           subtotal: T.nilable(Float),
@@ -367,7 +365,7 @@ module WhopSDK
         company:,
         # The datetime the payment was created.
         created_at:,
-        # The available currencies on the platform
+        # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
         currency:,
         # When an alert came in that this transaction will be disputed
         dispute_alerted_at:,
@@ -411,9 +409,7 @@ module WhopSDK
         # retry-eligible states (`active`, `trialing`, `completed`, or `past_due`);
         # otherwise false. Used to decide if Whop can attempt the charge again.
         retryable:,
-        # The currency in which the creator receives payouts and fees are charged (e.g.,
-        # 'usd', 'eur'). For multi-currency payments this differs from the payment
-        # currency.
+        # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
         settlement_currency:,
         # The status of a receipt
         status:,
@@ -456,7 +452,7 @@ module WhopSDK
             checkout_configuration_id: T.nilable(String),
             company: T.nilable(WhopSDK::Models::PaymentListResponse::Company),
             created_at: Time,
-            currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
+            currency: WhopSDK::Currency::TaggedSymbol,
             dispute_alerted_at: T.nilable(Time),
             failure_message: T.nilable(String),
             last_payment_attempt: T.nilable(Time),
@@ -479,7 +475,7 @@ module WhopSDK
             refunded_amount: T.nilable(Float),
             refunded_at: T.nilable(Time),
             retryable: T::Boolean,
-            settlement_currency: String,
+            settlement_currency: WhopSDK::Currency::TaggedSymbol,
             status: T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol),
             substatus: WhopSDK::FriendlyReceiptStatus::TaggedSymbol,
             subtotal: T.nilable(Float),

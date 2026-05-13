@@ -13,7 +13,7 @@ module WhopSDK
         checkout_configuration_id: String?,
         company: WhopSDK::Payment::Company?,
         created_at: Time,
-        currency: WhopSDK::Models::currency?,
+        currency: WhopSDK::Models::currency,
         dispute_alerted_at: Time?,
         disputes: ::Array[WhopSDK::Payment::Dispute]?,
         failure_message: String?,
@@ -37,7 +37,7 @@ module WhopSDK
         resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
         settlement_amount: Float,
-        settlement_currency: String,
+        settlement_currency: WhopSDK::Models::currency,
         settlement_exchange_rate: Float?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
@@ -75,7 +75,7 @@ module WhopSDK
 
       attr_accessor created_at: Time
 
-      attr_accessor currency: WhopSDK::Models::currency?
+      attr_accessor currency: WhopSDK::Models::currency
 
       attr_accessor dispute_alerted_at: Time?
 
@@ -123,7 +123,7 @@ module WhopSDK
 
       attr_accessor settlement_amount: Float
 
-      attr_accessor settlement_currency: String
+      attr_accessor settlement_currency: WhopSDK::Models::currency
 
       attr_accessor settlement_exchange_rate: Float?
 
@@ -161,7 +161,7 @@ module WhopSDK
         checkout_configuration_id: String?,
         company: WhopSDK::Payment::Company?,
         created_at: Time,
-        currency: WhopSDK::Models::currency?,
+        currency: WhopSDK::Models::currency,
         dispute_alerted_at: Time?,
         disputes: ::Array[WhopSDK::Payment::Dispute]?,
         failure_message: String?,
@@ -185,7 +185,7 @@ module WhopSDK
         resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
         settlement_amount: Float,
-        settlement_currency: String,
+        settlement_currency: WhopSDK::Models::currency,
         settlement_exchange_rate: Float?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
@@ -212,7 +212,7 @@ module WhopSDK
         checkout_configuration_id: String?,
         company: WhopSDK::Payment::Company?,
         created_at: Time,
-        currency: WhopSDK::Models::currency?,
+        currency: WhopSDK::Models::currency,
         dispute_alerted_at: Time?,
         disputes: ::Array[WhopSDK::Payment::Dispute]?,
         failure_message: String?,
@@ -236,7 +236,7 @@ module WhopSDK
         resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
         settlement_amount: Float,
-        settlement_currency: String,
+        settlement_currency: WhopSDK::Models::currency,
         settlement_exchange_rate: Float?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,

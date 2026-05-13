@@ -82,8 +82,7 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :customer_name
 
-      # Whether the dispute evidence can still be edited and submitted. Returns true
-      # only when the dispute status requires a response.
+      # Whether the dispute evidence can still be edited and submitted.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :editable
 
@@ -250,8 +249,7 @@ module WhopSDK
         # The customer's full name from their payment details, included in the evidence
         # packet sent to the payment processor. Editable before submission.
         customer_name:,
-        # Whether the dispute evidence can still be edited and submitted. Returns true
-        # only when the dispute status requires a response.
+        # Whether the dispute evidence can still be edited and submitted.
         editable:,
         # The deadline by which dispute evidence must be submitted. Null if no response
         # deadline is set.

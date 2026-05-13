@@ -1231,22 +1231,38 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :internal_notes
 
+        # Custom key-value pairs stored on the plan. Included in webhook payloads for
+        # payment and membership events.
+        sig { returns(T::Hash[Symbol, T.anything]) }
+        attr_accessor :metadata
+
         # The plan attached to this payment.
         sig do
-          params(id: String, internal_notes: T.nilable(String)).returns(
-            T.attached_class
-          )
+          params(
+            id: String,
+            internal_notes: T.nilable(String),
+            metadata: T::Hash[Symbol, T.anything]
+          ).returns(T.attached_class)
         end
         def self.new(
           # The unique identifier for the plan.
           id:,
           # A personal description or notes section for the business.
-          internal_notes:
+          internal_notes:,
+          # Custom key-value pairs stored on the plan. Included in webhook payloads for
+          # payment and membership events.
+          metadata:
         )
         end
 
         sig do
-          override.returns({ id: String, internal_notes: T.nilable(String) })
+          override.returns(
+            {
+              id: String,
+              internal_notes: T.nilable(String),
+              metadata: T::Hash[Symbol, T.anything]
+            }
+          )
         end
         def to_hash
         end
@@ -1262,6 +1278,11 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
+        # Custom key-value pairs stored on the product. Included in webhook payloads for
+        # payment and membership events.
+        sig { returns(T::Hash[Symbol, T.anything]) }
+        attr_accessor :metadata
+
         # The URL slug used in the product's public link (e.g., 'my-product' in
         # whop.com/company/my-product).
         sig { returns(String) }
@@ -1274,13 +1295,19 @@ module WhopSDK
 
         # The product this payment was made for
         sig do
-          params(id: String, route: String, title: String).returns(
-            T.attached_class
-          )
+          params(
+            id: String,
+            metadata: T::Hash[Symbol, T.anything],
+            route: String,
+            title: String
+          ).returns(T.attached_class)
         end
         def self.new(
           # The unique identifier for the product.
           id:,
+          # Custom key-value pairs stored on the product. Included in webhook payloads for
+          # payment and membership events.
+          metadata:,
           # The URL slug used in the product's public link (e.g., 'my-product' in
           # whop.com/company/my-product).
           route:,
@@ -1290,7 +1317,16 @@ module WhopSDK
         )
         end
 
-        sig { override.returns({ id: String, route: String, title: String }) }
+        sig do
+          override.returns(
+            {
+              id: String,
+              metadata: T::Hash[Symbol, T.anything],
+              route: String,
+              title: String
+            }
+          )
+        end
         def to_hash
         end
       end

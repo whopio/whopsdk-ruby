@@ -637,12 +637,24 @@ module WhopSDK
         #   @return [String, nil]
         required :internal_notes, String, nil?: true
 
-        # @!method initialize(id:, internal_notes:)
+        # @!attribute metadata
+        #   Custom key-value pairs stored on the plan. Included in webhook payloads for
+        #   payment and membership events.
+        #
+        #   @return [Hash{Symbol=>Object}]
+        required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]
+
+        # @!method initialize(id:, internal_notes:, metadata:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::PaymentListResponse::Plan} for more details.
+        #
         #   The plan attached to this payment.
         #
         #   @param id [String] The unique identifier for the plan.
         #
         #   @param internal_notes [String, nil] A personal description or notes section for the business.
+        #
+        #   @param metadata [Hash{Symbol=>Object}] Custom key-value pairs stored on the plan. Included in webhook payloads for paym
       end
 
       # @see WhopSDK::Models::PaymentListResponse#product
@@ -652,6 +664,13 @@ module WhopSDK
         #
         #   @return [String]
         required :id, String
+
+        # @!attribute metadata
+        #   Custom key-value pairs stored on the product. Included in webhook payloads for
+        #   payment and membership events.
+        #
+        #   @return [Hash{Symbol=>Object}]
+        required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]
 
         # @!attribute route
         #   The URL slug used in the product's public link (e.g., 'my-product' in
@@ -667,13 +686,15 @@ module WhopSDK
         #   @return [String]
         required :title, String
 
-        # @!method initialize(id:, route:, title:)
+        # @!method initialize(id:, metadata:, route:, title:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::PaymentListResponse::Product} for more details.
         #
         #   The product this payment was made for
         #
         #   @param id [String] The unique identifier for the product.
+        #
+        #   @param metadata [Hash{Symbol=>Object}] Custom key-value pairs stored on the product. Included in webhook payloads for p
         #
         #   @param route [String] The URL slug used in the product's public link (e.g., 'my-product' in whop.com/c
         #

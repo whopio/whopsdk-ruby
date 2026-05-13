@@ -168,26 +168,39 @@ module WhopSDK
         def to_hash: -> { id: String }
       end
 
-      type plan = { id: String }
+      type plan = { id: String, metadata: ::Hash[Symbol, top] }
 
       class Plan < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
-        def initialize: (id: String) -> void
+        attr_accessor metadata: ::Hash[Symbol, top]
 
-        def to_hash: -> { id: String }
+        def initialize: (id: String, metadata: ::Hash[Symbol, top]) -> void
+
+        def to_hash: -> { id: String, metadata: ::Hash[Symbol, top] }
       end
 
-      type product = { id: String, title: String }
+      type product =
+        { id: String, metadata: ::Hash[Symbol, top], title: String }
 
       class Product < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
+        attr_accessor metadata: ::Hash[Symbol, top]
+
         attr_accessor title: String
 
-        def initialize: (id: String, title: String) -> void
+        def initialize: (
+          id: String,
+          metadata: ::Hash[Symbol, top],
+          title: String
+        ) -> void
 
-        def to_hash: -> { id: String, title: String }
+        def to_hash: -> {
+          id: String,
+          metadata: ::Hash[Symbol, top],
+          title: String
+        }
       end
 
       type promo_code = { id: String }

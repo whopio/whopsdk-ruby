@@ -44,9 +44,7 @@ module WhopSDK
       attr_accessor :query
 
       # The status of an ad campaign.
-      sig do
-        returns(T.nilable(WhopSDK::AdCampaignListParams::Status::OrSymbol))
-      end
+      sig { returns(T.nilable(WhopSDK::AdCampaignStatus::OrSymbol)) }
       attr_accessor :status
 
       sig do
@@ -59,7 +57,7 @@ module WhopSDK
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           query: T.nilable(String),
-          status: T.nilable(WhopSDK::AdCampaignListParams::Status::OrSymbol),
+          status: T.nilable(WhopSDK::AdCampaignStatus::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -97,45 +95,12 @@ module WhopSDK
             first: T.nilable(Integer),
             last: T.nilable(Integer),
             query: T.nilable(String),
-            status: T.nilable(WhopSDK::AdCampaignListParams::Status::OrSymbol),
+            status: T.nilable(WhopSDK::AdCampaignStatus::OrSymbol),
             request_options: WhopSDK::RequestOptions
           }
         )
       end
       def to_hash
-      end
-
-      # The status of an ad campaign.
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, WhopSDK::AdCampaignListParams::Status) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        ACTIVE =
-          T.let(:active, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
-        PAUSED =
-          T.let(:paused, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
-        PAYMENT_FAILED =
-          T.let(
-            :payment_failed,
-            WhopSDK::AdCampaignListParams::Status::TaggedSymbol
-          )
-        DRAFT =
-          T.let(:draft, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
-        IN_REVIEW =
-          T.let(:in_review, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
-        FLAGGED =
-          T.let(:flagged, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
-
-        sig do
-          override.returns(
-            T::Array[WhopSDK::AdCampaignListParams::Status::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
       end
     end
   end

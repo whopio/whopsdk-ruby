@@ -27,7 +27,7 @@ module WhopSDK
       #
       # @param ad_id [String, nil] The unique identifier of an ad. Mutually exclusive with `adCampaignId` and `adGr
       #
-      # @param breakdown [Symbol, WhopSDK::Models::AdReportRetrieveParams::Breakdown, nil] Bucket size for external ad stat rows.
+      # @param breakdown [Symbol, WhopSDK::Models::Granularities, nil] Bucket size for external ad stat rows.
       #
       # @param currency [String, nil] ISO 4217 currency code to report `spend` in. Defaults to the company's ads repor
       #

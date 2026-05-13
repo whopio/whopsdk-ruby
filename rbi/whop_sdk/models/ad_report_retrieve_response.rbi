@@ -91,11 +91,7 @@ module WhopSDK
         attr_accessor :clicks
 
         # The bucket size of this row (`daily` or `hourly`).
-        sig do
-          returns(
-            WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity::TaggedSymbol
-          )
-        end
+        sig { returns(WhopSDK::Granularities::TaggedSymbol) }
         attr_accessor :granularity
 
         # Impressions in this bucket.
@@ -112,13 +108,7 @@ module WhopSDK
         attr_accessor :result_count
 
         # Types of optimization results tracked from external ad platforms
-        sig do
-          returns(
-            T.nilable(
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          )
-        end
+        sig { returns(T.nilable(WhopSDK::ResultLabelKeys::TaggedSymbol)) }
         attr_accessor :result_label_key
 
         # Advertiser-defined label for the result when `resultLabelKey` is `custom`.
@@ -150,15 +140,11 @@ module WhopSDK
           params(
             bucket_start: Time,
             clicks: Integer,
-            granularity:
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity::OrSymbol,
+            granularity: WhopSDK::Granularities::OrSymbol,
             impressions: Integer,
             reach: Integer,
             result_count: T.nilable(Integer),
-            result_label_key:
-              T.nilable(
-                WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::OrSymbol
-              ),
+            result_label_key: T.nilable(WhopSDK::ResultLabelKeys::OrSymbol),
             result_label_override: T.nilable(String),
             spend: Float,
             spend_currency: WhopSDK::Currency::OrSymbol,
@@ -205,15 +191,12 @@ module WhopSDK
             {
               bucket_start: Time,
               clicks: Integer,
-              granularity:
-                WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity::TaggedSymbol,
+              granularity: WhopSDK::Granularities::TaggedSymbol,
               impressions: Integer,
               reach: Integer,
               result_count: T.nilable(Integer),
               result_label_key:
-                T.nilable(
-                  WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-                ),
+                T.nilable(WhopSDK::ResultLabelKeys::TaggedSymbol),
               result_label_override: T.nilable(String),
               spend: Float,
               spend_currency: WhopSDK::Currency::TaggedSymbol,
@@ -223,186 +206,6 @@ module WhopSDK
           )
         end
         def to_hash
-        end
-
-        # The bucket size of this row (`daily` or `hourly`).
-        module Granularity
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          DAILY =
-            T.let(
-              :daily,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity::TaggedSymbol
-            )
-          HOURLY =
-            T.let(
-              :hourly,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
-        end
-
-        # Types of optimization results tracked from external ad platforms
-        module ResultLabelKey
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          APP_INSTALLS =
-            T.let(
-              :app_installs,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          MESSAGING_CONVERSATIONS_STARTED =
-            T.let(
-              :messaging_conversations_started,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          POST_ENGAGEMENT =
-            T.let(
-              :post_engagement,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          EVENT_RESPONSES =
-            T.let(
-              :event_responses,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          IMPRESSIONS =
-            T.let(
-              :impressions,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          WEBSITE_PURCHASES =
-            T.let(
-              :website_purchases,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          LANDING_PAGE_VIEWS =
-            T.let(
-              :landing_page_views,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          LEADS =
-            T.let(
-              :leads,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          LINK_CLICKS =
-            T.let(
-              :link_clicks,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          QUALITY_CALLS =
-            T.let(
-              :quality_calls,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          APPOINTMENTS_BOOKED =
-            T.let(
-              :appointments_booked,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          MESSAGING_PURCHASES =
-            T.let(
-              :messaging_purchases,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          PAGE_LIKES =
-            T.let(
-              :page_likes,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          INSTAGRAM_PROFILE_VISITS =
-            T.let(
-              :instagram_profile_visits,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          REACH =
-            T.let(
-              :reach,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          REMINDERS_SET =
-            T.let(
-              :reminders_set,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          NEW_SUBSCRIBERS =
-            T.let(
-              :new_subscribers,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          VIDEO_VIEWS =
-            T.let(
-              :video_views,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          REGISTRATIONS =
-            T.let(
-              :registrations,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          CONTENT_VIEWS =
-            T.let(
-              :content_views,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          SEARCHES =
-            T.let(
-              :searches,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          WEBSITE_SCHEDULES =
-            T.let(
-              :website_schedules,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          WEBSITE_SUBMIT_APPLICATIONS =
-            T.let(
-              :website_submit_applications,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-          CUSTOM =
-            T.let(
-              :custom,
-              WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
         end
       end
 
@@ -453,13 +256,7 @@ module WhopSDK
         attr_accessor :result_count
 
         # Types of optimization results tracked from external ad platforms
-        sig do
-          returns(
-            T.nilable(
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          )
-        end
+        sig { returns(T.nilable(WhopSDK::ResultLabelKeys::TaggedSymbol)) }
         attr_accessor :result_label_key
 
         # Advertiser-defined label for the result when `resultLabelKey` is `custom`.
@@ -491,10 +288,7 @@ module WhopSDK
             impressions: Integer,
             reach: Integer,
             result_count: T.nilable(Integer),
-            result_label_key:
-              T.nilable(
-                WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::OrSymbol
-              ),
+            result_label_key: T.nilable(WhopSDK::ResultLabelKeys::OrSymbol),
             result_label_override: T.nilable(String),
             roas: T.nilable(Float),
             spend: Float,
@@ -548,9 +342,7 @@ module WhopSDK
               reach: Integer,
               result_count: T.nilable(Integer),
               result_label_key:
-                T.nilable(
-                  WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-                ),
+                T.nilable(WhopSDK::ResultLabelKeys::TaggedSymbol),
               result_label_override: T.nilable(String),
               roas: T.nilable(Float),
               spend: Float,
@@ -559,151 +351,6 @@ module WhopSDK
           )
         end
         def to_hash
-        end
-
-        # Types of optimization results tracked from external ad platforms
-        module ResultLabelKey
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          APP_INSTALLS =
-            T.let(
-              :app_installs,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          MESSAGING_CONVERSATIONS_STARTED =
-            T.let(
-              :messaging_conversations_started,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          POST_ENGAGEMENT =
-            T.let(
-              :post_engagement,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          EVENT_RESPONSES =
-            T.let(
-              :event_responses,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          IMPRESSIONS =
-            T.let(
-              :impressions,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          WEBSITE_PURCHASES =
-            T.let(
-              :website_purchases,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          LANDING_PAGE_VIEWS =
-            T.let(
-              :landing_page_views,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          LEADS =
-            T.let(
-              :leads,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          LINK_CLICKS =
-            T.let(
-              :link_clicks,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          QUALITY_CALLS =
-            T.let(
-              :quality_calls,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          APPOINTMENTS_BOOKED =
-            T.let(
-              :appointments_booked,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          MESSAGING_PURCHASES =
-            T.let(
-              :messaging_purchases,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          PAGE_LIKES =
-            T.let(
-              :page_likes,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          INSTAGRAM_PROFILE_VISITS =
-            T.let(
-              :instagram_profile_visits,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          REACH =
-            T.let(
-              :reach,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          REMINDERS_SET =
-            T.let(
-              :reminders_set,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          NEW_SUBSCRIBERS =
-            T.let(
-              :new_subscribers,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          VIDEO_VIEWS =
-            T.let(
-              :video_views,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          REGISTRATIONS =
-            T.let(
-              :registrations,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          CONTENT_VIEWS =
-            T.let(
-              :content_views,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          SEARCHES =
-            T.let(
-              :searches,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          WEBSITE_SCHEDULES =
-            T.let(
-              :website_schedules,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          WEBSITE_SUBMIT_APPLICATIONS =
-            T.let(
-              :website_submit_applications,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-          CUSTOM =
-            T.let(
-              :custom,
-              WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
         end
       end
     end

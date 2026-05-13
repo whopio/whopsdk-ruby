@@ -43,8 +43,8 @@ module WhopSDK
       # @!attribute breakdown
       #   Bucket size for external ad stat rows.
       #
-      #   @return [Symbol, WhopSDK::Models::AdReportRetrieveParams::Breakdown, nil]
-      optional :breakdown, enum: -> { WhopSDK::AdReportRetrieveParams::Breakdown }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::Granularities, nil]
+      optional :breakdown, enum: -> { WhopSDK::Granularities }, nil?: true
 
       # @!attribute currency
       #   ISO 4217 currency code to report `spend` in. Defaults to the company's ads
@@ -67,22 +67,11 @@ module WhopSDK
       #
       #   @param ad_id [String, nil] The unique identifier of an ad. Mutually exclusive with `adCampaignId` and `adGr
       #
-      #   @param breakdown [Symbol, WhopSDK::Models::AdReportRetrieveParams::Breakdown, nil] Bucket size for external ad stat rows.
+      #   @param breakdown [Symbol, WhopSDK::Models::Granularities, nil] Bucket size for external ad stat rows.
       #
       #   @param currency [String, nil] ISO 4217 currency code to report `spend` in. Defaults to the company's ads repor
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
-
-      # Bucket size for external ad stat rows.
-      module Breakdown
-        extend WhopSDK::Internal::Type::Enum
-
-        DAILY = :daily
-        HOURLY = :hourly
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
     end
   end
 end

@@ -49,8 +49,8 @@ module WhopSDK
         # @!attribute granularity
         #   The bucket size of this row (`daily` or `hourly`).
         #
-        #   @return [Symbol, WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity]
-        required :granularity, enum: -> { WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity }
+        #   @return [Symbol, WhopSDK::Models::Granularities]
+        required :granularity, enum: -> { WhopSDK::Granularities }
 
         # @!attribute impressions
         #   Impressions in this bucket.
@@ -74,10 +74,8 @@ module WhopSDK
         # @!attribute result_label_key
         #   Types of optimization results tracked from external ad platforms
         #
-        #   @return [Symbol, WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey, nil]
-        required :result_label_key,
-                 enum: -> { WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey },
-                 nil?: true
+        #   @return [Symbol, WhopSDK::Models::ResultLabelKeys, nil]
+        required :result_label_key, enum: -> { WhopSDK::ResultLabelKeys }, nil?: true
 
         # @!attribute result_label_override
         #   Advertiser-defined label for the result when `resultLabelKey` is `custom`.
@@ -123,7 +121,7 @@ module WhopSDK
         #
         #   @param clicks [Integer] Clicks in this bucket.
         #
-        #   @param granularity [Symbol, WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity] The bucket size of this row (`daily` or `hourly`).
+        #   @param granularity [Symbol, WhopSDK::Models::Granularities] The bucket size of this row (`daily` or `hourly`).
         #
         #   @param impressions [Integer] Impressions in this bucket.
         #
@@ -131,7 +129,7 @@ module WhopSDK
         #
         #   @param result_count [Integer, nil] Count of the primary optimization result in this bucket.
         #
-        #   @param result_label_key [Symbol, WhopSDK::Models::AdReportRetrieveResponse::Breakdown::ResultLabelKey, nil] Types of optimization results tracked from external ad platforms
+        #   @param result_label_key [Symbol, WhopSDK::Models::ResultLabelKeys, nil] Types of optimization results tracked from external ad platforms
         #
         #   @param result_label_override [String, nil] Advertiser-defined label for the result when `resultLabelKey` is `custom`.
         #
@@ -142,54 +140,6 @@ module WhopSDK
         #   @param stat_date [Time] The date these stats cover (midnight UTC). For hourly rows, see `statHour` and `
         #
         #   @param stat_hour [Integer, nil] Hour of the day in the ad account's reporting timezone (0-23). `null` for daily
-
-        # The bucket size of this row (`daily` or `hourly`).
-        #
-        # @see WhopSDK::Models::AdReportRetrieveResponse::Breakdown#granularity
-        module Granularity
-          extend WhopSDK::Internal::Type::Enum
-
-          DAILY = :daily
-          HOURLY = :hourly
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-
-        # Types of optimization results tracked from external ad platforms
-        #
-        # @see WhopSDK::Models::AdReportRetrieveResponse::Breakdown#result_label_key
-        module ResultLabelKey
-          extend WhopSDK::Internal::Type::Enum
-
-          APP_INSTALLS = :app_installs
-          MESSAGING_CONVERSATIONS_STARTED = :messaging_conversations_started
-          POST_ENGAGEMENT = :post_engagement
-          EVENT_RESPONSES = :event_responses
-          IMPRESSIONS = :impressions
-          WEBSITE_PURCHASES = :website_purchases
-          LANDING_PAGE_VIEWS = :landing_page_views
-          LEADS = :leads
-          LINK_CLICKS = :link_clicks
-          QUALITY_CALLS = :quality_calls
-          APPOINTMENTS_BOOKED = :appointments_booked
-          MESSAGING_PURCHASES = :messaging_purchases
-          PAGE_LIKES = :page_likes
-          INSTAGRAM_PROFILE_VISITS = :instagram_profile_visits
-          REACH = :reach
-          REMINDERS_SET = :reminders_set
-          NEW_SUBSCRIBERS = :new_subscribers
-          VIDEO_VIEWS = :video_views
-          REGISTRATIONS = :registrations
-          CONTENT_VIEWS = :content_views
-          SEARCHES = :searches
-          WEBSITE_SCHEDULES = :website_schedules
-          WEBSITE_SUBMIT_APPLICATIONS = :website_submit_applications
-          CUSTOM = :custom
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
       end
 
       # @see WhopSDK::Models::AdReportRetrieveResponse#summary
@@ -252,10 +202,8 @@ module WhopSDK
         # @!attribute result_label_key
         #   Types of optimization results tracked from external ad platforms
         #
-        #   @return [Symbol, WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey, nil]
-        required :result_label_key,
-                 enum: -> { WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey },
-                 nil?: true
+        #   @return [Symbol, WhopSDK::Models::ResultLabelKeys, nil]
+        required :result_label_key, enum: -> { WhopSDK::ResultLabelKeys }, nil?: true
 
         # @!attribute result_label_override
         #   Advertiser-defined label for the result when `resultLabelKey` is `custom`.
@@ -306,7 +254,7 @@ module WhopSDK
         #
         #   @param result_count [Integer, nil] Count of the campaign's primary optimization result (purchases, clicks, etc.) —
         #
-        #   @param result_label_key [Symbol, WhopSDK::Models::AdReportRetrieveResponse::Summary::ResultLabelKey, nil] Types of optimization results tracked from external ad platforms
+        #   @param result_label_key [Symbol, WhopSDK::Models::ResultLabelKeys, nil] Types of optimization results tracked from external ad platforms
         #
         #   @param result_label_override [String, nil] Advertiser-defined label for the result when `resultLabelKey` is `custom`.
         #
@@ -315,41 +263,6 @@ module WhopSDK
         #   @param spend [Float] Total spend over the date range in the requested reporting currency.
         #
         #   @param spend_currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
-
-        # Types of optimization results tracked from external ad platforms
-        #
-        # @see WhopSDK::Models::AdReportRetrieveResponse::Summary#result_label_key
-        module ResultLabelKey
-          extend WhopSDK::Internal::Type::Enum
-
-          APP_INSTALLS = :app_installs
-          MESSAGING_CONVERSATIONS_STARTED = :messaging_conversations_started
-          POST_ENGAGEMENT = :post_engagement
-          EVENT_RESPONSES = :event_responses
-          IMPRESSIONS = :impressions
-          WEBSITE_PURCHASES = :website_purchases
-          LANDING_PAGE_VIEWS = :landing_page_views
-          LEADS = :leads
-          LINK_CLICKS = :link_clicks
-          QUALITY_CALLS = :quality_calls
-          APPOINTMENTS_BOOKED = :appointments_booked
-          MESSAGING_PURCHASES = :messaging_purchases
-          PAGE_LIKES = :page_likes
-          INSTAGRAM_PROFILE_VISITS = :instagram_profile_visits
-          REACH = :reach
-          REMINDERS_SET = :reminders_set
-          NEW_SUBSCRIBERS = :new_subscribers
-          VIDEO_VIEWS = :video_views
-          REGISTRATIONS = :registrations
-          CONTENT_VIEWS = :content_views
-          SEARCHES = :searches
-          WEBSITE_SCHEDULES = :website_schedules
-          WEBSITE_SUBMIT_APPLICATIONS = :website_submit_applications
-          CUSTOM = :custom
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
       end
     end
   end

@@ -7,7 +7,7 @@ module WhopSDK
         ?ad_campaign_id: String?,
         ?ad_group_id: String?,
         ?ad_id: String?,
-        ?breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown?,
+        ?breakdown: WhopSDK::Models::granularities?,
         ?currency: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::AdReportRetrieveResponse

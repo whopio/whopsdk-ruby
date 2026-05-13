@@ -70,6 +70,7 @@ class WhopSDK::Test::Resources::AdGroupsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
+        ad_campaign: WhopSDK::Models::AdGroupListResponse::AdCampaign,
         budget: Float | nil,
         budget_type: WhopSDK::AdBudgetType | nil,
         created_at: Time,

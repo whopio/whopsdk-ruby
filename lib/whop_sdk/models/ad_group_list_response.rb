@@ -10,6 +10,12 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
+      # @!attribute ad_campaign
+      #   The ad campaign this ad group belongs to.
+      #
+      #   @return [WhopSDK::Models::AdGroupListResponse::AdCampaign]
+      required :ad_campaign, -> { WhopSDK::Models::AdGroupListResponse::AdCampaign }
+
       # @!attribute budget
       #   Budget amount in dollars.
       #
@@ -52,10 +58,12 @@ module WhopSDK
       #   @return [Time]
       required :updated_at, Time
 
-      # @!method initialize(id:, budget:, budget_type:, created_at:, platform:, status:, title:, updated_at:)
+      # @!method initialize(id:, ad_campaign:, budget:, budget_type:, created_at:, platform:, status:, title:, updated_at:)
       #   An ad group (ad set) belonging to an ad campaign.
       #
       #   @param id [String] The unique identifier for this ad group.
+      #
+      #   @param ad_campaign [WhopSDK::Models::AdGroupListResponse::AdCampaign] The ad campaign this ad group belongs to.
       #
       #   @param budget [Float, nil] Budget amount in dollars.
       #
@@ -70,6 +78,20 @@ module WhopSDK
       #   @param title [String, nil] Human-readable name shown on the external platform.
       #
       #   @param updated_at [Time] When the ad group was last updated.
+
+      # @see WhopSDK::Models::AdGroupListResponse#ad_campaign
+      class AdCampaign < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The unique identifier for this ad campaign.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!method initialize(id:)
+        #   The ad campaign this ad group belongs to.
+        #
+        #   @param id [String] The unique identifier for this ad campaign.
+      end
     end
   end
 end

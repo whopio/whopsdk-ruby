@@ -10,6 +10,18 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
+      # @!attribute ad_campaign
+      #   The ad campaign this ad belongs to.
+      #
+      #   @return [WhopSDK::Models::AdListResponse::AdCampaign]
+      required :ad_campaign, -> { WhopSDK::Models::AdListResponse::AdCampaign }
+
+      # @!attribute ad_group
+      #   The parent ad group this ad belongs to.
+      #
+      #   @return [WhopSDK::Models::AdListResponse::AdGroup]
+      required :ad_group, -> { WhopSDK::Models::AdListResponse::AdGroup }
+
       # @!attribute created_at
       #   When the ad was created.
       #
@@ -40,10 +52,14 @@ module WhopSDK
       #   @return [Time]
       required :updated_at, Time
 
-      # @!method initialize(id:, created_at:, platform:, status:, title:, updated_at:)
+      # @!method initialize(id:, ad_campaign:, ad_group:, created_at:, platform:, status:, title:, updated_at:)
       #   An ad belonging to an ad group.
       #
       #   @param id [String] The unique identifier for this ad.
+      #
+      #   @param ad_campaign [WhopSDK::Models::AdListResponse::AdCampaign] The ad campaign this ad belongs to.
+      #
+      #   @param ad_group [WhopSDK::Models::AdListResponse::AdGroup] The parent ad group this ad belongs to.
       #
       #   @param created_at [Time] When the ad was created.
       #
@@ -54,6 +70,34 @@ module WhopSDK
       #   @param title [String, nil] The display title of the ad. Falls back to the creative set caption when unset.
       #
       #   @param updated_at [Time] When the ad was last updated.
+
+      # @see WhopSDK::Models::AdListResponse#ad_campaign
+      class AdCampaign < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The unique identifier for this ad campaign.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!method initialize(id:)
+        #   The ad campaign this ad belongs to.
+        #
+        #   @param id [String] The unique identifier for this ad campaign.
+      end
+
+      # @see WhopSDK::Models::AdListResponse#ad_group
+      class AdGroup < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The unique identifier for this ad group.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!method initialize(id:)
+        #   The parent ad group this ad belongs to.
+        #
+        #   @param id [String] The unique identifier for this ad group.
+      end
     end
   end
 end

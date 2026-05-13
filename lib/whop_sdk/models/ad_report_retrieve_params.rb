@@ -20,31 +20,39 @@ module WhopSDK
       required :to, Time
 
       # @!attribute ad_campaign_id
-      #   The unique identifier of an ad campaign. Mutually exclusive with `adGroupId` and
-      #   `adId`.
+      #   The unique identifier of an ad campaign. Mutually exclusive with `companyId`,
+      #   `adGroupId`, and `adId`.
       #
       #   @return [String, nil]
       optional :ad_campaign_id, String, nil?: true
 
       # @!attribute ad_group_id
-      #   The unique identifier of an ad group. Mutually exclusive with `adCampaignId` and
-      #   `adId`.
+      #   The unique identifier of an ad group. Mutually exclusive with `companyId`,
+      #   `adCampaignId`, and `adId`.
       #
       #   @return [String, nil]
       optional :ad_group_id, String, nil?: true
 
       # @!attribute ad_id
-      #   The unique identifier of an ad. Mutually exclusive with `adCampaignId` and
-      #   `adGroupId`.
+      #   The unique identifier of an ad. Mutually exclusive with `companyId`,
+      #   `adCampaignId`, and `adGroupId`.
       #
       #   @return [String, nil]
       optional :ad_id, String, nil?: true
 
       # @!attribute breakdown
-      #   Bucket size for external ad stat rows.
+      #   Entity level to group an ad report by.
       #
-      #   @return [Symbol, WhopSDK::Models::Granularities, nil]
-      optional :breakdown, enum: -> { WhopSDK::Granularities }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::AdReportRetrieveParams::Breakdown, nil]
+      optional :breakdown, enum: -> { WhopSDK::AdReportRetrieveParams::Breakdown }, nil?: true
+
+      # @!attribute company_id
+      #   The unique identifier of a company. Mutually exclusive with `adCampaignId`,
+      #   `adGroupId`, and `adId`. Use with `breakdown` to fan out across every campaign,
+      #   ad group, or ad in the company without paging.
+      #
+      #   @return [String, nil]
+      optional :company_id, String, nil?: true
 
       # @!attribute currency
       #   ISO 4217 currency code to report `spend` in. Defaults to the company's ads
@@ -53,7 +61,13 @@ module WhopSDK
       #   @return [String, nil]
       optional :currency, String, nil?: true
 
-      # @!method initialize(from:, to:, ad_campaign_id: nil, ad_group_id: nil, ad_id: nil, breakdown: nil, currency: nil, request_options: {})
+      # @!attribute granularity
+      #   Bucket size for external ad stat rows.
+      #
+      #   @return [Symbol, WhopSDK::Models::Granularities, nil]
+      optional :granularity, enum: -> { WhopSDK::Granularities }, nil?: true
+
+      # @!method initialize(from:, to:, ad_campaign_id: nil, ad_group_id: nil, ad_id: nil, breakdown: nil, company_id: nil, currency: nil, granularity: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AdReportRetrieveParams} for more details.
       #
@@ -61,17 +75,33 @@ module WhopSDK
       #
       #   @param to [Time] Inclusive end of the reporting window.
       #
-      #   @param ad_campaign_id [String, nil] The unique identifier of an ad campaign. Mutually exclusive with `adGroupId` and
+      #   @param ad_campaign_id [String, nil] The unique identifier of an ad campaign. Mutually exclusive with `companyId`, `a
       #
-      #   @param ad_group_id [String, nil] The unique identifier of an ad group. Mutually exclusive with `adCampaignId` and
+      #   @param ad_group_id [String, nil] The unique identifier of an ad group. Mutually exclusive with `companyId`, `adCa
       #
-      #   @param ad_id [String, nil] The unique identifier of an ad. Mutually exclusive with `adCampaignId` and `adGr
+      #   @param ad_id [String, nil] The unique identifier of an ad. Mutually exclusive with `companyId`, `adCampaign
       #
-      #   @param breakdown [Symbol, WhopSDK::Models::Granularities, nil] Bucket size for external ad stat rows.
+      #   @param breakdown [Symbol, WhopSDK::Models::AdReportRetrieveParams::Breakdown, nil] Entity level to group an ad report by.
+      #
+      #   @param company_id [String, nil] The unique identifier of a company. Mutually exclusive with `adCampaignId`, `adG
       #
       #   @param currency [String, nil] ISO 4217 currency code to report `spend` in. Defaults to the company's ads repor
       #
+      #   @param granularity [Symbol, WhopSDK::Models::Granularities, nil] Bucket size for external ad stat rows.
+      #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      # Entity level to group an ad report by.
+      module Breakdown
+        extend WhopSDK::Internal::Type::Enum
+
+        CAMPAIGN = :campaign
+        AD_GROUP = :ad_group
+        AD = :ad
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

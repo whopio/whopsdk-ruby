@@ -7,8 +7,10 @@ module WhopSDK
         ad_campaign_id: String?,
         ad_group_id: String?,
         ad_id: String?,
-        breakdown: WhopSDK::Models::granularities?,
-        currency: String?
+        breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown?,
+        company_id: String?,
+        currency: String?,
+        granularity: WhopSDK::Models::granularities?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -26,9 +28,13 @@ module WhopSDK
 
       attr_accessor ad_id: String?
 
-      attr_accessor breakdown: WhopSDK::Models::granularities?
+      attr_accessor breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown?
+
+      attr_accessor company_id: String?
 
       attr_accessor currency: String?
+
+      attr_accessor granularity: WhopSDK::Models::granularities?
 
       def initialize: (
         from: Time,
@@ -36,8 +42,10 @@ module WhopSDK
         ?ad_campaign_id: String?,
         ?ad_group_id: String?,
         ?ad_id: String?,
-        ?breakdown: WhopSDK::Models::granularities?,
+        ?breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown?,
+        ?company_id: String?,
         ?currency: String?,
+        ?granularity: WhopSDK::Models::granularities?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -47,10 +55,24 @@ module WhopSDK
         ad_campaign_id: String?,
         ad_group_id: String?,
         ad_id: String?,
-        breakdown: WhopSDK::Models::granularities?,
+        breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown?,
+        company_id: String?,
         currency: String?,
+        granularity: WhopSDK::Models::granularities?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type breakdown = :campaign | :ad_group | :ad
+
+      module Breakdown
+        extend WhopSDK::Internal::Type::Enum
+
+        CAMPAIGN: :campaign
+        AD_GROUP: :ad_group
+        AD: :ad
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdReportRetrieveParams::breakdown]
+      end
     end
   end
 end

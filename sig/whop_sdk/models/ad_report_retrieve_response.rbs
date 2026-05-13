@@ -3,25 +3,156 @@ module WhopSDK
     type ad_report_retrieve_response =
       {
         breakdown: ::Array[WhopSDK::Models::AdReportRetrieveResponse::Breakdown]?,
+        granularity: ::Array[WhopSDK::Models::AdReportRetrieveResponse::Granularity]?,
         summary: WhopSDK::Models::AdReportRetrieveResponse::Summary
       }
 
     class AdReportRetrieveResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor breakdown: ::Array[WhopSDK::Models::AdReportRetrieveResponse::Breakdown]?
 
+      attr_accessor granularity: ::Array[WhopSDK::Models::AdReportRetrieveResponse::Granularity]?
+
       attr_accessor summary: WhopSDK::Models::AdReportRetrieveResponse::Summary
 
       def initialize: (
         breakdown: ::Array[WhopSDK::Models::AdReportRetrieveResponse::Breakdown]?,
+        granularity: ::Array[WhopSDK::Models::AdReportRetrieveResponse::Granularity]?,
         summary: WhopSDK::Models::AdReportRetrieveResponse::Summary
       ) -> void
 
       def to_hash: -> {
         breakdown: ::Array[WhopSDK::Models::AdReportRetrieveResponse::Breakdown]?,
+        granularity: ::Array[WhopSDK::Models::AdReportRetrieveResponse::Granularity]?,
         summary: WhopSDK::Models::AdReportRetrieveResponse::Summary
       }
 
       type breakdown =
+        {
+          id: String,
+          level: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::level,
+          name: String?,
+          summary: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Summary
+        }
+
+      class Breakdown < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor level: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::level
+
+        attr_accessor name: String?
+
+        attr_accessor summary: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Summary
+
+        def initialize: (
+          id: String,
+          level: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::level,
+          name: String?,
+          summary: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Summary
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          level: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::level,
+          name: String?,
+          summary: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Summary
+        }
+
+        type level = :campaign | :ad_group | :ad
+
+        module Level
+          extend WhopSDK::Internal::Type::Enum
+
+          CAMPAIGN: :campaign
+          AD_GROUP: :ad_group
+          AD: :ad
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdReportRetrieveResponse::Breakdown::level]
+        end
+
+        type summary =
+          {
+            clicks: Integer,
+            cost_per_result: Float?,
+            cpc: Float,
+            cpm: Float?,
+            ctr: Float,
+            frequency: Float?,
+            impressions: Integer,
+            reach: Integer,
+            result_count: Integer?,
+            result_label_key: WhopSDK::Models::result_label_keys?,
+            result_label_override: String?,
+            roas: Float?,
+            spend: Float,
+            spend_currency: WhopSDK::Models::currency?
+          }
+
+        class Summary < WhopSDK::Internal::Type::BaseModel
+          attr_accessor clicks: Integer
+
+          attr_accessor cost_per_result: Float?
+
+          attr_accessor cpc: Float
+
+          attr_accessor cpm: Float?
+
+          attr_accessor ctr: Float
+
+          attr_accessor frequency: Float?
+
+          attr_accessor impressions: Integer
+
+          attr_accessor reach: Integer
+
+          attr_accessor result_count: Integer?
+
+          attr_accessor result_label_key: WhopSDK::Models::result_label_keys?
+
+          attr_accessor result_label_override: String?
+
+          attr_accessor roas: Float?
+
+          attr_accessor spend: Float
+
+          attr_accessor spend_currency: WhopSDK::Models::currency?
+
+          def initialize: (
+            clicks: Integer,
+            cost_per_result: Float?,
+            cpc: Float,
+            cpm: Float?,
+            ctr: Float,
+            frequency: Float?,
+            impressions: Integer,
+            reach: Integer,
+            result_count: Integer?,
+            result_label_key: WhopSDK::Models::result_label_keys?,
+            result_label_override: String?,
+            roas: Float?,
+            spend: Float,
+            spend_currency: WhopSDK::Models::currency?
+          ) -> void
+
+          def to_hash: -> {
+            clicks: Integer,
+            cost_per_result: Float?,
+            cpc: Float,
+            cpm: Float?,
+            ctr: Float,
+            frequency: Float?,
+            impressions: Integer,
+            reach: Integer,
+            result_count: Integer?,
+            result_label_key: WhopSDK::Models::result_label_keys?,
+            result_label_override: String?,
+            roas: Float?,
+            spend: Float,
+            spend_currency: WhopSDK::Models::currency?
+          }
+        end
+      end
+
+      type granularity =
         {
           bucket_start: Time,
           clicks: Integer,
@@ -37,7 +168,7 @@ module WhopSDK
           stat_hour: Integer?
         }
 
-      class Breakdown < WhopSDK::Internal::Type::BaseModel
+      class Granularity < WhopSDK::Internal::Type::BaseModel
         attr_accessor bucket_start: Time
 
         attr_accessor clicks: Integer

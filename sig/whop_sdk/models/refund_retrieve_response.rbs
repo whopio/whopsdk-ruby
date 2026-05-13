@@ -77,8 +77,11 @@ module WhopSDK
           dispute_alerted_at: Time?,
           member: WhopSDK::Models::RefundRetrieveResponse::Payment::Member?,
           membership: WhopSDK::Models::RefundRetrieveResponse::Payment::Membership?,
+          metadata: ::Hash[Symbol, top]?,
           paid_at: Time?,
           payment_method_type: WhopSDK::Models::payment_method_types?,
+          plan: WhopSDK::Models::RefundRetrieveResponse::Payment::Plan?,
+          product: WhopSDK::Models::RefundRetrieveResponse::Payment::Product?,
           subtotal: Float?,
           tax_amount: Float?,
           tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
@@ -107,9 +110,15 @@ module WhopSDK
 
         attr_accessor membership: WhopSDK::Models::RefundRetrieveResponse::Payment::Membership?
 
+        attr_accessor metadata: ::Hash[Symbol, top]?
+
         attr_accessor paid_at: Time?
 
         attr_accessor payment_method_type: WhopSDK::Models::payment_method_types?
+
+        attr_accessor plan: WhopSDK::Models::RefundRetrieveResponse::Payment::Plan?
+
+        attr_accessor product: WhopSDK::Models::RefundRetrieveResponse::Payment::Product?
 
         attr_accessor subtotal: Float?
 
@@ -135,8 +144,11 @@ module WhopSDK
           dispute_alerted_at: Time?,
           member: WhopSDK::Models::RefundRetrieveResponse::Payment::Member?,
           membership: WhopSDK::Models::RefundRetrieveResponse::Payment::Membership?,
+          metadata: ::Hash[Symbol, top]?,
           paid_at: Time?,
           payment_method_type: WhopSDK::Models::payment_method_types?,
+          plan: WhopSDK::Models::RefundRetrieveResponse::Payment::Plan?,
+          product: WhopSDK::Models::RefundRetrieveResponse::Payment::Product?,
           subtotal: Float?,
           tax_amount: Float?,
           tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
@@ -156,8 +168,11 @@ module WhopSDK
           dispute_alerted_at: Time?,
           member: WhopSDK::Models::RefundRetrieveResponse::Payment::Member?,
           membership: WhopSDK::Models::RefundRetrieveResponse::Payment::Membership?,
+          metadata: ::Hash[Symbol, top]?,
           paid_at: Time?,
           payment_method_type: WhopSDK::Models::payment_method_types?,
+          plan: WhopSDK::Models::RefundRetrieveResponse::Payment::Plan?,
+          product: WhopSDK::Models::RefundRetrieveResponse::Payment::Product?,
           subtotal: Float?,
           tax_amount: Float?,
           tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
@@ -196,6 +211,30 @@ module WhopSDK
             id: String,
             status: WhopSDK::Models::membership_status
           }
+        end
+
+        type plan = { id: String, metadata: ::Hash[Symbol, top] }
+
+        class Plan < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor metadata: ::Hash[Symbol, top]
+
+          def initialize: (id: String, metadata: ::Hash[Symbol, top]) -> void
+
+          def to_hash: -> { id: String, metadata: ::Hash[Symbol, top] }
+        end
+
+        type product = { id: String, metadata: ::Hash[Symbol, top] }
+
+        class Product < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor metadata: ::Hash[Symbol, top]
+
+          def initialize: (id: String, metadata: ::Hash[Symbol, top]) -> void
+
+          def to_hash: -> { id: String, metadata: ::Hash[Symbol, top] }
         end
 
         type user =

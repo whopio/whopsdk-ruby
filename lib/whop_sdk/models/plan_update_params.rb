@@ -84,6 +84,14 @@ module WhopSDK
       #   @return [Boolean, nil]
       optional :legacy_payment_method_controls, WhopSDK::Internal::Type::Boolean, nil?: true
 
+      # @!attribute metadata
+      #   Custom key-value pairs to store on the plan. Included in webhook payloads for
+      #   payment and membership events. Max 50 keys, 500 chars per key, 5000 chars per
+      #   value.
+      #
+      #   @return [Hash{Symbol=>Object}, nil]
+      optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
       # @!attribute offer_cancel_discount
       #   Whether to offer a retention discount when a customer attempts to cancel.
       #
@@ -158,7 +166,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility, nil]
       optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-      # @!method initialize(id:, adaptive_pricing_enabled: nil, billing_period: nil, checkout_styling: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, offer_cancel_discount: nil, override_tax_type: nil, payment_method_configuration: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
+      # @!method initialize(id:, adaptive_pricing_enabled: nil, billing_period: nil, checkout_styling: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, metadata: nil, offer_cancel_discount: nil, override_tax_type: nil, payment_method_configuration: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PlanUpdateParams} for more details.
       #
@@ -185,6 +193,8 @@ module WhopSDK
       #   @param internal_notes [String, nil] Private notes visible only to the business owner. Not shown to customers.
       #
       #   @param legacy_payment_method_controls [Boolean, nil] Whether this plan uses legacy payment method controls.
+      #
+      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs to store on the plan. Included in webhook payloads for pa
       #
       #   @param offer_cancel_discount [Boolean, nil] Whether to offer a retention discount when a customer attempts to cancel.
       #

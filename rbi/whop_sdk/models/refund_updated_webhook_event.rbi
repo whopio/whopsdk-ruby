@@ -303,6 +303,11 @@ module WhopSDK
           end
           attr_writer :membership
 
+          # The custom metadata stored on this payment. This will be copied over to the
+          # checkout configuration for which this payment was made
+          sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+          attr_accessor :metadata
+
           # The time at which this payment was successfully collected. Null if the payment
           # has not yet succeeded. As a Unix timestamp.
           sig { returns(T.nilable(Time)) }
@@ -311,6 +316,44 @@ module WhopSDK
           # The different types of payment methods that can be used.
           sig { returns(T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol)) }
           attr_accessor :payment_method_type
+
+          # The plan attached to this payment.
+          sig do
+            returns(
+              T.nilable(WhopSDK::RefundUpdatedWebhookEvent::Data::Payment::Plan)
+            )
+          end
+          attr_reader :plan
+
+          sig do
+            params(
+              plan:
+                T.nilable(
+                  WhopSDK::RefundUpdatedWebhookEvent::Data::Payment::Plan::OrHash
+                )
+            ).void
+          end
+          attr_writer :plan
+
+          # The product this payment was made for
+          sig do
+            returns(
+              T.nilable(
+                WhopSDK::RefundUpdatedWebhookEvent::Data::Payment::Product
+              )
+            )
+          end
+          attr_reader :product
+
+          sig do
+            params(
+              product:
+                T.nilable(
+                  WhopSDK::RefundUpdatedWebhookEvent::Data::Payment::Product::OrHash
+                )
+            ).void
+          end
+          attr_writer :product
 
           # The subtotal to show to the creator (excluding buyer fees).
           sig { returns(T.nilable(Float)) }
@@ -374,9 +417,18 @@ module WhopSDK
                 T.nilable(
                   WhopSDK::RefundUpdatedWebhookEvent::Data::Payment::Membership::OrHash
                 ),
+              metadata: T.nilable(T::Hash[Symbol, T.anything]),
               paid_at: T.nilable(Time),
               payment_method_type:
                 T.nilable(WhopSDK::PaymentMethodTypes::OrSymbol),
+              plan:
+                T.nilable(
+                  WhopSDK::RefundUpdatedWebhookEvent::Data::Payment::Plan::OrHash
+                ),
+              product:
+                T.nilable(
+                  WhopSDK::RefundUpdatedWebhookEvent::Data::Payment::Product::OrHash
+                ),
               subtotal: T.nilable(Float),
               tax_amount: T.nilable(Float),
               tax_behavior: T.nilable(WhopSDK::ReceiptTaxBehavior::OrSymbol),
@@ -409,11 +461,18 @@ module WhopSDK
             member:,
             # The membership attached to this payment.
             membership:,
+            # The custom metadata stored on this payment. This will be copied over to the
+            # checkout configuration for which this payment was made
+            metadata:,
             # The time at which this payment was successfully collected. Null if the payment
             # has not yet succeeded. As a Unix timestamp.
             paid_at:,
             # The different types of payment methods that can be used.
             payment_method_type:,
+            # The plan attached to this payment.
+            plan:,
+            # The product this payment was made for
+            product:,
             # The subtotal to show to the creator (excluding buyer fees).
             subtotal:,
             # The calculated amount of the sales/VAT tax (if applicable).
@@ -451,9 +510,18 @@ module WhopSDK
                   T.nilable(
                     WhopSDK::RefundUpdatedWebhookEvent::Data::Payment::Membership
                   ),
+                metadata: T.nilable(T::Hash[Symbol, T.anything]),
                 paid_at: T.nilable(Time),
                 payment_method_type:
                   T.nilable(WhopSDK::PaymentMethodTypes::TaggedSymbol),
+                plan:
+                  T.nilable(
+                    WhopSDK::RefundUpdatedWebhookEvent::Data::Payment::Plan
+                  ),
+                product:
+                  T.nilable(
+                    WhopSDK::RefundUpdatedWebhookEvent::Data::Payment::Product
+                  ),
                 subtotal: T.nilable(Float),
                 tax_amount: T.nilable(Float),
                 tax_behavior:
@@ -542,6 +610,90 @@ module WhopSDK
             sig do
               override.returns(
                 { id: String, status: WhopSDK::MembershipStatus::TaggedSymbol }
+              )
+            end
+            def to_hash
+            end
+          end
+
+          class Plan < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::RefundUpdatedWebhookEvent::Data::Payment::Plan,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The unique identifier for the plan.
+            sig { returns(String) }
+            attr_accessor :id
+
+            # Custom key-value pairs stored on the plan. Included in webhook payloads for
+            # payment and membership events.
+            sig { returns(T::Hash[Symbol, T.anything]) }
+            attr_accessor :metadata
+
+            # The plan attached to this payment.
+            sig do
+              params(id: String, metadata: T::Hash[Symbol, T.anything]).returns(
+                T.attached_class
+              )
+            end
+            def self.new(
+              # The unique identifier for the plan.
+              id:,
+              # Custom key-value pairs stored on the plan. Included in webhook payloads for
+              # payment and membership events.
+              metadata:
+            )
+            end
+
+            sig do
+              override.returns(
+                { id: String, metadata: T::Hash[Symbol, T.anything] }
+              )
+            end
+            def to_hash
+            end
+          end
+
+          class Product < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::RefundUpdatedWebhookEvent::Data::Payment::Product,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            # The unique identifier for the product.
+            sig { returns(String) }
+            attr_accessor :id
+
+            # Custom key-value pairs stored on the product. Included in webhook payloads for
+            # payment and membership events.
+            sig { returns(T::Hash[Symbol, T.anything]) }
+            attr_accessor :metadata
+
+            # The product this payment was made for
+            sig do
+              params(id: String, metadata: T::Hash[Symbol, T.anything]).returns(
+                T.attached_class
+              )
+            end
+            def self.new(
+              # The unique identifier for the product.
+              id:,
+              # Custom key-value pairs stored on the product. Included in webhook payloads for
+              # payment and membership events.
+              metadata:
+            )
+            end
+
+            sig do
+              override.returns(
+                { id: String, metadata: T::Hash[Symbol, T.anything] }
               )
             end
             def to_hash

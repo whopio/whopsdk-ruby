@@ -4,9 +4,11 @@ module WhopSDK
   module Resources
     # Ad reports
     class AdReports
-      # Performance report for an ad campaign, ad group, or ad. Returns aggregate totals
-      # and, when `breakdown` is set, a per-bucket time series at that grain. Exactly
-      # one of `adCampaignId`, `adGroupId`, or `adId` must be provided.
+      # Performance report for a company, ad campaign, ad group, or ad. Always returns
+      # aggregate `summary` totals. Set `granularity` (`daily`/`hourly`) to additionally
+      # get a time series, or set `breakdown` (`campaign`/`ad_group`/`ad`) to
+      # additionally get per-entity rows inside the requested scope. Exactly one of
+      # `companyId`, `adCampaignId`, `adGroupId`, or `adId` must be provided.
       #
       # Required permissions:
       #
@@ -18,8 +20,11 @@ module WhopSDK
           ad_campaign_id: T.nilable(String),
           ad_group_id: T.nilable(String),
           ad_id: T.nilable(String),
-          breakdown: T.nilable(WhopSDK::Granularities::OrSymbol),
+          breakdown:
+            T.nilable(WhopSDK::AdReportRetrieveParams::Breakdown::OrSymbol),
+          company_id: T.nilable(String),
           currency: T.nilable(String),
+          granularity: T.nilable(WhopSDK::Granularities::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::AdReportRetrieveResponse)
       end
@@ -28,20 +33,26 @@ module WhopSDK
         from:,
         # Inclusive end of the reporting window.
         to:,
-        # The unique identifier of an ad campaign. Mutually exclusive with `adGroupId` and
-        # `adId`.
+        # The unique identifier of an ad campaign. Mutually exclusive with `companyId`,
+        # `adGroupId`, and `adId`.
         ad_campaign_id: nil,
-        # The unique identifier of an ad group. Mutually exclusive with `adCampaignId` and
-        # `adId`.
+        # The unique identifier of an ad group. Mutually exclusive with `companyId`,
+        # `adCampaignId`, and `adId`.
         ad_group_id: nil,
-        # The unique identifier of an ad. Mutually exclusive with `adCampaignId` and
-        # `adGroupId`.
+        # The unique identifier of an ad. Mutually exclusive with `companyId`,
+        # `adCampaignId`, and `adGroupId`.
         ad_id: nil,
-        # Bucket size for external ad stat rows.
+        # Entity level to group an ad report by.
         breakdown: nil,
+        # The unique identifier of a company. Mutually exclusive with `adCampaignId`,
+        # `adGroupId`, and `adId`. Use with `breakdown` to fan out across every campaign,
+        # ad group, or ad in the company without paging.
+        company_id: nil,
         # ISO 4217 currency code to report `spend` in. Defaults to the company's ads
         # reporting currency.
         currency: nil,
+        # Bucket size for external ad stat rows.
+        granularity: nil,
         request_options: {}
       )
       end

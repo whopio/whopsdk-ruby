@@ -15,6 +15,17 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
+      # The ad campaign this ad group belongs to.
+      sig { returns(WhopSDK::Models::AdGroupListResponse::AdCampaign) }
+      attr_reader :ad_campaign
+
+      sig do
+        params(
+          ad_campaign: WhopSDK::Models::AdGroupListResponse::AdCampaign::OrHash
+        ).void
+      end
+      attr_writer :ad_campaign
+
       # Budget amount in dollars.
       sig { returns(T.nilable(Float)) }
       attr_accessor :budget
@@ -47,6 +58,7 @@ module WhopSDK
       sig do
         params(
           id: String,
+          ad_campaign: WhopSDK::Models::AdGroupListResponse::AdCampaign::OrHash,
           budget: T.nilable(Float),
           budget_type: T.nilable(WhopSDK::AdBudgetType::OrSymbol),
           created_at: Time,
@@ -59,6 +71,8 @@ module WhopSDK
       def self.new(
         # The unique identifier for this ad group.
         id:,
+        # The ad campaign this ad group belongs to.
+        ad_campaign:,
         # Budget amount in dollars.
         budget:,
         # The budget type for an ad campaign or ad group.
@@ -80,6 +94,7 @@ module WhopSDK
         override.returns(
           {
             id: String,
+            ad_campaign: WhopSDK::Models::AdGroupListResponse::AdCampaign,
             budget: T.nilable(Float),
             budget_type: T.nilable(WhopSDK::AdBudgetType::TaggedSymbol),
             created_at: Time,
@@ -91,6 +106,32 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      class AdCampaign < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Models::AdGroupListResponse::AdCampaign,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The unique identifier for this ad campaign.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The ad campaign this ad group belongs to.
+        sig { params(id: String).returns(T.attached_class) }
+        def self.new(
+          # The unique identifier for this ad campaign.
+          id:
+        )
+        end
+
+        sig { override.returns({ id: String }) }
+        def to_hash
+        end
       end
     end
   end

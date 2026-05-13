@@ -45,6 +45,8 @@ class WhopSDK::Test::Resources::AdsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
+        ad_campaign: WhopSDK::Models::AdListResponse::AdCampaign,
+        ad_group: WhopSDK::Models::AdListResponse::AdGroup,
         created_at: Time,
         platform: WhopSDK::AdCampaignPlatform,
         status: WhopSDK::ExternalAdStatus,

@@ -12,6 +12,26 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
+      # The ad campaign this ad belongs to.
+      sig { returns(WhopSDK::Models::AdListResponse::AdCampaign) }
+      attr_reader :ad_campaign
+
+      sig do
+        params(
+          ad_campaign: WhopSDK::Models::AdListResponse::AdCampaign::OrHash
+        ).void
+      end
+      attr_writer :ad_campaign
+
+      # The parent ad group this ad belongs to.
+      sig { returns(WhopSDK::Models::AdListResponse::AdGroup) }
+      attr_reader :ad_group
+
+      sig do
+        params(ad_group: WhopSDK::Models::AdListResponse::AdGroup::OrHash).void
+      end
+      attr_writer :ad_group
+
       # When the ad was created.
       sig { returns(Time) }
       attr_accessor :created_at
@@ -36,6 +56,8 @@ module WhopSDK
       sig do
         params(
           id: String,
+          ad_campaign: WhopSDK::Models::AdListResponse::AdCampaign::OrHash,
+          ad_group: WhopSDK::Models::AdListResponse::AdGroup::OrHash,
           created_at: Time,
           platform: WhopSDK::AdCampaignPlatform::OrSymbol,
           status: WhopSDK::ExternalAdStatus::OrSymbol,
@@ -46,6 +68,10 @@ module WhopSDK
       def self.new(
         # The unique identifier for this ad.
         id:,
+        # The ad campaign this ad belongs to.
+        ad_campaign:,
+        # The parent ad group this ad belongs to.
+        ad_group:,
         # When the ad was created.
         created_at:,
         # The external ad platform this ad is running on (e.g., meta, tiktok).
@@ -63,6 +89,8 @@ module WhopSDK
         override.returns(
           {
             id: String,
+            ad_campaign: WhopSDK::Models::AdListResponse::AdCampaign,
+            ad_group: WhopSDK::Models::AdListResponse::AdGroup,
             created_at: Time,
             platform: WhopSDK::AdCampaignPlatform::TaggedSymbol,
             status: WhopSDK::ExternalAdStatus::TaggedSymbol,
@@ -72,6 +100,58 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      class AdCampaign < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Models::AdListResponse::AdCampaign,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The unique identifier for this ad campaign.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The ad campaign this ad belongs to.
+        sig { params(id: String).returns(T.attached_class) }
+        def self.new(
+          # The unique identifier for this ad campaign.
+          id:
+        )
+        end
+
+        sig { override.returns({ id: String }) }
+        def to_hash
+        end
+      end
+
+      class AdGroup < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Models::AdListResponse::AdGroup,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The unique identifier for this ad group.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The parent ad group this ad belongs to.
+        sig { params(id: String).returns(T.attached_class) }
+        def self.new(
+          # The unique identifier for this ad group.
+          id:
+        )
+        end
+
+        sig { override.returns({ id: String }) }
+        def to_hash
+        end
       end
     end
   end

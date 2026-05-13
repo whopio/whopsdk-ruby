@@ -3,6 +3,7 @@ module WhopSDK
     type ad_group_list_response =
       {
         id: String,
+        ad_campaign: WhopSDK::Models::AdGroupListResponse::AdCampaign,
         budget: Float?,
         budget_type: WhopSDK::Models::ad_budget_type?,
         created_at: Time,
@@ -14,6 +15,8 @@ module WhopSDK
 
     class AdGroupListResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor ad_campaign: WhopSDK::Models::AdGroupListResponse::AdCampaign
 
       attr_accessor budget: Float?
 
@@ -31,6 +34,7 @@ module WhopSDK
 
       def initialize: (
         id: String,
+        ad_campaign: WhopSDK::Models::AdGroupListResponse::AdCampaign,
         budget: Float?,
         budget_type: WhopSDK::Models::ad_budget_type?,
         created_at: Time,
@@ -42,6 +46,7 @@ module WhopSDK
 
       def to_hash: -> {
         id: String,
+        ad_campaign: WhopSDK::Models::AdGroupListResponse::AdCampaign,
         budget: Float?,
         budget_type: WhopSDK::Models::ad_budget_type?,
         created_at: Time,
@@ -50,6 +55,16 @@ module WhopSDK
         title: String?,
         updated_at: Time
       }
+
+      type ad_campaign = { id: String }
+
+      class AdCampaign < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
     end
   end
 end

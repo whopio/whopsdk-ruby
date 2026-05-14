@@ -543,14 +543,15 @@ module WhopSDK
 
           # Custom key-value pairs stored on the plan. Included in webhook payloads for
           # payment and membership events.
-          sig { returns(T::Hash[Symbol, T.anything]) }
+          sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
           attr_accessor :metadata
 
           # The plan attached to this payment.
           sig do
-            params(id: String, metadata: T::Hash[Symbol, T.anything]).returns(
-              T.attached_class
-            )
+            params(
+              id: String,
+              metadata: T.nilable(T::Hash[Symbol, T.anything])
+            ).returns(T.attached_class)
           end
           def self.new(
             # The unique identifier for the plan.
@@ -563,7 +564,7 @@ module WhopSDK
 
           sig do
             override.returns(
-              { id: String, metadata: T::Hash[Symbol, T.anything] }
+              { id: String, metadata: T.nilable(T::Hash[Symbol, T.anything]) }
             )
           end
           def to_hash
@@ -585,14 +586,15 @@ module WhopSDK
 
           # Custom key-value pairs stored on the product. Included in webhook payloads for
           # payment and membership events.
-          sig { returns(T::Hash[Symbol, T.anything]) }
+          sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
           attr_accessor :metadata
 
           # The product this payment was made for
           sig do
-            params(id: String, metadata: T::Hash[Symbol, T.anything]).returns(
-              T.attached_class
-            )
+            params(
+              id: String,
+              metadata: T.nilable(T::Hash[Symbol, T.anything])
+            ).returns(T.attached_class)
           end
           def self.new(
             # The unique identifier for the product.
@@ -605,7 +607,7 @@ module WhopSDK
 
           sig do
             override.returns(
-              { id: String, metadata: T::Hash[Symbol, T.anything] }
+              { id: String, metadata: T.nilable(T::Hash[Symbol, T.anything]) }
             )
           end
           def to_hash

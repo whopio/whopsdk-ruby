@@ -931,7 +931,7 @@ module WhopSDK
 
         # Custom key-value pairs stored on the plan. Included in webhook payloads for
         # payment and membership events.
-        sig { returns(T::Hash[Symbol, T.anything]) }
+        sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
         attr_accessor :metadata
 
         # The plan attached to this payment.
@@ -939,7 +939,7 @@ module WhopSDK
           params(
             id: String,
             internal_notes: T.nilable(String),
-            metadata: T::Hash[Symbol, T.anything]
+            metadata: T.nilable(T::Hash[Symbol, T.anything])
           ).returns(T.attached_class)
         end
         def self.new(
@@ -958,7 +958,7 @@ module WhopSDK
             {
               id: String,
               internal_notes: T.nilable(String),
-              metadata: T::Hash[Symbol, T.anything]
+              metadata: T.nilable(T::Hash[Symbol, T.anything])
             }
           )
         end
@@ -981,7 +981,7 @@ module WhopSDK
 
         # Custom key-value pairs stored on the product. Included in webhook payloads for
         # payment and membership events.
-        sig { returns(T::Hash[Symbol, T.anything]) }
+        sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
         attr_accessor :metadata
 
         # The URL slug used in the product's public link (e.g., 'my-product' in
@@ -998,7 +998,7 @@ module WhopSDK
         sig do
           params(
             id: String,
-            metadata: T::Hash[Symbol, T.anything],
+            metadata: T.nilable(T::Hash[Symbol, T.anything]),
             route: String,
             title: String
           ).returns(T.attached_class)
@@ -1022,7 +1022,7 @@ module WhopSDK
           override.returns(
             {
               id: String,
-              metadata: T::Hash[Symbol, T.anything],
+              metadata: T.nilable(T::Hash[Symbol, T.anything]),
               route: String,
               title: String
             }

@@ -641,8 +641,8 @@ module WhopSDK
         #   Custom key-value pairs stored on the plan. Included in webhook payloads for
         #   payment and membership events.
         #
-        #   @return [Hash{Symbol=>Object}]
-        required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]
+        #   @return [Hash{Symbol=>Object}, nil]
+        required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
         # @!method initialize(id:, internal_notes:, metadata:)
         #   Some parameter documentations has been truncated, see
@@ -654,7 +654,7 @@ module WhopSDK
         #
         #   @param internal_notes [String, nil] A personal description or notes section for the business.
         #
-        #   @param metadata [Hash{Symbol=>Object}] Custom key-value pairs stored on the plan. Included in webhook payloads for paym
+        #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the plan. Included in webhook payloads for paym
       end
 
       # @see WhopSDK::Models::PaymentListResponse#product
@@ -669,8 +669,8 @@ module WhopSDK
         #   Custom key-value pairs stored on the product. Included in webhook payloads for
         #   payment and membership events.
         #
-        #   @return [Hash{Symbol=>Object}]
-        required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]
+        #   @return [Hash{Symbol=>Object}, nil]
+        required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
         # @!attribute route
         #   The URL slug used in the product's public link (e.g., 'my-product' in
@@ -694,7 +694,7 @@ module WhopSDK
         #
         #   @param id [String] The unique identifier for the product.
         #
-        #   @param metadata [Hash{Symbol=>Object}] Custom key-value pairs stored on the product. Included in webhook payloads for p
+        #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the product. Included in webhook payloads for p
         #
         #   @param route [String] The URL slug used in the product's public link (e.g., 'my-product' in whop.com/c
         #

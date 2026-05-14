@@ -20,7 +20,8 @@ module WhopSDK
       required :access_level, enum: -> { WhopSDK::AccessLevel }
 
       # @!attribute company_token_balance
-      #   The member's token balance for this company
+      #   The member's token balance for this company. Computed live from the ledger, not
+      #   from a cache.
       #
       #   @return [Float]
       required :company_token_balance, Float
@@ -90,7 +91,7 @@ module WhopSDK
       #
       #   @param access_level [Symbol, WhopSDK::Models::AccessLevel] The access level of the product member. If its admin, the member is an authorize
       #
-      #   @param company_token_balance [Float] The member's token balance for this company
+      #   @param company_token_balance [Float] The member's token balance for this company. Computed live from the ledger, not
       #
       #   @param created_at [Time] The datetime the company member was created.
       #

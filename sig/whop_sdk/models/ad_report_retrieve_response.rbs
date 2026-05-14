@@ -29,6 +29,7 @@ module WhopSDK
       type breakdown =
         {
           id: String,
+          granularity: ::Array[WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity]?,
           level: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::level,
           name: String?,
           summary: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Summary
@@ -36,6 +37,8 @@ module WhopSDK
 
       class Breakdown < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
+
+        attr_accessor granularity: ::Array[WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity]?
 
         attr_accessor level: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::level
 
@@ -45,6 +48,7 @@ module WhopSDK
 
         def initialize: (
           id: String,
+          granularity: ::Array[WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity]?,
           level: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::level,
           name: String?,
           summary: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Summary
@@ -52,10 +56,83 @@ module WhopSDK
 
         def to_hash: -> {
           id: String,
+          granularity: ::Array[WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity]?,
           level: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::level,
           name: String?,
           summary: WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Summary
         }
+
+        type granularity =
+          {
+            bucket_start: Time,
+            clicks: Integer,
+            granularity: WhopSDK::Models::granularities,
+            impressions: Integer,
+            reach: Integer,
+            result_count: Integer?,
+            result_label_key: WhopSDK::Models::result_label_keys?,
+            result_label_override: String?,
+            spend: Float,
+            spend_currency: WhopSDK::Models::currency,
+            stat_date: Time,
+            stat_hour: Integer?
+          }
+
+        class Granularity < WhopSDK::Internal::Type::BaseModel
+          attr_accessor bucket_start: Time
+
+          attr_accessor clicks: Integer
+
+          attr_accessor granularity: WhopSDK::Models::granularities
+
+          attr_accessor impressions: Integer
+
+          attr_accessor reach: Integer
+
+          attr_accessor result_count: Integer?
+
+          attr_accessor result_label_key: WhopSDK::Models::result_label_keys?
+
+          attr_accessor result_label_override: String?
+
+          attr_accessor spend: Float
+
+          attr_accessor spend_currency: WhopSDK::Models::currency
+
+          attr_accessor stat_date: Time
+
+          attr_accessor stat_hour: Integer?
+
+          def initialize: (
+            bucket_start: Time,
+            clicks: Integer,
+            granularity: WhopSDK::Models::granularities,
+            impressions: Integer,
+            reach: Integer,
+            result_count: Integer?,
+            result_label_key: WhopSDK::Models::result_label_keys?,
+            result_label_override: String?,
+            spend: Float,
+            spend_currency: WhopSDK::Models::currency,
+            stat_date: Time,
+            stat_hour: Integer?
+          ) -> void
+
+          def to_hash: -> {
+            bucket_start: Time,
+            clicks: Integer,
+            granularity: WhopSDK::Models::granularities,
+            impressions: Integer,
+            reach: Integer,
+            result_count: Integer?,
+            result_label_key: WhopSDK::Models::result_label_keys?,
+            result_label_override: String?,
+            spend: Float,
+            spend_currency: WhopSDK::Models::currency,
+            stat_date: Time,
+            stat_hour: Integer?
+          }
+        end
 
         type level = :campaign | :ad_group | :ad
 

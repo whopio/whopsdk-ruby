@@ -399,8 +399,8 @@ module WhopSDK
             #   Custom key-value pairs stored on the plan. Included in webhook payloads for
             #   payment and membership events.
             #
-            #   @return [Hash{Symbol=>Object}]
-            required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]
+            #   @return [Hash{Symbol=>Object}, nil]
+            required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
             # @!method initialize(id:, metadata:)
             #   Some parameter documentations has been truncated, see
@@ -411,7 +411,7 @@ module WhopSDK
             #
             #   @param id [String] The unique identifier for the plan.
             #
-            #   @param metadata [Hash{Symbol=>Object}] Custom key-value pairs stored on the plan. Included in webhook payloads for paym
+            #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the plan. Included in webhook payloads for paym
           end
 
           # @see WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment#product
@@ -426,8 +426,8 @@ module WhopSDK
             #   Custom key-value pairs stored on the product. Included in webhook payloads for
             #   payment and membership events.
             #
-            #   @return [Hash{Symbol=>Object}]
-            required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]
+            #   @return [Hash{Symbol=>Object}, nil]
+            required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
             # @!method initialize(id:, metadata:)
             #   Some parameter documentations has been truncated, see
@@ -438,7 +438,7 @@ module WhopSDK
             #
             #   @param id [String] The unique identifier for the product.
             #
-            #   @param metadata [Hash{Symbol=>Object}] Custom key-value pairs stored on the product. Included in webhook payloads for p
+            #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the product. Included in webhook payloads for p
           end
 
           # @see WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment#user

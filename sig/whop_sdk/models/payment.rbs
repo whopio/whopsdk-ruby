@@ -603,32 +603,32 @@ module WhopSDK
       end
 
       type plan =
-        { id: String, internal_notes: String?, metadata: ::Hash[Symbol, top] }
+        { id: String, internal_notes: String?, metadata: ::Hash[Symbol, top]? }
 
       class Plan < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor internal_notes: String?
 
-        attr_accessor metadata: ::Hash[Symbol, top]
+        attr_accessor metadata: ::Hash[Symbol, top]?
 
         def initialize: (
           id: String,
           internal_notes: String?,
-          metadata: ::Hash[Symbol, top]
+          metadata: ::Hash[Symbol, top]?
         ) -> void
 
         def to_hash: -> {
           id: String,
           internal_notes: String?,
-          metadata: ::Hash[Symbol, top]
+          metadata: ::Hash[Symbol, top]?
         }
       end
 
       type product =
         {
           id: String,
-          metadata: ::Hash[Symbol, top],
+          metadata: ::Hash[Symbol, top]?,
           route: String,
           title: String
         }
@@ -636,7 +636,7 @@ module WhopSDK
       class Product < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
-        attr_accessor metadata: ::Hash[Symbol, top]
+        attr_accessor metadata: ::Hash[Symbol, top]?
 
         attr_accessor route: String
 
@@ -644,14 +644,14 @@ module WhopSDK
 
         def initialize: (
           id: String,
-          metadata: ::Hash[Symbol, top],
+          metadata: ::Hash[Symbol, top]?,
           route: String,
           title: String
         ) -> void
 
         def to_hash: -> {
           id: String,
-          metadata: ::Hash[Symbol, top],
+          metadata: ::Hash[Symbol, top]?,
           route: String,
           title: String
         }

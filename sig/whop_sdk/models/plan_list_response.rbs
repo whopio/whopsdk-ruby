@@ -14,6 +14,7 @@ module WhopSDK
         internal_notes: String?,
         invoice: WhopSDK::Models::PlanListResponse::Invoice?,
         member_count: Integer?,
+        metadata: ::Hash[Symbol, top]?,
         payment_method_configuration: WhopSDK::Models::PlanListResponse::PaymentMethodConfiguration?,
         plan_type: WhopSDK::Models::plan_type,
         product: WhopSDK::Models::PlanListResponse::Product?,
@@ -54,6 +55,8 @@ module WhopSDK
 
       attr_accessor member_count: Integer?
 
+      attr_accessor metadata: ::Hash[Symbol, top]?
+
       attr_accessor payment_method_configuration: WhopSDK::Models::PlanListResponse::PaymentMethodConfiguration?
 
       attr_accessor plan_type: WhopSDK::Models::plan_type
@@ -93,6 +96,7 @@ module WhopSDK
         internal_notes: String?,
         invoice: WhopSDK::Models::PlanListResponse::Invoice?,
         member_count: Integer?,
+        metadata: ::Hash[Symbol, top]?,
         payment_method_configuration: WhopSDK::Models::PlanListResponse::PaymentMethodConfiguration?,
         plan_type: WhopSDK::Models::plan_type,
         product: WhopSDK::Models::PlanListResponse::Product?,
@@ -121,6 +125,7 @@ module WhopSDK
         internal_notes: String?,
         invoice: WhopSDK::Models::PlanListResponse::Invoice?,
         member_count: Integer?,
+        metadata: ::Hash[Symbol, top]?,
         payment_method_configuration: WhopSDK::Models::PlanListResponse::PaymentMethodConfiguration?,
         plan_type: WhopSDK::Models::plan_type,
         product: WhopSDK::Models::PlanListResponse::Product?,

@@ -2,14 +2,9 @@
 
 module WhopSDK
   module Models
-    class AdCampaignRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+    class AdCampaign < WhopSDK::Internal::Type::BaseModel
       OrHash =
-        T.type_alias do
-          T.any(
-            WhopSDK::Models::AdCampaignRetrieveResponse,
-            WhopSDK::Internal::AnyHash
-          )
-        end
+        T.type_alias { T.any(WhopSDK::AdCampaign, WhopSDK::Internal::AnyHash) }
 
       # The unique identifier for this ad campaign.
       sig { returns(String) }
@@ -20,13 +15,7 @@ module WhopSDK
       attr_accessor :budget
 
       # The budget type for an ad campaign or ad group.
-      sig do
-        returns(
-          T.nilable(
-            WhopSDK::Models::AdCampaignRetrieveResponse::BudgetType::TaggedSymbol
-          )
-        )
-      end
+      sig { returns(T.nilable(WhopSDK::AdBudgetType::TaggedSymbol)) }
       attr_accessor :budget_type
 
       # When the ad campaign was created.
@@ -34,52 +23,32 @@ module WhopSDK
       attr_accessor :created_at
 
       # The user who created this ad campaign.
-      sig do
-        returns(WhopSDK::Models::AdCampaignRetrieveResponse::CreatedByUser)
-      end
+      sig { returns(WhopSDK::AdCampaign::CreatedByUser) }
       attr_reader :created_by_user
 
       sig do
-        params(
-          created_by_user:
-            WhopSDK::Models::AdCampaignRetrieveResponse::CreatedByUser::OrHash
-        ).void
+        params(created_by_user: WhopSDK::AdCampaign::CreatedByUser::OrHash).void
       end
       attr_writer :created_by_user
 
       # Meta-specific campaign configuration (objective, budget mode, etc.). Null for
       # non-Meta campaigns.
-      sig do
-        returns(
-          T.nilable(WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig)
-        )
-      end
+      sig { returns(T.nilable(WhopSDK::AdCampaign::MetaConfig)) }
       attr_reader :meta_config
 
       sig do
         params(
-          meta_config:
-            T.nilable(
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::OrHash
-            )
+          meta_config: T.nilable(WhopSDK::AdCampaign::MetaConfig::OrHash)
         ).void
       end
       attr_writer :meta_config
 
       # The external ad platform this campaign is running on (e.g., meta, tiktok).
-      sig do
-        returns(
-          WhopSDK::Models::AdCampaignRetrieveResponse::Platform::TaggedSymbol
-        )
-      end
+      sig { returns(WhopSDK::AdCampaignPlatform::TaggedSymbol) }
       attr_accessor :platform
 
       # Current status of the campaign (active, paused, or inactive).
-      sig do
-        returns(
-          WhopSDK::Models::AdCampaignRetrieveResponse::Status::TaggedSymbol
-        )
-      end
+      sig { returns(WhopSDK::AdCampaignStatus::TaggedSymbol) }
       attr_accessor :status
 
       # The campaign name shown in the Whop dashboard.
@@ -99,20 +68,12 @@ module WhopSDK
         params(
           id: String,
           budget: T.nilable(Float),
-          budget_type:
-            T.nilable(
-              WhopSDK::Models::AdCampaignRetrieveResponse::BudgetType::OrSymbol
-            ),
+          budget_type: T.nilable(WhopSDK::AdBudgetType::OrSymbol),
           created_at: Time,
-          created_by_user:
-            WhopSDK::Models::AdCampaignRetrieveResponse::CreatedByUser::OrHash,
-          meta_config:
-            T.nilable(
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::OrHash
-            ),
-          platform:
-            WhopSDK::Models::AdCampaignRetrieveResponse::Platform::OrSymbol,
-          status: WhopSDK::Models::AdCampaignRetrieveResponse::Status::OrSymbol,
+          created_by_user: WhopSDK::AdCampaign::CreatedByUser::OrHash,
+          meta_config: T.nilable(WhopSDK::AdCampaign::MetaConfig::OrHash),
+          platform: WhopSDK::AdCampaignPlatform::OrSymbol,
+          status: WhopSDK::AdCampaignStatus::OrSymbol,
           title: String,
           total_spend: Float,
           updated_at: Time
@@ -150,21 +111,12 @@ module WhopSDK
           {
             id: String,
             budget: T.nilable(Float),
-            budget_type:
-              T.nilable(
-                WhopSDK::Models::AdCampaignRetrieveResponse::BudgetType::TaggedSymbol
-              ),
+            budget_type: T.nilable(WhopSDK::AdBudgetType::TaggedSymbol),
             created_at: Time,
-            created_by_user:
-              WhopSDK::Models::AdCampaignRetrieveResponse::CreatedByUser,
-            meta_config:
-              T.nilable(
-                WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig
-              ),
-            platform:
-              WhopSDK::Models::AdCampaignRetrieveResponse::Platform::TaggedSymbol,
-            status:
-              WhopSDK::Models::AdCampaignRetrieveResponse::Status::TaggedSymbol,
+            created_by_user: WhopSDK::AdCampaign::CreatedByUser,
+            meta_config: T.nilable(WhopSDK::AdCampaign::MetaConfig),
+            platform: WhopSDK::AdCampaignPlatform::TaggedSymbol,
+            status: WhopSDK::AdCampaignStatus::TaggedSymbol,
             title: String,
             total_spend: Float,
             updated_at: Time
@@ -174,46 +126,11 @@ module WhopSDK
       def to_hash
       end
 
-      # The budget type for an ad campaign or ad group.
-      module BudgetType
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(
-              Symbol,
-              WhopSDK::Models::AdCampaignRetrieveResponse::BudgetType
-            )
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        DAILY =
-          T.let(
-            :daily,
-            WhopSDK::Models::AdCampaignRetrieveResponse::BudgetType::TaggedSymbol
-          )
-        LIFETIME =
-          T.let(
-            :lifetime,
-            WhopSDK::Models::AdCampaignRetrieveResponse::BudgetType::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::Models::AdCampaignRetrieveResponse::BudgetType::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
-        end
-      end
-
       class CreatedByUser < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              WhopSDK::Models::AdCampaignRetrieveResponse::CreatedByUser,
+              WhopSDK::AdCampaign::CreatedByUser,
               WhopSDK::Internal::AnyHash
             )
           end
@@ -258,10 +175,7 @@ module WhopSDK
       class MetaConfig < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig,
-              WhopSDK::Internal::AnyHash
-            )
+            T.any(WhopSDK::AdCampaign::MetaConfig, WhopSDK::Internal::AnyHash)
           end
 
         # Bid cap amount in cents. Only used when bid_strategy is bid_cap.
@@ -272,7 +186,7 @@ module WhopSDK
         sig do
           returns(
             T.nilable(
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::BidStrategy::TaggedSymbol
+              WhopSDK::AdCampaign::MetaConfig::BidStrategy::TaggedSymbol
             )
           )
         end
@@ -288,7 +202,7 @@ module WhopSDK
         sig do
           returns(
             T.nilable(
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::EffectiveStatus::TaggedSymbol
+              WhopSDK::AdCampaign::MetaConfig::EffectiveStatus::TaggedSymbol
             )
           )
         end
@@ -301,9 +215,7 @@ module WhopSDK
         # The campaign objective that determines how Meta optimizes delivery.
         sig do
           returns(
-            T.nilable(
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::Objective::TaggedSymbol
-            )
+            T.nilable(WhopSDK::AdCampaign::MetaConfig::Objective::TaggedSymbol)
           )
         end
         attr_accessor :objective
@@ -320,9 +232,7 @@ module WhopSDK
         # The campaign status as set by the advertiser (active or paused).
         sig do
           returns(
-            T.nilable(
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::Status::TaggedSymbol
-            )
+            T.nilable(WhopSDK::AdCampaign::MetaConfig::Status::TaggedSymbol)
           )
         end
         attr_accessor :status
@@ -333,25 +243,18 @@ module WhopSDK
           params(
             bid_amount: T.nilable(Integer),
             bid_strategy:
-              T.nilable(
-                WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::BidStrategy::OrSymbol
-              ),
+              T.nilable(WhopSDK::AdCampaign::MetaConfig::BidStrategy::OrSymbol),
             budget_optimization: T.nilable(T::Boolean),
             effective_status:
               T.nilable(
-                WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::EffectiveStatus::OrSymbol
+                WhopSDK::AdCampaign::MetaConfig::EffectiveStatus::OrSymbol
               ),
             end_time: T.nilable(String),
             objective:
-              T.nilable(
-                WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::Objective::OrSymbol
-              ),
+              T.nilable(WhopSDK::AdCampaign::MetaConfig::Objective::OrSymbol),
             special_categories: T.nilable(T::Array[String]),
             start_time: T.nilable(String),
-            status:
-              T.nilable(
-                WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::Status::OrSymbol
-              )
+            status: T.nilable(WhopSDK::AdCampaign::MetaConfig::Status::OrSymbol)
           ).returns(T.attached_class)
         end
         def self.new(
@@ -385,24 +288,22 @@ module WhopSDK
               bid_amount: T.nilable(Integer),
               bid_strategy:
                 T.nilable(
-                  WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::BidStrategy::TaggedSymbol
+                  WhopSDK::AdCampaign::MetaConfig::BidStrategy::TaggedSymbol
                 ),
               budget_optimization: T.nilable(T::Boolean),
               effective_status:
                 T.nilable(
-                  WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::EffectiveStatus::TaggedSymbol
+                  WhopSDK::AdCampaign::MetaConfig::EffectiveStatus::TaggedSymbol
                 ),
               end_time: T.nilable(String),
               objective:
                 T.nilable(
-                  WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::Objective::TaggedSymbol
+                  WhopSDK::AdCampaign::MetaConfig::Objective::TaggedSymbol
                 ),
               special_categories: T.nilable(T::Array[String]),
               start_time: T.nilable(String),
               status:
-                T.nilable(
-                  WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::Status::TaggedSymbol
-                )
+                T.nilable(WhopSDK::AdCampaign::MetaConfig::Status::TaggedSymbol)
             }
           )
         end
@@ -415,33 +316,30 @@ module WhopSDK
 
           TaggedSymbol =
             T.type_alias do
-              T.all(
-                Symbol,
-                WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::BidStrategy
-              )
+              T.all(Symbol, WhopSDK::AdCampaign::MetaConfig::BidStrategy)
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           LOWEST_COST =
             T.let(
               :lowest_cost,
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::BidStrategy::TaggedSymbol
+              WhopSDK::AdCampaign::MetaConfig::BidStrategy::TaggedSymbol
             )
           BID_CAP =
             T.let(
               :bid_cap,
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::BidStrategy::TaggedSymbol
+              WhopSDK::AdCampaign::MetaConfig::BidStrategy::TaggedSymbol
             )
           COST_CAP =
             T.let(
               :cost_cap,
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::BidStrategy::TaggedSymbol
+              WhopSDK::AdCampaign::MetaConfig::BidStrategy::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::BidStrategy::TaggedSymbol
+                WhopSDK::AdCampaign::MetaConfig::BidStrategy::TaggedSymbol
               ]
             )
           end
@@ -456,48 +354,45 @@ module WhopSDK
 
           TaggedSymbol =
             T.type_alias do
-              T.all(
-                Symbol,
-                WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::EffectiveStatus
-              )
+              T.all(Symbol, WhopSDK::AdCampaign::MetaConfig::EffectiveStatus)
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           ACTIVE =
             T.let(
               :active,
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::EffectiveStatus::TaggedSymbol
+              WhopSDK::AdCampaign::MetaConfig::EffectiveStatus::TaggedSymbol
             )
           PAUSED =
             T.let(
               :paused,
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::EffectiveStatus::TaggedSymbol
+              WhopSDK::AdCampaign::MetaConfig::EffectiveStatus::TaggedSymbol
             )
           DELETED =
             T.let(
               :deleted,
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::EffectiveStatus::TaggedSymbol
+              WhopSDK::AdCampaign::MetaConfig::EffectiveStatus::TaggedSymbol
             )
           IN_REVIEW =
             T.let(
               :in_review,
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::EffectiveStatus::TaggedSymbol
+              WhopSDK::AdCampaign::MetaConfig::EffectiveStatus::TaggedSymbol
             )
           REJECTED =
             T.let(
               :rejected,
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::EffectiveStatus::TaggedSymbol
+              WhopSDK::AdCampaign::MetaConfig::EffectiveStatus::TaggedSymbol
             )
           WITH_ISSUES =
             T.let(
               :with_issues,
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::EffectiveStatus::TaggedSymbol
+              WhopSDK::AdCampaign::MetaConfig::EffectiveStatus::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::EffectiveStatus::TaggedSymbol
+                WhopSDK::AdCampaign::MetaConfig::EffectiveStatus::TaggedSymbol
               ]
             )
           end
@@ -511,44 +406,39 @@ module WhopSDK
 
           TaggedSymbol =
             T.type_alias do
-              T.all(
-                Symbol,
-                WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::Objective
-              )
+              T.all(Symbol, WhopSDK::AdCampaign::MetaConfig::Objective)
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           AWARENESS =
             T.let(
               :awareness,
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::Objective::TaggedSymbol
+              WhopSDK::AdCampaign::MetaConfig::Objective::TaggedSymbol
             )
           TRAFFIC =
             T.let(
               :traffic,
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::Objective::TaggedSymbol
+              WhopSDK::AdCampaign::MetaConfig::Objective::TaggedSymbol
             )
           ENGAGEMENT =
             T.let(
               :engagement,
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::Objective::TaggedSymbol
+              WhopSDK::AdCampaign::MetaConfig::Objective::TaggedSymbol
             )
           LEADS =
             T.let(
               :leads,
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::Objective::TaggedSymbol
+              WhopSDK::AdCampaign::MetaConfig::Objective::TaggedSymbol
             )
           SALES =
             T.let(
               :sales,
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::Objective::TaggedSymbol
+              WhopSDK::AdCampaign::MetaConfig::Objective::TaggedSymbol
             )
 
           sig do
             override.returns(
-              T::Array[
-                WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::Objective::TaggedSymbol
-              ]
+              T::Array[WhopSDK::AdCampaign::MetaConfig::Objective::TaggedSymbol]
             )
           end
           def self.values
@@ -561,117 +451,28 @@ module WhopSDK
 
           TaggedSymbol =
             T.type_alias do
-              T.all(
-                Symbol,
-                WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::Status
-              )
+              T.all(Symbol, WhopSDK::AdCampaign::MetaConfig::Status)
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           ACTIVE =
             T.let(
               :active,
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::Status::TaggedSymbol
+              WhopSDK::AdCampaign::MetaConfig::Status::TaggedSymbol
             )
           PAUSED =
             T.let(
               :paused,
-              WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::Status::TaggedSymbol
+              WhopSDK::AdCampaign::MetaConfig::Status::TaggedSymbol
             )
 
           sig do
             override.returns(
-              T::Array[
-                WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig::Status::TaggedSymbol
-              ]
+              T::Array[WhopSDK::AdCampaign::MetaConfig::Status::TaggedSymbol]
             )
           end
           def self.values
           end
-        end
-      end
-
-      # The external ad platform this campaign is running on (e.g., meta, tiktok).
-      module Platform
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::Models::AdCampaignRetrieveResponse::Platform)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        META =
-          T.let(
-            :meta,
-            WhopSDK::Models::AdCampaignRetrieveResponse::Platform::TaggedSymbol
-          )
-        TIKTOK =
-          T.let(
-            :tiktok,
-            WhopSDK::Models::AdCampaignRetrieveResponse::Platform::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::Models::AdCampaignRetrieveResponse::Platform::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
-        end
-      end
-
-      # Current status of the campaign (active, paused, or inactive).
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::Models::AdCampaignRetrieveResponse::Status)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        ACTIVE =
-          T.let(
-            :active,
-            WhopSDK::Models::AdCampaignRetrieveResponse::Status::TaggedSymbol
-          )
-        PAUSED =
-          T.let(
-            :paused,
-            WhopSDK::Models::AdCampaignRetrieveResponse::Status::TaggedSymbol
-          )
-        PAYMENT_FAILED =
-          T.let(
-            :payment_failed,
-            WhopSDK::Models::AdCampaignRetrieveResponse::Status::TaggedSymbol
-          )
-        DRAFT =
-          T.let(
-            :draft,
-            WhopSDK::Models::AdCampaignRetrieveResponse::Status::TaggedSymbol
-          )
-        IN_REVIEW =
-          T.let(
-            :in_review,
-            WhopSDK::Models::AdCampaignRetrieveResponse::Status::TaggedSymbol
-          )
-        FLAGGED =
-          T.let(
-            :flagged,
-            WhopSDK::Models::AdCampaignRetrieveResponse::Status::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::Models::AdCampaignRetrieveResponse::Status::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
         end
       end
     end

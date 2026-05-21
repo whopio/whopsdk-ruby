@@ -14,7 +14,7 @@ module WhopSDK
       #
       # @param filename [String] The name of the file including its extension (e.g., "photo.png" or "document.pdf
       #
-      # @param visibility [Symbol, WhopSDK::Models::FileCreateParams::Visibility, nil] Controls whether an uploaded file is publicly accessible or requires authenticat
+      # @param visibility [Symbol, WhopSDK::Models::FileVisibility, nil] Controls whether an uploaded file is publicly accessible or requires authenticat
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

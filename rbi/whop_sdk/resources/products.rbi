@@ -28,6 +28,7 @@ module WhopSDK
           member_affiliate_percentage: T.nilable(Float),
           member_affiliate_status:
             T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
           plan_options:
             T.nilable(WhopSDK::ProductCreateParams::PlanOptions::OrHash),
           product_tax_code_id: T.nilable(String),
@@ -70,6 +71,10 @@ module WhopSDK
         member_affiliate_percentage: nil,
         # The different statuses of the global affiliate program for a product.
         member_affiliate_status: nil,
+        # Custom key-value pairs to store on the product. Included in webhook payloads for
+        # payment and membership events. Max 50 keys, 500 chars per key, 5000 chars per
+        # value.
+        metadata: nil,
         # Configuration for an automatically generated plan to attach to this product.
         plan_options: nil,
         # The unique identifier of the tax classification code to apply to this product.
@@ -130,6 +135,7 @@ module WhopSDK
           member_affiliate_percentage: T.nilable(Float),
           member_affiliate_status:
             T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
           product_tax_code_id: T.nilable(String),
           redirect_purchase_url: T.nilable(String),
           route: T.nilable(String),
@@ -171,6 +177,10 @@ module WhopSDK
         member_affiliate_percentage: nil,
         # The different statuses of the global affiliate program for a product.
         member_affiliate_status: nil,
+        # Custom key-value pairs to store on the product. Included in webhook payloads for
+        # payment and membership events. Max 50 keys, 500 chars per key, 5000 chars per
+        # value.
+        metadata: nil,
         # The unique identifier of the tax classification code to apply to this product.
         product_tax_code_id: nil,
         # A URL to redirect the customer to after completing a purchase.

@@ -16,14 +16,14 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::AdRetrieveResponse]
+      # @return [WhopSDK::Models::Ad]
       #
       # @see WhopSDK::Models::AdRetrieveParams
       def retrieve(id, params = {})
         @client.request(
           method: :get,
           path: ["ads/%1$s", id],
-          model: WhopSDK::Models::AdRetrieveResponse,
+          model: WhopSDK::Ad,
           options: params[:request_options]
         )
       end
@@ -57,7 +57,7 @@ module WhopSDK
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param status [Symbol, WhopSDK::Models::AdListParams::Status, nil] The status of an external ad.
+      # @param status [Symbol, WhopSDK::Models::ExternalAdStatus, nil] The status of an external ad.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -74,6 +74,56 @@ module WhopSDK
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::AdListResponse,
           options: options
+        )
+      end
+
+      # Pauses an ad.
+      #
+      # Required permissions:
+      #
+      # - `ad_campaign:update`
+      # - `ad_campaign:basic:read`
+      #
+      # @overload pause(id, request_options: {})
+      #
+      # @param id [String] The unique identifier of the ad to pause.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::Ad]
+      #
+      # @see WhopSDK::Models::AdPauseParams
+      def pause(id, params = {})
+        @client.request(
+          method: :post,
+          path: ["ads/%1$s/pause", id],
+          model: WhopSDK::Ad,
+          options: params[:request_options]
+        )
+      end
+
+      # Resumes a paused ad.
+      #
+      # Required permissions:
+      #
+      # - `ad_campaign:update`
+      # - `ad_campaign:basic:read`
+      #
+      # @overload unpause(id, request_options: {})
+      #
+      # @param id [String] The unique identifier of the ad to unpause.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::Ad]
+      #
+      # @see WhopSDK::Models::AdUnpauseParams
+      def unpause(id, params = {})
+        @client.request(
+          method: :post,
+          path: ["ads/%1$s/unpause", id],
+          model: WhopSDK::Ad,
+          options: params[:request_options]
         )
       end
 

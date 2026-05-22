@@ -37,7 +37,7 @@ module WhopSDK
       #
       # - `ad_campaign:basic:read`
       #
-      # @overload list(ad_group_id: nil, after: nil, before: nil, campaign_id: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, last: nil, status: nil, request_options: {})
+      # @overload list(ad_group_id: nil, after: nil, before: nil, campaign_id: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, last: nil, order_by: nil, order_direction: nil, stats_from: nil, stats_to: nil, status: nil, request_options: {})
       #
       # @param ad_group_id [String, nil] Filter by ad group. Provide exactly one of ad*group_id, campaign_id, or company*
       #
@@ -56,6 +56,14 @@ module WhopSDK
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #
+      # @param order_by [Symbol, WhopSDK::Models::AdListParams::OrderBy, nil] Columns that the listAds query can sort by.
+      #
+      # @param order_direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      #
+      # @param stats_from [Time, nil] Start of the stats date range used when order_by is a stats column.
+      #
+      # @param stats_to [Time, nil] End of the stats date range used when order_by is a stats column.
       #
       # @param status [Symbol, WhopSDK::Models::ExternalAdStatus, nil] The status of an external ad.
       #

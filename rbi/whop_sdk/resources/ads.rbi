@@ -38,6 +38,10 @@ module WhopSDK
           created_before: T.nilable(Time),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
+          order_by: T.nilable(WhopSDK::AdListParams::OrderBy::OrSymbol),
+          order_direction: T.nilable(WhopSDK::Direction::OrSymbol),
+          stats_from: T.nilable(Time),
+          stats_to: T.nilable(Time),
           status: T.nilable(WhopSDK::ExternalAdStatus::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
@@ -66,6 +70,14 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
+        # Columns that the listAds query can sort by.
+        order_by: nil,
+        # The direction of the sort.
+        order_direction: nil,
+        # Start of the stats date range used when order_by is a stats column.
+        stats_from: nil,
+        # End of the stats date range used when order_by is a stats column.
+        stats_to: nil,
         # The status of an external ad.
         status: nil,
         request_options: {}

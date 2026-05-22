@@ -50,6 +50,22 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
+      # Columns that the listAds query can sort by.
+      sig { returns(T.nilable(WhopSDK::AdListParams::OrderBy::OrSymbol)) }
+      attr_accessor :order_by
+
+      # The direction of the sort.
+      sig { returns(T.nilable(WhopSDK::Direction::OrSymbol)) }
+      attr_accessor :order_direction
+
+      # Start of the stats date range used when order_by is a stats column.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :stats_from
+
+      # End of the stats date range used when order_by is a stats column.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :stats_to
+
       # The status of an external ad.
       sig { returns(T.nilable(WhopSDK::ExternalAdStatus::OrSymbol)) }
       attr_accessor :status
@@ -65,6 +81,10 @@ module WhopSDK
           created_before: T.nilable(Time),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
+          order_by: T.nilable(WhopSDK::AdListParams::OrderBy::OrSymbol),
+          order_direction: T.nilable(WhopSDK::Direction::OrSymbol),
+          stats_from: T.nilable(Time),
+          stats_to: T.nilable(Time),
           status: T.nilable(WhopSDK::ExternalAdStatus::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -91,6 +111,14 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
+        # Columns that the listAds query can sort by.
+        order_by: nil,
+        # The direction of the sort.
+        order_direction: nil,
+        # Start of the stats date range used when order_by is a stats column.
+        stats_from: nil,
+        # End of the stats date range used when order_by is a stats column.
+        stats_to: nil,
         # The status of an external ad.
         status: nil,
         request_options: {}
@@ -109,12 +137,36 @@ module WhopSDK
             created_before: T.nilable(Time),
             first: T.nilable(Integer),
             last: T.nilable(Integer),
+            order_by: T.nilable(WhopSDK::AdListParams::OrderBy::OrSymbol),
+            order_direction: T.nilable(WhopSDK::Direction::OrSymbol),
+            stats_from: T.nilable(Time),
+            stats_to: T.nilable(Time),
             status: T.nilable(WhopSDK::ExternalAdStatus::OrSymbol),
             request_options: WhopSDK::RequestOptions
           }
         )
       end
       def to_hash
+      end
+
+      # Columns that the listAds query can sort by.
+      module OrderBy
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::AdListParams::OrderBy) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        SPEND = T.let(:spend, WhopSDK::AdListParams::OrderBy::TaggedSymbol)
+        ROAS = T.let(:roas, WhopSDK::AdListParams::OrderBy::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::AdListParams::OrderBy::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
     end
   end

@@ -13,7 +13,7 @@ module WhopSDK
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::AdRetrieveResponse)
+        ).returns(WhopSDK::Ad)
       end
       def retrieve(
         # The unique identifier of the ad.
@@ -38,7 +38,7 @@ module WhopSDK
           created_before: T.nilable(Time),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
-          status: T.nilable(WhopSDK::AdListParams::Status::OrSymbol),
+          status: T.nilable(WhopSDK::ExternalAdStatus::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::AdListResponse]
@@ -68,6 +68,44 @@ module WhopSDK
         last: nil,
         # The status of an external ad.
         status: nil,
+        request_options: {}
+      )
+      end
+
+      # Pauses an ad.
+      #
+      # Required permissions:
+      #
+      # - `ad_campaign:update`
+      # - `ad_campaign:basic:read`
+      sig do
+        params(
+          id: String,
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::Ad)
+      end
+      def pause(
+        # The unique identifier of the ad to pause.
+        id,
+        request_options: {}
+      )
+      end
+
+      # Resumes a paused ad.
+      #
+      # Required permissions:
+      #
+      # - `ad_campaign:update`
+      # - `ad_campaign:basic:read`
+      sig do
+        params(
+          id: String,
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::Ad)
+      end
+      def unpause(
+        # The unique identifier of the ad to unpause.
+        id,
         request_options: {}
       )
       end

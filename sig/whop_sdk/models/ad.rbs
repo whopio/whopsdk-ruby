@@ -1,0 +1,75 @@
+module WhopSDK
+  module Models
+    type ad =
+      {
+        id: String,
+        ad_campaign: WhopSDK::Ad::AdCampaign,
+        ad_group: WhopSDK::Ad::AdGroup,
+        created_at: Time,
+        platform: WhopSDK::Models::ad_campaign_platform,
+        status: WhopSDK::Models::external_ad_status,
+        title: String?,
+        updated_at: Time
+      }
+
+    class Ad < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor ad_campaign: WhopSDK::Ad::AdCampaign
+
+      attr_accessor ad_group: WhopSDK::Ad::AdGroup
+
+      attr_accessor created_at: Time
+
+      attr_accessor platform: WhopSDK::Models::ad_campaign_platform
+
+      attr_accessor status: WhopSDK::Models::external_ad_status
+
+      attr_accessor title: String?
+
+      attr_accessor updated_at: Time
+
+      def initialize: (
+        id: String,
+        ad_campaign: WhopSDK::Ad::AdCampaign,
+        ad_group: WhopSDK::Ad::AdGroup,
+        created_at: Time,
+        platform: WhopSDK::Models::ad_campaign_platform,
+        status: WhopSDK::Models::external_ad_status,
+        title: String?,
+        updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        ad_campaign: WhopSDK::Ad::AdCampaign,
+        ad_group: WhopSDK::Ad::AdGroup,
+        created_at: Time,
+        platform: WhopSDK::Models::ad_campaign_platform,
+        status: WhopSDK::Models::external_ad_status,
+        title: String?,
+        updated_at: Time
+      }
+
+      type ad_campaign = { id: String }
+
+      class AdCampaign < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+
+      type ad_group = { id: String }
+
+      class AdGroup < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+    end
+  end
+end

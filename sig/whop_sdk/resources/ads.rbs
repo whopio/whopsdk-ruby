@@ -4,7 +4,7 @@ module WhopSDK
       def retrieve: (
         String id,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::AdRetrieveResponse
+      ) -> WhopSDK::Ad
 
       def list: (
         ?ad_group_id: String?,
@@ -16,9 +16,19 @@ module WhopSDK
         ?created_before: Time?,
         ?first: Integer?,
         ?last: Integer?,
-        ?status: WhopSDK::Models::AdListParams::status?,
+        ?status: WhopSDK::Models::external_ad_status?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::AdListResponse]
+
+      def pause: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Ad
+
+      def unpause: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Ad
 
       def initialize: (client: WhopSDK::Client) -> void
     end

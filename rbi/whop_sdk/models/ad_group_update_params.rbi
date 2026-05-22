@@ -19,9 +19,7 @@ module WhopSDK
       attr_accessor :budget
 
       # The budget type for an ad campaign or ad group.
-      sig do
-        returns(T.nilable(WhopSDK::AdGroupUpdateParams::BudgetType::OrSymbol))
-      end
+      sig { returns(T.nilable(WhopSDK::AdBudgetType::OrSymbol)) }
       attr_accessor :budget_type
 
       # Unified ad group configuration (bidding, optimization, targeting).
@@ -56,21 +54,20 @@ module WhopSDK
       attr_writer :platform_config
 
       # The status of an external ad group.
-      sig { returns(T.nilable(WhopSDK::AdGroupUpdateParams::Status::OrSymbol)) }
+      sig { returns(T.nilable(WhopSDK::AdGroupStatus::OrSymbol)) }
       attr_accessor :status
 
       sig do
         params(
           id: String,
           budget: T.nilable(Float),
-          budget_type:
-            T.nilable(WhopSDK::AdGroupUpdateParams::BudgetType::OrSymbol),
+          budget_type: T.nilable(WhopSDK::AdBudgetType::OrSymbol),
           config: T.nilable(WhopSDK::AdGroupUpdateParams::Config::OrHash),
           daily_budget: T.nilable(Float),
           name: T.nilable(String),
           platform_config:
             T.nilable(WhopSDK::AdGroupUpdateParams::PlatformConfig::OrHash),
-          status: T.nilable(WhopSDK::AdGroupUpdateParams::Status::OrSymbol),
+          status: T.nilable(WhopSDK::AdGroupStatus::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -99,46 +96,18 @@ module WhopSDK
           {
             id: String,
             budget: T.nilable(Float),
-            budget_type:
-              T.nilable(WhopSDK::AdGroupUpdateParams::BudgetType::OrSymbol),
+            budget_type: T.nilable(WhopSDK::AdBudgetType::OrSymbol),
             config: T.nilable(WhopSDK::AdGroupUpdateParams::Config),
             daily_budget: T.nilable(Float),
             name: T.nilable(String),
             platform_config:
               T.nilable(WhopSDK::AdGroupUpdateParams::PlatformConfig),
-            status: T.nilable(WhopSDK::AdGroupUpdateParams::Status::OrSymbol),
+            status: T.nilable(WhopSDK::AdGroupStatus::OrSymbol),
             request_options: WhopSDK::RequestOptions
           }
         )
       end
       def to_hash
-      end
-
-      # The budget type for an ad campaign or ad group.
-      module BudgetType
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::AdGroupUpdateParams::BudgetType)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        DAILY =
-          T.let(:daily, WhopSDK::AdGroupUpdateParams::BudgetType::TaggedSymbol)
-        LIFETIME =
-          T.let(
-            :lifetime,
-            WhopSDK::AdGroupUpdateParams::BudgetType::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[WhopSDK::AdGroupUpdateParams::BudgetType::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
       end
 
       class Config < WhopSDK::Internal::Type::BaseModel
@@ -6096,36 +6065,6 @@ module WhopSDK
             def self.values
             end
           end
-        end
-      end
-
-      # The status of an external ad group.
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, WhopSDK::AdGroupUpdateParams::Status) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        ACTIVE =
-          T.let(:active, WhopSDK::AdGroupUpdateParams::Status::TaggedSymbol)
-        PAUSED =
-          T.let(:paused, WhopSDK::AdGroupUpdateParams::Status::TaggedSymbol)
-        INACTIVE =
-          T.let(:inactive, WhopSDK::AdGroupUpdateParams::Status::TaggedSymbol)
-        IN_REVIEW =
-          T.let(:in_review, WhopSDK::AdGroupUpdateParams::Status::TaggedSymbol)
-        REJECTED =
-          T.let(:rejected, WhopSDK::AdGroupUpdateParams::Status::TaggedSymbol)
-        FLAGGED =
-          T.let(:flagged, WhopSDK::AdGroupUpdateParams::Status::TaggedSymbol)
-
-        sig do
-          override.returns(
-            T::Array[WhopSDK::AdGroupUpdateParams::Status::TaggedSymbol]
-          )
-        end
-        def self.values
         end
       end
     end

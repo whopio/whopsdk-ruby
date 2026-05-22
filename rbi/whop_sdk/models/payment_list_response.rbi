@@ -89,8 +89,8 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The available currencies on the platform
-      sig { returns(T.nilable(WhopSDK::Currency::TaggedSymbol)) }
+      # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
+      sig { returns(WhopSDK::Currency::TaggedSymbol) }
       attr_accessor :currency
 
       # When an alert came in that this transaction will be disputed
@@ -226,10 +226,8 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :retryable
 
-      # The currency in which the creator receives payouts and fees are charged (e.g.,
-      # 'usd', 'eur'). For multi-currency payments this differs from the payment
-      # currency.
-      sig { returns(String) }
+      # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
+      sig { returns(WhopSDK::Currency::TaggedSymbol) }
       attr_accessor :settlement_currency
 
       # The status of a receipt
@@ -303,7 +301,7 @@ module WhopSDK
           company:
             T.nilable(WhopSDK::Models::PaymentListResponse::Company::OrHash),
           created_at: Time,
-          currency: T.nilable(WhopSDK::Currency::OrSymbol),
+          currency: WhopSDK::Currency::OrSymbol,
           dispute_alerted_at: T.nilable(Time),
           failure_message: T.nilable(String),
           last_payment_attempt: T.nilable(Time),
@@ -329,7 +327,7 @@ module WhopSDK
           refunded_amount: T.nilable(Float),
           refunded_at: T.nilable(Time),
           retryable: T::Boolean,
-          settlement_currency: String,
+          settlement_currency: WhopSDK::Currency::OrSymbol,
           status: T.nilable(WhopSDK::ReceiptStatus::OrSymbol),
           substatus: WhopSDK::FriendlyReceiptStatus::OrSymbol,
           subtotal: T.nilable(Float),
@@ -367,7 +365,7 @@ module WhopSDK
         company:,
         # The datetime the payment was created.
         created_at:,
-        # The available currencies on the platform
+        # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
         currency:,
         # When an alert came in that this transaction will be disputed
         dispute_alerted_at:,
@@ -411,9 +409,7 @@ module WhopSDK
         # retry-eligible states (`active`, `trialing`, `completed`, or `past_due`);
         # otherwise false. Used to decide if Whop can attempt the charge again.
         retryable:,
-        # The currency in which the creator receives payouts and fees are charged (e.g.,
-        # 'usd', 'eur'). For multi-currency payments this differs from the payment
-        # currency.
+        # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
         settlement_currency:,
         # The status of a receipt
         status:,
@@ -456,7 +452,7 @@ module WhopSDK
             checkout_configuration_id: T.nilable(String),
             company: T.nilable(WhopSDK::Models::PaymentListResponse::Company),
             created_at: Time,
-            currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
+            currency: WhopSDK::Currency::TaggedSymbol,
             dispute_alerted_at: T.nilable(Time),
             failure_message: T.nilable(String),
             last_payment_attempt: T.nilable(Time),
@@ -479,7 +475,7 @@ module WhopSDK
             refunded_amount: T.nilable(Float),
             refunded_at: T.nilable(Time),
             retryable: T::Boolean,
-            settlement_currency: String,
+            settlement_currency: WhopSDK::Currency::TaggedSymbol,
             status: T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol),
             substatus: WhopSDK::FriendlyReceiptStatus::TaggedSymbol,
             subtotal: T.nilable(Float),
@@ -933,22 +929,38 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :internal_notes
 
+        # Custom key-value pairs stored on the plan. Included in webhook payloads for
+        # payment and membership events.
+        sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+        attr_accessor :metadata
+
         # The plan attached to this payment.
         sig do
-          params(id: String, internal_notes: T.nilable(String)).returns(
-            T.attached_class
-          )
+          params(
+            id: String,
+            internal_notes: T.nilable(String),
+            metadata: T.nilable(T::Hash[Symbol, T.anything])
+          ).returns(T.attached_class)
         end
         def self.new(
           # The unique identifier for the plan.
           id:,
           # A personal description or notes section for the business.
-          internal_notes:
+          internal_notes:,
+          # Custom key-value pairs stored on the plan. Included in webhook payloads for
+          # payment and membership events.
+          metadata:
         )
         end
 
         sig do
-          override.returns({ id: String, internal_notes: T.nilable(String) })
+          override.returns(
+            {
+              id: String,
+              internal_notes: T.nilable(String),
+              metadata: T.nilable(T::Hash[Symbol, T.anything])
+            }
+          )
         end
         def to_hash
         end
@@ -967,6 +979,11 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
+        # Custom key-value pairs stored on the product. Included in webhook payloads for
+        # payment and membership events.
+        sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+        attr_accessor :metadata
+
         # The URL slug used in the product's public link (e.g., 'my-product' in
         # whop.com/company/my-product).
         sig { returns(String) }
@@ -979,13 +996,19 @@ module WhopSDK
 
         # The product this payment was made for
         sig do
-          params(id: String, route: String, title: String).returns(
-            T.attached_class
-          )
+          params(
+            id: String,
+            metadata: T.nilable(T::Hash[Symbol, T.anything]),
+            route: String,
+            title: String
+          ).returns(T.attached_class)
         end
         def self.new(
           # The unique identifier for the product.
           id:,
+          # Custom key-value pairs stored on the product. Included in webhook payloads for
+          # payment and membership events.
+          metadata:,
           # The URL slug used in the product's public link (e.g., 'my-product' in
           # whop.com/company/my-product).
           route:,
@@ -995,7 +1018,16 @@ module WhopSDK
         )
         end
 
-        sig { override.returns({ id: String, route: String, title: String }) }
+        sig do
+          override.returns(
+            {
+              id: String,
+              metadata: T.nilable(T::Hash[Symbol, T.anything]),
+              route: String,
+              title: String
+            }
+          )
+        end
         def to_hash
         end
       end

@@ -13,7 +13,7 @@ module WhopSDK
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::AdCampaignRetrieveResponse)
+        ).returns(WhopSDK::AdCampaign)
       end
       def retrieve(
         # The unique identifier of the ad campaign.
@@ -32,7 +32,7 @@ module WhopSDK
           id: String,
           budget: T.nilable(Float),
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::AdCampaignUpdateResponse)
+        ).returns(WhopSDK::AdCampaign)
       end
       def update(
         # The unique identifier of the ad campaign to update.
@@ -60,7 +60,7 @@ module WhopSDK
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           query: T.nilable(String),
-          status: T.nilable(WhopSDK::AdCampaignListParams::Status::OrSymbol),
+          status: T.nilable(WhopSDK::AdCampaignStatus::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::AdCampaignListResponse]
@@ -98,7 +98,7 @@ module WhopSDK
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::AdCampaignPauseResponse)
+        ).returns(WhopSDK::AdCampaign)
       end
       def pause(
         # The unique identifier of the ad campaign to pause.
@@ -116,7 +116,7 @@ module WhopSDK
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::AdCampaignUnpauseResponse)
+        ).returns(WhopSDK::AdCampaign)
       end
       def unpause(
         # The unique identifier of the ad campaign to unpause.

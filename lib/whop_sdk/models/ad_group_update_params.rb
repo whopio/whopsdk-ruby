@@ -21,8 +21,8 @@ module WhopSDK
       # @!attribute budget_type
       #   The budget type for an ad campaign or ad group.
       #
-      #   @return [Symbol, WhopSDK::Models::AdGroupUpdateParams::BudgetType, nil]
-      optional :budget_type, enum: -> { WhopSDK::AdGroupUpdateParams::BudgetType }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::AdBudgetType, nil]
+      optional :budget_type, enum: -> { WhopSDK::AdBudgetType }, nil?: true
 
       # @!attribute config
       #   Unified ad group configuration (bidding, optimization, targeting).
@@ -51,15 +51,15 @@ module WhopSDK
       # @!attribute status
       #   The status of an external ad group.
       #
-      #   @return [Symbol, WhopSDK::Models::AdGroupUpdateParams::Status, nil]
-      optional :status, enum: -> { WhopSDK::AdGroupUpdateParams::Status }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::AdGroupStatus, nil]
+      optional :status, enum: -> { WhopSDK::AdGroupStatus }, nil?: true
 
       # @!method initialize(id:, budget: nil, budget_type: nil, config: nil, daily_budget: nil, name: nil, platform_config: nil, status: nil, request_options: {})
       #   @param id [String]
       #
       #   @param budget [Float, nil] Budget amount in dollars.
       #
-      #   @param budget_type [Symbol, WhopSDK::Models::AdGroupUpdateParams::BudgetType, nil] The budget type for an ad campaign or ad group.
+      #   @param budget_type [Symbol, WhopSDK::Models::AdBudgetType, nil] The budget type for an ad campaign or ad group.
       #
       #   @param config [WhopSDK::Models::AdGroupUpdateParams::Config, nil] Unified ad group configuration (bidding, optimization, targeting).
       #
@@ -69,20 +69,9 @@ module WhopSDK
       #
       #   @param platform_config [WhopSDK::Models::AdGroupUpdateParams::PlatformConfig, nil] Platform-specific ad group configuration.
       #
-      #   @param status [Symbol, WhopSDK::Models::AdGroupUpdateParams::Status, nil] The status of an external ad group.
+      #   @param status [Symbol, WhopSDK::Models::AdGroupStatus, nil] The status of an external ad group.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
-
-      # The budget type for an ad campaign or ad group.
-      module BudgetType
-        extend WhopSDK::Internal::Type::Enum
-
-        DAILY = :daily
-        LIFETIME = :lifetime
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
 
       class Config < WhopSDK::Internal::Type::BaseModel
         # @!attribute bid_amount
@@ -3186,21 +3175,6 @@ module WhopSDK
             #   @return [Array<Symbol>]
           end
         end
-      end
-
-      # The status of an external ad group.
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        ACTIVE = :active
-        PAUSED = :paused
-        INACTIVE = :inactive
-        IN_REVIEW = :in_review
-        REJECTED = :rejected
-        FLAGGED = :flagged
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
     end
   end

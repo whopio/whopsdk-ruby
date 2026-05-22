@@ -10,7 +10,7 @@ module WhopSDK
         first: Integer?,
         last: Integer?,
         query: String?,
-        status: WhopSDK::Models::AdCampaignListParams::status?
+        status: WhopSDK::Models::ad_campaign_status?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -34,7 +34,7 @@ module WhopSDK
 
       attr_accessor query: String?
 
-      attr_accessor status: WhopSDK::Models::AdCampaignListParams::status?
+      attr_accessor status: WhopSDK::Models::ad_campaign_status?
 
       def initialize: (
         company_id: String,
@@ -45,7 +45,7 @@ module WhopSDK
         ?first: Integer?,
         ?last: Integer?,
         ?query: String?,
-        ?status: WhopSDK::Models::AdCampaignListParams::status?,
+        ?status: WhopSDK::Models::ad_campaign_status?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -58,25 +58,9 @@ module WhopSDK
         first: Integer?,
         last: Integer?,
         query: String?,
-        status: WhopSDK::Models::AdCampaignListParams::status?,
+        status: WhopSDK::Models::ad_campaign_status?,
         request_options: WhopSDK::RequestOptions
       }
-
-      type status =
-        :active | :paused | :payment_failed | :draft | :in_review | :flagged
-
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        ACTIVE: :active
-        PAUSED: :paused
-        PAYMENT_FAILED: :payment_failed
-        DRAFT: :draft
-        IN_REVIEW: :in_review
-        FLAGGED: :flagged
-
-        def self?.values: -> ::Array[WhopSDK::Models::AdCampaignListParams::status]
-      end
     end
   end
 end

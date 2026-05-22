@@ -77,6 +77,12 @@ module WhopSDK
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :legacy_payment_method_controls
 
+      # Custom key-value pairs to store on the plan. Included in webhook payloads for
+      # payment and membership events. Max 50 keys, 500 chars per key, 5000 chars per
+      # value.
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      attr_accessor :metadata
+
       # Whether to offer a retention discount when a customer attempts to cancel.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :offer_cancel_discount
@@ -157,6 +163,7 @@ module WhopSDK
           initial_price: T.nilable(Float),
           internal_notes: T.nilable(String),
           legacy_payment_method_controls: T.nilable(T::Boolean),
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
           offer_cancel_discount: T.nilable(T::Boolean),
           override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
           payment_method_configuration:
@@ -202,6 +209,10 @@ module WhopSDK
         internal_notes: nil,
         # Whether this plan uses legacy payment method controls.
         legacy_payment_method_controls: nil,
+        # Custom key-value pairs to store on the plan. Included in webhook payloads for
+        # payment and membership events. Max 50 keys, 500 chars per key, 5000 chars per
+        # value.
+        metadata: nil,
         # Whether to offer a retention discount when a customer attempts to cancel.
         offer_cancel_discount: nil,
         # Whether or not the tax is included in a plan's price (or if it hasn't been set
@@ -251,6 +262,7 @@ module WhopSDK
             initial_price: T.nilable(Float),
             internal_notes: T.nilable(String),
             legacy_payment_method_controls: T.nilable(T::Boolean),
+            metadata: T.nilable(T::Hash[Symbol, T.anything]),
             offer_cancel_discount: T.nilable(T::Boolean),
             override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
             payment_method_configuration:

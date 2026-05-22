@@ -51,7 +51,7 @@ module WhopSDK
       attr_accessor :last
 
       # The status of an external ad.
-      sig { returns(T.nilable(WhopSDK::AdListParams::Status::OrSymbol)) }
+      sig { returns(T.nilable(WhopSDK::ExternalAdStatus::OrSymbol)) }
       attr_accessor :status
 
       sig do
@@ -65,7 +65,7 @@ module WhopSDK
           created_before: T.nilable(Time),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
-          status: T.nilable(WhopSDK::AdListParams::Status::OrSymbol),
+          status: T.nilable(WhopSDK::ExternalAdStatus::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -109,37 +109,12 @@ module WhopSDK
             created_before: T.nilable(Time),
             first: T.nilable(Integer),
             last: T.nilable(Integer),
-            status: T.nilable(WhopSDK::AdListParams::Status::OrSymbol),
+            status: T.nilable(WhopSDK::ExternalAdStatus::OrSymbol),
             request_options: WhopSDK::RequestOptions
           }
         )
       end
       def to_hash
-      end
-
-      # The status of an external ad.
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, WhopSDK::AdListParams::Status) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        ACTIVE = T.let(:active, WhopSDK::AdListParams::Status::TaggedSymbol)
-        PAUSED = T.let(:paused, WhopSDK::AdListParams::Status::TaggedSymbol)
-        INACTIVE = T.let(:inactive, WhopSDK::AdListParams::Status::TaggedSymbol)
-        IN_REVIEW =
-          T.let(:in_review, WhopSDK::AdListParams::Status::TaggedSymbol)
-        REJECTED = T.let(:rejected, WhopSDK::AdListParams::Status::TaggedSymbol)
-        FLAGGED = T.let(:flagged, WhopSDK::AdListParams::Status::TaggedSymbol)
-
-        sig do
-          override.returns(
-            T::Array[WhopSDK::AdListParams::Status::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
       end
     end
   end

@@ -15,6 +15,7 @@ module WhopSDK
         initial_price: Float?,
         internal_notes: String?,
         legacy_payment_method_controls: bool?,
+        metadata: ::Hash[Symbol, top]?,
         override_tax_type: WhopSDK::Models::tax_type?,
         payment_method_configuration: WhopSDK::PlanCreateParams::PaymentMethodConfiguration?,
         plan_type: WhopSDK::Models::plan_type?,
@@ -59,6 +60,8 @@ module WhopSDK
 
       attr_accessor legacy_payment_method_controls: bool?
 
+      attr_accessor metadata: ::Hash[Symbol, top]?
+
       attr_accessor override_tax_type: WhopSDK::Models::tax_type?
 
       attr_accessor payment_method_configuration: WhopSDK::PlanCreateParams::PaymentMethodConfiguration?
@@ -95,6 +98,7 @@ module WhopSDK
         ?initial_price: Float?,
         ?internal_notes: String?,
         ?legacy_payment_method_controls: bool?,
+        ?metadata: ::Hash[Symbol, top]?,
         ?override_tax_type: WhopSDK::Models::tax_type?,
         ?payment_method_configuration: WhopSDK::PlanCreateParams::PaymentMethodConfiguration?,
         ?plan_type: WhopSDK::Models::plan_type?,
@@ -123,6 +127,7 @@ module WhopSDK
         initial_price: Float?,
         internal_notes: String?,
         legacy_payment_method_controls: bool?,
+        metadata: ::Hash[Symbol, top]?,
         override_tax_type: WhopSDK::Models::tax_type?,
         payment_method_configuration: WhopSDK::PlanCreateParams::PaymentMethodConfiguration?,
         plan_type: WhopSDK::Models::plan_type?,

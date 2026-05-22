@@ -19,8 +19,8 @@ module WhopSDK
       # @!attribute budget_type
       #   The budget type for an ad campaign or ad group.
       #
-      #   @return [Symbol, WhopSDK::Models::AdCampaignListResponse::BudgetType, nil]
-      required :budget_type, enum: -> { WhopSDK::Models::AdCampaignListResponse::BudgetType }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::AdBudgetType, nil]
+      required :budget_type, enum: -> { WhopSDK::AdBudgetType }, nil?: true
 
       # @!attribute created_at
       #   When the ad campaign was created.
@@ -31,14 +31,14 @@ module WhopSDK
       # @!attribute platform
       #   The external ad platform this campaign is running on (e.g., meta, tiktok).
       #
-      #   @return [Symbol, WhopSDK::Models::AdCampaignListResponse::Platform]
-      required :platform, enum: -> { WhopSDK::Models::AdCampaignListResponse::Platform }
+      #   @return [Symbol, WhopSDK::Models::AdCampaignPlatform]
+      required :platform, enum: -> { WhopSDK::AdCampaignPlatform }
 
       # @!attribute status
       #   Current status of the campaign (active, paused, or inactive).
       #
-      #   @return [Symbol, WhopSDK::Models::AdCampaignListResponse::Status]
-      required :status, enum: -> { WhopSDK::Models::AdCampaignListResponse::Status }
+      #   @return [Symbol, WhopSDK::Models::AdCampaignStatus]
+      required :status, enum: -> { WhopSDK::AdCampaignStatus }
 
       # @!attribute title
       #   The campaign name shown in the Whop dashboard.
@@ -65,62 +65,19 @@ module WhopSDK
       #
       #   @param budget [Float, nil] Total budget in dollars.
       #
-      #   @param budget_type [Symbol, WhopSDK::Models::AdCampaignListResponse::BudgetType, nil] The budget type for an ad campaign or ad group.
+      #   @param budget_type [Symbol, WhopSDK::Models::AdBudgetType, nil] The budget type for an ad campaign or ad group.
       #
       #   @param created_at [Time] When the ad campaign was created.
       #
-      #   @param platform [Symbol, WhopSDK::Models::AdCampaignListResponse::Platform] The external ad platform this campaign is running on (e.g., meta, tiktok).
+      #   @param platform [Symbol, WhopSDK::Models::AdCampaignPlatform] The external ad platform this campaign is running on (e.g., meta, tiktok).
       #
-      #   @param status [Symbol, WhopSDK::Models::AdCampaignListResponse::Status] Current status of the campaign (active, paused, or inactive).
+      #   @param status [Symbol, WhopSDK::Models::AdCampaignStatus] Current status of the campaign (active, paused, or inactive).
       #
       #   @param title [String] The campaign name shown in the Whop dashboard.
       #
       #   @param total_spend [Float] Total amount spent in dollars.
       #
       #   @param updated_at [Time] When the ad campaign was last updated.
-
-      # The budget type for an ad campaign or ad group.
-      #
-      # @see WhopSDK::Models::AdCampaignListResponse#budget_type
-      module BudgetType
-        extend WhopSDK::Internal::Type::Enum
-
-        DAILY = :daily
-        LIFETIME = :lifetime
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
-
-      # The external ad platform this campaign is running on (e.g., meta, tiktok).
-      #
-      # @see WhopSDK::Models::AdCampaignListResponse#platform
-      module Platform
-        extend WhopSDK::Internal::Type::Enum
-
-        META = :meta
-        TIKTOK = :tiktok
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
-
-      # Current status of the campaign (active, paused, or inactive).
-      #
-      # @see WhopSDK::Models::AdCampaignListResponse#status
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        ACTIVE = :active
-        PAUSED = :paused
-        PAYMENT_FAILED = :payment_failed
-        DRAFT = :draft
-        IN_REVIEW = :in_review
-        FLAGGED = :flagged
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
     end
   end
 end

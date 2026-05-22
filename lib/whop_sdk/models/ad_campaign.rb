@@ -2,8 +2,8 @@
 
 module WhopSDK
   module Models
-    # @see WhopSDK::Resources::AdCampaigns#update
-    class AdCampaignUpdateResponse < WhopSDK::Internal::Type::BaseModel
+    # @see WhopSDK::Resources::AdCampaigns#retrieve
+    class AdCampaign < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
       #   The unique identifier for this ad campaign.
       #
@@ -19,8 +19,8 @@ module WhopSDK
       # @!attribute budget_type
       #   The budget type for an ad campaign or ad group.
       #
-      #   @return [Symbol, WhopSDK::Models::AdCampaignUpdateResponse::BudgetType, nil]
-      required :budget_type, enum: -> { WhopSDK::Models::AdCampaignUpdateResponse::BudgetType }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::AdBudgetType, nil]
+      required :budget_type, enum: -> { WhopSDK::AdBudgetType }, nil?: true
 
       # @!attribute created_at
       #   When the ad campaign was created.
@@ -31,27 +31,27 @@ module WhopSDK
       # @!attribute created_by_user
       #   The user who created this ad campaign.
       #
-      #   @return [WhopSDK::Models::AdCampaignUpdateResponse::CreatedByUser]
-      required :created_by_user, -> { WhopSDK::Models::AdCampaignUpdateResponse::CreatedByUser }
+      #   @return [WhopSDK::Models::AdCampaign::CreatedByUser]
+      required :created_by_user, -> { WhopSDK::AdCampaign::CreatedByUser }
 
       # @!attribute meta_config
       #   Meta-specific campaign configuration (objective, budget mode, etc.). Null for
       #   non-Meta campaigns.
       #
-      #   @return [WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig, nil]
-      required :meta_config, -> { WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig }, nil?: true
+      #   @return [WhopSDK::Models::AdCampaign::MetaConfig, nil]
+      required :meta_config, -> { WhopSDK::AdCampaign::MetaConfig }, nil?: true
 
       # @!attribute platform
       #   The external ad platform this campaign is running on (e.g., meta, tiktok).
       #
-      #   @return [Symbol, WhopSDK::Models::AdCampaignUpdateResponse::Platform]
-      required :platform, enum: -> { WhopSDK::Models::AdCampaignUpdateResponse::Platform }
+      #   @return [Symbol, WhopSDK::Models::AdCampaignPlatform]
+      required :platform, enum: -> { WhopSDK::AdCampaignPlatform }
 
       # @!attribute status
       #   Current status of the campaign (active, paused, or inactive).
       #
-      #   @return [Symbol, WhopSDK::Models::AdCampaignUpdateResponse::Status]
-      required :status, enum: -> { WhopSDK::Models::AdCampaignUpdateResponse::Status }
+      #   @return [Symbol, WhopSDK::Models::AdCampaignStatus]
+      required :status, enum: -> { WhopSDK::AdCampaignStatus }
 
       # @!attribute title
       #   The campaign name shown in the Whop dashboard.
@@ -73,7 +73,7 @@ module WhopSDK
 
       # @!method initialize(id:, budget:, budget_type:, created_at:, created_by_user:, meta_config:, platform:, status:, title:, total_spend:, updated_at:)
       #   Some parameter documentations has been truncated, see
-      #   {WhopSDK::Models::AdCampaignUpdateResponse} for more details.
+      #   {WhopSDK::Models::AdCampaign} for more details.
       #
       #   An advertising campaign running on an external platform or within Whop.
       #
@@ -81,17 +81,17 @@ module WhopSDK
       #
       #   @param budget [Float, nil] Total budget in dollars.
       #
-      #   @param budget_type [Symbol, WhopSDK::Models::AdCampaignUpdateResponse::BudgetType, nil] The budget type for an ad campaign or ad group.
+      #   @param budget_type [Symbol, WhopSDK::Models::AdBudgetType, nil] The budget type for an ad campaign or ad group.
       #
       #   @param created_at [Time] When the ad campaign was created.
       #
-      #   @param created_by_user [WhopSDK::Models::AdCampaignUpdateResponse::CreatedByUser] The user who created this ad campaign.
+      #   @param created_by_user [WhopSDK::Models::AdCampaign::CreatedByUser] The user who created this ad campaign.
       #
-      #   @param meta_config [WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig, nil] Meta-specific campaign configuration (objective, budget mode, etc.). Null for no
+      #   @param meta_config [WhopSDK::Models::AdCampaign::MetaConfig, nil] Meta-specific campaign configuration (objective, budget mode, etc.). Null for no
       #
-      #   @param platform [Symbol, WhopSDK::Models::AdCampaignUpdateResponse::Platform] The external ad platform this campaign is running on (e.g., meta, tiktok).
+      #   @param platform [Symbol, WhopSDK::Models::AdCampaignPlatform] The external ad platform this campaign is running on (e.g., meta, tiktok).
       #
-      #   @param status [Symbol, WhopSDK::Models::AdCampaignUpdateResponse::Status] Current status of the campaign (active, paused, or inactive).
+      #   @param status [Symbol, WhopSDK::Models::AdCampaignStatus] Current status of the campaign (active, paused, or inactive).
       #
       #   @param title [String] The campaign name shown in the Whop dashboard.
       #
@@ -99,20 +99,7 @@ module WhopSDK
       #
       #   @param updated_at [Time] When the ad campaign was last updated.
 
-      # The budget type for an ad campaign or ad group.
-      #
-      # @see WhopSDK::Models::AdCampaignUpdateResponse#budget_type
-      module BudgetType
-        extend WhopSDK::Internal::Type::Enum
-
-        DAILY = :daily
-        LIFETIME = :lifetime
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
-
-      # @see WhopSDK::Models::AdCampaignUpdateResponse#created_by_user
+      # @see WhopSDK::Models::AdCampaign#created_by_user
       class CreatedByUser < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
         #   The unique identifier for the user.
@@ -142,7 +129,7 @@ module WhopSDK
         #   @param username [String] The user's unique username shown on their public profile.
       end
 
-      # @see WhopSDK::Models::AdCampaignUpdateResponse#meta_config
+      # @see WhopSDK::Models::AdCampaign#meta_config
       class MetaConfig < WhopSDK::Internal::Type::BaseModel
         # @!attribute bid_amount
         #   Bid cap amount in cents. Only used when bid_strategy is bid_cap.
@@ -153,10 +140,8 @@ module WhopSDK
         # @!attribute bid_strategy
         #   The bidding strategy used to optimize spend for this campaign.
         #
-        #   @return [Symbol, WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig::BidStrategy, nil]
-        required :bid_strategy,
-                 enum: -> { WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig::BidStrategy },
-                 nil?: true
+        #   @return [Symbol, WhopSDK::Models::AdCampaign::MetaConfig::BidStrategy, nil]
+        required :bid_strategy, enum: -> { WhopSDK::AdCampaign::MetaConfig::BidStrategy }, nil?: true
 
         # @!attribute budget_optimization
         #   Whether campaign budget optimization (CBO) is enabled, allowing the platform to
@@ -169,10 +154,8 @@ module WhopSDK
         #   The actual delivery status, accounting for platform overrides (e.g., in_review,
         #   rejected).
         #
-        #   @return [Symbol, WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig::EffectiveStatus, nil]
-        required :effective_status,
-                 enum: -> { WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig::EffectiveStatus },
-                 nil?: true
+        #   @return [Symbol, WhopSDK::Models::AdCampaign::MetaConfig::EffectiveStatus, nil]
+        required :effective_status, enum: -> { WhopSDK::AdCampaign::MetaConfig::EffectiveStatus }, nil?: true
 
         # @!attribute end_time
         #   The scheduled end time of the campaign (ISO8601).
@@ -183,10 +166,8 @@ module WhopSDK
         # @!attribute objective
         #   The campaign objective that determines how Meta optimizes delivery.
         #
-        #   @return [Symbol, WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig::Objective, nil]
-        required :objective,
-                 enum: -> { WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig::Objective },
-                 nil?: true
+        #   @return [Symbol, WhopSDK::Models::AdCampaign::MetaConfig::Objective, nil]
+        required :objective, enum: -> { WhopSDK::AdCampaign::MetaConfig::Objective }, nil?: true
 
         # @!attribute special_categories
         #   Special ad categories required by the platform (e.g., housing, employment,
@@ -204,37 +185,37 @@ module WhopSDK
         # @!attribute status
         #   The campaign status as set by the advertiser (active or paused).
         #
-        #   @return [Symbol, WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig::Status, nil]
-        required :status, enum: -> { WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig::Status }, nil?: true
+        #   @return [Symbol, WhopSDK::Models::AdCampaign::MetaConfig::Status, nil]
+        required :status, enum: -> { WhopSDK::AdCampaign::MetaConfig::Status }, nil?: true
 
         # @!method initialize(bid_amount:, bid_strategy:, budget_optimization:, effective_status:, end_time:, objective:, special_categories:, start_time:, status:)
         #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig} for more details.
+        #   {WhopSDK::Models::AdCampaign::MetaConfig} for more details.
         #
         #   Meta-specific campaign configuration (objective, budget mode, etc.). Null for
         #   non-Meta campaigns.
         #
         #   @param bid_amount [Integer, nil] Bid cap amount in cents. Only used when bid_strategy is bid_cap.
         #
-        #   @param bid_strategy [Symbol, WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig::BidStrategy, nil] The bidding strategy used to optimize spend for this campaign.
+        #   @param bid_strategy [Symbol, WhopSDK::Models::AdCampaign::MetaConfig::BidStrategy, nil] The bidding strategy used to optimize spend for this campaign.
         #
         #   @param budget_optimization [Boolean, nil] Whether campaign budget optimization (CBO) is enabled, allowing the platform to
         #
-        #   @param effective_status [Symbol, WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig::EffectiveStatus, nil] The actual delivery status, accounting for platform overrides (e.g., in_review,
+        #   @param effective_status [Symbol, WhopSDK::Models::AdCampaign::MetaConfig::EffectiveStatus, nil] The actual delivery status, accounting for platform overrides (e.g., in_review,
         #
         #   @param end_time [String, nil] The scheduled end time of the campaign (ISO8601).
         #
-        #   @param objective [Symbol, WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig::Objective, nil] The campaign objective that determines how Meta optimizes delivery.
+        #   @param objective [Symbol, WhopSDK::Models::AdCampaign::MetaConfig::Objective, nil] The campaign objective that determines how Meta optimizes delivery.
         #
         #   @param special_categories [Array<String>, nil] Special ad categories required by the platform (e.g., housing, employment, credi
         #
         #   @param start_time [String, nil] The scheduled start time of the campaign (ISO8601).
         #
-        #   @param status [Symbol, WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig::Status, nil] The campaign status as set by the advertiser (active or paused).
+        #   @param status [Symbol, WhopSDK::Models::AdCampaign::MetaConfig::Status, nil] The campaign status as set by the advertiser (active or paused).
 
         # The bidding strategy used to optimize spend for this campaign.
         #
-        # @see WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig#bid_strategy
+        # @see WhopSDK::Models::AdCampaign::MetaConfig#bid_strategy
         module BidStrategy
           extend WhopSDK::Internal::Type::Enum
 
@@ -249,7 +230,7 @@ module WhopSDK
         # The actual delivery status, accounting for platform overrides (e.g., in_review,
         # rejected).
         #
-        # @see WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig#effective_status
+        # @see WhopSDK::Models::AdCampaign::MetaConfig#effective_status
         module EffectiveStatus
           extend WhopSDK::Internal::Type::Enum
 
@@ -266,7 +247,7 @@ module WhopSDK
 
         # The campaign objective that determines how Meta optimizes delivery.
         #
-        # @see WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig#objective
+        # @see WhopSDK::Models::AdCampaign::MetaConfig#objective
         module Objective
           extend WhopSDK::Internal::Type::Enum
 
@@ -282,7 +263,7 @@ module WhopSDK
 
         # The campaign status as set by the advertiser (active or paused).
         #
-        # @see WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig#status
+        # @see WhopSDK::Models::AdCampaign::MetaConfig#status
         module Status
           extend WhopSDK::Internal::Type::Enum
 
@@ -292,36 +273,6 @@ module WhopSDK
           # @!method self.values
           #   @return [Array<Symbol>]
         end
-      end
-
-      # The external ad platform this campaign is running on (e.g., meta, tiktok).
-      #
-      # @see WhopSDK::Models::AdCampaignUpdateResponse#platform
-      module Platform
-        extend WhopSDK::Internal::Type::Enum
-
-        META = :meta
-        TIKTOK = :tiktok
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
-
-      # Current status of the campaign (active, paused, or inactive).
-      #
-      # @see WhopSDK::Models::AdCampaignUpdateResponse#status
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        ACTIVE = :active
-        PAUSED = :paused
-        PAYMENT_FAILED = :payment_failed
-        DRAFT = :draft
-        IN_REVIEW = :in_review
-        FLAGGED = :flagged
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
     end
   end

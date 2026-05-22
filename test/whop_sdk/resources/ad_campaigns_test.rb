@@ -9,19 +9,19 @@ class WhopSDK::Test::Resources::AdCampaignsTest < WhopSDK::Test::ResourceTest
     response = @whop.ad_campaigns.retrieve("adcamp_xxxxxxxxxxx")
 
     assert_pattern do
-      response => WhopSDK::Models::AdCampaignRetrieveResponse
+      response => WhopSDK::AdCampaign
     end
 
     assert_pattern do
       response => {
         id: String,
         budget: Float | nil,
-        budget_type: WhopSDK::Models::AdCampaignRetrieveResponse::BudgetType | nil,
+        budget_type: WhopSDK::AdBudgetType | nil,
         created_at: Time,
-        created_by_user: WhopSDK::Models::AdCampaignRetrieveResponse::CreatedByUser,
-        meta_config: WhopSDK::Models::AdCampaignRetrieveResponse::MetaConfig | nil,
-        platform: WhopSDK::Models::AdCampaignRetrieveResponse::Platform,
-        status: WhopSDK::Models::AdCampaignRetrieveResponse::Status,
+        created_by_user: WhopSDK::AdCampaign::CreatedByUser,
+        meta_config: WhopSDK::AdCampaign::MetaConfig | nil,
+        platform: WhopSDK::AdCampaignPlatform,
+        status: WhopSDK::AdCampaignStatus,
         title: String,
         total_spend: Float,
         updated_at: Time
@@ -35,19 +35,19 @@ class WhopSDK::Test::Resources::AdCampaignsTest < WhopSDK::Test::ResourceTest
     response = @whop.ad_campaigns.update("adcamp_xxxxxxxxxxx")
 
     assert_pattern do
-      response => WhopSDK::Models::AdCampaignUpdateResponse
+      response => WhopSDK::AdCampaign
     end
 
     assert_pattern do
       response => {
         id: String,
         budget: Float | nil,
-        budget_type: WhopSDK::Models::AdCampaignUpdateResponse::BudgetType | nil,
+        budget_type: WhopSDK::AdBudgetType | nil,
         created_at: Time,
-        created_by_user: WhopSDK::Models::AdCampaignUpdateResponse::CreatedByUser,
-        meta_config: WhopSDK::Models::AdCampaignUpdateResponse::MetaConfig | nil,
-        platform: WhopSDK::Models::AdCampaignUpdateResponse::Platform,
-        status: WhopSDK::Models::AdCampaignUpdateResponse::Status,
+        created_by_user: WhopSDK::AdCampaign::CreatedByUser,
+        meta_config: WhopSDK::AdCampaign::MetaConfig | nil,
+        platform: WhopSDK::AdCampaignPlatform,
+        status: WhopSDK::AdCampaignStatus,
         title: String,
         total_spend: Float,
         updated_at: Time
@@ -75,10 +75,10 @@ class WhopSDK::Test::Resources::AdCampaignsTest < WhopSDK::Test::ResourceTest
       row => {
         id: String,
         budget: Float | nil,
-        budget_type: WhopSDK::Models::AdCampaignListResponse::BudgetType | nil,
+        budget_type: WhopSDK::AdBudgetType | nil,
         created_at: Time,
-        platform: WhopSDK::Models::AdCampaignListResponse::Platform,
-        status: WhopSDK::Models::AdCampaignListResponse::Status,
+        platform: WhopSDK::AdCampaignPlatform,
+        status: WhopSDK::AdCampaignStatus,
         title: String,
         total_spend: Float,
         updated_at: Time
@@ -92,19 +92,19 @@ class WhopSDK::Test::Resources::AdCampaignsTest < WhopSDK::Test::ResourceTest
     response = @whop.ad_campaigns.pause("adcamp_xxxxxxxxxxx")
 
     assert_pattern do
-      response => WhopSDK::Models::AdCampaignPauseResponse
+      response => WhopSDK::AdCampaign
     end
 
     assert_pattern do
       response => {
         id: String,
         budget: Float | nil,
-        budget_type: WhopSDK::Models::AdCampaignPauseResponse::BudgetType | nil,
+        budget_type: WhopSDK::AdBudgetType | nil,
         created_at: Time,
-        created_by_user: WhopSDK::Models::AdCampaignPauseResponse::CreatedByUser,
-        meta_config: WhopSDK::Models::AdCampaignPauseResponse::MetaConfig | nil,
-        platform: WhopSDK::Models::AdCampaignPauseResponse::Platform,
-        status: WhopSDK::Models::AdCampaignPauseResponse::Status,
+        created_by_user: WhopSDK::AdCampaign::CreatedByUser,
+        meta_config: WhopSDK::AdCampaign::MetaConfig | nil,
+        platform: WhopSDK::AdCampaignPlatform,
+        status: WhopSDK::AdCampaignStatus,
         title: String,
         total_spend: Float,
         updated_at: Time
@@ -118,19 +118,19 @@ class WhopSDK::Test::Resources::AdCampaignsTest < WhopSDK::Test::ResourceTest
     response = @whop.ad_campaigns.unpause("adcamp_xxxxxxxxxxx")
 
     assert_pattern do
-      response => WhopSDK::Models::AdCampaignUnpauseResponse
+      response => WhopSDK::AdCampaign
     end
 
     assert_pattern do
       response => {
         id: String,
         budget: Float | nil,
-        budget_type: WhopSDK::Models::AdCampaignUnpauseResponse::BudgetType | nil,
+        budget_type: WhopSDK::AdBudgetType | nil,
         created_at: Time,
-        created_by_user: WhopSDK::Models::AdCampaignUnpauseResponse::CreatedByUser,
-        meta_config: WhopSDK::Models::AdCampaignUnpauseResponse::MetaConfig | nil,
-        platform: WhopSDK::Models::AdCampaignUnpauseResponse::Platform,
-        status: WhopSDK::Models::AdCampaignUnpauseResponse::Status,
+        created_by_user: WhopSDK::AdCampaign::CreatedByUser,
+        meta_config: WhopSDK::AdCampaign::MetaConfig | nil,
+        platform: WhopSDK::AdCampaignPlatform,
+        status: WhopSDK::AdCampaignStatus,
         title: String,
         total_spend: Float,
         updated_at: Time

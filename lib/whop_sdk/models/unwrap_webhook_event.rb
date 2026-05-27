@@ -7,6 +7,23 @@ module WhopSDK
 
       discriminator :type
 
+      variant :"course_lesson_interaction.completed",
+              -> { WhopSDK::CourseLessonInteractionCompletedWebhookEvent }
+
+      variant :"dispute.created", -> { WhopSDK::DisputeCreatedWebhookEvent }
+
+      variant :"dispute.updated", -> { WhopSDK::DisputeUpdatedWebhookEvent }
+
+      variant :"dispute_alert.created", -> { WhopSDK::DisputeAlertCreatedWebhookEvent }
+
+      variant :"entry.approved", -> { WhopSDK::EntryApprovedWebhookEvent }
+
+      variant :"entry.created", -> { WhopSDK::EntryCreatedWebhookEvent }
+
+      variant :"entry.deleted", -> { WhopSDK::EntryDeletedWebhookEvent }
+
+      variant :"entry.denied", -> { WhopSDK::EntryDeniedWebhookEvent }
+
       variant :"invoice.created", -> { WhopSDK::InvoiceCreatedWebhookEvent }
 
       variant :"invoice.marked_uncollectible", -> { WhopSDK::InvoiceMarkedUncollectibleWebhookEvent }
@@ -19,64 +36,47 @@ module WhopSDK
 
       variant :"membership.activated", -> { WhopSDK::MembershipActivatedWebhookEvent }
 
+      variant :"membership.cancel_at_period_end_changed",
+              -> { WhopSDK::MembershipCancelAtPeriodEndChangedWebhookEvent }
+
       variant :"membership.deactivated", -> { WhopSDK::MembershipDeactivatedWebhookEvent }
 
-      variant :"entry.created", -> { WhopSDK::EntryCreatedWebhookEvent }
-
-      variant :"entry.approved", -> { WhopSDK::EntryApprovedWebhookEvent }
-
-      variant :"entry.denied", -> { WhopSDK::EntryDeniedWebhookEvent }
-
-      variant :"entry.deleted", -> { WhopSDK::EntryDeletedWebhookEvent }
-
-      variant :"setup_intent.requires_action", -> { WhopSDK::SetupIntentRequiresActionWebhookEvent }
-
-      variant :"setup_intent.succeeded", -> { WhopSDK::SetupIntentSucceededWebhookEvent }
-
-      variant :"setup_intent.canceled", -> { WhopSDK::SetupIntentCanceledWebhookEvent }
-
-      variant :"withdrawal.created", -> { WhopSDK::WithdrawalCreatedWebhookEvent }
-
-      variant :"withdrawal.updated", -> { WhopSDK::WithdrawalUpdatedWebhookEvent }
-
-      variant :"course_lesson_interaction.completed",
-              -> { WhopSDK::CourseLessonInteractionCompletedWebhookEvent }
-
-      variant :"payout_method.created", -> { WhopSDK::PayoutMethodCreatedWebhookEvent }
-
-      variant :"verification.succeeded", -> { WhopSDK::VerificationSucceededWebhookEvent }
-
-      variant :"payout_account.status_updated", -> { WhopSDK::PayoutAccountStatusUpdatedWebhookEvent }
-
-      variant :"resolution_center_case.created", -> { WhopSDK::ResolutionCenterCaseCreatedWebhookEvent }
-
-      variant :"resolution_center_case.updated", -> { WhopSDK::ResolutionCenterCaseUpdatedWebhookEvent }
-
-      variant :"resolution_center_case.decided", -> { WhopSDK::ResolutionCenterCaseDecidedWebhookEvent }
-
       variant :"payment.created", -> { WhopSDK::PaymentCreatedWebhookEvent }
-
-      variant :"payment.succeeded", -> { WhopSDK::PaymentSucceededWebhookEvent }
 
       variant :"payment.failed", -> { WhopSDK::PaymentFailedWebhookEvent }
 
       variant :"payment.pending", -> { WhopSDK::PaymentPendingWebhookEvent }
 
-      variant :"dispute.created", -> { WhopSDK::DisputeCreatedWebhookEvent }
+      variant :"payment.succeeded", -> { WhopSDK::PaymentSucceededWebhookEvent }
 
-      variant :"dispute.updated", -> { WhopSDK::DisputeUpdatedWebhookEvent }
+      variant :"payout_account.status_updated", -> { WhopSDK::PayoutAccountStatusUpdatedWebhookEvent }
+
+      variant :"payout_method.created", -> { WhopSDK::PayoutMethodCreatedWebhookEvent }
 
       variant :"refund.created", -> { WhopSDK::RefundCreatedWebhookEvent }
 
       variant :"refund.updated", -> { WhopSDK::RefundUpdatedWebhookEvent }
 
-      variant :"dispute_alert.created", -> { WhopSDK::DisputeAlertCreatedWebhookEvent }
+      variant :"resolution_center_case.created", -> { WhopSDK::ResolutionCenterCaseCreatedWebhookEvent }
 
-      variant :"membership.cancel_at_period_end_changed",
-              -> { WhopSDK::MembershipCancelAtPeriodEndChangedWebhookEvent }
+      variant :"resolution_center_case.decided", -> { WhopSDK::ResolutionCenterCaseDecidedWebhookEvent }
+
+      variant :"resolution_center_case.updated", -> { WhopSDK::ResolutionCenterCaseUpdatedWebhookEvent }
+
+      variant :"setup_intent.canceled", -> { WhopSDK::SetupIntentCanceledWebhookEvent }
+
+      variant :"setup_intent.requires_action", -> { WhopSDK::SetupIntentRequiresActionWebhookEvent }
+
+      variant :"setup_intent.succeeded", -> { WhopSDK::SetupIntentSucceededWebhookEvent }
+
+      variant :"verification.succeeded", -> { WhopSDK::VerificationSucceededWebhookEvent }
+
+      variant :"withdrawal.created", -> { WhopSDK::WithdrawalCreatedWebhookEvent }
+
+      variant :"withdrawal.updated", -> { WhopSDK::WithdrawalUpdatedWebhookEvent }
 
       # @!method self.variants
-      #   @return [Array(WhopSDK::Models::InvoiceCreatedWebhookEvent, WhopSDK::Models::InvoiceMarkedUncollectibleWebhookEvent, WhopSDK::Models::InvoicePaidWebhookEvent, WhopSDK::Models::InvoicePastDueWebhookEvent, WhopSDK::Models::InvoiceVoidedWebhookEvent, WhopSDK::Models::MembershipActivatedWebhookEvent, WhopSDK::Models::MembershipDeactivatedWebhookEvent, WhopSDK::Models::EntryCreatedWebhookEvent, WhopSDK::Models::EntryApprovedWebhookEvent, WhopSDK::Models::EntryDeniedWebhookEvent, WhopSDK::Models::EntryDeletedWebhookEvent, WhopSDK::Models::SetupIntentRequiresActionWebhookEvent, WhopSDK::Models::SetupIntentSucceededWebhookEvent, WhopSDK::Models::SetupIntentCanceledWebhookEvent, WhopSDK::Models::WithdrawalCreatedWebhookEvent, WhopSDK::Models::WithdrawalUpdatedWebhookEvent, WhopSDK::Models::CourseLessonInteractionCompletedWebhookEvent, WhopSDK::Models::PayoutMethodCreatedWebhookEvent, WhopSDK::Models::VerificationSucceededWebhookEvent, WhopSDK::Models::PayoutAccountStatusUpdatedWebhookEvent, WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent, WhopSDK::Models::ResolutionCenterCaseUpdatedWebhookEvent, WhopSDK::Models::ResolutionCenterCaseDecidedWebhookEvent, WhopSDK::Models::PaymentCreatedWebhookEvent, WhopSDK::Models::PaymentSucceededWebhookEvent, WhopSDK::Models::PaymentFailedWebhookEvent, WhopSDK::Models::PaymentPendingWebhookEvent, WhopSDK::Models::DisputeCreatedWebhookEvent, WhopSDK::Models::DisputeUpdatedWebhookEvent, WhopSDK::Models::RefundCreatedWebhookEvent, WhopSDK::Models::RefundUpdatedWebhookEvent, WhopSDK::Models::DisputeAlertCreatedWebhookEvent, WhopSDK::Models::MembershipCancelAtPeriodEndChangedWebhookEvent)]
+      #   @return [Array(WhopSDK::Models::CourseLessonInteractionCompletedWebhookEvent, WhopSDK::Models::DisputeCreatedWebhookEvent, WhopSDK::Models::DisputeUpdatedWebhookEvent, WhopSDK::Models::DisputeAlertCreatedWebhookEvent, WhopSDK::Models::EntryApprovedWebhookEvent, WhopSDK::Models::EntryCreatedWebhookEvent, WhopSDK::Models::EntryDeletedWebhookEvent, WhopSDK::Models::EntryDeniedWebhookEvent, WhopSDK::Models::InvoiceCreatedWebhookEvent, WhopSDK::Models::InvoiceMarkedUncollectibleWebhookEvent, WhopSDK::Models::InvoicePaidWebhookEvent, WhopSDK::Models::InvoicePastDueWebhookEvent, WhopSDK::Models::InvoiceVoidedWebhookEvent, WhopSDK::Models::MembershipActivatedWebhookEvent, WhopSDK::Models::MembershipCancelAtPeriodEndChangedWebhookEvent, WhopSDK::Models::MembershipDeactivatedWebhookEvent, WhopSDK::Models::PaymentCreatedWebhookEvent, WhopSDK::Models::PaymentFailedWebhookEvent, WhopSDK::Models::PaymentPendingWebhookEvent, WhopSDK::Models::PaymentSucceededWebhookEvent, WhopSDK::Models::PayoutAccountStatusUpdatedWebhookEvent, WhopSDK::Models::PayoutMethodCreatedWebhookEvent, WhopSDK::Models::RefundCreatedWebhookEvent, WhopSDK::Models::RefundUpdatedWebhookEvent, WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent, WhopSDK::Models::ResolutionCenterCaseDecidedWebhookEvent, WhopSDK::Models::ResolutionCenterCaseUpdatedWebhookEvent, WhopSDK::Models::SetupIntentCanceledWebhookEvent, WhopSDK::Models::SetupIntentRequiresActionWebhookEvent, WhopSDK::Models::SetupIntentSucceededWebhookEvent, WhopSDK::Models::VerificationSucceededWebhookEvent, WhopSDK::Models::WithdrawalCreatedWebhookEvent, WhopSDK::Models::WithdrawalUpdatedWebhookEvent)]
     end
   end
 end

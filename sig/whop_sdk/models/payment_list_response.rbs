@@ -13,7 +13,7 @@ module WhopSDK
         checkout_configuration_id: String?,
         company: WhopSDK::Models::PaymentListResponse::Company?,
         created_at: Time,
-        currency: WhopSDK::Models::currency?,
+        currency: WhopSDK::Models::currency,
         dispute_alerted_at: Time?,
         failure_message: String?,
         last_payment_attempt: Time?,
@@ -32,7 +32,7 @@ module WhopSDK
         refunded_amount: Float?,
         refunded_at: Time?,
         retryable: bool,
-        settlement_currency: String,
+        settlement_currency: WhopSDK::Models::currency,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
@@ -68,7 +68,7 @@ module WhopSDK
 
       attr_accessor created_at: Time
 
-      attr_accessor currency: WhopSDK::Models::currency?
+      attr_accessor currency: WhopSDK::Models::currency
 
       attr_accessor dispute_alerted_at: Time?
 
@@ -106,7 +106,7 @@ module WhopSDK
 
       attr_accessor retryable: bool
 
-      attr_accessor settlement_currency: String
+      attr_accessor settlement_currency: WhopSDK::Models::currency
 
       attr_accessor status: WhopSDK::Models::receipt_status?
 
@@ -140,7 +140,7 @@ module WhopSDK
         checkout_configuration_id: String?,
         company: WhopSDK::Models::PaymentListResponse::Company?,
         created_at: Time,
-        currency: WhopSDK::Models::currency?,
+        currency: WhopSDK::Models::currency,
         dispute_alerted_at: Time?,
         failure_message: String?,
         last_payment_attempt: Time?,
@@ -159,7 +159,7 @@ module WhopSDK
         refunded_amount: Float?,
         refunded_at: Time?,
         retryable: bool,
-        settlement_currency: String,
+        settlement_currency: WhopSDK::Models::currency,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
@@ -184,7 +184,7 @@ module WhopSDK
         checkout_configuration_id: String?,
         company: WhopSDK::Models::PaymentListResponse::Company?,
         created_at: Time,
-        currency: WhopSDK::Models::currency?,
+        currency: WhopSDK::Models::currency,
         dispute_alerted_at: Time?,
         failure_message: String?,
         last_payment_attempt: Time?,
@@ -203,7 +203,7 @@ module WhopSDK
         refunded_amount: Float?,
         refunded_at: Time?,
         retryable: bool,
-        settlement_currency: String,
+        settlement_currency: WhopSDK::Models::currency,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
@@ -414,30 +414,59 @@ module WhopSDK
         end
       end
 
-      type plan = { id: String, internal_notes: String? }
+      type plan =
+        { id: String, internal_notes: String?, metadata: ::Hash[Symbol, top]? }
 
       class Plan < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor internal_notes: String?
 
-        def initialize: (id: String, internal_notes: String?) -> void
+        attr_accessor metadata: ::Hash[Symbol, top]?
 
-        def to_hash: -> { id: String, internal_notes: String? }
+        def initialize: (
+          id: String,
+          internal_notes: String?,
+          metadata: ::Hash[Symbol, top]?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          internal_notes: String?,
+          metadata: ::Hash[Symbol, top]?
+        }
       end
 
-      type product = { id: String, route: String, title: String }
+      type product =
+        {
+          id: String,
+          metadata: ::Hash[Symbol, top]?,
+          route: String,
+          title: String
+        }
 
       class Product < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
+
+        attr_accessor metadata: ::Hash[Symbol, top]?
 
         attr_accessor route: String
 
         attr_accessor title: String
 
-        def initialize: (id: String, route: String, title: String) -> void
+        def initialize: (
+          id: String,
+          metadata: ::Hash[Symbol, top]?,
+          route: String,
+          title: String
+        ) -> void
 
-        def to_hash: -> { id: String, route: String, title: String }
+        def to_hash: -> {
+          id: String,
+          metadata: ::Hash[Symbol, top]?,
+          route: String,
+          title: String
+        }
       end
 
       type promo_code =

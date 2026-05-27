@@ -4,12 +4,12 @@ module WhopSDK
       {
         id: String,
         budget: Float?,
-        budget_type: WhopSDK::Models::AdGroupUpdateParams::budget_type?,
+        budget_type: WhopSDK::Models::ad_budget_type?,
         config: WhopSDK::AdGroupUpdateParams::Config?,
         daily_budget: Float?,
         name: String?,
         platform_config: WhopSDK::AdGroupUpdateParams::PlatformConfig?,
-        status: WhopSDK::Models::AdGroupUpdateParams::status?
+        status: WhopSDK::Models::ad_group_status?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -21,7 +21,7 @@ module WhopSDK
 
       attr_accessor budget: Float?
 
-      attr_accessor budget_type: WhopSDK::Models::AdGroupUpdateParams::budget_type?
+      attr_accessor budget_type: WhopSDK::Models::ad_budget_type?
 
       attr_accessor config: WhopSDK::AdGroupUpdateParams::Config?
 
@@ -31,42 +31,31 @@ module WhopSDK
 
       attr_accessor platform_config: WhopSDK::AdGroupUpdateParams::PlatformConfig?
 
-      attr_accessor status: WhopSDK::Models::AdGroupUpdateParams::status?
+      attr_accessor status: WhopSDK::Models::ad_group_status?
 
       def initialize: (
         id: String,
         ?budget: Float?,
-        ?budget_type: WhopSDK::Models::AdGroupUpdateParams::budget_type?,
+        ?budget_type: WhopSDK::Models::ad_budget_type?,
         ?config: WhopSDK::AdGroupUpdateParams::Config?,
         ?daily_budget: Float?,
         ?name: String?,
         ?platform_config: WhopSDK::AdGroupUpdateParams::PlatformConfig?,
-        ?status: WhopSDK::Models::AdGroupUpdateParams::status?,
+        ?status: WhopSDK::Models::ad_group_status?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         id: String,
         budget: Float?,
-        budget_type: WhopSDK::Models::AdGroupUpdateParams::budget_type?,
+        budget_type: WhopSDK::Models::ad_budget_type?,
         config: WhopSDK::AdGroupUpdateParams::Config?,
         daily_budget: Float?,
         name: String?,
         platform_config: WhopSDK::AdGroupUpdateParams::PlatformConfig?,
-        status: WhopSDK::Models::AdGroupUpdateParams::status?,
+        status: WhopSDK::Models::ad_group_status?,
         request_options: WhopSDK::RequestOptions
       }
-
-      type budget_type = :daily | :lifetime
-
-      module BudgetType
-        extend WhopSDK::Internal::Type::Enum
-
-        DAILY: :daily
-        LIFETIME: :lifetime
-
-        def self?.values: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::budget_type]
-      end
 
       type config =
         {
@@ -2417,22 +2406,6 @@ module WhopSDK
             def self?.values: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::PlatformConfig::Tiktok::view_attribution_window]
           end
         end
-      end
-
-      type status =
-        :active | :paused | :inactive | :in_review | :rejected | :flagged
-
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        ACTIVE: :active
-        PAUSED: :paused
-        INACTIVE: :inactive
-        IN_REVIEW: :in_review
-        REJECTED: :rejected
-        FLAGGED: :flagged
-
-        def self?.values: -> ::Array[WhopSDK::Models::AdGroupUpdateParams::status]
       end
     end
   end

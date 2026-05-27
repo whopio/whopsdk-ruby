@@ -100,6 +100,13 @@ module WhopSDK
       #   @return [Integer, nil]
       required :member_count, Integer, nil?: true
 
+      # @!attribute metadata
+      #   Custom key-value pairs stored on the plan. Included in webhook payloads for
+      #   payment and membership events.
+      #
+      #   @return [Hash{Symbol=>Object}, nil]
+      required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
       # @!attribute payment_method_configuration
       #   The explicit payment method configuration specifying which payment methods are
       #   enabled or disabled for this plan. Null if the plan uses default settings.
@@ -198,7 +205,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility]
       required :visibility, enum: -> { WhopSDK::Visibility }
 
-      # @!method initialize(id:, adaptive_pricing_enabled:, billing_period:, collect_tax:, company:, created_at:, currency:, custom_fields:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, payment_method_configuration:, plan_type:, product:, purchase_url:, release_method:, renewal_price:, split_pay_required_payments:, stock:, tax_type:, title:, trial_period_days:, unlimited_stock:, updated_at:, visibility:)
+      # @!method initialize(id:, adaptive_pricing_enabled:, billing_period:, collect_tax:, company:, created_at:, currency:, custom_fields:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, metadata:, payment_method_configuration:, plan_type:, product:, purchase_url:, release_method:, renewal_price:, split_pay_required_payments:, stock:, tax_type:, title:, trial_period_days:, unlimited_stock:, updated_at:, visibility:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Plan}
       #   for more details.
       #
@@ -233,6 +240,8 @@ module WhopSDK
       #   @param invoice [WhopSDK::Models::Plan::Invoice, nil] The invoice this plan was generated for. Null if the plan was not created for a
       #
       #   @param member_count [Integer, nil] The number of users who currently hold an active membership through this plan. O
+      #
+      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the plan. Included in webhook payloads for paym
       #
       #   @param payment_method_configuration [WhopSDK::Models::Plan::PaymentMethodConfiguration, nil] The explicit payment method configuration specifying which payment methods are e
       #

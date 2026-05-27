@@ -80,6 +80,11 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :member_count
 
+      # Custom key-value pairs stored on the plan. Included in webhook payloads for
+      # payment and membership events.
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      attr_accessor :metadata
+
       # The explicit payment method configuration specifying which payment methods are
       # enabled or disabled for this plan. Null if the plan uses default settings.
       sig { returns(T.nilable(WhopSDK::Plan::PaymentMethodConfiguration)) }
@@ -180,6 +185,7 @@ module WhopSDK
           internal_notes: T.nilable(String),
           invoice: T.nilable(WhopSDK::Plan::Invoice::OrHash),
           member_count: T.nilable(Integer),
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
           payment_method_configuration:
             T.nilable(WhopSDK::Plan::PaymentMethodConfiguration::OrHash),
           plan_type: WhopSDK::PlanType::OrSymbol,
@@ -239,6 +245,9 @@ module WhopSDK
         # The number of users who currently hold an active membership through this plan.
         # Only visible to authorized team members.
         member_count:,
+        # Custom key-value pairs stored on the plan. Included in webhook payloads for
+        # payment and membership events.
+        metadata:,
         # The explicit payment method configuration specifying which payment methods are
         # enabled or disabled for this plan. Null if the plan uses default settings.
         payment_method_configuration:,
@@ -301,6 +310,7 @@ module WhopSDK
             internal_notes: T.nilable(String),
             invoice: T.nilable(WhopSDK::Plan::Invoice),
             member_count: T.nilable(Integer),
+            metadata: T.nilable(T::Hash[Symbol, T.anything]),
             payment_method_configuration:
               T.nilable(WhopSDK::Plan::PaymentMethodConfiguration),
             plan_type: WhopSDK::PlanType::TaggedSymbol,

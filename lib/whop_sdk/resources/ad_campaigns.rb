@@ -16,14 +16,14 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::AdCampaignRetrieveResponse]
+      # @return [WhopSDK::Models::AdCampaign]
       #
       # @see WhopSDK::Models::AdCampaignRetrieveParams
       def retrieve(id, params = {})
         @client.request(
           method: :get,
           path: ["ad_campaigns/%1$s", id],
-          model: WhopSDK::Models::AdCampaignRetrieveResponse,
+          model: WhopSDK::AdCampaign,
           options: params[:request_options]
         )
       end
@@ -45,7 +45,7 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::AdCampaignUpdateResponse]
+      # @return [WhopSDK::Models::AdCampaign]
       #
       # @see WhopSDK::Models::AdCampaignUpdateParams
       def update(id, params = {})
@@ -54,7 +54,7 @@ module WhopSDK
           method: :patch,
           path: ["ad_campaigns/%1$s", id],
           body: parsed,
-          model: WhopSDK::Models::AdCampaignUpdateResponse,
+          model: WhopSDK::AdCampaign,
           options: options
         )
       end
@@ -84,7 +84,7 @@ module WhopSDK
       #
       # @param query [String, nil] Case-insensitive substring match against the campaign title.
       #
-      # @param status [Symbol, WhopSDK::Models::AdCampaignListParams::Status, nil] The status of an ad campaign.
+      # @param status [Symbol, WhopSDK::Models::AdCampaignStatus, nil] The status of an ad campaign.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -116,14 +116,14 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::AdCampaignPauseResponse]
+      # @return [WhopSDK::Models::AdCampaign]
       #
       # @see WhopSDK::Models::AdCampaignPauseParams
       def pause(id, params = {})
         @client.request(
           method: :post,
           path: ["ad_campaigns/%1$s/pause", id],
-          model: WhopSDK::Models::AdCampaignPauseResponse,
+          model: WhopSDK::AdCampaign,
           options: params[:request_options]
         )
       end
@@ -140,14 +140,14 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::AdCampaignUnpauseResponse]
+      # @return [WhopSDK::Models::AdCampaign]
       #
       # @see WhopSDK::Models::AdCampaignUnpauseParams
       def unpause(id, params = {})
         @client.request(
           method: :post,
           path: ["ad_campaigns/%1$s/unpause", id],
-          model: WhopSDK::Models::AdCampaignUnpauseResponse,
+          model: WhopSDK::AdCampaign,
           options: params[:request_options]
         )
       end

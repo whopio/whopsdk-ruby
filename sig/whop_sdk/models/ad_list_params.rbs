@@ -11,6 +11,10 @@ module WhopSDK
         created_before: Time?,
         first: Integer?,
         last: Integer?,
+        order_by: WhopSDK::Models::AdListParams::order_by?,
+        order_direction: WhopSDK::Models::direction?,
+        stats_from: Time?,
+        stats_to: Time?,
         status: WhopSDK::Models::external_ad_status?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -37,6 +41,14 @@ module WhopSDK
 
       attr_accessor last: Integer?
 
+      attr_accessor order_by: WhopSDK::Models::AdListParams::order_by?
+
+      attr_accessor order_direction: WhopSDK::Models::direction?
+
+      attr_accessor stats_from: Time?
+
+      attr_accessor stats_to: Time?
+
       attr_accessor status: WhopSDK::Models::external_ad_status?
 
       def initialize: (
@@ -49,6 +61,10 @@ module WhopSDK
         ?created_before: Time?,
         ?first: Integer?,
         ?last: Integer?,
+        ?order_by: WhopSDK::Models::AdListParams::order_by?,
+        ?order_direction: WhopSDK::Models::direction?,
+        ?stats_from: Time?,
+        ?stats_to: Time?,
         ?status: WhopSDK::Models::external_ad_status?,
         ?request_options: WhopSDK::request_opts
       ) -> void
@@ -63,9 +79,24 @@ module WhopSDK
         created_before: Time?,
         first: Integer?,
         last: Integer?,
+        order_by: WhopSDK::Models::AdListParams::order_by?,
+        order_direction: WhopSDK::Models::direction?,
+        stats_from: Time?,
+        stats_to: Time?,
         status: WhopSDK::Models::external_ad_status?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type order_by = :spend | :roas
+
+      module OrderBy
+        extend WhopSDK::Internal::Type::Enum
+
+        SPEND: :spend
+        ROAS: :roas
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdListParams::order_by]
+      end
     end
   end
 end

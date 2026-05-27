@@ -41,39 +41,39 @@ module WhopSDK
         String payload,
         headers: ::Hash[String, String],
         ?key: String?
-      ) -> (WhopSDK::InvoiceCreatedWebhookEvent
+      ) -> (WhopSDK::CourseLessonInteractionCompletedWebhookEvent
+      | WhopSDK::DisputeCreatedWebhookEvent
+      | WhopSDK::DisputeUpdatedWebhookEvent
+      | WhopSDK::DisputeAlertCreatedWebhookEvent
+      | WhopSDK::EntryApprovedWebhookEvent
+      | WhopSDK::EntryCreatedWebhookEvent
+      | WhopSDK::EntryDeletedWebhookEvent
+      | WhopSDK::EntryDeniedWebhookEvent
+      | WhopSDK::InvoiceCreatedWebhookEvent
       | WhopSDK::InvoiceMarkedUncollectibleWebhookEvent
       | WhopSDK::InvoicePaidWebhookEvent
       | WhopSDK::InvoicePastDueWebhookEvent
       | WhopSDK::InvoiceVoidedWebhookEvent
       | WhopSDK::MembershipActivatedWebhookEvent
+      | WhopSDK::MembershipCancelAtPeriodEndChangedWebhookEvent
       | WhopSDK::MembershipDeactivatedWebhookEvent
-      | WhopSDK::EntryCreatedWebhookEvent
-      | WhopSDK::EntryApprovedWebhookEvent
-      | WhopSDK::EntryDeniedWebhookEvent
-      | WhopSDK::EntryDeletedWebhookEvent
-      | WhopSDK::SetupIntentRequiresActionWebhookEvent
-      | WhopSDK::SetupIntentSucceededWebhookEvent
-      | WhopSDK::SetupIntentCanceledWebhookEvent
-      | WhopSDK::WithdrawalCreatedWebhookEvent
-      | WhopSDK::WithdrawalUpdatedWebhookEvent
-      | WhopSDK::CourseLessonInteractionCompletedWebhookEvent
-      | WhopSDK::PayoutMethodCreatedWebhookEvent
-      | WhopSDK::VerificationSucceededWebhookEvent
-      | WhopSDK::PayoutAccountStatusUpdatedWebhookEvent
-      | WhopSDK::ResolutionCenterCaseCreatedWebhookEvent
-      | WhopSDK::ResolutionCenterCaseUpdatedWebhookEvent
-      | WhopSDK::ResolutionCenterCaseDecidedWebhookEvent
       | WhopSDK::PaymentCreatedWebhookEvent
-      | WhopSDK::PaymentSucceededWebhookEvent
       | WhopSDK::PaymentFailedWebhookEvent
       | WhopSDK::PaymentPendingWebhookEvent
-      | WhopSDK::DisputeCreatedWebhookEvent
-      | WhopSDK::DisputeUpdatedWebhookEvent
+      | WhopSDK::PaymentSucceededWebhookEvent
+      | WhopSDK::PayoutAccountStatusUpdatedWebhookEvent
+      | WhopSDK::PayoutMethodCreatedWebhookEvent
       | WhopSDK::RefundCreatedWebhookEvent
       | WhopSDK::RefundUpdatedWebhookEvent
-      | WhopSDK::DisputeAlertCreatedWebhookEvent
-      | WhopSDK::MembershipCancelAtPeriodEndChangedWebhookEvent)
+      | WhopSDK::ResolutionCenterCaseCreatedWebhookEvent
+      | WhopSDK::ResolutionCenterCaseDecidedWebhookEvent
+      | WhopSDK::ResolutionCenterCaseUpdatedWebhookEvent
+      | WhopSDK::SetupIntentCanceledWebhookEvent
+      | WhopSDK::SetupIntentRequiresActionWebhookEvent
+      | WhopSDK::SetupIntentSucceededWebhookEvent
+      | WhopSDK::VerificationSucceededWebhookEvent
+      | WhopSDK::WithdrawalCreatedWebhookEvent
+      | WhopSDK::WithdrawalUpdatedWebhookEvent)
 
       def initialize: (client: WhopSDK::Client) -> void
     end

@@ -93,6 +93,7 @@ module WhopSDK
       CNY = :cny
       USDT = :usdt
       KZT = :kzt
+      AWG = :awg
 
       # @!method self.values
       #   @return [Array<Symbol>]

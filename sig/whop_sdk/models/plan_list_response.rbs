@@ -23,6 +23,7 @@ module WhopSDK
         renewal_price: Float,
         split_pay_required_payments: Integer?,
         stock: Integer?,
+        three_ds_level: WhopSDK::Models::PlanListResponse::three_ds_level?,
         title: String?,
         trial_period_days: Integer?,
         unlimited_stock: bool,
@@ -73,6 +74,8 @@ module WhopSDK
 
       attr_accessor stock: Integer?
 
+      attr_accessor three_ds_level: WhopSDK::Models::PlanListResponse::three_ds_level?
+
       attr_accessor title: String?
 
       attr_accessor trial_period_days: Integer?
@@ -105,6 +108,7 @@ module WhopSDK
         renewal_price: Float,
         split_pay_required_payments: Integer?,
         stock: Integer?,
+        three_ds_level: WhopSDK::Models::PlanListResponse::three_ds_level?,
         title: String?,
         trial_period_days: Integer?,
         unlimited_stock: bool,
@@ -134,6 +138,7 @@ module WhopSDK
         renewal_price: Float,
         split_pay_required_payments: Integer?,
         stock: Integer?,
+        three_ds_level: WhopSDK::Models::PlanListResponse::three_ds_level?,
         title: String?,
         trial_period_days: Integer?,
         unlimited_stock: bool,
@@ -200,6 +205,17 @@ module WhopSDK
         def initialize: (id: String, title: String) -> void
 
         def to_hash: -> { id: String, title: String }
+      end
+
+      type three_ds_level = :mandate_challenge | :frictionless
+
+      module ThreeDSLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        MANDATE_CHALLENGE: :mandate_challenge
+        FRICTIONLESS: :frictionless
+
+        def self?.values: -> ::Array[WhopSDK::Models::PlanListResponse::three_ds_level]
       end
     end
   end

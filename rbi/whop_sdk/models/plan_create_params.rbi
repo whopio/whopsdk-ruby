@@ -135,6 +135,12 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :stock
 
+      # The 3D Secure behavior for a plan.
+      sig do
+        returns(T.nilable(WhopSDK::PlanCreateParams::ThreeDSLevel::OrSymbol))
+      end
+      attr_accessor :three_ds_level
+
       # The display name of the plan shown to customers on the product page.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
@@ -180,6 +186,8 @@ module WhopSDK
           renewal_price: T.nilable(Float),
           split_pay_required_payments: T.nilable(Integer),
           stock: T.nilable(Integer),
+          three_ds_level:
+            T.nilable(WhopSDK::PlanCreateParams::ThreeDSLevel::OrSymbol),
           title: T.nilable(String),
           trial_period_days: T.nilable(Integer),
           unlimited_stock: T.nilable(T::Boolean),
@@ -241,6 +249,8 @@ module WhopSDK
         # The maximum number of units available for purchase. Ignored when unlimited_stock
         # is true.
         stock: nil,
+        # The 3D Secure behavior for a plan.
+        three_ds_level: nil,
         # The display name of the plan shown to customers on the product page.
         title: nil,
         # The number of free trial days before the first charge on a recurring plan.
@@ -281,6 +291,8 @@ module WhopSDK
             renewal_price: T.nilable(Float),
             split_pay_required_payments: T.nilable(Integer),
             stock: T.nilable(Integer),
+            three_ds_level:
+              T.nilable(WhopSDK::PlanCreateParams::ThreeDSLevel::OrSymbol),
             title: T.nilable(String),
             trial_period_days: T.nilable(Integer),
             unlimited_stock: T.nilable(T::Boolean),
@@ -515,6 +527,36 @@ module WhopSDK
           )
         end
         def to_hash
+        end
+      end
+
+      # The 3D Secure behavior for a plan.
+      module ThreeDSLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::PlanCreateParams::ThreeDSLevel)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        MANDATE_CHALLENGE =
+          T.let(
+            :mandate_challenge,
+            WhopSDK::PlanCreateParams::ThreeDSLevel::TaggedSymbol
+          )
+        FRICTIONLESS =
+          T.let(
+            :frictionless,
+            WhopSDK::PlanCreateParams::ThreeDSLevel::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::PlanCreateParams::ThreeDSLevel::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
     end

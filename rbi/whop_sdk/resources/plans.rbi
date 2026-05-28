@@ -40,6 +40,8 @@ module WhopSDK
           renewal_price: T.nilable(Float),
           split_pay_required_payments: T.nilable(Integer),
           stock: T.nilable(Integer),
+          three_ds_level:
+            T.nilable(WhopSDK::PlanCreateParams::ThreeDSLevel::OrSymbol),
           title: T.nilable(String),
           trial_period_days: T.nilable(Integer),
           unlimited_stock: T.nilable(T::Boolean),
@@ -101,6 +103,8 @@ module WhopSDK
         # The maximum number of units available for purchase. Ignored when unlimited_stock
         # is true.
         stock: nil,
+        # The 3D Secure behavior for a plan.
+        three_ds_level: nil,
         # The display name of the plan shown to customers on the product page.
         title: nil,
         # The number of free trial days before the first charge on a recurring plan.
@@ -167,6 +171,8 @@ module WhopSDK
           stock: T.nilable(Integer),
           strike_through_initial_price: T.nilable(Float),
           strike_through_renewal_price: T.nilable(Float),
+          three_ds_level:
+            T.nilable(WhopSDK::PlanUpdateParams::ThreeDSLevel::OrSymbol),
           title: T.nilable(String),
           trial_period_days: T.nilable(Integer),
           unlimited_stock: T.nilable(T::Boolean),
@@ -227,6 +233,8 @@ module WhopSDK
         # A comparison price displayed with a strikethrough for the renewal price.
         # Provided in the plan's currency (e.g., 19.99 for $19.99).
         strike_through_renewal_price: nil,
+        # The 3D Secure behavior for a plan.
+        three_ds_level: nil,
         # The display name of the plan shown to customers on the product page.
         title: nil,
         # The number of free trial days before the first charge on a recurring plan.

@@ -96,6 +96,7 @@ module WhopSDK
       CNY = T.let(:cny, WhopSDK::Currency::TaggedSymbol)
       USDT = T.let(:usdt, WhopSDK::Currency::TaggedSymbol)
       KZT = T.let(:kzt, WhopSDK::Currency::TaggedSymbol)
+      AWG = T.let(:awg, WhopSDK::Currency::TaggedSymbol)
 
       sig { override.returns(T::Array[WhopSDK::Currency::TaggedSymbol]) }
       def self.values

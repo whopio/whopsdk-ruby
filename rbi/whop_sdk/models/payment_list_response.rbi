@@ -741,6 +741,10 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
+        # The phone number associated with this membership.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :phone_number
+
         # The state of the membership.
         sig { returns(WhopSDK::MembershipStatus::TaggedSymbol) }
         attr_accessor :status
@@ -749,12 +753,15 @@ module WhopSDK
         sig do
           params(
             id: String,
+            phone_number: T.nilable(String),
             status: WhopSDK::MembershipStatus::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(
           # The unique identifier for the membership.
           id:,
+          # The phone number associated with this membership.
+          phone_number:,
           # The state of the membership.
           status:
         )
@@ -762,7 +769,11 @@ module WhopSDK
 
         sig do
           override.returns(
-            { id: String, status: WhopSDK::MembershipStatus::TaggedSymbol }
+            {
+              id: String,
+              phone_number: T.nilable(String),
+              status: WhopSDK::MembershipStatus::TaggedSymbol
+            }
           )
         end
         def to_hash

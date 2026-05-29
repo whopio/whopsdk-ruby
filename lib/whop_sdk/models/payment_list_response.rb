@@ -525,16 +525,24 @@ module WhopSDK
         #   @return [String]
         required :id, String
 
+        # @!attribute phone_number
+        #   The phone number associated with this membership.
+        #
+        #   @return [String, nil]
+        required :phone_number, String, nil?: true
+
         # @!attribute status
         #   The state of the membership.
         #
         #   @return [Symbol, WhopSDK::Models::MembershipStatus]
         required :status, enum: -> { WhopSDK::MembershipStatus }
 
-        # @!method initialize(id:, status:)
+        # @!method initialize(id:, phone_number:, status:)
         #   The membership attached to this payment.
         #
         #   @param id [String] The unique identifier for the membership.
+        #
+        #   @param phone_number [String, nil] The phone number associated with this membership.
         #
         #   @param status [Symbol, WhopSDK::Models::MembershipStatus] The state of the membership.
       end

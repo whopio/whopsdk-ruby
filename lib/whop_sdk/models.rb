@@ -426,6 +426,14 @@ module WhopSDK
 
   Granularities = WhopSDK::Models::Granularities
 
+  IdentityProfileApprovedWebhookEvent = WhopSDK::Models::IdentityProfileApprovedWebhookEvent
+
+  IdentityProfileNeedsActionWebhookEvent = WhopSDK::Models::IdentityProfileNeedsActionWebhookEvent
+
+  IdentityProfileRejectedWebhookEvent = WhopSDK::Models::IdentityProfileRejectedWebhookEvent
+
+  IdentityProfileUpdatedWebhookEvent = WhopSDK::Models::IdentityProfileUpdatedWebhookEvent
+
   Invoice = WhopSDK::Models::Invoice
 
   InvoiceCreatedWebhookEvent = WhopSDK::Models::InvoiceCreatedWebhookEvent

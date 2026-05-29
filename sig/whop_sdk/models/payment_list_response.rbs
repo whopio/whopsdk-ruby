@@ -332,20 +332,28 @@ module WhopSDK
       end
 
       type membership =
-        { id: String, status: WhopSDK::Models::membership_status }
+        {
+          id: String,
+          phone_number: String?,
+          status: WhopSDK::Models::membership_status
+        }
 
       class Membership < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
+
+        attr_accessor phone_number: String?
 
         attr_accessor status: WhopSDK::Models::membership_status
 
         def initialize: (
           id: String,
+          phone_number: String?,
           status: WhopSDK::Models::membership_status
         ) -> void
 
         def to_hash: -> {
           id: String,
+          phone_number: String?,
           status: WhopSDK::Models::membership_status
         }
       end

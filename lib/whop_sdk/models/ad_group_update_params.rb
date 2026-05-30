@@ -961,6 +961,7 @@ module WhopSDK
             IMAGINE = :IMAGINE
             LEAD_FROM_IG_DIRECT = :LEAD_FROM_IG_DIRECT
             LEAD_FROM_MESSENGER = :LEAD_FROM_MESSENGER
+            LEAD_FORM_MESSENGER = :LEAD_FORM_MESSENGER
             WEBSITE_AND_LEAD_FORM = :WEBSITE_AND_LEAD_FORM
             WEBSITE_AND_PHONE_CALL = :WEBSITE_AND_PHONE_CALL
             BROADCAST_CHANNEL = :BROADCAST_CHANNEL
@@ -1387,6 +1388,7 @@ module WhopSDK
 
             WEBSITE = :website
             INSTANT_FORMS = :instant_forms
+            WEBSITE_AND_INSTANT_FORMS = :website_and_instant_forms
             MESSENGER = :messenger
             INSTAGRAM = :instagram
             CALLS = :calls

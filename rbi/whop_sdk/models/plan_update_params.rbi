@@ -131,6 +131,12 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :strike_through_renewal_price
 
+      # The 3D Secure behavior for a plan.
+      sig do
+        returns(T.nilable(WhopSDK::PlanUpdateParams::ThreeDSLevel::OrSymbol))
+      end
+      attr_accessor :three_ds_level
+
       # The display name of the plan shown to customers on the product page.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
@@ -174,6 +180,8 @@ module WhopSDK
           stock: T.nilable(Integer),
           strike_through_initial_price: T.nilable(Float),
           strike_through_renewal_price: T.nilable(Float),
+          three_ds_level:
+            T.nilable(WhopSDK::PlanUpdateParams::ThreeDSLevel::OrSymbol),
           title: T.nilable(String),
           trial_period_days: T.nilable(Integer),
           unlimited_stock: T.nilable(T::Boolean),
@@ -233,6 +241,8 @@ module WhopSDK
         # A comparison price displayed with a strikethrough for the renewal price.
         # Provided in the plan's currency (e.g., 19.99 for $19.99).
         strike_through_renewal_price: nil,
+        # The 3D Secure behavior for a plan.
+        three_ds_level: nil,
         # The display name of the plan shown to customers on the product page.
         title: nil,
         # The number of free trial days before the first charge on a recurring plan.
@@ -271,6 +281,8 @@ module WhopSDK
             stock: T.nilable(Integer),
             strike_through_initial_price: T.nilable(Float),
             strike_through_renewal_price: T.nilable(Float),
+            three_ds_level:
+              T.nilable(WhopSDK::PlanUpdateParams::ThreeDSLevel::OrSymbol),
             title: T.nilable(String),
             trial_period_days: T.nilable(Integer),
             unlimited_stock: T.nilable(T::Boolean),
@@ -505,6 +517,36 @@ module WhopSDK
           )
         end
         def to_hash
+        end
+      end
+
+      # The 3D Secure behavior for a plan.
+      module ThreeDSLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::PlanUpdateParams::ThreeDSLevel)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        MANDATE_CHALLENGE =
+          T.let(
+            :mandate_challenge,
+            WhopSDK::PlanUpdateParams::ThreeDSLevel::TaggedSymbol
+          )
+        FRICTIONLESS =
+          T.let(
+            :frictionless,
+            WhopSDK::PlanUpdateParams::ThreeDSLevel::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::PlanUpdateParams::ThreeDSLevel::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
     end

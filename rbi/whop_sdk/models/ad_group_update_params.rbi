@@ -1860,6 +1860,11 @@ module WhopSDK
                 :LEAD_FROM_MESSENGER,
                 WhopSDK::AdGroupUpdateParams::PlatformConfig::Meta::DestinationType::TaggedSymbol
               )
+            LEAD_FORM_MESSENGER =
+              T.let(
+                :LEAD_FORM_MESSENGER,
+                WhopSDK::AdGroupUpdateParams::PlatformConfig::Meta::DestinationType::TaggedSymbol
+              )
             WEBSITE_AND_LEAD_FORM =
               T.let(
                 :WEBSITE_AND_LEAD_FORM,
@@ -2631,6 +2636,11 @@ module WhopSDK
             INSTANT_FORMS =
               T.let(
                 :instant_forms,
+                WhopSDK::AdGroupUpdateParams::PlatformConfig::Meta::LeadConversionLocation::TaggedSymbol
+              )
+            WEBSITE_AND_INSTANT_FORMS =
+              T.let(
+                :website_and_instant_forms,
                 WhopSDK::AdGroupUpdateParams::PlatformConfig::Meta::LeadConversionLocation::TaggedSymbol
               )
             MESSENGER =

@@ -11,10 +11,6 @@ module WhopSDK
           T.any(WhopSDK::AdCampaignListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The unique identifier of the company to list ad campaigns for.
-      sig { returns(String) }
-      attr_accessor :company_id
-
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_accessor :after
@@ -22,6 +18,10 @@ module WhopSDK
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_accessor :before
+
+      # The unique identifier of the company to list ad campaigns for.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :company_id
 
       # Only return ad campaigns created after this timestamp.
       sig { returns(T.nilable(Time)) }
@@ -49,9 +49,9 @@ module WhopSDK
 
       sig do
         params(
-          company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
+          company_id: T.nilable(String),
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
           first: T.nilable(Integer),
@@ -62,12 +62,12 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier of the company to list ad campaigns for.
-        company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
+        # The unique identifier of the company to list ad campaigns for.
+        company_id: nil,
         # Only return ad campaigns created after this timestamp.
         created_after: nil,
         # Only return ad campaigns created before this timestamp.
@@ -87,9 +87,9 @@ module WhopSDK
       sig do
         override.returns(
           {
-            company_id: String,
             after: T.nilable(String),
             before: T.nilable(String),
+            company_id: T.nilable(String),
             created_after: T.nilable(Time),
             created_before: T.nilable(Time),
             first: T.nilable(Integer),

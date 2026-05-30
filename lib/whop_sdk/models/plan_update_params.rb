@@ -142,6 +142,12 @@ module WhopSDK
       #   @return [Float, nil]
       optional :strike_through_renewal_price, Float, nil?: true
 
+      # @!attribute three_ds_level
+      #   The 3D Secure behavior for a plan.
+      #
+      #   @return [Symbol, WhopSDK::Models::PlanUpdateParams::ThreeDSLevel, nil]
+      optional :three_ds_level, enum: -> { WhopSDK::PlanUpdateParams::ThreeDSLevel }, nil?: true
+
       # @!attribute title
       #   The display name of the plan shown to customers on the product page.
       #
@@ -166,7 +172,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility, nil]
       optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-      # @!method initialize(id:, adaptive_pricing_enabled: nil, billing_period: nil, checkout_styling: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, metadata: nil, offer_cancel_discount: nil, override_tax_type: nil, payment_method_configuration: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
+      # @!method initialize(id:, adaptive_pricing_enabled: nil, billing_period: nil, checkout_styling: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, metadata: nil, offer_cancel_discount: nil, override_tax_type: nil, payment_method_configuration: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, three_ds_level: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PlanUpdateParams} for more details.
       #
@@ -209,6 +215,8 @@ module WhopSDK
       #   @param strike_through_initial_price [Float, nil] A comparison price displayed with a strikethrough for the initial price. Provide
       #
       #   @param strike_through_renewal_price [Float, nil] A comparison price displayed with a strikethrough for the renewal price. Provide
+      #
+      #   @param three_ds_level [Symbol, WhopSDK::Models::PlanUpdateParams::ThreeDSLevel, nil] The 3D Secure behavior for a plan.
       #
       #   @param title [String, nil] The display name of the plan shown to customers on the product page.
       #
@@ -364,6 +372,17 @@ module WhopSDK
         #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
         #
         #   @param include_platform_defaults [Boolean, nil] Whether Whop's platform default payment method enablement settings are included
+      end
+
+      # The 3D Secure behavior for a plan.
+      module ThreeDSLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        MANDATE_CHALLENGE = :mandate_challenge
+        FRICTIONLESS = :frictionless
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

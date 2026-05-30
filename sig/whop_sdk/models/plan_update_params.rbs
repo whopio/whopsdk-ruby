@@ -22,6 +22,7 @@ module WhopSDK
         stock: Integer?,
         strike_through_initial_price: Float?,
         strike_through_renewal_price: Float?,
+        three_ds_level: WhopSDK::Models::PlanUpdateParams::three_ds_level?,
         title: String?,
         trial_period_days: Integer?,
         unlimited_stock: bool?,
@@ -73,6 +74,8 @@ module WhopSDK
 
       attr_accessor strike_through_renewal_price: Float?
 
+      attr_accessor three_ds_level: WhopSDK::Models::PlanUpdateParams::three_ds_level?
+
       attr_accessor title: String?
 
       attr_accessor trial_period_days: Integer?
@@ -102,6 +105,7 @@ module WhopSDK
         ?stock: Integer?,
         ?strike_through_initial_price: Float?,
         ?strike_through_renewal_price: Float?,
+        ?three_ds_level: WhopSDK::Models::PlanUpdateParams::three_ds_level?,
         ?title: String?,
         ?trial_period_days: Integer?,
         ?unlimited_stock: bool?,
@@ -130,6 +134,7 @@ module WhopSDK
         stock: Integer?,
         strike_through_initial_price: Float?,
         strike_through_renewal_price: Float?,
+        three_ds_level: WhopSDK::Models::PlanUpdateParams::three_ds_level?,
         title: String?,
         trial_period_days: Integer?,
         unlimited_stock: bool?,
@@ -246,6 +251,17 @@ module WhopSDK
           enabled: ::Array[WhopSDK::Models::payment_method_types],
           include_platform_defaults: bool?
         }
+      end
+
+      type three_ds_level = :mandate_challenge | :frictionless
+
+      module ThreeDSLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        MANDATE_CHALLENGE: :mandate_challenge
+        FRICTIONLESS: :frictionless
+
+        def self?.values: -> ::Array[WhopSDK::Models::PlanUpdateParams::three_ds_level]
       end
     end
   end

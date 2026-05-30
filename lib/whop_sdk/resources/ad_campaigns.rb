@@ -66,13 +66,13 @@ module WhopSDK
       #
       # - `ad_campaign:basic:read`
       #
-      # @overload list(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, query: nil, status: nil, request_options: {})
-      #
-      # @param company_id [String] The unique identifier of the company to list ad campaigns for.
+      # @overload list(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, last: nil, query: nil, status: nil, request_options: {})
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      # @param company_id [String, nil] The unique identifier of the company to list ad campaigns for.
       #
       # @param created_after [Time, nil] Only return ad campaigns created after this timestamp.
       #
@@ -91,7 +91,7 @@ module WhopSDK
       # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::AdCampaignListResponse>]
       #
       # @see WhopSDK::Models::AdCampaignListParams
-      def list(params)
+      def list(params = {})
         parsed, options = WhopSDK::AdCampaignListParams.dump_request(params)
         query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(

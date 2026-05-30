@@ -55,10 +55,10 @@ class WhopSDK::Test::Resources::AdCampaignsTest < WhopSDK::Test::ResourceTest
     end
   end
 
-  def test_list_required_params
+  def test_list
     skip("Mock server tests are disabled")
 
-    response = @whop.ad_campaigns.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.ad_campaigns.list
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage

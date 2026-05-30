@@ -152,6 +152,12 @@ module WhopSDK
       #   @return [Integer, nil]
       required :stock, Integer, nil?: true
 
+      # @!attribute three_ds_level
+      #   The 3D Secure behavior for a plan.
+      #
+      #   @return [Symbol, WhopSDK::Models::PlanListResponse::ThreeDSLevel, nil]
+      required :three_ds_level, enum: -> { WhopSDK::Models::PlanListResponse::ThreeDSLevel }, nil?: true
+
       # @!attribute title
       #   The display name of the plan shown to customers on the product page and at
       #   checkout. Maximum 30 characters. Null if no title has been set.
@@ -187,7 +193,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility]
       required :visibility, enum: -> { WhopSDK::Visibility }
 
-      # @!method initialize(id:, adaptive_pricing_enabled:, billing_period:, company:, created_at:, currency:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, metadata:, payment_method_configuration:, plan_type:, product:, purchase_url:, release_method:, renewal_price:, split_pay_required_payments:, stock:, title:, trial_period_days:, unlimited_stock:, updated_at:, visibility:)
+      # @!method initialize(id:, adaptive_pricing_enabled:, billing_period:, company:, created_at:, currency:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, metadata:, payment_method_configuration:, plan_type:, product:, purchase_url:, release_method:, renewal_price:, split_pay_required_payments:, stock:, three_ds_level:, title:, trial_period_days:, unlimited_stock:, updated_at:, visibility:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PlanListResponse} for more details.
       #
@@ -236,6 +242,8 @@ module WhopSDK
       #   @param split_pay_required_payments [Integer, nil] The total number of installment payments required before the subscription pauses
       #
       #   @param stock [Integer, nil] The number of units available for purchase. Only visible to authorized team memb
+      #
+      #   @param three_ds_level [Symbol, WhopSDK::Models::PlanListResponse::ThreeDSLevel, nil] The 3D Secure behavior for a plan.
       #
       #   @param title [String, nil] The display name of the plan shown to customers on the product page and at check
       #
@@ -351,6 +359,19 @@ module WhopSDK
         #   @param id [String] The unique identifier for the product.
         #
         #   @param title [String] The display name of the product shown to customers on the product page and in se
+      end
+
+      # The 3D Secure behavior for a plan.
+      #
+      # @see WhopSDK::Models::PlanListResponse#three_ds_level
+      module ThreeDSLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        MANDATE_CHALLENGE = :mandate_challenge
+        FRICTIONLESS = :frictionless
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

@@ -141,6 +141,10 @@ module WhopSDK
       sig { returns(WhopSDK::TaxType::TaggedSymbol) }
       attr_accessor :tax_type
 
+      # The 3D Secure behavior for a plan.
+      sig { returns(T.nilable(WhopSDK::Plan::ThreeDSLevel::TaggedSymbol)) }
+      attr_accessor :three_ds_level
+
       # The display name of the plan shown to customers on the product page and at
       # checkout. Maximum 30 characters. Null if no title has been set.
       sig { returns(T.nilable(String)) }
@@ -196,6 +200,7 @@ module WhopSDK
           split_pay_required_payments: T.nilable(Integer),
           stock: T.nilable(Integer),
           tax_type: WhopSDK::TaxType::OrSymbol,
+          three_ds_level: T.nilable(WhopSDK::Plan::ThreeDSLevel::OrSymbol),
           title: T.nilable(String),
           trial_period_days: T.nilable(Integer),
           unlimited_stock: T::Boolean,
@@ -275,6 +280,8 @@ module WhopSDK
         # How tax is handled for this plan: 'inclusive' (tax included in price),
         # 'exclusive' (tax added at checkout), or 'unspecified' (tax not configured).
         tax_type:,
+        # The 3D Secure behavior for a plan.
+        three_ds_level:,
         # The display name of the plan shown to customers on the product page and at
         # checkout. Maximum 30 characters. Null if no title has been set.
         title:,
@@ -321,6 +328,8 @@ module WhopSDK
             split_pay_required_payments: T.nilable(Integer),
             stock: T.nilable(Integer),
             tax_type: WhopSDK::TaxType::TaggedSymbol,
+            three_ds_level:
+              T.nilable(WhopSDK::Plan::ThreeDSLevel::TaggedSymbol),
             title: T.nilable(String),
             trial_period_days: T.nilable(Integer),
             unlimited_stock: T::Boolean,
@@ -553,6 +562,26 @@ module WhopSDK
 
         sig { override.returns({ id: String, title: String }) }
         def to_hash
+        end
+      end
+
+      # The 3D Secure behavior for a plan.
+      module ThreeDSLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::Plan::ThreeDSLevel) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        MANDATE_CHALLENGE =
+          T.let(:mandate_challenge, WhopSDK::Plan::ThreeDSLevel::TaggedSymbol)
+        FRICTIONLESS =
+          T.let(:frictionless, WhopSDK::Plan::ThreeDSLevel::TaggedSymbol)
+
+        sig do
+          override.returns(T::Array[WhopSDK::Plan::ThreeDSLevel::TaggedSymbol])
+        end
+        def self.values
         end
       end
     end

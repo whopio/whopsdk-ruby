@@ -27,11 +27,6 @@ module WhopSDK
           :merchant_wins,
           WhopSDK::ResolutionCenterCasePlatformResponse::TaggedSymbol
         )
-      PLATFORM_REFUND =
-        T.let(
-          :platform_refund,
-          WhopSDK::ResolutionCenterCasePlatformResponse::TaggedSymbol
-        )
       MERCHANT_REFUND =
         T.let(
           :merchant_refund,

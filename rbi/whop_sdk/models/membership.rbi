@@ -384,15 +384,32 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
+        # Custom key-value pairs stored on the plan. Included in webhook payloads for
+        # payment and membership events.
+        sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+        attr_accessor :metadata
+
         # The plan the customer purchased to create this membership.
-        sig { params(id: String).returns(T.attached_class) }
+        sig do
+          params(
+            id: String,
+            metadata: T.nilable(T::Hash[Symbol, T.anything])
+          ).returns(T.attached_class)
+        end
         def self.new(
           # The unique identifier for the plan.
-          id:
+          id:,
+          # Custom key-value pairs stored on the plan. Included in webhook payloads for
+          # payment and membership events.
+          metadata:
         )
         end
 
-        sig { override.returns({ id: String }) }
+        sig do
+          override.returns(
+            { id: String, metadata: T.nilable(T::Hash[Symbol, T.anything]) }
+          )
+        end
         def to_hash
         end
       end
@@ -407,23 +424,45 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
+        # Custom key-value pairs stored on the product. Included in webhook payloads for
+        # payment and membership events.
+        sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+        attr_accessor :metadata
+
         # The display name of the product shown to customers on the product page and in
         # search results.
         sig { returns(String) }
         attr_accessor :title
 
         # The product this membership grants access to.
-        sig { params(id: String, title: String).returns(T.attached_class) }
+        sig do
+          params(
+            id: String,
+            metadata: T.nilable(T::Hash[Symbol, T.anything]),
+            title: String
+          ).returns(T.attached_class)
+        end
         def self.new(
           # The unique identifier for the product.
           id:,
+          # Custom key-value pairs stored on the product. Included in webhook payloads for
+          # payment and membership events.
+          metadata:,
           # The display name of the product shown to customers on the product page and in
           # search results.
           title:
         )
         end
 
-        sig { override.returns({ id: String, title: String }) }
+        sig do
+          override.returns(
+            {
+              id: String,
+              metadata: T.nilable(T::Hash[Symbol, T.anything]),
+              title: String
+            }
+          )
+        end
         def to_hash
         end
       end

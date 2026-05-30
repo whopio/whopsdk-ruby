@@ -33,7 +33,8 @@ module WhopSDK
       end
       attr_writer :company
 
-      # The member's token balance for this company
+      # The member's token balance for this company. Computed live from the ledger, not
+      # from a cache.
       sig { returns(Float) }
       attr_accessor :company_token_balance
 
@@ -110,7 +111,8 @@ module WhopSDK
         access_level:,
         # The company for the member.
         company:,
-        # The member's token balance for this company
+        # The member's token balance for this company. Computed live from the ledger, not
+        # from a cache.
         company_token_balance:,
         # The datetime the company member was created.
         created_at:,

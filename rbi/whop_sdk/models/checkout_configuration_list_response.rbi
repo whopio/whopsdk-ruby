@@ -289,6 +289,16 @@ module WhopSDK
         sig { returns(Float) }
         attr_accessor :renewal_price
 
+        # The 3D Secure behavior for a plan.
+        sig do
+          returns(
+            T.nilable(
+              WhopSDK::Models::CheckoutConfigurationListResponse::Plan::ThreeDSLevel::TaggedSymbol
+            )
+          )
+        end
+        attr_accessor :three_ds_level
+
         # The number of free trial days before the first charge on a renewal plan. Null if
         # no trial is configured or the current user has already used a trial for this
         # plan.
@@ -312,6 +322,10 @@ module WhopSDK
             plan_type: WhopSDK::PlanType::OrSymbol,
             release_method: WhopSDK::ReleaseMethod::OrSymbol,
             renewal_price: Float,
+            three_ds_level:
+              T.nilable(
+                WhopSDK::Models::CheckoutConfigurationListResponse::Plan::ThreeDSLevel::OrSymbol
+              ),
             trial_period_days: T.nilable(Integer),
             visibility: WhopSDK::Visibility::OrSymbol
           ).returns(T.attached_class)
@@ -344,6 +358,8 @@ module WhopSDK
           # The recurring price charged every billing_period in the plan's base_currency
           # (e.g., 9.99 for $9.99/period). Zero for one-time plans.
           renewal_price:,
+          # The 3D Secure behavior for a plan.
+          three_ds_level:,
           # The number of free trial days before the first charge on a renewal plan. Null if
           # no trial is configured or the current user has already used a trial for this
           # plan.
@@ -366,12 +382,51 @@ module WhopSDK
               plan_type: WhopSDK::PlanType::TaggedSymbol,
               release_method: WhopSDK::ReleaseMethod::TaggedSymbol,
               renewal_price: Float,
+              three_ds_level:
+                T.nilable(
+                  WhopSDK::Models::CheckoutConfigurationListResponse::Plan::ThreeDSLevel::TaggedSymbol
+                ),
               trial_period_days: T.nilable(Integer),
               visibility: WhopSDK::Visibility::TaggedSymbol
             }
           )
         end
         def to_hash
+        end
+
+        # The 3D Secure behavior for a plan.
+        module ThreeDSLevel
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                WhopSDK::Models::CheckoutConfigurationListResponse::Plan::ThreeDSLevel
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          MANDATE_CHALLENGE =
+            T.let(
+              :mandate_challenge,
+              WhopSDK::Models::CheckoutConfigurationListResponse::Plan::ThreeDSLevel::TaggedSymbol
+            )
+          FRICTIONLESS =
+            T.let(
+              :frictionless,
+              WhopSDK::Models::CheckoutConfigurationListResponse::Plan::ThreeDSLevel::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                WhopSDK::Models::CheckoutConfigurationListResponse::Plan::ThreeDSLevel::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
     end

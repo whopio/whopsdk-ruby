@@ -1,0 +1,14 @@
+module WhopSDK
+  module Models
+    type file_visibility = :public | :private
+
+    module FileVisibility
+      extend WhopSDK::Internal::Type::Enum
+
+      PUBLIC: :public
+      PRIVATE: :private
+
+      def self?.values: -> ::Array[WhopSDK::Models::file_visibility]
+    end
+  end
+end

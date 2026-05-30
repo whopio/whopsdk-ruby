@@ -64,8 +64,8 @@ module WhopSDK
       # @!attribute status
       #   The status of an external ad group.
       #
-      #   @return [Symbol, WhopSDK::Models::AdGroupListParams::Status, nil]
-      optional :status, enum: -> { WhopSDK::AdGroupListParams::Status }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::AdGroupStatus, nil]
+      optional :status, enum: -> { WhopSDK::AdGroupStatus }, nil?: true
 
       # @!method initialize(after: nil, before: nil, campaign_id: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, last: nil, query: nil, status: nil, request_options: {})
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
@@ -86,24 +86,9 @@ module WhopSDK
       #
       #   @param query [String, nil] Case-insensitive substring match against the ad group name.
       #
-      #   @param status [Symbol, WhopSDK::Models::AdGroupListParams::Status, nil] The status of an external ad group.
+      #   @param status [Symbol, WhopSDK::Models::AdGroupStatus, nil] The status of an external ad group.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
-
-      # The status of an external ad group.
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        ACTIVE = :active
-        PAUSED = :paused
-        INACTIVE = :inactive
-        IN_REVIEW = :in_review
-        REJECTED = :rejected
-        FLAGGED = :flagged
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
     end
   end
 end

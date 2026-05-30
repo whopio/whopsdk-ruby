@@ -105,6 +105,13 @@ module WhopSDK
       #   @return [Integer]
       required :member_count, Integer
 
+      # @!attribute metadata
+      #   Custom key-value pairs stored on the product. Included in webhook payloads for
+      #   payment and membership events.
+      #
+      #   @return [Hash{Symbol=>Object}, nil]
+      required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
       # @!attribute owner_user
       #   The user who owns the company that sells this product.
       #
@@ -157,7 +164,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility]
       required :visibility, enum: -> { WhopSDK::Visibility }
 
-      # @!method initialize(id:, company:, created_at:, custom_cta:, custom_cta_url:, custom_statement_descriptor:, description:, external_identifier:, gallery_images:, global_affiliate_percentage:, global_affiliate_status:, headline:, member_affiliate_percentage:, member_affiliate_status:, member_count:, owner_user:, product_tax_code:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
+      # @!method initialize(id:, company:, created_at:, custom_cta:, custom_cta_url:, custom_statement_descriptor:, description:, external_identifier:, gallery_images:, global_affiliate_percentage:, global_affiliate_status:, headline:, member_affiliate_percentage:, member_affiliate_status:, member_count:, metadata:, owner_user:, product_tax_code:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Product}
       #   for more details.
       #
@@ -193,6 +200,8 @@ module WhopSDK
       #   @param member_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus] The enrollment status of this product in the member affiliate program.
       #
       #   @param member_count [Integer] The number of users who currently hold an active membership to this product. Ret
+      #
+      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the product. Included in webhook payloads for p
       #
       #   @param owner_user [WhopSDK::Models::Product::OwnerUser] The user who owns the company that sells this product.
       #

@@ -22,7 +22,9 @@ module WhopSDK
 
       # @!attribute destination_id
       #   The identifier of the account receiving the funds. Accepts a user ID
-      #   ('user_xxx'), company ID ('biz_xxx'), or ledger account ID ('ldgr_xxx').
+      #   ('user_xxx'), company ID ('biz_xxx'), ledger account ID ('ldgr_xxx'), or an
+      #   email address — emails without an existing Whop user trigger a placeholder-user
+      #   signup.
       #
       #   @return [String]
       required :destination_id, String

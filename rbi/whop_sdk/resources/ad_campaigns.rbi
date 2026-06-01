@@ -13,7 +13,7 @@ module WhopSDK
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::AdCampaignRetrieveResponse)
+        ).returns(WhopSDK::AdCampaign)
       end
       def retrieve(
         # The unique identifier of the ad campaign.
@@ -32,7 +32,7 @@ module WhopSDK
           id: String,
           budget: T.nilable(Float),
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::AdCampaignUpdateResponse)
+        ).returns(WhopSDK::AdCampaign)
       end
       def update(
         # The unique identifier of the ad campaign to update.
@@ -52,33 +52,37 @@ module WhopSDK
       # - `ad_campaign:basic:read`
       sig do
         params(
-          company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
+          company_id: T.nilable(String),
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
           first: T.nilable(Integer),
+          include_paused: T.nilable(T::Boolean),
           last: T.nilable(Integer),
           query: T.nilable(String),
-          status: T.nilable(WhopSDK::AdCampaignListParams::Status::OrSymbol),
+          status: T.nilable(WhopSDK::AdCampaignStatus::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::AdCampaignListResponse]
         )
       end
       def list(
-        # The unique identifier of the company to list ad campaigns for.
-        company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
+        # The unique identifier of the company to list ad campaigns for.
+        company_id: nil,
         # Only return ad campaigns created after this timestamp.
         created_after: nil,
         # Only return ad campaigns created before this timestamp.
         created_before: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
+        # When false, excludes paused campaigns so pagination matches the dashboard's
+        # hide-paused toggle.
+        include_paused: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
         # Case-insensitive substring match against the campaign title.
@@ -98,7 +102,7 @@ module WhopSDK
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::AdCampaignPauseResponse)
+        ).returns(WhopSDK::AdCampaign)
       end
       def pause(
         # The unique identifier of the ad campaign to pause.
@@ -116,7 +120,7 @@ module WhopSDK
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::AdCampaignUnpauseResponse)
+        ).returns(WhopSDK::AdCampaign)
       end
       def unpause(
         # The unique identifier of the ad campaign to unpause.

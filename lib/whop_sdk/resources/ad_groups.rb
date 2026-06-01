@@ -16,14 +16,14 @@ module WhopSDK
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::AdGroupRetrieveResponse]
+      # @return [WhopSDK::Models::AdGroup]
       #
       # @see WhopSDK::Models::AdGroupRetrieveParams
       def retrieve(id, params = {})
         @client.request(
           method: :get,
           path: ["ad_groups/%1$s", id],
-          model: WhopSDK::Models::AdGroupRetrieveResponse,
+          model: WhopSDK::AdGroup,
           options: params[:request_options]
         )
       end
@@ -41,7 +41,7 @@ module WhopSDK
       #
       # @param budget [Float, nil] Budget amount in dollars.
       #
-      # @param budget_type [Symbol, WhopSDK::Models::AdGroupUpdateParams::BudgetType, nil] The budget type for an ad campaign or ad group.
+      # @param budget_type [Symbol, WhopSDK::Models::AdBudgetType, nil] The budget type for an ad campaign or ad group.
       #
       # @param config [WhopSDK::Models::AdGroupUpdateParams::Config, nil] Unified ad group configuration (bidding, optimization, targeting).
       #
@@ -51,11 +51,11 @@ module WhopSDK
       #
       # @param platform_config [WhopSDK::Models::AdGroupUpdateParams::PlatformConfig, nil] Platform-specific ad group configuration.
       #
-      # @param status [Symbol, WhopSDK::Models::AdGroupUpdateParams::Status, nil] The status of an external ad group.
+      # @param status [Symbol, WhopSDK::Models::AdGroupStatus, nil] The status of an external ad group.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Models::AdGroupUpdateResponse]
+      # @return [WhopSDK::Models::AdGroup]
       #
       # @see WhopSDK::Models::AdGroupUpdateParams
       def update(id, params = {})
@@ -64,7 +64,7 @@ module WhopSDK
           method: :patch,
           path: ["ad_groups/%1$s", id],
           body: parsed,
-          model: WhopSDK::Models::AdGroupUpdateResponse,
+          model: WhopSDK::AdGroup,
           options: options
         )
       end
@@ -96,7 +96,7 @@ module WhopSDK
       #
       # @param query [String, nil] Case-insensitive substring match against the ad group name.
       #
-      # @param status [Symbol, WhopSDK::Models::AdGroupListParams::Status, nil] The status of an external ad group.
+      # @param status [Symbol, WhopSDK::Models::AdGroupStatus, nil] The status of an external ad group.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -136,6 +136,56 @@ module WhopSDK
           method: :delete,
           path: ["ad_groups/%1$s", id],
           model: WhopSDK::Internal::Type::Boolean,
+          options: params[:request_options]
+        )
+      end
+
+      # Pauses an ad group.
+      #
+      # Required permissions:
+      #
+      # - `ad_campaign:update`
+      # - `ad_campaign:basic:read`
+      #
+      # @overload pause(id, request_options: {})
+      #
+      # @param id [String] The unique identifier of the ad group to pause.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::AdGroup]
+      #
+      # @see WhopSDK::Models::AdGroupPauseParams
+      def pause(id, params = {})
+        @client.request(
+          method: :post,
+          path: ["ad_groups/%1$s/pause", id],
+          model: WhopSDK::AdGroup,
+          options: params[:request_options]
+        )
+      end
+
+      # Resumes a paused ad group.
+      #
+      # Required permissions:
+      #
+      # - `ad_campaign:update`
+      # - `ad_campaign:basic:read`
+      #
+      # @overload unpause(id, request_options: {})
+      #
+      # @param id [String] The unique identifier of the ad group to unpause.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::AdGroup]
+      #
+      # @see WhopSDK::Models::AdGroupUnpauseParams
+      def unpause(id, params = {})
+        @client.request(
+          method: :post,
+          path: ["ad_groups/%1$s/unpause", id],
+          model: WhopSDK::AdGroup,
           options: params[:request_options]
         )
       end

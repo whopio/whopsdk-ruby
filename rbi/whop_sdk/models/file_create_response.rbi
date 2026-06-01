@@ -45,9 +45,7 @@ module WhopSDK
       attr_accessor :url
 
       # Whether the file is publicly accessible or requires authentication.
-      sig do
-        returns(WhopSDK::Models::FileCreateResponse::Visibility::TaggedSymbol)
-      end
+      sig { returns(WhopSDK::FileVisibility::TaggedSymbol) }
       attr_accessor :visibility
 
       # A file that has been uploaded or is pending upload.
@@ -61,7 +59,7 @@ module WhopSDK
           upload_status: WhopSDK::UploadStatus::OrSymbol,
           upload_url: T.nilable(String),
           url: T.nilable(String),
-          visibility: WhopSDK::Models::FileCreateResponse::Visibility::OrSymbol
+          visibility: WhopSDK::FileVisibility::OrSymbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -101,44 +99,11 @@ module WhopSDK
             upload_status: WhopSDK::UploadStatus::TaggedSymbol,
             upload_url: T.nilable(String),
             url: T.nilable(String),
-            visibility:
-              WhopSDK::Models::FileCreateResponse::Visibility::TaggedSymbol
+            visibility: WhopSDK::FileVisibility::TaggedSymbol
           }
         )
       end
       def to_hash
-      end
-
-      # Whether the file is publicly accessible or requires authentication.
-      module Visibility
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::Models::FileCreateResponse::Visibility)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        PUBLIC =
-          T.let(
-            :public,
-            WhopSDK::Models::FileCreateResponse::Visibility::TaggedSymbol
-          )
-        PRIVATE =
-          T.let(
-            :private,
-            WhopSDK::Models::FileCreateResponse::Visibility::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::Models::FileCreateResponse::Visibility::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
-        end
       end
     end
   end

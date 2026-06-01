@@ -7,6 +7,7 @@ module WhopSDK
         external_identifier: String?,
         headline: String?,
         member_count: Integer,
+        metadata: ::Hash[Symbol, top]?,
         published_reviews_count: Integer,
         route: String,
         title: String,
@@ -26,6 +27,8 @@ module WhopSDK
 
       attr_accessor member_count: Integer
 
+      attr_accessor metadata: ::Hash[Symbol, top]?
+
       attr_accessor published_reviews_count: Integer
 
       attr_accessor route: String
@@ -44,6 +47,7 @@ module WhopSDK
         external_identifier: String?,
         headline: String?,
         member_count: Integer,
+        metadata: ::Hash[Symbol, top]?,
         published_reviews_count: Integer,
         route: String,
         title: String,
@@ -58,6 +62,7 @@ module WhopSDK
         external_identifier: String?,
         headline: String?,
         member_count: Integer,
+        metadata: ::Hash[Symbol, top]?,
         published_reviews_count: Integer,
         route: String,
         title: String,

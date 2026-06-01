@@ -54,6 +54,17 @@ module WhopSDK
         T.let(:"payout_method.created", WhopSDK::WebhookEvent::TaggedSymbol)
       VERIFICATION_SUCCEEDED =
         T.let(:"verification.succeeded", WhopSDK::WebhookEvent::TaggedSymbol)
+      IDENTITY_PROFILE_APPROVED =
+        T.let(:"identity_profile.approved", WhopSDK::WebhookEvent::TaggedSymbol)
+      IDENTITY_PROFILE_REJECTED =
+        T.let(:"identity_profile.rejected", WhopSDK::WebhookEvent::TaggedSymbol)
+      IDENTITY_PROFILE_NEEDS_ACTION =
+        T.let(
+          :"identity_profile.needs_action",
+          WhopSDK::WebhookEvent::TaggedSymbol
+        )
+      IDENTITY_PROFILE_UPDATED =
+        T.let(:"identity_profile.updated", WhopSDK::WebhookEvent::TaggedSymbol)
       PAYOUT_ACCOUNT_STATUS_UPDATED =
         T.let(
           :"payout_account.status_updated",

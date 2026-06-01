@@ -120,6 +120,12 @@ module WhopSDK
       ZW_TIN = T.let(:zw_tin, WhopSDK::TaxIdentifierType::TaggedSymbol)
       SR_FIN = T.let(:sr_fin, WhopSDK::TaxIdentifierType::TaggedSymbol)
       XI_VAT = T.let(:xi_vat, WhopSDK::TaxIdentifierType::TaggedSymbol)
+      AL_TIN = T.let(:al_tin, WhopSDK::TaxIdentifierType::TaggedSymbol)
+      CI_TIN = T.let(:ci_tin, WhopSDK::TaxIdentifierType::TaggedSymbol)
+      GH_TIN = T.let(:gh_tin, WhopSDK::TaxIdentifierType::TaggedSymbol)
+      MO_TIN = T.let(:mo_tin, WhopSDK::TaxIdentifierType::TaggedSymbol)
+      NE_NIF = T.let(:ne_nif, WhopSDK::TaxIdentifierType::TaggedSymbol)
+      PY_RUC = T.let(:py_ruc, WhopSDK::TaxIdentifierType::TaggedSymbol)
 
       sig do
         override.returns(T::Array[WhopSDK::TaxIdentifierType::TaggedSymbol])

@@ -192,10 +192,10 @@ module WhopSDK
           required :created_at, Time
 
           # @!attribute currency
-          #   The available currencies on the platform
+          #   The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
           #
-          #   @return [Symbol, WhopSDK::Models::Currency, nil]
-          required :currency, enum: -> { WhopSDK::Currency }, nil?: true
+          #   @return [Symbol, WhopSDK::Models::Currency]
+          required :currency, enum: -> { WhopSDK::Currency }
 
           # @!attribute dispute_alerted_at
           #   When an alert came in that this transaction will be disputed
@@ -219,6 +219,13 @@ module WhopSDK
                    },
                    nil?: true
 
+          # @!attribute metadata
+          #   The custom metadata stored on this payment. This will be copied over to the
+          #   checkout configuration for which this payment was made
+          #
+          #   @return [Hash{Symbol=>Object}, nil]
+          required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
           # @!attribute paid_at
           #   The time at which this payment was successfully collected. Null if the payment
           #   has not yet succeeded. As a Unix timestamp.
@@ -231,6 +238,18 @@ module WhopSDK
           #
           #   @return [Symbol, WhopSDK::Models::PaymentMethodTypes, nil]
           required :payment_method_type, enum: -> { WhopSDK::PaymentMethodTypes }, nil?: true
+
+          # @!attribute plan
+          #   The plan attached to this payment.
+          #
+          #   @return [WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment::Plan, nil]
+          required :plan, -> { WhopSDK::RefundCreatedWebhookEvent::Data::Payment::Plan }, nil?: true
+
+          # @!attribute product
+          #   The product this payment was made for
+          #
+          #   @return [WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment::Product, nil]
+          required :product, -> { WhopSDK::RefundCreatedWebhookEvent::Data::Payment::Product }, nil?: true
 
           # @!attribute subtotal
           #   The subtotal to show to the creator (excluding buyer fees).
@@ -275,7 +294,7 @@ module WhopSDK
           #   @return [WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment::User, nil]
           required :user, -> { WhopSDK::RefundCreatedWebhookEvent::Data::Payment::User }, nil?: true
 
-          # @!method initialize(id:, billing_reason:, card_brand:, card_last4:, created_at:, currency:, dispute_alerted_at:, member:, membership:, paid_at:, payment_method_type:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, total:, usd_total:, user:)
+          # @!method initialize(id:, billing_reason:, card_brand:, card_last4:, created_at:, currency:, dispute_alerted_at:, member:, membership:, metadata:, paid_at:, payment_method_type:, plan:, product:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, total:, usd_total:, user:)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment} for more details.
           #
@@ -292,7 +311,7 @@ module WhopSDK
           #
           #   @param created_at [Time] The datetime the payment was created.
           #
-          #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
+          #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
           #
           #   @param dispute_alerted_at [Time, nil] When an alert came in that this transaction will be disputed
           #
@@ -300,9 +319,15 @@ module WhopSDK
           #
           #   @param membership [WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment::Membership, nil] The membership attached to this payment.
           #
+          #   @param metadata [Hash{Symbol=>Object}, nil] The custom metadata stored on this payment. This will be copied over to the chec
+          #
           #   @param paid_at [Time, nil] The time at which this payment was successfully collected. Null if the payment h
           #
           #   @param payment_method_type [Symbol, WhopSDK::Models::PaymentMethodTypes, nil] The different types of payment methods that can be used.
+          #
+          #   @param plan [WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment::Plan, nil] The plan attached to this payment.
+          #
+          #   @param product [WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment::Product, nil] The product this payment was made for
           #
           #   @param subtotal [Float, nil] The subtotal to show to the creator (excluding buyer fees).
           #
@@ -360,6 +385,60 @@ module WhopSDK
             #   @param id [String] The unique identifier for the membership.
             #
             #   @param status [Symbol, WhopSDK::Models::MembershipStatus] The state of the membership.
+          end
+
+          # @see WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment#plan
+          class Plan < WhopSDK::Internal::Type::BaseModel
+            # @!attribute id
+            #   The unique identifier for the plan.
+            #
+            #   @return [String]
+            required :id, String
+
+            # @!attribute metadata
+            #   Custom key-value pairs stored on the plan. Included in webhook payloads for
+            #   payment and membership events.
+            #
+            #   @return [Hash{Symbol=>Object}, nil]
+            required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
+            # @!method initialize(id:, metadata:)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment::Plan} for more
+            #   details.
+            #
+            #   The plan attached to this payment.
+            #
+            #   @param id [String] The unique identifier for the plan.
+            #
+            #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the plan. Included in webhook payloads for paym
+          end
+
+          # @see WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment#product
+          class Product < WhopSDK::Internal::Type::BaseModel
+            # @!attribute id
+            #   The unique identifier for the product.
+            #
+            #   @return [String]
+            required :id, String
+
+            # @!attribute metadata
+            #   Custom key-value pairs stored on the product. Included in webhook payloads for
+            #   payment and membership events.
+            #
+            #   @return [Hash{Symbol=>Object}, nil]
+            required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
+            # @!method initialize(id:, metadata:)
+            #   Some parameter documentations has been truncated, see
+            #   {WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment::Product} for more
+            #   details.
+            #
+            #   The product this payment was made for
+            #
+            #   @param id [String] The unique identifier for the product.
+            #
+            #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the product. Included in webhook payloads for p
           end
 
           # @see WhopSDK::Models::RefundCreatedWebhookEvent::Data::Payment#user

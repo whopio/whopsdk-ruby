@@ -81,6 +81,11 @@ module WhopSDK
       sig { returns(Integer) }
       attr_accessor :member_count
 
+      # Custom key-value pairs stored on the product. Included in webhook payloads for
+      # payment and membership events.
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      attr_accessor :metadata
+
       # The user who owns the company that sells this product.
       sig { returns(WhopSDK::Product::OwnerUser) }
       attr_reader :owner_user
@@ -146,6 +151,7 @@ module WhopSDK
           member_affiliate_percentage: T.nilable(Float),
           member_affiliate_status: WhopSDK::GlobalAffiliateStatus::OrSymbol,
           member_count: Integer,
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
           owner_user: WhopSDK::Product::OwnerUser::OrHash,
           product_tax_code: T.nilable(WhopSDK::Product::ProductTaxCode::OrHash),
           published_reviews_count: Integer,
@@ -199,6 +205,9 @@ module WhopSDK
         # The number of users who currently hold an active membership to this product.
         # Returns 0 if the company has disabled public member counts.
         member_count:,
+        # Custom key-value pairs stored on the product. Included in webhook payloads for
+        # payment and membership events.
+        metadata:,
         # The user who owns the company that sells this product.
         owner_user:,
         # The tax classification code applied to purchases of this product for sales tax
@@ -242,6 +251,7 @@ module WhopSDK
             member_affiliate_status:
               WhopSDK::GlobalAffiliateStatus::TaggedSymbol,
             member_count: Integer,
+            metadata: T.nilable(T::Hash[Symbol, T.anything]),
             owner_user: WhopSDK::Product::OwnerUser,
             product_tax_code: T.nilable(WhopSDK::Product::ProductTaxCode),
             published_reviews_count: Integer,

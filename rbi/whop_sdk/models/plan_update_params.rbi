@@ -77,6 +77,12 @@ module WhopSDK
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :legacy_payment_method_controls
 
+      # Custom key-value pairs to store on the plan. Included in webhook payloads for
+      # payment and membership events. Max 50 keys, 500 chars per key, 5000 chars per
+      # value.
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      attr_accessor :metadata
+
       # Whether to offer a retention discount when a customer attempts to cancel.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :offer_cancel_discount
@@ -125,6 +131,12 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :strike_through_renewal_price
 
+      # The 3D Secure behavior for a plan.
+      sig do
+        returns(T.nilable(WhopSDK::PlanUpdateParams::ThreeDSLevel::OrSymbol))
+      end
+      attr_accessor :three_ds_level
+
       # The display name of the plan shown to customers on the product page.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
@@ -157,6 +169,7 @@ module WhopSDK
           initial_price: T.nilable(Float),
           internal_notes: T.nilable(String),
           legacy_payment_method_controls: T.nilable(T::Boolean),
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
           offer_cancel_discount: T.nilable(T::Boolean),
           override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
           payment_method_configuration:
@@ -167,6 +180,8 @@ module WhopSDK
           stock: T.nilable(Integer),
           strike_through_initial_price: T.nilable(Float),
           strike_through_renewal_price: T.nilable(Float),
+          three_ds_level:
+            T.nilable(WhopSDK::PlanUpdateParams::ThreeDSLevel::OrSymbol),
           title: T.nilable(String),
           trial_period_days: T.nilable(Integer),
           unlimited_stock: T.nilable(T::Boolean),
@@ -202,6 +217,10 @@ module WhopSDK
         internal_notes: nil,
         # Whether this plan uses legacy payment method controls.
         legacy_payment_method_controls: nil,
+        # Custom key-value pairs to store on the plan. Included in webhook payloads for
+        # payment and membership events. Max 50 keys, 500 chars per key, 5000 chars per
+        # value.
+        metadata: nil,
         # Whether to offer a retention discount when a customer attempts to cancel.
         offer_cancel_discount: nil,
         # Whether or not the tax is included in a plan's price (or if it hasn't been set
@@ -222,6 +241,8 @@ module WhopSDK
         # A comparison price displayed with a strikethrough for the renewal price.
         # Provided in the plan's currency (e.g., 19.99 for $19.99).
         strike_through_renewal_price: nil,
+        # The 3D Secure behavior for a plan.
+        three_ds_level: nil,
         # The display name of the plan shown to customers on the product page.
         title: nil,
         # The number of free trial days before the first charge on a recurring plan.
@@ -251,6 +272,7 @@ module WhopSDK
             initial_price: T.nilable(Float),
             internal_notes: T.nilable(String),
             legacy_payment_method_controls: T.nilable(T::Boolean),
+            metadata: T.nilable(T::Hash[Symbol, T.anything]),
             offer_cancel_discount: T.nilable(T::Boolean),
             override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
             payment_method_configuration:
@@ -259,6 +281,8 @@ module WhopSDK
             stock: T.nilable(Integer),
             strike_through_initial_price: T.nilable(Float),
             strike_through_renewal_price: T.nilable(Float),
+            three_ds_level:
+              T.nilable(WhopSDK::PlanUpdateParams::ThreeDSLevel::OrSymbol),
             title: T.nilable(String),
             trial_period_days: T.nilable(Integer),
             unlimited_stock: T.nilable(T::Boolean),
@@ -493,6 +517,36 @@ module WhopSDK
           )
         end
         def to_hash
+        end
+      end
+
+      # The 3D Secure behavior for a plan.
+      module ThreeDSLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::PlanUpdateParams::ThreeDSLevel)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        MANDATE_CHALLENGE =
+          T.let(
+            :mandate_challenge,
+            WhopSDK::PlanUpdateParams::ThreeDSLevel::TaggedSymbol
+          )
+        FRICTIONLESS =
+          T.let(
+            :frictionless,
+            WhopSDK::PlanUpdateParams::ThreeDSLevel::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::PlanUpdateParams::ThreeDSLevel::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
     end

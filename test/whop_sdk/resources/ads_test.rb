@@ -9,17 +9,17 @@ class WhopSDK::Test::Resources::AdsTest < WhopSDK::Test::ResourceTest
     response = @whop.ads.retrieve("ad_xxxxxxxxxxxxxxx")
 
     assert_pattern do
-      response => WhopSDK::Models::AdRetrieveResponse
+      response => WhopSDK::Ad
     end
 
     assert_pattern do
       response => {
         id: String,
-        ad_campaign: WhopSDK::Models::AdRetrieveResponse::AdCampaign,
-        ad_group: WhopSDK::Models::AdRetrieveResponse::AdGroup,
+        ad_campaign: WhopSDK::Ad::AdCampaign,
+        ad_group: WhopSDK::Ad::AdGroup,
         created_at: Time,
-        platform: WhopSDK::Models::AdRetrieveResponse::Platform,
-        status: WhopSDK::Models::AdRetrieveResponse::Status,
+        platform: WhopSDK::AdCampaignPlatform,
+        status: WhopSDK::ExternalAdStatus,
         title: String | nil,
         updated_at: Time
       }
@@ -45,9 +45,57 @@ class WhopSDK::Test::Resources::AdsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
+        ad_campaign: WhopSDK::Models::AdListResponse::AdCampaign,
+        ad_group: WhopSDK::Models::AdListResponse::AdGroup,
         created_at: Time,
-        platform: WhopSDK::Models::AdListResponse::Platform,
-        status: WhopSDK::Models::AdListResponse::Status,
+        platform: WhopSDK::AdCampaignPlatform,
+        status: WhopSDK::ExternalAdStatus,
+        title: String | nil,
+        updated_at: Time
+      }
+    end
+  end
+
+  def test_pause
+    skip("Mock server tests are disabled")
+
+    response = @whop.ads.pause("ad_xxxxxxxxxxxxxxx")
+
+    assert_pattern do
+      response => WhopSDK::Ad
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        ad_campaign: WhopSDK::Ad::AdCampaign,
+        ad_group: WhopSDK::Ad::AdGroup,
+        created_at: Time,
+        platform: WhopSDK::AdCampaignPlatform,
+        status: WhopSDK::ExternalAdStatus,
+        title: String | nil,
+        updated_at: Time
+      }
+    end
+  end
+
+  def test_unpause
+    skip("Mock server tests are disabled")
+
+    response = @whop.ads.unpause("ad_xxxxxxxxxxxxxxx")
+
+    assert_pattern do
+      response => WhopSDK::Ad
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        ad_campaign: WhopSDK::Ad::AdCampaign,
+        ad_group: WhopSDK::Ad::AdGroup,
+        created_at: Time,
+        platform: WhopSDK::AdCampaignPlatform,
+        status: WhopSDK::ExternalAdStatus,
         title: String | nil,
         updated_at: Time
       }

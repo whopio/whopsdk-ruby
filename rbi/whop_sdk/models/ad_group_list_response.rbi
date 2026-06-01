@@ -15,18 +15,23 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
+      # The ad campaign this ad group belongs to.
+      sig { returns(WhopSDK::Models::AdGroupListResponse::AdCampaign) }
+      attr_reader :ad_campaign
+
+      sig do
+        params(
+          ad_campaign: WhopSDK::Models::AdGroupListResponse::AdCampaign::OrHash
+        ).void
+      end
+      attr_writer :ad_campaign
+
       # Budget amount in dollars.
       sig { returns(T.nilable(Float)) }
       attr_accessor :budget
 
       # The budget type for an ad campaign or ad group.
-      sig do
-        returns(
-          T.nilable(
-            WhopSDK::Models::AdGroupListResponse::BudgetType::TaggedSymbol
-          )
-        )
-      end
+      sig { returns(T.nilable(WhopSDK::AdBudgetType::TaggedSymbol)) }
       attr_accessor :budget_type
 
       # When the ad group was created.
@@ -34,15 +39,11 @@ module WhopSDK
       attr_accessor :created_at
 
       # The external ad platform this ad group is running on (e.g., meta, tiktok).
-      sig do
-        returns(WhopSDK::Models::AdGroupListResponse::Platform::TaggedSymbol)
-      end
+      sig { returns(WhopSDK::AdCampaignPlatform::TaggedSymbol) }
       attr_accessor :platform
 
       # Current operational status of the ad group.
-      sig do
-        returns(WhopSDK::Models::AdGroupListResponse::Status::TaggedSymbol)
-      end
+      sig { returns(WhopSDK::AdGroupStatus::TaggedSymbol) }
       attr_accessor :status
 
       # Human-readable name shown on the external platform.
@@ -57,14 +58,12 @@ module WhopSDK
       sig do
         params(
           id: String,
+          ad_campaign: WhopSDK::Models::AdGroupListResponse::AdCampaign::OrHash,
           budget: T.nilable(Float),
-          budget_type:
-            T.nilable(
-              WhopSDK::Models::AdGroupListResponse::BudgetType::OrSymbol
-            ),
+          budget_type: T.nilable(WhopSDK::AdBudgetType::OrSymbol),
           created_at: Time,
-          platform: WhopSDK::Models::AdGroupListResponse::Platform::OrSymbol,
-          status: WhopSDK::Models::AdGroupListResponse::Status::OrSymbol,
+          platform: WhopSDK::AdCampaignPlatform::OrSymbol,
+          status: WhopSDK::AdGroupStatus::OrSymbol,
           title: T.nilable(String),
           updated_at: Time
         ).returns(T.attached_class)
@@ -72,6 +71,8 @@ module WhopSDK
       def self.new(
         # The unique identifier for this ad group.
         id:,
+        # The ad campaign this ad group belongs to.
+        ad_campaign:,
         # Budget amount in dollars.
         budget:,
         # The budget type for an ad campaign or ad group.
@@ -93,15 +94,12 @@ module WhopSDK
         override.returns(
           {
             id: String,
+            ad_campaign: WhopSDK::Models::AdGroupListResponse::AdCampaign,
             budget: T.nilable(Float),
-            budget_type:
-              T.nilable(
-                WhopSDK::Models::AdGroupListResponse::BudgetType::TaggedSymbol
-              ),
+            budget_type: T.nilable(WhopSDK::AdBudgetType::TaggedSymbol),
             created_at: Time,
-            platform:
-              WhopSDK::Models::AdGroupListResponse::Platform::TaggedSymbol,
-            status: WhopSDK::Models::AdGroupListResponse::Status::TaggedSymbol,
+            platform: WhopSDK::AdCampaignPlatform::TaggedSymbol,
+            status: WhopSDK::AdGroupStatus::TaggedSymbol,
             title: T.nilable(String),
             updated_at: Time
           }
@@ -110,117 +108,29 @@ module WhopSDK
       def to_hash
       end
 
-      # The budget type for an ad campaign or ad group.
-      module BudgetType
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
+      class AdCampaign < WhopSDK::Internal::Type::BaseModel
+        OrHash =
           T.type_alias do
-            T.all(Symbol, WhopSDK::Models::AdGroupListResponse::BudgetType)
+            T.any(
+              WhopSDK::Models::AdGroupListResponse::AdCampaign,
+              WhopSDK::Internal::AnyHash
+            )
           end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        DAILY =
-          T.let(
-            :daily,
-            WhopSDK::Models::AdGroupListResponse::BudgetType::TaggedSymbol
-          )
-        LIFETIME =
-          T.let(
-            :lifetime,
-            WhopSDK::Models::AdGroupListResponse::BudgetType::TaggedSymbol
-          )
+        # The unique identifier for this ad campaign.
+        sig { returns(String) }
+        attr_accessor :id
 
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::Models::AdGroupListResponse::BudgetType::TaggedSymbol
-            ]
-          )
+        # The ad campaign this ad group belongs to.
+        sig { params(id: String).returns(T.attached_class) }
+        def self.new(
+          # The unique identifier for this ad campaign.
+          id:
+        )
         end
-        def self.values
-        end
-      end
 
-      # The external ad platform this ad group is running on (e.g., meta, tiktok).
-      module Platform
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::Models::AdGroupListResponse::Platform)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        META =
-          T.let(
-            :meta,
-            WhopSDK::Models::AdGroupListResponse::Platform::TaggedSymbol
-          )
-        TIKTOK =
-          T.let(
-            :tiktok,
-            WhopSDK::Models::AdGroupListResponse::Platform::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::Models::AdGroupListResponse::Platform::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
-        end
-      end
-
-      # Current operational status of the ad group.
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::Models::AdGroupListResponse::Status)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        ACTIVE =
-          T.let(
-            :active,
-            WhopSDK::Models::AdGroupListResponse::Status::TaggedSymbol
-          )
-        PAUSED =
-          T.let(
-            :paused,
-            WhopSDK::Models::AdGroupListResponse::Status::TaggedSymbol
-          )
-        INACTIVE =
-          T.let(
-            :inactive,
-            WhopSDK::Models::AdGroupListResponse::Status::TaggedSymbol
-          )
-        IN_REVIEW =
-          T.let(
-            :in_review,
-            WhopSDK::Models::AdGroupListResponse::Status::TaggedSymbol
-          )
-        REJECTED =
-          T.let(
-            :rejected,
-            WhopSDK::Models::AdGroupListResponse::Status::TaggedSymbol
-          )
-        FLAGGED =
-          T.let(
-            :flagged,
-            WhopSDK::Models::AdGroupListResponse::Status::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[WhopSDK::Models::AdGroupListResponse::Status::TaggedSymbol]
-          )
-        end
-        def self.values
+        sig { override.returns({ id: String }) }
+        def to_hash
         end
       end
     end

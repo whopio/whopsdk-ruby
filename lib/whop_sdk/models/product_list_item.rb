@@ -36,6 +36,13 @@ module WhopSDK
       #   @return [Integer]
       required :member_count, Integer
 
+      # @!attribute metadata
+      #   Custom key-value pairs stored on the product. Included in webhook payloads for
+      #   payment and membership events.
+      #
+      #   @return [Hash{Symbol=>Object}, nil]
+      required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
       # @!attribute published_reviews_count
       #   The total number of published customer reviews for this product's company.
       #
@@ -75,7 +82,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility]
       required :visibility, enum: -> { WhopSDK::Visibility }
 
-      # @!method initialize(id:, created_at:, external_identifier:, headline:, member_count:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
+      # @!method initialize(id:, created_at:, external_identifier:, headline:, member_count:, metadata:, published_reviews_count:, route:, title:, updated_at:, verified:, visibility:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ProductListItem} for more details.
       #
@@ -91,6 +98,8 @@ module WhopSDK
       #   @param headline [String, nil] A short marketing headline displayed prominently on the product's product page.
       #
       #   @param member_count [Integer] The number of users who currently hold an active membership to this product. Ret
+      #
+      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the product. Included in webhook payloads for p
       #
       #   @param published_reviews_count [Integer] The total number of published customer reviews for this product's company.
       #

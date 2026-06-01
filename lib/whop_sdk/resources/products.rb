@@ -15,7 +15,7 @@ module WhopSDK
       # - `access_pass:create`
       # - `access_pass:basic:read`
       #
-      # @overload create(company_id:, title:, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, experience_ids: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, plan_options: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, send_welcome_message: nil, visibility: nil, request_options: {})
+      # @overload create(company_id:, title:, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, experience_ids: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, metadata: nil, plan_options: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, send_welcome_message: nil, visibility: nil, request_options: {})
       #
       # @param company_id [String] The unique identifier of the company to create this product for.
       #
@@ -42,6 +42,8 @@ module WhopSDK
       # @param member_affiliate_percentage [Float, nil] The commission rate as a percentage that members earn through the member affilia
       #
       # @param member_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for a product.
+      #
+      # @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs to store on the product. Included in webhook payloads for
       #
       # @param plan_options [WhopSDK::Models::ProductCreateParams::PlanOptions, nil] Configuration for an automatically generated plan to attach to this product.
       #
@@ -105,7 +107,7 @@ module WhopSDK
       # - `access_pass:update`
       # - `access_pass:basic:read`
       #
-      # @overload update(id, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, gallery_images: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, send_welcome_message: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
+      # @overload update(id, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, gallery_images: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, metadata: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, send_welcome_message: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the product to update.
       #
@@ -130,6 +132,8 @@ module WhopSDK
       # @param member_affiliate_percentage [Float, nil] The commission rate as a percentage that members earn through the member affilia
       #
       # @param member_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for a product.
+      #
+      # @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs to store on the product. Included in webhook payloads for
       #
       # @param product_tax_code_id [String, nil] The unique identifier of the tax classification code to apply to this product.
       #

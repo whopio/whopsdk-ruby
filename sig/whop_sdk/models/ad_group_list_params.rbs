@@ -9,9 +9,10 @@ module WhopSDK
         created_after: Time?,
         created_before: Time?,
         first: Integer?,
+        include_paused: bool?,
         last: Integer?,
         query: String?,
-        status: WhopSDK::Models::AdGroupListParams::status?
+        status: WhopSDK::Models::ad_group_status?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -33,11 +34,13 @@ module WhopSDK
 
       attr_accessor first: Integer?
 
+      attr_accessor include_paused: bool?
+
       attr_accessor last: Integer?
 
       attr_accessor query: String?
 
-      attr_accessor status: WhopSDK::Models::AdGroupListParams::status?
+      attr_accessor status: WhopSDK::Models::ad_group_status?
 
       def initialize: (
         ?after: String?,
@@ -47,9 +50,10 @@ module WhopSDK
         ?created_after: Time?,
         ?created_before: Time?,
         ?first: Integer?,
+        ?include_paused: bool?,
         ?last: Integer?,
         ?query: String?,
-        ?status: WhopSDK::Models::AdGroupListParams::status?,
+        ?status: WhopSDK::Models::ad_group_status?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -61,27 +65,12 @@ module WhopSDK
         created_after: Time?,
         created_before: Time?,
         first: Integer?,
+        include_paused: bool?,
         last: Integer?,
         query: String?,
-        status: WhopSDK::Models::AdGroupListParams::status?,
+        status: WhopSDK::Models::ad_group_status?,
         request_options: WhopSDK::RequestOptions
       }
-
-      type status =
-        :active | :paused | :inactive | :in_review | :rejected | :flagged
-
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        ACTIVE: :active
-        PAUSED: :paused
-        INACTIVE: :inactive
-        IN_REVIEW: :in_review
-        REJECTED: :rejected
-        FLAGGED: :flagged
-
-        def self?.values: -> ::Array[WhopSDK::Models::AdGroupListParams::status]
-      end
     end
   end
 end

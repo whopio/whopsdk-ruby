@@ -20,13 +20,7 @@ module WhopSDK
       attr_accessor :budget
 
       # The budget type for an ad campaign or ad group.
-      sig do
-        returns(
-          T.nilable(
-            WhopSDK::Models::AdCampaignListResponse::BudgetType::TaggedSymbol
-          )
-        )
-      end
+      sig { returns(T.nilable(WhopSDK::AdBudgetType::TaggedSymbol)) }
       attr_accessor :budget_type
 
       # When the ad campaign was created.
@@ -34,15 +28,11 @@ module WhopSDK
       attr_accessor :created_at
 
       # The external ad platform this campaign is running on (e.g., meta, tiktok).
-      sig do
-        returns(WhopSDK::Models::AdCampaignListResponse::Platform::TaggedSymbol)
-      end
+      sig { returns(WhopSDK::AdCampaignPlatform::TaggedSymbol) }
       attr_accessor :platform
 
       # Current status of the campaign (active, paused, or inactive).
-      sig do
-        returns(WhopSDK::Models::AdCampaignListResponse::Status::TaggedSymbol)
-      end
+      sig { returns(WhopSDK::AdCampaignStatus::TaggedSymbol) }
       attr_accessor :status
 
       # The campaign name shown in the Whop dashboard.
@@ -62,13 +52,10 @@ module WhopSDK
         params(
           id: String,
           budget: T.nilable(Float),
-          budget_type:
-            T.nilable(
-              WhopSDK::Models::AdCampaignListResponse::BudgetType::OrSymbol
-            ),
+          budget_type: T.nilable(WhopSDK::AdBudgetType::OrSymbol),
           created_at: Time,
-          platform: WhopSDK::Models::AdCampaignListResponse::Platform::OrSymbol,
-          status: WhopSDK::Models::AdCampaignListResponse::Status::OrSymbol,
+          platform: WhopSDK::AdCampaignPlatform::OrSymbol,
+          status: WhopSDK::AdCampaignStatus::OrSymbol,
           title: String,
           total_spend: Float,
           updated_at: Time
@@ -101,15 +88,10 @@ module WhopSDK
           {
             id: String,
             budget: T.nilable(Float),
-            budget_type:
-              T.nilable(
-                WhopSDK::Models::AdCampaignListResponse::BudgetType::TaggedSymbol
-              ),
+            budget_type: T.nilable(WhopSDK::AdBudgetType::TaggedSymbol),
             created_at: Time,
-            platform:
-              WhopSDK::Models::AdCampaignListResponse::Platform::TaggedSymbol,
-            status:
-              WhopSDK::Models::AdCampaignListResponse::Status::TaggedSymbol,
+            platform: WhopSDK::AdCampaignPlatform::TaggedSymbol,
+            status: WhopSDK::AdCampaignStatus::TaggedSymbol,
             title: String,
             total_spend: Float,
             updated_at: Time
@@ -117,122 +99,6 @@ module WhopSDK
         )
       end
       def to_hash
-      end
-
-      # The budget type for an ad campaign or ad group.
-      module BudgetType
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::Models::AdCampaignListResponse::BudgetType)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        DAILY =
-          T.let(
-            :daily,
-            WhopSDK::Models::AdCampaignListResponse::BudgetType::TaggedSymbol
-          )
-        LIFETIME =
-          T.let(
-            :lifetime,
-            WhopSDK::Models::AdCampaignListResponse::BudgetType::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::Models::AdCampaignListResponse::BudgetType::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
-        end
-      end
-
-      # The external ad platform this campaign is running on (e.g., meta, tiktok).
-      module Platform
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::Models::AdCampaignListResponse::Platform)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        META =
-          T.let(
-            :meta,
-            WhopSDK::Models::AdCampaignListResponse::Platform::TaggedSymbol
-          )
-        TIKTOK =
-          T.let(
-            :tiktok,
-            WhopSDK::Models::AdCampaignListResponse::Platform::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::Models::AdCampaignListResponse::Platform::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
-        end
-      end
-
-      # Current status of the campaign (active, paused, or inactive).
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::Models::AdCampaignListResponse::Status)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        ACTIVE =
-          T.let(
-            :active,
-            WhopSDK::Models::AdCampaignListResponse::Status::TaggedSymbol
-          )
-        PAUSED =
-          T.let(
-            :paused,
-            WhopSDK::Models::AdCampaignListResponse::Status::TaggedSymbol
-          )
-        PAYMENT_FAILED =
-          T.let(
-            :payment_failed,
-            WhopSDK::Models::AdCampaignListResponse::Status::TaggedSymbol
-          )
-        DRAFT =
-          T.let(
-            :draft,
-            WhopSDK::Models::AdCampaignListResponse::Status::TaggedSymbol
-          )
-        IN_REVIEW =
-          T.let(
-            :in_review,
-            WhopSDK::Models::AdCampaignListResponse::Status::TaggedSymbol
-          )
-        FLAGGED =
-          T.let(
-            :flagged,
-            WhopSDK::Models::AdCampaignListResponse::Status::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::Models::AdCampaignListResponse::Status::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
-        end
       end
     end
   end

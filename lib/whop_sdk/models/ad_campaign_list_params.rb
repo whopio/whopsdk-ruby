@@ -7,12 +7,6 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute company_id
-      #   The unique identifier of the company to list ad campaigns for.
-      #
-      #   @return [String]
-      required :company_id, String
-
       # @!attribute after
       #   Returns the elements in the list that come after the specified cursor.
       #
@@ -24,6 +18,12 @@ module WhopSDK
       #
       #   @return [String, nil]
       optional :before, String, nil?: true
+
+      # @!attribute company_id
+      #   The unique identifier of the company to list ad campaigns for.
+      #
+      #   @return [String, nil]
+      optional :company_id, String, nil?: true
 
       # @!attribute created_after
       #   Only return ad campaigns created after this timestamp.
@@ -43,6 +43,13 @@ module WhopSDK
       #   @return [Integer, nil]
       optional :first, Integer, nil?: true
 
+      # @!attribute include_paused
+      #   When false, excludes paused campaigns so pagination matches the dashboard's
+      #   hide-paused toggle.
+      #
+      #   @return [Boolean, nil]
+      optional :include_paused, WhopSDK::Internal::Type::Boolean, nil?: true
+
       # @!attribute last
       #   Returns the last _n_ elements from the list.
       #
@@ -58,15 +65,18 @@ module WhopSDK
       # @!attribute status
       #   The status of an ad campaign.
       #
-      #   @return [Symbol, WhopSDK::Models::AdCampaignListParams::Status, nil]
-      optional :status, enum: -> { WhopSDK::AdCampaignListParams::Status }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::AdCampaignStatus, nil]
+      optional :status, enum: -> { WhopSDK::AdCampaignStatus }, nil?: true
 
-      # @!method initialize(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, first: nil, last: nil, query: nil, status: nil, request_options: {})
-      #   @param company_id [String] The unique identifier of the company to list ad campaigns for.
+      # @!method initialize(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, include_paused: nil, last: nil, query: nil, status: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::AdCampaignListParams} for more details.
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #
+      #   @param company_id [String, nil] The unique identifier of the company to list ad campaigns for.
       #
       #   @param created_after [Time, nil] Only return ad campaigns created after this timestamp.
       #
@@ -74,28 +84,15 @@ module WhopSDK
       #
       #   @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
+      #   @param include_paused [Boolean, nil] When false, excludes paused campaigns so pagination matches the dashboard's hide
+      #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
       #   @param query [String, nil] Case-insensitive substring match against the campaign title.
       #
-      #   @param status [Symbol, WhopSDK::Models::AdCampaignListParams::Status, nil] The status of an ad campaign.
+      #   @param status [Symbol, WhopSDK::Models::AdCampaignStatus, nil] The status of an ad campaign.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
-
-      # The status of an ad campaign.
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        ACTIVE = :active
-        PAUSED = :paused
-        PAYMENT_FAILED = :payment_failed
-        DRAFT = :draft
-        IN_REVIEW = :in_review
-        FLAGGED = :flagged
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
     end
   end
 end

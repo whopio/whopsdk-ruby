@@ -15,8 +15,6 @@ PATH
       cgi
       connection_pool
       standardwebhooks
-      jwt
-      openssl
 
 GEM
   remote: https://rubygems.org/
@@ -75,8 +73,6 @@ GEM
       concurrent-ruby (~> 1.0)
     io-event (1.11.2)
     json (2.15.2)
-    jwt (3.1.2)
-      base64
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     listen (3.9.0)
@@ -95,7 +91,6 @@ GEM
       minitest (~> 5.0)
     mutex_m (0.3.0)
     netrc (0.11.0)
-    openssl (3.3.2)
     parallel (1.27.0)
     parser (3.3.10.0)
       ast (~> 2.4.1)
@@ -212,13 +207,11 @@ PLATFORMS
 
 DEPENDENCIES
   async
-  jwt
   minitest
   minitest-focus
   minitest-hooks
   minitest-proveit
   minitest-rg
-  openssl
   rake
   rbs
   redcarpet

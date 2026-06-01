@@ -100,6 +100,13 @@ module WhopSDK
       #   @return [Integer, nil]
       required :member_count, Integer, nil?: true
 
+      # @!attribute metadata
+      #   Custom key-value pairs stored on the plan. Included in webhook payloads for
+      #   payment and membership events.
+      #
+      #   @return [Hash{Symbol=>Object}, nil]
+      required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
       # @!attribute payment_method_configuration
       #   The explicit payment method configuration specifying which payment methods are
       #   enabled or disabled for this plan. Null if the plan uses default settings.
@@ -163,6 +170,12 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::TaxType]
       required :tax_type, enum: -> { WhopSDK::TaxType }
 
+      # @!attribute three_ds_level
+      #   The 3D Secure behavior for a plan.
+      #
+      #   @return [Symbol, WhopSDK::Models::Plan::ThreeDSLevel, nil]
+      required :three_ds_level, enum: -> { WhopSDK::Plan::ThreeDSLevel }, nil?: true
+
       # @!attribute title
       #   The display name of the plan shown to customers on the product page and at
       #   checkout. Maximum 30 characters. Null if no title has been set.
@@ -198,7 +211,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility]
       required :visibility, enum: -> { WhopSDK::Visibility }
 
-      # @!method initialize(id:, adaptive_pricing_enabled:, billing_period:, collect_tax:, company:, created_at:, currency:, custom_fields:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, payment_method_configuration:, plan_type:, product:, purchase_url:, release_method:, renewal_price:, split_pay_required_payments:, stock:, tax_type:, title:, trial_period_days:, unlimited_stock:, updated_at:, visibility:)
+      # @!method initialize(id:, adaptive_pricing_enabled:, billing_period:, collect_tax:, company:, created_at:, currency:, custom_fields:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, metadata:, payment_method_configuration:, plan_type:, product:, purchase_url:, release_method:, renewal_price:, split_pay_required_payments:, stock:, tax_type:, three_ds_level:, title:, trial_period_days:, unlimited_stock:, updated_at:, visibility:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Plan}
       #   for more details.
       #
@@ -234,6 +247,8 @@ module WhopSDK
       #
       #   @param member_count [Integer, nil] The number of users who currently hold an active membership through this plan. O
       #
+      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the plan. Included in webhook payloads for paym
+      #
       #   @param payment_method_configuration [WhopSDK::Models::Plan::PaymentMethodConfiguration, nil] The explicit payment method configuration specifying which payment methods are e
       #
       #   @param plan_type [Symbol, WhopSDK::Models::PlanType] The billing model for this plan: 'renewal' for recurring subscriptions or 'one_t
@@ -251,6 +266,8 @@ module WhopSDK
       #   @param stock [Integer, nil] The number of units available for purchase. Only visible to authorized team memb
       #
       #   @param tax_type [Symbol, WhopSDK::Models::TaxType] How tax is handled for this plan: 'inclusive' (tax included in price), 'exclusiv
+      #
+      #   @param three_ds_level [Symbol, WhopSDK::Models::Plan::ThreeDSLevel, nil] The 3D Secure behavior for a plan.
       #
       #   @param title [String, nil] The display name of the plan shown to customers on the product page and at check
       #
@@ -418,6 +435,19 @@ module WhopSDK
         #   @param id [String] The unique identifier for the product.
         #
         #   @param title [String] The display name of the product shown to customers on the product page and in se
+      end
+
+      # The 3D Secure behavior for a plan.
+      #
+      # @see WhopSDK::Models::Plan#three_ds_level
+      module ThreeDSLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        MANDATE_CHALLENGE = :mandate_challenge
+        FRICTIONLESS = :frictionless
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

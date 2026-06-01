@@ -8,11 +8,11 @@ module WhopSDK
       # @example
       #   # `unwrap_webhook_event` is a `WhopSDK::UnwrapWebhookEvent`
       #   case unwrap_webhook_event
-      #   when WhopSDK::InvoiceCreatedWebhookEvent
+      #   when WhopSDK::CourseLessonInteractionCompletedWebhookEvent
       #     puts(unwrap_webhook_event.id)
-      #   when WhopSDK::InvoiceMarkedUncollectibleWebhookEvent
+      #   when WhopSDK::DisputeCreatedWebhookEvent
       #     puts(unwrap_webhook_event.api_version)
-      #   when WhopSDK::InvoicePaidWebhookEvent
+      #   when WhopSDK::DisputeUpdatedWebhookEvent
       #     puts(unwrap_webhook_event.data)
       #   else
       #     puts(unwrap_webhook_event)
@@ -20,11 +20,11 @@ module WhopSDK
       #
       # @example
       #   case unwrap_webhook_event
-      #   in {type: :"invoice.created", id: id, api_version: api_version, data: data}
+      #   in {type: :"course_lesson_interaction.completed", id: id, api_version: api_version, data: data}
       #     puts(id)
-      #   in {type: :"invoice.marked_uncollectible", id: id, api_version: api_version, data: data}
+      #   in {type: :"dispute.created", id: id, api_version: api_version, data: data}
       #     puts(api_version)
-      #   in {type: :"invoice.paid", id: id, api_version: api_version, data: data}
+      #   in {type: :"dispute.updated", id: id, api_version: api_version, data: data}
       #     puts(data)
       #   else
       #     puts(unwrap_webhook_event)

@@ -117,6 +117,12 @@ module WhopSDK
       ZW_TIN = :zw_tin
       SR_FIN = :sr_fin
       XI_VAT = :xi_vat
+      AL_TIN = :al_tin
+      CI_TIN = :ci_tin
+      GH_TIN = :gh_tin
+      MO_TIN = :mo_tin
+      NE_NIF = :ne_nif
+      PY_RUC = :py_ruc
 
       # @!method self.values
       #   @return [Array<Symbol>]

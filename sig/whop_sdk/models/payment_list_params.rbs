@@ -5,6 +5,7 @@ module WhopSDK
         after: String?,
         before: String?,
         billing_reasons: ::Array[WhopSDK::Models::billing_reasons]?,
+        checkout_configuration_ids: ::Array[String]?,
         company_id: String?,
         created_after: Time?,
         created_before: Time?,
@@ -33,6 +34,8 @@ module WhopSDK
       attr_accessor before: String?
 
       attr_accessor billing_reasons: ::Array[WhopSDK::Models::billing_reasons]?
+
+      attr_accessor checkout_configuration_ids: ::Array[String]?
 
       attr_accessor company_id: String?
 
@@ -70,6 +73,7 @@ module WhopSDK
         ?after: String?,
         ?before: String?,
         ?billing_reasons: ::Array[WhopSDK::Models::billing_reasons]?,
+        ?checkout_configuration_ids: ::Array[String]?,
         ?company_id: String?,
         ?created_after: Time?,
         ?created_before: Time?,
@@ -93,6 +97,7 @@ module WhopSDK
         after: String?,
         before: String?,
         billing_reasons: ::Array[WhopSDK::Models::billing_reasons]?,
+        checkout_configuration_ids: ::Array[String]?,
         company_id: String?,
         created_after: Time?,
         created_before: Time?,

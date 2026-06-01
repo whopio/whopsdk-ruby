@@ -26,7 +26,8 @@ module WhopSDK
       required :company, -> { WhopSDK::Models::MemberRetrieveResponse::Company }
 
       # @!attribute company_token_balance
-      #   The member's token balance for this company
+      #   The member's token balance for this company. Computed live from the ledger, not
+      #   from a cache.
       #
       #   @return [Float]
       required :company_token_balance, Float
@@ -98,7 +99,7 @@ module WhopSDK
       #
       #   @param company [WhopSDK::Models::MemberRetrieveResponse::Company] The company for the member.
       #
-      #   @param company_token_balance [Float] The member's token balance for this company
+      #   @param company_token_balance [Float] The member's token balance for this company. Computed live from the ledger, not
       #
       #   @param created_at [Time] The datetime the company member was created.
       #

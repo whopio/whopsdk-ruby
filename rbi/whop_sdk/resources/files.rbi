@@ -9,8 +9,7 @@ module WhopSDK
       sig do
         params(
           filename: String,
-          visibility:
-            T.nilable(WhopSDK::FileCreateParams::Visibility::OrSymbol),
+          visibility: T.nilable(WhopSDK::FileVisibility::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::FileCreateResponse)
       end

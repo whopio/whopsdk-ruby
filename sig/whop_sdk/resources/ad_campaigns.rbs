@@ -4,36 +4,36 @@ module WhopSDK
       def retrieve: (
         String id,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::AdCampaignRetrieveResponse
+      ) -> WhopSDK::AdCampaign
 
       def update: (
         String id,
         ?budget: Float?,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::AdCampaignUpdateResponse
+      ) -> WhopSDK::AdCampaign
 
       def list: (
-        company_id: String,
         ?after: String?,
         ?before: String?,
+        ?company_id: String?,
         ?created_after: Time?,
         ?created_before: Time?,
         ?first: Integer?,
         ?last: Integer?,
         ?query: String?,
-        ?status: WhopSDK::Models::AdCampaignListParams::status?,
+        ?status: WhopSDK::Models::ad_campaign_status?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::AdCampaignListResponse]
 
       def pause: (
         String id,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::AdCampaignPauseResponse
+      ) -> WhopSDK::AdCampaign
 
       def unpause: (
         String id,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::AdCampaignUnpauseResponse
+      ) -> WhopSDK::AdCampaign
 
       def initialize: (client: WhopSDK::Client) -> void
     end

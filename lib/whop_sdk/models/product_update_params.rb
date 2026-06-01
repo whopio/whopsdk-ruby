@@ -85,6 +85,14 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil]
       optional :member_affiliate_status, enum: -> { WhopSDK::GlobalAffiliateStatus }, nil?: true
 
+      # @!attribute metadata
+      #   Custom key-value pairs to store on the product. Included in webhook payloads for
+      #   payment and membership events. Max 50 keys, 500 chars per key, 5000 chars per
+      #   value.
+      #
+      #   @return [Hash{Symbol=>Object}, nil]
+      optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
       # @!attribute product_tax_code_id
       #   The unique identifier of the tax classification code to apply to this product.
       #
@@ -128,7 +136,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility, nil]
       optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-      # @!method initialize(id:, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, gallery_images: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, send_welcome_message: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
+      # @!method initialize(id:, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, gallery_images: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, metadata: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, send_welcome_message: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::ProductUpdateParams} for more details.
       #
@@ -155,6 +163,8 @@ module WhopSDK
       #   @param member_affiliate_percentage [Float, nil] The commission rate as a percentage that members earn through the member affilia
       #
       #   @param member_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for a product.
+      #
+      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs to store on the product. Included in webhook payloads for
       #
       #   @param product_tax_code_id [String, nil] The unique identifier of the tax classification code to apply to this product.
       #

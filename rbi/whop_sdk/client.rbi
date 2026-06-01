@@ -11,7 +11,7 @@ module WhopSDK
     DEFAULT_MAX_RETRY_DELAY = T.let(8.0, Float)
 
     # A company API key, company scoped JWT, app API key, or user OAuth token. You
-    # must prepend your key/token with the word 'Bearer', which will look like
+    # must prepend your key/token with the word `Bearer`, which will look like
     # `Bearer ***************************`
     sig { returns(String) }
     attr_reader :api_key
@@ -280,7 +280,7 @@ module WhopSDK
     end
     def self.new(
       # A company API key, company scoped JWT, app API key, or user OAuth token. You
-      # must prepend your key/token with the word 'Bearer', which will look like
+      # must prepend your key/token with the word `Bearer`, which will look like
       # `Bearer ***************************` Defaults to `ENV["WHOP_API_KEY"]`
       api_key: ENV["WHOP_API_KEY"],
       # Defaults to `ENV["WHOP_WEBHOOK_SECRET"]`

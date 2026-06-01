@@ -17,6 +17,7 @@ module WhopSDK
         member_affiliate_percentage: Float?,
         member_affiliate_status: WhopSDK::Models::global_affiliate_status,
         member_count: Integer,
+        metadata: ::Hash[Symbol, top]?,
         owner_user: WhopSDK::Product::OwnerUser,
         product_tax_code: WhopSDK::Product::ProductTaxCode?,
         published_reviews_count: Integer,
@@ -58,6 +59,8 @@ module WhopSDK
 
       attr_accessor member_count: Integer
 
+      attr_accessor metadata: ::Hash[Symbol, top]?
+
       attr_accessor owner_user: WhopSDK::Product::OwnerUser
 
       attr_accessor product_tax_code: WhopSDK::Product::ProductTaxCode?
@@ -90,6 +93,7 @@ module WhopSDK
         member_affiliate_percentage: Float?,
         member_affiliate_status: WhopSDK::Models::global_affiliate_status,
         member_count: Integer,
+        metadata: ::Hash[Symbol, top]?,
         owner_user: WhopSDK::Product::OwnerUser,
         product_tax_code: WhopSDK::Product::ProductTaxCode?,
         published_reviews_count: Integer,
@@ -116,6 +120,7 @@ module WhopSDK
         member_affiliate_percentage: Float?,
         member_affiliate_status: WhopSDK::Models::global_affiliate_status,
         member_count: Integer,
+        metadata: ::Hash[Symbol, top]?,
         owner_user: WhopSDK::Product::OwnerUser,
         product_tax_code: WhopSDK::Product::ProductTaxCode?,
         published_reviews_count: Integer,

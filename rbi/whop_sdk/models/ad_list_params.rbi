@@ -46,6 +46,11 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :first
 
+      # When false, excludes paused ads so pagination matches the dashboard's
+      # hide-paused toggle.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :include_paused
+
       # Returns the last _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
@@ -57,6 +62,10 @@ module WhopSDK
       # The direction of the sort.
       sig { returns(T.nilable(WhopSDK::Direction::OrSymbol)) }
       attr_accessor :order_direction
+
+      # Case-insensitive substring match against the ad title or tag.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :query
 
       # Start of the stats date range used when order_by is a stats column.
       sig { returns(T.nilable(Time)) }
@@ -80,9 +89,11 @@ module WhopSDK
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
           first: T.nilable(Integer),
+          include_paused: T.nilable(T::Boolean),
           last: T.nilable(Integer),
           order_by: T.nilable(WhopSDK::AdListParams::OrderBy::OrSymbol),
           order_direction: T.nilable(WhopSDK::Direction::OrSymbol),
+          query: T.nilable(String),
           stats_from: T.nilable(Time),
           stats_to: T.nilable(Time),
           status: T.nilable(WhopSDK::ExternalAdStatus::OrSymbol),
@@ -109,12 +120,17 @@ module WhopSDK
         created_before: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
+        # When false, excludes paused ads so pagination matches the dashboard's
+        # hide-paused toggle.
+        include_paused: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
         # Columns that the listAds query can sort by.
         order_by: nil,
         # The direction of the sort.
         order_direction: nil,
+        # Case-insensitive substring match against the ad title or tag.
+        query: nil,
         # Start of the stats date range used when order_by is a stats column.
         stats_from: nil,
         # End of the stats date range used when order_by is a stats column.
@@ -136,9 +152,11 @@ module WhopSDK
             created_after: T.nilable(Time),
             created_before: T.nilable(Time),
             first: T.nilable(Integer),
+            include_paused: T.nilable(T::Boolean),
             last: T.nilable(Integer),
             order_by: T.nilable(WhopSDK::AdListParams::OrderBy::OrSymbol),
             order_direction: T.nilable(WhopSDK::Direction::OrSymbol),
+            query: T.nilable(String),
             stats_from: T.nilable(Time),
             stats_to: T.nilable(Time),
             status: T.nilable(WhopSDK::ExternalAdStatus::OrSymbol),

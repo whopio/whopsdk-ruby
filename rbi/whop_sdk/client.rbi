@@ -172,6 +172,18 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::AccountLinks) }
     attr_reader :account_links
 
+    sig { returns(WhopSDK::Resources::Accounts) }
+    attr_reader :accounts
+
+    sig { returns(WhopSDK::Resources::Wallets) }
+    attr_reader :wallets
+
+    sig { returns(WhopSDK::Resources::Swaps) }
+    attr_reader :swaps
+
+    sig { returns(WhopSDK::Resources::Deposits) }
+    attr_reader :deposits
+
     # Setup intents
     sig { returns(WhopSDK::Resources::SetupIntents) }
     attr_reader :setup_intents

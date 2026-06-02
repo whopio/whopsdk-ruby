@@ -1,0 +1,79 @@
+module WhopSDK
+  module Models
+    type wallet_send_response =
+      {
+        amount: String,
+        currency: String,
+        destination: WhopSDK::Models::WalletSendResponse::Destination,
+        object: WhopSDK::Models::WalletSendResponse::object,
+        source: WhopSDK::Models::WalletSendResponse::Source,
+        tx_hash: String
+      }
+
+    class WalletSendResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor amount: String
+
+      attr_accessor currency: String
+
+      attr_accessor destination: WhopSDK::Models::WalletSendResponse::Destination
+
+      attr_accessor object: WhopSDK::Models::WalletSendResponse::object
+
+      attr_accessor source: WhopSDK::Models::WalletSendResponse::Source
+
+      attr_accessor tx_hash: String
+
+      def initialize: (
+        amount: String,
+        currency: String,
+        destination: WhopSDK::Models::WalletSendResponse::Destination,
+        object: WhopSDK::Models::WalletSendResponse::object,
+        source: WhopSDK::Models::WalletSendResponse::Source,
+        tx_hash: String
+      ) -> void
+
+      def to_hash: -> {
+        amount: String,
+        currency: String,
+        destination: WhopSDK::Models::WalletSendResponse::Destination,
+        object: WhopSDK::Models::WalletSendResponse::object,
+        source: WhopSDK::Models::WalletSendResponse::Source,
+        tx_hash: String
+      }
+
+      type destination = { account_id: String, address: String }
+
+      class Destination < WhopSDK::Internal::Type::BaseModel
+        attr_accessor account_id: String
+
+        attr_accessor address: String
+
+        def initialize: (account_id: String, address: String) -> void
+
+        def to_hash: -> { account_id: String, address: String }
+      end
+
+      type object = :send
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        SEND: :send
+
+        def self?.values: -> ::Array[WhopSDK::Models::WalletSendResponse::object]
+      end
+
+      type source = { account_id: String, address: String }
+
+      class Source < WhopSDK::Internal::Type::BaseModel
+        attr_accessor account_id: String
+
+        attr_accessor address: String
+
+        def initialize: (account_id: String, address: String) -> void
+
+        def to_hash: -> { account_id: String, address: String }
+      end
+    end
+  end
+end

@@ -78,6 +78,7 @@ module WhopSDK
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
           first: T.nilable(Integer),
+          include_paused: T.nilable(T::Boolean),
           last: T.nilable(Integer),
           query: T.nilable(String),
           status: T.nilable(WhopSDK::AdGroupStatus::OrSymbol),
@@ -101,6 +102,9 @@ module WhopSDK
         created_before: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
+        # When false, excludes paused ad groups so pagination matches the dashboard's
+        # hide-paused toggle.
+        include_paused: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
         # Case-insensitive substring match against the ad group name.

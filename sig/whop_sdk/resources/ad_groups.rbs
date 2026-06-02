@@ -26,6 +26,7 @@ module WhopSDK
         ?created_after: Time?,
         ?created_before: Time?,
         ?first: Integer?,
+        ?include_paused: bool?,
         ?last: Integer?,
         ?query: String?,
         ?status: WhopSDK::Models::ad_group_status?,

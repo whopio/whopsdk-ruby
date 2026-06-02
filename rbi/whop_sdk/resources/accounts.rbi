@@ -99,7 +99,8 @@ module WhopSDK
       end
 
       # Lists accounts visible to the credential. User tokens return the user's business
-      # accounts; business account API keys return connected accounts.
+      # accounts; business account API keys return the requesting business account and
+      # its connected accounts.
       sig do
         params(
           page: Integer,
@@ -115,6 +116,16 @@ module WhopSDK
         per: nil,
         request_options: {}
       )
+      end
+
+      # Retrieves the business account associated with the current business account API
+      # key.
+      sig do
+        params(request_options: WhopSDK::RequestOptions::OrHash).returns(
+          WhopSDK::Account
+        )
+      end
+      def me(request_options: {})
       end
 
       # @api private

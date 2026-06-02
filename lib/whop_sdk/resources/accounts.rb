@@ -112,7 +112,8 @@ module WhopSDK
       # {WhopSDK::Models::AccountListParams} for more details.
       #
       # Lists accounts visible to the credential. User tokens return the user's business
-      # accounts; business account API keys return connected accounts.
+      # accounts; business account API keys return the requesting business account and
+      # its connected accounts.
       #
       # @overload list(page: nil, per: nil, request_options: {})
       #
@@ -134,6 +135,25 @@ module WhopSDK
           query: query,
           model: WhopSDK::Models::AccountListResponse,
           options: options
+        )
+      end
+
+      # Retrieves the business account associated with the current business account API
+      # key.
+      #
+      # @overload me(request_options: {})
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::Account]
+      #
+      # @see WhopSDK::Models::AccountMeParams
+      def me(params = {})
+        @client.request(
+          method: :get,
+          path: "accounts/me",
+          model: WhopSDK::Account,
+          options: params[:request_options]
         )
       end
 

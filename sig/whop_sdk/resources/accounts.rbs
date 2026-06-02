@@ -38,6 +38,8 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::AccountListResponse
 
+      def me: (?request_options: WhopSDK::request_opts) -> WhopSDK::Account
+
       def initialize: (client: WhopSDK::Client) -> void
     end
   end

@@ -13,7 +13,11 @@ module WhopSDK
 
   class AccountListParams = WhopSDK::Models::AccountListParams
 
+  class AccountMeParams = WhopSDK::Models::AccountMeParams
+
   class AccountRetrieveParams = WhopSDK::Models::AccountRetrieveParams
+
+  class AccountSocialLink = WhopSDK::Models::AccountSocialLink
 
   class AccountUpdateParams = WhopSDK::Models::AccountUpdateParams
 

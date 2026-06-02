@@ -1,0 +1,44 @@
+module WhopSDK
+  module Resources
+    class Accounts
+      def create: (
+        ?email: String,
+        ?metadata: ::Hash[Symbol, top],
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Account
+
+      def retrieve: (
+        String account_id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Account
+
+      def update: (
+        String account_id,
+        ?affiliate_application_required: bool,
+        ?affiliate_instructions: String?,
+        ?banner_image: ::Hash[Symbol, top]?,
+        ?business_type: String?,
+        ?description: String?,
+        ?featured_affiliate_product_id: String?,
+        ?industry_group: String?,
+        ?industry_type: String?,
+        ?logo: ::Hash[Symbol, top]?,
+        ?metadata: ::Hash[Symbol, top],
+        ?route: String?,
+        ?send_customer_emails: bool,
+        ?social_links: ::Array[::Hash[Symbol, top]],
+        ?target_audience: String?,
+        ?title: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Account
+
+      def list: (
+        ?page: Integer,
+        ?per: Integer,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::AccountListResponse
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

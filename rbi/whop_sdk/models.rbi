@@ -7,7 +7,19 @@ module WhopSDK
 
   AccessTokenCreateParams = WhopSDK::Models::AccessTokenCreateParams
 
+  Account = WhopSDK::Models::Account
+
+  AccountCreateParams = WhopSDK::Models::AccountCreateParams
+
   AccountLinkCreateParams = WhopSDK::Models::AccountLinkCreateParams
+
+  AccountListParams = WhopSDK::Models::AccountListParams
+
+  AccountRetrieveParams = WhopSDK::Models::AccountRetrieveParams
+
+  AccountUpdateParams = WhopSDK::Models::AccountUpdateParams
+
+  AccountWallet = WhopSDK::Models::AccountWallet
 
   Ad = WhopSDK::Models::Ad
 
@@ -258,6 +270,8 @@ module WhopSDK
   Currency = WhopSDK::Models::Currency
 
   CustomCta = WhopSDK::Models::CustomCta
+
+  DepositCreateParams = WhopSDK::Models::DepositCreateParams
 
   Direction = WhopSDK::Models::Direction
 
@@ -724,6 +738,8 @@ module WhopSDK
 
   SupportChannelRetrieveParams = WhopSDK::Models::SupportChannelRetrieveParams
 
+  SwapCreateQuoteParams = WhopSDK::Models::SwapCreateQuoteParams
+
   TaxIdentifierType = WhopSDK::Models::TaxIdentifierType
 
   TaxType = WhopSDK::Models::TaxType
@@ -766,6 +782,14 @@ module WhopSDK
   Visibility = WhopSDK::Models::Visibility
 
   VisibilityFilter = WhopSDK::Models::VisibilityFilter
+
+  WalletBalanceParams = WhopSDK::Models::WalletBalanceParams
+
+  WalletListParams = WhopSDK::Models::WalletListParams
+
+  WalletPingParams = WhopSDK::Models::WalletPingParams
+
+  WalletSendParams = WhopSDK::Models::WalletSendParams
 
   Webhook = WhopSDK::Models::Webhook
 

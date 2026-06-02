@@ -73,10 +73,10 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute currency
-      #   The available currencies on the platform
+      #   The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
       #
-      #   @return [Symbol, WhopSDK::Models::Currency, nil]
-      required :currency, enum: -> { WhopSDK::Currency }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::Currency]
+      required :currency, enum: -> { WhopSDK::Currency }
 
       # @!attribute dispute_alerted_at
       #   When an alert came in that this transaction will be disputed
@@ -193,12 +193,10 @@ module WhopSDK
       required :retryable, WhopSDK::Internal::Type::Boolean
 
       # @!attribute settlement_currency
-      #   The currency in which the creator receives payouts and fees are charged (e.g.,
-      #   'usd', 'eur'). For multi-currency payments this differs from the payment
-      #   currency.
+      #   The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
       #
-      #   @return [String]
-      required :settlement_currency, String
+      #   @return [Symbol, WhopSDK::Models::Currency]
+      required :settlement_currency, enum: -> { WhopSDK::Currency }
 
       # @!attribute status
       #   The status of a receipt
@@ -291,7 +289,7 @@ module WhopSDK
       #
       #   @param created_at [Time] The datetime the payment was created.
       #
-      #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
+      #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
       #
       #   @param dispute_alerted_at [Time, nil] When an alert came in that this transaction will be disputed
       #
@@ -329,7 +327,7 @@ module WhopSDK
       #
       #   @param retryable [Boolean] True when the payment status is `open` and its membership is in one of the retry
       #
-      #   @param settlement_currency [String] The currency in which the creator receives payouts and fees are charged (e.g., '
+      #   @param settlement_currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
       #
       #   @param status [Symbol, WhopSDK::Models::ReceiptStatus, nil] The status of a receipt
       #
@@ -527,16 +525,24 @@ module WhopSDK
         #   @return [String]
         required :id, String
 
+        # @!attribute phone_number
+        #   The phone number associated with this membership.
+        #
+        #   @return [String, nil]
+        required :phone_number, String, nil?: true
+
         # @!attribute status
         #   The state of the membership.
         #
         #   @return [Symbol, WhopSDK::Models::MembershipStatus]
         required :status, enum: -> { WhopSDK::MembershipStatus }
 
-        # @!method initialize(id:, status:)
+        # @!method initialize(id:, phone_number:, status:)
         #   The membership attached to this payment.
         #
         #   @param id [String] The unique identifier for the membership.
+        #
+        #   @param phone_number [String, nil] The phone number associated with this membership.
         #
         #   @param status [Symbol, WhopSDK::Models::MembershipStatus] The state of the membership.
       end
@@ -639,12 +645,24 @@ module WhopSDK
         #   @return [String, nil]
         required :internal_notes, String, nil?: true
 
-        # @!method initialize(id:, internal_notes:)
+        # @!attribute metadata
+        #   Custom key-value pairs stored on the plan. Included in webhook payloads for
+        #   payment and membership events.
+        #
+        #   @return [Hash{Symbol=>Object}, nil]
+        required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
+        # @!method initialize(id:, internal_notes:, metadata:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::PaymentListResponse::Plan} for more details.
+        #
         #   The plan attached to this payment.
         #
         #   @param id [String] The unique identifier for the plan.
         #
         #   @param internal_notes [String, nil] A personal description or notes section for the business.
+        #
+        #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the plan. Included in webhook payloads for paym
       end
 
       # @see WhopSDK::Models::PaymentListResponse#product
@@ -654,6 +672,13 @@ module WhopSDK
         #
         #   @return [String]
         required :id, String
+
+        # @!attribute metadata
+        #   Custom key-value pairs stored on the product. Included in webhook payloads for
+        #   payment and membership events.
+        #
+        #   @return [Hash{Symbol=>Object}, nil]
+        required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
         # @!attribute route
         #   The URL slug used in the product's public link (e.g., 'my-product' in
@@ -669,13 +694,15 @@ module WhopSDK
         #   @return [String]
         required :title, String
 
-        # @!method initialize(id:, route:, title:)
+        # @!method initialize(id:, metadata:, route:, title:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::PaymentListResponse::Product} for more details.
         #
         #   The product this payment was made for
         #
         #   @param id [String] The unique identifier for the product.
+        #
+        #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the product. Included in webhook payloads for p
         #
         #   @param route [String] The URL slug used in the product's public link (e.g., 'my-product' in whop.com/c
         #

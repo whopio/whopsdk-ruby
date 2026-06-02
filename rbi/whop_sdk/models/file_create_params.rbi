@@ -18,16 +18,13 @@ module WhopSDK
 
       # Controls whether an uploaded file is publicly accessible or requires
       # authentication to access.
-      sig do
-        returns(T.nilable(WhopSDK::FileCreateParams::Visibility::OrSymbol))
-      end
+      sig { returns(T.nilable(WhopSDK::FileVisibility::OrSymbol)) }
       attr_accessor :visibility
 
       sig do
         params(
           filename: String,
-          visibility:
-            T.nilable(WhopSDK::FileCreateParams::Visibility::OrSymbol),
+          visibility: T.nilable(WhopSDK::FileVisibility::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -46,36 +43,12 @@ module WhopSDK
         override.returns(
           {
             filename: String,
-            visibility:
-              T.nilable(WhopSDK::FileCreateParams::Visibility::OrSymbol),
+            visibility: T.nilable(WhopSDK::FileVisibility::OrSymbol),
             request_options: WhopSDK::RequestOptions
           }
         )
       end
       def to_hash
-      end
-
-      # Controls whether an uploaded file is publicly accessible or requires
-      # authentication to access.
-      module Visibility
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, WhopSDK::FileCreateParams::Visibility) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        PUBLIC =
-          T.let(:public, WhopSDK::FileCreateParams::Visibility::TaggedSymbol)
-        PRIVATE =
-          T.let(:private, WhopSDK::FileCreateParams::Visibility::TaggedSymbol)
-
-        sig do
-          override.returns(
-            T::Array[WhopSDK::FileCreateParams::Visibility::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
       end
     end
   end

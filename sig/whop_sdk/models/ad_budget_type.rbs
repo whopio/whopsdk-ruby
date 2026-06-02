@@ -1,0 +1,14 @@
+module WhopSDK
+  module Models
+    type ad_budget_type = :daily | :lifetime
+
+    module AdBudgetType
+      extend WhopSDK::Internal::Type::Enum
+
+      DAILY: :daily
+      LIFETIME: :lifetime
+
+      def self?.values: -> ::Array[WhopSDK::Models::ad_budget_type]
+    end
+  end
+end

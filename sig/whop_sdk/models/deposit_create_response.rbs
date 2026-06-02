@@ -1,0 +1,99 @@
+module WhopSDK
+  module Models
+    type deposit_create_response =
+      {
+        amount: String,
+        deposit_address: WhopSDK::Models::DepositCreateResponse::DepositAddress,
+        destination: WhopSDK::Models::DepositCreateResponse::Destination,
+        hosted_url: String?,
+        metadata: ::Hash[Symbol, top],
+        object: WhopSDK::Models::DepositCreateResponse::object
+      }
+
+    class DepositCreateResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor amount: String
+
+      attr_accessor deposit_address: WhopSDK::Models::DepositCreateResponse::DepositAddress
+
+      attr_accessor destination: WhopSDK::Models::DepositCreateResponse::Destination
+
+      attr_accessor hosted_url: String?
+
+      attr_accessor metadata: ::Hash[Symbol, top]
+
+      attr_accessor object: WhopSDK::Models::DepositCreateResponse::object
+
+      def initialize: (
+        amount: String,
+        deposit_address: WhopSDK::Models::DepositCreateResponse::DepositAddress,
+        destination: WhopSDK::Models::DepositCreateResponse::Destination,
+        hosted_url: String?,
+        metadata: ::Hash[Symbol, top],
+        object: WhopSDK::Models::DepositCreateResponse::object
+      ) -> void
+
+      def to_hash: -> {
+        amount: String,
+        deposit_address: WhopSDK::Models::DepositCreateResponse::DepositAddress,
+        destination: WhopSDK::Models::DepositCreateResponse::Destination,
+        hosted_url: String?,
+        metadata: ::Hash[Symbol, top],
+        object: WhopSDK::Models::DepositCreateResponse::object
+      }
+
+      type deposit_address = { evm: String, solana: String }
+
+      class DepositAddress < WhopSDK::Internal::Type::BaseModel
+        attr_accessor evm: String
+
+        attr_accessor solana: String
+
+        def initialize: (evm: String, solana: String) -> void
+
+        def to_hash: -> { evm: String, solana: String }
+      end
+
+      type destination =
+        {
+          address: String,
+          currency: String,
+          network: String,
+          account_id: String?
+        }
+
+      class Destination < WhopSDK::Internal::Type::BaseModel
+        attr_accessor address: String
+
+        attr_accessor currency: String
+
+        attr_accessor network: String
+
+        attr_accessor account_id: String?
+
+        def initialize: (
+          address: String,
+          currency: String,
+          network: String,
+          ?account_id: String?
+        ) -> void
+
+        def to_hash: -> {
+          address: String,
+          currency: String,
+          network: String,
+          account_id: String?
+        }
+      end
+
+      type object = :deposit
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        DEPOSIT: :deposit
+
+        def self?.values: -> ::Array[WhopSDK::Models::DepositCreateResponse::object]
+      end
+    end
+  end
+end

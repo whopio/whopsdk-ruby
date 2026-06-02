@@ -89,6 +89,8 @@ module WhopSDK
       | :usdt
       | :kzt
       | :awg
+      | :whop_usd
+      | :xau
 
     module Currency
       extend WhopSDK::Internal::Type::Enum
@@ -181,6 +183,8 @@ module WhopSDK
       USDT: :usdt
       KZT: :kzt
       AWG: :awg
+      WHOP_USD: :whop_usd
+      XAU: :xau
 
       def self?.values: -> ::Array[WhopSDK::Models::currency]
     end

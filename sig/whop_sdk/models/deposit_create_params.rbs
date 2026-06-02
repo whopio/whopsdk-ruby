@@ -1,0 +1,81 @@
+module WhopSDK
+  module Models
+    type deposit_create_params =
+      {
+        amount: Float,
+        destination: WhopSDK::Models::DepositCreateParams::destination,
+        metadata: ::Hash[Symbol, top],
+        network: String?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class DepositCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor amount: Float
+
+      attr_accessor destination: WhopSDK::Models::DepositCreateParams::destination
+
+      attr_reader metadata: ::Hash[Symbol, top]?
+
+      def metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      attr_accessor network: String?
+
+      def initialize: (
+        amount: Float,
+        destination: WhopSDK::Models::DepositCreateParams::destination,
+        ?metadata: ::Hash[Symbol, top],
+        ?network: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        amount: Float,
+        destination: WhopSDK::Models::DepositCreateParams::destination,
+        metadata: ::Hash[Symbol, top],
+        network: String?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type destination =
+        String | WhopSDK::DepositCreateParams::Destination::UnionMember1
+
+      module Destination
+        extend WhopSDK::Internal::Type::Union
+
+        type union_member1 =
+          { account_id: String, address: String, network: String }
+
+        class UnionMember1 < WhopSDK::Internal::Type::BaseModel
+          attr_reader account_id: String?
+
+          def account_id=: (String) -> String
+
+          attr_reader address: String?
+
+          def address=: (String) -> String
+
+          attr_reader network: String?
+
+          def network=: (String) -> String
+
+          def initialize: (
+            ?account_id: String,
+            ?address: String,
+            ?network: String
+          ) -> void
+
+          def to_hash: -> {
+            account_id: String,
+            address: String,
+            network: String
+          }
+        end
+
+        def self?.variants: -> ::Array[WhopSDK::Models::DepositCreateParams::destination]
+      end
+    end
+  end
+end

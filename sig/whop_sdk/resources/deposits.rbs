@@ -1,0 +1,15 @@
+module WhopSDK
+  module Resources
+    class Deposits
+      def create: (
+        amount: Float,
+        destination: WhopSDK::Models::DepositCreateParams::destination,
+        ?metadata: ::Hash[Symbol, top],
+        ?network: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::DepositCreateResponse
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

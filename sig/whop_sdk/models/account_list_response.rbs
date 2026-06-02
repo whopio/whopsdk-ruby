@@ -1,0 +1,62 @@
+module WhopSDK
+  module Models
+    type account_list_response =
+      {
+        accounts: ::Array[WhopSDK::Account],
+        pagination: WhopSDK::Models::AccountListResponse::Pagination
+      }
+
+    class AccountListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor accounts: ::Array[WhopSDK::Account]
+
+      attr_accessor pagination: WhopSDK::Models::AccountListResponse::Pagination
+
+      def initialize: (
+        accounts: ::Array[WhopSDK::Account],
+        pagination: WhopSDK::Models::AccountListResponse::Pagination
+      ) -> void
+
+      def to_hash: -> {
+        accounts: ::Array[WhopSDK::Account],
+        pagination: WhopSDK::Models::AccountListResponse::Pagination
+      }
+
+      type pagination =
+        {
+          current_page: Float,
+          next_page: Float?,
+          prev_page: Float?,
+          total_count: Float,
+          total_pages: Float
+        }
+
+      class Pagination < WhopSDK::Internal::Type::BaseModel
+        attr_accessor current_page: Float
+
+        attr_accessor next_page: Float?
+
+        attr_accessor prev_page: Float?
+
+        attr_accessor total_count: Float
+
+        attr_accessor total_pages: Float
+
+        def initialize: (
+          current_page: Float,
+          next_page: Float?,
+          prev_page: Float?,
+          total_count: Float,
+          total_pages: Float
+        ) -> void
+
+        def to_hash: -> {
+          current_page: Float,
+          next_page: Float?,
+          prev_page: Float?,
+          total_count: Float,
+          total_pages: Float
+        }
+      end
+    end
+  end
+end

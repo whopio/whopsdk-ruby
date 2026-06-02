@@ -10,8 +10,14 @@ module WhopSDK
         created_after: Time?,
         created_before: Time?,
         first: Integer?,
+        include_paused: bool?,
         last: Integer?,
-        status: WhopSDK::Models::AdListParams::status?
+        order_by: WhopSDK::Models::AdListParams::order_by?,
+        order_direction: WhopSDK::Models::direction?,
+        query: String?,
+        stats_from: Time?,
+        stats_to: Time?,
+        status: WhopSDK::Models::external_ad_status?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -35,9 +41,21 @@ module WhopSDK
 
       attr_accessor first: Integer?
 
+      attr_accessor include_paused: bool?
+
       attr_accessor last: Integer?
 
-      attr_accessor status: WhopSDK::Models::AdListParams::status?
+      attr_accessor order_by: WhopSDK::Models::AdListParams::order_by?
+
+      attr_accessor order_direction: WhopSDK::Models::direction?
+
+      attr_accessor query: String?
+
+      attr_accessor stats_from: Time?
+
+      attr_accessor stats_to: Time?
+
+      attr_accessor status: WhopSDK::Models::external_ad_status?
 
       def initialize: (
         ?ad_group_id: String?,
@@ -48,8 +66,14 @@ module WhopSDK
         ?created_after: Time?,
         ?created_before: Time?,
         ?first: Integer?,
+        ?include_paused: bool?,
         ?last: Integer?,
-        ?status: WhopSDK::Models::AdListParams::status?,
+        ?order_by: WhopSDK::Models::AdListParams::order_by?,
+        ?order_direction: WhopSDK::Models::direction?,
+        ?query: String?,
+        ?stats_from: Time?,
+        ?stats_to: Time?,
+        ?status: WhopSDK::Models::external_ad_status?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -62,25 +86,26 @@ module WhopSDK
         created_after: Time?,
         created_before: Time?,
         first: Integer?,
+        include_paused: bool?,
         last: Integer?,
-        status: WhopSDK::Models::AdListParams::status?,
+        order_by: WhopSDK::Models::AdListParams::order_by?,
+        order_direction: WhopSDK::Models::direction?,
+        query: String?,
+        stats_from: Time?,
+        stats_to: Time?,
+        status: WhopSDK::Models::external_ad_status?,
         request_options: WhopSDK::RequestOptions
       }
 
-      type status =
-        :active | :paused | :inactive | :in_review | :rejected | :flagged
+      type order_by = :spend | :roas
 
-      module Status
+      module OrderBy
         extend WhopSDK::Internal::Type::Enum
 
-        ACTIVE: :active
-        PAUSED: :paused
-        INACTIVE: :inactive
-        IN_REVIEW: :in_review
-        REJECTED: :rejected
-        FLAGGED: :flagged
+        SPEND: :spend
+        ROAS: :roas
 
-        def self?.values: -> ::Array[WhopSDK::Models::AdListParams::status]
+        def self?.values: -> ::Array[WhopSDK::Models::AdListParams::order_by]
       end
     end
   end

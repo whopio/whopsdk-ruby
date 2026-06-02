@@ -1,0 +1,87 @@
+module WhopSDK
+  module Models
+    type wallet_balance_response =
+      {
+        object: WhopSDK::Models::WalletBalanceResponse::object,
+        tokens: ::Array[WhopSDK::Models::WalletBalanceResponse::Token],
+        total_usd: String
+      }
+
+    class WalletBalanceResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor object: WhopSDK::Models::WalletBalanceResponse::object
+
+      attr_accessor tokens: ::Array[WhopSDK::Models::WalletBalanceResponse::Token]
+
+      attr_accessor total_usd: String
+
+      def initialize: (
+        object: WhopSDK::Models::WalletBalanceResponse::object,
+        tokens: ::Array[WhopSDK::Models::WalletBalanceResponse::Token],
+        total_usd: String
+      ) -> void
+
+      def to_hash: -> {
+        object: WhopSDK::Models::WalletBalanceResponse::object,
+        tokens: ::Array[WhopSDK::Models::WalletBalanceResponse::Token],
+        total_usd: String
+      }
+
+      type object = :balance
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        BALANCE: :balance
+
+        def self?.values: -> ::Array[WhopSDK::Models::WalletBalanceResponse::object]
+      end
+
+      type token =
+        {
+          balance: String,
+          icon_url: String?,
+          name: String,
+          price_usd: Float,
+          symbol: String,
+          token_address: String?,
+          value_usd: String
+        }
+
+      class Token < WhopSDK::Internal::Type::BaseModel
+        attr_accessor balance: String
+
+        attr_accessor icon_url: String?
+
+        attr_accessor name: String
+
+        attr_accessor price_usd: Float
+
+        attr_accessor symbol: String
+
+        attr_accessor token_address: String?
+
+        attr_accessor value_usd: String
+
+        def initialize: (
+          balance: String,
+          icon_url: String?,
+          name: String,
+          price_usd: Float,
+          symbol: String,
+          token_address: String?,
+          value_usd: String
+        ) -> void
+
+        def to_hash: -> {
+          balance: String,
+          icon_url: String?,
+          name: String,
+          price_usd: Float,
+          symbol: String,
+          token_address: String?,
+          value_usd: String
+        }
+      end
+    end
+  end
+end

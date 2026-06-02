@@ -1,0 +1,32 @@
+module WhopSDK
+  module Models
+    type account_create_params =
+      { email: String, metadata: ::Hash[Symbol, top] }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class AccountCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_reader email: String?
+
+      def email=: (String) -> String
+
+      attr_reader metadata: ::Hash[Symbol, top]?
+
+      def metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      def initialize: (
+        ?email: String,
+        ?metadata: ::Hash[Symbol, top],
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        email: String,
+        metadata: ::Hash[Symbol, top],
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

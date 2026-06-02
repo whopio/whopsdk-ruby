@@ -294,10 +294,22 @@ module WhopSDK
         #   @return [String]
         required :id, String
 
-        # @!method initialize(id:)
+        # @!attribute metadata
+        #   Custom key-value pairs stored on the plan. Included in webhook payloads for
+        #   payment and membership events.
+        #
+        #   @return [Hash{Symbol=>Object}, nil]
+        required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
+        # @!method initialize(id:, metadata:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Membership::Plan} for more details.
+        #
         #   The plan the customer purchased to create this membership.
         #
         #   @param id [String] The unique identifier for the plan.
+        #
+        #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the plan. Included in webhook payloads for paym
       end
 
       # @see WhopSDK::Models::Membership#product
@@ -308,6 +320,13 @@ module WhopSDK
         #   @return [String]
         required :id, String
 
+        # @!attribute metadata
+        #   Custom key-value pairs stored on the product. Included in webhook payloads for
+        #   payment and membership events.
+        #
+        #   @return [Hash{Symbol=>Object}, nil]
+        required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
         # @!attribute title
         #   The display name of the product shown to customers on the product page and in
         #   search results.
@@ -315,13 +334,15 @@ module WhopSDK
         #   @return [String]
         required :title, String
 
-        # @!method initialize(id:, title:)
+        # @!method initialize(id:, metadata:, title:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::Membership::Product} for more details.
         #
         #   The product this membership grants access to.
         #
         #   @param id [String] The unique identifier for the product.
+        #
+        #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the product. Included in webhook payloads for p
         #
         #   @param title [String] The display name of the product shown to customers on the product page and in se
       end

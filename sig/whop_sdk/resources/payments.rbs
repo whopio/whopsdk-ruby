@@ -15,6 +15,7 @@ module WhopSDK
         ?after: String?,
         ?before: String?,
         ?billing_reasons: ::Array[WhopSDK::Models::billing_reasons]?,
+        ?checkout_configuration_ids: ::Array[String]?,
         ?company_id: String?,
         ?created_after: Time?,
         ?created_before: Time?,

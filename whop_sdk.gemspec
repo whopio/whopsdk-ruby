@@ -27,6 +27,4 @@ Gem::Specification.new do |s|
   s.add_dependency "cgi"
   s.add_dependency "connection_pool"
   s.add_dependency "standardwebhooks"
-  s.add_dependency "jwt"
-  s.add_dependency "openssl"
 end

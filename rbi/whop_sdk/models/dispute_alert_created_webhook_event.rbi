@@ -333,8 +333,8 @@ module WhopSDK
           sig { returns(Time) }
           attr_accessor :created_at
 
-          # The available currencies on the platform
-          sig { returns(T.nilable(WhopSDK::Currency::TaggedSymbol)) }
+          # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
+          sig { returns(WhopSDK::Currency::TaggedSymbol) }
           attr_accessor :currency
 
           # When an alert came in that this transaction will be disputed
@@ -430,7 +430,7 @@ module WhopSDK
               card_brand: T.nilable(WhopSDK::CardBrands::OrSymbol),
               card_last4: T.nilable(String),
               created_at: Time,
-              currency: T.nilable(WhopSDK::Currency::OrSymbol),
+              currency: WhopSDK::Currency::OrSymbol,
               dispute_alerted_at: T.nilable(Time),
               member:
                 T.nilable(
@@ -464,7 +464,7 @@ module WhopSDK
             card_last4:,
             # The datetime the payment was created.
             created_at:,
-            # The available currencies on the platform
+            # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
             currency:,
             # When an alert came in that this transaction will be disputed
             dispute_alerted_at:,
@@ -497,7 +497,7 @@ module WhopSDK
                 card_brand: T.nilable(WhopSDK::CardBrands::TaggedSymbol),
                 card_last4: T.nilable(String),
                 created_at: Time,
-                currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
+                currency: WhopSDK::Currency::TaggedSymbol,
                 dispute_alerted_at: T.nilable(Time),
                 member:
                   T.nilable(

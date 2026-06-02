@@ -23,6 +23,10 @@ module WhopSDK
       sig { returns(T.nilable(T::Array[WhopSDK::BillingReasons::OrSymbol])) }
       attr_accessor :billing_reasons
 
+      # Only return payments from these checkout configurations.
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_accessor :checkout_configuration_ids
+
       # The unique identifier of the company to list payments for.
       sig { returns(T.nilable(String)) }
       attr_accessor :company_id
@@ -97,6 +101,7 @@ module WhopSDK
           before: T.nilable(String),
           billing_reasons:
             T.nilable(T::Array[WhopSDK::BillingReasons::OrSymbol]),
+          checkout_configuration_ids: T.nilable(T::Array[String]),
           company_id: T.nilable(String),
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
@@ -124,6 +129,8 @@ module WhopSDK
         before: nil,
         # Filter payments by their billing reason.
         billing_reasons: nil,
+        # Only return payments from these checkout configurations.
+        checkout_configuration_ids: nil,
         # The unique identifier of the company to list payments for.
         company_id: nil,
         # Only return payments created after this timestamp.
@@ -169,6 +176,7 @@ module WhopSDK
             before: T.nilable(String),
             billing_reasons:
               T.nilable(T::Array[WhopSDK::BillingReasons::OrSymbol]),
+            checkout_configuration_ids: T.nilable(T::Array[String]),
             company_id: T.nilable(String),
             created_after: T.nilable(Time),
             created_before: T.nilable(Time),

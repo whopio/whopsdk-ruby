@@ -1,0 +1,194 @@
+module WhopSDK
+  module Models
+    type ad_campaign =
+      {
+        id: String,
+        budget: Float?,
+        budget_type: WhopSDK::Models::ad_budget_type?,
+        created_at: Time,
+        created_by_user: WhopSDK::AdCampaign::CreatedByUser,
+        meta_config: WhopSDK::AdCampaign::MetaConfig?,
+        platform: WhopSDK::Models::ad_campaign_platform,
+        status: WhopSDK::Models::ad_campaign_status,
+        title: String,
+        total_spend: Float,
+        updated_at: Time
+      }
+
+    class AdCampaign < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor budget: Float?
+
+      attr_accessor budget_type: WhopSDK::Models::ad_budget_type?
+
+      attr_accessor created_at: Time
+
+      attr_accessor created_by_user: WhopSDK::AdCampaign::CreatedByUser
+
+      attr_accessor meta_config: WhopSDK::AdCampaign::MetaConfig?
+
+      attr_accessor platform: WhopSDK::Models::ad_campaign_platform
+
+      attr_accessor status: WhopSDK::Models::ad_campaign_status
+
+      attr_accessor title: String
+
+      attr_accessor total_spend: Float
+
+      attr_accessor updated_at: Time
+
+      def initialize: (
+        id: String,
+        budget: Float?,
+        budget_type: WhopSDK::Models::ad_budget_type?,
+        created_at: Time,
+        created_by_user: WhopSDK::AdCampaign::CreatedByUser,
+        meta_config: WhopSDK::AdCampaign::MetaConfig?,
+        platform: WhopSDK::Models::ad_campaign_platform,
+        status: WhopSDK::Models::ad_campaign_status,
+        title: String,
+        total_spend: Float,
+        updated_at: Time
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        budget: Float?,
+        budget_type: WhopSDK::Models::ad_budget_type?,
+        created_at: Time,
+        created_by_user: WhopSDK::AdCampaign::CreatedByUser,
+        meta_config: WhopSDK::AdCampaign::MetaConfig?,
+        platform: WhopSDK::Models::ad_campaign_platform,
+        status: WhopSDK::Models::ad_campaign_status,
+        title: String,
+        total_spend: Float,
+        updated_at: Time
+      }
+
+      type created_by_user = { id: String, name: String?, username: String }
+
+      class CreatedByUser < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor username: String
+
+        def initialize: (id: String, name: String?, username: String) -> void
+
+        def to_hash: -> { id: String, name: String?, username: String }
+      end
+
+      type meta_config =
+        {
+          bid_amount: Integer?,
+          bid_strategy: WhopSDK::Models::AdCampaign::MetaConfig::bid_strategy?,
+          budget_optimization: bool?,
+          effective_status: WhopSDK::Models::AdCampaign::MetaConfig::effective_status?,
+          end_time: String?,
+          objective: WhopSDK::Models::AdCampaign::MetaConfig::objective?,
+          special_categories: ::Array[String]?,
+          start_time: String?,
+          status: WhopSDK::Models::AdCampaign::MetaConfig::status?
+        }
+
+      class MetaConfig < WhopSDK::Internal::Type::BaseModel
+        attr_accessor bid_amount: Integer?
+
+        attr_accessor bid_strategy: WhopSDK::Models::AdCampaign::MetaConfig::bid_strategy?
+
+        attr_accessor budget_optimization: bool?
+
+        attr_accessor effective_status: WhopSDK::Models::AdCampaign::MetaConfig::effective_status?
+
+        attr_accessor end_time: String?
+
+        attr_accessor objective: WhopSDK::Models::AdCampaign::MetaConfig::objective?
+
+        attr_accessor special_categories: ::Array[String]?
+
+        attr_accessor start_time: String?
+
+        attr_accessor status: WhopSDK::Models::AdCampaign::MetaConfig::status?
+
+        def initialize: (
+          bid_amount: Integer?,
+          bid_strategy: WhopSDK::Models::AdCampaign::MetaConfig::bid_strategy?,
+          budget_optimization: bool?,
+          effective_status: WhopSDK::Models::AdCampaign::MetaConfig::effective_status?,
+          end_time: String?,
+          objective: WhopSDK::Models::AdCampaign::MetaConfig::objective?,
+          special_categories: ::Array[String]?,
+          start_time: String?,
+          status: WhopSDK::Models::AdCampaign::MetaConfig::status?
+        ) -> void
+
+        def to_hash: -> {
+          bid_amount: Integer?,
+          bid_strategy: WhopSDK::Models::AdCampaign::MetaConfig::bid_strategy?,
+          budget_optimization: bool?,
+          effective_status: WhopSDK::Models::AdCampaign::MetaConfig::effective_status?,
+          end_time: String?,
+          objective: WhopSDK::Models::AdCampaign::MetaConfig::objective?,
+          special_categories: ::Array[String]?,
+          start_time: String?,
+          status: WhopSDK::Models::AdCampaign::MetaConfig::status?
+        }
+
+        type bid_strategy = :lowest_cost | :bid_cap | :cost_cap
+
+        module BidStrategy
+          extend WhopSDK::Internal::Type::Enum
+
+          LOWEST_COST: :lowest_cost
+          BID_CAP: :bid_cap
+          COST_CAP: :cost_cap
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdCampaign::MetaConfig::bid_strategy]
+        end
+
+        type effective_status =
+          :active | :paused | :deleted | :in_review | :rejected | :with_issues
+
+        module EffectiveStatus
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          PAUSED: :paused
+          DELETED: :deleted
+          IN_REVIEW: :in_review
+          REJECTED: :rejected
+          WITH_ISSUES: :with_issues
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdCampaign::MetaConfig::effective_status]
+        end
+
+        type objective = :awareness | :traffic | :engagement | :leads | :sales
+
+        module Objective
+          extend WhopSDK::Internal::Type::Enum
+
+          AWARENESS: :awareness
+          TRAFFIC: :traffic
+          ENGAGEMENT: :engagement
+          LEADS: :leads
+          SALES: :sales
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdCampaign::MetaConfig::objective]
+        end
+
+        type status = :active | :paused
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          PAUSED: :paused
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdCampaign::MetaConfig::status]
+        end
+      end
+    end
+  end
+end

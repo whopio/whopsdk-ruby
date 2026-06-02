@@ -13,7 +13,7 @@ module WhopSDK
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::AdGroupRetrieveResponse)
+        ).returns(WhopSDK::AdGroup)
       end
       def retrieve(
         # The unique identifier of the ad group.
@@ -32,16 +32,15 @@ module WhopSDK
         params(
           id: String,
           budget: T.nilable(Float),
-          budget_type:
-            T.nilable(WhopSDK::AdGroupUpdateParams::BudgetType::OrSymbol),
+          budget_type: T.nilable(WhopSDK::AdBudgetType::OrSymbol),
           config: T.nilable(WhopSDK::AdGroupUpdateParams::Config::OrHash),
           daily_budget: T.nilable(Float),
           name: T.nilable(String),
           platform_config:
             T.nilable(WhopSDK::AdGroupUpdateParams::PlatformConfig::OrHash),
-          status: T.nilable(WhopSDK::AdGroupUpdateParams::Status::OrSymbol),
+          status: T.nilable(WhopSDK::AdGroupStatus::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::AdGroupUpdateResponse)
+        ).returns(WhopSDK::AdGroup)
       end
       def update(
         # The unique identifier of the ad group to update.
@@ -79,9 +78,10 @@ module WhopSDK
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
           first: T.nilable(Integer),
+          include_paused: T.nilable(T::Boolean),
           last: T.nilable(Integer),
           query: T.nilable(String),
-          status: T.nilable(WhopSDK::AdGroupListParams::Status::OrSymbol),
+          status: T.nilable(WhopSDK::AdGroupStatus::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::AdGroupListResponse]
@@ -102,6 +102,9 @@ module WhopSDK
         created_before: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
+        # When false, excludes paused ad groups so pagination matches the dashboard's
+        # hide-paused toggle.
+        include_paused: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
         # Case-insensitive substring match against the ad group name.
@@ -125,6 +128,44 @@ module WhopSDK
       end
       def delete(
         # The unique identifier of the ad group to delete.
+        id,
+        request_options: {}
+      )
+      end
+
+      # Pauses an ad group.
+      #
+      # Required permissions:
+      #
+      # - `ad_campaign:update`
+      # - `ad_campaign:basic:read`
+      sig do
+        params(
+          id: String,
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::AdGroup)
+      end
+      def pause(
+        # The unique identifier of the ad group to pause.
+        id,
+        request_options: {}
+      )
+      end
+
+      # Resumes a paused ad group.
+      #
+      # Required permissions:
+      #
+      # - `ad_campaign:update`
+      # - `ad_campaign:basic:read`
+      sig do
+        params(
+          id: String,
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::AdGroup)
+      end
+      def unpause(
+        # The unique identifier of the ad group to unpause.
         id,
         request_options: {}
       )

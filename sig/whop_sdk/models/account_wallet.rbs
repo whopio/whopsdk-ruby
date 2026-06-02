@@ -1,0 +1,42 @@
+module WhopSDK
+  module Models
+    type account_wallet =
+      {
+        id: String,
+        address: String,
+        network: WhopSDK::Models::AccountWallet::network
+      }
+
+    class AccountWallet < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor address: String
+
+      attr_accessor network: WhopSDK::Models::AccountWallet::network
+
+      def initialize: (
+        id: String,
+        address: String,
+        network: WhopSDK::Models::AccountWallet::network
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        address: String,
+        network: WhopSDK::Models::AccountWallet::network
+      }
+
+      type network = :solana | :ethereum | :bitcoin
+
+      module Network
+        extend WhopSDK::Internal::Type::Enum
+
+        SOLANA: :solana
+        ETHEREUM: :ethereum
+        BITCOIN: :bitcoin
+
+        def self?.values: -> ::Array[WhopSDK::Models::AccountWallet::network]
+      end
+    end
+  end
+end

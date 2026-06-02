@@ -9,6 +9,8 @@ module WhopSDK
       # Required permissions:
       #
       # - `payment:basic:read`
+      # - `plan:basic:read`
+      # - `access_pass:basic:read`
       # - `member:email:read`
       # - `member:basic:read`
       # - `member:phone:read`

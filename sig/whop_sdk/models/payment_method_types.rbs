@@ -28,6 +28,7 @@ module WhopSDK
       | :cashapp
       | :claritypay
       | :coinbase
+      | :crypto_balance
       | :crypto
       | :custom
       | :customer_balance
@@ -145,6 +146,7 @@ module WhopSDK
       CASHAPP: :cashapp
       CLARITYPAY: :claritypay
       COINBASE: :coinbase
+      CRYPTO_BALANCE: :crypto_balance
       CRYPTO: :crypto
       CUSTOM: :custom
       CUSTOMER_BALANCE: :customer_balance

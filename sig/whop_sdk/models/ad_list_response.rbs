@@ -3,9 +3,11 @@ module WhopSDK
     type ad_list_response =
       {
         id: String,
+        ad_campaign: WhopSDK::Models::AdListResponse::AdCampaign,
+        ad_group: WhopSDK::Models::AdListResponse::AdGroup,
         created_at: Time,
-        platform: WhopSDK::Models::AdListResponse::platform,
-        status: WhopSDK::Models::AdListResponse::status,
+        platform: WhopSDK::Models::ad_campaign_platform,
+        status: WhopSDK::Models::external_ad_status,
         title: String?,
         updated_at: Time
       }
@@ -13,11 +15,15 @@ module WhopSDK
     class AdListResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
+      attr_accessor ad_campaign: WhopSDK::Models::AdListResponse::AdCampaign
+
+      attr_accessor ad_group: WhopSDK::Models::AdListResponse::AdGroup
+
       attr_accessor created_at: Time
 
-      attr_accessor platform: WhopSDK::Models::AdListResponse::platform
+      attr_accessor platform: WhopSDK::Models::ad_campaign_platform
 
-      attr_accessor status: WhopSDK::Models::AdListResponse::status
+      attr_accessor status: WhopSDK::Models::external_ad_status
 
       attr_accessor title: String?
 
@@ -25,47 +31,44 @@ module WhopSDK
 
       def initialize: (
         id: String,
+        ad_campaign: WhopSDK::Models::AdListResponse::AdCampaign,
+        ad_group: WhopSDK::Models::AdListResponse::AdGroup,
         created_at: Time,
-        platform: WhopSDK::Models::AdListResponse::platform,
-        status: WhopSDK::Models::AdListResponse::status,
+        platform: WhopSDK::Models::ad_campaign_platform,
+        status: WhopSDK::Models::external_ad_status,
         title: String?,
         updated_at: Time
       ) -> void
 
       def to_hash: -> {
         id: String,
+        ad_campaign: WhopSDK::Models::AdListResponse::AdCampaign,
+        ad_group: WhopSDK::Models::AdListResponse::AdGroup,
         created_at: Time,
-        platform: WhopSDK::Models::AdListResponse::platform,
-        status: WhopSDK::Models::AdListResponse::status,
+        platform: WhopSDK::Models::ad_campaign_platform,
+        status: WhopSDK::Models::external_ad_status,
         title: String?,
         updated_at: Time
       }
 
-      type platform = :meta | :tiktok
+      type ad_campaign = { id: String }
 
-      module Platform
-        extend WhopSDK::Internal::Type::Enum
+      class AdCampaign < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
 
-        META: :meta
-        TIKTOK: :tiktok
+        def initialize: (id: String) -> void
 
-        def self?.values: -> ::Array[WhopSDK::Models::AdListResponse::platform]
+        def to_hash: -> { id: String }
       end
 
-      type status =
-        :active | :paused | :inactive | :in_review | :rejected | :flagged
+      type ad_group = { id: String }
 
-      module Status
-        extend WhopSDK::Internal::Type::Enum
+      class AdGroup < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
 
-        ACTIVE: :active
-        PAUSED: :paused
-        INACTIVE: :inactive
-        IN_REVIEW: :in_review
-        REJECTED: :rejected
-        FLAGGED: :flagged
+        def initialize: (id: String) -> void
 
-        def self?.values: -> ::Array[WhopSDK::Models::AdListResponse::status]
+        def to_hash: -> { id: String }
       end
     end
   end

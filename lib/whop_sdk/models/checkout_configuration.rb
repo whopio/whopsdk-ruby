@@ -212,6 +212,12 @@ module WhopSDK
         #   @return [Float]
         required :renewal_price, Float
 
+        # @!attribute three_ds_level
+        #   The 3D Secure behavior for a plan.
+        #
+        #   @return [Symbol, WhopSDK::Models::CheckoutConfiguration::Plan::ThreeDSLevel, nil]
+        required :three_ds_level, enum: -> { WhopSDK::CheckoutConfiguration::Plan::ThreeDSLevel }, nil?: true
+
         # @!attribute trial_period_days
         #   The number of free trial days before the first charge on a renewal plan. Null if
         #   no trial is configured or the current user has already used a trial for this
@@ -227,7 +233,7 @@ module WhopSDK
         #   @return [Symbol, WhopSDK::Models::Visibility]
         required :visibility, enum: -> { WhopSDK::Visibility }
 
-        # @!method initialize(id:, adaptive_pricing_enabled:, billing_period:, currency:, expiration_days:, initial_price:, plan_type:, release_method:, renewal_price:, trial_period_days:, visibility:)
+        # @!method initialize(id:, adaptive_pricing_enabled:, billing_period:, currency:, expiration_days:, initial_price:, plan_type:, release_method:, renewal_price:, three_ds_level:, trial_period_days:, visibility:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::CheckoutConfiguration::Plan} for more details.
         #
@@ -251,9 +257,24 @@ module WhopSDK
         #
         #   @param renewal_price [Float] The recurring price charged every billing_period in the plan's base_currency (e.
         #
+        #   @param three_ds_level [Symbol, WhopSDK::Models::CheckoutConfiguration::Plan::ThreeDSLevel, nil] The 3D Secure behavior for a plan.
+        #
         #   @param trial_period_days [Integer, nil] The number of free trial days before the first charge on a renewal plan. Null if
         #
         #   @param visibility [Symbol, WhopSDK::Models::Visibility] Controls whether the plan is visible to customers. When set to 'hidden', the pla
+
+        # The 3D Secure behavior for a plan.
+        #
+        # @see WhopSDK::Models::CheckoutConfiguration::Plan#three_ds_level
+        module ThreeDSLevel
+          extend WhopSDK::Internal::Type::Enum
+
+          MANDATE_CHALLENGE = :mandate_challenge
+          FRICTIONLESS = :frictionless
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
     end
   end

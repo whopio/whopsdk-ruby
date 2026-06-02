@@ -22,7 +22,7 @@ class WhopSDK::Test::Resources::FilesTest < WhopSDK::Test::ResourceTest
         upload_status: WhopSDK::UploadStatus,
         upload_url: String | nil,
         url: String | nil,
-        visibility: WhopSDK::Models::FileCreateResponse::Visibility
+        visibility: WhopSDK::FileVisibility
       }
     end
   end
@@ -44,7 +44,7 @@ class WhopSDK::Test::Resources::FilesTest < WhopSDK::Test::ResourceTest
         size: String | nil,
         upload_status: WhopSDK::UploadStatus,
         url: String | nil,
-        visibility: WhopSDK::Models::FileRetrieveResponse::Visibility
+        visibility: WhopSDK::FileVisibility
       }
     end
   end

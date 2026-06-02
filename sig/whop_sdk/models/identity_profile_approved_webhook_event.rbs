@@ -1,0 +1,293 @@
+module WhopSDK
+  module Models
+    type identity_profile_approved_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::IdentityProfileApprovedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"identity_profile.approved",
+        company_id: String?
+      }
+
+    class IdentityProfileApprovedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor data: WhopSDK::IdentityProfileApprovedWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"identity_profile.approved"
+
+      attr_accessor company_id: String?
+
+      def initialize: (
+        id: String,
+        data: WhopSDK::IdentityProfileApprovedWebhookEvent::Data,
+        timestamp: Time,
+        ?company_id: String?,
+        ?api_version: :v1,
+        ?type: :"identity_profile.approved"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::IdentityProfileApprovedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"identity_profile.approved",
+        company_id: String?
+      }
+
+      type data =
+        {
+          id: String,
+          business_address: WhopSDK::IdentityProfileApprovedWebhookEvent::Data::BusinessAddress?,
+          business_name: String?,
+          business_structure: String?,
+          country: String?,
+          created_at: Time,
+          date_of_birth: String?,
+          email: String?,
+          first_name: String?,
+          last_name: String?,
+          linked_companies: ::Array[WhopSDK::IdentityProfileApprovedWebhookEvent::Data::LinkedCompany],
+          personal_address: WhopSDK::IdentityProfileApprovedWebhookEvent::Data::PersonalAddress?,
+          phone: String?,
+          profile_type: String,
+          status: WhopSDK::Models::IdentityProfileApprovedWebhookEvent::Data::status,
+          updated_at: Time,
+          verifications: ::Array[WhopSDK::IdentityProfileApprovedWebhookEvent::Data::Verification]
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor business_address: WhopSDK::IdentityProfileApprovedWebhookEvent::Data::BusinessAddress?
+
+        attr_accessor business_name: String?
+
+        attr_accessor business_structure: String?
+
+        attr_accessor country: String?
+
+        attr_accessor created_at: Time
+
+        attr_accessor date_of_birth: String?
+
+        attr_accessor email: String?
+
+        attr_accessor first_name: String?
+
+        attr_accessor last_name: String?
+
+        attr_accessor linked_companies: ::Array[WhopSDK::IdentityProfileApprovedWebhookEvent::Data::LinkedCompany]
+
+        attr_accessor personal_address: WhopSDK::IdentityProfileApprovedWebhookEvent::Data::PersonalAddress?
+
+        attr_accessor phone: String?
+
+        attr_accessor profile_type: String
+
+        attr_accessor status: WhopSDK::Models::IdentityProfileApprovedWebhookEvent::Data::status
+
+        attr_accessor updated_at: Time
+
+        attr_accessor verifications: ::Array[WhopSDK::IdentityProfileApprovedWebhookEvent::Data::Verification]
+
+        def initialize: (
+          id: String,
+          business_address: WhopSDK::IdentityProfileApprovedWebhookEvent::Data::BusinessAddress?,
+          business_name: String?,
+          business_structure: String?,
+          country: String?,
+          created_at: Time,
+          date_of_birth: String?,
+          email: String?,
+          first_name: String?,
+          last_name: String?,
+          linked_companies: ::Array[WhopSDK::IdentityProfileApprovedWebhookEvent::Data::LinkedCompany],
+          personal_address: WhopSDK::IdentityProfileApprovedWebhookEvent::Data::PersonalAddress?,
+          phone: String?,
+          profile_type: String,
+          status: WhopSDK::Models::IdentityProfileApprovedWebhookEvent::Data::status,
+          updated_at: Time,
+          verifications: ::Array[WhopSDK::IdentityProfileApprovedWebhookEvent::Data::Verification]
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          business_address: WhopSDK::IdentityProfileApprovedWebhookEvent::Data::BusinessAddress?,
+          business_name: String?,
+          business_structure: String?,
+          country: String?,
+          created_at: Time,
+          date_of_birth: String?,
+          email: String?,
+          first_name: String?,
+          last_name: String?,
+          linked_companies: ::Array[WhopSDK::IdentityProfileApprovedWebhookEvent::Data::LinkedCompany],
+          personal_address: WhopSDK::IdentityProfileApprovedWebhookEvent::Data::PersonalAddress?,
+          phone: String?,
+          profile_type: String,
+          status: WhopSDK::Models::IdentityProfileApprovedWebhookEvent::Data::status,
+          updated_at: Time,
+          verifications: ::Array[WhopSDK::IdentityProfileApprovedWebhookEvent::Data::Verification]
+        }
+
+        type business_address =
+          {
+            city: String?,
+            country: String?,
+            :line1 => String?,
+            :line2 => String?,
+            postal_code: String?,
+            state: String?
+          }
+
+        class BusinessAddress < WhopSDK::Internal::Type::BaseModel
+          attr_accessor city: String?
+
+          attr_accessor country: String?
+
+          attr_accessor line1: String?
+
+          attr_accessor line2: String?
+
+          attr_accessor postal_code: String?
+
+          attr_accessor state: String?
+
+          def initialize: (
+            city: String?,
+            country: String?,
+            line1: String?,
+            line2: String?,
+            postal_code: String?,
+            state: String?
+          ) -> void
+
+          def to_hash: -> {
+            city: String?,
+            country: String?,
+            :line1 => String?,
+            :line2 => String?,
+            postal_code: String?,
+            state: String?
+          }
+        end
+
+        type linked_company = { id: String, title: String }
+
+        class LinkedCompany < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor title: String
+
+          def initialize: (id: String, title: String) -> void
+
+          def to_hash: -> { id: String, title: String }
+        end
+
+        type personal_address =
+          {
+            city: String?,
+            country: String?,
+            :line1 => String?,
+            :line2 => String?,
+            postal_code: String?,
+            state: String?
+          }
+
+        class PersonalAddress < WhopSDK::Internal::Type::BaseModel
+          attr_accessor city: String?
+
+          attr_accessor country: String?
+
+          attr_accessor line1: String?
+
+          attr_accessor line2: String?
+
+          attr_accessor postal_code: String?
+
+          attr_accessor state: String?
+
+          def initialize: (
+            city: String?,
+            country: String?,
+            line1: String?,
+            line2: String?,
+            postal_code: String?,
+            state: String?
+          ) -> void
+
+          def to_hash: -> {
+            city: String?,
+            country: String?,
+            :line1 => String?,
+            :line2 => String?,
+            postal_code: String?,
+            state: String?
+          }
+        end
+
+        type status = :not_started | :pending | :approved | :rejected
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          NOT_STARTED: :not_started
+          PENDING: :pending
+          APPROVED: :approved
+          REJECTED: :rejected
+
+          def self?.values: -> ::Array[WhopSDK::Models::IdentityProfileApprovedWebhookEvent::Data::status]
+        end
+
+        type verification =
+          {
+            id: String,
+            created_at: Time,
+            last_error_code: WhopSDK::Models::verification_error_code?,
+            last_error_reason: String?,
+            session_url: String?,
+            status: WhopSDK::Models::verification_status
+          }
+
+        class Verification < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor created_at: Time
+
+          attr_accessor last_error_code: WhopSDK::Models::verification_error_code?
+
+          attr_accessor last_error_reason: String?
+
+          attr_accessor session_url: String?
+
+          attr_accessor status: WhopSDK::Models::verification_status
+
+          def initialize: (
+            id: String,
+            created_at: Time,
+            last_error_code: WhopSDK::Models::verification_error_code?,
+            last_error_reason: String?,
+            session_url: String?,
+            status: WhopSDK::Models::verification_status
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            created_at: Time,
+            last_error_code: WhopSDK::Models::verification_error_code?,
+            last_error_reason: String?,
+            session_url: String?,
+            status: WhopSDK::Models::verification_status
+          }
+        end
+      end
+    end
+  end
+end

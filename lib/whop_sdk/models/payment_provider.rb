@@ -13,6 +13,7 @@ module WhopSDK
       SEZZLE = :sezzle
       SPLITIT = :splitit
       PLATFORM_BALANCE = :platform_balance
+      CRYPTO_BALANCE = :crypto_balance
       MULTI_PSP = :multi_psp
       ADYEN = :adyen
       CLARITYPAY = :claritypay

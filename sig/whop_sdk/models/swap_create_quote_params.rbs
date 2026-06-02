@@ -1,0 +1,84 @@
+module WhopSDK
+  module Models
+    type swap_create_quote_params =
+      {
+        amount: String,
+        from_token: String,
+        to_token: String,
+        from_address: String?,
+        from_chain: WhopSDK::Models::SwapCreateQuoteParams::from_chain?,
+        metadata: ::Hash[Symbol, top],
+        slippage_bps: Integer?,
+        to_address: String?,
+        to_chain: WhopSDK::Models::SwapCreateQuoteParams::to_chain?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class SwapCreateQuoteParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor amount: String
+
+      attr_accessor from_token: String
+
+      attr_accessor to_token: String
+
+      attr_accessor from_address: String?
+
+      attr_accessor from_chain: WhopSDK::Models::SwapCreateQuoteParams::from_chain?
+
+      attr_reader metadata: ::Hash[Symbol, top]?
+
+      def metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      attr_accessor slippage_bps: Integer?
+
+      attr_accessor to_address: String?
+
+      attr_accessor to_chain: WhopSDK::Models::SwapCreateQuoteParams::to_chain?
+
+      def initialize: (
+        amount: String,
+        from_token: String,
+        to_token: String,
+        ?from_address: String?,
+        ?from_chain: WhopSDK::Models::SwapCreateQuoteParams::from_chain?,
+        ?metadata: ::Hash[Symbol, top],
+        ?slippage_bps: Integer?,
+        ?to_address: String?,
+        ?to_chain: WhopSDK::Models::SwapCreateQuoteParams::to_chain?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        amount: String,
+        from_token: String,
+        to_token: String,
+        from_address: String?,
+        from_chain: WhopSDK::Models::SwapCreateQuoteParams::from_chain?,
+        metadata: ::Hash[Symbol, top],
+        slippage_bps: Integer?,
+        to_address: String?,
+        to_chain: WhopSDK::Models::SwapCreateQuoteParams::to_chain?,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type from_chain = String | Integer
+
+      module FromChain
+        extend WhopSDK::Internal::Type::Union
+
+        def self?.variants: -> ::Array[WhopSDK::Models::SwapCreateQuoteParams::from_chain]
+      end
+
+      type to_chain = String | Integer
+
+      module ToChain
+        extend WhopSDK::Internal::Type::Union
+
+        def self?.variants: -> ::Array[WhopSDK::Models::SwapCreateQuoteParams::to_chain]
+      end
+    end
+  end
+end

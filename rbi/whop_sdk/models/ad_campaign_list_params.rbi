@@ -11,10 +11,6 @@ module WhopSDK
           T.any(WhopSDK::AdCampaignListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The unique identifier of the company to list ad campaigns for.
-      sig { returns(String) }
-      attr_accessor :company_id
-
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_accessor :after
@@ -22,6 +18,10 @@ module WhopSDK
       # Returns the elements in the list that come before the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_accessor :before
+
+      # The unique identifier of the company to list ad campaigns for.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :company_id
 
       # Only return ad campaigns created after this timestamp.
       sig { returns(T.nilable(Time)) }
@@ -44,32 +44,30 @@ module WhopSDK
       attr_accessor :query
 
       # The status of an ad campaign.
-      sig do
-        returns(T.nilable(WhopSDK::AdCampaignListParams::Status::OrSymbol))
-      end
+      sig { returns(T.nilable(WhopSDK::AdCampaignStatus::OrSymbol)) }
       attr_accessor :status
 
       sig do
         params(
-          company_id: String,
           after: T.nilable(String),
           before: T.nilable(String),
+          company_id: T.nilable(String),
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           query: T.nilable(String),
-          status: T.nilable(WhopSDK::AdCampaignListParams::Status::OrSymbol),
+          status: T.nilable(WhopSDK::AdCampaignStatus::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier of the company to list ad campaigns for.
-        company_id:,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
+        # The unique identifier of the company to list ad campaigns for.
+        company_id: nil,
         # Only return ad campaigns created after this timestamp.
         created_after: nil,
         # Only return ad campaigns created before this timestamp.
@@ -89,53 +87,20 @@ module WhopSDK
       sig do
         override.returns(
           {
-            company_id: String,
             after: T.nilable(String),
             before: T.nilable(String),
+            company_id: T.nilable(String),
             created_after: T.nilable(Time),
             created_before: T.nilable(Time),
             first: T.nilable(Integer),
             last: T.nilable(Integer),
             query: T.nilable(String),
-            status: T.nilable(WhopSDK::AdCampaignListParams::Status::OrSymbol),
+            status: T.nilable(WhopSDK::AdCampaignStatus::OrSymbol),
             request_options: WhopSDK::RequestOptions
           }
         )
       end
       def to_hash
-      end
-
-      # The status of an ad campaign.
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, WhopSDK::AdCampaignListParams::Status) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        ACTIVE =
-          T.let(:active, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
-        PAUSED =
-          T.let(:paused, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
-        PAYMENT_FAILED =
-          T.let(
-            :payment_failed,
-            WhopSDK::AdCampaignListParams::Status::TaggedSymbol
-          )
-        DRAFT =
-          T.let(:draft, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
-        IN_REVIEW =
-          T.let(:in_review, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
-        FLAGGED =
-          T.let(:flagged, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
-
-        sig do
-          override.returns(
-            T::Array[WhopSDK::AdCampaignListParams::Status::TaggedSymbol]
-          )
-        end
-        def self.values
-        end
       end
     end
   end

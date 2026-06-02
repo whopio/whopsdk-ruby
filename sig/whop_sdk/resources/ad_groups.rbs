@@ -4,19 +4,19 @@ module WhopSDK
       def retrieve: (
         String id,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::AdGroupRetrieveResponse
+      ) -> WhopSDK::AdGroup
 
       def update: (
         String id,
         ?budget: Float?,
-        ?budget_type: WhopSDK::Models::AdGroupUpdateParams::budget_type?,
+        ?budget_type: WhopSDK::Models::ad_budget_type?,
         ?config: WhopSDK::AdGroupUpdateParams::Config?,
         ?daily_budget: Float?,
         ?name: String?,
         ?platform_config: WhopSDK::AdGroupUpdateParams::PlatformConfig?,
-        ?status: WhopSDK::Models::AdGroupUpdateParams::status?,
+        ?status: WhopSDK::Models::ad_group_status?,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::AdGroupUpdateResponse
+      ) -> WhopSDK::AdGroup
 
       def list: (
         ?after: String?,
@@ -26,13 +26,24 @@ module WhopSDK
         ?created_after: Time?,
         ?created_before: Time?,
         ?first: Integer?,
+        ?include_paused: bool?,
         ?last: Integer?,
         ?query: String?,
-        ?status: WhopSDK::Models::AdGroupListParams::status?,
+        ?status: WhopSDK::Models::ad_group_status?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::AdGroupListResponse]
 
       def delete: (String id, ?request_options: WhopSDK::request_opts) -> bool
+
+      def pause: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::AdGroup
+
+      def unpause: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::AdGroup
 
       def initialize: (client: WhopSDK::Client) -> void
     end

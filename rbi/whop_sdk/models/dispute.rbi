@@ -82,8 +82,7 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :customer_name
 
-      # Whether the dispute evidence can still be edited and submitted. Returns true
-      # only when the dispute status requires a response.
+      # Whether the dispute evidence can still be edited and submitted.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :editable
 
@@ -250,8 +249,7 @@ module WhopSDK
         # The customer's full name from their payment details, included in the evidence
         # packet sent to the payment processor. Editable before submission.
         customer_name:,
-        # Whether the dispute evidence can still be edited and submitted. Returns true
-        # only when the dispute status requires a response.
+        # Whether the dispute evidence can still be edited and submitted.
         editable:,
         # The deadline by which dispute evidence must be submitted. Null if no response
         # deadline is set.
@@ -533,8 +531,8 @@ module WhopSDK
         sig { returns(Time) }
         attr_accessor :created_at
 
-        # The available currencies on the platform
-        sig { returns(T.nilable(WhopSDK::Currency::TaggedSymbol)) }
+        # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
+        sig { returns(WhopSDK::Currency::TaggedSymbol) }
         attr_accessor :currency
 
         # When an alert came in that this transaction will be disputed
@@ -601,7 +599,7 @@ module WhopSDK
             card_brand: T.nilable(WhopSDK::CardBrands::OrSymbol),
             card_last4: T.nilable(String),
             created_at: Time,
-            currency: T.nilable(WhopSDK::Currency::OrSymbol),
+            currency: WhopSDK::Currency::OrSymbol,
             dispute_alerted_at: T.nilable(Time),
             member: T.nilable(WhopSDK::Dispute::Payment::Member::OrHash),
             membership:
@@ -627,7 +625,7 @@ module WhopSDK
           card_last4:,
           # The datetime the payment was created.
           created_at:,
-          # The available currencies on the platform
+          # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
           currency:,
           # When an alert came in that this transaction will be disputed
           dispute_alerted_at:,
@@ -659,7 +657,7 @@ module WhopSDK
               card_brand: T.nilable(WhopSDK::CardBrands::TaggedSymbol),
               card_last4: T.nilable(String),
               created_at: Time,
-              currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
+              currency: WhopSDK::Currency::TaggedSymbol,
               dispute_alerted_at: T.nilable(Time),
               member: T.nilable(WhopSDK::Dispute::Payment::Member),
               membership: T.nilable(WhopSDK::Dispute::Payment::Membership),

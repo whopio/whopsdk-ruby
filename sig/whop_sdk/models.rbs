@@ -751,8 +751,6 @@ module WhopSDK
 
   class WalletListParams = WhopSDK::Models::WalletListParams
 
-  class WalletPingParams = WhopSDK::Models::WalletPingParams
-
   class WalletSendParams = WhopSDK::Models::WalletSendParams
 
   class Webhook = WhopSDK::Models::Webhook

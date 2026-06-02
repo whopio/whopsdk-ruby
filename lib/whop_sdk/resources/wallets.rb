@@ -41,24 +41,6 @@ module WhopSDK
         )
       end
 
-      # Unauthenticated health check for the native wallet routes.
-      #
-      # @overload ping(request_options: {})
-      #
-      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [WhopSDK::Models::WalletPingResponse]
-      #
-      # @see WhopSDK::Models::WalletPingParams
-      def ping(params = {})
-        @client.request(
-          method: :get,
-          path: "wallets/ping",
-          model: WhopSDK::Models::WalletPingResponse,
-          options: params[:request_options]
-        )
-      end
-
       # Sends USDT from an account's wallet to another Whop user or business.
       #
       # @overload send_(account_id, amount:, to:, request_options: {})

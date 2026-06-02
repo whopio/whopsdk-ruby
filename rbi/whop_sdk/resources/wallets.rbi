@@ -26,15 +26,6 @@ module WhopSDK
       )
       end
 
-      # Unauthenticated health check for the native wallet routes.
-      sig do
-        params(request_options: WhopSDK::RequestOptions::OrHash).returns(
-          WhopSDK::Models::WalletPingResponse
-        )
-      end
-      def ping(request_options: {})
-      end
-
       # Sends USDT from an account's wallet to another Whop user or business.
       sig do
         params(

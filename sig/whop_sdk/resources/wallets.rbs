@@ -10,10 +10,6 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::WalletBalanceResponse
 
-      def ping: (
-        ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::WalletPingResponse
-
       def send_: (
         String account_id,
         amount: String,

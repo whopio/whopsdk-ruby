@@ -37,22 +37,6 @@ class WhopSDK::Test::Resources::WalletsTest < WhopSDK::Test::ResourceTest
     end
   end
 
-  def test_ping
-    skip("Mock server tests are disabled")
-
-    response = @whop.wallets.ping
-
-    assert_pattern do
-      response => WhopSDK::Models::WalletPingResponse
-    end
-
-    assert_pattern do
-      response => {
-        status: WhopSDK::Models::WalletPingResponse::Status
-      }
-    end
-  end
-
   def test_send__required_params
     skip("Mock server tests are disabled")
 

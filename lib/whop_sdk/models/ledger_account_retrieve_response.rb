@@ -51,7 +51,15 @@ module WhopSDK
       #   @return [Float, nil]
       required :transfer_fee, Float, nil?: true
 
-      # @!method initialize(id:, balances:, ledger_type:, owner:, payments_approval_status:, payout_account_details:, transfer_fee:)
+      # @!attribute treasury_balance
+      #   The balance cache associated with the account by currency.
+      #
+      #   @return [WhopSDK::Models::LedgerAccountRetrieveResponse::TreasuryBalance, nil]
+      required :treasury_balance,
+               -> { WhopSDK::Models::LedgerAccountRetrieveResponse::TreasuryBalance },
+               nil?: true
+
+      # @!method initialize(id:, balances:, ledger_type:, owner:, payments_approval_status:, payout_account_details:, transfer_fee:, treasury_balance:)
       #   A ledger account represents a financial account on Whop that can hold many
       #   balances.
       #
@@ -68,6 +76,8 @@ module WhopSDK
       #   @param payout_account_details [WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails, nil] The payout account associated with the LedgerAccount, if any.
       #
       #   @param transfer_fee [Float, nil] The fee for transfers, if applicable.
+      #
+      #   @param treasury_balance [WhopSDK::Models::LedgerAccountRetrieveResponse::TreasuryBalance, nil] The balance cache associated with the account by currency.
 
       class Balance < WhopSDK::Internal::Type::BaseModel
         # @!attribute balance
@@ -451,6 +461,60 @@ module WhopSDK
           #
           #   @param status [Symbol, WhopSDK::Models::VerificationStatus] The current status of this verification session.
         end
+      end
+
+      # @see WhopSDK::Models::LedgerAccountRetrieveResponse#treasury_balance
+      class TreasuryBalance < WhopSDK::Internal::Type::BaseModel
+        # @!attribute balance
+        #   The amount of the balance.
+        #
+        #   @return [Float]
+        required :balance, Float
+
+        # @!attribute balance_usd
+        #   The balance converted to USD.
+        #
+        #   @return [Float]
+        required :balance_usd, Float
+
+        # @!attribute currency
+        #   The currency of the balance.
+        #
+        #   @return [Symbol, WhopSDK::Models::Currency]
+        required :currency, enum: -> { WhopSDK::Currency }
+
+        # @!attribute pending_balance
+        #   The amount of the balance that is pending.
+        #
+        #   @return [Float]
+        required :pending_balance, Float
+
+        # @!attribute reserve_balance
+        #   The amount of the balance that is reserved.
+        #
+        #   @return [Float]
+        required :reserve_balance, Float
+
+        # @!attribute total_withdrawable_balance
+        #   The amount of the balance that is withdrawable.
+        #
+        #   @return [Float]
+        required :total_withdrawable_balance, Float
+
+        # @!method initialize(balance:, balance_usd:, currency:, pending_balance:, reserve_balance:, total_withdrawable_balance:)
+        #   The balance cache associated with the account by currency.
+        #
+        #   @param balance [Float] The amount of the balance.
+        #
+        #   @param balance_usd [Float] The balance converted to USD.
+        #
+        #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the balance.
+        #
+        #   @param pending_balance [Float] The amount of the balance that is pending.
+        #
+        #   @param reserve_balance [Float] The amount of the balance that is reserved.
+        #
+        #   @param total_withdrawable_balance [Float] The amount of the balance that is withdrawable.
       end
     end
   end

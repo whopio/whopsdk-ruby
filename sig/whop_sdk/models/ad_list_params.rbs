@@ -10,9 +10,11 @@ module WhopSDK
         created_after: Time?,
         created_before: Time?,
         first: Integer?,
+        include_paused: bool?,
         last: Integer?,
         order_by: WhopSDK::Models::AdListParams::order_by?,
         order_direction: WhopSDK::Models::direction?,
+        query: String?,
         stats_from: Time?,
         stats_to: Time?,
         status: WhopSDK::Models::external_ad_status?
@@ -39,11 +41,15 @@ module WhopSDK
 
       attr_accessor first: Integer?
 
+      attr_accessor include_paused: bool?
+
       attr_accessor last: Integer?
 
       attr_accessor order_by: WhopSDK::Models::AdListParams::order_by?
 
       attr_accessor order_direction: WhopSDK::Models::direction?
+
+      attr_accessor query: String?
 
       attr_accessor stats_from: Time?
 
@@ -60,9 +66,11 @@ module WhopSDK
         ?created_after: Time?,
         ?created_before: Time?,
         ?first: Integer?,
+        ?include_paused: bool?,
         ?last: Integer?,
         ?order_by: WhopSDK::Models::AdListParams::order_by?,
         ?order_direction: WhopSDK::Models::direction?,
+        ?query: String?,
         ?stats_from: Time?,
         ?stats_to: Time?,
         ?status: WhopSDK::Models::external_ad_status?,
@@ -78,9 +86,11 @@ module WhopSDK
         created_after: Time?,
         created_before: Time?,
         first: Integer?,
+        include_paused: bool?,
         last: Integer?,
         order_by: WhopSDK::Models::AdListParams::order_by?,
         order_direction: WhopSDK::Models::direction?,
+        query: String?,
         stats_from: Time?,
         stats_to: Time?,
         status: WhopSDK::Models::external_ad_status?,

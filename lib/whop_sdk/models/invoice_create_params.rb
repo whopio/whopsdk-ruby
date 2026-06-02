@@ -197,6 +197,12 @@ module WhopSDK
 
           # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct#plan
           class Plan < WhopSDK::Internal::Type::BaseModel
+            # @!attribute base_currency
+            #   The available currencies on the platform
+            #
+            #   @return [Symbol, WhopSDK::Models::Currency, nil]
+            optional :base_currency, enum: -> { WhopSDK::Currency }, nil?: true
+
             # @!attribute billing_period
             #   The interval in days at which the plan charges (renewal plans).
             #
@@ -301,13 +307,15 @@ module WhopSDK
             #   @return [Symbol, WhopSDK::Models::Visibility, nil]
             optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-            # @!method initialize(billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil)
+            # @!method initialize(base_currency: nil, billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil)
             #   Some parameter documentations has been truncated, see
             #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct::Plan}
             #   for more details.
             #
             #   The plan attributes defining the price, currency, and billing interval for this
             #   invoice.
+            #
+            #   @param base_currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
             #
             #   @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans).
             #
@@ -746,6 +754,12 @@ module WhopSDK
 
           # @see WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductID#plan
           class Plan < WhopSDK::Internal::Type::BaseModel
+            # @!attribute base_currency
+            #   The available currencies on the platform
+            #
+            #   @return [Symbol, WhopSDK::Models::Currency, nil]
+            optional :base_currency, enum: -> { WhopSDK::Currency }, nil?: true
+
             # @!attribute billing_period
             #   The interval in days at which the plan charges (renewal plans).
             #
@@ -850,13 +864,15 @@ module WhopSDK
             #   @return [Symbol, WhopSDK::Models::Visibility, nil]
             optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-            # @!method initialize(billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil)
+            # @!method initialize(base_currency: nil, billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil)
             #   Some parameter documentations has been truncated, see
             #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductID::Plan}
             #   for more details.
             #
             #   The plan attributes defining the price, currency, and billing interval for this
             #   invoice.
+            #
+            #   @param base_currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
             #
             #   @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans).
             #

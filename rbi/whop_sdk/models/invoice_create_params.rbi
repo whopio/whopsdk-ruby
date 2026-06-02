@@ -338,6 +338,10 @@ module WhopSDK
                 )
               end
 
+            # The available currencies on the platform
+            sig { returns(T.nilable(WhopSDK::Currency::OrSymbol)) }
+            attr_accessor :base_currency
+
             # The interval in days at which the plan charges (renewal plans).
             sig { returns(T.nilable(Integer)) }
             attr_accessor :billing_period
@@ -432,6 +436,7 @@ module WhopSDK
             # invoice.
             sig do
               params(
+                base_currency: T.nilable(WhopSDK::Currency::OrSymbol),
                 billing_period: T.nilable(Integer),
                 custom_fields:
                   T.nilable(
@@ -458,6 +463,8 @@ module WhopSDK
               ).returns(T.attached_class)
             end
             def self.new(
+              # The available currencies on the platform
+              base_currency: nil,
               # The interval in days at which the plan charges (renewal plans).
               billing_period: nil,
               # An array of custom field objects.
@@ -500,6 +507,7 @@ module WhopSDK
             sig do
               override.returns(
                 {
+                  base_currency: T.nilable(WhopSDK::Currency::OrSymbol),
                   billing_period: T.nilable(Integer),
                   custom_fields:
                     T.nilable(
@@ -1129,6 +1137,10 @@ module WhopSDK
                 )
               end
 
+            # The available currencies on the platform
+            sig { returns(T.nilable(WhopSDK::Currency::OrSymbol)) }
+            attr_accessor :base_currency
+
             # The interval in days at which the plan charges (renewal plans).
             sig { returns(T.nilable(Integer)) }
             attr_accessor :billing_period
@@ -1223,6 +1235,7 @@ module WhopSDK
             # invoice.
             sig do
               params(
+                base_currency: T.nilable(WhopSDK::Currency::OrSymbol),
                 billing_period: T.nilable(Integer),
                 custom_fields:
                   T.nilable(
@@ -1249,6 +1262,8 @@ module WhopSDK
               ).returns(T.attached_class)
             end
             def self.new(
+              # The available currencies on the platform
+              base_currency: nil,
               # The interval in days at which the plan charges (renewal plans).
               billing_period: nil,
               # An array of custom field objects.
@@ -1291,6 +1306,7 @@ module WhopSDK
             sig do
               override.returns(
                 {
+                  base_currency: T.nilable(WhopSDK::Currency::OrSymbol),
                   billing_period: T.nilable(Integer),
                   custom_fields:
                     T.nilable(

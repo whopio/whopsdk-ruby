@@ -1,0 +1,20 @@
+module WhopSDK
+  module Resources
+    class Swaps
+      def create_quote: (
+        amount: String,
+        from_token: String,
+        to_token: String,
+        ?from_address: String?,
+        ?from_chain: WhopSDK::Models::SwapCreateQuoteParams::from_chain?,
+        ?metadata: ::Hash[Symbol, top],
+        ?slippage_bps: Integer?,
+        ?to_address: String?,
+        ?to_chain: WhopSDK::Models::SwapCreateQuoteParams::to_chain?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::SwapCreateQuoteResponse
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

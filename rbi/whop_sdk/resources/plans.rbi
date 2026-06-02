@@ -29,6 +29,7 @@ module WhopSDK
           initial_price: T.nilable(Float),
           internal_notes: T.nilable(String),
           legacy_payment_method_controls: T.nilable(T::Boolean),
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
           override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
           payment_method_configuration:
             T.nilable(
@@ -39,6 +40,8 @@ module WhopSDK
           renewal_price: T.nilable(Float),
           split_pay_required_payments: T.nilable(Integer),
           stock: T.nilable(Integer),
+          three_ds_level:
+            T.nilable(WhopSDK::PlanCreateParams::ThreeDSLevel::OrSymbol),
           title: T.nilable(String),
           trial_period_days: T.nilable(Integer),
           unlimited_stock: T.nilable(T::Boolean),
@@ -78,6 +81,10 @@ module WhopSDK
         internal_notes: nil,
         # Whether this plan uses legacy payment method controls.
         legacy_payment_method_controls: nil,
+        # Custom key-value pairs to store on the plan. Included in webhook payloads for
+        # payment and membership events. Max 50 keys, 500 chars per key, 5000 chars per
+        # value.
+        metadata: nil,
         # Whether or not the tax is included in a plan's price (or if it hasn't been set
         # up)
         override_tax_type: nil,
@@ -96,6 +103,8 @@ module WhopSDK
         # The maximum number of units available for purchase. Ignored when unlimited_stock
         # is true.
         stock: nil,
+        # The 3D Secure behavior for a plan.
+        three_ds_level: nil,
         # The display name of the plan shown to customers on the product page.
         title: nil,
         # The number of free trial days before the first charge on a recurring plan.
@@ -151,6 +160,7 @@ module WhopSDK
           initial_price: T.nilable(Float),
           internal_notes: T.nilable(String),
           legacy_payment_method_controls: T.nilable(T::Boolean),
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
           offer_cancel_discount: T.nilable(T::Boolean),
           override_tax_type: T.nilable(WhopSDK::TaxType::OrSymbol),
           payment_method_configuration:
@@ -161,6 +171,8 @@ module WhopSDK
           stock: T.nilable(Integer),
           strike_through_initial_price: T.nilable(Float),
           strike_through_renewal_price: T.nilable(Float),
+          three_ds_level:
+            T.nilable(WhopSDK::PlanUpdateParams::ThreeDSLevel::OrSymbol),
           title: T.nilable(String),
           trial_period_days: T.nilable(Integer),
           unlimited_stock: T.nilable(T::Boolean),
@@ -197,6 +209,10 @@ module WhopSDK
         internal_notes: nil,
         # Whether this plan uses legacy payment method controls.
         legacy_payment_method_controls: nil,
+        # Custom key-value pairs to store on the plan. Included in webhook payloads for
+        # payment and membership events. Max 50 keys, 500 chars per key, 5000 chars per
+        # value.
+        metadata: nil,
         # Whether to offer a retention discount when a customer attempts to cancel.
         offer_cancel_discount: nil,
         # Whether or not the tax is included in a plan's price (or if it hasn't been set
@@ -217,6 +233,8 @@ module WhopSDK
         # A comparison price displayed with a strikethrough for the renewal price.
         # Provided in the plan's currency (e.g., 19.99 for $19.99).
         strike_through_renewal_price: nil,
+        # The 3D Secure behavior for a plan.
+        three_ds_level: nil,
         # The display name of the plan shown to customers on the product page.
         title: nil,
         # The number of free trial days before the first charge on a recurring plan.

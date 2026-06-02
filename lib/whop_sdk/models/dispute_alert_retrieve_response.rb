@@ -172,10 +172,10 @@ module WhopSDK
         required :created_at, Time
 
         # @!attribute currency
-        #   The available currencies on the platform
+        #   The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
         #
-        #   @return [Symbol, WhopSDK::Models::Currency, nil]
-        required :currency, enum: -> { WhopSDK::Currency }, nil?: true
+        #   @return [Symbol, WhopSDK::Models::Currency]
+        required :currency, enum: -> { WhopSDK::Currency }
 
         # @!attribute dispute_alerted_at
         #   When an alert came in that this transaction will be disputed
@@ -250,7 +250,7 @@ module WhopSDK
         #
         #   @param created_at [Time] The datetime the payment was created.
         #
-        #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
+        #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
         #
         #   @param dispute_alerted_at [Time, nil] When an alert came in that this transaction will be disputed
         #

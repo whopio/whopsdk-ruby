@@ -9,7 +9,6 @@ module WhopSDK
       REQUEST_BUYER_INFO = :request_buyer_info
       REQUEST_MERCHANT_INFO = :request_merchant_info
       MERCHANT_WINS = :merchant_wins
-      PLATFORM_REFUND = :platform_refund
       MERCHANT_REFUND = :merchant_refund
 
       # @!method self.values

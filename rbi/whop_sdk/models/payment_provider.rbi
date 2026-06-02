@@ -17,6 +17,8 @@ module WhopSDK
       SPLITIT = T.let(:splitit, WhopSDK::PaymentProvider::TaggedSymbol)
       PLATFORM_BALANCE =
         T.let(:platform_balance, WhopSDK::PaymentProvider::TaggedSymbol)
+      CRYPTO_BALANCE =
+        T.let(:crypto_balance, WhopSDK::PaymentProvider::TaggedSymbol)
       MULTI_PSP = T.let(:multi_psp, WhopSDK::PaymentProvider::TaggedSymbol)
       ADYEN = T.let(:adyen, WhopSDK::PaymentProvider::TaggedSymbol)
       CLARITYPAY = T.let(:claritypay, WhopSDK::PaymentProvider::TaggedSymbol)

@@ -45,8 +45,8 @@ module WhopSDK
       # @!attribute visibility
       #   Whether the file is publicly accessible or requires authentication.
       #
-      #   @return [Symbol, WhopSDK::Models::FileRetrieveResponse::Visibility]
-      required :visibility, enum: -> { WhopSDK::Models::FileRetrieveResponse::Visibility }
+      #   @return [Symbol, WhopSDK::Models::FileVisibility]
+      required :visibility, enum: -> { WhopSDK::FileVisibility }
 
       # @!method initialize(id:, content_type:, filename:, size:, upload_status:, url:, visibility:)
       #   Some parameter documentations has been truncated, see
@@ -66,20 +66,7 @@ module WhopSDK
       #
       #   @param url [String, nil] The URL for accessing the file. For public files, this is a permanent CDN URL. F
       #
-      #   @param visibility [Symbol, WhopSDK::Models::FileRetrieveResponse::Visibility] Whether the file is publicly accessible or requires authentication.
-
-      # Whether the file is publicly accessible or requires authentication.
-      #
-      # @see WhopSDK::Models::FileRetrieveResponse#visibility
-      module Visibility
-        extend WhopSDK::Internal::Type::Enum
-
-        PUBLIC = :public
-        PRIVATE = :private
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
+      #   @param visibility [Symbol, WhopSDK::Models::FileVisibility] Whether the file is publicly accessible or requires authentication.
     end
   end
 end

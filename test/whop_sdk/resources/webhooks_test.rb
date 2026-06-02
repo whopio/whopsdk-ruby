@@ -121,7 +121,7 @@ class WhopSDK::Test::Resources::WebhooksTest < WhopSDK::Test::ResourceTest
     webhook = StandardWebhooks::Webhook.new(key)
 
     data =
-      "{\"id\":\"msg_xxxxxxxxxxxxxxxxxxxxxxxx\",\"api_version\":\"v1\",\"data\":{\"id\":\"inv_xxxxxxxxxxxxxx\",\"created_at\":\"2023-12-01T05:00:00.401Z\",\"current_plan\":{\"id\":\"plan_xxxxxxxxxxxxx\",\"currency\":\"usd\",\"formatted_price\":\"$10.00\"},\"due_date\":\"2023-12-01T05:00:00.401Z\",\"email_address\":\"customer@example.com\",\"fetch_invoice_token\":\"eyJhbGciOiJIUzI1NiJ9...\",\"number\":\"#0001\",\"status\":\"draft\",\"user\":{\"id\":\"user_xxxxxxxxxxxxx\",\"name\":\"John Doe\",\"username\":\"johndoe42\"}},\"timestamp\":\"2025-01-01T00:00:00.000Z\",\"type\":\"invoice.created\",\"company_id\":\"biz_xxxxxxxxxxxxxx\"}"
+      "{\"id\":\"msg_xxxxxxxxxxxxxxxxxxxxxxxx\",\"api_version\":\"v1\",\"data\":{\"id\":\"crsli_xxxxxxxxxxxx\",\"completed\":true,\"course\":{\"id\":\"cors_xxxxxxxxxxxxx\",\"experience\":{\"id\":\"exp_xxxxxxxxxxxxxx\"},\"title\":\"Introduction to Technical Analysis\"},\"created_at\":\"2023-12-01T05:00:00.401Z\",\"lesson\":{\"id\":\"lesn_xxxxxxxxxxxxx\",\"chapter\":{\"id\":\"chap_xxxxxxxxxxxxx\"},\"title\":\"Understanding Candlestick Patterns\"},\"user\":{\"id\":\"user_xxxxxxxxxxxxx\",\"name\":\"John Doe\",\"username\":\"johndoe42\"}},\"timestamp\":\"2025-01-01T00:00:00.000Z\",\"type\":\"course_lesson_interaction.completed\",\"company_id\":\"biz_xxxxxxxxxxxxxx\"}"
     message_id = "1"
     timestamp = Time.now.to_i.to_s
     signature = webhook.sign(message_id, timestamp, data)

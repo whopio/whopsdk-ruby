@@ -80,6 +80,11 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :member_count
 
+      # Custom key-value pairs stored on the plan. Included in webhook payloads for
+      # payment and membership events.
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      attr_accessor :metadata
+
       # The explicit payment method configuration specifying which payment methods are
       # enabled or disabled for this plan. Null if the plan uses default settings.
       sig { returns(T.nilable(WhopSDK::Plan::PaymentMethodConfiguration)) }
@@ -136,6 +141,10 @@ module WhopSDK
       sig { returns(WhopSDK::TaxType::TaggedSymbol) }
       attr_accessor :tax_type
 
+      # The 3D Secure behavior for a plan.
+      sig { returns(T.nilable(WhopSDK::Plan::ThreeDSLevel::TaggedSymbol)) }
+      attr_accessor :three_ds_level
+
       # The display name of the plan shown to customers on the product page and at
       # checkout. Maximum 30 characters. Null if no title has been set.
       sig { returns(T.nilable(String)) }
@@ -180,6 +189,7 @@ module WhopSDK
           internal_notes: T.nilable(String),
           invoice: T.nilable(WhopSDK::Plan::Invoice::OrHash),
           member_count: T.nilable(Integer),
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
           payment_method_configuration:
             T.nilable(WhopSDK::Plan::PaymentMethodConfiguration::OrHash),
           plan_type: WhopSDK::PlanType::OrSymbol,
@@ -190,6 +200,7 @@ module WhopSDK
           split_pay_required_payments: T.nilable(Integer),
           stock: T.nilable(Integer),
           tax_type: WhopSDK::TaxType::OrSymbol,
+          three_ds_level: T.nilable(WhopSDK::Plan::ThreeDSLevel::OrSymbol),
           title: T.nilable(String),
           trial_period_days: T.nilable(Integer),
           unlimited_stock: T::Boolean,
@@ -239,6 +250,9 @@ module WhopSDK
         # The number of users who currently hold an active membership through this plan.
         # Only visible to authorized team members.
         member_count:,
+        # Custom key-value pairs stored on the plan. Included in webhook payloads for
+        # payment and membership events.
+        metadata:,
         # The explicit payment method configuration specifying which payment methods are
         # enabled or disabled for this plan. Null if the plan uses default settings.
         payment_method_configuration:,
@@ -266,6 +280,8 @@ module WhopSDK
         # How tax is handled for this plan: 'inclusive' (tax included in price),
         # 'exclusive' (tax added at checkout), or 'unspecified' (tax not configured).
         tax_type:,
+        # The 3D Secure behavior for a plan.
+        three_ds_level:,
         # The display name of the plan shown to customers on the product page and at
         # checkout. Maximum 30 characters. Null if no title has been set.
         title:,
@@ -301,6 +317,7 @@ module WhopSDK
             internal_notes: T.nilable(String),
             invoice: T.nilable(WhopSDK::Plan::Invoice),
             member_count: T.nilable(Integer),
+            metadata: T.nilable(T::Hash[Symbol, T.anything]),
             payment_method_configuration:
               T.nilable(WhopSDK::Plan::PaymentMethodConfiguration),
             plan_type: WhopSDK::PlanType::TaggedSymbol,
@@ -311,6 +328,8 @@ module WhopSDK
             split_pay_required_payments: T.nilable(Integer),
             stock: T.nilable(Integer),
             tax_type: WhopSDK::TaxType::TaggedSymbol,
+            three_ds_level:
+              T.nilable(WhopSDK::Plan::ThreeDSLevel::TaggedSymbol),
             title: T.nilable(String),
             trial_period_days: T.nilable(Integer),
             unlimited_stock: T::Boolean,
@@ -543,6 +562,26 @@ module WhopSDK
 
         sig { override.returns({ id: String, title: String }) }
         def to_hash
+        end
+      end
+
+      # The 3D Secure behavior for a plan.
+      module ThreeDSLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::Plan::ThreeDSLevel) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        MANDATE_CHALLENGE =
+          T.let(:mandate_challenge, WhopSDK::Plan::ThreeDSLevel::TaggedSymbol)
+        FRICTIONLESS =
+          T.let(:frictionless, WhopSDK::Plan::ThreeDSLevel::TaggedSymbol)
+
+        sig do
+          override.returns(T::Array[WhopSDK::Plan::ThreeDSLevel::TaggedSymbol])
+        end
+        def self.values
         end
       end
     end

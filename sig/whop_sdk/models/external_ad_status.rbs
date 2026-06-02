@@ -1,0 +1,19 @@
+module WhopSDK
+  module Models
+    type external_ad_status =
+      :active | :paused | :inactive | :in_review | :rejected | :flagged
+
+    module ExternalAdStatus
+      extend WhopSDK::Internal::Type::Enum
+
+      ACTIVE: :active
+      PAUSED: :paused
+      INACTIVE: :inactive
+      IN_REVIEW: :in_review
+      REJECTED: :rejected
+      FLAGGED: :flagged
+
+      def self?.values: -> ::Array[WhopSDK::Models::external_ad_status]
+    end
+  end
+end

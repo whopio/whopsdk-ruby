@@ -1,0 +1,14 @@
+module WhopSDK
+  module Models
+    type granularities = :daily | :hourly
+
+    module Granularities
+      extend WhopSDK::Internal::Type::Enum
+
+      DAILY: :daily
+      HOURLY: :hourly
+
+      def self?.values: -> ::Array[WhopSDK::Models::granularities]
+    end
+  end
+end

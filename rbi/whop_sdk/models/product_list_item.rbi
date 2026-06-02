@@ -31,6 +31,11 @@ module WhopSDK
       sig { returns(Integer) }
       attr_accessor :member_count
 
+      # Custom key-value pairs stored on the product. Included in webhook payloads for
+      # payment and membership events.
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      attr_accessor :metadata
+
       # The total number of published customer reviews for this product's company.
       sig { returns(Integer) }
       attr_accessor :published_reviews_count
@@ -67,6 +72,7 @@ module WhopSDK
           external_identifier: T.nilable(String),
           headline: T.nilable(String),
           member_count: Integer,
+          metadata: T.nilable(T::Hash[Symbol, T.anything]),
           published_reviews_count: Integer,
           route: String,
           title: String,
@@ -89,6 +95,9 @@ module WhopSDK
         # The number of users who currently hold an active membership to this product.
         # Returns 0 if the company has disabled public member counts.
         member_count:,
+        # Custom key-value pairs stored on the product. Included in webhook payloads for
+        # payment and membership events.
+        metadata:,
         # The total number of published customer reviews for this product's company.
         published_reviews_count:,
         # The URL slug used in the product's public link (e.g., 'my-product' in
@@ -115,6 +124,7 @@ module WhopSDK
             external_identifier: T.nilable(String),
             headline: T.nilable(String),
             member_count: Integer,
+            metadata: T.nilable(T::Hash[Symbol, T.anything]),
             published_reviews_count: Integer,
             route: String,
             title: String,

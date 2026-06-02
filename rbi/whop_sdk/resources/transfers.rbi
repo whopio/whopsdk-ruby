@@ -29,7 +29,9 @@ module WhopSDK
         # The currency of the transfer amount, such as 'usd'.
         currency:,
         # The identifier of the account receiving the funds. Accepts a user ID
-        # ('user_xxx'), company ID ('biz_xxx'), or ledger account ID ('ldgr_xxx').
+        # ('user_xxx'), company ID ('biz_xxx'), ledger account ID ('ldgr_xxx'), or an
+        # email address — emails without an existing Whop user trigger a placeholder-user
+        # signup.
         destination_id:,
         # The identifier of the account sending the funds. Accepts a user ID ('user_xxx'),
         # company ID ('biz_xxx'), or ledger account ID ('ldgr_xxx').

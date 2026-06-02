@@ -8,7 +8,7 @@ module WhopSDK
         size: String?,
         upload_status: WhopSDK::Models::upload_status,
         url: String?,
-        visibility: WhopSDK::Models::FileRetrieveResponse::visibility
+        visibility: WhopSDK::Models::file_visibility
       }
 
     class FileRetrieveResponse < WhopSDK::Internal::Type::BaseModel
@@ -24,7 +24,7 @@ module WhopSDK
 
       attr_accessor url: String?
 
-      attr_accessor visibility: WhopSDK::Models::FileRetrieveResponse::visibility
+      attr_accessor visibility: WhopSDK::Models::file_visibility
 
       def initialize: (
         id: String,
@@ -33,7 +33,7 @@ module WhopSDK
         size: String?,
         upload_status: WhopSDK::Models::upload_status,
         url: String?,
-        visibility: WhopSDK::Models::FileRetrieveResponse::visibility
+        visibility: WhopSDK::Models::file_visibility
       ) -> void
 
       def to_hash: -> {
@@ -43,19 +43,8 @@ module WhopSDK
         size: String?,
         upload_status: WhopSDK::Models::upload_status,
         url: String?,
-        visibility: WhopSDK::Models::FileRetrieveResponse::visibility
+        visibility: WhopSDK::Models::file_visibility
       }
-
-      type visibility = :public | :private
-
-      module Visibility
-        extend WhopSDK::Internal::Type::Enum
-
-        PUBLIC: :public
-        PRIVATE: :private
-
-        def self?.values: -> ::Array[WhopSDK::Models::FileRetrieveResponse::visibility]
-      end
     end
   end
 end

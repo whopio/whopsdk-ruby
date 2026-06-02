@@ -92,6 +92,14 @@ module WhopSDK
       #   @return [Boolean, nil]
       optional :legacy_payment_method_controls, WhopSDK::Internal::Type::Boolean, nil?: true
 
+      # @!attribute metadata
+      #   Custom key-value pairs to store on the plan. Included in webhook payloads for
+      #   payment and membership events. Max 50 keys, 500 chars per key, 5000 chars per
+      #   value.
+      #
+      #   @return [Hash{Symbol=>Object}, nil]
+      optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
       # @!attribute override_tax_type
       #   Whether or not the tax is included in a plan's price (or if it hasn't been set
       #   up)
@@ -140,6 +148,12 @@ module WhopSDK
       #   @return [Integer, nil]
       optional :stock, Integer, nil?: true
 
+      # @!attribute three_ds_level
+      #   The 3D Secure behavior for a plan.
+      #
+      #   @return [Symbol, WhopSDK::Models::PlanCreateParams::ThreeDSLevel, nil]
+      optional :three_ds_level, enum: -> { WhopSDK::PlanCreateParams::ThreeDSLevel }, nil?: true
+
       # @!attribute title
       #   The display name of the plan shown to customers on the product page.
       #
@@ -165,7 +179,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Visibility, nil]
       optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-      # @!method initialize(company_id:, product_id:, adaptive_pricing_enabled: nil, billing_period: nil, checkout_styling: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, split_pay_required_payments: nil, stock: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
+      # @!method initialize(company_id:, product_id:, adaptive_pricing_enabled: nil, billing_period: nil, checkout_styling: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, metadata: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, split_pay_required_payments: nil, stock: nil, three_ds_level: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PlanCreateParams} for more details.
       #
@@ -195,6 +209,8 @@ module WhopSDK
       #
       #   @param legacy_payment_method_controls [Boolean, nil] Whether this plan uses legacy payment method controls.
       #
+      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs to store on the plan. Included in webhook payloads for pa
+      #
       #   @param override_tax_type [Symbol, WhopSDK::Models::TaxType, nil] Whether or not the tax is included in a plan's price (or if it hasn't been set u
       #
       #   @param payment_method_configuration [WhopSDK::Models::PlanCreateParams::PaymentMethodConfiguration, nil] Explicit payment method configuration for the plan. When not provided, the compa
@@ -208,6 +224,8 @@ module WhopSDK
       #   @param split_pay_required_payments [Integer, nil] The number of installment payments required before the subscription pauses.
       #
       #   @param stock [Integer, nil] The maximum number of units available for purchase. Ignored when unlimited_stock
+      #
+      #   @param three_ds_level [Symbol, WhopSDK::Models::PlanCreateParams::ThreeDSLevel, nil] The 3D Secure behavior for a plan.
       #
       #   @param title [String, nil] The display name of the plan shown to customers on the product page.
       #
@@ -363,6 +381,17 @@ module WhopSDK
         #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
         #
         #   @param include_platform_defaults [Boolean, nil] Whether Whop's platform default payment method enablement settings are included
+      end
+
+      # The 3D Secure behavior for a plan.
+      module ThreeDSLevel
+        extend WhopSDK::Internal::Type::Enum
+
+        MANDATE_CHALLENGE = :mandate_challenge
+        FRICTIONLESS = :frictionless
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

@@ -230,7 +230,7 @@ module WhopSDK
         # @see WhopSDK::Models::PayoutAccountStatusUpdatedWebhookEvent::Data#latest_verification
         class LatestVerification < WhopSDK::Internal::Type::BaseModel
           # @!attribute id
-          #   The numeric id of the verification record.
+          #   The identifier of the verification (verf_xxx).
           #
           #   @return [String]
           required :id, String
@@ -261,7 +261,7 @@ module WhopSDK
           #
           #   The latest verification for the connected account.
           #
-          #   @param id [String] The numeric id of the verification record.
+          #   @param id [String] The identifier of the verification (verf_xxx).
           #
           #   @param last_error_code [Symbol, WhopSDK::Models::VerificationErrorCode, nil] An error code for a verification attempt.
           #

@@ -88,8 +88,7 @@ module WhopSDK
       required :customer_name, String, nil?: true
 
       # @!attribute editable
-      #   Whether the dispute evidence can still be edited and submitted. Returns true
-      #   only when the dispute status requires a response.
+      #   Whether the dispute evidence can still be edited and submitted.
       #
       #   @return [Boolean, nil]
       required :editable, WhopSDK::Internal::Type::Boolean, nil?: true
@@ -220,7 +219,7 @@ module WhopSDK
       #
       #   @param customer_name [String, nil] The customer's full name from their payment details, included in the evidence pa
       #
-      #   @param editable [Boolean, nil] Whether the dispute evidence can still be edited and submitted. Returns true onl
+      #   @param editable [Boolean, nil] Whether the dispute evidence can still be edited and submitted.
       #
       #   @param needs_response_by [Time, nil] The deadline by which dispute evidence must be submitted. Null if no response de
       #
@@ -400,10 +399,10 @@ module WhopSDK
         required :created_at, Time
 
         # @!attribute currency
-        #   The available currencies on the platform
+        #   The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
         #
-        #   @return [Symbol, WhopSDK::Models::Currency, nil]
-        required :currency, enum: -> { WhopSDK::Currency }, nil?: true
+        #   @return [Symbol, WhopSDK::Models::Currency]
+        required :currency, enum: -> { WhopSDK::Currency }
 
         # @!attribute dispute_alerted_at
         #   When an alert came in that this transaction will be disputed
@@ -476,7 +475,7 @@ module WhopSDK
         #
         #   @param created_at [Time] The datetime the payment was created.
         #
-        #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
+        #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
         #
         #   @param dispute_alerted_at [Time, nil] When an alert came in that this transaction will be disputed
         #

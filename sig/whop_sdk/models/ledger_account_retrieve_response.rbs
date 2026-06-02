@@ -8,7 +8,8 @@ module WhopSDK
         owner: WhopSDK::Models::LedgerAccountRetrieveResponse::owner?,
         payments_approval_status: WhopSDK::Models::LedgerAccountRetrieveResponse::payments_approval_status?,
         payout_account_details: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails?,
-        transfer_fee: Float?
+        transfer_fee: Float?,
+        treasury_balance: WhopSDK::Models::LedgerAccountRetrieveResponse::TreasuryBalance?
       }
 
     class LedgerAccountRetrieveResponse < WhopSDK::Internal::Type::BaseModel
@@ -26,6 +27,8 @@ module WhopSDK
 
       attr_accessor transfer_fee: Float?
 
+      attr_accessor treasury_balance: WhopSDK::Models::LedgerAccountRetrieveResponse::TreasuryBalance?
+
       def initialize: (
         id: String,
         balances: ::Array[WhopSDK::Models::LedgerAccountRetrieveResponse::Balance],
@@ -33,7 +36,8 @@ module WhopSDK
         owner: WhopSDK::Models::LedgerAccountRetrieveResponse::owner?,
         payments_approval_status: WhopSDK::Models::LedgerAccountRetrieveResponse::payments_approval_status?,
         payout_account_details: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails?,
-        transfer_fee: Float?
+        transfer_fee: Float?,
+        treasury_balance: WhopSDK::Models::LedgerAccountRetrieveResponse::TreasuryBalance?
       ) -> void
 
       def to_hash: -> {
@@ -43,7 +47,8 @@ module WhopSDK
         owner: WhopSDK::Models::LedgerAccountRetrieveResponse::owner?,
         payments_approval_status: WhopSDK::Models::LedgerAccountRetrieveResponse::payments_approval_status?,
         payout_account_details: WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails?,
-        transfer_fee: Float?
+        transfer_fee: Float?,
+        treasury_balance: WhopSDK::Models::LedgerAccountRetrieveResponse::TreasuryBalance?
       }
 
       type balance =
@@ -323,6 +328,48 @@ module WhopSDK
             status: WhopSDK::Models::verification_status
           }
         end
+      end
+
+      type treasury_balance =
+        {
+          balance: Float,
+          balance_usd: Float,
+          currency: WhopSDK::Models::currency,
+          pending_balance: Float,
+          reserve_balance: Float,
+          total_withdrawable_balance: Float
+        }
+
+      class TreasuryBalance < WhopSDK::Internal::Type::BaseModel
+        attr_accessor balance: Float
+
+        attr_accessor balance_usd: Float
+
+        attr_accessor currency: WhopSDK::Models::currency
+
+        attr_accessor pending_balance: Float
+
+        attr_accessor reserve_balance: Float
+
+        attr_accessor total_withdrawable_balance: Float
+
+        def initialize: (
+          balance: Float,
+          balance_usd: Float,
+          currency: WhopSDK::Models::currency,
+          pending_balance: Float,
+          reserve_balance: Float,
+          total_withdrawable_balance: Float
+        ) -> void
+
+        def to_hash: -> {
+          balance: Float,
+          balance_usd: Float,
+          currency: WhopSDK::Models::currency,
+          pending_balance: Float,
+          reserve_balance: Float,
+          total_withdrawable_balance: Float
+        }
       end
     end
   end

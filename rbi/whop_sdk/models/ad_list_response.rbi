@@ -12,16 +12,36 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
+      # The ad campaign this ad belongs to.
+      sig { returns(WhopSDK::Models::AdListResponse::AdCampaign) }
+      attr_reader :ad_campaign
+
+      sig do
+        params(
+          ad_campaign: WhopSDK::Models::AdListResponse::AdCampaign::OrHash
+        ).void
+      end
+      attr_writer :ad_campaign
+
+      # The parent ad group this ad belongs to.
+      sig { returns(WhopSDK::Models::AdListResponse::AdGroup) }
+      attr_reader :ad_group
+
+      sig do
+        params(ad_group: WhopSDK::Models::AdListResponse::AdGroup::OrHash).void
+      end
+      attr_writer :ad_group
+
       # When the ad was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
       # The external ad platform this ad is running on (e.g., meta, tiktok).
-      sig { returns(WhopSDK::Models::AdListResponse::Platform::TaggedSymbol) }
+      sig { returns(WhopSDK::AdCampaignPlatform::TaggedSymbol) }
       attr_accessor :platform
 
       # Current delivery status of the ad.
-      sig { returns(WhopSDK::Models::AdListResponse::Status::TaggedSymbol) }
+      sig { returns(WhopSDK::ExternalAdStatus::TaggedSymbol) }
       attr_accessor :status
 
       # The display title of the ad. Falls back to the creative set caption when unset.
@@ -36,9 +56,11 @@ module WhopSDK
       sig do
         params(
           id: String,
+          ad_campaign: WhopSDK::Models::AdListResponse::AdCampaign::OrHash,
+          ad_group: WhopSDK::Models::AdListResponse::AdGroup::OrHash,
           created_at: Time,
-          platform: WhopSDK::Models::AdListResponse::Platform::OrSymbol,
-          status: WhopSDK::Models::AdListResponse::Status::OrSymbol,
+          platform: WhopSDK::AdCampaignPlatform::OrSymbol,
+          status: WhopSDK::ExternalAdStatus::OrSymbol,
           title: T.nilable(String),
           updated_at: Time
         ).returns(T.attached_class)
@@ -46,6 +68,10 @@ module WhopSDK
       def self.new(
         # The unique identifier for this ad.
         id:,
+        # The ad campaign this ad belongs to.
+        ad_campaign:,
+        # The parent ad group this ad belongs to.
+        ad_group:,
         # When the ad was created.
         created_at:,
         # The external ad platform this ad is running on (e.g., meta, tiktok).
@@ -63,9 +89,11 @@ module WhopSDK
         override.returns(
           {
             id: String,
+            ad_campaign: WhopSDK::Models::AdListResponse::AdCampaign,
+            ad_group: WhopSDK::Models::AdListResponse::AdGroup,
             created_at: Time,
-            platform: WhopSDK::Models::AdListResponse::Platform::TaggedSymbol,
-            status: WhopSDK::Models::AdListResponse::Status::TaggedSymbol,
+            platform: WhopSDK::AdCampaignPlatform::TaggedSymbol,
+            status: WhopSDK::ExternalAdStatus::TaggedSymbol,
             title: T.nilable(String),
             updated_at: Time
           }
@@ -74,71 +102,55 @@ module WhopSDK
       def to_hash
       end
 
-      # The external ad platform this ad is running on (e.g., meta, tiktok).
-      module Platform
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
+      class AdCampaign < WhopSDK::Internal::Type::BaseModel
+        OrHash =
           T.type_alias do
-            T.all(Symbol, WhopSDK::Models::AdListResponse::Platform)
+            T.any(
+              WhopSDK::Models::AdListResponse::AdCampaign,
+              WhopSDK::Internal::AnyHash
+            )
           end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        META =
-          T.let(:meta, WhopSDK::Models::AdListResponse::Platform::TaggedSymbol)
-        TIKTOK =
-          T.let(
-            :tiktok,
-            WhopSDK::Models::AdListResponse::Platform::TaggedSymbol
-          )
+        # The unique identifier for this ad campaign.
+        sig { returns(String) }
+        attr_accessor :id
 
-        sig do
-          override.returns(
-            T::Array[WhopSDK::Models::AdListResponse::Platform::TaggedSymbol]
-          )
+        # The ad campaign this ad belongs to.
+        sig { params(id: String).returns(T.attached_class) }
+        def self.new(
+          # The unique identifier for this ad campaign.
+          id:
+        )
         end
-        def self.values
+
+        sig { override.returns({ id: String }) }
+        def to_hash
         end
       end
 
-      # Current delivery status of the ad.
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
+      class AdGroup < WhopSDK::Internal::Type::BaseModel
+        OrHash =
           T.type_alias do
-            T.all(Symbol, WhopSDK::Models::AdListResponse::Status)
+            T.any(
+              WhopSDK::Models::AdListResponse::AdGroup,
+              WhopSDK::Internal::AnyHash
+            )
           end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        ACTIVE =
-          T.let(:active, WhopSDK::Models::AdListResponse::Status::TaggedSymbol)
-        PAUSED =
-          T.let(:paused, WhopSDK::Models::AdListResponse::Status::TaggedSymbol)
-        INACTIVE =
-          T.let(
-            :inactive,
-            WhopSDK::Models::AdListResponse::Status::TaggedSymbol
-          )
-        IN_REVIEW =
-          T.let(
-            :in_review,
-            WhopSDK::Models::AdListResponse::Status::TaggedSymbol
-          )
-        REJECTED =
-          T.let(
-            :rejected,
-            WhopSDK::Models::AdListResponse::Status::TaggedSymbol
-          )
-        FLAGGED =
-          T.let(:flagged, WhopSDK::Models::AdListResponse::Status::TaggedSymbol)
+        # The unique identifier for this ad group.
+        sig { returns(String) }
+        attr_accessor :id
 
-        sig do
-          override.returns(
-            T::Array[WhopSDK::Models::AdListResponse::Status::TaggedSymbol]
-          )
+        # The parent ad group this ad belongs to.
+        sig { params(id: String).returns(T.attached_class) }
+        def self.new(
+          # The unique identifier for this ad group.
+          id:
+        )
         end
-        def self.values
+
+        sig { override.returns({ id: String }) }
+        def to_hash
         end
       end
     end

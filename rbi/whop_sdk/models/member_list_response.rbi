@@ -19,7 +19,8 @@ module WhopSDK
       sig { returns(WhopSDK::AccessLevel::TaggedSymbol) }
       attr_accessor :access_level
 
-      # The member's token balance for this company
+      # The member's token balance for this company. Computed live from the ledger, not
+      # from a cache.
       sig { returns(Float) }
       attr_accessor :company_token_balance
 
@@ -93,7 +94,8 @@ module WhopSDK
         # membership to any product on the company. If its no_access, the member does not
         # have access to the product.
         access_level:,
-        # The member's token balance for this company
+        # The member's token balance for this company. Computed live from the ledger, not
+        # from a cache.
         company_token_balance:,
         # The datetime the company member was created.
         created_at:,

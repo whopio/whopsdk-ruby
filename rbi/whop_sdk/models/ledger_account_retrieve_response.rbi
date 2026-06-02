@@ -75,6 +75,26 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :transfer_fee
 
+      # The balance cache associated with the account by currency.
+      sig do
+        returns(
+          T.nilable(
+            WhopSDK::Models::LedgerAccountRetrieveResponse::TreasuryBalance
+          )
+        )
+      end
+      attr_reader :treasury_balance
+
+      sig do
+        params(
+          treasury_balance:
+            T.nilable(
+              WhopSDK::Models::LedgerAccountRetrieveResponse::TreasuryBalance::OrHash
+            )
+        ).void
+      end
+      attr_writer :treasury_balance
+
       # A ledger account represents a financial account on Whop that can hold many
       # balances.
       sig do
@@ -101,7 +121,11 @@ module WhopSDK
             T.nilable(
               WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails::OrHash
             ),
-          transfer_fee: T.nilable(Float)
+          transfer_fee: T.nilable(Float),
+          treasury_balance:
+            T.nilable(
+              WhopSDK::Models::LedgerAccountRetrieveResponse::TreasuryBalance::OrHash
+            )
         ).returns(T.attached_class)
       end
       def self.new(
@@ -118,7 +142,9 @@ module WhopSDK
         # The payout account associated with the LedgerAccount, if any.
         payout_account_details:,
         # The fee for transfers, if applicable.
-        transfer_fee:
+        transfer_fee:,
+        # The balance cache associated with the account by currency.
+        treasury_balance:
       )
       end
 
@@ -142,7 +168,11 @@ module WhopSDK
               T.nilable(
                 WhopSDK::Models::LedgerAccountRetrieveResponse::PayoutAccountDetails
               ),
-            transfer_fee: T.nilable(Float)
+            transfer_fee: T.nilable(Float),
+            treasury_balance:
+              T.nilable(
+                WhopSDK::Models::LedgerAccountRetrieveResponse::TreasuryBalance
+              )
           }
         )
       end
@@ -745,7 +775,7 @@ module WhopSDK
               )
             end
 
-          # The numeric id of the verification record.
+          # The identifier of the verification (verf_xxx).
           sig { returns(String) }
           attr_accessor :id
 
@@ -775,7 +805,7 @@ module WhopSDK
             ).returns(T.attached_class)
           end
           def self.new(
-            # The numeric id of the verification record.
+            # The identifier of the verification (verf_xxx).
             id:,
             # An error code for a verification attempt.
             last_error_code:,
@@ -800,6 +830,82 @@ module WhopSDK
           end
           def to_hash
           end
+        end
+      end
+
+      class TreasuryBalance < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Models::LedgerAccountRetrieveResponse::TreasuryBalance,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The amount of the balance.
+        sig { returns(Float) }
+        attr_accessor :balance
+
+        # The balance converted to USD.
+        sig { returns(Float) }
+        attr_accessor :balance_usd
+
+        # The currency of the balance.
+        sig { returns(WhopSDK::Currency::TaggedSymbol) }
+        attr_accessor :currency
+
+        # The amount of the balance that is pending.
+        sig { returns(Float) }
+        attr_accessor :pending_balance
+
+        # The amount of the balance that is reserved.
+        sig { returns(Float) }
+        attr_accessor :reserve_balance
+
+        # The amount of the balance that is withdrawable.
+        sig { returns(Float) }
+        attr_accessor :total_withdrawable_balance
+
+        # The balance cache associated with the account by currency.
+        sig do
+          params(
+            balance: Float,
+            balance_usd: Float,
+            currency: WhopSDK::Currency::OrSymbol,
+            pending_balance: Float,
+            reserve_balance: Float,
+            total_withdrawable_balance: Float
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The amount of the balance.
+          balance:,
+          # The balance converted to USD.
+          balance_usd:,
+          # The currency of the balance.
+          currency:,
+          # The amount of the balance that is pending.
+          pending_balance:,
+          # The amount of the balance that is reserved.
+          reserve_balance:,
+          # The amount of the balance that is withdrawable.
+          total_withdrawable_balance:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              balance: Float,
+              balance_usd: Float,
+              currency: WhopSDK::Currency::TaggedSymbol,
+              pending_balance: Float,
+              reserve_balance: Float,
+              total_withdrawable_balance: Float
+            }
+          )
+        end
+        def to_hash
         end
       end
     end

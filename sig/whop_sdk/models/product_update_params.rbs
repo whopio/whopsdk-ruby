@@ -14,6 +14,7 @@ module WhopSDK
         headline: String?,
         member_affiliate_percentage: Float?,
         member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
+        metadata: ::Hash[Symbol, top]?,
         product_tax_code_id: String?,
         redirect_purchase_url: String?,
         route: String?,
@@ -52,6 +53,8 @@ module WhopSDK
 
       attr_accessor member_affiliate_status: WhopSDK::Models::global_affiliate_status?
 
+      attr_accessor metadata: ::Hash[Symbol, top]?
+
       attr_accessor product_tax_code_id: String?
 
       attr_accessor redirect_purchase_url: String?
@@ -79,6 +82,7 @@ module WhopSDK
         ?headline: String?,
         ?member_affiliate_percentage: Float?,
         ?member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
+        ?metadata: ::Hash[Symbol, top]?,
         ?product_tax_code_id: String?,
         ?redirect_purchase_url: String?,
         ?route: String?,
@@ -102,6 +106,7 @@ module WhopSDK
         headline: String?,
         member_affiliate_percentage: Float?,
         member_affiliate_status: WhopSDK::Models::global_affiliate_status?,
+        metadata: ::Hash[Symbol, top]?,
         product_tax_code_id: String?,
         redirect_purchase_url: String?,
         route: String?,

@@ -1,0 +1,726 @@
+# typed: strong
+
+module WhopSDK
+  module Models
+    class IdentityProfileRejectedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      OrHash =
+        T.type_alias do
+          T.any(
+            WhopSDK::IdentityProfileRejectedWebhookEvent,
+            WhopSDK::Internal::AnyHash
+          )
+        end
+
+      # A unique ID for every single webhook request
+      sig { returns(String) }
+      attr_accessor :id
+
+      # The API version for this webhook
+      sig { returns(Symbol) }
+      attr_accessor :api_version
+
+      # An IdentityProfile is the object you create to KYC (for individuals) or KYB (for
+      # businesses) on Whop. It holds the attested identity claims (name, date of birth,
+      # business details, etc.) and is required to unlock features that depend on a
+      # verified identity — payouts, cards, and more.
+      #
+      # You can either:
+      #
+      # - Use the API to create an IdentityProfile and a corresponding Verification (see
+      #   [Start a verification](/api-reference/identity-profiles/create)), or
+      # - Send the user through Whop's hosted verification flow at
+      #   `https://whop.com/verify-identity/`.
+      #
+      # ## Immutability
+      #
+      # IdentityProfiles are not updatable. Once a profile is `approved`, its attested
+      # fields are frozen — there is no `PATCH` or `PUT` endpoint. If the underlying
+      # details change (legal name, address, business structure, country, etc.), create
+      # a **new** IdentityProfile by calling
+      # [Start a verification](/api-reference/identity-profiles/create) again. The old
+      # profile remains queryable as a historical record but is no longer the company's
+      # current profile.
+      sig { returns(WhopSDK::IdentityProfileRejectedWebhookEvent::Data) }
+      attr_reader :data
+
+      sig do
+        params(
+          data: WhopSDK::IdentityProfileRejectedWebhookEvent::Data::OrHash
+        ).void
+      end
+      attr_writer :data
+
+      # The timestamp in ISO 8601 format that the webhook was sent at on the server
+      sig { returns(Time) }
+      attr_accessor :timestamp
+
+      # The webhook event type
+      sig { returns(Symbol) }
+      attr_accessor :type
+
+      # The company ID that this webhook event is associated with
+      sig { returns(T.nilable(String)) }
+      attr_accessor :company_id
+
+      sig do
+        params(
+          id: String,
+          data: WhopSDK::IdentityProfileRejectedWebhookEvent::Data::OrHash,
+          timestamp: Time,
+          company_id: T.nilable(String),
+          api_version: Symbol,
+          type: Symbol
+        ).returns(T.attached_class)
+      end
+      def self.new(
+        # A unique ID for every single webhook request
+        id:,
+        # An IdentityProfile is the object you create to KYC (for individuals) or KYB (for
+        # businesses) on Whop. It holds the attested identity claims (name, date of birth,
+        # business details, etc.) and is required to unlock features that depend on a
+        # verified identity — payouts, cards, and more.
+        #
+        # You can either:
+        #
+        # - Use the API to create an IdentityProfile and a corresponding Verification (see
+        #   [Start a verification](/api-reference/identity-profiles/create)), or
+        # - Send the user through Whop's hosted verification flow at
+        #   `https://whop.com/verify-identity/`.
+        #
+        # ## Immutability
+        #
+        # IdentityProfiles are not updatable. Once a profile is `approved`, its attested
+        # fields are frozen — there is no `PATCH` or `PUT` endpoint. If the underlying
+        # details change (legal name, address, business structure, country, etc.), create
+        # a **new** IdentityProfile by calling
+        # [Start a verification](/api-reference/identity-profiles/create) again. The old
+        # profile remains queryable as a historical record but is no longer the company's
+        # current profile.
+        data:,
+        # The timestamp in ISO 8601 format that the webhook was sent at on the server
+        timestamp:,
+        # The company ID that this webhook event is associated with
+        company_id: nil,
+        # The API version for this webhook
+        api_version: :v1,
+        # The webhook event type
+        type: :"identity_profile.rejected"
+      )
+      end
+
+      sig do
+        override.returns(
+          {
+            id: String,
+            api_version: Symbol,
+            data: WhopSDK::IdentityProfileRejectedWebhookEvent::Data,
+            timestamp: Time,
+            type: Symbol,
+            company_id: T.nilable(String)
+          }
+        )
+      end
+      def to_hash
+      end
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::IdentityProfileRejectedWebhookEvent::Data,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The tag of the identity profile (idpf_xxx).
+        sig { returns(String) }
+        attr_accessor :id
+
+        # Registered business address reported by the identity provider. Present on
+        # `business` profiles.
+        sig do
+          returns(
+            T.nilable(
+              WhopSDK::IdentityProfileRejectedWebhookEvent::Data::BusinessAddress
+            )
+          )
+        end
+        attr_reader :business_address
+
+        sig do
+          params(
+            business_address:
+              T.nilable(
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::BusinessAddress::OrHash
+              )
+          ).void
+        end
+        attr_writer :business_address
+
+        # Business entity name. Present on `business` profiles.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :business_name
+
+        # Reported legal structure of a business profile (e.g. `corp`, `llc`).
+        # Provider-specific values; present on `business` profiles.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :business_structure
+
+        # ISO 3166-1 alpha-3 country code (e.g. `USA`, `GBR`). For individuals this is the
+        # country of citizenship or residence reported by the identity provider; for
+        # businesses this is the country of incorporation.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :country
+
+        # When the identity profile was first created.
+        sig { returns(Time) }
+        attr_accessor :created_at
+
+        # ISO date (`YYYY-MM-DD`) reported by the identity provider. Present on
+        # `individual` profiles.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :date_of_birth
+
+        # Email address reported by the identity provider. Typically present on
+        # `individual` profiles.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :email
+
+        # Individual's first name.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :first_name
+
+        # Individual's last name.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :last_name
+
+        # The companies this identity profile is currently linked to. Only populated for
+        # direct Whop user sessions; always empty when authenticated via API key, app, or
+        # OAuth scope (a single identity can be linked to companies the calling platform
+        # is not entitled to see).
+        sig do
+          returns(
+            T::Array[
+              WhopSDK::IdentityProfileRejectedWebhookEvent::Data::LinkedCompany
+            ]
+          )
+        end
+        attr_accessor :linked_companies
+
+        # Residential address reported by the identity provider. Present on `individual`
+        # profiles.
+        sig do
+          returns(
+            T.nilable(
+              WhopSDK::IdentityProfileRejectedWebhookEvent::Data::PersonalAddress
+            )
+          )
+        end
+        attr_reader :personal_address
+
+        sig do
+          params(
+            personal_address:
+              T.nilable(
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::PersonalAddress::OrHash
+              )
+          ).void
+        end
+        attr_writer :personal_address
+
+        # Phone number reported by the identity provider. Typically present on
+        # `individual` profiles.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :phone
+
+        # Whether this is an 'individual' or 'business' profile.
+        sig { returns(String) }
+        attr_accessor :profile_type
+
+        # Derived verification status across all linked verifications.
+        sig do
+          returns(
+            WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Status::TaggedSymbol
+          )
+        end
+        attr_accessor :status
+
+        # When the identity profile was last synced from a verification.
+        sig { returns(Time) }
+        attr_accessor :updated_at
+
+        # All verification attempts attached to this identity profile, ordered most-recent
+        # first.
+        sig do
+          returns(
+            T::Array[
+              WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification
+            ]
+          )
+        end
+        attr_accessor :verifications
+
+        # An IdentityProfile is the object you create to KYC (for individuals) or KYB (for
+        # businesses) on Whop. It holds the attested identity claims (name, date of birth,
+        # business details, etc.) and is required to unlock features that depend on a
+        # verified identity — payouts, cards, and more.
+        #
+        # You can either:
+        #
+        # - Use the API to create an IdentityProfile and a corresponding Verification (see
+        #   [Start a verification](/api-reference/identity-profiles/create)), or
+        # - Send the user through Whop's hosted verification flow at
+        #   `https://whop.com/verify-identity/`.
+        #
+        # ## Immutability
+        #
+        # IdentityProfiles are not updatable. Once a profile is `approved`, its attested
+        # fields are frozen — there is no `PATCH` or `PUT` endpoint. If the underlying
+        # details change (legal name, address, business structure, country, etc.), create
+        # a **new** IdentityProfile by calling
+        # [Start a verification](/api-reference/identity-profiles/create) again. The old
+        # profile remains queryable as a historical record but is no longer the company's
+        # current profile.
+        sig do
+          params(
+            id: String,
+            business_address:
+              T.nilable(
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::BusinessAddress::OrHash
+              ),
+            business_name: T.nilable(String),
+            business_structure: T.nilable(String),
+            country: T.nilable(String),
+            created_at: Time,
+            date_of_birth: T.nilable(String),
+            email: T.nilable(String),
+            first_name: T.nilable(String),
+            last_name: T.nilable(String),
+            linked_companies:
+              T::Array[
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::LinkedCompany::OrHash
+              ],
+            personal_address:
+              T.nilable(
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::PersonalAddress::OrHash
+              ),
+            phone: T.nilable(String),
+            profile_type: String,
+            status:
+              WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Status::OrSymbol,
+            updated_at: Time,
+            verifications:
+              T::Array[
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::OrHash
+              ]
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The tag of the identity profile (idpf_xxx).
+          id:,
+          # Registered business address reported by the identity provider. Present on
+          # `business` profiles.
+          business_address:,
+          # Business entity name. Present on `business` profiles.
+          business_name:,
+          # Reported legal structure of a business profile (e.g. `corp`, `llc`).
+          # Provider-specific values; present on `business` profiles.
+          business_structure:,
+          # ISO 3166-1 alpha-3 country code (e.g. `USA`, `GBR`). For individuals this is the
+          # country of citizenship or residence reported by the identity provider; for
+          # businesses this is the country of incorporation.
+          country:,
+          # When the identity profile was first created.
+          created_at:,
+          # ISO date (`YYYY-MM-DD`) reported by the identity provider. Present on
+          # `individual` profiles.
+          date_of_birth:,
+          # Email address reported by the identity provider. Typically present on
+          # `individual` profiles.
+          email:,
+          # Individual's first name.
+          first_name:,
+          # Individual's last name.
+          last_name:,
+          # The companies this identity profile is currently linked to. Only populated for
+          # direct Whop user sessions; always empty when authenticated via API key, app, or
+          # OAuth scope (a single identity can be linked to companies the calling platform
+          # is not entitled to see).
+          linked_companies:,
+          # Residential address reported by the identity provider. Present on `individual`
+          # profiles.
+          personal_address:,
+          # Phone number reported by the identity provider. Typically present on
+          # `individual` profiles.
+          phone:,
+          # Whether this is an 'individual' or 'business' profile.
+          profile_type:,
+          # Derived verification status across all linked verifications.
+          status:,
+          # When the identity profile was last synced from a verification.
+          updated_at:,
+          # All verification attempts attached to this identity profile, ordered most-recent
+          # first.
+          verifications:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              business_address:
+                T.nilable(
+                  WhopSDK::IdentityProfileRejectedWebhookEvent::Data::BusinessAddress
+                ),
+              business_name: T.nilable(String),
+              business_structure: T.nilable(String),
+              country: T.nilable(String),
+              created_at: Time,
+              date_of_birth: T.nilable(String),
+              email: T.nilable(String),
+              first_name: T.nilable(String),
+              last_name: T.nilable(String),
+              linked_companies:
+                T::Array[
+                  WhopSDK::IdentityProfileRejectedWebhookEvent::Data::LinkedCompany
+                ],
+              personal_address:
+                T.nilable(
+                  WhopSDK::IdentityProfileRejectedWebhookEvent::Data::PersonalAddress
+                ),
+              phone: T.nilable(String),
+              profile_type: String,
+              status:
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Status::TaggedSymbol,
+              updated_at: Time,
+              verifications:
+                T::Array[
+                  WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification
+                ]
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class BusinessAddress < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::BusinessAddress,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The city of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :city
+
+          # The country of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :country
+
+          # The line 1 of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :line1
+
+          # The line 2 of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :line2
+
+          # The postal code of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :postal_code
+
+          # The state of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :state
+
+          # Registered business address reported by the identity provider. Present on
+          # `business` profiles.
+          sig do
+            params(
+              city: T.nilable(String),
+              country: T.nilable(String),
+              line1: T.nilable(String),
+              line2: T.nilable(String),
+              postal_code: T.nilable(String),
+              state: T.nilable(String)
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The city of the address.
+            city:,
+            # The country of the address.
+            country:,
+            # The line 1 of the address.
+            line1:,
+            # The line 2 of the address.
+            line2:,
+            # The postal code of the address.
+            postal_code:,
+            # The state of the address.
+            state:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                city: T.nilable(String),
+                country: T.nilable(String),
+                line1: T.nilable(String),
+                line2: T.nilable(String),
+                postal_code: T.nilable(String),
+                state: T.nilable(String)
+              }
+            )
+          end
+          def to_hash
+          end
+        end
+
+        class LinkedCompany < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::LinkedCompany,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The unique identifier for the company.
+          sig { returns(String) }
+          attr_accessor :id
+
+          # The display name of the company shown to customers.
+          sig { returns(String) }
+          attr_accessor :title
+
+          # A company is a seller on Whop. Companies own products, manage members, and
+          # receive payouts.
+          sig { params(id: String, title: String).returns(T.attached_class) }
+          def self.new(
+            # The unique identifier for the company.
+            id:,
+            # The display name of the company shown to customers.
+            title:
+          )
+          end
+
+          sig { override.returns({ id: String, title: String }) }
+          def to_hash
+          end
+        end
+
+        class PersonalAddress < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::PersonalAddress,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The city of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :city
+
+          # The country of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :country
+
+          # The line 1 of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :line1
+
+          # The line 2 of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :line2
+
+          # The postal code of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :postal_code
+
+          # The state of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :state
+
+          # Residential address reported by the identity provider. Present on `individual`
+          # profiles.
+          sig do
+            params(
+              city: T.nilable(String),
+              country: T.nilable(String),
+              line1: T.nilable(String),
+              line2: T.nilable(String),
+              postal_code: T.nilable(String),
+              state: T.nilable(String)
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The city of the address.
+            city:,
+            # The country of the address.
+            country:,
+            # The line 1 of the address.
+            line1:,
+            # The line 2 of the address.
+            line2:,
+            # The postal code of the address.
+            postal_code:,
+            # The state of the address.
+            state:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                city: T.nilable(String),
+                country: T.nilable(String),
+                line1: T.nilable(String),
+                line2: T.nilable(String),
+                postal_code: T.nilable(String),
+                state: T.nilable(String)
+              }
+            )
+          end
+          def to_hash
+          end
+        end
+
+        # Derived verification status across all linked verifications.
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Status
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          NOT_STARTED =
+            T.let(
+              :not_started,
+              WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Status::TaggedSymbol
+            )
+          PENDING =
+            T.let(
+              :pending,
+              WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Status::TaggedSymbol
+            )
+          APPROVED =
+            T.let(
+              :approved,
+              WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Status::TaggedSymbol
+            )
+          REJECTED =
+            T.let(
+              :rejected,
+              WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Status::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Status::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        class Verification < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The identifier of the verification (verf_xxx).
+          sig { returns(String) }
+          attr_accessor :id
+
+          # When the verification record was created.
+          sig { returns(Time) }
+          attr_accessor :created_at
+
+          # An error code for a verification attempt.
+          sig do
+            returns(T.nilable(WhopSDK::VerificationErrorCode::TaggedSymbol))
+          end
+          attr_accessor :last_error_code
+
+          # A human-readable explanation of the most recent verification error. Null if no
+          # error has occurred.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :last_error_reason
+
+          # A URL the user can visit to complete or resume this verification. Null if the
+          # session does not require user interaction or has already terminated.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :session_url
+
+          # The current status of this verification session.
+          sig { returns(WhopSDK::VerificationStatus::TaggedSymbol) }
+          attr_accessor :status
+
+          # An identity verification session used to confirm a person or entity's identity
+          # for payout account eligibility.
+          sig do
+            params(
+              id: String,
+              created_at: Time,
+              last_error_code:
+                T.nilable(WhopSDK::VerificationErrorCode::OrSymbol),
+              last_error_reason: T.nilable(String),
+              session_url: T.nilable(String),
+              status: WhopSDK::VerificationStatus::OrSymbol
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The identifier of the verification (verf_xxx).
+            id:,
+            # When the verification record was created.
+            created_at:,
+            # An error code for a verification attempt.
+            last_error_code:,
+            # A human-readable explanation of the most recent verification error. Null if no
+            # error has occurred.
+            last_error_reason:,
+            # A URL the user can visit to complete or resume this verification. Null if the
+            # session does not require user interaction or has already terminated.
+            session_url:,
+            # The current status of this verification session.
+            status:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                id: String,
+                created_at: Time,
+                last_error_code:
+                  T.nilable(WhopSDK::VerificationErrorCode::TaggedSymbol),
+                last_error_reason: T.nilable(String),
+                session_url: T.nilable(String),
+                status: WhopSDK::VerificationStatus::TaggedSymbol
+              }
+            )
+          end
+          def to_hash
+          end
+        end
+      end
+    end
+  end
+end

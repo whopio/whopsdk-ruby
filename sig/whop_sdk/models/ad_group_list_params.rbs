@@ -9,6 +9,7 @@ module WhopSDK
         created_after: Time?,
         created_before: Time?,
         first: Integer?,
+        include_paused: bool?,
         last: Integer?,
         query: String?,
         status: WhopSDK::Models::ad_group_status?
@@ -33,6 +34,8 @@ module WhopSDK
 
       attr_accessor first: Integer?
 
+      attr_accessor include_paused: bool?
+
       attr_accessor last: Integer?
 
       attr_accessor query: String?
@@ -47,6 +50,7 @@ module WhopSDK
         ?created_after: Time?,
         ?created_before: Time?,
         ?first: Integer?,
+        ?include_paused: bool?,
         ?last: Integer?,
         ?query: String?,
         ?status: WhopSDK::Models::ad_group_status?,
@@ -61,6 +65,7 @@ module WhopSDK
         created_after: Time?,
         created_before: Time?,
         first: Integer?,
+        include_paused: bool?,
         last: Integer?,
         query: String?,
         status: WhopSDK::Models::ad_group_status?,

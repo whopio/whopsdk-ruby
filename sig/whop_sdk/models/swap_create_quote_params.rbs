@@ -5,6 +5,7 @@ module WhopSDK
         amount: String,
         from_token: String,
         to_token: String,
+        account_id: String?,
         from_address: String?,
         from_chain: WhopSDK::Models::SwapCreateQuoteParams::from_chain?,
         metadata: ::Hash[Symbol, top],
@@ -24,6 +25,8 @@ module WhopSDK
 
       attr_accessor to_token: String
 
+      attr_accessor account_id: String?
+
       attr_accessor from_address: String?
 
       attr_accessor from_chain: WhopSDK::Models::SwapCreateQuoteParams::from_chain?
@@ -42,6 +45,7 @@ module WhopSDK
         amount: String,
         from_token: String,
         to_token: String,
+        ?account_id: String?,
         ?from_address: String?,
         ?from_chain: WhopSDK::Models::SwapCreateQuoteParams::from_chain?,
         ?metadata: ::Hash[Symbol, top],
@@ -55,6 +59,7 @@ module WhopSDK
         amount: String,
         from_token: String,
         to_token: String,
+        account_id: String?,
         from_address: String?,
         from_chain: WhopSDK::Models::SwapCreateQuoteParams::from_chain?,
         metadata: ::Hash[Symbol, top],

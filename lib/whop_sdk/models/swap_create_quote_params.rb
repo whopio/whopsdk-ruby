@@ -25,6 +25,12 @@ module WhopSDK
       #   @return [String]
       required :to_token, String
 
+      # @!attribute account_id
+      #   Caller-owned account whose wallet address should be used.
+      #
+      #   @return [String, nil]
+      optional :account_id, String, nil?: true
+
       # @!attribute from_address
       #
       #   @return [String, nil]
@@ -55,12 +61,14 @@ module WhopSDK
       #   @return [String, Integer, nil]
       optional :to_chain, union: -> { WhopSDK::SwapCreateQuoteParams::ToChain }, nil?: true
 
-      # @!method initialize(amount:, from_token:, to_token:, from_address: nil, from_chain: nil, metadata: nil, slippage_bps: nil, to_address: nil, to_chain: nil, request_options: {})
+      # @!method initialize(amount:, from_token:, to_token:, account_id: nil, from_address: nil, from_chain: nil, metadata: nil, slippage_bps: nil, to_address: nil, to_chain: nil, request_options: {})
       #   @param amount [String] Input token amount.
       #
       #   @param from_token [String] Source token contract address.
       #
       #   @param to_token [String] Destination token contract address.
+      #
+      #   @param account_id [String, nil] Caller-owned account whose wallet address should be used.
       #
       #   @param from_address [String, nil]
       #

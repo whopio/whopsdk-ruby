@@ -29,6 +29,18 @@ module WhopSDK
     # @return [String, nil]
     attr_reader :app_id
 
+    # Static public key (PEM or JWK JSON) used by {#verify_user_token} to
+    # verify user tokens. When set, the SDK skips remote JWKS fetching.
+    # Prefer {#user_token_jwks_url} (or the default) so key rotation is
+    # handled automatically.
+    # @return [String, nil]
+    attr_reader :user_token_public_key
+
+    # Override for the JWKS endpoint used by {#verify_user_token}. Defaults
+    # to the canonical Whop endpoint when unset.
+    # @return [String, nil]
+    attr_reader :user_token_jwks_url
+
     # Apps
     # @return [WhopSDK::Resources::Apps]
     attr_reader :apps
@@ -297,6 +309,13 @@ module WhopSDK
     # @param app_id [String, nil] When using the SDK in app mode pass this parameter to allow verifying user
     # tokens Defaults to `ENV["WHOP_APP_ID"]`
     #
+    # @param user_token_public_key [String, nil] Static public key (PEM or JWK JSON) used to verify
+    # user tokens. When set, {#verify_user_token} skips remote JWKS fetching.
+    # Defaults to `ENV["WHOP_USER_TOKEN_PUBLIC_KEY"]`
+    #
+    # @param user_token_jwks_url [String, nil] Override the JWKS URL used by {#verify_user_token}.
+    # Defaults to `ENV["WHOP_USER_TOKEN_JWKS_URL"]`, then to the canonical Whop endpoint.
+    #
     # @param base_url [String, nil] Override the default base URL for the API, e.g.,
     # `"https://api.example.com/v2/"`. Defaults to `ENV["WHOP_BASE_URL"]`
     #
@@ -311,6 +330,8 @@ module WhopSDK
       api_key: ENV["WHOP_API_KEY"],
       webhook_key: ENV["WHOP_WEBHOOK_SECRET"],
       app_id: ENV["WHOP_APP_ID"],
+      user_token_public_key: ENV["WHOP_USER_TOKEN_PUBLIC_KEY"],
+      user_token_jwks_url: ENV["WHOP_USER_TOKEN_JWKS_URL"],
       base_url: ENV["WHOP_BASE_URL"],
       max_retries: self.class::DEFAULT_MAX_RETRIES,
       timeout: self.class::DEFAULT_TIMEOUT_IN_SECONDS,
@@ -340,6 +361,8 @@ module WhopSDK
 
       @api_key = api_key.to_s
       @webhook_key = webhook_key&.to_s
+      @user_token_public_key = user_token_public_key&.to_s
+      @user_token_jwks_url = user_token_jwks_url&.to_s
 
       super(
         base_url: base_url,
@@ -413,6 +436,37 @@ module WhopSDK
       @ads = WhopSDK::Resources::Ads.new(client: self)
       @conversions = WhopSDK::Resources::Conversions.new(client: self)
       @ad_reports = WhopSDK::Resources::AdReports.new(client: self)
+    end
+
+    # Verifies a Whop user token.
+    #
+    # @param token_or_headers [String, Hash, nil] The token string or headers hash
+    # @param app_id [String, nil] The app id to verify against
+    # @param public_key [String, nil] Static public key (PEM or JWK JSON). When set, the
+    #   SDK skips remote JWKS fetching. Defaults to the client's `user_token_public_key`.
+    # @param jwks_url [String, nil] Override the JWKS URL. Defaults to the client's
+    #   `user_token_jwks_url`, then to the canonical Whop endpoint.
+    # @param header_name [String, nil] The header name to read the token from
+    # @return [Helpers::VerifyUserToken::UserTokenPayload]
+    # @raise [StandardError] If verification fails
+    def verify_user_token!(token_or_headers, **opts)
+      opts[:app_id] ||= app_id
+      opts[:public_key] = user_token_public_key if opts[:public_key].nil? && user_token_public_key && !user_token_public_key.empty?
+      opts[:jwks_url] = user_token_jwks_url if opts[:jwks_url].nil? && user_token_jwks_url && !user_token_jwks_url.empty?
+      unless opts[:app_id]
+        raise StandardError, "You must set app_id in the Whop client if you want to verify user tokens"
+      end
+      Helpers::VerifyUserToken.verify_user_token!(token_or_headers, **opts)
+    end
+
+    # Verifies a Whop user token. Same signature as {#verify_user_token!}
+    # but returns `nil` on any validation failure instead of raising.
+    #
+    # @return [Helpers::VerifyUserToken::UserTokenPayload, nil]
+    def verify_user_token(token_or_headers, **opts)
+      verify_user_token!(token_or_headers, **opts)
+    rescue StandardError
+      nil
     end
   end
 end

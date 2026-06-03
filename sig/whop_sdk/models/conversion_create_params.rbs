@@ -248,6 +248,7 @@ module WhopSDK
           first_name: String?,
           gender: WhopSDK::Models::ConversionCreateParams::User::gender?,
           last_name: String?,
+          linked_anonymous_id: String?,
           member_id: String?,
           membership_id: String?,
           name: String?,
@@ -277,6 +278,8 @@ module WhopSDK
 
         attr_accessor last_name: String?
 
+        attr_accessor linked_anonymous_id: String?
+
         attr_accessor member_id: String?
 
         attr_accessor membership_id: String?
@@ -303,6 +306,7 @@ module WhopSDK
           ?first_name: String?,
           ?gender: WhopSDK::Models::ConversionCreateParams::User::gender?,
           ?last_name: String?,
+          ?linked_anonymous_id: String?,
           ?member_id: String?,
           ?membership_id: String?,
           ?name: String?,
@@ -323,6 +327,7 @@ module WhopSDK
           first_name: String?,
           gender: WhopSDK::Models::ConversionCreateParams::User::gender?,
           last_name: String?,
+          linked_anonymous_id: String?,
           member_id: String?,
           membership_id: String?,
           name: String?,

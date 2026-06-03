@@ -7,17 +7,31 @@ module WhopSDK
         affiliate_instructions: String?,
         banner_image: ::Hash[Symbol, top]?,
         business_type: String?,
+        country: String?,
         description: String?,
         featured_affiliate_product_id: String?,
+        home_preferences: ::Array[String],
         industry_group: String?,
         industry_type: String?,
+        invoice_prefix: String?,
         logo: ::Hash[Symbol, top]?,
         metadata: ::Hash[Symbol, top],
+        onboarding_type: String?,
+        opengraph_image: ::Hash[Symbol, top]?,
+        opengraph_image_variant: String?,
+        other_business_description: String?,
+        other_industry_description: String?,
+        :require_2fa => bool,
         route: String?,
         send_customer_emails: bool,
+        show_joined_whops: bool,
+        show_reviews_dtc: bool,
+        show_user_directory: bool,
         social_links: ::Array[::Hash[Symbol, top]],
+        store_page_config: ::Hash[Symbol, top]?,
         target_audience: String?,
-        title: String?
+        title: String?,
+        use_logo_as_opengraph_image_fallback: bool
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -37,13 +51,21 @@ module WhopSDK
 
       attr_accessor business_type: String?
 
+      attr_accessor country: String?
+
       attr_accessor description: String?
 
       attr_accessor featured_affiliate_product_id: String?
 
+      attr_reader home_preferences: ::Array[String]?
+
+      def home_preferences=: (::Array[String]) -> ::Array[String]
+
       attr_accessor industry_group: String?
 
       attr_accessor industry_type: String?
+
+      attr_accessor invoice_prefix: String?
 
       attr_accessor logo: ::Hash[Symbol, top]?
 
@@ -51,11 +73,37 @@ module WhopSDK
 
       def metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
 
+      attr_accessor onboarding_type: String?
+
+      attr_accessor opengraph_image: ::Hash[Symbol, top]?
+
+      attr_accessor opengraph_image_variant: String?
+
+      attr_accessor other_business_description: String?
+
+      attr_accessor other_industry_description: String?
+
+      attr_reader require_2fa: bool?
+
+      def require_2fa=: (bool) -> bool
+
       attr_accessor route: String?
 
       attr_reader send_customer_emails: bool?
 
       def send_customer_emails=: (bool) -> bool
+
+      attr_reader show_joined_whops: bool?
+
+      def show_joined_whops=: (bool) -> bool
+
+      attr_reader show_reviews_dtc: bool?
+
+      def show_reviews_dtc=: (bool) -> bool
+
+      attr_reader show_user_directory: bool?
+
+      def show_user_directory=: (bool) -> bool
 
       attr_reader social_links: ::Array[::Hash[Symbol, top]]?
 
@@ -63,9 +111,15 @@ module WhopSDK
         ::Array[::Hash[Symbol, top]]
       ) -> ::Array[::Hash[Symbol, top]]
 
+      attr_accessor store_page_config: ::Hash[Symbol, top]?
+
       attr_accessor target_audience: String?
 
       attr_accessor title: String?
+
+      attr_reader use_logo_as_opengraph_image_fallback: bool?
+
+      def use_logo_as_opengraph_image_fallback=: (bool) -> bool
 
       def initialize: (
         account_id: String,
@@ -73,17 +127,31 @@ module WhopSDK
         ?affiliate_instructions: String?,
         ?banner_image: ::Hash[Symbol, top]?,
         ?business_type: String?,
+        ?country: String?,
         ?description: String?,
         ?featured_affiliate_product_id: String?,
+        ?home_preferences: ::Array[String],
         ?industry_group: String?,
         ?industry_type: String?,
+        ?invoice_prefix: String?,
         ?logo: ::Hash[Symbol, top]?,
         ?metadata: ::Hash[Symbol, top],
+        ?onboarding_type: String?,
+        ?opengraph_image: ::Hash[Symbol, top]?,
+        ?opengraph_image_variant: String?,
+        ?other_business_description: String?,
+        ?other_industry_description: String?,
+        ?require_2fa: bool,
         ?route: String?,
         ?send_customer_emails: bool,
+        ?show_joined_whops: bool,
+        ?show_reviews_dtc: bool,
+        ?show_user_directory: bool,
         ?social_links: ::Array[::Hash[Symbol, top]],
+        ?store_page_config: ::Hash[Symbol, top]?,
         ?target_audience: String?,
         ?title: String?,
+        ?use_logo_as_opengraph_image_fallback: bool,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -93,17 +161,31 @@ module WhopSDK
         affiliate_instructions: String?,
         banner_image: ::Hash[Symbol, top]?,
         business_type: String?,
+        country: String?,
         description: String?,
         featured_affiliate_product_id: String?,
+        home_preferences: ::Array[String],
         industry_group: String?,
         industry_type: String?,
+        invoice_prefix: String?,
         logo: ::Hash[Symbol, top]?,
         metadata: ::Hash[Symbol, top],
+        onboarding_type: String?,
+        opengraph_image: ::Hash[Symbol, top]?,
+        opengraph_image_variant: String?,
+        other_business_description: String?,
+        other_industry_description: String?,
+        :require_2fa => bool,
         route: String?,
         send_customer_emails: bool,
+        show_joined_whops: bool,
+        show_reviews_dtc: bool,
+        show_user_directory: bool,
         social_links: ::Array[::Hash[Symbol, top]],
+        store_page_config: ::Hash[Symbol, top]?,
         target_audience: String?,
         title: String?,
+        use_logo_as_opengraph_image_fallback: bool,
         request_options: WhopSDK::RequestOptions
       }
     end

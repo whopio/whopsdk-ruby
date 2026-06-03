@@ -1,5 +1,37 @@
 # Changelog
 
+## 0.0.40 (2026-06-03)
+
+Full Changelog: [v0.0.39...v0.0.40](https://github.com/whopio/whopsdk-ruby/compare/v0.0.39...v0.0.40)
+
+### Features
+
+* **api:** api update ([e7c7d08](https://github.com/whopio/whopsdk-ruby/commit/e7c7d081d67f80dbf8304ed73f97b08a56250d22))
+* **api:** api update ([2e36463](https://github.com/whopio/whopsdk-ruby/commit/2e3646399aecca8b7b35575201e28e0606f88223))
+* **api:** api update ([74df26a](https://github.com/whopio/whopsdk-ruby/commit/74df26a2e235e6f7a154ef3d407e07fcf20e2950))
+* **api:** api update ([f816f84](https://github.com/whopio/whopsdk-ruby/commit/f816f84a900710e41823ece24940f2e5dc6a477b))
+* **api:** api update ([b337a72](https://github.com/whopio/whopsdk-ruby/commit/b337a72d021834a6a97bcadaa4eae52f47c7dd89))
+* **api:** api update ([6818f9e](https://github.com/whopio/whopsdk-ruby/commit/6818f9e0f480349343b6d55f2bfeaa75e6492781))
+* **api:** api update ([cc9fe08](https://github.com/whopio/whopsdk-ruby/commit/cc9fe08023ba3c7e3e6b353dbff3fd56b1643d5a))
+* **api:** api update ([10d48f6](https://github.com/whopio/whopsdk-ruby/commit/10d48f6d82982e6c04a05c729b3853833ca4fd0f))
+* **api:** api update ([a1d45a2](https://github.com/whopio/whopsdk-ruby/commit/a1d45a2e92189dfee28157bfc34a595355f60207))
+* **api:** api update ([aa8fe47](https://github.com/whopio/whopsdk-ruby/commit/aa8fe47bb1340cdf0fe0da0163aeec3be722829a))
+* **api:** api update ([79a9d04](https://github.com/whopio/whopsdk-ruby/commit/79a9d04350d2892f9374e16914107f4bd205da3d))
+* **api:** api update ([01e2807](https://github.com/whopio/whopsdk-ruby/commit/01e280751db982b57caf6f5a2680e8c90794d7e9))
+* **api:** api update ([17f52fd](https://github.com/whopio/whopsdk-ruby/commit/17f52fd0387171da97b95863aab0b4b8d8317582))
+* **api:** api update ([f33cc27](https://github.com/whopio/whopsdk-ruby/commit/f33cc274bcafde974363056d01e173ba1683c148))
+* **api:** api update ([8a9fd84](https://github.com/whopio/whopsdk-ruby/commit/8a9fd847c18e05624163f60ef03859be96fa37dd))
+* **api:** api update ([5fb10c2](https://github.com/whopio/whopsdk-ruby/commit/5fb10c2bbac60a7ef75354b728ff0c6583b7e368))
+* **api:** api update ([10ff857](https://github.com/whopio/whopsdk-ruby/commit/10ff857ddd44449e11db19e0730d6a3528aadb85))
+* **api:** api update ([e100fc6](https://github.com/whopio/whopsdk-ruby/commit/e100fc67294d6df883c15f689f6c58ddb923550f))
+* **api:** api update ([620a58a](https://github.com/whopio/whopsdk-ruby/commit/620a58a463b106b2ab77bab3f72a4c80487c08c9))
+* **api:** manual updates ([a8e3f04](https://github.com/whopio/whopsdk-ruby/commit/a8e3f044db8f1e61a3aaea022f59d1a306625e96))
+
+
+### Bug Fixes
+
+* **client:** elide content type header on requests without body ([4c828b8](https://github.com/whopio/whopsdk-ruby/commit/4c828b829520916acc83bc207e99d9e3df2ab7f1))
+
 ## 0.0.39 (2026-05-12)
 
 Full Changelog: [v0.0.38...v0.0.39](https://github.com/whopio/whopsdk-ruby/compare/v0.0.38...v0.0.39)

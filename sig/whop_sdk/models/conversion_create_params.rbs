@@ -8,11 +8,15 @@ module WhopSDK
         context: WhopSDK::ConversionCreateParams::Context?,
         currency: WhopSDK::Models::currency?,
         custom_name: String?,
+        duration: Integer?,
         event_id: String?,
         event_time: Time?,
         plan_id: String?,
         product_id: String?,
         referrer_url: String?,
+        resumed: bool?,
+        source: String?,
+        title: String?,
         url: String?,
         user: WhopSDK::ConversionCreateParams::User?,
         value: Float?
@@ -35,6 +39,8 @@ module WhopSDK
 
       attr_accessor custom_name: String?
 
+      attr_accessor duration: Integer?
+
       attr_accessor event_id: String?
 
       attr_accessor event_time: Time?
@@ -44,6 +50,12 @@ module WhopSDK
       attr_accessor product_id: String?
 
       attr_accessor referrer_url: String?
+
+      attr_accessor resumed: bool?
+
+      attr_accessor source: String?
+
+      attr_accessor title: String?
 
       attr_accessor url: String?
 
@@ -58,11 +70,15 @@ module WhopSDK
         ?context: WhopSDK::ConversionCreateParams::Context?,
         ?currency: WhopSDK::Models::currency?,
         ?custom_name: String?,
+        ?duration: Integer?,
         ?event_id: String?,
         ?event_time: Time?,
         ?plan_id: String?,
         ?product_id: String?,
         ?referrer_url: String?,
+        ?resumed: bool?,
+        ?source: String?,
+        ?title: String?,
         ?url: String?,
         ?user: WhopSDK::ConversionCreateParams::User?,
         ?value: Float?,
@@ -76,11 +92,15 @@ module WhopSDK
         context: WhopSDK::ConversionCreateParams::Context?,
         currency: WhopSDK::Models::currency?,
         custom_name: String?,
+        duration: Integer?,
         event_id: String?,
         event_time: Time?,
         plan_id: String?,
         product_id: String?,
         referrer_url: String?,
+        resumed: bool?,
+        source: String?,
+        title: String?,
         url: String?,
         user: WhopSDK::ConversionCreateParams::User?,
         value: Float?,
@@ -94,6 +114,9 @@ module WhopSDK
         | :complete_registration
         | :schedule
         | :custom
+        | :page
+        | :leave
+        | :identify
 
       module EventName
         extend WhopSDK::Internal::Type::Enum
@@ -104,6 +127,9 @@ module WhopSDK
         COMPLETE_REGISTRATION: :complete_registration
         SCHEDULE: :schedule
         CUSTOM: :custom
+        PAGE: :page
+        LEAVE: :leave
+        IDENTIFY: :identify
 
         def self?.values: -> ::Array[WhopSDK::Models::ConversionCreateParams::event_name]
       end
@@ -140,12 +166,18 @@ module WhopSDK
           ad_campaign_id: String?,
           ad_id: String?,
           ad_set_id: String?,
+          fbc: String?,
           fbclid: String?,
           fbp: String?,
+          fingerprint: String?,
+          fingerprint_confidence: Float?,
           ga: String?,
           gclid: String?,
           ig_sid: String?,
           ip_address: String?,
+          language: String?,
+          screen_resolution: String?,
+          timezone: String?,
           ttclid: String?,
           ttp: String?,
           user_agent: String?,
@@ -164,9 +196,15 @@ module WhopSDK
 
         attr_accessor ad_set_id: String?
 
+        attr_accessor fbc: String?
+
         attr_accessor fbclid: String?
 
         attr_accessor fbp: String?
+
+        attr_accessor fingerprint: String?
+
+        attr_accessor fingerprint_confidence: Float?
 
         attr_accessor ga: String?
 
@@ -175,6 +213,12 @@ module WhopSDK
         attr_accessor ig_sid: String?
 
         attr_accessor ip_address: String?
+
+        attr_accessor language: String?
+
+        attr_accessor screen_resolution: String?
+
+        attr_accessor timezone: String?
 
         attr_accessor ttclid: String?
 
@@ -198,12 +242,18 @@ module WhopSDK
           ?ad_campaign_id: String?,
           ?ad_id: String?,
           ?ad_set_id: String?,
+          ?fbc: String?,
           ?fbclid: String?,
           ?fbp: String?,
+          ?fingerprint: String?,
+          ?fingerprint_confidence: Float?,
           ?ga: String?,
           ?gclid: String?,
           ?ig_sid: String?,
           ?ip_address: String?,
+          ?language: String?,
+          ?screen_resolution: String?,
+          ?timezone: String?,
           ?ttclid: String?,
           ?ttp: String?,
           ?user_agent: String?,
@@ -219,12 +269,18 @@ module WhopSDK
           ad_campaign_id: String?,
           ad_id: String?,
           ad_set_id: String?,
+          fbc: String?,
           fbclid: String?,
           fbp: String?,
+          fingerprint: String?,
+          fingerprint_confidence: Float?,
           ga: String?,
           gclid: String?,
           ig_sid: String?,
           ip_address: String?,
+          language: String?,
+          screen_resolution: String?,
+          timezone: String?,
           ttclid: String?,
           ttp: String?,
           user_agent: String?,
@@ -248,6 +304,8 @@ module WhopSDK
           first_name: String?,
           gender: WhopSDK::Models::ConversionCreateParams::User::gender?,
           last_name: String?,
+          linked_anonymous_id: String?,
+          linked_wuid: String?,
           member_id: String?,
           membership_id: String?,
           name: String?,
@@ -277,6 +335,10 @@ module WhopSDK
 
         attr_accessor last_name: String?
 
+        attr_accessor linked_anonymous_id: String?
+
+        attr_accessor linked_wuid: String?
+
         attr_accessor member_id: String?
 
         attr_accessor membership_id: String?
@@ -303,6 +365,8 @@ module WhopSDK
           ?first_name: String?,
           ?gender: WhopSDK::Models::ConversionCreateParams::User::gender?,
           ?last_name: String?,
+          ?linked_anonymous_id: String?,
+          ?linked_wuid: String?,
           ?member_id: String?,
           ?membership_id: String?,
           ?name: String?,
@@ -323,6 +387,8 @@ module WhopSDK
           first_name: String?,
           gender: WhopSDK::Models::ConversionCreateParams::User::gender?,
           last_name: String?,
+          linked_anonymous_id: String?,
+          linked_wuid: String?,
           member_id: String?,
           membership_id: String?,
           name: String?,

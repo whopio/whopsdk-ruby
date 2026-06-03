@@ -33,6 +33,7 @@ module WhopSDK
       CASHAPP = :cashapp
       CLARITYPAY = :claritypay
       COINBASE = :coinbase
+      CRYPTO_BALANCE = :crypto_balance
       CRYPTO = :crypto
       CUSTOM = :custom
       CUSTOMER_BALANCE = :customer_balance

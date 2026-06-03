@@ -1,0 +1,100 @@
+module WhopSDK
+  module Models
+    type account =
+      {
+        id: String,
+        banner_image_url: String?,
+        business_type: String?,
+        created_at: String,
+        description: String?,
+        email: String?,
+        industry_group: String?,
+        industry_type: String?,
+        logo_url: String?,
+        metadata: top,
+        parent_account_id: String?,
+        route: String,
+        send_customer_emails: bool,
+        social_links: ::Array[WhopSDK::AccountSocialLink],
+        target_audience: String?,
+        title: String,
+        wallet: WhopSDK::AccountWallet?
+      }
+
+    class Account < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor banner_image_url: String?
+
+      attr_accessor business_type: String?
+
+      attr_accessor created_at: String
+
+      attr_accessor description: String?
+
+      attr_accessor email: String?
+
+      attr_accessor industry_group: String?
+
+      attr_accessor industry_type: String?
+
+      attr_accessor logo_url: String?
+
+      attr_accessor metadata: top
+
+      attr_accessor parent_account_id: String?
+
+      attr_accessor route: String
+
+      attr_accessor send_customer_emails: bool
+
+      attr_accessor social_links: ::Array[WhopSDK::AccountSocialLink]
+
+      attr_accessor target_audience: String?
+
+      attr_accessor title: String
+
+      attr_accessor wallet: WhopSDK::AccountWallet?
+
+      def initialize: (
+        id: String,
+        banner_image_url: String?,
+        business_type: String?,
+        created_at: String,
+        description: String?,
+        email: String?,
+        industry_group: String?,
+        industry_type: String?,
+        logo_url: String?,
+        metadata: top,
+        parent_account_id: String?,
+        route: String,
+        send_customer_emails: bool,
+        social_links: ::Array[WhopSDK::AccountSocialLink],
+        target_audience: String?,
+        title: String,
+        wallet: WhopSDK::AccountWallet?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        banner_image_url: String?,
+        business_type: String?,
+        created_at: String,
+        description: String?,
+        email: String?,
+        industry_group: String?,
+        industry_type: String?,
+        logo_url: String?,
+        metadata: top,
+        parent_account_id: String?,
+        route: String,
+        send_customer_emails: bool,
+        social_links: ::Array[WhopSDK::AccountSocialLink],
+        target_audience: String?,
+        title: String,
+        wallet: WhopSDK::AccountWallet?
+      }
+    end
+  end
+end

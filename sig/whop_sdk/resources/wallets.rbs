@@ -1,0 +1,23 @@
+module WhopSDK
+  module Resources
+    class Wallets
+      def list: (
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::WalletListResponse
+
+      def balance: (
+        String account_id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::WalletBalanceResponse
+
+      def send_: (
+        String account_id,
+        amount: String,
+        to: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::WalletSendResponse
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

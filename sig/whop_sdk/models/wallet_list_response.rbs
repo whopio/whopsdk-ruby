@@ -1,0 +1,40 @@
+module WhopSDK
+  module Models
+    type wallet_list_response =
+      { wallets: ::Array[WhopSDK::Models::WalletListResponse::Wallet] }
+
+    class WalletListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor wallets: ::Array[WhopSDK::Models::WalletListResponse::Wallet]
+
+      def initialize: (
+        wallets: ::Array[WhopSDK::Models::WalletListResponse::Wallet]
+      ) -> void
+
+      def to_hash: -> {
+        wallets: ::Array[WhopSDK::Models::WalletListResponse::Wallet]
+      }
+
+      type wallet = { address: String, balance_usd: String, network: String }
+
+      class Wallet < WhopSDK::Internal::Type::BaseModel
+        attr_accessor address: String
+
+        attr_accessor balance_usd: String
+
+        attr_accessor network: String
+
+        def initialize: (
+          address: String,
+          balance_usd: String,
+          network: String
+        ) -> void
+
+        def to_hash: -> {
+          address: String,
+          balance_usd: String,
+          network: String
+        }
+      end
+    end
+  end
+end

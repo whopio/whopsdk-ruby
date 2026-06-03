@@ -69,6 +69,9 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::AdGroupListParams} for more details.
+      #
       # Returns a paginated list of ad groups scoped by campaign or company, with
       # optional filtering by status and creation date.
       #
@@ -76,7 +79,7 @@ module WhopSDK
       #
       # - `ad_campaign:basic:read`
       #
-      # @overload list(after: nil, before: nil, campaign_id: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, last: nil, query: nil, status: nil, request_options: {})
+      # @overload list(after: nil, before: nil, campaign_id: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, include_paused: nil, last: nil, query: nil, status: nil, request_options: {})
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -91,6 +94,8 @@ module WhopSDK
       # @param created_before [Time, nil] Only return ad groups created before this timestamp.
       #
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      #
+      # @param include_paused [Boolean, nil] When false, excludes paused ad groups so pagination matches the dashboard's hide
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #

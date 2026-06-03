@@ -1,0 +1,111 @@
+module WhopSDK
+  module Models
+    type account_update_params =
+      {
+        account_id: String,
+        affiliate_application_required: bool,
+        affiliate_instructions: String?,
+        banner_image: ::Hash[Symbol, top]?,
+        business_type: String?,
+        description: String?,
+        featured_affiliate_product_id: String?,
+        industry_group: String?,
+        industry_type: String?,
+        logo: ::Hash[Symbol, top]?,
+        metadata: ::Hash[Symbol, top],
+        route: String?,
+        send_customer_emails: bool,
+        social_links: ::Array[::Hash[Symbol, top]],
+        target_audience: String?,
+        title: String?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class AccountUpdateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
+
+      attr_reader affiliate_application_required: bool?
+
+      def affiliate_application_required=: (bool) -> bool
+
+      attr_accessor affiliate_instructions: String?
+
+      attr_accessor banner_image: ::Hash[Symbol, top]?
+
+      attr_accessor business_type: String?
+
+      attr_accessor description: String?
+
+      attr_accessor featured_affiliate_product_id: String?
+
+      attr_accessor industry_group: String?
+
+      attr_accessor industry_type: String?
+
+      attr_accessor logo: ::Hash[Symbol, top]?
+
+      attr_reader metadata: ::Hash[Symbol, top]?
+
+      def metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      attr_accessor route: String?
+
+      attr_reader send_customer_emails: bool?
+
+      def send_customer_emails=: (bool) -> bool
+
+      attr_reader social_links: ::Array[::Hash[Symbol, top]]?
+
+      def social_links=: (
+        ::Array[::Hash[Symbol, top]]
+      ) -> ::Array[::Hash[Symbol, top]]
+
+      attr_accessor target_audience: String?
+
+      attr_accessor title: String?
+
+      def initialize: (
+        account_id: String,
+        ?affiliate_application_required: bool,
+        ?affiliate_instructions: String?,
+        ?banner_image: ::Hash[Symbol, top]?,
+        ?business_type: String?,
+        ?description: String?,
+        ?featured_affiliate_product_id: String?,
+        ?industry_group: String?,
+        ?industry_type: String?,
+        ?logo: ::Hash[Symbol, top]?,
+        ?metadata: ::Hash[Symbol, top],
+        ?route: String?,
+        ?send_customer_emails: bool,
+        ?social_links: ::Array[::Hash[Symbol, top]],
+        ?target_audience: String?,
+        ?title: String?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        affiliate_application_required: bool,
+        affiliate_instructions: String?,
+        banner_image: ::Hash[Symbol, top]?,
+        business_type: String?,
+        description: String?,
+        featured_affiliate_product_id: String?,
+        industry_group: String?,
+        industry_type: String?,
+        logo: ::Hash[Symbol, top]?,
+        metadata: ::Hash[Symbol, top],
+        route: String?,
+        send_customer_emails: bool,
+        social_links: ::Array[::Hash[Symbol, top]],
+        target_audience: String?,
+        title: String?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

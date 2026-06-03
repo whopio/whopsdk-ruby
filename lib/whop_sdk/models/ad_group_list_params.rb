@@ -49,6 +49,13 @@ module WhopSDK
       #   @return [Integer, nil]
       optional :first, Integer, nil?: true
 
+      # @!attribute include_paused
+      #   When false, excludes paused ad groups so pagination matches the dashboard's
+      #   hide-paused toggle.
+      #
+      #   @return [Boolean, nil]
+      optional :include_paused, WhopSDK::Internal::Type::Boolean, nil?: true
+
       # @!attribute last
       #   Returns the last _n_ elements from the list.
       #
@@ -67,7 +74,10 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::AdGroupStatus, nil]
       optional :status, enum: -> { WhopSDK::AdGroupStatus }, nil?: true
 
-      # @!method initialize(after: nil, before: nil, campaign_id: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, last: nil, query: nil, status: nil, request_options: {})
+      # @!method initialize(after: nil, before: nil, campaign_id: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, include_paused: nil, last: nil, query: nil, status: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::AdGroupListParams} for more details.
+      #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
@@ -81,6 +91,8 @@ module WhopSDK
       #   @param created_before [Time, nil] Only return ad groups created before this timestamp.
       #
       #   @param first [Integer, nil] Returns the first _n_ elements from the list.
+      #
+      #   @param include_paused [Boolean, nil] When false, excludes paused ad groups so pagination matches the dashboard's hide
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #

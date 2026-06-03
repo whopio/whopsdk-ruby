@@ -359,6 +359,13 @@ module WhopSDK
         #   @return [String, nil]
         optional :last_name, String, nil?: true
 
+        # @!attribute linked_anonymous_id
+        #   A second anonymous identifier to link to this user (e.g. captured across an
+        #   iframe boundary).
+        #
+        #   @return [String, nil]
+        optional :linked_anonymous_id, String, nil?: true
+
         # @!attribute member_id
         #   The Whop member ID.
         #
@@ -407,7 +414,10 @@ module WhopSDK
         #   @return [String, nil]
         optional :username, String, nil?: true
 
-        # @!method initialize(anonymous_id: nil, birthdate: nil, city: nil, country: nil, email: nil, external_id: nil, first_name: nil, gender: nil, last_name: nil, member_id: nil, membership_id: nil, name: nil, phone: nil, postal_code: nil, state: nil, user_id: nil, username: nil)
+        # @!method initialize(anonymous_id: nil, birthdate: nil, city: nil, country: nil, email: nil, external_id: nil, first_name: nil, gender: nil, last_name: nil, linked_anonymous_id: nil, member_id: nil, membership_id: nil, name: nil, phone: nil, postal_code: nil, state: nil, user_id: nil, username: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::ConversionCreateParams::User} for more details.
+        #
         #   User identity and profile data.
         #
         #   @param anonymous_id [String, nil] An anonymous identifier for the user.
@@ -427,6 +437,8 @@ module WhopSDK
         #   @param gender [Symbol, WhopSDK::Models::ConversionCreateParams::User::Gender, nil] Gender
         #
         #   @param last_name [String, nil] Last name.
+        #
+        #   @param linked_anonymous_id [String, nil] A second anonymous identifier to link to this user (e.g. captured across an ifra
         #
         #   @param member_id [String, nil] The Whop member ID.
         #

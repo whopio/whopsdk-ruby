@@ -591,8 +591,7 @@ module WhopSDK
             metadata: ::Hash[Symbol, top]?,
             payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::PaymentMethodConfiguration?,
             redirect_url: String?,
-            source_url: String?,
-            three_ds_level: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::three_ds_level?
+            source_url: String?
           }
 
         class CreateCheckoutSessionInputModeSetup < WhopSDK::Internal::Type::BaseModel
@@ -614,8 +613,6 @@ module WhopSDK
 
           attr_accessor source_url: String?
 
-          attr_accessor three_ds_level: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::three_ds_level?
-
           def initialize: (
             company_id: String,
             ?allow_promo_codes: bool?,
@@ -625,7 +622,6 @@ module WhopSDK
             ?payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::PaymentMethodConfiguration?,
             ?redirect_url: String?,
             ?source_url: String?,
-            ?three_ds_level: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::three_ds_level?,
             ?mode: :setup
           ) -> void
 
@@ -638,8 +634,7 @@ module WhopSDK
             metadata: ::Hash[Symbol, top]?,
             payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::PaymentMethodConfiguration?,
             redirect_url: String?,
-            source_url: String?,
-            three_ds_level: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::three_ds_level?
+            source_url: String?
           }
 
           type checkout_styling =
@@ -699,17 +694,6 @@ module WhopSDK
               enabled: ::Array[WhopSDK::Models::payment_method_types],
               include_platform_defaults: bool?
             }
-          end
-
-          type three_ds_level = :mandate_challenge | :frictionless
-
-          module ThreeDSLevel
-            extend WhopSDK::Internal::Type::Enum
-
-            MANDATE_CHALLENGE: :mandate_challenge
-            FRICTIONLESS: :frictionless
-
-            def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::three_ds_level]
           end
         end
 

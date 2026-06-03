@@ -300,6 +300,10 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :ad_set_id
 
+        # Facebook click cookie (\_fbc, format fb.1.{timestamp}.{fbclid}).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :fbc
+
         # Facebook click ID.
         sig { returns(T.nilable(String)) }
         attr_accessor :fbclid
@@ -366,6 +370,7 @@ module WhopSDK
             ad_campaign_id: T.nilable(String),
             ad_id: T.nilable(String),
             ad_set_id: T.nilable(String),
+            fbc: T.nilable(String),
             fbclid: T.nilable(String),
             fbp: T.nilable(String),
             ga: T.nilable(String),
@@ -390,6 +395,8 @@ module WhopSDK
           ad_id: nil,
           # Ad set ID.
           ad_set_id: nil,
+          # Facebook click cookie (\_fbc, format fb.1.{timestamp}.{fbclid}).
+          fbc: nil,
           # Facebook click ID.
           fbclid: nil,
           # Facebook browser pixel ID.
@@ -429,6 +436,7 @@ module WhopSDK
               ad_campaign_id: T.nilable(String),
               ad_id: T.nilable(String),
               ad_set_id: T.nilable(String),
+              fbc: T.nilable(String),
               fbclid: T.nilable(String),
               fbp: T.nilable(String),
               ga: T.nilable(String),
@@ -500,6 +508,11 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :last_name
 
+        # A second anonymous identifier to link to this user (e.g. captured across an
+        # iframe boundary).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :linked_anonymous_id
+
         # The Whop member ID.
         sig { returns(T.nilable(String)) }
         attr_accessor :member_id
@@ -547,6 +560,7 @@ module WhopSDK
                 WhopSDK::ConversionCreateParams::User::Gender::OrSymbol
               ),
             last_name: T.nilable(String),
+            linked_anonymous_id: T.nilable(String),
             member_id: T.nilable(String),
             membership_id: T.nilable(String),
             name: T.nilable(String),
@@ -576,6 +590,9 @@ module WhopSDK
           gender: nil,
           # Last name.
           last_name: nil,
+          # A second anonymous identifier to link to this user (e.g. captured across an
+          # iframe boundary).
+          linked_anonymous_id: nil,
           # The Whop member ID.
           member_id: nil,
           # The Whop membership ID.
@@ -610,6 +627,7 @@ module WhopSDK
                   WhopSDK::ConversionCreateParams::User::Gender::OrSymbol
                 ),
               last_name: T.nilable(String),
+              linked_anonymous_id: T.nilable(String),
               member_id: T.nilable(String),
               membership_id: T.nilable(String),
               name: T.nilable(String),

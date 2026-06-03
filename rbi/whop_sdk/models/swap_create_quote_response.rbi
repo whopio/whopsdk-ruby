@@ -17,9 +17,6 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :amount_out
 
-      sig { returns(T::Boolean) }
-      attr_accessor :cross_chain
-
       sig { returns(Integer) }
       attr_accessor :fee_bps
 
@@ -65,7 +62,6 @@ module WhopSDK
         params(
           amount_in: String,
           amount_out: String,
-          cross_chain: T::Boolean,
           fee_bps: Integer,
           from_token: T::Hash[Symbol, T.anything],
           metadata: T::Hash[Symbol, T.anything],
@@ -83,7 +79,6 @@ module WhopSDK
       def self.new(
         amount_in:,
         amount_out:,
-        cross_chain:,
         fee_bps:,
         from_token:,
         metadata:,
@@ -104,7 +99,6 @@ module WhopSDK
           {
             amount_in: String,
             amount_out: String,
-            cross_chain: T::Boolean,
             fee_bps: Integer,
             from_token: T::Hash[Symbol, T.anything],
             metadata: T::Hash[Symbol, T.anything],

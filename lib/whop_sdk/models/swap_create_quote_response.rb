@@ -14,11 +14,6 @@ module WhopSDK
       #   @return [String]
       required :amount_out, String
 
-      # @!attribute cross_chain
-      #
-      #   @return [Boolean]
-      required :cross_chain, WhopSDK::Internal::Type::Boolean
-
       # @!attribute fee_bps
       #
       #   @return [Integer]
@@ -79,10 +74,9 @@ module WhopSDK
       #   @return [String, nil]
       optional :to_address, String, nil?: true
 
-      # @!method initialize(amount_in:, amount_out:, cross_chain:, fee_bps:, from_token:, metadata:, object:, rate:, to_token:, amount_out_min: nil, bridge_fee: nil, estimated_duration_seconds: nil, from_address: nil, requires_token_approval: nil, to_address: nil)
+      # @!method initialize(amount_in:, amount_out:, fee_bps:, from_token:, metadata:, object:, rate:, to_token:, amount_out_min: nil, bridge_fee: nil, estimated_duration_seconds: nil, from_address: nil, requires_token_approval: nil, to_address: nil)
       #   @param amount_in [String]
       #   @param amount_out [String]
-      #   @param cross_chain [Boolean]
       #   @param fee_bps [Integer]
       #   @param from_token [Hash{Symbol=>Object}]
       #   @param metadata [Hash{Symbol=>Object}]

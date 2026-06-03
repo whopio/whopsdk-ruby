@@ -4,7 +4,6 @@ module WhopSDK
       {
         amount_in: String,
         amount_out: String,
-        cross_chain: bool,
         fee_bps: Integer,
         from_token: ::Hash[Symbol, top],
         metadata: ::Hash[Symbol, top],
@@ -23,8 +22,6 @@ module WhopSDK
       attr_accessor amount_in: String
 
       attr_accessor amount_out: String
-
-      attr_accessor cross_chain: bool
 
       attr_accessor fee_bps: Integer
 
@@ -55,7 +52,6 @@ module WhopSDK
       def initialize: (
         amount_in: String,
         amount_out: String,
-        cross_chain: bool,
         fee_bps: Integer,
         from_token: ::Hash[Symbol, top],
         metadata: ::Hash[Symbol, top],
@@ -73,7 +69,6 @@ module WhopSDK
       def to_hash: -> {
         amount_in: String,
         amount_out: String,
-        cross_chain: bool,
         fee_bps: Integer,
         from_token: ::Hash[Symbol, top],
         metadata: ::Hash[Symbol, top],

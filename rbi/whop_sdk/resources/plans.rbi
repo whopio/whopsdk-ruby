@@ -20,6 +20,7 @@ module WhopSDK
           billing_period: T.nilable(Integer),
           checkout_styling:
             T.nilable(WhopSDK::PlanCreateParams::CheckoutStyling::OrHash),
+          collect_phone_number: T.nilable(T::Boolean),
           currency: T.nilable(WhopSDK::Currency::OrSymbol),
           custom_fields:
             T.nilable(T::Array[WhopSDK::PlanCreateParams::CustomField::OrHash]),
@@ -62,6 +63,8 @@ module WhopSDK
         # Checkout styling overrides for this plan. Pass null to inherit from the company
         # default.
         checkout_styling: nil,
+        # Whether to collect the buyer's phone number at checkout for this plan.
+        collect_phone_number: nil,
         # The available currencies on the platform
         currency: nil,
         # An array of custom field definitions to collect from customers at checkout.
@@ -151,6 +154,7 @@ module WhopSDK
           billing_period: T.nilable(Integer),
           checkout_styling:
             T.nilable(WhopSDK::PlanUpdateParams::CheckoutStyling::OrHash),
+          collect_phone_number: T.nilable(T::Boolean),
           currency: T.nilable(WhopSDK::Currency::OrSymbol),
           custom_fields:
             T.nilable(T::Array[WhopSDK::PlanUpdateParams::CustomField::OrHash]),
@@ -191,6 +195,8 @@ module WhopSDK
         # Checkout styling overrides for this plan. Pass null to remove all overrides and
         # inherit from the company default.
         checkout_styling: nil,
+        # Whether to collect the buyer's phone number at checkout for this plan.
+        collect_phone_number: nil,
         # The available currencies on the platform
         currency: nil,
         # An array of custom field definitions to collect from customers at checkout.

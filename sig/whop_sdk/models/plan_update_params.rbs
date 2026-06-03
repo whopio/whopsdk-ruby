@@ -6,6 +6,7 @@ module WhopSDK
         adaptive_pricing_enabled: bool?,
         billing_period: Integer?,
         checkout_styling: WhopSDK::PlanUpdateParams::CheckoutStyling?,
+        collect_phone_number: bool?,
         currency: WhopSDK::Models::currency?,
         custom_fields: ::Array[WhopSDK::PlanUpdateParams::CustomField]?,
         description: String?,
@@ -41,6 +42,8 @@ module WhopSDK
       attr_accessor billing_period: Integer?
 
       attr_accessor checkout_styling: WhopSDK::PlanUpdateParams::CheckoutStyling?
+
+      attr_accessor collect_phone_number: bool?
 
       attr_accessor currency: WhopSDK::Models::currency?
 
@@ -89,6 +92,7 @@ module WhopSDK
         ?adaptive_pricing_enabled: bool?,
         ?billing_period: Integer?,
         ?checkout_styling: WhopSDK::PlanUpdateParams::CheckoutStyling?,
+        ?collect_phone_number: bool?,
         ?currency: WhopSDK::Models::currency?,
         ?custom_fields: ::Array[WhopSDK::PlanUpdateParams::CustomField]?,
         ?description: String?,
@@ -118,6 +122,7 @@ module WhopSDK
         adaptive_pricing_enabled: bool?,
         billing_period: Integer?,
         checkout_styling: WhopSDK::PlanUpdateParams::CheckoutStyling?,
+        collect_phone_number: bool?,
         currency: WhopSDK::Models::currency?,
         custom_fields: ::Array[WhopSDK::PlanUpdateParams::CustomField]?,
         description: String?,

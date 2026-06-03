@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.0](https://github.com/whopio/whopsdk-ruby/compare/v0.0.39...v0.1.0) (2026-06-03)
+
+
+### Features
+
+* **api:** public swaps API execute swap ([1102926](https://github.com/whopio/whopsdk-ruby/commit/1102926e6d97ecdb411d397411ff94f57a641d30))
+
 ## 0.0.39 (2026-05-12)
 
 Full Changelog: [v0.0.38...v0.0.39](https://github.com/whopio/whopsdk-ruby/compare/v0.0.38...v0.0.39)

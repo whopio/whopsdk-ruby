@@ -18,8 +18,8 @@ module WhopSDK
       #   Controls whether an uploaded file is publicly accessible or requires
       #   authentication to access.
       #
-      #   @return [Symbol, WhopSDK::Models::FileCreateParams::Visibility, nil]
-      optional :visibility, enum: -> { WhopSDK::FileCreateParams::Visibility }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::FileVisibility, nil]
+      optional :visibility, enum: -> { WhopSDK::FileVisibility }, nil?: true
 
       # @!method initialize(filename:, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
@@ -27,21 +27,9 @@ module WhopSDK
       #
       #   @param filename [String] The name of the file including its extension (e.g., "photo.png" or "document.pdf
       #
-      #   @param visibility [Symbol, WhopSDK::Models::FileCreateParams::Visibility, nil] Controls whether an uploaded file is publicly accessible or requires authenticat
+      #   @param visibility [Symbol, WhopSDK::Models::FileVisibility, nil] Controls whether an uploaded file is publicly accessible or requires authenticat
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
-
-      # Controls whether an uploaded file is publicly accessible or requires
-      # authentication to access.
-      module Visibility
-        extend WhopSDK::Internal::Type::Enum
-
-        PUBLIC = :public
-        PRIVATE = :private
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
     end
   end
 end

@@ -1,0 +1,97 @@
+module WhopSDK
+  module Models
+    type swap_create_quote_response =
+      {
+        amount_in: String,
+        amount_out: String,
+        fee_bps: Integer,
+        from_token: ::Hash[Symbol, top],
+        metadata: ::Hash[Symbol, top],
+        object: WhopSDK::Models::SwapCreateQuoteResponse::object,
+        rate: String,
+        to_token: ::Hash[Symbol, top],
+        amount_out_min: String,
+        bridge_fee: String?,
+        estimated_duration_seconds: Integer?,
+        from_address: String?,
+        requires_token_approval: bool?,
+        to_address: String?
+      }
+
+    class SwapCreateQuoteResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor amount_in: String
+
+      attr_accessor amount_out: String
+
+      attr_accessor fee_bps: Integer
+
+      attr_accessor from_token: ::Hash[Symbol, top]
+
+      attr_accessor metadata: ::Hash[Symbol, top]
+
+      attr_accessor object: WhopSDK::Models::SwapCreateQuoteResponse::object
+
+      attr_accessor rate: String
+
+      attr_accessor to_token: ::Hash[Symbol, top]
+
+      attr_reader amount_out_min: String?
+
+      def amount_out_min=: (String) -> String
+
+      attr_accessor bridge_fee: String?
+
+      attr_accessor estimated_duration_seconds: Integer?
+
+      attr_accessor from_address: String?
+
+      attr_accessor requires_token_approval: bool?
+
+      attr_accessor to_address: String?
+
+      def initialize: (
+        amount_in: String,
+        amount_out: String,
+        fee_bps: Integer,
+        from_token: ::Hash[Symbol, top],
+        metadata: ::Hash[Symbol, top],
+        object: WhopSDK::Models::SwapCreateQuoteResponse::object,
+        rate: String,
+        to_token: ::Hash[Symbol, top],
+        ?amount_out_min: String,
+        ?bridge_fee: String?,
+        ?estimated_duration_seconds: Integer?,
+        ?from_address: String?,
+        ?requires_token_approval: bool?,
+        ?to_address: String?
+      ) -> void
+
+      def to_hash: -> {
+        amount_in: String,
+        amount_out: String,
+        fee_bps: Integer,
+        from_token: ::Hash[Symbol, top],
+        metadata: ::Hash[Symbol, top],
+        object: WhopSDK::Models::SwapCreateQuoteResponse::object,
+        rate: String,
+        to_token: ::Hash[Symbol, top],
+        amount_out_min: String,
+        bridge_fee: String?,
+        estimated_duration_seconds: Integer?,
+        from_address: String?,
+        requires_token_approval: bool?,
+        to_address: String?
+      }
+
+      type object = :swap_quote
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        SWAP_QUOTE: :swap_quote
+
+        def self?.values: -> ::Array[WhopSDK::Models::SwapCreateQuoteResponse::object]
+      end
+    end
+  end
+end

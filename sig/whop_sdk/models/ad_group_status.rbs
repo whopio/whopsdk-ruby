@@ -1,0 +1,19 @@
+module WhopSDK
+  module Models
+    type ad_group_status =
+      :active | :paused | :inactive | :in_review | :rejected | :flagged
+
+    module AdGroupStatus
+      extend WhopSDK::Internal::Type::Enum
+
+      ACTIVE: :active
+      PAUSED: :paused
+      INACTIVE: :inactive
+      IN_REVIEW: :in_review
+      REJECTED: :rejected
+      FLAGGED: :flagged
+
+      def self?.values: -> ::Array[WhopSDK::Models::ad_group_status]
+    end
+  end
+end

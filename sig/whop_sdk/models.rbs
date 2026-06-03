@@ -5,31 +5,69 @@ module WhopSDK
 
   class AccessTokenCreateParams = WhopSDK::Models::AccessTokenCreateParams
 
+  class Account = WhopSDK::Models::Account
+
+  class AccountCreateParams = WhopSDK::Models::AccountCreateParams
+
   class AccountLinkCreateParams = WhopSDK::Models::AccountLinkCreateParams
+
+  class AccountListParams = WhopSDK::Models::AccountListParams
+
+  class AccountMeParams = WhopSDK::Models::AccountMeParams
+
+  class AccountRetrieveParams = WhopSDK::Models::AccountRetrieveParams
+
+  class AccountSocialLink = WhopSDK::Models::AccountSocialLink
+
+  class AccountUpdateParams = WhopSDK::Models::AccountUpdateParams
+
+  class AccountWallet = WhopSDK::Models::AccountWallet
+
+  class Ad = WhopSDK::Models::Ad
+
+  module AdBudgetType = WhopSDK::Models::AdBudgetType
+
+  class AdCampaign = WhopSDK::Models::AdCampaign
 
   class AdCampaignListParams = WhopSDK::Models::AdCampaignListParams
 
   class AdCampaignPauseParams = WhopSDK::Models::AdCampaignPauseParams
 
+  module AdCampaignPlatform = WhopSDK::Models::AdCampaignPlatform
+
   class AdCampaignRetrieveParams = WhopSDK::Models::AdCampaignRetrieveParams
+
+  module AdCampaignStatus = WhopSDK::Models::AdCampaignStatus
 
   class AdCampaignUnpauseParams = WhopSDK::Models::AdCampaignUnpauseParams
 
   class AdCampaignUpdateParams = WhopSDK::Models::AdCampaignUpdateParams
 
+  class AdGroup = WhopSDK::Models::AdGroup
+
   class AdGroupDeleteParams = WhopSDK::Models::AdGroupDeleteParams
 
   class AdGroupListParams = WhopSDK::Models::AdGroupListParams
 
+  class AdGroupPauseParams = WhopSDK::Models::AdGroupPauseParams
+
   class AdGroupRetrieveParams = WhopSDK::Models::AdGroupRetrieveParams
+
+  module AdGroupStatus = WhopSDK::Models::AdGroupStatus
+
+  class AdGroupUnpauseParams = WhopSDK::Models::AdGroupUnpauseParams
 
   class AdGroupUpdateParams = WhopSDK::Models::AdGroupUpdateParams
 
   class AdListParams = WhopSDK::Models::AdListParams
 
+  class AdPauseParams = WhopSDK::Models::AdPauseParams
+
   class AdReportRetrieveParams = WhopSDK::Models::AdReportRetrieveParams
 
   class AdRetrieveParams = WhopSDK::Models::AdRetrieveParams
+
+  class AdUnpauseParams = WhopSDK::Models::AdUnpauseParams
 
   class Affiliate = WhopSDK::Models::Affiliate
 
@@ -223,6 +261,8 @@ module WhopSDK
 
   module CustomCta = WhopSDK::Models::CustomCta
 
+  class DepositCreateParams = WhopSDK::Models::DepositCreateParams
+
   module Direction = WhopSDK::Models::Direction
 
   class Dispute = WhopSDK::Models::Dispute
@@ -321,6 +361,8 @@ module WhopSDK
 
   class ExperienceUpdateParams = WhopSDK::Models::ExperienceUpdateParams
 
+  module ExternalAdStatus = WhopSDK::Models::ExternalAdStatus
+
   class FeeMarkupCreateParams = WhopSDK::Models::FeeMarkupCreateParams
 
   class FeeMarkupDeleteParams = WhopSDK::Models::FeeMarkupDeleteParams
@@ -332,6 +374,8 @@ module WhopSDK
   class FileCreateParams = WhopSDK::Models::FileCreateParams
 
   class FileRetrieveParams = WhopSDK::Models::FileRetrieveParams
+
+  module FileVisibility = WhopSDK::Models::FileVisibility
 
   class Forum = WhopSDK::Models::Forum
 
@@ -356,6 +400,16 @@ module WhopSDK
   module FriendlyReceiptStatus = WhopSDK::Models::FriendlyReceiptStatus
 
   module GlobalAffiliateStatus = WhopSDK::Models::GlobalAffiliateStatus
+
+  module Granularities = WhopSDK::Models::Granularities
+
+  class IdentityProfileApprovedWebhookEvent = WhopSDK::Models::IdentityProfileApprovedWebhookEvent
+
+  class IdentityProfileNeedsActionWebhookEvent = WhopSDK::Models::IdentityProfileNeedsActionWebhookEvent
+
+  class IdentityProfileRejectedWebhookEvent = WhopSDK::Models::IdentityProfileRejectedWebhookEvent
+
+  class IdentityProfileUpdatedWebhookEvent = WhopSDK::Models::IdentityProfileUpdatedWebhookEvent
 
   class Invoice = WhopSDK::Models::Invoice
 
@@ -601,6 +655,8 @@ module WhopSDK
 
   class ResolutionCenterCaseUpdatedWebhookEvent = WhopSDK::Models::ResolutionCenterCaseUpdatedWebhookEvent
 
+  module ResultLabelKeys = WhopSDK::Models::ResultLabelKeys
+
   class ReviewListParams = WhopSDK::Models::ReviewListParams
 
   class ReviewRetrieveParams = WhopSDK::Models::ReviewRetrieveParams
@@ -647,6 +703,8 @@ module WhopSDK
 
   class SupportChannelRetrieveParams = WhopSDK::Models::SupportChannelRetrieveParams
 
+  class SwapCreateQuoteParams = WhopSDK::Models::SwapCreateQuoteParams
+
   module TaxIdentifierType = WhopSDK::Models::TaxIdentifierType
 
   module TaxType = WhopSDK::Models::TaxType
@@ -688,6 +746,12 @@ module WhopSDK
   module Visibility = WhopSDK::Models::Visibility
 
   module VisibilityFilter = WhopSDK::Models::VisibilityFilter
+
+  class WalletBalanceParams = WhopSDK::Models::WalletBalanceParams
+
+  class WalletListParams = WhopSDK::Models::WalletListParams
+
+  class WalletSendParams = WhopSDK::Models::WalletSendParams
 
   class Webhook = WhopSDK::Models::Webhook
 

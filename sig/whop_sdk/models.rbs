@@ -753,6 +753,10 @@ module WhopSDK
 
   class WalletSendParams = WhopSDK::Models::WalletSendParams
 
+  class WalletSignMessageParams = WhopSDK::Models::WalletSignMessageParams
+
+  class WalletSignTransactionParams = WhopSDK::Models::WalletSignTransactionParams
+
   class Webhook = WhopSDK::Models::Webhook
 
   class WebhookCreateParams = WhopSDK::Models::WebhookCreateParams

@@ -1,0 +1,52 @@
+module WhopSDK
+  module Models
+    type wallet_sign_message_params =
+      {
+        account_id: String,
+        chain_id: Integer,
+        message: top,
+        type: WhopSDK::Models::WalletSignMessageParams::type_
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class WalletSignMessageParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
+
+      attr_accessor chain_id: Integer
+
+      attr_accessor message: top
+
+      attr_accessor type: WhopSDK::Models::WalletSignMessageParams::type_
+
+      def initialize: (
+        account_id: String,
+        chain_id: Integer,
+        message: top,
+        type: WhopSDK::Models::WalletSignMessageParams::type_,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        chain_id: Integer,
+        message: top,
+        type: WhopSDK::Models::WalletSignMessageParams::type_,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type type_ = :personal_sign | :typed_data
+
+      module Type
+        extend WhopSDK::Internal::Type::Enum
+
+        PERSONAL_SIGN: :personal_sign
+        TYPED_DATA: :typed_data
+
+        def self?.values: -> ::Array[WhopSDK::Models::WalletSignMessageParams::type_]
+      end
+    end
+  end
+end

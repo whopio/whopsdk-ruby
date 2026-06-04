@@ -1,0 +1,28 @@
+module WhopSDK
+  module Models
+    type identity_profile_attach_params =
+      { identity_profile_id: String, ledger_account_id: String }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class IdentityProfileAttachParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor identity_profile_id: String
+
+      attr_accessor ledger_account_id: String
+
+      def initialize: (
+        identity_profile_id: String,
+        ledger_account_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        identity_profile_id: String,
+        ledger_account_id: String,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

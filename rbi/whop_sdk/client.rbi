@@ -204,6 +204,10 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::Verifications) }
     attr_reader :verifications
 
+    # Identity profiles
+    sig { returns(WhopSDK::Resources::IdentityProfiles) }
+    attr_reader :identity_profiles
+
     # Leads
     sig { returns(WhopSDK::Resources::Leads) }
     attr_reader :leads

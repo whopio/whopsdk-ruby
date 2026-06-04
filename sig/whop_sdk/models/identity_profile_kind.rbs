@@ -1,0 +1,14 @@
+module WhopSDK
+  module Models
+    type identity_profile_kind = :individual | :business
+
+    module IdentityProfileKind
+      extend WhopSDK::Internal::Type::Enum
+
+      INDIVIDUAL: :individual
+      BUSINESS: :business
+
+      def self?.values: -> ::Array[WhopSDK::Models::identity_profile_kind]
+    end
+  end
+end

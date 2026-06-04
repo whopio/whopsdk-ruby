@@ -1,0 +1,28 @@
+module WhopSDK
+  module Models
+    type identity_profile_unlink_params =
+      { id: String, ledger_account_id: String }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class IdentityProfileUnlinkParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_accessor ledger_account_id: String
+
+      def initialize: (
+        id: String,
+        ledger_account_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        ledger_account_id: String,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

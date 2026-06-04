@@ -403,11 +403,29 @@ module WhopSDK
 
   module Granularities = WhopSDK::Models::Granularities
 
+  class IdentityProfile = WhopSDK::Models::IdentityProfile
+
   class IdentityProfileApprovedWebhookEvent = WhopSDK::Models::IdentityProfileApprovedWebhookEvent
+
+  class IdentityProfileAttachParams = WhopSDK::Models::IdentityProfileAttachParams
+
+  class IdentityProfileCreateParams = WhopSDK::Models::IdentityProfileCreateParams
+
+  module IdentityProfileKind = WhopSDK::Models::IdentityProfileKind
+
+  class IdentityProfileListParams = WhopSDK::Models::IdentityProfileListParams
+
+  class IdentityProfileListVerificationsParams = WhopSDK::Models::IdentityProfileListVerificationsParams
 
   class IdentityProfileNeedsActionWebhookEvent = WhopSDK::Models::IdentityProfileNeedsActionWebhookEvent
 
   class IdentityProfileRejectedWebhookEvent = WhopSDK::Models::IdentityProfileRejectedWebhookEvent
+
+  class IdentityProfileRetrieveParams = WhopSDK::Models::IdentityProfileRetrieveParams
+
+  module IdentityProfileStatus = WhopSDK::Models::IdentityProfileStatus
+
+  class IdentityProfileUnlinkParams = WhopSDK::Models::IdentityProfileUnlinkParams
 
   class IdentityProfileUpdatedWebhookEvent = WhopSDK::Models::IdentityProfileUpdatedWebhookEvent
 

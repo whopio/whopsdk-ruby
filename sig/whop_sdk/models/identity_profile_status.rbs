@@ -1,0 +1,17 @@
+module WhopSDK
+  module Models
+    type identity_profile_status =
+      :not_started | :pending | :approved | :rejected
+
+    module IdentityProfileStatus
+      extend WhopSDK::Internal::Type::Enum
+
+      NOT_STARTED: :not_started
+      PENDING: :pending
+      APPROVED: :approved
+      REJECTED: :rejected
+
+      def self?.values: -> ::Array[WhopSDK::Models::identity_profile_status]
+    end
+  end
+end

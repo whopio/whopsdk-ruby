@@ -742,7 +742,11 @@ module WhopSDK
 
   SupportChannelRetrieveParams = WhopSDK::Models::SupportChannelRetrieveParams
 
+  SwapCreateParams = WhopSDK::Models::SwapCreateParams
+
   SwapCreateQuoteParams = WhopSDK::Models::SwapCreateQuoteParams
+
+  SwapRetrieveParams = WhopSDK::Models::SwapRetrieveParams
 
   TaxIdentifierType = WhopSDK::Models::TaxIdentifierType
 

@@ -67,6 +67,74 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::WalletSignMessageParams} for more details.
+      #
+      # Produces a personal_sign or EIP-712 signature from the account's wallet. Nothing
+      # is broadcast on-chain.
+      #
+      # @overload sign_message(account_id, chain_id:, message:, type:, request_options: {})
+      #
+      # @param account_id [String] The business or user account ID whose wallet signs.
+      #
+      # @param chain_id [Integer] EIP-155 chain ID the signature is intended for (e.g. 9745 for Plasma).
+      #
+      # @param message [Object] A UTF-8 string for personal_sign, or an EIP-712 object (domain, types, primaryTy
+      #
+      # @param type [Symbol, WhopSDK::Models::WalletSignMessageParams::Type] Signature scheme.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::WalletSignMessageResponse]
+      #
+      # @see WhopSDK::Models::WalletSignMessageParams
+      def sign_message(account_id, params)
+        parsed, options = WhopSDK::WalletSignMessageParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: ["wallets/%1$s/sign-message", account_id],
+          body: parsed,
+          model: WhopSDK::Models::WalletSignMessageResponse,
+          options: options
+        )
+      end
+
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::WalletSignTransactionParams} for more details.
+      #
+      # Signs and broadcasts a contract call from the account's wallet. The returned
+      # tx_hash is the source of truth.
+      #
+      # @overload sign_transaction(account_id, chain_id:, to:, data: nil, idempotency_key: nil, value: nil, request_options: {})
+      #
+      # @param account_id [String] The business or user account ID whose wallet signs and broadcasts.
+      #
+      # @param chain_id [Integer] EIP-155 chain ID to broadcast on (e.g. 9745 for Plasma).
+      #
+      # @param to [String] Target contract or recipient address (0x...).
+      #
+      # @param data [String] Hex-encoded calldata. Defaults to 0x (plain transfer).
+      #
+      # @param idempotency_key [String] Optional retry-safety key (max 256 chars). Retried requests with the same key wi
+      #
+      # @param value [String] Hex-encoded wei value. Defaults to 0x0.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::WalletSignTransactionResponse]
+      #
+      # @see WhopSDK::Models::WalletSignTransactionParams
+      def sign_transaction(account_id, params)
+        parsed, options = WhopSDK::WalletSignTransactionParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: ["wallets/%1$s/sign-transaction", account_id],
+          body: parsed,
+          model: WhopSDK::Models::WalletSignTransactionResponse,
+          options: options
+        )
+      end
+
       # @api private
       #
       # @param client [WhopSDK::Client]

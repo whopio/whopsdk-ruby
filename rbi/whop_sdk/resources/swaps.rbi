@@ -9,7 +9,6 @@ module WhopSDK
           amount: String,
           from_token: String,
           to_token: String,
-          account_id: T.nilable(String),
           from_address: T.nilable(String),
           from_chain:
             T.nilable(WhopSDK::SwapCreateQuoteParams::FromChain::Variants),
@@ -28,8 +27,6 @@ module WhopSDK
         from_token:,
         # Destination token contract address.
         to_token:,
-        # Caller-owned account whose wallet address should be used.
-        account_id: nil,
         from_address: nil,
         from_chain: nil,
         metadata: nil,

@@ -106,6 +106,8 @@ module WhopSDK
 
     attr_reader verifications: WhopSDK::Resources::Verifications
 
+    attr_reader identity_profiles: WhopSDK::Resources::IdentityProfiles
+
     attr_reader leads: WhopSDK::Resources::Leads
 
     attr_reader topups: WhopSDK::Resources::Topups

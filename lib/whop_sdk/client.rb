@@ -221,6 +221,10 @@ module WhopSDK
     # @return [WhopSDK::Resources::Verifications]
     attr_reader :verifications
 
+    # Identity profiles
+    # @return [WhopSDK::Resources::IdentityProfiles]
+    attr_reader :identity_profiles
+
     # Leads
     # @return [WhopSDK::Resources::Leads]
     attr_reader :leads
@@ -419,6 +423,7 @@ module WhopSDK
       @fee_markups = WhopSDK::Resources::FeeMarkups.new(client: self)
       @payout_methods = WhopSDK::Resources::PayoutMethods.new(client: self)
       @verifications = WhopSDK::Resources::Verifications.new(client: self)
+      @identity_profiles = WhopSDK::Resources::IdentityProfiles.new(client: self)
       @leads = WhopSDK::Resources::Leads.new(client: self)
       @topups = WhopSDK::Resources::Topups.new(client: self)
       @files = WhopSDK::Resources::Files.new(client: self)

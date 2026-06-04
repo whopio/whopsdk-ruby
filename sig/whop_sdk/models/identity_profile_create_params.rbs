@@ -1,0 +1,81 @@
+module WhopSDK
+  module Models
+    type identity_profile_create_params =
+      {
+        kind: WhopSDK::Models::identity_profile_kind,
+        ledger_account_id: String,
+        address_city: String?,
+        :address_line1 => String?,
+        address_postal_code: String?,
+        address_state: String?,
+        country: String?,
+        date_of_birth: String?,
+        first_name: String?,
+        last_name: String?,
+        phone: String?,
+        restart: bool?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class IdentityProfileCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor kind: WhopSDK::Models::identity_profile_kind
+
+      attr_accessor ledger_account_id: String
+
+      attr_accessor address_city: String?
+
+      attr_accessor address_line1: String?
+
+      attr_accessor address_postal_code: String?
+
+      attr_accessor address_state: String?
+
+      attr_accessor country: String?
+
+      attr_accessor date_of_birth: String?
+
+      attr_accessor first_name: String?
+
+      attr_accessor last_name: String?
+
+      attr_accessor phone: String?
+
+      attr_accessor restart: bool?
+
+      def initialize: (
+        kind: WhopSDK::Models::identity_profile_kind,
+        ledger_account_id: String,
+        ?address_city: String?,
+        ?address_line1: String?,
+        ?address_postal_code: String?,
+        ?address_state: String?,
+        ?country: String?,
+        ?date_of_birth: String?,
+        ?first_name: String?,
+        ?last_name: String?,
+        ?phone: String?,
+        ?restart: bool?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        kind: WhopSDK::Models::identity_profile_kind,
+        ledger_account_id: String,
+        address_city: String?,
+        :address_line1 => String?,
+        address_postal_code: String?,
+        address_state: String?,
+        country: String?,
+        date_of_birth: String?,
+        first_name: String?,
+        last_name: String?,
+        phone: String?,
+        restart: bool?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

@@ -1,0 +1,60 @@
+module WhopSDK
+  module Resources
+    class IdentityProfiles
+      def create: (
+        kind: WhopSDK::Models::identity_profile_kind,
+        ledger_account_id: String,
+        ?address_city: String?,
+        ?address_line1: String?,
+        ?address_postal_code: String?,
+        ?address_state: String?,
+        ?country: String?,
+        ?date_of_birth: String?,
+        ?first_name: String?,
+        ?last_name: String?,
+        ?phone: String?,
+        ?restart: bool?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::IdentityProfileCreateResponse
+
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::IdentityProfile
+
+      def list: (
+        ?after: String?,
+        ?before: String?,
+        ?company_id: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?profile_type: WhopSDK::Models::identity_profile_kind?,
+        ?status: WhopSDK::Models::identity_profile_status?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::IdentityProfileListResponse]
+
+      def attach: (
+        String identity_profile_id,
+        ledger_account_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::IdentityProfile
+
+      def list_verifications: (
+        String id,
+        ?after: String?,
+        ?before: String?,
+        ?first: Integer?,
+        ?last: Integer?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::IdentityProfileListVerificationsResponse]
+
+      def unlink: (
+        String id,
+        ledger_account_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::IdentityProfile
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

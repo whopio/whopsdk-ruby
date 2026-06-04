@@ -1,0 +1,50 @@
+module WhopSDK
+  module Models
+    type wallet_sign_message_response =
+      {
+        address: String,
+        chain_id: Integer,
+        object: WhopSDK::Models::WalletSignMessageResponse::object,
+        signature: String,
+        type: String
+      }
+
+    class WalletSignMessageResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor address: String
+
+      attr_accessor chain_id: Integer
+
+      attr_accessor object: WhopSDK::Models::WalletSignMessageResponse::object
+
+      attr_accessor signature: String
+
+      attr_accessor type: String
+
+      def initialize: (
+        address: String,
+        chain_id: Integer,
+        object: WhopSDK::Models::WalletSignMessageResponse::object,
+        signature: String,
+        type: String
+      ) -> void
+
+      def to_hash: -> {
+        address: String,
+        chain_id: Integer,
+        object: WhopSDK::Models::WalletSignMessageResponse::object,
+        signature: String,
+        type: String
+      }
+
+      type object = :signature
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        SIGNATURE: :signature
+
+        def self?.values: -> ::Array[WhopSDK::Models::WalletSignMessageResponse::object]
+      end
+    end
+  end
+end

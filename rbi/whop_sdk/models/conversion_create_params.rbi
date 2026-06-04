@@ -46,6 +46,10 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :custom_name
 
+      # For 'leave' events: milliseconds the visitor spent on the page.
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :duration
+
       # Client-provided identifier for deduplication. Generated if omitted.
       sig { returns(T.nilable(String)) }
       attr_accessor :event_id
@@ -65,6 +69,19 @@ module WhopSDK
       # The referring URL.
       sig { returns(T.nilable(String)) }
       attr_accessor :referrer_url
+
+      # For 'page' events: true when the page was restored from the back/forward cache.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :resumed
+
+      # For 'identify' events: where the identity was captured (url, form, manual,
+      # iframe).
+      sig { returns(T.nilable(String)) }
+      attr_accessor :source
+
+      # For 'page' events: the document title.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :title
 
       # The URL where the event occurred.
       sig { returns(T.nilable(String)) }
@@ -94,11 +111,15 @@ module WhopSDK
           context: T.nilable(WhopSDK::ConversionCreateParams::Context::OrHash),
           currency: T.nilable(WhopSDK::Currency::OrSymbol),
           custom_name: T.nilable(String),
+          duration: T.nilable(Integer),
           event_id: T.nilable(String),
           event_time: T.nilable(Time),
           plan_id: T.nilable(String),
           product_id: T.nilable(String),
           referrer_url: T.nilable(String),
+          resumed: T.nilable(T::Boolean),
+          source: T.nilable(String),
+          title: T.nilable(String),
           url: T.nilable(String),
           user: T.nilable(WhopSDK::ConversionCreateParams::User::OrHash),
           value: T.nilable(Float),
@@ -118,6 +139,8 @@ module WhopSDK
         currency: nil,
         # Custom event name when event_name is 'custom'.
         custom_name: nil,
+        # For 'leave' events: milliseconds the visitor spent on the page.
+        duration: nil,
         # Client-provided identifier for deduplication. Generated if omitted.
         event_id: nil,
         # When the event occurred. Defaults to now.
@@ -128,6 +151,13 @@ module WhopSDK
         product_id: nil,
         # The referring URL.
         referrer_url: nil,
+        # For 'page' events: true when the page was restored from the back/forward cache.
+        resumed: nil,
+        # For 'identify' events: where the identity was captured (url, form, manual,
+        # iframe).
+        source: nil,
+        # For 'page' events: the document title.
+        title: nil,
         # The URL where the event occurred.
         url: nil,
         # User identity and profile data.
@@ -150,11 +180,15 @@ module WhopSDK
             context: T.nilable(WhopSDK::ConversionCreateParams::Context),
             currency: T.nilable(WhopSDK::Currency::OrSymbol),
             custom_name: T.nilable(String),
+            duration: T.nilable(Integer),
             event_id: T.nilable(String),
             event_time: T.nilable(Time),
             plan_id: T.nilable(String),
             product_id: T.nilable(String),
             referrer_url: T.nilable(String),
+            resumed: T.nilable(T::Boolean),
+            source: T.nilable(String),
+            title: T.nilable(String),
             url: T.nilable(String),
             user: T.nilable(WhopSDK::ConversionCreateParams::User),
             value: T.nilable(Float),
@@ -200,6 +234,18 @@ module WhopSDK
         CUSTOM =
           T.let(
             :custom,
+            WhopSDK::ConversionCreateParams::EventName::TaggedSymbol
+          )
+        PAGE =
+          T.let(:page, WhopSDK::ConversionCreateParams::EventName::TaggedSymbol)
+        LEAVE =
+          T.let(
+            :leave,
+            WhopSDK::ConversionCreateParams::EventName::TaggedSymbol
+          )
+        IDENTIFY =
+          T.let(
+            :identify,
             WhopSDK::ConversionCreateParams::EventName::TaggedSymbol
           )
 
@@ -300,6 +346,10 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :ad_set_id
 
+        # Facebook click cookie (\_fbc, format fb.1.{timestamp}.{fbclid}).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :fbc
+
         # Facebook click ID.
         sig { returns(T.nilable(String)) }
         attr_accessor :fbclid
@@ -307,6 +357,14 @@ module WhopSDK
         # Facebook browser pixel ID.
         sig { returns(T.nilable(String)) }
         attr_accessor :fbp
+
+        # Client-side device fingerprint.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :fingerprint
+
+        # Confidence score (0-1) for the device fingerprint.
+        sig { returns(T.nilable(Float)) }
+        attr_accessor :fingerprint_confidence
 
         # Google Analytics client ID.
         sig { returns(T.nilable(String)) }
@@ -323,6 +381,18 @@ module WhopSDK
         # IP address.
         sig { returns(T.nilable(String)) }
         attr_accessor :ip_address
+
+        # Browser language (e.g. en-US).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :language
+
+        # Screen resolution (e.g. 1920x1080).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :screen_resolution
+
+        # IANA timezone (e.g. America/New_York).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :timezone
 
         # TikTok click ID.
         sig { returns(T.nilable(String)) }
@@ -366,12 +436,18 @@ module WhopSDK
             ad_campaign_id: T.nilable(String),
             ad_id: T.nilable(String),
             ad_set_id: T.nilable(String),
+            fbc: T.nilable(String),
             fbclid: T.nilable(String),
             fbp: T.nilable(String),
+            fingerprint: T.nilable(String),
+            fingerprint_confidence: T.nilable(Float),
             ga: T.nilable(String),
             gclid: T.nilable(String),
             ig_sid: T.nilable(String),
             ip_address: T.nilable(String),
+            language: T.nilable(String),
+            screen_resolution: T.nilable(String),
+            timezone: T.nilable(String),
             ttclid: T.nilable(String),
             ttp: T.nilable(String),
             user_agent: T.nilable(String),
@@ -390,10 +466,16 @@ module WhopSDK
           ad_id: nil,
           # Ad set ID.
           ad_set_id: nil,
+          # Facebook click cookie (\_fbc, format fb.1.{timestamp}.{fbclid}).
+          fbc: nil,
           # Facebook click ID.
           fbclid: nil,
           # Facebook browser pixel ID.
           fbp: nil,
+          # Client-side device fingerprint.
+          fingerprint: nil,
+          # Confidence score (0-1) for the device fingerprint.
+          fingerprint_confidence: nil,
           # Google Analytics client ID.
           ga: nil,
           # Google click ID.
@@ -402,6 +484,12 @@ module WhopSDK
           ig_sid: nil,
           # IP address.
           ip_address: nil,
+          # Browser language (e.g. en-US).
+          language: nil,
+          # Screen resolution (e.g. 1920x1080).
+          screen_resolution: nil,
+          # IANA timezone (e.g. America/New_York).
+          timezone: nil,
           # TikTok click ID.
           ttclid: nil,
           # TikTok pixel ID.
@@ -429,12 +517,18 @@ module WhopSDK
               ad_campaign_id: T.nilable(String),
               ad_id: T.nilable(String),
               ad_set_id: T.nilable(String),
+              fbc: T.nilable(String),
               fbclid: T.nilable(String),
               fbp: T.nilable(String),
+              fingerprint: T.nilable(String),
+              fingerprint_confidence: T.nilable(Float),
               ga: T.nilable(String),
               gclid: T.nilable(String),
               ig_sid: T.nilable(String),
               ip_address: T.nilable(String),
+              language: T.nilable(String),
+              screen_resolution: T.nilable(String),
+              timezone: T.nilable(String),
               ttclid: T.nilable(String),
               ttp: T.nilable(String),
               user_agent: T.nilable(String),
@@ -500,6 +594,15 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :last_name
 
+        # A second anonymous identifier to link to this user (e.g. captured across an
+        # iframe boundary).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :linked_anonymous_id
+
+        # A wuid from a linked frame, captured across an iframe boundary.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :linked_wuid
+
         # The Whop member ID.
         sig { returns(T.nilable(String)) }
         attr_accessor :member_id
@@ -547,6 +650,8 @@ module WhopSDK
                 WhopSDK::ConversionCreateParams::User::Gender::OrSymbol
               ),
             last_name: T.nilable(String),
+            linked_anonymous_id: T.nilable(String),
+            linked_wuid: T.nilable(String),
             member_id: T.nilable(String),
             membership_id: T.nilable(String),
             name: T.nilable(String),
@@ -576,6 +681,11 @@ module WhopSDK
           gender: nil,
           # Last name.
           last_name: nil,
+          # A second anonymous identifier to link to this user (e.g. captured across an
+          # iframe boundary).
+          linked_anonymous_id: nil,
+          # A wuid from a linked frame, captured across an iframe boundary.
+          linked_wuid: nil,
           # The Whop member ID.
           member_id: nil,
           # The Whop membership ID.
@@ -610,6 +720,8 @@ module WhopSDK
                   WhopSDK::ConversionCreateParams::User::Gender::OrSymbol
                 ),
               last_name: T.nilable(String),
+              linked_anonymous_id: T.nilable(String),
+              linked_wuid: T.nilable(String),
               member_id: T.nilable(String),
               membership_id: T.nilable(String),
               name: T.nilable(String),

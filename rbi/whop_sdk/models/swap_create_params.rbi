@@ -2,14 +2,18 @@
 
 module WhopSDK
   module Models
-    class SwapCreateQuoteParams < WhopSDK::Internal::Type::BaseModel
+    class SwapCreateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(WhopSDK::SwapCreateQuoteParams, WhopSDK::Internal::AnyHash)
+          T.any(WhopSDK::SwapCreateParams, WhopSDK::Internal::AnyHash)
         end
+
+      # Business or user account ID (biz*\* / user*\*).
+      sig { returns(String) }
+      attr_accessor :account_id
 
       # Input token amount.
       sig { returns(String) }
@@ -23,59 +27,38 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :to_token
 
-      sig { returns(T.nilable(String)) }
-      attr_accessor :from_address
-
-      sig do
-        returns(T.nilable(WhopSDK::SwapCreateQuoteParams::FromChain::Variants))
-      end
+      sig { returns(T.nilable(WhopSDK::SwapCreateParams::FromChain::Variants)) }
       attr_accessor :from_chain
-
-      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
-      attr_reader :metadata
-
-      sig { params(metadata: T::Hash[Symbol, T.anything]).void }
-      attr_writer :metadata
 
       sig { returns(T.nilable(Integer)) }
       attr_accessor :slippage_bps
 
-      sig { returns(T.nilable(String)) }
-      attr_accessor :to_address
-
-      sig do
-        returns(T.nilable(WhopSDK::SwapCreateQuoteParams::ToChain::Variants))
-      end
+      sig { returns(T.nilable(WhopSDK::SwapCreateParams::ToChain::Variants)) }
       attr_accessor :to_chain
 
       sig do
         params(
+          account_id: String,
           amount: String,
           from_token: String,
           to_token: String,
-          from_address: T.nilable(String),
-          from_chain:
-            T.nilable(WhopSDK::SwapCreateQuoteParams::FromChain::Variants),
-          metadata: T::Hash[Symbol, T.anything],
+          from_chain: T.nilable(WhopSDK::SwapCreateParams::FromChain::Variants),
           slippage_bps: T.nilable(Integer),
-          to_address: T.nilable(String),
-          to_chain:
-            T.nilable(WhopSDK::SwapCreateQuoteParams::ToChain::Variants),
+          to_chain: T.nilable(WhopSDK::SwapCreateParams::ToChain::Variants),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # Business or user account ID (biz*\* / user*\*).
+        account_id:,
         # Input token amount.
         amount:,
         # Source token contract address.
         from_token:,
         # Destination token contract address.
         to_token:,
-        from_address: nil,
         from_chain: nil,
-        metadata: nil,
         slippage_bps: nil,
-        to_address: nil,
         to_chain: nil,
         request_options: {}
       )
@@ -84,17 +67,14 @@ module WhopSDK
       sig do
         override.returns(
           {
+            account_id: String,
             amount: String,
             from_token: String,
             to_token: String,
-            from_address: T.nilable(String),
             from_chain:
-              T.nilable(WhopSDK::SwapCreateQuoteParams::FromChain::Variants),
-            metadata: T::Hash[Symbol, T.anything],
+              T.nilable(WhopSDK::SwapCreateParams::FromChain::Variants),
             slippage_bps: T.nilable(Integer),
-            to_address: T.nilable(String),
-            to_chain:
-              T.nilable(WhopSDK::SwapCreateQuoteParams::ToChain::Variants),
+            to_chain: T.nilable(WhopSDK::SwapCreateParams::ToChain::Variants),
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -109,7 +89,7 @@ module WhopSDK
 
         sig do
           override.returns(
-            T::Array[WhopSDK::SwapCreateQuoteParams::FromChain::Variants]
+            T::Array[WhopSDK::SwapCreateParams::FromChain::Variants]
           )
         end
         def self.variants
@@ -123,7 +103,7 @@ module WhopSDK
 
         sig do
           override.returns(
-            T::Array[WhopSDK::SwapCreateQuoteParams::ToChain::Variants]
+            T::Array[WhopSDK::SwapCreateParams::ToChain::Variants]
           )
         end
         def self.variants

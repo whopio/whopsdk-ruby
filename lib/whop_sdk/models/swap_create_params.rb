@@ -2,10 +2,16 @@
 
 module WhopSDK
   module Models
-    # @see WhopSDK::Resources::Swaps#create_quote
-    class SwapCreateQuoteParams < WhopSDK::Internal::Type::BaseModel
+    # @see WhopSDK::Resources::Swaps#create
+    class SwapCreateParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      # @!attribute account_id
+      #   Business or user account ID (biz*\* / user*\*).
+      #
+      #   @return [String]
+      required :account_id, String
 
       # @!attribute amount
       #   Input token amount.
@@ -25,52 +31,33 @@ module WhopSDK
       #   @return [String]
       required :to_token, String
 
-      # @!attribute from_address
-      #
-      #   @return [String, nil]
-      optional :from_address, String, nil?: true
-
       # @!attribute from_chain
       #
       #   @return [String, Integer, nil]
-      optional :from_chain, union: -> { WhopSDK::SwapCreateQuoteParams::FromChain }, nil?: true
-
-      # @!attribute metadata
-      #
-      #   @return [Hash{Symbol=>Object}, nil]
-      optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]
+      optional :from_chain, union: -> { WhopSDK::SwapCreateParams::FromChain }, nil?: true
 
       # @!attribute slippage_bps
       #
       #   @return [Integer, nil]
       optional :slippage_bps, Integer, nil?: true
 
-      # @!attribute to_address
-      #
-      #   @return [String, nil]
-      optional :to_address, String, nil?: true
-
       # @!attribute to_chain
       #
       #   @return [String, Integer, nil]
-      optional :to_chain, union: -> { WhopSDK::SwapCreateQuoteParams::ToChain }, nil?: true
+      optional :to_chain, union: -> { WhopSDK::SwapCreateParams::ToChain }, nil?: true
 
-      # @!method initialize(amount:, from_token:, to_token:, from_address: nil, from_chain: nil, metadata: nil, slippage_bps: nil, to_address: nil, to_chain: nil, request_options: {})
+      # @!method initialize(account_id:, amount:, from_token:, to_token:, from_chain: nil, slippage_bps: nil, to_chain: nil, request_options: {})
+      #   @param account_id [String] Business or user account ID (biz*\* / user*\*).
+      #
       #   @param amount [String] Input token amount.
       #
       #   @param from_token [String] Source token contract address.
       #
       #   @param to_token [String] Destination token contract address.
       #
-      #   @param from_address [String, nil]
-      #
       #   @param from_chain [String, Integer, nil]
       #
-      #   @param metadata [Hash{Symbol=>Object}]
-      #
       #   @param slippage_bps [Integer, nil]
-      #
-      #   @param to_address [String, nil]
       #
       #   @param to_chain [String, Integer, nil]
       #

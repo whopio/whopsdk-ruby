@@ -10,6 +10,11 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::WalletBalanceResponse
 
+      def deposit_address: (
+        String account_id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::WalletDepositAddressResponse
+
       def send_: (
         String account_id,
         amount: String,

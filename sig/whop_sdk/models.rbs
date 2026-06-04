@@ -749,6 +749,8 @@ module WhopSDK
 
   class WalletBalanceParams = WhopSDK::Models::WalletBalanceParams
 
+  class WalletDepositAddressParams = WhopSDK::Models::WalletDepositAddressParams
+
   class WalletListParams = WhopSDK::Models::WalletListParams
 
   class WalletSendParams = WhopSDK::Models::WalletSendParams

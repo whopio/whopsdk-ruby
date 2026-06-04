@@ -46,6 +46,16 @@ module WhopSDK
       )
       end
 
+      # Returns the platform catalog of swap-enabled tokens (from TokenRegistry). Public
+      # — no API key required.
+      sig do
+        params(request_options: WhopSDK::RequestOptions::OrHash).returns(
+          WhopSDK::Models::WalletSupportedAssetsResponse
+        )
+      end
+      def supported_assets(request_options: {})
+      end
+
       # @api private
       sig { params(client: WhopSDK::Client).returns(T.attached_class) }
       def self.new(client:)

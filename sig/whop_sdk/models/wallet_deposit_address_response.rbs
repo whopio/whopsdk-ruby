@@ -1,0 +1,66 @@
+module WhopSDK
+  module Models
+    type wallet_deposit_address_response =
+      {
+        address: String,
+        object: WhopSDK::Models::WalletDepositAddressResponse::object,
+        supported_networks: ::Array[WhopSDK::Models::WalletDepositAddressResponse::SupportedNetwork],
+        asset: String,
+        network: String
+      }
+
+    class WalletDepositAddressResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor address: String
+
+      attr_accessor object: WhopSDK::Models::WalletDepositAddressResponse::object
+
+      attr_accessor supported_networks: ::Array[WhopSDK::Models::WalletDepositAddressResponse::SupportedNetwork]
+
+      attr_reader asset: String?
+
+      def asset=: (String) -> String
+
+      attr_reader network: String?
+
+      def network=: (String) -> String
+
+      def initialize: (
+        address: String,
+        object: WhopSDK::Models::WalletDepositAddressResponse::object,
+        supported_networks: ::Array[WhopSDK::Models::WalletDepositAddressResponse::SupportedNetwork],
+        ?asset: String,
+        ?network: String
+      ) -> void
+
+      def to_hash: -> {
+        address: String,
+        object: WhopSDK::Models::WalletDepositAddressResponse::object,
+        supported_networks: ::Array[WhopSDK::Models::WalletDepositAddressResponse::SupportedNetwork],
+        asset: String,
+        network: String
+      }
+
+      type object = :deposit_address
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        DEPOSIT_ADDRESS: :deposit_address
+
+        def self?.values: -> ::Array[WhopSDK::Models::WalletDepositAddressResponse::object]
+      end
+
+      type supported_network = { chain_id: Integer, name: String }
+
+      class SupportedNetwork < WhopSDK::Internal::Type::BaseModel
+        attr_accessor chain_id: Integer
+
+        attr_accessor name: String
+
+        def initialize: (chain_id: Integer, name: String) -> void
+
+        def to_hash: -> { chain_id: Integer, name: String }
+      end
+    end
+  end
+end

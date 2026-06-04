@@ -5,11 +5,28 @@ module WhopSDK
         id: String,
         budget: Float?,
         budget_type: WhopSDK::Models::ad_budget_type?,
+        clicks: Integer,
+        cost_per_lead: Float?,
+        cost_per_purchase: Float?,
+        cost_per_result: Float?,
+        cpc: Float,
+        cpm: Float,
         created_at: Time,
+        ctr: Float,
+        frequency: Float?,
+        impressions: Integer,
+        issues: ::Array[WhopSDK::Models::AdCampaignListResponse::Issue],
+        leads: Integer,
         platform: WhopSDK::Models::ad_campaign_platform,
+        purchase_value: Float,
+        purchases: Integer,
+        reach: Integer,
+        roas: Float,
+        spend: Float,
+        spend_currency: WhopSDK::Models::currency?,
         status: WhopSDK::Models::ad_campaign_status,
         title: String,
-        total_spend: Float,
+        unique_ctr: Float?,
         updated_at: Time
       }
 
@@ -20,15 +37,49 @@ module WhopSDK
 
       attr_accessor budget_type: WhopSDK::Models::ad_budget_type?
 
+      attr_accessor clicks: Integer
+
+      attr_accessor cost_per_lead: Float?
+
+      attr_accessor cost_per_purchase: Float?
+
+      attr_accessor cost_per_result: Float?
+
+      attr_accessor cpc: Float
+
+      attr_accessor cpm: Float
+
       attr_accessor created_at: Time
 
+      attr_accessor ctr: Float
+
+      attr_accessor frequency: Float?
+
+      attr_accessor impressions: Integer
+
+      attr_accessor issues: ::Array[WhopSDK::Models::AdCampaignListResponse::Issue]
+
+      attr_accessor leads: Integer
+
       attr_accessor platform: WhopSDK::Models::ad_campaign_platform
+
+      attr_accessor purchase_value: Float
+
+      attr_accessor purchases: Integer
+
+      attr_accessor reach: Integer
+
+      attr_accessor roas: Float
+
+      attr_accessor spend: Float
+
+      attr_accessor spend_currency: WhopSDK::Models::currency?
 
       attr_accessor status: WhopSDK::Models::ad_campaign_status
 
       attr_accessor title: String
 
-      attr_accessor total_spend: Float
+      attr_accessor unique_ctr: Float?
 
       attr_accessor updated_at: Time
 
@@ -36,11 +87,28 @@ module WhopSDK
         id: String,
         budget: Float?,
         budget_type: WhopSDK::Models::ad_budget_type?,
+        clicks: Integer,
+        cost_per_lead: Float?,
+        cost_per_purchase: Float?,
+        cost_per_result: Float?,
+        cpc: Float,
+        cpm: Float,
         created_at: Time,
+        ctr: Float,
+        frequency: Float?,
+        impressions: Integer,
+        issues: ::Array[WhopSDK::Models::AdCampaignListResponse::Issue],
+        leads: Integer,
         platform: WhopSDK::Models::ad_campaign_platform,
+        purchase_value: Float,
+        purchases: Integer,
+        reach: Integer,
+        roas: Float,
+        spend: Float,
+        spend_currency: WhopSDK::Models::currency?,
         status: WhopSDK::Models::ad_campaign_status,
         title: String,
-        total_spend: Float,
+        unique_ctr: Float?,
         updated_at: Time
       ) -> void
 
@@ -48,13 +116,89 @@ module WhopSDK
         id: String,
         budget: Float?,
         budget_type: WhopSDK::Models::ad_budget_type?,
+        clicks: Integer,
+        cost_per_lead: Float?,
+        cost_per_purchase: Float?,
+        cost_per_result: Float?,
+        cpc: Float,
+        cpm: Float,
         created_at: Time,
+        ctr: Float,
+        frequency: Float?,
+        impressions: Integer,
+        issues: ::Array[WhopSDK::Models::AdCampaignListResponse::Issue],
+        leads: Integer,
         platform: WhopSDK::Models::ad_campaign_platform,
+        purchase_value: Float,
+        purchases: Integer,
+        reach: Integer,
+        roas: Float,
+        spend: Float,
+        spend_currency: WhopSDK::Models::currency?,
         status: WhopSDK::Models::ad_campaign_status,
         title: String,
-        total_spend: Float,
+        unique_ctr: Float?,
         updated_at: Time
       }
+
+      type issue =
+        {
+          created_at: Time,
+          error_code: String?,
+          error_message: String?,
+          error_summary: String,
+          resolution_status: WhopSDK::Models::AdCampaignListResponse::Issue::resolution_status,
+          resource_id: String?,
+          resource_type: String
+        }
+
+      class Issue < WhopSDK::Internal::Type::BaseModel
+        attr_accessor created_at: Time
+
+        attr_accessor error_code: String?
+
+        attr_accessor error_message: String?
+
+        attr_accessor error_summary: String
+
+        attr_accessor resolution_status: WhopSDK::Models::AdCampaignListResponse::Issue::resolution_status
+
+        attr_accessor resource_id: String?
+
+        attr_accessor resource_type: String
+
+        def initialize: (
+          created_at: Time,
+          error_code: String?,
+          error_message: String?,
+          error_summary: String,
+          resolution_status: WhopSDK::Models::AdCampaignListResponse::Issue::resolution_status,
+          resource_id: String?,
+          resource_type: String
+        ) -> void
+
+        def to_hash: -> {
+          created_at: Time,
+          error_code: String?,
+          error_message: String?,
+          error_summary: String,
+          resolution_status: WhopSDK::Models::AdCampaignListResponse::Issue::resolution_status,
+          resource_id: String?,
+          resource_type: String
+        }
+
+        type resolution_status = :open | :resolved | :acknowledged
+
+        module ResolutionStatus
+          extend WhopSDK::Internal::Type::Enum
+
+          OPEN: :open
+          RESOLVED: :resolved
+          ACKNOWLEDGED: :acknowledged
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdCampaignListResponse::Issue::resolution_status]
+        end
+      end
     end
   end
 end

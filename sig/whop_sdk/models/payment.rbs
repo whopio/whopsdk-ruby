@@ -522,6 +522,7 @@ module WhopSDK
       type membership =
         {
           id: String,
+          custom_field_responses: ::Array[WhopSDK::Payment::Membership::CustomFieldResponse],
           phone_number: String?,
           status: WhopSDK::Models::membership_status
         }
@@ -529,21 +530,40 @@ module WhopSDK
       class Membership < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
+        attr_accessor custom_field_responses: ::Array[WhopSDK::Payment::Membership::CustomFieldResponse]
+
         attr_accessor phone_number: String?
 
         attr_accessor status: WhopSDK::Models::membership_status
 
         def initialize: (
           id: String,
+          custom_field_responses: ::Array[WhopSDK::Payment::Membership::CustomFieldResponse],
           phone_number: String?,
           status: WhopSDK::Models::membership_status
         ) -> void
 
         def to_hash: -> {
           id: String,
+          custom_field_responses: ::Array[WhopSDK::Payment::Membership::CustomFieldResponse],
           phone_number: String?,
           status: WhopSDK::Models::membership_status
         }
+
+        type custom_field_response =
+          { id: String, answer: String, question: String }
+
+        class CustomFieldResponse < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor answer: String
+
+          attr_accessor question: String
+
+          def initialize: (id: String, answer: String, question: String) -> void
+
+          def to_hash: -> { id: String, answer: String, question: String }
+        end
       end
 
       type payment_method =

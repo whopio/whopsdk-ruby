@@ -1060,6 +1060,13 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
+        # The customer's responses to custom checkout questions configured on the product
+        # at the time of purchase.
+        sig do
+          returns(T::Array[WhopSDK::Payment::Membership::CustomFieldResponse])
+        end
+        attr_accessor :custom_field_responses
+
         # The phone number associated with this membership.
         sig { returns(T.nilable(String)) }
         attr_accessor :phone_number
@@ -1072,6 +1079,10 @@ module WhopSDK
         sig do
           params(
             id: String,
+            custom_field_responses:
+              T::Array[
+                WhopSDK::Payment::Membership::CustomFieldResponse::OrHash
+              ],
             phone_number: T.nilable(String),
             status: WhopSDK::MembershipStatus::OrSymbol
           ).returns(T.attached_class)
@@ -1079,6 +1090,9 @@ module WhopSDK
         def self.new(
           # The unique identifier for the membership.
           id:,
+          # The customer's responses to custom checkout questions configured on the product
+          # at the time of purchase.
+          custom_field_responses:,
           # The phone number associated with this membership.
           phone_number:,
           # The state of the membership.
@@ -1090,12 +1104,58 @@ module WhopSDK
           override.returns(
             {
               id: String,
+              custom_field_responses:
+                T::Array[WhopSDK::Payment::Membership::CustomFieldResponse],
               phone_number: T.nilable(String),
               status: WhopSDK::MembershipStatus::TaggedSymbol
             }
           )
         end
         def to_hash
+        end
+
+        class CustomFieldResponse < WhopSDK::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                WhopSDK::Payment::Membership::CustomFieldResponse,
+                WhopSDK::Internal::AnyHash
+              )
+            end
+
+          # The unique identifier for the custom field response.
+          sig { returns(String) }
+          attr_accessor :id
+
+          # The response a user gave to the specific question or field.
+          sig { returns(String) }
+          attr_accessor :answer
+
+          # The question asked by the custom field
+          sig { returns(String) }
+          attr_accessor :question
+
+          # The response from a custom field on checkout
+          sig do
+            params(id: String, answer: String, question: String).returns(
+              T.attached_class
+            )
+          end
+          def self.new(
+            # The unique identifier for the custom field response.
+            id:,
+            # The response a user gave to the specific question or field.
+            answer:,
+            # The question asked by the custom field
+            question:
+          )
+          end
+
+          sig do
+            override.returns({ id: String, answer: String, question: String })
+          end
+          def to_hash
+          end
         end
       end
 

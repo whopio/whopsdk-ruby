@@ -165,8 +165,7 @@ module WhopSDK
       attr_accessor :title
 
       # The number of free trial days before the first charge on a renewal plan. Null if
-      # no trial is configured or the current user has already used a trial for this
-      # plan.
+      # no trial is configured or the current user previously paid for this plan.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :trial_period_days
 
@@ -296,8 +295,7 @@ module WhopSDK
         # checkout. Maximum 30 characters. Null if no title has been set.
         title:,
         # The number of free trial days before the first charge on a renewal plan. Null if
-        # no trial is configured or the current user has already used a trial for this
-        # plan.
+        # no trial is configured or the current user previously paid for this plan.
         trial_period_days:,
         # When true, the plan has unlimited stock (stock field is ignored). When false,
         # purchases are limited by the stock field.

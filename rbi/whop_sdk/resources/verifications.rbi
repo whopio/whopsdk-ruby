@@ -4,24 +4,6 @@ module WhopSDK
   module Resources
     # Verifications
     class Verifications
-      # Retrieves the details of an existing verification.
-      #
-      # Required permissions:
-      #
-      # - `payout:account:read`
-      sig do
-        params(
-          id: String,
-          request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::VerificationRetrieveResponse)
-      end
-      def retrieve(
-        # The unique identifier of the verification to retrieve.
-        id,
-        request_options: {}
-      )
-      end
-
       # Returns a list of identity verifications for a payout account, ordered by most
       # recent first.
       #

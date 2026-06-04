@@ -203,6 +203,12 @@ module WhopSDK
             #   @return [Integer, nil]
             optional :billing_period, Integer, nil?: true
 
+            # @!attribute currency
+            #   The available currencies on the platform
+            #
+            #   @return [Symbol, WhopSDK::Models::Currency, nil]
+            optional :currency, enum: -> { WhopSDK::Currency }, nil?: true
+
             # @!attribute custom_fields
             #   An array of custom field objects.
             #
@@ -301,7 +307,7 @@ module WhopSDK
             #   @return [Symbol, WhopSDK::Models::Visibility, nil]
             optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-            # @!method initialize(billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil)
+            # @!method initialize(billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil)
             #   Some parameter documentations has been truncated, see
             #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct::Plan}
             #   for more details.
@@ -310,6 +316,8 @@ module WhopSDK
             #   invoice.
             #
             #   @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans).
+            #
+            #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
             #
             #   @param custom_fields [Array<WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct::Plan::CustomField>, nil] An array of custom field objects.
             #
@@ -752,6 +760,12 @@ module WhopSDK
             #   @return [Integer, nil]
             optional :billing_period, Integer, nil?: true
 
+            # @!attribute currency
+            #   The available currencies on the platform
+            #
+            #   @return [Symbol, WhopSDK::Models::Currency, nil]
+            optional :currency, enum: -> { WhopSDK::Currency }, nil?: true
+
             # @!attribute custom_fields
             #   An array of custom field objects.
             #
@@ -850,7 +864,7 @@ module WhopSDK
             #   @return [Symbol, WhopSDK::Models::Visibility, nil]
             optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-            # @!method initialize(billing_period: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil)
+            # @!method initialize(billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil)
             #   Some parameter documentations has been truncated, see
             #   {WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductID::Plan}
             #   for more details.
@@ -859,6 +873,8 @@ module WhopSDK
             #   invoice.
             #
             #   @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans).
+            #
+            #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
             #
             #   @param custom_fields [Array<WhopSDK::Models::InvoiceCreateParams::Body::CreateInvoiceInputWithProductID::Plan::CustomField>, nil] An array of custom field objects.
             #

@@ -76,6 +76,7 @@ module WhopSDK
         BILLING_PERCENTAGE_FEE = :billing_percentage_fee
         REVSHARE_PERCENTAGE_FEE = :revshare_percentage_fee
         APPLICATION_FEE = :application_fee
+        WHOP_TAX_SERVICE_FEE = :whop_tax_service_fee
 
         # @!method self.values
         #   @return [Array<Symbol>]

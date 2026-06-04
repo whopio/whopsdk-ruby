@@ -57,4 +57,45 @@ class WhopSDK::Test::Resources::WalletsTest < WhopSDK::Test::ResourceTest
       }
     end
   end
+
+  def test_sign_message_required_params
+    skip("Mock server tests are disabled")
+
+    response =
+      @whop.wallets.sign_message(account_id: "account_id", chain_id: 0, message: {}, type: :personal_sign)
+
+    assert_pattern do
+      response => WhopSDK::Models::WalletSignMessageResponse
+    end
+
+    assert_pattern do
+      response => {
+        address: String,
+        chain_id: Integer,
+        object: WhopSDK::Models::WalletSignMessageResponse::Object,
+        signature: String,
+        type: String
+      }
+    end
+  end
+
+  def test_sign_transaction_required_params
+    skip("Mock server tests are disabled")
+
+    response = @whop.wallets.sign_transaction(account_id: "account_id", chain_id: 0, to: "to")
+
+    assert_pattern do
+      response => WhopSDK::Models::WalletSignTransactionResponse
+    end
+
+    assert_pattern do
+      response => {
+        address: String,
+        chain_id: Integer,
+        object: WhopSDK::Models::WalletSignTransactionResponse::Object,
+        to: String,
+        tx_hash: String
+      }
+    end
+  end
 end

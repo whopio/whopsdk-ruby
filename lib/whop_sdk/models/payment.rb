@@ -753,6 +753,14 @@ module WhopSDK
         #   @return [String]
         required :id, String
 
+        # @!attribute custom_field_responses
+        #   The customer's responses to custom checkout questions configured on the product
+        #   at the time of purchase.
+        #
+        #   @return [Array<WhopSDK::Models::Payment::Membership::CustomFieldResponse>]
+        required :custom_field_responses,
+                 -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Membership::CustomFieldResponse] }
+
         # @!attribute phone_number
         #   The phone number associated with this membership.
         #
@@ -765,14 +773,48 @@ module WhopSDK
         #   @return [Symbol, WhopSDK::Models::MembershipStatus]
         required :status, enum: -> { WhopSDK::MembershipStatus }
 
-        # @!method initialize(id:, phone_number:, status:)
+        # @!method initialize(id:, custom_field_responses:, phone_number:, status:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Payment::Membership} for more details.
+        #
         #   The membership attached to this payment.
         #
         #   @param id [String] The unique identifier for the membership.
         #
+        #   @param custom_field_responses [Array<WhopSDK::Models::Payment::Membership::CustomFieldResponse>] The customer's responses to custom checkout questions configured on the product
+        #
         #   @param phone_number [String, nil] The phone number associated with this membership.
         #
         #   @param status [Symbol, WhopSDK::Models::MembershipStatus] The state of the membership.
+
+        class CustomFieldResponse < WhopSDK::Internal::Type::BaseModel
+          # @!attribute id
+          #   The unique identifier for the custom field response.
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!attribute answer
+          #   The response a user gave to the specific question or field.
+          #
+          #   @return [String]
+          required :answer, String
+
+          # @!attribute question
+          #   The question asked by the custom field
+          #
+          #   @return [String]
+          required :question, String
+
+          # @!method initialize(id:, answer:, question:)
+          #   The response from a custom field on checkout
+          #
+          #   @param id [String] The unique identifier for the custom field response.
+          #
+          #   @param answer [String] The response a user gave to the specific question or field.
+          #
+          #   @param question [String] The question asked by the custom field
+        end
       end
 
       # @see WhopSDK::Models::Payment#payment_method

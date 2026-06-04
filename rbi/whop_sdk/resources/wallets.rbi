@@ -46,6 +46,32 @@ module WhopSDK
       )
       end
 
+      # Produces a personal_sign or EIP-712 signature from the account's wallet. Nothing
+      # is broadcast on-chain.
+      sig do
+        params(
+          account_id: String,
+          chain_id: Integer,
+          message: T.anything,
+          type: WhopSDK::WalletSignMessageParams::Type::OrSymbol,
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::Models::WalletSignMessageResponse)
+      end
+      def sign_message(
+        # Query param: The business or user account ID whose wallet signs.
+        account_id:,
+        # Body param: EIP-155 chain ID the signature is intended for (e.g. 9745 for
+        # Plasma).
+        chain_id:,
+        # Body param: A UTF-8 string for personal_sign, or an EIP-712 object (domain,
+        # types, primaryType, message) for typed_data.
+        message:,
+        # Body param: Signature scheme.
+        type:,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: WhopSDK::Client).returns(T.attached_class) }
       def self.new(client:)

@@ -67,6 +67,38 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::WalletSignMessageParams} for more details.
+      #
+      # Produces a personal_sign or EIP-712 signature from the account's wallet. Nothing
+      # is broadcast on-chain.
+      #
+      # @overload sign_message(account_id, chain_id:, message:, type:, request_options: {})
+      #
+      # @param account_id [String] The business or user account ID whose wallet signs.
+      #
+      # @param chain_id [Integer] EIP-155 chain ID the signature is intended for (e.g. 9745 for Plasma).
+      #
+      # @param message [Object] A UTF-8 string for personal_sign, or an EIP-712 object (domain, types, primaryTy
+      #
+      # @param type [Symbol, WhopSDK::Models::WalletSignMessageParams::Type] Signature scheme.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::WalletSignMessageResponse]
+      #
+      # @see WhopSDK::Models::WalletSignMessageParams
+      def sign_message(account_id, params)
+        parsed, options = WhopSDK::WalletSignMessageParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: ["wallets/%1$s/sign-message", account_id],
+          body: parsed,
+          model: WhopSDK::Models::WalletSignMessageResponse,
+          options: options
+        )
+      end
+
       # @api private
       #
       # @param client [WhopSDK::Client]

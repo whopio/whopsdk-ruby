@@ -14,18 +14,44 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
+      # Inclusive start of the window for the ad group's metric fields (spend,
+      # impressions, …). Omit both statsFrom and statsTo for all-time stats.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :stats_from
+
+      # Inclusive end of the window for the ad group's metric fields. Omit both
+      # statsFrom and statsTo for all-time stats.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :stats_to
+
       sig do
         params(
           id: String,
+          stats_from: T.nilable(Time),
+          stats_to: T.nilable(Time),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(id:, request_options: {})
+      def self.new(
+        id:,
+        # Inclusive start of the window for the ad group's metric fields (spend,
+        # impressions, …). Omit both statsFrom and statsTo for all-time stats.
+        stats_from: nil,
+        # Inclusive end of the window for the ad group's metric fields. Omit both
+        # statsFrom and statsTo for all-time stats.
+        stats_to: nil,
+        request_options: {}
+      )
       end
 
       sig do
         override.returns(
-          { id: String, request_options: WhopSDK::RequestOptions }
+          {
+            id: String,
+            stats_from: T.nilable(Time),
+            stats_to: T.nilable(Time),
+            request_options: WhopSDK::RequestOptions
+          }
         )
       end
       def to_hash

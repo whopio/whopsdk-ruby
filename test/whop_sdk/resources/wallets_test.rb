@@ -57,4 +57,21 @@ class WhopSDK::Test::Resources::WalletsTest < WhopSDK::Test::ResourceTest
       }
     end
   end
+
+  def test_supported_assets
+    skip("Mock server tests are disabled")
+
+    response = @whop.wallets.supported_assets
+
+    assert_pattern do
+      response => WhopSDK::Models::WalletSupportedAssetsResponse
+    end
+
+    assert_pattern do
+      response => {
+        assets: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::WalletSupportedAssetsResponse::Asset]),
+        object: WhopSDK::Models::WalletSupportedAssetsResponse::Object
+      }
+    end
+  end
 end

@@ -457,6 +457,10 @@ module WhopSDK
 
   class LedgerAccountRetrieveParams = WhopSDK::Models::LedgerAccountRetrieveParams
 
+  class LedgerLine = WhopSDK::Models::LedgerLine
+
+  class LedgerLineListParams = WhopSDK::Models::LedgerLineListParams
+
   class Lesson = WhopSDK::Models::Lesson
 
   module LessonTypes = WhopSDK::Models::LessonTypes

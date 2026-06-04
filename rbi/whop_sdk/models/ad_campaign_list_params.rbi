@@ -39,9 +39,19 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
-      # Case-insensitive substring match against the campaign title.
+      # Case-insensitive substring match against the campaign title or tag.
       sig { returns(T.nilable(String)) }
       attr_accessor :query
+
+      # Inclusive start of the window for each campaign's metric fields (spend,
+      # impressions, …). Omit both statsFrom and statsTo for all-time stats.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :stats_from
+
+      # Inclusive end of the window for each campaign's metric fields. Omit both
+      # statsFrom and statsTo for all-time stats.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :stats_to
 
       # The status of an ad campaign.
       sig { returns(T.nilable(WhopSDK::AdCampaignStatus::OrSymbol)) }
@@ -57,6 +67,8 @@ module WhopSDK
           first: T.nilable(Integer),
           last: T.nilable(Integer),
           query: T.nilable(String),
+          stats_from: T.nilable(Time),
+          stats_to: T.nilable(Time),
           status: T.nilable(WhopSDK::AdCampaignStatus::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -76,8 +88,14 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # Case-insensitive substring match against the campaign title.
+        # Case-insensitive substring match against the campaign title or tag.
         query: nil,
+        # Inclusive start of the window for each campaign's metric fields (spend,
+        # impressions, …). Omit both statsFrom and statsTo for all-time stats.
+        stats_from: nil,
+        # Inclusive end of the window for each campaign's metric fields. Omit both
+        # statsFrom and statsTo for all-time stats.
+        stats_to: nil,
         # The status of an ad campaign.
         status: nil,
         request_options: {}
@@ -95,6 +113,8 @@ module WhopSDK
             first: T.nilable(Integer),
             last: T.nilable(Integer),
             query: T.nilable(String),
+            stats_from: T.nilable(Time),
+            stats_to: T.nilable(Time),
             status: T.nilable(WhopSDK::AdCampaignStatus::OrSymbol),
             request_options: WhopSDK::RequestOptions
           }

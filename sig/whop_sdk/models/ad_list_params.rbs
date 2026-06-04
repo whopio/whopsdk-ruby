@@ -2,7 +2,10 @@ module WhopSDK
   module Models
     type ad_list_params =
       {
+        ad_campaign_id: String?,
+        ad_campaign_ids: ::Array[String]?,
         ad_group_id: String?,
+        ad_group_ids: ::Array[String]?,
         after: String?,
         before: String?,
         campaign_id: String?,
@@ -10,7 +13,6 @@ module WhopSDK
         created_after: Time?,
         created_before: Time?,
         first: Integer?,
-        include_paused: bool?,
         last: Integer?,
         order_by: WhopSDK::Models::AdListParams::order_by?,
         order_direction: WhopSDK::Models::direction?,
@@ -25,7 +27,13 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      attr_accessor ad_campaign_id: String?
+
+      attr_accessor ad_campaign_ids: ::Array[String]?
+
       attr_accessor ad_group_id: String?
+
+      attr_accessor ad_group_ids: ::Array[String]?
 
       attr_accessor after: String?
 
@@ -40,8 +48,6 @@ module WhopSDK
       attr_accessor created_before: Time?
 
       attr_accessor first: Integer?
-
-      attr_accessor include_paused: bool?
 
       attr_accessor last: Integer?
 
@@ -58,7 +64,10 @@ module WhopSDK
       attr_accessor status: WhopSDK::Models::external_ad_status?
 
       def initialize: (
+        ?ad_campaign_id: String?,
+        ?ad_campaign_ids: ::Array[String]?,
         ?ad_group_id: String?,
+        ?ad_group_ids: ::Array[String]?,
         ?after: String?,
         ?before: String?,
         ?campaign_id: String?,
@@ -66,7 +75,6 @@ module WhopSDK
         ?created_after: Time?,
         ?created_before: Time?,
         ?first: Integer?,
-        ?include_paused: bool?,
         ?last: Integer?,
         ?order_by: WhopSDK::Models::AdListParams::order_by?,
         ?order_direction: WhopSDK::Models::direction?,
@@ -78,7 +86,10 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
+        ad_campaign_id: String?,
+        ad_campaign_ids: ::Array[String]?,
         ad_group_id: String?,
+        ad_group_ids: ::Array[String]?,
         after: String?,
         before: String?,
         campaign_id: String?,
@@ -86,7 +97,6 @@ module WhopSDK
         created_after: Time?,
         created_before: Time?,
         first: Integer?,
-        include_paused: bool?,
         last: Integer?,
         order_by: WhopSDK::Models::AdListParams::order_by?,
         order_direction: WhopSDK::Models::direction?,

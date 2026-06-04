@@ -63,6 +63,7 @@ module WhopSDK
         | :billing_percentage_fee
         | :revshare_percentage_fee
         | :application_fee
+        | :whop_tax_service_fee
 
       module Type
         extend WhopSDK::Internal::Type::Enum
@@ -98,6 +99,7 @@ module WhopSDK
         BILLING_PERCENTAGE_FEE: :billing_percentage_fee
         REVSHARE_PERCENTAGE_FEE: :revshare_percentage_fee
         APPLICATION_FEE: :application_fee
+        WHOP_TAX_SERVICE_FEE: :whop_tax_service_fee
 
         def self?.values: -> ::Array[WhopSDK::Models::PaymentListFeesResponse::type_]
       end

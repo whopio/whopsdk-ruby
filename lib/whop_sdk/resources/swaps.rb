@@ -5,15 +5,13 @@ module WhopSDK
     class Swaps
       # Returns a stateless swap price preview. No funds move and nothing is persisted.
       #
-      # @overload create_quote(amount:, from_token:, to_token:, account_id: nil, from_address: nil, from_chain: nil, metadata: nil, slippage_bps: nil, to_address: nil, to_chain: nil, request_options: {})
+      # @overload create_quote(amount:, from_token:, to_token:, from_address: nil, from_chain: nil, metadata: nil, slippage_bps: nil, to_address: nil, to_chain: nil, request_options: {})
       #
       # @param amount [String] Input token amount.
       #
       # @param from_token [String] Source token contract address.
       #
       # @param to_token [String] Destination token contract address.
-      #
-      # @param account_id [String, nil] Caller-owned account whose wallet address should be used.
       #
       # @param from_address [String, nil]
       #

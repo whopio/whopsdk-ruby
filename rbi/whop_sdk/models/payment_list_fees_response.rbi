@@ -228,6 +228,11 @@ module WhopSDK
             :application_fee,
             WhopSDK::Models::PaymentListFeesResponse::Type::TaggedSymbol
           )
+        WHOP_TAX_SERVICE_FEE =
+          T.let(
+            :whop_tax_service_fee,
+            WhopSDK::Models::PaymentListFeesResponse::Type::TaggedSymbol
+          )
 
         sig do
           override.returns(

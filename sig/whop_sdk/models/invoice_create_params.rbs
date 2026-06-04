@@ -126,6 +126,7 @@ module WhopSDK
           type plan =
             {
               billing_period: Integer?,
+              currency: WhopSDK::Models::currency?,
               custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct::Plan::CustomField]?,
               description: String?,
               expiration_days: Integer?,
@@ -144,6 +145,8 @@ module WhopSDK
 
           class Plan < WhopSDK::Internal::Type::BaseModel
             attr_accessor billing_period: Integer?
+
+            attr_accessor currency: WhopSDK::Models::currency?
 
             attr_accessor custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct::Plan::CustomField]?
 
@@ -175,6 +178,7 @@ module WhopSDK
 
             def initialize: (
               ?billing_period: Integer?,
+              ?currency: WhopSDK::Models::currency?,
               ?custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct::Plan::CustomField]?,
               ?description: String?,
               ?expiration_days: Integer?,
@@ -193,6 +197,7 @@ module WhopSDK
 
             def to_hash: -> {
               billing_period: Integer?,
+              currency: WhopSDK::Models::currency?,
               custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProduct::Plan::CustomField]?,
               description: String?,
               expiration_days: Integer?,
@@ -479,6 +484,7 @@ module WhopSDK
           type plan =
             {
               billing_period: Integer?,
+              currency: WhopSDK::Models::currency?,
               custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductID::Plan::CustomField]?,
               description: String?,
               expiration_days: Integer?,
@@ -497,6 +503,8 @@ module WhopSDK
 
           class Plan < WhopSDK::Internal::Type::BaseModel
             attr_accessor billing_period: Integer?
+
+            attr_accessor currency: WhopSDK::Models::currency?
 
             attr_accessor custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductID::Plan::CustomField]?
 
@@ -528,6 +536,7 @@ module WhopSDK
 
             def initialize: (
               ?billing_period: Integer?,
+              ?currency: WhopSDK::Models::currency?,
               ?custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductID::Plan::CustomField]?,
               ?description: String?,
               ?expiration_days: Integer?,
@@ -546,6 +555,7 @@ module WhopSDK
 
             def to_hash: -> {
               billing_period: Integer?,
+              currency: WhopSDK::Models::currency?,
               custom_fields: ::Array[WhopSDK::InvoiceCreateParams::Body::CreateInvoiceInputWithProductID::Plan::CustomField]?,
               description: String?,
               expiration_days: Integer?,

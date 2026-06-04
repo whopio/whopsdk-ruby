@@ -1,0 +1,50 @@
+module WhopSDK
+  module Models
+    type wallet_sign_transaction_params =
+      {
+        account_id: String,
+        chain_id: Integer,
+        to: String,
+        data: String,
+        value: String
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class WalletSignTransactionParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
+
+      attr_accessor chain_id: Integer
+
+      attr_accessor to: String
+
+      attr_reader data: String?
+
+      def data=: (String) -> String
+
+      attr_reader value: String?
+
+      def value=: (String) -> String
+
+      def initialize: (
+        account_id: String,
+        chain_id: Integer,
+        to: String,
+        ?data: String,
+        ?value: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        chain_id: Integer,
+        to: String,
+        data: String,
+        value: String,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

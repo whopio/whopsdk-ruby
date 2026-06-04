@@ -17,6 +17,23 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::WalletSendResponse
 
+      def sign_message: (
+        String account_id,
+        chain_id: Integer,
+        message: top,
+        type: WhopSDK::Models::WalletSignMessageParams::type_,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::WalletSignMessageResponse
+
+      def sign_transaction: (
+        String account_id,
+        chain_id: Integer,
+        to: String,
+        ?data: String,
+        ?value: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::WalletSignTransactionResponse
+
       def initialize: (client: WhopSDK::Client) -> void
     end
   end

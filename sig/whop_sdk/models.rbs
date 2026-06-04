@@ -703,7 +703,11 @@ module WhopSDK
 
   class SupportChannelRetrieveParams = WhopSDK::Models::SupportChannelRetrieveParams
 
+  class SwapCreateParams = WhopSDK::Models::SwapCreateParams
+
   class SwapCreateQuoteParams = WhopSDK::Models::SwapCreateQuoteParams
+
+  class SwapRetrieveParams = WhopSDK::Models::SwapRetrieveParams
 
   module TaxIdentifierType = WhopSDK::Models::TaxIdentifierType
 

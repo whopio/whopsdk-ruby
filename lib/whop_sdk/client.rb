@@ -73,6 +73,10 @@ module WhopSDK
     # @return [WhopSDK::Resources::LedgerAccounts]
     attr_reader :ledger_accounts
 
+    # Ledger lines
+    # @return [WhopSDK::Resources::LedgerLines]
+    attr_reader :ledger_lines
+
     # Memberships
     # @return [WhopSDK::Resources::Memberships]
     attr_reader :memberships
@@ -361,6 +365,7 @@ module WhopSDK
       @forum_posts = WhopSDK::Resources::ForumPosts.new(client: self)
       @transfers = WhopSDK::Resources::Transfers.new(client: self)
       @ledger_accounts = WhopSDK::Resources::LedgerAccounts.new(client: self)
+      @ledger_lines = WhopSDK::Resources::LedgerLines.new(client: self)
       @memberships = WhopSDK::Resources::Memberships.new(client: self)
       @authorized_users = WhopSDK::Resources::AuthorizedUsers.new(client: self)
       @app_builds = WhopSDK::Resources::AppBuilds.new(client: self)

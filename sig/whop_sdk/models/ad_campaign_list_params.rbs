@@ -10,6 +10,8 @@ module WhopSDK
         first: Integer?,
         last: Integer?,
         query: String?,
+        stats_from: Time?,
+        stats_to: Time?,
         status: WhopSDK::Models::ad_campaign_status?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -34,6 +36,10 @@ module WhopSDK
 
       attr_accessor query: String?
 
+      attr_accessor stats_from: Time?
+
+      attr_accessor stats_to: Time?
+
       attr_accessor status: WhopSDK::Models::ad_campaign_status?
 
       def initialize: (
@@ -45,6 +51,8 @@ module WhopSDK
         ?first: Integer?,
         ?last: Integer?,
         ?query: String?,
+        ?stats_from: Time?,
+        ?stats_to: Time?,
         ?status: WhopSDK::Models::ad_campaign_status?,
         ?request_options: WhopSDK::request_opts
       ) -> void
@@ -58,6 +66,8 @@ module WhopSDK
         first: Integer?,
         last: Integer?,
         query: String?,
+        stats_from: Time?,
+        stats_to: Time?,
         status: WhopSDK::Models::ad_campaign_status?,
         request_options: WhopSDK::RequestOptions
       }

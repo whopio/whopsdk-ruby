@@ -67,6 +67,25 @@ module WhopSDK
         )
       end
 
+      # Returns the platform catalog of swap-enabled tokens (from TokenRegistry). Public
+      # — no API key required.
+      #
+      # @overload supported_assets(request_options: {})
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::WalletSupportedAssetsResponse]
+      #
+      # @see WhopSDK::Models::WalletSupportedAssetsParams
+      def supported_assets(params = {})
+        @client.request(
+          method: :get,
+          path: "wallets/supported-assets",
+          model: WhopSDK::Models::WalletSupportedAssetsResponse,
+          options: params[:request_options]
+        )
+      end
+
       # @api private
       #
       # @param client [WhopSDK::Client]

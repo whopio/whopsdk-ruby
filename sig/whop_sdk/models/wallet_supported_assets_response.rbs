@@ -1,0 +1,82 @@
+module WhopSDK
+  module Models
+    type wallet_supported_assets_response =
+      {
+        assets: ::Array[WhopSDK::Models::WalletSupportedAssetsResponse::Asset],
+        object: WhopSDK::Models::WalletSupportedAssetsResponse::object
+      }
+
+    class WalletSupportedAssetsResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor assets: ::Array[WhopSDK::Models::WalletSupportedAssetsResponse::Asset]
+
+      attr_accessor object: WhopSDK::Models::WalletSupportedAssetsResponse::object
+
+      def initialize: (
+        assets: ::Array[WhopSDK::Models::WalletSupportedAssetsResponse::Asset],
+        object: WhopSDK::Models::WalletSupportedAssetsResponse::object
+      ) -> void
+
+      def to_hash: -> {
+        assets: ::Array[WhopSDK::Models::WalletSupportedAssetsResponse::Asset],
+        object: WhopSDK::Models::WalletSupportedAssetsResponse::object
+      }
+
+      type asset =
+        {
+          chain_id: Integer,
+          decimals: Integer,
+          name: String,
+          network: String,
+          symbol: String,
+          token_address: String,
+          tradable: bool
+        }
+
+      class Asset < WhopSDK::Internal::Type::BaseModel
+        attr_accessor chain_id: Integer
+
+        attr_accessor decimals: Integer
+
+        attr_accessor name: String
+
+        attr_accessor network: String
+
+        attr_accessor symbol: String
+
+        attr_accessor token_address: String
+
+        attr_accessor tradable: bool
+
+        def initialize: (
+          chain_id: Integer,
+          decimals: Integer,
+          name: String,
+          network: String,
+          symbol: String,
+          token_address: String,
+          tradable: bool
+        ) -> void
+
+        def to_hash: -> {
+          chain_id: Integer,
+          decimals: Integer,
+          name: String,
+          network: String,
+          symbol: String,
+          token_address: String,
+          tradable: bool
+        }
+      end
+
+      type object = :supported_assets
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        SUPPORTED_ASSETS: :supported_assets
+
+        def self?.values: -> ::Array[WhopSDK::Models::WalletSupportedAssetsResponse::object]
+      end
+    end
+  end
+end

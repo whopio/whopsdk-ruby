@@ -3,20 +3,26 @@ module WhopSDK
     class Ads
       def retrieve: (
         String id,
+        ?stats_from: Time?,
+        ?stats_to: Time?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Ad
 
       def list: (
+        ?ad_campaign_id: String?,
+        ?ad_campaign_ids: ::Array[String]?,
         ?ad_group_id: String?,
+        ?ad_group_ids: ::Array[String]?,
         ?after: String?,
         ?before: String?,
         ?campaign_id: String?,
         ?company_id: String?,
         ?created_after: Time?,
         ?created_before: Time?,
+        ?direction: WhopSDK::Models::direction?,
         ?first: Integer?,
-        ?include_paused: bool?,
         ?last: Integer?,
+        ?order: WhopSDK::Models::AdListParams::order?,
         ?order_by: WhopSDK::Models::AdListParams::order_by?,
         ?order_direction: WhopSDK::Models::direction?,
         ?query: String?,

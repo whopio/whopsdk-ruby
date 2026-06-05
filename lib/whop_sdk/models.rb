@@ -795,6 +795,8 @@ module WhopSDK
 
   WalletSendParams = WhopSDK::Models::WalletSendParams
 
+  WalletSupportedAssetsParams = WhopSDK::Models::WalletSupportedAssetsParams
+
   Webhook = WhopSDK::Models::Webhook
 
   WebhookCreateParams = WhopSDK::Models::WebhookCreateParams

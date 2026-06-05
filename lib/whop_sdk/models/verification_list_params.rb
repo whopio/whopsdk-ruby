@@ -7,48 +7,72 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute payout_account_id
-      #   The unique identifier of the payout account to list verifications for.
-      #
-      #   @return [String]
-      required :payout_account_id, String
-
-      # @!attribute after
-      #   Returns the elements in the list that come after the specified cursor.
+      # @!attribute account_id
+      #   Filter verifications to a specific account.
       #
       #   @return [String, nil]
-      optional :after, String, nil?: true
+      optional :account_id, String
 
-      # @!attribute before
-      #   Returns the elements in the list that come before the specified cursor.
-      #
-      #   @return [String, nil]
-      optional :before, String, nil?: true
-
-      # @!attribute first
-      #   Returns the first _n_ elements from the list.
+      # @!attribute page
+      #   The page number to retrieve.
       #
       #   @return [Integer, nil]
-      optional :first, Integer, nil?: true
+      optional :page, Integer
 
-      # @!attribute last
-      #   Returns the last _n_ elements from the list.
+      # @!attribute per
+      #   The number of resources to return per page.
       #
       #   @return [Integer, nil]
-      optional :last, Integer, nil?: true
+      optional :per, Integer
 
-      # @!method initialize(payout_account_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
-      #   @param payout_account_id [String] The unique identifier of the payout account to list verifications for.
+      # @!attribute profile_type
+      #   Filter by profile type.
       #
-      #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      #   @return [Symbol, WhopSDK::Models::VerificationListParams::ProfileType, nil]
+      optional :profile_type, enum: -> { WhopSDK::VerificationListParams::ProfileType }
+
+      # @!attribute status
+      #   Filter by derived verification status.
       #
-      #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #   @return [Symbol, WhopSDK::Models::VerificationListParams::Status, nil]
+      optional :status, enum: -> { WhopSDK::VerificationListParams::Status }
+
+      # @!method initialize(account_id: nil, page: nil, per: nil, profile_type: nil, status: nil, request_options: {})
+      #   @param account_id [String] Filter verifications to a specific account.
       #
-      #   @param first [Integer, nil] Returns the first _n_ elements from the list.
+      #   @param page [Integer] The page number to retrieve.
       #
-      #   @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #   @param per [Integer] The number of resources to return per page.
+      #
+      #   @param profile_type [Symbol, WhopSDK::Models::VerificationListParams::ProfileType] Filter by profile type.
+      #
+      #   @param status [Symbol, WhopSDK::Models::VerificationListParams::Status] Filter by derived verification status.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      # Filter by profile type.
+      module ProfileType
+        extend WhopSDK::Internal::Type::Enum
+
+        INDIVIDUAL = :individual
+        BUSINESS = :business
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Filter by derived verification status.
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        NOT_STARTED = :not_started
+        PENDING = :pending
+        APPROVED = :approved
+        REJECTED = :rejected
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

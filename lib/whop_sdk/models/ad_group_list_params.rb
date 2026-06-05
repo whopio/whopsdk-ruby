@@ -7,6 +7,19 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute ad_campaign_id
+      #   Filter by ad campaign. Provide exactly one of ad_campaign_id or company_id.
+      #
+      #   @return [String, nil]
+      optional :ad_campaign_id, String, nil?: true
+
+      # @!attribute ad_campaign_ids
+      #   Only return ad groups belonging to these ad campaigns (max 100). Combine with
+      #   company_id.
+      #
+      #   @return [Array<String>, nil]
+      optional :ad_campaign_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
+
       # @!attribute after
       #   Returns the elements in the list that come after the specified cursor.
       #
@@ -20,13 +33,13 @@ module WhopSDK
       optional :before, String, nil?: true
 
       # @!attribute campaign_id
-      #   Filter by campaign. Provide exactly one of campaign_id or company_id.
+      #   Filter by campaign.
       #
       #   @return [String, nil]
       optional :campaign_id, String, nil?: true
 
       # @!attribute company_id
-      #   Filter by company. Provide exactly one of campaign_id or company_id.
+      #   Filter by company. Provide exactly one of ad_campaign_id or company_id.
       #
       #   @return [String, nil]
       optional :company_id, String, nil?: true
@@ -49,13 +62,6 @@ module WhopSDK
       #   @return [Integer, nil]
       optional :first, Integer, nil?: true
 
-      # @!attribute include_paused
-      #   When false, excludes paused ad groups so pagination matches the dashboard's
-      #   hide-paused toggle.
-      #
-      #   @return [Boolean, nil]
-      optional :include_paused, WhopSDK::Internal::Type::Boolean, nil?: true
-
       # @!attribute last
       #   Returns the last _n_ elements from the list.
       #
@@ -63,10 +69,24 @@ module WhopSDK
       optional :last, Integer, nil?: true
 
       # @!attribute query
-      #   Case-insensitive substring match against the ad group name.
+      #   Case-insensitive substring match against the ad group name or ID.
       #
       #   @return [String, nil]
       optional :query, String, nil?: true
+
+      # @!attribute stats_from
+      #   Inclusive start of the window for each ad group's metric fields (spend,
+      #   impressions, …). Omit both statsFrom and statsTo for all-time stats.
+      #
+      #   @return [Time, nil]
+      optional :stats_from, Time, nil?: true
+
+      # @!attribute stats_to
+      #   Inclusive end of the window for each ad group's metric fields. Omit both
+      #   statsFrom and statsTo for all-time stats.
+      #
+      #   @return [Time, nil]
+      optional :stats_to, Time, nil?: true
 
       # @!attribute status
       #   The status of an external ad group.
@@ -74,17 +94,21 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::AdGroupStatus, nil]
       optional :status, enum: -> { WhopSDK::AdGroupStatus }, nil?: true
 
-      # @!method initialize(after: nil, before: nil, campaign_id: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, include_paused: nil, last: nil, query: nil, status: nil, request_options: {})
+      # @!method initialize(ad_campaign_id: nil, ad_campaign_ids: nil, after: nil, before: nil, campaign_id: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, last: nil, query: nil, stats_from: nil, stats_to: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AdGroupListParams} for more details.
+      #
+      #   @param ad_campaign_id [String, nil] Filter by ad campaign. Provide exactly one of ad_campaign_id or company_id.
+      #
+      #   @param ad_campaign_ids [Array<String>, nil] Only return ad groups belonging to these ad campaigns (max 100). Combine with co
       #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param campaign_id [String, nil] Filter by campaign. Provide exactly one of campaign_id or company_id.
+      #   @param campaign_id [String, nil] Filter by campaign.
       #
-      #   @param company_id [String, nil] Filter by company. Provide exactly one of campaign_id or company_id.
+      #   @param company_id [String, nil] Filter by company. Provide exactly one of ad_campaign_id or company_id.
       #
       #   @param created_after [Time, nil] Only return ad groups created after this timestamp.
       #
@@ -92,11 +116,13 @@ module WhopSDK
       #
       #   @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
-      #   @param include_paused [Boolean, nil] When false, excludes paused ad groups so pagination matches the dashboard's hide
-      #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      #   @param query [String, nil] Case-insensitive substring match against the ad group name.
+      #   @param query [String, nil] Case-insensitive substring match against the ad group name or ID.
+      #
+      #   @param stats_from [Time, nil] Inclusive start of the window for each ad group's metric fields (spend, impressi
+      #
+      #   @param stats_to [Time, nil] Inclusive end of the window for each ad group's metric fields. Omit both statsFr
       #
       #   @param status [Symbol, WhopSDK::Models::AdGroupStatus, nil] The status of an external ad group.
       #

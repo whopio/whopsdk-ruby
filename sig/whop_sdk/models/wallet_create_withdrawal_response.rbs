@@ -1,0 +1,75 @@
+module WhopSDK
+  module Models
+    type wallet_create_withdrawal_response =
+      {
+        id: String,
+        amount: String,
+        asset: String,
+        created_at: String,
+        object: WhopSDK::Models::WalletCreateWithdrawalResponse::object,
+        payout_method_id: String,
+        status: String,
+        fee_amount: String?,
+        fee_type: String?,
+        speed: String?
+      }
+
+    class WalletCreateWithdrawalResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor amount: String
+
+      attr_accessor asset: String
+
+      attr_accessor created_at: String
+
+      attr_accessor object: WhopSDK::Models::WalletCreateWithdrawalResponse::object
+
+      attr_accessor payout_method_id: String
+
+      attr_accessor status: String
+
+      attr_accessor fee_amount: String?
+
+      attr_accessor fee_type: String?
+
+      attr_accessor speed: String?
+
+      def initialize: (
+        id: String,
+        amount: String,
+        asset: String,
+        created_at: String,
+        object: WhopSDK::Models::WalletCreateWithdrawalResponse::object,
+        payout_method_id: String,
+        status: String,
+        ?fee_amount: String?,
+        ?fee_type: String?,
+        ?speed: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        amount: String,
+        asset: String,
+        created_at: String,
+        object: WhopSDK::Models::WalletCreateWithdrawalResponse::object,
+        payout_method_id: String,
+        status: String,
+        fee_amount: String?,
+        fee_type: String?,
+        speed: String?
+      }
+
+      type object = :withdrawal
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        WITHDRAWAL: :withdrawal
+
+        def self?.values: -> ::Array[WhopSDK::Models::WalletCreateWithdrawalResponse::object]
+      end
+    end
+  end
+end

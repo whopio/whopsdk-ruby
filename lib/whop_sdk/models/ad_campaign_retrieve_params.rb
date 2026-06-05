@@ -12,8 +12,30 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
-      # @!method initialize(id:, request_options: {})
+      # @!attribute stats_from
+      #   Inclusive start of the window for the campaign's metric fields (spend,
+      #   impressions, …). Omit both statsFrom and statsTo for all-time stats.
+      #
+      #   @return [Time, nil]
+      optional :stats_from, Time, nil?: true
+
+      # @!attribute stats_to
+      #   Inclusive end of the window for the campaign's metric fields. Omit both
+      #   statsFrom and statsTo for all-time stats.
+      #
+      #   @return [Time, nil]
+      optional :stats_to, Time, nil?: true
+
+      # @!method initialize(id:, stats_from: nil, stats_to: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::AdCampaignRetrieveParams} for more details.
+      #
       #   @param id [String]
+      #
+      #   @param stats_from [Time, nil] Inclusive start of the window for the campaign's metric fields (spend, impressio
+      #
+      #   @param stats_to [Time, nil] Inclusive end of the window for the campaign's metric fields. Omit both statsFro
+      #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end
   end

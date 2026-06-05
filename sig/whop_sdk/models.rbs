@@ -703,7 +703,11 @@ module WhopSDK
 
   class SupportChannelRetrieveParams = WhopSDK::Models::SupportChannelRetrieveParams
 
+  class SwapCreateParams = WhopSDK::Models::SwapCreateParams
+
   class SwapCreateQuoteParams = WhopSDK::Models::SwapCreateQuoteParams
+
+  class SwapRetrieveParams = WhopSDK::Models::SwapRetrieveParams
 
   module TaxIdentifierType = WhopSDK::Models::TaxIdentifierType
 
@@ -748,6 +752,8 @@ module WhopSDK
   module VisibilityFilter = WhopSDK::Models::VisibilityFilter
 
   class WalletBalanceParams = WhopSDK::Models::WalletBalanceParams
+
+  class WalletCreateWithdrawalParams = WhopSDK::Models::WalletCreateWithdrawalParams
 
   class WalletListParams = WhopSDK::Models::WalletListParams
 

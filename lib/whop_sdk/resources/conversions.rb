@@ -4,13 +4,16 @@ module WhopSDK
   module Resources
     # Conversions
     class Conversions
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::ConversionCreateParams} for more details.
+      #
       # Track a conversion or engagement event for a company.
       #
       # Required permissions:
       #
       # - `event:create`
       #
-      # @overload create(company_id:, event_name:, action_source: nil, context: nil, currency: nil, custom_name: nil, event_id: nil, event_time: nil, plan_id: nil, product_id: nil, referrer_url: nil, url: nil, user: nil, value: nil, request_options: {})
+      # @overload create(company_id:, event_name:, action_source: nil, context: nil, currency: nil, custom_name: nil, duration: nil, event_id: nil, event_time: nil, plan_id: nil, product_id: nil, referrer_url: nil, resumed: nil, source: nil, title: nil, url: nil, user: nil, value: nil, request_options: {})
       #
       # @param company_id [String] The company to associate with this event.
       #
@@ -24,6 +27,8 @@ module WhopSDK
       #
       # @param custom_name [String, nil] Custom event name when event_name is 'custom'.
       #
+      # @param duration [Integer, nil] For 'leave' events: milliseconds the visitor spent on the page.
+      #
       # @param event_id [String, nil] Client-provided identifier for deduplication. Generated if omitted.
       #
       # @param event_time [Time, nil] When the event occurred. Defaults to now.
@@ -33,6 +38,12 @@ module WhopSDK
       # @param product_id [String, nil] The product associated with the event.
       #
       # @param referrer_url [String, nil] The referring URL.
+      #
+      # @param resumed [Boolean, nil] For 'page' events: true when the page was restored from the back/forward cache.
+      #
+      # @param source [String, nil] For 'identify' events: where the identity was captured (url, form, manual, ifram
+      #
+      # @param title [String, nil] For 'page' events: the document title.
       #
       # @param url [String, nil] The URL where the event occurred.
       #

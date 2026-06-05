@@ -5,44 +5,181 @@ module WhopSDK
     # @see WhopSDK::Resources::Verifications#retrieve
     class VerificationRetrieveResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The numeric id of the verification record.
+      #   The identity profile ID, e.g. idpf\_\*
       #
       #   @return [String]
       required :id, String
 
-      # @!attribute last_error_code
-      #   An error code for a verification attempt.
+      # @!attribute created_at
       #
-      #   @return [Symbol, WhopSDK::Models::VerificationErrorCode, nil]
-      required :last_error_code, enum: -> { WhopSDK::VerificationErrorCode }, nil?: true
+      #   @return [String]
+      required :created_at, String
 
-      # @!attribute last_error_reason
-      #   A human-readable explanation of the most recent verification error. Null if no
-      #   error has occurred.
+      # @!attribute kind
       #
-      #   @return [String, nil]
-      required :last_error_reason, String, nil?: true
+      #   @return [Symbol, WhopSDK::Models::VerificationRetrieveResponse::Kind]
+      required :kind, enum: -> { WhopSDK::Models::VerificationRetrieveResponse::Kind }
+
+      # @!attribute rfis
+      #
+      #   @return [Array<WhopSDK::Models::VerificationRetrieveResponse::Rfi>]
+      required :rfis,
+               -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::VerificationRetrieveResponse::Rfi] }
 
       # @!attribute status
-      #   The current status of this verification session.
       #
-      #   @return [Symbol, WhopSDK::Models::VerificationStatus]
-      required :status, enum: -> { WhopSDK::VerificationStatus }
+      #   @return [Symbol, WhopSDK::Models::VerificationRetrieveResponse::Status]
+      required :status, enum: -> { WhopSDK::Models::VerificationRetrieveResponse::Status }
 
-      # @!method initialize(id:, last_error_code:, last_error_reason:, status:)
-      #   Some parameter documentations has been truncated, see
-      #   {WhopSDK::Models::VerificationRetrieveResponse} for more details.
+      # @!attribute updated_at
       #
-      #   An identity verification session used to confirm a person or entity's identity
-      #   for payout account eligibility.
+      #   @return [String]
+      required :updated_at, String
+
+      # @!attribute address
       #
-      #   @param id [String] The numeric id of the verification record.
+      #   @return [Object, nil]
+      optional :address, WhopSDK::Internal::Type::Unknown, nil?: true
+
+      # @!attribute business_name
       #
-      #   @param last_error_code [Symbol, WhopSDK::Models::VerificationErrorCode, nil] An error code for a verification attempt.
+      #   @return [String, nil]
+      optional :business_name, String, nil?: true
+
+      # @!attribute business_structure
       #
-      #   @param last_error_reason [String, nil] A human-readable explanation of the most recent verification error. Null if no e
+      #   @return [String, nil]
+      optional :business_structure, String, nil?: true
+
+      # @!attribute country
       #
-      #   @param status [Symbol, WhopSDK::Models::VerificationStatus] The current status of this verification session.
+      #   @return [String, nil]
+      optional :country, String, nil?: true
+
+      # @!attribute date_of_birth
+      #
+      #   @return [String, nil]
+      optional :date_of_birth, String, nil?: true
+
+      # @!attribute first_name
+      #
+      #   @return [String, nil]
+      optional :first_name, String, nil?: true
+
+      # @!attribute last_name
+      #
+      #   @return [String, nil]
+      optional :last_name, String, nil?: true
+
+      # @!attribute session_url
+      #
+      #   @return [String, nil]
+      optional :session_url, String, nil?: true
+
+      # @!method initialize(id:, created_at:, kind:, rfis:, status:, updated_at:, address: nil, business_name: nil, business_structure: nil, country: nil, date_of_birth: nil, first_name: nil, last_name: nil, session_url: nil)
+      #   @param id [String] The identity profile ID, e.g. idpf\_\*
+      #
+      #   @param created_at [String]
+      #
+      #   @param kind [Symbol, WhopSDK::Models::VerificationRetrieveResponse::Kind]
+      #
+      #   @param rfis [Array<WhopSDK::Models::VerificationRetrieveResponse::Rfi>]
+      #
+      #   @param status [Symbol, WhopSDK::Models::VerificationRetrieveResponse::Status]
+      #
+      #   @param updated_at [String]
+      #
+      #   @param address [Object, nil]
+      #
+      #   @param business_name [String, nil]
+      #
+      #   @param business_structure [String, nil]
+      #
+      #   @param country [String, nil]
+      #
+      #   @param date_of_birth [String, nil]
+      #
+      #   @param first_name [String, nil]
+      #
+      #   @param last_name [String, nil]
+      #
+      #   @param session_url [String, nil]
+
+      # @see WhopSDK::Models::VerificationRetrieveResponse#kind
+      module Kind
+        extend WhopSDK::Internal::Type::Enum
+
+        INDIVIDUAL = :individual
+        BUSINESS = :business
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      class Rfi < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #
+        #   @return [String, nil]
+        optional :id, String
+
+        # @!attribute created_at
+        #
+        #   @return [String, nil]
+        optional :created_at, String
+
+        # @!attribute description
+        #
+        #   @return [String, nil]
+        optional :description, String
+
+        # @!attribute error_message
+        #
+        #   @return [String, nil]
+        optional :error_message, String, nil?: true
+
+        # @!attribute status
+        #
+        #   @return [Symbol, WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status, nil]
+        optional :status, enum: -> { WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status }
+
+        # @!attribute type
+        #
+        #   @return [String, nil]
+        optional :type, String, nil?: true
+
+        # @!method initialize(id: nil, created_at: nil, description: nil, error_message: nil, status: nil, type: nil)
+        #   @param id [String]
+        #   @param created_at [String]
+        #   @param description [String]
+        #   @param error_message [String, nil]
+        #   @param status [Symbol, WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status]
+        #   @param type [String, nil]
+
+        # @see WhopSDK::Models::VerificationRetrieveResponse::Rfi#status
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          OUTSTANDING = :outstanding
+          INVALID = :invalid
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
+
+      # @see WhopSDK::Models::VerificationRetrieveResponse#status
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        NOT_STARTED = :not_started
+        PENDING = :pending
+        APPROVED = :approved
+        REJECTED = :rejected
+        ACTION_REQUIRED = :action_required
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

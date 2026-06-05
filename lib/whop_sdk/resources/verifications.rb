@@ -4,64 +4,157 @@ module WhopSDK
   module Resources
     # Verifications
     class Verifications
-      # Retrieves the details of an existing verification.
+      # Creates or resumes a verification session for an account.
       #
-      # Required permissions:
+      # @overload create(account_id:, address: nil, country: nil, date_of_birth: nil, first_name: nil, kind: nil, last_name: nil, phone: nil, restart: nil, request_options: {})
       #
-      # - `payout:account:read`
+      # @param account_id [String] The account ID to verify.
       #
-      # @overload retrieve(id, request_options: {})
+      # @param address [Hash{Symbol=>Object}] Pre-fill address (line1, city, state, postal_code).
       #
-      # @param id [String] The unique identifier of the verification to retrieve.
+      # @param country [String] Pre-fill the country.
+      #
+      # @param date_of_birth [String] Pre-fill the date of birth.
+      #
+      # @param first_name [String] Pre-fill the first name.
+      #
+      # @param kind [Symbol, WhopSDK::Models::VerificationCreateParams::Kind] The verification type. Defaults to individual.
+      #
+      # @param last_name [String] Pre-fill the last name.
+      #
+      # @param phone [String] Pre-fill the phone number.
+      #
+      # @param restart [Boolean] Whether to restart an in-flight verification.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::VerificationCreateResponse]
+      #
+      # @see WhopSDK::Models::VerificationCreateParams
+      def create(params)
+        parsed, options = WhopSDK::VerificationCreateParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: "verifications",
+          body: parsed,
+          model: WhopSDK::Models::VerificationCreateResponse,
+          options: options
+        )
+      end
+
+      # Retrieves a single identity verification profile by ID, including verification
+      # sessions and outstanding RFIs.
+      #
+      # @overload retrieve(verification_id, request_options: {})
+      #
+      # @param verification_id [String] The ID of the verification, which will look like idpf\_******\*******
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::VerificationRetrieveResponse]
       #
       # @see WhopSDK::Models::VerificationRetrieveParams
-      def retrieve(id, params = {})
+      def retrieve(verification_id, params = {})
         @client.request(
           method: :get,
-          path: ["verifications/%1$s", id],
+          path: ["verifications/%1$s", verification_id],
           model: WhopSDK::Models::VerificationRetrieveResponse,
           options: params[:request_options]
         )
       end
 
-      # Returns a list of identity verifications for a payout account, ordered by most
-      # recent first.
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::VerificationUpdateParams} for more details.
       #
-      # Required permissions:
+      # Updates fields on an identity verification profile, or responds to outstanding
+      # RFIs.
       #
-      # - `payout:account:read`
+      # @overload update(verification_id, business_address: nil, business_name: nil, business_structure: nil, country: nil, date_of_birth: nil, first_name: nil, last_name: nil, personal_address: nil, rfis: nil, request_options: {})
       #
-      # @overload list(payout_account_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
+      # @param verification_id [String] The ID of the verification, which will look like idpf\_******\*******
       #
-      # @param payout_account_id [String] The unique identifier of the payout account to list verifications for.
+      # @param business_address [Hash{Symbol=>Object}] The business address.
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param business_name [String] The business name.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param business_structure [String] The business structure.
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param country [String] The country code.
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param date_of_birth [String] The date of birth.
+      #
+      # @param first_name [String] The first name on the verification.
+      #
+      # @param last_name [String] The last name on the verification.
+      #
+      # @param personal_address [Hash{Symbol=>Object}] The personal address.
+      #
+      # @param rfis [Array<WhopSDK::Models::VerificationUpdateParams::Rfi>] RFI responses. Each entry must include id and a value, address, or files payload
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::VerificationListResponse>]
+      # @return [WhopSDK::Models::VerificationUpdateResponse]
+      #
+      # @see WhopSDK::Models::VerificationUpdateParams
+      def update(verification_id, params = {})
+        parsed, options = WhopSDK::VerificationUpdateParams.dump_request(params)
+        @client.request(
+          method: :patch,
+          path: ["verifications/%1$s", verification_id],
+          body: parsed,
+          model: WhopSDK::Models::VerificationUpdateResponse,
+          options: options
+        )
+      end
+
+      # Lists identity verification profiles visible to the credential.
+      #
+      # @overload list(account_id: nil, page: nil, per: nil, profile_type: nil, status: nil, request_options: {})
+      #
+      # @param account_id [String] Filter verifications to a specific account.
+      #
+      # @param page [Integer] The page number to retrieve.
+      #
+      # @param per [Integer] The number of resources to return per page.
+      #
+      # @param profile_type [Symbol, WhopSDK::Models::VerificationListParams::ProfileType] Filter by profile type.
+      #
+      # @param status [Symbol, WhopSDK::Models::VerificationListParams::Status] Filter by derived verification status.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::VerificationListResponse]
       #
       # @see WhopSDK::Models::VerificationListParams
-      def list(params)
+      def list(params = {})
         parsed, options = WhopSDK::VerificationListParams.dump_request(params)
         query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "verifications",
           query: query,
-          page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::VerificationListResponse,
           options: options
+        )
+      end
+
+      # Soft-deletes an identity verification profile and unlinks it from all accounts.
+      #
+      # @overload delete(verification_id, request_options: {})
+      #
+      # @param verification_id [String] The ID of the verification, which will look like idpf\_******\*******
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::VerificationDeleteResponse]
+      #
+      # @see WhopSDK::Models::VerificationDeleteParams
+      def delete(verification_id, params = {})
+        @client.request(
+          method: :delete,
+          path: ["verifications/%1$s", verification_id],
+          model: WhopSDK::Models::VerificationDeleteResponse,
+          options: params[:request_options]
         )
       end
 

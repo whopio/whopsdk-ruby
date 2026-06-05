@@ -1,0 +1,60 @@
+module WhopSDK
+  module Resources
+    class Cards
+      def create: (
+        account_id: String,
+        ?name: String,
+        ?spend_limit: String,
+        ?spend_limit_frequency: WhopSDK::Models::CardCreateParams::spend_limit_frequency,
+        ?transaction_limit: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Card
+
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Card
+
+      def update: (
+        String id,
+        ?name: String,
+        ?spend_limit: String,
+        ?spend_limit_frequency: WhopSDK::Models::CardUpdateParams::spend_limit_frequency,
+        ?transaction_limit: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Card
+
+      def list: (
+        account_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::CardListResponse
+
+      def balance: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::CardAccountBalance
+
+      def deactivate: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Card
+
+      def deposit_address: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::CardDepositAddress
+
+      def freeze_: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Card
+
+      def unfreeze: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Card
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

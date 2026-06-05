@@ -1,0 +1,45 @@
+module WhopSDK
+  module Models
+    type card_account_api =
+      {
+        auto_topup_enabled: bool,
+        object: WhopSDK::Models::CardAccountAPI::object,
+        auto_topup_target_usd: String?,
+        auto_topup_threshold_usd: String?
+      }
+
+    class CardAccountAPI < WhopSDK::Internal::Type::BaseModel
+      attr_accessor auto_topup_enabled: bool
+
+      attr_accessor object: WhopSDK::Models::CardAccountAPI::object
+
+      attr_accessor auto_topup_target_usd: String?
+
+      attr_accessor auto_topup_threshold_usd: String?
+
+      def initialize: (
+        auto_topup_enabled: bool,
+        object: WhopSDK::Models::CardAccountAPI::object,
+        ?auto_topup_target_usd: String?,
+        ?auto_topup_threshold_usd: String?
+      ) -> void
+
+      def to_hash: -> {
+        auto_topup_enabled: bool,
+        object: WhopSDK::Models::CardAccountAPI::object,
+        auto_topup_target_usd: String?,
+        auto_topup_threshold_usd: String?
+      }
+
+      type object = :card_account
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        CARD_ACCOUNT: :card_account
+
+        def self?.values: -> ::Array[WhopSDK::Models::CardAccountAPI::object]
+      end
+    end
+  end
+end

@@ -151,7 +151,35 @@ module WhopSDK
 
   module CancelOptions = WhopSDK::Models::CancelOptions
 
+  class Card = WhopSDK::Models::Card
+
+  class CardAccountAPI = WhopSDK::Models::CardAccountAPI
+
+  class CardAccountBalance = WhopSDK::Models::CardAccountBalance
+
+  class CardAccountUpdateParams = WhopSDK::Models::CardAccountUpdateParams
+
+  class CardBalanceParams = WhopSDK::Models::CardBalanceParams
+
   module CardBrands = WhopSDK::Models::CardBrands
+
+  class CardCreateParams = WhopSDK::Models::CardCreateParams
+
+  class CardDeactivateParams = WhopSDK::Models::CardDeactivateParams
+
+  class CardDepositAddress = WhopSDK::Models::CardDepositAddress
+
+  class CardDepositAddressParams = WhopSDK::Models::CardDepositAddressParams
+
+  class CardFreezeParams = WhopSDK::Models::CardFreezeParams
+
+  class CardListParams = WhopSDK::Models::CardListParams
+
+  class CardRetrieveParams = WhopSDK::Models::CardRetrieveParams
+
+  class CardUnfreezeParams = WhopSDK::Models::CardUnfreezeParams
+
+  class CardUpdateParams = WhopSDK::Models::CardUpdateParams
 
   class ChatChannel = WhopSDK::Models::ChatChannel
 

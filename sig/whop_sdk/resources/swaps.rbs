@@ -1,6 +1,22 @@
 module WhopSDK
   module Resources
     class Swaps
+      def create: (
+        account_id: String,
+        amount: String,
+        from_token: String,
+        to_token: String,
+        ?from_chain: WhopSDK::Models::SwapCreateParams::from_chain?,
+        ?slippage_bps: Integer?,
+        ?to_chain: WhopSDK::Models::SwapCreateParams::to_chain?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::SwapCreateResponse
+
+      def retrieve: (
+        String account_id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::SwapRetrieveResponse
+
       def create_quote: (
         amount: String,
         from_token: String,

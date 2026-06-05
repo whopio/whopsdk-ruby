@@ -1,0 +1,50 @@
+module WhopSDK
+  module Models
+    type swap_retrieve_response =
+      {
+        account_id: String,
+        object: WhopSDK::Models::SwapRetrieveResponse::object,
+        status: String,
+        tx_hashes: ::Array[String],
+        error: String?
+      }
+
+    class SwapRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor account_id: String
+
+      attr_accessor object: WhopSDK::Models::SwapRetrieveResponse::object
+
+      attr_accessor status: String
+
+      attr_accessor tx_hashes: ::Array[String]
+
+      attr_accessor error: String?
+
+      def initialize: (
+        account_id: String,
+        object: WhopSDK::Models::SwapRetrieveResponse::object,
+        status: String,
+        tx_hashes: ::Array[String],
+        ?error: String?
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        object: WhopSDK::Models::SwapRetrieveResponse::object,
+        status: String,
+        tx_hashes: ::Array[String],
+        error: String?
+      }
+
+      type object = :swap
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        SWAP: :swap
+
+        def self?.values: -> ::Array[WhopSDK::Models::SwapRetrieveResponse::object]
+      end
+    end
+  end
+end

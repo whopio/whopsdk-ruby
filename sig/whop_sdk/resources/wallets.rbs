@@ -17,6 +17,10 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::WalletSendResponse
 
+      def supported_assets: (
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::WalletSupportedAssetsResponse
+
       def initialize: (client: WhopSDK::Client) -> void
     end
   end

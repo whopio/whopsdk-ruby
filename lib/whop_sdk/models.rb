@@ -745,7 +745,11 @@ module WhopSDK
 
   SupportChannelRetrieveParams = WhopSDK::Models::SupportChannelRetrieveParams
 
+  SwapCreateParams = WhopSDK::Models::SwapCreateParams
+
   SwapCreateQuoteParams = WhopSDK::Models::SwapCreateQuoteParams
+
+  SwapRetrieveParams = WhopSDK::Models::SwapRetrieveParams
 
   TaxIdentifierType = WhopSDK::Models::TaxIdentifierType
 
@@ -794,6 +798,8 @@ module WhopSDK
   WalletListParams = WhopSDK::Models::WalletListParams
 
   WalletSendParams = WhopSDK::Models::WalletSendParams
+
+  WalletSupportedAssetsParams = WhopSDK::Models::WalletSupportedAssetsParams
 
   Webhook = WhopSDK::Models::Webhook
 

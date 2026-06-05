@@ -2,13 +2,13 @@
 
 module WhopSDK
   module Models
-    class VerificationRetrieveParams < WhopSDK::Internal::Type::BaseModel
+    class VerificationDeleteParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(WhopSDK::VerificationRetrieveParams, WhopSDK::Internal::AnyHash)
+          T.any(WhopSDK::VerificationDeleteParams, WhopSDK::Internal::AnyHash)
         end
 
       sig { returns(String) }

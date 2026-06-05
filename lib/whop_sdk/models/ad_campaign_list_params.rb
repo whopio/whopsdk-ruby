@@ -50,10 +50,24 @@ module WhopSDK
       optional :last, Integer, nil?: true
 
       # @!attribute query
-      #   Case-insensitive substring match against the campaign title.
+      #   Case-insensitive substring match against the campaign title or ID.
       #
       #   @return [String, nil]
       optional :query, String, nil?: true
+
+      # @!attribute stats_from
+      #   Inclusive start of the window for each campaign's metric fields (spend,
+      #   impressions, …). Omit both statsFrom and statsTo for all-time stats.
+      #
+      #   @return [Time, nil]
+      optional :stats_from, Time, nil?: true
+
+      # @!attribute stats_to
+      #   Inclusive end of the window for each campaign's metric fields. Omit both
+      #   statsFrom and statsTo for all-time stats.
+      #
+      #   @return [Time, nil]
+      optional :stats_to, Time, nil?: true
 
       # @!attribute status
       #   The status of an ad campaign.
@@ -61,7 +75,10 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::AdCampaignStatus, nil]
       optional :status, enum: -> { WhopSDK::AdCampaignStatus }, nil?: true
 
-      # @!method initialize(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, last: nil, query: nil, status: nil, request_options: {})
+      # @!method initialize(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, last: nil, query: nil, stats_from: nil, stats_to: nil, status: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::AdCampaignListParams} for more details.
+      #
       #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
@@ -76,7 +93,11 @@ module WhopSDK
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      #   @param query [String, nil] Case-insensitive substring match against the campaign title.
+      #   @param query [String, nil] Case-insensitive substring match against the campaign title or ID.
+      #
+      #   @param stats_from [Time, nil] Inclusive start of the window for each campaign's metric fields (spend, impressi
+      #
+      #   @param stats_to [Time, nil] Inclusive end of the window for each campaign's metric fields. Omit both statsFr
       #
       #   @param status [Symbol, WhopSDK::Models::AdCampaignStatus, nil] The status of an ad campaign.
       #

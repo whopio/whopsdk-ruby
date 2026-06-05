@@ -217,7 +217,6 @@ module WhopSDK
     # @return [WhopSDK::Resources::PayoutMethods]
     attr_reader :payout_methods
 
-    # Verifications
     # @return [WhopSDK::Resources::Verifications]
     attr_reader :verifications
 

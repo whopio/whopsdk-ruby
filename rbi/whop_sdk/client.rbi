@@ -200,7 +200,6 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::PayoutMethods) }
     attr_reader :payout_methods
 
-    # Verifications
     sig { returns(WhopSDK::Resources::Verifications) }
     attr_reader :verifications
 

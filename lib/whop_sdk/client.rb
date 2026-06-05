@@ -201,6 +201,9 @@ module WhopSDK
     # @return [WhopSDK::Resources::Deposits]
     attr_reader :deposits
 
+    # @return [WhopSDK::Resources::Cards]
+    attr_reader :cards
+
     # Setup intents
     # @return [WhopSDK::Resources::SetupIntents]
     attr_reader :setup_intents
@@ -414,6 +417,7 @@ module WhopSDK
       @wallets = WhopSDK::Resources::Wallets.new(client: self)
       @swaps = WhopSDK::Resources::Swaps.new(client: self)
       @deposits = WhopSDK::Resources::Deposits.new(client: self)
+      @cards = WhopSDK::Resources::Cards.new(client: self)
       @setup_intents = WhopSDK::Resources::SetupIntents.new(client: self)
       @payment_methods = WhopSDK::Resources::PaymentMethods.new(client: self)
       @fee_markups = WhopSDK::Resources::FeeMarkups.new(client: self)

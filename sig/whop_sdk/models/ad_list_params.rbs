@@ -2,16 +2,20 @@ module WhopSDK
   module Models
     type ad_list_params =
       {
+        ad_campaign_id: String?,
+        ad_campaign_ids: ::Array[String]?,
         ad_group_id: String?,
+        ad_group_ids: ::Array[String]?,
         after: String?,
         before: String?,
         campaign_id: String?,
         company_id: String?,
         created_after: Time?,
         created_before: Time?,
+        direction: WhopSDK::Models::direction?,
         first: Integer?,
-        include_paused: bool?,
         last: Integer?,
+        order: WhopSDK::Models::AdListParams::order?,
         order_by: WhopSDK::Models::AdListParams::order_by?,
         order_direction: WhopSDK::Models::direction?,
         query: String?,
@@ -25,7 +29,13 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      attr_accessor ad_campaign_id: String?
+
+      attr_accessor ad_campaign_ids: ::Array[String]?
+
       attr_accessor ad_group_id: String?
+
+      attr_accessor ad_group_ids: ::Array[String]?
 
       attr_accessor after: String?
 
@@ -39,11 +49,13 @@ module WhopSDK
 
       attr_accessor created_before: Time?
 
+      attr_accessor direction: WhopSDK::Models::direction?
+
       attr_accessor first: Integer?
 
-      attr_accessor include_paused: bool?
-
       attr_accessor last: Integer?
+
+      attr_accessor order: WhopSDK::Models::AdListParams::order?
 
       attr_accessor order_by: WhopSDK::Models::AdListParams::order_by?
 
@@ -58,16 +70,20 @@ module WhopSDK
       attr_accessor status: WhopSDK::Models::external_ad_status?
 
       def initialize: (
+        ?ad_campaign_id: String?,
+        ?ad_campaign_ids: ::Array[String]?,
         ?ad_group_id: String?,
+        ?ad_group_ids: ::Array[String]?,
         ?after: String?,
         ?before: String?,
         ?campaign_id: String?,
         ?company_id: String?,
         ?created_after: Time?,
         ?created_before: Time?,
+        ?direction: WhopSDK::Models::direction?,
         ?first: Integer?,
-        ?include_paused: bool?,
         ?last: Integer?,
+        ?order: WhopSDK::Models::AdListParams::order?,
         ?order_by: WhopSDK::Models::AdListParams::order_by?,
         ?order_direction: WhopSDK::Models::direction?,
         ?query: String?,
@@ -78,16 +94,20 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
+        ad_campaign_id: String?,
+        ad_campaign_ids: ::Array[String]?,
         ad_group_id: String?,
+        ad_group_ids: ::Array[String]?,
         after: String?,
         before: String?,
         campaign_id: String?,
         company_id: String?,
         created_after: Time?,
         created_before: Time?,
+        direction: WhopSDK::Models::direction?,
         first: Integer?,
-        include_paused: bool?,
         last: Integer?,
+        order: WhopSDK::Models::AdListParams::order?,
         order_by: WhopSDK::Models::AdListParams::order_by?,
         order_direction: WhopSDK::Models::direction?,
         query: String?,
@@ -97,12 +117,25 @@ module WhopSDK
         request_options: WhopSDK::RequestOptions
       }
 
-      type order_by = :spend | :roas
+      type order = :created_at | :spend | :return_on_ad_spend
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        CREATED_AT: :created_at
+        SPEND: :spend
+        RETURN_ON_AD_SPEND: :return_on_ad_spend
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdListParams::order]
+      end
+
+      type order_by = :spend | :return_on_ad_spend | :roas
 
       module OrderBy
         extend WhopSDK::Internal::Type::Enum
 
         SPEND: :spend
+        RETURN_ON_AD_SPEND: :return_on_ad_spend
         ROAS: :roas
 
         def self?.values: -> ::Array[WhopSDK::Models::AdListParams::order_by]

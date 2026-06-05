@@ -3,6 +3,8 @@ module WhopSDK
     class AdCampaigns
       def retrieve: (
         String id,
+        ?stats_from: Time?,
+        ?stats_to: Time?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::AdCampaign
 
@@ -21,6 +23,8 @@ module WhopSDK
         ?first: Integer?,
         ?last: Integer?,
         ?query: String?,
+        ?stats_from: Time?,
+        ?stats_to: Time?,
         ?status: WhopSDK::Models::ad_campaign_status?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::AdCampaignListResponse]

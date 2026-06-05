@@ -772,16 +772,18 @@ module WhopSDK
 
   UserUpdateParams = WhopSDK::Models::UserUpdateParams
 
-  VerificationErrorCode = WhopSDK::Models::VerificationErrorCode
+  VerificationCreateParams = WhopSDK::Models::VerificationCreateParams
+
+  VerificationDeleteParams = WhopSDK::Models::VerificationDeleteParams
 
   VerificationListParams = WhopSDK::Models::VerificationListParams
 
   VerificationRetrieveParams = WhopSDK::Models::VerificationRetrieveParams
 
-  VerificationStatus = WhopSDK::Models::VerificationStatus
-
   VerificationSucceededWebhookEvent =
     WhopSDK::Models::VerificationSucceededWebhookEvent
+
+  VerificationUpdateParams = WhopSDK::Models::VerificationUpdateParams
 
   Visibility = WhopSDK::Models::Visibility
 

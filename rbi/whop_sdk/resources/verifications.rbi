@@ -4,55 +4,142 @@ module WhopSDK
   module Resources
     # Verifications
     class Verifications
-      # Retrieves the details of an existing verification.
-      #
-      # Required permissions:
-      #
-      # - `payout:account:read`
+      # Creates a verification session for an account. If a verification is already in
+      # progress, existing session is returned. You can restart a verification by
+      # setting the `restart` attribute.
       sig do
         params(
-          id: String,
+          account_id: String,
+          address: T::Hash[Symbol, T.anything],
+          country: String,
+          date_of_birth: String,
+          first_name: String,
+          kind: WhopSDK::VerificationCreateParams::Kind::OrSymbol,
+          last_name: String,
+          phone: String,
+          restart: T::Boolean,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::VerificationRetrieveResponse)
+        ).returns(WhopSDK::Models::VerificationCreateResponse)
       end
-      def retrieve(
-        # The unique identifier of the verification to retrieve.
-        id,
+      def create(
+        # The account ID to verify.
+        account_id:,
+        # Pre-fill address (line1, city, state, postal_code).
+        address: nil,
+        # Pre-fill the country.
+        country: nil,
+        # Pre-fill the date of birth.
+        date_of_birth: nil,
+        # Pre-fill the first name.
+        first_name: nil,
+        # The verification type. Defaults to individual.
+        kind: nil,
+        # Pre-fill the last name.
+        last_name: nil,
+        # Pre-fill the phone number.
+        phone: nil,
+        # Whether to restart an in-flight verification.
+        restart: nil,
         request_options: {}
       )
       end
 
-      # Returns a list of identity verifications for a payout account, ordered by most
-      # recent first.
-      #
-      # Required permissions:
-      #
-      # - `payout:account:read`
+      # Retrieves a single verification by ID including its current status,
+      # `session_url`, and any outstanding RFIs.
       sig do
         params(
-          payout_account_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
+          verification_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(
-          WhopSDK::Internal::CursorPage[
-            WhopSDK::Models::VerificationListResponse
-          ]
-        )
+        ).returns(WhopSDK::Models::VerificationRetrieveResponse)
+      end
+      def retrieve(
+        # The ID of the verification, which will look like idpf\_******\*******
+        verification_id,
+        request_options: {}
+      )
+      end
+
+      # Updates an existing verification. Use profile fields to update verification
+      # details, or provide `rfis` to answer outstanding requests for information.
+      # Profile fields become immutable after the verification is approved.
+      sig do
+        params(
+          verification_id: String,
+          business_address: T::Hash[Symbol, T.anything],
+          business_name: String,
+          business_structure: String,
+          country: String,
+          date_of_birth: String,
+          first_name: String,
+          last_name: String,
+          personal_address: T::Hash[Symbol, T.anything],
+          rfis: T::Array[WhopSDK::VerificationUpdateParams::Rfi::OrHash],
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::Models::VerificationUpdateResponse)
+      end
+      def update(
+        # The ID of the verification, which will look like idpf\_******\*******
+        verification_id,
+        # The business address.
+        business_address: nil,
+        # The business name.
+        business_name: nil,
+        # The business structure.
+        business_structure: nil,
+        # The country code.
+        country: nil,
+        # The date of birth.
+        date_of_birth: nil,
+        # The first name on the verification.
+        first_name: nil,
+        # The last name on the verification.
+        last_name: nil,
+        # The personal address.
+        personal_address: nil,
+        # RFI responses. Each entry must include id and a value, address, or files
+        # payload.
+        rfis: nil,
+        request_options: {}
+      )
+      end
+
+      # List all verifications for an account. Verifications can either be for a user or
+      # business.
+      sig do
+        params(
+          account_id: String,
+          page: Integer,
+          per: Integer,
+          profile_type: WhopSDK::VerificationListParams::ProfileType::OrSymbol,
+          status: WhopSDK::VerificationListParams::Status::OrSymbol,
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::Models::VerificationListResponse)
       end
       def list(
-        # The unique identifier of the payout account to list verifications for.
-        payout_account_id:,
-        # Returns the elements in the list that come after the specified cursor.
-        after: nil,
-        # Returns the elements in the list that come before the specified cursor.
-        before: nil,
-        # Returns the first _n_ elements from the list.
-        first: nil,
-        # Returns the last _n_ elements from the list.
-        last: nil,
+        # Filter verifications to a specific account.
+        account_id: nil,
+        # The page number to retrieve.
+        page: nil,
+        # The number of resources to return per page.
+        per: nil,
+        # Filter by profile type.
+        profile_type: nil,
+        # Filter by derived verification status.
+        status: nil,
+        request_options: {}
+      )
+      end
+
+      # Deletes a verification and unlinks it from every account it's attached to.
+      sig do
+        params(
+          verification_id: String,
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::Models::VerificationDeleteResponse)
+      end
+      def delete(
+        # The ID of the verification, which will look like idpf\_******\*******
+        verification_id,
         request_options: {}
       )
       end

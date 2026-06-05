@@ -598,7 +598,11 @@ module WhopSDK
 
           # An error code for a verification attempt.
           sig do
-            returns(T.nilable(WhopSDK::VerificationErrorCode::TaggedSymbol))
+            returns(
+              T.nilable(
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+              )
+            )
           end
           attr_accessor :last_error_code
 
@@ -613,7 +617,11 @@ module WhopSDK
           attr_accessor :session_url
 
           # The current status of this verification session.
-          sig { returns(WhopSDK::VerificationStatus::TaggedSymbol) }
+          sig do
+            returns(
+              WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::Status::TaggedSymbol
+            )
+          end
           attr_accessor :status
 
           # An identity verification session used to confirm a person or entity's identity
@@ -623,10 +631,13 @@ module WhopSDK
               id: String,
               created_at: Time,
               last_error_code:
-                T.nilable(WhopSDK::VerificationErrorCode::OrSymbol),
+                T.nilable(
+                  WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::OrSymbol
+                ),
               last_error_reason: T.nilable(String),
               session_url: T.nilable(String),
-              status: WhopSDK::VerificationStatus::OrSymbol
+              status:
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::Status::OrSymbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -653,14 +664,232 @@ module WhopSDK
                 id: String,
                 created_at: Time,
                 last_error_code:
-                  T.nilable(WhopSDK::VerificationErrorCode::TaggedSymbol),
+                  T.nilable(
+                    WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+                  ),
                 last_error_reason: T.nilable(String),
                 session_url: T.nilable(String),
-                status: WhopSDK::VerificationStatus::TaggedSymbol
+                status:
+                  WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::Status::TaggedSymbol
               }
             )
           end
           def to_hash
+          end
+
+          # An error code for a verification attempt.
+          module LastErrorCode
+            extend WhopSDK::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            ABANDONED =
+              T.let(
+                :abandoned,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+              )
+            CONSENT_DECLINED =
+              T.let(
+                :consent_declined,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+              )
+            COUNTRY_NOT_SUPPORTED =
+              T.let(
+                :country_not_supported,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+              )
+            DEVICE_NOT_SUPPORTED =
+              T.let(
+                :device_not_supported,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+              )
+            DOCUMENT_EXPIRED =
+              T.let(
+                :document_expired,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+              )
+            DOCUMENT_TYPE_NOT_SUPPORTED =
+              T.let(
+                :document_type_not_supported,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+              )
+            DOCUMENT_UNVERIFIED_OTHER =
+              T.let(
+                :document_unverified_other,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+              )
+            EMAIL_UNVERIFIED_OTHER =
+              T.let(
+                :email_unverified_other,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+              )
+            EMAIL_VERIFICATION_DECLINED =
+              T.let(
+                :email_verification_declined,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+              )
+            ID_NUMBER_INSUFFICIENT_DOCUMENT_DATA =
+              T.let(
+                :id_number_insufficient_document_data,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+              )
+            ID_NUMBER_MISMATCH =
+              T.let(
+                :id_number_mismatch,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+              )
+            ID_NUMBER_UNVERIFIED_OTHER =
+              T.let(
+                :id_number_unverified_other,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+              )
+            PHONE_UNVERIFIED_OTHER =
+              T.let(
+                :phone_unverified_other,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+              )
+            PHONE_VERIFICATION_DECLINED =
+              T.let(
+                :phone_verification_declined,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+              )
+            SELFIE_DOCUMENT_MISSING_PHOTO =
+              T.let(
+                :selfie_document_missing_photo,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+              )
+            SELFIE_FACE_MISMATCH =
+              T.let(
+                :selfie_face_mismatch,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+              )
+            SELFIE_MANIPULATED =
+              T.let(
+                :selfie_manipulated,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+              )
+            SELFIE_UNVERIFIED_OTHER =
+              T.let(
+                :selfie_unverified_other,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+              )
+            UNDER_SUPPORTED_AGE =
+              T.let(
+                :under_supported_age,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::LastErrorCode::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          # The current status of this verification session.
+          module Status
+            extend WhopSDK::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::Status
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            REQUIRES_INPUT =
+              T.let(
+                :requires_input,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::Status::TaggedSymbol
+              )
+            PROCESSING =
+              T.let(
+                :processing,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::Status::TaggedSymbol
+              )
+            VERIFIED =
+              T.let(
+                :verified,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::Status::TaggedSymbol
+              )
+            CANCELED =
+              T.let(
+                :canceled,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::Status::TaggedSymbol
+              )
+            CREATED =
+              T.let(
+                :created,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::Status::TaggedSymbol
+              )
+            STARTED =
+              T.let(
+                :started,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::Status::TaggedSymbol
+              )
+            SUBMITTED =
+              T.let(
+                :submitted,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::Status::TaggedSymbol
+              )
+            APPROVED =
+              T.let(
+                :approved,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::Status::TaggedSymbol
+              )
+            DECLINED =
+              T.let(
+                :declined,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::Status::TaggedSymbol
+              )
+            RESUBMISSION_REQUESTED =
+              T.let(
+                :resubmission_requested,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::Status::TaggedSymbol
+              )
+            EXPIRED =
+              T.let(
+                :expired,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::Status::TaggedSymbol
+              )
+            ABANDONED =
+              T.let(
+                :abandoned,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::Status::TaggedSymbol
+              )
+            REVIEW =
+              T.let(
+                :review,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::Status::TaggedSymbol
+              )
+            ACTION_REQUIRED =
+              T.let(
+                :action_required,
+                WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::Status::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  WhopSDK::IdentityProfileRejectedWebhookEvent::Data::Verification::Status::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
         end
       end

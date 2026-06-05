@@ -12,20 +12,20 @@ module WhopSDK
         end
 
       sig { returns(String) }
-      attr_accessor :id
+      attr_accessor :verification_id
 
       sig do
         params(
-          id: String,
+          verification_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(id:, request_options: {})
+      def self.new(verification_id:, request_options: {})
       end
 
       sig do
         override.returns(
-          { id: String, request_options: WhopSDK::RequestOptions }
+          { verification_id: String, request_options: WhopSDK::RequestOptions }
         )
       end
       def to_hash

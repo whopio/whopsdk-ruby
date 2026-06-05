@@ -1,0 +1,23 @@
+module WhopSDK
+  module Models
+    type swap_retrieve_params =
+      { account_id: String } & WhopSDK::Internal::Type::request_parameters
+
+    class SwapRetrieveParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
+
+      def initialize: (
+        account_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

@@ -938,7 +938,17 @@ module WhopSDK
           #   @return [String, nil]
           optional :source_url, String, nil?: true
 
-          # @!method initialize(company_id:, allow_promo_codes: nil, checkout_styling: nil, currency: nil, metadata: nil, payment_method_configuration: nil, redirect_url: nil, source_url: nil, mode: :setup)
+          # @!attribute three_ds_level
+          #   The 3D Secure behavior for a plan.
+          #
+          #   @return [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::ThreeDSLevel, nil]
+          optional :three_ds_level,
+                   enum: -> {
+                     WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::ThreeDSLevel
+                   },
+                   nil?: true
+
+          # @!method initialize(company_id:, allow_promo_codes: nil, checkout_styling: nil, currency: nil, metadata: nil, payment_method_configuration: nil, redirect_url: nil, source_url: nil, three_ds_level: nil, mode: :setup)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup}
           #   for more details.
@@ -960,6 +970,8 @@ module WhopSDK
           #   @param redirect_url [String, nil] The URL to redirect the user to after checkout is completed.
           #
           #   @param source_url [String, nil] The URL of the page where the checkout is being initiated from.
+          #
+          #   @param three_ds_level [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::ThreeDSLevel, nil] The 3D Secure behavior for a plan.
           #
           #   @param mode [Symbol, :setup]
 
@@ -1046,6 +1058,19 @@ module WhopSDK
             #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
             #
             #   @param include_platform_defaults [Boolean, nil] Whether Whop's platform default payment method enablement settings are included
+          end
+
+          # The 3D Secure behavior for a plan.
+          #
+          # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup#three_ds_level
+          module ThreeDSLevel
+            extend WhopSDK::Internal::Type::Enum
+
+            MANDATE_CHALLENGE = :mandate_challenge
+            FRICTIONLESS = :frictionless
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 

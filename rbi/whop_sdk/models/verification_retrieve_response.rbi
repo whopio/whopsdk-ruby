@@ -11,43 +11,97 @@ module WhopSDK
           )
         end
 
-      # The numeric id of the verification record.
+      # The verification ID, e.g. idpf\_\*
       sig { returns(String) }
       attr_accessor :id
 
-      # An error code for a verification attempt.
-      sig { returns(T.nilable(WhopSDK::VerificationErrorCode::TaggedSymbol)) }
-      attr_accessor :last_error_code
+      sig { returns(String) }
+      attr_accessor :created_at
 
-      # A human-readable explanation of the most recent verification error. Null if no
-      # error has occurred.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :last_error_reason
+      sig do
+        returns(
+          WhopSDK::Models::VerificationRetrieveResponse::Kind::TaggedSymbol
+        )
+      end
+      attr_accessor :kind
 
-      # The current status of this verification session.
-      sig { returns(WhopSDK::VerificationStatus::TaggedSymbol) }
+      sig do
+        returns(T::Array[WhopSDK::Models::VerificationRetrieveResponse::Rfi])
+      end
+      attr_accessor :rfis
+
+      sig do
+        returns(
+          WhopSDK::Models::VerificationRetrieveResponse::Status::TaggedSymbol
+        )
+      end
       attr_accessor :status
 
-      # An identity verification session used to confirm a person or entity's identity
-      # for payout account eligibility.
+      sig { returns(String) }
+      attr_accessor :updated_at
+
+      sig { returns(T.nilable(T.anything)) }
+      attr_accessor :address
+
+      sig { returns(T.nilable(String)) }
+      attr_accessor :business_name
+
+      sig { returns(T.nilable(String)) }
+      attr_accessor :business_structure
+
+      sig { returns(T.nilable(String)) }
+      attr_accessor :country
+
+      sig { returns(T.nilable(String)) }
+      attr_accessor :date_of_birth
+
+      sig { returns(T.nilable(String)) }
+      attr_accessor :first_name
+
+      sig { returns(T.nilable(String)) }
+      attr_accessor :last_name
+
+      sig { returns(T.nilable(String)) }
+      attr_accessor :session_url
+
       sig do
         params(
           id: String,
-          last_error_code: T.nilable(WhopSDK::VerificationErrorCode::OrSymbol),
-          last_error_reason: T.nilable(String),
-          status: WhopSDK::VerificationStatus::OrSymbol
+          created_at: String,
+          kind: WhopSDK::Models::VerificationRetrieveResponse::Kind::OrSymbol,
+          rfis:
+            T::Array[
+              WhopSDK::Models::VerificationRetrieveResponse::Rfi::OrHash
+            ],
+          status:
+            WhopSDK::Models::VerificationRetrieveResponse::Status::OrSymbol,
+          updated_at: String,
+          address: T.nilable(T.anything),
+          business_name: T.nilable(String),
+          business_structure: T.nilable(String),
+          country: T.nilable(String),
+          date_of_birth: T.nilable(String),
+          first_name: T.nilable(String),
+          last_name: T.nilable(String),
+          session_url: T.nilable(String)
         ).returns(T.attached_class)
       end
       def self.new(
-        # The numeric id of the verification record.
+        # The verification ID, e.g. idpf\_\*
         id:,
-        # An error code for a verification attempt.
-        last_error_code:,
-        # A human-readable explanation of the most recent verification error. Null if no
-        # error has occurred.
-        last_error_reason:,
-        # The current status of this verification session.
-        status:
+        created_at:,
+        kind:,
+        rfis:,
+        status:,
+        updated_at:,
+        address: nil,
+        business_name: nil,
+        business_structure: nil,
+        country: nil,
+        date_of_birth: nil,
+        first_name: nil,
+        last_name: nil,
+        session_url: nil
       )
       end
 
@@ -55,14 +109,224 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            last_error_code:
-              T.nilable(WhopSDK::VerificationErrorCode::TaggedSymbol),
-            last_error_reason: T.nilable(String),
-            status: WhopSDK::VerificationStatus::TaggedSymbol
+            created_at: String,
+            kind:
+              WhopSDK::Models::VerificationRetrieveResponse::Kind::TaggedSymbol,
+            rfis: T::Array[WhopSDK::Models::VerificationRetrieveResponse::Rfi],
+            status:
+              WhopSDK::Models::VerificationRetrieveResponse::Status::TaggedSymbol,
+            updated_at: String,
+            address: T.nilable(T.anything),
+            business_name: T.nilable(String),
+            business_structure: T.nilable(String),
+            country: T.nilable(String),
+            date_of_birth: T.nilable(String),
+            first_name: T.nilable(String),
+            last_name: T.nilable(String),
+            session_url: T.nilable(String)
           }
         )
       end
       def to_hash
+      end
+
+      module Kind
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::Models::VerificationRetrieveResponse::Kind)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        INDIVIDUAL =
+          T.let(
+            :individual,
+            WhopSDK::Models::VerificationRetrieveResponse::Kind::TaggedSymbol
+          )
+        BUSINESS =
+          T.let(
+            :business,
+            WhopSDK::Models::VerificationRetrieveResponse::Kind::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::Models::VerificationRetrieveResponse::Kind::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
+      end
+
+      class Rfi < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Models::VerificationRetrieveResponse::Rfi,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :id
+
+        sig { params(id: String).void }
+        attr_writer :id
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :created_at
+
+        sig { params(created_at: String).void }
+        attr_writer :created_at
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :description
+
+        sig { params(description: String).void }
+        attr_writer :description
+
+        sig { returns(T.nilable(String)) }
+        attr_accessor :error_message
+
+        sig do
+          returns(
+            T.nilable(
+              WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status::TaggedSymbol
+            )
+          )
+        end
+        attr_reader :status
+
+        sig do
+          params(
+            status:
+              WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status::OrSymbol
+          ).void
+        end
+        attr_writer :status
+
+        sig { returns(T.nilable(String)) }
+        attr_accessor :type
+
+        sig do
+          params(
+            id: String,
+            created_at: String,
+            description: String,
+            error_message: T.nilable(String),
+            status:
+              WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status::OrSymbol,
+            type: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          id: nil,
+          created_at: nil,
+          description: nil,
+          error_message: nil,
+          status: nil,
+          type: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              created_at: String,
+              description: String,
+              error_message: T.nilable(String),
+              status:
+                WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status::TaggedSymbol,
+              type: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
+        end
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          OUTSTANDING =
+            T.let(
+              :outstanding,
+              WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status::TaggedSymbol
+            )
+          INVALID =
+            T.let(
+              :invalid,
+              WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+      end
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::Models::VerificationRetrieveResponse::Status)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        NOT_STARTED =
+          T.let(
+            :not_started,
+            WhopSDK::Models::VerificationRetrieveResponse::Status::TaggedSymbol
+          )
+        PENDING =
+          T.let(
+            :pending,
+            WhopSDK::Models::VerificationRetrieveResponse::Status::TaggedSymbol
+          )
+        APPROVED =
+          T.let(
+            :approved,
+            WhopSDK::Models::VerificationRetrieveResponse::Status::TaggedSymbol
+          )
+        REJECTED =
+          T.let(
+            :rejected,
+            WhopSDK::Models::VerificationRetrieveResponse::Status::TaggedSymbol
+          )
+        ACTION_REQUIRED =
+          T.let(
+            :action_required,
+            WhopSDK::Models::VerificationRetrieveResponse::Status::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::Models::VerificationRetrieveResponse::Status::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
       end
     end
   end

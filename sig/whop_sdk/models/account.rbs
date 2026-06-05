@@ -5,19 +5,33 @@ module WhopSDK
         id: String,
         banner_image_url: String?,
         business_type: String?,
+        country: String?,
         created_at: String,
         description: String?,
         email: String?,
+        home_preferences: ::Array[String],
         industry_group: String?,
         industry_type: String?,
+        invoice_prefix: String?,
         logo_url: String?,
         metadata: top,
+        onboarding_type: String?,
+        opengraph_image_url: String?,
+        opengraph_image_variant: String?,
+        other_business_description: String?,
+        other_industry_description: String?,
         parent_account_id: String?,
+        :require_2fa => bool,
         route: String,
         send_customer_emails: bool,
+        show_joined_whops: bool,
+        show_reviews_dtc: bool,
+        show_user_directory: bool,
         social_links: ::Array[WhopSDK::AccountSocialLink],
+        store_page_config: top,
         target_audience: String?,
         title: String,
+        use_logo_as_opengraph_image_fallback: bool,
         wallet: WhopSDK::AccountWallet?
       }
 
@@ -28,31 +42,59 @@ module WhopSDK
 
       attr_accessor business_type: String?
 
+      attr_accessor country: String?
+
       attr_accessor created_at: String
 
       attr_accessor description: String?
 
       attr_accessor email: String?
 
+      attr_accessor home_preferences: ::Array[String]
+
       attr_accessor industry_group: String?
 
       attr_accessor industry_type: String?
+
+      attr_accessor invoice_prefix: String?
 
       attr_accessor logo_url: String?
 
       attr_accessor metadata: top
 
+      attr_accessor onboarding_type: String?
+
+      attr_accessor opengraph_image_url: String?
+
+      attr_accessor opengraph_image_variant: String?
+
+      attr_accessor other_business_description: String?
+
+      attr_accessor other_industry_description: String?
+
       attr_accessor parent_account_id: String?
+
+      attr_accessor require_2fa: bool
 
       attr_accessor route: String
 
       attr_accessor send_customer_emails: bool
 
+      attr_accessor show_joined_whops: bool
+
+      attr_accessor show_reviews_dtc: bool
+
+      attr_accessor show_user_directory: bool
+
       attr_accessor social_links: ::Array[WhopSDK::AccountSocialLink]
+
+      attr_accessor store_page_config: top
 
       attr_accessor target_audience: String?
 
       attr_accessor title: String
+
+      attr_accessor use_logo_as_opengraph_image_fallback: bool
 
       attr_accessor wallet: WhopSDK::AccountWallet?
 
@@ -60,19 +102,33 @@ module WhopSDK
         id: String,
         banner_image_url: String?,
         business_type: String?,
+        country: String?,
         created_at: String,
         description: String?,
         email: String?,
+        home_preferences: ::Array[String],
         industry_group: String?,
         industry_type: String?,
+        invoice_prefix: String?,
         logo_url: String?,
         metadata: top,
+        onboarding_type: String?,
+        opengraph_image_url: String?,
+        opengraph_image_variant: String?,
+        other_business_description: String?,
+        other_industry_description: String?,
         parent_account_id: String?,
+        require_2fa: bool,
         route: String,
         send_customer_emails: bool,
+        show_joined_whops: bool,
+        show_reviews_dtc: bool,
+        show_user_directory: bool,
         social_links: ::Array[WhopSDK::AccountSocialLink],
+        store_page_config: top,
         target_audience: String?,
         title: String,
+        use_logo_as_opengraph_image_fallback: bool,
         wallet: WhopSDK::AccountWallet?
       ) -> void
 
@@ -80,19 +136,33 @@ module WhopSDK
         id: String,
         banner_image_url: String?,
         business_type: String?,
+        country: String?,
         created_at: String,
         description: String?,
         email: String?,
+        home_preferences: ::Array[String],
         industry_group: String?,
         industry_type: String?,
+        invoice_prefix: String?,
         logo_url: String?,
         metadata: top,
+        onboarding_type: String?,
+        opengraph_image_url: String?,
+        opengraph_image_variant: String?,
+        other_business_description: String?,
+        other_industry_description: String?,
         parent_account_id: String?,
+        :require_2fa => bool,
         route: String,
         send_customer_emails: bool,
+        show_joined_whops: bool,
+        show_reviews_dtc: bool,
+        show_user_directory: bool,
         social_links: ::Array[WhopSDK::AccountSocialLink],
+        store_page_config: top,
         target_audience: String?,
         title: String,
+        use_logo_as_opengraph_image_fallback: bool,
         wallet: WhopSDK::AccountWallet?
       }
     end

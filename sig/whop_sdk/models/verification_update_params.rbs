@@ -1,0 +1,149 @@
+module WhopSDK
+  module Models
+    type verification_update_params =
+      {
+        verification_id: String,
+        business_address: ::Hash[Symbol, top],
+        business_name: String,
+        business_structure: String,
+        country: String,
+        date_of_birth: String,
+        first_name: String,
+        last_name: String,
+        personal_address: ::Hash[Symbol, top],
+        rfis: ::Array[WhopSDK::VerificationUpdateParams::Rfi]
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class VerificationUpdateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor verification_id: String
+
+      attr_reader business_address: ::Hash[Symbol, top]?
+
+      def business_address=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      attr_reader business_name: String?
+
+      def business_name=: (String) -> String
+
+      attr_reader business_structure: String?
+
+      def business_structure=: (String) -> String
+
+      attr_reader country: String?
+
+      def country=: (String) -> String
+
+      attr_reader date_of_birth: String?
+
+      def date_of_birth=: (String) -> String
+
+      attr_reader first_name: String?
+
+      def first_name=: (String) -> String
+
+      attr_reader last_name: String?
+
+      def last_name=: (String) -> String
+
+      attr_reader personal_address: ::Hash[Symbol, top]?
+
+      def personal_address=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      attr_reader rfis: ::Array[WhopSDK::VerificationUpdateParams::Rfi]?
+
+      def rfis=: (
+        ::Array[WhopSDK::VerificationUpdateParams::Rfi]
+      ) -> ::Array[WhopSDK::VerificationUpdateParams::Rfi]
+
+      def initialize: (
+        verification_id: String,
+        ?business_address: ::Hash[Symbol, top],
+        ?business_name: String,
+        ?business_structure: String,
+        ?country: String,
+        ?date_of_birth: String,
+        ?first_name: String,
+        ?last_name: String,
+        ?personal_address: ::Hash[Symbol, top],
+        ?rfis: ::Array[WhopSDK::VerificationUpdateParams::Rfi],
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        verification_id: String,
+        business_address: ::Hash[Symbol, top],
+        business_name: String,
+        business_structure: String,
+        country: String,
+        date_of_birth: String,
+        first_name: String,
+        last_name: String,
+        personal_address: ::Hash[Symbol, top],
+        rfis: ::Array[WhopSDK::VerificationUpdateParams::Rfi],
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type rfi =
+        {
+          id: String,
+          address: ::Hash[Symbol, top],
+          files: ::Array[top],
+          value: String,
+          value_type: WhopSDK::Models::VerificationUpdateParams::Rfi::value_type
+        }
+
+      class Rfi < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_reader address: ::Hash[Symbol, top]?
+
+        def address=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+        attr_reader files: ::Array[top]?
+
+        def files=: (::Array[top]) -> ::Array[top]
+
+        attr_reader value: String?
+
+        def value=: (String) -> String
+
+        attr_reader value_type: WhopSDK::Models::VerificationUpdateParams::Rfi::value_type?
+
+        def value_type=: (
+          WhopSDK::Models::VerificationUpdateParams::Rfi::value_type
+        ) -> WhopSDK::Models::VerificationUpdateParams::Rfi::value_type
+
+        def initialize: (
+          id: String,
+          ?address: ::Hash[Symbol, top],
+          ?files: ::Array[top],
+          ?value: String,
+          ?value_type: WhopSDK::Models::VerificationUpdateParams::Rfi::value_type
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          address: ::Hash[Symbol, top],
+          files: ::Array[top],
+          value: String,
+          value_type: WhopSDK::Models::VerificationUpdateParams::Rfi::value_type
+        }
+
+        type value_type = :raw | :vault_token
+
+        module ValueType
+          extend WhopSDK::Internal::Type::Enum
+
+          RAW: :raw
+          VAULT_TOKEN: :vault_token
+
+          def self?.values: -> ::Array[WhopSDK::Models::VerificationUpdateParams::Rfi::value_type]
+        end
+      end
+    end
+  end
+end

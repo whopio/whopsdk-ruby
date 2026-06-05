@@ -1,9 +1,9 @@
 module WhopSDK
   module Models
-    type verification_retrieve_params =
+    type verification_delete_params =
       { verification_id: String } & WhopSDK::Internal::Type::request_parameters
 
-    class VerificationRetrieveParams < WhopSDK::Internal::Type::BaseModel
+    class VerificationDeleteParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 

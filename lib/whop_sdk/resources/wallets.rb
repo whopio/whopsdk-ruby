@@ -41,6 +41,41 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::WalletCreateWithdrawalParams} for more details.
+      #
+      # Withdraws from an account's ledger balance to a linked payout method (bank,
+      # card, or external crypto wallet).
+      #
+      # @overload create_withdrawal(account_id:, amount:, payout_method_id:, asset: nil, request_options: {})
+      #
+      # @param account_id [String] Query param: The business or user account ID to withdraw from.
+      #
+      # @param amount [String] Body param: Amount to withdraw, as a decimal string in the given asset (e.g. "10
+      #
+      # @param payout_method_id [String] Body param: A payout method already linked to the account.
+      #
+      # @param asset [String] Body param: Currency to withdraw. Defaults to usd.
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::WalletCreateWithdrawalResponse]
+      #
+      # @see WhopSDK::Models::WalletCreateWithdrawalParams
+      def create_withdrawal(params)
+        query_params = [:account_id]
+        parsed, options = WhopSDK::WalletCreateWithdrawalParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed.slice(*query_params))
+        @client.request(
+          method: :post,
+          path: "wallets/withdrawals",
+          query: query,
+          body: parsed.except(*query_params),
+          model: WhopSDK::Models::WalletCreateWithdrawalResponse,
+          options: options
+        )
+      end
+
       # Sends USDT from an account's wallet to another Whop user or business.
       #
       # @overload send_(account_id, amount:, to:, request_options: {})

@@ -1,0 +1,43 @@
+module WhopSDK
+  module Models
+    type wallet_create_withdrawal_params =
+      {
+        account_id: String,
+        amount: String,
+        payout_method_id: String,
+        asset: String
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class WalletCreateWithdrawalParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
+
+      attr_accessor amount: String
+
+      attr_accessor payout_method_id: String
+
+      attr_reader asset: String?
+
+      def asset=: (String) -> String
+
+      def initialize: (
+        account_id: String,
+        amount: String,
+        payout_method_id: String,
+        ?asset: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        amount: String,
+        payout_method_id: String,
+        asset: String,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

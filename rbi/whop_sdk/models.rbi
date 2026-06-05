@@ -778,10 +778,6 @@ module WhopSDK
 
   VerificationErrorCode = WhopSDK::Models::VerificationErrorCode
 
-  VerificationListParams = WhopSDK::Models::VerificationListParams
-
-  VerificationRetrieveParams = WhopSDK::Models::VerificationRetrieveParams
-
   VerificationStatus = WhopSDK::Models::VerificationStatus
 
   VerificationSucceededWebhookEvent =

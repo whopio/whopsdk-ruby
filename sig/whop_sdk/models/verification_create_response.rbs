@@ -1,12 +1,12 @@
 module WhopSDK
   module Models
-    type verification_retrieve_response =
+    type verification_create_response =
       {
         id: String,
         created_at: String,
-        kind: WhopSDK::Models::VerificationRetrieveResponse::kind,
-        rfis: ::Array[WhopSDK::Models::VerificationRetrieveResponse::Rfi],
-        status: WhopSDK::Models::VerificationRetrieveResponse::status,
+        kind: WhopSDK::Models::VerificationCreateResponse::kind,
+        session_url: String?,
+        status: WhopSDK::Models::VerificationCreateResponse::status,
         updated_at: String,
         address: top?,
         business_name: String?,
@@ -15,19 +15,19 @@ module WhopSDK
         date_of_birth: String?,
         first_name: String?,
         last_name: String?,
-        session_url: String?
+        rfis: ::Array[WhopSDK::Models::VerificationCreateResponse::Rfi]
       }
 
-    class VerificationRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+    class VerificationCreateResponse < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
       attr_accessor created_at: String
 
-      attr_accessor kind: WhopSDK::Models::VerificationRetrieveResponse::kind
+      attr_accessor kind: WhopSDK::Models::VerificationCreateResponse::kind
 
-      attr_accessor rfis: ::Array[WhopSDK::Models::VerificationRetrieveResponse::Rfi]
+      attr_accessor session_url: String?
 
-      attr_accessor status: WhopSDK::Models::VerificationRetrieveResponse::status
+      attr_accessor status: WhopSDK::Models::VerificationCreateResponse::status
 
       attr_accessor updated_at: String
 
@@ -45,14 +45,18 @@ module WhopSDK
 
       attr_accessor last_name: String?
 
-      attr_accessor session_url: String?
+      attr_reader rfis: ::Array[WhopSDK::Models::VerificationCreateResponse::Rfi]?
+
+      def rfis=: (
+        ::Array[WhopSDK::Models::VerificationCreateResponse::Rfi]
+      ) -> ::Array[WhopSDK::Models::VerificationCreateResponse::Rfi]
 
       def initialize: (
         id: String,
         created_at: String,
-        kind: WhopSDK::Models::VerificationRetrieveResponse::kind,
-        rfis: ::Array[WhopSDK::Models::VerificationRetrieveResponse::Rfi],
-        status: WhopSDK::Models::VerificationRetrieveResponse::status,
+        kind: WhopSDK::Models::VerificationCreateResponse::kind,
+        session_url: String?,
+        status: WhopSDK::Models::VerificationCreateResponse::status,
         updated_at: String,
         ?address: top?,
         ?business_name: String?,
@@ -61,15 +65,15 @@ module WhopSDK
         ?date_of_birth: String?,
         ?first_name: String?,
         ?last_name: String?,
-        ?session_url: String?
+        ?rfis: ::Array[WhopSDK::Models::VerificationCreateResponse::Rfi]
       ) -> void
 
       def to_hash: -> {
         id: String,
         created_at: String,
-        kind: WhopSDK::Models::VerificationRetrieveResponse::kind,
-        rfis: ::Array[WhopSDK::Models::VerificationRetrieveResponse::Rfi],
-        status: WhopSDK::Models::VerificationRetrieveResponse::status,
+        kind: WhopSDK::Models::VerificationCreateResponse::kind,
+        session_url: String?,
+        status: WhopSDK::Models::VerificationCreateResponse::status,
         updated_at: String,
         address: top?,
         business_name: String?,
@@ -78,7 +82,7 @@ module WhopSDK
         date_of_birth: String?,
         first_name: String?,
         last_name: String?,
-        session_url: String?
+        rfis: ::Array[WhopSDK::Models::VerificationCreateResponse::Rfi]
       }
 
       type kind = :individual | :business
@@ -89,7 +93,22 @@ module WhopSDK
         INDIVIDUAL: :individual
         BUSINESS: :business
 
-        def self?.values: -> ::Array[WhopSDK::Models::VerificationRetrieveResponse::kind]
+        def self?.values: -> ::Array[WhopSDK::Models::VerificationCreateResponse::kind]
+      end
+
+      type status =
+        :not_started | :pending | :approved | :rejected | :action_required
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        NOT_STARTED: :not_started
+        PENDING: :pending
+        APPROVED: :approved
+        REJECTED: :rejected
+        ACTION_REQUIRED: :action_required
+
+        def self?.values: -> ::Array[WhopSDK::Models::VerificationCreateResponse::status]
       end
 
       type rfi =
@@ -98,7 +117,7 @@ module WhopSDK
           created_at: String,
           description: String,
           error_message: String?,
-          status: WhopSDK::Models::VerificationRetrieveResponse::Rfi::status,
+          status: WhopSDK::Models::VerificationCreateResponse::Rfi::status,
           type: String?
         }
 
@@ -117,11 +136,11 @@ module WhopSDK
 
         attr_accessor error_message: String?
 
-        attr_reader status: WhopSDK::Models::VerificationRetrieveResponse::Rfi::status?
+        attr_reader status: WhopSDK::Models::VerificationCreateResponse::Rfi::status?
 
         def status=: (
-          WhopSDK::Models::VerificationRetrieveResponse::Rfi::status
-        ) -> WhopSDK::Models::VerificationRetrieveResponse::Rfi::status
+          WhopSDK::Models::VerificationCreateResponse::Rfi::status
+        ) -> WhopSDK::Models::VerificationCreateResponse::Rfi::status
 
         attr_accessor type: String?
 
@@ -130,7 +149,7 @@ module WhopSDK
           ?created_at: String,
           ?description: String,
           ?error_message: String?,
-          ?status: WhopSDK::Models::VerificationRetrieveResponse::Rfi::status,
+          ?status: WhopSDK::Models::VerificationCreateResponse::Rfi::status,
           ?type: String?
         ) -> void
 
@@ -139,7 +158,7 @@ module WhopSDK
           created_at: String,
           description: String,
           error_message: String?,
-          status: WhopSDK::Models::VerificationRetrieveResponse::Rfi::status,
+          status: WhopSDK::Models::VerificationCreateResponse::Rfi::status,
           type: String?
         }
 
@@ -151,23 +170,8 @@ module WhopSDK
           OUTSTANDING: :outstanding
           INVALID: :invalid
 
-          def self?.values: -> ::Array[WhopSDK::Models::VerificationRetrieveResponse::Rfi::status]
+          def self?.values: -> ::Array[WhopSDK::Models::VerificationCreateResponse::Rfi::status]
         end
-      end
-
-      type status =
-        :not_started | :pending | :approved | :rejected | :action_required
-
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        NOT_STARTED: :not_started
-        PENDING: :pending
-        APPROVED: :approved
-        REJECTED: :rejected
-        ACTION_REQUIRED: :action_required
-
-        def self?.values: -> ::Array[WhopSDK::Models::VerificationRetrieveResponse::status]
       end
     end
   end

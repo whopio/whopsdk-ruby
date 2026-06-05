@@ -42,6 +42,7 @@ module WhopSDK
             WhopSDK::SetupIntentCanceledWebhookEvent,
             WhopSDK::SetupIntentRequiresActionWebhookEvent,
             WhopSDK::SetupIntentSucceededWebhookEvent,
+            WhopSDK::VerificationRfiCreatedWebhookEvent,
             WhopSDK::VerificationSucceededWebhookEvent,
             WhopSDK::WithdrawalCreatedWebhookEvent,
             WhopSDK::WithdrawalUpdatedWebhookEvent

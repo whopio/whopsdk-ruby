@@ -65,6 +65,8 @@ module WhopSDK
         )
       IDENTITY_PROFILE_UPDATED =
         T.let(:"identity_profile.updated", WhopSDK::WebhookEvent::TaggedSymbol)
+      VERIFICATION_RFI_CREATED =
+        T.let(:"verification.rfi_created", WhopSDK::WebhookEvent::TaggedSymbol)
       PAYOUT_ACCOUNT_STATUS_UPDATED =
         T.let(
           :"payout_account.status_updated",

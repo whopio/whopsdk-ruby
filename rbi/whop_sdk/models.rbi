@@ -776,7 +776,8 @@ module WhopSDK
 
   VerificationListParams = WhopSDK::Models::VerificationListParams
 
-  VerificationRetrieveParams = WhopSDK::Models::VerificationRetrieveParams
+  VerificationRfiCreatedWebhookEvent =
+    WhopSDK::Models::VerificationRfiCreatedWebhookEvent
 
   VerificationStatus = WhopSDK::Models::VerificationStatus
 

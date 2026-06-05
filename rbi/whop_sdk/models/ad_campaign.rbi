@@ -18,36 +18,93 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::AdBudgetType::TaggedSymbol)) }
       attr_accessor :budget_type
 
+      # Click-through rate as a fraction of impressions (clicks / impressions, 0–1).
+      sig { returns(Float) }
+      attr_accessor :click_through_rate
+
+      # Total clicks on the campaign's ads in the stats window.
+      sig { returns(Integer) }
+      attr_accessor :clicks
+
+      # Cost per click in dollars (spend / clicks). 0 when there are no clicks.
+      sig { returns(Float) }
+      attr_accessor :cost_per_click
+
+      # Cost in dollars per Whop pixel-attributed lead (spend / leads). 0 when leads are
+      # tracked but none happened yet; null when leads are not a goal and none were
+      # attributed.
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :cost_per_lead
+
+      # Cost per 1,000 impressions in dollars (spend / impressions × 1000). 0 when there
+      # are no impressions.
+      sig { returns(Float) }
+      attr_accessor :cost_per_mille
+
+      # Cost in dollars per Whop pixel-attributed purchase (spend / purchases). 0 when
+      # purchases are tracked but none happened yet; null when purchases are not a goal
+      # and none were attributed.
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :cost_per_purchase
+
+      # Cost in dollars per optimization result (spend / results). 0 when a result is
+      # being optimized for but none happened yet; null when nothing is being optimized
+      # for.
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :cost_per_result
+
       # When the ad campaign was created.
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The user who created this ad campaign.
-      sig { returns(WhopSDK::AdCampaign::CreatedByUser) }
-      attr_reader :created_by_user
+      # Average number of times each person saw an ad (impressions / reach), as reported
+      # by the platform.
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :frequency
 
-      sig do
-        params(created_by_user: WhopSDK::AdCampaign::CreatedByUser::OrHash).void
-      end
-      attr_writer :created_by_user
+      # Total impressions (views) on the campaign's ads in the stats window.
+      sig { returns(Integer) }
+      attr_accessor :impressions
 
-      # Meta-specific campaign configuration (objective, budget mode, etc.). Null for
-      # non-Meta campaigns.
-      sig { returns(T.nilable(WhopSDK::AdCampaign::MetaConfig)) }
-      attr_reader :meta_config
+      # Open platform issues affecting this campaign and its descendant ad groups and
+      # ads, deduplicated per object. Empty when there are none.
+      sig { returns(T::Array[WhopSDK::AdCampaign::Issue]) }
+      attr_accessor :issues
 
-      sig do
-        params(
-          meta_config: T.nilable(WhopSDK::AdCampaign::MetaConfig::OrHash)
-        ).void
-      end
-      attr_writer :meta_config
+      # Number of Whop pixel-attributed leads (last-click) in the stats window.
+      sig { returns(Integer) }
+      attr_accessor :leads
 
       # The external ad platform this campaign is running on (e.g., meta, tiktok).
       sig { returns(WhopSDK::AdCampaignPlatform::TaggedSymbol) }
       attr_accessor :platform
 
-      # Current status of the campaign (active, paused, or inactive).
+      # Total USD value of Whop pixel-attributed purchases in the stats window.
+      sig { returns(Float) }
+      attr_accessor :purchase_value
+
+      # Number of Whop pixel-attributed purchases (last-click) in the stats window.
+      sig { returns(Integer) }
+      attr_accessor :purchases
+
+      # Unique users reached in the stats window (deduplicated by the platform).
+      sig { returns(Integer) }
+      attr_accessor :reach
+
+      # Return on ad spend as a ratio (purchaseValue / spend) — 2.5 means $2.50 of
+      # attributed purchase value per $1 spent. 0 when there is no spend.
+      sig { returns(Float) }
+      attr_accessor :return_on_ad_spend
+
+      # Amount charged in dollars in the stats window.
+      sig { returns(Float) }
+      attr_accessor :spend
+
+      # The available currencies on the platform
+      sig { returns(T.nilable(WhopSDK::Currency::TaggedSymbol)) }
+      attr_accessor :spend_currency
+
+      # Current status of the campaign.
       sig { returns(WhopSDK::AdCampaignStatus::TaggedSymbol) }
       attr_accessor :status
 
@@ -55,9 +112,14 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :title
 
-      # Total amount spent in dollars.
-      sig { returns(Float) }
-      attr_accessor :total_spend
+      # Unique click-through rate as a fraction of impressions (unique clicks /
+      # impressions, 0–1).
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :unique_click_through_rate
+
+      # Unique clicks (deduplicated by the platform) in the stats window.
+      sig { returns(Integer) }
+      attr_accessor :unique_clicks
 
       # When the ad campaign was last updated.
       sig { returns(Time) }
@@ -69,13 +131,29 @@ module WhopSDK
           id: String,
           budget: T.nilable(Float),
           budget_type: T.nilable(WhopSDK::AdBudgetType::OrSymbol),
+          click_through_rate: Float,
+          clicks: Integer,
+          cost_per_click: Float,
+          cost_per_lead: T.nilable(Float),
+          cost_per_mille: Float,
+          cost_per_purchase: T.nilable(Float),
+          cost_per_result: T.nilable(Float),
           created_at: Time,
-          created_by_user: WhopSDK::AdCampaign::CreatedByUser::OrHash,
-          meta_config: T.nilable(WhopSDK::AdCampaign::MetaConfig::OrHash),
+          frequency: T.nilable(Float),
+          impressions: Integer,
+          issues: T::Array[WhopSDK::AdCampaign::Issue::OrHash],
+          leads: Integer,
           platform: WhopSDK::AdCampaignPlatform::OrSymbol,
+          purchase_value: Float,
+          purchases: Integer,
+          reach: Integer,
+          return_on_ad_spend: Float,
+          spend: Float,
+          spend_currency: T.nilable(WhopSDK::Currency::OrSymbol),
           status: WhopSDK::AdCampaignStatus::OrSymbol,
           title: String,
-          total_spend: Float,
+          unique_click_through_rate: T.nilable(Float),
+          unique_clicks: Integer,
           updated_at: Time
         ).returns(T.attached_class)
       end
@@ -86,21 +164,63 @@ module WhopSDK
         budget:,
         # The budget type for an ad campaign or ad group.
         budget_type:,
+        # Click-through rate as a fraction of impressions (clicks / impressions, 0–1).
+        click_through_rate:,
+        # Total clicks on the campaign's ads in the stats window.
+        clicks:,
+        # Cost per click in dollars (spend / clicks). 0 when there are no clicks.
+        cost_per_click:,
+        # Cost in dollars per Whop pixel-attributed lead (spend / leads). 0 when leads are
+        # tracked but none happened yet; null when leads are not a goal and none were
+        # attributed.
+        cost_per_lead:,
+        # Cost per 1,000 impressions in dollars (spend / impressions × 1000). 0 when there
+        # are no impressions.
+        cost_per_mille:,
+        # Cost in dollars per Whop pixel-attributed purchase (spend / purchases). 0 when
+        # purchases are tracked but none happened yet; null when purchases are not a goal
+        # and none were attributed.
+        cost_per_purchase:,
+        # Cost in dollars per optimization result (spend / results). 0 when a result is
+        # being optimized for but none happened yet; null when nothing is being optimized
+        # for.
+        cost_per_result:,
         # When the ad campaign was created.
         created_at:,
-        # The user who created this ad campaign.
-        created_by_user:,
-        # Meta-specific campaign configuration (objective, budget mode, etc.). Null for
-        # non-Meta campaigns.
-        meta_config:,
+        # Average number of times each person saw an ad (impressions / reach), as reported
+        # by the platform.
+        frequency:,
+        # Total impressions (views) on the campaign's ads in the stats window.
+        impressions:,
+        # Open platform issues affecting this campaign and its descendant ad groups and
+        # ads, deduplicated per object. Empty when there are none.
+        issues:,
+        # Number of Whop pixel-attributed leads (last-click) in the stats window.
+        leads:,
         # The external ad platform this campaign is running on (e.g., meta, tiktok).
         platform:,
-        # Current status of the campaign (active, paused, or inactive).
+        # Total USD value of Whop pixel-attributed purchases in the stats window.
+        purchase_value:,
+        # Number of Whop pixel-attributed purchases (last-click) in the stats window.
+        purchases:,
+        # Unique users reached in the stats window (deduplicated by the platform).
+        reach:,
+        # Return on ad spend as a ratio (purchaseValue / spend) — 2.5 means $2.50 of
+        # attributed purchase value per $1 spent. 0 when there is no spend.
+        return_on_ad_spend:,
+        # Amount charged in dollars in the stats window.
+        spend:,
+        # The available currencies on the platform
+        spend_currency:,
+        # Current status of the campaign.
         status:,
         # The campaign name shown in the Whop dashboard.
         title:,
-        # Total amount spent in dollars.
-        total_spend:,
+        # Unique click-through rate as a fraction of impressions (unique clicks /
+        # impressions, 0–1).
+        unique_click_through_rate:,
+        # Unique clicks (deduplicated by the platform) in the stats window.
+        unique_clicks:,
         # When the ad campaign was last updated.
         updated_at:
       )
@@ -112,13 +232,29 @@ module WhopSDK
             id: String,
             budget: T.nilable(Float),
             budget_type: T.nilable(WhopSDK::AdBudgetType::TaggedSymbol),
+            click_through_rate: Float,
+            clicks: Integer,
+            cost_per_click: Float,
+            cost_per_lead: T.nilable(Float),
+            cost_per_mille: Float,
+            cost_per_purchase: T.nilable(Float),
+            cost_per_result: T.nilable(Float),
             created_at: Time,
-            created_by_user: WhopSDK::AdCampaign::CreatedByUser,
-            meta_config: T.nilable(WhopSDK::AdCampaign::MetaConfig),
+            frequency: T.nilable(Float),
+            impressions: Integer,
+            issues: T::Array[WhopSDK::AdCampaign::Issue],
+            leads: Integer,
             platform: WhopSDK::AdCampaignPlatform::TaggedSymbol,
+            purchase_value: Float,
+            purchases: Integer,
+            reach: Integer,
+            return_on_ad_spend: Float,
+            spend: Float,
+            spend_currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
             status: WhopSDK::AdCampaignStatus::TaggedSymbol,
             title: String,
-            total_spend: Float,
+            unique_click_through_rate: T.nilable(Float),
+            unique_clicks: Integer,
             updated_at: Time
           }
         )
@@ -126,349 +262,125 @@ module WhopSDK
       def to_hash
       end
 
-      class CreatedByUser < WhopSDK::Internal::Type::BaseModel
+      class Issue < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(
-              WhopSDK::AdCampaign::CreatedByUser,
-              WhopSDK::Internal::AnyHash
-            )
+            T.any(WhopSDK::AdCampaign::Issue, WhopSDK::Internal::AnyHash)
           end
 
-        # The unique identifier for the user.
+        # When the issue was first reported.
+        sig { returns(Time) }
+        attr_accessor :created_at
+
+        # Platform-specific error code.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :error_code
+
+        # Full error detail from the platform.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :error_message
+
+        # Short description of the issue.
         sig { returns(String) }
-        attr_accessor :id
+        attr_accessor :error_summary
 
-        # The user's display name shown on their public profile.
+        # Current resolution status.
+        sig do
+          returns(WhopSDK::AdCampaign::Issue::ResolutionStatus::TaggedSymbol)
+        end
+        attr_accessor :resolution_status
+
+        # The Whop ID of the ad object this issue is on (the ad, ad group, or campaign).
+        # Null when the issue isn't tied to a local object.
         sig { returns(T.nilable(String)) }
-        attr_accessor :name
+        attr_accessor :resource_id
 
-        # The user's unique username shown on their public profile.
+        # The kind of ad object this issue is on: `ad`, `ad_group`, or `ad_campaign`.
+        # Pairs with `resourceId`.
         sig { returns(String) }
-        attr_accessor :username
+        attr_accessor :resource_type
 
-        # The user who created this ad campaign.
-        sig do
-          params(id: String, name: T.nilable(String), username: String).returns(
-            T.attached_class
-          )
-        end
-        def self.new(
-          # The unique identifier for the user.
-          id:,
-          # The user's display name shown on their public profile.
-          name:,
-          # The user's unique username shown on their public profile.
-          username:
-        )
-        end
-
-        sig do
-          override.returns(
-            { id: String, name: T.nilable(String), username: String }
-          )
-        end
-        def to_hash
-        end
-      end
-
-      class MetaConfig < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(WhopSDK::AdCampaign::MetaConfig, WhopSDK::Internal::AnyHash)
-          end
-
-        # Bid cap amount in cents. Only used when bid_strategy is bid_cap.
-        sig { returns(T.nilable(Integer)) }
-        attr_accessor :bid_amount
-
-        # The bidding strategy used to optimize spend for this campaign.
-        sig do
-          returns(
-            T.nilable(
-              WhopSDK::AdCampaign::MetaConfig::BidStrategy::TaggedSymbol
-            )
-          )
-        end
-        attr_accessor :bid_strategy
-
-        # Whether campaign budget optimization (CBO) is enabled, allowing the platform to
-        # distribute budget across ad groups.
-        sig { returns(T.nilable(T::Boolean)) }
-        attr_accessor :budget_optimization
-
-        # The actual delivery status, accounting for platform overrides (e.g., in_review,
-        # rejected).
-        sig do
-          returns(
-            T.nilable(
-              WhopSDK::AdCampaign::MetaConfig::EffectiveStatus::TaggedSymbol
-            )
-          )
-        end
-        attr_accessor :effective_status
-
-        # The scheduled end time of the campaign (ISO8601).
-        sig { returns(T.nilable(String)) }
-        attr_accessor :end_time
-
-        # The campaign objective that determines how Meta optimizes delivery.
-        sig do
-          returns(
-            T.nilable(WhopSDK::AdCampaign::MetaConfig::Objective::TaggedSymbol)
-          )
-        end
-        attr_accessor :objective
-
-        # Special ad categories required by the platform (e.g., housing, employment,
-        # credit).
-        sig { returns(T.nilable(T::Array[String])) }
-        attr_accessor :special_categories
-
-        # The scheduled start time of the campaign (ISO8601).
-        sig { returns(T.nilable(String)) }
-        attr_accessor :start_time
-
-        # The campaign status as set by the advertiser (active or paused).
-        sig do
-          returns(
-            T.nilable(WhopSDK::AdCampaign::MetaConfig::Status::TaggedSymbol)
-          )
-        end
-        attr_accessor :status
-
-        # Meta-specific campaign configuration (objective, budget mode, etc.). Null for
-        # non-Meta campaigns.
+        # A platform-reported issue on an ad object (rejection, policy flag, etc.).
         sig do
           params(
-            bid_amount: T.nilable(Integer),
-            bid_strategy:
-              T.nilable(WhopSDK::AdCampaign::MetaConfig::BidStrategy::OrSymbol),
-            budget_optimization: T.nilable(T::Boolean),
-            effective_status:
-              T.nilable(
-                WhopSDK::AdCampaign::MetaConfig::EffectiveStatus::OrSymbol
-              ),
-            end_time: T.nilable(String),
-            objective:
-              T.nilable(WhopSDK::AdCampaign::MetaConfig::Objective::OrSymbol),
-            special_categories: T.nilable(T::Array[String]),
-            start_time: T.nilable(String),
-            status: T.nilable(WhopSDK::AdCampaign::MetaConfig::Status::OrSymbol)
+            created_at: Time,
+            error_code: T.nilable(String),
+            error_message: T.nilable(String),
+            error_summary: String,
+            resolution_status:
+              WhopSDK::AdCampaign::Issue::ResolutionStatus::OrSymbol,
+            resource_id: T.nilable(String),
+            resource_type: String
           ).returns(T.attached_class)
         end
         def self.new(
-          # Bid cap amount in cents. Only used when bid_strategy is bid_cap.
-          bid_amount:,
-          # The bidding strategy used to optimize spend for this campaign.
-          bid_strategy:,
-          # Whether campaign budget optimization (CBO) is enabled, allowing the platform to
-          # distribute budget across ad groups.
-          budget_optimization:,
-          # The actual delivery status, accounting for platform overrides (e.g., in_review,
-          # rejected).
-          effective_status:,
-          # The scheduled end time of the campaign (ISO8601).
-          end_time:,
-          # The campaign objective that determines how Meta optimizes delivery.
-          objective:,
-          # Special ad categories required by the platform (e.g., housing, employment,
-          # credit).
-          special_categories:,
-          # The scheduled start time of the campaign (ISO8601).
-          start_time:,
-          # The campaign status as set by the advertiser (active or paused).
-          status:
+          # When the issue was first reported.
+          created_at:,
+          # Platform-specific error code.
+          error_code:,
+          # Full error detail from the platform.
+          error_message:,
+          # Short description of the issue.
+          error_summary:,
+          # Current resolution status.
+          resolution_status:,
+          # The Whop ID of the ad object this issue is on (the ad, ad group, or campaign).
+          # Null when the issue isn't tied to a local object.
+          resource_id:,
+          # The kind of ad object this issue is on: `ad`, `ad_group`, or `ad_campaign`.
+          # Pairs with `resourceId`.
+          resource_type:
         )
         end
 
         sig do
           override.returns(
             {
-              bid_amount: T.nilable(Integer),
-              bid_strategy:
-                T.nilable(
-                  WhopSDK::AdCampaign::MetaConfig::BidStrategy::TaggedSymbol
-                ),
-              budget_optimization: T.nilable(T::Boolean),
-              effective_status:
-                T.nilable(
-                  WhopSDK::AdCampaign::MetaConfig::EffectiveStatus::TaggedSymbol
-                ),
-              end_time: T.nilable(String),
-              objective:
-                T.nilable(
-                  WhopSDK::AdCampaign::MetaConfig::Objective::TaggedSymbol
-                ),
-              special_categories: T.nilable(T::Array[String]),
-              start_time: T.nilable(String),
-              status:
-                T.nilable(WhopSDK::AdCampaign::MetaConfig::Status::TaggedSymbol)
+              created_at: Time,
+              error_code: T.nilable(String),
+              error_message: T.nilable(String),
+              error_summary: String,
+              resolution_status:
+                WhopSDK::AdCampaign::Issue::ResolutionStatus::TaggedSymbol,
+              resource_id: T.nilable(String),
+              resource_type: String
             }
           )
         end
         def to_hash
         end
 
-        # The bidding strategy used to optimize spend for this campaign.
-        module BidStrategy
+        # Current resolution status.
+        module ResolutionStatus
           extend WhopSDK::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias do
-              T.all(Symbol, WhopSDK::AdCampaign::MetaConfig::BidStrategy)
+              T.all(Symbol, WhopSDK::AdCampaign::Issue::ResolutionStatus)
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          LOWEST_COST =
+          OPEN =
             T.let(
-              :lowest_cost,
-              WhopSDK::AdCampaign::MetaConfig::BidStrategy::TaggedSymbol
+              :open,
+              WhopSDK::AdCampaign::Issue::ResolutionStatus::TaggedSymbol
             )
-          BID_CAP =
+          RESOLVED =
             T.let(
-              :bid_cap,
-              WhopSDK::AdCampaign::MetaConfig::BidStrategy::TaggedSymbol
+              :resolved,
+              WhopSDK::AdCampaign::Issue::ResolutionStatus::TaggedSymbol
             )
-          COST_CAP =
+          ACKNOWLEDGED =
             T.let(
-              :cost_cap,
-              WhopSDK::AdCampaign::MetaConfig::BidStrategy::TaggedSymbol
+              :acknowledged,
+              WhopSDK::AdCampaign::Issue::ResolutionStatus::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::AdCampaign::MetaConfig::BidStrategy::TaggedSymbol
+                WhopSDK::AdCampaign::Issue::ResolutionStatus::TaggedSymbol
               ]
-            )
-          end
-          def self.values
-          end
-        end
-
-        # The actual delivery status, accounting for platform overrides (e.g., in_review,
-        # rejected).
-        module EffectiveStatus
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, WhopSDK::AdCampaign::MetaConfig::EffectiveStatus)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          ACTIVE =
-            T.let(
-              :active,
-              WhopSDK::AdCampaign::MetaConfig::EffectiveStatus::TaggedSymbol
-            )
-          PAUSED =
-            T.let(
-              :paused,
-              WhopSDK::AdCampaign::MetaConfig::EffectiveStatus::TaggedSymbol
-            )
-          DELETED =
-            T.let(
-              :deleted,
-              WhopSDK::AdCampaign::MetaConfig::EffectiveStatus::TaggedSymbol
-            )
-          IN_REVIEW =
-            T.let(
-              :in_review,
-              WhopSDK::AdCampaign::MetaConfig::EffectiveStatus::TaggedSymbol
-            )
-          REJECTED =
-            T.let(
-              :rejected,
-              WhopSDK::AdCampaign::MetaConfig::EffectiveStatus::TaggedSymbol
-            )
-          WITH_ISSUES =
-            T.let(
-              :with_issues,
-              WhopSDK::AdCampaign::MetaConfig::EffectiveStatus::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                WhopSDK::AdCampaign::MetaConfig::EffectiveStatus::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
-        end
-
-        # The campaign objective that determines how Meta optimizes delivery.
-        module Objective
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, WhopSDK::AdCampaign::MetaConfig::Objective)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          AWARENESS =
-            T.let(
-              :awareness,
-              WhopSDK::AdCampaign::MetaConfig::Objective::TaggedSymbol
-            )
-          TRAFFIC =
-            T.let(
-              :traffic,
-              WhopSDK::AdCampaign::MetaConfig::Objective::TaggedSymbol
-            )
-          ENGAGEMENT =
-            T.let(
-              :engagement,
-              WhopSDK::AdCampaign::MetaConfig::Objective::TaggedSymbol
-            )
-          LEADS =
-            T.let(
-              :leads,
-              WhopSDK::AdCampaign::MetaConfig::Objective::TaggedSymbol
-            )
-          SALES =
-            T.let(
-              :sales,
-              WhopSDK::AdCampaign::MetaConfig::Objective::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[WhopSDK::AdCampaign::MetaConfig::Objective::TaggedSymbol]
-            )
-          end
-          def self.values
-          end
-        end
-
-        # The campaign status as set by the advertiser (active or paused).
-        module Status
-          extend WhopSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, WhopSDK::AdCampaign::MetaConfig::Status)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          ACTIVE =
-            T.let(
-              :active,
-              WhopSDK::AdCampaign::MetaConfig::Status::TaggedSymbol
-            )
-          PAUSED =
-            T.let(
-              :paused,
-              WhopSDK::AdCampaign::MetaConfig::Status::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[WhopSDK::AdCampaign::MetaConfig::Status::TaggedSymbol]
             )
           end
           def self.values

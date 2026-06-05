@@ -1,0 +1,95 @@
+module WhopSDK
+  module Models
+    type verification_create_params =
+      {
+        account_id: String,
+        address: ::Hash[Symbol, top],
+        country: String,
+        date_of_birth: String,
+        first_name: String,
+        kind: WhopSDK::Models::VerificationCreateParams::kind,
+        last_name: String,
+        phone: String,
+        restart: bool
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class VerificationCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
+
+      attr_reader address: ::Hash[Symbol, top]?
+
+      def address=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      attr_reader country: String?
+
+      def country=: (String) -> String
+
+      attr_reader date_of_birth: String?
+
+      def date_of_birth=: (String) -> String
+
+      attr_reader first_name: String?
+
+      def first_name=: (String) -> String
+
+      attr_reader kind: WhopSDK::Models::VerificationCreateParams::kind?
+
+      def kind=: (
+        WhopSDK::Models::VerificationCreateParams::kind
+      ) -> WhopSDK::Models::VerificationCreateParams::kind
+
+      attr_reader last_name: String?
+
+      def last_name=: (String) -> String
+
+      attr_reader phone: String?
+
+      def phone=: (String) -> String
+
+      attr_reader restart: bool?
+
+      def restart=: (bool) -> bool
+
+      def initialize: (
+        account_id: String,
+        ?address: ::Hash[Symbol, top],
+        ?country: String,
+        ?date_of_birth: String,
+        ?first_name: String,
+        ?kind: WhopSDK::Models::VerificationCreateParams::kind,
+        ?last_name: String,
+        ?phone: String,
+        ?restart: bool,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        address: ::Hash[Symbol, top],
+        country: String,
+        date_of_birth: String,
+        first_name: String,
+        kind: WhopSDK::Models::VerificationCreateParams::kind,
+        last_name: String,
+        phone: String,
+        restart: bool,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type kind = :individual | :business
+
+      module Kind
+        extend WhopSDK::Internal::Type::Enum
+
+        INDIVIDUAL: :individual
+        BUSINESS: :business
+
+        def self?.values: -> ::Array[WhopSDK::Models::VerificationCreateParams::kind]
+      end
+    end
+  end
+end

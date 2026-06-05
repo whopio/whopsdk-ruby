@@ -4,9 +4,9 @@ module WhopSDK
       {
         from: Time,
         to: Time,
-        ad_campaign_id: String?,
-        ad_group_id: String?,
-        ad_id: String?,
+        ad_campaign_ids: ::Array[String]?,
+        ad_group_ids: ::Array[String]?,
+        ad_ids: ::Array[String]?,
         breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown?,
         company_id: String?,
         currency: String?,
@@ -22,11 +22,11 @@ module WhopSDK
 
       attr_accessor to: Time
 
-      attr_accessor ad_campaign_id: String?
+      attr_accessor ad_campaign_ids: ::Array[String]?
 
-      attr_accessor ad_group_id: String?
+      attr_accessor ad_group_ids: ::Array[String]?
 
-      attr_accessor ad_id: String?
+      attr_accessor ad_ids: ::Array[String]?
 
       attr_accessor breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown?
 
@@ -39,9 +39,9 @@ module WhopSDK
       def initialize: (
         from: Time,
         to: Time,
-        ?ad_campaign_id: String?,
-        ?ad_group_id: String?,
-        ?ad_id: String?,
+        ?ad_campaign_ids: ::Array[String]?,
+        ?ad_group_ids: ::Array[String]?,
+        ?ad_ids: ::Array[String]?,
         ?breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown?,
         ?company_id: String?,
         ?currency: String?,
@@ -52,9 +52,9 @@ module WhopSDK
       def to_hash: -> {
         from: Time,
         to: Time,
-        ad_campaign_id: String?,
-        ad_group_id: String?,
-        ad_id: String?,
+        ad_campaign_ids: ::Array[String]?,
+        ad_group_ids: ::Array[String]?,
+        ad_ids: ::Array[String]?,
         breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown?,
         company_id: String?,
         currency: String?,

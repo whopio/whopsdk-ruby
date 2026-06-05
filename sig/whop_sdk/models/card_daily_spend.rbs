@@ -1,0 +1,52 @@
+module WhopSDK
+  module Models
+    type card_daily_spend =
+      {
+        daily_spend: ::Array[WhopSDK::CardDailySpend::DailySpend],
+        object: WhopSDK::Models::CardDailySpend::object,
+        timezone: String
+      }
+
+    class CardDailySpend < WhopSDK::Internal::Type::BaseModel
+      attr_accessor daily_spend: ::Array[WhopSDK::CardDailySpend::DailySpend]
+
+      attr_accessor object: WhopSDK::Models::CardDailySpend::object
+
+      attr_accessor timezone: String
+
+      def initialize: (
+        daily_spend: ::Array[WhopSDK::CardDailySpend::DailySpend],
+        object: WhopSDK::Models::CardDailySpend::object,
+        timezone: String
+      ) -> void
+
+      def to_hash: -> {
+        daily_spend: ::Array[WhopSDK::CardDailySpend::DailySpend],
+        object: WhopSDK::Models::CardDailySpend::object,
+        timezone: String
+      }
+
+      type daily_spend = { amount_cents: Integer, date: String }
+
+      class DailySpend < WhopSDK::Internal::Type::BaseModel
+        attr_accessor amount_cents: Integer
+
+        attr_accessor date: String
+
+        def initialize: (amount_cents: Integer, date: String) -> void
+
+        def to_hash: -> { amount_cents: Integer, date: String }
+      end
+
+      type object = :daily_spend
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        DAILY_SPEND: :daily_spend
+
+        def self?.values: -> ::Array[WhopSDK::Models::CardDailySpend::object]
+      end
+    end
+  end
+end

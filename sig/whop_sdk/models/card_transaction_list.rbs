@@ -1,0 +1,77 @@
+module WhopSDK
+  module Models
+    type card_transaction_list =
+      {
+        data: ::Array[WhopSDK::CardTransaction],
+        object: WhopSDK::Models::CardTransactionList::object,
+        pagination: WhopSDK::CardTransactionList::Pagination
+      }
+
+    class CardTransactionList < WhopSDK::Internal::Type::BaseModel
+      attr_accessor data: ::Array[WhopSDK::CardTransaction]
+
+      attr_accessor object: WhopSDK::Models::CardTransactionList::object
+
+      attr_accessor pagination: WhopSDK::CardTransactionList::Pagination
+
+      def initialize: (
+        data: ::Array[WhopSDK::CardTransaction],
+        object: WhopSDK::Models::CardTransactionList::object,
+        pagination: WhopSDK::CardTransactionList::Pagination
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[WhopSDK::CardTransaction],
+        object: WhopSDK::Models::CardTransactionList::object,
+        pagination: WhopSDK::CardTransactionList::Pagination
+      }
+
+      type object = :list
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        LIST: :list
+
+        def self?.values: -> ::Array[WhopSDK::Models::CardTransactionList::object]
+      end
+
+      type pagination =
+        {
+          current_page: Float,
+          next_page: Float?,
+          prev_page: Float?,
+          total_count: Float,
+          total_pages: Float
+        }
+
+      class Pagination < WhopSDK::Internal::Type::BaseModel
+        attr_accessor current_page: Float
+
+        attr_accessor next_page: Float?
+
+        attr_accessor prev_page: Float?
+
+        attr_accessor total_count: Float
+
+        attr_accessor total_pages: Float
+
+        def initialize: (
+          current_page: Float,
+          next_page: Float?,
+          prev_page: Float?,
+          total_count: Float,
+          total_pages: Float
+        ) -> void
+
+        def to_hash: -> {
+          current_page: Float,
+          next_page: Float?,
+          prev_page: Float?,
+          total_count: Float,
+          total_pages: Float
+        }
+      end
+    end
+  end
+end

@@ -2,6 +2,8 @@ module WhopSDK
   module Models
     type ad_group_list_params =
       {
+        ad_campaign_id: String?,
+        ad_campaign_ids: ::Array[String]?,
         after: String?,
         before: String?,
         campaign_id: String?,
@@ -9,9 +11,10 @@ module WhopSDK
         created_after: Time?,
         created_before: Time?,
         first: Integer?,
-        include_paused: bool?,
         last: Integer?,
         query: String?,
+        stats_from: Time?,
+        stats_to: Time?,
         status: WhopSDK::Models::ad_group_status?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -19,6 +22,10 @@ module WhopSDK
     class AdGroupListParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor ad_campaign_id: String?
+
+      attr_accessor ad_campaign_ids: ::Array[String]?
 
       attr_accessor after: String?
 
@@ -34,15 +41,19 @@ module WhopSDK
 
       attr_accessor first: Integer?
 
-      attr_accessor include_paused: bool?
-
       attr_accessor last: Integer?
 
       attr_accessor query: String?
 
+      attr_accessor stats_from: Time?
+
+      attr_accessor stats_to: Time?
+
       attr_accessor status: WhopSDK::Models::ad_group_status?
 
       def initialize: (
+        ?ad_campaign_id: String?,
+        ?ad_campaign_ids: ::Array[String]?,
         ?after: String?,
         ?before: String?,
         ?campaign_id: String?,
@@ -50,14 +61,17 @@ module WhopSDK
         ?created_after: Time?,
         ?created_before: Time?,
         ?first: Integer?,
-        ?include_paused: bool?,
         ?last: Integer?,
         ?query: String?,
+        ?stats_from: Time?,
+        ?stats_to: Time?,
         ?status: WhopSDK::Models::ad_group_status?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
+        ad_campaign_id: String?,
+        ad_campaign_ids: ::Array[String]?,
         after: String?,
         before: String?,
         campaign_id: String?,
@@ -65,9 +79,10 @@ module WhopSDK
         created_after: Time?,
         created_before: Time?,
         first: Integer?,
-        include_paused: bool?,
         last: Integer?,
         query: String?,
+        stats_from: Time?,
+        stats_to: Time?,
         status: WhopSDK::Models::ad_group_status?,
         request_options: WhopSDK::RequestOptions
       }

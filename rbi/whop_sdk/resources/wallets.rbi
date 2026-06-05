@@ -26,6 +26,29 @@ module WhopSDK
       )
       end
 
+      # Returns the account's wallet address for receiving crypto, plus the EVM networks
+      # that share that address.
+      sig do
+        params(
+          account_id: String,
+          asset: String,
+          network: WhopSDK::WalletDepositAddressParams::Network::OrSymbol,
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::Models::WalletDepositAddressResponse)
+      end
+      def deposit_address(
+        # The business or user account ID whose deposit address should be returned.
+        account_id:,
+        # Optional asset symbol the caller intends to deposit (e.g. USDT). Unsupported
+        # assets are rejected with a 400 rather than silently ignored.
+        asset: nil,
+        # Optional network the caller intends to deposit on (e.g. plasma). Unsupported
+        # networks are rejected with a 400 rather than silently ignored.
+        network: nil,
+        request_options: {}
+      )
+      end
+
       # Sends USDT from an account's wallet to another Whop user or business.
       sig do
         params(

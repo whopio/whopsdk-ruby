@@ -4,15 +4,22 @@ module WhopSDK
   module Resources
     # Ad campaigns
     class AdCampaigns
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::AdCampaignRetrieveParams} for more details.
+      #
       # Retrieves a single ad campaign by its unique identifier.
       #
       # Required permissions:
       #
       # - `ad_campaign:basic:read`
       #
-      # @overload retrieve(id, request_options: {})
+      # @overload retrieve(id, stats_from: nil, stats_to: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the ad campaign.
+      #
+      # @param stats_from [Time, nil] Inclusive start of the window for the campaign's metric fields (spend, impressio
+      #
+      # @param stats_to [Time, nil] Inclusive end of the window for the campaign's metric fields. Omit both statsFro
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -20,11 +27,14 @@ module WhopSDK
       #
       # @see WhopSDK::Models::AdCampaignRetrieveParams
       def retrieve(id, params = {})
+        parsed, options = WhopSDK::AdCampaignRetrieveParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["ad_campaigns/%1$s", id],
+          query: query,
           model: WhopSDK::AdCampaign,
-          options: params[:request_options]
+          options: options
         )
       end
 
@@ -59,6 +69,9 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::AdCampaignListParams} for more details.
+      #
       # Returns a paginated list of ad campaigns for a company, with optional filtering
       # by status, and creation date.
       #
@@ -66,7 +79,7 @@ module WhopSDK
       #
       # - `ad_campaign:basic:read`
       #
-      # @overload list(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, last: nil, query: nil, status: nil, request_options: {})
+      # @overload list(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, last: nil, query: nil, stats_from: nil, stats_to: nil, status: nil, request_options: {})
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -82,7 +95,11 @@ module WhopSDK
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param query [String, nil] Case-insensitive substring match against the campaign title.
+      # @param query [String, nil] Case-insensitive substring match against the campaign title or ID.
+      #
+      # @param stats_from [Time, nil] Inclusive start of the window for each campaign's metric fields (spend, impressi
+      #
+      # @param stats_to [Time, nil] Inclusive end of the window for each campaign's metric fields. Omit both statsFr
       #
       # @param status [Symbol, WhopSDK::Models::AdCampaignStatus, nil] The status of an ad campaign.
       #

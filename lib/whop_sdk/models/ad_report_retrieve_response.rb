@@ -224,35 +224,35 @@ module WhopSDK
 
         # @see WhopSDK::Models::AdReportRetrieveResponse::Breakdown#summary
         class Summary < WhopSDK::Internal::Type::BaseModel
+          # @!attribute click_through_rate
+          #   Click-through rate (clicks / impressions).
+          #
+          #   @return [Float]
+          required :click_through_rate, Float
+
           # @!attribute clicks
           #   Total clicks over the date range.
           #
           #   @return [Integer]
           required :clicks, Integer
 
+          # @!attribute cost_per_click
+          #   Cost per click in the requested reporting currency.
+          #
+          #   @return [Float]
+          required :cost_per_click, Float
+
+          # @!attribute cost_per_mille
+          #   Cost per thousand impressions in the requested reporting currency.
+          #
+          #   @return [Float, nil]
+          required :cost_per_mille, Float, nil?: true
+
           # @!attribute cost_per_result
           #   Spend divided by `resultCount`. Null when there are no results.
           #
           #   @return [Float, nil]
           required :cost_per_result, Float, nil?: true
-
-          # @!attribute cpc
-          #   Cost per click in the requested reporting currency.
-          #
-          #   @return [Float]
-          required :cpc, Float
-
-          # @!attribute cpm
-          #   Cost per thousand impressions in the requested reporting currency.
-          #
-          #   @return [Float, nil]
-          required :cpm, Float, nil?: true
-
-          # @!attribute ctr
-          #   Click-through rate (clicks / impressions).
-          #
-          #   @return [Float]
-          required :ctr, Float
 
           # @!attribute frequency
           #   Average number of times each reached user saw an ad.
@@ -291,12 +291,12 @@ module WhopSDK
           #   @return [String, nil]
           required :result_label_override, String, nil?: true
 
-          # @!attribute roas
-          #   Alias for `purchaseRoas` — return on ad spend for purchases, as reported by the
-          #   external ad platform.
+          # @!attribute return_on_ad_spend
+          #   Alias for `purchaseReturnOnAdSpend` — return on ad spend for purchases, as
+          #   reported by the external ad platform.
           #
           #   @return [Float, nil]
-          required :roas, Float, nil?: true
+          required :return_on_ad_spend, Float, nil?: true
 
           # @!attribute spend
           #   Total spend over the date range in the requested reporting currency.
@@ -310,22 +310,22 @@ module WhopSDK
           #   @return [Symbol, WhopSDK::Models::Currency, nil]
           required :spend_currency, enum: -> { WhopSDK::Currency }, nil?: true
 
-          # @!method initialize(clicks:, cost_per_result:, cpc:, cpm:, ctr:, frequency:, impressions:, reach:, result_count:, result_label_key:, result_label_override:, roas:, spend:, spend_currency:)
+          # @!method initialize(click_through_rate:, clicks:, cost_per_click:, cost_per_mille:, cost_per_result:, frequency:, impressions:, reach:, result_count:, result_label_key:, result_label_override:, return_on_ad_spend:, spend:, spend_currency:)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Summary} for more
           #   details.
           #
           #   Aggregate totals and rates for this entity over the date range.
           #
+          #   @param click_through_rate [Float] Click-through rate (clicks / impressions).
+          #
           #   @param clicks [Integer] Total clicks over the date range.
           #
+          #   @param cost_per_click [Float] Cost per click in the requested reporting currency.
+          #
+          #   @param cost_per_mille [Float, nil] Cost per thousand impressions in the requested reporting currency.
+          #
           #   @param cost_per_result [Float, nil] Spend divided by `resultCount`. Null when there are no results.
-          #
-          #   @param cpc [Float] Cost per click in the requested reporting currency.
-          #
-          #   @param cpm [Float, nil] Cost per thousand impressions in the requested reporting currency.
-          #
-          #   @param ctr [Float] Click-through rate (clicks / impressions).
           #
           #   @param frequency [Float, nil] Average number of times each reached user saw an ad.
           #
@@ -339,7 +339,7 @@ module WhopSDK
           #
           #   @param result_label_override [String, nil] Advertiser-defined label for the result when `resultLabelKey` is `custom`.
           #
-          #   @param roas [Float, nil] Alias for `purchaseRoas` — return on ad spend for purchases, as reported by the
+          #   @param return_on_ad_spend [Float, nil] Alias for `purchaseReturnOnAdSpend` — return on ad spend for purchases, as repor
           #
           #   @param spend [Float] Total spend over the date range in the requested reporting currency.
           #
@@ -460,35 +460,35 @@ module WhopSDK
 
       # @see WhopSDK::Models::AdReportRetrieveResponse#summary
       class Summary < WhopSDK::Internal::Type::BaseModel
+        # @!attribute click_through_rate
+        #   Click-through rate (clicks / impressions).
+        #
+        #   @return [Float]
+        required :click_through_rate, Float
+
         # @!attribute clicks
         #   Total clicks over the date range.
         #
         #   @return [Integer]
         required :clicks, Integer
 
+        # @!attribute cost_per_click
+        #   Cost per click in the requested reporting currency.
+        #
+        #   @return [Float]
+        required :cost_per_click, Float
+
+        # @!attribute cost_per_mille
+        #   Cost per thousand impressions in the requested reporting currency.
+        #
+        #   @return [Float, nil]
+        required :cost_per_mille, Float, nil?: true
+
         # @!attribute cost_per_result
         #   Spend divided by `resultCount`. Null when there are no results.
         #
         #   @return [Float, nil]
         required :cost_per_result, Float, nil?: true
-
-        # @!attribute cpc
-        #   Cost per click in the requested reporting currency.
-        #
-        #   @return [Float]
-        required :cpc, Float
-
-        # @!attribute cpm
-        #   Cost per thousand impressions in the requested reporting currency.
-        #
-        #   @return [Float, nil]
-        required :cpm, Float, nil?: true
-
-        # @!attribute ctr
-        #   Click-through rate (clicks / impressions).
-        #
-        #   @return [Float]
-        required :ctr, Float
 
         # @!attribute frequency
         #   Average number of times each reached user saw an ad.
@@ -527,12 +527,12 @@ module WhopSDK
         #   @return [String, nil]
         required :result_label_override, String, nil?: true
 
-        # @!attribute roas
-        #   Alias for `purchaseRoas` — return on ad spend for purchases, as reported by the
-        #   external ad platform.
+        # @!attribute return_on_ad_spend
+        #   Alias for `purchaseReturnOnAdSpend` — return on ad spend for purchases, as
+        #   reported by the external ad platform.
         #
         #   @return [Float, nil]
-        required :roas, Float, nil?: true
+        required :return_on_ad_spend, Float, nil?: true
 
         # @!attribute spend
         #   Total spend over the date range in the requested reporting currency.
@@ -546,21 +546,21 @@ module WhopSDK
         #   @return [Symbol, WhopSDK::Models::Currency, nil]
         required :spend_currency, enum: -> { WhopSDK::Currency }, nil?: true
 
-        # @!method initialize(clicks:, cost_per_result:, cpc:, cpm:, ctr:, frequency:, impressions:, reach:, result_count:, result_label_key:, result_label_override:, roas:, spend:, spend_currency:)
+        # @!method initialize(click_through_rate:, clicks:, cost_per_click:, cost_per_mille:, cost_per_result:, frequency:, impressions:, reach:, result_count:, result_label_key:, result_label_override:, return_on_ad_spend:, spend:, spend_currency:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::AdReportRetrieveResponse::Summary} for more details.
         #
         #   Aggregate totals and rates over the date range.
         #
+        #   @param click_through_rate [Float] Click-through rate (clicks / impressions).
+        #
         #   @param clicks [Integer] Total clicks over the date range.
         #
+        #   @param cost_per_click [Float] Cost per click in the requested reporting currency.
+        #
+        #   @param cost_per_mille [Float, nil] Cost per thousand impressions in the requested reporting currency.
+        #
         #   @param cost_per_result [Float, nil] Spend divided by `resultCount`. Null when there are no results.
-        #
-        #   @param cpc [Float] Cost per click in the requested reporting currency.
-        #
-        #   @param cpm [Float, nil] Cost per thousand impressions in the requested reporting currency.
-        #
-        #   @param ctr [Float] Click-through rate (clicks / impressions).
         #
         #   @param frequency [Float, nil] Average number of times each reached user saw an ad.
         #
@@ -574,7 +574,7 @@ module WhopSDK
         #
         #   @param result_label_override [String, nil] Advertiser-defined label for the result when `resultLabelKey` is `custom`.
         #
-        #   @param roas [Float, nil] Alias for `purchaseRoas` — return on ad spend for purchases, as reported by the
+        #   @param return_on_ad_spend [Float, nil] Alias for `purchaseReturnOnAdSpend` — return on ad spend for purchases, as repor
         #
         #   @param spend [Float] Total spend over the date range in the requested reporting currency.
         #

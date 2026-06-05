@@ -300,8 +300,7 @@ module WhopSDK
         attr_accessor :three_ds_level
 
         # The number of free trial days before the first charge on a renewal plan. Null if
-        # no trial is configured or the current user has already used a trial for this
-        # plan.
+        # no trial is configured or the current user previously paid for this plan.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :trial_period_days
 
@@ -361,8 +360,7 @@ module WhopSDK
           # The 3D Secure behavior for a plan.
           three_ds_level:,
           # The number of free trial days before the first charge on a renewal plan. Null if
-          # no trial is configured or the current user has already used a trial for this
-          # plan.
+          # no trial is configured or the current user previously paid for this plan.
           trial_period_days:,
           # Controls whether the plan is visible to customers. When set to 'hidden', the
           # plan is only accessible via direct link.

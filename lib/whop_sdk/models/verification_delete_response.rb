@@ -2,8 +2,8 @@
 
 module WhopSDK
   module Models
-    # @see WhopSDK::Resources::Verifications#retrieve
-    class VerificationRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+    # @see WhopSDK::Resources::Verifications#delete
+    class VerificationDeleteResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
       #   The identity profile ID, e.g. idpf\_\*
       #
@@ -17,19 +17,18 @@ module WhopSDK
 
       # @!attribute kind
       #
-      #   @return [Symbol, WhopSDK::Models::VerificationRetrieveResponse::Kind]
-      required :kind, enum: -> { WhopSDK::Models::VerificationRetrieveResponse::Kind }
+      #   @return [Symbol, WhopSDK::Models::VerificationDeleteResponse::Kind]
+      required :kind, enum: -> { WhopSDK::Models::VerificationDeleteResponse::Kind }
 
       # @!attribute rfis
       #
-      #   @return [Array<WhopSDK::Models::VerificationRetrieveResponse::Rfi>]
-      required :rfis,
-               -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::VerificationRetrieveResponse::Rfi] }
+      #   @return [Array<WhopSDK::Models::VerificationDeleteResponse::Rfi>]
+      required :rfis, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::VerificationDeleteResponse::Rfi] }
 
       # @!attribute status
       #
-      #   @return [Symbol, WhopSDK::Models::VerificationRetrieveResponse::Status]
-      required :status, enum: -> { WhopSDK::Models::VerificationRetrieveResponse::Status }
+      #   @return [Symbol, WhopSDK::Models::VerificationDeleteResponse::Status]
+      required :status, enum: -> { WhopSDK::Models::VerificationDeleteResponse::Status }
 
       # @!attribute updated_at
       #
@@ -81,11 +80,11 @@ module WhopSDK
       #
       #   @param created_at [String]
       #
-      #   @param kind [Symbol, WhopSDK::Models::VerificationRetrieveResponse::Kind]
+      #   @param kind [Symbol, WhopSDK::Models::VerificationDeleteResponse::Kind]
       #
-      #   @param rfis [Array<WhopSDK::Models::VerificationRetrieveResponse::Rfi>]
+      #   @param rfis [Array<WhopSDK::Models::VerificationDeleteResponse::Rfi>]
       #
-      #   @param status [Symbol, WhopSDK::Models::VerificationRetrieveResponse::Status]
+      #   @param status [Symbol, WhopSDK::Models::VerificationDeleteResponse::Status]
       #
       #   @param updated_at [String]
       #
@@ -105,7 +104,7 @@ module WhopSDK
       #
       #   @param session_url [String, nil]
 
-      # @see WhopSDK::Models::VerificationRetrieveResponse#kind
+      # @see WhopSDK::Models::VerificationDeleteResponse#kind
       module Kind
         extend WhopSDK::Internal::Type::Enum
 
@@ -139,8 +138,8 @@ module WhopSDK
 
         # @!attribute status
         #
-        #   @return [Symbol, WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status, nil]
-        optional :status, enum: -> { WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status }
+        #   @return [Symbol, WhopSDK::Models::VerificationDeleteResponse::Rfi::Status, nil]
+        optional :status, enum: -> { WhopSDK::Models::VerificationDeleteResponse::Rfi::Status }
 
         # @!attribute type
         #
@@ -152,10 +151,10 @@ module WhopSDK
         #   @param created_at [String]
         #   @param description [String]
         #   @param error_message [String, nil]
-        #   @param status [Symbol, WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status]
+        #   @param status [Symbol, WhopSDK::Models::VerificationDeleteResponse::Rfi::Status]
         #   @param type [String, nil]
 
-        # @see WhopSDK::Models::VerificationRetrieveResponse::Rfi#status
+        # @see WhopSDK::Models::VerificationDeleteResponse::Rfi#status
         module Status
           extend WhopSDK::Internal::Type::Enum
 
@@ -167,7 +166,7 @@ module WhopSDK
         end
       end
 
-      # @see WhopSDK::Models::VerificationRetrieveResponse#status
+      # @see WhopSDK::Models::VerificationDeleteResponse#status
       module Status
         extend WhopSDK::Internal::Type::Enum
 

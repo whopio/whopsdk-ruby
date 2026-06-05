@@ -2,8 +2,8 @@
 
 module WhopSDK
   module Models
-    # @see WhopSDK::Resources::Verifications#retrieve
-    class VerificationRetrieveParams < WhopSDK::Internal::Type::BaseModel
+    # @see WhopSDK::Resources::Verifications#delete
+    class VerificationDeleteParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 

@@ -3,10 +3,39 @@
 require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::VerificationsTest < WhopSDK::Test::ResourceTest
+  def test_create_required_params
+    skip("Mock server tests are disabled")
+
+    response = @whop.verifications.create(account_id: "account_id")
+
+    assert_pattern do
+      response => WhopSDK::Models::VerificationCreateResponse
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        created_at: String,
+        kind: WhopSDK::Models::VerificationCreateResponse::Kind,
+        session_url: String | nil,
+        status: WhopSDK::Models::VerificationCreateResponse::Status,
+        updated_at: String,
+        address: WhopSDK::Internal::Type::Unknown | nil,
+        business_name: String | nil,
+        business_structure: String | nil,
+        country: String | nil,
+        date_of_birth: String | nil,
+        first_name: String | nil,
+        last_name: String | nil,
+        rfis: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::VerificationCreateResponse::Rfi]) | nil
+      }
+    end
+  end
+
   def test_retrieve
     skip("Mock server tests are disabled")
 
-    response = @whop.verifications.retrieve("verf_xxxxxxxxxxxxx")
+    response = @whop.verifications.retrieve("verification_id")
 
     assert_pattern do
       response => WhopSDK::Models::VerificationRetrieveResponse
@@ -15,35 +44,77 @@ class WhopSDK::Test::Resources::VerificationsTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        last_error_code: WhopSDK::VerificationErrorCode | nil,
-        last_error_reason: String | nil,
-        status: WhopSDK::VerificationStatus
+        created_at: String,
+        kind: WhopSDK::Models::VerificationRetrieveResponse::Kind,
+        rfis: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::VerificationRetrieveResponse::Rfi]),
+        status: WhopSDK::Models::VerificationRetrieveResponse::Status,
+        updated_at: String,
+        address: WhopSDK::Internal::Type::Unknown | nil,
+        business_name: String | nil,
+        business_structure: String | nil,
+        country: String | nil,
+        date_of_birth: String | nil,
+        first_name: String | nil,
+        last_name: String | nil,
+        session_url: String | nil
       }
     end
   end
 
-  def test_list_required_params
+  def test_update
     skip("Mock server tests are disabled")
 
-    response = @whop.verifications.list(payout_account_id: "poact_xxxxxxxxxxxx")
+    response = @whop.verifications.update("verification_id")
 
     assert_pattern do
-      response => WhopSDK::Internal::CursorPage
-    end
-
-    row = response.to_enum.first
-    return if row.nil?
-
-    assert_pattern do
-      row => WhopSDK::Models::VerificationListResponse
+      response => WhopSDK::Models::VerificationUpdateResponse
     end
 
     assert_pattern do
-      row => {
+      response => {
         id: String,
-        last_error_code: WhopSDK::VerificationErrorCode | nil,
-        last_error_reason: String | nil,
-        status: WhopSDK::VerificationStatus
+        created_at: String,
+        kind: WhopSDK::Models::VerificationUpdateResponse::Kind,
+        rfis: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::VerificationUpdateResponse::Rfi]),
+        status: WhopSDK::Models::VerificationUpdateResponse::Status,
+        updated_at: String,
+        address: WhopSDK::Internal::Type::Unknown | nil,
+        business_name: String | nil,
+        business_structure: String | nil,
+        country: String | nil,
+        date_of_birth: String | nil,
+        first_name: String | nil,
+        last_name: String | nil,
+        session_url: String | nil
+      }
+    end
+  end
+
+  def test_delete
+    skip("Mock server tests are disabled")
+
+    response = @whop.verifications.delete("verification_id")
+
+    assert_pattern do
+      response => WhopSDK::Models::VerificationDeleteResponse
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        created_at: String,
+        kind: WhopSDK::Models::VerificationDeleteResponse::Kind,
+        rfis: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::VerificationDeleteResponse::Rfi]),
+        status: WhopSDK::Models::VerificationDeleteResponse::Status,
+        updated_at: String,
+        address: WhopSDK::Internal::Type::Unknown | nil,
+        business_name: String | nil,
+        business_structure: String | nil,
+        country: String | nil,
+        date_of_birth: String | nil,
+        first_name: String | nil,
+        last_name: String | nil,
+        session_url: String | nil
       }
     end
   end

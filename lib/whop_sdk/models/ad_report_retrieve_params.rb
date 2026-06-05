@@ -19,26 +19,26 @@ module WhopSDK
       #   @return [Time]
       required :to, Time
 
-      # @!attribute ad_campaign_id
-      #   The unique identifier of an ad campaign. Mutually exclusive with `companyId`,
-      #   `adGroupId`, and `adId`.
+      # @!attribute ad_campaign_ids
+      #   Scope the report to these ad campaigns (max 100); stats are summed across them.
+      #   Mutually exclusive with `companyId`, `adGroupIds`, and `adIds`.
       #
-      #   @return [String, nil]
-      optional :ad_campaign_id, String, nil?: true
+      #   @return [Array<String>, nil]
+      optional :ad_campaign_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
 
-      # @!attribute ad_group_id
-      #   The unique identifier of an ad group. Mutually exclusive with `companyId`,
-      #   `adCampaignId`, and `adId`.
+      # @!attribute ad_group_ids
+      #   Scope the report to these ad groups (max 100); stats are summed across them.
+      #   Mutually exclusive with `companyId`, `adCampaignIds`, and `adIds`.
       #
-      #   @return [String, nil]
-      optional :ad_group_id, String, nil?: true
+      #   @return [Array<String>, nil]
+      optional :ad_group_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
 
-      # @!attribute ad_id
-      #   The unique identifier of an ad. Mutually exclusive with `companyId`,
-      #   `adCampaignId`, and `adGroupId`.
+      # @!attribute ad_ids
+      #   Scope the report to these ads (max 100); stats are summed across them. Mutually
+      #   exclusive with `companyId`, `adCampaignIds`, and `adGroupIds`.
       #
-      #   @return [String, nil]
-      optional :ad_id, String, nil?: true
+      #   @return [Array<String>, nil]
+      optional :ad_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
 
       # @!attribute breakdown
       #   Entity level to group an ad report by.
@@ -47,9 +47,9 @@ module WhopSDK
       optional :breakdown, enum: -> { WhopSDK::AdReportRetrieveParams::Breakdown }, nil?: true
 
       # @!attribute company_id
-      #   The unique identifier of a company. Mutually exclusive with `adCampaignId`,
-      #   `adGroupId`, and `adId`. Use with `breakdown` to fan out across every campaign,
-      #   ad group, or ad in the company without paging.
+      #   The unique identifier of a company. Mutually exclusive with `adCampaignIds`,
+      #   `adGroupIds`, and `adIds`. Use with `breakdown` to fan out across every
+      #   campaign, ad group, or ad in the company without paging.
       #
       #   @return [String, nil]
       optional :company_id, String, nil?: true
@@ -67,7 +67,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Granularities, nil]
       optional :granularity, enum: -> { WhopSDK::Granularities }, nil?: true
 
-      # @!method initialize(from:, to:, ad_campaign_id: nil, ad_group_id: nil, ad_id: nil, breakdown: nil, company_id: nil, currency: nil, granularity: nil, request_options: {})
+      # @!method initialize(from:, to:, ad_campaign_ids: nil, ad_group_ids: nil, ad_ids: nil, breakdown: nil, company_id: nil, currency: nil, granularity: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AdReportRetrieveParams} for more details.
       #
@@ -75,15 +75,15 @@ module WhopSDK
       #
       #   @param to [Time] Inclusive end of the reporting window.
       #
-      #   @param ad_campaign_id [String, nil] The unique identifier of an ad campaign. Mutually exclusive with `companyId`, `a
+      #   @param ad_campaign_ids [Array<String>, nil] Scope the report to these ad campaigns (max 100); stats are summed across them.
       #
-      #   @param ad_group_id [String, nil] The unique identifier of an ad group. Mutually exclusive with `companyId`, `adCa
+      #   @param ad_group_ids [Array<String>, nil] Scope the report to these ad groups (max 100); stats are summed across them. Mut
       #
-      #   @param ad_id [String, nil] The unique identifier of an ad. Mutually exclusive with `companyId`, `adCampaign
+      #   @param ad_ids [Array<String>, nil] Scope the report to these ads (max 100); stats are summed across them. Mutually
       #
       #   @param breakdown [Symbol, WhopSDK::Models::AdReportRetrieveParams::Breakdown, nil] Entity level to group an ad report by.
       #
-      #   @param company_id [String, nil] The unique identifier of a company. Mutually exclusive with `adCampaignId`, `adG
+      #   @param company_id [String, nil] The unique identifier of a company. Mutually exclusive with `adCampaignIds`, `ad
       #
       #   @param currency [String, nil] ISO 4217 currency code to report `spend` in. Defaults to the company's ads repor
       #

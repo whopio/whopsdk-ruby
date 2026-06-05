@@ -1,0 +1,62 @@
+module WhopSDK
+  module Models
+    type ledger_line =
+      {
+        id: String,
+        account_identifier: String?,
+        amount: String,
+        currency: WhopSDK::LedgerLine::Currency,
+        line_category: String?,
+        posted_at: Time?,
+        source_id: String?
+      }
+
+    class LedgerLine < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor account_identifier: String?
+
+      attr_accessor amount: String
+
+      attr_accessor currency: WhopSDK::LedgerLine::Currency
+
+      attr_accessor line_category: String?
+
+      attr_accessor posted_at: Time?
+
+      attr_accessor source_id: String?
+
+      def initialize: (
+        id: String,
+        account_identifier: String?,
+        amount: String,
+        currency: WhopSDK::LedgerLine::Currency,
+        line_category: String?,
+        posted_at: Time?,
+        source_id: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_identifier: String?,
+        amount: String,
+        currency: WhopSDK::LedgerLine::Currency,
+        line_category: String?,
+        posted_at: Time?,
+        source_id: String?
+      }
+
+      type currency = { code: String?, precision: String }
+
+      class Currency < WhopSDK::Internal::Type::BaseModel
+        attr_accessor code: String?
+
+        attr_accessor precision: String
+
+        def initialize: (code: String?, precision: String) -> void
+
+        def to_hash: -> { code: String?, precision: String }
+      end
+    end
+  end
+end

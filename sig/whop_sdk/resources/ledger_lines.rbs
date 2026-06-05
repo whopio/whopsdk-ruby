@@ -1,0 +1,19 @@
+module WhopSDK
+  module Resources
+    class LedgerLines
+      def list: (
+        account_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?currency: String?,
+        ?first: Integer?,
+        ?line_category: String?,
+        ?posted_after: Time?,
+        ?posted_before: Time?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::LedgerLine]
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

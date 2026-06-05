@@ -68,6 +68,10 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::LedgerAccounts) }
     attr_reader :ledger_accounts
 
+    # Ledger lines
+    sig { returns(WhopSDK::Resources::LedgerLines) }
+    attr_reader :ledger_lines
+
     # Memberships
     sig { returns(WhopSDK::Resources::Memberships) }
     attr_reader :memberships

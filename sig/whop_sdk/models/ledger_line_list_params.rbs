@@ -1,0 +1,61 @@
+module WhopSDK
+  module Models
+    type ledger_line_list_params =
+      {
+        account_id: String,
+        after: String?,
+        before: String?,
+        currency: String?,
+        first: Integer?,
+        line_category: String?,
+        posted_after: Time?,
+        posted_before: Time?
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class LedgerLineListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
+
+      attr_accessor after: String?
+
+      attr_accessor before: String?
+
+      attr_accessor currency: String?
+
+      attr_accessor first: Integer?
+
+      attr_accessor line_category: String?
+
+      attr_accessor posted_after: Time?
+
+      attr_accessor posted_before: Time?
+
+      def initialize: (
+        account_id: String,
+        ?after: String?,
+        ?before: String?,
+        ?currency: String?,
+        ?first: Integer?,
+        ?line_category: String?,
+        ?posted_after: Time?,
+        ?posted_before: Time?,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        after: String?,
+        before: String?,
+        currency: String?,
+        first: Integer?,
+        line_category: String?,
+        posted_after: Time?,
+        posted_before: Time?,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

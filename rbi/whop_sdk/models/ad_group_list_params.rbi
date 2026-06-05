@@ -11,6 +11,15 @@ module WhopSDK
           T.any(WhopSDK::AdGroupListParams, WhopSDK::Internal::AnyHash)
         end
 
+      # Filter by ad campaign. Provide exactly one of ad_campaign_id or company_id.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :ad_campaign_id
+
+      # Only return ad groups belonging to these ad campaigns (max 100). Can be combined
+      # with companyId or used on its own.
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_accessor :ad_campaign_ids
+
       # Returns the elements in the list that come after the specified cursor.
       sig { returns(T.nilable(String)) }
       attr_accessor :after
@@ -19,11 +28,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :before
 
-      # Filter by campaign. Provide exactly one of campaign_id or company_id.
+      # Filter by campaign.
       sig { returns(T.nilable(String)) }
       attr_accessor :campaign_id
 
-      # Filter by company. Provide exactly one of campaign_id or company_id.
+      # Filter by company. Provide companyId or adCampaignIds.
       sig { returns(T.nilable(String)) }
       attr_accessor :company_id
 
@@ -39,18 +48,23 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :first
 
-      # When false, excludes paused ad groups so pagination matches the dashboard's
-      # hide-paused toggle.
-      sig { returns(T.nilable(T::Boolean)) }
-      attr_accessor :include_paused
-
       # Returns the last _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
-      # Case-insensitive substring match against the ad group name.
+      # Case-insensitive substring match against the ad group name or ID.
       sig { returns(T.nilable(String)) }
       attr_accessor :query
+
+      # Inclusive start of the window for each ad group's metric fields (spend,
+      # impressions, …). Omit both statsFrom and statsTo for all-time stats.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :stats_from
+
+      # Inclusive end of the window for each ad group's metric fields. Omit both
+      # statsFrom and statsTo for all-time stats.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :stats_to
 
       # The status of an external ad group.
       sig { returns(T.nilable(WhopSDK::AdGroupStatus::OrSymbol)) }
@@ -58,6 +72,8 @@ module WhopSDK
 
       sig do
         params(
+          ad_campaign_id: T.nilable(String),
+          ad_campaign_ids: T.nilable(T::Array[String]),
           after: T.nilable(String),
           before: T.nilable(String),
           campaign_id: T.nilable(String),
@@ -65,21 +81,27 @@ module WhopSDK
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
           first: T.nilable(Integer),
-          include_paused: T.nilable(T::Boolean),
           last: T.nilable(Integer),
           query: T.nilable(String),
+          stats_from: T.nilable(Time),
+          stats_to: T.nilable(Time),
           status: T.nilable(WhopSDK::AdGroupStatus::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # Filter by ad campaign. Provide exactly one of ad_campaign_id or company_id.
+        ad_campaign_id: nil,
+        # Only return ad groups belonging to these ad campaigns (max 100). Can be combined
+        # with companyId or used on its own.
+        ad_campaign_ids: nil,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # Filter by campaign. Provide exactly one of campaign_id or company_id.
+        # Filter by campaign.
         campaign_id: nil,
-        # Filter by company. Provide exactly one of campaign_id or company_id.
+        # Filter by company. Provide companyId or adCampaignIds.
         company_id: nil,
         # Only return ad groups created after this timestamp.
         created_after: nil,
@@ -87,13 +109,16 @@ module WhopSDK
         created_before: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
-        # When false, excludes paused ad groups so pagination matches the dashboard's
-        # hide-paused toggle.
-        include_paused: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # Case-insensitive substring match against the ad group name.
+        # Case-insensitive substring match against the ad group name or ID.
         query: nil,
+        # Inclusive start of the window for each ad group's metric fields (spend,
+        # impressions, …). Omit both statsFrom and statsTo for all-time stats.
+        stats_from: nil,
+        # Inclusive end of the window for each ad group's metric fields. Omit both
+        # statsFrom and statsTo for all-time stats.
+        stats_to: nil,
         # The status of an external ad group.
         status: nil,
         request_options: {}
@@ -103,6 +128,8 @@ module WhopSDK
       sig do
         override.returns(
           {
+            ad_campaign_id: T.nilable(String),
+            ad_campaign_ids: T.nilable(T::Array[String]),
             after: T.nilable(String),
             before: T.nilable(String),
             campaign_id: T.nilable(String),
@@ -110,9 +137,10 @@ module WhopSDK
             created_after: T.nilable(Time),
             created_before: T.nilable(Time),
             first: T.nilable(Integer),
-            include_paused: T.nilable(T::Boolean),
             last: T.nilable(Integer),
             query: T.nilable(String),
+            stats_from: T.nilable(Time),
+            stats_to: T.nilable(Time),
             status: T.nilable(WhopSDK::AdGroupStatus::OrSymbol),
             request_options: WhopSDK::RequestOptions
           }

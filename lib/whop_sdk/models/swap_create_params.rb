@@ -8,7 +8,7 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute account_id
-      #   Business or user account ID (biz*\* / user*\*).
+      #   The business or user account ID whose wallet should execute the swap.
       #
       #   @return [String]
       required :account_id, String
@@ -47,7 +47,7 @@ module WhopSDK
       optional :to_chain, union: -> { WhopSDK::SwapCreateParams::ToChain }, nil?: true
 
       # @!method initialize(account_id:, amount:, from_token:, to_token:, from_chain: nil, slippage_bps: nil, to_chain: nil, request_options: {})
-      #   @param account_id [String] Business or user account ID (biz*\* / user*\*).
+      #   @param account_id [String] The business or user account ID whose wallet should execute the swap.
       #
       #   @param amount [String] Input token amount.
       #

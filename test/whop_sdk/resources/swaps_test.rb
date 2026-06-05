@@ -16,7 +16,6 @@ class WhopSDK::Test::Resources::SwapsTest < WhopSDK::Test::ResourceTest
       response => {
         amount_in: String,
         amount_out: String,
-        cross_chain: WhopSDK::Internal::Type::Boolean,
         fee_bps: Integer,
         from_token: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),

@@ -739,10 +739,6 @@ module WhopSDK
 
   module VerificationErrorCode = WhopSDK::Models::VerificationErrorCode
 
-  class VerificationListParams = WhopSDK::Models::VerificationListParams
-
-  class VerificationRetrieveParams = WhopSDK::Models::VerificationRetrieveParams
-
   module VerificationStatus = WhopSDK::Models::VerificationStatus
 
   class VerificationSucceededWebhookEvent = WhopSDK::Models::VerificationSucceededWebhookEvent

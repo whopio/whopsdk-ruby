@@ -37,6 +37,36 @@ class WhopSDK::Test::Resources::WalletsTest < WhopSDK::Test::ResourceTest
     end
   end
 
+  def test_create_withdrawal_required_params
+    skip("Mock server tests are disabled")
+
+    response =
+      @whop.wallets.create_withdrawal(
+        account_id: "account_id",
+        amount: "amount",
+        payout_method_id: "payout_method_id"
+      )
+
+    assert_pattern do
+      response => WhopSDK::Models::WalletCreateWithdrawalResponse
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        amount: String,
+        asset: String,
+        created_at: String,
+        object: WhopSDK::Models::WalletCreateWithdrawalResponse::Object,
+        payout_method_id: String,
+        status: String,
+        fee_amount: String | nil,
+        fee_type: String | nil,
+        speed: String | nil
+      }
+    end
+  end
+
   def test_send__required_params
     skip("Mock server tests are disabled")
 

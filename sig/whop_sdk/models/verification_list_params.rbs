@@ -2,11 +2,11 @@ module WhopSDK
   module Models
     type verification_list_params =
       {
-        payout_account_id: String,
-        after: String?,
-        before: String?,
-        first: Integer?,
-        last: Integer?
+        account_id: String,
+        page: Integer,
+        per: Integer,
+        profile_type: WhopSDK::Models::VerificationListParams::profile_type,
+        status: WhopSDK::Models::VerificationListParams::status
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -14,33 +14,71 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor payout_account_id: String
+      attr_reader account_id: String?
 
-      attr_accessor after: String?
+      def account_id=: (String) -> String
 
-      attr_accessor before: String?
+      attr_reader page: Integer?
 
-      attr_accessor first: Integer?
+      def page=: (Integer) -> Integer
 
-      attr_accessor last: Integer?
+      attr_reader per: Integer?
+
+      def per=: (Integer) -> Integer
+
+      attr_reader profile_type: WhopSDK::Models::VerificationListParams::profile_type?
+
+      def profile_type=: (
+        WhopSDK::Models::VerificationListParams::profile_type
+      ) -> WhopSDK::Models::VerificationListParams::profile_type
+
+      attr_reader status: WhopSDK::Models::VerificationListParams::status?
+
+      def status=: (
+        WhopSDK::Models::VerificationListParams::status
+      ) -> WhopSDK::Models::VerificationListParams::status
 
       def initialize: (
-        payout_account_id: String,
-        ?after: String?,
-        ?before: String?,
-        ?first: Integer?,
-        ?last: Integer?,
+        ?account_id: String,
+        ?page: Integer,
+        ?per: Integer,
+        ?profile_type: WhopSDK::Models::VerificationListParams::profile_type,
+        ?status: WhopSDK::Models::VerificationListParams::status,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        payout_account_id: String,
-        after: String?,
-        before: String?,
-        first: Integer?,
-        last: Integer?,
+        account_id: String,
+        page: Integer,
+        per: Integer,
+        profile_type: WhopSDK::Models::VerificationListParams::profile_type,
+        status: WhopSDK::Models::VerificationListParams::status,
         request_options: WhopSDK::RequestOptions
       }
+
+      type profile_type = :individual | :business
+
+      module ProfileType
+        extend WhopSDK::Internal::Type::Enum
+
+        INDIVIDUAL: :individual
+        BUSINESS: :business
+
+        def self?.values: -> ::Array[WhopSDK::Models::VerificationListParams::profile_type]
+      end
+
+      type status = :not_started | :pending | :approved | :rejected
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        NOT_STARTED: :not_started
+        PENDING: :pending
+        APPROVED: :approved
+        REJECTED: :rejected
+
+        def self?.values: -> ::Array[WhopSDK::Models::VerificationListParams::status]
+      end
     end
   end
 end

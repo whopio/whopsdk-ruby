@@ -2,8 +2,8 @@
 
 module WhopSDK
   module Models
-    # @see WhopSDK::Resources::Verifications#retrieve
-    class VerificationRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+    # @see WhopSDK::Resources::Verifications#create
+    class VerificationCreateResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
       #   The identity profile ID, e.g. idpf\_\*
       #
@@ -17,19 +17,18 @@ module WhopSDK
 
       # @!attribute kind
       #
-      #   @return [Symbol, WhopSDK::Models::VerificationRetrieveResponse::Kind]
-      required :kind, enum: -> { WhopSDK::Models::VerificationRetrieveResponse::Kind }
+      #   @return [Symbol, WhopSDK::Models::VerificationCreateResponse::Kind]
+      required :kind, enum: -> { WhopSDK::Models::VerificationCreateResponse::Kind }
 
-      # @!attribute rfis
+      # @!attribute session_url
       #
-      #   @return [Array<WhopSDK::Models::VerificationRetrieveResponse::Rfi>]
-      required :rfis,
-               -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::VerificationRetrieveResponse::Rfi] }
+      #   @return [String, nil]
+      required :session_url, String, nil?: true
 
       # @!attribute status
       #
-      #   @return [Symbol, WhopSDK::Models::VerificationRetrieveResponse::Status]
-      required :status, enum: -> { WhopSDK::Models::VerificationRetrieveResponse::Status }
+      #   @return [Symbol, WhopSDK::Models::VerificationCreateResponse::Status]
+      required :status, enum: -> { WhopSDK::Models::VerificationCreateResponse::Status }
 
       # @!attribute updated_at
       #
@@ -71,21 +70,21 @@ module WhopSDK
       #   @return [String, nil]
       optional :last_name, String, nil?: true
 
-      # @!attribute session_url
+      # @!attribute rfis
       #
-      #   @return [String, nil]
-      optional :session_url, String, nil?: true
+      #   @return [Array<WhopSDK::Models::VerificationCreateResponse::Rfi>, nil]
+      optional :rfis, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::VerificationCreateResponse::Rfi] }
 
-      # @!method initialize(id:, created_at:, kind:, rfis:, status:, updated_at:, address: nil, business_name: nil, business_structure: nil, country: nil, date_of_birth: nil, first_name: nil, last_name: nil, session_url: nil)
+      # @!method initialize(id:, created_at:, kind:, session_url:, status:, updated_at:, address: nil, business_name: nil, business_structure: nil, country: nil, date_of_birth: nil, first_name: nil, last_name: nil, rfis: nil)
       #   @param id [String] The identity profile ID, e.g. idpf\_\*
       #
       #   @param created_at [String]
       #
-      #   @param kind [Symbol, WhopSDK::Models::VerificationRetrieveResponse::Kind]
+      #   @param kind [Symbol, WhopSDK::Models::VerificationCreateResponse::Kind]
       #
-      #   @param rfis [Array<WhopSDK::Models::VerificationRetrieveResponse::Rfi>]
+      #   @param session_url [String, nil]
       #
-      #   @param status [Symbol, WhopSDK::Models::VerificationRetrieveResponse::Status]
+      #   @param status [Symbol, WhopSDK::Models::VerificationCreateResponse::Status]
       #
       #   @param updated_at [String]
       #
@@ -103,14 +102,28 @@ module WhopSDK
       #
       #   @param last_name [String, nil]
       #
-      #   @param session_url [String, nil]
+      #   @param rfis [Array<WhopSDK::Models::VerificationCreateResponse::Rfi>]
 
-      # @see WhopSDK::Models::VerificationRetrieveResponse#kind
+      # @see WhopSDK::Models::VerificationCreateResponse#kind
       module Kind
         extend WhopSDK::Internal::Type::Enum
 
         INDIVIDUAL = :individual
         BUSINESS = :business
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # @see WhopSDK::Models::VerificationCreateResponse#status
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        NOT_STARTED = :not_started
+        PENDING = :pending
+        APPROVED = :approved
+        REJECTED = :rejected
+        ACTION_REQUIRED = :action_required
 
         # @!method self.values
         #   @return [Array<Symbol>]
@@ -139,8 +152,8 @@ module WhopSDK
 
         # @!attribute status
         #
-        #   @return [Symbol, WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status, nil]
-        optional :status, enum: -> { WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status }
+        #   @return [Symbol, WhopSDK::Models::VerificationCreateResponse::Rfi::Status, nil]
+        optional :status, enum: -> { WhopSDK::Models::VerificationCreateResponse::Rfi::Status }
 
         # @!attribute type
         #
@@ -152,10 +165,10 @@ module WhopSDK
         #   @param created_at [String]
         #   @param description [String]
         #   @param error_message [String, nil]
-        #   @param status [Symbol, WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status]
+        #   @param status [Symbol, WhopSDK::Models::VerificationCreateResponse::Rfi::Status]
         #   @param type [String, nil]
 
-        # @see WhopSDK::Models::VerificationRetrieveResponse::Rfi#status
+        # @see WhopSDK::Models::VerificationCreateResponse::Rfi#status
         module Status
           extend WhopSDK::Internal::Type::Enum
 
@@ -165,20 +178,6 @@ module WhopSDK
           # @!method self.values
           #   @return [Array<Symbol>]
         end
-      end
-
-      # @see WhopSDK::Models::VerificationRetrieveResponse#status
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        NOT_STARTED = :not_started
-        PENDING = :pending
-        APPROVED = :approved
-        REJECTED = :rejected
-        ACTION_REQUIRED = :action_required
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
     end
   end

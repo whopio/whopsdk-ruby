@@ -1,19 +1,51 @@
 module WhopSDK
   module Resources
     class Verifications
+      def create: (
+        account_id: String,
+        ?address: ::Hash[Symbol, top],
+        ?country: String,
+        ?date_of_birth: String,
+        ?first_name: String,
+        ?kind: WhopSDK::Models::VerificationCreateParams::kind,
+        ?last_name: String,
+        ?phone: String,
+        ?restart: bool,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::VerificationCreateResponse
+
       def retrieve: (
-        String id,
+        String verification_id,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::VerificationRetrieveResponse
 
-      def list: (
-        payout_account_id: String,
-        ?after: String?,
-        ?before: String?,
-        ?first: Integer?,
-        ?last: Integer?,
+      def update: (
+        String verification_id,
+        ?business_address: ::Hash[Symbol, top],
+        ?business_name: String,
+        ?business_structure: String,
+        ?country: String,
+        ?date_of_birth: String,
+        ?first_name: String,
+        ?last_name: String,
+        ?personal_address: ::Hash[Symbol, top],
+        ?rfis: ::Array[WhopSDK::VerificationUpdateParams::Rfi],
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::VerificationListResponse]
+      ) -> WhopSDK::Models::VerificationUpdateResponse
+
+      def list: (
+        ?account_id: String,
+        ?page: Integer,
+        ?per: Integer,
+        ?profile_type: WhopSDK::Models::VerificationListParams::profile_type,
+        ?status: WhopSDK::Models::VerificationListParams::status,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::VerificationListResponse
+
+      def delete: (
+        String verification_id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::VerificationDeleteResponse
 
       def initialize: (client: WhopSDK::Client) -> void
     end

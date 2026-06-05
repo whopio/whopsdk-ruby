@@ -41,6 +41,37 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::WalletDepositAddressParams} for more details.
+      #
+      # Returns the account's wallet address for receiving crypto, plus the EVM networks
+      # that share that address.
+      #
+      # @overload deposit_address(account_id:, asset: nil, network: nil, request_options: {})
+      #
+      # @param account_id [String] The business or user account ID whose deposit address should be returned.
+      #
+      # @param asset [String] Optional asset symbol the caller intends to deposit (e.g. USDT). Unsupported ass
+      #
+      # @param network [Symbol, WhopSDK::Models::WalletDepositAddressParams::Network] Optional network the caller intends to deposit on (e.g. plasma). Unsupported net
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::WalletDepositAddressResponse]
+      #
+      # @see WhopSDK::Models::WalletDepositAddressParams
+      def deposit_address(params)
+        parsed, options = WhopSDK::WalletDepositAddressParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
+        @client.request(
+          method: :get,
+          path: "wallets/deposit-address",
+          query: query,
+          model: WhopSDK::Models::WalletDepositAddressResponse,
+          options: options
+        )
+      end
+
       # Sends USDT from an account's wallet to another Whop user or business.
       #
       # @overload send_(account_id, amount:, to:, request_options: {})

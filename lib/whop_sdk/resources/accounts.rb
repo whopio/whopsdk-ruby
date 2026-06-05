@@ -58,7 +58,7 @@ module WhopSDK
       # Updates an account. User tokens can update business accounts; business account
       # API keys can update connected accounts.
       #
-      # @overload update(account_id, affiliate_application_required: nil, affiliate_instructions: nil, banner_image: nil, business_type: nil, description: nil, featured_affiliate_product_id: nil, industry_group: nil, industry_type: nil, logo: nil, metadata: nil, route: nil, send_customer_emails: nil, social_links: nil, target_audience: nil, title: nil, request_options: {})
+      # @overload update(account_id, affiliate_application_required: nil, affiliate_instructions: nil, banner_image: nil, business_type: nil, country: nil, description: nil, featured_affiliate_product_id: nil, home_preferences: nil, industry_group: nil, industry_type: nil, invoice_prefix: nil, logo: nil, metadata: nil, onboarding_type: nil, opengraph_image: nil, opengraph_image_variant: nil, other_business_description: nil, other_industry_description: nil, require_2fa: nil, route: nil, send_customer_emails: nil, show_joined_whops: nil, show_reviews_dtc: nil, show_user_directory: nil, social_links: nil, store_page_config: nil, target_audience: nil, title: nil, use_logo_as_opengraph_image_fallback: nil, request_options: {})
       #
       # @param account_id [String] The ID of the account, which will look like biz\_******\*******
       #
@@ -70,27 +70,55 @@ module WhopSDK
       #
       # @param business_type [String, nil] The high-level business category for the account.
       #
+      # @param country [String, nil] The country the account is located in.
+      #
       # @param description [String, nil] A promotional description for the account.
       #
       # @param featured_affiliate_product_id [String, nil] The ID of the product to feature for affiliates. Pass null to clear.
+      #
+      # @param home_preferences [Array<String>] Preferences for the public business home page.
       #
       # @param industry_group [String, nil] The industry group the account belongs to.
       #
       # @param industry_type [String, nil] The specific industry vertical the account operates in.
       #
+      # @param invoice_prefix [String, nil] The prefix to use for account invoices.
+      #
       # @param logo [Hash{Symbol=>Object}, nil] Attachment input for the account logo.
       #
       # @param metadata [Hash{Symbol=>Object}] Arbitrary key/value metadata to store on the account.
+      #
+      # @param onboarding_type [String, nil] The type of onboarding the account has completed.
+      #
+      # @param opengraph_image [Hash{Symbol=>Object}, nil] Attachment input for the account Open Graph image.
+      #
+      # @param opengraph_image_variant [String, nil] The account Open Graph image variant.
+      #
+      # @param other_business_description [String, nil] The description of the business type when business_type is other.
+      #
+      # @param other_industry_description [String, nil] The description of the industry type when industry_type is other.
+      #
+      # @param require_2fa [Boolean] Whether the account requires authorized users to have two-factor authentication
       #
       # @param route [String, nil] The unique URL slug for the account.
       #
       # @param send_customer_emails [Boolean] Whether Whop sends transactional emails to customers on behalf of this account.
       #
+      # @param show_joined_whops [Boolean] Whether the account appears in joined whops on other accounts.
+      #
+      # @param show_reviews_dtc [Boolean] Whether reviews are displayed on direct-to-consumer product pages.
+      #
+      # @param show_user_directory [Boolean] Whether the account shows users in the user directory.
+      #
       # @param social_links [Array<Hash{Symbol=>Object}>] The full list of social links to display for the account.
+      #
+      # @param store_page_config [Hash{Symbol=>Object}, nil] Store page display configuration for the account.
       #
       # @param target_audience [String, nil] The target audience for this account.
       #
       # @param title [String, nil] The display name of the account.
+      #
+      # @param use_logo_as_opengraph_image_fallback [Boolean] Whether the account uses its logo as the fallback Open Graph image.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

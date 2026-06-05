@@ -11,47 +11,74 @@ module WhopSDK
           T.any(WhopSDK::VerificationListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The unique identifier of the payout account to list verifications for.
-      sig { returns(String) }
-      attr_accessor :payout_account_id
-
-      # Returns the elements in the list that come after the specified cursor.
+      # Filter verifications to a specific account.
       sig { returns(T.nilable(String)) }
-      attr_accessor :after
+      attr_reader :account_id
 
-      # Returns the elements in the list that come before the specified cursor.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :before
+      sig { params(account_id: String).void }
+      attr_writer :account_id
 
-      # Returns the first _n_ elements from the list.
+      # The page number to retrieve.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :first
+      attr_reader :page
 
-      # Returns the last _n_ elements from the list.
+      sig { params(page: Integer).void }
+      attr_writer :page
+
+      # The number of resources to return per page.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :last
+      attr_reader :per
+
+      sig { params(per: Integer).void }
+      attr_writer :per
+
+      # Filter by profile type.
+      sig do
+        returns(
+          T.nilable(WhopSDK::VerificationListParams::ProfileType::OrSymbol)
+        )
+      end
+      attr_reader :profile_type
 
       sig do
         params(
-          payout_account_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
+          profile_type: WhopSDK::VerificationListParams::ProfileType::OrSymbol
+        ).void
+      end
+      attr_writer :profile_type
+
+      # Filter by derived verification status.
+      sig do
+        returns(T.nilable(WhopSDK::VerificationListParams::Status::OrSymbol))
+      end
+      attr_reader :status
+
+      sig do
+        params(status: WhopSDK::VerificationListParams::Status::OrSymbol).void
+      end
+      attr_writer :status
+
+      sig do
+        params(
+          account_id: String,
+          page: Integer,
+          per: Integer,
+          profile_type: WhopSDK::VerificationListParams::ProfileType::OrSymbol,
+          status: WhopSDK::VerificationListParams::Status::OrSymbol,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier of the payout account to list verifications for.
-        payout_account_id:,
-        # Returns the elements in the list that come after the specified cursor.
-        after: nil,
-        # Returns the elements in the list that come before the specified cursor.
-        before: nil,
-        # Returns the first _n_ elements from the list.
-        first: nil,
-        # Returns the last _n_ elements from the list.
-        last: nil,
+        # Filter verifications to a specific account.
+        account_id: nil,
+        # The page number to retrieve.
+        page: nil,
+        # The number of resources to return per page.
+        per: nil,
+        # Filter by profile type.
+        profile_type: nil,
+        # Filter by derived verification status.
+        status: nil,
         request_options: {}
       )
       end
@@ -59,16 +86,84 @@ module WhopSDK
       sig do
         override.returns(
           {
-            payout_account_id: String,
-            after: T.nilable(String),
-            before: T.nilable(String),
-            first: T.nilable(Integer),
-            last: T.nilable(Integer),
+            account_id: String,
+            page: Integer,
+            per: Integer,
+            profile_type:
+              WhopSDK::VerificationListParams::ProfileType::OrSymbol,
+            status: WhopSDK::VerificationListParams::Status::OrSymbol,
             request_options: WhopSDK::RequestOptions
           }
         )
       end
       def to_hash
+      end
+
+      # Filter by profile type.
+      module ProfileType
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::VerificationListParams::ProfileType)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        INDIVIDUAL =
+          T.let(
+            :individual,
+            WhopSDK::VerificationListParams::ProfileType::TaggedSymbol
+          )
+        BUSINESS =
+          T.let(
+            :business,
+            WhopSDK::VerificationListParams::ProfileType::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::VerificationListParams::ProfileType::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # Filter by derived verification status.
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::VerificationListParams::Status)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        NOT_STARTED =
+          T.let(
+            :not_started,
+            WhopSDK::VerificationListParams::Status::TaggedSymbol
+          )
+        PENDING =
+          T.let(:pending, WhopSDK::VerificationListParams::Status::TaggedSymbol)
+        APPROVED =
+          T.let(
+            :approved,
+            WhopSDK::VerificationListParams::Status::TaggedSymbol
+          )
+        REJECTED =
+          T.let(
+            :rejected,
+            WhopSDK::VerificationListParams::Status::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::VerificationListParams::Status::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
     end
   end

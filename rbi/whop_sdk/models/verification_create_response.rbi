@@ -2,11 +2,11 @@
 
 module WhopSDK
   module Models
-    class VerificationRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+    class VerificationCreateResponse < WhopSDK::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            WhopSDK::Models::VerificationRetrieveResponse,
+            WhopSDK::Models::VerificationCreateResponse,
             WhopSDK::Internal::AnyHash
           )
         end
@@ -19,20 +19,16 @@ module WhopSDK
       attr_accessor :created_at
 
       sig do
-        returns(
-          WhopSDK::Models::VerificationRetrieveResponse::Kind::TaggedSymbol
-        )
+        returns(WhopSDK::Models::VerificationCreateResponse::Kind::TaggedSymbol)
       end
       attr_accessor :kind
 
-      sig do
-        returns(T::Array[WhopSDK::Models::VerificationRetrieveResponse::Rfi])
-      end
-      attr_accessor :rfis
+      sig { returns(T.nilable(String)) }
+      attr_accessor :session_url
 
       sig do
         returns(
-          WhopSDK::Models::VerificationRetrieveResponse::Status::TaggedSymbol
+          WhopSDK::Models::VerificationCreateResponse::Status::TaggedSymbol
         )
       end
       attr_accessor :status
@@ -61,20 +57,28 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :last_name
 
-      sig { returns(T.nilable(String)) }
-      attr_accessor :session_url
+      sig do
+        returns(
+          T.nilable(T::Array[WhopSDK::Models::VerificationCreateResponse::Rfi])
+        )
+      end
+      attr_reader :rfis
+
+      sig do
+        params(
+          rfis:
+            T::Array[WhopSDK::Models::VerificationCreateResponse::Rfi::OrHash]
+        ).void
+      end
+      attr_writer :rfis
 
       sig do
         params(
           id: String,
           created_at: String,
-          kind: WhopSDK::Models::VerificationRetrieveResponse::Kind::OrSymbol,
-          rfis:
-            T::Array[
-              WhopSDK::Models::VerificationRetrieveResponse::Rfi::OrHash
-            ],
-          status:
-            WhopSDK::Models::VerificationRetrieveResponse::Status::OrSymbol,
+          kind: WhopSDK::Models::VerificationCreateResponse::Kind::OrSymbol,
+          session_url: T.nilable(String),
+          status: WhopSDK::Models::VerificationCreateResponse::Status::OrSymbol,
           updated_at: String,
           address: T.nilable(T.anything),
           business_name: T.nilable(String),
@@ -83,7 +87,8 @@ module WhopSDK
           date_of_birth: T.nilable(String),
           first_name: T.nilable(String),
           last_name: T.nilable(String),
-          session_url: T.nilable(String)
+          rfis:
+            T::Array[WhopSDK::Models::VerificationCreateResponse::Rfi::OrHash]
         ).returns(T.attached_class)
       end
       def self.new(
@@ -91,7 +96,7 @@ module WhopSDK
         id:,
         created_at:,
         kind:,
-        rfis:,
+        session_url:,
         status:,
         updated_at:,
         address: nil,
@@ -101,7 +106,7 @@ module WhopSDK
         date_of_birth: nil,
         first_name: nil,
         last_name: nil,
-        session_url: nil
+        rfis: nil
       )
       end
 
@@ -111,10 +116,10 @@ module WhopSDK
             id: String,
             created_at: String,
             kind:
-              WhopSDK::Models::VerificationRetrieveResponse::Kind::TaggedSymbol,
-            rfis: T::Array[WhopSDK::Models::VerificationRetrieveResponse::Rfi],
+              WhopSDK::Models::VerificationCreateResponse::Kind::TaggedSymbol,
+            session_url: T.nilable(String),
             status:
-              WhopSDK::Models::VerificationRetrieveResponse::Status::TaggedSymbol,
+              WhopSDK::Models::VerificationCreateResponse::Status::TaggedSymbol,
             updated_at: String,
             address: T.nilable(T.anything),
             business_name: T.nilable(String),
@@ -123,7 +128,7 @@ module WhopSDK
             date_of_birth: T.nilable(String),
             first_name: T.nilable(String),
             last_name: T.nilable(String),
-            session_url: T.nilable(String)
+            rfis: T::Array[WhopSDK::Models::VerificationCreateResponse::Rfi]
           }
         )
       end
@@ -135,25 +140,71 @@ module WhopSDK
 
         TaggedSymbol =
           T.type_alias do
-            T.all(Symbol, WhopSDK::Models::VerificationRetrieveResponse::Kind)
+            T.all(Symbol, WhopSDK::Models::VerificationCreateResponse::Kind)
           end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         INDIVIDUAL =
           T.let(
             :individual,
-            WhopSDK::Models::VerificationRetrieveResponse::Kind::TaggedSymbol
+            WhopSDK::Models::VerificationCreateResponse::Kind::TaggedSymbol
           )
         BUSINESS =
           T.let(
             :business,
-            WhopSDK::Models::VerificationRetrieveResponse::Kind::TaggedSymbol
+            WhopSDK::Models::VerificationCreateResponse::Kind::TaggedSymbol
           )
 
         sig do
           override.returns(
             T::Array[
-              WhopSDK::Models::VerificationRetrieveResponse::Kind::TaggedSymbol
+              WhopSDK::Models::VerificationCreateResponse::Kind::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
+      end
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::Models::VerificationCreateResponse::Status)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        NOT_STARTED =
+          T.let(
+            :not_started,
+            WhopSDK::Models::VerificationCreateResponse::Status::TaggedSymbol
+          )
+        PENDING =
+          T.let(
+            :pending,
+            WhopSDK::Models::VerificationCreateResponse::Status::TaggedSymbol
+          )
+        APPROVED =
+          T.let(
+            :approved,
+            WhopSDK::Models::VerificationCreateResponse::Status::TaggedSymbol
+          )
+        REJECTED =
+          T.let(
+            :rejected,
+            WhopSDK::Models::VerificationCreateResponse::Status::TaggedSymbol
+          )
+        ACTION_REQUIRED =
+          T.let(
+            :action_required,
+            WhopSDK::Models::VerificationCreateResponse::Status::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::Models::VerificationCreateResponse::Status::TaggedSymbol
             ]
           )
         end
@@ -165,7 +216,7 @@ module WhopSDK
         OrHash =
           T.type_alias do
             T.any(
-              WhopSDK::Models::VerificationRetrieveResponse::Rfi,
+              WhopSDK::Models::VerificationCreateResponse::Rfi,
               WhopSDK::Internal::AnyHash
             )
           end
@@ -194,7 +245,7 @@ module WhopSDK
         sig do
           returns(
             T.nilable(
-              WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status::TaggedSymbol
+              WhopSDK::Models::VerificationCreateResponse::Rfi::Status::TaggedSymbol
             )
           )
         end
@@ -203,7 +254,7 @@ module WhopSDK
         sig do
           params(
             status:
-              WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status::OrSymbol
+              WhopSDK::Models::VerificationCreateResponse::Rfi::Status::OrSymbol
           ).void
         end
         attr_writer :status
@@ -218,7 +269,7 @@ module WhopSDK
             description: String,
             error_message: T.nilable(String),
             status:
-              WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status::OrSymbol,
+              WhopSDK::Models::VerificationCreateResponse::Rfi::Status::OrSymbol,
             type: T.nilable(String)
           ).returns(T.attached_class)
         end
@@ -240,7 +291,7 @@ module WhopSDK
               description: String,
               error_message: T.nilable(String),
               status:
-                WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status::TaggedSymbol,
+                WhopSDK::Models::VerificationCreateResponse::Rfi::Status::TaggedSymbol,
               type: T.nilable(String)
             }
           )
@@ -255,7 +306,7 @@ module WhopSDK
             T.type_alias do
               T.all(
                 Symbol,
-                WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status
+                WhopSDK::Models::VerificationCreateResponse::Rfi::Status
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -263,69 +314,23 @@ module WhopSDK
           OUTSTANDING =
             T.let(
               :outstanding,
-              WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status::TaggedSymbol
+              WhopSDK::Models::VerificationCreateResponse::Rfi::Status::TaggedSymbol
             )
           INVALID =
             T.let(
               :invalid,
-              WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status::TaggedSymbol
+              WhopSDK::Models::VerificationCreateResponse::Rfi::Status::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                WhopSDK::Models::VerificationRetrieveResponse::Rfi::Status::TaggedSymbol
+                WhopSDK::Models::VerificationCreateResponse::Rfi::Status::TaggedSymbol
               ]
             )
           end
           def self.values
           end
-        end
-      end
-
-      module Status
-        extend WhopSDK::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, WhopSDK::Models::VerificationRetrieveResponse::Status)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        NOT_STARTED =
-          T.let(
-            :not_started,
-            WhopSDK::Models::VerificationRetrieveResponse::Status::TaggedSymbol
-          )
-        PENDING =
-          T.let(
-            :pending,
-            WhopSDK::Models::VerificationRetrieveResponse::Status::TaggedSymbol
-          )
-        APPROVED =
-          T.let(
-            :approved,
-            WhopSDK::Models::VerificationRetrieveResponse::Status::TaggedSymbol
-          )
-        REJECTED =
-          T.let(
-            :rejected,
-            WhopSDK::Models::VerificationRetrieveResponse::Status::TaggedSymbol
-          )
-        ACTION_REQUIRED =
-          T.let(
-            :action_required,
-            WhopSDK::Models::VerificationRetrieveResponse::Status::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              WhopSDK::Models::VerificationRetrieveResponse::Status::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
         end
       end
     end

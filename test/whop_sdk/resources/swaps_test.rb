@@ -3,6 +3,54 @@
 require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::SwapsTest < WhopSDK::Test::ResourceTest
+  def test_create_required_params
+    skip("Mock server tests are disabled")
+
+    response =
+      @whop.swaps.create(
+        account_id: "account_id",
+        amount: "amount",
+        from_token: "from_token",
+        to_token: "to_token"
+      )
+
+    assert_pattern do
+      response => WhopSDK::Models::SwapCreateResponse
+    end
+
+    assert_pattern do
+      response => {
+        account_id: String,
+        object: WhopSDK::Models::SwapCreateResponse::Object,
+        status: String,
+        amount_out_expected: String | nil,
+        amount_out_min: String | nil,
+        rate: String | nil,
+        to_chain: String | nil
+      }
+    end
+  end
+
+  def test_retrieve
+    skip("Mock server tests are disabled")
+
+    response = @whop.swaps.retrieve("account_id")
+
+    assert_pattern do
+      response => WhopSDK::Models::SwapRetrieveResponse
+    end
+
+    assert_pattern do
+      response => {
+        account_id: String,
+        object: WhopSDK::Models::SwapRetrieveResponse::Object,
+        status: String,
+        tx_hashes: ^(WhopSDK::Internal::Type::ArrayOf[String]),
+        error: String | nil
+      }
+    end
+  end
+
   def test_create_quote_required_params
     skip("Mock server tests are disabled")
 
@@ -16,7 +64,6 @@ class WhopSDK::Test::Resources::SwapsTest < WhopSDK::Test::ResourceTest
       response => {
         amount_in: String,
         amount_out: String,
-        cross_chain: WhopSDK::Internal::Type::Boolean,
         fee_bps: Integer,
         from_token: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]),

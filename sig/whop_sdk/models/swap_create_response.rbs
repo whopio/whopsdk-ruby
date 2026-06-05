@@ -1,0 +1,68 @@
+module WhopSDK
+  module Models
+    type swap_create_response =
+      {
+        account_id: String,
+        object: WhopSDK::Models::SwapCreateResponse::object,
+        status: String,
+        amount_out_expected: String,
+        amount_out_min: String,
+        rate: String,
+        to_chain: String
+      }
+
+    class SwapCreateResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor account_id: String
+
+      attr_accessor object: WhopSDK::Models::SwapCreateResponse::object
+
+      attr_accessor status: String
+
+      attr_reader amount_out_expected: String?
+
+      def amount_out_expected=: (String) -> String
+
+      attr_reader amount_out_min: String?
+
+      def amount_out_min=: (String) -> String
+
+      attr_reader rate: String?
+
+      def rate=: (String) -> String
+
+      attr_reader to_chain: String?
+
+      def to_chain=: (String) -> String
+
+      def initialize: (
+        account_id: String,
+        object: WhopSDK::Models::SwapCreateResponse::object,
+        status: String,
+        ?amount_out_expected: String,
+        ?amount_out_min: String,
+        ?rate: String,
+        ?to_chain: String
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        object: WhopSDK::Models::SwapCreateResponse::object,
+        status: String,
+        amount_out_expected: String,
+        amount_out_min: String,
+        rate: String,
+        to_chain: String
+      }
+
+      type object = :swap
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        SWAP: :swap
+
+        def self?.values: -> ::Array[WhopSDK::Models::SwapCreateResponse::object]
+      end
+    end
+  end
+end

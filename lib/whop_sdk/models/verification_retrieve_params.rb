@@ -7,13 +7,13 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute id
+      # @!attribute verification_id
       #
       #   @return [String]
-      required :id, String
+      required :verification_id, String
 
-      # @!method initialize(id:, request_options: {})
-      #   @param id [String]
+      # @!method initialize(verification_id:, request_options: {})
+      #   @param verification_id [String]
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end
   end

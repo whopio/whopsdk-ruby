@@ -36,6 +36,8 @@ module WhopSDK
 
     attr_reader ledger_accounts: WhopSDK::Resources::LedgerAccounts
 
+    attr_reader ledger_lines: WhopSDK::Resources::LedgerLines
+
     attr_reader memberships: WhopSDK::Resources::Memberships
 
     attr_reader authorized_users: WhopSDK::Resources::AuthorizedUsers

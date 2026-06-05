@@ -1,0 +1,77 @@
+module WhopSDK
+  module Models
+    type verification_rfi_created_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::VerificationRfiCreatedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"verification.rfi_created",
+        company_id: String?
+      }
+
+    class VerificationRfiCreatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor data: WhopSDK::VerificationRfiCreatedWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"verification.rfi_created"
+
+      attr_accessor company_id: String?
+
+      def initialize: (
+        id: String,
+        data: WhopSDK::VerificationRfiCreatedWebhookEvent::Data,
+        timestamp: Time,
+        ?company_id: String?,
+        ?api_version: :v1,
+        ?type: :"verification.rfi_created"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::VerificationRfiCreatedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"verification.rfi_created",
+        company_id: String?
+      }
+
+      type data =
+        {
+          id: String,
+          last_error_code: WhopSDK::Models::verification_error_code?,
+          last_error_reason: String?,
+          status: WhopSDK::Models::verification_status
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor last_error_code: WhopSDK::Models::verification_error_code?
+
+        attr_accessor last_error_reason: String?
+
+        attr_accessor status: WhopSDK::Models::verification_status
+
+        def initialize: (
+          id: String,
+          last_error_code: WhopSDK::Models::verification_error_code?,
+          last_error_reason: String?,
+          status: WhopSDK::Models::verification_status
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          last_error_code: WhopSDK::Models::verification_error_code?,
+          last_error_reason: String?,
+          status: WhopSDK::Models::verification_status
+        }
+      end
+    end
+  end
+end

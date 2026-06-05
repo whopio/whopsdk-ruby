@@ -29,6 +29,7 @@ module WhopSDK
       IDENTITY_PROFILE_REJECTED = :"identity_profile.rejected"
       IDENTITY_PROFILE_NEEDS_ACTION = :"identity_profile.needs_action"
       IDENTITY_PROFILE_UPDATED = :"identity_profile.updated"
+      VERIFICATION_RFI_CREATED = :"verification.rfi_created"
       PAYOUT_ACCOUNT_STATUS_UPDATED = :"payout_account.status_updated"
       RESOLUTION_CENTER_CASE_CREATED = :"resolution_center_case.created"
       RESOLUTION_CENTER_CASE_UPDATED = :"resolution_center_case.updated"

@@ -1,0 +1,13 @@
+module WhopSDK
+  module Models
+    type card_list_response = { cards: ::Array[WhopSDK::Card] }
+
+    class CardListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor cards: ::Array[WhopSDK::Card]
+
+      def initialize: (cards: ::Array[WhopSDK::Card]) -> void
+
+      def to_hash: -> { cards: ::Array[WhopSDK::Card] }
+    end
+  end
+end

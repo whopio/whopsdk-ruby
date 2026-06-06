@@ -1,0 +1,118 @@
+module WhopSDK
+  module Models
+    type card_transaction =
+      {
+        id: String,
+        authorization_method: String?,
+        card_id: String,
+        cashback_usd_amount: Float?,
+        created_at: Time,
+        currency: String?,
+        declined_reason: String?,
+        international: bool,
+        local_amount: Float?,
+        memo: String?,
+        merchant_category: String?,
+        merchant_category_code: String?,
+        merchant_icon_url: String?,
+        merchant_name: String?,
+        posted_at: Time?,
+        status: WhopSDK::Models::CardTransaction::status,
+        transaction_type: String,
+        usd_amount: Float?
+      }
+
+    class CardTransaction < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor authorization_method: String?
+
+      attr_accessor card_id: String
+
+      attr_accessor cashback_usd_amount: Float?
+
+      attr_accessor created_at: Time
+
+      attr_accessor currency: String?
+
+      attr_accessor declined_reason: String?
+
+      attr_accessor international: bool
+
+      attr_accessor local_amount: Float?
+
+      attr_accessor memo: String?
+
+      attr_accessor merchant_category: String?
+
+      attr_accessor merchant_category_code: String?
+
+      attr_accessor merchant_icon_url: String?
+
+      attr_accessor merchant_name: String?
+
+      attr_accessor posted_at: Time?
+
+      attr_accessor status: WhopSDK::Models::CardTransaction::status
+
+      attr_accessor transaction_type: String
+
+      attr_accessor usd_amount: Float?
+
+      def initialize: (
+        id: String,
+        authorization_method: String?,
+        card_id: String,
+        cashback_usd_amount: Float?,
+        created_at: Time,
+        currency: String?,
+        declined_reason: String?,
+        international: bool,
+        local_amount: Float?,
+        memo: String?,
+        merchant_category: String?,
+        merchant_category_code: String?,
+        merchant_icon_url: String?,
+        merchant_name: String?,
+        posted_at: Time?,
+        status: WhopSDK::Models::CardTransaction::status,
+        transaction_type: String,
+        usd_amount: Float?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        authorization_method: String?,
+        card_id: String,
+        cashback_usd_amount: Float?,
+        created_at: Time,
+        currency: String?,
+        declined_reason: String?,
+        international: bool,
+        local_amount: Float?,
+        memo: String?,
+        merchant_category: String?,
+        merchant_category_code: String?,
+        merchant_icon_url: String?,
+        merchant_name: String?,
+        posted_at: Time?,
+        status: WhopSDK::Models::CardTransaction::status,
+        transaction_type: String,
+        usd_amount: Float?
+      }
+
+      type status = :pending | :completed | :reversed | :declined
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        PENDING: :pending
+        COMPLETED: :completed
+        REVERSED: :reversed
+        DECLINED: :declined
+
+        def self?.values: -> ::Array[WhopSDK::Models::CardTransaction::status]
+      end
+    end
+  end
+end

@@ -1,0 +1,27 @@
+module WhopSDK
+  module Models
+    type card_update_pin_params =
+      { id: String, pin: String } & WhopSDK::Internal::Type::request_parameters
+
+    class CardUpdatePinParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_accessor pin: String
+
+      def initialize: (
+        id: String,
+        pin: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        pin: String,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

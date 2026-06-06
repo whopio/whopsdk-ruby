@@ -1,0 +1,110 @@
+module WhopSDK
+  module Models
+    type card_cashback =
+      {
+        months: ::Array[WhopSDK::CardCashback::Month],
+        next_payout_usd: String,
+        object: WhopSDK::Models::CardCashback::object,
+        total_earned_usd: String,
+        next_payout_date: String?
+      }
+
+    class CardCashback < WhopSDK::Internal::Type::BaseModel
+      attr_accessor months: ::Array[WhopSDK::CardCashback::Month]
+
+      attr_accessor next_payout_usd: String
+
+      attr_accessor object: WhopSDK::Models::CardCashback::object
+
+      attr_accessor total_earned_usd: String
+
+      attr_accessor next_payout_date: String?
+
+      def initialize: (
+        months: ::Array[WhopSDK::CardCashback::Month],
+        next_payout_usd: String,
+        object: WhopSDK::Models::CardCashback::object,
+        total_earned_usd: String,
+        ?next_payout_date: String?
+      ) -> void
+
+      def to_hash: -> {
+        months: ::Array[WhopSDK::CardCashback::Month],
+        next_payout_usd: String,
+        object: WhopSDK::Models::CardCashback::object,
+        total_earned_usd: String,
+        next_payout_date: String?
+      }
+
+      type month =
+        {
+          by_merchant: ::Array[WhopSDK::CardCashback::Month::ByMerchant],
+          month: Integer,
+          qualified_spend_usd: String,
+          total_cashback_usd: String,
+          year: Integer
+        }
+
+      class Month < WhopSDK::Internal::Type::BaseModel
+        attr_accessor by_merchant: ::Array[WhopSDK::CardCashback::Month::ByMerchant]
+
+        attr_accessor month: Integer
+
+        attr_accessor qualified_spend_usd: String
+
+        attr_accessor total_cashback_usd: String
+
+        attr_accessor year: Integer
+
+        def initialize: (
+          by_merchant: ::Array[WhopSDK::CardCashback::Month::ByMerchant],
+          month: Integer,
+          qualified_spend_usd: String,
+          total_cashback_usd: String,
+          year: Integer
+        ) -> void
+
+        def to_hash: -> {
+          by_merchant: ::Array[WhopSDK::CardCashback::Month::ByMerchant],
+          month: Integer,
+          qualified_spend_usd: String,
+          total_cashback_usd: String,
+          year: Integer
+        }
+
+        type by_merchant =
+          { cashback_usd: String, merchant_key: String, merchant_label: String }
+
+        class ByMerchant < WhopSDK::Internal::Type::BaseModel
+          attr_accessor cashback_usd: String
+
+          attr_accessor merchant_key: String
+
+          attr_accessor merchant_label: String
+
+          def initialize: (
+            cashback_usd: String,
+            merchant_key: String,
+            merchant_label: String
+          ) -> void
+
+          def to_hash: -> {
+            cashback_usd: String,
+            merchant_key: String,
+            merchant_label: String
+          }
+        end
+      end
+
+      type object = :card_cashback
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        CARD_CASHBACK: :card_cashback
+
+        def self?.values: -> ::Array[WhopSDK::Models::CardCashback::object]
+      end
+    end
+  end
+end

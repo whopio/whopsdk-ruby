@@ -8,7 +8,8 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute account_id
-      #   Business or user account ID (biz*\* / user*\*).
+      #   Business or user account ID (biz*\* / user*\*), or the ledger account's own
+      #   ldgr\_ ID.
       #
       #   @return [String]
       required :account_id, String
@@ -47,7 +48,11 @@ module WhopSDK
       optional :to_chain, union: -> { WhopSDK::SwapCreateParams::ToChain }, nil?: true
 
       # @!method initialize(account_id:, amount:, from_token:, to_token:, from_chain: nil, slippage_bps: nil, to_chain: nil, request_options: {})
-      #   @param account_id [String] Business or user account ID (biz*\* / user*\*).
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::SwapCreateParams} for more details.
+      #
+      #   @param account_id [String] Business or user account ID (biz*\* / user*\*), or the ledger account's own
+      #   ldgr\_
       #
       #   @param amount [String] Input token amount.
       #

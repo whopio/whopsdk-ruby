@@ -3,12 +3,16 @@
 module WhopSDK
   module Resources
     class Swaps
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::SwapCreateParams} for more details.
+      #
       # Executes a swap from the account's wallet. Runs asynchronously — poll GET
       # /swaps/{account_id} for status.
       #
       # @overload create(account_id:, amount:, from_token:, to_token:, from_chain: nil, slippage_bps: nil, to_chain: nil, request_options: {})
       #
-      # @param account_id [String] Business or user account ID (biz*\* / user*\*).
+      # @param account_id [String] Business or user account ID (biz*\* / user*\*), or the ledger account's own
+      # ldgr\_
       #
       # @param amount [String] Input token amount.
       #
@@ -38,11 +42,15 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::SwapRetrieveParams} for more details.
+      #
       # Returns the status of the account's in-flight or most recent swap.
       #
       # @overload retrieve(account_id, request_options: {})
       #
-      # @param account_id [String] Business or user account ID (biz*\* / user*\*).
+      # @param account_id [String] Business or user account ID (biz*\* / user*\*), or the ledger account's own
+      # ldgr\_
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

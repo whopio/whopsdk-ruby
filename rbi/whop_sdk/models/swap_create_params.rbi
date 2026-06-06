@@ -11,7 +11,8 @@ module WhopSDK
           T.any(WhopSDK::SwapCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # Business or user account ID (biz*\* / user*\*).
+      # Business or user account ID (biz*\* / user*\*), or the ledger account's own
+      # ldgr\_ ID.
       sig { returns(String) }
       attr_accessor :account_id
 
@@ -49,7 +50,8 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # Business or user account ID (biz*\* / user*\*).
+        # Business or user account ID (biz*\* / user*\*), or the ledger account's own
+        # ldgr\_ ID.
         account_id:,
         # Input token amount.
         amount:,

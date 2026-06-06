@@ -18,7 +18,8 @@ module WhopSDK
         ).returns(WhopSDK::Models::SwapCreateResponse)
       end
       def create(
-        # Business or user account ID (biz*\* / user*\*).
+        # Business or user account ID (biz*\* / user*\*), or the ledger account's own
+        # ldgr\_ ID.
         account_id:,
         # Input token amount.
         amount:,
@@ -41,7 +42,8 @@ module WhopSDK
         ).returns(WhopSDK::Models::SwapRetrieveResponse)
       end
       def retrieve(
-        # Business or user account ID (biz*\* / user*\*).
+        # Business or user account ID (biz*\* / user*\*), or the ledger account's own
+        # ldgr\_ ID.
         account_id,
         request_options: {}
       )

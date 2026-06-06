@@ -21,11 +21,14 @@ module WhopSDK
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::WalletBalanceParams} for more details.
+      #
       # Returns per-token balances held in an account's wallet.
       #
       # @overload balance(account_id, request_options: {})
       #
-      # @param account_id [String] The business or user account ID whose wallet balance should be returned.
+      # @param account_id [String] The account to read: a business (biz*) or user (user*) ID, or the ledger account
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

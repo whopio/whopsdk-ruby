@@ -20,7 +20,8 @@ module WhopSDK
         ).returns(WhopSDK::Models::WalletBalanceResponse)
       end
       def balance(
-        # The business or user account ID whose wallet balance should be returned.
+        # The account to read: a business (biz*) or user (user*) ID, or the ledger
+        # account's own ldgr\_ ID.
         account_id,
         request_options: {}
       )

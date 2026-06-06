@@ -94,8 +94,6 @@ module WhopSDK
 
     attr_reader swaps: WhopSDK::Resources::Swaps
 
-    attr_reader deposits: WhopSDK::Resources::Deposits
-
     attr_reader setup_intents: WhopSDK::Resources::SetupIntents
 
     attr_reader payment_methods: WhopSDK::Resources::PaymentMethods

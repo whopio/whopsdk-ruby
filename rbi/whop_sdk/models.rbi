@@ -275,8 +275,6 @@ module WhopSDK
 
   CustomCta = WhopSDK::Models::CustomCta
 
-  DepositCreateParams = WhopSDK::Models::DepositCreateParams
-
   Direction = WhopSDK::Models::Direction
 
   Dispute = WhopSDK::Models::Dispute
@@ -792,6 +790,8 @@ module WhopSDK
   VisibilityFilter = WhopSDK::Models::VisibilityFilter
 
   WalletBalanceParams = WhopSDK::Models::WalletBalanceParams
+
+  WalletDepositAddressParams = WhopSDK::Models::WalletDepositAddressParams
 
   WalletListParams = WhopSDK::Models::WalletListParams
 

@@ -181,9 +181,6 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::Swaps) }
     attr_reader :swaps
 
-    sig { returns(WhopSDK::Resources::Deposits) }
-    attr_reader :deposits
-
     # Setup intents
     sig { returns(WhopSDK::Resources::SetupIntents) }
     attr_reader :setup_intents

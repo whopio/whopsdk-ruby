@@ -1,0 +1,7 @@
+module WhopSDK
+  module Resources
+    class FinancialActivity
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

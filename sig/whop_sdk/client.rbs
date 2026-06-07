@@ -92,6 +92,8 @@ module WhopSDK
 
     attr_reader wallets: WhopSDK::Resources::Wallets
 
+    attr_reader ledgers: WhopSDK::Resources::Ledgers
+
     attr_reader swaps: WhopSDK::Resources::Swaps
 
     attr_reader deposits: WhopSDK::Resources::Deposits

@@ -178,6 +178,9 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::Wallets) }
     attr_reader :wallets
 
+    sig { returns(WhopSDK::Resources::Ledgers) }
+    attr_reader :ledgers
+
     sig { returns(WhopSDK::Resources::Swaps) }
     attr_reader :swaps
 

@@ -195,6 +195,9 @@ module WhopSDK
     # @return [WhopSDK::Resources::Wallets]
     attr_reader :wallets
 
+    # @return [WhopSDK::Resources::Ledgers]
+    attr_reader :ledgers
+
     # @return [WhopSDK::Resources::Swaps]
     attr_reader :swaps
 
@@ -412,6 +415,7 @@ module WhopSDK
       @account_links = WhopSDK::Resources::AccountLinks.new(client: self)
       @accounts = WhopSDK::Resources::Accounts.new(client: self)
       @wallets = WhopSDK::Resources::Wallets.new(client: self)
+      @ledgers = WhopSDK::Resources::Ledgers.new(client: self)
       @swaps = WhopSDK::Resources::Swaps.new(client: self)
       @deposits = WhopSDK::Resources::Deposits.new(client: self)
       @setup_intents = WhopSDK::Resources::SetupIntents.new(client: self)

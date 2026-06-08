@@ -377,6 +377,8 @@ module WhopSDK
 
   module FileVisibility = WhopSDK::Models::FileVisibility
 
+  class FinancialActivityListParams = WhopSDK::Models::FinancialActivityListParams
+
   class Forum = WhopSDK::Models::Forum
 
   class ForumListParams = WhopSDK::Models::ForumListParams
@@ -738,10 +740,6 @@ module WhopSDK
   class UserUpdateParams = WhopSDK::Models::UserUpdateParams
 
   module VerificationErrorCode = WhopSDK::Models::VerificationErrorCode
-
-  class VerificationListParams = WhopSDK::Models::VerificationListParams
-
-  class VerificationRetrieveParams = WhopSDK::Models::VerificationRetrieveParams
 
   module VerificationStatus = WhopSDK::Models::VerificationStatus
 

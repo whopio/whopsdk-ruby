@@ -1,0 +1,55 @@
+module WhopSDK
+  module Models
+    type wallet_deposit_address_params =
+      {
+        account_id: String,
+        asset: String,
+        network: WhopSDK::Models::WalletDepositAddressParams::network
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class WalletDepositAddressParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
+
+      attr_reader asset: String?
+
+      def asset=: (String) -> String
+
+      attr_reader network: WhopSDK::Models::WalletDepositAddressParams::network?
+
+      def network=: (
+        WhopSDK::Models::WalletDepositAddressParams::network
+      ) -> WhopSDK::Models::WalletDepositAddressParams::network
+
+      def initialize: (
+        account_id: String,
+        ?asset: String,
+        ?network: WhopSDK::Models::WalletDepositAddressParams::network,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        asset: String,
+        network: WhopSDK::Models::WalletDepositAddressParams::network,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type network = :plasma | :base | :ethereum | :solana
+
+      module Network
+        extend WhopSDK::Internal::Type::Enum
+
+        PLASMA: :plasma
+        BASE: :base
+        ETHEREUM: :ethereum
+        SOLANA: :solana
+
+        def self?.values: -> ::Array[WhopSDK::Models::WalletDepositAddressParams::network]
+      end
+    end
+  end
+end

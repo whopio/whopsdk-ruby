@@ -1,0 +1,122 @@
+module WhopSDK
+  module Models
+    type card =
+      {
+        id: String?,
+        object: WhopSDK::Models::Card::object,
+        status: WhopSDK::Models::Card::status?,
+        card_type: WhopSDK::Models::Card::card_type?,
+        created_at: String?,
+        expiration_month: String?,
+        expiration_year: String?,
+        :last4 => String?,
+        name: String?,
+        spend_limit: String?,
+        spend_limit_frequency: WhopSDK::Models::Card::spend_limit_frequency?,
+        transaction_limit: String?
+      }
+
+    class Card < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String?
+
+      attr_accessor object: WhopSDK::Models::Card::object
+
+      attr_accessor status: WhopSDK::Models::Card::status?
+
+      attr_accessor card_type: WhopSDK::Models::Card::card_type?
+
+      attr_accessor created_at: String?
+
+      attr_accessor expiration_month: String?
+
+      attr_accessor expiration_year: String?
+
+      attr_accessor last4: String?
+
+      attr_accessor name: String?
+
+      attr_accessor spend_limit: String?
+
+      attr_accessor spend_limit_frequency: WhopSDK::Models::Card::spend_limit_frequency?
+
+      attr_accessor transaction_limit: String?
+
+      def initialize: (
+        id: String?,
+        object: WhopSDK::Models::Card::object,
+        status: WhopSDK::Models::Card::status?,
+        ?card_type: WhopSDK::Models::Card::card_type?,
+        ?created_at: String?,
+        ?expiration_month: String?,
+        ?expiration_year: String?,
+        ?last4: String?,
+        ?name: String?,
+        ?spend_limit: String?,
+        ?spend_limit_frequency: WhopSDK::Models::Card::spend_limit_frequency?,
+        ?transaction_limit: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String?,
+        object: WhopSDK::Models::Card::object,
+        status: WhopSDK::Models::Card::status?,
+        card_type: WhopSDK::Models::Card::card_type?,
+        created_at: String?,
+        expiration_month: String?,
+        expiration_year: String?,
+        :last4 => String?,
+        name: String?,
+        spend_limit: String?,
+        spend_limit_frequency: WhopSDK::Models::Card::spend_limit_frequency?,
+        transaction_limit: String?
+      }
+
+      type object = :card
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        CARD: :card
+
+        def self?.values: -> ::Array[WhopSDK::Models::Card::object]
+      end
+
+      type status = :pending | :active | :frozen | :canceled
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        PENDING: :pending
+        ACTIVE: :active
+        FROZEN: :frozen
+        CANCELED: :canceled
+
+        def self?.values: -> ::Array[WhopSDK::Models::Card::status]
+      end
+
+      type card_type = :virtual | :physical
+
+      module CardType
+        extend WhopSDK::Internal::Type::Enum
+
+        VIRTUAL: :virtual
+        PHYSICAL: :physical
+
+        def self?.values: -> ::Array[WhopSDK::Models::Card::card_type]
+      end
+
+      type spend_limit_frequency = :daily | :weekly | :monthly | :one_time
+
+      module SpendLimitFrequency
+        extend WhopSDK::Internal::Type::Enum
+
+        DAILY: :daily
+        WEEKLY: :weekly
+        MONTHLY: :monthly
+        ONE_TIME: :one_time
+
+        def self?.values: -> ::Array[WhopSDK::Models::Card::spend_limit_frequency]
+      end
+    end
+  end
+end

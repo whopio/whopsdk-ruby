@@ -153,7 +153,23 @@ module WhopSDK
 
   CancelOptions = WhopSDK::Models::CancelOptions
 
+  Card = WhopSDK::Models::Card
+
   CardBrands = WhopSDK::Models::CardBrands
+
+  CardCreateParams = WhopSDK::Models::CardCreateParams
+
+  CardDeactivateParams = WhopSDK::Models::CardDeactivateParams
+
+  CardFreezeParams = WhopSDK::Models::CardFreezeParams
+
+  CardListParams = WhopSDK::Models::CardListParams
+
+  CardRetrieveParams = WhopSDK::Models::CardRetrieveParams
+
+  CardUnfreezeParams = WhopSDK::Models::CardUnfreezeParams
+
+  CardUpdateParams = WhopSDK::Models::CardUpdateParams
 
   ChatChannel = WhopSDK::Models::ChatChannel
 
@@ -392,6 +408,8 @@ module WhopSDK
   FileRetrieveParams = WhopSDK::Models::FileRetrieveParams
 
   FileVisibility = WhopSDK::Models::FileVisibility
+
+  FinancialActivityListParams = WhopSDK::Models::FinancialActivityListParams
 
   Forum = WhopSDK::Models::Forum
 

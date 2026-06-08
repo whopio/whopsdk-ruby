@@ -178,11 +178,17 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::Wallets) }
     attr_reader :wallets
 
+    sig { returns(WhopSDK::Resources::FinancialActivity) }
+    attr_reader :financial_activity
+
     sig { returns(WhopSDK::Resources::Swaps) }
     attr_reader :swaps
 
     sig { returns(WhopSDK::Resources::Deposits) }
     attr_reader :deposits
+
+    sig { returns(WhopSDK::Resources::Cards) }
+    attr_reader :cards
 
     # Setup intents
     sig { returns(WhopSDK::Resources::SetupIntents) }

@@ -45,7 +45,7 @@ module WhopSDK
       # - `ad_campaign:update`
       # - `ad_campaign:basic:read`
       #
-      # @overload update(id, budget: nil, budget_type: nil, config: nil, daily_budget: nil, name: nil, platform_config: nil, status: nil, request_options: {})
+      # @overload update(id, budget: nil, budget_type: nil, config: nil, daily_budget: nil, name: nil, platform_config: nil, status: nil, title: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the ad group to update.
       #
@@ -62,6 +62,8 @@ module WhopSDK
       # @param platform_config [WhopSDK::Models::AdGroupUpdateParams::PlatformConfig, nil] Platform-specific ad group configuration.
       #
       # @param status [Symbol, WhopSDK::Models::AdGroupStatus, nil] The status of an external ad group.
+      #
+      # @param title [String, nil] Human-readable ad group title.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

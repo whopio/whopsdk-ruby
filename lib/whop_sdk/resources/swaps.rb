@@ -38,26 +38,6 @@ module WhopSDK
         )
       end
 
-      # Returns the status of the account's in-flight or most recent swap.
-      #
-      # @overload retrieve(account_id, request_options: {})
-      #
-      # @param account_id [String] Business or user account ID (biz*\* / user*\*).
-      #
-      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
-      #
-      # @return [WhopSDK::Models::SwapRetrieveResponse]
-      #
-      # @see WhopSDK::Models::SwapRetrieveParams
-      def retrieve(account_id, params = {})
-        @client.request(
-          method: :get,
-          path: ["swaps/%1$s", account_id],
-          model: WhopSDK::Models::SwapRetrieveResponse,
-          options: params[:request_options]
-        )
-      end
-
       # Returns a stateless swap price preview. No funds move and nothing is persisted.
       #
       # @overload create_quote(amount:, from_token:, to_token:, from_address: nil, from_chain: nil, metadata: nil, slippage_bps: nil, to_address: nil, to_chain: nil, request_options: {})

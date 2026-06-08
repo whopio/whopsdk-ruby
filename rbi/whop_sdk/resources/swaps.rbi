@@ -33,20 +33,6 @@ module WhopSDK
       )
       end
 
-      # Returns the status of the account's in-flight or most recent swap.
-      sig do
-        params(
-          account_id: String,
-          request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Models::SwapRetrieveResponse)
-      end
-      def retrieve(
-        # Business or user account ID (biz*\* / user*\*).
-        account_id,
-        request_options: {}
-      )
-      end
-
       # Returns a stateless swap price preview. No funds move and nothing is persisted.
       sig do
         params(

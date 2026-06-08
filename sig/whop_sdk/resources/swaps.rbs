@@ -12,11 +12,6 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::SwapCreateResponse
 
-      def retrieve: (
-        String account_id,
-        ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::SwapRetrieveResponse
-
       def create_quote: (
         amount: String,
         from_token: String,

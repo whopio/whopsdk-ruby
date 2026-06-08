@@ -153,7 +153,51 @@ module WhopSDK
 
   CancelOptions = WhopSDK::Models::CancelOptions
 
+  Card = WhopSDK::Models::Card
+
+  CardAccountAPI = WhopSDK::Models::CardAccountAPI
+
+  CardAccountBalance = WhopSDK::Models::CardAccountBalance
+
+  CardAccountUpdateParams = WhopSDK::Models::CardAccountUpdateParams
+
+  CardBalanceParams = WhopSDK::Models::CardBalanceParams
+
   CardBrands = WhopSDK::Models::CardBrands
+
+  CardCardTransactionsParams = WhopSDK::Models::CardCardTransactionsParams
+
+  CardCashback = WhopSDK::Models::CardCashback
+
+  CardCashbackParams = WhopSDK::Models::CardCashbackParams
+
+  CardCreateParams = WhopSDK::Models::CardCreateParams
+
+  CardDailySpend = WhopSDK::Models::CardDailySpend
+
+  CardDailySpendParams = WhopSDK::Models::CardDailySpendParams
+
+  CardDeactivateParams = WhopSDK::Models::CardDeactivateParams
+
+  CardDepositAddress = WhopSDK::Models::CardDepositAddress
+
+  CardDepositAddressParams = WhopSDK::Models::CardDepositAddressParams
+
+  CardFreezeParams = WhopSDK::Models::CardFreezeParams
+
+  CardListParams = WhopSDK::Models::CardListParams
+
+  CardRetrieveParams = WhopSDK::Models::CardRetrieveParams
+
+  CardTransaction = WhopSDK::Models::CardTransaction
+
+  CardTransactionList = WhopSDK::Models::CardTransactionList
+
+  CardTransactionsParams = WhopSDK::Models::CardTransactionsParams
+
+  CardUnfreezeParams = WhopSDK::Models::CardUnfreezeParams
+
+  CardUpdateParams = WhopSDK::Models::CardUpdateParams
 
   ChatChannel = WhopSDK::Models::ChatChannel
 
@@ -392,6 +436,8 @@ module WhopSDK
   FileRetrieveParams = WhopSDK::Models::FileRetrieveParams
 
   FileVisibility = WhopSDK::Models::FileVisibility
+
+  FinancialActivityListParams = WhopSDK::Models::FinancialActivityListParams
 
   Forum = WhopSDK::Models::Forum
 

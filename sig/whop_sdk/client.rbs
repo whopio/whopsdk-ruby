@@ -92,9 +92,15 @@ module WhopSDK
 
     attr_reader wallets: WhopSDK::Resources::Wallets
 
+    attr_reader financial_activity: WhopSDK::Resources::FinancialActivity
+
     attr_reader swaps: WhopSDK::Resources::Swaps
 
     attr_reader deposits: WhopSDK::Resources::Deposits
+
+    attr_reader cards: WhopSDK::Resources::Cards
+
+    attr_reader card_account: WhopSDK::Resources::CardAccount
 
     attr_reader setup_intents: WhopSDK::Resources::SetupIntents
 

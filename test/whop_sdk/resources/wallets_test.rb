@@ -19,10 +19,10 @@ class WhopSDK::Test::Resources::WalletsTest < WhopSDK::Test::ResourceTest
     end
   end
 
-  def test_balance
+  def test_balance_required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.wallets.balance("account_id")
+    response = @whop.wallets.balance(account_id: "account_id")
 
     assert_pattern do
       response => WhopSDK::Models::WalletBalanceResponse
@@ -37,10 +37,33 @@ class WhopSDK::Test::Resources::WalletsTest < WhopSDK::Test::ResourceTest
     end
   end
 
+  def test_deposit_address_required_params
+    skip("Mock server tests are disabled")
+
+    response = @whop.wallets.deposit_address(account_id: "account_id")
+
+    assert_pattern do
+      response => WhopSDK::Models::WalletDepositAddressResponse
+    end
+
+    assert_pattern do
+      response => {
+        evm_address: String | nil,
+        hosted_url: String | nil,
+        object: WhopSDK::Models::WalletDepositAddressResponse::Object,
+        solana_address: String | nil,
+        status: WhopSDK::Models::WalletDepositAddressResponse::Status,
+        supported_networks: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::WalletDepositAddressResponse::SupportedNetwork]),
+        asset: String | nil,
+        network: String | nil
+      }
+    end
+  end
+
   def test_send__required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.wallets.send_("account_id", amount: "amount", to: "to")
+    response = @whop.wallets.send_(account_id: "account_id", amount: "amount", to: "to")
 
     assert_pattern do
       response => WhopSDK::Models::WalletSendResponse

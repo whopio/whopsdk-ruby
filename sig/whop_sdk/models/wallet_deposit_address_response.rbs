@@ -1,0 +1,123 @@
+module WhopSDK
+  module Models
+    type wallet_deposit_address_response =
+      {
+        evm_address: String?,
+        hosted_url: String?,
+        object: WhopSDK::Models::WalletDepositAddressResponse::object,
+        solana_address: String?,
+        status: WhopSDK::Models::WalletDepositAddressResponse::status,
+        supported_networks: ::Array[WhopSDK::Models::WalletDepositAddressResponse::SupportedNetwork],
+        asset: String,
+        network: String
+      }
+
+    class WalletDepositAddressResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor evm_address: String?
+
+      attr_accessor hosted_url: String?
+
+      attr_accessor object: WhopSDK::Models::WalletDepositAddressResponse::object
+
+      attr_accessor solana_address: String?
+
+      attr_accessor status: WhopSDK::Models::WalletDepositAddressResponse::status
+
+      attr_accessor supported_networks: ::Array[WhopSDK::Models::WalletDepositAddressResponse::SupportedNetwork]
+
+      attr_reader asset: String?
+
+      def asset=: (String) -> String
+
+      attr_reader network: String?
+
+      def network=: (String) -> String
+
+      def initialize: (
+        evm_address: String?,
+        hosted_url: String?,
+        object: WhopSDK::Models::WalletDepositAddressResponse::object,
+        solana_address: String?,
+        status: WhopSDK::Models::WalletDepositAddressResponse::status,
+        supported_networks: ::Array[WhopSDK::Models::WalletDepositAddressResponse::SupportedNetwork],
+        ?asset: String,
+        ?network: String
+      ) -> void
+
+      def to_hash: -> {
+        evm_address: String?,
+        hosted_url: String?,
+        object: WhopSDK::Models::WalletDepositAddressResponse::object,
+        solana_address: String?,
+        status: WhopSDK::Models::WalletDepositAddressResponse::status,
+        supported_networks: ::Array[WhopSDK::Models::WalletDepositAddressResponse::SupportedNetwork],
+        asset: String,
+        network: String
+      }
+
+      type object = :deposit_address
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        DEPOSIT_ADDRESS: :deposit_address
+
+        def self?.values: -> ::Array[WhopSDK::Models::WalletDepositAddressResponse::object]
+      end
+
+      type status = :ready | :provisioning
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        READY: :ready
+        PROVISIONING: :provisioning
+
+        def self?.values: -> ::Array[WhopSDK::Models::WalletDepositAddressResponse::status]
+      end
+
+      type supported_network =
+        {
+          address_kind: WhopSDK::Models::WalletDepositAddressResponse::SupportedNetwork::address_kind,
+          chain_id: Integer?,
+          network: String,
+          onramp_supported: bool
+        }
+
+      class SupportedNetwork < WhopSDK::Internal::Type::BaseModel
+        attr_accessor address_kind: WhopSDK::Models::WalletDepositAddressResponse::SupportedNetwork::address_kind
+
+        attr_accessor chain_id: Integer?
+
+        attr_accessor network: String
+
+        attr_accessor onramp_supported: bool
+
+        def initialize: (
+          address_kind: WhopSDK::Models::WalletDepositAddressResponse::SupportedNetwork::address_kind,
+          chain_id: Integer?,
+          network: String,
+          onramp_supported: bool
+        ) -> void
+
+        def to_hash: -> {
+          address_kind: WhopSDK::Models::WalletDepositAddressResponse::SupportedNetwork::address_kind,
+          chain_id: Integer?,
+          network: String,
+          onramp_supported: bool
+        }
+
+        type address_kind = :evm | :solana
+
+        module AddressKind
+          extend WhopSDK::Internal::Type::Enum
+
+          EVM: :evm
+          SOLANA: :solana
+
+          def self?.values: -> ::Array[WhopSDK::Models::WalletDepositAddressResponse::SupportedNetwork::address_kind]
+        end
+      end
+    end
+  end
+end

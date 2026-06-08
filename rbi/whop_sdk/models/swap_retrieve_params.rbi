@@ -11,6 +11,7 @@ module WhopSDK
           T.any(WhopSDK::SwapRetrieveParams, WhopSDK::Internal::AnyHash)
         end
 
+      # Business or user account ID (biz*\* / user*\*).
       sig { returns(String) }
       attr_accessor :account_id
 
@@ -20,7 +21,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(account_id:, request_options: {})
+      def self.new(
+        # Business or user account ID (biz*\* / user*\*).
+        account_id:,
+        request_options: {}
+      )
       end
 
       sig do

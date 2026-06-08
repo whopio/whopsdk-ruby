@@ -1,0 +1,77 @@
+module WhopSDK
+  module Models
+    type financial_activity_list_params =
+      {
+        account_id: String,
+        currency: String,
+        cursor: String,
+        limit: Integer,
+        line_types: ::Array[String],
+        posted_after: Time,
+        posted_before: Time,
+        user_id: String
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class FinancialActivityListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
+
+      attr_reader currency: String?
+
+      def currency=: (String) -> String
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      attr_reader line_types: ::Array[String]?
+
+      def line_types=: (::Array[String]) -> ::Array[String]
+
+      attr_reader posted_after: Time?
+
+      def posted_after=: (Time) -> Time
+
+      attr_reader posted_before: Time?
+
+      def posted_before=: (Time) -> Time
+
+      attr_reader user_id: String?
+
+      def user_id=: (String) -> String
+
+      def initialize: (
+        ?account_id: String,
+        ?currency: String,
+        ?cursor: String,
+        ?limit: Integer,
+        ?line_types: ::Array[String],
+        ?posted_after: Time,
+        ?posted_before: Time,
+        ?user_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        currency: String,
+        cursor: String,
+        limit: Integer,
+        line_types: ::Array[String],
+        posted_after: Time,
+        posted_before: Time,
+        user_id: String,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

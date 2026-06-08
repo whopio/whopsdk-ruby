@@ -393,6 +393,8 @@ module WhopSDK
 
   FileVisibility = WhopSDK::Models::FileVisibility
 
+  FinancialActivityListParams = WhopSDK::Models::FinancialActivityListParams
+
   Forum = WhopSDK::Models::Forum
 
   ForumListParams = WhopSDK::Models::ForumListParams
@@ -792,6 +794,8 @@ module WhopSDK
   VisibilityFilter = WhopSDK::Models::VisibilityFilter
 
   WalletBalanceParams = WhopSDK::Models::WalletBalanceParams
+
+  WalletCreateWithdrawalParams = WhopSDK::Models::WalletCreateWithdrawalParams
 
   WalletListParams = WhopSDK::Models::WalletListParams
 

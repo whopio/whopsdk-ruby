@@ -1,0 +1,15 @@
+module WhopSDK
+  module Resources
+    class CardAccount
+      def update: (
+        account_id: String,
+        ?auto_topup_enabled: bool,
+        ?auto_topup_target_usd: String,
+        ?auto_topup_threshold_usd: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::CardAccountAPI
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

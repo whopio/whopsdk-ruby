@@ -151,7 +151,57 @@ module WhopSDK
 
   module CancelOptions = WhopSDK::Models::CancelOptions
 
+  class Card = WhopSDK::Models::Card
+
+  class CardAccountAPI = WhopSDK::Models::CardAccountAPI
+
+  class CardAccountBalance = WhopSDK::Models::CardAccountBalance
+
+  class CardAccountUpdateParams = WhopSDK::Models::CardAccountUpdateParams
+
+  class CardBalanceParams = WhopSDK::Models::CardBalanceParams
+
   module CardBrands = WhopSDK::Models::CardBrands
+
+  class CardCardTransactionsParams = WhopSDK::Models::CardCardTransactionsParams
+
+  class CardCashback = WhopSDK::Models::CardCashback
+
+  class CardCashbackParams = WhopSDK::Models::CardCashbackParams
+
+  class CardCreateDisputeAttachmentParams = WhopSDK::Models::CardCreateDisputeAttachmentParams
+
+  class CardCreateDisputeParams = WhopSDK::Models::CardCreateDisputeParams
+
+  class CardCreateParams = WhopSDK::Models::CardCreateParams
+
+  class CardDailySpend = WhopSDK::Models::CardDailySpend
+
+  class CardDailySpendParams = WhopSDK::Models::CardDailySpendParams
+
+  class CardDeactivateParams = WhopSDK::Models::CardDeactivateParams
+
+  class CardDepositAddress = WhopSDK::Models::CardDepositAddress
+
+  class CardDepositAddressParams = WhopSDK::Models::CardDepositAddressParams
+
+  class CardDispute = WhopSDK::Models::CardDispute
+
+  class CardFreezeParams = WhopSDK::Models::CardFreezeParams
+
+  class CardListParams = WhopSDK::Models::CardListParams
+
+  class CardRetrieveParams = WhopSDK::Models::CardRetrieveParams
+
+  class CardTransaction = WhopSDK::Models::CardTransaction
+
+  class CardTransactionList = WhopSDK::Models::CardTransactionList
+
+  class CardTransactionsParams = WhopSDK::Models::CardTransactionsParams
+
+  class CardUnfreezeParams = WhopSDK::Models::CardUnfreezeParams
+
+  class CardUpdateParams = WhopSDK::Models::CardUpdateParams
 
   class ChatChannel = WhopSDK::Models::ChatChannel
 
@@ -376,6 +426,8 @@ module WhopSDK
   class FileRetrieveParams = WhopSDK::Models::FileRetrieveParams
 
   module FileVisibility = WhopSDK::Models::FileVisibility
+
+  class FinancialActivityListParams = WhopSDK::Models::FinancialActivityListParams
 
   class Forum = WhopSDK::Models::Forum
 

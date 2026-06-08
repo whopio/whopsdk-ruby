@@ -1,0 +1,76 @@
+module WhopSDK
+  module Models
+    type card_card_transactions_params =
+      {
+        id: String,
+        created_after: String,
+        created_before: String,
+        page: Integer,
+        per: Integer,
+        status: WhopSDK::Models::CardCardTransactionsParams::status
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class CardCardTransactionsParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_reader created_after: String?
+
+      def created_after=: (String) -> String
+
+      attr_reader created_before: String?
+
+      def created_before=: (String) -> String
+
+      attr_reader page: Integer?
+
+      def page=: (Integer) -> Integer
+
+      attr_reader per: Integer?
+
+      def per=: (Integer) -> Integer
+
+      attr_reader status: WhopSDK::Models::CardCardTransactionsParams::status?
+
+      def status=: (
+        WhopSDK::Models::CardCardTransactionsParams::status
+      ) -> WhopSDK::Models::CardCardTransactionsParams::status
+
+      def initialize: (
+        id: String,
+        ?created_after: String,
+        ?created_before: String,
+        ?page: Integer,
+        ?per: Integer,
+        ?status: WhopSDK::Models::CardCardTransactionsParams::status,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_after: String,
+        created_before: String,
+        page: Integer,
+        per: Integer,
+        status: WhopSDK::Models::CardCardTransactionsParams::status,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type status = :pending | :completed | :reversed | :declined
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        PENDING: :pending
+        COMPLETED: :completed
+        REVERSED: :reversed
+        DECLINED: :declined
+
+        def self?.values: -> ::Array[WhopSDK::Models::CardCardTransactionsParams::status]
+      end
+    end
+  end
+end

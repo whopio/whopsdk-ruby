@@ -21,7 +21,7 @@ module WhopSDK
       end
       def balance(
         # The business or user account ID whose wallet balance should be returned.
-        account_id,
+        account_id:,
         request_options: {}
       )
       end
@@ -36,11 +36,11 @@ module WhopSDK
         ).returns(WhopSDK::Models::WalletSendResponse)
       end
       def send_(
-        # The sending account ID.
-        account_id,
-        # USDT amount to send.
+        # Query param: The sending account ID.
+        account_id:,
+        # Body param: USDT amount to send.
         amount:,
-        # Recipient user ID, business account ID, ledger account ID, or email.
+        # Body param: Recipient user ID, business account ID, ledger account ID, or email.
         to:,
         request_options: {}
       )

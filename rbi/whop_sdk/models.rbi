@@ -746,8 +746,6 @@ module WhopSDK
 
   SwapCreateQuoteParams = WhopSDK::Models::SwapCreateQuoteParams
 
-  SwapRetrieveParams = WhopSDK::Models::SwapRetrieveParams
-
   TaxIdentifierType = WhopSDK::Models::TaxIdentifierType
 
   TaxType = WhopSDK::Models::TaxType
@@ -791,11 +789,7 @@ module WhopSDK
 
   VisibilityFilter = WhopSDK::Models::VisibilityFilter
 
-  WalletBalanceParams = WhopSDK::Models::WalletBalanceParams
-
   WalletListParams = WhopSDK::Models::WalletListParams
-
-  WalletSendParams = WhopSDK::Models::WalletSendParams
 
   Webhook = WhopSDK::Models::Webhook
 

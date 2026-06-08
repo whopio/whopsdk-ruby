@@ -31,26 +31,6 @@ class WhopSDK::Test::Resources::SwapsTest < WhopSDK::Test::ResourceTest
     end
   end
 
-  def test_retrieve
-    skip("Mock server tests are disabled")
-
-    response = @whop.swaps.retrieve("account_id")
-
-    assert_pattern do
-      response => WhopSDK::Models::SwapRetrieveResponse
-    end
-
-    assert_pattern do
-      response => {
-        account_id: String,
-        object: WhopSDK::Models::SwapRetrieveResponse::Object,
-        status: String,
-        tx_hashes: ^(WhopSDK::Internal::Type::ArrayOf[String]),
-        error: String | nil
-      }
-    end
-  end
-
   def test_create_quote_required_params
     skip("Mock server tests are disabled")
 

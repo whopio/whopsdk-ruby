@@ -1,0 +1,69 @@
+module WhopSDK
+  module Models
+    type card_create_params =
+      {
+        account_id: String,
+        name: String,
+        spend_limit: String,
+        spend_limit_frequency: WhopSDK::Models::CardCreateParams::spend_limit_frequency,
+        transaction_limit: String
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class CardCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader spend_limit: String?
+
+      def spend_limit=: (String) -> String
+
+      attr_reader spend_limit_frequency: WhopSDK::Models::CardCreateParams::spend_limit_frequency?
+
+      def spend_limit_frequency=: (
+        WhopSDK::Models::CardCreateParams::spend_limit_frequency
+      ) -> WhopSDK::Models::CardCreateParams::spend_limit_frequency
+
+      attr_reader transaction_limit: String?
+
+      def transaction_limit=: (String) -> String
+
+      def initialize: (
+        account_id: String,
+        ?name: String,
+        ?spend_limit: String,
+        ?spend_limit_frequency: WhopSDK::Models::CardCreateParams::spend_limit_frequency,
+        ?transaction_limit: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        name: String,
+        spend_limit: String,
+        spend_limit_frequency: WhopSDK::Models::CardCreateParams::spend_limit_frequency,
+        transaction_limit: String,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type spend_limit_frequency = :daily | :weekly | :monthly | :one_time
+
+      module SpendLimitFrequency
+        extend WhopSDK::Internal::Type::Enum
+
+        DAILY: :daily
+        WEEKLY: :weekly
+        MONTHLY: :monthly
+        ONE_TIME: :one_time
+
+        def self?.values: -> ::Array[WhopSDK::Models::CardCreateParams::spend_limit_frequency]
+      end
+    end
+  end
+end

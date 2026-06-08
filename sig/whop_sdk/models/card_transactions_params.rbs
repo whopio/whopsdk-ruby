@@ -1,0 +1,83 @@
+module WhopSDK
+  module Models
+    type card_transactions_params =
+      {
+        account_id: String,
+        card_id: String,
+        created_after: String,
+        created_before: String,
+        page: Integer,
+        per: Integer,
+        status: WhopSDK::Models::CardTransactionsParams::status
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class CardTransactionsParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
+
+      attr_reader card_id: String?
+
+      def card_id=: (String) -> String
+
+      attr_reader created_after: String?
+
+      def created_after=: (String) -> String
+
+      attr_reader created_before: String?
+
+      def created_before=: (String) -> String
+
+      attr_reader page: Integer?
+
+      def page=: (Integer) -> Integer
+
+      attr_reader per: Integer?
+
+      def per=: (Integer) -> Integer
+
+      attr_reader status: WhopSDK::Models::CardTransactionsParams::status?
+
+      def status=: (
+        WhopSDK::Models::CardTransactionsParams::status
+      ) -> WhopSDK::Models::CardTransactionsParams::status
+
+      def initialize: (
+        account_id: String,
+        ?card_id: String,
+        ?created_after: String,
+        ?created_before: String,
+        ?page: Integer,
+        ?per: Integer,
+        ?status: WhopSDK::Models::CardTransactionsParams::status,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        card_id: String,
+        created_after: String,
+        created_before: String,
+        page: Integer,
+        per: Integer,
+        status: WhopSDK::Models::CardTransactionsParams::status,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type status = :pending | :completed | :reversed | :declined
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        PENDING: :pending
+        COMPLETED: :completed
+        REVERSED: :reversed
+        DECLINED: :declined
+
+        def self?.values: -> ::Array[WhopSDK::Models::CardTransactionsParams::status]
+      end
+    end
+  end
+end

@@ -1,0 +1,67 @@
+module WhopSDK
+  module Models
+    type card_create_dispute_params =
+      {
+        id: String,
+        dispute_type: WhopSDK::Models::CardCreateDisputeParams::dispute_type,
+        text_evidence: String,
+        transaction_id: String,
+        dispute_amount_cents: Integer
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class CardCreateDisputeParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_accessor dispute_type: WhopSDK::Models::CardCreateDisputeParams::dispute_type
+
+      attr_accessor text_evidence: String
+
+      attr_accessor transaction_id: String
+
+      attr_reader dispute_amount_cents: Integer?
+
+      def dispute_amount_cents=: (Integer) -> Integer
+
+      def initialize: (
+        id: String,
+        dispute_type: WhopSDK::Models::CardCreateDisputeParams::dispute_type,
+        text_evidence: String,
+        transaction_id: String,
+        ?dispute_amount_cents: Integer,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        dispute_type: WhopSDK::Models::CardCreateDisputeParams::dispute_type,
+        text_evidence: String,
+        transaction_id: String,
+        dispute_amount_cents: Integer,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type dispute_type =
+        :fraud
+        | :credit_not_processed
+        | :service_not_received
+        | :merchandise_issue
+        | :other
+
+      module DisputeType
+        extend WhopSDK::Internal::Type::Enum
+
+        FRAUD: :fraud
+        CREDIT_NOT_PROCESSED: :credit_not_processed
+        SERVICE_NOT_RECEIVED: :service_not_received
+        MERCHANDISE_ISSUE: :merchandise_issue
+        OTHER: :other
+
+        def self?.values: -> ::Array[WhopSDK::Models::CardCreateDisputeParams::dispute_type]
+      end
+    end
+  end
+end

@@ -6,12 +6,20 @@ module WhopSDK
       ) -> WhopSDK::Models::WalletListResponse
 
       def balance: (
-        String account_id,
+        account_id: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::WalletBalanceResponse
 
+      def create_withdrawal: (
+        account_id: String,
+        amount: String,
+        payout_method_id: String,
+        ?asset: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::WalletCreateWithdrawalResponse
+
       def send_: (
-        String account_id,
+        account_id: String,
         amount: String,
         to: String,
         ?request_options: WhopSDK::request_opts

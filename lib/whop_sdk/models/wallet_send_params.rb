@@ -8,6 +8,7 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute account_id
+      #   The sending account ID.
       #
       #   @return [String]
       required :account_id, String
@@ -25,7 +26,7 @@ module WhopSDK
       required :to, String
 
       # @!method initialize(account_id:, amount:, to:, request_options: {})
-      #   @param account_id [String]
+      #   @param account_id [String] The sending account ID.
       #
       #   @param amount [String] USDT amount to send.
       #

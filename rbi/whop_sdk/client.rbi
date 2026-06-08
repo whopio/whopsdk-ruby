@@ -178,6 +178,9 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::Wallets) }
     attr_reader :wallets
 
+    sig { returns(WhopSDK::Resources::FinancialActivity) }
+    attr_reader :financial_activity
+
     sig { returns(WhopSDK::Resources::Swaps) }
     attr_reader :swaps
 
@@ -200,7 +203,6 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::PayoutMethods) }
     attr_reader :payout_methods
 
-    # Verifications
     sig { returns(WhopSDK::Resources::Verifications) }
     attr_reader :verifications
 

@@ -11,6 +11,7 @@ module WhopSDK
           T.any(WhopSDK::WalletSendParams, WhopSDK::Internal::AnyHash)
         end
 
+      # The sending account ID.
       sig { returns(String) }
       attr_accessor :account_id
 
@@ -31,6 +32,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        # The sending account ID.
         account_id:,
         # USDT amount to send.
         amount:,

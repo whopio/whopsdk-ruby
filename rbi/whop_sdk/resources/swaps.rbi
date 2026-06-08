@@ -4,7 +4,7 @@ module WhopSDK
   module Resources
     class Swaps
       # Executes a swap from the account's wallet. Runs asynchronously — poll GET
-      # /swaps/{account_id} for status.
+      # /swaps?account_id=... for status.
       sig do
         params(
           account_id: String,
@@ -42,7 +42,7 @@ module WhopSDK
       end
       def retrieve(
         # Business or user account ID (biz*\* / user*\*).
-        account_id,
+        account_id:,
         request_options: {}
       )
       end

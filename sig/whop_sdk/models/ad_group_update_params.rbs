@@ -9,7 +9,8 @@ module WhopSDK
         daily_budget: Float?,
         name: String?,
         platform_config: WhopSDK::AdGroupUpdateParams::PlatformConfig?,
-        status: WhopSDK::Models::ad_group_status?
+        status: WhopSDK::Models::ad_group_status?,
+        title: String?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -33,6 +34,8 @@ module WhopSDK
 
       attr_accessor status: WhopSDK::Models::ad_group_status?
 
+      attr_accessor title: String?
+
       def initialize: (
         id: String,
         ?budget: Float?,
@@ -42,6 +45,7 @@ module WhopSDK
         ?name: String?,
         ?platform_config: WhopSDK::AdGroupUpdateParams::PlatformConfig?,
         ?status: WhopSDK::Models::ad_group_status?,
+        ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -54,6 +58,7 @@ module WhopSDK
         name: String?,
         platform_config: WhopSDK::AdGroupUpdateParams::PlatformConfig?,
         status: WhopSDK::Models::ad_group_status?,
+        title: String?,
         request_options: WhopSDK::RequestOptions
       }
 

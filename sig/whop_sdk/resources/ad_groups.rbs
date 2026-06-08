@@ -17,6 +17,7 @@ module WhopSDK
         ?name: String?,
         ?platform_config: WhopSDK::AdGroupUpdateParams::PlatformConfig?,
         ?status: WhopSDK::Models::ad_group_status?,
+        ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::AdGroup
 

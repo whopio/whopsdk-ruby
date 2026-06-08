@@ -47,6 +47,7 @@ module WhopSDK
           platform_config:
             T.nilable(WhopSDK::AdGroupUpdateParams::PlatformConfig::OrHash),
           status: T.nilable(WhopSDK::AdGroupStatus::OrSymbol),
+          title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::AdGroup)
       end
@@ -67,6 +68,8 @@ module WhopSDK
         platform_config: nil,
         # The status of an external ad group.
         status: nil,
+        # Human-readable ad group title.
+        title: nil,
         request_options: {}
       )
       end

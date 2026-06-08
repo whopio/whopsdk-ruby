@@ -57,6 +57,10 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::AdGroupStatus::OrSymbol)) }
       attr_accessor :status
 
+      # Human-readable ad group title.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :title
+
       sig do
         params(
           id: String,
@@ -68,6 +72,7 @@ module WhopSDK
           platform_config:
             T.nilable(WhopSDK::AdGroupUpdateParams::PlatformConfig::OrHash),
           status: T.nilable(WhopSDK::AdGroupStatus::OrSymbol),
+          title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -87,6 +92,8 @@ module WhopSDK
         platform_config: nil,
         # The status of an external ad group.
         status: nil,
+        # Human-readable ad group title.
+        title: nil,
         request_options: {}
       )
       end
@@ -103,6 +110,7 @@ module WhopSDK
             platform_config:
               T.nilable(WhopSDK::AdGroupUpdateParams::PlatformConfig),
             status: T.nilable(WhopSDK::AdGroupStatus::OrSymbol),
+            title: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }
         )

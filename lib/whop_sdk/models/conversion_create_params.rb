@@ -38,7 +38,7 @@ module WhopSDK
       optional :currency, enum: -> { WhopSDK::Currency }, nil?: true
 
       # @!attribute custom_name
-      #   Custom event name when event_name is 'custom'.
+      #   Custom event name when event_name is 'custom'. Maximum 35 chars for this value.
       #
       #   @return [String, nil]
       optional :custom_name, String, nil?: true
@@ -130,7 +130,7 @@ module WhopSDK
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #
-      #   @param custom_name [String, nil] Custom event name when event_name is 'custom'.
+      #   @param custom_name [String, nil] Custom event name when event_name is 'custom'. Maximum 35 chars for this value.
       #
       #   @param duration [Integer, nil] For 'leave' events: milliseconds the visitor spent on the page.
       #

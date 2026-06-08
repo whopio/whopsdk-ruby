@@ -44,7 +44,9 @@ module WhopSDK
         context: nil,
         # The available currencies on the platform
         currency: nil,
-        # Custom event name when event_name is 'custom'.
+        # Custom event name when event_name is 'custom'. Stored as-is; forwarded to Meta
+        # CAPI (prefixed with the business id) only when the combined name fits Meta's
+        # 50-char limit (~35 chars for this value), otherwise stored but not sent.
         custom_name: nil,
         # For 'leave' events: milliseconds the visitor spent on the page.
         duration: nil,

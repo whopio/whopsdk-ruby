@@ -2,16 +2,16 @@
 
 module WhopSDK
   module Models
-    class SwapRetrieveParams < WhopSDK::Internal::Type::BaseModel
+    class CardListParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(WhopSDK::SwapRetrieveParams, WhopSDK::Internal::AnyHash)
+          T.any(WhopSDK::CardListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # Business or user account ID (biz*\* / user*\*).
+      # The business or user account ID that owns the cards.
       sig { returns(String) }
       attr_accessor :account_id
 
@@ -22,7 +22,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # Business or user account ID (biz*\* / user*\*).
+        # The business or user account ID that owns the cards.
         account_id:,
         request_options: {}
       )

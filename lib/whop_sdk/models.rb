@@ -418,6 +418,8 @@ module WhopSDK
 
   FileVisibility = WhopSDK::Models::FileVisibility
 
+  FinancialActivityListParams = WhopSDK::Models::FinancialActivityListParams
+
   Forum = WhopSDK::Models::Forum
 
   ForumListParams = WhopSDK::Models::ForumListParams
@@ -779,15 +781,19 @@ module WhopSDK
 
   UserUpdateParams = WhopSDK::Models::UserUpdateParams
 
-  VerificationErrorCode = WhopSDK::Models::VerificationErrorCode
+  VerificationCreateParams = WhopSDK::Models::VerificationCreateParams
 
-  VerificationListParams = WhopSDK::Models::VerificationListParams
+  VerificationDeleteParams = WhopSDK::Models::VerificationDeleteParams
+
+  VerificationErrorCode = WhopSDK::Models::VerificationErrorCode
 
   VerificationRetrieveParams = WhopSDK::Models::VerificationRetrieveParams
 
   VerificationStatus = WhopSDK::Models::VerificationStatus
 
   VerificationSucceededWebhookEvent = WhopSDK::Models::VerificationSucceededWebhookEvent
+
+  VerificationUpdateParams = WhopSDK::Models::VerificationUpdateParams
 
   Visibility = WhopSDK::Models::Visibility
 

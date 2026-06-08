@@ -1,20 +1,23 @@
 module WhopSDK
   module Models
     type verification_retrieve_params =
-      { id: String } & WhopSDK::Internal::Type::request_parameters
+      { verification_id: String } & WhopSDK::Internal::Type::request_parameters
 
     class VerificationRetrieveParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor id: String
+      attr_accessor verification_id: String
 
       def initialize: (
-        id: String,
+        verification_id: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
-      def to_hash: -> { id: String, request_options: WhopSDK::RequestOptions }
+      def to_hash: -> {
+        verification_id: String,
+        request_options: WhopSDK::RequestOptions
+      }
     end
   end
 end

@@ -1,0 +1,23 @@
+module WhopSDK
+  module Models
+    type verification_delete_params =
+      { verification_id: String } & WhopSDK::Internal::Type::request_parameters
+
+    class VerificationDeleteParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor verification_id: String
+
+      def initialize: (
+        verification_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        verification_id: String,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

@@ -54,7 +54,13 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::AdGroupStatus, nil]
       optional :status, enum: -> { WhopSDK::AdGroupStatus }, nil?: true
 
-      # @!method initialize(id:, budget: nil, budget_type: nil, config: nil, daily_budget: nil, name: nil, platform_config: nil, status: nil, request_options: {})
+      # @!attribute title
+      #   Human-readable ad group title.
+      #
+      #   @return [String, nil]
+      optional :title, String, nil?: true
+
+      # @!method initialize(id:, budget: nil, budget_type: nil, config: nil, daily_budget: nil, name: nil, platform_config: nil, status: nil, title: nil, request_options: {})
       #   @param id [String]
       #
       #   @param budget [Float, nil] Budget amount in dollars.
@@ -70,6 +76,8 @@ module WhopSDK
       #   @param platform_config [WhopSDK::Models::AdGroupUpdateParams::PlatformConfig, nil] Platform-specific ad group configuration.
       #
       #   @param status [Symbol, WhopSDK::Models::AdGroupStatus, nil] The status of an external ad group.
+      #
+      #   @param title [String, nil] Human-readable ad group title.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 

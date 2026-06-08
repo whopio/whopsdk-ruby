@@ -1,0 +1,127 @@
+module WhopSDK
+  module Models
+    type card_dispute =
+      {
+        id: String,
+        attachment_count: Integer,
+        created_at: String,
+        currency: String,
+        dispute_amount_cents: Integer,
+        dispute_type: WhopSDK::Models::CardDispute::dispute_type,
+        has_file_evidence: bool,
+        object: WhopSDK::Models::CardDispute::object,
+        status: WhopSDK::Models::CardDispute::status,
+        resolved_at: String?,
+        text_evidence: String,
+        transaction_id: String?
+      }
+
+    class CardDispute < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor attachment_count: Integer
+
+      attr_accessor created_at: String
+
+      attr_accessor currency: String
+
+      attr_accessor dispute_amount_cents: Integer
+
+      attr_accessor dispute_type: WhopSDK::Models::CardDispute::dispute_type
+
+      attr_accessor has_file_evidence: bool
+
+      attr_accessor object: WhopSDK::Models::CardDispute::object
+
+      attr_accessor status: WhopSDK::Models::CardDispute::status
+
+      attr_accessor resolved_at: String?
+
+      attr_reader text_evidence: String?
+
+      def text_evidence=: (String) -> String
+
+      attr_accessor transaction_id: String?
+
+      def initialize: (
+        id: String,
+        attachment_count: Integer,
+        created_at: String,
+        currency: String,
+        dispute_amount_cents: Integer,
+        dispute_type: WhopSDK::Models::CardDispute::dispute_type,
+        has_file_evidence: bool,
+        object: WhopSDK::Models::CardDispute::object,
+        status: WhopSDK::Models::CardDispute::status,
+        ?resolved_at: String?,
+        ?text_evidence: String,
+        ?transaction_id: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        attachment_count: Integer,
+        created_at: String,
+        currency: String,
+        dispute_amount_cents: Integer,
+        dispute_type: WhopSDK::Models::CardDispute::dispute_type,
+        has_file_evidence: bool,
+        object: WhopSDK::Models::CardDispute::object,
+        status: WhopSDK::Models::CardDispute::status,
+        resolved_at: String?,
+        text_evidence: String,
+        transaction_id: String?
+      }
+
+      type dispute_type =
+        :fraud
+        | :credit_not_processed
+        | :service_not_received
+        | :merchandise_issue
+        | :other
+
+      module DisputeType
+        extend WhopSDK::Internal::Type::Enum
+
+        FRAUD: :fraud
+        CREDIT_NOT_PROCESSED: :credit_not_processed
+        SERVICE_NOT_RECEIVED: :service_not_received
+        MERCHANDISE_ISSUE: :merchandise_issue
+        OTHER: :other
+
+        def self?.values: -> ::Array[WhopSDK::Models::CardDispute::dispute_type]
+      end
+
+      type object = :card_dispute
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        CARD_DISPUTE: :card_dispute
+
+        def self?.values: -> ::Array[WhopSDK::Models::CardDispute::object]
+      end
+
+      type status =
+        :pending
+        | :in_review
+        | :accepted
+        | :rejected
+        | :canceled
+        | :resolved_by_merchant
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        PENDING: :pending
+        IN_REVIEW: :in_review
+        ACCEPTED: :accepted
+        REJECTED: :rejected
+        CANCELED: :canceled
+        RESOLVED_BY_MERCHANT: :resolved_by_merchant
+
+        def self?.values: -> ::Array[WhopSDK::Models::CardDispute::status]
+      end
+    end
+  end
+end

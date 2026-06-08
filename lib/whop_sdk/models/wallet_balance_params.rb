@@ -8,12 +8,14 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute account_id
+      #   The business or user account ID whose wallet balance should be returned.
       #
       #   @return [String]
       required :account_id, String
 
       # @!method initialize(account_id:, request_options: {})
-      #   @param account_id [String]
+      #   @param account_id [String] The business or user account ID whose wallet balance should be returned.
+      #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end
   end

@@ -1,0 +1,19 @@
+module WhopSDK
+  module Resources
+    class FinancialActivity
+      def list: (
+        ?account_id: String,
+        ?currency: String,
+        ?cursor: String,
+        ?limit: Integer,
+        ?line_types: ::Array[String],
+        ?posted_after: Time,
+        ?posted_before: Time,
+        ?user_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::FinancialActivityListResponse
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

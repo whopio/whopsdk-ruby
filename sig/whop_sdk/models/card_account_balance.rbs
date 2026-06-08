@@ -1,0 +1,87 @@
+module WhopSDK
+  module Models
+    type card_account_balance =
+      {
+        available_balance: String,
+        currency: String,
+        object: WhopSDK::Models::CardAccountBalance::object,
+        spending_power: String,
+        balance_due: String,
+        credit_limit: String,
+        has_activity: bool,
+        pending_charges: String,
+        pending_deposit_amount: String,
+        posted_charges: String
+      }
+
+    class CardAccountBalance < WhopSDK::Internal::Type::BaseModel
+      attr_accessor available_balance: String
+
+      attr_accessor currency: String
+
+      attr_accessor object: WhopSDK::Models::CardAccountBalance::object
+
+      attr_accessor spending_power: String
+
+      attr_reader balance_due: String?
+
+      def balance_due=: (String) -> String
+
+      attr_reader credit_limit: String?
+
+      def credit_limit=: (String) -> String
+
+      attr_reader has_activity: bool?
+
+      def has_activity=: (bool) -> bool
+
+      attr_reader pending_charges: String?
+
+      def pending_charges=: (String) -> String
+
+      attr_reader pending_deposit_amount: String?
+
+      def pending_deposit_amount=: (String) -> String
+
+      attr_reader posted_charges: String?
+
+      def posted_charges=: (String) -> String
+
+      def initialize: (
+        available_balance: String,
+        currency: String,
+        object: WhopSDK::Models::CardAccountBalance::object,
+        spending_power: String,
+        ?balance_due: String,
+        ?credit_limit: String,
+        ?has_activity: bool,
+        ?pending_charges: String,
+        ?pending_deposit_amount: String,
+        ?posted_charges: String
+      ) -> void
+
+      def to_hash: -> {
+        available_balance: String,
+        currency: String,
+        object: WhopSDK::Models::CardAccountBalance::object,
+        spending_power: String,
+        balance_due: String,
+        credit_limit: String,
+        has_activity: bool,
+        pending_charges: String,
+        pending_deposit_amount: String,
+        posted_charges: String
+      }
+
+      type object = :card_account_balance
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        CARD_ACCOUNT_BALANCE: :card_account_balance
+
+        def self?.values: -> ::Array[WhopSDK::Models::CardAccountBalance::object]
+      end
+    end
+  end
+end

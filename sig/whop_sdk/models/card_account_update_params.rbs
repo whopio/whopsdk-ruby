@@ -1,0 +1,47 @@
+module WhopSDK
+  module Models
+    type card_account_update_params =
+      {
+        account_id: String,
+        auto_topup_enabled: bool,
+        auto_topup_target_usd: String,
+        auto_topup_threshold_usd: String
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class CardAccountUpdateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
+
+      attr_reader auto_topup_enabled: bool?
+
+      def auto_topup_enabled=: (bool) -> bool
+
+      attr_reader auto_topup_target_usd: String?
+
+      def auto_topup_target_usd=: (String) -> String
+
+      attr_reader auto_topup_threshold_usd: String?
+
+      def auto_topup_threshold_usd=: (String) -> String
+
+      def initialize: (
+        account_id: String,
+        ?auto_topup_enabled: bool,
+        ?auto_topup_target_usd: String,
+        ?auto_topup_threshold_usd: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        auto_topup_enabled: bool,
+        auto_topup_target_usd: String,
+        auto_topup_threshold_usd: String,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

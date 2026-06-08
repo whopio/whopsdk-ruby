@@ -1,0 +1,32 @@
+module WhopSDK
+  module Models
+    type card_deposit_address =
+      { address: String, object: WhopSDK::Models::CardDepositAddress::object }
+
+    class CardDepositAddress < WhopSDK::Internal::Type::BaseModel
+      attr_accessor address: String
+
+      attr_accessor object: WhopSDK::Models::CardDepositAddress::object
+
+      def initialize: (
+        address: String,
+        object: WhopSDK::Models::CardDepositAddress::object
+      ) -> void
+
+      def to_hash: -> {
+        address: String,
+        object: WhopSDK::Models::CardDepositAddress::object
+      }
+
+      type object = :card_deposit_address
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        CARD_DEPOSIT_ADDRESS: :card_deposit_address
+
+        def self?.values: -> ::Array[WhopSDK::Models::CardDepositAddress::object]
+      end
+    end
+  end
+end

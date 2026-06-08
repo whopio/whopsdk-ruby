@@ -1,0 +1,28 @@
+module WhopSDK
+  module Models
+    type card_pin = { object: WhopSDK::Models::CardPin::object, pin: String }
+
+    class CardPin < WhopSDK::Internal::Type::BaseModel
+      attr_accessor object: WhopSDK::Models::CardPin::object
+
+      attr_accessor pin: String
+
+      def initialize: (
+        object: WhopSDK::Models::CardPin::object,
+        pin: String
+      ) -> void
+
+      def to_hash: -> { object: WhopSDK::Models::CardPin::object, pin: String }
+
+      type object = :card_pin
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        CARD_PIN: :card_pin
+
+        def self?.values: -> ::Array[WhopSDK::Models::CardPin::object]
+      end
+    end
+  end
+end

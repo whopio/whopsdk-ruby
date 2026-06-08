@@ -1,0 +1,52 @@
+module WhopSDK
+  module Models
+    type card_create_dispute_attachment_params =
+      {
+        id: String,
+        dispute_id: String,
+        attachment: WhopSDK::CardCreateDisputeAttachmentParams::Attachment
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class CardCreateDisputeAttachmentParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_accessor dispute_id: String
+
+      attr_accessor attachment: WhopSDK::CardCreateDisputeAttachmentParams::Attachment
+
+      def initialize: (
+        id: String,
+        dispute_id: String,
+        attachment: WhopSDK::CardCreateDisputeAttachmentParams::Attachment,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        dispute_id: String,
+        attachment: WhopSDK::CardCreateDisputeAttachmentParams::Attachment,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type attachment = { id: String, direct_upload_id: String }
+
+      class Attachment < WhopSDK::Internal::Type::BaseModel
+        attr_reader id: String?
+
+        def id=: (String) -> String
+
+        attr_reader direct_upload_id: String?
+
+        def direct_upload_id=: (String) -> String
+
+        def initialize: (?id: String, ?direct_upload_id: String) -> void
+
+        def to_hash: -> { id: String, direct_upload_id: String }
+      end
+    end
+  end
+end

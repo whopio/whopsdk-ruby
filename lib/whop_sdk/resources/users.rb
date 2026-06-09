@@ -38,7 +38,7 @@ module WhopSDK
       # Updates a user. A user token updates their own global profile; an API key
       # updates the user's account-specific profile override (account_id required).
       #
-      # @overload update(id, account_id: nil, bio: nil, name: nil, request_options: {})
+      # @overload update(id, account_id: nil, bio: nil, name: nil, profile_picture: nil, username: nil, request_options: {})
       #
       # @param id [String] Path param: The ID of the user, which will look like user\_******\*******, a
       # usern
@@ -48,6 +48,10 @@ module WhopSDK
       # @param bio [String] Body param
       #
       # @param name [String] Body param
+      #
+      # @param profile_picture [WhopSDK::Models::UserUpdateParams::ProfilePicture] Body param
+      #
+      # @param username [String] Body param
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

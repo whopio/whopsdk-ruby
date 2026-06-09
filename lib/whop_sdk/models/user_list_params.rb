@@ -8,45 +8,45 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute after
-      #   A cursor; returns users after this position.
+      #   Returns the elements in the list that come after the specified cursor.
       #
       #   @return [String, nil]
-      optional :after, String
+      optional :after, String, nil?: true
 
       # @!attribute before
-      #   A cursor; returns users before this position.
+      #   Returns the elements in the list that come before the specified cursor.
       #
       #   @return [String, nil]
-      optional :before, String
+      optional :before, String, nil?: true
 
       # @!attribute first
-      #   The number of users to return (max 50).
+      #   Returns the first _n_ elements from the list.
       #
       #   @return [Integer, nil]
-      optional :first, Integer
+      optional :first, Integer, nil?: true
 
       # @!attribute last
-      #   The number of users to return from the end of the range.
+      #   Returns the last _n_ elements from the list.
       #
       #   @return [Integer, nil]
-      optional :last, Integer
+      optional :last, Integer, nil?: true
 
       # @!attribute query
-      #   A search term to filter users by name or username.
+      #   Search term to filter by name or username.
       #
       #   @return [String, nil]
-      optional :query, String
+      optional :query, String, nil?: true
 
       # @!method initialize(after: nil, before: nil, first: nil, last: nil, query: nil, request_options: {})
-      #   @param after [String] A cursor; returns users after this position.
+      #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
-      #   @param before [String] A cursor; returns users before this position.
+      #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      #   @param first [Integer] The number of users to return (max 50).
+      #   @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
-      #   @param last [Integer] The number of users to return from the end of the range.
+      #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      #   @param query [String] A search term to filter users by name or username.
+      #   @param query [String, nil] Search term to filter by name or username.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

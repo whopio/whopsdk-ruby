@@ -17,7 +17,7 @@ module WhopSDK
       # @!attribute granularity
       #   Per-bucket time series over the date range, ordered ascending by `bucketStart`.
       #   `null` when the `granularity` arg on `adReport` is omitted; otherwise contains
-      #   rows at the requested grain (`hourly`, `daily`, `weekly`, or `monthly`).
+      #   rows at the requested grain (`daily` or `hourly`).
       #
       #   @return [Array<WhopSDK::Models::AdReportRetrieveResponse::Granularity>, nil]
       required :granularity,
@@ -54,7 +54,7 @@ module WhopSDK
         # @!attribute granularity
         #   Per-bucket time series for this entity over the date range, ordered ascending by
         #   `bucketStart`. `null` when the `granularity` arg on `adReport` is omitted;
-        #   otherwise contains rows at the requested grain (`hourly`, `daily`, `weekly`, or `monthly`).
+        #   otherwise contains rows at the requested grain (`daily` or `hourly`).
         #
         #   @return [Array<WhopSDK::Models::AdReportRetrieveResponse::Breakdown::Granularity>, nil]
         required :granularity,

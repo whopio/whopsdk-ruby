@@ -2,8 +2,8 @@
 
 module WhopSDK
   module Models
-    # @see WhopSDK::Resources::Users#retrieve
-    class User < WhopSDK::Internal::Type::BaseModel
+    # @see WhopSDK::Resources::Users#list
+    class UserListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
       #   The unique identifier for the user.
       #
@@ -32,8 +32,8 @@ module WhopSDK
       #   The user's profile picture attachment with URL, content type, and file metadata.
       #   Null if using a legacy profile picture.
       #
-      #   @return [WhopSDK::Models::User::ProfilePicture, nil]
-      required :profile_picture, -> { WhopSDK::User::ProfilePicture }, nil?: true
+      #   @return [WhopSDK::Models::UserListResponse::ProfilePicture, nil]
+      required :profile_picture, -> { WhopSDK::Models::UserListResponse::ProfilePicture }, nil?: true
 
       # @!attribute username
       #   The user's unique username shown on their public profile.
@@ -42,8 +42,8 @@ module WhopSDK
       required :username, String
 
       # @!method initialize(id:, bio:, created_at:, name:, profile_picture:, username:)
-      #   Some parameter documentations has been truncated, see {WhopSDK::Models::User}
-      #   for more details.
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::UserListResponse} for more details.
       #
       #   A user account on Whop. Contains profile information, identity details, and
       #   social connections.
@@ -56,11 +56,11 @@ module WhopSDK
       #
       #   @param name [String, nil] The user's display name shown on their public profile.
       #
-      #   @param profile_picture [WhopSDK::Models::User::ProfilePicture, nil] The user's profile picture attachment with URL, content type, and file metadata.
+      #   @param profile_picture [WhopSDK::Models::UserListResponse::ProfilePicture, nil] The user's profile picture attachment with URL, content type, and file metadata.
       #
       #   @param username [String] The user's unique username shown on their public profile.
 
-      # @see WhopSDK::Models::User#profile_picture
+      # @see WhopSDK::Models::UserListResponse#profile_picture
       class ProfilePicture < WhopSDK::Internal::Type::BaseModel
         # @!attribute url
         #   A pre-optimized URL for rendering this attachment on the client. This should be
@@ -71,7 +71,7 @@ module WhopSDK
 
         # @!method initialize(url:)
         #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::User::ProfilePicture} for more details.
+        #   {WhopSDK::Models::UserListResponse::ProfilePicture} for more details.
         #
         #   The user's profile picture attachment with URL, content type, and file metadata.
         #   Null if using a legacy profile picture.

@@ -1,37 +1,22 @@
 module WhopSDK
   module Models
     type user_check_access_response =
-      {
-        access_level: WhopSDK::Models::UserCheckAccessResponse::access_level,
-        has_access: bool
-      }
+      { access_level: WhopSDK::Models::access_level, has_access: bool }
 
     class UserCheckAccessResponse < WhopSDK::Internal::Type::BaseModel
-      attr_accessor access_level: WhopSDK::Models::UserCheckAccessResponse::access_level
+      attr_accessor access_level: WhopSDK::Models::access_level
 
       attr_accessor has_access: bool
 
       def initialize: (
-        access_level: WhopSDK::Models::UserCheckAccessResponse::access_level,
+        access_level: WhopSDK::Models::access_level,
         has_access: bool
       ) -> void
 
       def to_hash: -> {
-        access_level: WhopSDK::Models::UserCheckAccessResponse::access_level,
+        access_level: WhopSDK::Models::access_level,
         has_access: bool
       }
-
-      type access_level = :no_access | :admin | :customer
-
-      module AccessLevel
-        extend WhopSDK::Internal::Type::Enum
-
-        NO_ACCESS: :no_access
-        ADMIN: :admin
-        CUSTOMER: :customer
-
-        def self?.values: -> ::Array[WhopSDK::Models::UserCheckAccessResponse::access_level]
-      end
     end
   end
 end

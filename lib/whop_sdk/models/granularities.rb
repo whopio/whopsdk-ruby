@@ -6,8 +6,10 @@ module WhopSDK
     module Granularities
       extend WhopSDK::Internal::Type::Enum
 
-      DAILY = :daily
       HOURLY = :hourly
+      DAILY = :daily
+      WEEKLY = :weekly
+      MONTHLY = :monthly
 
       # @!method self.values
       #   @return [Array<Symbol>]

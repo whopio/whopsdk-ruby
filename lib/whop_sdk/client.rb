@@ -29,6 +29,11 @@ module WhopSDK
     # @return [String, nil]
     attr_reader :app_id
 
+    # Pins the API version (an ISO date). Defaults to the latest version the SDK was
+    # generated against.
+    # @return [String, nil]
+    attr_reader :version
+
     # Apps
     # @return [WhopSDK::Resources::Apps]
     attr_reader :apps
@@ -101,7 +106,6 @@ module WhopSDK
     # @return [WhopSDK::Resources::ChatChannels]
     attr_reader :chat_channels
 
-    # Users
     # @return [WhopSDK::Resources::Users]
     attr_reader :users
 
@@ -182,6 +186,9 @@ module WhopSDK
 
     # @return [WhopSDK::Resources::Wallets]
     attr_reader :wallets
+
+    # @return [WhopSDK::Resources::FinancialActivity]
+    attr_reader :financial_activity
 
     # @return [WhopSDK::Resources::Swaps]
     attr_reader :swaps
@@ -297,6 +304,9 @@ module WhopSDK
     # @param app_id [String, nil] When using the SDK in app mode pass this parameter to allow verifying user
     # tokens Defaults to `ENV["WHOP_APP_ID"]`
     #
+    # @param version [String, nil] Pins the API version (an ISO date). Defaults to the latest version the SDK was
+    # generated against. Defaults to `ENV["WHOP_API_VERSION"]`
+    #
     # @param base_url [String, nil] Override the default base URL for the API, e.g.,
     # `"https://api.example.com/v2/"`. Defaults to `ENV["WHOP_BASE_URL"]`
     #
@@ -311,6 +321,7 @@ module WhopSDK
       api_key: ENV["WHOP_API_KEY"],
       webhook_key: ENV["WHOP_WEBHOOK_SECRET"],
       app_id: ENV["WHOP_APP_ID"],
+      version: ENV.fetch("WHOP_API_VERSION", "2026-06-08"),
       base_url: ENV["WHOP_BASE_URL"],
       max_retries: self.class::DEFAULT_MAX_RETRIES,
       timeout: self.class::DEFAULT_TIMEOUT_IN_SECONDS,
@@ -324,7 +335,8 @@ module WhopSDK
       end
 
       headers = {
-        "x-whop-app-id" => (@app_id = app_id&.to_s)
+        "x-whop-app-id" => (@app_id = app_id&.to_s),
+        "api-version-date" => (@version = version.to_s)
       }
       custom_headers_env = ENV["WHOP_CUSTOM_HEADERS"]
       unless custom_headers_env.nil?
@@ -389,6 +401,7 @@ module WhopSDK
       @account_links = WhopSDK::Resources::AccountLinks.new(client: self)
       @accounts = WhopSDK::Resources::Accounts.new(client: self)
       @wallets = WhopSDK::Resources::Wallets.new(client: self)
+      @financial_activity = WhopSDK::Resources::FinancialActivity.new(client: self)
       @swaps = WhopSDK::Resources::Swaps.new(client: self)
       @deposits = WhopSDK::Resources::Deposits.new(client: self)
       @setup_intents = WhopSDK::Resources::SetupIntents.new(client: self)

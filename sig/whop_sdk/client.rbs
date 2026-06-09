@@ -14,6 +14,8 @@ module WhopSDK
 
     attr_reader app_id: String?
 
+    attr_reader version: String?
+
     attr_reader apps: WhopSDK::Resources::Apps
 
     attr_reader invoices: WhopSDK::Resources::Invoices
@@ -92,6 +94,8 @@ module WhopSDK
 
     attr_reader wallets: WhopSDK::Resources::Wallets
 
+    attr_reader financial_activity: WhopSDK::Resources::FinancialActivity
+
     attr_reader swaps: WhopSDK::Resources::Swaps
 
     attr_reader deposits: WhopSDK::Resources::Deposits
@@ -146,6 +150,7 @@ module WhopSDK
       ?api_key: String?,
       ?webhook_key: String?,
       ?app_id: String?,
+      ?version: String?,
       ?base_url: String?,
       ?max_retries: Integer,
       ?timeout: Float,

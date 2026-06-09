@@ -277,21 +277,19 @@ module WhopSDK
             )
           end
 
+        # Whop's canonical category that a raw platform issue is bucketed into.
+        sig do
+          returns(
+            T.nilable(
+              WhopSDK::Models::AdCampaignListResponse::Issue::Category::TaggedSymbol
+            )
+          )
+        end
+        attr_accessor :category
+
         # When the issue was first reported.
         sig { returns(Time) }
         attr_accessor :created_at
-
-        # Platform-specific error code.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :error_code
-
-        # Full error detail from the platform.
-        sig { returns(T.nilable(String)) }
-        attr_accessor :error_message
-
-        # Short description of the issue.
-        sig { returns(String) }
-        attr_accessor :error_summary
 
         # Current resolution status.
         sig do
@@ -311,28 +309,31 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :resource_type
 
+        # Finer-grained sub-bucket within the category (e.g. the specific Meta policy for
+        # a rejection).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :subtype
+
         # A platform-reported issue on an ad object (rejection, policy flag, etc.).
         sig do
           params(
+            category:
+              T.nilable(
+                WhopSDK::Models::AdCampaignListResponse::Issue::Category::OrSymbol
+              ),
             created_at: Time,
-            error_code: T.nilable(String),
-            error_message: T.nilable(String),
-            error_summary: String,
             resolution_status:
               WhopSDK::Models::AdCampaignListResponse::Issue::ResolutionStatus::OrSymbol,
             resource_id: T.nilable(String),
-            resource_type: String
+            resource_type: String,
+            subtype: T.nilable(String)
           ).returns(T.attached_class)
         end
         def self.new(
+          # Whop's canonical category that a raw platform issue is bucketed into.
+          category:,
           # When the issue was first reported.
           created_at:,
-          # Platform-specific error code.
-          error_code:,
-          # Full error detail from the platform.
-          error_message:,
-          # Short description of the issue.
-          error_summary:,
           # Current resolution status.
           resolution_status:,
           # The Whop ID of the ad object this issue is on (the ad, ad group, or campaign).
@@ -340,25 +341,75 @@ module WhopSDK
           resource_id:,
           # The kind of ad object this issue is on: `ad`, `ad_group`, or `ad_campaign`.
           # Pairs with `resourceId`.
-          resource_type:
+          resource_type:,
+          # Finer-grained sub-bucket within the category (e.g. the specific Meta policy for
+          # a rejection).
+          subtype:
         )
         end
 
         sig do
           override.returns(
             {
+              category:
+                T.nilable(
+                  WhopSDK::Models::AdCampaignListResponse::Issue::Category::TaggedSymbol
+                ),
               created_at: Time,
-              error_code: T.nilable(String),
-              error_message: T.nilable(String),
-              error_summary: String,
               resolution_status:
                 WhopSDK::Models::AdCampaignListResponse::Issue::ResolutionStatus::TaggedSymbol,
               resource_id: T.nilable(String),
-              resource_type: String
+              resource_type: String,
+              subtype: T.nilable(String)
             }
           )
         end
         def to_hash
+        end
+
+        # Whop's canonical category that a raw platform issue is bucketed into.
+        module Category
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                WhopSDK::Models::AdCampaignListResponse::Issue::Category
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          POLICY_REJECTION =
+            T.let(
+              :policy_rejection,
+              WhopSDK::Models::AdCampaignListResponse::Issue::Category::TaggedSymbol
+            )
+          CREATIVE_MEDIA =
+            T.let(
+              :creative_media,
+              WhopSDK::Models::AdCampaignListResponse::Issue::Category::TaggedSymbol
+            )
+          AUDIENCE_TARGETING =
+            T.let(
+              :audience_targeting,
+              WhopSDK::Models::AdCampaignListResponse::Issue::Category::TaggedSymbol
+            )
+          AD_VOLUME_LIMIT =
+            T.let(
+              :ad_volume_limit,
+              WhopSDK::Models::AdCampaignListResponse::Issue::Category::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                WhopSDK::Models::AdCampaignListResponse::Issue::Category::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
 
         # Current resolution status.

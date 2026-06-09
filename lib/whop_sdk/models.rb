@@ -418,6 +418,8 @@ module WhopSDK
 
   FileVisibility = WhopSDK::Models::FileVisibility
 
+  FinancialActivityListParams = WhopSDK::Models::FinancialActivityListParams
+
   Forum = WhopSDK::Models::Forum
 
   ForumListParams = WhopSDK::Models::ForumListParams
@@ -776,6 +778,8 @@ module WhopSDK
   UserListParams = WhopSDK::Models::UserListParams
 
   UserRetrieveParams = WhopSDK::Models::UserRetrieveParams
+
+  UserUpdateMeParams = WhopSDK::Models::UserUpdateMeParams
 
   UserUpdateParams = WhopSDK::Models::UserUpdateParams
 

@@ -14,23 +14,26 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # When provided, returns the user's company-specific profile overrides (name,
-      # profile picture) instead of their global profile.
+      # When set, returns the user's account-specific profile overrides for this
+      # account.
       sig { returns(T.nilable(String)) }
-      attr_accessor :company_id
+      attr_reader :account_id
+
+      sig { params(account_id: String).void }
+      attr_writer :account_id
 
       sig do
         params(
           id: String,
-          company_id: T.nilable(String),
+          account_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
         id:,
-        # When provided, returns the user's company-specific profile overrides (name,
-        # profile picture) instead of their global profile.
-        company_id: nil,
+        # When set, returns the user's account-specific profile overrides for this
+        # account.
+        account_id: nil,
         request_options: {}
       )
       end
@@ -39,7 +42,7 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            company_id: T.nilable(String),
+            account_id: String,
             request_options: WhopSDK::RequestOptions
           }
         )

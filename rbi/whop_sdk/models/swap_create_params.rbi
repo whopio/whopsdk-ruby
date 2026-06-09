@@ -11,7 +11,7 @@ module WhopSDK
           T.any(WhopSDK::SwapCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The business or user account ID whose wallet should execute the swap.
+      # Business or user account ID (biz*\* / user*\*).
       sig { returns(String) }
       attr_accessor :account_id
 
@@ -49,7 +49,7 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The business or user account ID whose wallet should execute the swap.
+        # Business or user account ID (biz*\* / user*\*).
         account_id:,
         # Input token amount.
         amount:,

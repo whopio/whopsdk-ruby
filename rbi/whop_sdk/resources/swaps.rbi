@@ -3,8 +3,8 @@
 module WhopSDK
   module Resources
     class Swaps
-      # Executes a swap from an account's wallet. The swap runs asynchronously; poll GET
-      # /swaps/{account_id} for status.
+      # Executes a swap from the account's wallet. Runs asynchronously — poll GET
+      # /swaps?account_id=... for status.
       sig do
         params(
           account_id: String,
@@ -18,7 +18,7 @@ module WhopSDK
         ).returns(WhopSDK::Models::SwapCreateResponse)
       end
       def create(
-        # The business or user account ID whose wallet should execute the swap.
+        # Business or user account ID (biz*\* / user*\*).
         account_id:,
         # Input token amount.
         amount:,
@@ -33,7 +33,7 @@ module WhopSDK
       )
       end
 
-      # Returns the status of an account's in-flight or most recent swap.
+      # Returns the status of the account's in-flight or most recent swap.
       sig do
         params(
           account_id: String,
@@ -41,8 +41,8 @@ module WhopSDK
         ).returns(WhopSDK::Models::SwapRetrieveResponse)
       end
       def retrieve(
-        # The business or user account ID whose swap status should be returned.
-        account_id,
+        # Business or user account ID (biz*\* / user*\*).
+        account_id:,
         request_options: {}
       )
       end

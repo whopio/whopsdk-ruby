@@ -3,12 +3,12 @@
 module WhopSDK
   module Resources
     class Swaps
-      # Executes a swap from an account's wallet. The swap runs asynchronously; poll GET
-      # /swaps/{account_id} for status.
+      # Executes a swap from the account's wallet. Runs asynchronously — poll GET
+      # /swaps?account_id=... for status.
       #
       # @overload create(account_id:, amount:, from_token:, to_token:, from_chain: nil, slippage_bps: nil, to_chain: nil, request_options: {})
       #
-      # @param account_id [String] The business or user account ID whose wallet should execute the swap.
+      # @param account_id [String] Business or user account ID (biz*\* / user*\*).
       #
       # @param amount [String] Input token amount.
       #
@@ -38,23 +38,26 @@ module WhopSDK
         )
       end
 
-      # Returns the status of an account's in-flight or most recent swap.
+      # Returns the status of the account's in-flight or most recent swap.
       #
-      # @overload retrieve(account_id, request_options: {})
+      # @overload retrieve(account_id:, request_options: {})
       #
-      # @param account_id [String] The business or user account ID whose swap status should be returned.
+      # @param account_id [String] Business or user account ID (biz*\* / user*\*).
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::SwapRetrieveResponse]
       #
       # @see WhopSDK::Models::SwapRetrieveParams
-      def retrieve(account_id, params = {})
+      def retrieve(params)
+        parsed, options = WhopSDK::SwapRetrieveParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
-          path: ["swaps/%1$s", account_id],
+          path: "swaps",
+          query: query,
           model: WhopSDK::Models::SwapRetrieveResponse,
-          options: params[:request_options]
+          options: options
         )
       end
 

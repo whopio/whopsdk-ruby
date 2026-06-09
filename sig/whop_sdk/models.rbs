@@ -737,8 +737,6 @@ module WhopSDK
 
   class UserRetrieveParams = WhopSDK::Models::UserRetrieveParams
 
-  class UserUpdateMeParams = WhopSDK::Models::UserUpdateMeParams
-
   class UserUpdateParams = WhopSDK::Models::UserUpdateParams
 
   module VerificationErrorCode = WhopSDK::Models::VerificationErrorCode

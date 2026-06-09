@@ -2,8 +2,11 @@
 
 module WhopSDK
   module Models
-    class User < WhopSDK::Internal::Type::BaseModel
-      OrHash = T.type_alias { T.any(WhopSDK::User, WhopSDK::Internal::AnyHash) }
+    class UserListResponse < WhopSDK::Internal::Type::BaseModel
+      OrHash =
+        T.type_alias do
+          T.any(WhopSDK::Models::UserListResponse, WhopSDK::Internal::AnyHash)
+        end
 
       # The unique identifier for the user.
       sig { returns(String) }
@@ -23,12 +26,15 @@ module WhopSDK
 
       # The user's profile picture attachment with URL, content type, and file metadata.
       # Null if using a legacy profile picture.
-      sig { returns(T.nilable(WhopSDK::User::ProfilePicture)) }
+      sig do
+        returns(T.nilable(WhopSDK::Models::UserListResponse::ProfilePicture))
+      end
       attr_reader :profile_picture
 
       sig do
         params(
-          profile_picture: T.nilable(WhopSDK::User::ProfilePicture::OrHash)
+          profile_picture:
+            T.nilable(WhopSDK::Models::UserListResponse::ProfilePicture::OrHash)
         ).void
       end
       attr_writer :profile_picture
@@ -45,7 +51,10 @@ module WhopSDK
           bio: T.nilable(String),
           created_at: Time,
           name: T.nilable(String),
-          profile_picture: T.nilable(WhopSDK::User::ProfilePicture::OrHash),
+          profile_picture:
+            T.nilable(
+              WhopSDK::Models::UserListResponse::ProfilePicture::OrHash
+            ),
           username: String
         ).returns(T.attached_class)
       end
@@ -73,7 +82,8 @@ module WhopSDK
             bio: T.nilable(String),
             created_at: Time,
             name: T.nilable(String),
-            profile_picture: T.nilable(WhopSDK::User::ProfilePicture),
+            profile_picture:
+              T.nilable(WhopSDK::Models::UserListResponse::ProfilePicture),
             username: String
           }
         )
@@ -84,7 +94,10 @@ module WhopSDK
       class ProfilePicture < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(WhopSDK::User::ProfilePicture, WhopSDK::Internal::AnyHash)
+            T.any(
+              WhopSDK::Models::UserListResponse::ProfilePicture,
+              WhopSDK::Internal::AnyHash
+            )
           end
 
         # A pre-optimized URL for rendering this attachment on the client. This should be

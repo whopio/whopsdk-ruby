@@ -24,11 +24,6 @@ module WhopSDK
     sig { returns(T.nilable(String)) }
     attr_reader :app_id
 
-    # Pins the API version (an ISO date). Defaults to the latest version the SDK was
-    # generated against.
-    sig { returns(T.nilable(String)) }
-    attr_reader :version
-
     # Apps
     sig { returns(WhopSDK::Resources::Apps) }
     attr_reader :apps
@@ -101,6 +96,7 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::ChatChannels) }
     attr_reader :chat_channels
 
+    # Users
     sig { returns(WhopSDK::Resources::Users) }
     attr_reader :users
 
@@ -290,7 +286,6 @@ module WhopSDK
         api_key: T.nilable(String),
         webhook_key: T.nilable(String),
         app_id: T.nilable(String),
-        version: T.nilable(String),
         base_url: T.nilable(String),
         max_retries: Integer,
         timeout: Float,
@@ -308,9 +303,6 @@ module WhopSDK
       # When using the SDK in app mode pass this parameter to allow verifying user
       # tokens Defaults to `ENV["WHOP_APP_ID"]`
       app_id: ENV["WHOP_APP_ID"],
-      # Pins the API version (an ISO date). Defaults to the latest version the SDK was
-      # generated against. Defaults to `ENV["WHOP_API_VERSION"]`
-      version: ENV.fetch("WHOP_API_VERSION", "2026-06-08"),
       # Override the default base URL for the API, e.g.,
       # `"https://api.example.com/v2/"`. Defaults to `ENV["WHOP_BASE_URL"]`
       base_url: ENV["WHOP_BASE_URL"],

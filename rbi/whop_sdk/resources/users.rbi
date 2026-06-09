@@ -30,6 +30,8 @@ module WhopSDK
           account_id: String,
           bio: String,
           name: String,
+          profile_picture: WhopSDK::UserUpdateParams::ProfilePicture::OrHash,
+          username: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::User)
       end
@@ -44,6 +46,10 @@ module WhopSDK
         bio: nil,
         # Body param
         name: nil,
+        # Body param
+        profile_picture: nil,
+        # Body param
+        username: nil,
         request_options: {}
       )
       end

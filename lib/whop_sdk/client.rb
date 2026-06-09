@@ -101,7 +101,6 @@ module WhopSDK
     # @return [WhopSDK::Resources::ChatChannels]
     attr_reader :chat_channels
 
-    # Users
     # @return [WhopSDK::Resources::Users]
     attr_reader :users
 

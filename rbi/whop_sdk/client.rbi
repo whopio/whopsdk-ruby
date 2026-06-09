@@ -96,7 +96,6 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::ChatChannels) }
     attr_reader :chat_channels
 
-    # Users
     sig { returns(WhopSDK::Resources::Users) }
     attr_reader :users
 

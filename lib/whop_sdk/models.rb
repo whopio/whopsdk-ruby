@@ -745,16 +745,6 @@ module WhopSDK
 
   UploadStatus = WhopSDK::Models::UploadStatus
 
-  User = WhopSDK::Models::User
-
-  UserCheckAccessParams = WhopSDK::Models::UserCheckAccessParams
-
-  UserListParams = WhopSDK::Models::UserListParams
-
-  UserRetrieveParams = WhopSDK::Models::UserRetrieveParams
-
-  UserUpdateParams = WhopSDK::Models::UserUpdateParams
-
   VerificationErrorCode = WhopSDK::Models::VerificationErrorCode
 
   VerificationListParams = WhopSDK::Models::VerificationListParams

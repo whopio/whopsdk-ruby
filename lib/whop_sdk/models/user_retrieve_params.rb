@@ -12,20 +12,20 @@ module WhopSDK
       #   @return [String]
       required :id, String
 
-      # @!attribute company_id
-      #   When provided, returns the user's company-specific profile overrides (name,
-      #   profile picture) instead of their global profile.
+      # @!attribute account_id
+      #   When set, returns the user's account-specific profile overrides for this
+      #   account.
       #
       #   @return [String, nil]
-      optional :company_id, String, nil?: true
+      optional :account_id, String
 
-      # @!method initialize(id:, company_id: nil, request_options: {})
+      # @!method initialize(id:, account_id: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::UserRetrieveParams} for more details.
       #
       #   @param id [String]
       #
-      #   @param company_id [String, nil] When provided, returns the user's company-specific profile overrides (name, prof
+      #   @param account_id [String] When set, returns the user's account-specific profile overrides for this account
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

@@ -1,14 +1,7 @@
 module WhopSDK
   module Models
     type user_update_params =
-      {
-        id: String,
-        bio: String?,
-        company_id: String?,
-        name: String?,
-        profile_picture: WhopSDK::UserUpdateParams::ProfilePicture?,
-        username: String?
-      }
+      { id: String, account_id: String, bio: String, name: String }
       & WhopSDK::Internal::Type::request_parameters
 
     class UserUpdateParams < WhopSDK::Internal::Type::BaseModel
@@ -17,45 +10,33 @@ module WhopSDK
 
       attr_accessor id: String
 
-      attr_accessor bio: String?
+      attr_reader account_id: String?
 
-      attr_accessor company_id: String?
+      def account_id=: (String) -> String
 
-      attr_accessor name: String?
+      attr_reader bio: String?
 
-      attr_accessor profile_picture: WhopSDK::UserUpdateParams::ProfilePicture?
+      def bio=: (String) -> String
 
-      attr_accessor username: String?
+      attr_reader name: String?
+
+      def name=: (String) -> String
 
       def initialize: (
         id: String,
-        ?bio: String?,
-        ?company_id: String?,
-        ?name: String?,
-        ?profile_picture: WhopSDK::UserUpdateParams::ProfilePicture?,
-        ?username: String?,
+        ?account_id: String,
+        ?bio: String,
+        ?name: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         id: String,
-        bio: String?,
-        company_id: String?,
-        name: String?,
-        profile_picture: WhopSDK::UserUpdateParams::ProfilePicture?,
-        username: String?,
+        account_id: String,
+        bio: String,
+        name: String,
         request_options: WhopSDK::RequestOptions
       }
-
-      type profile_picture = { id: String }
-
-      class ProfilePicture < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
-
-        def initialize: (id: String) -> void
-
-        def to_hash: -> { id: String }
-      end
     end
   end
 end

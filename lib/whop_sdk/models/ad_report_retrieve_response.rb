@@ -112,7 +112,7 @@ module WhopSDK
           required :clicks, Integer
 
           # @!attribute granularity
-          #   The bucket size of this row (`daily` or `hourly`).
+          #   The bucket size of this row (`hourly`, `daily`, `weekly`, or `monthly`).
           #
           #   @return [Symbol, WhopSDK::Models::Granularities]
           required :granularity, enum: -> { WhopSDK::Granularities }
@@ -187,7 +187,7 @@ module WhopSDK
           #
           #   @param clicks [Integer] Clicks in this bucket.
           #
-          #   @param granularity [Symbol, WhopSDK::Models::Granularities] The bucket size of this row (`daily` or `hourly`).
+          #   @param granularity [Symbol, WhopSDK::Models::Granularities] The bucket size of this row (`hourly`, `daily`, `weekly`, or `monthly`).
           #
           #   @param impressions [Integer] Impressions in this bucket.
           #
@@ -363,7 +363,7 @@ module WhopSDK
         required :clicks, Integer
 
         # @!attribute granularity
-        #   The bucket size of this row (`daily` or `hourly`).
+        #   The bucket size of this row (`hourly`, `daily`, `weekly`, or `monthly`).
         #
         #   @return [Symbol, WhopSDK::Models::Granularities]
         required :granularity, enum: -> { WhopSDK::Granularities }
@@ -437,7 +437,7 @@ module WhopSDK
         #
         #   @param clicks [Integer] Clicks in this bucket.
         #
-        #   @param granularity [Symbol, WhopSDK::Models::Granularities] The bucket size of this row (`daily` or `hourly`).
+        #   @param granularity [Symbol, WhopSDK::Models::Granularities] The bucket size of this row (`hourly`, `daily`, `weekly`, or `monthly`).
         #
         #   @param impressions [Integer] Impressions in this bucket.
         #

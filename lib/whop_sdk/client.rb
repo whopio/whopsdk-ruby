@@ -70,7 +70,6 @@ module WhopSDK
     # @return [WhopSDK::Resources::Webhooks]
     attr_reader :webhooks
 
-    # Plans
     # @return [WhopSDK::Resources::Plans]
     attr_reader :plans
 

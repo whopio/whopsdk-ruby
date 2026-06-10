@@ -2,12 +2,12 @@ module WhopSDK
   module Models
     type plan_create_params =
       {
-        company_id: String,
         product_id: String,
         adaptive_pricing_enabled: bool?,
         billing_period: Integer?,
-        checkout_styling: WhopSDK::PlanCreateParams::CheckoutStyling?,
-        currency: WhopSDK::Models::currency?,
+        checkout_styling: top?,
+        company_id: String,
+        currency: String,
         custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?,
         description: String?,
         expiration_days: Integer?,
@@ -15,19 +15,19 @@ module WhopSDK
         initial_price: Float?,
         internal_notes: String?,
         legacy_payment_method_controls: bool?,
-        metadata: ::Hash[Symbol, top]?,
-        override_tax_type: WhopSDK::Models::tax_type?,
+        metadata: top?,
+        override_tax_type: String,
         payment_method_configuration: WhopSDK::PlanCreateParams::PaymentMethodConfiguration?,
-        plan_type: WhopSDK::Models::plan_type?,
-        release_method: WhopSDK::Models::release_method?,
+        plan_type: String,
+        release_method: String,
         renewal_price: Float?,
         split_pay_required_payments: Integer?,
         stock: Integer?,
-        three_ds_level: WhopSDK::Models::PlanCreateParams::three_ds_level?,
+        three_ds_level: WhopSDK::Models::PlanCreateParams::three_ds_level,
         title: String?,
         trial_period_days: Integer?,
         unlimited_stock: bool?,
-        visibility: WhopSDK::Models::visibility?
+        visibility: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -35,17 +35,21 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor company_id: String
-
       attr_accessor product_id: String
 
       attr_accessor adaptive_pricing_enabled: bool?
 
       attr_accessor billing_period: Integer?
 
-      attr_accessor checkout_styling: WhopSDK::PlanCreateParams::CheckoutStyling?
+      attr_accessor checkout_styling: top?
 
-      attr_accessor currency: WhopSDK::Models::currency?
+      attr_reader company_id: String?
+
+      def company_id=: (String) -> String
+
+      attr_reader currency: String?
+
+      def currency=: (String) -> String
 
       attr_accessor custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?
 
@@ -61,15 +65,21 @@ module WhopSDK
 
       attr_accessor legacy_payment_method_controls: bool?
 
-      attr_accessor metadata: ::Hash[Symbol, top]?
+      attr_accessor metadata: top?
 
-      attr_accessor override_tax_type: WhopSDK::Models::tax_type?
+      attr_reader override_tax_type: String?
+
+      def override_tax_type=: (String) -> String
 
       attr_accessor payment_method_configuration: WhopSDK::PlanCreateParams::PaymentMethodConfiguration?
 
-      attr_accessor plan_type: WhopSDK::Models::plan_type?
+      attr_reader plan_type: String?
 
-      attr_accessor release_method: WhopSDK::Models::release_method?
+      def plan_type=: (String) -> String
+
+      attr_reader release_method: String?
+
+      def release_method=: (String) -> String
 
       attr_accessor renewal_price: Float?
 
@@ -77,7 +87,11 @@ module WhopSDK
 
       attr_accessor stock: Integer?
 
-      attr_accessor three_ds_level: WhopSDK::Models::PlanCreateParams::three_ds_level?
+      attr_reader three_ds_level: WhopSDK::Models::PlanCreateParams::three_ds_level?
+
+      def three_ds_level=: (
+        WhopSDK::Models::PlanCreateParams::three_ds_level
+      ) -> WhopSDK::Models::PlanCreateParams::three_ds_level
 
       attr_accessor title: String?
 
@@ -85,15 +99,17 @@ module WhopSDK
 
       attr_accessor unlimited_stock: bool?
 
-      attr_accessor visibility: WhopSDK::Models::visibility?
+      attr_reader visibility: String?
+
+      def visibility=: (String) -> String
 
       def initialize: (
-        company_id: String,
         product_id: String,
         ?adaptive_pricing_enabled: bool?,
         ?billing_period: Integer?,
-        ?checkout_styling: WhopSDK::PlanCreateParams::CheckoutStyling?,
-        ?currency: WhopSDK::Models::currency?,
+        ?checkout_styling: top?,
+        ?company_id: String,
+        ?currency: String,
         ?custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?,
         ?description: String?,
         ?expiration_days: Integer?,
@@ -101,29 +117,29 @@ module WhopSDK
         ?initial_price: Float?,
         ?internal_notes: String?,
         ?legacy_payment_method_controls: bool?,
-        ?metadata: ::Hash[Symbol, top]?,
-        ?override_tax_type: WhopSDK::Models::tax_type?,
+        ?metadata: top?,
+        ?override_tax_type: String,
         ?payment_method_configuration: WhopSDK::PlanCreateParams::PaymentMethodConfiguration?,
-        ?plan_type: WhopSDK::Models::plan_type?,
-        ?release_method: WhopSDK::Models::release_method?,
+        ?plan_type: String,
+        ?release_method: String,
         ?renewal_price: Float?,
         ?split_pay_required_payments: Integer?,
         ?stock: Integer?,
-        ?three_ds_level: WhopSDK::Models::PlanCreateParams::three_ds_level?,
+        ?three_ds_level: WhopSDK::Models::PlanCreateParams::three_ds_level,
         ?title: String?,
         ?trial_period_days: Integer?,
         ?unlimited_stock: bool?,
-        ?visibility: WhopSDK::Models::visibility?,
+        ?visibility: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        company_id: String,
         product_id: String,
         adaptive_pricing_enabled: bool?,
         billing_period: Integer?,
-        checkout_styling: WhopSDK::PlanCreateParams::CheckoutStyling?,
-        currency: WhopSDK::Models::currency?,
+        checkout_styling: top?,
+        company_id: String,
+        currency: String,
         custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?,
         description: String?,
         expiration_days: Integer?,
@@ -131,130 +147,132 @@ module WhopSDK
         initial_price: Float?,
         internal_notes: String?,
         legacy_payment_method_controls: bool?,
-        metadata: ::Hash[Symbol, top]?,
-        override_tax_type: WhopSDK::Models::tax_type?,
+        metadata: top?,
+        override_tax_type: String,
         payment_method_configuration: WhopSDK::PlanCreateParams::PaymentMethodConfiguration?,
-        plan_type: WhopSDK::Models::plan_type?,
-        release_method: WhopSDK::Models::release_method?,
+        plan_type: String,
+        release_method: String,
         renewal_price: Float?,
         split_pay_required_payments: Integer?,
         stock: Integer?,
-        three_ds_level: WhopSDK::Models::PlanCreateParams::three_ds_level?,
+        three_ds_level: WhopSDK::Models::PlanCreateParams::three_ds_level,
         title: String?,
         trial_period_days: Integer?,
         unlimited_stock: bool?,
-        visibility: WhopSDK::Models::visibility?,
+        visibility: String,
         request_options: WhopSDK::RequestOptions
       }
 
-      type checkout_styling =
-        {
-          background_color: String?,
-          border_style: WhopSDK::Models::checkout_shape?,
-          button_color: String?,
-          font_family: WhopSDK::Models::checkout_font?
-        }
-
-      class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
-        attr_accessor background_color: String?
-
-        attr_accessor border_style: WhopSDK::Models::checkout_shape?
-
-        attr_accessor button_color: String?
-
-        attr_accessor font_family: WhopSDK::Models::checkout_font?
-
-        def initialize: (
-          ?background_color: String?,
-          ?border_style: WhopSDK::Models::checkout_shape?,
-          ?button_color: String?,
-          ?font_family: WhopSDK::Models::checkout_font?
-        ) -> void
-
-        def to_hash: -> {
-          background_color: String?,
-          border_style: WhopSDK::Models::checkout_shape?,
-          button_color: String?,
-          font_family: WhopSDK::Models::checkout_font?
-        }
-      end
-
       type custom_field =
         {
-          field_type: :text,
+          id: String,
+          field_type: WhopSDK::Models::PlanCreateParams::CustomField::field_type,
           name: String,
-          id: String?,
-          order: Integer?,
+          order: Integer,
           placeholder: String?,
-          required: bool?
+          required: bool
         }
 
       class CustomField < WhopSDK::Internal::Type::BaseModel
-        attr_accessor field_type: :text
+        attr_reader id: String?
 
-        attr_accessor name: String
+        def id=: (String) -> String
 
-        attr_accessor id: String?
+        attr_reader field_type: WhopSDK::Models::PlanCreateParams::CustomField::field_type?
 
-        attr_accessor order: Integer?
+        def field_type=: (
+          WhopSDK::Models::PlanCreateParams::CustomField::field_type
+        ) -> WhopSDK::Models::PlanCreateParams::CustomField::field_type
+
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        attr_reader order: Integer?
+
+        def order=: (Integer) -> Integer
 
         attr_accessor placeholder: String?
 
-        attr_accessor required: bool?
+        attr_reader required: bool?
+
+        def required=: (bool) -> bool
 
         def initialize: (
-          name: String,
-          ?id: String?,
-          ?order: Integer?,
+          ?id: String,
+          ?field_type: WhopSDK::Models::PlanCreateParams::CustomField::field_type,
+          ?name: String,
+          ?order: Integer,
           ?placeholder: String?,
-          ?required: bool?,
-          ?field_type: :text
+          ?required: bool
         ) -> void
 
         def to_hash: -> {
-          field_type: :text,
+          id: String,
+          field_type: WhopSDK::Models::PlanCreateParams::CustomField::field_type,
           name: String,
-          id: String?,
-          order: Integer?,
+          order: Integer,
           placeholder: String?,
-          required: bool?
+          required: bool
         }
+
+        type field_type = :text
+
+        module FieldType
+          extend WhopSDK::Internal::Type::Enum
+
+          TEXT: :text
+
+          def self?.values: -> ::Array[WhopSDK::Models::PlanCreateParams::CustomField::field_type]
+        end
       end
 
-      type image = { id: String }
+      type image = { id: String, direct_upload_id: String }
 
       class Image < WhopSDK::Internal::Type::BaseModel
-        attr_accessor id: String
+        attr_reader id: String?
 
-        def initialize: (id: String) -> void
+        def id=: (String) -> String
 
-        def to_hash: -> { id: String }
+        attr_reader direct_upload_id: String?
+
+        def direct_upload_id=: (String) -> String
+
+        def initialize: (?id: String, ?direct_upload_id: String) -> void
+
+        def to_hash: -> { id: String, direct_upload_id: String }
       end
 
       type payment_method_configuration =
         {
-          disabled: ::Array[WhopSDK::Models::payment_method_types],
-          enabled: ::Array[WhopSDK::Models::payment_method_types],
-          include_platform_defaults: bool?
+          disabled: ::Array[String],
+          enabled: ::Array[String],
+          include_platform_defaults: bool
         }
 
       class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
-        attr_accessor disabled: ::Array[WhopSDK::Models::payment_method_types]
+        attr_reader disabled: ::Array[String]?
 
-        attr_accessor enabled: ::Array[WhopSDK::Models::payment_method_types]
+        def disabled=: (::Array[String]) -> ::Array[String]
 
-        attr_accessor include_platform_defaults: bool?
+        attr_reader enabled: ::Array[String]?
+
+        def enabled=: (::Array[String]) -> ::Array[String]
+
+        attr_reader include_platform_defaults: bool?
+
+        def include_platform_defaults=: (bool) -> bool
 
         def initialize: (
-          disabled: ::Array[WhopSDK::Models::payment_method_types],
-          enabled: ::Array[WhopSDK::Models::payment_method_types],
-          ?include_platform_defaults: bool?
+          ?disabled: ::Array[String],
+          ?enabled: ::Array[String],
+          ?include_platform_defaults: bool
         ) -> void
 
         def to_hash: -> {
-          disabled: ::Array[WhopSDK::Models::payment_method_types],
-          enabled: ::Array[WhopSDK::Models::payment_method_types],
-          include_platform_defaults: bool?
+          disabled: ::Array[String],
+          enabled: ::Array[String],
+          include_platform_defaults: bool
         }
       end
 

@@ -543,19 +543,7 @@ module WhopSDK
 
   class PayoutMethodRetrieveParams = WhopSDK::Models::PayoutMethodRetrieveParams
 
-  class Plan = WhopSDK::Models::Plan
-
-  class PlanCreateParams = WhopSDK::Models::PlanCreateParams
-
-  class PlanDeleteParams = WhopSDK::Models::PlanDeleteParams
-
-  class PlanListParams = WhopSDK::Models::PlanListParams
-
-  class PlanRetrieveParams = WhopSDK::Models::PlanRetrieveParams
-
   module PlanType = WhopSDK::Models::PlanType
-
-  class PlanUpdateParams = WhopSDK::Models::PlanUpdateParams
 
   class Product = WhopSDK::Models::Product
 

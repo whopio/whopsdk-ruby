@@ -167,10 +167,10 @@ module WhopSDK
         CONTACT = :contact
         COMPLETE_REGISTRATION = :complete_registration
         SCHEDULE = :schedule
+        VIEW_CONTENT = :view_content
+        ADD_TO_CART = :add_to_cart
         CUSTOM = :custom
         PAGE = :page
-        LEAVE = :leave
-        IDENTIFY = :identify
 
         # @!method self.values
         #   @return [Array<Symbol>]

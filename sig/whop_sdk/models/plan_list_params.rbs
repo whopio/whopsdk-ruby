@@ -3,18 +3,18 @@ module WhopSDK
     type plan_list_params =
       {
         company_id: String,
-        after: String?,
-        before: String?,
-        created_after: Time?,
-        created_before: Time?,
-        direction: WhopSDK::Models::direction?,
-        first: Integer?,
-        last: Integer?,
-        order: WhopSDK::Models::PlanListParams::order?,
-        plan_types: ::Array[WhopSDK::Models::plan_type]?,
-        product_ids: ::Array[String]?,
-        release_methods: ::Array[WhopSDK::Models::release_method]?,
-        visibilities: ::Array[WhopSDK::Models::visibility_filter]?
+        after: String,
+        before: String,
+        created_after: String,
+        created_before: String,
+        direction: WhopSDK::Models::PlanListParams::direction,
+        first: Integer,
+        last: Integer,
+        order: WhopSDK::Models::PlanListParams::order,
+        plan_types: ::Array[String],
+        product_ids: ::Array[String],
+        release_methods: ::Array[String],
+        visibilities: ::Array[String]
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -24,63 +24,102 @@ module WhopSDK
 
       attr_accessor company_id: String
 
-      attr_accessor after: String?
+      attr_reader after: String?
 
-      attr_accessor before: String?
+      def after=: (String) -> String
 
-      attr_accessor created_after: Time?
+      attr_reader before: String?
 
-      attr_accessor created_before: Time?
+      def before=: (String) -> String
 
-      attr_accessor direction: WhopSDK::Models::direction?
+      attr_reader created_after: String?
 
-      attr_accessor first: Integer?
+      def created_after=: (String) -> String
 
-      attr_accessor last: Integer?
+      attr_reader created_before: String?
 
-      attr_accessor order: WhopSDK::Models::PlanListParams::order?
+      def created_before=: (String) -> String
 
-      attr_accessor plan_types: ::Array[WhopSDK::Models::plan_type]?
+      attr_reader direction: WhopSDK::Models::PlanListParams::direction?
 
-      attr_accessor product_ids: ::Array[String]?
+      def direction=: (
+        WhopSDK::Models::PlanListParams::direction
+      ) -> WhopSDK::Models::PlanListParams::direction
 
-      attr_accessor release_methods: ::Array[WhopSDK::Models::release_method]?
+      attr_reader first: Integer?
 
-      attr_accessor visibilities: ::Array[WhopSDK::Models::visibility_filter]?
+      def first=: (Integer) -> Integer
+
+      attr_reader last: Integer?
+
+      def last=: (Integer) -> Integer
+
+      attr_reader order: WhopSDK::Models::PlanListParams::order?
+
+      def order=: (
+        WhopSDK::Models::PlanListParams::order
+      ) -> WhopSDK::Models::PlanListParams::order
+
+      attr_reader plan_types: ::Array[String]?
+
+      def plan_types=: (::Array[String]) -> ::Array[String]
+
+      attr_reader product_ids: ::Array[String]?
+
+      def product_ids=: (::Array[String]) -> ::Array[String]
+
+      attr_reader release_methods: ::Array[String]?
+
+      def release_methods=: (::Array[String]) -> ::Array[String]
+
+      attr_reader visibilities: ::Array[String]?
+
+      def visibilities=: (::Array[String]) -> ::Array[String]
 
       def initialize: (
         company_id: String,
-        ?after: String?,
-        ?before: String?,
-        ?created_after: Time?,
-        ?created_before: Time?,
-        ?direction: WhopSDK::Models::direction?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?order: WhopSDK::Models::PlanListParams::order?,
-        ?plan_types: ::Array[WhopSDK::Models::plan_type]?,
-        ?product_ids: ::Array[String]?,
-        ?release_methods: ::Array[WhopSDK::Models::release_method]?,
-        ?visibilities: ::Array[WhopSDK::Models::visibility_filter]?,
+        ?after: String,
+        ?before: String,
+        ?created_after: String,
+        ?created_before: String,
+        ?direction: WhopSDK::Models::PlanListParams::direction,
+        ?first: Integer,
+        ?last: Integer,
+        ?order: WhopSDK::Models::PlanListParams::order,
+        ?plan_types: ::Array[String],
+        ?product_ids: ::Array[String],
+        ?release_methods: ::Array[String],
+        ?visibilities: ::Array[String],
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         company_id: String,
-        after: String?,
-        before: String?,
-        created_after: Time?,
-        created_before: Time?,
-        direction: WhopSDK::Models::direction?,
-        first: Integer?,
-        last: Integer?,
-        order: WhopSDK::Models::PlanListParams::order?,
-        plan_types: ::Array[WhopSDK::Models::plan_type]?,
-        product_ids: ::Array[String]?,
-        release_methods: ::Array[WhopSDK::Models::release_method]?,
-        visibilities: ::Array[WhopSDK::Models::visibility_filter]?,
+        after: String,
+        before: String,
+        created_after: String,
+        created_before: String,
+        direction: WhopSDK::Models::PlanListParams::direction,
+        first: Integer,
+        last: Integer,
+        order: WhopSDK::Models::PlanListParams::order,
+        plan_types: ::Array[String],
+        product_ids: ::Array[String],
+        release_methods: ::Array[String],
+        visibilities: ::Array[String],
         request_options: WhopSDK::RequestOptions
       }
+
+      type direction = :asc | :desc
+
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC: :asc
+        DESC: :desc
+
+        def self?.values: -> ::Array[WhopSDK::Models::PlanListParams::direction]
+      end
 
       type order =
         :id

@@ -9,8 +9,10 @@ module WhopSDK
       TaggedSymbol = T.type_alias { T.all(Symbol, WhopSDK::Granularities) }
       OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-      DAILY = T.let(:daily, WhopSDK::Granularities::TaggedSymbol)
       HOURLY = T.let(:hourly, WhopSDK::Granularities::TaggedSymbol)
+      DAILY = T.let(:daily, WhopSDK::Granularities::TaggedSymbol)
+      WEEKLY = T.let(:weekly, WhopSDK::Granularities::TaggedSymbol)
+      MONTHLY = T.let(:monthly, WhopSDK::Granularities::TaggedSymbol)
 
       sig { override.returns(T::Array[WhopSDK::Granularities::TaggedSymbol]) }
       def self.values

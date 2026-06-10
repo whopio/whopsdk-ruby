@@ -14,111 +14,118 @@ module WhopSDK
       required :company_id, String
 
       # @!attribute after
-      #   Returns the elements in the list that come after the specified cursor.
+      #   A cursor; returns plans after this position.
       #
       #   @return [String, nil]
-      optional :after, String, nil?: true
+      optional :after, String
 
       # @!attribute before
-      #   Returns the elements in the list that come before the specified cursor.
+      #   A cursor; returns plans before this position.
       #
       #   @return [String, nil]
-      optional :before, String, nil?: true
+      optional :before, String
 
       # @!attribute created_after
       #   Only return plans created after this timestamp.
       #
-      #   @return [Time, nil]
-      optional :created_after, Time, nil?: true
+      #   @return [String, nil]
+      optional :created_after, String
 
       # @!attribute created_before
       #   Only return plans created before this timestamp.
       #
-      #   @return [Time, nil]
-      optional :created_before, Time, nil?: true
+      #   @return [String, nil]
+      optional :created_before, String
 
       # @!attribute direction
-      #   The direction of the sort.
+      #   The sort direction for results. Defaults to descending.
       #
-      #   @return [Symbol, WhopSDK::Models::Direction, nil]
-      optional :direction, enum: -> { WhopSDK::Direction }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::PlanListParams::Direction, nil]
+      optional :direction, enum: -> { WhopSDK::PlanListParams::Direction }
 
       # @!attribute first
-      #   Returns the first _n_ elements from the list.
+      #   The number of plans to return (default and max 100).
       #
       #   @return [Integer, nil]
-      optional :first, Integer, nil?: true
+      optional :first, Integer
 
       # @!attribute last
-      #   Returns the last _n_ elements from the list.
+      #   The number of plans to return from the end of the range.
       #
       #   @return [Integer, nil]
-      optional :last, Integer, nil?: true
+      optional :last, Integer
 
       # @!attribute order
-      #   The ways a relation of Plans can be ordered
+      #   The field to sort results by. Defaults to created_at.
       #
       #   @return [Symbol, WhopSDK::Models::PlanListParams::Order, nil]
-      optional :order, enum: -> { WhopSDK::PlanListParams::Order }, nil?: true
+      optional :order, enum: -> { WhopSDK::PlanListParams::Order }
 
       # @!attribute plan_types
       #   Filter to only plans matching these billing types.
       #
-      #   @return [Array<Symbol, WhopSDK::Models::PlanType>, nil]
-      optional :plan_types, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PlanType] }, nil?: true
+      #   @return [Array<String>, nil]
+      optional :plan_types, WhopSDK::Internal::Type::ArrayOf[String]
 
       # @!attribute product_ids
       #   Filter to only plans belonging to these product identifiers.
       #
       #   @return [Array<String>, nil]
-      optional :product_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
+      optional :product_ids, WhopSDK::Internal::Type::ArrayOf[String]
 
       # @!attribute release_methods
       #   Filter to only plans matching these release methods.
       #
-      #   @return [Array<Symbol, WhopSDK::Models::ReleaseMethod>, nil]
-      optional :release_methods,
-               -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::ReleaseMethod] },
-               nil?: true
+      #   @return [Array<String>, nil]
+      optional :release_methods, WhopSDK::Internal::Type::ArrayOf[String]
 
       # @!attribute visibilities
       #   Filter to only plans matching these visibility states.
       #
-      #   @return [Array<Symbol, WhopSDK::Models::VisibilityFilter>, nil]
-      optional :visibilities,
-               -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::VisibilityFilter] },
-               nil?: true
+      #   @return [Array<String>, nil]
+      optional :visibilities, WhopSDK::Internal::Type::ArrayOf[String]
 
       # @!method initialize(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_types: nil, product_ids: nil, release_methods: nil, visibilities: nil, request_options: {})
       #   @param company_id [String] The unique identifier of the company to list plans for.
       #
-      #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      #   @param after [String] A cursor; returns plans after this position.
       #
-      #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #   @param before [String] A cursor; returns plans before this position.
       #
-      #   @param created_after [Time, nil] Only return plans created after this timestamp.
+      #   @param created_after [String] Only return plans created after this timestamp.
       #
-      #   @param created_before [Time, nil] Only return plans created before this timestamp.
+      #   @param created_before [String] Only return plans created before this timestamp.
       #
-      #   @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      #   @param direction [Symbol, WhopSDK::Models::PlanListParams::Direction] The sort direction for results. Defaults to descending.
       #
-      #   @param first [Integer, nil] Returns the first _n_ elements from the list.
+      #   @param first [Integer] The number of plans to return (default and max 100).
       #
-      #   @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #   @param last [Integer] The number of plans to return from the end of the range.
       #
-      #   @param order [Symbol, WhopSDK::Models::PlanListParams::Order, nil] The ways a relation of Plans can be ordered
+      #   @param order [Symbol, WhopSDK::Models::PlanListParams::Order] The field to sort results by. Defaults to created_at.
       #
-      #   @param plan_types [Array<Symbol, WhopSDK::Models::PlanType>, nil] Filter to only plans matching these billing types.
+      #   @param plan_types [Array<String>] Filter to only plans matching these billing types.
       #
-      #   @param product_ids [Array<String>, nil] Filter to only plans belonging to these product identifiers.
+      #   @param product_ids [Array<String>] Filter to only plans belonging to these product identifiers.
       #
-      #   @param release_methods [Array<Symbol, WhopSDK::Models::ReleaseMethod>, nil] Filter to only plans matching these release methods.
+      #   @param release_methods [Array<String>] Filter to only plans matching these release methods.
       #
-      #   @param visibilities [Array<Symbol, WhopSDK::Models::VisibilityFilter>, nil] Filter to only plans matching these visibility states.
+      #   @param visibilities [Array<String>] Filter to only plans matching these visibility states.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      # The ways a relation of Plans can be ordered
+      # The sort direction for results. Defaults to descending.
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC = :asc
+        DESC = :desc
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # The field to sort results by. Defaults to created_at.
       module Order
         extend WhopSDK::Internal::Type::Enum
 

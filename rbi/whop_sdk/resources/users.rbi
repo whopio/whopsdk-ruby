@@ -30,6 +30,8 @@ module WhopSDK
           account_id: String,
           bio: String,
           name: String,
+          profile_picture: WhopSDK::UserUpdateParams::ProfilePicture::OrHash,
+          username: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::User)
       end
@@ -44,6 +46,10 @@ module WhopSDK
         bio: nil,
         # Body param
         name: nil,
+        # Body param
+        profile_picture: nil,
+        # Body param
+        username: nil,
         request_options: {}
       )
       end
@@ -94,9 +100,11 @@ module WhopSDK
       )
       end
 
-      # Updates the authenticated user's global profile. Not available to API keys.
+      # Updates the authenticated user's global profile, or their profile override for
+      # an account when account_id is given. Not available to API keys.
       sig do
         params(
+          account_id: String,
           bio: String,
           name: String,
           profile_picture: WhopSDK::UserUpdateMeParams::ProfilePicture::OrHash,
@@ -105,9 +113,16 @@ module WhopSDK
         ).returns(WhopSDK::User)
       end
       def update_me(
+        # Query param: When set, updates the authenticated user's profile override for
+        # this account instead of their global profile.
+        account_id: nil,
+        # Body param
         bio: nil,
+        # Body param
         name: nil,
+        # Body param
         profile_picture: nil,
+        # Body param
         username: nil,
         request_options: {}
       )

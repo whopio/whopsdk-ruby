@@ -31,6 +31,11 @@ module WhopSDK
         #   @return [String]
         required :amount, String
 
+        # @!attribute created_at
+        #
+        #   @return [Time, nil]
+        required :created_at, Time, nil?: true
+
         # @!attribute currency
         #
         #   @return [WhopSDK::Models::FinancialActivityListResponse::Data::Currency]
@@ -63,10 +68,12 @@ module WhopSDK
         #   @return [WhopSDK::Models::FinancialActivityListResponse::Data::Source, nil]
         required :source, -> { WhopSDK::Models::FinancialActivityListResponse::Data::Source }, nil?: true
 
-        # @!method initialize(id:, amount:, currency:, line_type:, object:, posted_at:, resource:, source:)
+        # @!method initialize(id:, amount:, created_at:, currency:, line_type:, object:, posted_at:, resource:, source:)
         #   @param id [String]
         #
         #   @param amount [String] Signed amount in the currency's smallest precision units.
+        #
+        #   @param created_at [Time, nil]
         #
         #   @param currency [WhopSDK::Models::FinancialActivityListResponse::Data::Currency]
         #
@@ -542,9 +549,86 @@ module WhopSDK
           #   @return [String]
           required :object, String
 
-          # @!method initialize(id:, object:)
+          # @!attribute created_at
+          #   Withdrawal creation time as an ISO 8601 timestamp (withdrawal sources only;
+          #   requires payout:withdrawal:read).
+          #
+          #   @return [Time, nil]
+          optional :created_at, Time, nil?: true
+
+          # @!attribute estimated_arrival
+          #   Estimated arrival as an ISO 8601 timestamp (withdrawal sources only; requires
+          #   payout:withdrawal:read).
+          #
+          #   @return [Time, nil]
+          optional :estimated_arrival, Time, nil?: true
+
+          # @!attribute payer_name
+          #   Name of the entity processing the payout (withdrawal sources only; requires
+          #   payout:withdrawal:read).
+          #
+          #   @return [String, nil]
+          optional :payer_name, String, nil?: true
+
+          # @!attribute payout_destination
+          #   Payout destination display info (withdrawal sources only).
+          #
+          #   @return [WhopSDK::Models::FinancialActivityListResponse::Data::Source::PayoutDestination, nil]
+          optional :payout_destination,
+                   -> { WhopSDK::Models::FinancialActivityListResponse::Data::Source::PayoutDestination },
+                   nil?: true
+
+          # @!attribute payout_token_nickname
+          #   Saved payout destination nickname (withdrawal sources only).
+          #
+          #   @return [String, nil]
+          optional :payout_token_nickname, String, nil?: true
+
+          # @!attribute status
+          #   Withdrawal lifecycle status (withdrawal sources only; requires
+          #   payout:withdrawal:read).
+          #
+          #   @return [String, nil]
+          optional :status, String, nil?: true
+
+          # @!method initialize(id:, object:, created_at: nil, estimated_arrival: nil, payer_name: nil, payout_destination: nil, payout_token_nickname: nil, status: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {WhopSDK::Models::FinancialActivityListResponse::Data::Source} for more details.
+          #
           #   @param id [String]
+          #
           #   @param object [String]
+          #
+          #   @param created_at [Time, nil] Withdrawal creation time as an ISO 8601 timestamp (withdrawal sources only; requ
+          #
+          #   @param estimated_arrival [Time, nil] Estimated arrival as an ISO 8601 timestamp (withdrawal sources only; requires pa
+          #
+          #   @param payer_name [String, nil] Name of the entity processing the payout (withdrawal sources only; requires payo
+          #
+          #   @param payout_destination [WhopSDK::Models::FinancialActivityListResponse::Data::Source::PayoutDestination, nil] Payout destination display info (withdrawal sources only).
+          #
+          #   @param payout_token_nickname [String, nil] Saved payout destination nickname (withdrawal sources only).
+          #
+          #   @param status [String, nil] Withdrawal lifecycle status (withdrawal sources only; requires payout:withdrawal
+
+          # @see WhopSDK::Models::FinancialActivityListResponse::Data::Source#payout_destination
+          class PayoutDestination < WhopSDK::Internal::Type::BaseModel
+            # @!attribute icon_url
+            #
+            #   @return [String, nil]
+            optional :icon_url, String, nil?: true
+
+            # @!attribute payer_name
+            #
+            #   @return [String, nil]
+            optional :payer_name, String, nil?: true
+
+            # @!method initialize(icon_url: nil, payer_name: nil)
+            #   Payout destination display info (withdrawal sources only).
+            #
+            #   @param icon_url [String, nil]
+            #   @param payer_name [String, nil]
+          end
         end
       end
 

@@ -2,18 +2,18 @@
 
 module WhopSDK
   module Resources
-    # Users
     class Users
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::UserRetrieveParams} for more details.
       #
-      # Retrieves the details of an existing user.
+      # Retrieves a user's public profile by user\_ tag, username, or 'me'.
       #
-      # @overload retrieve(id, company_id: nil, request_options: {})
+      # @overload retrieve(id, account_id: nil, request_options: {})
       #
-      # @param id [String] The unique identifier or username of the user.
+      # @param id [String] The ID of the user, which will look like user\_******\*******, a username, or
+      # 'me'
       #
-      # @param company_id [String, nil] When provided, returns the user's company-specific profile overrides (name, prof
+      # @param account_id [String] When set, returns the user's account-specific profile overrides for this account
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -35,25 +35,23 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::UserUpdateParams} for more details.
       #
-      # Update a user's profile by their ID.
+      # Updates a user. A user token updates their own global profile; an API key
+      # updates the user's account-specific profile override (account_id required).
       #
-      # Required permissions:
+      # @overload update(id, account_id: nil, bio: nil, name: nil, profile_picture: nil, username: nil, request_options: {})
       #
-      # - `user:profile:update`
+      # @param id [String] Path param: The ID of the user, which will look like user\_******\*******, a
+      # usern
       #
-      # @overload update(id, bio: nil, company_id: nil, name: nil, profile_picture: nil, username: nil, request_options: {})
+      # @param account_id [String] Query param: The account whose profile override to update. Required for API key
       #
-      # @param id [String] The unique identifier of the user to update. Accepts 'me', a user tag, or a user
+      # @param bio [String] Body param
       #
-      # @param bio [String, nil] A short biography displayed on the user's public profile.
+      # @param name [String] Body param
       #
-      # @param company_id [String, nil] When provided, updates the user's profile overrides for this company instead of
+      # @param profile_picture [WhopSDK::Models::UserUpdateParams::ProfilePicture] Body param
       #
-      # @param name [String, nil] The user's display name shown on their public profile. Maximum 100 characters.
-      #
-      # @param profile_picture [WhopSDK::Models::UserUpdateParams::ProfilePicture, nil] The user's profile picture image attachment.
-      #
-      # @param username [String, nil] The user's unique username. Alphanumeric characters and hyphens only. Maximum 42
+      # @param username [String] Body param
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -61,34 +59,38 @@ module WhopSDK
       #
       # @see WhopSDK::Models::UserUpdateParams
       def update(id, params = {})
+        query_params = [:account_id]
         parsed, options = WhopSDK::UserUpdateParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed.slice(*query_params))
         @client.request(
           method: :patch,
           path: ["users/%1$s", id],
-          body: parsed,
+          query: query,
+          body: parsed.except(*query_params),
           model: WhopSDK::User,
           options: options
         )
       end
 
       # Search for users by name or username, ranked by social proximity to the
-      # authenticated user.
+      # authenticated user. Returns the user's most recently followed users when no
+      # query is given.
       #
       # @overload list(after: nil, before: nil, first: nil, last: nil, query: nil, request_options: {})
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param after [String] A cursor; returns users after this position.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param before [String] A cursor; returns users before this position.
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param first [Integer] The number of users to return (max 50).
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param last [Integer] The number of users to return from the end of the range.
       #
-      # @param query [String, nil] Search term to filter by name or username.
+      # @param query [String] A search term to filter users by name or username.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::UserListResponse>]
+      # @return [WhopSDK::Internal::CursorPage<WhopSDK::Models::User>]
       #
       # @see WhopSDK::Models::UserListParams
       def list(params = {})
@@ -99,22 +101,19 @@ module WhopSDK
           path: "users",
           query: query,
           page: WhopSDK::Internal::CursorPage,
-          model: WhopSDK::Models::UserListResponse,
+          model: WhopSDK::User,
           options: options
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {WhopSDK::Models::UserCheckAccessParams} for more details.
-      #
-      # Check whether a user has access to a specific resource, and return their access
-      # level.
+      # Checks whether a user has access to a company, product, or experience the caller
+      # can reach.
       #
       # @overload check_access(resource_id, id:, request_options: {})
       #
-      # @param resource_id [String] The unique identifier of the resource to check access for. Accepts a company, pr
+      # @param resource_id [String] A company (biz*), product (prod*), or experience (exp\_) ID.
       #
-      # @param id [String] The unique identifier or username of the user.
+      # @param id [String] The user\_ tag or username to check access for.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -131,6 +130,43 @@ module WhopSDK
           method: :get,
           path: ["users/%1$s/access/%2$s", id, resource_id],
           model: WhopSDK::Models::UserCheckAccessResponse,
+          options: options
+        )
+      end
+
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::UserUpdateMeParams} for more details.
+      #
+      # Updates the authenticated user's global profile, or their profile override for
+      # an account when account_id is given. Not available to API keys.
+      #
+      # @overload update_me(account_id: nil, bio: nil, name: nil, profile_picture: nil, username: nil, request_options: {})
+      #
+      # @param account_id [String] Query param: When set, updates the authenticated user's profile override for thi
+      #
+      # @param bio [String] Body param
+      #
+      # @param name [String] Body param
+      #
+      # @param profile_picture [WhopSDK::Models::UserUpdateMeParams::ProfilePicture] Body param
+      #
+      # @param username [String] Body param
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::User]
+      #
+      # @see WhopSDK::Models::UserUpdateMeParams
+      def update_me(params = {})
+        query_params = [:account_id]
+        parsed, options = WhopSDK::UserUpdateMeParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed.slice(*query_params))
+        @client.request(
+          method: :patch,
+          path: "users/me",
+          query: query,
+          body: parsed.except(*query_params),
+          model: WhopSDK::User,
           options: options
         )
       end

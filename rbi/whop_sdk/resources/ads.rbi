@@ -12,12 +12,20 @@ module WhopSDK
       sig do
         params(
           id: String,
+          stats_from: T.nilable(Time),
+          stats_to: T.nilable(Time),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Ad)
       end
       def retrieve(
         # The unique identifier of the ad.
         id,
+        # Inclusive start of the window for the ad's metric fields (spend, impressions,
+        # …). Omit both statsFrom and statsTo for all-time stats.
+        stats_from: nil,
+        # Inclusive end of the window for the ad's metric fields. Omit both statsFrom and
+        # statsTo for all-time stats.
+        stats_to: nil,
         request_options: {}
       )
       end
@@ -29,16 +37,20 @@ module WhopSDK
       # - `ad_campaign:basic:read`
       sig do
         params(
+          ad_campaign_id: T.nilable(String),
+          ad_campaign_ids: T.nilable(T::Array[String]),
           ad_group_id: T.nilable(String),
+          ad_group_ids: T.nilable(T::Array[String]),
           after: T.nilable(String),
           before: T.nilable(String),
           campaign_id: T.nilable(String),
           company_id: T.nilable(String),
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
+          direction: T.nilable(WhopSDK::Direction::OrSymbol),
           first: T.nilable(Integer),
-          include_paused: T.nilable(T::Boolean),
           last: T.nilable(Integer),
+          order: T.nilable(WhopSDK::AdListParams::Order::OrSymbol),
           order_by: T.nilable(WhopSDK::AdListParams::OrderBy::OrSymbol),
           order_direction: T.nilable(WhopSDK::Direction::OrSymbol),
           query: T.nilable(String),
@@ -51,39 +63,51 @@ module WhopSDK
         )
       end
       def list(
-        # Filter by ad group. Provide exactly one of ad_group_id, campaign_id, or
+        # Filter by ad campaign. Provide exactly one of ad_group_id, ad_campaign_id, or
+        # company_id.
+        ad_campaign_id: nil,
+        # Only return ads belonging to these ad campaigns (max 100). Can be combined with
+        # companyId or used on its own.
+        ad_campaign_ids: nil,
+        # Filter by ad group. Provide exactly one of ad_group_id, ad_campaign_id, or
         # company_id.
         ad_group_id: nil,
+        # Only return ads belonging to these ad groups (max 100). Can be combined with
+        # companyId or used on its own.
+        ad_group_ids: nil,
         # Returns the elements in the list that come after the specified cursor.
         after: nil,
         # Returns the elements in the list that come before the specified cursor.
         before: nil,
-        # Filter by campaign. Provide exactly one of ad_group_id, campaign_id, or
-        # company_id.
+        # Filter by campaign.
         campaign_id: nil,
-        # Filter by company. Provide exactly one of ad_group_id, campaign_id, or
+        # Filter by company. Provide exactly one of ad_group_id, ad_campaign_id, or
         # company_id.
         company_id: nil,
         # Only return ads created after this timestamp.
         created_after: nil,
         # Only return ads created before this timestamp.
         created_before: nil,
+        # The direction of the sort.
+        direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
-        # When false, excludes paused ads so pagination matches the dashboard's
-        # hide-paused toggle.
-        include_paused: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # Columns that the listAds query can sort by.
+        # The fields ad resources can be ordered by.
+        order: nil,
+        # Columns that the listAds query can sort by. Deprecated — use AdOrder.
         order_by: nil,
         # The direction of the sort.
         order_direction: nil,
-        # Case-insensitive substring match against the ad title or tag.
+        # Case-insensitive substring match against the ad title or ID.
         query: nil,
-        # Start of the stats date range used when order_by is a stats column.
+        # Inclusive start of the window for each ad's metric fields (spend, impressions,
+        # …) and for stats-column sorting. Omit both statsFrom and statsTo for all-time
+        # stats.
         stats_from: nil,
-        # End of the stats date range used when order_by is a stats column.
+        # Inclusive end of the window for each ad's metric fields and for stats-column
+        # sorting. Omit both statsFrom and statsTo for all-time stats.
         stats_to: nil,
         # The status of an external ad.
         status: nil,

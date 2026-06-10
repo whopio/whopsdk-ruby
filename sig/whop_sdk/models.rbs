@@ -377,6 +377,8 @@ module WhopSDK
 
   module FileVisibility = WhopSDK::Models::FileVisibility
 
+  class FinancialActivityListParams = WhopSDK::Models::FinancialActivityListParams
+
   class Forum = WhopSDK::Models::Forum
 
   class ForumListParams = WhopSDK::Models::ForumListParams
@@ -703,7 +705,11 @@ module WhopSDK
 
   class SupportChannelRetrieveParams = WhopSDK::Models::SupportChannelRetrieveParams
 
+  class SwapCreateParams = WhopSDK::Models::SwapCreateParams
+
   class SwapCreateQuoteParams = WhopSDK::Models::SwapCreateQuoteParams
+
+  class SwapRetrieveParams = WhopSDK::Models::SwapRetrieveParams
 
   module TaxIdentifierType = WhopSDK::Models::TaxIdentifierType
 
@@ -730,6 +736,8 @@ module WhopSDK
   class UserListParams = WhopSDK::Models::UserListParams
 
   class UserRetrieveParams = WhopSDK::Models::UserRetrieveParams
+
+  class UserUpdateMeParams = WhopSDK::Models::UserUpdateMeParams
 
   class UserUpdateParams = WhopSDK::Models::UserUpdateParams
 

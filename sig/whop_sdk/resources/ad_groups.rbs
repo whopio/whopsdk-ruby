@@ -3,6 +3,8 @@ module WhopSDK
     class AdGroups
       def retrieve: (
         String id,
+        ?stats_from: Time?,
+        ?stats_to: Time?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::AdGroup
 
@@ -15,10 +17,13 @@ module WhopSDK
         ?name: String?,
         ?platform_config: WhopSDK::AdGroupUpdateParams::PlatformConfig?,
         ?status: WhopSDK::Models::ad_group_status?,
+        ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::AdGroup
 
       def list: (
+        ?ad_campaign_id: String?,
+        ?ad_campaign_ids: ::Array[String]?,
         ?after: String?,
         ?before: String?,
         ?campaign_id: String?,
@@ -26,9 +31,10 @@ module WhopSDK
         ?created_after: Time?,
         ?created_before: Time?,
         ?first: Integer?,
-        ?include_paused: bool?,
         ?last: Integer?,
         ?query: String?,
+        ?stats_from: Time?,
+        ?stats_to: Time?,
         ?status: WhopSDK::Models::ad_group_status?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::AdGroupListResponse]

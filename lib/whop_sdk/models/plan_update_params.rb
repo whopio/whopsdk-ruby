@@ -26,20 +26,20 @@ module WhopSDK
       optional :billing_period, Integer, nil?: true
 
       # @!attribute checkout_styling
-      #   Checkout styling overrides for this plan. Pass null to remove all overrides and
-      #   inherit from the company default.
+      #   Checkout styling overrides for this plan.
       #
-      #   @return [WhopSDK::Models::PlanUpdateParams::CheckoutStyling, nil]
-      optional :checkout_styling, -> { WhopSDK::PlanUpdateParams::CheckoutStyling }, nil?: true
+      #   @return [Object, nil]
+      optional :checkout_styling, WhopSDK::Internal::Type::Unknown, nil?: true
 
       # @!attribute currency
-      #   The available currencies on the platform
+      #   The three-letter ISO currency code for the plan's pricing. Defaults to USD.
       #
-      #   @return [Symbol, WhopSDK::Models::Currency, nil]
-      optional :currency, enum: -> { WhopSDK::Currency }, nil?: true
+      #   @return [String, nil]
+      optional :currency, String
 
       # @!attribute custom_fields
       #   An array of custom field definitions to collect from customers at checkout.
+      #   Omitting this field clears existing custom fields.
       #
       #   @return [Array<WhopSDK::Models::PlanUpdateParams::CustomField>, nil]
       optional :custom_fields,
@@ -53,8 +53,7 @@ module WhopSDK
       optional :description, String, nil?: true
 
       # @!attribute expiration_days
-      #   The number of days until the membership expires and access is revoked. For
-      #   example, 365 for one-year access.
+      #   The number of days until the membership expires and access is revoked.
       #
       #   @return [Integer, nil]
       optional :expiration_days, Integer, nil?: true
@@ -66,8 +65,8 @@ module WhopSDK
       optional :image, -> { WhopSDK::PlanUpdateParams::Image }, nil?: true
 
       # @!attribute initial_price
-      #   The amount charged on the first purchase. Provided in the plan's currency (e.g.,
-      #   10.43 for $10.43).
+      #   The amount charged on the first purchase, in the plan's currency (e.g., 10.43
+      #   for $10.43).
       #
       #   @return [Float, nil]
       optional :initial_price, Float, nil?: true
@@ -86,11 +85,10 @@ module WhopSDK
 
       # @!attribute metadata
       #   Custom key-value pairs to store on the plan. Included in webhook payloads for
-      #   payment and membership events. Max 50 keys, 500 chars per key, 5000 chars per
-      #   value.
+      #   payment and membership events.
       #
-      #   @return [Hash{Symbol=>Object}, nil]
-      optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+      #   @return [Object, nil]
+      optional :metadata, WhopSDK::Internal::Type::Unknown, nil?: true
 
       # @!attribute offer_cancel_discount
       #   Whether to offer a retention discount when a customer attempts to cancel.
@@ -99,15 +97,14 @@ module WhopSDK
       optional :offer_cancel_discount, WhopSDK::Internal::Type::Boolean, nil?: true
 
       # @!attribute override_tax_type
-      #   Whether or not the tax is included in a plan's price (or if it hasn't been set
-      #   up)
+      #   Override the default tax classification for this specific plan.
       #
-      #   @return [Symbol, WhopSDK::Models::TaxType, nil]
-      optional :override_tax_type, enum: -> { WhopSDK::TaxType }, nil?: true
+      #   @return [String, nil]
+      optional :override_tax_type, String
 
       # @!attribute payment_method_configuration
-      #   Explicit payment method configuration for the plan. Sending null removes any
-      #   custom configuration.
+      #   Explicit payment method configuration for the plan. When not provided, the
+      #   company's defaults apply.
       #
       #   @return [WhopSDK::Models::PlanUpdateParams::PaymentMethodConfiguration, nil]
       optional :payment_method_configuration,
@@ -115,8 +112,8 @@ module WhopSDK
                nil?: true
 
       # @!attribute renewal_price
-      #   The amount charged each billing period for recurring plans. Provided in the
-      #   plan's currency (e.g., 10.43 for $10.43).
+      #   The amount charged each billing period for recurring plans, in the plan's
+      #   currency.
       #
       #   @return [Float, nil]
       optional :renewal_price, Float, nil?: true
@@ -130,23 +127,21 @@ module WhopSDK
 
       # @!attribute strike_through_initial_price
       #   A comparison price displayed with a strikethrough for the initial price.
-      #   Provided in the plan's currency (e.g., 19.99 for $19.99).
       #
       #   @return [Float, nil]
       optional :strike_through_initial_price, Float, nil?: true
 
       # @!attribute strike_through_renewal_price
       #   A comparison price displayed with a strikethrough for the renewal price.
-      #   Provided in the plan's currency (e.g., 19.99 for $19.99).
       #
       #   @return [Float, nil]
       optional :strike_through_renewal_price, Float, nil?: true
 
       # @!attribute three_ds_level
-      #   The 3D Secure behavior for a plan.
+      #   The 3D Secure behavior for this plan. Send null to inherit the account default.
       #
       #   @return [Symbol, WhopSDK::Models::PlanUpdateParams::ThreeDSLevel, nil]
-      optional :three_ds_level, enum: -> { WhopSDK::PlanUpdateParams::ThreeDSLevel }, nil?: true
+      optional :three_ds_level, enum: -> { WhopSDK::PlanUpdateParams::ThreeDSLevel }
 
       # @!attribute title
       #   The display name of the plan shown to customers on the product page.
@@ -167,10 +162,10 @@ module WhopSDK
       optional :unlimited_stock, WhopSDK::Internal::Type::Boolean, nil?: true
 
       # @!attribute visibility
-      #   Visibility of a resource
+      #   Whether the plan is visible to customers or hidden from public view.
       #
-      #   @return [Symbol, WhopSDK::Models::Visibility, nil]
-      optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
+      #   @return [String, nil]
+      optional :visibility, String
 
       # @!method initialize(id:, adaptive_pricing_enabled: nil, billing_period: nil, checkout_styling: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, metadata: nil, offer_cancel_discount: nil, override_tax_type: nil, payment_method_configuration: nil, renewal_price: nil, stock: nil, strike_through_initial_price: nil, strike_through_renewal_price: nil, three_ds_level: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
@@ -182,41 +177,41 @@ module WhopSDK
       #
       #   @param billing_period [Integer, nil] The number of days between recurring charges. For example, 30 for monthly or 365
       #
-      #   @param checkout_styling [WhopSDK::Models::PlanUpdateParams::CheckoutStyling, nil] Checkout styling overrides for this plan. Pass null to remove all overrides and
+      #   @param checkout_styling [Object, nil] Checkout styling overrides for this plan.
       #
-      #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
+      #   @param currency [String] The three-letter ISO currency code for the plan's pricing. Defaults to USD.
       #
-      #   @param custom_fields [Array<WhopSDK::Models::PlanUpdateParams::CustomField>, nil] An array of custom field definitions to collect from customers at checkout.
+      #   @param custom_fields [Array<WhopSDK::Models::PlanUpdateParams::CustomField>, nil] An array of custom field definitions to collect from customers at checkout. Omit
       #
       #   @param description [String, nil] A text description of the plan displayed to customers on the product page.
       #
-      #   @param expiration_days [Integer, nil] The number of days until the membership expires and access is revoked. For examp
+      #   @param expiration_days [Integer, nil] The number of days until the membership expires and access is revoked.
       #
       #   @param image [WhopSDK::Models::PlanUpdateParams::Image, nil] An image displayed on the product page to represent this plan.
       #
-      #   @param initial_price [Float, nil] The amount charged on the first purchase. Provided in the plan's currency (e.g.,
+      #   @param initial_price [Float, nil] The amount charged on the first purchase, in the plan's currency (e.g., 10.43 fo
       #
       #   @param internal_notes [String, nil] Private notes visible only to the business owner. Not shown to customers.
       #
       #   @param legacy_payment_method_controls [Boolean, nil] Whether this plan uses legacy payment method controls.
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs to store on the plan. Included in webhook payloads for pa
+      #   @param metadata [Object, nil] Custom key-value pairs to store on the plan. Included in webhook payloads for pa
       #
       #   @param offer_cancel_discount [Boolean, nil] Whether to offer a retention discount when a customer attempts to cancel.
       #
-      #   @param override_tax_type [Symbol, WhopSDK::Models::TaxType, nil] Whether or not the tax is included in a plan's price (or if it hasn't been set u
+      #   @param override_tax_type [String] Override the default tax classification for this specific plan.
       #
-      #   @param payment_method_configuration [WhopSDK::Models::PlanUpdateParams::PaymentMethodConfiguration, nil] Explicit payment method configuration for the plan. Sending null removes any cus
+      #   @param payment_method_configuration [WhopSDK::Models::PlanUpdateParams::PaymentMethodConfiguration, nil] Explicit payment method configuration for the plan. When not provided, the compa
       #
-      #   @param renewal_price [Float, nil] The amount charged each billing period for recurring plans. Provided in the plan
+      #   @param renewal_price [Float, nil] The amount charged each billing period for recurring plans, in the plan's curren
       #
       #   @param stock [Integer, nil] The maximum number of units available for purchase. Ignored when unlimited_stock
       #
-      #   @param strike_through_initial_price [Float, nil] A comparison price displayed with a strikethrough for the initial price. Provide
+      #   @param strike_through_initial_price [Float, nil] A comparison price displayed with a strikethrough for the initial price.
       #
-      #   @param strike_through_renewal_price [Float, nil] A comparison price displayed with a strikethrough for the renewal price. Provide
+      #   @param strike_through_renewal_price [Float, nil] A comparison price displayed with a strikethrough for the renewal price.
       #
-      #   @param three_ds_level [Symbol, WhopSDK::Models::PlanUpdateParams::ThreeDSLevel, nil] The 3D Secure behavior for a plan.
+      #   @param three_ds_level [Symbol, WhopSDK::Models::PlanUpdateParams::ThreeDSLevel] The 3D Secure behavior for this plan. Send null to inherit the account default.
       #
       #   @param title [String, nil] The display name of the plan shown to customers on the product page.
       #
@@ -224,79 +219,37 @@ module WhopSDK
       #
       #   @param unlimited_stock [Boolean, nil] Whether the plan has unlimited stock. When true, the stock field is ignored.
       #
-      #   @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
+      #   @param visibility [String] Whether the plan is visible to customers or hidden from public view.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
-        # @!attribute background_color
-        #   A hex color code for the checkout page background, applied to the order summary
-        #   panel (e.g. #F4F4F5).
-        #
-        #   @return [String, nil]
-        optional :background_color, String, nil?: true
-
-        # @!attribute border_style
-        #   The different border-radius styles available for checkout pages.
-        #
-        #   @return [Symbol, WhopSDK::Models::CheckoutShape, nil]
-        optional :border_style, enum: -> { WhopSDK::CheckoutShape }, nil?: true
-
-        # @!attribute button_color
-        #   A hex color code for the button color (e.g. #FF5733).
-        #
-        #   @return [String, nil]
-        optional :button_color, String, nil?: true
-
-        # @!attribute font_family
-        #   The different font families available for checkout pages.
-        #
-        #   @return [Symbol, WhopSDK::Models::CheckoutFont, nil]
-        optional :font_family, enum: -> { WhopSDK::CheckoutFont }, nil?: true
-
-        # @!method initialize(background_color: nil, border_style: nil, button_color: nil, font_family: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::PlanUpdateParams::CheckoutStyling} for more details.
-        #
-        #   Checkout styling overrides for this plan. Pass null to remove all overrides and
-        #   inherit from the company default.
-        #
-        #   @param background_color [String, nil] A hex color code for the checkout page background, applied to the order summary
-        #
-        #   @param border_style [Symbol, WhopSDK::Models::CheckoutShape, nil] The different border-radius styles available for checkout pages.
-        #
-        #   @param button_color [String, nil] A hex color code for the button color (e.g. #FF5733).
-        #
-        #   @param font_family [Symbol, WhopSDK::Models::CheckoutFont, nil] The different font families available for checkout pages.
-      end
-
       class CustomField < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The ID of the custom field (if being updated).
+        #
+        #   @return [String, nil]
+        optional :id, String
+
         # @!attribute field_type
         #   The type of the custom field.
         #
-        #   @return [Symbol, :text]
-        required :field_type, const: :text
+        #   @return [Symbol, WhopSDK::Models::PlanUpdateParams::CustomField::FieldType, nil]
+        optional :field_type, enum: -> { WhopSDK::PlanUpdateParams::CustomField::FieldType }
 
         # @!attribute name
         #   The name of the custom field.
         #
-        #   @return [String]
-        required :name, String
-
-        # @!attribute id
-        #   The ID of the custom field (if being updated)
-        #
         #   @return [String, nil]
-        optional :id, String, nil?: true
+        optional :name, String
 
         # @!attribute order
         #   The order of the field.
         #
         #   @return [Integer, nil]
-        optional :order, Integer, nil?: true
+        optional :order, Integer
 
         # @!attribute placeholder
-        #   The placeholder value of the field.
+        #   An example response displayed in the input field.
         #
         #   @return [String, nil]
         optional :placeholder, String, nil?: true
@@ -305,76 +258,78 @@ module WhopSDK
         #   Whether or not the field is required.
         #
         #   @return [Boolean, nil]
-        optional :required, WhopSDK::Internal::Type::Boolean, nil?: true
+        optional :required, WhopSDK::Internal::Type::Boolean
 
-        # @!method initialize(name:, id: nil, order: nil, placeholder: nil, required: nil, field_type: :text)
+        # @!method initialize(id: nil, field_type: nil, name: nil, order: nil, placeholder: nil, required: nil)
+        #   @param id [String] The ID of the custom field (if being updated).
+        #
+        #   @param field_type [Symbol, WhopSDK::Models::PlanUpdateParams::CustomField::FieldType] The type of the custom field.
+        #
         #   @param name [String] The name of the custom field.
         #
-        #   @param id [String, nil] The ID of the custom field (if being updated)
+        #   @param order [Integer] The order of the field.
         #
-        #   @param order [Integer, nil] The order of the field.
+        #   @param placeholder [String, nil] An example response displayed in the input field.
         #
-        #   @param placeholder [String, nil] The placeholder value of the field.
+        #   @param required [Boolean] Whether or not the field is required.
+
+        # The type of the custom field.
         #
-        #   @param required [Boolean, nil] Whether or not the field is required.
-        #
-        #   @param field_type [Symbol, :text] The type of the custom field.
+        # @see WhopSDK::Models::PlanUpdateParams::CustomField#field_type
+        module FieldType
+          extend WhopSDK::Internal::Type::Enum
+
+          TEXT = :text
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
 
       class Image < WhopSDK::Internal::Type::BaseModel
         # @!attribute id
-        #   The ID of an existing file object.
         #
-        #   @return [String]
-        required :id, String
+        #   @return [String, nil]
+        optional :id, String
 
-        # @!method initialize(id:)
+        # @!attribute direct_upload_id
+        #
+        #   @return [String, nil]
+        optional :direct_upload_id, String
+
+        # @!method initialize(id: nil, direct_upload_id: nil)
         #   An image displayed on the product page to represent this plan.
         #
-        #   @param id [String] The ID of an existing file object.
+        #   @param id [String]
+        #   @param direct_upload_id [String]
       end
 
       class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
         # @!attribute disabled
-        #   An array of payment method identifiers that are explicitly disabled. Only
-        #   applies if the include_platform_defaults is true.
         #
-        #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
-        required :disabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+        #   @return [Array<String>, nil]
+        optional :disabled, WhopSDK::Internal::Type::ArrayOf[String]
 
         # @!attribute enabled
-        #   An array of payment method identifiers that are explicitly enabled. This means
-        #   these payment methods will be shown on checkout. Example use case is to only
-        #   enable a specific payment method like cashapp, or extending the platform
-        #   defaults with additional methods.
         #
-        #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
-        required :enabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
+        #   @return [Array<String>, nil]
+        optional :enabled, WhopSDK::Internal::Type::ArrayOf[String]
 
         # @!attribute include_platform_defaults
-        #   Whether Whop's platform default payment method enablement settings are included
-        #   in this configuration. The full list of default payment methods can be found in
-        #   the documentation at docs.whop.com/payments.
         #
         #   @return [Boolean, nil]
-        optional :include_platform_defaults, WhopSDK::Internal::Type::Boolean, nil?: true
+        optional :include_platform_defaults, WhopSDK::Internal::Type::Boolean
 
-        # @!method initialize(disabled:, enabled:, include_platform_defaults: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::PlanUpdateParams::PaymentMethodConfiguration} for more
-        #   details.
+        # @!method initialize(disabled: nil, enabled: nil, include_platform_defaults: nil)
+        #   Explicit payment method configuration for the plan. When not provided, the
+        #   company's defaults apply.
         #
-        #   Explicit payment method configuration for the plan. Sending null removes any
-        #   custom configuration.
-        #
-        #   @param disabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly disabled. Only applie
-        #
-        #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
-        #
-        #   @param include_platform_defaults [Boolean, nil] Whether Whop's platform default payment method enablement settings are included
+        #   @param disabled [Array<String>]
+        #   @param enabled [Array<String>]
+        #   @param include_platform_defaults [Boolean]
       end
 
-      # The 3D Secure behavior for a plan.
+      # The 3D Secure behavior for this plan. Send null to inherit the account default.
       module ThreeDSLevel
         extend WhopSDK::Internal::Type::Enum
 

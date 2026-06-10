@@ -18,11 +18,15 @@ module WhopSDK
           context: T.nilable(WhopSDK::ConversionCreateParams::Context::OrHash),
           currency: T.nilable(WhopSDK::Currency::OrSymbol),
           custom_name: T.nilable(String),
+          duration: T.nilable(Integer),
           event_id: T.nilable(String),
           event_time: T.nilable(Time),
           plan_id: T.nilable(String),
           product_id: T.nilable(String),
           referrer_url: T.nilable(String),
+          resumed: T.nilable(T::Boolean),
+          source: T.nilable(String),
+          title: T.nilable(String),
           url: T.nilable(String),
           user: T.nilable(WhopSDK::ConversionCreateParams::User::OrHash),
           value: T.nilable(Float),
@@ -40,8 +44,10 @@ module WhopSDK
         context: nil,
         # The available currencies on the platform
         currency: nil,
-        # Custom event name when event_name is 'custom'.
+        # Custom event name when event_name is 'custom'. Maximum 35 chars for this value.
         custom_name: nil,
+        # For 'leave' events: milliseconds the visitor spent on the page.
+        duration: nil,
         # Client-provided identifier for deduplication. Generated if omitted.
         event_id: nil,
         # When the event occurred. Defaults to now.
@@ -52,6 +58,13 @@ module WhopSDK
         product_id: nil,
         # The referring URL.
         referrer_url: nil,
+        # For 'page' events: true when the page was restored from the back/forward cache.
+        resumed: nil,
+        # For 'identify' events: where the identity was captured (url, form, manual,
+        # iframe).
+        source: nil,
+        # For 'page' events: the document title.
+        title: nil,
         # The URL where the event occurred.
         url: nil,
         # User identity and profile data.

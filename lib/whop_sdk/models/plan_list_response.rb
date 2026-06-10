@@ -5,374 +5,232 @@ module WhopSDK
     # @see WhopSDK::Resources::Plans#list
     class PlanListResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute id
-      #   The unique identifier for the plan.
+      #   The ID of the plan, which will look like plan\_******\*******
       #
       #   @return [String]
       required :id, String
 
       # @!attribute adaptive_pricing_enabled
-      #   Whether the creator has turned on adaptive pricing for this plan. Raw setting —
-      #   does not check processor compatibility or feature flags.
+      #   Whether this plan accepts local currency payments via adaptive pricing
       #
       #   @return [Boolean]
       required :adaptive_pricing_enabled, WhopSDK::Internal::Type::Boolean
 
       # @!attribute billing_period
-      #   The number of days between each recurring charge. Null for one-time plans. For
-      #   example, 30 for monthly or 365 for annual billing.
+      #   The number of days between recurring charges. Null for one-time plans
       #
-      #   @return [Integer, nil]
-      required :billing_period, Integer, nil?: true
+      #   @return [Float, nil]
+      required :billing_period, Float, nil?: true
 
       # @!attribute company
-      #   The company that sells this plan. Null for standalone invoice plans not linked
-      #   to a company.
+      #   The company that sells this plan, an object with an id and title. Null for
+      #   standalone invoice plans
       #
-      #   @return [WhopSDK::Models::PlanListResponse::Company, nil]
-      required :company, -> { WhopSDK::Models::PlanListResponse::Company }, nil?: true
+      #   @return [Object, nil]
+      required :company, WhopSDK::Internal::Type::Unknown, nil?: true
 
       # @!attribute created_at
-      #   The datetime the plan was created.
+      #   When the plan was created, as an ISO 8601 timestamp
       #
-      #   @return [Time]
-      required :created_at, Time
+      #   @return [String]
+      required :created_at, String
 
       # @!attribute currency
-      #   The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
-      #   amounts on the plan are denominated in this currency.
+      #   The three-letter ISO currency code all prices on this plan are denominated in
       #
-      #   @return [Symbol, WhopSDK::Models::Currency]
-      required :currency, enum: -> { WhopSDK::Currency }
+      #   @return [String]
+      required :currency, String
 
       # @!attribute description
-      #   A text description of the plan visible to customers. Maximum 1000 characters.
-      #   Null if no description is set.
+      #   A text description of the plan visible to customers
       #
       #   @return [String, nil]
       required :description, String, nil?: true
 
       # @!attribute expiration_days
-      #   The number of days until the membership expires (for expiration-based plans).
-      #   For example, 365 for a one-year access pass.
+      #   The number of days until the membership expires, for expiration-based plans
       #
-      #   @return [Integer, nil]
-      required :expiration_days, Integer, nil?: true
+      #   @return [Float, nil]
+      required :expiration_days, Float, nil?: true
 
       # @!attribute initial_price
-      #   The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
-      #   For one-time plans, this is the full price. For renewal plans, this is charged
-      #   on top of the first renewal_price.
+      #   The initial purchase price in the plan's currency
       #
       #   @return [Float]
       required :initial_price, Float
 
       # @!attribute internal_notes
-      #   Private notes visible only to the company owner and team members. Not shown to
-      #   customers. Null if no notes have been added.
+      #   Private notes visible only to authorized team members
       #
       #   @return [String, nil]
       required :internal_notes, String, nil?: true
 
       # @!attribute invoice
-      #   The invoice this plan was generated for. Null if the plan was not created for a
-      #   specific invoice.
+      #   The invoice this plan was generated for, an object with an id. Null unless the
+      #   plan was created for an invoice
       #
-      #   @return [WhopSDK::Models::PlanListResponse::Invoice, nil]
-      required :invoice, -> { WhopSDK::Models::PlanListResponse::Invoice }, nil?: true
+      #   @return [Object, nil]
+      required :invoice, WhopSDK::Internal::Type::Unknown, nil?: true
 
       # @!attribute member_count
-      #   The number of users who currently hold an active membership through this plan.
-      #   Only visible to authorized team members.
+      #   The number of active memberships on this plan. Only visible to authorized team
+      #   members
       #
-      #   @return [Integer, nil]
-      required :member_count, Integer, nil?: true
+      #   @return [Float, nil]
+      required :member_count, Float, nil?: true
 
       # @!attribute metadata
-      #   Custom key-value pairs stored on the plan. Included in webhook payloads for
-      #   payment and membership events.
+      #   Custom key-value pairs stored on the plan
       #
-      #   @return [Hash{Symbol=>Object}, nil]
-      required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+      #   @return [Object, nil]
+      required :metadata, WhopSDK::Internal::Type::Unknown, nil?: true
 
       # @!attribute payment_method_configuration
-      #   The explicit payment method configuration specifying which payment methods are
-      #   enabled or disabled for this plan. Null if the plan uses default settings.
+      #   The explicit payment method configuration for the plan, an object with enabled,
+      #   disabled and include_platform_defaults. Null if the plan uses default settings
       #
-      #   @return [WhopSDK::Models::PlanListResponse::PaymentMethodConfiguration, nil]
-      required :payment_method_configuration,
-               -> { WhopSDK::Models::PlanListResponse::PaymentMethodConfiguration },
-               nil?: true
+      #   @return [Object, nil]
+      required :payment_method_configuration, WhopSDK::Internal::Type::Unknown, nil?: true
 
       # @!attribute plan_type
       #   The billing model for this plan: 'renewal' for recurring subscriptions or
-      #   'one_time' for single payments.
+      #   'one_time' for single payments
       #
-      #   @return [Symbol, WhopSDK::Models::PlanType]
-      required :plan_type, enum: -> { WhopSDK::PlanType }
+      #   @return [String]
+      required :plan_type, String
 
       # @!attribute product
-      #   The product that this plan belongs to. Null for standalone one-off purchases not
-      #   linked to a product.
+      #   The product this plan belongs to, an object with an id and title. Null for
+      #   standalone plans
       #
-      #   @return [WhopSDK::Models::PlanListResponse::Product, nil]
-      required :product, -> { WhopSDK::Models::PlanListResponse::Product }, nil?: true
+      #   @return [Object, nil]
+      required :product, WhopSDK::Internal::Type::Unknown, nil?: true
 
       # @!attribute purchase_url
-      #   The full URL where customers can purchase this plan directly, bypassing the
-      #   product page.
+      #   The full URL where customers can purchase this plan directly
       #
       #   @return [String]
       required :purchase_url, String
 
       # @!attribute release_method
-      #   The method used to sell this plan: 'buy_now' for immediate purchase or
-      #   'waitlist' for waitlist-based access.
+      #   The method used to sell this plan, e.g. 'buy_now' or 'waitlist'
       #
-      #   @return [Symbol, WhopSDK::Models::ReleaseMethod]
-      required :release_method, enum: -> { WhopSDK::ReleaseMethod }
+      #   @return [String]
+      required :release_method, String
 
       # @!attribute renewal_price
-      #   The recurring price charged every billing_period in the plan's base_currency
-      #   (e.g., 9.99 for $9.99/period). Zero for one-time plans.
+      #   The recurring price charged every billing period in the plan's currency
       #
       #   @return [Float]
       required :renewal_price, Float
 
       # @!attribute split_pay_required_payments
-      #   The total number of installment payments required before the subscription
-      #   pauses. Null if split pay is not configured. Must be greater than 1.
+      #   The number of installment payments required before the subscription pauses
       #
-      #   @return [Integer, nil]
-      required :split_pay_required_payments, Integer, nil?: true
+      #   @return [Float, nil]
+      required :split_pay_required_payments, Float, nil?: true
 
       # @!attribute stock
       #   The number of units available for purchase. Only visible to authorized team
-      #   members. Null if the requester lacks permission.
+      #   members
       #
-      #   @return [Integer, nil]
-      required :stock, Integer, nil?: true
+      #   @return [Float, nil]
+      required :stock, Float, nil?: true
 
       # @!attribute three_ds_level
-      #   The 3D Secure behavior for a plan.
+      #   The 3D Secure behavior for this plan. Null means the plan inherits the account
+      #   default
       #
-      #   @return [Symbol, WhopSDK::Models::PlanListResponse::ThreeDSLevel, nil]
-      required :three_ds_level, enum: -> { WhopSDK::Models::PlanListResponse::ThreeDSLevel }, nil?: true
+      #   @return [String, nil]
+      required :three_ds_level, String, nil?: true
 
       # @!attribute title
-      #   The display name of the plan shown to customers on the product page and at
-      #   checkout. Maximum 30 characters. Null if no title has been set.
+      #   The display name of the plan shown to customers
       #
       #   @return [String, nil]
       required :title, String, nil?: true
 
       # @!attribute trial_period_days
-      #   The number of free trial days before the first charge on a renewal plan. Null if
-      #   no trial is configured or the current user has already used a trial for this
-      #   plan.
+      #   The number of free trial days before the first charge on a recurring plan
       #
-      #   @return [Integer, nil]
-      required :trial_period_days, Integer, nil?: true
+      #   @return [Float, nil]
+      required :trial_period_days, Float, nil?: true
 
       # @!attribute unlimited_stock
-      #   When true, the plan has unlimited stock (stock field is ignored). When false,
-      #   purchases are limited by the stock field.
+      #   Whether the plan has unlimited stock
       #
       #   @return [Boolean]
       required :unlimited_stock, WhopSDK::Internal::Type::Boolean
 
       # @!attribute updated_at
-      #   The datetime the plan was last updated.
+      #   When the plan was last updated, as an ISO 8601 timestamp
       #
-      #   @return [Time]
-      required :updated_at, Time
+      #   @return [String]
+      required :updated_at, String
 
       # @!attribute visibility
-      #   Controls whether the plan is visible to customers. When set to 'hidden', the
-      #   plan is only accessible via direct link.
+      #   Whether the plan is visible to customers or hidden from public view
       #
-      #   @return [Symbol, WhopSDK::Models::Visibility]
-      required :visibility, enum: -> { WhopSDK::Visibility }
+      #   @return [String]
+      required :visibility, String
 
       # @!method initialize(id:, adaptive_pricing_enabled:, billing_period:, company:, created_at:, currency:, description:, expiration_days:, initial_price:, internal_notes:, invoice:, member_count:, metadata:, payment_method_configuration:, plan_type:, product:, purchase_url:, release_method:, renewal_price:, split_pay_required_payments:, stock:, three_ds_level:, title:, trial_period_days:, unlimited_stock:, updated_at:, visibility:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PlanListResponse} for more details.
       #
-      #   A plan defines pricing and billing terms for a checkout. Plans can optionally
-      #   belong to a product, where they represent different pricing options such as
-      #   one-time payments, recurring subscriptions, or free trials.
+      #   @param id [String] The ID of the plan, which will look like plan\_******\*******
       #
-      #   @param id [String] The unique identifier for the plan.
+      #   @param adaptive_pricing_enabled [Boolean] Whether this plan accepts local currency payments via adaptive pricing
       #
-      #   @param adaptive_pricing_enabled [Boolean] Whether the creator has turned on adaptive pricing for this plan. Raw setting —
+      #   @param billing_period [Float, nil] The number of days between recurring charges. Null for one-time plans
       #
-      #   @param billing_period [Integer, nil] The number of days between each recurring charge. Null for one-time plans. For e
+      #   @param company [Object, nil] The company that sells this plan, an object with an id and title. Null for stand
       #
-      #   @param company [WhopSDK::Models::PlanListResponse::Company, nil] The company that sells this plan. Null for standalone invoice plans not linked t
+      #   @param created_at [String] When the plan was created, as an ISO 8601 timestamp
       #
-      #   @param created_at [Time] The datetime the plan was created.
+      #   @param currency [String] The three-letter ISO currency code all prices on this plan are denominated in
       #
-      #   @param currency [Symbol, WhopSDK::Models::Currency] The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
+      #   @param description [String, nil] A text description of the plan visible to customers
       #
-      #   @param description [String, nil] A text description of the plan visible to customers. Maximum 1000 characters. Nu
+      #   @param expiration_days [Float, nil] The number of days until the membership expires, for expiration-based plans
       #
-      #   @param expiration_days [Integer, nil] The number of days until the membership expires (for expiration-based plans). Fo
+      #   @param initial_price [Float] The initial purchase price in the plan's currency
       #
-      #   @param initial_price [Float] The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
+      #   @param internal_notes [String, nil] Private notes visible only to authorized team members
       #
-      #   @param internal_notes [String, nil] Private notes visible only to the company owner and team members. Not shown to c
+      #   @param invoice [Object, nil] The invoice this plan was generated for, an object with an id. Null unless the p
       #
-      #   @param invoice [WhopSDK::Models::PlanListResponse::Invoice, nil] The invoice this plan was generated for. Null if the plan was not created for a
+      #   @param member_count [Float, nil] The number of active memberships on this plan. Only visible to authorized team m
       #
-      #   @param member_count [Integer, nil] The number of users who currently hold an active membership through this plan. O
+      #   @param metadata [Object, nil] Custom key-value pairs stored on the plan
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the plan. Included in webhook payloads for paym
+      #   @param payment_method_configuration [Object, nil] The explicit payment method configuration for the plan, an object with enabled,
       #
-      #   @param payment_method_configuration [WhopSDK::Models::PlanListResponse::PaymentMethodConfiguration, nil] The explicit payment method configuration specifying which payment methods are e
+      #   @param plan_type [String] The billing model for this plan: 'renewal' for recurring subscriptions or 'one_t
       #
-      #   @param plan_type [Symbol, WhopSDK::Models::PlanType] The billing model for this plan: 'renewal' for recurring subscriptions or 'one_t
+      #   @param product [Object, nil] The product this plan belongs to, an object with an id and title. Null for stand
       #
-      #   @param product [WhopSDK::Models::PlanListResponse::Product, nil] The product that this plan belongs to. Null for standalone one-off purchases not
+      #   @param purchase_url [String] The full URL where customers can purchase this plan directly
       #
-      #   @param purchase_url [String] The full URL where customers can purchase this plan directly, bypassing the prod
+      #   @param release_method [String] The method used to sell this plan, e.g. 'buy_now' or 'waitlist'
       #
-      #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod] The method used to sell this plan: 'buy_now' for immediate purchase or 'waitlist
+      #   @param renewal_price [Float] The recurring price charged every billing period in the plan's currency
       #
-      #   @param renewal_price [Float] The recurring price charged every billing_period in the plan's base_currency (e.
+      #   @param split_pay_required_payments [Float, nil] The number of installment payments required before the subscription pauses
       #
-      #   @param split_pay_required_payments [Integer, nil] The total number of installment payments required before the subscription pauses
+      #   @param stock [Float, nil] The number of units available for purchase. Only visible to authorized team memb
       #
-      #   @param stock [Integer, nil] The number of units available for purchase. Only visible to authorized team memb
+      #   @param three_ds_level [String, nil] The 3D Secure behavior for this plan. Null means the plan inherits the account d
       #
-      #   @param three_ds_level [Symbol, WhopSDK::Models::PlanListResponse::ThreeDSLevel, nil] The 3D Secure behavior for a plan.
+      #   @param title [String, nil] The display name of the plan shown to customers
       #
-      #   @param title [String, nil] The display name of the plan shown to customers on the product page and at check
+      #   @param trial_period_days [Float, nil] The number of free trial days before the first charge on a recurring plan
       #
-      #   @param trial_period_days [Integer, nil] The number of free trial days before the first charge on a renewal plan. Null if
+      #   @param unlimited_stock [Boolean] Whether the plan has unlimited stock
       #
-      #   @param unlimited_stock [Boolean] When true, the plan has unlimited stock (stock field is ignored). When false, pu
+      #   @param updated_at [String] When the plan was last updated, as an ISO 8601 timestamp
       #
-      #   @param updated_at [Time] The datetime the plan was last updated.
-      #
-      #   @param visibility [Symbol, WhopSDK::Models::Visibility] Controls whether the plan is visible to customers. When set to 'hidden', the pla
-
-      # @see WhopSDK::Models::PlanListResponse#company
-      class Company < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the company.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute title
-        #   The display name of the company shown to customers.
-        #
-        #   @return [String]
-        required :title, String
-
-        # @!method initialize(id:, title:)
-        #   The company that sells this plan. Null for standalone invoice plans not linked
-        #   to a company.
-        #
-        #   @param id [String] The unique identifier for the company.
-        #
-        #   @param title [String] The display name of the company shown to customers.
-      end
-
-      # @see WhopSDK::Models::PlanListResponse#invoice
-      class Invoice < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the invoice.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!method initialize(id:)
-        #   The invoice this plan was generated for. Null if the plan was not created for a
-        #   specific invoice.
-        #
-        #   @param id [String] The unique identifier for the invoice.
-      end
-
-      # @see WhopSDK::Models::PlanListResponse#payment_method_configuration
-      class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
-        # @!attribute disabled
-        #   An array of payment method identifiers that are explicitly disabled. Only
-        #   applies if the include_platform_defaults is true.
-        #
-        #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
-        required :disabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
-
-        # @!attribute enabled
-        #   An array of payment method identifiers that are explicitly enabled. This means
-        #   these payment methods will be shown on checkout. Example use case is to only
-        #   enable a specific payment method like cashapp, or extending the platform
-        #   defaults with additional methods.
-        #
-        #   @return [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>]
-        required :enabled, -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::PaymentMethodTypes] }
-
-        # @!attribute include_platform_defaults
-        #   Whether Whop's platform default payment method enablement settings are included
-        #   in this configuration. The full list of default payment methods can be found in
-        #   the documentation at docs.whop.com/payments.
-        #
-        #   @return [Boolean]
-        required :include_platform_defaults, WhopSDK::Internal::Type::Boolean
-
-        # @!method initialize(disabled:, enabled:, include_platform_defaults:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::PlanListResponse::PaymentMethodConfiguration} for more
-        #   details.
-        #
-        #   The explicit payment method configuration specifying which payment methods are
-        #   enabled or disabled for this plan. Null if the plan uses default settings.
-        #
-        #   @param disabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly disabled. Only applie
-        #
-        #   @param enabled [Array<Symbol, WhopSDK::Models::PaymentMethodTypes>] An array of payment method identifiers that are explicitly enabled. This means t
-        #
-        #   @param include_platform_defaults [Boolean] Whether Whop's platform default payment method enablement settings are included
-      end
-
-      # @see WhopSDK::Models::PlanListResponse#product
-      class Product < WhopSDK::Internal::Type::BaseModel
-        # @!attribute id
-        #   The unique identifier for the product.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute title
-        #   The display name of the product shown to customers on the product page and in
-        #   search results.
-        #
-        #   @return [String]
-        required :title, String
-
-        # @!method initialize(id:, title:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::PlanListResponse::Product} for more details.
-        #
-        #   The product that this plan belongs to. Null for standalone one-off purchases not
-        #   linked to a product.
-        #
-        #   @param id [String] The unique identifier for the product.
-        #
-        #   @param title [String] The display name of the product shown to customers on the product page and in se
-      end
-
-      # The 3D Secure behavior for a plan.
-      #
-      # @see WhopSDK::Models::PlanListResponse#three_ds_level
-      module ThreeDSLevel
-        extend WhopSDK::Internal::Type::Enum
-
-        MANDATE_CHALLENGE = :mandate_challenge
-        FRICTIONLESS = :frictionless
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
+      #   @param visibility [String] Whether the plan is visible to customers or hidden from public view
     end
   end
 end

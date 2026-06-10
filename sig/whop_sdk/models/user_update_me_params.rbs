@@ -1,0 +1,74 @@
+module WhopSDK
+  module Models
+    type user_update_me_params =
+      {
+        account_id: String,
+        bio: String,
+        name: String,
+        profile_picture: WhopSDK::UserUpdateMeParams::ProfilePicture,
+        username: String
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class UserUpdateMeParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
+
+      attr_reader bio: String?
+
+      def bio=: (String) -> String
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader profile_picture: WhopSDK::UserUpdateMeParams::ProfilePicture?
+
+      def profile_picture=: (
+        WhopSDK::UserUpdateMeParams::ProfilePicture
+      ) -> WhopSDK::UserUpdateMeParams::ProfilePicture
+
+      attr_reader username: String?
+
+      def username=: (String) -> String
+
+      def initialize: (
+        ?account_id: String,
+        ?bio: String,
+        ?name: String,
+        ?profile_picture: WhopSDK::UserUpdateMeParams::ProfilePicture,
+        ?username: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        bio: String,
+        name: String,
+        profile_picture: WhopSDK::UserUpdateMeParams::ProfilePicture,
+        username: String,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type profile_picture = { id: String, direct_upload_id: String }
+
+      class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+        attr_reader id: String?
+
+        def id=: (String) -> String
+
+        attr_reader direct_upload_id: String?
+
+        def direct_upload_id=: (String) -> String
+
+        def initialize: (?id: String, ?direct_upload_id: String) -> void
+
+        def to_hash: -> { id: String, direct_upload_id: String }
+      end
+    end
+  end
+end

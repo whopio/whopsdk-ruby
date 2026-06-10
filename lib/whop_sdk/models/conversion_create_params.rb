@@ -38,10 +38,16 @@ module WhopSDK
       optional :currency, enum: -> { WhopSDK::Currency }, nil?: true
 
       # @!attribute custom_name
-      #   Custom event name when event_name is 'custom'.
+      #   Custom event name when event_name is 'custom'. Maximum 35 chars for this value.
       #
       #   @return [String, nil]
       optional :custom_name, String, nil?: true
+
+      # @!attribute duration
+      #   For 'leave' events: milliseconds the visitor spent on the page.
+      #
+      #   @return [Integer, nil]
+      optional :duration, Integer, nil?: true
 
       # @!attribute event_id
       #   Client-provided identifier for deduplication. Generated if omitted.
@@ -73,6 +79,25 @@ module WhopSDK
       #   @return [String, nil]
       optional :referrer_url, String, nil?: true
 
+      # @!attribute resumed
+      #   For 'page' events: true when the page was restored from the back/forward cache.
+      #
+      #   @return [Boolean, nil]
+      optional :resumed, WhopSDK::Internal::Type::Boolean, nil?: true
+
+      # @!attribute source
+      #   For 'identify' events: where the identity was captured (url, form, manual,
+      #   iframe).
+      #
+      #   @return [String, nil]
+      optional :source, String, nil?: true
+
+      # @!attribute title
+      #   For 'page' events: the document title.
+      #
+      #   @return [String, nil]
+      optional :title, String, nil?: true
+
       # @!attribute url
       #   The URL where the event occurred.
       #
@@ -91,7 +116,10 @@ module WhopSDK
       #   @return [Float, nil]
       optional :value, Float, nil?: true
 
-      # @!method initialize(company_id:, event_name:, action_source: nil, context: nil, currency: nil, custom_name: nil, event_id: nil, event_time: nil, plan_id: nil, product_id: nil, referrer_url: nil, url: nil, user: nil, value: nil, request_options: {})
+      # @!method initialize(company_id:, event_name:, action_source: nil, context: nil, currency: nil, custom_name: nil, duration: nil, event_id: nil, event_time: nil, plan_id: nil, product_id: nil, referrer_url: nil, resumed: nil, source: nil, title: nil, url: nil, user: nil, value: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::ConversionCreateParams} for more details.
+      #
       #   @param company_id [String] The company to associate with this event.
       #
       #   @param event_name [Symbol, WhopSDK::Models::ConversionCreateParams::EventName] The type of event.
@@ -102,7 +130,9 @@ module WhopSDK
       #
       #   @param currency [Symbol, WhopSDK::Models::Currency, nil] The available currencies on the platform
       #
-      #   @param custom_name [String, nil] Custom event name when event_name is 'custom'.
+      #   @param custom_name [String, nil] Custom event name when event_name is 'custom'. Maximum 35 chars for this value.
+      #
+      #   @param duration [Integer, nil] For 'leave' events: milliseconds the visitor spent on the page.
       #
       #   @param event_id [String, nil] Client-provided identifier for deduplication. Generated if omitted.
       #
@@ -113,6 +143,12 @@ module WhopSDK
       #   @param product_id [String, nil] The product associated with the event.
       #
       #   @param referrer_url [String, nil] The referring URL.
+      #
+      #   @param resumed [Boolean, nil] For 'page' events: true when the page was restored from the back/forward cache.
+      #
+      #   @param source [String, nil] For 'identify' events: where the identity was captured (url, form, manual, ifram
+      #
+      #   @param title [String, nil] For 'page' events: the document title.
       #
       #   @param url [String, nil] The URL where the event occurred.
       #
@@ -131,7 +167,10 @@ module WhopSDK
         CONTACT = :contact
         COMPLETE_REGISTRATION = :complete_registration
         SCHEDULE = :schedule
+        VIEW_CONTENT = :view_content
+        ADD_TO_CART = :add_to_cart
         CUSTOM = :custom
+        PAGE = :page
 
         # @!method self.values
         #   @return [Array<Symbol>]
@@ -174,6 +213,12 @@ module WhopSDK
         #   @return [String, nil]
         optional :ad_set_id, String, nil?: true
 
+        # @!attribute fbc
+        #   Facebook click cookie (\_fbc, format fb.1.{timestamp}.{fbclid}).
+        #
+        #   @return [String, nil]
+        optional :fbc, String, nil?: true
+
         # @!attribute fbclid
         #   Facebook click ID.
         #
@@ -186,11 +231,29 @@ module WhopSDK
         #   @return [String, nil]
         optional :fbp, String, nil?: true
 
+        # @!attribute fingerprint
+        #   Client-side device fingerprint.
+        #
+        #   @return [String, nil]
+        optional :fingerprint, String, nil?: true
+
+        # @!attribute fingerprint_confidence
+        #   Confidence score (0-1) for the device fingerprint.
+        #
+        #   @return [Float, nil]
+        optional :fingerprint_confidence, Float, nil?: true
+
         # @!attribute ga
         #   Google Analytics client ID.
         #
         #   @return [String, nil]
         optional :ga, String, nil?: true
+
+        # @!attribute gbraid
+        #   Google Ads gbraid click ID (iOS privacy).
+        #
+        #   @return [String, nil]
+        optional :gbraid, String, nil?: true
 
         # @!attribute gclid
         #   Google click ID.
@@ -210,6 +273,48 @@ module WhopSDK
         #   @return [String, nil]
         optional :ip_address, String, nil?: true
 
+        # @!attribute language
+        #   Browser language (e.g. en-US).
+        #
+        #   @return [String, nil]
+        optional :language, String, nil?: true
+
+        # @!attribute li_fat_id
+        #   LinkedIn click ID.
+        #
+        #   @return [String, nil]
+        optional :li_fat_id, String, nil?: true
+
+        # @!attribute msclkid
+        #   Microsoft Advertising (Bing) click ID.
+        #
+        #   @return [String, nil]
+        optional :msclkid, String, nil?: true
+
+        # @!attribute rdt_cid
+        #   Reddit click ID.
+        #
+        #   @return [String, nil]
+        optional :rdt_cid, String, nil?: true
+
+        # @!attribute sccid
+        #   Snapchat click ID.
+        #
+        #   @return [String, nil]
+        optional :sccid, String, nil?: true
+
+        # @!attribute screen_resolution
+        #   Screen resolution (e.g. 1920x1080).
+        #
+        #   @return [String, nil]
+        optional :screen_resolution, String, nil?: true
+
+        # @!attribute timezone
+        #   IANA timezone (e.g. America/New_York).
+        #
+        #   @return [String, nil]
+        optional :timezone, String, nil?: true
+
         # @!attribute ttclid
         #   TikTok click ID.
         #
@@ -221,6 +326,12 @@ module WhopSDK
         #
         #   @return [String, nil]
         optional :ttp, String, nil?: true
+
+        # @!attribute twclid
+        #   X (Twitter) click ID.
+        #
+        #   @return [String, nil]
+        optional :twclid, String, nil?: true
 
         # @!attribute user_agent
         #   Browser user agent string.
@@ -264,7 +375,13 @@ module WhopSDK
         #   @return [String, nil]
         optional :utm_term, String, nil?: true
 
-        # @!method initialize(ad_campaign_id: nil, ad_id: nil, ad_set_id: nil, fbclid: nil, fbp: nil, ga: nil, gclid: nil, ig_sid: nil, ip_address: nil, ttclid: nil, ttp: nil, user_agent: nil, utm_campaign: nil, utm_content: nil, utm_id: nil, utm_medium: nil, utm_source: nil, utm_term: nil)
+        # @!attribute wbraid
+        #   Google Ads wbraid click ID (iOS privacy).
+        #
+        #   @return [String, nil]
+        optional :wbraid, String, nil?: true
+
+        # @!method initialize(ad_campaign_id: nil, ad_id: nil, ad_set_id: nil, fbc: nil, fbclid: nil, fbp: nil, fingerprint: nil, fingerprint_confidence: nil, ga: nil, gbraid: nil, gclid: nil, ig_sid: nil, ip_address: nil, language: nil, li_fat_id: nil, msclkid: nil, rdt_cid: nil, sccid: nil, screen_resolution: nil, timezone: nil, ttclid: nil, ttp: nil, twclid: nil, user_agent: nil, utm_campaign: nil, utm_content: nil, utm_id: nil, utm_medium: nil, utm_source: nil, utm_term: nil, wbraid: nil)
         #   Tracking and attribution context.
         #
         #   @param ad_campaign_id [String, nil] Ad campaign ID.
@@ -273,11 +390,19 @@ module WhopSDK
         #
         #   @param ad_set_id [String, nil] Ad set ID.
         #
+        #   @param fbc [String, nil] Facebook click cookie (\_fbc, format fb.1.{timestamp}.{fbclid}).
+        #
         #   @param fbclid [String, nil] Facebook click ID.
         #
         #   @param fbp [String, nil] Facebook browser pixel ID.
         #
+        #   @param fingerprint [String, nil] Client-side device fingerprint.
+        #
+        #   @param fingerprint_confidence [Float, nil] Confidence score (0-1) for the device fingerprint.
+        #
         #   @param ga [String, nil] Google Analytics client ID.
+        #
+        #   @param gbraid [String, nil] Google Ads gbraid click ID (iOS privacy).
         #
         #   @param gclid [String, nil] Google click ID.
         #
@@ -285,9 +410,25 @@ module WhopSDK
         #
         #   @param ip_address [String, nil] IP address.
         #
+        #   @param language [String, nil] Browser language (e.g. en-US).
+        #
+        #   @param li_fat_id [String, nil] LinkedIn click ID.
+        #
+        #   @param msclkid [String, nil] Microsoft Advertising (Bing) click ID.
+        #
+        #   @param rdt_cid [String, nil] Reddit click ID.
+        #
+        #   @param sccid [String, nil] Snapchat click ID.
+        #
+        #   @param screen_resolution [String, nil] Screen resolution (e.g. 1920x1080).
+        #
+        #   @param timezone [String, nil] IANA timezone (e.g. America/New_York).
+        #
         #   @param ttclid [String, nil] TikTok click ID.
         #
         #   @param ttp [String, nil] TikTok pixel ID.
+        #
+        #   @param twclid [String, nil] X (Twitter) click ID.
         #
         #   @param user_agent [String, nil] Browser user agent string.
         #
@@ -302,6 +443,8 @@ module WhopSDK
         #   @param utm_source [String, nil] UTM source parameter.
         #
         #   @param utm_term [String, nil] UTM term parameter.
+        #
+        #   @param wbraid [String, nil] Google Ads wbraid click ID (iOS privacy).
       end
 
       class User < WhopSDK::Internal::Type::BaseModel
@@ -359,6 +502,19 @@ module WhopSDK
         #   @return [String, nil]
         optional :last_name, String, nil?: true
 
+        # @!attribute linked_anonymous_id
+        #   A second anonymous identifier to link to this user (e.g. captured across an
+        #   iframe boundary).
+        #
+        #   @return [String, nil]
+        optional :linked_anonymous_id, String, nil?: true
+
+        # @!attribute linked_wuid
+        #   A wuid from a linked frame, captured across an iframe boundary.
+        #
+        #   @return [String, nil]
+        optional :linked_wuid, String, nil?: true
+
         # @!attribute member_id
         #   The Whop member ID.
         #
@@ -407,7 +563,10 @@ module WhopSDK
         #   @return [String, nil]
         optional :username, String, nil?: true
 
-        # @!method initialize(anonymous_id: nil, birthdate: nil, city: nil, country: nil, email: nil, external_id: nil, first_name: nil, gender: nil, last_name: nil, member_id: nil, membership_id: nil, name: nil, phone: nil, postal_code: nil, state: nil, user_id: nil, username: nil)
+        # @!method initialize(anonymous_id: nil, birthdate: nil, city: nil, country: nil, email: nil, external_id: nil, first_name: nil, gender: nil, last_name: nil, linked_anonymous_id: nil, linked_wuid: nil, member_id: nil, membership_id: nil, name: nil, phone: nil, postal_code: nil, state: nil, user_id: nil, username: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::ConversionCreateParams::User} for more details.
+        #
         #   User identity and profile data.
         #
         #   @param anonymous_id [String, nil] An anonymous identifier for the user.
@@ -427,6 +586,10 @@ module WhopSDK
         #   @param gender [Symbol, WhopSDK::Models::ConversionCreateParams::User::Gender, nil] Gender
         #
         #   @param last_name [String, nil] Last name.
+        #
+        #   @param linked_anonymous_id [String, nil] A second anonymous identifier to link to this user (e.g. captured across an ifra
+        #
+        #   @param linked_wuid [String, nil] A wuid from a linked frame, captured across an iframe boundary.
         #
         #   @param member_id [String, nil] The Whop member ID.
         #

@@ -4,9 +4,9 @@ module WhopSDK
       {
         id: String,
         bio: String?,
-        created_at: Time,
+        created_at: String,
         name: String?,
-        profile_picture: WhopSDK::User::ProfilePicture?,
+        profile_picture: top?,
         username: String
       }
 
@@ -15,41 +15,31 @@ module WhopSDK
 
       attr_accessor bio: String?
 
-      attr_accessor created_at: Time
+      attr_accessor created_at: String
 
       attr_accessor name: String?
 
-      attr_accessor profile_picture: WhopSDK::User::ProfilePicture?
+      attr_accessor profile_picture: top?
 
       attr_accessor username: String
 
       def initialize: (
         id: String,
         bio: String?,
-        created_at: Time,
+        created_at: String,
         name: String?,
-        profile_picture: WhopSDK::User::ProfilePicture?,
+        profile_picture: top?,
         username: String
       ) -> void
 
       def to_hash: -> {
         id: String,
         bio: String?,
-        created_at: Time,
+        created_at: String,
         name: String?,
-        profile_picture: WhopSDK::User::ProfilePicture?,
+        profile_picture: top?,
         username: String
       }
-
-      type profile_picture = { url: String? }
-
-      class ProfilePicture < WhopSDK::Internal::Type::BaseModel
-        attr_accessor url: String?
-
-        def initialize: (url: String?) -> void
-
-        def to_hash: -> { url: String? }
-      end
     end
   end
 end

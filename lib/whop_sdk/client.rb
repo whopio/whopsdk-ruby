@@ -29,6 +29,11 @@ module WhopSDK
     # @return [String, nil]
     attr_reader :app_id
 
+    # Pins the API version (an ISO date). Defaults to the latest version the SDK was
+    # generated against.
+    # @return [String, nil]
+    attr_reader :version
+
     # Static public key (PEM or JWK JSON) used by {#verify_user_token} to
     # verify user tokens. When set, the SDK skips remote JWKS fetching.
     # Prefer {#user_token_jwks_url} (or the default) so key rotation is
@@ -65,7 +70,6 @@ module WhopSDK
     # @return [WhopSDK::Resources::Webhooks]
     attr_reader :webhooks
 
-    # Plans
     # @return [WhopSDK::Resources::Plans]
     attr_reader :plans
 
@@ -113,7 +117,6 @@ module WhopSDK
     # @return [WhopSDK::Resources::ChatChannels]
     attr_reader :chat_channels
 
-    # Users
     # @return [WhopSDK::Resources::Users]
     attr_reader :users
 
@@ -194,6 +197,9 @@ module WhopSDK
 
     # @return [WhopSDK::Resources::Wallets]
     attr_reader :wallets
+
+    # @return [WhopSDK::Resources::FinancialActivity]
+    attr_reader :financial_activity
 
     # @return [WhopSDK::Resources::Swaps]
     attr_reader :swaps
@@ -309,6 +315,9 @@ module WhopSDK
     # @param app_id [String, nil] When using the SDK in app mode pass this parameter to allow verifying user
     # tokens Defaults to `ENV["WHOP_APP_ID"]`
     #
+    # @param version [String, nil] Pins the API version (an ISO date). Defaults to the latest version the SDK was
+    # generated against. Defaults to `ENV["WHOP_API_VERSION"]`
+    #
     # @param user_token_public_key [String, nil] Static public key (PEM or JWK JSON) used to verify
     # user tokens. When set, {#verify_user_token} skips remote JWKS fetching.
     # Defaults to `ENV["WHOP_USER_TOKEN_PUBLIC_KEY"]`
@@ -330,6 +339,7 @@ module WhopSDK
       api_key: ENV["WHOP_API_KEY"],
       webhook_key: ENV["WHOP_WEBHOOK_SECRET"],
       app_id: ENV["WHOP_APP_ID"],
+      version: ENV.fetch("WHOP_API_VERSION", "2026-06-08"),
       user_token_public_key: ENV["WHOP_USER_TOKEN_PUBLIC_KEY"],
       user_token_jwks_url: ENV["WHOP_USER_TOKEN_JWKS_URL"],
       base_url: ENV["WHOP_BASE_URL"],
@@ -345,7 +355,8 @@ module WhopSDK
       end
 
       headers = {
-        "x-whop-app-id" => (@app_id = app_id&.to_s)
+        "x-whop-app-id" => (@app_id = app_id&.to_s),
+        "api-version-date" => (@version = version.to_s)
       }
       custom_headers_env = ENV["WHOP_CUSTOM_HEADERS"]
       unless custom_headers_env.nil?
@@ -412,6 +423,7 @@ module WhopSDK
       @account_links = WhopSDK::Resources::AccountLinks.new(client: self)
       @accounts = WhopSDK::Resources::Accounts.new(client: self)
       @wallets = WhopSDK::Resources::Wallets.new(client: self)
+      @financial_activity = WhopSDK::Resources::FinancialActivity.new(client: self)
       @swaps = WhopSDK::Resources::Swaps.new(client: self)
       @deposits = WhopSDK::Resources::Deposits.new(client: self)
       @setup_intents = WhopSDK::Resources::SetupIntents.new(client: self)

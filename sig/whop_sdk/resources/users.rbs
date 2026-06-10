@@ -3,34 +3,43 @@ module WhopSDK
     class Users
       def retrieve: (
         String id,
-        ?company_id: String?,
+        ?account_id: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::User
 
       def update: (
         String id,
-        ?bio: String?,
-        ?company_id: String?,
-        ?name: String?,
-        ?profile_picture: WhopSDK::UserUpdateParams::ProfilePicture?,
-        ?username: String?,
+        ?account_id: String,
+        ?bio: String,
+        ?name: String,
+        ?profile_picture: WhopSDK::UserUpdateParams::ProfilePicture,
+        ?username: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::User
 
       def list: (
-        ?after: String?,
-        ?before: String?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?query: String?,
+        ?after: String,
+        ?before: String,
+        ?first: Integer,
+        ?last: Integer,
+        ?query: String,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::UserListResponse]
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::User]
 
       def check_access: (
         String resource_id,
         id: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::UserCheckAccessResponse
+
+      def update_me: (
+        ?account_id: String,
+        ?bio: String,
+        ?name: String,
+        ?profile_picture: WhopSDK::UserUpdateMeParams::ProfilePicture,
+        ?username: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::User
 
       def initialize: (client: WhopSDK::Client) -> void
     end

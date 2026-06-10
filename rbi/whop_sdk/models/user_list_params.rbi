@@ -11,46 +11,61 @@ module WhopSDK
           T.any(WhopSDK::UserListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # Returns the elements in the list that come after the specified cursor.
+      # A cursor; returns users after this position.
       sig { returns(T.nilable(String)) }
-      attr_accessor :after
+      attr_reader :after
 
-      # Returns the elements in the list that come before the specified cursor.
+      sig { params(after: String).void }
+      attr_writer :after
+
+      # A cursor; returns users before this position.
       sig { returns(T.nilable(String)) }
-      attr_accessor :before
+      attr_reader :before
 
-      # Returns the first _n_ elements from the list.
+      sig { params(before: String).void }
+      attr_writer :before
+
+      # The number of users to return (max 50).
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :first
+      attr_reader :first
 
-      # Returns the last _n_ elements from the list.
+      sig { params(first: Integer).void }
+      attr_writer :first
+
+      # The number of users to return from the end of the range.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :last
+      attr_reader :last
 
-      # Search term to filter by name or username.
+      sig { params(last: Integer).void }
+      attr_writer :last
+
+      # A search term to filter users by name or username.
       sig { returns(T.nilable(String)) }
-      attr_accessor :query
+      attr_reader :query
+
+      sig { params(query: String).void }
+      attr_writer :query
 
       sig do
         params(
-          after: T.nilable(String),
-          before: T.nilable(String),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          query: T.nilable(String),
+          after: String,
+          before: String,
+          first: Integer,
+          last: Integer,
+          query: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # Returns the elements in the list that come after the specified cursor.
+        # A cursor; returns users after this position.
         after: nil,
-        # Returns the elements in the list that come before the specified cursor.
+        # A cursor; returns users before this position.
         before: nil,
-        # Returns the first _n_ elements from the list.
+        # The number of users to return (max 50).
         first: nil,
-        # Returns the last _n_ elements from the list.
+        # The number of users to return from the end of the range.
         last: nil,
-        # Search term to filter by name or username.
+        # A search term to filter users by name or username.
         query: nil,
         request_options: {}
       )
@@ -59,11 +74,11 @@ module WhopSDK
       sig do
         override.returns(
           {
-            after: T.nilable(String),
-            before: T.nilable(String),
-            first: T.nilable(Integer),
-            last: T.nilable(Integer),
-            query: T.nilable(String),
+            after: String,
+            before: String,
+            first: Integer,
+            last: Integer,
+            query: String,
             request_options: WhopSDK::RequestOptions
           }
         )

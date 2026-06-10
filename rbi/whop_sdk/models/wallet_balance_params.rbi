@@ -11,6 +11,7 @@ module WhopSDK
           T.any(WhopSDK::WalletBalanceParams, WhopSDK::Internal::AnyHash)
         end
 
+      # The business or user account ID whose wallet balance should be returned.
       sig { returns(String) }
       attr_accessor :account_id
 
@@ -20,7 +21,11 @@ module WhopSDK
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(account_id:, request_options: {})
+      def self.new(
+        # The business or user account ID whose wallet balance should be returned.
+        account_id:,
+        request_options: {}
+      )
       end
 
       sig do

@@ -4,15 +4,22 @@ module WhopSDK
   module Resources
     # Ad groups
     class AdGroups
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::AdGroupRetrieveParams} for more details.
+      #
       # Retrieves a single ad group by its unique identifier.
       #
       # Required permissions:
       #
       # - `ad_campaign:basic:read`
       #
-      # @overload retrieve(id, request_options: {})
+      # @overload retrieve(id, stats_from: nil, stats_to: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the ad group.
+      #
+      # @param stats_from [Time, nil] Inclusive start of the window for the ad group's metric fields (spend, impressio
+      #
+      # @param stats_to [Time, nil] Inclusive end of the window for the ad group's metric fields. Omit both statsFro
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -20,11 +27,14 @@ module WhopSDK
       #
       # @see WhopSDK::Models::AdGroupRetrieveParams
       def retrieve(id, params = {})
+        parsed, options = WhopSDK::AdGroupRetrieveParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["ad_groups/%1$s", id],
+          query: query,
           model: WhopSDK::AdGroup,
-          options: params[:request_options]
+          options: options
         )
       end
 
@@ -35,7 +45,7 @@ module WhopSDK
       # - `ad_campaign:update`
       # - `ad_campaign:basic:read`
       #
-      # @overload update(id, budget: nil, budget_type: nil, config: nil, daily_budget: nil, name: nil, platform_config: nil, status: nil, request_options: {})
+      # @overload update(id, budget: nil, budget_type: nil, config: nil, daily_budget: nil, name: nil, platform_config: nil, status: nil, title: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the ad group to update.
       #
@@ -52,6 +62,8 @@ module WhopSDK
       # @param platform_config [WhopSDK::Models::AdGroupUpdateParams::PlatformConfig, nil] Platform-specific ad group configuration.
       #
       # @param status [Symbol, WhopSDK::Models::AdGroupStatus, nil] The status of an external ad group.
+      #
+      # @param title [String, nil] Human-readable ad group title.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -79,15 +91,19 @@ module WhopSDK
       #
       # - `ad_campaign:basic:read`
       #
-      # @overload list(after: nil, before: nil, campaign_id: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, include_paused: nil, last: nil, query: nil, status: nil, request_options: {})
+      # @overload list(ad_campaign_id: nil, ad_campaign_ids: nil, after: nil, before: nil, campaign_id: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, last: nil, query: nil, stats_from: nil, stats_to: nil, status: nil, request_options: {})
+      #
+      # @param ad_campaign_id [String, nil] Filter by ad campaign. Provide exactly one of ad_campaign_id or company_id.
+      #
+      # @param ad_campaign_ids [Array<String>, nil] Only return ad groups belonging to these ad campaigns (max 100). Can be combined
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
       # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
       #
-      # @param campaign_id [String, nil] Filter by campaign. Provide exactly one of campaign_id or company_id.
+      # @param campaign_id [String, nil] Filter by campaign.
       #
-      # @param company_id [String, nil] Filter by company. Provide exactly one of campaign_id or company_id.
+      # @param company_id [String, nil] Filter by company. Provide companyId or adCampaignIds.
       #
       # @param created_after [Time, nil] Only return ad groups created after this timestamp.
       #
@@ -95,11 +111,13 @@ module WhopSDK
       #
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
-      # @param include_paused [Boolean, nil] When false, excludes paused ad groups so pagination matches the dashboard's hide
-      #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param query [String, nil] Case-insensitive substring match against the ad group name.
+      # @param query [String, nil] Case-insensitive substring match against the ad group name or ID.
+      #
+      # @param stats_from [Time, nil] Inclusive start of the window for each ad group's metric fields (spend, impressi
+      #
+      # @param stats_to [Time, nil] Inclusive end of the window for each ad group's metric fields. Omit both statsFr
       #
       # @param status [Symbol, WhopSDK::Models::AdGroupStatus, nil] The status of an external ad group.
       #

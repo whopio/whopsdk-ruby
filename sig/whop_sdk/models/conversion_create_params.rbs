@@ -113,10 +113,10 @@ module WhopSDK
         | :contact
         | :complete_registration
         | :schedule
+        | :view_content
+        | :add_to_cart
         | :custom
         | :page
-        | :leave
-        | :identify
 
       module EventName
         extend WhopSDK::Internal::Type::Enum
@@ -126,10 +126,10 @@ module WhopSDK
         CONTACT: :contact
         COMPLETE_REGISTRATION: :complete_registration
         SCHEDULE: :schedule
+        VIEW_CONTENT: :view_content
+        ADD_TO_CART: :add_to_cart
         CUSTOM: :custom
         PAGE: :page
-        LEAVE: :leave
-        IDENTIFY: :identify
 
         def self?.values: -> ::Array[WhopSDK::Models::ConversionCreateParams::event_name]
       end

@@ -38,7 +38,7 @@ module WhopSDK
       # Updates a user. A user token updates their own global profile; an API key
       # updates the user's account-specific profile override (account_id required).
       #
-      # @overload update(id, account_id: nil, bio: nil, name: nil, request_options: {})
+      # @overload update(id, account_id: nil, bio: nil, name: nil, profile_picture: nil, username: nil, request_options: {})
       #
       # @param id [String] Path param: The ID of the user, which will look like user\_******\*******, a
       # usern
@@ -48,6 +48,10 @@ module WhopSDK
       # @param bio [String] Body param
       #
       # @param name [String] Body param
+      #
+      # @param profile_picture [WhopSDK::Models::UserUpdateParams::ProfilePicture] Body param
+      #
+      # @param username [String] Body param
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -130,25 +134,38 @@ module WhopSDK
         )
       end
 
-      # Updates the authenticated user's global profile. Not available to API keys.
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::UserUpdateMeParams} for more details.
       #
-      # @overload update_me(bio: nil, name: nil, profile_picture: nil, username: nil, request_options: {})
+      # Updates the authenticated user's global profile, or their profile override for
+      # an account when account_id is given. Not available to API keys.
       #
-      # @param bio [String]
-      # @param name [String]
-      # @param profile_picture [WhopSDK::Models::UserUpdateMeParams::ProfilePicture]
-      # @param username [String]
+      # @overload update_me(account_id: nil, bio: nil, name: nil, profile_picture: nil, username: nil, request_options: {})
+      #
+      # @param account_id [String] Query param: When set, updates the authenticated user's profile override for thi
+      #
+      # @param bio [String] Body param
+      #
+      # @param name [String] Body param
+      #
+      # @param profile_picture [WhopSDK::Models::UserUpdateMeParams::ProfilePicture] Body param
+      #
+      # @param username [String] Body param
+      #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [WhopSDK::Models::User]
       #
       # @see WhopSDK::Models::UserUpdateMeParams
       def update_me(params = {})
+        query_params = [:account_id]
         parsed, options = WhopSDK::UserUpdateMeParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed.slice(*query_params))
         @client.request(
           method: :patch,
           path: "users/me",
-          body: parsed,
+          query: query,
+          body: parsed.except(*query_params),
           model: WhopSDK::User,
           options: options
         )

@@ -68,6 +68,9 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :amount
 
+        sig { returns(T.nilable(Time)) }
+        attr_accessor :created_at
+
         sig do
           returns(
             WhopSDK::Models::FinancialActivityListResponse::Data::Currency
@@ -128,6 +131,7 @@ module WhopSDK
           params(
             id: String,
             amount: String,
+            created_at: T.nilable(Time),
             currency:
               WhopSDK::Models::FinancialActivityListResponse::Data::Currency::OrHash,
             line_type: String,
@@ -154,6 +158,7 @@ module WhopSDK
           id:,
           # Signed amount in the currency's smallest precision units.
           amount:,
+          created_at:,
           currency:,
           line_type:,
           object:,
@@ -168,6 +173,7 @@ module WhopSDK
             {
               id: String,
               amount: String,
+              created_at: T.nilable(Time),
               currency:
                 WhopSDK::Models::FinancialActivityListResponse::Data::Currency,
               line_type: String,
@@ -1095,12 +1101,139 @@ module WhopSDK
           sig { returns(String) }
           attr_accessor :object
 
-          sig { params(id: String, object: String).returns(T.attached_class) }
-          def self.new(id:, object:)
+          # Withdrawal creation time as an ISO 8601 timestamp (withdrawal sources only;
+          # requires payout:withdrawal:read).
+          sig { returns(T.nilable(Time)) }
+          attr_accessor :created_at
+
+          # Estimated arrival as an ISO 8601 timestamp (withdrawal sources only; requires
+          # payout:withdrawal:read).
+          sig { returns(T.nilable(Time)) }
+          attr_accessor :estimated_arrival
+
+          # Name of the entity processing the payout (withdrawal sources only; requires
+          # payout:withdrawal:read).
+          sig { returns(T.nilable(String)) }
+          attr_accessor :payer_name
+
+          # Payout destination display info (withdrawal sources only).
+          sig do
+            returns(
+              T.nilable(
+                WhopSDK::Models::FinancialActivityListResponse::Data::Source::PayoutDestination
+              )
+            )
+          end
+          attr_reader :payout_destination
+
+          sig do
+            params(
+              payout_destination:
+                T.nilable(
+                  WhopSDK::Models::FinancialActivityListResponse::Data::Source::PayoutDestination::OrHash
+                )
+            ).void
+          end
+          attr_writer :payout_destination
+
+          # Saved payout destination nickname (withdrawal sources only).
+          sig { returns(T.nilable(String)) }
+          attr_accessor :payout_token_nickname
+
+          # Withdrawal lifecycle status (withdrawal sources only; requires
+          # payout:withdrawal:read).
+          sig { returns(T.nilable(String)) }
+          attr_accessor :status
+
+          sig do
+            params(
+              id: String,
+              object: String,
+              created_at: T.nilable(Time),
+              estimated_arrival: T.nilable(Time),
+              payer_name: T.nilable(String),
+              payout_destination:
+                T.nilable(
+                  WhopSDK::Models::FinancialActivityListResponse::Data::Source::PayoutDestination::OrHash
+                ),
+              payout_token_nickname: T.nilable(String),
+              status: T.nilable(String)
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            id:,
+            object:,
+            # Withdrawal creation time as an ISO 8601 timestamp (withdrawal sources only;
+            # requires payout:withdrawal:read).
+            created_at: nil,
+            # Estimated arrival as an ISO 8601 timestamp (withdrawal sources only; requires
+            # payout:withdrawal:read).
+            estimated_arrival: nil,
+            # Name of the entity processing the payout (withdrawal sources only; requires
+            # payout:withdrawal:read).
+            payer_name: nil,
+            # Payout destination display info (withdrawal sources only).
+            payout_destination: nil,
+            # Saved payout destination nickname (withdrawal sources only).
+            payout_token_nickname: nil,
+            # Withdrawal lifecycle status (withdrawal sources only; requires
+            # payout:withdrawal:read).
+            status: nil
+          )
           end
 
-          sig { override.returns({ id: String, object: String }) }
+          sig do
+            override.returns(
+              {
+                id: String,
+                object: String,
+                created_at: T.nilable(Time),
+                estimated_arrival: T.nilable(Time),
+                payer_name: T.nilable(String),
+                payout_destination:
+                  T.nilable(
+                    WhopSDK::Models::FinancialActivityListResponse::Data::Source::PayoutDestination
+                  ),
+                payout_token_nickname: T.nilable(String),
+                status: T.nilable(String)
+              }
+            )
+          end
           def to_hash
+          end
+
+          class PayoutDestination < WhopSDK::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  WhopSDK::Models::FinancialActivityListResponse::Data::Source::PayoutDestination,
+                  WhopSDK::Internal::AnyHash
+                )
+              end
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :icon_url
+
+            sig { returns(T.nilable(String)) }
+            attr_accessor :payer_name
+
+            # Payout destination display info (withdrawal sources only).
+            sig do
+              params(
+                icon_url: T.nilable(String),
+                payer_name: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(icon_url: nil, payer_name: nil)
+            end
+
+            sig do
+              override.returns(
+                { icon_url: T.nilable(String), payer_name: T.nilable(String) }
+              )
+            end
+            def to_hash
+            end
           end
         end
       end

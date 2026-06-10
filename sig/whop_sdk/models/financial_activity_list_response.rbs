@@ -25,6 +25,7 @@ module WhopSDK
         {
           id: String,
           amount: String,
+          created_at: Time?,
           currency: WhopSDK::Models::FinancialActivityListResponse::Data::Currency,
           line_type: String,
           object: WhopSDK::Models::FinancialActivityListResponse::Data::object,
@@ -37,6 +38,8 @@ module WhopSDK
         attr_accessor id: String
 
         attr_accessor amount: String
+
+        attr_accessor created_at: Time?
 
         attr_accessor currency: WhopSDK::Models::FinancialActivityListResponse::Data::Currency
 
@@ -53,6 +56,7 @@ module WhopSDK
         def initialize: (
           id: String,
           amount: String,
+          created_at: Time?,
           currency: WhopSDK::Models::FinancialActivityListResponse::Data::Currency,
           line_type: String,
           object: WhopSDK::Models::FinancialActivityListResponse::Data::object,
@@ -64,6 +68,7 @@ module WhopSDK
         def to_hash: -> {
           id: String,
           amount: String,
+          created_at: Time?,
           currency: WhopSDK::Models::FinancialActivityListResponse::Data::Currency,
           line_type: String,
           object: WhopSDK::Models::FinancialActivityListResponse::Data::object,
@@ -520,16 +525,68 @@ module WhopSDK
           def self?.variants: -> ::Array[WhopSDK::Models::FinancialActivityListResponse::Data::resource]
         end
 
-        type source = { id: String, object: String }
+        type source =
+          {
+            id: String,
+            object: String,
+            created_at: Time?,
+            estimated_arrival: Time?,
+            payer_name: String?,
+            payout_destination: WhopSDK::Models::FinancialActivityListResponse::Data::Source::PayoutDestination?,
+            payout_token_nickname: String?,
+            status: String?
+          }
 
         class Source < WhopSDK::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor object: String
 
-          def initialize: (id: String, object: String) -> void
+          attr_accessor created_at: Time?
 
-          def to_hash: -> { id: String, object: String }
+          attr_accessor estimated_arrival: Time?
+
+          attr_accessor payer_name: String?
+
+          attr_accessor payout_destination: WhopSDK::Models::FinancialActivityListResponse::Data::Source::PayoutDestination?
+
+          attr_accessor payout_token_nickname: String?
+
+          attr_accessor status: String?
+
+          def initialize: (
+            id: String,
+            object: String,
+            ?created_at: Time?,
+            ?estimated_arrival: Time?,
+            ?payer_name: String?,
+            ?payout_destination: WhopSDK::Models::FinancialActivityListResponse::Data::Source::PayoutDestination?,
+            ?payout_token_nickname: String?,
+            ?status: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            object: String,
+            created_at: Time?,
+            estimated_arrival: Time?,
+            payer_name: String?,
+            payout_destination: WhopSDK::Models::FinancialActivityListResponse::Data::Source::PayoutDestination?,
+            payout_token_nickname: String?,
+            status: String?
+          }
+
+          type payout_destination = { icon_url: String?, payer_name: String? }
+
+          class PayoutDestination < WhopSDK::Internal::Type::BaseModel
+            attr_accessor icon_url: String?
+
+            attr_accessor payer_name: String?
+
+            def initialize: (?icon_url: String?, ?payer_name: String?) -> void
+
+            def to_hash: -> { icon_url: String?, payer_name: String? }
+          end
         end
       end
 

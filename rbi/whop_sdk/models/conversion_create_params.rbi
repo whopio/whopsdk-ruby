@@ -42,7 +42,7 @@ module WhopSDK
       sig { returns(T.nilable(WhopSDK::Currency::OrSymbol)) }
       attr_accessor :currency
 
-      # Custom event name when event_name is 'custom'.
+      # Custom event name when event_name is 'custom'. Maximum 35 chars for this value.
       sig { returns(T.nilable(String)) }
       attr_accessor :custom_name
 
@@ -137,7 +137,7 @@ module WhopSDK
         context: nil,
         # The available currencies on the platform
         currency: nil,
-        # Custom event name when event_name is 'custom'.
+        # Custom event name when event_name is 'custom'. Maximum 35 chars for this value.
         custom_name: nil,
         # For 'leave' events: milliseconds the visitor spent on the page.
         duration: nil,
@@ -231,6 +231,16 @@ module WhopSDK
             :schedule,
             WhopSDK::ConversionCreateParams::EventName::TaggedSymbol
           )
+        VIEW_CONTENT =
+          T.let(
+            :view_content,
+            WhopSDK::ConversionCreateParams::EventName::TaggedSymbol
+          )
+        ADD_TO_CART =
+          T.let(
+            :add_to_cart,
+            WhopSDK::ConversionCreateParams::EventName::TaggedSymbol
+          )
         CUSTOM =
           T.let(
             :custom,
@@ -238,16 +248,6 @@ module WhopSDK
           )
         PAGE =
           T.let(:page, WhopSDK::ConversionCreateParams::EventName::TaggedSymbol)
-        LEAVE =
-          T.let(
-            :leave,
-            WhopSDK::ConversionCreateParams::EventName::TaggedSymbol
-          )
-        IDENTIFY =
-          T.let(
-            :identify,
-            WhopSDK::ConversionCreateParams::EventName::TaggedSymbol
-          )
 
         sig do
           override.returns(

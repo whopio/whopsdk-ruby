@@ -6,7 +6,7 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.plans.create(company_id: "biz_xxxxxxxxxxxxxx", product_id: "prod_xxxxxxxxxxxxx")
+    response = @whop.plans.create(product_id: "product_id")
 
     assert_pattern do
       response => WhopSDK::Plan
@@ -16,34 +16,34 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         adaptive_pricing_enabled: WhopSDK::Internal::Type::Boolean,
-        billing_period: Integer | nil,
+        billing_period: Float | nil,
         collect_tax: WhopSDK::Internal::Type::Boolean,
-        company: WhopSDK::Plan::Company | nil,
-        created_at: Time,
-        currency: WhopSDK::Currency,
-        custom_fields: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Plan::CustomField]),
+        company: WhopSDK::Internal::Type::Unknown | nil,
+        created_at: String,
+        currency: WhopSDK::Plan::Currency,
+        custom_fields: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Internal::Type::Unknown]),
         description: String | nil,
-        expiration_days: Integer | nil,
+        expiration_days: Float | nil,
         initial_price: Float,
         internal_notes: String | nil,
-        invoice: WhopSDK::Plan::Invoice | nil,
-        member_count: Integer | nil,
-        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        payment_method_configuration: WhopSDK::Plan::PaymentMethodConfiguration | nil,
-        plan_type: WhopSDK::PlanType,
-        product: WhopSDK::Plan::Product | nil,
+        invoice: WhopSDK::Internal::Type::Unknown | nil,
+        member_count: Float | nil,
+        metadata: WhopSDK::Internal::Type::Unknown | nil,
+        payment_method_configuration: WhopSDK::Internal::Type::Unknown | nil,
+        plan_type: WhopSDK::Plan::PlanType,
+        product: WhopSDK::Internal::Type::Unknown | nil,
         purchase_url: String,
-        release_method: WhopSDK::ReleaseMethod,
+        release_method: WhopSDK::Plan::ReleaseMethod,
         renewal_price: Float,
-        split_pay_required_payments: Integer | nil,
-        stock: Integer | nil,
-        tax_type: WhopSDK::TaxType,
+        split_pay_required_payments: Float | nil,
+        stock: Float | nil,
+        tax_type: String,
         three_ds_level: WhopSDK::Plan::ThreeDSLevel | nil,
         title: String | nil,
-        trial_period_days: Integer | nil,
+        trial_period_days: Float | nil,
         unlimited_stock: WhopSDK::Internal::Type::Boolean,
-        updated_at: Time,
-        visibility: WhopSDK::Visibility
+        updated_at: String,
+        visibility: WhopSDK::Plan::Visibility
       }
     end
   end
@@ -51,7 +51,7 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
   def test_retrieve
     skip("Mock server tests are disabled")
 
-    response = @whop.plans.retrieve("plan_xxxxxxxxxxxxx")
+    response = @whop.plans.retrieve("id")
 
     assert_pattern do
       response => WhopSDK::Plan
@@ -61,34 +61,34 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         adaptive_pricing_enabled: WhopSDK::Internal::Type::Boolean,
-        billing_period: Integer | nil,
+        billing_period: Float | nil,
         collect_tax: WhopSDK::Internal::Type::Boolean,
-        company: WhopSDK::Plan::Company | nil,
-        created_at: Time,
-        currency: WhopSDK::Currency,
-        custom_fields: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Plan::CustomField]),
+        company: WhopSDK::Internal::Type::Unknown | nil,
+        created_at: String,
+        currency: WhopSDK::Plan::Currency,
+        custom_fields: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Internal::Type::Unknown]),
         description: String | nil,
-        expiration_days: Integer | nil,
+        expiration_days: Float | nil,
         initial_price: Float,
         internal_notes: String | nil,
-        invoice: WhopSDK::Plan::Invoice | nil,
-        member_count: Integer | nil,
-        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        payment_method_configuration: WhopSDK::Plan::PaymentMethodConfiguration | nil,
-        plan_type: WhopSDK::PlanType,
-        product: WhopSDK::Plan::Product | nil,
+        invoice: WhopSDK::Internal::Type::Unknown | nil,
+        member_count: Float | nil,
+        metadata: WhopSDK::Internal::Type::Unknown | nil,
+        payment_method_configuration: WhopSDK::Internal::Type::Unknown | nil,
+        plan_type: WhopSDK::Plan::PlanType,
+        product: WhopSDK::Internal::Type::Unknown | nil,
         purchase_url: String,
-        release_method: WhopSDK::ReleaseMethod,
+        release_method: WhopSDK::Plan::ReleaseMethod,
         renewal_price: Float,
-        split_pay_required_payments: Integer | nil,
-        stock: Integer | nil,
-        tax_type: WhopSDK::TaxType,
+        split_pay_required_payments: Float | nil,
+        stock: Float | nil,
+        tax_type: String,
         three_ds_level: WhopSDK::Plan::ThreeDSLevel | nil,
         title: String | nil,
-        trial_period_days: Integer | nil,
+        trial_period_days: Float | nil,
         unlimited_stock: WhopSDK::Internal::Type::Boolean,
-        updated_at: Time,
-        visibility: WhopSDK::Visibility
+        updated_at: String,
+        visibility: WhopSDK::Plan::Visibility
       }
     end
   end
@@ -96,7 +96,7 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
   def test_update
     skip("Mock server tests are disabled")
 
-    response = @whop.plans.update("plan_xxxxxxxxxxxxx")
+    response = @whop.plans.update("id")
 
     assert_pattern do
       response => WhopSDK::Plan
@@ -106,34 +106,34 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
       response => {
         id: String,
         adaptive_pricing_enabled: WhopSDK::Internal::Type::Boolean,
-        billing_period: Integer | nil,
+        billing_period: Float | nil,
         collect_tax: WhopSDK::Internal::Type::Boolean,
-        company: WhopSDK::Plan::Company | nil,
-        created_at: Time,
-        currency: WhopSDK::Currency,
-        custom_fields: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Plan::CustomField]),
+        company: WhopSDK::Internal::Type::Unknown | nil,
+        created_at: String,
+        currency: WhopSDK::Plan::Currency,
+        custom_fields: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Internal::Type::Unknown]),
         description: String | nil,
-        expiration_days: Integer | nil,
+        expiration_days: Float | nil,
         initial_price: Float,
         internal_notes: String | nil,
-        invoice: WhopSDK::Plan::Invoice | nil,
-        member_count: Integer | nil,
-        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        payment_method_configuration: WhopSDK::Plan::PaymentMethodConfiguration | nil,
-        plan_type: WhopSDK::PlanType,
-        product: WhopSDK::Plan::Product | nil,
+        invoice: WhopSDK::Internal::Type::Unknown | nil,
+        member_count: Float | nil,
+        metadata: WhopSDK::Internal::Type::Unknown | nil,
+        payment_method_configuration: WhopSDK::Internal::Type::Unknown | nil,
+        plan_type: WhopSDK::Plan::PlanType,
+        product: WhopSDK::Internal::Type::Unknown | nil,
         purchase_url: String,
-        release_method: WhopSDK::ReleaseMethod,
+        release_method: WhopSDK::Plan::ReleaseMethod,
         renewal_price: Float,
-        split_pay_required_payments: Integer | nil,
-        stock: Integer | nil,
-        tax_type: WhopSDK::TaxType,
+        split_pay_required_payments: Float | nil,
+        stock: Float | nil,
+        tax_type: String,
         three_ds_level: WhopSDK::Plan::ThreeDSLevel | nil,
         title: String | nil,
-        trial_period_days: Integer | nil,
+        trial_period_days: Float | nil,
         unlimited_stock: WhopSDK::Internal::Type::Boolean,
-        updated_at: Time,
-        visibility: WhopSDK::Visibility
+        updated_at: String,
+        visibility: WhopSDK::Plan::Visibility
       }
     end
   end
@@ -141,7 +141,7 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
   def test_list_required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.plans.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.plans.list(company_id: "company_id")
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage
@@ -158,31 +158,31 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
       row => {
         id: String,
         adaptive_pricing_enabled: WhopSDK::Internal::Type::Boolean,
-        billing_period: Integer | nil,
-        company: WhopSDK::Models::PlanListResponse::Company | nil,
-        created_at: Time,
-        currency: WhopSDK::Currency,
+        billing_period: Float | nil,
+        company: WhopSDK::Internal::Type::Unknown | nil,
+        created_at: String,
+        currency: String,
         description: String | nil,
-        expiration_days: Integer | nil,
+        expiration_days: Float | nil,
         initial_price: Float,
         internal_notes: String | nil,
-        invoice: WhopSDK::Models::PlanListResponse::Invoice | nil,
-        member_count: Integer | nil,
-        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        payment_method_configuration: WhopSDK::Models::PlanListResponse::PaymentMethodConfiguration | nil,
-        plan_type: WhopSDK::PlanType,
-        product: WhopSDK::Models::PlanListResponse::Product | nil,
+        invoice: WhopSDK::Internal::Type::Unknown | nil,
+        member_count: Float | nil,
+        metadata: WhopSDK::Internal::Type::Unknown | nil,
+        payment_method_configuration: WhopSDK::Internal::Type::Unknown | nil,
+        plan_type: String,
+        product: WhopSDK::Internal::Type::Unknown | nil,
         purchase_url: String,
-        release_method: WhopSDK::ReleaseMethod,
+        release_method: String,
         renewal_price: Float,
-        split_pay_required_payments: Integer | nil,
-        stock: Integer | nil,
-        three_ds_level: WhopSDK::Models::PlanListResponse::ThreeDSLevel | nil,
+        split_pay_required_payments: Float | nil,
+        stock: Float | nil,
+        three_ds_level: String | nil,
         title: String | nil,
-        trial_period_days: Integer | nil,
+        trial_period_days: Float | nil,
         unlimited_stock: WhopSDK::Internal::Type::Boolean,
-        updated_at: Time,
-        visibility: WhopSDK::Visibility
+        updated_at: String,
+        visibility: String
       }
     end
   end
@@ -190,7 +190,7 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
   def test_delete
     skip("Mock server tests are disabled")
 
-    response = @whop.plans.delete("plan_xxxxxxxxxxxxx")
+    response = @whop.plans.delete("id")
 
     assert_pattern do
       response => WhopSDK::Internal::Type::Boolean

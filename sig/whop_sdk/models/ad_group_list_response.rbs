@@ -163,23 +163,18 @@ module WhopSDK
 
       type issue =
         {
+          category: WhopSDK::Models::AdGroupListResponse::Issue::category?,
           created_at: Time,
-          error_code: String?,
-          error_message: String?,
-          error_summary: String,
           resolution_status: WhopSDK::Models::AdGroupListResponse::Issue::resolution_status,
           resource_id: String?,
-          resource_type: String
+          resource_type: String,
+          subtype: String?
         }
 
       class Issue < WhopSDK::Internal::Type::BaseModel
+        attr_accessor category: WhopSDK::Models::AdGroupListResponse::Issue::category?
+
         attr_accessor created_at: Time
-
-        attr_accessor error_code: String?
-
-        attr_accessor error_message: String?
-
-        attr_accessor error_summary: String
 
         attr_accessor resolution_status: WhopSDK::Models::AdGroupListResponse::Issue::resolution_status
 
@@ -187,25 +182,42 @@ module WhopSDK
 
         attr_accessor resource_type: String
 
+        attr_accessor subtype: String?
+
         def initialize: (
+          category: WhopSDK::Models::AdGroupListResponse::Issue::category?,
           created_at: Time,
-          error_code: String?,
-          error_message: String?,
-          error_summary: String,
           resolution_status: WhopSDK::Models::AdGroupListResponse::Issue::resolution_status,
           resource_id: String?,
-          resource_type: String
+          resource_type: String,
+          subtype: String?
         ) -> void
 
         def to_hash: -> {
+          category: WhopSDK::Models::AdGroupListResponse::Issue::category?,
           created_at: Time,
-          error_code: String?,
-          error_message: String?,
-          error_summary: String,
           resolution_status: WhopSDK::Models::AdGroupListResponse::Issue::resolution_status,
           resource_id: String?,
-          resource_type: String
+          resource_type: String,
+          subtype: String?
         }
+
+        type category =
+          :policy_rejection
+          | :creative_media
+          | :audience_targeting
+          | :ad_volume_limit
+
+        module Category
+          extend WhopSDK::Internal::Type::Enum
+
+          POLICY_REJECTION: :policy_rejection
+          CREATIVE_MEDIA: :creative_media
+          AUDIENCE_TARGETING: :audience_targeting
+          AD_VOLUME_LIMIT: :ad_volume_limit
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdGroupListResponse::Issue::category]
+        end
 
         type resolution_status = :open | :resolved | :acknowledged
 

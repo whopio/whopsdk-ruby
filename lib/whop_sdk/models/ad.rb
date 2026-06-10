@@ -266,29 +266,17 @@ module WhopSDK
       end
 
       class Issue < WhopSDK::Internal::Type::BaseModel
+        # @!attribute category
+        #   Whop's canonical category that a raw platform issue is bucketed into.
+        #
+        #   @return [Symbol, WhopSDK::Models::Ad::Issue::Category, nil]
+        required :category, enum: -> { WhopSDK::Ad::Issue::Category }, nil?: true
+
         # @!attribute created_at
         #   When the issue was first reported.
         #
         #   @return [Time]
         required :created_at, Time
-
-        # @!attribute error_code
-        #   Platform-specific error code.
-        #
-        #   @return [String, nil]
-        required :error_code, String, nil?: true
-
-        # @!attribute error_message
-        #   Full error detail from the platform.
-        #
-        #   @return [String, nil]
-        required :error_message, String, nil?: true
-
-        # @!attribute error_summary
-        #   Short description of the issue.
-        #
-        #   @return [String]
-        required :error_summary, String
 
         # @!attribute resolution_status
         #   Current resolution status.
@@ -310,25 +298,45 @@ module WhopSDK
         #   @return [String]
         required :resource_type, String
 
-        # @!method initialize(created_at:, error_code:, error_message:, error_summary:, resolution_status:, resource_id:, resource_type:)
+        # @!attribute subtype
+        #   Finer-grained sub-bucket within the category (e.g. the specific Meta policy for
+        #   a rejection).
+        #
+        #   @return [String, nil]
+        required :subtype, String, nil?: true
+
+        # @!method initialize(category:, created_at:, resolution_status:, resource_id:, resource_type:, subtype:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::Ad::Issue} for more details.
         #
         #   A platform-reported issue on an ad object (rejection, policy flag, etc.).
         #
+        #   @param category [Symbol, WhopSDK::Models::Ad::Issue::Category, nil] Whop's canonical category that a raw platform issue is bucketed into.
+        #
         #   @param created_at [Time] When the issue was first reported.
-        #
-        #   @param error_code [String, nil] Platform-specific error code.
-        #
-        #   @param error_message [String, nil] Full error detail from the platform.
-        #
-        #   @param error_summary [String] Short description of the issue.
         #
         #   @param resolution_status [Symbol, WhopSDK::Models::Ad::Issue::ResolutionStatus] Current resolution status.
         #
         #   @param resource_id [String, nil] The Whop ID of the ad object this issue is on (the ad, ad group, or campaign). N
         #
         #   @param resource_type [String] The kind of ad object this issue is on: `ad`, `ad_group`, or `ad_campaign`. Pair
+        #
+        #   @param subtype [String, nil] Finer-grained sub-bucket within the category (e.g. the specific Meta policy for
+
+        # Whop's canonical category that a raw platform issue is bucketed into.
+        #
+        # @see WhopSDK::Models::Ad::Issue#category
+        module Category
+          extend WhopSDK::Internal::Type::Enum
+
+          POLICY_REJECTION = :policy_rejection
+          CREATIVE_MEDIA = :creative_media
+          AUDIENCE_TARGETING = :audience_targeting
+          AD_VOLUME_LIMIT = :ad_volume_limit
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
 
         # Current resolution status.
         #

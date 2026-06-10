@@ -53,7 +53,6 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::Webhooks) }
     attr_reader :webhooks
 
-    # Plans
     sig { returns(WhopSDK::Resources::Plans) }
     attr_reader :plans
 

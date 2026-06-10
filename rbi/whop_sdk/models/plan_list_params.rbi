@@ -15,92 +15,128 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :company_id
 
-      # Returns the elements in the list that come after the specified cursor.
+      # A cursor; returns plans after this position.
       sig { returns(T.nilable(String)) }
-      attr_accessor :after
+      attr_reader :after
 
-      # Returns the elements in the list that come before the specified cursor.
+      sig { params(after: String).void }
+      attr_writer :after
+
+      # A cursor; returns plans before this position.
       sig { returns(T.nilable(String)) }
-      attr_accessor :before
+      attr_reader :before
+
+      sig { params(before: String).void }
+      attr_writer :before
 
       # Only return plans created after this timestamp.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :created_after
+      sig { returns(T.nilable(String)) }
+      attr_reader :created_after
+
+      sig { params(created_after: String).void }
+      attr_writer :created_after
 
       # Only return plans created before this timestamp.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :created_before
+      sig { returns(T.nilable(String)) }
+      attr_reader :created_before
 
-      # The direction of the sort.
-      sig { returns(T.nilable(WhopSDK::Direction::OrSymbol)) }
-      attr_accessor :direction
+      sig { params(created_before: String).void }
+      attr_writer :created_before
 
-      # Returns the first _n_ elements from the list.
+      # The sort direction for results. Defaults to descending.
+      sig { returns(T.nilable(WhopSDK::PlanListParams::Direction::OrSymbol)) }
+      attr_reader :direction
+
+      sig do
+        params(direction: WhopSDK::PlanListParams::Direction::OrSymbol).void
+      end
+      attr_writer :direction
+
+      # The number of plans to return (default and max 100).
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :first
+      attr_reader :first
 
-      # Returns the last _n_ elements from the list.
+      sig { params(first: Integer).void }
+      attr_writer :first
+
+      # The number of plans to return from the end of the range.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :last
+      attr_reader :last
 
-      # The ways a relation of Plans can be ordered
+      sig { params(last: Integer).void }
+      attr_writer :last
+
+      # The field to sort results by. Defaults to created_at.
       sig { returns(T.nilable(WhopSDK::PlanListParams::Order::OrSymbol)) }
-      attr_accessor :order
+      attr_reader :order
+
+      sig { params(order: WhopSDK::PlanListParams::Order::OrSymbol).void }
+      attr_writer :order
 
       # Filter to only plans matching these billing types.
-      sig { returns(T.nilable(T::Array[WhopSDK::PlanType::OrSymbol])) }
-      attr_accessor :plan_types
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_reader :plan_types
+
+      sig { params(plan_types: T::Array[String]).void }
+      attr_writer :plan_types
 
       # Filter to only plans belonging to these product identifiers.
       sig { returns(T.nilable(T::Array[String])) }
-      attr_accessor :product_ids
+      attr_reader :product_ids
+
+      sig { params(product_ids: T::Array[String]).void }
+      attr_writer :product_ids
 
       # Filter to only plans matching these release methods.
-      sig { returns(T.nilable(T::Array[WhopSDK::ReleaseMethod::OrSymbol])) }
-      attr_accessor :release_methods
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_reader :release_methods
+
+      sig { params(release_methods: T::Array[String]).void }
+      attr_writer :release_methods
 
       # Filter to only plans matching these visibility states.
-      sig { returns(T.nilable(T::Array[WhopSDK::VisibilityFilter::OrSymbol])) }
-      attr_accessor :visibilities
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_reader :visibilities
+
+      sig { params(visibilities: T::Array[String]).void }
+      attr_writer :visibilities
 
       sig do
         params(
           company_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          order: T.nilable(WhopSDK::PlanListParams::Order::OrSymbol),
-          plan_types: T.nilable(T::Array[WhopSDK::PlanType::OrSymbol]),
-          product_ids: T.nilable(T::Array[String]),
-          release_methods:
-            T.nilable(T::Array[WhopSDK::ReleaseMethod::OrSymbol]),
-          visibilities:
-            T.nilable(T::Array[WhopSDK::VisibilityFilter::OrSymbol]),
+          after: String,
+          before: String,
+          created_after: String,
+          created_before: String,
+          direction: WhopSDK::PlanListParams::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
+          order: WhopSDK::PlanListParams::Order::OrSymbol,
+          plan_types: T::Array[String],
+          product_ids: T::Array[String],
+          release_methods: T::Array[String],
+          visibilities: T::Array[String],
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
         # The unique identifier of the company to list plans for.
         company_id:,
-        # Returns the elements in the list that come after the specified cursor.
+        # A cursor; returns plans after this position.
         after: nil,
-        # Returns the elements in the list that come before the specified cursor.
+        # A cursor; returns plans before this position.
         before: nil,
         # Only return plans created after this timestamp.
         created_after: nil,
         # Only return plans created before this timestamp.
         created_before: nil,
-        # The direction of the sort.
+        # The sort direction for results. Defaults to descending.
         direction: nil,
-        # Returns the first _n_ elements from the list.
+        # The number of plans to return (default and max 100).
         first: nil,
-        # Returns the last _n_ elements from the list.
+        # The number of plans to return from the end of the range.
         last: nil,
-        # The ways a relation of Plans can be ordered
+        # The field to sort results by. Defaults to created_at.
         order: nil,
         # Filter to only plans matching these billing types.
         plan_types: nil,
@@ -118,20 +154,18 @@ module WhopSDK
         override.returns(
           {
             company_id: String,
-            after: T.nilable(String),
-            before: T.nilable(String),
-            created_after: T.nilable(Time),
-            created_before: T.nilable(Time),
-            direction: T.nilable(WhopSDK::Direction::OrSymbol),
-            first: T.nilable(Integer),
-            last: T.nilable(Integer),
-            order: T.nilable(WhopSDK::PlanListParams::Order::OrSymbol),
-            plan_types: T.nilable(T::Array[WhopSDK::PlanType::OrSymbol]),
-            product_ids: T.nilable(T::Array[String]),
-            release_methods:
-              T.nilable(T::Array[WhopSDK::ReleaseMethod::OrSymbol]),
-            visibilities:
-              T.nilable(T::Array[WhopSDK::VisibilityFilter::OrSymbol]),
+            after: String,
+            before: String,
+            created_after: String,
+            created_before: String,
+            direction: WhopSDK::PlanListParams::Direction::OrSymbol,
+            first: Integer,
+            last: Integer,
+            order: WhopSDK::PlanListParams::Order::OrSymbol,
+            plan_types: T::Array[String],
+            product_ids: T::Array[String],
+            release_methods: T::Array[String],
+            visibilities: T::Array[String],
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -139,7 +173,27 @@ module WhopSDK
       def to_hash
       end
 
-      # The ways a relation of Plans can be ordered
+      # The sort direction for results. Defaults to descending.
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::PlanListParams::Direction) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        ASC = T.let(:asc, WhopSDK::PlanListParams::Direction::TaggedSymbol)
+        DESC = T.let(:desc, WhopSDK::PlanListParams::Direction::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::PlanListParams::Direction::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # The field to sort results by. Defaults to created_at.
       module Order
         extend WhopSDK::Internal::Type::Enum
 

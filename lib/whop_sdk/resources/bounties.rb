@@ -13,7 +13,7 @@ module WhopSDK
       #
       # - `bounty:create`
       #
-      # @overload create(base_unit_amount:, currency:, description:, title:, accepted_submissions_limit: nil, allowed_country_codes: nil, experience_id: nil, origin_account_id: nil, post_markdown_content: nil, post_title: nil, request_options: {})
+      # @overload create(base_unit_amount:, currency:, description:, title:, accepted_submissions_limit: nil, allowed_country_codes: nil, business_goal_type: nil, experience_id: nil, origin_account_id: nil, post_markdown_content: nil, post_title: nil, request_options: {})
       #
       # @param base_unit_amount [Float] The amount paid to each approved submission. The total bounty pool funded is thi
       #
@@ -26,6 +26,8 @@ module WhopSDK
       # @param accepted_submissions_limit [Integer, nil] The number of submissions that can be approved before the bounty closes. Default
       #
       # @param allowed_country_codes [Array<String>, nil] The ISO3166 country codes where this bounty should be visible. Empty means globa
+      #
+      # @param business_goal_type [Symbol, WhopSDK::Models::BountyCreateParams::BusinessGoalType, nil] What the poster is trying to accomplish with a workforce bounty. Used for produc
       #
       # @param experience_id [String, nil] An optional experience to scope the bounty to.
       #

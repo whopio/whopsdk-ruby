@@ -8,6 +8,7 @@ module WhopSDK
         title: String,
         accepted_submissions_limit: Integer?,
         allowed_country_codes: ::Array[String]?,
+        business_goal_type: WhopSDK::Models::BountyCreateParams::business_goal_type?,
         experience_id: String?,
         origin_account_id: String?,
         post_markdown_content: String?,
@@ -31,6 +32,8 @@ module WhopSDK
 
       attr_accessor allowed_country_codes: ::Array[String]?
 
+      attr_accessor business_goal_type: WhopSDK::Models::BountyCreateParams::business_goal_type?
+
       attr_accessor experience_id: String?
 
       attr_accessor origin_account_id: String?
@@ -46,6 +49,7 @@ module WhopSDK
         title: String,
         ?accepted_submissions_limit: Integer?,
         ?allowed_country_codes: ::Array[String]?,
+        ?business_goal_type: WhopSDK::Models::BountyCreateParams::business_goal_type?,
         ?experience_id: String?,
         ?origin_account_id: String?,
         ?post_markdown_content: String?,
@@ -60,12 +64,34 @@ module WhopSDK
         title: String,
         accepted_submissions_limit: Integer?,
         allowed_country_codes: ::Array[String]?,
+        business_goal_type: WhopSDK::Models::BountyCreateParams::business_goal_type?,
         experience_id: String?,
         origin_account_id: String?,
         post_markdown_content: String?,
         post_title: String?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type business_goal_type =
+        :clipping
+        | :post_engagement
+        | :owned_account_growth
+        | :ugc_content
+        | :local_activation
+        | :other
+
+      module BusinessGoalType
+        extend WhopSDK::Internal::Type::Enum
+
+        CLIPPING: :clipping
+        POST_ENGAGEMENT: :post_engagement
+        OWNED_ACCOUNT_GROWTH: :owned_account_growth
+        UGC_CONTENT: :ugc_content
+        LOCAL_ACTIVATION: :local_activation
+        OTHER: :other
+
+        def self?.values: -> ::Array[WhopSDK::Models::BountyCreateParams::business_goal_type]
+      end
     end
   end
 end

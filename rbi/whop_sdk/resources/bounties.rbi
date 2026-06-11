@@ -17,6 +17,8 @@ module WhopSDK
           title: String,
           accepted_submissions_limit: T.nilable(Integer),
           allowed_country_codes: T.nilable(T::Array[String]),
+          business_goal_type:
+            T.nilable(WhopSDK::BountyCreateParams::BusinessGoalType::OrSymbol),
           experience_id: T.nilable(String),
           origin_account_id: T.nilable(String),
           post_markdown_content: T.nilable(String),
@@ -40,6 +42,9 @@ module WhopSDK
         # The ISO3166 country codes where this bounty should be visible. Empty means
         # globally visible.
         allowed_country_codes: nil,
+        # What the poster is trying to accomplish with a workforce bounty. Used for
+        # product taxonomy and analytics, separate from the bounty's implementation type.
+        business_goal_type: nil,
         # An optional experience to scope the bounty to.
         experience_id: nil,
         # The user (user*\*) or company (biz*\*) tag whose balance funds this bounty pool.

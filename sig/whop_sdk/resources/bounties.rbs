@@ -8,6 +8,7 @@ module WhopSDK
         title: String,
         ?accepted_submissions_limit: Integer?,
         ?allowed_country_codes: ::Array[String]?,
+        ?business_goal_type: WhopSDK::Models::BountyCreateParams::business_goal_type?,
         ?experience_id: String?,
         ?origin_account_id: String?,
         ?post_markdown_content: String?,

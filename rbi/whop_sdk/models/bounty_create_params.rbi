@@ -38,6 +38,15 @@ module WhopSDK
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :allowed_country_codes
 
+      # What the poster is trying to accomplish with a workforce bounty. Used for
+      # product taxonomy and analytics, separate from the bounty's implementation type.
+      sig do
+        returns(
+          T.nilable(WhopSDK::BountyCreateParams::BusinessGoalType::OrSymbol)
+        )
+      end
+      attr_accessor :business_goal_type
+
       # An optional experience to scope the bounty to.
       sig { returns(T.nilable(String)) }
       attr_accessor :experience_id
@@ -66,6 +75,8 @@ module WhopSDK
           title: String,
           accepted_submissions_limit: T.nilable(Integer),
           allowed_country_codes: T.nilable(T::Array[String]),
+          business_goal_type:
+            T.nilable(WhopSDK::BountyCreateParams::BusinessGoalType::OrSymbol),
           experience_id: T.nilable(String),
           origin_account_id: T.nilable(String),
           post_markdown_content: T.nilable(String),
@@ -89,6 +100,9 @@ module WhopSDK
         # The ISO3166 country codes where this bounty should be visible. Empty means
         # globally visible.
         allowed_country_codes: nil,
+        # What the poster is trying to accomplish with a workforce bounty. Used for
+        # product taxonomy and analytics, separate from the bounty's implementation type.
+        business_goal_type: nil,
         # An optional experience to scope the bounty to.
         experience_id: nil,
         # The user (user*\*) or company (biz*\*) tag whose balance funds this bounty pool.
@@ -114,6 +128,10 @@ module WhopSDK
             title: String,
             accepted_submissions_limit: T.nilable(Integer),
             allowed_country_codes: T.nilable(T::Array[String]),
+            business_goal_type:
+              T.nilable(
+                WhopSDK::BountyCreateParams::BusinessGoalType::OrSymbol
+              ),
             experience_id: T.nilable(String),
             origin_account_id: T.nilable(String),
             post_markdown_content: T.nilable(String),
@@ -123,6 +141,59 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      # What the poster is trying to accomplish with a workforce bounty. Used for
+      # product taxonomy and analytics, separate from the bounty's implementation type.
+      module BusinessGoalType
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::BountyCreateParams::BusinessGoalType)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        CLIPPING =
+          T.let(
+            :clipping,
+            WhopSDK::BountyCreateParams::BusinessGoalType::TaggedSymbol
+          )
+        POST_ENGAGEMENT =
+          T.let(
+            :post_engagement,
+            WhopSDK::BountyCreateParams::BusinessGoalType::TaggedSymbol
+          )
+        OWNED_ACCOUNT_GROWTH =
+          T.let(
+            :owned_account_growth,
+            WhopSDK::BountyCreateParams::BusinessGoalType::TaggedSymbol
+          )
+        UGC_CONTENT =
+          T.let(
+            :ugc_content,
+            WhopSDK::BountyCreateParams::BusinessGoalType::TaggedSymbol
+          )
+        LOCAL_ACTIVATION =
+          T.let(
+            :local_activation,
+            WhopSDK::BountyCreateParams::BusinessGoalType::TaggedSymbol
+          )
+        OTHER =
+          T.let(
+            :other,
+            WhopSDK::BountyCreateParams::BusinessGoalType::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::BountyCreateParams::BusinessGoalType::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
       end
     end
   end

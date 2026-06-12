@@ -41,7 +41,8 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::AdCampaignUpdateParams} for more details.
       #
-      # Updates an ad campaign synchronously.
+      # Updates an ad campaign synchronously and returns it immediately (local-first).
+      # The platform push runs in the background; any errors surface on the dashboard.
       #
       # Required permissions:
       #

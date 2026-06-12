@@ -38,30 +38,22 @@ module WhopSDK
         )
       end
 
-      # Updates an existing ad group.
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::AdGroupUpdateParams} for more details.
+      #
+      # Updates an ad group synchronously and returns it immediately (local-first). The
+      # platform push runs in the background; any errors surface on the dashboard.
       #
       # Required permissions:
       #
       # - `ad_campaign:update`
       # - `ad_campaign:basic:read`
       #
-      # @overload update(id, budget: nil, budget_type: nil, config: nil, daily_budget: nil, name: nil, platform_config: nil, status: nil, title: nil, request_options: {})
+      # @overload update(id, budget: nil, title: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the ad group to update.
       #
-      # @param budget [Float, nil] Budget amount in dollars.
-      #
-      # @param budget_type [Symbol, WhopSDK::Models::AdBudgetType, nil] The budget type for an ad campaign or ad group.
-      #
-      # @param config [WhopSDK::Models::AdGroupUpdateParams::Config, nil] Unified ad group configuration (bidding, optimization, targeting).
-      #
-      # @param daily_budget [Float, nil] Daily budget in dollars.
-      #
-      # @param name [String, nil] Human-readable ad group name.
-      #
-      # @param platform_config [WhopSDK::Models::AdGroupUpdateParams::PlatformConfig, nil] Platform-specific ad group configuration.
-      #
-      # @param status [Symbol, WhopSDK::Models::AdGroupStatus, nil] The status of an external ad group.
+      # @param budget [Float, nil] Budget amount in dollars. The interpretation (daily or lifetime) follows the ad
       #
       # @param title [String, nil] Human-readable ad group title.
       #

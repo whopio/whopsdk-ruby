@@ -30,7 +30,8 @@ module WhopSDK
       )
       end
 
-      # Updates an existing ad group.
+      # Updates an ad group synchronously and returns it immediately (local-first). The
+      # platform push runs in the background; any errors surface on the dashboard.
       #
       # Required permissions:
       #
@@ -40,13 +41,6 @@ module WhopSDK
         params(
           id: String,
           budget: T.nilable(Float),
-          budget_type: T.nilable(WhopSDK::AdBudgetType::OrSymbol),
-          config: T.nilable(WhopSDK::AdGroupUpdateParams::Config::OrHash),
-          daily_budget: T.nilable(Float),
-          name: T.nilable(String),
-          platform_config:
-            T.nilable(WhopSDK::AdGroupUpdateParams::PlatformConfig::OrHash),
-          status: T.nilable(WhopSDK::AdGroupStatus::OrSymbol),
           title: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::AdGroup)
@@ -54,20 +48,9 @@ module WhopSDK
       def update(
         # The unique identifier of the ad group to update.
         id,
-        # Budget amount in dollars.
+        # Budget amount in dollars. The interpretation (daily or lifetime) follows the ad
+        # group's existing budget type.
         budget: nil,
-        # The budget type for an ad campaign or ad group.
-        budget_type: nil,
-        # Unified ad group configuration (bidding, optimization, targeting).
-        config: nil,
-        # Daily budget in dollars.
-        daily_budget: nil,
-        # Human-readable ad group name.
-        name: nil,
-        # Platform-specific ad group configuration.
-        platform_config: nil,
-        # The status of an external ad group.
-        status: nil,
         # Human-readable ad group title.
         title: nil,
         request_options: {}

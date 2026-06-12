@@ -11,12 +11,6 @@ module WhopSDK
       def update: (
         String id,
         ?budget: Float?,
-        ?budget_type: WhopSDK::Models::ad_budget_type?,
-        ?config: WhopSDK::AdGroupUpdateParams::Config?,
-        ?daily_budget: Float?,
-        ?name: String?,
-        ?platform_config: WhopSDK::AdGroupUpdateParams::PlatformConfig?,
-        ?status: WhopSDK::Models::ad_group_status?,
         ?title: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::AdGroup

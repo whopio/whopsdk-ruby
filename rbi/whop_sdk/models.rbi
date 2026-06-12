@@ -718,14 +718,6 @@ module WhopSDK
 
   TopupCreateParams = WhopSDK::Models::TopupCreateParams
 
-  Transfer = WhopSDK::Models::Transfer
-
-  TransferCreateParams = WhopSDK::Models::TransferCreateParams
-
-  TransferListParams = WhopSDK::Models::TransferListParams
-
-  TransferRetrieveParams = WhopSDK::Models::TransferRetrieveParams
-
   UnwrapWebhookEvent = WhopSDK::Models::UnwrapWebhookEvent
 
   UploadStatus = WhopSDK::Models::UploadStatus

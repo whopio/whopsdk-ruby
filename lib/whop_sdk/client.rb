@@ -64,7 +64,6 @@ module WhopSDK
     # @return [WhopSDK::Resources::ForumPosts]
     attr_reader :forum_posts
 
-    # Transfers
     # @return [WhopSDK::Resources::Transfers]
     attr_reader :transfers
 

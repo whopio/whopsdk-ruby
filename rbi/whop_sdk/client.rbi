@@ -59,7 +59,6 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::ForumPosts) }
     attr_reader :forum_posts
 
-    # Transfers
     sig { returns(WhopSDK::Resources::Transfers) }
     attr_reader :transfers
 

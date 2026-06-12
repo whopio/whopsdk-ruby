@@ -44,6 +44,10 @@ module WhopSDK
       sig { returns(T.nilable(Time)) }
       attr_accessor :created_before
 
+      # The direction of the sort.
+      sig { returns(T.nilable(WhopSDK::Direction::OrSymbol)) }
+      attr_accessor :direction
+
       # Returns the first _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :first
@@ -51,6 +55,11 @@ module WhopSDK
       # Returns the last _n_ elements from the list.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
+
+      # The fields the ads dashboard lists (campaigns, ad sets) can be ordered by. Stat
+      # columns are computed over the provided stats date range.
+      sig { returns(T.nilable(WhopSDK::AdGroupListParams::Order::OrSymbol)) }
+      attr_accessor :order
 
       # Case-insensitive substring match against the ad group name or ID.
       sig { returns(T.nilable(String)) }
@@ -80,8 +89,10 @@ module WhopSDK
           company_id: T.nilable(String),
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
+          direction: T.nilable(WhopSDK::Direction::OrSymbol),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
+          order: T.nilable(WhopSDK::AdGroupListParams::Order::OrSymbol),
           query: T.nilable(String),
           stats_from: T.nilable(Time),
           stats_to: T.nilable(Time),
@@ -107,10 +118,15 @@ module WhopSDK
         created_after: nil,
         # Only return ad groups created before this timestamp.
         created_before: nil,
+        # The direction of the sort.
+        direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
+        # The fields the ads dashboard lists (campaigns, ad sets) can be ordered by. Stat
+        # columns are computed over the provided stats date range.
+        order: nil,
         # Case-insensitive substring match against the ad group name or ID.
         query: nil,
         # Inclusive start of the window for each ad group's metric fields (spend,
@@ -136,8 +152,10 @@ module WhopSDK
             company_id: T.nilable(String),
             created_after: T.nilable(Time),
             created_before: T.nilable(Time),
+            direction: T.nilable(WhopSDK::Direction::OrSymbol),
             first: T.nilable(Integer),
             last: T.nilable(Integer),
+            order: T.nilable(WhopSDK::AdGroupListParams::Order::OrSymbol),
             query: T.nilable(String),
             stats_from: T.nilable(Time),
             stats_to: T.nilable(Time),
@@ -147,6 +165,63 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      # The fields the ads dashboard lists (campaigns, ad sets) can be ordered by. Stat
+      # columns are computed over the provided stats date range.
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::AdGroupListParams::Order) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        CREATED_AT =
+          T.let(:created_at, WhopSDK::AdGroupListParams::Order::TaggedSymbol)
+        SPEND = T.let(:spend, WhopSDK::AdGroupListParams::Order::TaggedSymbol)
+        IMPRESSIONS =
+          T.let(:impressions, WhopSDK::AdGroupListParams::Order::TaggedSymbol)
+        CLICKS = T.let(:clicks, WhopSDK::AdGroupListParams::Order::TaggedSymbol)
+        REACH = T.let(:reach, WhopSDK::AdGroupListParams::Order::TaggedSymbol)
+        UNIQUE_CLICKS =
+          T.let(:unique_clicks, WhopSDK::AdGroupListParams::Order::TaggedSymbol)
+        RESULTS =
+          T.let(:results, WhopSDK::AdGroupListParams::Order::TaggedSymbol)
+        CLICK_THROUGH_RATE =
+          T.let(
+            :click_through_rate,
+            WhopSDK::AdGroupListParams::Order::TaggedSymbol
+          )
+        COST_PER_CLICK =
+          T.let(
+            :cost_per_click,
+            WhopSDK::AdGroupListParams::Order::TaggedSymbol
+          )
+        COST_PER_MILLE =
+          T.let(
+            :cost_per_mille,
+            WhopSDK::AdGroupListParams::Order::TaggedSymbol
+          )
+        COST_PER_RESULT =
+          T.let(
+            :cost_per_result,
+            WhopSDK::AdGroupListParams::Order::TaggedSymbol
+          )
+        FREQUENCY =
+          T.let(:frequency, WhopSDK::AdGroupListParams::Order::TaggedSymbol)
+        RETURN_ON_AD_SPEND =
+          T.let(
+            :return_on_ad_spend,
+            WhopSDK::AdGroupListParams::Order::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::AdGroupListParams::Order::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
     end
   end

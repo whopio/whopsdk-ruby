@@ -79,7 +79,7 @@ module WhopSDK
       #
       # - `ad_campaign:basic:read`
       #
-      # @overload list(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, last: nil, query: nil, stats_from: nil, stats_to: nil, status: nil, request_options: {})
+      # @overload list(after: nil, before: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, query: nil, stats_from: nil, stats_to: nil, status: nil, request_options: {})
       #
       # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
       #
@@ -91,9 +91,13 @@ module WhopSDK
       #
       # @param created_before [Time, nil] Only return ad campaigns created before this timestamp.
       #
+      # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      #
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #
+      # @param order [Symbol, WhopSDK::Models::AdCampaignListParams::Order, nil] The fields the ads dashboard lists (campaigns, ad sets) can be ordered by. Stat
       #
       # @param query [String, nil] Case-insensitive substring match against the campaign title or ID.
       #

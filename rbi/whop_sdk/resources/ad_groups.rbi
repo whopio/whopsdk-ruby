@@ -90,8 +90,10 @@ module WhopSDK
           company_id: T.nilable(String),
           created_after: T.nilable(Time),
           created_before: T.nilable(Time),
+          direction: T.nilable(WhopSDK::Direction::OrSymbol),
           first: T.nilable(Integer),
           last: T.nilable(Integer),
+          order: T.nilable(WhopSDK::AdGroupListParams::Order::OrSymbol),
           query: T.nilable(String),
           stats_from: T.nilable(Time),
           stats_to: T.nilable(Time),
@@ -119,10 +121,15 @@ module WhopSDK
         created_after: nil,
         # Only return ad groups created before this timestamp.
         created_before: nil,
+        # The direction of the sort.
+        direction: nil,
         # Returns the first _n_ elements from the list.
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
+        # The fields the ads dashboard lists (campaigns, ad sets) can be ordered by. Stat
+        # columns are computed over the provided stats date range.
+        order: nil,
         # Case-insensitive substring match against the ad group name or ID.
         query: nil,
         # Inclusive start of the window for each ad group's metric fields (spend,

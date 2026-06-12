@@ -68,11 +68,12 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :last
 
-      # The fields ad resources can be ordered by.
+      # The fields the ads dashboard lists (campaigns, ad sets) can be ordered by. Stat
+      # columns are computed over the provided stats date range.
       sig { returns(T.nilable(WhopSDK::AdListParams::Order::OrSymbol)) }
       attr_accessor :order
 
-      # Columns that the listAds query can sort by. Deprecated — use AdOrder.
+      # Columns that the listAds query can sort by. Deprecated — use AdStatOrder.
       sig { returns(T.nilable(WhopSDK::AdListParams::OrderBy::OrSymbol)) }
       attr_accessor :order_by
 
@@ -156,9 +157,10 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The fields ad resources can be ordered by.
+        # The fields the ads dashboard lists (campaigns, ad sets) can be ordered by. Stat
+        # columns are computed over the provided stats date range.
         order: nil,
-        # Columns that the listAds query can sort by. Deprecated — use AdOrder.
+        # Columns that the listAds query can sort by. Deprecated — use AdStatOrder.
         order_by: nil,
         # The direction of the sort.
         order_direction: nil,
@@ -207,7 +209,8 @@ module WhopSDK
       def to_hash
       end
 
-      # The fields ad resources can be ordered by.
+      # The fields the ads dashboard lists (campaigns, ad sets) can be ordered by. Stat
+      # columns are computed over the provided stats date range.
       module Order
         extend WhopSDK::Internal::Type::Enum
 
@@ -218,6 +221,23 @@ module WhopSDK
         CREATED_AT =
           T.let(:created_at, WhopSDK::AdListParams::Order::TaggedSymbol)
         SPEND = T.let(:spend, WhopSDK::AdListParams::Order::TaggedSymbol)
+        IMPRESSIONS =
+          T.let(:impressions, WhopSDK::AdListParams::Order::TaggedSymbol)
+        CLICKS = T.let(:clicks, WhopSDK::AdListParams::Order::TaggedSymbol)
+        REACH = T.let(:reach, WhopSDK::AdListParams::Order::TaggedSymbol)
+        UNIQUE_CLICKS =
+          T.let(:unique_clicks, WhopSDK::AdListParams::Order::TaggedSymbol)
+        RESULTS = T.let(:results, WhopSDK::AdListParams::Order::TaggedSymbol)
+        CLICK_THROUGH_RATE =
+          T.let(:click_through_rate, WhopSDK::AdListParams::Order::TaggedSymbol)
+        COST_PER_CLICK =
+          T.let(:cost_per_click, WhopSDK::AdListParams::Order::TaggedSymbol)
+        COST_PER_MILLE =
+          T.let(:cost_per_mille, WhopSDK::AdListParams::Order::TaggedSymbol)
+        COST_PER_RESULT =
+          T.let(:cost_per_result, WhopSDK::AdListParams::Order::TaggedSymbol)
+        FREQUENCY =
+          T.let(:frequency, WhopSDK::AdListParams::Order::TaggedSymbol)
         RETURN_ON_AD_SPEND =
           T.let(:return_on_ad_spend, WhopSDK::AdListParams::Order::TaggedSymbol)
 
@@ -228,7 +248,7 @@ module WhopSDK
         end
       end
 
-      # Columns that the listAds query can sort by. Deprecated — use AdOrder.
+      # Columns that the listAds query can sort by. Deprecated — use AdStatOrder.
       module OrderBy
         extend WhopSDK::Internal::Type::Enum
 

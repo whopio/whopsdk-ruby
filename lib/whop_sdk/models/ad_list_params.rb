@@ -91,13 +91,14 @@ module WhopSDK
       optional :last, Integer, nil?: true
 
       # @!attribute order
-      #   The fields ad resources can be ordered by.
+      #   The fields the ads dashboard lists (campaigns, ad sets) can be ordered by. Stat
+      #   columns are computed over the provided stats date range.
       #
       #   @return [Symbol, WhopSDK::Models::AdListParams::Order, nil]
       optional :order, enum: -> { WhopSDK::AdListParams::Order }, nil?: true
 
       # @!attribute order_by
-      #   Columns that the listAds query can sort by. Deprecated — use AdOrder.
+      #   Columns that the listAds query can sort by. Deprecated — use AdStatOrder.
       #
       #   @return [Symbol, WhopSDK::Models::AdListParams::OrderBy, nil]
       optional :order_by, enum: -> { WhopSDK::AdListParams::OrderBy }, nil?: true
@@ -165,9 +166,9 @@ module WhopSDK
       #
       #   @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      #   @param order [Symbol, WhopSDK::Models::AdListParams::Order, nil] The fields ad resources can be ordered by.
+      #   @param order [Symbol, WhopSDK::Models::AdListParams::Order, nil] The fields the ads dashboard lists (campaigns, ad sets) can be ordered by. Stat
       #
-      #   @param order_by [Symbol, WhopSDK::Models::AdListParams::OrderBy, nil] Columns that the listAds query can sort by. Deprecated — use AdOrder.
+      #   @param order_by [Symbol, WhopSDK::Models::AdListParams::OrderBy, nil] Columns that the listAds query can sort by. Deprecated — use AdStatOrder.
       #
       #   @param order_direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #
@@ -181,19 +182,30 @@ module WhopSDK
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      # The fields ad resources can be ordered by.
+      # The fields the ads dashboard lists (campaigns, ad sets) can be ordered by. Stat
+      # columns are computed over the provided stats date range.
       module Order
         extend WhopSDK::Internal::Type::Enum
 
         CREATED_AT = :created_at
         SPEND = :spend
+        IMPRESSIONS = :impressions
+        CLICKS = :clicks
+        REACH = :reach
+        UNIQUE_CLICKS = :unique_clicks
+        RESULTS = :results
+        CLICK_THROUGH_RATE = :click_through_rate
+        COST_PER_CLICK = :cost_per_click
+        COST_PER_MILLE = :cost_per_mille
+        COST_PER_RESULT = :cost_per_result
+        FREQUENCY = :frequency
         RETURN_ON_AD_SPEND = :return_on_ad_spend
 
         # @!method self.values
         #   @return [Array<Symbol>]
       end
 
-      # Columns that the listAds query can sort by. Deprecated — use AdOrder.
+      # Columns that the listAds query can sort by. Deprecated — use AdStatOrder.
       module OrderBy
         extend WhopSDK::Internal::Type::Enum
 

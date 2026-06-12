@@ -91,7 +91,7 @@ module WhopSDK
       #
       # - `ad_campaign:basic:read`
       #
-      # @overload list(ad_campaign_id: nil, ad_campaign_ids: nil, after: nil, before: nil, campaign_id: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, last: nil, query: nil, stats_from: nil, stats_to: nil, status: nil, request_options: {})
+      # @overload list(ad_campaign_id: nil, ad_campaign_ids: nil, after: nil, before: nil, campaign_id: nil, company_id: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, query: nil, stats_from: nil, stats_to: nil, status: nil, request_options: {})
       #
       # @param ad_campaign_id [String, nil] Filter by ad campaign. Provide exactly one of ad_campaign_id or company_id.
       #
@@ -109,9 +109,13 @@ module WhopSDK
       #
       # @param created_before [Time, nil] Only return ad groups created before this timestamp.
       #
+      # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      #
       # @param first [Integer, nil] Returns the first _n_ elements from the list.
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #
+      # @param order [Symbol, WhopSDK::Models::AdGroupListParams::Order, nil] The fields the ads dashboard lists (campaigns, ad sets) can be ordered by. Stat
       #
       # @param query [String, nil] Case-insensitive substring match against the ad group name or ID.
       #

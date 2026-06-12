@@ -94,9 +94,10 @@ module WhopSDK
         first: nil,
         # Returns the last _n_ elements from the list.
         last: nil,
-        # The fields ad resources can be ordered by.
+        # The fields the ads dashboard lists (campaigns, ad sets) can be ordered by. Stat
+        # columns are computed over the provided stats date range.
         order: nil,
-        # Columns that the listAds query can sort by. Deprecated — use AdOrder.
+        # Columns that the listAds query can sort by. Deprecated — use AdStatOrder.
         order_by: nil,
         # The direction of the sort.
         order_direction: nil,

@@ -7,8 +7,10 @@ module WhopSDK
         company_id: String?,
         created_after: Time?,
         created_before: Time?,
+        direction: WhopSDK::Models::direction?,
         first: Integer?,
         last: Integer?,
+        order: WhopSDK::Models::AdCampaignListParams::order?,
         query: String?,
         stats_from: Time?,
         stats_to: Time?,
@@ -30,9 +32,13 @@ module WhopSDK
 
       attr_accessor created_before: Time?
 
+      attr_accessor direction: WhopSDK::Models::direction?
+
       attr_accessor first: Integer?
 
       attr_accessor last: Integer?
+
+      attr_accessor order: WhopSDK::Models::AdCampaignListParams::order?
 
       attr_accessor query: String?
 
@@ -48,8 +54,10 @@ module WhopSDK
         ?company_id: String?,
         ?created_after: Time?,
         ?created_before: Time?,
+        ?direction: WhopSDK::Models::direction?,
         ?first: Integer?,
         ?last: Integer?,
+        ?order: WhopSDK::Models::AdCampaignListParams::order?,
         ?query: String?,
         ?stats_from: Time?,
         ?stats_to: Time?,
@@ -63,14 +71,51 @@ module WhopSDK
         company_id: String?,
         created_after: Time?,
         created_before: Time?,
+        direction: WhopSDK::Models::direction?,
         first: Integer?,
         last: Integer?,
+        order: WhopSDK::Models::AdCampaignListParams::order?,
         query: String?,
         stats_from: Time?,
         stats_to: Time?,
         status: WhopSDK::Models::ad_campaign_status?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type order =
+        :created_at
+        | :spend
+        | :impressions
+        | :clicks
+        | :reach
+        | :unique_clicks
+        | :results
+        | :click_through_rate
+        | :cost_per_click
+        | :cost_per_mille
+        | :cost_per_result
+        | :frequency
+        | :return_on_ad_spend
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        CREATED_AT: :created_at
+        SPEND: :spend
+        IMPRESSIONS: :impressions
+        CLICKS: :clicks
+        REACH: :reach
+        UNIQUE_CLICKS: :unique_clicks
+        RESULTS: :results
+        CLICK_THROUGH_RATE: :click_through_rate
+        COST_PER_CLICK: :cost_per_click
+        COST_PER_MILLE: :cost_per_mille
+        COST_PER_RESULT: :cost_per_result
+        FREQUENCY: :frequency
+        RETURN_ON_AD_SPEND: :return_on_ad_spend
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdCampaignListParams::order]
+      end
     end
   end
 end

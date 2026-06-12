@@ -75,9 +75,9 @@ module WhopSDK
       #
       # @param last [Integer, nil] Returns the last _n_ elements from the list.
       #
-      # @param order [Symbol, WhopSDK::Models::AdListParams::Order, nil] The fields ad resources can be ordered by.
+      # @param order [Symbol, WhopSDK::Models::AdListParams::Order, nil] The fields the ads dashboard lists (campaigns, ad sets) can be ordered by. Stat
       #
-      # @param order_by [Symbol, WhopSDK::Models::AdListParams::OrderBy, nil] Columns that the listAds query can sort by. Deprecated — use AdOrder.
+      # @param order_by [Symbol, WhopSDK::Models::AdListParams::OrderBy, nil] Columns that the listAds query can sort by. Deprecated — use AdStatOrder.
       #
       # @param order_direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
       #

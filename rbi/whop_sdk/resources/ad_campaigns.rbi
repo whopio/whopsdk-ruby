@@ -40,6 +40,7 @@ module WhopSDK
         params(
           id: String,
           budget: T.nilable(Float),
+          desired_cpr: T.nilable(Float),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::AdCampaign)
       end
@@ -49,6 +50,8 @@ module WhopSDK
         # The campaign budget in dollars. The interpretation (daily or lifetime) follows
         # the campaign's existing budget type.
         budget: nil,
+        # The advertiser's desired cost per result in dollars.
+        desired_cpr: nil,
         request_options: {}
       )
       end

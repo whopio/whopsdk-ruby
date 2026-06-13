@@ -437,6 +437,8 @@ module WhopSDK
 
   class LeadUpdateParams = WhopSDK::Models::LeadUpdateParams
 
+  class LedgerAccountFundsAvailableWebhookEvent = WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent
+
   class LedgerAccountRetrieveParams = WhopSDK::Models::LedgerAccountRetrieveParams
 
   class Lesson = WhopSDK::Models::Lesson
@@ -472,6 +474,8 @@ module WhopSDK
   class MembershipRetrieveParams = WhopSDK::Models::MembershipRetrieveParams
 
   module MembershipStatus = WhopSDK::Models::MembershipStatus
+
+  class MembershipTrialEndingSoonWebhookEvent = WhopSDK::Models::MembershipTrialEndingSoonWebhookEvent
 
   class MembershipUncancelParams = WhopSDK::Models::MembershipUncancelParams
 

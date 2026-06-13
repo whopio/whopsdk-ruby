@@ -19,13 +19,21 @@ module WhopSDK
       #   @return [Float, nil]
       optional :budget, Float, nil?: true
 
-      # @!method initialize(id:, budget: nil, request_options: {})
+      # @!attribute desired_cpr
+      #   The advertiser's desired cost per result in dollars.
+      #
+      #   @return [Float, nil]
+      optional :desired_cpr, Float, nil?: true
+
+      # @!method initialize(id:, budget: nil, desired_cpr: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AdCampaignUpdateParams} for more details.
       #
       #   @param id [String]
       #
       #   @param budget [Float, nil] The campaign budget in dollars. The interpretation (daily or lifetime) follows t
+      #
+      #   @param desired_cpr [Float, nil] The advertiser's desired cost per result in dollars.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

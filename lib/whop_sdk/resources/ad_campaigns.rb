@@ -48,11 +48,13 @@ module WhopSDK
       #
       # - `ad_campaign:update`
       #
-      # @overload update(id, budget: nil, request_options: {})
+      # @overload update(id, budget: nil, desired_cpr: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the ad campaign to update.
       #
       # @param budget [Float, nil] The campaign budget in dollars. The interpretation (daily or lifetime) follows t
+      #
+      # @param desired_cpr [Float, nil] The advertiser's desired cost per result in dollars.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

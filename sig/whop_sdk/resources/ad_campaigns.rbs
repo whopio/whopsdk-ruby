@@ -11,6 +11,7 @@ module WhopSDK
       def update: (
         String id,
         ?budget: Float?,
+        ?desired_cpr: Float?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::AdCampaign
 

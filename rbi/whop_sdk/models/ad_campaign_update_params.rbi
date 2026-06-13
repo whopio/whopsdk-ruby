@@ -19,10 +19,15 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :budget
 
+      # The advertiser's desired cost per result in dollars.
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :desired_cpr
+
       sig do
         params(
           id: String,
           budget: T.nilable(Float),
+          desired_cpr: T.nilable(Float),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -31,6 +36,8 @@ module WhopSDK
         # The campaign budget in dollars. The interpretation (daily or lifetime) follows
         # the campaign's existing budget type.
         budget: nil,
+        # The advertiser's desired cost per result in dollars.
+        desired_cpr: nil,
         request_options: {}
       )
       end
@@ -40,6 +47,7 @@ module WhopSDK
           {
             id: String,
             budget: T.nilable(Float),
+            desired_cpr: T.nilable(Float),
             request_options: WhopSDK::RequestOptions
           }
         )

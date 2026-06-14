@@ -55,7 +55,7 @@ module WhopSDK
       #
       # @param budget [Float, nil] Budget amount in dollars. The interpretation (daily or lifetime) follows the ad
       #
-      # @param title [String, nil] Human-readable ad group title.
+      # @param title [String, nil] Human-readable ad group title. Max 255 characters.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

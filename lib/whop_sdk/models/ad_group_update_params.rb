@@ -20,7 +20,7 @@ module WhopSDK
       optional :budget, Float, nil?: true
 
       # @!attribute title
-      #   Human-readable ad group title.
+      #   Human-readable ad group title. Max 255 characters.
       #
       #   @return [String, nil]
       optional :title, String, nil?: true
@@ -33,7 +33,7 @@ module WhopSDK
       #
       #   @param budget [Float, nil] Budget amount in dollars. The interpretation (daily or lifetime) follows the ad
       #
-      #   @param title [String, nil] Human-readable ad group title.
+      #   @param title [String, nil] Human-readable ad group title. Max 255 characters.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

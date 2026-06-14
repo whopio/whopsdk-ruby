@@ -19,7 +19,7 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :budget
 
-      # Human-readable ad group title.
+      # Human-readable ad group title. Max 255 characters.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
@@ -36,7 +36,7 @@ module WhopSDK
         # Budget amount in dollars. The interpretation (daily or lifetime) follows the ad
         # group's existing budget type.
         budget: nil,
-        # Human-readable ad group title.
+        # Human-readable ad group title. Max 255 characters.
         title: nil,
         request_options: {}
       )

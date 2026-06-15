@@ -32,7 +32,8 @@ module WhopSDK
       attr_accessor :member_count
 
       # Custom key-value pairs stored on the product. Included in webhook payloads for
-      # payment and membership events.
+      # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+      # string value.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
@@ -96,7 +97,8 @@ module WhopSDK
         # Returns 0 if the company has disabled public member counts.
         member_count:,
         # Custom key-value pairs stored on the product. Included in webhook payloads for
-        # payment and membership events.
+        # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+        # string value.
         metadata:,
         # The total number of published customer reviews for this product's company.
         published_reviews_count:,

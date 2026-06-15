@@ -1241,7 +1241,8 @@ module WhopSDK
         attr_accessor :internal_notes
 
         # Custom key-value pairs stored on the plan. Included in webhook payloads for
-        # payment and membership events.
+        # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+        # string value.
         sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
         attr_accessor :metadata
 
@@ -1259,7 +1260,8 @@ module WhopSDK
           # A personal description or notes section for the business.
           internal_notes:,
           # Custom key-value pairs stored on the plan. Included in webhook payloads for
-          # payment and membership events.
+          # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+          # string value.
           metadata:
         )
         end
@@ -1288,7 +1290,8 @@ module WhopSDK
         attr_accessor :id
 
         # Custom key-value pairs stored on the product. Included in webhook payloads for
-        # payment and membership events.
+        # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+        # string value.
         sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
         attr_accessor :metadata
 
@@ -1315,7 +1318,8 @@ module WhopSDK
           # The unique identifier for the product.
           id:,
           # Custom key-value pairs stored on the product. Included in webhook payloads for
-          # payment and membership events.
+          # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+          # string value.
           metadata:,
           # The URL slug used in the product's public link (e.g., 'my-product' in
           # whop.com/company/my-product).

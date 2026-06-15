@@ -875,7 +875,8 @@ module WhopSDK
 
         # @!attribute metadata
         #   Custom key-value pairs stored on the plan. Included in webhook payloads for
-        #   payment and membership events.
+        #   payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+        #   string value.
         #
         #   @return [Hash{Symbol=>Object}, nil]
         required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
@@ -903,7 +904,8 @@ module WhopSDK
 
         # @!attribute metadata
         #   Custom key-value pairs stored on the product. Included in webhook payloads for
-        #   payment and membership events.
+        #   payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+        #   string value.
         #
         #   @return [Hash{Symbol=>Object}, nil]
         required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true

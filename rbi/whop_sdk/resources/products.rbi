@@ -72,8 +72,8 @@ module WhopSDK
         # The different statuses of the global affiliate program for a product.
         member_affiliate_status: nil,
         # Custom key-value pairs to store on the product. Included in webhook payloads for
-        # payment and membership events. Max 50 keys, 500 chars per key, 5000 chars per
-        # value.
+        # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+        # string value.
         metadata: nil,
         # Configuration for an automatically generated plan to attach to this product.
         plan_options: nil,
@@ -178,8 +178,8 @@ module WhopSDK
         # The different statuses of the global affiliate program for a product.
         member_affiliate_status: nil,
         # Custom key-value pairs to store on the product. Included in webhook payloads for
-        # payment and membership events. Max 50 keys, 500 chars per key, 5000 chars per
-        # value.
+        # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+        # string value.
         metadata: nil,
         # The unique identifier of the tax classification code to apply to this product.
         product_tax_code_id: nil,

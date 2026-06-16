@@ -35,6 +35,8 @@ module WhopSDK
       RESOLUTION_CENTER_CASE_CREATED = :"resolution_center_case.created"
       RESOLUTION_CENTER_CASE_UPDATED = :"resolution_center_case.updated"
       RESOLUTION_CENTER_CASE_DECIDED = :"resolution_center_case.decided"
+      CHAT_MESSAGE_CREATED = :"chat.message.created"
+      CHAT_REACTION_CREATED = :"chat.reaction.created"
       PAYMENT_CREATED = :"payment.created"
       PAYMENT_SUCCEEDED = :"payment.succeeded"
       PAYMENT_FAILED = :"payment.failed"

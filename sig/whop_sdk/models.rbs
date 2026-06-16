@@ -145,6 +145,10 @@ module WhopSDK
 
   class ChatChannelUpdateParams = WhopSDK::Models::ChatChannelUpdateParams
 
+  class ChatMessageCreatedWebhookEvent = WhopSDK::Models::ChatMessageCreatedWebhookEvent
+
+  class ChatReactionCreatedWebhookEvent = WhopSDK::Models::ChatReactionCreatedWebhookEvent
+
   class CheckoutConfiguration = WhopSDK::Models::CheckoutConfiguration
 
   class CheckoutConfigurationCreateParams = WhopSDK::Models::CheckoutConfigurationCreateParams

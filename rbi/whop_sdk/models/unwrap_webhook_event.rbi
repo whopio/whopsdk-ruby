@@ -37,6 +37,8 @@ module WhopSDK
             WhopSDK::ResolutionCenterCaseCreatedWebhookEvent,
             WhopSDK::ResolutionCenterCaseUpdatedWebhookEvent,
             WhopSDK::ResolutionCenterCaseDecidedWebhookEvent,
+            WhopSDK::ChatMessageCreatedWebhookEvent,
+            WhopSDK::ChatReactionCreatedWebhookEvent,
             WhopSDK::PaymentCreatedWebhookEvent,
             WhopSDK::PaymentSucceededWebhookEvent,
             WhopSDK::PaymentFailedWebhookEvent,

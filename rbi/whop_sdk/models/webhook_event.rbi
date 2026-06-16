@@ -95,6 +95,10 @@ module WhopSDK
           :"resolution_center_case.decided",
           WhopSDK::WebhookEvent::TaggedSymbol
         )
+      CHAT_MESSAGE_CREATED =
+        T.let(:"chat.message.created", WhopSDK::WebhookEvent::TaggedSymbol)
+      CHAT_REACTION_CREATED =
+        T.let(:"chat.reaction.created", WhopSDK::WebhookEvent::TaggedSymbol)
       PAYMENT_CREATED =
         T.let(:"payment.created", WhopSDK::WebhookEvent::TaggedSymbol)
       PAYMENT_SUCCEEDED =

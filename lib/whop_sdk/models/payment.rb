@@ -221,6 +221,22 @@ module WhopSDK
       #   @return [Boolean]
       required :retryable, WhopSDK::Internal::Type::Boolean
 
+      # @!attribute risk_score
+      #   Whop's in-house fraud risk score for this payment, from 0 (lowest risk) to 100
+      #   (highest risk). Null when the payment has not been scored or scoring has not yet
+      #   completed.
+      #
+      #   @return [Integer, nil]
+      required :risk_score, Integer, nil?: true
+
+      # @!attribute risk_signals
+      #   A curated set of factors behind the risk score, grouped by category (business
+      #   transaction history, buyer, device). Each entry has a key, human-readable label,
+      #   category, and value. Null when there is no risk assessment for this payment.
+      #
+      #   @return [Hash{Symbol=>Object}, nil]
+      required :risk_signals, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
       # @!attribute settlement_amount
       #   The total amount charged to the customer for this payment, including taxes and
       #   after any discounts. In the currency specified by the currency field.
@@ -308,7 +324,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, dispute_alerted_at:, disputes:, failure_message:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, resolutions:, retryable:, settlement_amount:, settlement_currency:, settlement_exchange_rate:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, total:, updated_at:, usd_total:, user:, voidable:)
+      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, dispute_alerted_at:, disputes:, failure_message:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, resolutions:, retryable:, risk_score:, risk_signals:, settlement_amount:, settlement_currency:, settlement_exchange_rate:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, total:, updated_at:, usd_total:, user:, voidable:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Payment}
       #   for more details.
       #
@@ -382,6 +398,10 @@ module WhopSDK
       #   @param resolutions [Array<WhopSDK::Models::Payment::Resolution>, nil] The resolution center cases opened by the customer on this payment. Null if the
       #
       #   @param retryable [Boolean] True when the payment status is `open` and its membership is in one of the retry
+      #
+      #   @param risk_score [Integer, nil] Whop's in-house fraud risk score for this payment, from 0 (lowest risk) to 100 (
+      #
+      #   @param risk_signals [Hash{Symbol=>Object}, nil] A curated set of factors behind the risk score, grouped by category (business tr
       #
       #   @param settlement_amount [Float] The total amount charged to the customer for this payment, including taxes and a
       #

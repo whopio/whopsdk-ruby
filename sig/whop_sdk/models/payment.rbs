@@ -36,6 +36,8 @@ module WhopSDK
         refunded_at: Time?,
         resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
+        risk_score: Integer?,
+        risk_signals: ::Hash[Symbol, top]?,
         settlement_amount: Float,
         settlement_currency: WhopSDK::Models::currency,
         settlement_exchange_rate: Float?,
@@ -121,6 +123,10 @@ module WhopSDK
 
       attr_accessor retryable: bool
 
+      attr_accessor risk_score: Integer?
+
+      attr_accessor risk_signals: ::Hash[Symbol, top]?
+
       attr_accessor settlement_amount: Float
 
       attr_accessor settlement_currency: WhopSDK::Models::currency
@@ -184,6 +190,8 @@ module WhopSDK
         refunded_at: Time?,
         resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
+        risk_score: Integer?,
+        risk_signals: ::Hash[Symbol, top]?,
         settlement_amount: Float,
         settlement_currency: WhopSDK::Models::currency,
         settlement_exchange_rate: Float?,
@@ -235,6 +243,8 @@ module WhopSDK
         refunded_at: Time?,
         resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
+        risk_score: Integer?,
+        risk_signals: ::Hash[Symbol, top]?,
         settlement_amount: Float,
         settlement_currency: WhopSDK::Models::currency,
         settlement_exchange_rate: Float?,

@@ -198,6 +198,18 @@ module WhopSDK
       sig { returns(T::Boolean) }
       attr_accessor :retryable
 
+      # Whop's in-house fraud risk score for this payment, from 0 (lowest risk) to 100
+      # (highest risk). Null when the payment has not been scored or scoring has not yet
+      # completed.
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :risk_score
+
+      # A curated set of factors behind the risk score, grouped by category (business
+      # transaction history, buyer, device). Each entry has a key, human-readable label,
+      # category, and value. Null when there is no risk assessment for this payment.
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      attr_accessor :risk_signals
+
       # The total amount charged to the customer for this payment, including taxes and
       # after any discounts. In the currency specified by the currency field.
       sig { returns(Float) }
@@ -300,6 +312,8 @@ module WhopSDK
           resolutions:
             T.nilable(T::Array[WhopSDK::Payment::Resolution::OrHash]),
           retryable: T::Boolean,
+          risk_score: T.nilable(Integer),
+          risk_signals: T.nilable(T::Hash[Symbol, T.anything]),
           settlement_amount: Float,
           settlement_currency: WhopSDK::Currency::OrSymbol,
           settlement_exchange_rate: T.nilable(Float),
@@ -398,6 +412,14 @@ module WhopSDK
         # retry-eligible states (`active`, `trialing`, `completed`, or `past_due`);
         # otherwise false. Used to decide if Whop can attempt the charge again.
         retryable:,
+        # Whop's in-house fraud risk score for this payment, from 0 (lowest risk) to 100
+        # (highest risk). Null when the payment has not been scored or scoring has not yet
+        # completed.
+        risk_score:,
+        # A curated set of factors behind the risk score, grouped by category (business
+        # transaction history, buyer, device). Each entry has a key, human-readable label,
+        # category, and value. Null when there is no risk assessment for this payment.
+        risk_signals:,
         # The total amount charged to the customer for this payment, including taxes and
         # after any discounts. In the currency specified by the currency field.
         settlement_amount:,
@@ -471,6 +493,8 @@ module WhopSDK
             refunded_at: T.nilable(Time),
             resolutions: T.nilable(T::Array[WhopSDK::Payment::Resolution]),
             retryable: T::Boolean,
+            risk_score: T.nilable(Integer),
+            risk_signals: T.nilable(T::Hash[Symbol, T.anything]),
             settlement_amount: Float,
             settlement_currency: WhopSDK::Currency::TaggedSymbol,
             settlement_exchange_rate: T.nilable(Float),

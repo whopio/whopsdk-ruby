@@ -32,7 +32,7 @@ module WhopSDK
       optional :payout_method_id, String, nil?: true
 
       # @!attribute platform_covers_fees
-      #   Whether the platform covers the payout fees instead of the connected account.
+      #   Whether the platform covers the payout fees.
       #
       #   @return [Boolean, nil]
       optional :platform_covers_fees, WhopSDK::Internal::Type::Boolean, nil?: true
@@ -56,7 +56,7 @@ module WhopSDK
       #
       #   @param payout_method_id [String, nil] The ID of the payout method to use for the withdrawal.
       #
-      #   @param platform_covers_fees [Boolean, nil] Whether the platform covers the payout fees instead of the connected account.
+      #   @param platform_covers_fees [Boolean, nil] Whether the platform covers the payout fees.
       #
       #   @param statement_descriptor [String, nil] Custom statement descriptor for the withdrawal. Must be between 5 and 22 charact
       #

@@ -101,6 +101,8 @@ module WhopSDK
           T.let(:published, WhopSDK::BountyListParams::Status::TaggedSymbol)
         ARCHIVED =
           T.let(:archived, WhopSDK::BountyListParams::Status::TaggedSymbol)
+        SCHEDULED =
+          T.let(:scheduled, WhopSDK::BountyListParams::Status::TaggedSymbol)
 
         sig do
           override.returns(

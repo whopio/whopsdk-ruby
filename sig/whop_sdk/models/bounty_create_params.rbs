@@ -12,7 +12,10 @@ module WhopSDK
         experience_id: String?,
         origin_account_id: String?,
         post_markdown_content: String?,
-        post_title: String?
+        post_title: String?,
+        scheduled_frequency: WhopSDK::Models::BountyCreateParams::scheduled_frequency?,
+        scheduled_publish_at: Time?,
+        scheduled_timezone: String?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -42,6 +45,12 @@ module WhopSDK
 
       attr_accessor post_title: String?
 
+      attr_accessor scheduled_frequency: WhopSDK::Models::BountyCreateParams::scheduled_frequency?
+
+      attr_accessor scheduled_publish_at: Time?
+
+      attr_accessor scheduled_timezone: String?
+
       def initialize: (
         base_unit_amount: Float,
         currency: WhopSDK::Models::currency,
@@ -54,6 +63,9 @@ module WhopSDK
         ?origin_account_id: String?,
         ?post_markdown_content: String?,
         ?post_title: String?,
+        ?scheduled_frequency: WhopSDK::Models::BountyCreateParams::scheduled_frequency?,
+        ?scheduled_publish_at: Time?,
+        ?scheduled_timezone: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -69,6 +81,9 @@ module WhopSDK
         origin_account_id: String?,
         post_markdown_content: String?,
         post_title: String?,
+        scheduled_frequency: WhopSDK::Models::BountyCreateParams::scheduled_frequency?,
+        scheduled_publish_at: Time?,
+        scheduled_timezone: String?,
         request_options: WhopSDK::RequestOptions
       }
 
@@ -91,6 +106,20 @@ module WhopSDK
         OTHER: :other
 
         def self?.values: -> ::Array[WhopSDK::Models::BountyCreateParams::business_goal_type]
+      end
+
+      type scheduled_frequency = :once | :hourly | :daily | :weekly | :monthly
+
+      module ScheduledFrequency
+        extend WhopSDK::Internal::Type::Enum
+
+        ONCE: :once
+        HOURLY: :hourly
+        DAILY: :daily
+        WEEKLY: :weekly
+        MONTHLY: :monthly
+
+        def self?.values: -> ::Array[WhopSDK::Models::BountyCreateParams::scheduled_frequency]
       end
     end
   end

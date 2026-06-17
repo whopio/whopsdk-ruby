@@ -13,6 +13,9 @@ module WhopSDK
         ?origin_account_id: String?,
         ?post_markdown_content: String?,
         ?post_title: String?,
+        ?scheduled_frequency: WhopSDK::Models::BountyCreateParams::scheduled_frequency?,
+        ?scheduled_publish_at: Time?,
+        ?scheduled_timezone: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::BountyCreateResponse
 

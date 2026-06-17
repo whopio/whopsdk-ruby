@@ -23,6 +23,12 @@ module WhopSDK
           origin_account_id: T.nilable(String),
           post_markdown_content: T.nilable(String),
           post_title: T.nilable(String),
+          scheduled_frequency:
+            T.nilable(
+              WhopSDK::BountyCreateParams::ScheduledFrequency::OrSymbol
+            ),
+          scheduled_publish_at: T.nilable(Time),
+          scheduled_timezone: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::BountyCreateResponse)
       end
@@ -57,6 +63,14 @@ module WhopSDK
         # Optional title for the anchor forum post. Falls back to the bounty title when
         # omitted.
         post_title: nil,
+        # How often a scheduled bounty republishes a new bounty.
+        scheduled_frequency: nil,
+        # When to publish the bounty. When provided, the bounty is created as a hidden
+        # draft and published at this time instead of immediately. Must be in the future.
+        scheduled_publish_at: nil,
+        # The IANA timezone used for recurring occurrences. Required when
+        # scheduled_publish_at is provided.
+        scheduled_timezone: nil,
         request_options: {}
       )
       end

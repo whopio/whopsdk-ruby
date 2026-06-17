@@ -67,6 +67,24 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :post_title
 
+      # How often a scheduled bounty republishes a new bounty.
+      sig do
+        returns(
+          T.nilable(WhopSDK::BountyCreateParams::ScheduledFrequency::OrSymbol)
+        )
+      end
+      attr_accessor :scheduled_frequency
+
+      # When to publish the bounty. When provided, the bounty is created as a hidden
+      # draft and published at this time instead of immediately. Must be in the future.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :scheduled_publish_at
+
+      # The IANA timezone used for recurring occurrences. Required when
+      # scheduled_publish_at is provided.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :scheduled_timezone
+
       sig do
         params(
           base_unit_amount: Float,
@@ -81,6 +99,12 @@ module WhopSDK
           origin_account_id: T.nilable(String),
           post_markdown_content: T.nilable(String),
           post_title: T.nilable(String),
+          scheduled_frequency:
+            T.nilable(
+              WhopSDK::BountyCreateParams::ScheduledFrequency::OrSymbol
+            ),
+          scheduled_publish_at: T.nilable(Time),
+          scheduled_timezone: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -115,6 +139,14 @@ module WhopSDK
         # Optional title for the anchor forum post. Falls back to the bounty title when
         # omitted.
         post_title: nil,
+        # How often a scheduled bounty republishes a new bounty.
+        scheduled_frequency: nil,
+        # When to publish the bounty. When provided, the bounty is created as a hidden
+        # draft and published at this time instead of immediately. Must be in the future.
+        scheduled_publish_at: nil,
+        # The IANA timezone used for recurring occurrences. Required when
+        # scheduled_publish_at is provided.
+        scheduled_timezone: nil,
         request_options: {}
       )
       end
@@ -136,6 +168,12 @@ module WhopSDK
             origin_account_id: T.nilable(String),
             post_markdown_content: T.nilable(String),
             post_title: T.nilable(String),
+            scheduled_frequency:
+              T.nilable(
+                WhopSDK::BountyCreateParams::ScheduledFrequency::OrSymbol
+              ),
+            scheduled_publish_at: T.nilable(Time),
+            scheduled_timezone: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -189,6 +227,53 @@ module WhopSDK
           override.returns(
             T::Array[
               WhopSDK::BountyCreateParams::BusinessGoalType::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # How often a scheduled bounty republishes a new bounty.
+      module ScheduledFrequency
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::BountyCreateParams::ScheduledFrequency)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        ONCE =
+          T.let(
+            :once,
+            WhopSDK::BountyCreateParams::ScheduledFrequency::TaggedSymbol
+          )
+        HOURLY =
+          T.let(
+            :hourly,
+            WhopSDK::BountyCreateParams::ScheduledFrequency::TaggedSymbol
+          )
+        DAILY =
+          T.let(
+            :daily,
+            WhopSDK::BountyCreateParams::ScheduledFrequency::TaggedSymbol
+          )
+        WEEKLY =
+          T.let(
+            :weekly,
+            WhopSDK::BountyCreateParams::ScheduledFrequency::TaggedSymbol
+          )
+        MONTHLY =
+          T.let(
+            :monthly,
+            WhopSDK::BountyCreateParams::ScheduledFrequency::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              WhopSDK::BountyCreateParams::ScheduledFrequency::TaggedSymbol
             ]
           )
         end

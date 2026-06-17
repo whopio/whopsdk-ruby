@@ -248,6 +248,10 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :tax_refunded_amount
 
+      # Whether 3D Secure authentication was completed for this payment.
+      sig { returns(T::Boolean) }
+      attr_accessor :three_ds_verified
+
       # The total to show to the creator (excluding buyer fees).
       sig { returns(T.nilable(Float)) }
       attr_accessor :total
@@ -323,6 +327,7 @@ module WhopSDK
           tax_amount: T.nilable(Float),
           tax_behavior: T.nilable(WhopSDK::ReceiptTaxBehavior::OrSymbol),
           tax_refunded_amount: T.nilable(Float),
+          three_ds_verified: T::Boolean,
           total: T.nilable(Float),
           updated_at: Time,
           usd_total: T.nilable(Float),
@@ -440,6 +445,8 @@ module WhopSDK
         tax_behavior:,
         # The amount of tax that has been refunded (if applicable).
         tax_refunded_amount:,
+        # Whether 3D Secure authentication was completed for this payment.
+        three_ds_verified:,
         # The total to show to the creator (excluding buyer fees).
         total:,
         # The datetime the payment was last updated.
@@ -504,6 +511,7 @@ module WhopSDK
             tax_amount: T.nilable(Float),
             tax_behavior: T.nilable(WhopSDK::ReceiptTaxBehavior::TaggedSymbol),
             tax_refunded_amount: T.nilable(Float),
+            three_ds_verified: T::Boolean,
             total: T.nilable(Float),
             updated_at: Time,
             usd_total: T.nilable(Float),

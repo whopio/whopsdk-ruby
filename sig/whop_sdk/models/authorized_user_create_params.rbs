@@ -5,6 +5,7 @@ module WhopSDK
         company_id: String,
         role: WhopSDK::Models::authorized_user_roles,
         user_id: String,
+        elevation: WhopSDK::AuthorizedUserCreateParams::Elevation?,
         send_emails: bool?
       }
       & WhopSDK::Internal::Type::request_parameters
@@ -19,12 +20,15 @@ module WhopSDK
 
       attr_accessor user_id: String
 
+      attr_accessor elevation: WhopSDK::AuthorizedUserCreateParams::Elevation?
+
       attr_accessor send_emails: bool?
 
       def initialize: (
         company_id: String,
         role: WhopSDK::Models::authorized_user_roles,
         user_id: String,
+        ?elevation: WhopSDK::AuthorizedUserCreateParams::Elevation?,
         ?send_emails: bool?,
         ?request_options: WhopSDK::request_opts
       ) -> void
@@ -33,9 +37,52 @@ module WhopSDK
         company_id: String,
         role: WhopSDK::Models::authorized_user_roles,
         user_id: String,
+        elevation: WhopSDK::AuthorizedUserCreateParams::Elevation?,
         send_emails: bool?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type elevation =
+        {
+          authenticator_data: String?,
+          client_data_json: String?,
+          credential_id: String?,
+          signature: String?,
+          totp_code: String?,
+          use_finance_session: bool?
+        }
+
+      class Elevation < WhopSDK::Internal::Type::BaseModel
+        attr_accessor authenticator_data: String?
+
+        attr_accessor client_data_json: String?
+
+        attr_accessor credential_id: String?
+
+        attr_accessor signature: String?
+
+        attr_accessor totp_code: String?
+
+        attr_accessor use_finance_session: bool?
+
+        def initialize: (
+          ?authenticator_data: String?,
+          ?client_data_json: String?,
+          ?credential_id: String?,
+          ?signature: String?,
+          ?totp_code: String?,
+          ?use_finance_session: bool?
+        ) -> void
+
+        def to_hash: -> {
+          authenticator_data: String?,
+          client_data_json: String?,
+          credential_id: String?,
+          signature: String?,
+          totp_code: String?,
+          use_finance_session: bool?
+        }
+      end
     end
   end
 end

@@ -15,6 +15,8 @@ module WhopSDK
           company_id: String,
           role: WhopSDK::AuthorizedUserRoles::OrSymbol,
           user_id: String,
+          elevation:
+            T.nilable(WhopSDK::AuthorizedUserCreateParams::Elevation::OrHash),
           send_emails: T.nilable(T::Boolean),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::AuthorizedUser)
@@ -27,6 +29,8 @@ module WhopSDK
         role:,
         # The ID of the user to add as an authorized user.
         user_id:,
+        # Re-authentication proof required to perform this sensitive action.
+        elevation: nil,
         # Whether to send notification emails to the user on creation.
         send_emails: nil,
         request_options: {}

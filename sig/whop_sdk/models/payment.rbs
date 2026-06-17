@@ -47,6 +47,7 @@ module WhopSDK
         tax_amount: Float?,
         tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         tax_refunded_amount: Float?,
+        three_ds_verified: bool,
         total: Float?,
         updated_at: Time,
         usd_total: Float?,
@@ -145,6 +146,8 @@ module WhopSDK
 
       attr_accessor tax_refunded_amount: Float?
 
+      attr_accessor three_ds_verified: bool
+
       attr_accessor total: Float?
 
       attr_accessor updated_at: Time
@@ -201,6 +204,7 @@ module WhopSDK
         tax_amount: Float?,
         tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         tax_refunded_amount: Float?,
+        three_ds_verified: bool,
         total: Float?,
         updated_at: Time,
         usd_total: Float?,
@@ -254,6 +258,7 @@ module WhopSDK
         tax_amount: Float?,
         tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         tax_refunded_amount: Float?,
+        three_ds_verified: bool,
         total: Float?,
         updated_at: Time,
         usd_total: Float?,

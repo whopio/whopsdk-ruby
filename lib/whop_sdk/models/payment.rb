@@ -293,6 +293,12 @@ module WhopSDK
       #   @return [Float, nil]
       required :tax_refunded_amount, Float, nil?: true
 
+      # @!attribute three_ds_verified
+      #   Whether 3D Secure authentication was completed for this payment.
+      #
+      #   @return [Boolean]
+      required :three_ds_verified, WhopSDK::Internal::Type::Boolean
+
       # @!attribute total
       #   The total to show to the creator (excluding buyer fees).
       #
@@ -324,7 +330,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, dispute_alerted_at:, disputes:, failure_message:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, resolutions:, retryable:, risk_score:, risk_signals:, settlement_amount:, settlement_currency:, settlement_exchange_rate:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, total:, updated_at:, usd_total:, user:, voidable:)
+      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, dispute_alerted_at:, disputes:, failure_message:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, resolutions:, retryable:, risk_score:, risk_signals:, settlement_amount:, settlement_currency:, settlement_exchange_rate:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, voidable:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Payment}
       #   for more details.
       #
@@ -420,6 +426,8 @@ module WhopSDK
       #   @param tax_behavior [Symbol, WhopSDK::Models::ReceiptTaxBehavior, nil] The type of tax inclusivity applied to the receipt, for determining whether the
       #
       #   @param tax_refunded_amount [Float, nil] The amount of tax that has been refunded (if applicable).
+      #
+      #   @param three_ds_verified [Boolean] Whether 3D Secure authentication was completed for this payment.
       #
       #   @param total [Float, nil] The total to show to the creator (excluding buyer fees).
       #

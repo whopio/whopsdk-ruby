@@ -128,7 +128,7 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :business_structure
 
-        # ISO 3166-1 alpha-3 country code (e.g. `USA`, `GBR`). For individuals this is the
+        # ISO 3166-1 alpha-2 country code (e.g. `US`, `GB`). For individuals this is the
         # country of citizenship or residence reported by the identity provider; for
         # businesses this is the country of incorporation.
         sig { returns(T.nilable(String)) }
@@ -269,7 +269,7 @@ module WhopSDK
           # Reported legal structure of a business profile (e.g. `corp`, `llc`).
           # Provider-specific values; present on `business` profiles.
           business_structure:,
-          # ISO 3166-1 alpha-3 country code (e.g. `USA`, `GBR`). For individuals this is the
+          # ISO 3166-1 alpha-2 country code (e.g. `US`, `GB`). For individuals this is the
           # country of citizenship or residence reported by the identity provider; for
           # businesses this is the country of incorporation.
           country:,

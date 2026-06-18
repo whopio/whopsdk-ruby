@@ -32,22 +32,18 @@ module WhopSDK
           {
             plan: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan,
             affiliate_code: String?,
-            allow_promo_codes: bool?,
             checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling?,
             currency: WhopSDK::Models::currency?,
             metadata: ::Hash[Symbol, top]?,
             mode: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::mode,
             payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::PaymentMethodConfiguration?,
-            redirect_url: String?,
-            source_url: String?
+            redirect_url: String?
           }
 
         class CreateCheckoutSessionInputModePaymentWithPlan < WhopSDK::Internal::Type::BaseModel
           attr_accessor plan: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan
 
           attr_accessor affiliate_code: String?
-
-          attr_accessor allow_promo_codes: bool?
 
           attr_accessor checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling?
 
@@ -65,32 +61,26 @@ module WhopSDK
 
           attr_accessor redirect_url: String?
 
-          attr_accessor source_url: String?
-
           def initialize: (
             plan: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan,
             ?affiliate_code: String?,
-            ?allow_promo_codes: bool?,
             ?checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling?,
             ?currency: WhopSDK::Models::currency?,
             ?metadata: ::Hash[Symbol, top]?,
             ?mode: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::mode,
             ?payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::PaymentMethodConfiguration?,
-            ?redirect_url: String?,
-            ?source_url: String?
+            ?redirect_url: String?
           ) -> void
 
           def to_hash: -> {
             plan: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan,
             affiliate_code: String?,
-            allow_promo_codes: bool?,
             checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling?,
             currency: WhopSDK::Models::currency?,
             metadata: ::Hash[Symbol, top]?,
             mode: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::mode,
             payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::PaymentMethodConfiguration?,
-            redirect_url: String?,
-            source_url: String?
+            redirect_url: String?
           }
 
           type plan =
@@ -450,22 +440,18 @@ module WhopSDK
           {
             plan_id: String,
             affiliate_code: String?,
-            allow_promo_codes: bool?,
             checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling?,
             currency: WhopSDK::Models::currency?,
             metadata: ::Hash[Symbol, top]?,
             mode: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::mode,
             payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::PaymentMethodConfiguration?,
-            redirect_url: String?,
-            source_url: String?
+            redirect_url: String?
           }
 
         class CreateCheckoutSessionInputModePaymentWithPlanID < WhopSDK::Internal::Type::BaseModel
           attr_accessor plan_id: String
 
           attr_accessor affiliate_code: String?
-
-          attr_accessor allow_promo_codes: bool?
 
           attr_accessor checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling?
 
@@ -483,32 +469,26 @@ module WhopSDK
 
           attr_accessor redirect_url: String?
 
-          attr_accessor source_url: String?
-
           def initialize: (
             plan_id: String,
             ?affiliate_code: String?,
-            ?allow_promo_codes: bool?,
             ?checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling?,
             ?currency: WhopSDK::Models::currency?,
             ?metadata: ::Hash[Symbol, top]?,
             ?mode: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::mode,
             ?payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::PaymentMethodConfiguration?,
-            ?redirect_url: String?,
-            ?source_url: String?
+            ?redirect_url: String?
           ) -> void
 
           def to_hash: -> {
             plan_id: String,
             affiliate_code: String?,
-            allow_promo_codes: bool?,
             checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling?,
             currency: WhopSDK::Models::currency?,
             metadata: ::Hash[Symbol, top]?,
             mode: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::mode,
             payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::PaymentMethodConfiguration?,
-            redirect_url: String?,
-            source_url: String?
+            redirect_url: String?
           }
 
           type checkout_styling =
@@ -585,13 +565,11 @@ module WhopSDK
           {
             company_id: String,
             mode: :setup,
-            allow_promo_codes: bool?,
             checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling?,
             currency: WhopSDK::Models::currency?,
             metadata: ::Hash[Symbol, top]?,
             payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::PaymentMethodConfiguration?,
             redirect_url: String?,
-            source_url: String?,
             three_ds_level: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::three_ds_level?
           }
 
@@ -599,8 +577,6 @@ module WhopSDK
           attr_accessor company_id: String
 
           attr_accessor mode: :setup
-
-          attr_accessor allow_promo_codes: bool?
 
           attr_accessor checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling?
 
@@ -612,19 +588,15 @@ module WhopSDK
 
           attr_accessor redirect_url: String?
 
-          attr_accessor source_url: String?
-
           attr_accessor three_ds_level: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::three_ds_level?
 
           def initialize: (
             company_id: String,
-            ?allow_promo_codes: bool?,
             ?checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling?,
             ?currency: WhopSDK::Models::currency?,
             ?metadata: ::Hash[Symbol, top]?,
             ?payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::PaymentMethodConfiguration?,
             ?redirect_url: String?,
-            ?source_url: String?,
             ?three_ds_level: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::three_ds_level?,
             ?mode: :setup
           ) -> void
@@ -632,13 +604,11 @@ module WhopSDK
           def to_hash: -> {
             company_id: String,
             mode: :setup,
-            allow_promo_codes: bool?,
             checkout_styling: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling?,
             currency: WhopSDK::Models::currency?,
             metadata: ::Hash[Symbol, top]?,
             payment_method_configuration: WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::PaymentMethodConfiguration?,
             redirect_url: String?,
-            source_url: String?,
             three_ds_level: WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::three_ds_level?
           }
 

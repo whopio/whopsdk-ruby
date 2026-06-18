@@ -17,7 +17,6 @@ class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::Reso
       response => {
         id: String,
         affiliate_code: String | nil,
-        allow_promo_codes: WhopSDK::Internal::Type::Boolean,
         company_id: String,
         currency: WhopSDK::Currency | nil,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
@@ -43,7 +42,6 @@ class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::Reso
       response => {
         id: String,
         affiliate_code: String | nil,
-        allow_promo_codes: WhopSDK::Internal::Type::Boolean,
         company_id: String,
         currency: WhopSDK::Currency | nil,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
@@ -76,7 +74,6 @@ class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::Reso
       row => {
         id: String,
         affiliate_code: String | nil,
-        allow_promo_codes: WhopSDK::Internal::Type::Boolean,
         company_id: String,
         currency: WhopSDK::Currency | nil,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,

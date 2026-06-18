@@ -45,13 +45,6 @@ module WhopSDK
           #   @return [String, nil]
           optional :affiliate_code, String, nil?: true
 
-          # @!attribute allow_promo_codes
-          #   Whether the checkout should show the promo code input field and accept promo
-          #   codes. Defaults to true.
-          #
-          #   @return [Boolean, nil]
-          optional :allow_promo_codes, WhopSDK::Internal::Type::Boolean, nil?: true
-
           # @!attribute checkout_styling
           #   Checkout styling overrides for this session. Overrides plan and company
           #   defaults.
@@ -98,13 +91,7 @@ module WhopSDK
           #   @return [String, nil]
           optional :redirect_url, String, nil?: true
 
-          # @!attribute source_url
-          #   The URL of the page where the checkout is being initiated from.
-          #
-          #   @return [String, nil]
-          optional :source_url, String, nil?: true
-
-          # @!method initialize(plan:, affiliate_code: nil, allow_promo_codes: nil, checkout_styling: nil, currency: nil, metadata: nil, mode: nil, payment_method_configuration: nil, redirect_url: nil, source_url: nil)
+          # @!method initialize(plan:, affiliate_code: nil, checkout_styling: nil, currency: nil, metadata: nil, mode: nil, payment_method_configuration: nil, redirect_url: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan}
           #   for more details.
@@ -114,8 +101,6 @@ module WhopSDK
           #   @param plan [WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::Plan] The plan attributes to create a new plan inline for this checkout configuration.
           #
           #   @param affiliate_code [String, nil] An affiliate tracking code to attribute the checkout to a specific affiliate.
-          #
-          #   @param allow_promo_codes [Boolean, nil] Whether the checkout should show the promo code input field and accept promo cod
           #
           #   @param checkout_styling [WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::CheckoutStyling, nil] Checkout styling overrides for this session. Overrides plan and company defaults
           #
@@ -128,8 +113,6 @@ module WhopSDK
           #   @param payment_method_configuration [WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::PaymentMethodConfiguration, nil] The explicit payment method configuration for the checkout session. Only applies
           #
           #   @param redirect_url [String, nil] The URL to redirect the user to after checkout is completed.
-          #
-          #   @param source_url [String, nil] The URL of the page where the checkout is being initiated from.
 
           # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan#plan
           class Plan < WhopSDK::Internal::Type::BaseModel
@@ -690,13 +673,6 @@ module WhopSDK
           #   @return [String, nil]
           optional :affiliate_code, String, nil?: true
 
-          # @!attribute allow_promo_codes
-          #   Whether the checkout should show the promo code input field and accept promo
-          #   codes. Defaults to true.
-          #
-          #   @return [Boolean, nil]
-          optional :allow_promo_codes, WhopSDK::Internal::Type::Boolean, nil?: true
-
           # @!attribute checkout_styling
           #   Checkout styling overrides for this session. Overrides plan and company
           #   defaults.
@@ -743,13 +719,7 @@ module WhopSDK
           #   @return [String, nil]
           optional :redirect_url, String, nil?: true
 
-          # @!attribute source_url
-          #   The URL of the page where the checkout is being initiated from.
-          #
-          #   @return [String, nil]
-          optional :source_url, String, nil?: true
-
-          # @!method initialize(plan_id:, affiliate_code: nil, allow_promo_codes: nil, checkout_styling: nil, currency: nil, metadata: nil, mode: nil, payment_method_configuration: nil, redirect_url: nil, source_url: nil)
+          # @!method initialize(plan_id:, affiliate_code: nil, checkout_styling: nil, currency: nil, metadata: nil, mode: nil, payment_method_configuration: nil, redirect_url: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID}
           #   for more details.
@@ -759,8 +729,6 @@ module WhopSDK
           #   @param plan_id [String] The unique identifier of an existing plan to use for this checkout configuration
           #
           #   @param affiliate_code [String, nil] An affiliate tracking code to attribute the checkout to a specific affiliate.
-          #
-          #   @param allow_promo_codes [Boolean, nil] Whether the checkout should show the promo code input field and accept promo cod
           #
           #   @param checkout_styling [WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::CheckoutStyling, nil] Checkout styling overrides for this session. Overrides plan and company defaults
           #
@@ -773,8 +741,6 @@ module WhopSDK
           #   @param payment_method_configuration [WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::PaymentMethodConfiguration, nil] The explicit payment method configuration for the checkout session. Only applies
           #
           #   @param redirect_url [String, nil] The URL to redirect the user to after checkout is completed.
-          #
-          #   @param source_url [String, nil] The URL of the page where the checkout is being initiated from.
 
           # @see WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID#checkout_styling
           class CheckoutStyling < WhopSDK::Internal::Type::BaseModel
@@ -885,13 +851,6 @@ module WhopSDK
           #   @return [Symbol, :setup]
           required :mode, const: :setup
 
-          # @!attribute allow_promo_codes
-          #   Whether the checkout should show the promo code input field and accept promo
-          #   codes. Defaults to true.
-          #
-          #   @return [Boolean, nil]
-          optional :allow_promo_codes, WhopSDK::Internal::Type::Boolean, nil?: true
-
           # @!attribute checkout_styling
           #   Checkout styling overrides for this session. Overrides plan and company
           #   defaults.
@@ -932,12 +891,6 @@ module WhopSDK
           #   @return [String, nil]
           optional :redirect_url, String, nil?: true
 
-          # @!attribute source_url
-          #   The URL of the page where the checkout is being initiated from.
-          #
-          #   @return [String, nil]
-          optional :source_url, String, nil?: true
-
           # @!attribute three_ds_level
           #   The 3D Secure behavior for a plan.
           #
@@ -948,7 +901,7 @@ module WhopSDK
                    },
                    nil?: true
 
-          # @!method initialize(company_id:, allow_promo_codes: nil, checkout_styling: nil, currency: nil, metadata: nil, payment_method_configuration: nil, redirect_url: nil, source_url: nil, three_ds_level: nil, mode: :setup)
+          # @!method initialize(company_id:, checkout_styling: nil, currency: nil, metadata: nil, payment_method_configuration: nil, redirect_url: nil, three_ds_level: nil, mode: :setup)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup}
           #   for more details.
@@ -956,8 +909,6 @@ module WhopSDK
           #   Autogenerated input type of CreateCheckoutSession
           #
           #   @param company_id [String] The unique identifier of the company to create the checkout configuration for. O
-          #
-          #   @param allow_promo_codes [Boolean, nil] Whether the checkout should show the promo code input field and accept promo cod
           #
           #   @param checkout_styling [WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::CheckoutStyling, nil] Checkout styling overrides for this session. Overrides plan and company defaults
           #
@@ -968,8 +919,6 @@ module WhopSDK
           #   @param payment_method_configuration [WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::PaymentMethodConfiguration, nil] The explicit payment method configuration for the checkout session. Only applies
           #
           #   @param redirect_url [String, nil] The URL to redirect the user to after checkout is completed.
-          #
-          #   @param source_url [String, nil] The URL of the page where the checkout is being initiated from.
           #
           #   @param three_ds_level [Symbol, WhopSDK::Models::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::ThreeDSLevel, nil] The 3D Secure behavior for a plan.
           #

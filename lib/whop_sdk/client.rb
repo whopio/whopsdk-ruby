@@ -242,15 +242,12 @@ module WhopSDK
     # @return [WhopSDK::Resources::Bounties]
     attr_reader :bounties
 
-    # Ad campaigns
     # @return [WhopSDK::Resources::AdCampaigns]
     attr_reader :ad_campaigns
 
-    # Ad groups
     # @return [WhopSDK::Resources::AdGroups]
     attr_reader :ad_groups
 
-    # Ads
     # @return [WhopSDK::Resources::Ads]
     attr_reader :ads
 

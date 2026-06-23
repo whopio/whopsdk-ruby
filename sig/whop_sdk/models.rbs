@@ -7,51 +7,7 @@ module WhopSDK
 
   class AccountLinkCreateParams = WhopSDK::Models::AccountLinkCreateParams
 
-  class Ad = WhopSDK::Models::Ad
-
-  module AdBudgetType = WhopSDK::Models::AdBudgetType
-
-  class AdCampaign = WhopSDK::Models::AdCampaign
-
-  class AdCampaignListParams = WhopSDK::Models::AdCampaignListParams
-
-  class AdCampaignPauseParams = WhopSDK::Models::AdCampaignPauseParams
-
-  module AdCampaignPlatform = WhopSDK::Models::AdCampaignPlatform
-
-  class AdCampaignRetrieveParams = WhopSDK::Models::AdCampaignRetrieveParams
-
-  module AdCampaignStatus = WhopSDK::Models::AdCampaignStatus
-
-  class AdCampaignUnpauseParams = WhopSDK::Models::AdCampaignUnpauseParams
-
-  class AdCampaignUpdateParams = WhopSDK::Models::AdCampaignUpdateParams
-
-  class AdGroup = WhopSDK::Models::AdGroup
-
-  class AdGroupDeleteParams = WhopSDK::Models::AdGroupDeleteParams
-
-  class AdGroupListParams = WhopSDK::Models::AdGroupListParams
-
-  class AdGroupPauseParams = WhopSDK::Models::AdGroupPauseParams
-
-  class AdGroupRetrieveParams = WhopSDK::Models::AdGroupRetrieveParams
-
-  module AdGroupStatus = WhopSDK::Models::AdGroupStatus
-
-  class AdGroupUnpauseParams = WhopSDK::Models::AdGroupUnpauseParams
-
-  class AdGroupUpdateParams = WhopSDK::Models::AdGroupUpdateParams
-
-  class AdListParams = WhopSDK::Models::AdListParams
-
-  class AdPauseParams = WhopSDK::Models::AdPauseParams
-
   class AdReportRetrieveParams = WhopSDK::Models::AdReportRetrieveParams
-
-  class AdRetrieveParams = WhopSDK::Models::AdRetrieveParams
-
-  class AdUnpauseParams = WhopSDK::Models::AdUnpauseParams
 
   class Affiliate = WhopSDK::Models::Affiliate
 
@@ -346,8 +302,6 @@ module WhopSDK
   class ExperienceRetrieveParams = WhopSDK::Models::ExperienceRetrieveParams
 
   class ExperienceUpdateParams = WhopSDK::Models::ExperienceUpdateParams
-
-  module ExternalAdStatus = WhopSDK::Models::ExternalAdStatus
 
   class FeeMarkupCreateParams = WhopSDK::Models::FeeMarkupCreateParams
 

@@ -1,47 +1,6 @@
 module WhopSDK
   module Resources
     class Ads
-      def retrieve: (
-        String id,
-        ?stats_from: Time?,
-        ?stats_to: Time?,
-        ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Ad
-
-      def list: (
-        ?ad_campaign_id: String?,
-        ?ad_campaign_ids: ::Array[String]?,
-        ?ad_group_id: String?,
-        ?ad_group_ids: ::Array[String]?,
-        ?after: String?,
-        ?before: String?,
-        ?campaign_id: String?,
-        ?company_id: String?,
-        ?created_after: Time?,
-        ?created_before: Time?,
-        ?direction: WhopSDK::Models::direction?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?order: WhopSDK::Models::AdListParams::order?,
-        ?order_by: WhopSDK::Models::AdListParams::order_by?,
-        ?order_direction: WhopSDK::Models::direction?,
-        ?query: String?,
-        ?stats_from: Time?,
-        ?stats_to: Time?,
-        ?status: WhopSDK::Models::external_ad_status?,
-        ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::AdListResponse]
-
-      def pause: (
-        String id,
-        ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Ad
-
-      def unpause: (
-        String id,
-        ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Ad
-
       def initialize: (client: WhopSDK::Client) -> void
     end
   end

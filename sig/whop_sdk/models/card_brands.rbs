@@ -40,6 +40,7 @@ module WhopSDK
       | :hipercard
       | :jcblankapay
       | :cmi
+      | :aura
       | :unknown
 
     module CardBrands
@@ -84,6 +85,7 @@ module WhopSDK
       HIPERCARD: :hipercard
       JCBLANKAPAY: :jcblankapay
       CMI: :cmi
+      AURA: :aura
       UNKNOWN: :unknown
 
       def self?.values: -> ::Array[WhopSDK::Models::card_brands]

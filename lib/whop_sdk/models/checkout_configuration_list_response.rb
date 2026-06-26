@@ -155,8 +155,8 @@ module WhopSDK
         required :adaptive_pricing_enabled, WhopSDK::Internal::Type::Boolean
 
         # @!attribute billing_period
-        #   The number of days between each recurring charge. Null for one-time plans. For
-        #   example, 30 for monthly or 365 for annual billing.
+        #   Number of days between recurring charges, such as 30 for monthly or 365 for
+        #   annual. `null` for one-time plans.
         #
         #   @return [Integer, nil]
         required :billing_period, Integer, nil?: true
@@ -169,8 +169,8 @@ module WhopSDK
         required :currency, enum: -> { WhopSDK::Currency }
 
         # @!attribute expiration_days
-        #   The number of days until the membership expires (for expiration-based plans).
-        #   For example, 365 for a one-year access pass.
+        #   Access duration in days for expiration-based plans, such as 365 for a one-year
+        #   pass.
         #
         #   @return [Integer, nil]
         required :expiration_days, Integer, nil?: true
@@ -191,8 +191,8 @@ module WhopSDK
         required :plan_type, enum: -> { WhopSDK::PlanType }
 
         # @!attribute release_method
-        #   The method used to sell this plan: 'buy_now' for immediate purchase or
-        #   'waitlist' for waitlist-based access.
+        #   Sales method for this plan: `buy_now` for immediate purchase or `waitlist` for
+        #   waitlist-based access.
         #
         #   @return [Symbol, WhopSDK::Models::ReleaseMethod]
         required :release_method, enum: -> { WhopSDK::ReleaseMethod }
@@ -213,9 +213,8 @@ module WhopSDK
                  nil?: true
 
         # @!attribute trial_period_days
-        #   The number of free trial days before the first charge on a renewal plan. Null if
-        #   no trial is configured or the current user has already used a trial for this
-        #   plan.
+        #   Free trial days before first renewal charge. `null` if no trial is configured or
+        #   the user has already used a trial for this plan.
         #
         #   @return [Integer, nil]
         required :trial_period_days, Integer, nil?: true
@@ -237,23 +236,23 @@ module WhopSDK
         #
         #   @param adaptive_pricing_enabled [Boolean] Whether the creator has turned on adaptive pricing for this plan. Raw setting —
         #
-        #   @param billing_period [Integer, nil] The number of days between each recurring charge. Null for one-time plans. For e
+        #   @param billing_period [Integer, nil] Number of days between recurring charges, such as 30 for monthly or 365 for annu
         #
         #   @param currency [Symbol, WhopSDK::Models::Currency] The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
         #
-        #   @param expiration_days [Integer, nil] The number of days until the membership expires (for expiration-based plans). Fo
+        #   @param expiration_days [Integer, nil] Access duration in days for expiration-based plans, such as 365 for a one-year p
         #
         #   @param initial_price [Float] The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
         #
         #   @param plan_type [Symbol, WhopSDK::Models::PlanType] The billing model for this plan: 'renewal' for recurring subscriptions or 'one_t
         #
-        #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod] The method used to sell this plan: 'buy_now' for immediate purchase or 'waitlist
+        #   @param release_method [Symbol, WhopSDK::Models::ReleaseMethod] Sales method for this plan: `buy_now` for immediate purchase or `waitlist` for w
         #
         #   @param renewal_price [Float] The recurring price charged every billing_period in the plan's base_currency (e.
         #
         #   @param three_ds_level [Symbol, WhopSDK::Models::CheckoutConfigurationListResponse::Plan::ThreeDSLevel, nil] The 3D Secure behavior for a plan.
         #
-        #   @param trial_period_days [Integer, nil] The number of free trial days before the first charge on a renewal plan. Null if
+        #   @param trial_period_days [Integer, nil] Free trial days before first renewal charge. `null` if no trial is configured or
         #
         #   @param visibility [Symbol, WhopSDK::Models::Visibility] Controls whether the plan is visible to customers. When set to 'hidden', the pla
 

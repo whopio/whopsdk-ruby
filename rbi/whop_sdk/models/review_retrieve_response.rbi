@@ -190,7 +190,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
+        # Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
         sig { returns(T.nilable(String)) }
         attr_accessor :content_type
 
@@ -219,7 +219,7 @@ module WhopSDK
           # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
           # input value will be accepted as an ID.
           id:,
-          # The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
+          # Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
           content_type:,
           # The original filename of the uploaded attachment, including its file extension.
           filename:,
@@ -256,7 +256,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
+        # URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
         sig { returns(String) }
         attr_accessor :route
 
@@ -273,7 +273,7 @@ module WhopSDK
         def self.new(
           # The unique identifier for the company.
           id:,
-          # The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
+          # URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
           route:,
           # The display name of the company shown to customers.
           title:

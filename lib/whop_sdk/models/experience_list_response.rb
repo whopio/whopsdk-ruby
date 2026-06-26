@@ -142,7 +142,7 @@ module WhopSDK
         required :id, String
 
         # @!attribute route
-        #   The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
+        #   URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
         #
         #   @return [String]
         required :route, String
@@ -154,14 +154,11 @@ module WhopSDK
         required :title, String
 
         # @!method initialize(id:, route:, title:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::ExperienceListResponse::Company} for more details.
-        #
         #   The company that owns this experience.
         #
         #   @param id [String] The unique identifier for the company.
         #
-        #   @param route [String] The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
+        #   @param route [String] URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
         #
         #   @param title [String] The display name of the company shown to customers.
       end

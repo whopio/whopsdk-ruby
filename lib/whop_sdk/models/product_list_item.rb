@@ -16,9 +16,8 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute external_identifier
-      #   A unique identifier used to create or update products via the API. When provided
-      #   on product creation endpoints, an existing product with this identifier will be
-      #   updated instead of creating a new one.
+      #   External identifier for the product. Providing it on a product creation endpoint
+      #   updates the existing product with this identifier instead of creating a new one.
       #
       #   @return [String, nil]
       required :external_identifier, String, nil?: true
@@ -30,16 +29,16 @@ module WhopSDK
       required :headline, String, nil?: true
 
       # @!attribute member_count
-      #   The number of users who currently hold an active membership to this product.
-      #   Returns 0 if the company has disabled public member counts.
+      #   Active memberships for this product. Returns `0` if the account has disabled
+      #   public member counts.
       #
       #   @return [Integer]
       required :member_count, Integer
 
       # @!attribute metadata
-      #   Custom key-value pairs stored on the product. Included in webhook payloads for
-      #   payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
-      #   string value.
+      #   Custom key-value pairs stored on the product and included in payment and
+      #   membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
+      #   per string value.
       #
       #   @return [Hash{Symbol=>Object}, nil]
       required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
@@ -51,8 +50,8 @@ module WhopSDK
       required :published_reviews_count, Integer
 
       # @!attribute route
-      #   The URL slug used in the product's public link (e.g., 'my-product' in
-      #   whop.com/company/my-product).
+      #   URL slug in the product's public link, e.g. `pickaxe-analytics` in
+      #   whop.com/company/pickaxe-analytics.
       #
       #   @return [String]
       required :route, String
@@ -94,17 +93,17 @@ module WhopSDK
       #
       #   @param created_at [Time] The datetime the product was created.
       #
-      #   @param external_identifier [String, nil] A unique identifier used to create or update products via the API. When provided
+      #   @param external_identifier [String, nil] External identifier for the product. Providing it on a product creation endpoint
       #
       #   @param headline [String, nil] A short marketing headline displayed prominently on the product's product page.
       #
-      #   @param member_count [Integer] The number of users who currently hold an active membership to this product. Ret
+      #   @param member_count [Integer] Active memberships for this product. Returns `0` if the account has disabled pub
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the product. Included in webhook payloads for p
+      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the product and included in payment and members
       #
       #   @param published_reviews_count [Integer] The total number of published customer reviews for this product's company.
       #
-      #   @param route [String] The URL slug used in the product's public link (e.g., 'my-product' in whop.com/c
+      #   @param route [String] URL slug in the product's public link, e.g. `pickaxe-analytics` in whop.com/comp
       #
       #   @param title [String] The display name of the product shown to customers on the product page and in se
       #

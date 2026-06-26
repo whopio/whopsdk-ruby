@@ -87,9 +87,9 @@ module WhopSDK
         required :business_structure, String, nil?: true
 
         # @!attribute country
-        #   ISO 3166-1 alpha-2 country code (e.g. `US`, `GB`). For individuals this is the
-        #   country of citizenship or residence reported by the identity provider; for
-        #   businesses this is the country of incorporation.
+        #   ISO 3166-1 alpha-2 country code reported by the identity provider, such as `US`
+        #   or `GB`. For individuals this is the country of citizenship or residence; for
+        #   businesses, the country of incorporation.
         #
         #   @return [String, nil]
         required :country, String, nil?: true
@@ -193,7 +193,7 @@ module WhopSDK
         #
         #   @param business_structure [String, nil] Reported legal structure of a business profile (e.g. `corp`, `llc`). Provider-sp
         #
-        #   @param country [String, nil] ISO 3166-1 alpha-2 country code (e.g. `US`, `GB`). For individuals this is the c
+        #   @param country [String, nil] ISO 3166-1 alpha-2 country code reported by the identity provider, such as `US`
         #
         #   @param created_at [Time] When the identity profile was first created.
         #

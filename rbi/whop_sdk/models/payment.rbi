@@ -1321,14 +1321,14 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # Custom key-value pairs stored on the product. Included in webhook payloads for
-        # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
-        # string value.
+        # Custom key-value pairs stored on the product and included in payment and
+        # membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
+        # per string value.
         sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
         attr_accessor :metadata
 
-        # The URL slug used in the product's public link (e.g., 'my-product' in
-        # whop.com/company/my-product).
+        # URL slug in the product's public link, e.g. `pickaxe-analytics` in
+        # whop.com/company/pickaxe-analytics.
         sig { returns(String) }
         attr_accessor :route
 
@@ -1349,12 +1349,12 @@ module WhopSDK
         def self.new(
           # The unique identifier for the product.
           id:,
-          # Custom key-value pairs stored on the product. Included in webhook payloads for
-          # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
-          # string value.
+          # Custom key-value pairs stored on the product and included in payment and
+          # membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
+          # per string value.
           metadata:,
-          # The URL slug used in the product's public link (e.g., 'my-product' in
-          # whop.com/company/my-product).
+          # URL slug in the product's public link, e.g. `pickaxe-analytics` in
+          # whop.com/company/pickaxe-analytics.
           route:,
           # The display name of the product shown to customers on the product page and in
           # search results.

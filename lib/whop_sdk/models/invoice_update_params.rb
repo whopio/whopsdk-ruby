@@ -257,6 +257,12 @@ module WhopSDK
       end
 
       class Plan < WhopSDK::Internal::Type::BaseModel
+        # @!attribute adaptive_pricing_enabled
+        #   Whether this plan accepts local currency payments via adaptive pricing.
+        #
+        #   @return [Boolean, nil]
+        optional :adaptive_pricing_enabled, WhopSDK::Internal::Type::Boolean, nil?: true
+
         # @!attribute billing_period
         #   The interval in days at which the plan charges (renewal plans).
         #
@@ -363,11 +369,13 @@ module WhopSDK
         #   @return [Symbol, WhopSDK::Models::Visibility, nil]
         optional :visibility, enum: -> { WhopSDK::Visibility }, nil?: true
 
-        # @!method initialize(billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil)
+        # @!method initialize(adaptive_pricing_enabled: nil, billing_period: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, stock: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::InvoiceUpdateParams::Plan} for more details.
         #
         #   Updated plan attributes.
+        #
+        #   @param adaptive_pricing_enabled [Boolean, nil] Whether this plan accepts local currency payments via adaptive pricing.
         #
         #   @param billing_period [Integer, nil] The interval in days at which the plan charges (renewal plans).
         #

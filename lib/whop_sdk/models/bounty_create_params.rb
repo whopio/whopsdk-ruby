@@ -9,7 +9,8 @@ module WhopSDK
 
       # @!attribute base_unit_amount
       #   The amount paid to each approved submission. The total bounty pool funded is
-      #   this amount times accepted_submissions_limit.
+      #   this amount times accepted_submissions_limit, and must be at least 5 in the
+      #   bounty's currency.
       #
       #   @return [Float]
       required :base_unit_amount, Float
@@ -34,7 +35,8 @@ module WhopSDK
 
       # @!attribute accepted_submissions_limit
       #   The number of submissions that can be approved before the bounty closes.
-      #   Defaults to 1.
+      #   Defaults to 1. The total pool (base_unit_amount times this limit) must be at
+      #   least 5 in the bounty's currency.
       #
       #   @return [Integer, nil]
       optional :accepted_submissions_limit, Integer, nil?: true

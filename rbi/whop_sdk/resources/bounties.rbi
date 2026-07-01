@@ -34,7 +34,8 @@ module WhopSDK
       end
       def create(
         # The amount paid to each approved submission. The total bounty pool funded is
-        # this amount times accepted_submissions_limit.
+        # this amount times accepted_submissions_limit, and must be at least 5 in the
+        # bounty's currency.
         base_unit_amount:,
         # The currency for the bounty pool funding amount.
         currency:,
@@ -43,7 +44,8 @@ module WhopSDK
         # The title of the bounty.
         title:,
         # The number of submissions that can be approved before the bounty closes.
-        # Defaults to 1.
+        # Defaults to 1. The total pool (base_unit_amount times this limit) must be at
+        # least 5 in the bounty's currency.
         accepted_submissions_limit: nil,
         # The ISO3166 country codes where this bounty should be visible. Empty means
         # globally visible.

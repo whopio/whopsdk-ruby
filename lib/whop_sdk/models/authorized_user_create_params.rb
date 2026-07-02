@@ -73,6 +73,12 @@ module WhopSDK
         #   @return [String, nil]
         optional :credential_id, String, nil?: true
 
+        # @!attribute email_code
+        #   The 6-digit code emailed to the user.
+        #
+        #   @return [String, nil]
+        optional :email_code, String, nil?: true
+
         # @!attribute signature
         #   The WebAuthn signature (base64).
         #
@@ -91,7 +97,7 @@ module WhopSDK
         #   @return [Boolean, nil]
         optional :use_finance_session, WhopSDK::Internal::Type::Boolean, nil?: true
 
-        # @!method initialize(authenticator_data: nil, client_data_json: nil, credential_id: nil, signature: nil, totp_code: nil, use_finance_session: nil)
+        # @!method initialize(authenticator_data: nil, client_data_json: nil, credential_id: nil, email_code: nil, signature: nil, totp_code: nil, use_finance_session: nil)
         #   Re-authentication proof required to perform this sensitive action.
         #
         #   @param authenticator_data [String, nil] The WebAuthn authenticator data (base64).
@@ -99,6 +105,8 @@ module WhopSDK
         #   @param client_data_json [String, nil] The WebAuthn client data JSON (base64).
         #
         #   @param credential_id [String, nil] The WebAuthn credential ID (base64).
+        #
+        #   @param email_code [String, nil] The 6-digit code emailed to the user.
         #
         #   @param signature [String, nil] The WebAuthn signature (base64).
         #

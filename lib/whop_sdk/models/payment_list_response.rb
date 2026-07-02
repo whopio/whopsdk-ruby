@@ -198,6 +198,13 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::Currency]
       required :settlement_currency, enum: -> { WhopSDK::Currency }
 
+      # @!attribute shipping_address
+      #   The shipping address provided by the customer for physical goods. Null if no
+      #   shipping address was collected.
+      #
+      #   @return [WhopSDK::Models::PaymentListResponse::ShippingAddress, nil]
+      required :shipping_address, -> { WhopSDK::Models::PaymentListResponse::ShippingAddress }, nil?: true
+
       # @!attribute status
       #   The status of a receipt
       #
@@ -260,7 +267,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, dispute_alerted_at:, failure_message:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, settlement_currency:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, total:, updated_at:, usd_total:, user:, voidable:)
+      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, dispute_alerted_at:, failure_message:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, retryable:, settlement_currency:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, total:, updated_at:, usd_total:, user:, voidable:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PaymentListResponse} for more details.
       #
@@ -328,6 +335,8 @@ module WhopSDK
       #   @param retryable [Boolean] True when the payment status is `open` and its membership is in one of the retry
       #
       #   @param settlement_currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
+      #
+      #   @param shipping_address [WhopSDK::Models::PaymentListResponse::ShippingAddress, nil] The shipping address provided by the customer for physical goods. Null if no shi
       #
       #   @param status [Symbol, WhopSDK::Models::ReceiptStatus, nil] The status of a receipt
       #
@@ -768,6 +777,69 @@ module WhopSDK
         #   @param number_of_intervals [Integer, nil] The number of months the promo is applied for.
         #
         #   @param promo_type [Symbol, WhopSDK::Models::PromoType] The type (% or flat amount) of the promo.
+      end
+
+      # @see WhopSDK::Models::PaymentListResponse#shipping_address
+      class ShippingAddress < WhopSDK::Internal::Type::BaseModel
+        # @!attribute city
+        #   The city of the address.
+        #
+        #   @return [String, nil]
+        required :city, String, nil?: true
+
+        # @!attribute country
+        #   The country of the address.
+        #
+        #   @return [String, nil]
+        required :country, String, nil?: true
+
+        # @!attribute line1
+        #   The line 1 of the address.
+        #
+        #   @return [String, nil]
+        required :line1, String, nil?: true
+
+        # @!attribute line2
+        #   The line 2 of the address.
+        #
+        #   @return [String, nil]
+        required :line2, String, nil?: true
+
+        # @!attribute name
+        #   The name of the customer.
+        #
+        #   @return [String, nil]
+        required :name, String, nil?: true
+
+        # @!attribute postal_code
+        #   The postal code of the address.
+        #
+        #   @return [String, nil]
+        required :postal_code, String, nil?: true
+
+        # @!attribute state
+        #   The state of the address.
+        #
+        #   @return [String, nil]
+        required :state, String, nil?: true
+
+        # @!method initialize(city:, country:, line1:, line2:, name:, postal_code:, state:)
+        #   The shipping address provided by the customer for physical goods. Null if no
+        #   shipping address was collected.
+        #
+        #   @param city [String, nil] The city of the address.
+        #
+        #   @param country [String, nil] The country of the address.
+        #
+        #   @param line1 [String, nil] The line 1 of the address.
+        #
+        #   @param line2 [String, nil] The line 2 of the address.
+        #
+        #   @param name [String, nil] The name of the customer.
+        #
+        #   @param postal_code [String, nil] The postal code of the address.
+        #
+        #   @param state [String, nil] The state of the address.
       end
 
       # @see WhopSDK::Models::PaymentListResponse#user

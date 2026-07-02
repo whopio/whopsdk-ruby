@@ -223,6 +223,18 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :settlement_exchange_rate
 
+      # The shipping address provided by the customer for physical goods. Null if no
+      # shipping address was collected.
+      sig { returns(T.nilable(WhopSDK::Payment::ShippingAddress)) }
+      attr_reader :shipping_address
+
+      sig do
+        params(
+          shipping_address: T.nilable(WhopSDK::Payment::ShippingAddress::OrHash)
+        ).void
+      end
+      attr_writer :shipping_address
+
       # The status of a receipt
       sig { returns(T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol)) }
       attr_accessor :status
@@ -321,6 +333,8 @@ module WhopSDK
           settlement_amount: Float,
           settlement_currency: WhopSDK::Currency::OrSymbol,
           settlement_exchange_rate: T.nilable(Float),
+          shipping_address:
+            T.nilable(WhopSDK::Payment::ShippingAddress::OrHash),
           status: T.nilable(WhopSDK::ReceiptStatus::OrSymbol),
           substatus: WhopSDK::FriendlyReceiptStatus::OrSymbol,
           subtotal: T.nilable(Float),
@@ -432,6 +446,9 @@ module WhopSDK
         settlement_currency:,
         # Deprecated. Always returns null.
         settlement_exchange_rate:,
+        # The shipping address provided by the customer for physical goods. Null if no
+        # shipping address was collected.
+        shipping_address:,
         # The status of a receipt
         status:,
         # The friendly status of the payment.
@@ -505,6 +522,7 @@ module WhopSDK
             settlement_amount: Float,
             settlement_currency: WhopSDK::Currency::TaggedSymbol,
             settlement_exchange_rate: T.nilable(Float),
+            shipping_address: T.nilable(WhopSDK::Payment::ShippingAddress),
             status: T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol),
             substatus: WhopSDK::FriendlyReceiptStatus::TaggedSymbol,
             subtotal: T.nilable(Float),
@@ -1580,6 +1598,88 @@ module WhopSDK
                   WhopSDK::ResolutionCenterCasePlatformResponse::TaggedSymbol
                 ],
               status: WhopSDK::ResolutionCenterCaseStatus::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class ShippingAddress < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Payment::ShippingAddress, WhopSDK::Internal::AnyHash)
+          end
+
+        # The city of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :city
+
+        # The country of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :country
+
+        # The line 1 of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :line1
+
+        # The line 2 of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :line2
+
+        # The name of the customer.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
+        # The postal code of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :postal_code
+
+        # The state of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :state
+
+        # The shipping address provided by the customer for physical goods. Null if no
+        # shipping address was collected.
+        sig do
+          params(
+            city: T.nilable(String),
+            country: T.nilable(String),
+            line1: T.nilable(String),
+            line2: T.nilable(String),
+            name: T.nilable(String),
+            postal_code: T.nilable(String),
+            state: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The city of the address.
+          city:,
+          # The country of the address.
+          country:,
+          # The line 1 of the address.
+          line1:,
+          # The line 2 of the address.
+          line2:,
+          # The name of the customer.
+          name:,
+          # The postal code of the address.
+          postal_code:,
+          # The state of the address.
+          state:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              city: T.nilable(String),
+              country: T.nilable(String),
+              line1: T.nilable(String),
+              line2: T.nilable(String),
+              name: T.nilable(String),
+              postal_code: T.nilable(String),
+              state: T.nilable(String)
             }
           )
         end

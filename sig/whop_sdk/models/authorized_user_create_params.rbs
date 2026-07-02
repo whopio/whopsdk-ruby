@@ -47,6 +47,7 @@ module WhopSDK
           authenticator_data: String?,
           client_data_json: String?,
           credential_id: String?,
+          email_code: String?,
           signature: String?,
           totp_code: String?,
           use_finance_session: bool?
@@ -59,6 +60,8 @@ module WhopSDK
 
         attr_accessor credential_id: String?
 
+        attr_accessor email_code: String?
+
         attr_accessor signature: String?
 
         attr_accessor totp_code: String?
@@ -69,6 +72,7 @@ module WhopSDK
           ?authenticator_data: String?,
           ?client_data_json: String?,
           ?credential_id: String?,
+          ?email_code: String?,
           ?signature: String?,
           ?totp_code: String?,
           ?use_finance_session: bool?
@@ -78,6 +82,7 @@ module WhopSDK
           authenticator_data: String?,
           client_data_json: String?,
           credential_id: String?,
+          email_code: String?,
           signature: String?,
           totp_code: String?,
           use_finance_session: bool?

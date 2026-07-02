@@ -104,6 +104,10 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :credential_id
 
+        # The 6-digit code emailed to the user.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :email_code
+
         # The WebAuthn signature (base64).
         sig { returns(T.nilable(String)) }
         attr_accessor :signature
@@ -122,6 +126,7 @@ module WhopSDK
             authenticator_data: T.nilable(String),
             client_data_json: T.nilable(String),
             credential_id: T.nilable(String),
+            email_code: T.nilable(String),
             signature: T.nilable(String),
             totp_code: T.nilable(String),
             use_finance_session: T.nilable(T::Boolean)
@@ -134,6 +139,8 @@ module WhopSDK
           client_data_json: nil,
           # The WebAuthn credential ID (base64).
           credential_id: nil,
+          # The 6-digit code emailed to the user.
+          email_code: nil,
           # The WebAuthn signature (base64).
           signature: nil,
           # The 6-digit code from the authenticator app or SMS.
@@ -149,6 +156,7 @@ module WhopSDK
               authenticator_data: T.nilable(String),
               client_data_json: T.nilable(String),
               credential_id: T.nilable(String),
+              email_code: T.nilable(String),
               signature: T.nilable(String),
               totp_code: T.nilable(String),
               use_finance_session: T.nilable(T::Boolean)

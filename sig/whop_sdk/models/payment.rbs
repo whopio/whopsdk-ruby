@@ -41,6 +41,7 @@ module WhopSDK
         settlement_amount: Float,
         settlement_currency: WhopSDK::Models::currency,
         settlement_exchange_rate: Float?,
+        shipping_address: WhopSDK::Payment::ShippingAddress?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
@@ -134,6 +135,8 @@ module WhopSDK
 
       attr_accessor settlement_exchange_rate: Float?
 
+      attr_accessor shipping_address: WhopSDK::Payment::ShippingAddress?
+
       attr_accessor status: WhopSDK::Models::receipt_status?
 
       attr_accessor substatus: WhopSDK::Models::friendly_receipt_status
@@ -198,6 +201,7 @@ module WhopSDK
         settlement_amount: Float,
         settlement_currency: WhopSDK::Models::currency,
         settlement_exchange_rate: Float?,
+        shipping_address: WhopSDK::Payment::ShippingAddress?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
@@ -252,6 +256,7 @@ module WhopSDK
         settlement_amount: Float,
         settlement_currency: WhopSDK::Models::currency,
         settlement_exchange_rate: Float?,
+        shipping_address: WhopSDK::Payment::ShippingAddress?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
@@ -776,6 +781,53 @@ module WhopSDK
           merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response],
           platform_response_actions: ::Array[WhopSDK::Models::resolution_center_case_platform_response],
           status: WhopSDK::Models::resolution_center_case_status
+        }
+      end
+
+      type shipping_address =
+        {
+          city: String?,
+          country: String?,
+          :line1 => String?,
+          :line2 => String?,
+          name: String?,
+          postal_code: String?,
+          state: String?
+        }
+
+      class ShippingAddress < WhopSDK::Internal::Type::BaseModel
+        attr_accessor city: String?
+
+        attr_accessor country: String?
+
+        attr_accessor line1: String?
+
+        attr_accessor line2: String?
+
+        attr_accessor name: String?
+
+        attr_accessor postal_code: String?
+
+        attr_accessor state: String?
+
+        def initialize: (
+          city: String?,
+          country: String?,
+          line1: String?,
+          line2: String?,
+          name: String?,
+          postal_code: String?,
+          state: String?
+        ) -> void
+
+        def to_hash: -> {
+          city: String?,
+          country: String?,
+          :line1 => String?,
+          :line2 => String?,
+          name: String?,
+          postal_code: String?,
+          state: String?
         }
       end
 

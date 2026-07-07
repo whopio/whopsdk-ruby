@@ -246,7 +246,6 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::Ads) }
     attr_reader :ads
 
-    # Conversions
     sig { returns(WhopSDK::Resources::Conversions) }
     attr_reader :conversions
 

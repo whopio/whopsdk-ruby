@@ -251,7 +251,6 @@ module WhopSDK
     # @return [WhopSDK::Resources::Ads]
     attr_reader :ads
 
-    # Conversions
     # @return [WhopSDK::Resources::Conversions]
     attr_reader :conversions
 

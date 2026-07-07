@@ -143,8 +143,6 @@ module WhopSDK
 
   class CompanyUpdateParams = WhopSDK::Models::CompanyUpdateParams
 
-  class ConversionCreateParams = WhopSDK::Models::ConversionCreateParams
-
   class Course = WhopSDK::Models::Course
 
   class CourseChapter = WhopSDK::Models::CourseChapter

@@ -15,7 +15,7 @@ module WhopSDK
       # - `developer:create_app`
       # - `developer:manage_api_key`
       #
-      # @overload create(company_id:, name:, base_url: nil, icon: nil, redirect_uris: nil, request_options: {})
+      # @overload create(company_id:, name:, base_url: nil, icon: nil, redirect_uris: nil, route: nil, request_options: {})
       #
       # @param company_id [String] The unique identifier of the company to create the app for, starting with
       # 'biz\_'
@@ -27,6 +27,8 @@ module WhopSDK
       # @param icon [WhopSDK::Models::AppCreateParams::Icon, nil] The icon image for the app in PNG, JPEG, or GIF format.
       #
       # @param redirect_uris [Array<String>, nil] The whitelisted OAuth callback URLs that users are redirected to after authorizi
+      #
+      # @param route [String, nil] The unique subdomain route where the app's hosted web builds are served, such as
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -73,7 +75,7 @@ module WhopSDK
       # - `developer:update_app`
       # - `developer:manage_api_key`
       #
-      # @overload update(id, app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, oauth_client_type: nil, openapi_path: nil, redirect_uris: nil, required_scopes: nil, skills_path: nil, status: nil, request_options: {})
+      # @overload update(id, app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, oauth_client_type: nil, openapi_path: nil, redirect_uris: nil, required_scopes: nil, route: nil, skills_path: nil, status: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the app to update, starting with 'app\_'.
       #
@@ -102,6 +104,8 @@ module WhopSDK
       # @param redirect_uris [Array<String>, nil] The whitelisted OAuth callback URLs that users are redirected to after authorizi
       #
       # @param required_scopes [Array<Symbol, WhopSDK::Models::AppUpdateParams::RequiredScope>, nil] The permission scopes the app will request from users when they install it.
+      #
+      # @param route [String, nil] The unique subdomain route where the app's hosted web builds are served, such as
       #
       # @param skills_path [String, nil] The URL path to the skills directory of the app, such as '/assets/skills/'.
       #

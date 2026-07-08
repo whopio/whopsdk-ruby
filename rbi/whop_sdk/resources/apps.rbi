@@ -18,6 +18,7 @@ module WhopSDK
           base_url: T.nilable(String),
           icon: T.nilable(WhopSDK::AppCreateParams::Icon::OrHash),
           redirect_uris: T.nilable(T::Array[String]),
+          route: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::App)
       end
@@ -35,6 +36,9 @@ module WhopSDK
         # The whitelisted OAuth callback URLs that users are redirected to after
         # authorizing the app.
         redirect_uris: nil,
+        # The unique subdomain route where the app's hosted web builds are served, such as
+        # 'myapp' for myapp.whop.app.
+        route: nil,
         request_options: {}
       )
       end
@@ -84,6 +88,7 @@ module WhopSDK
             T.nilable(
               T::Array[WhopSDK::AppUpdateParams::RequiredScope::OrSymbol]
             ),
+          route: T.nilable(String),
           skills_path: T.nilable(String),
           status: T.nilable(WhopSDK::AppStatuses::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -122,6 +127,9 @@ module WhopSDK
         redirect_uris: nil,
         # The permission scopes the app will request from users when they install it.
         required_scopes: nil,
+        # The unique subdomain route where the app's hosted web builds are served, such as
+        # 'myapp' for myapp.whop.app.
+        route: nil,
         # The URL path to the skills directory of the app, such as '/assets/skills/'.
         skills_path: nil,
         # The status of an experience interface

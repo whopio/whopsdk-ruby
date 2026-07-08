@@ -40,7 +40,14 @@ module WhopSDK
       #   @return [Array<String>, nil]
       optional :redirect_uris, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
 
-      # @!method initialize(company_id:, name:, base_url: nil, icon: nil, redirect_uris: nil, request_options: {})
+      # @!attribute route
+      #   The unique subdomain route where the app's hosted web builds are served, such as
+      #   'myapp' for myapp.whop.app.
+      #
+      #   @return [String, nil]
+      optional :route, String, nil?: true
+
+      # @!method initialize(company_id:, name:, base_url: nil, icon: nil, redirect_uris: nil, route: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AppCreateParams} for more details.
       #
@@ -54,6 +61,8 @@ module WhopSDK
       #   @param icon [WhopSDK::Models::AppCreateParams::Icon, nil] The icon image for the app in PNG, JPEG, or GIF format.
       #
       #   @param redirect_uris [Array<String>, nil] The whitelisted OAuth callback URLs that users are redirected to after authorizi
+      #
+      #   @param route [String, nil] The unique subdomain route where the app's hosted web builds are served, such as
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 

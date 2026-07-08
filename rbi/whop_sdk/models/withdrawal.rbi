@@ -350,6 +350,11 @@ module WhopSDK
             :payee_name_invalid,
             WhopSDK::Withdrawal::ErrorCode::TaggedSymbol
           )
+        BENEFICIARY_NAME_MISMATCH =
+          T.let(
+            :beneficiary_name_mismatch,
+            WhopSDK::Withdrawal::ErrorCode::TaggedSymbol
+          )
         RECEIVING_ACCOUNT_LOCKED =
           T.let(
             :receiving_account_locked,

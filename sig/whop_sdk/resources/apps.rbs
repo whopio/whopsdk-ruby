@@ -7,6 +7,7 @@ module WhopSDK
         ?base_url: String?,
         ?icon: WhopSDK::AppCreateParams::Icon?,
         ?redirect_uris: ::Array[String]?,
+        ?route: String?,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::App
 
@@ -30,6 +31,7 @@ module WhopSDK
         ?openapi_path: String?,
         ?redirect_uris: ::Array[String]?,
         ?required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
+        ?route: String?,
         ?skills_path: String?,
         ?status: WhopSDK::Models::app_statuses?,
         ?request_options: WhopSDK::request_opts

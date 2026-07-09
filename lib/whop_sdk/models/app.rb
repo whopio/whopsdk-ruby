@@ -145,6 +145,14 @@ module WhopSDK
       #   @return [String, nil]
       required :route, String, nil?: true
 
+      # @!attribute secrets
+      #   The app's secrets as an object of string values. Encrypted at rest and injected
+      #   into the app's hosted server runtime as environment bindings. Requires the
+      #   'developer:update_app' permission.
+      #
+      #   @return [Hash{Symbol=>Object}, nil]
+      required :secrets, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
       # @!attribute skills_path
       #   The URL path template for a specific view of this app, appended to the base
       #   domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
@@ -175,7 +183,7 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, api_key:, app_type:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, hosted_url:, icon:, name:, openapi_path:, origin:, production_web_build:, redirect_uris:, requested_permissions:, route:, skills_path:, stats:, status:, verified:)
+      # @!method initialize(id:, api_key:, app_type:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, hosted_url:, icon:, name:, openapi_path:, origin:, production_web_build:, redirect_uris:, requested_permissions:, route:, secrets:, skills_path:, stats:, status:, verified:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::App} for
       #   more details.
       #
@@ -221,6 +229,8 @@ module WhopSDK
       #   @param requested_permissions [Array<WhopSDK::Models::App::RequestedPermission>] The list of permissions this app requests when installed, including both require
       #
       #   @param route [String, nil] The unique subdomain route where this app's hosted web builds are served, such a
+      #
+      #   @param secrets [Hash{Symbol=>Object}, nil] The app's secrets as an object of string values. Encrypted at rest and injected
       #
       #   @param skills_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
       #

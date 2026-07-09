@@ -14,6 +14,7 @@ module WhopSDK
       #
       # - `developer:create_app`
       # - `developer:manage_api_key`
+      # - `developer:update_app`
       #
       # @overload create(company_id:, name:, base_url: nil, icon: nil, redirect_uris: nil, route: nil, request_options: {})
       #
@@ -45,6 +46,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `developer:manage_api_key`
+      # - `developer:update_app`
       #
       # @overload retrieve(id, request_options: {})
       #
@@ -75,7 +77,7 @@ module WhopSDK
       # - `developer:update_app`
       # - `developer:manage_api_key`
       #
-      # @overload update(id, app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, oauth_client_type: nil, openapi_path: nil, redirect_uris: nil, required_scopes: nil, route: nil, skills_path: nil, status: nil, request_options: {})
+      # @overload update(id, app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, oauth_client_type: nil, openapi_path: nil, redirect_uris: nil, required_scopes: nil, route: nil, secrets: nil, skills_path: nil, status: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the app to update, starting with 'app\_'.
       #
@@ -106,6 +108,8 @@ module WhopSDK
       # @param required_scopes [Array<Symbol, WhopSDK::Models::AppUpdateParams::RequiredScope>, nil] The permission scopes the app will request from users when they install it.
       #
       # @param route [String, nil] The unique subdomain route where the app's hosted web builds are served, such as
+      #
+      # @param secrets [Hash{Symbol=>Object}, nil] Secrets to add or overwrite on the app, as an object of string values (e.g. {"MA
       #
       # @param skills_path [String, nil] The URL path to the skills directory of the app, such as '/assets/skills/'.
       #

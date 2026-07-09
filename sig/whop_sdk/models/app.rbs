@@ -22,6 +22,7 @@ module WhopSDK
         redirect_uris: ::Array[String],
         requested_permissions: ::Array[WhopSDK::App::RequestedPermission],
         route: String?,
+        secrets: ::Hash[Symbol, top]?,
         skills_path: String?,
         stats: WhopSDK::App::Stats?,
         status: WhopSDK::Models::app_statuses,
@@ -69,6 +70,8 @@ module WhopSDK
 
       attr_accessor route: String?
 
+      attr_accessor secrets: ::Hash[Symbol, top]?
+
       attr_accessor skills_path: String?
 
       attr_accessor stats: WhopSDK::App::Stats?
@@ -98,6 +101,7 @@ module WhopSDK
         redirect_uris: ::Array[String],
         requested_permissions: ::Array[WhopSDK::App::RequestedPermission],
         route: String?,
+        secrets: ::Hash[Symbol, top]?,
         skills_path: String?,
         stats: WhopSDK::App::Stats?,
         status: WhopSDK::Models::app_statuses,
@@ -125,6 +129,7 @@ module WhopSDK
         redirect_uris: ::Array[String],
         requested_permissions: ::Array[WhopSDK::App::RequestedPermission],
         route: String?,
+        secrets: ::Hash[Symbol, top]?,
         skills_path: String?,
         stats: WhopSDK::App::Stats?,
         status: WhopSDK::Models::app_statuses,

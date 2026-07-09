@@ -32,6 +32,7 @@ module WhopSDK
         ?redirect_uris: ::Array[String]?,
         ?required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
         ?route: String?,
+        ?secrets: ::Hash[Symbol, top]?,
         ?skills_path: String?,
         ?status: WhopSDK::Models::app_statuses?,
         ?request_options: WhopSDK::request_opts

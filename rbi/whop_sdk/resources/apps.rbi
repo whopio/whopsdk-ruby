@@ -11,6 +11,7 @@ module WhopSDK
       #
       # - `developer:create_app`
       # - `developer:manage_api_key`
+      # - `developer:update_app`
       sig do
         params(
           company_id: String,
@@ -48,6 +49,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `developer:manage_api_key`
+      # - `developer:update_app`
       sig do
         params(
           id: String,
@@ -89,6 +91,7 @@ module WhopSDK
               T::Array[WhopSDK::AppUpdateParams::RequiredScope::OrSymbol]
             ),
           route: T.nilable(String),
+          secrets: T.nilable(T::Hash[Symbol, T.anything]),
           skills_path: T.nilable(String),
           status: T.nilable(WhopSDK::AppStatuses::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -130,6 +133,11 @@ module WhopSDK
         # The unique subdomain route where the app's hosted web builds are served, such as
         # 'myapp' for myapp.whop.app.
         route: nil,
+        # Secrets to add or overwrite on the app, as an object of string values (e.g.
+        # {"MAIL_API_KEY": "..."}). Keys not included are left untouched. Pass null or an
+        # empty string as the value to delete a secret. Secrets are encrypted at rest and
+        # injected into the app's hosted server runtime as environment bindings.
+        secrets: nil,
         # The URL path to the skills directory of the app, such as '/assets/skills/'.
         skills_path: nil,
         # The status of an experience interface

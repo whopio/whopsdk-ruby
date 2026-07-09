@@ -126,6 +126,12 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :route
 
+      # The app's secrets as an object of string values. Encrypted at rest and injected
+      # into the app's hosted server runtime as environment bindings. Requires the
+      # 'developer:update_app' permission.
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      attr_accessor :secrets
+
       # The URL path template for a specific view of this app, appended to the base
       # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
       # not configured.
@@ -177,6 +183,7 @@ module WhopSDK
           requested_permissions:
             T::Array[WhopSDK::App::RequestedPermission::OrHash],
           route: T.nilable(String),
+          secrets: T.nilable(T::Hash[Symbol, T.anything]),
           skills_path: T.nilable(String),
           stats: T.nilable(WhopSDK::App::Stats::OrHash),
           status: WhopSDK::AppStatuses::OrSymbol,
@@ -245,6 +252,10 @@ module WhopSDK
         # The unique subdomain route where this app's hosted web builds are served, such
         # as 'myapp' for myapp.whop.app. Null if the app has not claimed a route.
         route:,
+        # The app's secrets as an object of string values. Encrypted at rest and injected
+        # into the app's hosted server runtime as environment bindings. Requires the
+        # 'developer:update_app' permission.
+        secrets:,
         # The URL path template for a specific view of this app, appended to the base
         # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
         # not configured.
@@ -285,6 +296,7 @@ module WhopSDK
             redirect_uris: T::Array[String],
             requested_permissions: T::Array[WhopSDK::App::RequestedPermission],
             route: T.nilable(String),
+            secrets: T.nilable(T::Hash[Symbol, T.anything]),
             skills_path: T.nilable(String),
             stats: T.nilable(WhopSDK::App::Stats),
             status: WhopSDK::AppStatuses::TaggedSymbol,

@@ -112,6 +112,14 @@ module WhopSDK
       sig { returns(Float) }
       attr_accessor :custom_conversions
 
+      # Whop pixel-attributed custom conversions broken out by merchant-defined event
+      # name, last-click, as a { event_name => count } map over the stats window. Empty
+      # when no named custom events are attributed. Custom events fired without a name
+      # are counted in custom_conversions but omitted here, so these values sum to at
+      # most custom_conversions.
+      sig { returns(T.anything) }
+      attr_accessor :custom_event_counts
+
       # The current delivery state, mirroring the Delivery column in the ads dashboard.
       # When several states apply at once, the highest-precedence one is returned.
       sig { returns(WhopSDK::AdCampaign::DeliveryStatus::TaggedSymbol) }
@@ -167,6 +175,13 @@ module WhopSDK
       # standard events.
       sig { returns(T.nilable(String)) }
       attr_accessor :result_event_name
+
+      # The Whop pixel-attributed count behind result_event. When a campaign's ad groups
+      # optimize different goals there is no single result_event (it is null), and this
+      # is instead the sum of each ad group's own attributed results. Null when nothing
+      # Whop-attributable is being optimized for.
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :results
 
       # Purchase value divided by spend, both in USD (a currency-neutral ratio); 0 when
       # there is no spend.
@@ -244,6 +259,7 @@ module WhopSDK
           cost_per_viewed_content: T.nilable(Float),
           created_at: String,
           custom_conversions: Float,
+          custom_event_counts: T.anything,
           delivery_status: WhopSDK::AdCampaign::DeliveryStatus::OrSymbol,
           frequency: T.nilable(Float),
           impressions: Float,
@@ -257,6 +273,7 @@ module WhopSDK
           reach: Float,
           result_event: T.nilable(WhopSDK::AdCampaign::ResultEvent::OrSymbol),
           result_event_name: T.nilable(String),
+          results: T.nilable(Float),
           return_on_ad_spend: Float,
           schedules: Float,
           special_ad_categories:
@@ -329,6 +346,12 @@ module WhopSDK
         # Whop pixel-attributed custom (merchant-defined) conversion events, last-click,
         # across all custom event names.
         custom_conversions:,
+        # Whop pixel-attributed custom conversions broken out by merchant-defined event
+        # name, last-click, as a { event_name => count } map over the stats window. Empty
+        # when no named custom events are attributed. Custom events fired without a name
+        # are counted in custom_conversions but omitted here, so these values sum to at
+        # most custom_conversions.
+        custom_event_counts:,
         # The current delivery state, mirroring the Delivery column in the ads dashboard.
         # When several states apply at once, the highest-precedence one is returned.
         delivery_status:,
@@ -359,6 +382,11 @@ module WhopSDK
         # The merchant-defined event name when result_event is custom; null for the
         # standard events.
         result_event_name:,
+        # The Whop pixel-attributed count behind result_event. When a campaign's ad groups
+        # optimize different goals there is no single result_event (it is null), and this
+        # is instead the sum of each ad group's own attributed results. Null when nothing
+        # Whop-attributable is being optimized for.
+        results:,
         # Purchase value divided by spend, both in USD (a currency-neutral ratio); 0 when
         # there is no spend.
         return_on_ad_spend:,
@@ -414,6 +442,7 @@ module WhopSDK
             cost_per_viewed_content: T.nilable(Float),
             created_at: String,
             custom_conversions: Float,
+            custom_event_counts: T.anything,
             delivery_status: WhopSDK::AdCampaign::DeliveryStatus::TaggedSymbol,
             frequency: T.nilable(Float),
             impressions: Float,
@@ -428,6 +457,7 @@ module WhopSDK
             result_event:
               T.nilable(WhopSDK::AdCampaign::ResultEvent::TaggedSymbol),
             result_event_name: T.nilable(String),
+            results: T.nilable(Float),
             return_on_ad_spend: Float,
             schedules: Float,
             special_ad_categories:

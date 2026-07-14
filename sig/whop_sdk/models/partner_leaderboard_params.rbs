@@ -1,0 +1,42 @@
+module WhopSDK
+  module Models
+    type partner_leaderboard_params =
+      { period: WhopSDK::Models::PartnerLeaderboardParams::period }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class PartnerLeaderboardParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_reader period: WhopSDK::Models::PartnerLeaderboardParams::period?
+
+      def period=: (
+        WhopSDK::Models::PartnerLeaderboardParams::period
+      ) -> WhopSDK::Models::PartnerLeaderboardParams::period
+
+      def initialize: (
+        ?period: WhopSDK::Models::PartnerLeaderboardParams::period,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        period: WhopSDK::Models::PartnerLeaderboardParams::period,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type period = :day | :month | :year | :last_30_days | :all_time
+
+      module Period
+        extend WhopSDK::Internal::Type::Enum
+
+        DAY: :day
+        MONTH: :month
+        YEAR: :year
+        LAST_30_DAYS: :last_30_days
+        ALL_TIME: :all_time
+
+        def self?.values: -> ::Array[WhopSDK::Models::PartnerLeaderboardParams::period]
+      end
+    end
+  end
+end

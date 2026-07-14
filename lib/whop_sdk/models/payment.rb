@@ -205,6 +205,13 @@ module WhopSDK
       #   @return [Time, nil]
       required :refunded_at, Time, nil?: true
 
+      # @!attribute refunds
+      #   The refunds issued against this payment, newest first, including failed and
+      #   canceled refund attempts. Limited to the 100 most recent.
+      #
+      #   @return [Array<WhopSDK::Models::Payment::Refund>]
+      required :refunds, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Payment::Refund] }
+
       # @!attribute resolutions
       #   The resolution center cases opened by the customer on this payment. Null if the
       #   actor in context does not have the payment:resolution_center_case:read
@@ -337,7 +344,7 @@ module WhopSDK
       #   @return [Boolean]
       required :voidable, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, dispute_alerted_at:, disputes:, failure_message:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, resolutions:, retryable:, risk_score:, risk_signals:, settlement_amount:, settlement_currency:, settlement_exchange_rate:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, voidable:)
+      # @!method initialize(id:, amount_after_fees:, application_fee:, auto_refunded:, billing_address:, billing_reason:, card_brand:, card_last4:, checkout_configuration_id:, company:, created_at:, currency:, dispute_alerted_at:, disputes:, failure_message:, financing_installments_count:, financing_transactions:, last_payment_attempt:, member:, membership:, metadata:, next_payment_attempt:, paid_at:, payment_method:, payment_method_type:, payments_failed:, plan:, product:, promo_code:, refundable:, refunded_amount:, refunded_at:, refunds:, resolutions:, retryable:, risk_score:, risk_signals:, settlement_amount:, settlement_currency:, settlement_exchange_rate:, shipping_address:, status:, substatus:, subtotal:, tax_amount:, tax_behavior:, tax_refunded_amount:, three_ds_verified:, total:, updated_at:, usd_total:, user:, voidable:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::Payment}
       #   for more details.
       #
@@ -407,6 +414,8 @@ module WhopSDK
       #   @param refunded_amount [Float, nil] The payment refund amount(if applicable).
       #
       #   @param refunded_at [Time, nil] When the payment was refunded (if applicable).
+      #
+      #   @param refunds [Array<WhopSDK::Models::Payment::Refund>] The refunds issued against this payment, newest first, including failed and canc
       #
       #   @param resolutions [Array<WhopSDK::Models::Payment::Resolution>, nil] The resolution center cases opened by the customer on this payment. Null if the
       #
@@ -1033,6 +1042,57 @@ module WhopSDK
         #   @param number_of_intervals [Integer, nil] The number of months the promo is applied for.
         #
         #   @param promo_type [Symbol, WhopSDK::Models::PromoType] The type (% or flat amount) of the promo.
+      end
+
+      class Refund < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The unique identifier for the refund.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute amount
+        #   The refunded amount as a decimal in the specified currency, such as 10.43 for
+        #   $10.43 USD.
+        #
+        #   @return [Float]
+        required :amount, Float
+
+        # @!attribute created_at
+        #   The datetime the refund was created.
+        #
+        #   @return [Time]
+        required :created_at, Time
+
+        # @!attribute currency
+        #   The three-letter ISO currency code for the refunded amount.
+        #
+        #   @return [Symbol, WhopSDK::Models::Currency]
+        required :currency, enum: -> { WhopSDK::Currency }
+
+        # @!attribute status
+        #   The current processing status of the refund, such as pending, succeeded, or
+        #   failed.
+        #
+        #   @return [Symbol, WhopSDK::Models::RefundStatus]
+        required :status, enum: -> { WhopSDK::RefundStatus }
+
+        # @!method initialize(id:, amount:, created_at:, currency:, status:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::Payment::Refund} for more details.
+        #
+        #   A refund represents a full or partial reversal of a payment, including the
+        #   amount, status, and payment provider.
+        #
+        #   @param id [String] The unique identifier for the refund.
+        #
+        #   @param amount [Float] The refunded amount as a decimal in the specified currency, such as 10.43 for $1
+        #
+        #   @param created_at [Time] The datetime the refund was created.
+        #
+        #   @param currency [Symbol, WhopSDK::Models::Currency] The three-letter ISO currency code for the refunded amount.
+        #
+        #   @param status [Symbol, WhopSDK::Models::RefundStatus] The current processing status of the refund, such as pending, succeeded, or fail
       end
 
       class Resolution < WhopSDK::Internal::Type::BaseModel

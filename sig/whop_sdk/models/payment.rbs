@@ -34,6 +34,7 @@ module WhopSDK
         refundable: bool,
         refunded_amount: Float?,
         refunded_at: Time?,
+        refunds: ::Array[WhopSDK::Payment::Refund],
         resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
         risk_score: Integer?,
@@ -121,6 +122,8 @@ module WhopSDK
 
       attr_accessor refunded_at: Time?
 
+      attr_accessor refunds: ::Array[WhopSDK::Payment::Refund]
+
       attr_accessor resolutions: ::Array[WhopSDK::Payment::Resolution]?
 
       attr_accessor retryable: bool
@@ -194,6 +197,7 @@ module WhopSDK
         refundable: bool,
         refunded_amount: Float?,
         refunded_at: Time?,
+        refunds: ::Array[WhopSDK::Payment::Refund],
         resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
         risk_score: Integer?,
@@ -249,6 +253,7 @@ module WhopSDK
         refundable: bool,
         refunded_amount: Float?,
         refunded_at: Time?,
+        refunds: ::Array[WhopSDK::Payment::Refund],
         resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
         risk_score: Integer?,
@@ -724,6 +729,43 @@ module WhopSDK
           code: String?,
           number_of_intervals: Integer?,
           promo_type: WhopSDK::Models::promo_type
+        }
+      end
+
+      type refund =
+        {
+          id: String,
+          amount: Float,
+          created_at: Time,
+          currency: WhopSDK::Models::currency,
+          status: WhopSDK::Models::refund_status
+        }
+
+      class Refund < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor amount: Float
+
+        attr_accessor created_at: Time
+
+        attr_accessor currency: WhopSDK::Models::currency
+
+        attr_accessor status: WhopSDK::Models::refund_status
+
+        def initialize: (
+          id: String,
+          amount: Float,
+          created_at: Time,
+          currency: WhopSDK::Models::currency,
+          status: WhopSDK::Models::refund_status
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          amount: Float,
+          created_at: Time,
+          currency: WhopSDK::Models::currency,
+          status: WhopSDK::Models::refund_status
         }
       end
 

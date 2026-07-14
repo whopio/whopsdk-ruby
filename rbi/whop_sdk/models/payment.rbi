@@ -186,6 +186,11 @@ module WhopSDK
       sig { returns(T.nilable(Time)) }
       attr_accessor :refunded_at
 
+      # The refunds issued against this payment, newest first, including failed and
+      # canceled refund attempts. Limited to the 100 most recent.
+      sig { returns(T::Array[WhopSDK::Payment::Refund]) }
+      attr_accessor :refunds
+
       # The resolution center cases opened by the customer on this payment. Null if the
       # actor in context does not have the payment:resolution_center_case:read
       # permission.
@@ -325,6 +330,7 @@ module WhopSDK
           refundable: T::Boolean,
           refunded_amount: T.nilable(Float),
           refunded_at: T.nilable(Time),
+          refunds: T::Array[WhopSDK::Payment::Refund::OrHash],
           resolutions:
             T.nilable(T::Array[WhopSDK::Payment::Resolution::OrHash]),
           retryable: T::Boolean,
@@ -423,6 +429,9 @@ module WhopSDK
         refunded_amount:,
         # When the payment was refunded (if applicable).
         refunded_at:,
+        # The refunds issued against this payment, newest first, including failed and
+        # canceled refund attempts. Limited to the 100 most recent.
+        refunds:,
         # The resolution center cases opened by the customer on this payment. Null if the
         # actor in context does not have the payment:resolution_center_case:read
         # permission.
@@ -515,6 +524,7 @@ module WhopSDK
             refundable: T::Boolean,
             refunded_amount: T.nilable(Float),
             refunded_at: T.nilable(Time),
+            refunds: T::Array[WhopSDK::Payment::Refund],
             resolutions: T.nilable(T::Array[WhopSDK::Payment::Resolution]),
             retryable: T::Boolean,
             risk_score: T.nilable(Integer),
@@ -1464,6 +1474,76 @@ module WhopSDK
               code: T.nilable(String),
               number_of_intervals: T.nilable(Integer),
               promo_type: WhopSDK::PromoType::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class Refund < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Payment::Refund, WhopSDK::Internal::AnyHash)
+          end
+
+        # The unique identifier for the refund.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The refunded amount as a decimal in the specified currency, such as 10.43 for
+        # $10.43 USD.
+        sig { returns(Float) }
+        attr_accessor :amount
+
+        # The datetime the refund was created.
+        sig { returns(Time) }
+        attr_accessor :created_at
+
+        # The three-letter ISO currency code for the refunded amount.
+        sig { returns(WhopSDK::Currency::TaggedSymbol) }
+        attr_accessor :currency
+
+        # The current processing status of the refund, such as pending, succeeded, or
+        # failed.
+        sig { returns(WhopSDK::RefundStatus::TaggedSymbol) }
+        attr_accessor :status
+
+        # A refund represents a full or partial reversal of a payment, including the
+        # amount, status, and payment provider.
+        sig do
+          params(
+            id: String,
+            amount: Float,
+            created_at: Time,
+            currency: WhopSDK::Currency::OrSymbol,
+            status: WhopSDK::RefundStatus::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The unique identifier for the refund.
+          id:,
+          # The refunded amount as a decimal in the specified currency, such as 10.43 for
+          # $10.43 USD.
+          amount:,
+          # The datetime the refund was created.
+          created_at:,
+          # The three-letter ISO currency code for the refunded amount.
+          currency:,
+          # The current processing status of the refund, such as pending, succeeded, or
+          # failed.
+          status:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              amount: Float,
+              created_at: Time,
+              currency: WhopSDK::Currency::TaggedSymbol,
+              status: WhopSDK::RefundStatus::TaggedSymbol
             }
           )
         end

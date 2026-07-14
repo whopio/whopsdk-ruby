@@ -2,24 +2,37 @@
 
 module WhopSDK
   module Models
-    # @see WhopSDK::Resources::Accounts#recommend_actions
-    class AccountRecommendActionsResponse < WhopSDK::Internal::Type::BaseModel
+    # @see WhopSDK::Resources::Users#recommend_actions
+    class UserRecommendActionsResponse < WhopSDK::Internal::Type::BaseModel
       # @!attribute data
       #
-      #   @return [Array<WhopSDK::Models::AccountRecommendActionsResponse::Data>]
+      #   @return [Array<WhopSDK::Models::UserRecommendActionsResponse::Data>]
       required :data,
-               -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::AccountRecommendActionsResponse::Data] }
+               -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::UserRecommendActionsResponse::Data] }
 
       # @!method initialize(data:)
-      #   @param data [Array<WhopSDK::Models::AccountRecommendActionsResponse::Data>]
+      #   @param data [Array<WhopSDK::Models::UserRecommendActionsResponse::Data>]
 
       class Data < WhopSDK::Internal::Type::BaseModel
+        # @!attribute account_id
+        #   The account (`biz_`) a business recommendation is for, or `null` for personal
+        #   recommendations
+        #
+        #   @return [String, nil]
+        required :account_id, String, nil?: true
+
+        # @!attribute account_name
+        #   The account's display name, or `null`
+        #
+        #   @return [String, nil]
+        required :account_name, String, nil?: true
+
         # @!attribute action
         #   The recommendation; new values may be added, so handle unknown actions
         #   gracefully
         #
-        #   @return [Symbol, WhopSDK::Models::AccountRecommendActionsResponse::Data::Action]
-        required :action, enum: -> { WhopSDK::Models::AccountRecommendActionsResponse::Data::Action }
+        #   @return [Symbol, WhopSDK::Models::UserRecommendActionsResponse::Data::Action]
+        required :action, enum: -> { WhopSDK::Models::UserRecommendActionsResponse::Data::Action }
 
         # @!attribute blocked_capabilities
         #
@@ -65,8 +78,8 @@ module WhopSDK
         # @!attribute status
         #   Always optional — never blocking
         #
-        #   @return [Symbol, WhopSDK::Models::AccountRecommendActionsResponse::Data::Status]
-        required :status, enum: -> { WhopSDK::Models::AccountRecommendActionsResponse::Data::Status }
+        #   @return [Symbol, WhopSDK::Models::UserRecommendActionsResponse::Data::Status]
+        required :status, enum: -> { WhopSDK::Models::UserRecommendActionsResponse::Data::Status }
 
         # @!attribute title
         #   Headline for the recommendation
@@ -74,11 +87,15 @@ module WhopSDK
         #   @return [String]
         required :title, String
 
-        # @!method initialize(action:, blocked_capabilities:, cta:, cta_label:, description:, icon_url:, impact_score:, reasoning:, status:, title:)
+        # @!method initialize(account_id:, account_name:, action:, blocked_capabilities:, cta:, cta_label:, description:, icon_url:, impact_score:, reasoning:, status:, title:)
         #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::AccountRecommendActionsResponse::Data} for more details.
+        #   {WhopSDK::Models::UserRecommendActionsResponse::Data} for more details.
         #
-        #   @param action [Symbol, WhopSDK::Models::AccountRecommendActionsResponse::Data::Action] The recommendation; new values may be added, so handle unknown actions gracefull
+        #   @param account_id [String, nil] The account (`biz_`) a business recommendation is for, or `null` for personal re
+        #
+        #   @param account_name [String, nil] The account's display name, or `null`
+        #
+        #   @param action [Symbol, WhopSDK::Models::UserRecommendActionsResponse::Data::Action] The recommendation; new values may be added, so handle unknown actions gracefull
         #
         #   @param blocked_capabilities [Array<String>]
         #
@@ -94,17 +111,19 @@ module WhopSDK
         #
         #   @param reasoning [String, nil] Why this action was recommended, or `null`
         #
-        #   @param status [Symbol, WhopSDK::Models::AccountRecommendActionsResponse::Data::Status] Always optional — never blocking
+        #   @param status [Symbol, WhopSDK::Models::UserRecommendActionsResponse::Data::Status] Always optional — never blocking
         #
         #   @param title [String] Headline for the recommendation
 
         # The recommendation; new values may be added, so handle unknown actions
         # gracefully
         #
-        # @see WhopSDK::Models::AccountRecommendActionsResponse::Data#action
+        # @see WhopSDK::Models::UserRecommendActionsResponse::Data#action
         module Action
           extend WhopSDK::Internal::Type::Enum
 
+          CREATE_BUSINESS = :create_business
+          BECOME_AFFILIATE = :become_affiliate
           THEME_BUSINESS = :theme_business
           CREATE_PRODUCT = :create_product
           CREATE_PLAN = :create_plan
@@ -127,7 +146,7 @@ module WhopSDK
 
         # Always optional — never blocking
         #
-        # @see WhopSDK::Models::AccountRecommendActionsResponse::Data#status
+        # @see WhopSDK::Models::UserRecommendActionsResponse::Data#status
         module Status
           extend WhopSDK::Internal::Type::Enum
 

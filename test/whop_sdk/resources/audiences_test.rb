@@ -16,8 +16,9 @@ class WhopSDK::Test::Resources::AudiencesTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
-        created_at: Float,
+        created_at: String,
         error_message: String | nil,
+        match_rates: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Audience::MatchRate]),
         matched_rows: Float,
         name: String,
         platform_audience_ids: ^(WhopSDK::Internal::Type::ArrayOf[String]),
@@ -25,7 +26,7 @@ class WhopSDK::Test::Resources::AudiencesTest < WhopSDK::Test::ResourceTest
         progress_percent: Float,
         status: WhopSDK::Audience::Status,
         total_rows: Float,
-        updated_at: Float
+        updated_at: String
       }
     end
   end
@@ -49,8 +50,9 @@ class WhopSDK::Test::Resources::AudiencesTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
-        created_at: Float,
+        created_at: String,
         error_message: String | nil,
+        match_rates: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Audience::MatchRate]),
         matched_rows: Float,
         name: String,
         platform_audience_ids: ^(WhopSDK::Internal::Type::ArrayOf[String]),
@@ -58,7 +60,7 @@ class WhopSDK::Test::Resources::AudiencesTest < WhopSDK::Test::ResourceTest
         progress_percent: Float,
         status: WhopSDK::Audience::Status,
         total_rows: Float,
-        updated_at: Float
+        updated_at: String
       }
     end
   end

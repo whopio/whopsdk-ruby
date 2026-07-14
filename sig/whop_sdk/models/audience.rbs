@@ -3,8 +3,9 @@ module WhopSDK
     type audience =
       {
         id: String,
-        created_at: Float,
+        created_at: String,
         error_message: String?,
+        match_rates: ::Array[WhopSDK::Audience::MatchRate],
         matched_rows: Float,
         name: String,
         platform_audience_ids: ::Array[String],
@@ -12,15 +13,17 @@ module WhopSDK
         progress_percent: Float,
         status: WhopSDK::Models::Audience::status,
         total_rows: Float,
-        updated_at: Float
+        updated_at: String
       }
 
     class Audience < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor created_at: Float
+      attr_accessor created_at: String
 
       attr_accessor error_message: String?
+
+      attr_accessor match_rates: ::Array[WhopSDK::Audience::MatchRate]
 
       attr_accessor matched_rows: Float
 
@@ -36,12 +39,13 @@ module WhopSDK
 
       attr_accessor total_rows: Float
 
-      attr_accessor updated_at: Float
+      attr_accessor updated_at: String
 
       def initialize: (
         id: String,
-        created_at: Float,
+        created_at: String,
         error_message: String?,
+        match_rates: ::Array[WhopSDK::Audience::MatchRate],
         matched_rows: Float,
         name: String,
         platform_audience_ids: ::Array[String],
@@ -49,13 +53,14 @@ module WhopSDK
         progress_percent: Float,
         status: WhopSDK::Models::Audience::status,
         total_rows: Float,
-        updated_at: Float
+        updated_at: String
       ) -> void
 
       def to_hash: -> {
         id: String,
-        created_at: Float,
+        created_at: String,
         error_message: String?,
+        match_rates: ::Array[WhopSDK::Audience::MatchRate],
         matched_rows: Float,
         name: String,
         platform_audience_ids: ::Array[String],
@@ -63,8 +68,62 @@ module WhopSDK
         progress_percent: Float,
         status: WhopSDK::Models::Audience::status,
         total_rows: Float,
-        updated_at: Float
+        updated_at: String
       }
+
+      type match_rate =
+        {
+          lower_bound: Float?,
+          platform: WhopSDK::Models::Audience::MatchRate::platform,
+          status: WhopSDK::Models::Audience::MatchRate::status?,
+          upper_bound: Float?
+        }
+
+      class MatchRate < WhopSDK::Internal::Type::BaseModel
+        attr_accessor lower_bound: Float?
+
+        attr_accessor platform: WhopSDK::Models::Audience::MatchRate::platform
+
+        attr_accessor status: WhopSDK::Models::Audience::MatchRate::status?
+
+        attr_accessor upper_bound: Float?
+
+        def initialize: (
+          lower_bound: Float?,
+          platform: WhopSDK::Models::Audience::MatchRate::platform,
+          status: WhopSDK::Models::Audience::MatchRate::status?,
+          upper_bound: Float?
+        ) -> void
+
+        def to_hash: -> {
+          lower_bound: Float?,
+          platform: WhopSDK::Models::Audience::MatchRate::platform,
+          status: WhopSDK::Models::Audience::MatchRate::status?,
+          upper_bound: Float?
+        }
+
+        type platform = :meta
+
+        module Platform
+          extend WhopSDK::Internal::Type::Enum
+
+          META: :meta
+
+          def self?.values: -> ::Array[WhopSDK::Models::Audience::MatchRate::platform]
+        end
+
+        type status = :calculating | :available | :unavailable
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          CALCULATING: :calculating
+          AVAILABLE: :available
+          UNAVAILABLE: :unavailable
+
+          def self?.values: -> ::Array[WhopSDK::Models::Audience::MatchRate::status]
+        end
+      end
 
       type status =
         :pending | :processing | :syncing | :ready | :partial | :failed

@@ -1,0 +1,38 @@
+module WhopSDK
+  module Resources
+    class Referrals
+      class Businesses
+        attr_reader earnings: WhopSDK::Resources::Referrals::Businesses::Earnings
+
+        def retrieve: (
+          String id,
+          ?request_options: WhopSDK::request_opts
+        ) -> WhopSDK::Models::Referrals::BusinessRetrieveResponse
+
+        def list: (
+          ?after: String,
+          ?before: String,
+          ?created_after: String,
+          ?created_before: String,
+          ?direction: WhopSDK::Models::Referrals::BusinessListParams::direction,
+          ?first: Integer,
+          ?has_earnings: bool,
+          ?last: Integer,
+          ?order: WhopSDK::Models::Referrals::BusinessListParams::order,
+          ?referred_user_id: String,
+          ?referred_username: String,
+          ?status: WhopSDK::Models::Referrals::BusinessListParams::status,
+          ?tier: WhopSDK::Models::Referrals::BusinessListParams::tier,
+          ?request_options: WhopSDK::request_opts
+        ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::Referrals::BusinessListResponse]
+
+        def leaderboard: (
+          ?period: WhopSDK::Models::Referrals::BusinessLeaderboardParams::period,
+          ?request_options: WhopSDK::request_opts
+        ) -> WhopSDK::Models::Referrals::BusinessLeaderboardResponse
+
+        def initialize: (client: WhopSDK::Client) -> void
+      end
+    end
+  end
+end

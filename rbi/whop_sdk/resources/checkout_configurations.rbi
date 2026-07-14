@@ -2,70 +2,90 @@
 
 module WhopSDK
   module Resources
-    # Checkout configurations
+    # A Checkout Configuration is a reusable checkout link owned by an account. In
+    # `payment` mode it sells a specific plan; in `setup` mode it collects and saves
+    # payment details without charging. Each configuration can also override which
+    # payment methods are accepted and how 3D Secure is enforced for that checkout.
+    #
+    # Use the Checkout Configurations API to create checkout links for an existing or
+    # inline plan, list configurations for an account, retrieve the configuration
+    # behind a checkout URL, and delete links that should no longer be used.
     class CheckoutConfigurations
-      # Creates a new checkout configuration
-      #
-      # Required permissions:
-      #
-      # - `checkout_configuration:create`
-      # - `plan:create`
-      # - `access_pass:create`
-      # - `access_pass:update`
-      # - `checkout_configuration:basic:read`
+      # Creates a reusable checkout configuration for an existing or inline plan.
       sig do
         params(
-          body:
-            T.any(
-              WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlan::OrHash,
-              WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModePaymentWithPlanID::OrHash,
-              WhopSDK::CheckoutConfigurationCreateParams::Body::CreateCheckoutSessionInputModeSetup::OrHash
+          affiliate_code: T.nilable(String),
+          company_id: String,
+          currency: T.nilable(String),
+          metadata: T.nilable(T.anything),
+          mode: WhopSDK::CheckoutConfigurationCreateParams::Mode::OrSymbol,
+          payment_method_configuration:
+            T.nilable(
+              WhopSDK::CheckoutConfigurationCreateParams::PaymentMethodConfiguration::OrHash
             ),
+          plan:
+            T.nilable(WhopSDK::CheckoutConfigurationCreateParams::Plan::OrHash),
+          plan_id: T.nilable(String),
+          redirect_url: T.nilable(String),
+          three_ds_level: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::CheckoutConfiguration)
+        ).returns(WhopSDK::Models::CheckoutConfigurationCreateResponse)
       end
       def create(
-        # Parameters for CreateCheckoutSession
-        body:,
+        # Affiliate code to apply to the checkout.
+        affiliate_code: nil,
+        # Account ID, prefixed `biz_`.
+        company_id: nil,
+        # Currency used for setup-mode payment method availability.
+        currency: nil,
+        # Custom key-value metadata copied to payments and memberships.
+        metadata: nil,
+        # Checkout mode: `payment` collects payment for a plan now; `setup` saves payment
+        # details without charging. Defaults to `payment`.
+        mode: nil,
+        # Payment method overrides for this checkout. `null` uses the plan or platform
+        # defaults.
+        payment_method_configuration: nil,
+        # Plan attributes used to create or find a plan for this checkout configuration.
+        # Mutually exclusive with `plan_id`.
+        plan: nil,
+        # Existing plan ID, prefixed `plan_`. Mutually exclusive with `plan`.
+        plan_id: nil,
+        # URL customers are sent to after checkout.
+        redirect_url: nil,
+        # 3D Secure behavior for this checkout.
+        three_ds_level: nil,
         request_options: {}
       )
       end
 
-      # Retrieves the details of an existing checkout configuration.
-      #
-      # Required permissions:
-      #
-      # - `checkout_configuration:basic:read`
+      # Retrieves a checkout configuration by ID. This endpoint is public so a checkout
+      # page can load from the configuration URL.
       sig do
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::CheckoutConfiguration)
+        ).returns(WhopSDK::Models::CheckoutConfigurationRetrieveResponse)
       end
       def retrieve(
-        # The unique identifier of the checkout configuration.
+        # The ID of the checkout configuration.
         id,
         request_options: {}
       )
       end
 
-      # Returns a paginated list of checkout configurations for a company, with optional
-      # filtering by plan and creation date.
-      #
-      # Required permissions:
-      #
-      # - `checkout_configuration:basic:read`
+      # Lists checkout configurations for an account.
       sig do
         params(
           company_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          plan_id: T.nilable(String),
+          after: String,
+          created_after: Integer,
+          created_before: Integer,
+          direction:
+            WhopSDK::CheckoutConfigurationListParams::Direction::OrSymbol,
+          first: Integer,
+          order: WhopSDK::CheckoutConfigurationListParams::Order::OrSymbol,
+          plan_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[
@@ -74,25 +94,36 @@ module WhopSDK
         )
       end
       def list(
-        # The unique identifier of the company to list checkout configurations for.
+        # Account ID, prefixed `biz_`.
         company_id:,
-        # Returns the elements in the list that come after the specified cursor.
+        # Cursor for the next page of results.
         after: nil,
-        # Returns the elements in the list that come before the specified cursor.
-        before: nil,
-        # Only return checkout configurations created after this timestamp.
+        # Only return checkout configurations created after this Unix timestamp.
         created_after: nil,
-        # Only return checkout configurations created before this timestamp.
+        # Only return checkout configurations created before this Unix timestamp.
         created_before: nil,
-        # The direction of the sort.
+        # Sort direction. Defaults to `desc`.
         direction: nil,
-        # Returns the first _n_ elements from the list.
+        # Number of checkout configurations to return.
         first: nil,
-        # Returns the last _n_ elements from the list.
-        last: nil,
-        # Filter checkout configurations to only those associated with this plan
-        # identifier.
+        # Field used to sort checkout configurations.
+        order: nil,
+        # Only return checkout configurations for this plan ID, prefixed `plan_`.
         plan_id: nil,
+        request_options: {}
+      )
+      end
+
+      # Deletes a checkout configuration so its checkout URL can no longer be used.
+      sig do
+        params(
+          id: String,
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).void
+      end
+      def delete(
+        # The ID of the checkout configuration.
+        id,
         request_options: {}
       )
       end

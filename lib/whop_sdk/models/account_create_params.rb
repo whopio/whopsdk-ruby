@@ -20,13 +20,22 @@ module WhopSDK
       #   @return [Hash{Symbol=>Object}, nil]
       optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]
 
-      # @!method initialize(email: nil, metadata: nil, request_options: {})
+      # @!attribute title
+      #   The display name of the account. Defaults to `metadata.external_id` or the
+      #   owner's email when omitted.
+      #
+      #   @return [String, nil]
+      optional :title, String
+
+      # @!method initialize(email: nil, metadata: nil, title: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AccountCreateParams} for more details.
       #
       #   @param email [String] The email address of the account owner. Required for business account API key re
       #
       #   @param metadata [Hash{Symbol=>Object}] Arbitrary key/value metadata to store on the account.
+      #
+      #   @param title [String] The display name of the account. Defaults to `metadata.external_id` or the owner
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

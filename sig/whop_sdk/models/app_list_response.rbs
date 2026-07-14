@@ -12,10 +12,12 @@ module WhopSDK
         discover_path: String?,
         domain_id: String,
         experience_path: String?,
+        hosted_url: String?,
         icon: WhopSDK::Models::AppListResponse::Icon?,
         name: String,
         openapi_path: String?,
         origin: String?,
+        route: String?,
         skills_path: String?,
         status: WhopSDK::Models::app_statuses,
         verified: bool
@@ -42,6 +44,8 @@ module WhopSDK
 
       attr_accessor experience_path: String?
 
+      attr_accessor hosted_url: String?
+
       attr_accessor icon: WhopSDK::Models::AppListResponse::Icon?
 
       attr_accessor name: String
@@ -49,6 +53,8 @@ module WhopSDK
       attr_accessor openapi_path: String?
 
       attr_accessor origin: String?
+
+      attr_accessor route: String?
 
       attr_accessor skills_path: String?
 
@@ -67,10 +73,12 @@ module WhopSDK
         discover_path: String?,
         domain_id: String,
         experience_path: String?,
+        hosted_url: String?,
         icon: WhopSDK::Models::AppListResponse::Icon?,
         name: String,
         openapi_path: String?,
         origin: String?,
+        route: String?,
         skills_path: String?,
         status: WhopSDK::Models::app_statuses,
         verified: bool
@@ -87,10 +95,12 @@ module WhopSDK
         discover_path: String?,
         domain_id: String,
         experience_path: String?,
+        hosted_url: String?,
         icon: WhopSDK::Models::AppListResponse::Icon?,
         name: String,
         openapi_path: String?,
         origin: String?,
+        route: String?,
         skills_path: String?,
         status: WhopSDK::Models::app_statuses,
         verified: bool

@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Dm channels
     class DmChannels
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::DmChannelCreateParams} for more details.

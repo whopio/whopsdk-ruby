@@ -13,103 +13,81 @@ module WhopSDK
       #   @return [String]
       required :company_id, String
 
+      # @!attribute access_pass_types
+      #   Filter to only products matching these types.
+      #
+      #   @return [Array<String>, nil]
+      optional :access_pass_types, WhopSDK::Internal::Type::ArrayOf[String]
+
       # @!attribute after
-      #   Returns the elements in the list that come after the specified cursor.
+      #   A cursor; returns products after this position.
       #
       #   @return [String, nil]
-      optional :after, String, nil?: true
+      optional :after, String
 
       # @!attribute before
-      #   Returns the elements in the list that come before the specified cursor.
+      #   A cursor; returns products before this position.
       #
       #   @return [String, nil]
-      optional :before, String, nil?: true
-
-      # @!attribute created_after
-      #   Only return products created after this timestamp.
-      #
-      #   @return [Time, nil]
-      optional :created_after, Time, nil?: true
-
-      # @!attribute created_before
-      #   Only return products created before this timestamp.
-      #
-      #   @return [Time, nil]
-      optional :created_before, Time, nil?: true
+      optional :before, String
 
       # @!attribute direction
-      #   The direction of the sort.
+      #   The sort direction for results. Defaults to descending.
       #
-      #   @return [Symbol, WhopSDK::Models::Direction, nil]
-      optional :direction, enum: -> { WhopSDK::Direction }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::ProductListParams::Direction, nil]
+      optional :direction, enum: -> { WhopSDK::ProductListParams::Direction }
 
       # @!attribute first
-      #   Returns the first _n_ elements from the list.
+      #   The number of products to return (default and max 100).
       #
       #   @return [Integer, nil]
-      optional :first, Integer, nil?: true
+      optional :first, Integer
 
       # @!attribute last
-      #   Returns the last _n_ elements from the list.
+      #   The number of products to return from the end of the range.
       #
       #   @return [Integer, nil]
-      optional :last, Integer, nil?: true
+      optional :last, Integer
 
       # @!attribute order
-      #   The ways a relation of AccessPasses can be ordered
+      #   The field to sort results by. Defaults to created_at.
       #
-      #   @return [Symbol, WhopSDK::Models::ProductListParams::Order, nil]
-      optional :order, enum: -> { WhopSDK::ProductListParams::Order }, nil?: true
-
-      # @!attribute product_types
-      #   Filter to only products matching these type classifications.
-      #
-      #   @return [Array<Symbol, WhopSDK::Models::AccessPassType>, nil]
-      optional :product_types,
-               -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::AccessPassType] },
-               nil?: true
+      #   @return [String, nil]
+      optional :order, String
 
       # @!attribute visibilities
       #   Filter to only products matching these visibility states.
       #
-      #   @return [Array<Symbol, WhopSDK::Models::VisibilityFilter>, nil]
-      optional :visibilities,
-               -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::VisibilityFilter] },
-               nil?: true
+      #   @return [Array<String>, nil]
+      optional :visibilities, WhopSDK::Internal::Type::ArrayOf[String]
 
-      # @!method initialize(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, product_types: nil, visibilities: nil, request_options: {})
+      # @!method initialize(company_id:, access_pass_types: nil, after: nil, before: nil, direction: nil, first: nil, last: nil, order: nil, visibilities: nil, request_options: {})
       #   @param company_id [String] The unique identifier of the company to list products for.
       #
-      #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      #   @param access_pass_types [Array<String>] Filter to only products matching these types.
       #
-      #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #   @param after [String] A cursor; returns products after this position.
       #
-      #   @param created_after [Time, nil] Only return products created after this timestamp.
+      #   @param before [String] A cursor; returns products before this position.
       #
-      #   @param created_before [Time, nil] Only return products created before this timestamp.
+      #   @param direction [Symbol, WhopSDK::Models::ProductListParams::Direction] The sort direction for results. Defaults to descending.
       #
-      #   @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      #   @param first [Integer] The number of products to return (default and max 100).
       #
-      #   @param first [Integer, nil] Returns the first _n_ elements from the list.
+      #   @param last [Integer] The number of products to return from the end of the range.
       #
-      #   @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #   @param order [String] The field to sort results by. Defaults to created_at.
       #
-      #   @param order [Symbol, WhopSDK::Models::ProductListParams::Order, nil] The ways a relation of AccessPasses can be ordered
-      #
-      #   @param product_types [Array<Symbol, WhopSDK::Models::AccessPassType>, nil] Filter to only products matching these type classifications.
-      #
-      #   @param visibilities [Array<Symbol, WhopSDK::Models::VisibilityFilter>, nil] Filter to only products matching these visibility states.
+      #   @param visibilities [Array<String>] Filter to only products matching these visibility states.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      # The ways a relation of AccessPasses can be ordered
-      module Order
+      # The sort direction for results. Defaults to descending.
+      module Direction
         extend WhopSDK::Internal::Type::Enum
 
-        ACTIVE_MEMBERSHIPS_COUNT = :active_memberships_count
-        CREATED_AT = :created_at
-        USD_GMV = :usd_gmv
-        USD_GMV_30_DAYS = :usd_gmv_30_days
+        ASC = :asc
+        DESC = :desc
 
         # @!method self.values
         #   @return [Array<Symbol>]

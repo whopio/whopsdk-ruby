@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Access tokens
     class AccessTokens
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::AccessTokenCreateParams} for more details.

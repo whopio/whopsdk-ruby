@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Resolution center cases
     class ResolutionCenterCases
       # Retrieves the details of an existing resolution center case.
       #

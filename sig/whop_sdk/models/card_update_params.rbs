@@ -1,0 +1,164 @@
+module WhopSDK
+  module Models
+    type card_update_params =
+      {
+        card_id: String,
+        account_id: String,
+        billing: WhopSDK::CardUpdateParams::Billing,
+        canceled: bool,
+        frozen: bool,
+        name: String,
+        pin: String,
+        remove_limit: bool,
+        spend_limit: Float,
+        spend_limit_frequency: WhopSDK::Models::CardUpdateParams::spend_limit_frequency,
+        transaction_limit: Float,
+        user_id: String
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class CardUpdateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor card_id: String
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
+
+      attr_reader billing: WhopSDK::CardUpdateParams::Billing?
+
+      def billing=: (
+        WhopSDK::CardUpdateParams::Billing
+      ) -> WhopSDK::CardUpdateParams::Billing
+
+      attr_reader canceled: bool?
+
+      def canceled=: (bool) -> bool
+
+      attr_reader frozen: bool?
+
+      def frozen=: (bool) -> bool
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader pin: String?
+
+      def pin=: (String) -> String
+
+      attr_reader remove_limit: bool?
+
+      def remove_limit=: (bool) -> bool
+
+      attr_reader spend_limit: Float?
+
+      def spend_limit=: (Float) -> Float
+
+      attr_reader spend_limit_frequency: WhopSDK::Models::CardUpdateParams::spend_limit_frequency?
+
+      def spend_limit_frequency=: (
+        WhopSDK::Models::CardUpdateParams::spend_limit_frequency
+      ) -> WhopSDK::Models::CardUpdateParams::spend_limit_frequency
+
+      attr_reader transaction_limit: Float?
+
+      def transaction_limit=: (Float) -> Float
+
+      attr_reader user_id: String?
+
+      def user_id=: (String) -> String
+
+      def initialize: (
+        card_id: String,
+        ?account_id: String,
+        ?billing: WhopSDK::CardUpdateParams::Billing,
+        ?canceled: bool,
+        ?frozen: bool,
+        ?name: String,
+        ?pin: String,
+        ?remove_limit: bool,
+        ?spend_limit: Float,
+        ?spend_limit_frequency: WhopSDK::Models::CardUpdateParams::spend_limit_frequency,
+        ?transaction_limit: Float,
+        ?user_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        card_id: String,
+        account_id: String,
+        billing: WhopSDK::CardUpdateParams::Billing,
+        canceled: bool,
+        frozen: bool,
+        name: String,
+        pin: String,
+        remove_limit: bool,
+        spend_limit: Float,
+        spend_limit_frequency: WhopSDK::Models::CardUpdateParams::spend_limit_frequency,
+        transaction_limit: Float,
+        user_id: String,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type billing =
+        {
+          city: String,
+          country_code: String,
+          :line1 => String,
+          postal_code: String,
+          region: String,
+          :line2 => String
+        }
+
+      class Billing < WhopSDK::Internal::Type::BaseModel
+        attr_accessor city: String
+
+        attr_accessor country_code: String
+
+        attr_accessor line1: String
+
+        attr_accessor postal_code: String
+
+        attr_accessor region: String
+
+        attr_reader line2: String?
+
+        def line2=: (String) -> String
+
+        def initialize: (
+          city: String,
+          country_code: String,
+          line1: String,
+          postal_code: String,
+          region: String,
+          ?line2: String
+        ) -> void
+
+        def to_hash: -> {
+          city: String,
+          country_code: String,
+          :line1 => String,
+          postal_code: String,
+          region: String,
+          :line2 => String
+        }
+      end
+
+      type spend_limit_frequency = :daily | :weekly | :monthly | :one_time
+
+      module SpendLimitFrequency
+        extend WhopSDK::Internal::Type::Enum
+
+        DAILY: :daily
+        WEEKLY: :weekly
+        MONTHLY: :monthly
+        ONE_TIME: :one_time
+
+        def self?.values: -> ::Array[WhopSDK::Models::CardUpdateParams::spend_limit_frequency]
+      end
+    end
+  end
+end

@@ -7,48 +7,58 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute payout_account_id
-      #   The unique identifier of the payout account to list verifications for.
+      # @!attribute account_id
+      #   Account or user ID whose verifications you want to list. Use a `biz_` account
+      #   ID, or the caller's `user_` ID for personal verifications.
       #
       #   @return [String]
-      required :payout_account_id, String
+      required :account_id, String
 
-      # @!attribute after
-      #   Returns the elements in the list that come after the specified cursor.
+      # @!attribute direction
+      #   Sort direction for returned verifications.
       #
-      #   @return [String, nil]
-      optional :after, String, nil?: true
+      #   @return [Symbol, WhopSDK::Models::VerificationListParams::Direction, nil]
+      optional :direction, enum: -> { WhopSDK::VerificationListParams::Direction }
 
-      # @!attribute before
-      #   Returns the elements in the list that come before the specified cursor.
+      # @!attribute order
+      #   Field used to sort returned verifications.
       #
-      #   @return [String, nil]
-      optional :before, String, nil?: true
+      #   @return [Symbol, WhopSDK::Models::VerificationListParams::Order, nil]
+      optional :order, enum: -> { WhopSDK::VerificationListParams::Order }
 
-      # @!attribute first
-      #   Returns the first _n_ elements from the list.
+      # @!method initialize(account_id:, direction: nil, order: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::VerificationListParams} for more details.
       #
-      #   @return [Integer, nil]
-      optional :first, Integer, nil?: true
-
-      # @!attribute last
-      #   Returns the last _n_ elements from the list.
+      #   @param account_id [String] Account or user ID whose verifications you want to list. Use a `biz_` account ID
       #
-      #   @return [Integer, nil]
-      optional :last, Integer, nil?: true
-
-      # @!method initialize(payout_account_id:, after: nil, before: nil, first: nil, last: nil, request_options: {})
-      #   @param payout_account_id [String] The unique identifier of the payout account to list verifications for.
+      #   @param direction [Symbol, WhopSDK::Models::VerificationListParams::Direction] Sort direction for returned verifications.
       #
-      #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
-      #
-      #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
-      #
-      #   @param first [Integer, nil] Returns the first _n_ elements from the list.
-      #
-      #   @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #   @param order [Symbol, WhopSDK::Models::VerificationListParams::Order] Field used to sort returned verifications.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      # Sort direction for returned verifications.
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC = :asc
+        DESC = :desc
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Field used to sort returned verifications.
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        UPDATED_AT = :updated_at
+        CREATED_AT = :created_at
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

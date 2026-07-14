@@ -2,17 +2,15 @@
 
 module WhopSDK
   module Resources
-    # Ad reports
     class AdReports
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::AdReportRetrieveParams} for more details.
       #
       # Performance report for a company, ad campaigns, ad groups, or ads. Always
-      # returns aggregate `summary` totals summed across the scope. Set `granularity`
-      # (`daily`/`hourly`) to additionally get a time series, or set `breakdown`
-      # (`campaign`/`ad_group`/`ad`) to additionally get per-entity rows inside the
-      # requested scope. Exactly one of `companyId`, `adCampaignIds`, `adGroupIds`, or
-      # `adIds` must be provided.
+      # returns aggregate `summary` totals summed across the scope. Set `granularity` to
+      # additionally get a time series, or set `breakdown` (`campaign`/`ad_group`/`ad`)
+      # to additionally get per-entity rows inside the requested scope. Exactly one of
+      # `companyId`, `adCampaignIds`, `adGroupIds`, or `adIds` must be provided.
       #
       # Required permissions:
       #

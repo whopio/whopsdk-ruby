@@ -82,7 +82,7 @@ module WhopSDK
       attr_writer :member
 
       # Custom key-value pairs for the membership (commonly used for software licensing,
-      # e.g., HWID). Max 50 keys, 500 chars per key, 5000 chars per value.
+      # e.g., HWID). Max 50 keys, 100 chars per key, 500 chars per string value.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
@@ -215,7 +215,7 @@ module WhopSDK
         # the member record has not been created yet.
         member:,
         # Custom key-value pairs for the membership (commonly used for software licensing,
-        # e.g., HWID). Max 50 keys, 500 chars per key, 5000 chars per value.
+        # e.g., HWID). Max 50 keys, 100 chars per key, 500 chars per string value.
         metadata:,
         # Whether recurring payment collection for this membership is temporarily paused
         # by the company.
@@ -385,7 +385,8 @@ module WhopSDK
         attr_accessor :id
 
         # Custom key-value pairs stored on the plan. Included in webhook payloads for
-        # payment and membership events.
+        # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+        # string value.
         sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
         attr_accessor :metadata
 
@@ -400,7 +401,8 @@ module WhopSDK
           # The unique identifier for the plan.
           id:,
           # Custom key-value pairs stored on the plan. Included in webhook payloads for
-          # payment and membership events.
+          # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+          # string value.
           metadata:
         )
         end
@@ -424,8 +426,9 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # Custom key-value pairs stored on the product. Included in webhook payloads for
-        # payment and membership events.
+        # Custom key-value pairs stored on the product and included in payment and
+        # membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
+        # per string value.
         sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
         attr_accessor :metadata
 
@@ -445,8 +448,9 @@ module WhopSDK
         def self.new(
           # The unique identifier for the product.
           id:,
-          # Custom key-value pairs stored on the product. Included in webhook payloads for
-          # payment and membership events.
+          # Custom key-value pairs stored on the product and included in payment and
+          # membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
+          # per string value.
           metadata:,
           # The display name of the product shown to customers on the product page and in
           # search results.

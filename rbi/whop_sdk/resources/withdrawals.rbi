@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Withdrawals
     class Withdrawals
       # Creates a withdrawal request for a ledger account
       #
@@ -30,7 +29,7 @@ module WhopSDK
         currency:,
         # The ID of the payout method to use for the withdrawal.
         payout_method_id: nil,
-        # Whether the platform covers the payout fees instead of the connected account.
+        # Whether the platform covers the payout fees.
         platform_covers_fees: nil,
         # Custom statement descriptor for the withdrawal. Must be between 5 and 22
         # characters and contain only alphanumeric characters.

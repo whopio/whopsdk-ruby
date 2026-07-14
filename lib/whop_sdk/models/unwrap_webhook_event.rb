@@ -7,6 +7,10 @@ module WhopSDK
 
       discriminator :type
 
+      variant :"chat.message.created", -> { WhopSDK::ChatMessageCreatedWebhookEvent }
+
+      variant :"chat.reaction.created", -> { WhopSDK::ChatReactionCreatedWebhookEvent }
+
       variant :"course_lesson_interaction.completed",
               -> { WhopSDK::CourseLessonInteractionCompletedWebhookEvent }
 
@@ -42,12 +46,16 @@ module WhopSDK
 
       variant :"invoice.voided", -> { WhopSDK::InvoiceVoidedWebhookEvent }
 
+      variant :"ledger_account.funds_available", -> { WhopSDK::LedgerAccountFundsAvailableWebhookEvent }
+
       variant :"membership.activated", -> { WhopSDK::MembershipActivatedWebhookEvent }
 
       variant :"membership.cancel_at_period_end_changed",
               -> { WhopSDK::MembershipCancelAtPeriodEndChangedWebhookEvent }
 
       variant :"membership.deactivated", -> { WhopSDK::MembershipDeactivatedWebhookEvent }
+
+      variant :"membership.trial_ending_soon", -> { WhopSDK::MembershipTrialEndingSoonWebhookEvent }
 
       variant :"payment.created", -> { WhopSDK::PaymentCreatedWebhookEvent }
 
@@ -84,7 +92,7 @@ module WhopSDK
       variant :"withdrawal.updated", -> { WhopSDK::WithdrawalUpdatedWebhookEvent }
 
       # @!method self.variants
-      #   @return [Array(WhopSDK::Models::CourseLessonInteractionCompletedWebhookEvent, WhopSDK::Models::DisputeCreatedWebhookEvent, WhopSDK::Models::DisputeUpdatedWebhookEvent, WhopSDK::Models::DisputeAlertCreatedWebhookEvent, WhopSDK::Models::EntryApprovedWebhookEvent, WhopSDK::Models::EntryCreatedWebhookEvent, WhopSDK::Models::EntryDeletedWebhookEvent, WhopSDK::Models::EntryDeniedWebhookEvent, WhopSDK::Models::IdentityProfileApprovedWebhookEvent, WhopSDK::Models::IdentityProfileNeedsActionWebhookEvent, WhopSDK::Models::IdentityProfileRejectedWebhookEvent, WhopSDK::Models::IdentityProfileUpdatedWebhookEvent, WhopSDK::Models::InvoiceCreatedWebhookEvent, WhopSDK::Models::InvoiceMarkedUncollectibleWebhookEvent, WhopSDK::Models::InvoicePaidWebhookEvent, WhopSDK::Models::InvoicePastDueWebhookEvent, WhopSDK::Models::InvoiceVoidedWebhookEvent, WhopSDK::Models::MembershipActivatedWebhookEvent, WhopSDK::Models::MembershipCancelAtPeriodEndChangedWebhookEvent, WhopSDK::Models::MembershipDeactivatedWebhookEvent, WhopSDK::Models::PaymentCreatedWebhookEvent, WhopSDK::Models::PaymentFailedWebhookEvent, WhopSDK::Models::PaymentPendingWebhookEvent, WhopSDK::Models::PaymentSucceededWebhookEvent, WhopSDK::Models::PayoutAccountStatusUpdatedWebhookEvent, WhopSDK::Models::PayoutMethodCreatedWebhookEvent, WhopSDK::Models::RefundCreatedWebhookEvent, WhopSDK::Models::RefundUpdatedWebhookEvent, WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent, WhopSDK::Models::ResolutionCenterCaseDecidedWebhookEvent, WhopSDK::Models::ResolutionCenterCaseUpdatedWebhookEvent, WhopSDK::Models::SetupIntentCanceledWebhookEvent, WhopSDK::Models::SetupIntentRequiresActionWebhookEvent, WhopSDK::Models::SetupIntentSucceededWebhookEvent, WhopSDK::Models::VerificationSucceededWebhookEvent, WhopSDK::Models::WithdrawalCreatedWebhookEvent, WhopSDK::Models::WithdrawalUpdatedWebhookEvent)]
+      #   @return [Array(WhopSDK::Models::ChatMessageCreatedWebhookEvent, WhopSDK::Models::ChatReactionCreatedWebhookEvent, WhopSDK::Models::CourseLessonInteractionCompletedWebhookEvent, WhopSDK::Models::DisputeCreatedWebhookEvent, WhopSDK::Models::DisputeUpdatedWebhookEvent, WhopSDK::Models::DisputeAlertCreatedWebhookEvent, WhopSDK::Models::EntryApprovedWebhookEvent, WhopSDK::Models::EntryCreatedWebhookEvent, WhopSDK::Models::EntryDeletedWebhookEvent, WhopSDK::Models::EntryDeniedWebhookEvent, WhopSDK::Models::IdentityProfileApprovedWebhookEvent, WhopSDK::Models::IdentityProfileNeedsActionWebhookEvent, WhopSDK::Models::IdentityProfileRejectedWebhookEvent, WhopSDK::Models::IdentityProfileUpdatedWebhookEvent, WhopSDK::Models::InvoiceCreatedWebhookEvent, WhopSDK::Models::InvoiceMarkedUncollectibleWebhookEvent, WhopSDK::Models::InvoicePaidWebhookEvent, WhopSDK::Models::InvoicePastDueWebhookEvent, WhopSDK::Models::InvoiceVoidedWebhookEvent, WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent, WhopSDK::Models::MembershipActivatedWebhookEvent, WhopSDK::Models::MembershipCancelAtPeriodEndChangedWebhookEvent, WhopSDK::Models::MembershipDeactivatedWebhookEvent, WhopSDK::Models::MembershipTrialEndingSoonWebhookEvent, WhopSDK::Models::PaymentCreatedWebhookEvent, WhopSDK::Models::PaymentFailedWebhookEvent, WhopSDK::Models::PaymentPendingWebhookEvent, WhopSDK::Models::PaymentSucceededWebhookEvent, WhopSDK::Models::PayoutAccountStatusUpdatedWebhookEvent, WhopSDK::Models::PayoutMethodCreatedWebhookEvent, WhopSDK::Models::RefundCreatedWebhookEvent, WhopSDK::Models::RefundUpdatedWebhookEvent, WhopSDK::Models::ResolutionCenterCaseCreatedWebhookEvent, WhopSDK::Models::ResolutionCenterCaseDecidedWebhookEvent, WhopSDK::Models::ResolutionCenterCaseUpdatedWebhookEvent, WhopSDK::Models::SetupIntentCanceledWebhookEvent, WhopSDK::Models::SetupIntentRequiresActionWebhookEvent, WhopSDK::Models::SetupIntentSucceededWebhookEvent, WhopSDK::Models::VerificationSucceededWebhookEvent, WhopSDK::Models::WithdrawalCreatedWebhookEvent, WhopSDK::Models::WithdrawalUpdatedWebhookEvent)]
     end
   end
 end

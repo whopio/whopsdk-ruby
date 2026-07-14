@@ -11,6 +11,11 @@ module WhopSDK
           )
         end
 
+      # Swap ID.
+      sig { returns(String) }
+      attr_accessor :id
+
+      # Account ID that owns the wallet used for the swap.
       sig { returns(String) }
       attr_accessor :account_id
 
@@ -19,17 +24,21 @@ module WhopSDK
       end
       attr_accessor :object
 
+      # Current swap status.
       sig { returns(String) }
       attr_accessor :status
 
+      # On-chain transaction hashes produced by the swap.
       sig { returns(T::Array[String]) }
       attr_accessor :tx_hashes
 
+      # Latest error returned for a failed swap.
       sig { returns(T.nilable(String)) }
       attr_accessor :error
 
       sig do
         params(
+          id: String,
           account_id: String,
           object: WhopSDK::Models::SwapRetrieveResponse::Object::OrSymbol,
           status: String,
@@ -37,12 +46,25 @@ module WhopSDK
           error: T.nilable(String)
         ).returns(T.attached_class)
       end
-      def self.new(account_id:, object:, status:, tx_hashes:, error: nil)
+      def self.new(
+        # Swap ID.
+        id:,
+        # Account ID that owns the wallet used for the swap.
+        account_id:,
+        object:,
+        # Current swap status.
+        status:,
+        # On-chain transaction hashes produced by the swap.
+        tx_hashes:,
+        # Latest error returned for a failed swap.
+        error: nil
+      )
       end
 
       sig do
         override.returns(
           {
+            id: String,
             account_id: String,
             object: WhopSDK::Models::SwapRetrieveResponse::Object::TaggedSymbol,
             status: String,

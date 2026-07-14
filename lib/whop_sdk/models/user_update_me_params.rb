@@ -7,6 +7,13 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #   When set, updates the authenticated user's profile override for this account
+      #   instead of their global profile.
+      #
+      #   @return [String, nil]
+      optional :account_id, String
+
       # @!attribute bio
       #
       #   @return [String, nil]
@@ -27,11 +34,20 @@ module WhopSDK
       #   @return [String, nil]
       optional :username, String
 
-      # @!method initialize(bio: nil, name: nil, profile_picture: nil, username: nil, request_options: {})
+      # @!method initialize(account_id: nil, bio: nil, name: nil, profile_picture: nil, username: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {WhopSDK::Models::UserUpdateMeParams} for more details.
+      #
+      #   @param account_id [String] When set, updates the authenticated user's profile override for this account ins
+      #
       #   @param bio [String]
+      #
       #   @param name [String]
+      #
       #   @param profile_picture [WhopSDK::Models::UserUpdateMeParams::ProfilePicture]
+      #
       #   @param username [String]
+      #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
       class ProfilePicture < WhopSDK::Internal::Type::BaseModel

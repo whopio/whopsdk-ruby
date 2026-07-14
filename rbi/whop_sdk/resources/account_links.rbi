@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Account links
     class AccountLinks
       # Generate a URL that directs a sub-merchant to their account portal, such as the
       # hosted payouts dashboard or the KYC onboarding flow.

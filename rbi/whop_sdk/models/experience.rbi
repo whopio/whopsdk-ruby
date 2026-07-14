@@ -212,7 +212,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
+        # URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
         sig { returns(String) }
         attr_accessor :route
 
@@ -229,7 +229,7 @@ module WhopSDK
         def self.new(
           # The unique identifier for the company.
           id:,
-          # The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
+          # URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
           route:,
           # The display name of the company shown to customers.
           title:
@@ -277,8 +277,8 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The URL slug used in the product's public link (e.g., 'my-product' in
-        # whop.com/company/my-product).
+        # URL slug in the product's public link, e.g. `pickaxe-analytics` in
+        # whop.com/company/pickaxe-analytics.
         sig { returns(String) }
         attr_accessor :route
 
@@ -297,8 +297,8 @@ module WhopSDK
         def self.new(
           # The unique identifier for the product.
           id:,
-          # The URL slug used in the product's public link (e.g., 'my-product' in
-          # whop.com/company/my-product).
+          # URL slug in the product's public link, e.g. `pickaxe-analytics` in
+          # whop.com/company/pickaxe-analytics.
           route:,
           # The display name of the product shown to customers on the product page and in
           # search results.

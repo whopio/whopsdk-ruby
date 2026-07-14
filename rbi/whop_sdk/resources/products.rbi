@@ -2,101 +2,82 @@
 
 module WhopSDK
   module Resources
-    # Products
+    # A Product is a digital good or service sold on Whop. Products may contain plans
+    # for pricing and/or experiences for content delivery.
+    #
+    # Use the Products API to create products, list products visible to your
+    # credentials, retrieve product details, update product metadata or merchandising
+    # fields, and delete products that should no longer be sold.
     class Products
-      # Create a new product for a company. The product serves as the top-level
-      # container for plans and experiences.
-      #
-      # Required permissions:
-      #
-      # - `access_pass:create`
-      # - `access_pass:basic:read`
+      # Creates a new product for a company.
       sig do
         params(
-          company_id: String,
           title: String,
           collect_shipping_address: T.nilable(T::Boolean),
-          custom_cta: T.nilable(WhopSDK::CustomCta::OrSymbol),
+          company_id: String,
+          custom_cta: T.nilable(String),
           custom_cta_url: T.nilable(String),
           custom_statement_descriptor: T.nilable(String),
           description: T.nilable(String),
-          experience_ids: T.nilable(T::Array[String]),
           global_affiliate_percentage: T.nilable(Float),
-          global_affiliate_status:
-            T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
+          global_affiliate_status: String,
           headline: T.nilable(String),
           member_affiliate_percentage: T.nilable(Float),
-          member_affiliate_status:
-            T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
-          metadata: T.nilable(T::Hash[Symbol, T.anything]),
-          plan_options:
-            T.nilable(WhopSDK::ProductCreateParams::PlanOptions::OrHash),
+          member_affiliate_status: String,
+          metadata: T.nilable(T.anything),
           product_tax_code_id: T.nilable(String),
           redirect_purchase_url: T.nilable(String),
           route: T.nilable(String),
           send_welcome_message: T.nilable(T::Boolean),
-          visibility: T.nilable(WhopSDK::Visibility::OrSymbol),
+          visibility: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Product)
       end
       def create(
-        # The unique identifier of the company to create this product for.
-        company_id:,
         # The display name of the product. Maximum 80 characters.
         title:,
-        # Whether the checkout flow collects a shipping address from the customer.
+        # Whether to collect a shipping address at checkout.
         collect_shipping_address: nil,
-        # The different types of custom CTAs that can be selected.
+        # The unique identifier of the company to create this product for.
+        company_id: nil,
+        # The call-to-action button label.
         custom_cta: nil,
-        # A URL that the call-to-action button links to instead of the default checkout
-        # flow.
+        # A URL the call-to-action button links to.
         custom_cta_url: nil,
-        # A custom text label that appears on the customer's bank statement. Must be 5-22
-        # characters, contain at least one letter, and not contain <, >, \, ', or "
-        # characters.
+        # Custom bank statement descriptor. Must start with WHOP\*.
         custom_statement_descriptor: nil,
-        # A written description of the product displayed on its product page.
+        # A written description displayed on the product page.
         description: nil,
-        # The unique identifiers of experiences to connect to this product.
-        experience_ids: nil,
-        # The commission rate as a percentage that affiliates earn through the global
-        # affiliate program.
+        # The commission rate affiliates earn.
         global_affiliate_percentage: nil,
-        # The different statuses of the global affiliate program for a product.
+        # The enrollment status in the global affiliate program.
         global_affiliate_status: nil,
-        # A short marketing headline displayed prominently on the product page.
+        # A short marketing headline for the product page.
         headline: nil,
-        # The commission rate as a percentage that members earn through the member
-        # affiliate program.
+        # The commission rate members earn.
         member_affiliate_percentage: nil,
-        # The different statuses of the global affiliate program for a product.
+        # The enrollment status in the member affiliate program.
         member_affiliate_status: nil,
-        # Custom key-value pairs to store on the product. Included in webhook payloads for
-        # payment and membership events. Max 50 keys, 500 chars per key, 5000 chars per
-        # value.
+        # Custom key-value pairs to store on the product.
         metadata: nil,
-        # Configuration for an automatically generated plan to attach to this product.
-        plan_options: nil,
-        # The unique identifier of the tax classification code to apply to this product.
+        # The unique identifier of the tax classification code. See the available
+        # [product categories](https://docs.numeral.com/essentials/product-categories).
         product_tax_code_id: nil,
-        # A URL to redirect the customer to after completing a purchase.
+        # A URL to redirect the customer to after purchase.
         redirect_purchase_url: nil,
         # The URL slug for the product's public link.
         route: nil,
         # Whether to send an automated welcome message via support chat when a user joins
         # this product. Defaults to true.
         send_welcome_message: nil,
-        # Visibility of a resource
+        # Whether the product is visible to customers.
         visibility: nil,
         request_options: {}
       )
       end
 
-      # Retrieves the details of an existing product.
-      #
-      # Required permissions:
-      #
-      # - `access_pass:basic:read`
+      # Retrieves the details of an existing product. This endpoint is publicly
+      # accessible.
       sig do
         params(
           id: String,
@@ -104,157 +85,89 @@ module WhopSDK
         ).returns(WhopSDK::Product)
       end
       def retrieve(
-        # The unique identifier or route slug of the product.
+        # The unique identifier of the product.
         id,
         request_options: {}
       )
       end
 
-      # Update a product's title, description, visibility, and other settings.
-      #
-      # Required permissions:
-      #
-      # - `access_pass:update`
-      # - `access_pass:basic:read`
+      # Updates an existing product.
       sig do
         params(
           id: String,
-          collect_shipping_address: T.nilable(T::Boolean),
-          custom_cta: T.nilable(WhopSDK::CustomCta::OrSymbol),
-          custom_cta_url: T.nilable(String),
-          custom_statement_descriptor: T.nilable(String),
           description: T.nilable(String),
-          gallery_images:
-            T.nilable(
-              T::Array[WhopSDK::ProductUpdateParams::GalleryImage::OrHash]
-            ),
-          global_affiliate_percentage: T.nilable(Float),
-          global_affiliate_status:
-            T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
           headline: T.nilable(String),
-          member_affiliate_percentage: T.nilable(Float),
-          member_affiliate_status:
-            T.nilable(WhopSDK::GlobalAffiliateStatus::OrSymbol),
-          metadata: T.nilable(T::Hash[Symbol, T.anything]),
+          metadata: T.nilable(T.anything),
           product_tax_code_id: T.nilable(String),
-          redirect_purchase_url: T.nilable(String),
-          route: T.nilable(String),
           send_welcome_message: T.nilable(T::Boolean),
-          store_page_config:
-            T.nilable(WhopSDK::ProductUpdateParams::StorePageConfig::OrHash),
-          title: T.nilable(String),
-          visibility: T.nilable(WhopSDK::Visibility::OrSymbol),
+          title: String,
+          visibility: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Product)
       end
       def update(
-        # The unique identifier of the product to update.
+        # The unique identifier of the product.
         id,
-        # Whether the checkout flow collects a shipping address from the customer.
-        collect_shipping_address: nil,
-        # The different types of custom CTAs that can be selected.
-        custom_cta: nil,
-        # A URL that the call-to-action button links to instead of the default checkout
-        # flow.
-        custom_cta_url: nil,
-        # A custom text label that appears on the customer's bank statement. Must be 5-22
-        # characters, contain at least one letter, and not contain <, >, \, ', or "
-        # characters.
-        custom_statement_descriptor: nil,
-        # A written description of the product displayed on its product page.
+        # A written description displayed on the product page.
         description: nil,
-        # The gallery images for the product.
-        gallery_images: nil,
-        # The commission rate as a percentage that affiliates earn through the global
-        # affiliate program.
-        global_affiliate_percentage: nil,
-        # The different statuses of the global affiliate program for a product.
-        global_affiliate_status: nil,
-        # A short marketing headline displayed prominently on the product page.
+        # A short marketing headline for the product page.
         headline: nil,
-        # The commission rate as a percentage that members earn through the member
-        # affiliate program.
-        member_affiliate_percentage: nil,
-        # The different statuses of the global affiliate program for a product.
-        member_affiliate_status: nil,
-        # Custom key-value pairs to store on the product. Included in webhook payloads for
-        # payment and membership events. Max 50 keys, 500 chars per key, 5000 chars per
-        # value.
+        # Custom key-value pairs to store on the product.
         metadata: nil,
-        # The unique identifier of the tax classification code to apply to this product.
+        # The unique identifier of the tax classification code. See the available
+        # [product categories](https://docs.numeral.com/essentials/product-categories).
         product_tax_code_id: nil,
-        # A URL to redirect the customer to after completing a purchase.
-        redirect_purchase_url: nil,
-        # The URL slug for the product's public link.
-        route: nil,
         # Whether to send an automated welcome message via support chat when a user joins
         # this product.
         send_welcome_message: nil,
-        # Layout and display configuration for this product on the company's store page.
-        store_page_config: nil,
-        # The display name of the product. Maximum 80 characters.
+        # The display name of the product.
         title: nil,
-        # Visibility of a resource
+        # Whether the product is visible to customers.
         visibility: nil,
         request_options: {}
       )
       end
 
-      # Returns a paginated list of products belonging to a company, with optional
-      # filtering by type, visibility, and creation date.
-      #
-      # Required permissions:
-      #
-      # - `access_pass:basic:read`
+      # Returns a paginated list of products belonging to a company.
       sig do
         params(
           company_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          order: T.nilable(WhopSDK::ProductListParams::Order::OrSymbol),
-          product_types: T.nilable(T::Array[WhopSDK::AccessPassType::OrSymbol]),
-          visibilities:
-            T.nilable(T::Array[WhopSDK::VisibilityFilter::OrSymbol]),
+          access_pass_types: T::Array[String],
+          after: String,
+          before: String,
+          direction: WhopSDK::ProductListParams::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
+          order: String,
+          visibilities: T::Array[String],
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Internal::CursorPage[WhopSDK::ProductListItem])
       end
       def list(
         # The unique identifier of the company to list products for.
         company_id:,
-        # Returns the elements in the list that come after the specified cursor.
+        # Filter to only products matching these types.
+        access_pass_types: nil,
+        # A cursor; returns products after this position.
         after: nil,
-        # Returns the elements in the list that come before the specified cursor.
+        # A cursor; returns products before this position.
         before: nil,
-        # Only return products created after this timestamp.
-        created_after: nil,
-        # Only return products created before this timestamp.
-        created_before: nil,
-        # The direction of the sort.
+        # The sort direction for results. Defaults to descending.
         direction: nil,
-        # Returns the first _n_ elements from the list.
+        # The number of products to return (default and max 100).
         first: nil,
-        # Returns the last _n_ elements from the list.
+        # The number of products to return from the end of the range.
         last: nil,
-        # The ways a relation of AccessPasses can be ordered
+        # The field to sort results by. Defaults to created_at.
         order: nil,
-        # Filter to only products matching these type classifications.
-        product_types: nil,
         # Filter to only products matching these visibility states.
         visibilities: nil,
         request_options: {}
       )
       end
 
-      # Permanently delete a product and remove it from the company's catalog.
-      #
-      # Required permissions:
-      #
-      # - `access_pass:delete`
+      # Deletes a product. Only products with no memberships, entries, reviews, or
+      # invoices can be deleted.
       sig do
         params(
           id: String,
@@ -262,7 +175,7 @@ module WhopSDK
         ).returns(T::Boolean)
       end
       def delete(
-        # The unique identifier of the product to delete.
+        # The unique identifier of the product.
         id,
         request_options: {}
       )

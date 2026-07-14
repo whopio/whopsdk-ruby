@@ -1,0 +1,99 @@
+module WhopSDK
+  module Models
+    type media_generate_params =
+      {
+        prompt: String,
+        type: WhopSDK::Models::MediaGenerateParams::type_,
+        account_id: String,
+        duration_seconds: WhopSDK::Models::MediaGenerateParams::duration_seconds,
+        reference_media: ::Array[String],
+        resolution: WhopSDK::Models::MediaGenerateParams::resolution
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class MediaGenerateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor prompt: String
+
+      attr_accessor type: WhopSDK::Models::MediaGenerateParams::type_
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
+
+      attr_reader duration_seconds: WhopSDK::Models::MediaGenerateParams::duration_seconds?
+
+      def duration_seconds=: (
+        WhopSDK::Models::MediaGenerateParams::duration_seconds
+      ) -> WhopSDK::Models::MediaGenerateParams::duration_seconds
+
+      attr_reader reference_media: ::Array[String]?
+
+      def reference_media=: (::Array[String]) -> ::Array[String]
+
+      attr_reader resolution: WhopSDK::Models::MediaGenerateParams::resolution?
+
+      def resolution=: (
+        WhopSDK::Models::MediaGenerateParams::resolution
+      ) -> WhopSDK::Models::MediaGenerateParams::resolution
+
+      def initialize: (
+        prompt: String,
+        type: WhopSDK::Models::MediaGenerateParams::type_,
+        ?account_id: String,
+        ?duration_seconds: WhopSDK::Models::MediaGenerateParams::duration_seconds,
+        ?reference_media: ::Array[String],
+        ?resolution: WhopSDK::Models::MediaGenerateParams::resolution,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        prompt: String,
+        type: WhopSDK::Models::MediaGenerateParams::type_,
+        account_id: String,
+        duration_seconds: WhopSDK::Models::MediaGenerateParams::duration_seconds,
+        reference_media: ::Array[String],
+        resolution: WhopSDK::Models::MediaGenerateParams::resolution,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type type_ = :video | :image
+
+      module Type
+        extend WhopSDK::Internal::Type::Enum
+
+        VIDEO: :video
+        IMAGE: :image
+
+        def self?.values: -> ::Array[WhopSDK::Models::MediaGenerateParams::type_]
+      end
+
+      type duration_seconds = 5 | 10 | 15
+
+      module DurationSeconds
+        extend WhopSDK::Internal::Type::Enum
+
+        DURATION_SECONDS_5: 5
+        DURATION_SECONDS_10: 10
+        DURATION_SECONDS_15: 15
+
+        def self?.values: -> ::Array[WhopSDK::Models::MediaGenerateParams::duration_seconds]
+      end
+
+      type resolution = :"480p" | :"720p" | :"1080p" | :"4k"
+
+      module Resolution
+        extend WhopSDK::Internal::Type::Enum
+
+        RESOLUTION_480P: :"480p"
+        RESOLUTION_720P: :"720p"
+        RESOLUTION_1080P: :"1080p"
+        RESOLUTION_4K: :"4k"
+
+        def self?.values: -> ::Array[WhopSDK::Models::MediaGenerateParams::resolution]
+      end
+    end
+  end
+end

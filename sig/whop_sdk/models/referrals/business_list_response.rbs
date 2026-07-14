@@ -1,0 +1,267 @@
+module WhopSDK
+  module Models
+    module Referrals
+      type business_list_response =
+        {
+          id: String,
+          account: WhopSDK::Models::Referrals::BusinessListResponse::Account?,
+          created_at: Time,
+          earnings_usd: WhopSDK::Models::Referrals::BusinessListResponse::EarningsUsd,
+          first_tier_partner: WhopSDK::Models::Referrals::BusinessListResponse::FirstTierPartner?,
+          my_partner_tier: WhopSDK::Models::Referrals::BusinessListResponse::my_partner_tier,
+          object: WhopSDK::Models::Referrals::BusinessListResponse::object,
+          owner: WhopSDK::Models::Referrals::BusinessListResponse::Owner?,
+          payout_percentage: Float,
+          referral_expires_at: Time?,
+          referral_started_at: Time?,
+          status: WhopSDK::Models::Referrals::BusinessListResponse::status,
+          volume_usd: WhopSDK::Models::Referrals::BusinessListResponse::VolumeUsd
+        }
+
+      class BusinessListResponse < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor account: WhopSDK::Models::Referrals::BusinessListResponse::Account?
+
+        attr_accessor created_at: Time
+
+        attr_accessor earnings_usd: WhopSDK::Models::Referrals::BusinessListResponse::EarningsUsd
+
+        attr_accessor first_tier_partner: WhopSDK::Models::Referrals::BusinessListResponse::FirstTierPartner?
+
+        attr_accessor my_partner_tier: WhopSDK::Models::Referrals::BusinessListResponse::my_partner_tier
+
+        attr_accessor object: WhopSDK::Models::Referrals::BusinessListResponse::object
+
+        attr_accessor owner: WhopSDK::Models::Referrals::BusinessListResponse::Owner?
+
+        attr_accessor payout_percentage: Float
+
+        attr_accessor referral_expires_at: Time?
+
+        attr_accessor referral_started_at: Time?
+
+        attr_accessor status: WhopSDK::Models::Referrals::BusinessListResponse::status
+
+        attr_accessor volume_usd: WhopSDK::Models::Referrals::BusinessListResponse::VolumeUsd
+
+        def initialize: (
+          id: String,
+          account: WhopSDK::Models::Referrals::BusinessListResponse::Account?,
+          created_at: Time,
+          earnings_usd: WhopSDK::Models::Referrals::BusinessListResponse::EarningsUsd,
+          first_tier_partner: WhopSDK::Models::Referrals::BusinessListResponse::FirstTierPartner?,
+          my_partner_tier: WhopSDK::Models::Referrals::BusinessListResponse::my_partner_tier,
+          object: WhopSDK::Models::Referrals::BusinessListResponse::object,
+          owner: WhopSDK::Models::Referrals::BusinessListResponse::Owner?,
+          payout_percentage: Float,
+          referral_expires_at: Time?,
+          referral_started_at: Time?,
+          status: WhopSDK::Models::Referrals::BusinessListResponse::status,
+          volume_usd: WhopSDK::Models::Referrals::BusinessListResponse::VolumeUsd
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          account: WhopSDK::Models::Referrals::BusinessListResponse::Account?,
+          created_at: Time,
+          earnings_usd: WhopSDK::Models::Referrals::BusinessListResponse::EarningsUsd,
+          first_tier_partner: WhopSDK::Models::Referrals::BusinessListResponse::FirstTierPartner?,
+          my_partner_tier: WhopSDK::Models::Referrals::BusinessListResponse::my_partner_tier,
+          object: WhopSDK::Models::Referrals::BusinessListResponse::object,
+          owner: WhopSDK::Models::Referrals::BusinessListResponse::Owner?,
+          payout_percentage: Float,
+          referral_expires_at: Time?,
+          referral_started_at: Time?,
+          status: WhopSDK::Models::Referrals::BusinessListResponse::status,
+          volume_usd: WhopSDK::Models::Referrals::BusinessListResponse::VolumeUsd
+        }
+
+        type account =
+          { id: String, logo_url: String?, route: String, title: String }
+
+        class Account < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor logo_url: String?
+
+          attr_accessor route: String
+
+          attr_accessor title: String
+
+          def initialize: (
+            id: String,
+            logo_url: String?,
+            route: String,
+            title: String
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            logo_url: String?,
+            route: String,
+            title: String
+          }
+        end
+
+        type earnings_usd =
+          { completed: String, pending: String, total: String }
+
+        class EarningsUsd < WhopSDK::Internal::Type::BaseModel
+          attr_accessor completed: String
+
+          attr_accessor pending: String
+
+          attr_accessor total: String
+
+          def initialize: (
+            completed: String,
+            pending: String,
+            total: String
+          ) -> void
+
+          def to_hash: -> { completed: String, pending: String, total: String }
+        end
+
+        type first_tier_partner =
+          {
+            id: String,
+            name: String?,
+            profile_picture: WhopSDK::Models::Referrals::BusinessListResponse::FirstTierPartner::ProfilePicture,
+            username: String
+          }
+
+        class FirstTierPartner < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor name: String?
+
+          attr_accessor profile_picture: WhopSDK::Models::Referrals::BusinessListResponse::FirstTierPartner::ProfilePicture
+
+          attr_accessor username: String
+
+          def initialize: (
+            id: String,
+            name: String?,
+            profile_picture: WhopSDK::Models::Referrals::BusinessListResponse::FirstTierPartner::ProfilePicture,
+            username: String
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            name: String?,
+            profile_picture: WhopSDK::Models::Referrals::BusinessListResponse::FirstTierPartner::ProfilePicture,
+            username: String
+          }
+
+          type profile_picture = { url: String }
+
+          class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+            attr_accessor url: String
+
+            def initialize: (url: String) -> void
+
+            def to_hash: -> { url: String }
+          end
+        end
+
+        type my_partner_tier = :first | :second
+
+        module MyPartnerTier
+          extend WhopSDK::Internal::Type::Enum
+
+          FIRST: :first
+          SECOND: :second
+
+          def self?.values: -> ::Array[WhopSDK::Models::Referrals::BusinessListResponse::my_partner_tier]
+        end
+
+        type object = :business_referral
+
+        module Object
+          extend WhopSDK::Internal::Type::Enum
+
+          BUSINESS_REFERRAL: :business_referral
+
+          def self?.values: -> ::Array[WhopSDK::Models::Referrals::BusinessListResponse::object]
+        end
+
+        type owner =
+          {
+            id: String,
+            name: String?,
+            profile_picture: WhopSDK::Models::Referrals::BusinessListResponse::Owner::ProfilePicture,
+            username: String
+          }
+
+        class Owner < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor name: String?
+
+          attr_accessor profile_picture: WhopSDK::Models::Referrals::BusinessListResponse::Owner::ProfilePicture
+
+          attr_accessor username: String
+
+          def initialize: (
+            id: String,
+            name: String?,
+            profile_picture: WhopSDK::Models::Referrals::BusinessListResponse::Owner::ProfilePicture,
+            username: String
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            name: String?,
+            profile_picture: WhopSDK::Models::Referrals::BusinessListResponse::Owner::ProfilePicture,
+            username: String
+          }
+
+          type profile_picture = { url: String }
+
+          class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+            attr_accessor url: String
+
+            def initialize: (url: String) -> void
+
+            def to_hash: -> { url: String }
+          end
+        end
+
+        type status = :active | :removed
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          REMOVED: :removed
+
+          def self?.values: -> ::Array[WhopSDK::Models::Referrals::BusinessListResponse::status]
+        end
+
+        type volume_usd =
+          { attributed: String, awaiting_settlement: String, settled: String }
+
+        class VolumeUsd < WhopSDK::Internal::Type::BaseModel
+          attr_accessor attributed: String
+
+          attr_accessor awaiting_settlement: String
+
+          attr_accessor settled: String
+
+          def initialize: (
+            attributed: String,
+            awaiting_settlement: String,
+            settled: String
+          ) -> void
+
+          def to_hash: -> {
+            attributed: String,
+            awaiting_settlement: String,
+            settled: String
+          }
+        end
+      end
+    end
+  end
+end

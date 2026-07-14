@@ -1,0 +1,72 @@
+module WhopSDK
+  module Models
+    type stat_list_response =
+      { data: ::Array[WhopSDK::Models::StatListResponse::Data] }
+
+    class StatListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor data: ::Array[WhopSDK::Models::StatListResponse::Data]
+
+      def initialize: (
+        data: ::Array[WhopSDK::Models::StatListResponse::Data]
+      ) -> void
+
+      def to_hash: -> { data: ::Array[WhopSDK::Models::StatListResponse::Data] }
+
+      type data =
+        {
+          description: String,
+          key: String,
+          name: String,
+          properties: ::Array[String],
+          unit: WhopSDK::Models::StatListResponse::Data::unit,
+          windows: ::Array[String]
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor description: String
+
+        attr_accessor key: String
+
+        attr_accessor name: String
+
+        attr_accessor properties: ::Array[String]
+
+        attr_accessor unit: WhopSDK::Models::StatListResponse::Data::unit
+
+        attr_reader windows: ::Array[String]?
+
+        def windows=: (::Array[String]) -> ::Array[String]
+
+        def initialize: (
+          description: String,
+          key: String,
+          name: String,
+          properties: ::Array[String],
+          unit: WhopSDK::Models::StatListResponse::Data::unit,
+          ?windows: ::Array[String]
+        ) -> void
+
+        def to_hash: -> {
+          description: String,
+          key: String,
+          name: String,
+          properties: ::Array[String],
+          unit: WhopSDK::Models::StatListResponse::Data::unit,
+          windows: ::Array[String]
+        }
+
+        type unit = :count | :currency | :percent
+
+        module Unit
+          extend WhopSDK::Internal::Type::Enum
+
+          COUNT: :count
+          CURRENCY: :currency
+          PERCENT: :percent
+
+          def self?.values: -> ::Array[WhopSDK::Models::StatListResponse::Data::unit]
+        end
+      end
+    end
+  end
+end

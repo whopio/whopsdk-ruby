@@ -183,6 +183,7 @@ module WhopSDK
         MISSING_PHONE_NUMBER = :missing_phone_number
         MISSING_REMITTANCE_INFO = :missing_remittance_info
         PAYEE_NAME_INVALID = :payee_name_invalid
+        BENEFICIARY_NAME_MISMATCH = :beneficiary_name_mismatch
         RECEIVING_ACCOUNT_LOCKED = :receiving_account_locked
         REJECTED_BY_COMPLIANCE = :rejected_by_compliance
         RTP_NOT_SUPPORTED = :rtp_not_supported

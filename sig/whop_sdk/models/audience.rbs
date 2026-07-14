@@ -1,0 +1,86 @@
+module WhopSDK
+  module Models
+    type audience =
+      {
+        id: String,
+        created_at: Float,
+        error_message: String?,
+        matched_rows: Float,
+        name: String,
+        platform_audience_ids: ::Array[String],
+        processed_rows: Float,
+        progress_percent: Float,
+        status: WhopSDK::Models::Audience::status,
+        total_rows: Float,
+        updated_at: Float
+      }
+
+    class Audience < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Float
+
+      attr_accessor error_message: String?
+
+      attr_accessor matched_rows: Float
+
+      attr_accessor name: String
+
+      attr_accessor platform_audience_ids: ::Array[String]
+
+      attr_accessor processed_rows: Float
+
+      attr_accessor progress_percent: Float
+
+      attr_accessor status: WhopSDK::Models::Audience::status
+
+      attr_accessor total_rows: Float
+
+      attr_accessor updated_at: Float
+
+      def initialize: (
+        id: String,
+        created_at: Float,
+        error_message: String?,
+        matched_rows: Float,
+        name: String,
+        platform_audience_ids: ::Array[String],
+        processed_rows: Float,
+        progress_percent: Float,
+        status: WhopSDK::Models::Audience::status,
+        total_rows: Float,
+        updated_at: Float
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Float,
+        error_message: String?,
+        matched_rows: Float,
+        name: String,
+        platform_audience_ids: ::Array[String],
+        processed_rows: Float,
+        progress_percent: Float,
+        status: WhopSDK::Models::Audience::status,
+        total_rows: Float,
+        updated_at: Float
+      }
+
+      type status =
+        :pending | :processing | :syncing | :ready | :partial | :failed
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        PENDING: :pending
+        PROCESSING: :processing
+        SYNCING: :syncing
+        READY: :ready
+        PARTIAL: :partial
+        FAILED: :failed
+
+        def self?.values: -> ::Array[WhopSDK::Models::Audience::status]
+      end
+    end
+  end
+end

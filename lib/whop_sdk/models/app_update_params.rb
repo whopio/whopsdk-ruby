@@ -96,6 +96,22 @@ module WhopSDK
                -> { WhopSDK::Internal::Type::ArrayOf[enum: WhopSDK::AppUpdateParams::RequiredScope] },
                nil?: true
 
+      # @!attribute route
+      #   The unique subdomain route where the app's hosted web builds are served, such as
+      #   'myapp' for myapp.whop.app.
+      #
+      #   @return [String, nil]
+      optional :route, String, nil?: true
+
+      # @!attribute secrets
+      #   Secrets to add or overwrite on the app, as an object of string values (e.g.
+      #   {"MAIL_API_KEY": "..."}). Keys not included are left untouched. Pass null or an
+      #   empty string as the value to delete a secret. Secrets are encrypted at rest and
+      #   injected into the app's hosted server runtime as environment bindings.
+      #
+      #   @return [Hash{Symbol=>Object}, nil]
+      optional :secrets, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
+
       # @!attribute skills_path
       #   The URL path to the skills directory of the app, such as '/assets/skills/'.
       #
@@ -108,7 +124,7 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::AppStatuses, nil]
       optional :status, enum: -> { WhopSDK::AppStatuses }, nil?: true
 
-      # @!method initialize(id:, app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, oauth_client_type: nil, openapi_path: nil, redirect_uris: nil, required_scopes: nil, skills_path: nil, status: nil, request_options: {})
+      # @!method initialize(id:, app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, oauth_client_type: nil, openapi_path: nil, redirect_uris: nil, required_scopes: nil, route: nil, secrets: nil, skills_path: nil, status: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AppUpdateParams} for more details.
       #
@@ -139,6 +155,10 @@ module WhopSDK
       #   @param redirect_uris [Array<String>, nil] The whitelisted OAuth callback URLs that users are redirected to after authorizi
       #
       #   @param required_scopes [Array<Symbol, WhopSDK::Models::AppUpdateParams::RequiredScope>, nil] The permission scopes the app will request from users when they install it.
+      #
+      #   @param route [String, nil] The unique subdomain route where the app's hosted web builds are served, such as
+      #
+      #   @param secrets [Hash{Symbol=>Object}, nil] Secrets to add or overwrite on the app, as an object of string values (e.g. {"MA
       #
       #   @param skills_path [String, nil] The URL path to the skills directory of the app, such as '/assets/skills/'.
       #

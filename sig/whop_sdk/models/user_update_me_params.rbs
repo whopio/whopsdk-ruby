@@ -2,6 +2,7 @@ module WhopSDK
   module Models
     type user_update_me_params =
       {
+        account_id: String,
         bio: String,
         name: String,
         profile_picture: WhopSDK::UserUpdateMeParams::ProfilePicture,
@@ -12,6 +13,10 @@ module WhopSDK
     class UserUpdateMeParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
 
       attr_reader bio: String?
 
@@ -32,6 +37,7 @@ module WhopSDK
       def username=: (String) -> String
 
       def initialize: (
+        ?account_id: String,
         ?bio: String,
         ?name: String,
         ?profile_picture: WhopSDK::UserUpdateMeParams::ProfilePicture,
@@ -40,6 +46,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
+        account_id: String,
         bio: String,
         name: String,
         profile_picture: WhopSDK::UserUpdateMeParams::ProfilePicture,

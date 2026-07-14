@@ -15,84 +15,97 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :company_id
 
-      # Returns the elements in the list that come after the specified cursor.
+      # Filter to only products matching these types.
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_reader :access_pass_types
+
+      sig { params(access_pass_types: T::Array[String]).void }
+      attr_writer :access_pass_types
+
+      # A cursor; returns products after this position.
       sig { returns(T.nilable(String)) }
-      attr_accessor :after
+      attr_reader :after
 
-      # Returns the elements in the list that come before the specified cursor.
+      sig { params(after: String).void }
+      attr_writer :after
+
+      # A cursor; returns products before this position.
       sig { returns(T.nilable(String)) }
-      attr_accessor :before
+      attr_reader :before
 
-      # Only return products created after this timestamp.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :created_after
+      sig { params(before: String).void }
+      attr_writer :before
 
-      # Only return products created before this timestamp.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :created_before
+      # The sort direction for results. Defaults to descending.
+      sig do
+        returns(T.nilable(WhopSDK::ProductListParams::Direction::OrSymbol))
+      end
+      attr_reader :direction
 
-      # The direction of the sort.
-      sig { returns(T.nilable(WhopSDK::Direction::OrSymbol)) }
-      attr_accessor :direction
+      sig do
+        params(direction: WhopSDK::ProductListParams::Direction::OrSymbol).void
+      end
+      attr_writer :direction
 
-      # Returns the first _n_ elements from the list.
+      # The number of products to return (default and max 100).
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :first
+      attr_reader :first
 
-      # Returns the last _n_ elements from the list.
+      sig { params(first: Integer).void }
+      attr_writer :first
+
+      # The number of products to return from the end of the range.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :last
+      attr_reader :last
 
-      # The ways a relation of AccessPasses can be ordered
-      sig { returns(T.nilable(WhopSDK::ProductListParams::Order::OrSymbol)) }
-      attr_accessor :order
+      sig { params(last: Integer).void }
+      attr_writer :last
 
-      # Filter to only products matching these type classifications.
-      sig { returns(T.nilable(T::Array[WhopSDK::AccessPassType::OrSymbol])) }
-      attr_accessor :product_types
+      # The field to sort results by. Defaults to created_at.
+      sig { returns(T.nilable(String)) }
+      attr_reader :order
+
+      sig { params(order: String).void }
+      attr_writer :order
 
       # Filter to only products matching these visibility states.
-      sig { returns(T.nilable(T::Array[WhopSDK::VisibilityFilter::OrSymbol])) }
-      attr_accessor :visibilities
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_reader :visibilities
+
+      sig { params(visibilities: T::Array[String]).void }
+      attr_writer :visibilities
 
       sig do
         params(
           company_id: String,
-          after: T.nilable(String),
-          before: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          order: T.nilable(WhopSDK::ProductListParams::Order::OrSymbol),
-          product_types: T.nilable(T::Array[WhopSDK::AccessPassType::OrSymbol]),
-          visibilities:
-            T.nilable(T::Array[WhopSDK::VisibilityFilter::OrSymbol]),
+          access_pass_types: T::Array[String],
+          after: String,
+          before: String,
+          direction: WhopSDK::ProductListParams::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
+          order: String,
+          visibilities: T::Array[String],
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
         # The unique identifier of the company to list products for.
         company_id:,
-        # Returns the elements in the list that come after the specified cursor.
+        # Filter to only products matching these types.
+        access_pass_types: nil,
+        # A cursor; returns products after this position.
         after: nil,
-        # Returns the elements in the list that come before the specified cursor.
+        # A cursor; returns products before this position.
         before: nil,
-        # Only return products created after this timestamp.
-        created_after: nil,
-        # Only return products created before this timestamp.
-        created_before: nil,
-        # The direction of the sort.
+        # The sort direction for results. Defaults to descending.
         direction: nil,
-        # Returns the first _n_ elements from the list.
+        # The number of products to return (default and max 100).
         first: nil,
-        # Returns the last _n_ elements from the list.
+        # The number of products to return from the end of the range.
         last: nil,
-        # The ways a relation of AccessPasses can be ordered
+        # The field to sort results by. Defaults to created_at.
         order: nil,
-        # Filter to only products matching these type classifications.
-        product_types: nil,
         # Filter to only products matching these visibility states.
         visibilities: nil,
         request_options: {}
@@ -103,18 +116,14 @@ module WhopSDK
         override.returns(
           {
             company_id: String,
-            after: T.nilable(String),
-            before: T.nilable(String),
-            created_after: T.nilable(Time),
-            created_before: T.nilable(Time),
-            direction: T.nilable(WhopSDK::Direction::OrSymbol),
-            first: T.nilable(Integer),
-            last: T.nilable(Integer),
-            order: T.nilable(WhopSDK::ProductListParams::Order::OrSymbol),
-            product_types:
-              T.nilable(T::Array[WhopSDK::AccessPassType::OrSymbol]),
-            visibilities:
-              T.nilable(T::Array[WhopSDK::VisibilityFilter::OrSymbol]),
+            access_pass_types: T::Array[String],
+            after: String,
+            before: String,
+            direction: WhopSDK::ProductListParams::Direction::OrSymbol,
+            first: Integer,
+            last: Integer,
+            order: String,
+            visibilities: T::Array[String],
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -122,32 +131,20 @@ module WhopSDK
       def to_hash
       end
 
-      # The ways a relation of AccessPasses can be ordered
-      module Order
+      # The sort direction for results. Defaults to descending.
+      module Direction
         extend WhopSDK::Internal::Type::Enum
 
         TaggedSymbol =
-          T.type_alias { T.all(Symbol, WhopSDK::ProductListParams::Order) }
+          T.type_alias { T.all(Symbol, WhopSDK::ProductListParams::Direction) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        ACTIVE_MEMBERSHIPS_COUNT =
-          T.let(
-            :active_memberships_count,
-            WhopSDK::ProductListParams::Order::TaggedSymbol
-          )
-        CREATED_AT =
-          T.let(:created_at, WhopSDK::ProductListParams::Order::TaggedSymbol)
-        USD_GMV =
-          T.let(:usd_gmv, WhopSDK::ProductListParams::Order::TaggedSymbol)
-        USD_GMV_30_DAYS =
-          T.let(
-            :usd_gmv_30_days,
-            WhopSDK::ProductListParams::Order::TaggedSymbol
-          )
+        ASC = T.let(:asc, WhopSDK::ProductListParams::Direction::TaggedSymbol)
+        DESC = T.let(:desc, WhopSDK::ProductListParams::Direction::TaggedSymbol)
 
         sig do
           override.returns(
-            T::Array[WhopSDK::ProductListParams::Order::TaggedSymbol]
+            T::Array[WhopSDK::ProductListParams::Direction::TaggedSymbol]
           )
         end
         def self.values

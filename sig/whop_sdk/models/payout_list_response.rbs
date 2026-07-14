@@ -1,0 +1,153 @@
+module WhopSDK
+  module Models
+    type payout_list_response =
+      {
+        id: String,
+        amount: Float,
+        created_at: Time,
+        currency: String,
+        estimated_arrival: Time?,
+        fee_amount: Float,
+        object: WhopSDK::Models::PayoutListResponse::object,
+        payer_name: String?,
+        payout_request_id: String?,
+        payout_token: WhopSDK::Models::PayoutListResponse::PayoutToken?,
+        speed: WhopSDK::Models::PayoutListResponse::speed,
+        status: WhopSDK::Models::PayoutListResponse::status
+      }
+
+    class PayoutListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor amount: Float
+
+      attr_accessor created_at: Time
+
+      attr_accessor currency: String
+
+      attr_accessor estimated_arrival: Time?
+
+      attr_accessor fee_amount: Float
+
+      attr_accessor object: WhopSDK::Models::PayoutListResponse::object
+
+      attr_accessor payer_name: String?
+
+      attr_accessor payout_request_id: String?
+
+      attr_accessor payout_token: WhopSDK::Models::PayoutListResponse::PayoutToken?
+
+      attr_accessor speed: WhopSDK::Models::PayoutListResponse::speed
+
+      attr_accessor status: WhopSDK::Models::PayoutListResponse::status
+
+      def initialize: (
+        id: String,
+        amount: Float,
+        created_at: Time,
+        currency: String,
+        estimated_arrival: Time?,
+        fee_amount: Float,
+        object: WhopSDK::Models::PayoutListResponse::object,
+        payer_name: String?,
+        payout_request_id: String?,
+        payout_token: WhopSDK::Models::PayoutListResponse::PayoutToken?,
+        speed: WhopSDK::Models::PayoutListResponse::speed,
+        status: WhopSDK::Models::PayoutListResponse::status
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        amount: Float,
+        created_at: Time,
+        currency: String,
+        estimated_arrival: Time?,
+        fee_amount: Float,
+        object: WhopSDK::Models::PayoutListResponse::object,
+        payer_name: String?,
+        payout_request_id: String?,
+        payout_token: WhopSDK::Models::PayoutListResponse::PayoutToken?,
+        speed: WhopSDK::Models::PayoutListResponse::speed,
+        status: WhopSDK::Models::PayoutListResponse::status
+      }
+
+      type object = :payout
+
+      module Object
+        extend WhopSDK::Internal::Type::Enum
+
+        PAYOUT: :payout
+
+        def self?.values: -> ::Array[WhopSDK::Models::PayoutListResponse::object]
+      end
+
+      type payout_token =
+        {
+          nickname: String?,
+          payout_destination: WhopSDK::Models::PayoutListResponse::PayoutToken::PayoutDestination?
+        }
+
+      class PayoutToken < WhopSDK::Internal::Type::BaseModel
+        attr_accessor nickname: String?
+
+        attr_accessor payout_destination: WhopSDK::Models::PayoutListResponse::PayoutToken::PayoutDestination?
+
+        def initialize: (
+          nickname: String?,
+          payout_destination: WhopSDK::Models::PayoutListResponse::PayoutToken::PayoutDestination?
+        ) -> void
+
+        def to_hash: -> {
+          nickname: String?,
+          payout_destination: WhopSDK::Models::PayoutListResponse::PayoutToken::PayoutDestination?
+        }
+
+        type payout_destination = { icon_url: String?, payer_name: String? }
+
+        class PayoutDestination < WhopSDK::Internal::Type::BaseModel
+          attr_accessor icon_url: String?
+
+          attr_accessor payer_name: String?
+
+          def initialize: (icon_url: String?, payer_name: String?) -> void
+
+          def to_hash: -> { icon_url: String?, payer_name: String? }
+        end
+      end
+
+      type speed = :standard | :instant
+
+      module Speed
+        extend WhopSDK::Internal::Type::Enum
+
+        STANDARD: :standard
+        INSTANT: :instant
+
+        def self?.values: -> ::Array[WhopSDK::Models::PayoutListResponse::speed]
+      end
+
+      type status =
+        :requested
+        | :awaiting_payment
+        | :in_transit
+        | :completed
+        | :failed
+        | :canceled
+        | :denied
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        REQUESTED: :requested
+        AWAITING_PAYMENT: :awaiting_payment
+        IN_TRANSIT: :in_transit
+        COMPLETED: :completed
+        FAILED: :failed
+        CANCELED: :canceled
+        DENIED: :denied
+
+        def self?.values: -> ::Array[WhopSDK::Models::PayoutListResponse::status]
+      end
+    end
+  end
+end

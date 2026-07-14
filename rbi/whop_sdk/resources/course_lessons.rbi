@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Course lessons
     class CourseLessons
       # Create a new lesson within a course chapter. Lessons can contain video, text, or
       # assessment content.

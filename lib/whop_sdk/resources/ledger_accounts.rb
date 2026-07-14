@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Ledger accounts
     class LedgerAccounts
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::LedgerAccountRetrieveParams} for more details.

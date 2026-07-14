@@ -1,0 +1,110 @@
+module WhopSDK
+  module Models
+    module Accounts
+      type preference_retrieve_response =
+        {
+          ads_payment_methods: WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods?
+        }
+
+      class PreferenceRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+        attr_accessor ads_payment_methods: WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods?
+
+        def initialize: (
+          ads_payment_methods: WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods?
+        ) -> void
+
+        def to_hash: -> {
+          ads_payment_methods: WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods?
+        }
+
+        type ads_payment_methods =
+          {
+            backup: WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods::Backup?,
+            primary: WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods::Primary?
+          }
+
+        class AdsPaymentMethods < WhopSDK::Internal::Type::BaseModel
+          attr_accessor backup: WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods::Backup?
+
+          attr_accessor primary: WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods::Primary?
+
+          def initialize: (
+            backup: WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods::Backup?,
+            primary: WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods::Primary?
+          ) -> void
+
+          def to_hash: -> {
+            backup: WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods::Backup?,
+            primary: WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods::Primary?
+          }
+
+          type backup =
+            {
+              id: String,
+              type: WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods::Backup::type_
+            }
+
+          class Backup < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor type: WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods::Backup::type_
+
+            def initialize: (
+              id: String,
+              type: WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods::Backup::type_
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              type: WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods::Backup::type_
+            }
+
+            type type_ = :platform_balance | :card
+
+            module Type
+              extend WhopSDK::Internal::Type::Enum
+
+              PLATFORM_BALANCE: :platform_balance
+              CARD: :card
+
+              def self?.values: -> ::Array[WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods::Backup::type_]
+            end
+          end
+
+          type primary =
+            {
+              id: String,
+              type: WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods::Primary::type_
+            }
+
+          class Primary < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor type: WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods::Primary::type_
+
+            def initialize: (
+              id: String,
+              type: WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods::Primary::type_
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              type: WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods::Primary::type_
+            }
+
+            type type_ = :platform_balance | :card
+
+            module Type
+              extend WhopSDK::Internal::Type::Enum
+
+              PLATFORM_BALANCE: :platform_balance
+              CARD: :card
+
+              def self?.values: -> ::Array[WhopSDK::Models::Accounts::PreferenceRetrieveResponse::AdsPaymentMethods::Primary::type_]
+            end
+          end
+        end
+      end
+    end
+  end
+end

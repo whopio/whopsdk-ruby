@@ -28,7 +28,17 @@ module WhopSDK
       #   @return [String, nil]
       optional :name, String
 
-      # @!method initialize(id:, account_id: nil, bio: nil, name: nil, request_options: {})
+      # @!attribute profile_picture
+      #
+      #   @return [WhopSDK::Models::UserUpdateParams::ProfilePicture, nil]
+      optional :profile_picture, -> { WhopSDK::UserUpdateParams::ProfilePicture }
+
+      # @!attribute username
+      #
+      #   @return [String, nil]
+      optional :username, String
+
+      # @!method initialize(id:, account_id: nil, bio: nil, name: nil, profile_picture: nil, username: nil, request_options: {})
       #   @param id [String]
       #
       #   @param account_id [String] The account whose profile override to update. Required for API key callers.
@@ -37,7 +47,27 @@ module WhopSDK
       #
       #   @param name [String]
       #
+      #   @param profile_picture [WhopSDK::Models::UserUpdateParams::ProfilePicture]
+      #
+      #   @param username [String]
+      #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #
+        #   @return [String, nil]
+        optional :id, String
+
+        # @!attribute direct_upload_id
+        #
+        #   @return [String, nil]
+        optional :direct_upload_id, String
+
+        # @!method initialize(id: nil, direct_upload_id: nil)
+        #   @param id [String]
+        #   @param direct_upload_id [String]
+      end
     end
   end
 end

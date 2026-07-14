@@ -1,0 +1,570 @@
+module WhopSDK
+  module Models
+    type verification_update_params =
+      {
+        verification_id: String,
+        body: WhopSDK::Models::VerificationUpdateParams::body
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class VerificationUpdateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor verification_id: String
+
+      attr_accessor body: WhopSDK::Models::VerificationUpdateParams::body
+
+      def initialize: (
+        verification_id: String,
+        body: WhopSDK::Models::VerificationUpdateParams::body,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        verification_id: String,
+        body: WhopSDK::Models::VerificationUpdateParams::body,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type body =
+        WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification
+        | WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification
+
+      module Body
+        extend WhopSDK::Internal::Type::Union
+
+        type update_individual_verification =
+          {
+            country: String,
+            date_of_birth: String,
+            first_name: String,
+            last_name: String,
+            personal_address: WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::PersonalAddress,
+            requested_information: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation]
+          }
+
+        class UpdateIndividualVerification < WhopSDK::Internal::Type::BaseModel
+          attr_reader country: String?
+
+          def country=: (String) -> String
+
+          attr_reader date_of_birth: String?
+
+          def date_of_birth=: (String) -> String
+
+          attr_reader first_name: String?
+
+          def first_name=: (String) -> String
+
+          attr_reader last_name: String?
+
+          def last_name=: (String) -> String
+
+          attr_reader personal_address: WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::PersonalAddress?
+
+          def personal_address=: (
+            WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::PersonalAddress
+          ) -> WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::PersonalAddress
+
+          attr_reader requested_information: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation]?
+
+          def requested_information=: (
+            ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation]
+          ) -> ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation]
+
+          def initialize: (
+            ?country: String,
+            ?date_of_birth: String,
+            ?first_name: String,
+            ?last_name: String,
+            ?personal_address: WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::PersonalAddress,
+            ?requested_information: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation]
+          ) -> void
+
+          def to_hash: -> {
+            country: String,
+            date_of_birth: String,
+            first_name: String,
+            last_name: String,
+            personal_address: WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::PersonalAddress,
+            requested_information: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation]
+          }
+
+          type personal_address =
+            {
+              city: String,
+              country: String,
+              :line1 => String,
+              :line2 => String,
+              postal_code: String,
+              state: String
+            }
+
+          class PersonalAddress < WhopSDK::Internal::Type::BaseModel
+            attr_reader city: String?
+
+            def city=: (String) -> String
+
+            attr_reader country: String?
+
+            def country=: (String) -> String
+
+            attr_reader line1: String?
+
+            def line1=: (String) -> String
+
+            attr_reader line2: String?
+
+            def line2=: (String) -> String
+
+            attr_reader postal_code: String?
+
+            def postal_code=: (String) -> String
+
+            attr_reader state: String?
+
+            def state=: (String) -> String
+
+            def initialize: (
+              ?city: String,
+              ?country: String,
+              ?line1: String,
+              ?line2: String,
+              ?postal_code: String,
+              ?state: String
+            ) -> void
+
+            def to_hash: -> {
+              city: String,
+              country: String,
+              :line1 => String,
+              :line2 => String,
+              postal_code: String,
+              state: String
+            }
+          end
+
+          type requested_information =
+            {
+              id: String,
+              address: WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation::Address,
+              files: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation::File],
+              value: String,
+              value_type: WhopSDK::Models::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation::value_type
+            }
+
+          class RequestedInformation < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_reader address: WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation::Address?
+
+            def address=: (
+              WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation::Address
+            ) -> WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation::Address
+
+            attr_reader files: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation::File]?
+
+            def files=: (
+              ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation::File]
+            ) -> ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation::File]
+
+            attr_reader value: String?
+
+            def value=: (String) -> String
+
+            attr_reader value_type: WhopSDK::Models::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation::value_type?
+
+            def value_type=: (
+              WhopSDK::Models::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation::value_type
+            ) -> WhopSDK::Models::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation::value_type
+
+            def initialize: (
+              id: String,
+              ?address: WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation::Address,
+              ?files: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation::File],
+              ?value: String,
+              ?value_type: WhopSDK::Models::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation::value_type
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              address: WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation::Address,
+              files: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation::File],
+              value: String,
+              value_type: WhopSDK::Models::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation::value_type
+            }
+
+            type address =
+              {
+                city: String,
+                country: String,
+                :line1 => String,
+                :line2 => String,
+                postal_code: String,
+                state: String
+              }
+
+            class Address < WhopSDK::Internal::Type::BaseModel
+              attr_reader city: String?
+
+              def city=: (String) -> String
+
+              attr_reader country: String?
+
+              def country=: (String) -> String
+
+              attr_reader line1: String?
+
+              def line1=: (String) -> String
+
+              attr_reader line2: String?
+
+              def line2=: (String) -> String
+
+              attr_reader postal_code: String?
+
+              def postal_code=: (String) -> String
+
+              attr_reader state: String?
+
+              def state=: (String) -> String
+
+              def initialize: (
+                ?city: String,
+                ?country: String,
+                ?line1: String,
+                ?line2: String,
+                ?postal_code: String,
+                ?state: String
+              ) -> void
+
+              def to_hash: -> {
+                city: String,
+                country: String,
+                :line1 => String,
+                :line2 => String,
+                postal_code: String,
+                state: String
+              }
+            end
+
+            type file =
+              {
+                attachment_id: String,
+                category: String,
+                direct_upload_id: String,
+                kind: String
+              }
+
+            class File < WhopSDK::Internal::Type::BaseModel
+              attr_reader attachment_id: String?
+
+              def attachment_id=: (String) -> String
+
+              attr_reader category: String?
+
+              def category=: (String) -> String
+
+              attr_reader direct_upload_id: String?
+
+              def direct_upload_id=: (String) -> String
+
+              attr_reader kind: String?
+
+              def kind=: (String) -> String
+
+              def initialize: (
+                ?attachment_id: String,
+                ?category: String,
+                ?direct_upload_id: String,
+                ?kind: String
+              ) -> void
+
+              def to_hash: -> {
+                attachment_id: String,
+                category: String,
+                direct_upload_id: String,
+                kind: String
+              }
+            end
+
+            type value_type = :raw | :vault_token
+
+            module ValueType
+              extend WhopSDK::Internal::Type::Enum
+
+              RAW: :raw
+              VAULT_TOKEN: :vault_token
+
+              def self?.values: -> ::Array[WhopSDK::Models::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation::value_type]
+            end
+          end
+        end
+
+        type update_business_verification =
+          {
+            business_address: WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::BusinessAddress,
+            business_name: String,
+            business_structure: String,
+            country: String,
+            requested_information: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation]
+          }
+
+        class UpdateBusinessVerification < WhopSDK::Internal::Type::BaseModel
+          attr_reader business_address: WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::BusinessAddress?
+
+          def business_address=: (
+            WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::BusinessAddress
+          ) -> WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::BusinessAddress
+
+          attr_reader business_name: String?
+
+          def business_name=: (String) -> String
+
+          attr_reader business_structure: String?
+
+          def business_structure=: (String) -> String
+
+          attr_reader country: String?
+
+          def country=: (String) -> String
+
+          attr_reader requested_information: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation]?
+
+          def requested_information=: (
+            ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation]
+          ) -> ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation]
+
+          def initialize: (
+            ?business_address: WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::BusinessAddress,
+            ?business_name: String,
+            ?business_structure: String,
+            ?country: String,
+            ?requested_information: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation]
+          ) -> void
+
+          def to_hash: -> {
+            business_address: WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::BusinessAddress,
+            business_name: String,
+            business_structure: String,
+            country: String,
+            requested_information: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation]
+          }
+
+          type business_address =
+            {
+              city: String,
+              country: String,
+              :line1 => String,
+              :line2 => String,
+              postal_code: String,
+              state: String
+            }
+
+          class BusinessAddress < WhopSDK::Internal::Type::BaseModel
+            attr_reader city: String?
+
+            def city=: (String) -> String
+
+            attr_reader country: String?
+
+            def country=: (String) -> String
+
+            attr_reader line1: String?
+
+            def line1=: (String) -> String
+
+            attr_reader line2: String?
+
+            def line2=: (String) -> String
+
+            attr_reader postal_code: String?
+
+            def postal_code=: (String) -> String
+
+            attr_reader state: String?
+
+            def state=: (String) -> String
+
+            def initialize: (
+              ?city: String,
+              ?country: String,
+              ?line1: String,
+              ?line2: String,
+              ?postal_code: String,
+              ?state: String
+            ) -> void
+
+            def to_hash: -> {
+              city: String,
+              country: String,
+              :line1 => String,
+              :line2 => String,
+              postal_code: String,
+              state: String
+            }
+          end
+
+          type requested_information =
+            {
+              id: String,
+              address: WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation::Address,
+              files: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation::File],
+              value: String,
+              value_type: WhopSDK::Models::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation::value_type
+            }
+
+          class RequestedInformation < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_reader address: WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation::Address?
+
+            def address=: (
+              WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation::Address
+            ) -> WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation::Address
+
+            attr_reader files: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation::File]?
+
+            def files=: (
+              ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation::File]
+            ) -> ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation::File]
+
+            attr_reader value: String?
+
+            def value=: (String) -> String
+
+            attr_reader value_type: WhopSDK::Models::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation::value_type?
+
+            def value_type=: (
+              WhopSDK::Models::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation::value_type
+            ) -> WhopSDK::Models::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation::value_type
+
+            def initialize: (
+              id: String,
+              ?address: WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation::Address,
+              ?files: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation::File],
+              ?value: String,
+              ?value_type: WhopSDK::Models::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation::value_type
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              address: WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation::Address,
+              files: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation::File],
+              value: String,
+              value_type: WhopSDK::Models::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation::value_type
+            }
+
+            type address =
+              {
+                city: String,
+                country: String,
+                :line1 => String,
+                :line2 => String,
+                postal_code: String,
+                state: String
+              }
+
+            class Address < WhopSDK::Internal::Type::BaseModel
+              attr_reader city: String?
+
+              def city=: (String) -> String
+
+              attr_reader country: String?
+
+              def country=: (String) -> String
+
+              attr_reader line1: String?
+
+              def line1=: (String) -> String
+
+              attr_reader line2: String?
+
+              def line2=: (String) -> String
+
+              attr_reader postal_code: String?
+
+              def postal_code=: (String) -> String
+
+              attr_reader state: String?
+
+              def state=: (String) -> String
+
+              def initialize: (
+                ?city: String,
+                ?country: String,
+                ?line1: String,
+                ?line2: String,
+                ?postal_code: String,
+                ?state: String
+              ) -> void
+
+              def to_hash: -> {
+                city: String,
+                country: String,
+                :line1 => String,
+                :line2 => String,
+                postal_code: String,
+                state: String
+              }
+            end
+
+            type file =
+              {
+                attachment_id: String,
+                category: String,
+                direct_upload_id: String,
+                kind: String
+              }
+
+            class File < WhopSDK::Internal::Type::BaseModel
+              attr_reader attachment_id: String?
+
+              def attachment_id=: (String) -> String
+
+              attr_reader category: String?
+
+              def category=: (String) -> String
+
+              attr_reader direct_upload_id: String?
+
+              def direct_upload_id=: (String) -> String
+
+              attr_reader kind: String?
+
+              def kind=: (String) -> String
+
+              def initialize: (
+                ?attachment_id: String,
+                ?category: String,
+                ?direct_upload_id: String,
+                ?kind: String
+              ) -> void
+
+              def to_hash: -> {
+                attachment_id: String,
+                category: String,
+                direct_upload_id: String,
+                kind: String
+              }
+            end
+
+            type value_type = :raw | :vault_token
+
+            module ValueType
+              extend WhopSDK::Internal::Type::Enum
+
+              RAW: :raw
+              VAULT_TOKEN: :vault_token
+
+              def self?.values: -> ::Array[WhopSDK::Models::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation::value_type]
+            end
+          end
+        end
+
+        def self?.variants: -> ::Array[WhopSDK::Models::VerificationUpdateParams::body]
+      end
+    end
+  end
+end

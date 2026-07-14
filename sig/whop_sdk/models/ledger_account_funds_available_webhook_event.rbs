@@ -1,0 +1,418 @@
+module WhopSDK
+  module Models
+    type ledger_account_funds_available_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data,
+        timestamp: Time,
+        type: :"ledger_account.funds_available",
+        company_id: String?
+      }
+
+    class LedgerAccountFundsAvailableWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor data: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"ledger_account.funds_available"
+
+      attr_accessor company_id: String?
+
+      def initialize: (
+        id: String,
+        data: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data,
+        timestamp: Time,
+        ?company_id: String?,
+        ?api_version: :v1,
+        ?type: :"ledger_account.funds_available"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data,
+        timestamp: Time,
+        type: :"ledger_account.funds_available",
+        company_id: String?
+      }
+
+      type data =
+        {
+          id: String,
+          balances: ::Array[WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::Balance],
+          ledger_type: WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::ledger_type,
+          owner: WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::owner?,
+          payments_approval_status: WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::payments_approval_status?,
+          payout_account_details: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails?,
+          transfer_fee: Float?,
+          treasury_balance: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::TreasuryBalance?
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor balances: ::Array[WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::Balance]
+
+        attr_accessor ledger_type: WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::ledger_type
+
+        attr_accessor owner: WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::owner?
+
+        attr_accessor payments_approval_status: WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::payments_approval_status?
+
+        attr_accessor payout_account_details: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails?
+
+        attr_accessor transfer_fee: Float?
+
+        attr_accessor treasury_balance: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::TreasuryBalance?
+
+        def initialize: (
+          id: String,
+          balances: ::Array[WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::Balance],
+          ledger_type: WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::ledger_type,
+          owner: WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::owner?,
+          payments_approval_status: WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::payments_approval_status?,
+          payout_account_details: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails?,
+          transfer_fee: Float?,
+          treasury_balance: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::TreasuryBalance?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          balances: ::Array[WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::Balance],
+          ledger_type: WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::ledger_type,
+          owner: WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::owner?,
+          payments_approval_status: WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::payments_approval_status?,
+          payout_account_details: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails?,
+          transfer_fee: Float?,
+          treasury_balance: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::TreasuryBalance?
+        }
+
+        type balance =
+          {
+            balance: Float,
+            currency: WhopSDK::Models::currency,
+            pending_balance: Float,
+            reserve_balance: Float
+          }
+
+        class Balance < WhopSDK::Internal::Type::BaseModel
+          attr_accessor balance: Float
+
+          attr_accessor currency: WhopSDK::Models::currency
+
+          attr_accessor pending_balance: Float
+
+          attr_accessor reserve_balance: Float
+
+          def initialize: (
+            balance: Float,
+            currency: WhopSDK::Models::currency,
+            pending_balance: Float,
+            reserve_balance: Float
+          ) -> void
+
+          def to_hash: -> {
+            balance: Float,
+            currency: WhopSDK::Models::currency,
+            pending_balance: Float,
+            reserve_balance: Float
+          }
+        end
+
+        type ledger_type = :primary | :pool
+
+        module LedgerType
+          extend WhopSDK::Internal::Type::Enum
+
+          PRIMARY: :primary
+          POOL: :pool
+
+          def self?.values: -> ::Array[WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::ledger_type]
+        end
+
+        type owner =
+          (WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::Owner::User
+          | WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::Owner::Company)?
+
+        module Owner
+          extend WhopSDK::Internal::Type::Union
+
+          type user =
+            { id: String, name: String?, typename: :User, username: String }
+
+          class User < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor name: String?
+
+            attr_accessor typename: :User
+
+            attr_accessor username: String
+
+            def initialize: (
+              id: String,
+              name: String?,
+              username: String,
+              ?typename: :User
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              name: String?,
+              typename: :User,
+              username: String
+            }
+          end
+
+          type company =
+            { id: String, route: String, title: String, typename: :Company }
+
+          class Company < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor route: String
+
+            attr_accessor title: String
+
+            attr_accessor typename: :Company
+
+            def initialize: (
+              id: String,
+              route: String,
+              title: String,
+              ?typename: :Company
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              route: String,
+              title: String,
+              typename: :Company
+            }
+          end
+
+          def self?.variants: -> ::Array[WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::owner]
+        end
+
+        type payments_approval_status =
+          :pending | :approved | :monitoring | :rejected
+
+        module PaymentsApprovalStatus
+          extend WhopSDK::Internal::Type::Enum
+
+          PENDING: :pending
+          APPROVED: :approved
+          MONITORING: :monitoring
+          REJECTED: :rejected
+
+          def self?.values: -> ::Array[WhopSDK::Models::LedgerAccountFundsAvailableWebhookEvent::Data::payments_approval_status]
+        end
+
+        type payout_account_details =
+          {
+            id: String,
+            address: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails::Address?,
+            business_name: String?,
+            business_representative: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails::BusinessRepresentative?,
+            email: String?,
+            latest_verification: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails::LatestVerification?,
+            phone: String?,
+            status: WhopSDK::Models::payout_account_calculated_statuses?
+          }
+
+        class PayoutAccountDetails < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor address: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails::Address?
+
+          attr_accessor business_name: String?
+
+          attr_accessor business_representative: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails::BusinessRepresentative?
+
+          attr_accessor email: String?
+
+          attr_accessor latest_verification: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails::LatestVerification?
+
+          attr_accessor phone: String?
+
+          attr_accessor status: WhopSDK::Models::payout_account_calculated_statuses?
+
+          def initialize: (
+            id: String,
+            address: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails::Address?,
+            business_name: String?,
+            business_representative: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails::BusinessRepresentative?,
+            email: String?,
+            latest_verification: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails::LatestVerification?,
+            phone: String?,
+            status: WhopSDK::Models::payout_account_calculated_statuses?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            address: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails::Address?,
+            business_name: String?,
+            business_representative: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails::BusinessRepresentative?,
+            email: String?,
+            latest_verification: WhopSDK::LedgerAccountFundsAvailableWebhookEvent::Data::PayoutAccountDetails::LatestVerification?,
+            phone: String?,
+            status: WhopSDK::Models::payout_account_calculated_statuses?
+          }
+
+          type address =
+            {
+              city: String?,
+              country: String?,
+              :line1 => String?,
+              :line2 => String?,
+              postal_code: String?,
+              state: String?
+            }
+
+          class Address < WhopSDK::Internal::Type::BaseModel
+            attr_accessor city: String?
+
+            attr_accessor country: String?
+
+            attr_accessor line1: String?
+
+            attr_accessor line2: String?
+
+            attr_accessor postal_code: String?
+
+            attr_accessor state: String?
+
+            def initialize: (
+              city: String?,
+              country: String?,
+              line1: String?,
+              line2: String?,
+              postal_code: String?,
+              state: String?
+            ) -> void
+
+            def to_hash: -> {
+              city: String?,
+              country: String?,
+              :line1 => String?,
+              :line2 => String?,
+              postal_code: String?,
+              state: String?
+            }
+          end
+
+          type business_representative =
+            {
+              date_of_birth: String?,
+              first_name: String?,
+              last_name: String?,
+              middle_name: String?
+            }
+
+          class BusinessRepresentative < WhopSDK::Internal::Type::BaseModel
+            attr_accessor date_of_birth: String?
+
+            attr_accessor first_name: String?
+
+            attr_accessor last_name: String?
+
+            attr_accessor middle_name: String?
+
+            def initialize: (
+              date_of_birth: String?,
+              first_name: String?,
+              last_name: String?,
+              middle_name: String?
+            ) -> void
+
+            def to_hash: -> {
+              date_of_birth: String?,
+              first_name: String?,
+              last_name: String?,
+              middle_name: String?
+            }
+          end
+
+          type latest_verification =
+            {
+              id: String,
+              last_error_code: WhopSDK::Models::verification_error_code?,
+              last_error_reason: String?,
+              status: WhopSDK::Models::verification_status
+            }
+
+          class LatestVerification < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor last_error_code: WhopSDK::Models::verification_error_code?
+
+            attr_accessor last_error_reason: String?
+
+            attr_accessor status: WhopSDK::Models::verification_status
+
+            def initialize: (
+              id: String,
+              last_error_code: WhopSDK::Models::verification_error_code?,
+              last_error_reason: String?,
+              status: WhopSDK::Models::verification_status
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              last_error_code: WhopSDK::Models::verification_error_code?,
+              last_error_reason: String?,
+              status: WhopSDK::Models::verification_status
+            }
+          end
+        end
+
+        type treasury_balance =
+          {
+            balance: Float,
+            balance_usd: Float,
+            currency: WhopSDK::Models::currency,
+            pending_balance: Float,
+            reserve_balance: Float,
+            total_withdrawable_balance: Float
+          }
+
+        class TreasuryBalance < WhopSDK::Internal::Type::BaseModel
+          attr_accessor balance: Float
+
+          attr_accessor balance_usd: Float
+
+          attr_accessor currency: WhopSDK::Models::currency
+
+          attr_accessor pending_balance: Float
+
+          attr_accessor reserve_balance: Float
+
+          attr_accessor total_withdrawable_balance: Float
+
+          def initialize: (
+            balance: Float,
+            balance_usd: Float,
+            currency: WhopSDK::Models::currency,
+            pending_balance: Float,
+            reserve_balance: Float,
+            total_withdrawable_balance: Float
+          ) -> void
+
+          def to_hash: -> {
+            balance: Float,
+            balance_usd: Float,
+            currency: WhopSDK::Models::currency,
+            pending_balance: Float,
+            reserve_balance: Float,
+            total_withdrawable_balance: Float
+          }
+        end
+      end
+    end
+  end
+end

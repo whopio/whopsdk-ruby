@@ -1,9 +1,12 @@
 module WhopSDK
   module Resources
     class Accounts
+      attr_reader preferences: WhopSDK::Resources::Accounts::Preferences
+
       def create: (
         ?email: String,
         ?metadata: ::Hash[Symbol, top],
+        ?title: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Account
 
@@ -17,6 +20,7 @@ module WhopSDK
         ?affiliate_application_required: bool,
         ?affiliate_instructions: String?,
         ?banner_image: ::Hash[Symbol, top]?,
+        ?business_address: WhopSDK::AccountUpdateParams::BusinessAddress,
         ?business_type: String?,
         ?country: String?,
         ?description: String?,
@@ -32,6 +36,7 @@ module WhopSDK
         ?opengraph_image_variant: String?,
         ?other_business_description: String?,
         ?other_industry_description: String?,
+        ?product_tax_code_id: String?,
         ?require_2fa: bool,
         ?route: String?,
         ?send_customer_emails: bool,
@@ -41,18 +46,29 @@ module WhopSDK
         ?social_links: ::Array[::Hash[Symbol, top]],
         ?store_page_config: ::Hash[Symbol, top]?,
         ?target_audience: String?,
+        ?tax_identifiers: ::Array[WhopSDK::AccountUpdateParams::TaxIdentifier],
+        ?tax_remitted_by: WhopSDK::Models::AccountUpdateParams::tax_remitted_by,
         ?title: String?,
         ?use_logo_as_opengraph_image_fallback: bool,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Account
 
       def list: (
-        ?page: Integer,
-        ?per: Integer,
+        ?after: String,
+        ?before: String,
+        ?direction: WhopSDK::Models::AccountListParams::direction,
+        ?first: Integer,
+        ?last: Integer,
+        ?order: WhopSDK::Models::AccountListParams::order,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Models::AccountListResponse
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Account]
 
       def me: (?request_options: WhopSDK::request_opts) -> WhopSDK::Account
+
+      def recommend_actions: (
+        String account_id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::AccountRecommendActionsResponse
 
       def initialize: (client: WhopSDK::Client) -> void
     end

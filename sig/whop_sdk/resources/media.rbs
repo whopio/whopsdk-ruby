@@ -1,0 +1,22 @@
+module WhopSDK
+  module Resources
+    class Media
+      def retrieve: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::MediaAsset
+
+      def generate: (
+        prompt: String,
+        type: WhopSDK::Models::MediaGenerateParams::type_,
+        ?account_id: String,
+        ?duration_seconds: WhopSDK::Models::MediaGenerateParams::duration_seconds,
+        ?reference_media: ::Array[String],
+        ?resolution: WhopSDK::Models::MediaGenerateParams::resolution,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::MediaAsset
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Withdrawals
     class Withdrawals
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::WithdrawalCreateParams} for more details.
@@ -24,7 +23,7 @@ module WhopSDK
       #
       # @param payout_method_id [String, nil] The ID of the payout method to use for the withdrawal.
       #
-      # @param platform_covers_fees [Boolean, nil] Whether the platform covers the payout fees instead of the connected account.
+      # @param platform_covers_fees [Boolean, nil] Whether the platform covers the payout fees.
       #
       # @param statement_descriptor [String, nil] Custom statement descriptor for the withdrawal. Must be between 5 and 22 charact
       #

@@ -3,29 +3,30 @@
 require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::ResourceTest
-  def test_create_required_params
+  def test_create
     skip("Mock server tests are disabled")
 
-    response =
-      @whop.checkout_configurations.create(body: {plan: {company_id: "biz_xxxxxxxxxxxxxx", currency: :usd}})
+    response = @whop.checkout_configurations.create
 
     assert_pattern do
-      response => WhopSDK::CheckoutConfiguration
+      response => WhopSDK::Models::CheckoutConfigurationCreateResponse
     end
 
     assert_pattern do
       response => {
         id: String,
-        affiliate_code: String | nil,
-        allow_promo_codes: WhopSDK::Internal::Type::Boolean,
         company_id: String,
-        currency: WhopSDK::Currency | nil,
-        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        mode: WhopSDK::CheckoutModes,
-        payment_method_configuration: WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration | nil,
-        plan: WhopSDK::CheckoutConfiguration::Plan | nil,
-        purchase_url: String,
-        redirect_url: String | nil
+        created_at: String,
+        mode: WhopSDK::Models::CheckoutConfigurationCreateResponse::Mode,
+        updated_at: String,
+        affiliate_code: String | nil,
+        currency: String | nil,
+        metadata: WhopSDK::Internal::Type::Unknown | nil,
+        payment_method_configuration: WhopSDK::Models::CheckoutConfigurationCreateResponse::PaymentMethodConfiguration | nil,
+        plan: WhopSDK::Models::CheckoutConfigurationCreateResponse::Plan | nil,
+        purchase_url: String | nil,
+        redirect_url: String | nil,
+        three_ds_level: String | nil
       }
     end
   end
@@ -33,25 +34,27 @@ class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::Reso
   def test_retrieve
     skip("Mock server tests are disabled")
 
-    response = @whop.checkout_configurations.retrieve("ch_xxxxxxxxxxxxxxx")
+    response = @whop.checkout_configurations.retrieve("id")
 
     assert_pattern do
-      response => WhopSDK::CheckoutConfiguration
+      response => WhopSDK::Models::CheckoutConfigurationRetrieveResponse
     end
 
     assert_pattern do
       response => {
         id: String,
-        affiliate_code: String | nil,
-        allow_promo_codes: WhopSDK::Internal::Type::Boolean,
         company_id: String,
-        currency: WhopSDK::Currency | nil,
-        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        mode: WhopSDK::CheckoutModes,
-        payment_method_configuration: WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration | nil,
-        plan: WhopSDK::CheckoutConfiguration::Plan | nil,
-        purchase_url: String,
-        redirect_url: String | nil
+        created_at: String,
+        mode: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Mode,
+        updated_at: String,
+        affiliate_code: String | nil,
+        currency: String | nil,
+        metadata: WhopSDK::Internal::Type::Unknown | nil,
+        payment_method_configuration: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::PaymentMethodConfiguration | nil,
+        plan: WhopSDK::Models::CheckoutConfigurationRetrieveResponse::Plan | nil,
+        purchase_url: String | nil,
+        redirect_url: String | nil,
+        three_ds_level: String | nil
       }
     end
   end
@@ -59,7 +62,7 @@ class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::Reso
   def test_list_required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.checkout_configurations.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.checkout_configurations.list(company_id: "company_id")
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage
@@ -75,17 +78,29 @@ class WhopSDK::Test::Resources::CheckoutConfigurationsTest < WhopSDK::Test::Reso
     assert_pattern do
       row => {
         id: String,
-        affiliate_code: String | nil,
-        allow_promo_codes: WhopSDK::Internal::Type::Boolean,
         company_id: String,
-        currency: WhopSDK::Currency | nil,
-        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        mode: WhopSDK::CheckoutModes,
+        created_at: String,
+        mode: WhopSDK::Models::CheckoutConfigurationListResponse::Mode,
+        updated_at: String,
+        affiliate_code: String | nil,
+        currency: String | nil,
+        metadata: WhopSDK::Internal::Type::Unknown | nil,
         payment_method_configuration: WhopSDK::Models::CheckoutConfigurationListResponse::PaymentMethodConfiguration | nil,
         plan: WhopSDK::Models::CheckoutConfigurationListResponse::Plan | nil,
-        purchase_url: String,
-        redirect_url: String | nil
+        purchase_url: String | nil,
+        redirect_url: String | nil,
+        three_ds_level: String | nil
       }
+    end
+  end
+
+  def test_delete
+    skip("Mock server tests are disabled")
+
+    response = @whop.checkout_configurations.delete("id")
+
+    assert_pattern do
+      response => nil
     end
   end
 end

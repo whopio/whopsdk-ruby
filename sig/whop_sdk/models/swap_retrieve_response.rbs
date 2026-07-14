@@ -2,6 +2,7 @@ module WhopSDK
   module Models
     type swap_retrieve_response =
       {
+        id: String,
         account_id: String,
         object: WhopSDK::Models::SwapRetrieveResponse::object,
         status: String,
@@ -10,6 +11,8 @@ module WhopSDK
       }
 
     class SwapRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
       attr_accessor account_id: String
 
       attr_accessor object: WhopSDK::Models::SwapRetrieveResponse::object
@@ -21,6 +24,7 @@ module WhopSDK
       attr_accessor error: String?
 
       def initialize: (
+        id: String,
         account_id: String,
         object: WhopSDK::Models::SwapRetrieveResponse::object,
         status: String,
@@ -29,6 +33,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
+        id: String,
         account_id: String,
         object: WhopSDK::Models::SwapRetrieveResponse::object,
         status: String,

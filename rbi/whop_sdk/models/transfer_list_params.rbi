@@ -11,85 +11,115 @@ module WhopSDK
           T.any(WhopSDK::TransferListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # Returns the elements in the list that come after the specified cursor.
+      # Cursor to fetch the page after (from page_info.end_cursor).
       sig { returns(T.nilable(String)) }
-      attr_accessor :after
+      attr_reader :after
 
-      # Returns the elements in the list that come before the specified cursor.
+      sig { params(after: String).void }
+      attr_writer :after
+
+      # Cursor to fetch the page before (from page_info.start_cursor).
       sig { returns(T.nilable(String)) }
-      attr_accessor :before
+      attr_reader :before
 
-      # Only return transfers created after this timestamp.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :created_after
+      sig { params(before: String).void }
+      attr_writer :before
 
-      # Only return transfers created before this timestamp.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :created_before
-
-      # Filter to transfers received by this account. Accepts a user, company, or ledger
-      # account ID.
+      # Only transfers created strictly after this ISO 8601 timestamp.
       sig { returns(T.nilable(String)) }
-      attr_accessor :destination_id
+      attr_reader :created_after
 
-      # The direction of the sort.
-      sig { returns(T.nilable(WhopSDK::Direction::OrSymbol)) }
-      attr_accessor :direction
+      sig { params(created_after: String).void }
+      attr_writer :created_after
 
-      # Returns the first _n_ elements from the list.
+      # Only transfers created strictly before this ISO 8601 timestamp.
+      sig { returns(T.nilable(String)) }
+      attr_reader :created_before
+
+      sig { params(created_before: String).void }
+      attr_writer :created_before
+
+      # Filter to transfers received by this account.
+      sig { returns(T.nilable(String)) }
+      attr_reader :destination_id
+
+      sig { params(destination_id: String).void }
+      attr_writer :destination_id
+
+      # Sort direction. Defaults to desc.
+      sig do
+        returns(T.nilable(WhopSDK::TransferListParams::Direction::OrSymbol))
+      end
+      attr_reader :direction
+
+      sig do
+        params(direction: WhopSDK::TransferListParams::Direction::OrSymbol).void
+      end
+      attr_writer :direction
+
+      # Number of transfers to return from the start of the window.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :first
+      attr_reader :first
 
-      # Returns the last _n_ elements from the list.
+      sig { params(first: Integer).void }
+      attr_writer :first
+
+      # Number of transfers to return from the end of the window.
       sig { returns(T.nilable(Integer)) }
-      attr_accessor :last
+      attr_reader :last
 
-      # Which columns can be used to sort.
+      sig { params(last: Integer).void }
+      attr_writer :last
+
+      # Sort column. Defaults to created_at.
       sig { returns(T.nilable(WhopSDK::TransferListParams::Order::OrSymbol)) }
-      attr_accessor :order
+      attr_reader :order
 
-      # Filter to transfers sent from this account. Accepts a user, company, or ledger
-      # account ID.
+      sig { params(order: WhopSDK::TransferListParams::Order::OrSymbol).void }
+      attr_writer :order
+
+      # Filter to transfers sent from this account.
       sig { returns(T.nilable(String)) }
-      attr_accessor :origin_id
+      attr_reader :origin_id
+
+      sig { params(origin_id: String).void }
+      attr_writer :origin_id
 
       sig do
         params(
-          after: T.nilable(String),
-          before: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          destination_id: T.nilable(String),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          order: T.nilable(WhopSDK::TransferListParams::Order::OrSymbol),
-          origin_id: T.nilable(String),
+          after: String,
+          before: String,
+          created_after: String,
+          created_before: String,
+          destination_id: String,
+          direction: WhopSDK::TransferListParams::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
+          order: WhopSDK::TransferListParams::Order::OrSymbol,
+          origin_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # Returns the elements in the list that come after the specified cursor.
+        # Cursor to fetch the page after (from page_info.end_cursor).
         after: nil,
-        # Returns the elements in the list that come before the specified cursor.
+        # Cursor to fetch the page before (from page_info.start_cursor).
         before: nil,
-        # Only return transfers created after this timestamp.
+        # Only transfers created strictly after this ISO 8601 timestamp.
         created_after: nil,
-        # Only return transfers created before this timestamp.
+        # Only transfers created strictly before this ISO 8601 timestamp.
         created_before: nil,
-        # Filter to transfers received by this account. Accepts a user, company, or ledger
-        # account ID.
+        # Filter to transfers received by this account.
         destination_id: nil,
-        # The direction of the sort.
+        # Sort direction. Defaults to desc.
         direction: nil,
-        # Returns the first _n_ elements from the list.
+        # Number of transfers to return from the start of the window.
         first: nil,
-        # Returns the last _n_ elements from the list.
+        # Number of transfers to return from the end of the window.
         last: nil,
-        # Which columns can be used to sort.
+        # Sort column. Defaults to created_at.
         order: nil,
-        # Filter to transfers sent from this account. Accepts a user, company, or ledger
-        # account ID.
+        # Filter to transfers sent from this account.
         origin_id: nil,
         request_options: {}
       )
@@ -98,16 +128,16 @@ module WhopSDK
       sig do
         override.returns(
           {
-            after: T.nilable(String),
-            before: T.nilable(String),
-            created_after: T.nilable(Time),
-            created_before: T.nilable(Time),
-            destination_id: T.nilable(String),
-            direction: T.nilable(WhopSDK::Direction::OrSymbol),
-            first: T.nilable(Integer),
-            last: T.nilable(Integer),
-            order: T.nilable(WhopSDK::TransferListParams::Order::OrSymbol),
-            origin_id: T.nilable(String),
+            after: String,
+            before: String,
+            created_after: String,
+            created_before: String,
+            destination_id: String,
+            direction: WhopSDK::TransferListParams::Direction::OrSymbol,
+            first: Integer,
+            last: Integer,
+            order: WhopSDK::TransferListParams::Order::OrSymbol,
+            origin_id: String,
             request_options: WhopSDK::RequestOptions
           }
         )
@@ -115,7 +145,28 @@ module WhopSDK
       def to_hash
       end
 
-      # Which columns can be used to sort.
+      # Sort direction. Defaults to desc.
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::TransferListParams::Direction) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        ASC = T.let(:asc, WhopSDK::TransferListParams::Direction::TaggedSymbol)
+        DESC =
+          T.let(:desc, WhopSDK::TransferListParams::Direction::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::TransferListParams::Direction::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # Sort column. Defaults to created_at.
       module Order
         extend WhopSDK::Internal::Type::Enum
 
@@ -123,10 +174,10 @@ module WhopSDK
           T.type_alias { T.all(Symbol, WhopSDK::TransferListParams::Order) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        AMOUNT =
-          T.let(:amount, WhopSDK::TransferListParams::Order::TaggedSymbol)
         CREATED_AT =
           T.let(:created_at, WhopSDK::TransferListParams::Order::TaggedSymbol)
+        AMOUNT =
+          T.let(:amount, WhopSDK::TransferListParams::Order::TaggedSymbol)
 
         sig do
           override.returns(

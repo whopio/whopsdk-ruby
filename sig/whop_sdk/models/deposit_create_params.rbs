@@ -2,8 +2,8 @@ module WhopSDK
   module Models
     type deposit_create_params =
       {
-        amount: Float,
         destination: WhopSDK::Models::DepositCreateParams::destination,
+        amount: Float,
         metadata: ::Hash[Symbol, top],
         network: String?
       }
@@ -13,9 +13,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor amount: Float
-
       attr_accessor destination: WhopSDK::Models::DepositCreateParams::destination
+
+      attr_reader amount: Float?
+
+      def amount=: (Float) -> Float
 
       attr_reader metadata: ::Hash[Symbol, top]?
 
@@ -24,16 +26,16 @@ module WhopSDK
       attr_accessor network: String?
 
       def initialize: (
-        amount: Float,
         destination: WhopSDK::Models::DepositCreateParams::destination,
+        ?amount: Float,
         ?metadata: ::Hash[Symbol, top],
         ?network: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        amount: Float,
         destination: WhopSDK::Models::DepositCreateParams::destination,
+        amount: Float,
         metadata: ::Hash[Symbol, top],
         network: String?,
         request_options: WhopSDK::RequestOptions

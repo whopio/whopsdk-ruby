@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Forum posts
     class ForumPosts
       # Create a new forum post or comment within an experience. Supports text content,
       # attachments, polls, paywalling, and pinning. Pass experience_id 'public' with a

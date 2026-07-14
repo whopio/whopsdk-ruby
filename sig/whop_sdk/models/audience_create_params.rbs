@@ -1,0 +1,88 @@
+module WhopSDK
+  module Models
+    type audience_create_params =
+      {
+        account_id: String,
+        column_mapping: WhopSDK::AudienceCreateParams::ColumnMapping,
+        file_id: String,
+        name: String
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class AudienceCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
+
+      attr_accessor column_mapping: WhopSDK::AudienceCreateParams::ColumnMapping
+
+      attr_accessor file_id: String
+
+      attr_accessor name: String
+
+      def initialize: (
+        account_id: String,
+        column_mapping: WhopSDK::AudienceCreateParams::ColumnMapping,
+        file_id: String,
+        name: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        column_mapping: WhopSDK::AudienceCreateParams::ColumnMapping,
+        file_id: String,
+        name: String,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type column_mapping =
+        {
+          country: String,
+          email: String,
+          first_name: String,
+          last_name: String,
+          phone: String
+        }
+
+      class ColumnMapping < WhopSDK::Internal::Type::BaseModel
+        attr_reader country: String?
+
+        def country=: (String) -> String
+
+        attr_reader email: String?
+
+        def email=: (String) -> String
+
+        attr_reader first_name: String?
+
+        def first_name=: (String) -> String
+
+        attr_reader last_name: String?
+
+        def last_name=: (String) -> String
+
+        attr_reader phone: String?
+
+        def phone=: (String) -> String
+
+        def initialize: (
+          ?country: String,
+          ?email: String,
+          ?first_name: String,
+          ?last_name: String,
+          ?phone: String
+        ) -> void
+
+        def to_hash: -> {
+          country: String,
+          email: String,
+          first_name: String,
+          last_name: String,
+          phone: String
+        }
+      end
+    end
+  end
+end

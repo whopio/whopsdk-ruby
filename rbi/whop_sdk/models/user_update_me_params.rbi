@@ -11,6 +11,14 @@ module WhopSDK
           T.any(WhopSDK::UserUpdateMeParams, WhopSDK::Internal::AnyHash)
         end
 
+      # When set, updates the authenticated user's profile override for this account
+      # instead of their global profile.
+      sig { returns(T.nilable(String)) }
+      attr_reader :account_id
+
+      sig { params(account_id: String).void }
+      attr_writer :account_id
+
       sig { returns(T.nilable(String)) }
       attr_reader :bio
 
@@ -41,6 +49,7 @@ module WhopSDK
 
       sig do
         params(
+          account_id: String,
           bio: String,
           name: String,
           profile_picture: WhopSDK::UserUpdateMeParams::ProfilePicture::OrHash,
@@ -49,6 +58,9 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        # When set, updates the authenticated user's profile override for this account
+        # instead of their global profile.
+        account_id: nil,
         bio: nil,
         name: nil,
         profile_picture: nil,
@@ -60,6 +72,7 @@ module WhopSDK
       sig do
         override.returns(
           {
+            account_id: String,
             bio: String,
             name: String,
             profile_picture: WhopSDK::UserUpdateMeParams::ProfilePicture,

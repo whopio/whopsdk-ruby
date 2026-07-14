@@ -9,7 +9,8 @@ module WhopSDK
 
       # @!attribute base_unit_amount
       #   The amount paid to each approved submission. The total bounty pool funded is
-      #   this amount times accepted_submissions_limit.
+      #   this amount times accepted_submissions_limit, and must be at least 5 in the
+      #   bounty's currency.
       #
       #   @return [Float]
       required :base_unit_amount, Float
@@ -34,7 +35,8 @@ module WhopSDK
 
       # @!attribute accepted_submissions_limit
       #   The number of submissions that can be approved before the bounty closes.
-      #   Defaults to 1.
+      #   Defaults to 1. The total pool (base_unit_amount times this limit) must be at
+      #   least 5 in the bounty's currency.
       #
       #   @return [Integer, nil]
       optional :accepted_submissions_limit, Integer, nil?: true
@@ -45,6 +47,13 @@ module WhopSDK
       #
       #   @return [Array<String>, nil]
       optional :allowed_country_codes, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
+
+      # @!attribute business_goal_type
+      #   What the poster is trying to accomplish with a workforce bounty. Used for
+      #   product taxonomy and analytics, separate from the bounty's implementation type.
+      #
+      #   @return [Symbol, WhopSDK::Models::BountyCreateParams::BusinessGoalType, nil]
+      optional :business_goal_type, enum: -> { WhopSDK::BountyCreateParams::BusinessGoalType }, nil?: true
 
       # @!attribute experience_id
       #   An optional experience to scope the bounty to.
@@ -74,7 +83,27 @@ module WhopSDK
       #   @return [String, nil]
       optional :post_title, String, nil?: true
 
-      # @!method initialize(base_unit_amount:, currency:, description:, title:, accepted_submissions_limit: nil, allowed_country_codes: nil, experience_id: nil, origin_account_id: nil, post_markdown_content: nil, post_title: nil, request_options: {})
+      # @!attribute scheduled_frequency
+      #   How often a scheduled bounty republishes a new bounty.
+      #
+      #   @return [Symbol, WhopSDK::Models::BountyCreateParams::ScheduledFrequency, nil]
+      optional :scheduled_frequency, enum: -> { WhopSDK::BountyCreateParams::ScheduledFrequency }, nil?: true
+
+      # @!attribute scheduled_publish_at
+      #   When to publish the bounty. When provided, the bounty is created as a hidden
+      #   draft and published at this time instead of immediately. Must be in the future.
+      #
+      #   @return [Time, nil]
+      optional :scheduled_publish_at, Time, nil?: true
+
+      # @!attribute scheduled_timezone
+      #   The IANA timezone used for recurring occurrences. Required when
+      #   scheduled_publish_at is provided.
+      #
+      #   @return [String, nil]
+      optional :scheduled_timezone, String, nil?: true
+
+      # @!method initialize(base_unit_amount:, currency:, description:, title:, accepted_submissions_limit: nil, allowed_country_codes: nil, business_goal_type: nil, experience_id: nil, origin_account_id: nil, post_markdown_content: nil, post_title: nil, scheduled_frequency: nil, scheduled_publish_at: nil, scheduled_timezone: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::BountyCreateParams} for more details.
       #
@@ -90,6 +119,8 @@ module WhopSDK
       #
       #   @param allowed_country_codes [Array<String>, nil] The ISO3166 country codes where this bounty should be visible. Empty means globa
       #
+      #   @param business_goal_type [Symbol, WhopSDK::Models::BountyCreateParams::BusinessGoalType, nil] What the poster is trying to accomplish with a workforce bounty. Used for produc
+      #
       #   @param experience_id [String, nil] An optional experience to scope the bounty to.
       #
       #   @param origin_account_id [String, nil] The user (user*\*) or company (biz*\*) tag whose balance funds this bounty pool.
@@ -99,7 +130,43 @@ module WhopSDK
       #
       #   @param post_title [String, nil] Optional title for the anchor forum post. Falls back to the bounty title when om
       #
+      #   @param scheduled_frequency [Symbol, WhopSDK::Models::BountyCreateParams::ScheduledFrequency, nil] How often a scheduled bounty republishes a new bounty.
+      #
+      #   @param scheduled_publish_at [Time, nil] When to publish the bounty. When provided, the bounty is created as a hidden dra
+      #
+      #   @param scheduled_timezone [String, nil] The IANA timezone used for recurring occurrences. Required when scheduled_publis
+      #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      # What the poster is trying to accomplish with a workforce bounty. Used for
+      # product taxonomy and analytics, separate from the bounty's implementation type.
+      module BusinessGoalType
+        extend WhopSDK::Internal::Type::Enum
+
+        CLIPPING = :clipping
+        POST_ENGAGEMENT = :post_engagement
+        OWNED_ACCOUNT_GROWTH = :owned_account_growth
+        UGC_CONTENT = :ugc_content
+        LOCAL_ACTIVATION = :local_activation
+        OTHER = :other
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # How often a scheduled bounty republishes a new bounty.
+      module ScheduledFrequency
+        extend WhopSDK::Internal::Type::Enum
+
+        ONCE = :once
+        HOURLY = :hourly
+        DAILY = :daily
+        WEEKLY = :weekly
+        MONTHLY = :monthly
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

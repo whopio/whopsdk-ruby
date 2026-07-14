@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Members
     class Members
       # Retrieves the details of an existing member.
       #

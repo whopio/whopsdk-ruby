@@ -3,8 +3,11 @@ module WhopSDK
     type financial_activity_list_params =
       {
         account_id: String,
+        available_after: Date,
+        available_before: Date,
         currency: String,
         cursor: String,
+        include_owned_accounts: bool,
         limit: Integer,
         line_types: ::Array[String],
         posted_after: Time,
@@ -21,6 +24,14 @@ module WhopSDK
 
       def account_id=: (String) -> String
 
+      attr_reader available_after: Date?
+
+      def available_after=: (Date) -> Date
+
+      attr_reader available_before: Date?
+
+      def available_before=: (Date) -> Date
+
       attr_reader currency: String?
 
       def currency=: (String) -> String
@@ -28,6 +39,10 @@ module WhopSDK
       attr_reader cursor: String?
 
       def cursor=: (String) -> String
+
+      attr_reader include_owned_accounts: bool?
+
+      def include_owned_accounts=: (bool) -> bool
 
       attr_reader limit: Integer?
 
@@ -51,8 +66,11 @@ module WhopSDK
 
       def initialize: (
         ?account_id: String,
+        ?available_after: Date,
+        ?available_before: Date,
         ?currency: String,
         ?cursor: String,
+        ?include_owned_accounts: bool,
         ?limit: Integer,
         ?line_types: ::Array[String],
         ?posted_after: Time,
@@ -63,8 +81,11 @@ module WhopSDK
 
       def to_hash: -> {
         account_id: String,
+        available_after: Date,
+        available_before: Date,
         currency: String,
         cursor: String,
+        include_owned_accounts: bool,
         limit: Integer,
         line_types: ::Array[String],
         posted_after: Time,

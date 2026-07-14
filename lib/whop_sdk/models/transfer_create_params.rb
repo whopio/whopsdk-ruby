@@ -8,73 +8,106 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute amount
-      #   The amount to transfer in the specified currency. For example, 25.00 for $25.00
-      #   USD.
+      #   The amount to move, in the transfer currency. For example 25.00.
       #
       #   @return [Float]
       required :amount, Float
 
-      # @!attribute currency
-      #   The currency of the transfer amount, such as 'usd'.
-      #
-      #   @return [Symbol, WhopSDK::Models::Currency]
-      required :currency, enum: -> { WhopSDK::Currency }
-
-      # @!attribute destination_id
-      #   The identifier of the account receiving the funds. Accepts a user ID
-      #   ('user_xxx'), company ID ('biz_xxx'), ledger account ID ('ldgr_xxx'), or an
-      #   email address — emails without an existing Whop user trigger a placeholder-user
-      #   signup.
-      #
-      #   @return [String]
-      required :destination_id, String
-
       # @!attribute origin_id
-      #   The identifier of the account sending the funds. Accepts a user ID ('user_xxx'),
-      #   company ID ('biz_xxx'), or ledger account ID ('ldgr_xxx').
+      #   The account sending the funds. A user ID (user_xxx), account ID (biz_xxx), or
+      #   ledger account ID (ldgr_xxx).
       #
       #   @return [String]
       required :origin_id, String
 
+      # @!attribute currency
+      #   Currency, such as `usd`. Required for ledger transfers.
+      #
+      #   @return [String, nil]
+      optional :currency, String
+
+      # @!attribute destination_id
+      #   The recipient. Required for ledger and wallet*send (a user*/biz*/ldgr* ID, or —
+      #   for sends — an email). Omit for claim_link.
+      #
+      #   @return [String, nil]
+      optional :destination_id, String
+
+      # @!attribute expires_at
+      #   claim_link only. Link expiry as an ISO 8601 timestamp. Defaults to 24 hours from
+      #   creation.
+      #
+      #   @return [Time, nil]
+      optional :expires_at, Time, nil?: true
+
       # @!attribute idempotence_key
-      #   A unique key to prevent duplicate transfers. Use a UUID or similar unique
-      #   string.
+      #   Ledger transfers only. A unique key to prevent duplicate transfers.
       #
       #   @return [String, nil]
       optional :idempotence_key, String, nil?: true
 
       # @!attribute metadata
-      #   A JSON object of custom metadata to attach to the transfer for tracking
-      #   purposes.
+      #   Ledger transfers only. Custom key-value pairs attached to the transfer. Max 50
+      #   keys, 100 chars per key, 500 chars per string value.
       #
       #   @return [Hash{Symbol=>Object}, nil]
       optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
       # @!attribute notes
-      #   A short note describing the transfer, up to 50 characters.
+      #   Ledger transfers only. A short note describing the transfer.
       #
       #   @return [String, nil]
       optional :notes, String, nil?: true
 
-      # @!method initialize(amount:, currency:, destination_id:, origin_id:, idempotence_key: nil, metadata: nil, notes: nil, request_options: {})
+      # @!attribute redeemable_count
+      #   claim_link only. How many different users can claim the link. Defaults to 1.
+      #
+      #   @return [Integer, nil]
+      optional :redeemable_count, Integer
+
+      # @!attribute type
+      #   The kind of money movement. Defaults to ledger.
+      #
+      #   @return [Symbol, WhopSDK::Models::TransferCreateParams::Type, nil]
+      optional :type, enum: -> { WhopSDK::TransferCreateParams::Type }
+
+      # @!method initialize(amount:, origin_id:, currency: nil, destination_id: nil, expires_at: nil, idempotence_key: nil, metadata: nil, notes: nil, redeemable_count: nil, type: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::TransferCreateParams} for more details.
       #
-      #   @param amount [Float] The amount to transfer in the specified currency. For example, 25.00 for $25.00
+      #   @param amount [Float] The amount to move, in the transfer currency. For example 25.00.
       #
-      #   @param currency [Symbol, WhopSDK::Models::Currency] The currency of the transfer amount, such as 'usd'.
+      #   @param origin_id [String] The account sending the funds. A user ID (user_xxx), account ID (biz_xxx), or le
       #
-      #   @param destination_id [String] The identifier of the account receiving the funds. Accepts a user ID ('user_xxx'
+      #   @param currency [String] Currency, such as `usd`. Required for ledger transfers.
       #
-      #   @param origin_id [String] The identifier of the account sending the funds. Accepts a user ID ('user_xxx'),
+      #   @param destination_id [String] The recipient. Required for ledger and wallet*send (a user*/biz*/ldgr* ID, or —
       #
-      #   @param idempotence_key [String, nil] A unique key to prevent duplicate transfers. Use a UUID or similar unique string
+      #   @param expires_at [Time, nil] claim_link only. Link expiry as an ISO 8601 timestamp. Defaults to 24 hours from
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] A JSON object of custom metadata to attach to the transfer for tracking purposes
+      #   @param idempotence_key [String, nil] Ledger transfers only. A unique key to prevent duplicate transfers.
       #
-      #   @param notes [String, nil] A short note describing the transfer, up to 50 characters.
+      #   @param metadata [Hash{Symbol=>Object}, nil] Ledger transfers only. Custom key-value pairs attached to the transfer. Max 50 k
+      #
+      #   @param notes [String, nil] Ledger transfers only. A short note describing the transfer.
+      #
+      #   @param redeemable_count [Integer] claim_link only. How many different users can claim the link. Defaults to 1.
+      #
+      #   @param type [Symbol, WhopSDK::Models::TransferCreateParams::Type] The kind of money movement. Defaults to ledger.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      # The kind of money movement. Defaults to ledger.
+      module Type
+        extend WhopSDK::Internal::Type::Enum
+
+        LEDGER = :ledger
+        WALLET_SEND = :wallet_send
+        CLAIM_LINK = :claim_link
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

@@ -7,12 +7,6 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute amount
-      #   Amount to deposit.
-      #
-      #   @return [Float]
-      required :amount, Float
-
       # @!attribute destination
       #   Destination account ID or wallet address. Object form is supported for
       #   compatibility.
@@ -20,29 +14,35 @@ module WhopSDK
       #   @return [String, WhopSDK::Models::DepositCreateParams::Destination::UnionMember1]
       required :destination, union: -> { WhopSDK::DepositCreateParams::Destination }
 
+      # @!attribute amount
+      #   Amount to prefill on hosted deposit page.
+      #
+      #   @return [Float, nil]
+      optional :amount, Float
+
       # @!attribute metadata
-      #   Arbitrary metadata echoed in the response.
+      #   Metadata to include with the deposit response.
       #
       #   @return [Hash{Symbol=>Object}, nil]
       optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]
 
       # @!attribute network
-      #   Optional destination network override.
+      #   Destination network override.
       #
       #   @return [String, nil]
       optional :network, String, nil?: true
 
-      # @!method initialize(amount:, destination:, metadata: nil, network: nil, request_options: {})
+      # @!method initialize(destination:, amount: nil, metadata: nil, network: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::DepositCreateParams} for more details.
       #
-      #   @param amount [Float] Amount to deposit.
-      #
       #   @param destination [String, WhopSDK::Models::DepositCreateParams::Destination::UnionMember1] Destination account ID or wallet address. Object form is supported for compatibi
       #
-      #   @param metadata [Hash{Symbol=>Object}] Arbitrary metadata echoed in the response.
+      #   @param amount [Float] Amount to prefill on hosted deposit page.
       #
-      #   @param network [String, nil] Optional destination network override.
+      #   @param metadata [Hash{Symbol=>Object}] Metadata to include with the deposit response.
+      #
+      #   @param network [String, nil] Destination network override.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
@@ -57,24 +57,29 @@ module WhopSDK
 
         class UnionMember1 < WhopSDK::Internal::Type::BaseModel
           # @!attribute account_id
+          #   Destination account ID.
           #
           #   @return [String, nil]
           optional :account_id, String
 
           # @!attribute address
+          #   Destination wallet address.
           #
           #   @return [String, nil]
           optional :address, String
 
           # @!attribute network
+          #   Destination wallet network.
           #
           #   @return [String, nil]
           optional :network, String
 
           # @!method initialize(account_id: nil, address: nil, network: nil)
-          #   @param account_id [String]
-          #   @param address [String]
-          #   @param network [String]
+          #   @param account_id [String] Destination account ID.
+          #
+          #   @param address [String] Destination wallet address.
+          #
+          #   @param network [String] Destination wallet network.
         end
 
         # @!method self.variants

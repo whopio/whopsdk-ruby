@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Authorized users
     class AuthorizedUsers
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::AuthorizedUserCreateParams} for more details.
@@ -14,13 +13,15 @@ module WhopSDK
       # - `authorized_user:create`
       # - `member:email:read`
       #
-      # @overload create(company_id:, role:, user_id:, send_emails: nil, request_options: {})
+      # @overload create(company_id:, role:, user_id:, elevation: nil, send_emails: nil, request_options: {})
       #
       # @param company_id [String] The ID of the company to add the authorized user to.
       #
       # @param role [Symbol, WhopSDK::Models::AuthorizedUserRoles] The role to assign to the authorized user within the company. Supported roles: '
       #
       # @param user_id [String] The ID of the user to add as an authorized user.
+      #
+      # @param elevation [WhopSDK::Models::AuthorizedUserCreateParams::Elevation, nil] Re-authentication proof required to perform this sensitive action.
       #
       # @param send_emails [Boolean, nil] Whether to send notification emails to the user on creation.
       #

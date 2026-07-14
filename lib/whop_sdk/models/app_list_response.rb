@@ -74,6 +74,13 @@ module WhopSDK
       #   @return [String, nil]
       required :experience_path, String, nil?: true
 
+      # @!attribute hosted_url
+      #   The full canonical URL where this app's hosted web build is served. Null if the
+      #   app has not claimed a route.
+      #
+      #   @return [String, nil]
+      required :hosted_url, String, nil?: true
+
       # @!attribute icon
       #   The icon image for this app, displayed on the app store, product pages,
       #   checkout, and as the default icon for experiences using this app.
@@ -103,6 +110,13 @@ module WhopSDK
       #   @return [String, nil]
       required :origin, String, nil?: true
 
+      # @!attribute route
+      #   The unique subdomain route where this app's hosted web builds are served, such
+      #   as 'myapp' for myapp.whop.app. Null if the app has not claimed a route.
+      #
+      #   @return [String, nil]
+      required :route, String, nil?: true
+
       # @!attribute skills_path
       #   The URL path template for a specific view of this app, appended to the base
       #   domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
@@ -126,7 +140,7 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, app_type:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, icon:, name:, openapi_path:, origin:, skills_path:, status:, verified:)
+      # @!method initialize(id:, app_type:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, hosted_url:, icon:, name:, openapi_path:, origin:, route:, skills_path:, status:, verified:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AppListResponse} for more details.
       #
@@ -153,6 +167,8 @@ module WhopSDK
       #
       #   @param experience_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
       #
+      #   @param hosted_url [String, nil] The full canonical URL where this app's hosted web build is served. Null if the
+      #
       #   @param icon [WhopSDK::Models::AppListResponse::Icon, nil] The icon image for this app, displayed on the app store, product pages, checkout
       #
       #   @param name [String] The display name of this app shown on the app store and in experience navigation
@@ -160,6 +176,8 @@ module WhopSDK
       #   @param openapi_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
       #
       #   @param origin [String, nil] The full origin URL for this app's proxied domain (e.g., 'https://myapp.apps.who
+      #
+      #   @param route [String, nil] The unique subdomain route where this app's hosted web builds are served, such a
       #
       #   @param skills_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
       #

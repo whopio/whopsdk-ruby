@@ -20,6 +20,7 @@ class WhopSDK::Test::Resources::SwapsTest < WhopSDK::Test::ResourceTest
 
     assert_pattern do
       response => {
+        id: String,
         account_id: String,
         object: WhopSDK::Models::SwapCreateResponse::Object,
         status: String,
@@ -31,10 +32,10 @@ class WhopSDK::Test::Resources::SwapsTest < WhopSDK::Test::ResourceTest
     end
   end
 
-  def test_retrieve_required_params
+  def test_retrieve
     skip("Mock server tests are disabled")
 
-    response = @whop.swaps.retrieve(account_id: "account_id")
+    response = @whop.swaps.retrieve("id")
 
     assert_pattern do
       response => WhopSDK::Models::SwapRetrieveResponse
@@ -42,11 +43,28 @@ class WhopSDK::Test::Resources::SwapsTest < WhopSDK::Test::ResourceTest
 
     assert_pattern do
       response => {
+        id: String,
         account_id: String,
         object: WhopSDK::Models::SwapRetrieveResponse::Object,
         status: String,
         tx_hashes: ^(WhopSDK::Internal::Type::ArrayOf[String]),
         error: String | nil
+      }
+    end
+  end
+
+  def test_list_required_params
+    skip("Mock server tests are disabled")
+
+    response = @whop.swaps.list(account_id: "account_id")
+
+    assert_pattern do
+      response => WhopSDK::Models::SwapListResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::SwapListResponse::Data])
       }
     end
   end

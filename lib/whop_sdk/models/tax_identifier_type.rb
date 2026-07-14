@@ -9,6 +9,7 @@ module WhopSDK
       AD_NRT = :ad_nrt
       AO_TIN = :ao_tin
       AR_CUIT = :ar_cuit
+      AL_TIN = :al_tin
       AM_TIN = :am_tin
       AW_TIN = :aw_tin
       AU_ABN = :au_abn
@@ -49,6 +50,7 @@ module WhopSDK
       ET_TIN = :et_tin
       EU_OSS_VAT = :eu_oss_vat
       GE_VAT = :ge_vat
+      GH_TIN = :gh_tin
       DE_STN = :de_stn
       GB_VAT = :gb_vat
       GN_NIF = :gn_nif

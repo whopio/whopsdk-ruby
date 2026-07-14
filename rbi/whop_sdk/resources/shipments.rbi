@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Shipments
     class Shipments
       # Create a new shipment with a tracking code for a specific payment within a
       # company.

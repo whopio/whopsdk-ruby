@@ -1,7 +1,14 @@
 module WhopSDK
   module Models
     type user_update_params =
-      { id: String, account_id: String, bio: String, name: String }
+      {
+        id: String,
+        account_id: String,
+        bio: String,
+        name: String,
+        profile_picture: WhopSDK::UserUpdateParams::ProfilePicture,
+        username: String
+      }
       & WhopSDK::Internal::Type::request_parameters
 
     class UserUpdateParams < WhopSDK::Internal::Type::BaseModel
@@ -22,11 +29,23 @@ module WhopSDK
 
       def name=: (String) -> String
 
+      attr_reader profile_picture: WhopSDK::UserUpdateParams::ProfilePicture?
+
+      def profile_picture=: (
+        WhopSDK::UserUpdateParams::ProfilePicture
+      ) -> WhopSDK::UserUpdateParams::ProfilePicture
+
+      attr_reader username: String?
+
+      def username=: (String) -> String
+
       def initialize: (
         id: String,
         ?account_id: String,
         ?bio: String,
         ?name: String,
+        ?profile_picture: WhopSDK::UserUpdateParams::ProfilePicture,
+        ?username: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -35,8 +54,26 @@ module WhopSDK
         account_id: String,
         bio: String,
         name: String,
+        profile_picture: WhopSDK::UserUpdateParams::ProfilePicture,
+        username: String,
         request_options: WhopSDK::RequestOptions
       }
+
+      type profile_picture = { id: String, direct_upload_id: String }
+
+      class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+        attr_reader id: String?
+
+        def id=: (String) -> String
+
+        attr_reader direct_upload_id: String?
+
+        def direct_upload_id=: (String) -> String
+
+        def initialize: (?id: String, ?direct_upload_id: String) -> void
+
+        def to_hash: -> { id: String, direct_upload_id: String }
+      end
     end
   end
 end

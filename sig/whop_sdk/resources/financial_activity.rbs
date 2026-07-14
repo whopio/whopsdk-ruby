@@ -3,8 +3,11 @@ module WhopSDK
     class FinancialActivity
       def list: (
         ?account_id: String,
+        ?available_after: Date,
+        ?available_before: Date,
         ?currency: String,
         ?cursor: String,
+        ?include_owned_accounts: bool,
         ?limit: Integer,
         ?line_types: ::Array[String],
         ?posted_after: Time,

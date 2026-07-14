@@ -1,0 +1,32 @@
+module WhopSDK
+  module Models
+    type card_list_params =
+      { account_id: String, user_id: String }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class CardListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
+
+      attr_reader user_id: String?
+
+      def user_id=: (String) -> String
+
+      def initialize: (
+        ?account_id: String,
+        ?user_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        user_id: String,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

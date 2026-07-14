@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Payout accounts
     class PayoutAccounts
       # Retrieves the details of an existing payout account.
       #

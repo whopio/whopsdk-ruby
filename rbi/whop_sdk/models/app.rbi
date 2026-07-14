@@ -69,6 +69,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :experience_path
 
+      # The full canonical URL where this app's hosted web build is served. Null if the
+      # app has not claimed a route.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :hosted_url
+
       # The icon image for this app, displayed on the app store, product pages,
       # checkout, and as the default icon for experiences using this app.
       sig { returns(T.nilable(WhopSDK::App::Icon)) }
@@ -93,6 +98,19 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :origin
 
+      # The approved app build currently served to users on web. Null if no production
+      # build is deployed for web.
+      sig { returns(T.nilable(WhopSDK::App::ProductionWebBuild)) }
+      attr_reader :production_web_build
+
+      sig do
+        params(
+          production_web_build:
+            T.nilable(WhopSDK::App::ProductionWebBuild::OrHash)
+        ).void
+      end
+      attr_writer :production_web_build
+
       # The whitelisted OAuth callback URLs that users are redirected to after
       # authorizing the app.
       sig { returns(T::Array[String]) }
@@ -102,6 +120,17 @@ module WhopSDK
       # required and optional permissions with justifications.
       sig { returns(T::Array[WhopSDK::App::RequestedPermission]) }
       attr_accessor :requested_permissions
+
+      # The unique subdomain route where this app's hosted web builds are served, such
+      # as 'myapp' for myapp.whop.app. Null if the app has not claimed a route.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :route
+
+      # The app's secrets as an object of string values. Encrypted at rest and injected
+      # into the app's hosted server runtime as environment bindings. Requires the
+      # 'developer:update_app' permission.
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      attr_accessor :secrets
 
       # The URL path template for a specific view of this app, appended to the base
       # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
@@ -143,13 +172,18 @@ module WhopSDK
           discover_path: T.nilable(String),
           domain_id: String,
           experience_path: T.nilable(String),
+          hosted_url: T.nilable(String),
           icon: T.nilable(WhopSDK::App::Icon::OrHash),
           name: String,
           openapi_path: T.nilable(String),
           origin: T.nilable(String),
+          production_web_build:
+            T.nilable(WhopSDK::App::ProductionWebBuild::OrHash),
           redirect_uris: T::Array[String],
           requested_permissions:
             T::Array[WhopSDK::App::RequestedPermission::OrHash],
+          route: T.nilable(String),
+          secrets: T.nilable(T::Hash[Symbol, T.anything]),
           skills_path: T.nilable(String),
           stats: T.nilable(WhopSDK::App::Stats::OrHash),
           status: WhopSDK::AppStatuses::OrSymbol,
@@ -190,6 +224,9 @@ module WhopSDK
         # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
         # not configured.
         experience_path:,
+        # The full canonical URL where this app's hosted web build is served. Null if the
+        # app has not claimed a route.
+        hosted_url:,
         # The icon image for this app, displayed on the app store, product pages,
         # checkout, and as the default icon for experiences using this app.
         icon:,
@@ -203,12 +240,22 @@ module WhopSDK
         # The full origin URL for this app's proxied domain (e.g.,
         # 'https://myapp.apps.whop.com'). Null if no proxy domain is configured.
         origin:,
+        # The approved app build currently served to users on web. Null if no production
+        # build is deployed for web.
+        production_web_build:,
         # The whitelisted OAuth callback URLs that users are redirected to after
         # authorizing the app.
         redirect_uris:,
         # The list of permissions this app requests when installed, including both
         # required and optional permissions with justifications.
         requested_permissions:,
+        # The unique subdomain route where this app's hosted web builds are served, such
+        # as 'myapp' for myapp.whop.app. Null if the app has not claimed a route.
+        route:,
+        # The app's secrets as an object of string values. Encrypted at rest and injected
+        # into the app's hosted server runtime as environment bindings. Requires the
+        # 'developer:update_app' permission.
+        secrets:,
         # The URL path template for a specific view of this app, appended to the base
         # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
         # not configured.
@@ -240,12 +287,16 @@ module WhopSDK
             discover_path: T.nilable(String),
             domain_id: String,
             experience_path: T.nilable(String),
+            hosted_url: T.nilable(String),
             icon: T.nilable(WhopSDK::App::Icon),
             name: String,
             openapi_path: T.nilable(String),
             origin: T.nilable(String),
+            production_web_build: T.nilable(WhopSDK::App::ProductionWebBuild),
             redirect_uris: T::Array[String],
             requested_permissions: T::Array[WhopSDK::App::RequestedPermission],
+            route: T.nilable(String),
+            secrets: T.nilable(T::Hash[Symbol, T.anything]),
             skills_path: T.nilable(String),
             stats: T.nilable(WhopSDK::App::Stats),
             status: WhopSDK::AppStatuses::TaggedSymbol,
@@ -390,6 +441,66 @@ module WhopSDK
         end
 
         sig { override.returns({ url: T.nilable(String) }) }
+        def to_hash
+        end
+      end
+
+      class ProductionWebBuild < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::App::ProductionWebBuild, WhopSDK::Internal::AnyHash)
+          end
+
+        # The unique identifier for the app build.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # A SHA-256 hash of the uploaded build file, generated by the client and used to
+        # verify file integrity.
+        sig { returns(String) }
+        attr_accessor :checksum
+
+        # A URL to download the app build as a .zip archive.
+        sig { returns(String) }
+        attr_accessor :file_url
+
+        # The current review status of this build.
+        sig { returns(WhopSDK::AppBuildStatuses::TaggedSymbol) }
+        attr_accessor :status
+
+        # The approved app build currently served to users on web. Null if no production
+        # build is deployed for web.
+        sig do
+          params(
+            id: String,
+            checksum: String,
+            file_url: String,
+            status: WhopSDK::AppBuildStatuses::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The unique identifier for the app build.
+          id:,
+          # A SHA-256 hash of the uploaded build file, generated by the client and used to
+          # verify file integrity.
+          checksum:,
+          # A URL to download the app build as a .zip archive.
+          file_url:,
+          # The current review status of this build.
+          status:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              checksum: String,
+              file_url: String,
+              status: WhopSDK::AppBuildStatuses::TaggedSymbol
+            }
+          )
+        end
         def to_hash
         end
       end

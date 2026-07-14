@@ -225,7 +225,7 @@ module WhopSDK
           sig { returns(Integer) }
           attr_accessor :clicks
 
-          # The bucket size of this row (`daily` or `hourly`).
+          # The bucket size of this row (`hourly`, `daily`, `weekly`, or `monthly`).
           sig { returns(WhopSDK::Granularities::TaggedSymbol) }
           attr_accessor :granularity
 
@@ -294,7 +294,7 @@ module WhopSDK
             bucket_start:,
             # Clicks in this bucket.
             clicks:,
-            # The bucket size of this row (`daily` or `hourly`).
+            # The bucket size of this row (`hourly`, `daily`, `weekly`, or `monthly`).
             granularity:,
             # Impressions in this bucket.
             impressions:,
@@ -549,7 +549,7 @@ module WhopSDK
         sig { returns(Integer) }
         attr_accessor :clicks
 
-        # The bucket size of this row (`daily` or `hourly`).
+        # The bucket size of this row (`hourly`, `daily`, `weekly`, or `monthly`).
         sig { returns(WhopSDK::Granularities::TaggedSymbol) }
         attr_accessor :granularity
 
@@ -618,7 +618,7 @@ module WhopSDK
           bucket_start:,
           # Clicks in this bucket.
           clicks:,
-          # The bucket size of this row (`daily` or `hourly`).
+          # The bucket size of this row (`hourly`, `daily`, `weekly`, or `monthly`).
           granularity:,
           # Impressions in this bucket.
           impressions:,

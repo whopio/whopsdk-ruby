@@ -33,7 +33,8 @@ module WhopSDK
             member_id: String,
             payment_method_id: String,
             plan: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan,
-            metadata: ::Hash[Symbol, top]?
+            metadata: ::Hash[Symbol, top]?,
+            promo_code_id: String?
           }
 
         class CreatePaymentInputWithPlan < WhopSDK::Internal::Type::BaseModel
@@ -47,12 +48,15 @@ module WhopSDK
 
           attr_accessor metadata: ::Hash[Symbol, top]?
 
+          attr_accessor promo_code_id: String?
+
           def initialize: (
             company_id: String,
             member_id: String,
             payment_method_id: String,
             plan: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan,
-            ?metadata: ::Hash[Symbol, top]?
+            ?metadata: ::Hash[Symbol, top]?,
+            ?promo_code_id: String?
           ) -> void
 
           def to_hash: -> {
@@ -60,7 +64,8 @@ module WhopSDK
             member_id: String,
             payment_method_id: String,
             plan: WhopSDK::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan,
-            metadata: ::Hash[Symbol, top]?
+            metadata: ::Hash[Symbol, top]?,
+            promo_code_id: String?
           }
 
           type plan =
@@ -229,7 +234,8 @@ module WhopSDK
             member_id: String,
             payment_method_id: String,
             plan_id: String,
-            metadata: ::Hash[Symbol, top]?
+            metadata: ::Hash[Symbol, top]?,
+            promo_code_id: String?
           }
 
         class CreatePaymentInputWithPlanID < WhopSDK::Internal::Type::BaseModel
@@ -243,12 +249,15 @@ module WhopSDK
 
           attr_accessor metadata: ::Hash[Symbol, top]?
 
+          attr_accessor promo_code_id: String?
+
           def initialize: (
             company_id: String,
             member_id: String,
             payment_method_id: String,
             plan_id: String,
-            ?metadata: ::Hash[Symbol, top]?
+            ?metadata: ::Hash[Symbol, top]?,
+            ?promo_code_id: String?
           ) -> void
 
           def to_hash: -> {
@@ -256,7 +265,8 @@ module WhopSDK
             member_id: String,
             payment_method_id: String,
             plan_id: String,
-            metadata: ::Hash[Symbol, top]?
+            metadata: ::Hash[Symbol, top]?,
+            promo_code_id: String?
           }
         end
 

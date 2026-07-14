@@ -7,15 +7,13 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute account_id
-      #   Business or user account ID (biz*\* / user*\*).
+      # @!attribute id
       #
       #   @return [String]
-      required :account_id, String
+      required :id, String
 
-      # @!method initialize(account_id:, request_options: {})
-      #   @param account_id [String] Business or user account ID (biz*\* / user*\*).
-      #
+      # @!method initialize(id:, request_options: {})
+      #   @param id [String]
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end
   end

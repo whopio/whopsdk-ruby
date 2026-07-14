@@ -1,0 +1,97 @@
+module WhopSDK
+  module Models
+    type person_list_params =
+      {
+        account_id: String,
+        after: String,
+        before: String,
+        direction: WhopSDK::Models::PersonListParams::direction,
+        filters: String,
+        first: Integer,
+        from: Integer,
+        sort: String,
+        to: Integer
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class PersonListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
+
+      attr_reader after: String?
+
+      def after=: (String) -> String
+
+      attr_reader before: String?
+
+      def before=: (String) -> String
+
+      attr_reader direction: WhopSDK::Models::PersonListParams::direction?
+
+      def direction=: (
+        WhopSDK::Models::PersonListParams::direction
+      ) -> WhopSDK::Models::PersonListParams::direction
+
+      attr_reader filters: String?
+
+      def filters=: (String) -> String
+
+      attr_reader first: Integer?
+
+      def first=: (Integer) -> Integer
+
+      attr_reader from: Integer?
+
+      def from=: (Integer) -> Integer
+
+      attr_reader sort: String?
+
+      def sort=: (String) -> String
+
+      attr_reader to: Integer?
+
+      def to=: (Integer) -> Integer
+
+      def initialize: (
+        ?account_id: String,
+        ?after: String,
+        ?before: String,
+        ?direction: WhopSDK::Models::PersonListParams::direction,
+        ?filters: String,
+        ?first: Integer,
+        ?from: Integer,
+        ?sort: String,
+        ?to: Integer,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        after: String,
+        before: String,
+        direction: WhopSDK::Models::PersonListParams::direction,
+        filters: String,
+        first: Integer,
+        from: Integer,
+        sort: String,
+        to: Integer,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type direction = :asc | :desc
+
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC: :asc
+        DESC: :desc
+
+        def self?.values: -> ::Array[WhopSDK::Models::PersonListParams::direction]
+      end
+    end
+  end
+end

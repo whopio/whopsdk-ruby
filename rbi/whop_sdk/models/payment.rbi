@@ -186,6 +186,11 @@ module WhopSDK
       sig { returns(T.nilable(Time)) }
       attr_accessor :refunded_at
 
+      # The refunds issued against this payment, newest first, including failed and
+      # canceled refund attempts. Limited to the 100 most recent.
+      sig { returns(T::Array[WhopSDK::Payment::Refund]) }
+      attr_accessor :refunds
+
       # The resolution center cases opened by the customer on this payment. Null if the
       # actor in context does not have the payment:resolution_center_case:read
       # permission.
@@ -197,6 +202,18 @@ module WhopSDK
       # otherwise false. Used to decide if Whop can attempt the charge again.
       sig { returns(T::Boolean) }
       attr_accessor :retryable
+
+      # Whop's in-house fraud risk score for this payment, from 0 (lowest risk) to 100
+      # (highest risk). Null when the payment has not been scored or scoring has not yet
+      # completed.
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :risk_score
+
+      # A curated set of factors behind the risk score, grouped by category (business
+      # transaction history, buyer, device). Each entry has a key, human-readable label,
+      # category, and value. Null when there is no risk assessment for this payment.
+      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      attr_accessor :risk_signals
 
       # The total amount charged to the customer for this payment, including taxes and
       # after any discounts. In the currency specified by the currency field.
@@ -210,6 +227,18 @@ module WhopSDK
       # Deprecated. Always returns null.
       sig { returns(T.nilable(Float)) }
       attr_accessor :settlement_exchange_rate
+
+      # The shipping address provided by the customer for physical goods. Null if no
+      # shipping address was collected.
+      sig { returns(T.nilable(WhopSDK::Payment::ShippingAddress)) }
+      attr_reader :shipping_address
+
+      sig do
+        params(
+          shipping_address: T.nilable(WhopSDK::Payment::ShippingAddress::OrHash)
+        ).void
+      end
+      attr_writer :shipping_address
 
       # The status of a receipt
       sig { returns(T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol)) }
@@ -235,6 +264,10 @@ module WhopSDK
       # The amount of tax that has been refunded (if applicable).
       sig { returns(T.nilable(Float)) }
       attr_accessor :tax_refunded_amount
+
+      # Whether 3D Secure authentication was completed for this payment.
+      sig { returns(T::Boolean) }
+      attr_accessor :three_ds_verified
 
       # The total to show to the creator (excluding buyer fees).
       sig { returns(T.nilable(Float)) }
@@ -297,18 +330,24 @@ module WhopSDK
           refundable: T::Boolean,
           refunded_amount: T.nilable(Float),
           refunded_at: T.nilable(Time),
+          refunds: T::Array[WhopSDK::Payment::Refund::OrHash],
           resolutions:
             T.nilable(T::Array[WhopSDK::Payment::Resolution::OrHash]),
           retryable: T::Boolean,
+          risk_score: T.nilable(Integer),
+          risk_signals: T.nilable(T::Hash[Symbol, T.anything]),
           settlement_amount: Float,
           settlement_currency: WhopSDK::Currency::OrSymbol,
           settlement_exchange_rate: T.nilable(Float),
+          shipping_address:
+            T.nilable(WhopSDK::Payment::ShippingAddress::OrHash),
           status: T.nilable(WhopSDK::ReceiptStatus::OrSymbol),
           substatus: WhopSDK::FriendlyReceiptStatus::OrSymbol,
           subtotal: T.nilable(Float),
           tax_amount: T.nilable(Float),
           tax_behavior: T.nilable(WhopSDK::ReceiptTaxBehavior::OrSymbol),
           tax_refunded_amount: T.nilable(Float),
+          three_ds_verified: T::Boolean,
           total: T.nilable(Float),
           updated_at: Time,
           usd_total: T.nilable(Float),
@@ -390,6 +429,9 @@ module WhopSDK
         refunded_amount:,
         # When the payment was refunded (if applicable).
         refunded_at:,
+        # The refunds issued against this payment, newest first, including failed and
+        # canceled refund attempts. Limited to the 100 most recent.
+        refunds:,
         # The resolution center cases opened by the customer on this payment. Null if the
         # actor in context does not have the payment:resolution_center_case:read
         # permission.
@@ -398,6 +440,14 @@ module WhopSDK
         # retry-eligible states (`active`, `trialing`, `completed`, or `past_due`);
         # otherwise false. Used to decide if Whop can attempt the charge again.
         retryable:,
+        # Whop's in-house fraud risk score for this payment, from 0 (lowest risk) to 100
+        # (highest risk). Null when the payment has not been scored or scoring has not yet
+        # completed.
+        risk_score:,
+        # A curated set of factors behind the risk score, grouped by category (business
+        # transaction history, buyer, device). Each entry has a key, human-readable label,
+        # category, and value. Null when there is no risk assessment for this payment.
+        risk_signals:,
         # The total amount charged to the customer for this payment, including taxes and
         # after any discounts. In the currency specified by the currency field.
         settlement_amount:,
@@ -405,6 +455,9 @@ module WhopSDK
         settlement_currency:,
         # Deprecated. Always returns null.
         settlement_exchange_rate:,
+        # The shipping address provided by the customer for physical goods. Null if no
+        # shipping address was collected.
+        shipping_address:,
         # The status of a receipt
         status:,
         # The friendly status of the payment.
@@ -418,6 +471,8 @@ module WhopSDK
         tax_behavior:,
         # The amount of tax that has been refunded (if applicable).
         tax_refunded_amount:,
+        # Whether 3D Secure authentication was completed for this payment.
+        three_ds_verified:,
         # The total to show to the creator (excluding buyer fees).
         total:,
         # The datetime the payment was last updated.
@@ -469,17 +524,22 @@ module WhopSDK
             refundable: T::Boolean,
             refunded_amount: T.nilable(Float),
             refunded_at: T.nilable(Time),
+            refunds: T::Array[WhopSDK::Payment::Refund],
             resolutions: T.nilable(T::Array[WhopSDK::Payment::Resolution]),
             retryable: T::Boolean,
+            risk_score: T.nilable(Integer),
+            risk_signals: T.nilable(T::Hash[Symbol, T.anything]),
             settlement_amount: Float,
             settlement_currency: WhopSDK::Currency::TaggedSymbol,
             settlement_exchange_rate: T.nilable(Float),
+            shipping_address: T.nilable(WhopSDK::Payment::ShippingAddress),
             status: T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol),
             substatus: WhopSDK::FriendlyReceiptStatus::TaggedSymbol,
             subtotal: T.nilable(Float),
             tax_amount: T.nilable(Float),
             tax_behavior: T.nilable(WhopSDK::ReceiptTaxBehavior::TaggedSymbol),
             tax_refunded_amount: T.nilable(Float),
+            three_ds_verified: T::Boolean,
             total: T.nilable(Float),
             updated_at: Time,
             usd_total: T.nilable(Float),
@@ -1241,7 +1301,8 @@ module WhopSDK
         attr_accessor :internal_notes
 
         # Custom key-value pairs stored on the plan. Included in webhook payloads for
-        # payment and membership events.
+        # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+        # string value.
         sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
         attr_accessor :metadata
 
@@ -1259,7 +1320,8 @@ module WhopSDK
           # A personal description or notes section for the business.
           internal_notes:,
           # Custom key-value pairs stored on the plan. Included in webhook payloads for
-          # payment and membership events.
+          # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+          # string value.
           metadata:
         )
         end
@@ -1287,13 +1349,14 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # Custom key-value pairs stored on the product. Included in webhook payloads for
-        # payment and membership events.
+        # Custom key-value pairs stored on the product and included in payment and
+        # membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
+        # per string value.
         sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
         attr_accessor :metadata
 
-        # The URL slug used in the product's public link (e.g., 'my-product' in
-        # whop.com/company/my-product).
+        # URL slug in the product's public link, e.g. `pickaxe-analytics` in
+        # whop.com/company/pickaxe-analytics.
         sig { returns(String) }
         attr_accessor :route
 
@@ -1314,11 +1377,12 @@ module WhopSDK
         def self.new(
           # The unique identifier for the product.
           id:,
-          # Custom key-value pairs stored on the product. Included in webhook payloads for
-          # payment and membership events.
+          # Custom key-value pairs stored on the product and included in payment and
+          # membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
+          # per string value.
           metadata:,
-          # The URL slug used in the product's public link (e.g., 'my-product' in
-          # whop.com/company/my-product).
+          # URL slug in the product's public link, e.g. `pickaxe-analytics` in
+          # whop.com/company/pickaxe-analytics.
           route:,
           # The display name of the product shown to customers on the product page and in
           # search results.
@@ -1410,6 +1474,76 @@ module WhopSDK
               code: T.nilable(String),
               number_of_intervals: T.nilable(Integer),
               promo_type: WhopSDK::PromoType::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class Refund < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Payment::Refund, WhopSDK::Internal::AnyHash)
+          end
+
+        # The unique identifier for the refund.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The refunded amount as a decimal in the specified currency, such as 10.43 for
+        # $10.43 USD.
+        sig { returns(Float) }
+        attr_accessor :amount
+
+        # The datetime the refund was created.
+        sig { returns(Time) }
+        attr_accessor :created_at
+
+        # The three-letter ISO currency code for the refunded amount.
+        sig { returns(WhopSDK::Currency::TaggedSymbol) }
+        attr_accessor :currency
+
+        # The current processing status of the refund, such as pending, succeeded, or
+        # failed.
+        sig { returns(WhopSDK::RefundStatus::TaggedSymbol) }
+        attr_accessor :status
+
+        # A refund represents a full or partial reversal of a payment, including the
+        # amount, status, and payment provider.
+        sig do
+          params(
+            id: String,
+            amount: Float,
+            created_at: Time,
+            currency: WhopSDK::Currency::OrSymbol,
+            status: WhopSDK::RefundStatus::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The unique identifier for the refund.
+          id:,
+          # The refunded amount as a decimal in the specified currency, such as 10.43 for
+          # $10.43 USD.
+          amount:,
+          # The datetime the refund was created.
+          created_at:,
+          # The three-letter ISO currency code for the refunded amount.
+          currency:,
+          # The current processing status of the refund, such as pending, succeeded, or
+          # failed.
+          status:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              amount: Float,
+              created_at: Time,
+              currency: WhopSDK::Currency::TaggedSymbol,
+              status: WhopSDK::RefundStatus::TaggedSymbol
             }
           )
         end
@@ -1544,6 +1678,88 @@ module WhopSDK
                   WhopSDK::ResolutionCenterCasePlatformResponse::TaggedSymbol
                 ],
               status: WhopSDK::ResolutionCenterCaseStatus::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class ShippingAddress < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Payment::ShippingAddress, WhopSDK::Internal::AnyHash)
+          end
+
+        # The city of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :city
+
+        # The country of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :country
+
+        # The line 1 of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :line1
+
+        # The line 2 of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :line2
+
+        # The name of the customer.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
+        # The postal code of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :postal_code
+
+        # The state of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :state
+
+        # The shipping address provided by the customer for physical goods. Null if no
+        # shipping address was collected.
+        sig do
+          params(
+            city: T.nilable(String),
+            country: T.nilable(String),
+            line1: T.nilable(String),
+            line2: T.nilable(String),
+            name: T.nilable(String),
+            postal_code: T.nilable(String),
+            state: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The city of the address.
+          city:,
+          # The country of the address.
+          country:,
+          # The line 1 of the address.
+          line1:,
+          # The line 2 of the address.
+          line2:,
+          # The name of the customer.
+          name:,
+          # The postal code of the address.
+          postal_code:,
+          # The state of the address.
+          state:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              city: T.nilable(String),
+              country: T.nilable(String),
+              line1: T.nilable(String),
+              line2: T.nilable(String),
+              name: T.nilable(String),
+              postal_code: T.nilable(String),
+              state: T.nilable(String)
             }
           )
         end

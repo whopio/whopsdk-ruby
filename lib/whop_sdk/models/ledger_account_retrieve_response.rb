@@ -189,7 +189,7 @@ module WhopSDK
           required :id, String
 
           # @!attribute route
-          #   The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
+          #   URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
           #
           #   @return [String]
           required :route, String
@@ -207,16 +207,12 @@ module WhopSDK
           required :typename, const: :Company
 
           # @!method initialize(id:, route:, title:, typename: :Company)
-          #   Some parameter documentations has been truncated, see
-          #   {WhopSDK::Models::LedgerAccountRetrieveResponse::Owner::Company} for more
-          #   details.
-          #
           #   A company is a seller on Whop. Companies own products, manage members, and
           #   receive payouts.
           #
           #   @param id [String] The unique identifier for the company.
           #
-          #   @param route [String] The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
+          #   @param route [String] URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
           #
           #   @param title [String] The display name of the company shown to customers.
           #

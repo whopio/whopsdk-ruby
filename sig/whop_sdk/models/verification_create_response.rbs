@@ -315,13 +315,19 @@ module WhopSDK
       end
 
       type status =
-        :not_started | :pending | :approved | :rejected | :action_required
+        :not_started
+        | :pending
+        | :processing
+        | :approved
+        | :rejected
+        | :action_required
 
       module Status
         extend WhopSDK::Internal::Type::Enum
 
         NOT_STARTED: :not_started
         PENDING: :pending
+        PROCESSING: :processing
         APPROVED: :approved
         REJECTED: :rejected
         ACTION_REQUIRED: :action_required

@@ -108,7 +108,7 @@ module WhopSDK
 
     attr_reader payouts: WhopSDK::Resources::Payouts
 
-    attr_reader referrals: WhopSDK::Resources::Referrals
+    attr_reader partners: WhopSDK::Resources::Partners
 
     attr_reader cards: WhopSDK::Resources::Cards
 

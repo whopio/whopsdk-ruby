@@ -10,13 +10,16 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
-      # Unix timestamp when the audience was created.
-      sig { returns(Float) }
+      # When the audience was created, as an ISO 8601 timestamp.
+      sig { returns(String) }
       attr_accessor :created_at
 
       # Processing error message. `null` unless processing is partial or failed.
       sig { returns(T.nilable(String)) }
       attr_accessor :error_message
+
+      sig { returns(T::Array[WhopSDK::Audience::MatchRate]) }
+      attr_accessor :match_rates
 
       # Rows successfully uploaded to connected ad accounts.
       sig { returns(Float) }
@@ -47,15 +50,16 @@ module WhopSDK
       sig { returns(Float) }
       attr_accessor :total_rows
 
-      # Unix timestamp when the audience was last updated.
-      sig { returns(Float) }
+      # When the audience was last updated, as an ISO 8601 timestamp.
+      sig { returns(String) }
       attr_accessor :updated_at
 
       sig do
         params(
           id: String,
-          created_at: Float,
+          created_at: String,
           error_message: T.nilable(String),
+          match_rates: T::Array[WhopSDK::Audience::MatchRate::OrHash],
           matched_rows: Float,
           name: String,
           platform_audience_ids: T::Array[String],
@@ -63,16 +67,17 @@ module WhopSDK
           progress_percent: Float,
           status: WhopSDK::Audience::Status::OrSymbol,
           total_rows: Float,
-          updated_at: Float
+          updated_at: String
         ).returns(T.attached_class)
       end
       def self.new(
         # Audience ID, prefixed `adaud_`.
         id:,
-        # Unix timestamp when the audience was created.
+        # When the audience was created, as an ISO 8601 timestamp.
         created_at:,
         # Processing error message. `null` unless processing is partial or failed.
         error_message:,
+        match_rates:,
         # Rows successfully uploaded to connected ad accounts.
         matched_rows:,
         # Audience display name.
@@ -88,7 +93,7 @@ module WhopSDK
         status:,
         # Total rows detected in the uploaded CSV.
         total_rows:,
-        # Unix timestamp when the audience was last updated.
+        # When the audience was last updated, as an ISO 8601 timestamp.
         updated_at:
       )
       end
@@ -97,8 +102,9 @@ module WhopSDK
         override.returns(
           {
             id: String,
-            created_at: Float,
+            created_at: String,
             error_message: T.nilable(String),
+            match_rates: T::Array[WhopSDK::Audience::MatchRate],
             matched_rows: Float,
             name: String,
             platform_audience_ids: T::Array[String],
@@ -106,11 +112,127 @@ module WhopSDK
             progress_percent: Float,
             status: WhopSDK::Audience::Status::TaggedSymbol,
             total_rows: Float,
-            updated_at: Float
+            updated_at: String
           }
         )
       end
       def to_hash
+      end
+
+      class MatchRate < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Audience::MatchRate, WhopSDK::Internal::AnyHash)
+          end
+
+        # Lower bound of the estimated match rate percentage. `null` until available.
+        sig { returns(T.nilable(Float)) }
+        attr_accessor :lower_bound
+
+        # The ad platform that provided the match-rate estimate.
+        sig { returns(WhopSDK::Audience::MatchRate::Platform::TaggedSymbol) }
+        attr_accessor :platform
+
+        # Availability of the estimated match rate.
+        sig do
+          returns(T.nilable(WhopSDK::Audience::MatchRate::Status::TaggedSymbol))
+        end
+        attr_accessor :status
+
+        # Upper bound of the estimated match rate percentage. `null` until available.
+        sig { returns(T.nilable(Float)) }
+        attr_accessor :upper_bound
+
+        # Estimated match rates by ad platform. Empty when the audience was not sent to a
+        # supported platform.
+        sig do
+          params(
+            lower_bound: T.nilable(Float),
+            platform: WhopSDK::Audience::MatchRate::Platform::OrSymbol,
+            status: T.nilable(WhopSDK::Audience::MatchRate::Status::OrSymbol),
+            upper_bound: T.nilable(Float)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Lower bound of the estimated match rate percentage. `null` until available.
+          lower_bound:,
+          # The ad platform that provided the match-rate estimate.
+          platform:,
+          # Availability of the estimated match rate.
+          status:,
+          # Upper bound of the estimated match rate percentage. `null` until available.
+          upper_bound:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              lower_bound: T.nilable(Float),
+              platform: WhopSDK::Audience::MatchRate::Platform::TaggedSymbol,
+              status:
+                T.nilable(WhopSDK::Audience::MatchRate::Status::TaggedSymbol),
+              upper_bound: T.nilable(Float)
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # The ad platform that provided the match-rate estimate.
+        module Platform
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, WhopSDK::Audience::MatchRate::Platform)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          META =
+            T.let(:meta, WhopSDK::Audience::MatchRate::Platform::TaggedSymbol)
+
+          sig do
+            override.returns(
+              T::Array[WhopSDK::Audience::MatchRate::Platform::TaggedSymbol]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # Availability of the estimated match rate.
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias { T.all(Symbol, WhopSDK::Audience::MatchRate::Status) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          CALCULATING =
+            T.let(
+              :calculating,
+              WhopSDK::Audience::MatchRate::Status::TaggedSymbol
+            )
+          AVAILABLE =
+            T.let(
+              :available,
+              WhopSDK::Audience::MatchRate::Status::TaggedSymbol
+            )
+          UNAVAILABLE =
+            T.let(
+              :unavailable,
+              WhopSDK::Audience::MatchRate::Status::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[WhopSDK::Audience::MatchRate::Status::TaggedSymbol]
+            )
+          end
+          def self.values
+          end
+        end
       end
 
       # Current state of the audience import. `syncing` means Whop is sending matched

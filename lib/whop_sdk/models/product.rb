@@ -257,6 +257,12 @@ module WhopSDK
         #   @return [String]
         required :id, String
 
+        # @!attribute content_type
+        #   Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
+        #
+        #   @return [String, nil]
+        required :content_type, String, nil?: true
+
         # @!attribute url
         #   A pre-optimized URL for rendering this attachment on the client. This should be
         #   used for displaying attachments in apps.
@@ -264,13 +270,15 @@ module WhopSDK
         #   @return [String, nil]
         required :url, String, nil?: true
 
-        # @!method initialize(id:, url:)
+        # @!method initialize(id:, content_type:, url:)
         #   Some parameter documentations has been truncated, see
         #   {WhopSDK::Models::Product::GalleryImage} for more details.
         #
         #   Represents an image attachment
         #
         #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
+        #
+        #   @param content_type [String, nil] Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
         #
         #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
       end

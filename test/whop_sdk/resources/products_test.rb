@@ -141,6 +141,7 @@ class WhopSDK::Test::Resources::ProductsTest < WhopSDK::Test::ResourceTest
         id: String,
         created_at: Time,
         external_identifier: String | nil,
+        gallery_images: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::ProductListItem::GalleryImage]),
         headline: String | nil,
         member_count: Integer,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,

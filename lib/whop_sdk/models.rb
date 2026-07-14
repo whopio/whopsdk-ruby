@@ -601,6 +601,14 @@ module WhopSDK
 
   PageInfo = WhopSDK::Models::PageInfo
 
+  PartnerCreateParams = WhopSDK::Models::PartnerCreateParams
+
+  PartnerLeaderboardParams = WhopSDK::Models::PartnerLeaderboardParams
+
+  PartnerReferredUsersParams = WhopSDK::Models::PartnerReferredUsersParams
+
+  Partners = WhopSDK::Models::Partners
+
   Payment = WhopSDK::Models::Payment
 
   PaymentCreatedWebhookEvent = WhopSDK::Models::PaymentCreatedWebhookEvent
@@ -710,10 +718,6 @@ module WhopSDK
   ReceiptStatus = WhopSDK::Models::ReceiptStatus
 
   ReceiptTaxBehavior = WhopSDK::Models::ReceiptTaxBehavior
-
-  ReferralReferredUsersParams = WhopSDK::Models::ReferralReferredUsersParams
-
-  Referrals = WhopSDK::Models::Referrals
 
   RefundCreatedWebhookEvent = WhopSDK::Models::RefundCreatedWebhookEvent
 

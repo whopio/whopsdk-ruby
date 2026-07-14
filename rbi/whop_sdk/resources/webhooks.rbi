@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Webhooks
     class Webhooks
       # Creates a new webhook
       #
@@ -148,6 +147,8 @@ module WhopSDK
           key: T.nilable(String)
         ).returns(
           T.any(
+            WhopSDK::ChatMessageCreatedWebhookEvent,
+            WhopSDK::ChatReactionCreatedWebhookEvent,
             WhopSDK::CourseLessonInteractionCompletedWebhookEvent,
             WhopSDK::DisputeCreatedWebhookEvent,
             WhopSDK::DisputeUpdatedWebhookEvent,
@@ -165,9 +166,11 @@ module WhopSDK
             WhopSDK::InvoicePaidWebhookEvent,
             WhopSDK::InvoicePastDueWebhookEvent,
             WhopSDK::InvoiceVoidedWebhookEvent,
+            WhopSDK::LedgerAccountFundsAvailableWebhookEvent,
             WhopSDK::MembershipActivatedWebhookEvent,
             WhopSDK::MembershipCancelAtPeriodEndChangedWebhookEvent,
             WhopSDK::MembershipDeactivatedWebhookEvent,
+            WhopSDK::MembershipTrialEndingSoonWebhookEvent,
             WhopSDK::PaymentCreatedWebhookEvent,
             WhopSDK::PaymentFailedWebhookEvent,
             WhopSDK::PaymentPendingWebhookEvent,

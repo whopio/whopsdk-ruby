@@ -1,0 +1,140 @@
+module WhopSDK
+  module Models
+    type referral_referred_users_response =
+      {
+        data: ::Array[WhopSDK::Models::ReferralReferredUsersResponse::Data],
+        page_info: WhopSDK::Models::ReferralReferredUsersResponse::PageInfo
+      }
+
+    class ReferralReferredUsersResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor data: ::Array[WhopSDK::Models::ReferralReferredUsersResponse::Data]
+
+      attr_accessor page_info: WhopSDK::Models::ReferralReferredUsersResponse::PageInfo
+
+      def initialize: (
+        data: ::Array[WhopSDK::Models::ReferralReferredUsersResponse::Data],
+        page_info: WhopSDK::Models::ReferralReferredUsersResponse::PageInfo
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[WhopSDK::Models::ReferralReferredUsersResponse::Data],
+        page_info: WhopSDK::Models::ReferralReferredUsersResponse::PageInfo
+      }
+
+      type data =
+        {
+          total_earnings_usd: String,
+          total_volume_usd: String,
+          user: WhopSDK::Models::ReferralReferredUsersResponse::Data::User
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor total_earnings_usd: String
+
+        attr_accessor total_volume_usd: String
+
+        attr_accessor user: WhopSDK::Models::ReferralReferredUsersResponse::Data::User
+
+        def initialize: (
+          total_earnings_usd: String,
+          total_volume_usd: String,
+          user: WhopSDK::Models::ReferralReferredUsersResponse::Data::User
+        ) -> void
+
+        def to_hash: -> {
+          total_earnings_usd: String,
+          total_volume_usd: String,
+          user: WhopSDK::Models::ReferralReferredUsersResponse::Data::User
+        }
+
+        type user =
+          {
+            id: String,
+            username: String,
+            city: String?,
+            country: String?,
+            name: String?,
+            profile_picture: WhopSDK::Models::ReferralReferredUsersResponse::Data::User::ProfilePicture
+          }
+
+        class User < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor username: String
+
+          attr_accessor city: String?
+
+          attr_accessor country: String?
+
+          attr_accessor name: String?
+
+          attr_reader profile_picture: WhopSDK::Models::ReferralReferredUsersResponse::Data::User::ProfilePicture?
+
+          def profile_picture=: (
+            WhopSDK::Models::ReferralReferredUsersResponse::Data::User::ProfilePicture
+          ) -> WhopSDK::Models::ReferralReferredUsersResponse::Data::User::ProfilePicture
+
+          def initialize: (
+            id: String,
+            username: String,
+            ?city: String?,
+            ?country: String?,
+            ?name: String?,
+            ?profile_picture: WhopSDK::Models::ReferralReferredUsersResponse::Data::User::ProfilePicture
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            username: String,
+            city: String?,
+            country: String?,
+            name: String?,
+            profile_picture: WhopSDK::Models::ReferralReferredUsersResponse::Data::User::ProfilePicture
+          }
+
+          type profile_picture = { url: String? }
+
+          class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+            attr_accessor url: String?
+
+            def initialize: (?url: String?) -> void
+
+            def to_hash: -> { url: String? }
+          end
+        end
+      end
+
+      type page_info =
+        {
+          end_cursor: String?,
+          has_next_page: bool,
+          has_previous_page: bool,
+          start_cursor: String?
+        }
+
+      class PageInfo < WhopSDK::Internal::Type::BaseModel
+        attr_accessor end_cursor: String?
+
+        attr_accessor has_next_page: bool
+
+        attr_accessor has_previous_page: bool
+
+        attr_accessor start_cursor: String?
+
+        def initialize: (
+          end_cursor: String?,
+          has_next_page: bool,
+          has_previous_page: bool,
+          start_cursor: String?
+        ) -> void
+
+        def to_hash: -> {
+          end_cursor: String?,
+          has_next_page: bool,
+          has_previous_page: bool,
+          start_cursor: String?
+        }
+      end
+    end
+  end
+end

@@ -6,7 +6,7 @@ class WhopSDK::Test::Resources::ProductsTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.products.create(company_id: "biz_xxxxxxxxxxxxxx", title: "title")
+    response = @whop.products.create(title: "title")
 
     assert_pattern do
       response => WhopSDK::Product
@@ -45,7 +45,7 @@ class WhopSDK::Test::Resources::ProductsTest < WhopSDK::Test::ResourceTest
   def test_retrieve
     skip("Mock server tests are disabled")
 
-    response = @whop.products.retrieve("prod_xxxxxxxxxxxxx")
+    response = @whop.products.retrieve("id")
 
     assert_pattern do
       response => WhopSDK::Product
@@ -84,7 +84,7 @@ class WhopSDK::Test::Resources::ProductsTest < WhopSDK::Test::ResourceTest
   def test_update
     skip("Mock server tests are disabled")
 
-    response = @whop.products.update("prod_xxxxxxxxxxxxx")
+    response = @whop.products.update("id")
 
     assert_pattern do
       response => WhopSDK::Product
@@ -123,7 +123,7 @@ class WhopSDK::Test::Resources::ProductsTest < WhopSDK::Test::ResourceTest
   def test_list_required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.products.list(company_id: "biz_xxxxxxxxxxxxxx")
+    response = @whop.products.list(company_id: "company_id")
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage
@@ -157,7 +157,7 @@ class WhopSDK::Test::Resources::ProductsTest < WhopSDK::Test::ResourceTest
   def test_delete
     skip("Mock server tests are disabled")
 
-    response = @whop.products.delete("prod_xxxxxxxxxxxxx")
+    response = @whop.products.delete("id")
 
     assert_pattern do
       response => WhopSDK::Internal::Type::Boolean

@@ -2,9 +2,7 @@
 
 module WhopSDK
   module Resources
-    # Affiliates
     class Affiliates
-      # Affiliates
       sig { returns(WhopSDK::Resources::Affiliates::Overrides) }
       attr_reader :overrides
 

@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Support channels
     class SupportChannels
       # Open a new support channel between a company team member and a customer. Returns
       # the existing channel if one already exists for that user.

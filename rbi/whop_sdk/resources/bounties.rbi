@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Bounties
     class Bounties
       # Create a new workforce bounty by funding a dedicated bounty pool.
       #
@@ -17,16 +16,25 @@ module WhopSDK
           title: String,
           accepted_submissions_limit: T.nilable(Integer),
           allowed_country_codes: T.nilable(T::Array[String]),
+          business_goal_type:
+            T.nilable(WhopSDK::BountyCreateParams::BusinessGoalType::OrSymbol),
           experience_id: T.nilable(String),
           origin_account_id: T.nilable(String),
           post_markdown_content: T.nilable(String),
           post_title: T.nilable(String),
+          scheduled_frequency:
+            T.nilable(
+              WhopSDK::BountyCreateParams::ScheduledFrequency::OrSymbol
+            ),
+          scheduled_publish_at: T.nilable(Time),
+          scheduled_timezone: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::Models::BountyCreateResponse)
       end
       def create(
         # The amount paid to each approved submission. The total bounty pool funded is
-        # this amount times accepted_submissions_limit.
+        # this amount times accepted_submissions_limit, and must be at least 5 in the
+        # bounty's currency.
         base_unit_amount:,
         # The currency for the bounty pool funding amount.
         currency:,
@@ -35,11 +43,15 @@ module WhopSDK
         # The title of the bounty.
         title:,
         # The number of submissions that can be approved before the bounty closes.
-        # Defaults to 1.
+        # Defaults to 1. The total pool (base_unit_amount times this limit) must be at
+        # least 5 in the bounty's currency.
         accepted_submissions_limit: nil,
         # The ISO3166 country codes where this bounty should be visible. Empty means
         # globally visible.
         allowed_country_codes: nil,
+        # What the poster is trying to accomplish with a workforce bounty. Used for
+        # product taxonomy and analytics, separate from the bounty's implementation type.
+        business_goal_type: nil,
         # An optional experience to scope the bounty to.
         experience_id: nil,
         # The user (user*\*) or company (biz*\*) tag whose balance funds this bounty pool.
@@ -52,6 +64,14 @@ module WhopSDK
         # Optional title for the anchor forum post. Falls back to the bounty title when
         # omitted.
         post_title: nil,
+        # How often a scheduled bounty republishes a new bounty.
+        scheduled_frequency: nil,
+        # When to publish the bounty. When provided, the bounty is created as a hidden
+        # draft and published at this time instead of immediately. Must be in the future.
+        scheduled_publish_at: nil,
+        # The IANA timezone used for recurring occurrences. Required when
+        # scheduled_publish_at is provided.
+        scheduled_timezone: nil,
         request_options: {}
       )
       end

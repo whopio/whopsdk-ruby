@@ -80,6 +80,13 @@ module WhopSDK
       #   @return [String, nil]
       required :experience_path, String, nil?: true
 
+      # @!attribute hosted_url
+      #   The full canonical URL where this app's hosted web build is served. Null if the
+      #   app has not claimed a route.
+      #
+      #   @return [String, nil]
+      required :hosted_url, String, nil?: true
+
       # @!attribute icon
       #   The icon image for this app, displayed on the app store, product pages,
       #   checkout, and as the default icon for experiences using this app.
@@ -109,6 +116,13 @@ module WhopSDK
       #   @return [String, nil]
       required :origin, String, nil?: true
 
+      # @!attribute production_web_build
+      #   The approved app build currently served to users on web. Null if no production
+      #   build is deployed for web.
+      #
+      #   @return [WhopSDK::Models::App::ProductionWebBuild, nil]
+      required :production_web_build, -> { WhopSDK::App::ProductionWebBuild }, nil?: true
+
       # @!attribute redirect_uris
       #   The whitelisted OAuth callback URLs that users are redirected to after
       #   authorizing the app.
@@ -123,6 +137,21 @@ module WhopSDK
       #   @return [Array<WhopSDK::Models::App::RequestedPermission>]
       required :requested_permissions,
                -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::App::RequestedPermission] }
+
+      # @!attribute route
+      #   The unique subdomain route where this app's hosted web builds are served, such
+      #   as 'myapp' for myapp.whop.app. Null if the app has not claimed a route.
+      #
+      #   @return [String, nil]
+      required :route, String, nil?: true
+
+      # @!attribute secrets
+      #   The app's secrets as an object of string values. Encrypted at rest and injected
+      #   into the app's hosted server runtime as environment bindings. Requires the
+      #   'developer:update_app' permission.
+      #
+      #   @return [Hash{Symbol=>Object}, nil]
+      required :secrets, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
       # @!attribute skills_path
       #   The URL path template for a specific view of this app, appended to the base
@@ -154,7 +183,7 @@ module WhopSDK
       #   @return [Boolean]
       required :verified, WhopSDK::Internal::Type::Boolean
 
-      # @!method initialize(id:, api_key:, app_type:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, icon:, name:, openapi_path:, origin:, redirect_uris:, requested_permissions:, skills_path:, stats:, status:, verified:)
+      # @!method initialize(id:, api_key:, app_type:, base_url:, company:, creator:, dashboard_path:, description:, discover_path:, domain_id:, experience_path:, hosted_url:, icon:, name:, openapi_path:, origin:, production_web_build:, redirect_uris:, requested_permissions:, route:, secrets:, skills_path:, stats:, status:, verified:)
       #   Some parameter documentations has been truncated, see {WhopSDK::Models::App} for
       #   more details.
       #
@@ -183,6 +212,8 @@ module WhopSDK
       #
       #   @param experience_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
       #
+      #   @param hosted_url [String, nil] The full canonical URL where this app's hosted web build is served. Null if the
+      #
       #   @param icon [WhopSDK::Models::App::Icon, nil] The icon image for this app, displayed on the app store, product pages, checkout
       #
       #   @param name [String] The display name of this app shown on the app store and in experience navigation
@@ -191,9 +222,15 @@ module WhopSDK
       #
       #   @param origin [String, nil] The full origin URL for this app's proxied domain (e.g., 'https://myapp.apps.who
       #
+      #   @param production_web_build [WhopSDK::Models::App::ProductionWebBuild, nil] The approved app build currently served to users on web. Null if no production b
+      #
       #   @param redirect_uris [Array<String>] The whitelisted OAuth callback URLs that users are redirected to after authorizi
       #
       #   @param requested_permissions [Array<WhopSDK::Models::App::RequestedPermission>] The list of permissions this app requests when installed, including both require
+      #
+      #   @param route [String, nil] The unique subdomain route where this app's hosted web builds are served, such a
+      #
+      #   @param secrets [Hash{Symbol=>Object}, nil] The app's secrets as an object of string values. Encrypted at rest and injected
       #
       #   @param skills_path [String, nil] The URL path template for a specific view of this app, appended to the base doma
       #
@@ -303,6 +340,49 @@ module WhopSDK
         #   checkout, and as the default icon for experiences using this app.
         #
         #   @param url [String, nil] A pre-optimized URL for rendering this attachment on the client. This should be
+      end
+
+      # @see WhopSDK::Models::App#production_web_build
+      class ProductionWebBuild < WhopSDK::Internal::Type::BaseModel
+        # @!attribute id
+        #   The unique identifier for the app build.
+        #
+        #   @return [String]
+        required :id, String
+
+        # @!attribute checksum
+        #   A SHA-256 hash of the uploaded build file, generated by the client and used to
+        #   verify file integrity.
+        #
+        #   @return [String]
+        required :checksum, String
+
+        # @!attribute file_url
+        #   A URL to download the app build as a .zip archive.
+        #
+        #   @return [String]
+        required :file_url, String
+
+        # @!attribute status
+        #   The current review status of this build.
+        #
+        #   @return [Symbol, WhopSDK::Models::AppBuildStatuses]
+        required :status, enum: -> { WhopSDK::AppBuildStatuses }
+
+        # @!method initialize(id:, checksum:, file_url:, status:)
+        #   Some parameter documentations has been truncated, see
+        #   {WhopSDK::Models::App::ProductionWebBuild} for more details.
+        #
+        #   The approved app build currently served to users on web. Null if no production
+        #   build is deployed for web.
+        #
+        #   @param id [String] The unique identifier for the app build.
+        #
+        #   @param checksum [String] A SHA-256 hash of the uploaded build file, generated by the client and used to v
+        #
+        #   @param file_url [String] A URL to download the app build as a .zip archive.
+        #
+        #   @param status [Symbol, WhopSDK::Models::AppBuildStatuses] The current review status of this build.
       end
 
       class RequestedPermission < WhopSDK::Internal::Type::BaseModel

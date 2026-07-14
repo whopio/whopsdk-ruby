@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Fee markups
     class FeeMarkups
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::FeeMarkupCreateParams} for more details.

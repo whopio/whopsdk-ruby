@@ -45,6 +45,7 @@ module WhopSDK
       HIPERCARD = :hipercard
       JCBLANKAPAY = :jcblankapay
       CMI = :cmi
+      AURA = :aura
       UNKNOWN = :unknown
 
       # @!method self.values

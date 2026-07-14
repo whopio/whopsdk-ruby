@@ -76,6 +76,7 @@ module WhopSDK
 
         PUBLISHED = :published
         ARCHIVED = :archived
+        SCHEDULED = :scheduled
 
         # @!method self.values
         #   @return [Array<Symbol>]

@@ -342,9 +342,17 @@ module WhopSDK
             )
           end
 
+        # Whether this plan accepts local currency payments via adaptive pricing.
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_accessor :adaptive_pricing_enabled
+
         # The interval in days at which the plan charges (renewal plans).
         sig { returns(T.nilable(Integer)) }
         attr_accessor :billing_period
+
+        # The available currencies on the platform
+        sig { returns(T.nilable(WhopSDK::Currency::OrSymbol)) }
+        attr_accessor :currency
 
         # An array of custom field objects.
         sig do
@@ -431,7 +439,9 @@ module WhopSDK
         # Updated plan attributes.
         sig do
           params(
+            adaptive_pricing_enabled: T.nilable(T::Boolean),
             billing_period: T.nilable(Integer),
+            currency: T.nilable(WhopSDK::Currency::OrSymbol),
             custom_fields:
               T.nilable(
                 T::Array[
@@ -457,8 +467,12 @@ module WhopSDK
           ).returns(T.attached_class)
         end
         def self.new(
+          # Whether this plan accepts local currency payments via adaptive pricing.
+          adaptive_pricing_enabled: nil,
           # The interval in days at which the plan charges (renewal plans).
           billing_period: nil,
+          # The available currencies on the platform
+          currency: nil,
           # An array of custom field objects.
           custom_fields: nil,
           # The description of the plan.
@@ -499,7 +513,9 @@ module WhopSDK
         sig do
           override.returns(
             {
+              adaptive_pricing_enabled: T.nilable(T::Boolean),
               billing_period: T.nilable(Integer),
+              currency: T.nilable(WhopSDK::Currency::OrSymbol),
               custom_fields:
                 T.nilable(
                   T::Array[WhopSDK::InvoiceUpdateParams::Plan::CustomField]

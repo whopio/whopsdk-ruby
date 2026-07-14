@@ -1,0 +1,162 @@
+module WhopSDK
+  module Models
+    type person_list_response =
+      {
+        id: String,
+        account_id: String,
+        first_seen_at: Integer,
+        last_seen_at: Integer,
+        person_id: String,
+        purchase_count: Integer,
+        ad_sets: ::Array[WhopSDK::Models::PersonListResponse::AdSet],
+        ads: ::Array[WhopSDK::Models::PersonListResponse::Ad],
+        aov: Float,
+        campaigns: ::Array[WhopSDK::Models::PersonListResponse::Campaign],
+        email: String?,
+        has_failed_payment: bool,
+        ltv: Float,
+        name: String?,
+        phone: String?
+      }
+
+    class PersonListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor account_id: String
+
+      attr_accessor first_seen_at: Integer
+
+      attr_accessor last_seen_at: Integer
+
+      attr_accessor person_id: String
+
+      attr_accessor purchase_count: Integer
+
+      attr_reader ad_sets: ::Array[WhopSDK::Models::PersonListResponse::AdSet]?
+
+      def ad_sets=: (
+        ::Array[WhopSDK::Models::PersonListResponse::AdSet]
+      ) -> ::Array[WhopSDK::Models::PersonListResponse::AdSet]
+
+      attr_reader ads: ::Array[WhopSDK::Models::PersonListResponse::Ad]?
+
+      def ads=: (
+        ::Array[WhopSDK::Models::PersonListResponse::Ad]
+      ) -> ::Array[WhopSDK::Models::PersonListResponse::Ad]
+
+      attr_reader aov: Float?
+
+      def aov=: (Float) -> Float
+
+      attr_reader campaigns: ::Array[WhopSDK::Models::PersonListResponse::Campaign]?
+
+      def campaigns=: (
+        ::Array[WhopSDK::Models::PersonListResponse::Campaign]
+      ) -> ::Array[WhopSDK::Models::PersonListResponse::Campaign]
+
+      attr_accessor email: String?
+
+      attr_reader has_failed_payment: bool?
+
+      def has_failed_payment=: (bool) -> bool
+
+      attr_reader ltv: Float?
+
+      def ltv=: (Float) -> Float
+
+      attr_accessor name: String?
+
+      attr_accessor phone: String?
+
+      def initialize: (
+        id: String,
+        account_id: String,
+        first_seen_at: Integer,
+        last_seen_at: Integer,
+        person_id: String,
+        purchase_count: Integer,
+        ?ad_sets: ::Array[WhopSDK::Models::PersonListResponse::AdSet],
+        ?ads: ::Array[WhopSDK::Models::PersonListResponse::Ad],
+        ?aov: Float,
+        ?campaigns: ::Array[WhopSDK::Models::PersonListResponse::Campaign],
+        ?email: String?,
+        ?has_failed_payment: bool,
+        ?ltv: Float,
+        ?name: String?,
+        ?phone: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        first_seen_at: Integer,
+        last_seen_at: Integer,
+        person_id: String,
+        purchase_count: Integer,
+        ad_sets: ::Array[WhopSDK::Models::PersonListResponse::AdSet],
+        ads: ::Array[WhopSDK::Models::PersonListResponse::Ad],
+        aov: Float,
+        campaigns: ::Array[WhopSDK::Models::PersonListResponse::Campaign],
+        email: String?,
+        has_failed_payment: bool,
+        ltv: Float,
+        name: String?,
+        phone: String?
+      }
+
+      type ad_set = { id: String, name: String?, thumbnail_url: String? }
+
+      class AdSet < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor thumbnail_url: String?
+
+        def initialize: (
+          id: String,
+          ?name: String?,
+          ?thumbnail_url: String?
+        ) -> void
+
+        def to_hash: -> { id: String, name: String?, thumbnail_url: String? }
+      end
+
+      type ad = { id: String, name: String?, thumbnail_url: String? }
+
+      class Ad < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor thumbnail_url: String?
+
+        def initialize: (
+          id: String,
+          ?name: String?,
+          ?thumbnail_url: String?
+        ) -> void
+
+        def to_hash: -> { id: String, name: String?, thumbnail_url: String? }
+      end
+
+      type campaign = { id: String, name: String?, thumbnail_url: String? }
+
+      class Campaign < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String?
+
+        attr_accessor thumbnail_url: String?
+
+        def initialize: (
+          id: String,
+          ?name: String?,
+          ?thumbnail_url: String?
+        ) -> void
+
+        def to_hash: -> { id: String, name: String?, thumbnail_url: String? }
+      end
+    end
+  end
+end

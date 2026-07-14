@@ -2,7 +2,15 @@
 
 module WhopSDK
   module Resources
-    # Apps
+    # An App is software you build on Whop. It can be a hosted web app served at
+    # `<route>.whop.app` or an API integration installed as an experience, and it
+    # belongs to the account that owns its credentials, settings, builds, and runtime
+    # logs.
+    #
+    # Use the Apps API to manage app configuration and, for hosted apps, read server
+    # runtime logs for console output, uncaught exceptions, and failed requests. Logs
+    # are retained for 7 days and can be filtered by build, level, time window, and
+    # message text.
     class Apps
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::AppCreateParams} for more details.
@@ -14,8 +22,9 @@ module WhopSDK
       #
       # - `developer:create_app`
       # - `developer:manage_api_key`
+      # - `developer:update_app`
       #
-      # @overload create(company_id:, name:, base_url: nil, icon: nil, redirect_uris: nil, request_options: {})
+      # @overload create(company_id:, name:, base_url: nil, icon: nil, redirect_uris: nil, route: nil, request_options: {})
       #
       # @param company_id [String] The unique identifier of the company to create the app for, starting with
       # 'biz\_'
@@ -27,6 +36,8 @@ module WhopSDK
       # @param icon [WhopSDK::Models::AppCreateParams::Icon, nil] The icon image for the app in PNG, JPEG, or GIF format.
       #
       # @param redirect_uris [Array<String>, nil] The whitelisted OAuth callback URLs that users are redirected to after authorizi
+      #
+      # @param route [String, nil] The unique subdomain route where the app's hosted web builds are served, such as
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -43,6 +54,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `developer:manage_api_key`
+      # - `developer:update_app`
       #
       # @overload retrieve(id, request_options: {})
       #
@@ -73,7 +85,7 @@ module WhopSDK
       # - `developer:update_app`
       # - `developer:manage_api_key`
       #
-      # @overload update(id, app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, oauth_client_type: nil, openapi_path: nil, redirect_uris: nil, required_scopes: nil, skills_path: nil, status: nil, request_options: {})
+      # @overload update(id, app_store_description: nil, app_type: nil, base_url: nil, dashboard_path: nil, description: nil, discover_path: nil, experience_path: nil, icon: nil, name: nil, oauth_client_type: nil, openapi_path: nil, redirect_uris: nil, required_scopes: nil, route: nil, secrets: nil, skills_path: nil, status: nil, request_options: {})
       #
       # @param id [String] The unique identifier of the app to update, starting with 'app\_'.
       #
@@ -102,6 +114,10 @@ module WhopSDK
       # @param redirect_uris [Array<String>, nil] The whitelisted OAuth callback URLs that users are redirected to after authorizi
       #
       # @param required_scopes [Array<Symbol, WhopSDK::Models::AppUpdateParams::RequiredScope>, nil] The permission scopes the app will request from users when they install it.
+      #
+      # @param route [String, nil] The unique subdomain route where the app's hosted web builds are served, such as
+      #
+      # @param secrets [Hash{Symbol=>Object}, nil] Secrets to add or overwrite on the app, as an object of string values (e.g. {"MA
       #
       # @param skills_path [String, nil] The URL path to the skills directory of the app, such as '/assets/skills/'.
       #
@@ -167,6 +183,50 @@ module WhopSDK
           query: query,
           page: WhopSDK::Internal::CursorPage,
           model: WhopSDK::Models::AppListResponse,
+          options: options
+        )
+      end
+
+      # Some parameter documentations has been truncated, see
+      # {WhopSDK::Models::AppLogsParams} for more details.
+      #
+      # Lists a hosted app's server runtime logs, most recent first: console output,
+      # uncaught exceptions, and failed-request summaries captured on whop.app hosting.
+      # Logs are retained for 7 days.
+      #
+      # @overload logs(id, after: nil, app_build_id: nil, before: nil, created_after: nil, created_before: nil, first: nil, level: nil, query: nil, request_options: {})
+      #
+      # @param id [String] The ID of the app, which will look like app\_******\*******.
+      #
+      # @param after [String] A cursor for fetching logs after a previous page.
+      #
+      # @param app_build_id [String] Only return logs from this build.
+      #
+      # @param before [String] A cursor for fetching logs before a later page.
+      #
+      # @param created_after [Time] Start of the time window as an ISO 8601 timestamp. Defaults to 7 days before cre
+      #
+      # @param created_before [Time] End of the time window as an ISO 8601 timestamp. Defaults to now.
+      #
+      # @param first [Integer] The number of log lines to return (max 500).
+      #
+      # @param level [Symbol, WhopSDK::Models::AppLogsParams::Level] Only return console lines of this level.
+      #
+      # @param query [String] Only return logs whose message contains this text (case-insensitive).
+      #
+      # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [WhopSDK::Models::AppLogsResponse]
+      #
+      # @see WhopSDK::Models::AppLogsParams
+      def logs(id, params = {})
+        parsed, options = WhopSDK::AppLogsParams.dump_request(params)
+        query = WhopSDK::Internal::Util.encode_query_params(parsed)
+        @client.request(
+          method: :get,
+          path: ["apps/%1$s/logs", id],
+          query: query,
+          model: WhopSDK::Models::AppLogsResponse,
           options: options
         )
       end

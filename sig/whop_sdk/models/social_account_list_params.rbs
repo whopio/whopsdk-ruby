@@ -1,0 +1,152 @@
+module WhopSDK
+  module Models
+    type social_account_list_params =
+      {
+        account_id: String,
+        after: String,
+        before: String,
+        direction: WhopSDK::Models::SocialAccountListParams::direction,
+        first: Integer,
+        last: Integer,
+        order: WhopSDK::Models::SocialAccountListParams::order,
+        platform: WhopSDK::Models::SocialAccountListParams::platform,
+        scopes: ::Array[WhopSDK::Models::SocialAccountListParams::scope],
+        user_id: String,
+        verified: bool
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class SocialAccountListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
+
+      attr_reader after: String?
+
+      def after=: (String) -> String
+
+      attr_reader before: String?
+
+      def before=: (String) -> String
+
+      attr_reader direction: WhopSDK::Models::SocialAccountListParams::direction?
+
+      def direction=: (
+        WhopSDK::Models::SocialAccountListParams::direction
+      ) -> WhopSDK::Models::SocialAccountListParams::direction
+
+      attr_reader first: Integer?
+
+      def first=: (Integer) -> Integer
+
+      attr_reader last: Integer?
+
+      def last=: (Integer) -> Integer
+
+      attr_reader order: WhopSDK::Models::SocialAccountListParams::order?
+
+      def order=: (
+        WhopSDK::Models::SocialAccountListParams::order
+      ) -> WhopSDK::Models::SocialAccountListParams::order
+
+      attr_reader platform: WhopSDK::Models::SocialAccountListParams::platform?
+
+      def platform=: (
+        WhopSDK::Models::SocialAccountListParams::platform
+      ) -> WhopSDK::Models::SocialAccountListParams::platform
+
+      attr_reader scopes: ::Array[WhopSDK::Models::SocialAccountListParams::scope]?
+
+      def scopes=: (
+        ::Array[WhopSDK::Models::SocialAccountListParams::scope]
+      ) -> ::Array[WhopSDK::Models::SocialAccountListParams::scope]
+
+      attr_reader user_id: String?
+
+      def user_id=: (String) -> String
+
+      attr_reader verified: bool?
+
+      def verified=: (bool) -> bool
+
+      def initialize: (
+        ?account_id: String,
+        ?after: String,
+        ?before: String,
+        ?direction: WhopSDK::Models::SocialAccountListParams::direction,
+        ?first: Integer,
+        ?last: Integer,
+        ?order: WhopSDK::Models::SocialAccountListParams::order,
+        ?platform: WhopSDK::Models::SocialAccountListParams::platform,
+        ?scopes: ::Array[WhopSDK::Models::SocialAccountListParams::scope],
+        ?user_id: String,
+        ?verified: bool,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        after: String,
+        before: String,
+        direction: WhopSDK::Models::SocialAccountListParams::direction,
+        first: Integer,
+        last: Integer,
+        order: WhopSDK::Models::SocialAccountListParams::order,
+        platform: WhopSDK::Models::SocialAccountListParams::platform,
+        scopes: ::Array[WhopSDK::Models::SocialAccountListParams::scope],
+        user_id: String,
+        verified: bool,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type direction = :asc | :desc
+
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC: :asc
+        DESC: :desc
+
+        def self?.values: -> ::Array[WhopSDK::Models::SocialAccountListParams::direction]
+      end
+
+      type order = :display_order | :created_at
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        DISPLAY_ORDER: :display_order
+        CREATED_AT: :created_at
+
+        def self?.values: -> ::Array[WhopSDK::Models::SocialAccountListParams::order]
+      end
+
+      type platform = :x | :instagram | :youtube | :tiktok | :facebook
+
+      module Platform
+        extend WhopSDK::Internal::Type::Enum
+
+        X: :x
+        INSTAGRAM: :instagram
+        YOUTUBE: :youtube
+        TIKTOK: :tiktok
+        FACEBOOK: :facebook
+
+        def self?.values: -> ::Array[WhopSDK::Models::SocialAccountListParams::platform]
+      end
+
+      type scope = :advertise
+
+      module Scope
+        extend WhopSDK::Internal::Type::Enum
+
+        ADVERTISE: :advertise
+
+        def self?.values: -> ::Array[WhopSDK::Models::SocialAccountListParams::scope]
+      end
+    end
+  end
+end

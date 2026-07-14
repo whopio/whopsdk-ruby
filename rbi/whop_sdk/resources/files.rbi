@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Files
     class Files
       # Create a new file record and receive a presigned URL for uploading content to
       # S3.

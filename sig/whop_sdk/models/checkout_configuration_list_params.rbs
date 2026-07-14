@@ -3,14 +3,13 @@ module WhopSDK
     type checkout_configuration_list_params =
       {
         company_id: String,
-        after: String?,
-        before: String?,
-        created_after: Time?,
-        created_before: Time?,
-        direction: WhopSDK::Models::direction?,
-        first: Integer?,
-        last: Integer?,
-        plan_id: String?
+        after: String,
+        created_after: Integer,
+        created_before: Integer,
+        direction: WhopSDK::Models::CheckoutConfigurationListParams::direction,
+        first: Integer,
+        order: WhopSDK::Models::CheckoutConfigurationListParams::order,
+        plan_id: String
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -20,47 +19,82 @@ module WhopSDK
 
       attr_accessor company_id: String
 
-      attr_accessor after: String?
+      attr_reader after: String?
 
-      attr_accessor before: String?
+      def after=: (String) -> String
 
-      attr_accessor created_after: Time?
+      attr_reader created_after: Integer?
 
-      attr_accessor created_before: Time?
+      def created_after=: (Integer) -> Integer
 
-      attr_accessor direction: WhopSDK::Models::direction?
+      attr_reader created_before: Integer?
 
-      attr_accessor first: Integer?
+      def created_before=: (Integer) -> Integer
 
-      attr_accessor last: Integer?
+      attr_reader direction: WhopSDK::Models::CheckoutConfigurationListParams::direction?
 
-      attr_accessor plan_id: String?
+      def direction=: (
+        WhopSDK::Models::CheckoutConfigurationListParams::direction
+      ) -> WhopSDK::Models::CheckoutConfigurationListParams::direction
+
+      attr_reader first: Integer?
+
+      def first=: (Integer) -> Integer
+
+      attr_reader order: WhopSDK::Models::CheckoutConfigurationListParams::order?
+
+      def order=: (
+        WhopSDK::Models::CheckoutConfigurationListParams::order
+      ) -> WhopSDK::Models::CheckoutConfigurationListParams::order
+
+      attr_reader plan_id: String?
+
+      def plan_id=: (String) -> String
 
       def initialize: (
         company_id: String,
-        ?after: String?,
-        ?before: String?,
-        ?created_after: Time?,
-        ?created_before: Time?,
-        ?direction: WhopSDK::Models::direction?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?plan_id: String?,
+        ?after: String,
+        ?created_after: Integer,
+        ?created_before: Integer,
+        ?direction: WhopSDK::Models::CheckoutConfigurationListParams::direction,
+        ?first: Integer,
+        ?order: WhopSDK::Models::CheckoutConfigurationListParams::order,
+        ?plan_id: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         company_id: String,
-        after: String?,
-        before: String?,
-        created_after: Time?,
-        created_before: Time?,
-        direction: WhopSDK::Models::direction?,
-        first: Integer?,
-        last: Integer?,
-        plan_id: String?,
+        after: String,
+        created_after: Integer,
+        created_before: Integer,
+        direction: WhopSDK::Models::CheckoutConfigurationListParams::direction,
+        first: Integer,
+        order: WhopSDK::Models::CheckoutConfigurationListParams::order,
+        plan_id: String,
         request_options: WhopSDK::RequestOptions
       }
+
+      type direction = :asc | :desc
+
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC: :asc
+        DESC: :desc
+
+        def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfigurationListParams::direction]
+      end
+
+      type order = :created_at
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        CREATED_AT: :created_at
+
+        def self?.values: -> ::Array[WhopSDK::Models::CheckoutConfigurationListParams::order]
+      end
     end
   end
 end

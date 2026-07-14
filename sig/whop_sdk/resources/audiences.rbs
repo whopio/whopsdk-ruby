@@ -1,0 +1,28 @@
+module WhopSDK
+  module Resources
+    class Audiences
+      def create: (
+        account_id: String,
+        column_mapping: WhopSDK::AudienceCreateParams::ColumnMapping,
+        file_id: String,
+        name: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Audience
+
+      def list: (
+        account_id: String,
+        ?after: String,
+        ?audience_id: String,
+        ?first: Integer,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Audience]
+
+      def delete: (
+        String audience_id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::AudienceDeleteResponse
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

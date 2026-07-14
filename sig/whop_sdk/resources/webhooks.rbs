@@ -41,7 +41,9 @@ module WhopSDK
         String payload,
         headers: ::Hash[String, String],
         ?key: String?
-      ) -> (WhopSDK::CourseLessonInteractionCompletedWebhookEvent
+      ) -> (WhopSDK::ChatMessageCreatedWebhookEvent
+      | WhopSDK::ChatReactionCreatedWebhookEvent
+      | WhopSDK::CourseLessonInteractionCompletedWebhookEvent
       | WhopSDK::DisputeCreatedWebhookEvent
       | WhopSDK::DisputeUpdatedWebhookEvent
       | WhopSDK::DisputeAlertCreatedWebhookEvent
@@ -58,9 +60,11 @@ module WhopSDK
       | WhopSDK::InvoicePaidWebhookEvent
       | WhopSDK::InvoicePastDueWebhookEvent
       | WhopSDK::InvoiceVoidedWebhookEvent
+      | WhopSDK::LedgerAccountFundsAvailableWebhookEvent
       | WhopSDK::MembershipActivatedWebhookEvent
       | WhopSDK::MembershipCancelAtPeriodEndChangedWebhookEvent
       | WhopSDK::MembershipDeactivatedWebhookEvent
+      | WhopSDK::MembershipTrialEndingSoonWebhookEvent
       | WhopSDK::PaymentCreatedWebhookEvent
       | WhopSDK::PaymentFailedWebhookEvent
       | WhopSDK::PaymentPendingWebhookEvent

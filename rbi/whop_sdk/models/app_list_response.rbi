@@ -68,6 +68,11 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :experience_path
 
+      # The full canonical URL where this app's hosted web build is served. Null if the
+      # app has not claimed a route.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :hosted_url
+
       # The icon image for this app, displayed on the app store, product pages,
       # checkout, and as the default icon for experiences using this app.
       sig { returns(T.nilable(WhopSDK::Models::AppListResponse::Icon)) }
@@ -95,6 +100,11 @@ module WhopSDK
       # 'https://myapp.apps.whop.com'). Null if no proxy domain is configured.
       sig { returns(T.nilable(String)) }
       attr_accessor :origin
+
+      # The unique subdomain route where this app's hosted web builds are served, such
+      # as 'myapp' for myapp.whop.app. Null if the app has not claimed a route.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :route
 
       # The URL path template for a specific view of this app, appended to the base
       # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
@@ -127,10 +137,12 @@ module WhopSDK
           discover_path: T.nilable(String),
           domain_id: String,
           experience_path: T.nilable(String),
+          hosted_url: T.nilable(String),
           icon: T.nilable(WhopSDK::Models::AppListResponse::Icon::OrHash),
           name: String,
           openapi_path: T.nilable(String),
           origin: T.nilable(String),
+          route: T.nilable(String),
           skills_path: T.nilable(String),
           status: WhopSDK::AppStatuses::OrSymbol,
           verified: T::Boolean
@@ -167,6 +179,9 @@ module WhopSDK
         # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
         # not configured.
         experience_path:,
+        # The full canonical URL where this app's hosted web build is served. Null if the
+        # app has not claimed a route.
+        hosted_url:,
         # The icon image for this app, displayed on the app store, product pages,
         # checkout, and as the default icon for experiences using this app.
         icon:,
@@ -180,6 +195,9 @@ module WhopSDK
         # The full origin URL for this app's proxied domain (e.g.,
         # 'https://myapp.apps.whop.com'). Null if no proxy domain is configured.
         origin:,
+        # The unique subdomain route where this app's hosted web builds are served, such
+        # as 'myapp' for myapp.whop.app. Null if the app has not claimed a route.
+        route:,
         # The URL path template for a specific view of this app, appended to the base
         # domain (e.g., '/experiences/[experienceId]'). Null if the specified view type is
         # not configured.
@@ -207,10 +225,12 @@ module WhopSDK
             discover_path: T.nilable(String),
             domain_id: String,
             experience_path: T.nilable(String),
+            hosted_url: T.nilable(String),
             icon: T.nilable(WhopSDK::Models::AppListResponse::Icon),
             name: String,
             openapi_path: T.nilable(String),
             origin: T.nilable(String),
+            route: T.nilable(String),
             skills_path: T.nilable(String),
             status: WhopSDK::AppStatuses::TaggedSymbol,
             verified: T::Boolean

@@ -1,29 +1,61 @@
 module WhopSDK
   module Resources
     class AdCampaigns
+      def create: (
+        objective: WhopSDK::Models::AdCampaignCreateParams::objective,
+        platform: WhopSDK::Models::AdCampaignCreateParams::platform,
+        title: String,
+        ?account_id: String,
+        ?bid_type: WhopSDK::Models::AdCampaignCreateParams::bid_type,
+        ?budget_amount: Float,
+        ?budget_optimization: WhopSDK::Models::AdCampaignCreateParams::budget_optimization,
+        ?budget_type: WhopSDK::Models::AdCampaignCreateParams::budget_type,
+        ?desired_cost_per_result: Float,
+        ?ends_at: String,
+        ?special_ad_categories: ::Array[WhopSDK::Models::AdCampaignCreateParams::special_ad_category],
+        ?starts_at: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::AdCampaign
+
       def retrieve: (
         String id,
+        ?stats_from: String,
+        ?stats_to: String,
+        ?time_zone: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::AdCampaign
 
       def update: (
         String id,
-        ?budget: Float?,
+        ?bid_type: WhopSDK::Models::AdCampaignUpdateParams::bid_type,
+        ?budget_amount: Float,
+        ?budget_optimization: WhopSDK::Models::AdCampaignUpdateParams::budget_optimization,
+        ?ends_at: String,
+        ?starts_at: String,
+        ?status: WhopSDK::Models::AdCampaignUpdateParams::status,
+        ?title: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::AdCampaign
 
       def list: (
-        ?after: String?,
-        ?before: String?,
-        ?company_id: String?,
-        ?created_after: Time?,
-        ?created_before: Time?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?query: String?,
-        ?status: WhopSDK::Models::ad_campaign_status?,
+        ?account_id: String,
+        ?after: String,
+        ?before: String,
+        ?created_after: String,
+        ?created_before: String,
+        ?direction: WhopSDK::Models::AdCampaignListParams::direction,
+        ?first: Integer,
+        ?last: Integer,
+        ?order: WhopSDK::Models::AdCampaignListParams::order,
+        ?query: String,
+        ?stats_from: String,
+        ?stats_to: String,
+        ?status: WhopSDK::Models::AdCampaignListParams::status,
+        ?time_zone: String,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::AdCampaignListResponse]
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::AdCampaign]
+
+      def delete: (String id, ?request_options: WhopSDK::request_opts) -> bool
 
       def pause: (
         String id,

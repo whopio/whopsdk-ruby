@@ -1,0 +1,162 @@
+module WhopSDK
+  module Models
+    type app_logs_response =
+      {
+        data: ::Array[WhopSDK::Models::AppLogsResponse::Data],
+        page_info: WhopSDK::Models::AppLogsResponse::PageInfo
+      }
+
+    class AppLogsResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor data: ::Array[WhopSDK::Models::AppLogsResponse::Data]
+
+      attr_accessor page_info: WhopSDK::Models::AppLogsResponse::PageInfo
+
+      def initialize: (
+        data: ::Array[WhopSDK::Models::AppLogsResponse::Data],
+        page_info: WhopSDK::Models::AppLogsResponse::PageInfo
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[WhopSDK::Models::AppLogsResponse::Data],
+        page_info: WhopSDK::Models::AppLogsResponse::PageInfo
+      }
+
+      type data =
+        {
+          app_build_id: String,
+          app_id: String,
+          created_at: Time,
+          level: String,
+          message: String,
+          request_id: String,
+          source: WhopSDK::Models::AppLogsResponse::Data::source,
+          cpu_time_ms: Integer,
+          outcome: String?,
+          request_method: String?,
+          request_path: String?,
+          response_status: Integer?,
+          stack: String?,
+          truncated: bool,
+          wall_time_ms: Integer
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor app_build_id: String
+
+        attr_accessor app_id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor level: String
+
+        attr_accessor message: String
+
+        attr_accessor request_id: String
+
+        attr_accessor source: WhopSDK::Models::AppLogsResponse::Data::source
+
+        attr_reader cpu_time_ms: Integer?
+
+        def cpu_time_ms=: (Integer) -> Integer
+
+        attr_accessor outcome: String?
+
+        attr_accessor request_method: String?
+
+        attr_accessor request_path: String?
+
+        attr_accessor response_status: Integer?
+
+        attr_accessor stack: String?
+
+        attr_reader truncated: bool?
+
+        def truncated=: (bool) -> bool
+
+        attr_reader wall_time_ms: Integer?
+
+        def wall_time_ms=: (Integer) -> Integer
+
+        def initialize: (
+          app_build_id: String,
+          app_id: String,
+          created_at: Time,
+          level: String,
+          message: String,
+          request_id: String,
+          source: WhopSDK::Models::AppLogsResponse::Data::source,
+          ?cpu_time_ms: Integer,
+          ?outcome: String?,
+          ?request_method: String?,
+          ?request_path: String?,
+          ?response_status: Integer?,
+          ?stack: String?,
+          ?truncated: bool,
+          ?wall_time_ms: Integer
+        ) -> void
+
+        def to_hash: -> {
+          app_build_id: String,
+          app_id: String,
+          created_at: Time,
+          level: String,
+          message: String,
+          request_id: String,
+          source: WhopSDK::Models::AppLogsResponse::Data::source,
+          cpu_time_ms: Integer,
+          outcome: String?,
+          request_method: String?,
+          request_path: String?,
+          response_status: Integer?,
+          stack: String?,
+          truncated: bool,
+          wall_time_ms: Integer
+        }
+
+        type source = :console | :exception | :request
+
+        module Source
+          extend WhopSDK::Internal::Type::Enum
+
+          CONSOLE: :console
+          EXCEPTION: :exception
+          REQUEST: :request
+
+          def self?.values: -> ::Array[WhopSDK::Models::AppLogsResponse::Data::source]
+        end
+      end
+
+      type page_info =
+        {
+          has_next_page: bool,
+          has_previous_page: bool,
+          end_cursor: String?,
+          start_cursor: String?
+        }
+
+      class PageInfo < WhopSDK::Internal::Type::BaseModel
+        attr_accessor has_next_page: bool
+
+        attr_accessor has_previous_page: bool
+
+        attr_accessor end_cursor: String?
+
+        attr_accessor start_cursor: String?
+
+        def initialize: (
+          has_next_page: bool,
+          has_previous_page: bool,
+          ?end_cursor: String?,
+          ?start_cursor: String?
+        ) -> void
+
+        def to_hash: -> {
+          has_next_page: bool,
+          has_previous_page: bool,
+          end_cursor: String?,
+          start_cursor: String?
+        }
+      end
+    end
+  end
+end

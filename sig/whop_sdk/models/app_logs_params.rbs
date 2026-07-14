@@ -1,0 +1,98 @@
+module WhopSDK
+  module Models
+    type app_logs_params =
+      {
+        id: String,
+        after: String,
+        app_build_id: String,
+        before: String,
+        created_after: Time,
+        created_before: Time,
+        first: Integer,
+        level: WhopSDK::Models::AppLogsParams::level,
+        query: String
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class AppLogsParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_reader after: String?
+
+      def after=: (String) -> String
+
+      attr_reader app_build_id: String?
+
+      def app_build_id=: (String) -> String
+
+      attr_reader before: String?
+
+      def before=: (String) -> String
+
+      attr_reader created_after: Time?
+
+      def created_after=: (Time) -> Time
+
+      attr_reader created_before: Time?
+
+      def created_before=: (Time) -> Time
+
+      attr_reader first: Integer?
+
+      def first=: (Integer) -> Integer
+
+      attr_reader level: WhopSDK::Models::AppLogsParams::level?
+
+      def level=: (
+        WhopSDK::Models::AppLogsParams::level
+      ) -> WhopSDK::Models::AppLogsParams::level
+
+      attr_reader query: String?
+
+      def query=: (String) -> String
+
+      def initialize: (
+        id: String,
+        ?after: String,
+        ?app_build_id: String,
+        ?before: String,
+        ?created_after: Time,
+        ?created_before: Time,
+        ?first: Integer,
+        ?level: WhopSDK::Models::AppLogsParams::level,
+        ?query: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        after: String,
+        app_build_id: String,
+        before: String,
+        created_after: Time,
+        created_before: Time,
+        first: Integer,
+        level: WhopSDK::Models::AppLogsParams::level,
+        query: String,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type level = :log | :debug | :info | :warn | :error
+
+      module Level
+        extend WhopSDK::Internal::Type::Enum
+
+        LOG: :log
+        DEBUG: :debug
+        INFO: :info
+        WARN: :warn
+        ERROR: :error
+
+        def self?.values: -> ::Array[WhopSDK::Models::AppLogsParams::level]
+      end
+    end
+  end
+end

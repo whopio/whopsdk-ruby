@@ -16,17 +16,12 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :affiliate_code
 
-      # Whether the checkout configuration allows promo codes. When false, the promo
-      # code input is hidden and promo codes are rejected.
-      sig { returns(T::Boolean) }
-      attr_accessor :allow_promo_codes
-
       # The ID of the company to use for the checkout configuration
       sig { returns(String) }
       attr_accessor :company_id
 
       # The available currencies on the platform
-      sig { returns(T.nilable(WhopSDK::Currency::TaggedSymbol)) }
+      sig { returns(T.nilable(WhopSDK::Currency::OrSymbol)) }
       attr_accessor :currency
 
       # The metadata to use for the checkout configuration
@@ -34,7 +29,7 @@ module WhopSDK
       attr_accessor :metadata
 
       # The mode of the checkout session.
-      sig { returns(WhopSDK::CheckoutModes::TaggedSymbol) }
+      sig { returns(WhopSDK::CheckoutModes::OrSymbol) }
       attr_accessor :mode
 
       # The explicit payment method configuration for the session, if any. This
@@ -84,7 +79,6 @@ module WhopSDK
         params(
           id: String,
           affiliate_code: T.nilable(String),
-          allow_promo_codes: T::Boolean,
           company_id: String,
           currency: T.nilable(WhopSDK::Currency::OrSymbol),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
@@ -103,9 +97,6 @@ module WhopSDK
         id:,
         # The affiliate code to use for the checkout configuration
         affiliate_code:,
-        # Whether the checkout configuration allows promo codes. When false, the promo
-        # code input is hidden and promo codes are rejected.
-        allow_promo_codes:,
         # The ID of the company to use for the checkout configuration
         company_id:,
         # The available currencies on the platform
@@ -133,11 +124,10 @@ module WhopSDK
           {
             id: String,
             affiliate_code: T.nilable(String),
-            allow_promo_codes: T::Boolean,
             company_id: String,
-            currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
+            currency: T.nilable(WhopSDK::Currency::OrSymbol),
             metadata: T.nilable(T::Hash[Symbol, T.anything]),
-            mode: WhopSDK::CheckoutModes::TaggedSymbol,
+            mode: WhopSDK::CheckoutModes::OrSymbol,
             payment_method_configuration:
               T.nilable(
                 WhopSDK::CheckoutConfiguration::PaymentMethodConfiguration
@@ -162,14 +152,14 @@ module WhopSDK
 
         # An array of payment method identifiers that are explicitly disabled. Only
         # applies if the include_platform_defaults is true.
-        sig { returns(T::Array[WhopSDK::PaymentMethodTypes::TaggedSymbol]) }
+        sig { returns(T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]) }
         attr_accessor :disabled
 
         # An array of payment method identifiers that are explicitly enabled. This means
         # these payment methods will be shown on checkout. Example use case is to only
         # enable a specific payment method like cashapp, or extending the platform
         # defaults with additional methods.
-        sig { returns(T::Array[WhopSDK::PaymentMethodTypes::TaggedSymbol]) }
+        sig { returns(T::Array[WhopSDK::PaymentMethodTypes::OrSymbol]) }
         attr_accessor :enabled
 
         # Whether Whop's platform default payment method enablement settings are included
@@ -207,8 +197,8 @@ module WhopSDK
         sig do
           override.returns(
             {
-              disabled: T::Array[WhopSDK::PaymentMethodTypes::TaggedSymbol],
-              enabled: T::Array[WhopSDK::PaymentMethodTypes::TaggedSymbol],
+              disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
+              enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
               include_platform_defaults: T::Boolean
             }
           )
@@ -235,18 +225,18 @@ module WhopSDK
         sig { returns(T::Boolean) }
         attr_accessor :adaptive_pricing_enabled
 
-        # The number of days between each recurring charge. Null for one-time plans. For
-        # example, 30 for monthly or 365 for annual billing.
+        # Number of days between recurring charges, such as 30 for monthly or 365 for
+        # annual. `null` for one-time plans.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :billing_period
 
         # The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
         # amounts on the plan are denominated in this currency.
-        sig { returns(WhopSDK::Currency::TaggedSymbol) }
+        sig { returns(WhopSDK::Currency::OrSymbol) }
         attr_accessor :currency
 
-        # The number of days until the membership expires (for expiration-based plans).
-        # For example, 365 for a one-year access pass.
+        # Access duration in days for expiration-based plans, such as 365 for a one-year
+        # pass.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :expiration_days
 
@@ -258,12 +248,12 @@ module WhopSDK
 
         # The billing model for this plan: 'renewal' for recurring subscriptions or
         # 'one_time' for single payments.
-        sig { returns(WhopSDK::PlanType::TaggedSymbol) }
+        sig { returns(WhopSDK::PlanType::OrSymbol) }
         attr_accessor :plan_type
 
-        # The method used to sell this plan: 'buy_now' for immediate purchase or
-        # 'waitlist' for waitlist-based access.
-        sig { returns(WhopSDK::ReleaseMethod::TaggedSymbol) }
+        # Sales method for this plan: `buy_now` for immediate purchase or `waitlist` for
+        # waitlist-based access.
+        sig { returns(WhopSDK::ReleaseMethod::OrSymbol) }
         attr_accessor :release_method
 
         # The recurring price charged every billing_period in the plan's base_currency
@@ -275,21 +265,20 @@ module WhopSDK
         sig do
           returns(
             T.nilable(
-              WhopSDK::CheckoutConfiguration::Plan::ThreeDSLevel::TaggedSymbol
+              WhopSDK::CheckoutConfiguration::Plan::ThreeDSLevel::OrSymbol
             )
           )
         end
         attr_accessor :three_ds_level
 
-        # The number of free trial days before the first charge on a renewal plan. Null if
-        # no trial is configured or the current user has already used a trial for this
-        # plan.
+        # Free trial days before first renewal charge. `null` if no trial is configured or
+        # the user has already used a trial for this plan.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :trial_period_days
 
         # Controls whether the plan is visible to customers. When set to 'hidden', the
         # plan is only accessible via direct link.
-        sig { returns(WhopSDK::Visibility::TaggedSymbol) }
+        sig { returns(WhopSDK::Visibility::OrSymbol) }
         attr_accessor :visibility
 
         # The plan to use for the checkout configuration
@@ -318,14 +307,14 @@ module WhopSDK
           # Whether the creator has turned on adaptive pricing for this plan. Raw setting —
           # does not check processor compatibility or feature flags.
           adaptive_pricing_enabled:,
-          # The number of days between each recurring charge. Null for one-time plans. For
-          # example, 30 for monthly or 365 for annual billing.
+          # Number of days between recurring charges, such as 30 for monthly or 365 for
+          # annual. `null` for one-time plans.
           billing_period:,
           # The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
           # amounts on the plan are denominated in this currency.
           currency:,
-          # The number of days until the membership expires (for expiration-based plans).
-          # For example, 365 for a one-year access pass.
+          # Access duration in days for expiration-based plans, such as 365 for a one-year
+          # pass.
           expiration_days:,
           # The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
           # For one-time plans, this is the full price. For renewal plans, this is charged
@@ -334,17 +323,16 @@ module WhopSDK
           # The billing model for this plan: 'renewal' for recurring subscriptions or
           # 'one_time' for single payments.
           plan_type:,
-          # The method used to sell this plan: 'buy_now' for immediate purchase or
-          # 'waitlist' for waitlist-based access.
+          # Sales method for this plan: `buy_now` for immediate purchase or `waitlist` for
+          # waitlist-based access.
           release_method:,
           # The recurring price charged every billing_period in the plan's base_currency
           # (e.g., 9.99 for $9.99/period). Zero for one-time plans.
           renewal_price:,
           # The 3D Secure behavior for a plan.
           three_ds_level:,
-          # The number of free trial days before the first charge on a renewal plan. Null if
-          # no trial is configured or the current user has already used a trial for this
-          # plan.
+          # Free trial days before first renewal charge. `null` if no trial is configured or
+          # the user has already used a trial for this plan.
           trial_period_days:,
           # Controls whether the plan is visible to customers. When set to 'hidden', the
           # plan is only accessible via direct link.
@@ -358,18 +346,18 @@ module WhopSDK
               id: String,
               adaptive_pricing_enabled: T::Boolean,
               billing_period: T.nilable(Integer),
-              currency: WhopSDK::Currency::TaggedSymbol,
+              currency: WhopSDK::Currency::OrSymbol,
               expiration_days: T.nilable(Integer),
               initial_price: Float,
-              plan_type: WhopSDK::PlanType::TaggedSymbol,
-              release_method: WhopSDK::ReleaseMethod::TaggedSymbol,
+              plan_type: WhopSDK::PlanType::OrSymbol,
+              release_method: WhopSDK::ReleaseMethod::OrSymbol,
               renewal_price: Float,
               three_ds_level:
                 T.nilable(
-                  WhopSDK::CheckoutConfiguration::Plan::ThreeDSLevel::TaggedSymbol
+                  WhopSDK::CheckoutConfiguration::Plan::ThreeDSLevel::OrSymbol
                 ),
               trial_period_days: T.nilable(Integer),
-              visibility: WhopSDK::Visibility::TaggedSymbol
+              visibility: WhopSDK::Visibility::OrSymbol
             }
           )
         end

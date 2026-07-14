@@ -1,0 +1,221 @@
+module WhopSDK
+  module Models
+    module Referrals
+      type business_leaderboard_response =
+        {
+          leaders: ::Array[WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Leader],
+          me: WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Me?
+        }
+
+      class BusinessLeaderboardResponse < WhopSDK::Internal::Type::BaseModel
+        attr_accessor leaders: ::Array[WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Leader]
+
+        attr_accessor me: WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Me?
+
+        def initialize: (
+          leaders: ::Array[WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Leader],
+          me: WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Me?
+        ) -> void
+
+        def to_hash: -> {
+          leaders: ::Array[WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Leader],
+          me: WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Me?
+        }
+
+        type leader =
+          {
+            first_referral_started_at: Time,
+            rank: Integer,
+            total_earnings_usd: String,
+            total_volume_usd: String,
+            user: WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Leader::User?
+          }
+
+        class Leader < WhopSDK::Internal::Type::BaseModel
+          attr_accessor first_referral_started_at: Time
+
+          attr_accessor rank: Integer
+
+          attr_accessor total_earnings_usd: String
+
+          attr_accessor total_volume_usd: String
+
+          attr_accessor user: WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Leader::User?
+
+          def initialize: (
+            first_referral_started_at: Time,
+            rank: Integer,
+            total_earnings_usd: String,
+            total_volume_usd: String,
+            user: WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Leader::User?
+          ) -> void
+
+          def to_hash: -> {
+            first_referral_started_at: Time,
+            rank: Integer,
+            total_earnings_usd: String,
+            total_volume_usd: String,
+            user: WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Leader::User?
+          }
+
+          type user =
+            {
+              city: String?,
+              country: String?,
+              id: String,
+              name: String?,
+              profile_picture: WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Leader::User::ProfilePicture,
+              username: String
+            }
+
+          class User < WhopSDK::Internal::Type::BaseModel
+            attr_accessor city: String?
+
+            attr_accessor country: String?
+
+            attr_reader id: String?
+
+            def id=: (String) -> String
+
+            attr_accessor name: String?
+
+            attr_reader profile_picture: WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Leader::User::ProfilePicture?
+
+            def profile_picture=: (
+              WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Leader::User::ProfilePicture
+            ) -> WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Leader::User::ProfilePicture
+
+            attr_reader username: String?
+
+            def username=: (String) -> String
+
+            def initialize: (
+              city: String?,
+              country: String?,
+              ?id: String,
+              ?name: String?,
+              ?profile_picture: WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Leader::User::ProfilePicture,
+              ?username: String
+            ) -> void
+
+            def to_hash: -> {
+              city: String?,
+              country: String?,
+              id: String,
+              name: String?,
+              profile_picture: WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Leader::User::ProfilePicture,
+              username: String
+            }
+
+            type profile_picture = { url: String }
+
+            class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+              attr_accessor url: String
+
+              def initialize: (url: String) -> void
+
+              def to_hash: -> { url: String }
+            end
+          end
+        end
+
+        type me =
+          {
+            first_referral_started_at: Time,
+            rank: Integer,
+            total_earnings_usd: String,
+            total_volume_usd: String,
+            user: WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Me::User?
+          }
+
+        class Me < WhopSDK::Internal::Type::BaseModel
+          attr_accessor first_referral_started_at: Time
+
+          attr_accessor rank: Integer
+
+          attr_accessor total_earnings_usd: String
+
+          attr_accessor total_volume_usd: String
+
+          attr_accessor user: WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Me::User?
+
+          def initialize: (
+            first_referral_started_at: Time,
+            rank: Integer,
+            total_earnings_usd: String,
+            total_volume_usd: String,
+            user: WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Me::User?
+          ) -> void
+
+          def to_hash: -> {
+            first_referral_started_at: Time,
+            rank: Integer,
+            total_earnings_usd: String,
+            total_volume_usd: String,
+            user: WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Me::User?
+          }
+
+          type user =
+            {
+              city: String?,
+              country: String?,
+              id: String,
+              name: String?,
+              profile_picture: WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Me::User::ProfilePicture,
+              username: String
+            }
+
+          class User < WhopSDK::Internal::Type::BaseModel
+            attr_accessor city: String?
+
+            attr_accessor country: String?
+
+            attr_reader id: String?
+
+            def id=: (String) -> String
+
+            attr_accessor name: String?
+
+            attr_reader profile_picture: WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Me::User::ProfilePicture?
+
+            def profile_picture=: (
+              WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Me::User::ProfilePicture
+            ) -> WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Me::User::ProfilePicture
+
+            attr_reader username: String?
+
+            def username=: (String) -> String
+
+            def initialize: (
+              city: String?,
+              country: String?,
+              ?id: String,
+              ?name: String?,
+              ?profile_picture: WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Me::User::ProfilePicture,
+              ?username: String
+            ) -> void
+
+            def to_hash: -> {
+              city: String?,
+              country: String?,
+              id: String,
+              name: String?,
+              profile_picture: WhopSDK::Models::Referrals::BusinessLeaderboardResponse::Me::User::ProfilePicture,
+              username: String
+            }
+
+            type profile_picture = { url: String }
+
+            class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+              attr_accessor url: String
+
+              def initialize: (url: String) -> void
+
+              def to_hash: -> { url: String }
+            end
+          end
+        end
+      end
+    end
+  end
+end

@@ -139,7 +139,7 @@ module WhopSDK
         required :id, String
 
         # @!attribute content_type
-        #   The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
+        #   Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
         #
         #   @return [String, nil]
         required :content_type, String, nil?: true
@@ -165,7 +165,7 @@ module WhopSDK
         #
         #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
         #
-        #   @param content_type [String, nil] The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
+        #   @param content_type [String, nil] Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
         #
         #   @param filename [String, nil] The original filename of the uploaded attachment, including its file extension.
         #
@@ -181,7 +181,7 @@ module WhopSDK
         required :id, String
 
         # @!attribute route
-        #   The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
+        #   URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
         #
         #   @return [String]
         required :route, String
@@ -193,14 +193,11 @@ module WhopSDK
         required :title, String
 
         # @!method initialize(id:, route:, title:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::ReviewRetrieveResponse::Company} for more details.
-        #
         #   The company that this review was written for.
         #
         #   @param id [String] The unique identifier for the company.
         #
-        #   @param route [String] The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
+        #   @param route [String] URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
         #
         #   @param title [String] The display name of the company shown to customers.
       end

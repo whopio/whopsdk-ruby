@@ -4,9 +4,9 @@ module WhopSDK
       def retrieve: (
         from: Time,
         to: Time,
-        ?ad_campaign_id: String?,
-        ?ad_group_id: String?,
-        ?ad_id: String?,
+        ?ad_campaign_ids: ::Array[String]?,
+        ?ad_group_ids: ::Array[String]?,
+        ?ad_ids: ::Array[String]?,
         ?breakdown: WhopSDK::Models::AdReportRetrieveParams::breakdown?,
         ?company_id: String?,
         ?currency: String?,

@@ -5,297 +5,226 @@ module WhopSDK
     class Plan < WhopSDK::Internal::Type::BaseModel
       OrHash = T.type_alias { T.any(WhopSDK::Plan, WhopSDK::Internal::AnyHash) }
 
-      # The unique identifier for the plan.
+      # Plan ID, prefixed `plan_`.
       sig { returns(String) }
       attr_accessor :id
 
-      # Whether the creator has turned on adaptive pricing for this plan. Raw setting —
-      # does not check processor compatibility or feature flags.
+      # Account that sells this plan; `null` for standalone invoice plans.
+      sig { returns(T.nilable(T.anything)) }
+      attr_accessor :account
+
+      # Whether this plan accepts local currency payments via adaptive pricing.
       sig { returns(T::Boolean) }
       attr_accessor :adaptive_pricing_enabled
 
-      # The number of days between each recurring charge. Null for one-time plans. For
-      # example, 30 for monthly or 365 for annual billing.
-      sig { returns(T.nilable(Integer)) }
+      # Recurring billing interval in days, such as 30 for monthly or 365 for annual.
+      # `null` for one-time plans.
+      sig { returns(T.nilable(Float)) }
       attr_accessor :billing_period
 
-      # Whether tax is collected on purchases of this plan, based on the company's tax
-      # configuration.
+      # Whether tax is collected on purchases of this plan.
       sig { returns(T::Boolean) }
       attr_accessor :collect_tax
 
-      # The company that sells this plan. Null for standalone invoice plans not linked
-      # to a company.
-      sig { returns(T.nilable(WhopSDK::Plan::Company)) }
-      attr_reader :company
-
-      sig { params(company: T.nilable(WhopSDK::Plan::Company::OrHash)).void }
-      attr_writer :company
-
-      # The datetime the plan was created.
-      sig { returns(Time) }
+      # When the plan was created, as an ISO 8601 timestamp.
+      sig { returns(String) }
       attr_accessor :created_at
 
-      # The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
-      # amounts on the plan are denominated in this currency.
-      sig { returns(WhopSDK::Currency::TaggedSymbol) }
+      # Three-letter ISO currency code for this plan's prices.
+      sig { returns(WhopSDK::Plan::Currency::TaggedSymbol) }
       attr_accessor :currency
 
-      # Custom input fields displayed on the checkout form that collect additional
-      # information from the buyer.
       sig { returns(T::Array[WhopSDK::Plan::CustomField]) }
       attr_accessor :custom_fields
 
-      # A text description of the plan visible to customers. Maximum 1000 characters.
-      # Null if no description is set.
+      # Customer-visible plan description.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      # The number of days until the membership expires (for expiration-based plans).
-      # For example, 365 for a one-year access pass.
-      sig { returns(T.nilable(Integer)) }
+      # Access duration in days for expiration-based plans.
+      sig { returns(T.nilable(Float)) }
       attr_accessor :expiration_days
 
-      # The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
-      # For one-time plans, this is the full price. For renewal plans, this is charged
-      # on top of the first renewal_price.
+      # Initial purchase price in plan currency.
       sig { returns(Float) }
       attr_accessor :initial_price
 
-      # Private notes visible only to the company owner and team members. Not shown to
-      # customers. Null if no notes have been added.
+      # Private notes visible only to authorized team members.
       sig { returns(T.nilable(String)) }
       attr_accessor :internal_notes
 
-      # The invoice this plan was generated for. Null if the plan was not created for a
-      # specific invoice.
-      sig { returns(T.nilable(WhopSDK::Plan::Invoice)) }
-      attr_reader :invoice
+      # Invoice this plan was generated for; `null` unless created for an invoice.
+      sig { returns(T.nilable(T.anything)) }
+      attr_accessor :invoice
 
-      sig { params(invoice: T.nilable(WhopSDK::Plan::Invoice::OrHash)).void }
-      attr_writer :invoice
-
-      # The number of users who currently hold an active membership through this plan.
-      # Only visible to authorized team members.
-      sig { returns(T.nilable(Integer)) }
+      # Active memberships through this plan, when visible to the requester.
+      sig { returns(T.nilable(Float)) }
       attr_accessor :member_count
 
-      # Custom key-value pairs stored on the plan. Included in webhook payloads for
-      # payment and membership events.
-      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      # Custom key-value pairs stored on the plan.
+      sig { returns(T.nilable(T.anything)) }
       attr_accessor :metadata
 
-      # The explicit payment method configuration specifying which payment methods are
-      # enabled or disabled for this plan. Null if the plan uses default settings.
-      sig { returns(T.nilable(WhopSDK::Plan::PaymentMethodConfiguration)) }
-      attr_reader :payment_method_configuration
+      # Payment method configuration (`enabled`, `disabled`,
+      # `include_platform_defaults`); `null` when plan uses default settings.
+      sig { returns(T.nilable(T.anything)) }
+      attr_accessor :payment_method_configuration
 
-      sig do
-        params(
-          payment_method_configuration:
-            T.nilable(WhopSDK::Plan::PaymentMethodConfiguration::OrHash)
-        ).void
-      end
-      attr_writer :payment_method_configuration
-
-      # The billing model for this plan: 'renewal' for recurring subscriptions or
-      # 'one_time' for single payments.
-      sig { returns(WhopSDK::PlanType::TaggedSymbol) }
+      # Billing model for this plan: `renewal` (recurring) or `one_time` (single
+      # payment).
+      sig { returns(WhopSDK::Plan::PlanType::TaggedSymbol) }
       attr_accessor :plan_type
 
-      # The product that this plan belongs to. Null for standalone one-off purchases not
-      # linked to a product.
-      sig { returns(T.nilable(WhopSDK::Plan::Product)) }
-      attr_reader :product
+      # Product this plan belongs to; `null` for standalone plans.
+      sig { returns(T.nilable(T.anything)) }
+      attr_accessor :product
 
-      sig { params(product: T.nilable(WhopSDK::Plan::Product::OrHash)).void }
-      attr_writer :product
-
-      # The full URL where customers can purchase this plan directly, bypassing the
-      # product page.
+      # URL where customers can purchase this plan directly.
       sig { returns(String) }
       attr_accessor :purchase_url
 
-      # The method used to sell this plan: 'buy_now' for immediate purchase or
-      # 'waitlist' for waitlist-based access.
-      sig { returns(WhopSDK::ReleaseMethod::TaggedSymbol) }
+      # Sales method for this plan, such as `buy_now` or `waitlist`.
+      sig { returns(WhopSDK::Plan::ReleaseMethod::TaggedSymbol) }
       attr_accessor :release_method
 
-      # The recurring price charged every billing_period in the plan's base_currency
-      # (e.g., 9.99 for $9.99/period). Zero for one-time plans.
+      # Recurring price charged every billing period.
       sig { returns(Float) }
       attr_accessor :renewal_price
 
-      # The total number of installment payments required before the subscription
-      # pauses. Null if split pay is not configured. Must be greater than 1.
-      sig { returns(T.nilable(Integer)) }
+      # Installment payments required before the subscription pauses.
+      sig { returns(T.nilable(Float)) }
       attr_accessor :split_pay_required_payments
 
-      # The number of units available for purchase. Only visible to authorized team
-      # members. Null if the requester lacks permission.
-      sig { returns(T.nilable(Integer)) }
+      # Units available for purchase, when visible to the requester.
+      sig { returns(T.nilable(Float)) }
       attr_accessor :stock
 
-      # How tax is handled for this plan: 'inclusive' (tax included in price),
-      # 'exclusive' (tax added at checkout), or 'unspecified' (tax not configured).
-      sig { returns(WhopSDK::TaxType::TaggedSymbol) }
+      # How tax is handled for this plan.
+      sig { returns(WhopSDK::Plan::TaxType::TaggedSymbol) }
       attr_accessor :tax_type
 
-      # The 3D Secure behavior for a plan.
+      # 3D Secure behavior for this plan; `null` inherits account default.
       sig { returns(T.nilable(WhopSDK::Plan::ThreeDSLevel::TaggedSymbol)) }
       attr_accessor :three_ds_level
 
-      # The display name of the plan shown to customers on the product page and at
-      # checkout. Maximum 30 characters. Null if no title has been set.
+      # Plan display name shown to customers.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
-      # The number of free trial days before the first charge on a renewal plan. Null if
-      # no trial is configured or the current user has already used a trial for this
-      # plan.
-      sig { returns(T.nilable(Integer)) }
+      # Free trial days before the first renewal charge. `null` if no trial is
+      # configured or the user has already used a trial for this plan.
+      sig { returns(T.nilable(Float)) }
       attr_accessor :trial_period_days
 
-      # When true, the plan has unlimited stock (stock field is ignored). When false,
-      # purchases are limited by the stock field.
+      # Whether the plan has unlimited stock.
       sig { returns(T::Boolean) }
       attr_accessor :unlimited_stock
 
-      # The datetime the plan was last updated.
-      sig { returns(Time) }
+      # When the plan was last updated, as an ISO 8601 timestamp.
+      sig { returns(String) }
       attr_accessor :updated_at
 
-      # Controls whether the plan is visible to customers. When set to 'hidden', the
-      # plan is only accessible via direct link.
-      sig { returns(WhopSDK::Visibility::TaggedSymbol) }
+      # Whether the plan is visible to customers or hidden from public view.
+      sig { returns(WhopSDK::Plan::Visibility::TaggedSymbol) }
       attr_accessor :visibility
 
-      # A plan defines pricing and billing terms for a checkout. Plans can optionally
-      # belong to a product, where they represent different pricing options such as
-      # one-time payments, recurring subscriptions, or free trials.
       sig do
         params(
           id: String,
+          account: T.nilable(T.anything),
           adaptive_pricing_enabled: T::Boolean,
-          billing_period: T.nilable(Integer),
+          billing_period: T.nilable(Float),
           collect_tax: T::Boolean,
-          company: T.nilable(WhopSDK::Plan::Company::OrHash),
-          created_at: Time,
-          currency: WhopSDK::Currency::OrSymbol,
+          created_at: String,
+          currency: WhopSDK::Plan::Currency::OrSymbol,
           custom_fields: T::Array[WhopSDK::Plan::CustomField::OrHash],
           description: T.nilable(String),
-          expiration_days: T.nilable(Integer),
+          expiration_days: T.nilable(Float),
           initial_price: Float,
           internal_notes: T.nilable(String),
-          invoice: T.nilable(WhopSDK::Plan::Invoice::OrHash),
-          member_count: T.nilable(Integer),
-          metadata: T.nilable(T::Hash[Symbol, T.anything]),
-          payment_method_configuration:
-            T.nilable(WhopSDK::Plan::PaymentMethodConfiguration::OrHash),
-          plan_type: WhopSDK::PlanType::OrSymbol,
-          product: T.nilable(WhopSDK::Plan::Product::OrHash),
+          invoice: T.nilable(T.anything),
+          member_count: T.nilable(Float),
+          metadata: T.nilable(T.anything),
+          payment_method_configuration: T.nilable(T.anything),
+          plan_type: WhopSDK::Plan::PlanType::OrSymbol,
+          product: T.nilable(T.anything),
           purchase_url: String,
-          release_method: WhopSDK::ReleaseMethod::OrSymbol,
+          release_method: WhopSDK::Plan::ReleaseMethod::OrSymbol,
           renewal_price: Float,
-          split_pay_required_payments: T.nilable(Integer),
-          stock: T.nilable(Integer),
-          tax_type: WhopSDK::TaxType::OrSymbol,
+          split_pay_required_payments: T.nilable(Float),
+          stock: T.nilable(Float),
+          tax_type: WhopSDK::Plan::TaxType::OrSymbol,
           three_ds_level: T.nilable(WhopSDK::Plan::ThreeDSLevel::OrSymbol),
           title: T.nilable(String),
-          trial_period_days: T.nilable(Integer),
+          trial_period_days: T.nilable(Float),
           unlimited_stock: T::Boolean,
-          updated_at: Time,
-          visibility: WhopSDK::Visibility::OrSymbol
+          updated_at: String,
+          visibility: WhopSDK::Plan::Visibility::OrSymbol
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier for the plan.
+        # Plan ID, prefixed `plan_`.
         id:,
-        # Whether the creator has turned on adaptive pricing for this plan. Raw setting —
-        # does not check processor compatibility or feature flags.
+        # Account that sells this plan; `null` for standalone invoice plans.
+        account:,
+        # Whether this plan accepts local currency payments via adaptive pricing.
         adaptive_pricing_enabled:,
-        # The number of days between each recurring charge. Null for one-time plans. For
-        # example, 30 for monthly or 365 for annual billing.
+        # Recurring billing interval in days, such as 30 for monthly or 365 for annual.
+        # `null` for one-time plans.
         billing_period:,
-        # Whether tax is collected on purchases of this plan, based on the company's tax
-        # configuration.
+        # Whether tax is collected on purchases of this plan.
         collect_tax:,
-        # The company that sells this plan. Null for standalone invoice plans not linked
-        # to a company.
-        company:,
-        # The datetime the plan was created.
+        # When the plan was created, as an ISO 8601 timestamp.
         created_at:,
-        # The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
-        # amounts on the plan are denominated in this currency.
+        # Three-letter ISO currency code for this plan's prices.
         currency:,
-        # Custom input fields displayed on the checkout form that collect additional
-        # information from the buyer.
         custom_fields:,
-        # A text description of the plan visible to customers. Maximum 1000 characters.
-        # Null if no description is set.
+        # Customer-visible plan description.
         description:,
-        # The number of days until the membership expires (for expiration-based plans).
-        # For example, 365 for a one-year access pass.
+        # Access duration in days for expiration-based plans.
         expiration_days:,
-        # The initial purchase price in the plan's base_currency (e.g., 49.99 for $49.99).
-        # For one-time plans, this is the full price. For renewal plans, this is charged
-        # on top of the first renewal_price.
+        # Initial purchase price in plan currency.
         initial_price:,
-        # Private notes visible only to the company owner and team members. Not shown to
-        # customers. Null if no notes have been added.
+        # Private notes visible only to authorized team members.
         internal_notes:,
-        # The invoice this plan was generated for. Null if the plan was not created for a
-        # specific invoice.
+        # Invoice this plan was generated for; `null` unless created for an invoice.
         invoice:,
-        # The number of users who currently hold an active membership through this plan.
-        # Only visible to authorized team members.
+        # Active memberships through this plan, when visible to the requester.
         member_count:,
-        # Custom key-value pairs stored on the plan. Included in webhook payloads for
-        # payment and membership events.
+        # Custom key-value pairs stored on the plan.
         metadata:,
-        # The explicit payment method configuration specifying which payment methods are
-        # enabled or disabled for this plan. Null if the plan uses default settings.
+        # Payment method configuration (`enabled`, `disabled`,
+        # `include_platform_defaults`); `null` when plan uses default settings.
         payment_method_configuration:,
-        # The billing model for this plan: 'renewal' for recurring subscriptions or
-        # 'one_time' for single payments.
+        # Billing model for this plan: `renewal` (recurring) or `one_time` (single
+        # payment).
         plan_type:,
-        # The product that this plan belongs to. Null for standalone one-off purchases not
-        # linked to a product.
+        # Product this plan belongs to; `null` for standalone plans.
         product:,
-        # The full URL where customers can purchase this plan directly, bypassing the
-        # product page.
+        # URL where customers can purchase this plan directly.
         purchase_url:,
-        # The method used to sell this plan: 'buy_now' for immediate purchase or
-        # 'waitlist' for waitlist-based access.
+        # Sales method for this plan, such as `buy_now` or `waitlist`.
         release_method:,
-        # The recurring price charged every billing_period in the plan's base_currency
-        # (e.g., 9.99 for $9.99/period). Zero for one-time plans.
+        # Recurring price charged every billing period.
         renewal_price:,
-        # The total number of installment payments required before the subscription
-        # pauses. Null if split pay is not configured. Must be greater than 1.
+        # Installment payments required before the subscription pauses.
         split_pay_required_payments:,
-        # The number of units available for purchase. Only visible to authorized team
-        # members. Null if the requester lacks permission.
+        # Units available for purchase, when visible to the requester.
         stock:,
-        # How tax is handled for this plan: 'inclusive' (tax included in price),
-        # 'exclusive' (tax added at checkout), or 'unspecified' (tax not configured).
+        # How tax is handled for this plan.
         tax_type:,
-        # The 3D Secure behavior for a plan.
+        # 3D Secure behavior for this plan; `null` inherits account default.
         three_ds_level:,
-        # The display name of the plan shown to customers on the product page and at
-        # checkout. Maximum 30 characters. Null if no title has been set.
+        # Plan display name shown to customers.
         title:,
-        # The number of free trial days before the first charge on a renewal plan. Null if
-        # no trial is configured or the current user has already used a trial for this
-        # plan.
+        # Free trial days before the first renewal charge. `null` if no trial is
+        # configured or the user has already used a trial for this plan.
         trial_period_days:,
-        # When true, the plan has unlimited stock (stock field is ignored). When false,
-        # purchases are limited by the stock field.
+        # Whether the plan has unlimited stock.
         unlimited_stock:,
-        # The datetime the plan was last updated.
+        # When the plan was last updated, as an ISO 8601 timestamp.
         updated_at:,
-        # Controls whether the plan is visible to customers. When set to 'hidden', the
-        # plan is only accessible via direct link.
+        # Whether the plan is visible to customers or hidden from public view.
         visibility:
       )
       end
@@ -304,70 +233,144 @@ module WhopSDK
         override.returns(
           {
             id: String,
+            account: T.nilable(T.anything),
             adaptive_pricing_enabled: T::Boolean,
-            billing_period: T.nilable(Integer),
+            billing_period: T.nilable(Float),
             collect_tax: T::Boolean,
-            company: T.nilable(WhopSDK::Plan::Company),
-            created_at: Time,
-            currency: WhopSDK::Currency::TaggedSymbol,
+            created_at: String,
+            currency: WhopSDK::Plan::Currency::TaggedSymbol,
             custom_fields: T::Array[WhopSDK::Plan::CustomField],
             description: T.nilable(String),
-            expiration_days: T.nilable(Integer),
+            expiration_days: T.nilable(Float),
             initial_price: Float,
             internal_notes: T.nilable(String),
-            invoice: T.nilable(WhopSDK::Plan::Invoice),
-            member_count: T.nilable(Integer),
-            metadata: T.nilable(T::Hash[Symbol, T.anything]),
-            payment_method_configuration:
-              T.nilable(WhopSDK::Plan::PaymentMethodConfiguration),
-            plan_type: WhopSDK::PlanType::TaggedSymbol,
-            product: T.nilable(WhopSDK::Plan::Product),
+            invoice: T.nilable(T.anything),
+            member_count: T.nilable(Float),
+            metadata: T.nilable(T.anything),
+            payment_method_configuration: T.nilable(T.anything),
+            plan_type: WhopSDK::Plan::PlanType::TaggedSymbol,
+            product: T.nilable(T.anything),
             purchase_url: String,
-            release_method: WhopSDK::ReleaseMethod::TaggedSymbol,
+            release_method: WhopSDK::Plan::ReleaseMethod::TaggedSymbol,
             renewal_price: Float,
-            split_pay_required_payments: T.nilable(Integer),
-            stock: T.nilable(Integer),
-            tax_type: WhopSDK::TaxType::TaggedSymbol,
+            split_pay_required_payments: T.nilable(Float),
+            stock: T.nilable(Float),
+            tax_type: WhopSDK::Plan::TaxType::TaggedSymbol,
             three_ds_level:
               T.nilable(WhopSDK::Plan::ThreeDSLevel::TaggedSymbol),
             title: T.nilable(String),
-            trial_period_days: T.nilable(Integer),
+            trial_period_days: T.nilable(Float),
             unlimited_stock: T::Boolean,
-            updated_at: Time,
-            visibility: WhopSDK::Visibility::TaggedSymbol
+            updated_at: String,
+            visibility: WhopSDK::Plan::Visibility::TaggedSymbol
           }
         )
       end
       def to_hash
       end
 
-      class Company < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(WhopSDK::Plan::Company, WhopSDK::Internal::AnyHash)
-          end
+      # Three-letter ISO currency code for this plan's prices.
+      module Currency
+        extend WhopSDK::Internal::Type::Enum
 
-        # The unique identifier for the company.
-        sig { returns(String) }
-        attr_accessor :id
+        TaggedSymbol = T.type_alias { T.all(Symbol, WhopSDK::Plan::Currency) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # The display name of the company shown to customers.
-        sig { returns(String) }
-        attr_accessor :title
+        USD = T.let(:usd, WhopSDK::Plan::Currency::TaggedSymbol)
+        SGD = T.let(:sgd, WhopSDK::Plan::Currency::TaggedSymbol)
+        INR = T.let(:inr, WhopSDK::Plan::Currency::TaggedSymbol)
+        AUD = T.let(:aud, WhopSDK::Plan::Currency::TaggedSymbol)
+        BRL = T.let(:brl, WhopSDK::Plan::Currency::TaggedSymbol)
+        CAD = T.let(:cad, WhopSDK::Plan::Currency::TaggedSymbol)
+        DKK = T.let(:dkk, WhopSDK::Plan::Currency::TaggedSymbol)
+        EUR = T.let(:eur, WhopSDK::Plan::Currency::TaggedSymbol)
+        NOK = T.let(:nok, WhopSDK::Plan::Currency::TaggedSymbol)
+        GBP = T.let(:gbp, WhopSDK::Plan::Currency::TaggedSymbol)
+        SEK = T.let(:sek, WhopSDK::Plan::Currency::TaggedSymbol)
+        CHF = T.let(:chf, WhopSDK::Plan::Currency::TaggedSymbol)
+        HKD = T.let(:hkd, WhopSDK::Plan::Currency::TaggedSymbol)
+        HUF = T.let(:huf, WhopSDK::Plan::Currency::TaggedSymbol)
+        JPY = T.let(:jpy, WhopSDK::Plan::Currency::TaggedSymbol)
+        MXN = T.let(:mxn, WhopSDK::Plan::Currency::TaggedSymbol)
+        MYR = T.let(:myr, WhopSDK::Plan::Currency::TaggedSymbol)
+        PLN = T.let(:pln, WhopSDK::Plan::Currency::TaggedSymbol)
+        CZK = T.let(:czk, WhopSDK::Plan::Currency::TaggedSymbol)
+        NZD = T.let(:nzd, WhopSDK::Plan::Currency::TaggedSymbol)
+        AED = T.let(:aed, WhopSDK::Plan::Currency::TaggedSymbol)
+        ETH = T.let(:eth, WhopSDK::Plan::Currency::TaggedSymbol)
+        APE = T.let(:ape, WhopSDK::Plan::Currency::TaggedSymbol)
+        COP = T.let(:cop, WhopSDK::Plan::Currency::TaggedSymbol)
+        RON = T.let(:ron, WhopSDK::Plan::Currency::TaggedSymbol)
+        THB = T.let(:thb, WhopSDK::Plan::Currency::TaggedSymbol)
+        BGN = T.let(:bgn, WhopSDK::Plan::Currency::TaggedSymbol)
+        IDR = T.let(:idr, WhopSDK::Plan::Currency::TaggedSymbol)
+        DOP = T.let(:dop, WhopSDK::Plan::Currency::TaggedSymbol)
+        PHP = T.let(:php, WhopSDK::Plan::Currency::TaggedSymbol)
+        TRY = T.let(:try, WhopSDK::Plan::Currency::TaggedSymbol)
+        KRW = T.let(:krw, WhopSDK::Plan::Currency::TaggedSymbol)
+        TWD = T.let(:twd, WhopSDK::Plan::Currency::TaggedSymbol)
+        VND = T.let(:vnd, WhopSDK::Plan::Currency::TaggedSymbol)
+        PKR = T.let(:pkr, WhopSDK::Plan::Currency::TaggedSymbol)
+        CLP = T.let(:clp, WhopSDK::Plan::Currency::TaggedSymbol)
+        UYU = T.let(:uyu, WhopSDK::Plan::Currency::TaggedSymbol)
+        ARS = T.let(:ars, WhopSDK::Plan::Currency::TaggedSymbol)
+        ZAR = T.let(:zar, WhopSDK::Plan::Currency::TaggedSymbol)
+        DZD = T.let(:dzd, WhopSDK::Plan::Currency::TaggedSymbol)
+        TND = T.let(:tnd, WhopSDK::Plan::Currency::TaggedSymbol)
+        MAD = T.let(:mad, WhopSDK::Plan::Currency::TaggedSymbol)
+        KES = T.let(:kes, WhopSDK::Plan::Currency::TaggedSymbol)
+        KWD = T.let(:kwd, WhopSDK::Plan::Currency::TaggedSymbol)
+        JOD = T.let(:jod, WhopSDK::Plan::Currency::TaggedSymbol)
+        ALL = T.let(:all, WhopSDK::Plan::Currency::TaggedSymbol)
+        XCD = T.let(:xcd, WhopSDK::Plan::Currency::TaggedSymbol)
+        AMD = T.let(:amd, WhopSDK::Plan::Currency::TaggedSymbol)
+        BSD = T.let(:bsd, WhopSDK::Plan::Currency::TaggedSymbol)
+        BHD = T.let(:bhd, WhopSDK::Plan::Currency::TaggedSymbol)
+        BOB = T.let(:bob, WhopSDK::Plan::Currency::TaggedSymbol)
+        BAM = T.let(:bam, WhopSDK::Plan::Currency::TaggedSymbol)
+        KHR = T.let(:khr, WhopSDK::Plan::Currency::TaggedSymbol)
+        CRC = T.let(:crc, WhopSDK::Plan::Currency::TaggedSymbol)
+        XOF = T.let(:xof, WhopSDK::Plan::Currency::TaggedSymbol)
+        EGP = T.let(:egp, WhopSDK::Plan::Currency::TaggedSymbol)
+        ETB = T.let(:etb, WhopSDK::Plan::Currency::TaggedSymbol)
+        GMD = T.let(:gmd, WhopSDK::Plan::Currency::TaggedSymbol)
+        GHS = T.let(:ghs, WhopSDK::Plan::Currency::TaggedSymbol)
+        GTQ = T.let(:gtq, WhopSDK::Plan::Currency::TaggedSymbol)
+        GYD = T.let(:gyd, WhopSDK::Plan::Currency::TaggedSymbol)
+        ILS = T.let(:ils, WhopSDK::Plan::Currency::TaggedSymbol)
+        JMD = T.let(:jmd, WhopSDK::Plan::Currency::TaggedSymbol)
+        MOP = T.let(:mop, WhopSDK::Plan::Currency::TaggedSymbol)
+        MGA = T.let(:mga, WhopSDK::Plan::Currency::TaggedSymbol)
+        MUR = T.let(:mur, WhopSDK::Plan::Currency::TaggedSymbol)
+        MDL = T.let(:mdl, WhopSDK::Plan::Currency::TaggedSymbol)
+        MNT = T.let(:mnt, WhopSDK::Plan::Currency::TaggedSymbol)
+        NAD = T.let(:nad, WhopSDK::Plan::Currency::TaggedSymbol)
+        NGN = T.let(:ngn, WhopSDK::Plan::Currency::TaggedSymbol)
+        MKD = T.let(:mkd, WhopSDK::Plan::Currency::TaggedSymbol)
+        OMR = T.let(:omr, WhopSDK::Plan::Currency::TaggedSymbol)
+        PYG = T.let(:pyg, WhopSDK::Plan::Currency::TaggedSymbol)
+        PEN = T.let(:pen, WhopSDK::Plan::Currency::TaggedSymbol)
+        QAR = T.let(:qar, WhopSDK::Plan::Currency::TaggedSymbol)
+        RWF = T.let(:rwf, WhopSDK::Plan::Currency::TaggedSymbol)
+        SAR = T.let(:sar, WhopSDK::Plan::Currency::TaggedSymbol)
+        RSD = T.let(:rsd, WhopSDK::Plan::Currency::TaggedSymbol)
+        LKR = T.let(:lkr, WhopSDK::Plan::Currency::TaggedSymbol)
+        TZS = T.let(:tzs, WhopSDK::Plan::Currency::TaggedSymbol)
+        TTD = T.let(:ttd, WhopSDK::Plan::Currency::TaggedSymbol)
+        UZS = T.let(:uzs, WhopSDK::Plan::Currency::TaggedSymbol)
+        RUB = T.let(:rub, WhopSDK::Plan::Currency::TaggedSymbol)
+        BTC = T.let(:btc, WhopSDK::Plan::Currency::TaggedSymbol)
+        CNY = T.let(:cny, WhopSDK::Plan::Currency::TaggedSymbol)
+        USDT = T.let(:usdt, WhopSDK::Plan::Currency::TaggedSymbol)
+        KZT = T.let(:kzt, WhopSDK::Plan::Currency::TaggedSymbol)
+        AWG = T.let(:awg, WhopSDK::Plan::Currency::TaggedSymbol)
+        WHOP_USD = T.let(:whop_usd, WhopSDK::Plan::Currency::TaggedSymbol)
+        XAU = T.let(:xau, WhopSDK::Plan::Currency::TaggedSymbol)
 
-        # The company that sells this plan. Null for standalone invoice plans not linked
-        # to a company.
-        sig { params(id: String, title: String).returns(T.attached_class) }
-        def self.new(
-          # The unique identifier for the company.
-          id:,
-          # The display name of the company shown to customers.
-          title:
-        )
+        sig do
+          override.returns(T::Array[WhopSDK::Plan::Currency::TaggedSymbol])
         end
-
-        sig { override.returns({ id: String, title: String }) }
-        def to_hash
+        def self.values
         end
       end
 
@@ -377,54 +380,54 @@ module WhopSDK
             T.any(WhopSDK::Plan::CustomField, WhopSDK::Internal::AnyHash)
           end
 
-        # The unique identifier for the custom field.
+        # Custom field ID.
         sig { returns(String) }
         attr_accessor :id
 
-        # What type of input field to use.
-        sig { returns(Symbol) }
+        # Custom field input type.
+        sig { returns(WhopSDK::Plan::CustomField::FieldType::TaggedSymbol) }
         attr_accessor :field_type
 
-        # The title/header of the custom field.
+        # Field label shown to customer at checkout.
         sig { returns(String) }
         attr_accessor :name
 
-        # How the custom field should be ordered when rendered on the checkout page.
-        sig { returns(T.nilable(Integer)) }
+        # Field position on checkout form.
+        sig { returns(Float) }
         attr_accessor :order
 
-        # An example response displayed in the input field.
+        # Placeholder text shown in empty field.
         sig { returns(T.nilable(String)) }
         attr_accessor :placeholder
 
-        # Whether or not the custom field is required.
+        # Whether the customer must complete this field to check out.
         sig { returns(T::Boolean) }
         attr_accessor :required
 
-        # An object representing a custom field for a plan.
+        # Custom input fields collected on the checkout form.
         sig do
           params(
             id: String,
+            field_type: WhopSDK::Plan::CustomField::FieldType::OrSymbol,
             name: String,
-            order: T.nilable(Integer),
+            order: Float,
             placeholder: T.nilable(String),
-            required: T::Boolean,
-            field_type: Symbol
+            required: T::Boolean
           ).returns(T.attached_class)
         end
         def self.new(
-          # The unique identifier for the custom field.
+          # Custom field ID.
           id:,
-          # The title/header of the custom field.
+          # Custom field input type.
+          field_type:,
+          # Field label shown to customer at checkout.
           name:,
-          # How the custom field should be ordered when rendered on the checkout page.
+          # Field position on checkout form.
           order:,
-          # An example response displayed in the input field.
+          # Placeholder text shown in empty field.
           placeholder:,
-          # Whether or not the custom field is required.
-          required:,
-          # What type of input field to use.
-          field_type: :text
+          # Whether the customer must complete this field to check out.
+          required:
         )
         end
 
@@ -432,9 +435,9 @@ module WhopSDK
           override.returns(
             {
               id: String,
-              field_type: Symbol,
+              field_type: WhopSDK::Plan::CustomField::FieldType::TaggedSymbol,
               name: String,
-              order: T.nilable(Integer),
+              order: Float,
               placeholder: T.nilable(String),
               required: T::Boolean
             }
@@ -442,130 +445,83 @@ module WhopSDK
         end
         def to_hash
         end
-      end
 
-      class Invoice < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(WhopSDK::Plan::Invoice, WhopSDK::Internal::AnyHash)
-          end
+        # Custom field input type.
+        module FieldType
+          extend WhopSDK::Internal::Type::Enum
 
-        # The unique identifier for the invoice.
-        sig { returns(String) }
-        attr_accessor :id
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, WhopSDK::Plan::CustomField::FieldType)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # The invoice this plan was generated for. Null if the plan was not created for a
-        # specific invoice.
-        sig { params(id: String).returns(T.attached_class) }
-        def self.new(
-          # The unique identifier for the invoice.
-          id:
-        )
-        end
+          TEXT =
+            T.let(:text, WhopSDK::Plan::CustomField::FieldType::TaggedSymbol)
 
-        sig { override.returns({ id: String }) }
-        def to_hash
-        end
-      end
-
-      class PaymentMethodConfiguration < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(
-              WhopSDK::Plan::PaymentMethodConfiguration,
-              WhopSDK::Internal::AnyHash
+          sig do
+            override.returns(
+              T::Array[WhopSDK::Plan::CustomField::FieldType::TaggedSymbol]
             )
           end
-
-        # An array of payment method identifiers that are explicitly disabled. Only
-        # applies if the include_platform_defaults is true.
-        sig { returns(T::Array[WhopSDK::PaymentMethodTypes::TaggedSymbol]) }
-        attr_accessor :disabled
-
-        # An array of payment method identifiers that are explicitly enabled. This means
-        # these payment methods will be shown on checkout. Example use case is to only
-        # enable a specific payment method like cashapp, or extending the platform
-        # defaults with additional methods.
-        sig { returns(T::Array[WhopSDK::PaymentMethodTypes::TaggedSymbol]) }
-        attr_accessor :enabled
-
-        # Whether Whop's platform default payment method enablement settings are included
-        # in this configuration. The full list of default payment methods can be found in
-        # the documentation at docs.whop.com/payments.
-        sig { returns(T::Boolean) }
-        attr_accessor :include_platform_defaults
-
-        # The explicit payment method configuration specifying which payment methods are
-        # enabled or disabled for this plan. Null if the plan uses default settings.
-        sig do
-          params(
-            disabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
-            enabled: T::Array[WhopSDK::PaymentMethodTypes::OrSymbol],
-            include_platform_defaults: T::Boolean
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # An array of payment method identifiers that are explicitly disabled. Only
-          # applies if the include_platform_defaults is true.
-          disabled:,
-          # An array of payment method identifiers that are explicitly enabled. This means
-          # these payment methods will be shown on checkout. Example use case is to only
-          # enable a specific payment method like cashapp, or extending the platform
-          # defaults with additional methods.
-          enabled:,
-          # Whether Whop's platform default payment method enablement settings are included
-          # in this configuration. The full list of default payment methods can be found in
-          # the documentation at docs.whop.com/payments.
-          include_platform_defaults:
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              disabled: T::Array[WhopSDK::PaymentMethodTypes::TaggedSymbol],
-              enabled: T::Array[WhopSDK::PaymentMethodTypes::TaggedSymbol],
-              include_platform_defaults: T::Boolean
-            }
-          )
-        end
-        def to_hash
-        end
-      end
-
-      class Product < WhopSDK::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(WhopSDK::Plan::Product, WhopSDK::Internal::AnyHash)
+          def self.values
           end
-
-        # The unique identifier for the product.
-        sig { returns(String) }
-        attr_accessor :id
-
-        # The display name of the product shown to customers on the product page and in
-        # search results.
-        sig { returns(String) }
-        attr_accessor :title
-
-        # The product that this plan belongs to. Null for standalone one-off purchases not
-        # linked to a product.
-        sig { params(id: String, title: String).returns(T.attached_class) }
-        def self.new(
-          # The unique identifier for the product.
-          id:,
-          # The display name of the product shown to customers on the product page and in
-          # search results.
-          title:
-        )
-        end
-
-        sig { override.returns({ id: String, title: String }) }
-        def to_hash
         end
       end
 
-      # The 3D Secure behavior for a plan.
+      # Billing model for this plan: `renewal` (recurring) or `one_time` (single
+      # payment).
+      module PlanType
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol = T.type_alias { T.all(Symbol, WhopSDK::Plan::PlanType) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        RENEWAL = T.let(:renewal, WhopSDK::Plan::PlanType::TaggedSymbol)
+        ONE_TIME = T.let(:one_time, WhopSDK::Plan::PlanType::TaggedSymbol)
+
+        sig do
+          override.returns(T::Array[WhopSDK::Plan::PlanType::TaggedSymbol])
+        end
+        def self.values
+        end
+      end
+
+      # Sales method for this plan, such as `buy_now` or `waitlist`.
+      module ReleaseMethod
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::Plan::ReleaseMethod) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        BUY_NOW = T.let(:buy_now, WhopSDK::Plan::ReleaseMethod::TaggedSymbol)
+        WAITLIST = T.let(:waitlist, WhopSDK::Plan::ReleaseMethod::TaggedSymbol)
+
+        sig do
+          override.returns(T::Array[WhopSDK::Plan::ReleaseMethod::TaggedSymbol])
+        end
+        def self.values
+        end
+      end
+
+      # How tax is handled for this plan.
+      module TaxType
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol = T.type_alias { T.all(Symbol, WhopSDK::Plan::TaxType) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        INCLUSIVE = T.let(:inclusive, WhopSDK::Plan::TaxType::TaggedSymbol)
+        EXCLUSIVE = T.let(:exclusive, WhopSDK::Plan::TaxType::TaggedSymbol)
+        UNSPECIFIED = T.let(:unspecified, WhopSDK::Plan::TaxType::TaggedSymbol)
+
+        sig { override.returns(T::Array[WhopSDK::Plan::TaxType::TaggedSymbol]) }
+        def self.values
+        end
+      end
+
+      # 3D Secure behavior for this plan; `null` inherits account default.
       module ThreeDSLevel
         extend WhopSDK::Internal::Type::Enum
 
@@ -580,6 +536,25 @@ module WhopSDK
 
         sig do
           override.returns(T::Array[WhopSDK::Plan::ThreeDSLevel::TaggedSymbol])
+        end
+        def self.values
+        end
+      end
+
+      # Whether the plan is visible to customers or hidden from public view.
+      module Visibility
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol = T.type_alias { T.all(Symbol, WhopSDK::Plan::Visibility) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        VISIBLE = T.let(:visible, WhopSDK::Plan::Visibility::TaggedSymbol)
+        HIDDEN = T.let(:hidden, WhopSDK::Plan::Visibility::TaggedSymbol)
+        ARCHIVED = T.let(:archived, WhopSDK::Plan::Visibility::TaggedSymbol)
+        QUICK_LINK = T.let(:quick_link, WhopSDK::Plan::Visibility::TaggedSymbol)
+
+        sig do
+          override.returns(T::Array[WhopSDK::Plan::Visibility::TaggedSymbol])
         end
         def self.values
         end

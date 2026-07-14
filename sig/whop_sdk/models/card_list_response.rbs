@@ -1,0 +1,214 @@
+module WhopSDK
+  module Models
+    type card_list_response =
+      { data: ::Array[WhopSDK::Models::CardListResponse::Data] }
+
+    class CardListResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor data: ::Array[WhopSDK::Models::CardListResponse::Data]
+
+      def initialize: (
+        data: ::Array[WhopSDK::Models::CardListResponse::Data]
+      ) -> void
+
+      def to_hash: -> { data: ::Array[WhopSDK::Models::CardListResponse::Data] }
+
+      type data =
+        {
+          id: String,
+          billing: WhopSDK::Models::CardListResponse::Data::Billing?,
+          canceled_at: Time?,
+          created_at: Time?,
+          expiration_month: String?,
+          expiration_year: String?,
+          :last4 => String?,
+          limit: WhopSDK::Models::CardListResponse::Data::Limit?,
+          name: String?,
+          object: WhopSDK::Models::CardListResponse::Data::object,
+          spent_last_month: Integer?,
+          status: WhopSDK::Models::CardListResponse::Data::status?,
+          type: WhopSDK::Models::CardListResponse::Data::type_?,
+          user_id: String?,
+          secrets: WhopSDK::Models::CardListResponse::Data::Secrets?
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor billing: WhopSDK::Models::CardListResponse::Data::Billing?
+
+        attr_accessor canceled_at: Time?
+
+        attr_accessor created_at: Time?
+
+        attr_accessor expiration_month: String?
+
+        attr_accessor expiration_year: String?
+
+        attr_accessor last4: String?
+
+        attr_accessor limit: WhopSDK::Models::CardListResponse::Data::Limit?
+
+        attr_accessor name: String?
+
+        attr_accessor object: WhopSDK::Models::CardListResponse::Data::object
+
+        attr_accessor spent_last_month: Integer?
+
+        attr_accessor status: WhopSDK::Models::CardListResponse::Data::status?
+
+        attr_accessor type: WhopSDK::Models::CardListResponse::Data::type_?
+
+        attr_accessor user_id: String?
+
+        attr_accessor secrets: WhopSDK::Models::CardListResponse::Data::Secrets?
+
+        def initialize: (
+          id: String,
+          billing: WhopSDK::Models::CardListResponse::Data::Billing?,
+          canceled_at: Time?,
+          created_at: Time?,
+          expiration_month: String?,
+          expiration_year: String?,
+          last4: String?,
+          limit: WhopSDK::Models::CardListResponse::Data::Limit?,
+          name: String?,
+          object: WhopSDK::Models::CardListResponse::Data::object,
+          spent_last_month: Integer?,
+          status: WhopSDK::Models::CardListResponse::Data::status?,
+          type: WhopSDK::Models::CardListResponse::Data::type_?,
+          user_id: String?,
+          ?secrets: WhopSDK::Models::CardListResponse::Data::Secrets?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          billing: WhopSDK::Models::CardListResponse::Data::Billing?,
+          canceled_at: Time?,
+          created_at: Time?,
+          expiration_month: String?,
+          expiration_year: String?,
+          :last4 => String?,
+          limit: WhopSDK::Models::CardListResponse::Data::Limit?,
+          name: String?,
+          object: WhopSDK::Models::CardListResponse::Data::object,
+          spent_last_month: Integer?,
+          status: WhopSDK::Models::CardListResponse::Data::status?,
+          type: WhopSDK::Models::CardListResponse::Data::type_?,
+          user_id: String?,
+          secrets: WhopSDK::Models::CardListResponse::Data::Secrets?
+        }
+
+        type billing =
+          {
+            city: String?,
+            country_code: String?,
+            :line1 => String?,
+            :line2 => String?,
+            postal_code: String?,
+            region: String?
+          }
+
+        class Billing < WhopSDK::Internal::Type::BaseModel
+          attr_accessor city: String?
+
+          attr_accessor country_code: String?
+
+          attr_accessor line1: String?
+
+          attr_accessor line2: String?
+
+          attr_accessor postal_code: String?
+
+          attr_accessor region: String?
+
+          def initialize: (
+            city: String?,
+            country_code: String?,
+            line1: String?,
+            line2: String?,
+            postal_code: String?,
+            region: String?
+          ) -> void
+
+          def to_hash: -> {
+            city: String?,
+            country_code: String?,
+            :line1 => String?,
+            :line2 => String?,
+            postal_code: String?,
+            region: String?
+          }
+        end
+
+        type limit = { amount: Float, frequency: String }
+
+        class Limit < WhopSDK::Internal::Type::BaseModel
+          attr_accessor amount: Float
+
+          attr_accessor frequency: String
+
+          def initialize: (amount: Float, frequency: String) -> void
+
+          def to_hash: -> { amount: Float, frequency: String }
+        end
+
+        type object = :card
+
+        module Object
+          extend WhopSDK::Internal::Type::Enum
+
+          CARD: :card
+
+          def self?.values: -> ::Array[WhopSDK::Models::CardListResponse::Data::object]
+        end
+
+        type status = :active | :frozen | :canceled | :invited
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          FROZEN: :frozen
+          CANCELED: :canceled
+          INVITED: :invited
+
+          def self?.values: -> ::Array[WhopSDK::Models::CardListResponse::Data::status]
+        end
+
+        type type_ = :virtual | :physical
+
+        module Type
+          extend WhopSDK::Internal::Type::Enum
+
+          VIRTUAL: :virtual
+          PHYSICAL: :physical
+
+          def self?.values: -> ::Array[WhopSDK::Models::CardListResponse::Data::type_]
+        end
+
+        type secrets =
+          { card_number: String, cvc: String, name_on_card: String? }
+
+        class Secrets < WhopSDK::Internal::Type::BaseModel
+          attr_accessor card_number: String
+
+          attr_accessor cvc: String
+
+          attr_accessor name_on_card: String?
+
+          def initialize: (
+            card_number: String,
+            cvc: String,
+            name_on_card: String?
+          ) -> void
+
+          def to_hash: -> {
+            card_number: String,
+            cvc: String,
+            name_on_card: String?
+          }
+        end
+      end
+    end
+  end
+end

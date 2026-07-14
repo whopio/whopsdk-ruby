@@ -183,6 +183,11 @@ module WhopSDK
             :archived,
             WhopSDK::Models::BountyRetrieveResponse::Status::TaggedSymbol
           )
+        SCHEDULED =
+          T.let(
+            :scheduled,
+            WhopSDK::Models::BountyRetrieveResponse::Status::TaggedSymbol
+          )
 
         sig do
           override.returns(

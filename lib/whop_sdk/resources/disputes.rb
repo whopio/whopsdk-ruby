@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Disputes
     class Disputes
       # Retrieves the details of an existing dispute.
       #

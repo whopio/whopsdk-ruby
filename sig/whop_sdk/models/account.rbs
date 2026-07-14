@@ -3,30 +3,64 @@ module WhopSDK
     type account =
       {
         id: String,
+        balances: ::Array[WhopSDK::Account::Balance],
         banner_image_url: String?,
+        business_address: top?,
         business_type: String?,
+        capabilities: WhopSDK::Account::Capabilities?,
+        country: String?,
         created_at: String,
         description: String?,
         email: String?,
+        home_preferences: ::Array[String],
         industry_group: String?,
         industry_type: String?,
+        invoice_prefix: String?,
         logo_url: String?,
         metadata: top,
+        onboarding_type: String?,
+        opengraph_image_url: String?,
+        opengraph_image_variant: String?,
+        other_business_description: String?,
+        other_industry_description: String?,
         parent_account_id: String?,
+        product_tax_code: top?,
+        recommended_actions: ::Array[WhopSDK::Account::RecommendedAction]?,
+        :require_2fa => bool,
+        required_actions: ::Array[WhopSDK::Account::RequiredAction]?,
         route: String,
         send_customer_emails: bool,
+        show_joined_whops: bool,
+        show_reviews_dtc: bool,
+        show_user_directory: bool,
         social_links: ::Array[WhopSDK::AccountSocialLink],
+        status: String?,
+        store_page_config: top,
         target_audience: String?,
+        tax_identifiers: ::Array[top],
+        tax_remitted_by: String?,
         title: String,
-        wallet: WhopSDK::AccountWallet?
+        total_earned_usd: Float?,
+        total_usd: String?,
+        use_logo_as_opengraph_image_fallback: bool,
+        verification: top,
+        wallet: WhopSDK::Account::Wallet?
       }
 
     class Account < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
+      attr_accessor balances: ::Array[WhopSDK::Account::Balance]
+
       attr_accessor banner_image_url: String?
 
+      attr_accessor business_address: top?
+
       attr_accessor business_type: String?
+
+      attr_accessor capabilities: WhopSDK::Account::Capabilities?
+
+      attr_accessor country: String?
 
       attr_accessor created_at: String
 
@@ -34,67 +68,639 @@ module WhopSDK
 
       attr_accessor email: String?
 
+      attr_accessor home_preferences: ::Array[String]
+
       attr_accessor industry_group: String?
 
       attr_accessor industry_type: String?
+
+      attr_accessor invoice_prefix: String?
 
       attr_accessor logo_url: String?
 
       attr_accessor metadata: top
 
+      attr_accessor onboarding_type: String?
+
+      attr_accessor opengraph_image_url: String?
+
+      attr_accessor opengraph_image_variant: String?
+
+      attr_accessor other_business_description: String?
+
+      attr_accessor other_industry_description: String?
+
       attr_accessor parent_account_id: String?
+
+      attr_accessor product_tax_code: top?
+
+      attr_accessor recommended_actions: ::Array[WhopSDK::Account::RecommendedAction]?
+
+      attr_accessor require_2fa: bool
+
+      attr_accessor required_actions: ::Array[WhopSDK::Account::RequiredAction]?
 
       attr_accessor route: String
 
       attr_accessor send_customer_emails: bool
 
+      attr_accessor show_joined_whops: bool
+
+      attr_accessor show_reviews_dtc: bool
+
+      attr_accessor show_user_directory: bool
+
       attr_accessor social_links: ::Array[WhopSDK::AccountSocialLink]
+
+      attr_accessor status: String?
+
+      attr_accessor store_page_config: top
 
       attr_accessor target_audience: String?
 
+      attr_accessor tax_identifiers: ::Array[top]
+
+      attr_accessor tax_remitted_by: String?
+
       attr_accessor title: String
 
-      attr_accessor wallet: WhopSDK::AccountWallet?
+      attr_accessor total_earned_usd: Float?
+
+      attr_accessor total_usd: String?
+
+      attr_accessor use_logo_as_opengraph_image_fallback: bool
+
+      attr_accessor verification: top
+
+      attr_accessor wallet: WhopSDK::Account::Wallet?
 
       def initialize: (
         id: String,
+        balances: ::Array[WhopSDK::Account::Balance],
         banner_image_url: String?,
+        business_address: top?,
         business_type: String?,
+        capabilities: WhopSDK::Account::Capabilities?,
+        country: String?,
         created_at: String,
         description: String?,
         email: String?,
+        home_preferences: ::Array[String],
         industry_group: String?,
         industry_type: String?,
+        invoice_prefix: String?,
         logo_url: String?,
         metadata: top,
+        onboarding_type: String?,
+        opengraph_image_url: String?,
+        opengraph_image_variant: String?,
+        other_business_description: String?,
+        other_industry_description: String?,
         parent_account_id: String?,
+        product_tax_code: top?,
+        recommended_actions: ::Array[WhopSDK::Account::RecommendedAction]?,
+        require_2fa: bool,
+        required_actions: ::Array[WhopSDK::Account::RequiredAction]?,
         route: String,
         send_customer_emails: bool,
+        show_joined_whops: bool,
+        show_reviews_dtc: bool,
+        show_user_directory: bool,
         social_links: ::Array[WhopSDK::AccountSocialLink],
+        status: String?,
+        store_page_config: top,
         target_audience: String?,
+        tax_identifiers: ::Array[top],
+        tax_remitted_by: String?,
         title: String,
-        wallet: WhopSDK::AccountWallet?
+        total_earned_usd: Float?,
+        total_usd: String?,
+        use_logo_as_opengraph_image_fallback: bool,
+        verification: top,
+        wallet: WhopSDK::Account::Wallet?
       ) -> void
 
       def to_hash: -> {
         id: String,
+        balances: ::Array[WhopSDK::Account::Balance],
         banner_image_url: String?,
+        business_address: top?,
         business_type: String?,
+        capabilities: WhopSDK::Account::Capabilities?,
+        country: String?,
         created_at: String,
         description: String?,
         email: String?,
+        home_preferences: ::Array[String],
         industry_group: String?,
         industry_type: String?,
+        invoice_prefix: String?,
         logo_url: String?,
         metadata: top,
+        onboarding_type: String?,
+        opengraph_image_url: String?,
+        opengraph_image_variant: String?,
+        other_business_description: String?,
+        other_industry_description: String?,
         parent_account_id: String?,
+        product_tax_code: top?,
+        recommended_actions: ::Array[WhopSDK::Account::RecommendedAction]?,
+        :require_2fa => bool,
+        required_actions: ::Array[WhopSDK::Account::RequiredAction]?,
         route: String,
         send_customer_emails: bool,
+        show_joined_whops: bool,
+        show_reviews_dtc: bool,
+        show_user_directory: bool,
         social_links: ::Array[WhopSDK::AccountSocialLink],
+        status: String?,
+        store_page_config: top,
         target_audience: String?,
+        tax_identifiers: ::Array[top],
+        tax_remitted_by: String?,
         title: String,
-        wallet: WhopSDK::AccountWallet?
+        total_earned_usd: Float?,
+        total_usd: String?,
+        use_logo_as_opengraph_image_fallback: bool,
+        verification: top,
+        wallet: WhopSDK::Account::Wallet?
       }
+
+      type balance =
+        {
+          balance: String,
+          breakdown: top,
+          icon_url: String?,
+          name: String,
+          price_usd: Float?,
+          symbol: String,
+          value_usd: String?
+        }
+
+      class Balance < WhopSDK::Internal::Type::BaseModel
+        attr_accessor balance: String
+
+        attr_accessor breakdown: top
+
+        attr_accessor icon_url: String?
+
+        attr_accessor name: String
+
+        attr_accessor price_usd: Float?
+
+        attr_accessor symbol: String
+
+        attr_accessor value_usd: String?
+
+        def initialize: (
+          balance: String,
+          breakdown: top,
+          icon_url: String?,
+          name: String,
+          price_usd: Float?,
+          symbol: String,
+          value_usd: String?
+        ) -> void
+
+        def to_hash: -> {
+          balance: String,
+          breakdown: top,
+          icon_url: String?,
+          name: String,
+          price_usd: Float?,
+          symbol: String,
+          value_usd: String?
+        }
+      end
+
+      type capabilities =
+        {
+          accept_bank_payments: WhopSDK::Models::Account::Capabilities::accept_bank_payments,
+          accept_bnpl_payments: WhopSDK::Models::Account::Capabilities::accept_bnpl_payments,
+          accept_card_payments: WhopSDK::Models::Account::Capabilities::accept_card_payments,
+          bank_deposit: WhopSDK::Models::Account::Capabilities::bank_deposit,
+          card_deposit: WhopSDK::Models::Account::Capabilities::card_deposit,
+          card_issuing: WhopSDK::Models::Account::Capabilities::card_issuing,
+          crypto_deposit: WhopSDK::Models::Account::Capabilities::crypto_deposit,
+          crypto_payout: WhopSDK::Models::Account::Capabilities::crypto_payout,
+          instant_payout: WhopSDK::Models::Account::Capabilities::instant_payout,
+          standard_payout: WhopSDK::Models::Account::Capabilities::standard_payout,
+          transfer: WhopSDK::Models::Account::Capabilities::transfer
+        }
+
+      class Capabilities < WhopSDK::Internal::Type::BaseModel
+        attr_accessor accept_bank_payments: WhopSDK::Models::Account::Capabilities::accept_bank_payments
+
+        attr_accessor accept_bnpl_payments: WhopSDK::Models::Account::Capabilities::accept_bnpl_payments
+
+        attr_accessor accept_card_payments: WhopSDK::Models::Account::Capabilities::accept_card_payments
+
+        attr_accessor bank_deposit: WhopSDK::Models::Account::Capabilities::bank_deposit
+
+        attr_accessor card_deposit: WhopSDK::Models::Account::Capabilities::card_deposit
+
+        attr_accessor card_issuing: WhopSDK::Models::Account::Capabilities::card_issuing
+
+        attr_accessor crypto_deposit: WhopSDK::Models::Account::Capabilities::crypto_deposit
+
+        attr_accessor crypto_payout: WhopSDK::Models::Account::Capabilities::crypto_payout
+
+        attr_accessor instant_payout: WhopSDK::Models::Account::Capabilities::instant_payout
+
+        attr_accessor standard_payout: WhopSDK::Models::Account::Capabilities::standard_payout
+
+        attr_accessor transfer: WhopSDK::Models::Account::Capabilities::transfer
+
+        def initialize: (
+          accept_bank_payments: WhopSDK::Models::Account::Capabilities::accept_bank_payments,
+          accept_bnpl_payments: WhopSDK::Models::Account::Capabilities::accept_bnpl_payments,
+          accept_card_payments: WhopSDK::Models::Account::Capabilities::accept_card_payments,
+          bank_deposit: WhopSDK::Models::Account::Capabilities::bank_deposit,
+          card_deposit: WhopSDK::Models::Account::Capabilities::card_deposit,
+          card_issuing: WhopSDK::Models::Account::Capabilities::card_issuing,
+          crypto_deposit: WhopSDK::Models::Account::Capabilities::crypto_deposit,
+          crypto_payout: WhopSDK::Models::Account::Capabilities::crypto_payout,
+          instant_payout: WhopSDK::Models::Account::Capabilities::instant_payout,
+          standard_payout: WhopSDK::Models::Account::Capabilities::standard_payout,
+          transfer: WhopSDK::Models::Account::Capabilities::transfer
+        ) -> void
+
+        def to_hash: -> {
+          accept_bank_payments: WhopSDK::Models::Account::Capabilities::accept_bank_payments,
+          accept_bnpl_payments: WhopSDK::Models::Account::Capabilities::accept_bnpl_payments,
+          accept_card_payments: WhopSDK::Models::Account::Capabilities::accept_card_payments,
+          bank_deposit: WhopSDK::Models::Account::Capabilities::bank_deposit,
+          card_deposit: WhopSDK::Models::Account::Capabilities::card_deposit,
+          card_issuing: WhopSDK::Models::Account::Capabilities::card_issuing,
+          crypto_deposit: WhopSDK::Models::Account::Capabilities::crypto_deposit,
+          crypto_payout: WhopSDK::Models::Account::Capabilities::crypto_payout,
+          instant_payout: WhopSDK::Models::Account::Capabilities::instant_payout,
+          standard_payout: WhopSDK::Models::Account::Capabilities::standard_payout,
+          transfer: WhopSDK::Models::Account::Capabilities::transfer
+        }
+
+        type accept_bank_payments = :active | :inactive | :pending
+
+        module AcceptBankPayments
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          INACTIVE: :inactive
+          PENDING: :pending
+
+          def self?.values: -> ::Array[WhopSDK::Models::Account::Capabilities::accept_bank_payments]
+        end
+
+        type accept_bnpl_payments = :active | :inactive | :pending
+
+        module AcceptBnplPayments
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          INACTIVE: :inactive
+          PENDING: :pending
+
+          def self?.values: -> ::Array[WhopSDK::Models::Account::Capabilities::accept_bnpl_payments]
+        end
+
+        type accept_card_payments = :active | :inactive | :pending
+
+        module AcceptCardPayments
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          INACTIVE: :inactive
+          PENDING: :pending
+
+          def self?.values: -> ::Array[WhopSDK::Models::Account::Capabilities::accept_card_payments]
+        end
+
+        type bank_deposit = :active | :inactive | :pending
+
+        module BankDeposit
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          INACTIVE: :inactive
+          PENDING: :pending
+
+          def self?.values: -> ::Array[WhopSDK::Models::Account::Capabilities::bank_deposit]
+        end
+
+        type card_deposit = :active | :inactive | :pending
+
+        module CardDeposit
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          INACTIVE: :inactive
+          PENDING: :pending
+
+          def self?.values: -> ::Array[WhopSDK::Models::Account::Capabilities::card_deposit]
+        end
+
+        type card_issuing = :active | :inactive | :pending
+
+        module CardIssuing
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          INACTIVE: :inactive
+          PENDING: :pending
+
+          def self?.values: -> ::Array[WhopSDK::Models::Account::Capabilities::card_issuing]
+        end
+
+        type crypto_deposit = :active | :inactive | :pending
+
+        module CryptoDeposit
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          INACTIVE: :inactive
+          PENDING: :pending
+
+          def self?.values: -> ::Array[WhopSDK::Models::Account::Capabilities::crypto_deposit]
+        end
+
+        type crypto_payout = :active | :inactive | :pending
+
+        module CryptoPayout
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          INACTIVE: :inactive
+          PENDING: :pending
+
+          def self?.values: -> ::Array[WhopSDK::Models::Account::Capabilities::crypto_payout]
+        end
+
+        type instant_payout = :active | :inactive | :pending
+
+        module InstantPayout
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          INACTIVE: :inactive
+          PENDING: :pending
+
+          def self?.values: -> ::Array[WhopSDK::Models::Account::Capabilities::instant_payout]
+        end
+
+        type standard_payout = :active | :inactive | :pending
+
+        module StandardPayout
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          INACTIVE: :inactive
+          PENDING: :pending
+
+          def self?.values: -> ::Array[WhopSDK::Models::Account::Capabilities::standard_payout]
+        end
+
+        type transfer = :active | :inactive | :pending
+
+        module Transfer
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          INACTIVE: :inactive
+          PENDING: :pending
+
+          def self?.values: -> ::Array[WhopSDK::Models::Account::Capabilities::transfer]
+        end
+      end
+
+      type recommended_action =
+        {
+          action: WhopSDK::Models::Account::RecommendedAction::action,
+          blocked_capabilities: ::Array[String],
+          cta: String,
+          cta_label: String,
+          description: String,
+          icon_url: String?,
+          impact_score: Integer?,
+          reasoning: String?,
+          status: WhopSDK::Models::Account::RecommendedAction::status,
+          title: String
+        }
+
+      class RecommendedAction < WhopSDK::Internal::Type::BaseModel
+        attr_accessor action: WhopSDK::Models::Account::RecommendedAction::action
+
+        attr_accessor blocked_capabilities: ::Array[String]
+
+        attr_accessor cta: String
+
+        attr_accessor cta_label: String
+
+        attr_accessor description: String
+
+        attr_accessor icon_url: String?
+
+        attr_accessor impact_score: Integer?
+
+        attr_accessor reasoning: String?
+
+        attr_accessor status: WhopSDK::Models::Account::RecommendedAction::status
+
+        attr_accessor title: String
+
+        def initialize: (
+          action: WhopSDK::Models::Account::RecommendedAction::action,
+          blocked_capabilities: ::Array[String],
+          cta: String,
+          cta_label: String,
+          description: String,
+          icon_url: String?,
+          impact_score: Integer?,
+          reasoning: String?,
+          status: WhopSDK::Models::Account::RecommendedAction::status,
+          title: String
+        ) -> void
+
+        def to_hash: -> {
+          action: WhopSDK::Models::Account::RecommendedAction::action,
+          blocked_capabilities: ::Array[String],
+          cta: String,
+          cta_label: String,
+          description: String,
+          icon_url: String?,
+          impact_score: Integer?,
+          reasoning: String?,
+          status: WhopSDK::Models::Account::RecommendedAction::status,
+          title: String
+        }
+
+        type action =
+          :theme_business
+          | :create_product
+          | :create_plan
+          | :verify_identity
+          | :connect_affiliate_program
+          | :create_promotion
+          | :setup_tracking_pixel
+          | :migrate_from_stripe
+          | :accept_first_payment
+          | :launch_first_ad
+          | :invite_team_member
+          | :enable_tax_collection
+          | :create_card
+          | :join_whop_university
+          | :apply_for_financing
+
+        module Action
+          extend WhopSDK::Internal::Type::Enum
+
+          THEME_BUSINESS: :theme_business
+          CREATE_PRODUCT: :create_product
+          CREATE_PLAN: :create_plan
+          VERIFY_IDENTITY: :verify_identity
+          CONNECT_AFFILIATE_PROGRAM: :connect_affiliate_program
+          CREATE_PROMOTION: :create_promotion
+          SETUP_TRACKING_PIXEL: :setup_tracking_pixel
+          MIGRATE_FROM_STRIPE: :migrate_from_stripe
+          ACCEPT_FIRST_PAYMENT: :accept_first_payment
+          LAUNCH_FIRST_AD: :launch_first_ad
+          INVITE_TEAM_MEMBER: :invite_team_member
+          ENABLE_TAX_COLLECTION: :enable_tax_collection
+          CREATE_CARD: :create_card
+          JOIN_WHOP_UNIVERSITY: :join_whop_university
+          APPLY_FOR_FINANCING: :apply_for_financing
+
+          def self?.values: -> ::Array[WhopSDK::Models::Account::RecommendedAction::action]
+        end
+
+        type status = :optional
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          OPTIONAL: :optional
+
+          def self?.values: -> ::Array[WhopSDK::Models::Account::RecommendedAction::status]
+        end
+      end
+
+      type required_action =
+        {
+          action: WhopSDK::Models::Account::RequiredAction::action,
+          blocked_capabilities: ::Array[String],
+          cta: String?,
+          cta_label: String,
+          description: String,
+          icon_url: String?,
+          status: WhopSDK::Models::Account::RequiredAction::status,
+          title: String
+        }
+
+      class RequiredAction < WhopSDK::Internal::Type::BaseModel
+        attr_accessor action: WhopSDK::Models::Account::RequiredAction::action
+
+        attr_accessor blocked_capabilities: ::Array[String]
+
+        attr_accessor cta: String?
+
+        attr_accessor cta_label: String
+
+        attr_accessor description: String
+
+        attr_accessor icon_url: String?
+
+        attr_accessor status: WhopSDK::Models::Account::RequiredAction::status
+
+        attr_accessor title: String
+
+        def initialize: (
+          action: WhopSDK::Models::Account::RequiredAction::action,
+          blocked_capabilities: ::Array[String],
+          cta: String?,
+          cta_label: String,
+          description: String,
+          icon_url: String?,
+          status: WhopSDK::Models::Account::RequiredAction::status,
+          title: String
+        ) -> void
+
+        def to_hash: -> {
+          action: WhopSDK::Models::Account::RequiredAction::action,
+          blocked_capabilities: ::Array[String],
+          cta: String?,
+          cta_label: String,
+          description: String,
+          icon_url: String?,
+          status: WhopSDK::Models::Account::RequiredAction::status,
+          title: String
+        }
+
+        type action =
+          :deposit_funds
+          | :submit_information_request
+          | :verify_identity
+          | :connect_fulfillment_tracker
+
+        module Action
+          extend WhopSDK::Internal::Type::Enum
+
+          DEPOSIT_FUNDS: :deposit_funds
+          SUBMIT_INFORMATION_REQUEST: :submit_information_request
+          VERIFY_IDENTITY: :verify_identity
+          CONNECT_FULFILLMENT_TRACKER: :connect_fulfillment_tracker
+
+          def self?.values: -> ::Array[WhopSDK::Models::Account::RequiredAction::action]
+        end
+
+        type status = :required | :pending
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          REQUIRED: :required
+          PENDING: :pending
+
+          def self?.values: -> ::Array[WhopSDK::Models::Account::RequiredAction::status]
+        end
+      end
+
+      type wallet =
+        {
+          id: String,
+          address: String,
+          network: WhopSDK::Models::Account::Wallet::network
+        }
+
+      class Wallet < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor address: String
+
+        attr_accessor network: WhopSDK::Models::Account::Wallet::network
+
+        def initialize: (
+          id: String,
+          address: String,
+          network: WhopSDK::Models::Account::Wallet::network
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          address: String,
+          network: WhopSDK::Models::Account::Wallet::network
+        }
+
+        type network = :solana | :ethereum | :bitcoin
+
+        module Network
+          extend WhopSDK::Internal::Type::Enum
+
+          SOLANA: :solana
+          ETHEREUM: :ethereum
+          BITCOIN: :bitcoin
+
+          def self?.values: -> ::Array[WhopSDK::Models::Account::Wallet::network]
+        end
+      end
     end
   end
 end

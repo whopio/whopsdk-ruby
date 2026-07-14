@@ -1,0 +1,891 @@
+# typed: strong
+
+module WhopSDK
+  module Models
+    class EventCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      OrHash =
+        T.type_alias do
+          T.any(WhopSDK::EventCreateParams, WhopSDK::Internal::AnyHash)
+        end
+
+      # The account to associate with this event.
+      sig { returns(String) }
+      attr_accessor :account_id
+
+      # The type of conversion or engagement event
+      sig { returns(WhopSDK::EventCreateParams::EventName::OrSymbol) }
+      attr_accessor :event_name
+
+      # The channel where an event originated
+      sig do
+        returns(T.nilable(WhopSDK::EventCreateParams::ActionSource::OrSymbol))
+      end
+      attr_accessor :action_source
+
+      # Tracking and attribution context.
+      sig { returns(T.nilable(WhopSDK::EventCreateParams::Context)) }
+      attr_reader :context
+
+      sig do
+        params(
+          context: T.nilable(WhopSDK::EventCreateParams::Context::OrHash)
+        ).void
+      end
+      attr_writer :context
+
+      # The available currencies on the platform
+      sig { returns(T.nilable(WhopSDK::EventCreateParams::Currency::OrSymbol)) }
+      attr_accessor :currency
+
+      # Custom event name when event_name is 'custom'. Maximum 35 chars for this value.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :custom_name
+
+      # For 'leave' events: milliseconds the visitor spent on the page.
+      sig { returns(T.nilable(Integer)) }
+      attr_accessor :duration
+
+      # Client-provided identifier for deduplication. Generated if omitted.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :event_id
+
+      # When the event occurred. Defaults to now.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :event_time
+
+      # The plan associated with the event.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :plan_id
+
+      # The product associated with the event.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :product_id
+
+      # The referring URL.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :referrer_url
+
+      # For 'page' events: true when the page was restored from the back/forward cache.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_accessor :resumed
+
+      # For 'identify' events: where the identity was captured (url, form, manual,
+      # iframe).
+      sig { returns(T.nilable(String)) }
+      attr_accessor :source
+
+      # For 'page' events: the document title.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :title
+
+      # The URL where the event occurred.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :url
+
+      # User identity and profile data.
+      sig { returns(T.nilable(WhopSDK::EventCreateParams::User)) }
+      attr_reader :user
+
+      sig do
+        params(user: T.nilable(WhopSDK::EventCreateParams::User::OrHash)).void
+      end
+      attr_writer :user
+
+      # Monetary value associated with the event.
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :value
+
+      sig do
+        params(
+          account_id: String,
+          event_name: WhopSDK::EventCreateParams::EventName::OrSymbol,
+          action_source:
+            T.nilable(WhopSDK::EventCreateParams::ActionSource::OrSymbol),
+          context: T.nilable(WhopSDK::EventCreateParams::Context::OrHash),
+          currency: T.nilable(WhopSDK::EventCreateParams::Currency::OrSymbol),
+          custom_name: T.nilable(String),
+          duration: T.nilable(Integer),
+          event_id: T.nilable(String),
+          event_time: T.nilable(Time),
+          plan_id: T.nilable(String),
+          product_id: T.nilable(String),
+          referrer_url: T.nilable(String),
+          resumed: T.nilable(T::Boolean),
+          source: T.nilable(String),
+          title: T.nilable(String),
+          url: T.nilable(String),
+          user: T.nilable(WhopSDK::EventCreateParams::User::OrHash),
+          value: T.nilable(Float),
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(T.attached_class)
+      end
+      def self.new(
+        # The account to associate with this event.
+        account_id:,
+        # The type of conversion or engagement event
+        event_name:,
+        # The channel where an event originated
+        action_source: nil,
+        # Tracking and attribution context.
+        context: nil,
+        # The available currencies on the platform
+        currency: nil,
+        # Custom event name when event_name is 'custom'. Maximum 35 chars for this value.
+        custom_name: nil,
+        # For 'leave' events: milliseconds the visitor spent on the page.
+        duration: nil,
+        # Client-provided identifier for deduplication. Generated if omitted.
+        event_id: nil,
+        # When the event occurred. Defaults to now.
+        event_time: nil,
+        # The plan associated with the event.
+        plan_id: nil,
+        # The product associated with the event.
+        product_id: nil,
+        # The referring URL.
+        referrer_url: nil,
+        # For 'page' events: true when the page was restored from the back/forward cache.
+        resumed: nil,
+        # For 'identify' events: where the identity was captured (url, form, manual,
+        # iframe).
+        source: nil,
+        # For 'page' events: the document title.
+        title: nil,
+        # The URL where the event occurred.
+        url: nil,
+        # User identity and profile data.
+        user: nil,
+        # Monetary value associated with the event.
+        value: nil,
+        request_options: {}
+      )
+      end
+
+      sig do
+        override.returns(
+          {
+            account_id: String,
+            event_name: WhopSDK::EventCreateParams::EventName::OrSymbol,
+            action_source:
+              T.nilable(WhopSDK::EventCreateParams::ActionSource::OrSymbol),
+            context: T.nilable(WhopSDK::EventCreateParams::Context),
+            currency: T.nilable(WhopSDK::EventCreateParams::Currency::OrSymbol),
+            custom_name: T.nilable(String),
+            duration: T.nilable(Integer),
+            event_id: T.nilable(String),
+            event_time: T.nilable(Time),
+            plan_id: T.nilable(String),
+            product_id: T.nilable(String),
+            referrer_url: T.nilable(String),
+            resumed: T.nilable(T::Boolean),
+            source: T.nilable(String),
+            title: T.nilable(String),
+            url: T.nilable(String),
+            user: T.nilable(WhopSDK::EventCreateParams::User),
+            value: T.nilable(Float),
+            request_options: WhopSDK::RequestOptions
+          }
+        )
+      end
+      def to_hash
+      end
+
+      # The type of conversion or engagement event
+      module EventName
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::EventCreateParams::EventName) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        LEAD = T.let(:lead, WhopSDK::EventCreateParams::EventName::TaggedSymbol)
+        SUBMIT_APPLICATION =
+          T.let(
+            :submit_application,
+            WhopSDK::EventCreateParams::EventName::TaggedSymbol
+          )
+        CONTACT =
+          T.let(:contact, WhopSDK::EventCreateParams::EventName::TaggedSymbol)
+        COMPLETE_REGISTRATION =
+          T.let(
+            :complete_registration,
+            WhopSDK::EventCreateParams::EventName::TaggedSymbol
+          )
+        SCHEDULE =
+          T.let(:schedule, WhopSDK::EventCreateParams::EventName::TaggedSymbol)
+        VIEW_CONTENT =
+          T.let(
+            :view_content,
+            WhopSDK::EventCreateParams::EventName::TaggedSymbol
+          )
+        ADD_TO_CART =
+          T.let(
+            :add_to_cart,
+            WhopSDK::EventCreateParams::EventName::TaggedSymbol
+          )
+        CUSTOM =
+          T.let(:custom, WhopSDK::EventCreateParams::EventName::TaggedSymbol)
+        PAGE = T.let(:page, WhopSDK::EventCreateParams::EventName::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::EventCreateParams::EventName::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # The channel where an event originated
+      module ActionSource
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::EventCreateParams::ActionSource)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        EMAIL =
+          T.let(:email, WhopSDK::EventCreateParams::ActionSource::TaggedSymbol)
+        WEBSITE =
+          T.let(
+            :website,
+            WhopSDK::EventCreateParams::ActionSource::TaggedSymbol
+          )
+        APP =
+          T.let(:app, WhopSDK::EventCreateParams::ActionSource::TaggedSymbol)
+        PHONE_CALL =
+          T.let(
+            :phone_call,
+            WhopSDK::EventCreateParams::ActionSource::TaggedSymbol
+          )
+        CHAT =
+          T.let(:chat, WhopSDK::EventCreateParams::ActionSource::TaggedSymbol)
+        PHYSICAL_STORE =
+          T.let(
+            :physical_store,
+            WhopSDK::EventCreateParams::ActionSource::TaggedSymbol
+          )
+        SYSTEM_GENERATED =
+          T.let(
+            :system_generated,
+            WhopSDK::EventCreateParams::ActionSource::TaggedSymbol
+          )
+        BUSINESS_MESSAGING =
+          T.let(
+            :business_messaging,
+            WhopSDK::EventCreateParams::ActionSource::TaggedSymbol
+          )
+        OTHER =
+          T.let(:other, WhopSDK::EventCreateParams::ActionSource::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::EventCreateParams::ActionSource::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      class Context < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::EventCreateParams::Context,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # Ad campaign ID.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :ad_campaign_id
+
+        # Ad ID.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :ad_id
+
+        # Ad set ID.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :ad_set_id
+
+        # Facebook click cookie (\_fbc, format fb.1.{timestamp}.{fbclid}).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :fbc
+
+        # Facebook click ID.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :fbclid
+
+        # Facebook browser pixel ID.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :fbp
+
+        # Client-side device fingerprint.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :fingerprint
+
+        # Confidence score (0-1) for the device fingerprint.
+        sig { returns(T.nilable(Float)) }
+        attr_accessor :fingerprint_confidence
+
+        # Google Analytics client ID.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :ga
+
+        # Google Ads gbraid click ID (iOS privacy).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :gbraid
+
+        # Google click ID.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :gclid
+
+        # Instagram session ID.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :ig_sid
+
+        # IP address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :ip_address
+
+        # Browser language (e.g. en-US).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :language
+
+        # LinkedIn click ID.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :li_fat_id
+
+        # Microsoft Advertising (Bing) click ID.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :msclkid
+
+        # Reddit click ID.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :rdt_cid
+
+        # Snapchat click ID.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :sccid
+
+        # Screen resolution (e.g. 1920x1080).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :screen_resolution
+
+        # IANA timezone (e.g. America/New_York).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :timezone
+
+        # TikTok click ID.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :ttclid
+
+        # TikTok pixel ID.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :ttp
+
+        # X (Twitter) click ID.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :twclid
+
+        # Browser user agent string.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :user_agent
+
+        # UTM campaign parameter.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :utm_campaign
+
+        # UTM content parameter.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :utm_content
+
+        # UTM ID parameter.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :utm_id
+
+        # UTM medium parameter.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :utm_medium
+
+        # UTM source parameter.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :utm_source
+
+        # UTM term parameter.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :utm_term
+
+        # Google Ads wbraid click ID (iOS privacy).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :wbraid
+
+        # Tracking and attribution context.
+        sig do
+          params(
+            ad_campaign_id: T.nilable(String),
+            ad_id: T.nilable(String),
+            ad_set_id: T.nilable(String),
+            fbc: T.nilable(String),
+            fbclid: T.nilable(String),
+            fbp: T.nilable(String),
+            fingerprint: T.nilable(String),
+            fingerprint_confidence: T.nilable(Float),
+            ga: T.nilable(String),
+            gbraid: T.nilable(String),
+            gclid: T.nilable(String),
+            ig_sid: T.nilable(String),
+            ip_address: T.nilable(String),
+            language: T.nilable(String),
+            li_fat_id: T.nilable(String),
+            msclkid: T.nilable(String),
+            rdt_cid: T.nilable(String),
+            sccid: T.nilable(String),
+            screen_resolution: T.nilable(String),
+            timezone: T.nilable(String),
+            ttclid: T.nilable(String),
+            ttp: T.nilable(String),
+            twclid: T.nilable(String),
+            user_agent: T.nilable(String),
+            utm_campaign: T.nilable(String),
+            utm_content: T.nilable(String),
+            utm_id: T.nilable(String),
+            utm_medium: T.nilable(String),
+            utm_source: T.nilable(String),
+            utm_term: T.nilable(String),
+            wbraid: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Ad campaign ID.
+          ad_campaign_id: nil,
+          # Ad ID.
+          ad_id: nil,
+          # Ad set ID.
+          ad_set_id: nil,
+          # Facebook click cookie (\_fbc, format fb.1.{timestamp}.{fbclid}).
+          fbc: nil,
+          # Facebook click ID.
+          fbclid: nil,
+          # Facebook browser pixel ID.
+          fbp: nil,
+          # Client-side device fingerprint.
+          fingerprint: nil,
+          # Confidence score (0-1) for the device fingerprint.
+          fingerprint_confidence: nil,
+          # Google Analytics client ID.
+          ga: nil,
+          # Google Ads gbraid click ID (iOS privacy).
+          gbraid: nil,
+          # Google click ID.
+          gclid: nil,
+          # Instagram session ID.
+          ig_sid: nil,
+          # IP address.
+          ip_address: nil,
+          # Browser language (e.g. en-US).
+          language: nil,
+          # LinkedIn click ID.
+          li_fat_id: nil,
+          # Microsoft Advertising (Bing) click ID.
+          msclkid: nil,
+          # Reddit click ID.
+          rdt_cid: nil,
+          # Snapchat click ID.
+          sccid: nil,
+          # Screen resolution (e.g. 1920x1080).
+          screen_resolution: nil,
+          # IANA timezone (e.g. America/New_York).
+          timezone: nil,
+          # TikTok click ID.
+          ttclid: nil,
+          # TikTok pixel ID.
+          ttp: nil,
+          # X (Twitter) click ID.
+          twclid: nil,
+          # Browser user agent string.
+          user_agent: nil,
+          # UTM campaign parameter.
+          utm_campaign: nil,
+          # UTM content parameter.
+          utm_content: nil,
+          # UTM ID parameter.
+          utm_id: nil,
+          # UTM medium parameter.
+          utm_medium: nil,
+          # UTM source parameter.
+          utm_source: nil,
+          # UTM term parameter.
+          utm_term: nil,
+          # Google Ads wbraid click ID (iOS privacy).
+          wbraid: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              ad_campaign_id: T.nilable(String),
+              ad_id: T.nilable(String),
+              ad_set_id: T.nilable(String),
+              fbc: T.nilable(String),
+              fbclid: T.nilable(String),
+              fbp: T.nilable(String),
+              fingerprint: T.nilable(String),
+              fingerprint_confidence: T.nilable(Float),
+              ga: T.nilable(String),
+              gbraid: T.nilable(String),
+              gclid: T.nilable(String),
+              ig_sid: T.nilable(String),
+              ip_address: T.nilable(String),
+              language: T.nilable(String),
+              li_fat_id: T.nilable(String),
+              msclkid: T.nilable(String),
+              rdt_cid: T.nilable(String),
+              sccid: T.nilable(String),
+              screen_resolution: T.nilable(String),
+              timezone: T.nilable(String),
+              ttclid: T.nilable(String),
+              ttp: T.nilable(String),
+              twclid: T.nilable(String),
+              user_agent: T.nilable(String),
+              utm_campaign: T.nilable(String),
+              utm_content: T.nilable(String),
+              utm_id: T.nilable(String),
+              utm_medium: T.nilable(String),
+              utm_source: T.nilable(String),
+              utm_term: T.nilable(String),
+              wbraid: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      # The available currencies on the platform
+      module Currency
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::EventCreateParams::Currency) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        USD = T.let(:usd, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        SGD = T.let(:sgd, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        INR = T.let(:inr, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        AUD = T.let(:aud, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        BRL = T.let(:brl, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        CAD = T.let(:cad, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        DKK = T.let(:dkk, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        EUR = T.let(:eur, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        NOK = T.let(:nok, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        GBP = T.let(:gbp, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        SEK = T.let(:sek, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        CHF = T.let(:chf, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        HKD = T.let(:hkd, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        HUF = T.let(:huf, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        JPY = T.let(:jpy, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        MXN = T.let(:mxn, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        MYR = T.let(:myr, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        PLN = T.let(:pln, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        CZK = T.let(:czk, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        NZD = T.let(:nzd, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        AED = T.let(:aed, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        ETH = T.let(:eth, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        APE = T.let(:ape, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        COP = T.let(:cop, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        RON = T.let(:ron, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        THB = T.let(:thb, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        BGN = T.let(:bgn, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        IDR = T.let(:idr, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        DOP = T.let(:dop, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        PHP = T.let(:php, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        TRY = T.let(:try, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        KRW = T.let(:krw, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        TWD = T.let(:twd, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        VND = T.let(:vnd, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        PKR = T.let(:pkr, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        CLP = T.let(:clp, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        UYU = T.let(:uyu, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        ARS = T.let(:ars, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        ZAR = T.let(:zar, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        DZD = T.let(:dzd, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        TND = T.let(:tnd, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        MAD = T.let(:mad, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        KES = T.let(:kes, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        KWD = T.let(:kwd, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        JOD = T.let(:jod, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        ALL = T.let(:all, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        XCD = T.let(:xcd, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        AMD = T.let(:amd, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        BSD = T.let(:bsd, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        BHD = T.let(:bhd, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        BOB = T.let(:bob, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        BAM = T.let(:bam, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        KHR = T.let(:khr, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        CRC = T.let(:crc, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        XOF = T.let(:xof, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        EGP = T.let(:egp, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        ETB = T.let(:etb, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        GMD = T.let(:gmd, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        GHS = T.let(:ghs, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        GTQ = T.let(:gtq, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        GYD = T.let(:gyd, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        ILS = T.let(:ils, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        JMD = T.let(:jmd, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        MOP = T.let(:mop, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        MGA = T.let(:mga, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        MUR = T.let(:mur, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        MDL = T.let(:mdl, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        MNT = T.let(:mnt, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        NAD = T.let(:nad, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        NGN = T.let(:ngn, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        MKD = T.let(:mkd, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        OMR = T.let(:omr, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        PYG = T.let(:pyg, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        PEN = T.let(:pen, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        QAR = T.let(:qar, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        RWF = T.let(:rwf, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        SAR = T.let(:sar, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        RSD = T.let(:rsd, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        LKR = T.let(:lkr, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        TZS = T.let(:tzs, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        TTD = T.let(:ttd, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        UZS = T.let(:uzs, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        RUB = T.let(:rub, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        BTC = T.let(:btc, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        CNY = T.let(:cny, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        USDT = T.let(:usdt, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        KZT = T.let(:kzt, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        AWG = T.let(:awg, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        WHOP_USD =
+          T.let(:whop_usd, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+        XAU = T.let(:xau, WhopSDK::EventCreateParams::Currency::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::EventCreateParams::Currency::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      class User < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::EventCreateParams::User, WhopSDK::Internal::AnyHash)
+          end
+
+        # An anonymous identifier for the user.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :anonymous_id
+
+        # Date of birth (YYYY-MM-DD).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :birthdate
+
+        # City.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :city
+
+        # Country.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :country
+
+        # Email address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :email
+
+        # An external identifier for the user.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :external_id
+
+        # First name.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :first_name
+
+        # Gender
+        sig do
+          returns(T.nilable(WhopSDK::EventCreateParams::User::Gender::OrSymbol))
+        end
+        attr_accessor :gender
+
+        # Last name.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :last_name
+
+        # A second anonymous identifier to link to this user (e.g. captured across an
+        # iframe boundary).
+        sig { returns(T.nilable(String)) }
+        attr_accessor :linked_anonymous_id
+
+        # A wuid from a linked frame, captured across an iframe boundary.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :linked_wuid
+
+        # The Whop member ID.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :member_id
+
+        # The Whop membership ID.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :membership_id
+
+        # Full display name.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
+        # Phone number.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :phone
+
+        # Postal code.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :postal_code
+
+        # State or region.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :state
+
+        # The Whop user ID.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :user_id
+
+        # Username.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :username
+
+        # User identity and profile data.
+        sig do
+          params(
+            anonymous_id: T.nilable(String),
+            birthdate: T.nilable(String),
+            city: T.nilable(String),
+            country: T.nilable(String),
+            email: T.nilable(String),
+            external_id: T.nilable(String),
+            first_name: T.nilable(String),
+            gender:
+              T.nilable(WhopSDK::EventCreateParams::User::Gender::OrSymbol),
+            last_name: T.nilable(String),
+            linked_anonymous_id: T.nilable(String),
+            linked_wuid: T.nilable(String),
+            member_id: T.nilable(String),
+            membership_id: T.nilable(String),
+            name: T.nilable(String),
+            phone: T.nilable(String),
+            postal_code: T.nilable(String),
+            state: T.nilable(String),
+            user_id: T.nilable(String),
+            username: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # An anonymous identifier for the user.
+          anonymous_id: nil,
+          # Date of birth (YYYY-MM-DD).
+          birthdate: nil,
+          # City.
+          city: nil,
+          # Country.
+          country: nil,
+          # Email address.
+          email: nil,
+          # An external identifier for the user.
+          external_id: nil,
+          # First name.
+          first_name: nil,
+          # Gender
+          gender: nil,
+          # Last name.
+          last_name: nil,
+          # A second anonymous identifier to link to this user (e.g. captured across an
+          # iframe boundary).
+          linked_anonymous_id: nil,
+          # A wuid from a linked frame, captured across an iframe boundary.
+          linked_wuid: nil,
+          # The Whop member ID.
+          member_id: nil,
+          # The Whop membership ID.
+          membership_id: nil,
+          # Full display name.
+          name: nil,
+          # Phone number.
+          phone: nil,
+          # Postal code.
+          postal_code: nil,
+          # State or region.
+          state: nil,
+          # The Whop user ID.
+          user_id: nil,
+          # Username.
+          username: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              anonymous_id: T.nilable(String),
+              birthdate: T.nilable(String),
+              city: T.nilable(String),
+              country: T.nilable(String),
+              email: T.nilable(String),
+              external_id: T.nilable(String),
+              first_name: T.nilable(String),
+              gender:
+                T.nilable(WhopSDK::EventCreateParams::User::Gender::OrSymbol),
+              last_name: T.nilable(String),
+              linked_anonymous_id: T.nilable(String),
+              linked_wuid: T.nilable(String),
+              member_id: T.nilable(String),
+              membership_id: T.nilable(String),
+              name: T.nilable(String),
+              phone: T.nilable(String),
+              postal_code: T.nilable(String),
+              state: T.nilable(String),
+              user_id: T.nilable(String),
+              username: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # Gender
+        module Gender
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, WhopSDK::EventCreateParams::User::Gender)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          MALE =
+            T.let(:male, WhopSDK::EventCreateParams::User::Gender::TaggedSymbol)
+          FEMALE =
+            T.let(
+              :female,
+              WhopSDK::EventCreateParams::User::Gender::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[WhopSDK::EventCreateParams::User::Gender::TaggedSymbol]
+            )
+          end
+          def self.values
+          end
+        end
+      end
+    end
+  end
+end

@@ -5,11 +5,62 @@ module WhopSDK
         id: String,
         ad_campaign: WhopSDK::Ad::AdCampaign,
         ad_group: WhopSDK::Ad::AdGroup,
-        created_at: Time,
-        platform: WhopSDK::Models::ad_campaign_platform,
-        status: WhopSDK::Models::external_ad_status,
+        added_to_carts: Float,
+        call_to_action: WhopSDK::Models::Ad::call_to_action?,
+        click_through_rate: Float,
+        clicks: Float,
+        completed_registrations: Float,
+        contacts: Float,
+        cost_per_added_to_cart: Float?,
+        cost_per_click: Float,
+        cost_per_completed_registration: Float?,
+        cost_per_contact: Float?,
+        cost_per_lead: Float?,
+        cost_per_mille: Float,
+        cost_per_purchase: Float?,
+        cost_per_result: Float?,
+        cost_per_schedule: Float?,
+        cost_per_submitted_application: Float?,
+        cost_per_viewed_content: Float?,
+        created_at: String,
+        creatives: ::Array[WhopSDK::Ad::Creative],
+        custom_conversions: Float,
+        custom_event_counts: top,
+        delivery_status: WhopSDK::Models::Ad::delivery_status,
+        descriptions: ::Array[String],
+        frequency: Float?,
+        headlines: ::Array[String],
+        impressions: Float,
+        issues: ::Array[WhopSDK::Ad::Issue],
+        lead_form: top?,
+        lead_form_id: String?,
+        leads: Float,
+        messaging_config: top?,
+        multi_advertiser_ads: bool,
+        post_id: String?,
+        post_source: WhopSDK::Models::Ad::post_source?,
+        post_thumbnail_url: String?,
+        primary_texts: ::Array[String],
+        purchase_value: Float,
+        purchases: Float,
+        reach: Float,
+        result_event: WhopSDK::Models::Ad::result_event?,
+        result_event_name: String?,
+        results: Float?,
+        return_on_ad_spend: Float,
+        schedules: Float,
+        social_accounts: ::Array[top],
+        spend: Float,
+        spend_currency: String?,
+        status: WhopSDK::Models::Ad::status,
+        submitted_applications: Float,
         title: String?,
-        updated_at: Time
+        unique_click_through_rate: Float?,
+        unique_clicks: Float,
+        updated_at: String,
+        url: String?,
+        url_parameters: top,
+        viewed_contents: Float
       }
 
     class Ad < WhopSDK::Internal::Type::BaseModel
@@ -19,36 +70,240 @@ module WhopSDK
 
       attr_accessor ad_group: WhopSDK::Ad::AdGroup
 
-      attr_accessor created_at: Time
+      attr_accessor added_to_carts: Float
 
-      attr_accessor platform: WhopSDK::Models::ad_campaign_platform
+      attr_accessor call_to_action: WhopSDK::Models::Ad::call_to_action?
 
-      attr_accessor status: WhopSDK::Models::external_ad_status
+      attr_accessor click_through_rate: Float
+
+      attr_accessor clicks: Float
+
+      attr_accessor completed_registrations: Float
+
+      attr_accessor contacts: Float
+
+      attr_accessor cost_per_added_to_cart: Float?
+
+      attr_accessor cost_per_click: Float
+
+      attr_accessor cost_per_completed_registration: Float?
+
+      attr_accessor cost_per_contact: Float?
+
+      attr_accessor cost_per_lead: Float?
+
+      attr_accessor cost_per_mille: Float
+
+      attr_accessor cost_per_purchase: Float?
+
+      attr_accessor cost_per_result: Float?
+
+      attr_accessor cost_per_schedule: Float?
+
+      attr_accessor cost_per_submitted_application: Float?
+
+      attr_accessor cost_per_viewed_content: Float?
+
+      attr_accessor created_at: String
+
+      attr_accessor creatives: ::Array[WhopSDK::Ad::Creative]
+
+      attr_accessor custom_conversions: Float
+
+      attr_accessor custom_event_counts: top
+
+      attr_accessor delivery_status: WhopSDK::Models::Ad::delivery_status
+
+      attr_accessor descriptions: ::Array[String]
+
+      attr_accessor frequency: Float?
+
+      attr_accessor headlines: ::Array[String]
+
+      attr_accessor impressions: Float
+
+      attr_accessor issues: ::Array[WhopSDK::Ad::Issue]
+
+      attr_accessor lead_form: top?
+
+      attr_accessor lead_form_id: String?
+
+      attr_accessor leads: Float
+
+      attr_accessor messaging_config: top?
+
+      attr_accessor multi_advertiser_ads: bool
+
+      attr_accessor post_id: String?
+
+      attr_accessor post_source: WhopSDK::Models::Ad::post_source?
+
+      attr_accessor post_thumbnail_url: String?
+
+      attr_accessor primary_texts: ::Array[String]
+
+      attr_accessor purchase_value: Float
+
+      attr_accessor purchases: Float
+
+      attr_accessor reach: Float
+
+      attr_accessor result_event: WhopSDK::Models::Ad::result_event?
+
+      attr_accessor result_event_name: String?
+
+      attr_accessor results: Float?
+
+      attr_accessor return_on_ad_spend: Float
+
+      attr_accessor schedules: Float
+
+      attr_accessor social_accounts: ::Array[top]
+
+      attr_accessor spend: Float
+
+      attr_accessor spend_currency: String?
+
+      attr_accessor status: WhopSDK::Models::Ad::status
+
+      attr_accessor submitted_applications: Float
 
       attr_accessor title: String?
 
-      attr_accessor updated_at: Time
+      attr_accessor unique_click_through_rate: Float?
+
+      attr_accessor unique_clicks: Float
+
+      attr_accessor updated_at: String
+
+      attr_accessor url: String?
+
+      attr_accessor url_parameters: top
+
+      attr_accessor viewed_contents: Float
 
       def initialize: (
         id: String,
         ad_campaign: WhopSDK::Ad::AdCampaign,
         ad_group: WhopSDK::Ad::AdGroup,
-        created_at: Time,
-        platform: WhopSDK::Models::ad_campaign_platform,
-        status: WhopSDK::Models::external_ad_status,
+        added_to_carts: Float,
+        call_to_action: WhopSDK::Models::Ad::call_to_action?,
+        click_through_rate: Float,
+        clicks: Float,
+        completed_registrations: Float,
+        contacts: Float,
+        cost_per_added_to_cart: Float?,
+        cost_per_click: Float,
+        cost_per_completed_registration: Float?,
+        cost_per_contact: Float?,
+        cost_per_lead: Float?,
+        cost_per_mille: Float,
+        cost_per_purchase: Float?,
+        cost_per_result: Float?,
+        cost_per_schedule: Float?,
+        cost_per_submitted_application: Float?,
+        cost_per_viewed_content: Float?,
+        created_at: String,
+        creatives: ::Array[WhopSDK::Ad::Creative],
+        custom_conversions: Float,
+        custom_event_counts: top,
+        delivery_status: WhopSDK::Models::Ad::delivery_status,
+        descriptions: ::Array[String],
+        frequency: Float?,
+        headlines: ::Array[String],
+        impressions: Float,
+        issues: ::Array[WhopSDK::Ad::Issue],
+        lead_form: top?,
+        lead_form_id: String?,
+        leads: Float,
+        messaging_config: top?,
+        multi_advertiser_ads: bool,
+        post_id: String?,
+        post_source: WhopSDK::Models::Ad::post_source?,
+        post_thumbnail_url: String?,
+        primary_texts: ::Array[String],
+        purchase_value: Float,
+        purchases: Float,
+        reach: Float,
+        result_event: WhopSDK::Models::Ad::result_event?,
+        result_event_name: String?,
+        results: Float?,
+        return_on_ad_spend: Float,
+        schedules: Float,
+        social_accounts: ::Array[top],
+        spend: Float,
+        spend_currency: String?,
+        status: WhopSDK::Models::Ad::status,
+        submitted_applications: Float,
         title: String?,
-        updated_at: Time
+        unique_click_through_rate: Float?,
+        unique_clicks: Float,
+        updated_at: String,
+        url: String?,
+        url_parameters: top,
+        viewed_contents: Float
       ) -> void
 
       def to_hash: -> {
         id: String,
         ad_campaign: WhopSDK::Ad::AdCampaign,
         ad_group: WhopSDK::Ad::AdGroup,
-        created_at: Time,
-        platform: WhopSDK::Models::ad_campaign_platform,
-        status: WhopSDK::Models::external_ad_status,
+        added_to_carts: Float,
+        call_to_action: WhopSDK::Models::Ad::call_to_action?,
+        click_through_rate: Float,
+        clicks: Float,
+        completed_registrations: Float,
+        contacts: Float,
+        cost_per_added_to_cart: Float?,
+        cost_per_click: Float,
+        cost_per_completed_registration: Float?,
+        cost_per_contact: Float?,
+        cost_per_lead: Float?,
+        cost_per_mille: Float,
+        cost_per_purchase: Float?,
+        cost_per_result: Float?,
+        cost_per_schedule: Float?,
+        cost_per_submitted_application: Float?,
+        cost_per_viewed_content: Float?,
+        created_at: String,
+        creatives: ::Array[WhopSDK::Ad::Creative],
+        custom_conversions: Float,
+        custom_event_counts: top,
+        delivery_status: WhopSDK::Models::Ad::delivery_status,
+        descriptions: ::Array[String],
+        frequency: Float?,
+        headlines: ::Array[String],
+        impressions: Float,
+        issues: ::Array[WhopSDK::Ad::Issue],
+        lead_form: top?,
+        lead_form_id: String?,
+        leads: Float,
+        messaging_config: top?,
+        multi_advertiser_ads: bool,
+        post_id: String?,
+        post_source: WhopSDK::Models::Ad::post_source?,
+        post_thumbnail_url: String?,
+        primary_texts: ::Array[String],
+        purchase_value: Float,
+        purchases: Float,
+        reach: Float,
+        result_event: WhopSDK::Models::Ad::result_event?,
+        result_event_name: String?,
+        results: Float?,
+        return_on_ad_spend: Float,
+        schedules: Float,
+        social_accounts: ::Array[top],
+        spend: Float,
+        spend_currency: String?,
+        status: WhopSDK::Models::Ad::status,
+        submitted_applications: Float,
         title: String?,
-        updated_at: Time
+        unique_click_through_rate: Float?,
+        unique_clicks: Float,
+        updated_at: String,
+        url: String?,
+        url_parameters: top,
+        viewed_contents: Float
       }
 
       type ad_campaign = { id: String }
@@ -69,6 +324,273 @@ module WhopSDK
         def initialize: (id: String) -> void
 
         def to_hash: -> { id: String }
+      end
+
+      type call_to_action =
+        :learn_more
+        | :shop_now
+        | :sign_up
+        | :subscribe
+        | :get_started
+        | :book_now
+        | :apply_now
+        | :contact_us
+        | :download
+        | :order_now
+        | :buy_now
+        | :get_quote
+        | :message_page
+        | :whatsapp_message
+        | :instagram_message
+        | :call_now
+        | :get_directions
+        | :send_updates
+        | :get_offer
+        | :watch_more
+        | :listen_now
+        | :play_game
+        | :open_link
+        | :no_button
+        | :get_offer_view
+        | :get_event_tickets
+        | :see_menu
+        | :request_time
+        | :event_rsvp
+        | :see_details
+        | :view_instagram_profile
+
+      module CallToAction
+        extend WhopSDK::Internal::Type::Enum
+
+        LEARN_MORE: :learn_more
+        SHOP_NOW: :shop_now
+        SIGN_UP: :sign_up
+        SUBSCRIBE: :subscribe
+        GET_STARTED: :get_started
+        BOOK_NOW: :book_now
+        APPLY_NOW: :apply_now
+        CONTACT_US: :contact_us
+        DOWNLOAD: :download
+        ORDER_NOW: :order_now
+        BUY_NOW: :buy_now
+        GET_QUOTE: :get_quote
+        MESSAGE_PAGE: :message_page
+        WHATSAPP_MESSAGE: :whatsapp_message
+        INSTAGRAM_MESSAGE: :instagram_message
+        CALL_NOW: :call_now
+        GET_DIRECTIONS: :get_directions
+        SEND_UPDATES: :send_updates
+        GET_OFFER: :get_offer
+        WATCH_MORE: :watch_more
+        LISTEN_NOW: :listen_now
+        PLAY_GAME: :play_game
+        OPEN_LINK: :open_link
+        NO_BUTTON: :no_button
+        GET_OFFER_VIEW: :get_offer_view
+        GET_EVENT_TICKETS: :get_event_tickets
+        SEE_MENU: :see_menu
+        REQUEST_TIME: :request_time
+        EVENT_RSVP: :event_rsvp
+        SEE_DETAILS: :see_details
+        VIEW_INSTAGRAM_PROFILE: :view_instagram_profile
+
+        def self?.values: -> ::Array[WhopSDK::Models::Ad::call_to_action]
+      end
+
+      type creative =
+        {
+          id: String,
+          crop: WhopSDK::Ad::Creative::Crop?,
+          format_: WhopSDK::Models::Ad::Creative::format_?,
+          media_type: String?,
+          url: String?
+        }
+
+      class Creative < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor crop: WhopSDK::Ad::Creative::Crop?
+
+        attr_accessor format_: WhopSDK::Models::Ad::Creative::format_?
+
+        attr_accessor media_type: String?
+
+        attr_accessor url: String?
+
+        def initialize: (
+          id: String,
+          crop: WhopSDK::Ad::Creative::Crop?,
+          format_: WhopSDK::Models::Ad::Creative::format_?,
+          media_type: String?,
+          url: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          crop: WhopSDK::Ad::Creative::Crop?,
+          format_: WhopSDK::Models::Ad::Creative::format_?,
+          media_type: String?,
+          url: String?
+        }
+
+        type crop = { height: Float, width: Float, x: Float, y_: Float }
+
+        class Crop < WhopSDK::Internal::Type::BaseModel
+          attr_accessor height: Float
+
+          attr_accessor width: Float
+
+          attr_accessor x: Float
+
+          attr_accessor y_: Float
+
+          def initialize: (
+            height: Float,
+            width: Float,
+            x: Float,
+            y_: Float
+          ) -> void
+
+          def to_hash: -> { height: Float, width: Float, x: Float, y_: Float }
+        end
+
+        type format_ = :square | :vertical | :horizontal
+
+        module Format
+          extend WhopSDK::Internal::Type::Enum
+
+          SQUARE: :square
+          VERTICAL: :vertical
+          HORIZONTAL: :horizontal
+
+          def self?.values: -> ::Array[WhopSDK::Models::Ad::Creative::format_]
+        end
+      end
+
+      type delivery_status =
+        :rejected
+        | :in_review
+        | :draft
+        | :campaign_paused
+        | :ad_group_paused
+        | :paused
+        | :processing
+        | :issues
+        | :learning_limited
+        | :learning
+        | :active
+
+      module DeliveryStatus
+        extend WhopSDK::Internal::Type::Enum
+
+        REJECTED: :rejected
+        IN_REVIEW: :in_review
+        DRAFT: :draft
+        CAMPAIGN_PAUSED: :campaign_paused
+        AD_GROUP_PAUSED: :ad_group_paused
+        PAUSED: :paused
+        PROCESSING: :processing
+        ISSUES: :issues
+        LEARNING_LIMITED: :learning_limited
+        LEARNING: :learning
+        ACTIVE: :active
+
+        def self?.values: -> ::Array[WhopSDK::Models::Ad::delivery_status]
+      end
+
+      type issue =
+        {
+          id: String,
+          message: String,
+          resource_id: String?,
+          resource_type: WhopSDK::Models::Ad::Issue::resource_type
+        }
+
+      class Issue < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor message: String
+
+        attr_accessor resource_id: String?
+
+        attr_accessor resource_type: WhopSDK::Models::Ad::Issue::resource_type
+
+        def initialize: (
+          id: String,
+          message: String,
+          resource_id: String?,
+          resource_type: WhopSDK::Models::Ad::Issue::resource_type
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          message: String,
+          resource_id: String?,
+          resource_type: WhopSDK::Models::Ad::Issue::resource_type
+        }
+
+        type resource_type = :ad_campaign | :ad_group | :ad
+
+        module ResourceType
+          extend WhopSDK::Internal::Type::Enum
+
+          AD_CAMPAIGN: :ad_campaign
+          AD_GROUP: :ad_group
+          AD: :ad
+
+          def self?.values: -> ::Array[WhopSDK::Models::Ad::Issue::resource_type]
+        end
+      end
+
+      type post_source = :facebook | :instagram
+
+      module PostSource
+        extend WhopSDK::Internal::Type::Enum
+
+        FACEBOOK: :facebook
+        INSTAGRAM: :instagram
+
+        def self?.values: -> ::Array[WhopSDK::Models::Ad::post_source]
+      end
+
+      type result_event =
+        :purchase
+        | :lead
+        | :schedule
+        | :submit_application
+        | :contact
+        | :complete_registration
+        | :view_content
+        | :add_to_cart
+        | :custom
+
+      module ResultEvent
+        extend WhopSDK::Internal::Type::Enum
+
+        PURCHASE: :purchase
+        LEAD: :lead
+        SCHEDULE: :schedule
+        SUBMIT_APPLICATION: :submit_application
+        CONTACT: :contact
+        COMPLETE_REGISTRATION: :complete_registration
+        VIEW_CONTENT: :view_content
+        ADD_TO_CART: :add_to_cart
+        CUSTOM: :custom
+
+        def self?.values: -> ::Array[WhopSDK::Models::Ad::result_event]
+      end
+
+      type status = :active | :paused | :in_review | :rejected
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        ACTIVE: :active
+        PAUSED: :paused
+        IN_REVIEW: :in_review
+        REJECTED: :rejected
+
+        def self?.values: -> ::Array[WhopSDK::Models::Ad::status]
       end
     end
   end

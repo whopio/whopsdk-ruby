@@ -14,6 +14,8 @@ module WhopSDK
 
     attr_reader app_id: String?
 
+    attr_reader version: String?
+
     attr_reader apps: WhopSDK::Resources::Apps
 
     attr_reader invoices: WhopSDK::Resources::Invoices
@@ -21,6 +23,16 @@ module WhopSDK
     attr_reader course_lesson_interactions: WhopSDK::Resources::CourseLessonInteractions
 
     attr_reader products: WhopSDK::Resources::Products
+
+    attr_reader social_accounts: WhopSDK::Resources::SocialAccounts
+
+    attr_reader audiences: WhopSDK::Resources::Audiences
+
+    attr_reader media: WhopSDK::Resources::Media
+
+    attr_reader people: WhopSDK::Resources::People
+
+    attr_reader events: WhopSDK::Resources::Events
 
     attr_reader companies: WhopSDK::Resources::Companies
 
@@ -90,7 +102,15 @@ module WhopSDK
 
     attr_reader accounts: WhopSDK::Resources::Accounts
 
-    attr_reader wallets: WhopSDK::Resources::Wallets
+    attr_reader financial_activity: WhopSDK::Resources::FinancialActivity
+
+    attr_reader stats: WhopSDK::Resources::Stats
+
+    attr_reader payouts: WhopSDK::Resources::Payouts
+
+    attr_reader referrals: WhopSDK::Resources::Referrals
+
+    attr_reader cards: WhopSDK::Resources::Cards
 
     attr_reader swaps: WhopSDK::Resources::Swaps
 
@@ -101,8 +121,6 @@ module WhopSDK
     attr_reader payment_methods: WhopSDK::Resources::PaymentMethods
 
     attr_reader fee_markups: WhopSDK::Resources::FeeMarkups
-
-    attr_reader payout_methods: WhopSDK::Resources::PayoutMethods
 
     attr_reader verifications: WhopSDK::Resources::Verifications
 
@@ -130,13 +148,13 @@ module WhopSDK
 
     attr_reader bounties: WhopSDK::Resources::Bounties
 
+    attr_reader workforce: WhopSDK::Resources::Workforce
+
     attr_reader ad_campaigns: WhopSDK::Resources::AdCampaigns
 
     attr_reader ad_groups: WhopSDK::Resources::AdGroups
 
     attr_reader ads: WhopSDK::Resources::Ads
-
-    attr_reader conversions: WhopSDK::Resources::Conversions
 
     attr_reader ad_reports: WhopSDK::Resources::AdReports
 
@@ -146,6 +164,7 @@ module WhopSDK
       ?api_key: String?,
       ?webhook_key: String?,
       ?app_id: String?,
+      ?version: String?,
       ?base_url: String?,
       ?max_retries: Integer,
       ?timeout: Float,

@@ -1,0 +1,50 @@
+module WhopSDK
+  module Models
+    type payout_create_params =
+      {
+        account_id: String,
+        amount: Float,
+        payout_method_id: String,
+        currency: String,
+        idempotency_key: String
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class PayoutCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
+
+      attr_accessor amount: Float
+
+      attr_accessor payout_method_id: String
+
+      attr_reader currency: String?
+
+      def currency=: (String) -> String
+
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
+
+      def initialize: (
+        account_id: String,
+        amount: Float,
+        payout_method_id: String,
+        ?currency: String,
+        ?idempotency_key: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        amount: Float,
+        payout_method_id: String,
+        currency: String,
+        idempotency_key: String,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

@@ -230,6 +230,25 @@ module WhopSDK
       sig { returns(WhopSDK::Currency::TaggedSymbol) }
       attr_accessor :settlement_currency
 
+      # The shipping address provided by the customer for physical goods. Null if no
+      # shipping address was collected.
+      sig do
+        returns(
+          T.nilable(WhopSDK::Models::PaymentListResponse::ShippingAddress)
+        )
+      end
+      attr_reader :shipping_address
+
+      sig do
+        params(
+          shipping_address:
+            T.nilable(
+              WhopSDK::Models::PaymentListResponse::ShippingAddress::OrHash
+            )
+        ).void
+      end
+      attr_writer :shipping_address
+
       # The status of a receipt
       sig { returns(T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol)) }
       attr_accessor :status
@@ -328,6 +347,10 @@ module WhopSDK
           refunded_at: T.nilable(Time),
           retryable: T::Boolean,
           settlement_currency: WhopSDK::Currency::OrSymbol,
+          shipping_address:
+            T.nilable(
+              WhopSDK::Models::PaymentListResponse::ShippingAddress::OrHash
+            ),
           status: T.nilable(WhopSDK::ReceiptStatus::OrSymbol),
           substatus: WhopSDK::FriendlyReceiptStatus::OrSymbol,
           subtotal: T.nilable(Float),
@@ -411,6 +434,9 @@ module WhopSDK
         retryable:,
         # The three-letter ISO currency code for this payment (e.g., 'usd', 'eur').
         settlement_currency:,
+        # The shipping address provided by the customer for physical goods. Null if no
+        # shipping address was collected.
+        shipping_address:,
         # The status of a receipt
         status:,
         # The friendly status of the payment.
@@ -476,6 +502,8 @@ module WhopSDK
             refunded_at: T.nilable(Time),
             retryable: T::Boolean,
             settlement_currency: WhopSDK::Currency::TaggedSymbol,
+            shipping_address:
+              T.nilable(WhopSDK::Models::PaymentListResponse::ShippingAddress),
             status: T.nilable(WhopSDK::ReceiptStatus::TaggedSymbol),
             substatus: WhopSDK::FriendlyReceiptStatus::TaggedSymbol,
             subtotal: T.nilable(Float),
@@ -941,7 +969,8 @@ module WhopSDK
         attr_accessor :internal_notes
 
         # Custom key-value pairs stored on the plan. Included in webhook payloads for
-        # payment and membership events.
+        # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+        # string value.
         sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
         attr_accessor :metadata
 
@@ -959,7 +988,8 @@ module WhopSDK
           # A personal description or notes section for the business.
           internal_notes:,
           # Custom key-value pairs stored on the plan. Included in webhook payloads for
-          # payment and membership events.
+          # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+          # string value.
           metadata:
         )
         end
@@ -990,13 +1020,14 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # Custom key-value pairs stored on the product. Included in webhook payloads for
-        # payment and membership events.
+        # Custom key-value pairs stored on the product and included in payment and
+        # membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
+        # per string value.
         sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
         attr_accessor :metadata
 
-        # The URL slug used in the product's public link (e.g., 'my-product' in
-        # whop.com/company/my-product).
+        # URL slug in the product's public link, e.g. `pickaxe-analytics` in
+        # whop.com/company/pickaxe-analytics.
         sig { returns(String) }
         attr_accessor :route
 
@@ -1017,11 +1048,12 @@ module WhopSDK
         def self.new(
           # The unique identifier for the product.
           id:,
-          # Custom key-value pairs stored on the product. Included in webhook payloads for
-          # payment and membership events.
+          # Custom key-value pairs stored on the product and included in payment and
+          # membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
+          # per string value.
           metadata:,
-          # The URL slug used in the product's public link (e.g., 'my-product' in
-          # whop.com/company/my-product).
+          # URL slug in the product's public link, e.g. `pickaxe-analytics` in
+          # whop.com/company/pickaxe-analytics.
           route:,
           # The display name of the product shown to customers on the product page and in
           # search results.
@@ -1116,6 +1148,91 @@ module WhopSDK
               code: T.nilable(String),
               number_of_intervals: T.nilable(Integer),
               promo_type: WhopSDK::PromoType::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class ShippingAddress < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::Models::PaymentListResponse::ShippingAddress,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The city of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :city
+
+        # The country of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :country
+
+        # The line 1 of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :line1
+
+        # The line 2 of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :line2
+
+        # The name of the customer.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
+        # The postal code of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :postal_code
+
+        # The state of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :state
+
+        # The shipping address provided by the customer for physical goods. Null if no
+        # shipping address was collected.
+        sig do
+          params(
+            city: T.nilable(String),
+            country: T.nilable(String),
+            line1: T.nilable(String),
+            line2: T.nilable(String),
+            name: T.nilable(String),
+            postal_code: T.nilable(String),
+            state: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The city of the address.
+          city:,
+          # The country of the address.
+          country:,
+          # The line 1 of the address.
+          line1:,
+          # The line 2 of the address.
+          line2:,
+          # The name of the customer.
+          name:,
+          # The postal code of the address.
+          postal_code:,
+          # The state of the address.
+          state:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              city: T.nilable(String),
+              country: T.nilable(String),
+              line1: T.nilable(String),
+              line2: T.nilable(String),
+              name: T.nilable(String),
+              postal_code: T.nilable(String),
+              state: T.nilable(String)
             }
           )
         end

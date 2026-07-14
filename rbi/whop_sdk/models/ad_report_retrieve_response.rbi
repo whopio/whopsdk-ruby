@@ -225,7 +225,7 @@ module WhopSDK
           sig { returns(Integer) }
           attr_accessor :clicks
 
-          # The bucket size of this row (`daily` or `hourly`).
+          # The bucket size of this row (`hourly`, `daily`, `weekly`, or `monthly`).
           sig { returns(WhopSDK::Granularities::TaggedSymbol) }
           attr_accessor :granularity
 
@@ -294,7 +294,7 @@ module WhopSDK
             bucket_start:,
             # Clicks in this bucket.
             clicks:,
-            # The bucket size of this row (`daily` or `hourly`).
+            # The bucket size of this row (`hourly`, `daily`, `weekly`, or `monthly`).
             granularity:,
             # Impressions in this bucket.
             impressions:,
@@ -393,25 +393,25 @@ module WhopSDK
               )
             end
 
+          # Click-through rate (clicks / impressions).
+          sig { returns(Float) }
+          attr_accessor :click_through_rate
+
           # Total clicks over the date range.
           sig { returns(Integer) }
           attr_accessor :clicks
 
-          # Spend divided by `resultCount`. Null when there are no results.
-          sig { returns(T.nilable(Float)) }
-          attr_accessor :cost_per_result
-
           # Cost per click in the requested reporting currency.
           sig { returns(Float) }
-          attr_accessor :cpc
+          attr_accessor :cost_per_click
 
           # Cost per thousand impressions in the requested reporting currency.
           sig { returns(T.nilable(Float)) }
-          attr_accessor :cpm
+          attr_accessor :cost_per_mille
 
-          # Click-through rate (clicks / impressions).
-          sig { returns(Float) }
-          attr_accessor :ctr
+          # Spend divided by `resultCount`. Null when there are no results.
+          sig { returns(T.nilable(Float)) }
+          attr_accessor :cost_per_result
 
           # Average number of times each reached user saw an ad.
           sig { returns(T.nilable(Float)) }
@@ -438,10 +438,10 @@ module WhopSDK
           sig { returns(T.nilable(String)) }
           attr_accessor :result_label_override
 
-          # Alias for `purchaseRoas` — return on ad spend for purchases, as reported by the
-          # external ad platform.
+          # Alias for `purchaseReturnOnAdSpend` — return on ad spend for purchases, as
+          # reported by the external ad platform.
           sig { returns(T.nilable(Float)) }
-          attr_accessor :roas
+          attr_accessor :return_on_ad_spend
 
           # Total spend over the date range in the requested reporting currency.
           sig { returns(Float) }
@@ -454,33 +454,33 @@ module WhopSDK
           # Aggregate totals and rates for this entity over the date range.
           sig do
             params(
+              click_through_rate: Float,
               clicks: Integer,
+              cost_per_click: Float,
+              cost_per_mille: T.nilable(Float),
               cost_per_result: T.nilable(Float),
-              cpc: Float,
-              cpm: T.nilable(Float),
-              ctr: Float,
               frequency: T.nilable(Float),
               impressions: Integer,
               reach: Integer,
               result_count: T.nilable(Integer),
               result_label_key: T.nilable(WhopSDK::ResultLabelKeys::OrSymbol),
               result_label_override: T.nilable(String),
-              roas: T.nilable(Float),
+              return_on_ad_spend: T.nilable(Float),
               spend: Float,
               spend_currency: T.nilable(WhopSDK::Currency::OrSymbol)
             ).returns(T.attached_class)
           end
           def self.new(
+            # Click-through rate (clicks / impressions).
+            click_through_rate:,
             # Total clicks over the date range.
             clicks:,
+            # Cost per click in the requested reporting currency.
+            cost_per_click:,
+            # Cost per thousand impressions in the requested reporting currency.
+            cost_per_mille:,
             # Spend divided by `resultCount`. Null when there are no results.
             cost_per_result:,
-            # Cost per click in the requested reporting currency.
-            cpc:,
-            # Cost per thousand impressions in the requested reporting currency.
-            cpm:,
-            # Click-through rate (clicks / impressions).
-            ctr:,
             # Average number of times each reached user saw an ad.
             frequency:,
             # Total impressions over the date range.
@@ -494,9 +494,9 @@ module WhopSDK
             result_label_key:,
             # Advertiser-defined label for the result when `resultLabelKey` is `custom`.
             result_label_override:,
-            # Alias for `purchaseRoas` — return on ad spend for purchases, as reported by the
-            # external ad platform.
-            roas:,
+            # Alias for `purchaseReturnOnAdSpend` — return on ad spend for purchases, as
+            # reported by the external ad platform.
+            return_on_ad_spend:,
             # Total spend over the date range in the requested reporting currency.
             spend:,
             # The available currencies on the platform
@@ -507,11 +507,11 @@ module WhopSDK
           sig do
             override.returns(
               {
+                click_through_rate: Float,
                 clicks: Integer,
+                cost_per_click: Float,
+                cost_per_mille: T.nilable(Float),
                 cost_per_result: T.nilable(Float),
-                cpc: Float,
-                cpm: T.nilable(Float),
-                ctr: Float,
                 frequency: T.nilable(Float),
                 impressions: Integer,
                 reach: Integer,
@@ -519,7 +519,7 @@ module WhopSDK
                 result_label_key:
                   T.nilable(WhopSDK::ResultLabelKeys::TaggedSymbol),
                 result_label_override: T.nilable(String),
-                roas: T.nilable(Float),
+                return_on_ad_spend: T.nilable(Float),
                 spend: Float,
                 spend_currency: T.nilable(WhopSDK::Currency::TaggedSymbol)
               }
@@ -549,7 +549,7 @@ module WhopSDK
         sig { returns(Integer) }
         attr_accessor :clicks
 
-        # The bucket size of this row (`daily` or `hourly`).
+        # The bucket size of this row (`hourly`, `daily`, `weekly`, or `monthly`).
         sig { returns(WhopSDK::Granularities::TaggedSymbol) }
         attr_accessor :granularity
 
@@ -618,7 +618,7 @@ module WhopSDK
           bucket_start:,
           # Clicks in this bucket.
           clicks:,
-          # The bucket size of this row (`daily` or `hourly`).
+          # The bucket size of this row (`hourly`, `daily`, `weekly`, or `monthly`).
           granularity:,
           # Impressions in this bucket.
           impressions:,
@@ -677,25 +677,25 @@ module WhopSDK
             )
           end
 
+        # Click-through rate (clicks / impressions).
+        sig { returns(Float) }
+        attr_accessor :click_through_rate
+
         # Total clicks over the date range.
         sig { returns(Integer) }
         attr_accessor :clicks
 
-        # Spend divided by `resultCount`. Null when there are no results.
-        sig { returns(T.nilable(Float)) }
-        attr_accessor :cost_per_result
-
         # Cost per click in the requested reporting currency.
         sig { returns(Float) }
-        attr_accessor :cpc
+        attr_accessor :cost_per_click
 
         # Cost per thousand impressions in the requested reporting currency.
         sig { returns(T.nilable(Float)) }
-        attr_accessor :cpm
+        attr_accessor :cost_per_mille
 
-        # Click-through rate (clicks / impressions).
-        sig { returns(Float) }
-        attr_accessor :ctr
+        # Spend divided by `resultCount`. Null when there are no results.
+        sig { returns(T.nilable(Float)) }
+        attr_accessor :cost_per_result
 
         # Average number of times each reached user saw an ad.
         sig { returns(T.nilable(Float)) }
@@ -722,10 +722,10 @@ module WhopSDK
         sig { returns(T.nilable(String)) }
         attr_accessor :result_label_override
 
-        # Alias for `purchaseRoas` — return on ad spend for purchases, as reported by the
-        # external ad platform.
+        # Alias for `purchaseReturnOnAdSpend` — return on ad spend for purchases, as
+        # reported by the external ad platform.
         sig { returns(T.nilable(Float)) }
-        attr_accessor :roas
+        attr_accessor :return_on_ad_spend
 
         # Total spend over the date range in the requested reporting currency.
         sig { returns(Float) }
@@ -738,33 +738,33 @@ module WhopSDK
         # Aggregate totals and rates over the date range.
         sig do
           params(
+            click_through_rate: Float,
             clicks: Integer,
+            cost_per_click: Float,
+            cost_per_mille: T.nilable(Float),
             cost_per_result: T.nilable(Float),
-            cpc: Float,
-            cpm: T.nilable(Float),
-            ctr: Float,
             frequency: T.nilable(Float),
             impressions: Integer,
             reach: Integer,
             result_count: T.nilable(Integer),
             result_label_key: T.nilable(WhopSDK::ResultLabelKeys::OrSymbol),
             result_label_override: T.nilable(String),
-            roas: T.nilable(Float),
+            return_on_ad_spend: T.nilable(Float),
             spend: Float,
             spend_currency: T.nilable(WhopSDK::Currency::OrSymbol)
           ).returns(T.attached_class)
         end
         def self.new(
+          # Click-through rate (clicks / impressions).
+          click_through_rate:,
           # Total clicks over the date range.
           clicks:,
+          # Cost per click in the requested reporting currency.
+          cost_per_click:,
+          # Cost per thousand impressions in the requested reporting currency.
+          cost_per_mille:,
           # Spend divided by `resultCount`. Null when there are no results.
           cost_per_result:,
-          # Cost per click in the requested reporting currency.
-          cpc:,
-          # Cost per thousand impressions in the requested reporting currency.
-          cpm:,
-          # Click-through rate (clicks / impressions).
-          ctr:,
           # Average number of times each reached user saw an ad.
           frequency:,
           # Total impressions over the date range.
@@ -778,9 +778,9 @@ module WhopSDK
           result_label_key:,
           # Advertiser-defined label for the result when `resultLabelKey` is `custom`.
           result_label_override:,
-          # Alias for `purchaseRoas` — return on ad spend for purchases, as reported by the
-          # external ad platform.
-          roas:,
+          # Alias for `purchaseReturnOnAdSpend` — return on ad spend for purchases, as
+          # reported by the external ad platform.
+          return_on_ad_spend:,
           # Total spend over the date range in the requested reporting currency.
           spend:,
           # The available currencies on the platform
@@ -791,11 +791,11 @@ module WhopSDK
         sig do
           override.returns(
             {
+              click_through_rate: Float,
               clicks: Integer,
+              cost_per_click: Float,
+              cost_per_mille: T.nilable(Float),
               cost_per_result: T.nilable(Float),
-              cpc: Float,
-              cpm: T.nilable(Float),
-              ctr: Float,
               frequency: T.nilable(Float),
               impressions: Integer,
               reach: Integer,
@@ -803,7 +803,7 @@ module WhopSDK
               result_label_key:
                 T.nilable(WhopSDK::ResultLabelKeys::TaggedSymbol),
               result_label_override: T.nilable(String),
-              roas: T.nilable(Float),
+              return_on_ad_spend: T.nilable(Float),
               spend: Float,
               spend_currency: T.nilable(WhopSDK::Currency::TaggedSymbol)
             }

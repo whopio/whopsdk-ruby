@@ -2,115 +2,116 @@
 
 module WhopSDK
   module Resources
-    # Transfers
+    # Transfers move value between identities on Whop. They are used for
+    # account-to-account money movement, user payouts inside Whop, crypto transfers,
+    # and claim links depending on the destination type.
+    #
+    # Use the Transfers API to create a transfer, list previous transfers, and
+    # retrieve a transfer by ID when reconciling money movement between accounts or
+    # users.
     class Transfers
-      # Transfer funds between two ledger accounts, such as from a company balance to a
-      # user balance.
-      #
-      # Required permissions:
-      #
-      # - `payout:transfer_funds`
+      # Moves funds out of an account. `type` selects the kind of movement (default
+      # `ledger`): `ledger` transfers credit between two ledger accounts and returns a
+      # Transfer; `wallet_send` sends USDT from the origin account's Ethereum wallet to
+      # a recipient; `claim_link` funds a shareable claim link anyone with the URL can
+      # redeem.
       sig do
         params(
           amount: Float,
-          currency: WhopSDK::Currency::OrSymbol,
-          destination_id: String,
           origin_id: String,
+          currency: String,
+          destination_id: String,
+          expires_at: T.nilable(Time),
           idempotence_key: T.nilable(String),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
           notes: T.nilable(String),
+          redeemable_count: Integer,
+          type: WhopSDK::TransferCreateParams::Type::OrSymbol,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Transfer)
+        ).returns(WhopSDK::Models::TransferCreateResponse::Variants)
       end
       def create(
-        # The amount to transfer in the specified currency. For example, 25.00 for $25.00
-        # USD.
+        # The amount to move, in the transfer currency. For example 25.00.
         amount:,
-        # The currency of the transfer amount, such as 'usd'.
-        currency:,
-        # The identifier of the account receiving the funds. Accepts a user ID
-        # ('user_xxx'), company ID ('biz_xxx'), ledger account ID ('ldgr_xxx'), or an
-        # email address — emails without an existing Whop user trigger a placeholder-user
-        # signup.
-        destination_id:,
-        # The identifier of the account sending the funds. Accepts a user ID ('user_xxx'),
-        # company ID ('biz_xxx'), or ledger account ID ('ldgr_xxx').
+        # The account sending the funds. A user ID (user_xxx), account ID (biz_xxx), or
+        # ledger account ID (ldgr_xxx).
         origin_id:,
-        # A unique key to prevent duplicate transfers. Use a UUID or similar unique
-        # string.
+        # Currency, such as `usd`. Required for ledger transfers.
+        currency: nil,
+        # The recipient. Required for ledger and wallet*send (a user*/biz*/ldgr* ID, or —
+        # for sends — an email). Omit for claim_link.
+        destination_id: nil,
+        # claim_link only. Link expiry as an ISO 8601 timestamp. Defaults to 24 hours from
+        # creation.
+        expires_at: nil,
+        # Ledger transfers only. A unique key to prevent duplicate transfers.
         idempotence_key: nil,
-        # A JSON object of custom metadata to attach to the transfer for tracking
-        # purposes.
+        # Ledger transfers only. Custom key-value pairs attached to the transfer. Max 50
+        # keys, 100 chars per key, 500 chars per string value.
         metadata: nil,
-        # A short note describing the transfer, up to 50 characters.
+        # Ledger transfers only. A short note describing the transfer.
         notes: nil,
+        # claim_link only. How many different users can claim the link. Defaults to 1.
+        redeemable_count: nil,
+        # The kind of money movement. Defaults to ledger.
+        type: nil,
         request_options: {}
       )
       end
 
-      # Retrieves the details of an existing transfer.
-      #
-      # Required permissions:
-      #
-      # - `payout:transfer:read`
+      # Retrieves a ledger transfer by ID.
       sig do
         params(
           id: String,
           request_options: WhopSDK::RequestOptions::OrHash
-        ).returns(WhopSDK::Transfer)
+        ).returns(WhopSDK::Models::TransferRetrieveResponse)
       end
       def retrieve(
-        # The unique identifier of the transfer to retrieve.
+        # The transfer ID.
         id,
         request_options: {}
       )
       end
 
-      # Returns a paginated list of fund transfers, filtered by origin or destination
-      # account, with optional sorting and date filtering.
-      #
-      # Required permissions:
-      #
-      # - `payout:transfer:read`
+      # Lists ledger transfers for an account. You must specify an origin_id or a
+      # destination_id.
       sig do
         params(
-          after: T.nilable(String),
-          before: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          destination_id: T.nilable(String),
-          direction: T.nilable(WhopSDK::Direction::OrSymbol),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          order: T.nilable(WhopSDK::TransferListParams::Order::OrSymbol),
-          origin_id: T.nilable(String),
+          after: String,
+          before: String,
+          created_after: String,
+          created_before: String,
+          destination_id: String,
+          direction: WhopSDK::TransferListParams::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
+          order: WhopSDK::TransferListParams::Order::OrSymbol,
+          origin_id: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(
           WhopSDK::Internal::CursorPage[WhopSDK::Models::TransferListResponse]
         )
       end
       def list(
-        # Returns the elements in the list that come after the specified cursor.
+        # Cursor to fetch the page after (from page_info.end_cursor).
         after: nil,
-        # Returns the elements in the list that come before the specified cursor.
+        # Cursor to fetch the page before (from page_info.start_cursor).
         before: nil,
-        # Only return transfers created after this timestamp.
+        # Only transfers created strictly after this ISO 8601 timestamp.
         created_after: nil,
-        # Only return transfers created before this timestamp.
+        # Only transfers created strictly before this ISO 8601 timestamp.
         created_before: nil,
-        # Filter to transfers received by this account. Accepts a user, company, or ledger
-        # account ID.
+        # Filter to transfers received by this account.
         destination_id: nil,
-        # The direction of the sort.
+        # Sort direction. Defaults to desc.
         direction: nil,
-        # Returns the first _n_ elements from the list.
+        # Number of transfers to return from the start of the window.
         first: nil,
-        # Returns the last _n_ elements from the list.
+        # Number of transfers to return from the end of the window.
         last: nil,
-        # Which columns can be used to sort.
+        # Sort column. Defaults to created_at.
         order: nil,
-        # Filter to transfers sent from this account. Accepts a user, company, or ledger
-        # account ID.
+        # Filter to transfers sent from this account.
         origin_id: nil,
         request_options: {}
       )

@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Forum posts
     class ForumPosts
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::ForumPostCreateParams} for more details.

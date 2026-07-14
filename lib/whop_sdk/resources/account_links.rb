@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Account links
     class AccountLinks
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::AccountLinkCreateParams} for more details.

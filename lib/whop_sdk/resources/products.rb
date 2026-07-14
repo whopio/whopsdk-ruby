@@ -2,60 +2,55 @@
 
 module WhopSDK
   module Resources
-    # Products
+    # A Product is a digital good or service sold on Whop. Products may contain plans
+    # for pricing and/or experiences for content delivery.
+    #
+    # Use the Products API to create products, list products visible to your
+    # credentials, retrieve product details, update product metadata or merchandising
+    # fields, and delete products that should no longer be sold.
     class Products
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::ProductCreateParams} for more details.
       #
-      # Create a new product for a company. The product serves as the top-level
-      # container for plans and experiences.
+      # Creates a new product for a company.
       #
-      # Required permissions:
-      #
-      # - `access_pass:create`
-      # - `access_pass:basic:read`
-      #
-      # @overload create(company_id:, title:, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, experience_ids: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, metadata: nil, plan_options: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, send_welcome_message: nil, visibility: nil, request_options: {})
-      #
-      # @param company_id [String] The unique identifier of the company to create this product for.
+      # @overload create(title:, collect_shipping_address: nil, company_id: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, metadata: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, send_welcome_message: nil, visibility: nil, request_options: {})
       #
       # @param title [String] The display name of the product. Maximum 80 characters.
       #
-      # @param collect_shipping_address [Boolean, nil] Whether the checkout flow collects a shipping address from the customer.
+      # @param collect_shipping_address [Boolean, nil] Whether to collect a shipping address at checkout.
       #
-      # @param custom_cta [Symbol, WhopSDK::Models::CustomCta, nil] The different types of custom CTAs that can be selected.
+      # @param company_id [String] The unique identifier of the company to create this product for.
       #
-      # @param custom_cta_url [String, nil] A URL that the call-to-action button links to instead of the default checkout fl
+      # @param custom_cta [String, nil] The call-to-action button label.
       #
-      # @param custom_statement_descriptor [String, nil] A custom text label that appears on the customer's bank statement. Must be 5-22
+      # @param custom_cta_url [String, nil] A URL the call-to-action button links to.
       #
-      # @param description [String, nil] A written description of the product displayed on its product page.
+      # @param custom_statement_descriptor [String, nil] Custom bank statement descriptor. Must start with WHOP\*.
       #
-      # @param experience_ids [Array<String>, nil] The unique identifiers of experiences to connect to this product.
+      # @param description [String, nil] A written description displayed on the product page.
       #
-      # @param global_affiliate_percentage [Float, nil] The commission rate as a percentage that affiliates earn through the global affi
+      # @param global_affiliate_percentage [Float, nil] The commission rate affiliates earn.
       #
-      # @param global_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for a product.
+      # @param global_affiliate_status [String] The enrollment status in the global affiliate program.
       #
-      # @param headline [String, nil] A short marketing headline displayed prominently on the product page.
+      # @param headline [String, nil] A short marketing headline for the product page.
       #
-      # @param member_affiliate_percentage [Float, nil] The commission rate as a percentage that members earn through the member affilia
+      # @param member_affiliate_percentage [Float, nil] The commission rate members earn.
       #
-      # @param member_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for a product.
+      # @param member_affiliate_status [String] The enrollment status in the member affiliate program.
       #
-      # @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs to store on the product. Included in webhook payloads for
+      # @param metadata [Object, nil] Custom key-value pairs to store on the product.
       #
-      # @param plan_options [WhopSDK::Models::ProductCreateParams::PlanOptions, nil] Configuration for an automatically generated plan to attach to this product.
+      # @param product_tax_code_id [String, nil] The unique identifier of the tax classification code. See the available [product
       #
-      # @param product_tax_code_id [String, nil] The unique identifier of the tax classification code to apply to this product.
-      #
-      # @param redirect_purchase_url [String, nil] A URL to redirect the customer to after completing a purchase.
+      # @param redirect_purchase_url [String, nil] A URL to redirect the customer to after purchase.
       #
       # @param route [String, nil] The URL slug for the product's public link.
       #
       # @param send_welcome_message [Boolean, nil] Whether to send an automated welcome message via support chat when a user joins
       #
-      # @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
+      # @param visibility [String] Whether the product is visible to customers.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -73,15 +68,12 @@ module WhopSDK
         )
       end
 
-      # Retrieves the details of an existing product.
-      #
-      # Required permissions:
-      #
-      # - `access_pass:basic:read`
+      # Retrieves the details of an existing product. This endpoint is publicly
+      # accessible.
       #
       # @overload retrieve(id, request_options: {})
       #
-      # @param id [String] The unique identifier or route slug of the product.
+      # @param id [String] The unique identifier of the product.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -100,54 +92,25 @@ module WhopSDK
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::ProductUpdateParams} for more details.
       #
-      # Update a product's title, description, visibility, and other settings.
+      # Updates an existing product.
       #
-      # Required permissions:
+      # @overload update(id, description: nil, headline: nil, metadata: nil, product_tax_code_id: nil, send_welcome_message: nil, title: nil, visibility: nil, request_options: {})
       #
-      # - `access_pass:update`
-      # - `access_pass:basic:read`
+      # @param id [String] The unique identifier of the product.
       #
-      # @overload update(id, collect_shipping_address: nil, custom_cta: nil, custom_cta_url: nil, custom_statement_descriptor: nil, description: nil, gallery_images: nil, global_affiliate_percentage: nil, global_affiliate_status: nil, headline: nil, member_affiliate_percentage: nil, member_affiliate_status: nil, metadata: nil, product_tax_code_id: nil, redirect_purchase_url: nil, route: nil, send_welcome_message: nil, store_page_config: nil, title: nil, visibility: nil, request_options: {})
+      # @param description [String, nil] A written description displayed on the product page.
       #
-      # @param id [String] The unique identifier of the product to update.
+      # @param headline [String, nil] A short marketing headline for the product page.
       #
-      # @param collect_shipping_address [Boolean, nil] Whether the checkout flow collects a shipping address from the customer.
+      # @param metadata [Object, nil] Custom key-value pairs to store on the product.
       #
-      # @param custom_cta [Symbol, WhopSDK::Models::CustomCta, nil] The different types of custom CTAs that can be selected.
-      #
-      # @param custom_cta_url [String, nil] A URL that the call-to-action button links to instead of the default checkout fl
-      #
-      # @param custom_statement_descriptor [String, nil] A custom text label that appears on the customer's bank statement. Must be 5-22
-      #
-      # @param description [String, nil] A written description of the product displayed on its product page.
-      #
-      # @param gallery_images [Array<WhopSDK::Models::ProductUpdateParams::GalleryImage>, nil] The gallery images for the product.
-      #
-      # @param global_affiliate_percentage [Float, nil] The commission rate as a percentage that affiliates earn through the global affi
-      #
-      # @param global_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for a product.
-      #
-      # @param headline [String, nil] A short marketing headline displayed prominently on the product page.
-      #
-      # @param member_affiliate_percentage [Float, nil] The commission rate as a percentage that members earn through the member affilia
-      #
-      # @param member_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus, nil] The different statuses of the global affiliate program for a product.
-      #
-      # @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs to store on the product. Included in webhook payloads for
-      #
-      # @param product_tax_code_id [String, nil] The unique identifier of the tax classification code to apply to this product.
-      #
-      # @param redirect_purchase_url [String, nil] A URL to redirect the customer to after completing a purchase.
-      #
-      # @param route [String, nil] The URL slug for the product's public link.
+      # @param product_tax_code_id [String, nil] The unique identifier of the tax classification code. See the available [product
       #
       # @param send_welcome_message [Boolean, nil] Whether to send an automated welcome message via support chat when a user joins
       #
-      # @param store_page_config [WhopSDK::Models::ProductUpdateParams::StorePageConfig, nil] Layout and display configuration for this product on the company's store page.
+      # @param title [String] The display name of the product.
       #
-      # @param title [String, nil] The display name of the product. Maximum 80 characters.
-      #
-      # @param visibility [Symbol, WhopSDK::Models::Visibility, nil] Visibility of a resource
+      # @param visibility [String] Whether the product is visible to customers.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -165,36 +128,27 @@ module WhopSDK
         )
       end
 
-      # Returns a paginated list of products belonging to a company, with optional
-      # filtering by type, visibility, and creation date.
+      # Returns a paginated list of products belonging to a company.
       #
-      # Required permissions:
-      #
-      # - `access_pass:basic:read`
-      #
-      # @overload list(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, product_types: nil, visibilities: nil, request_options: {})
+      # @overload list(company_id:, access_pass_types: nil, after: nil, before: nil, direction: nil, first: nil, last: nil, order: nil, visibilities: nil, request_options: {})
       #
       # @param company_id [String] The unique identifier of the company to list products for.
       #
-      # @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      # @param access_pass_types [Array<String>] Filter to only products matching these types.
       #
-      # @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      # @param after [String] A cursor; returns products after this position.
       #
-      # @param created_after [Time, nil] Only return products created after this timestamp.
+      # @param before [String] A cursor; returns products before this position.
       #
-      # @param created_before [Time, nil] Only return products created before this timestamp.
+      # @param direction [Symbol, WhopSDK::Models::ProductListParams::Direction] The sort direction for results. Defaults to descending.
       #
-      # @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      # @param first [Integer] The number of products to return (default and max 100).
       #
-      # @param first [Integer, nil] Returns the first _n_ elements from the list.
+      # @param last [Integer] The number of products to return from the end of the range.
       #
-      # @param last [Integer, nil] Returns the last _n_ elements from the list.
+      # @param order [String] The field to sort results by. Defaults to created_at.
       #
-      # @param order [Symbol, WhopSDK::Models::ProductListParams::Order, nil] The ways a relation of AccessPasses can be ordered
-      #
-      # @param product_types [Array<Symbol, WhopSDK::Models::AccessPassType>, nil] Filter to only products matching these type classifications.
-      #
-      # @param visibilities [Array<Symbol, WhopSDK::Models::VisibilityFilter>, nil] Filter to only products matching these visibility states.
+      # @param visibilities [Array<String>] Filter to only products matching these visibility states.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -214,15 +168,12 @@ module WhopSDK
         )
       end
 
-      # Permanently delete a product and remove it from the company's catalog.
-      #
-      # Required permissions:
-      #
-      # - `access_pass:delete`
+      # Deletes a product. Only products with no memberships, entries, reviews, or
+      # invoices can be deleted.
       #
       # @overload delete(id, request_options: {})
       #
-      # @param id [String] The unique identifier of the product to delete.
+      # @param id [String] The unique identifier of the product.
       #
       # @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #

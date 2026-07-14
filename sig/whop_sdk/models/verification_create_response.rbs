@@ -1,0 +1,333 @@
+module WhopSDK
+  module Models
+    type verification_create_response =
+      {
+        id: String,
+        address: WhopSDK::Models::VerificationCreateResponse::Address?,
+        business_name: String?,
+        business_structure: String?,
+        country: String?,
+        created_at: String,
+        date_of_birth: String?,
+        first_name: String?,
+        kind: WhopSDK::Models::VerificationCreateResponse::kind,
+        last_name: String?,
+        requested_information: ::Array[WhopSDK::Models::VerificationCreateResponse::RequestedInformation],
+        required_documents: ::Array[WhopSDK::Models::VerificationCreateResponse::RequiredDocument],
+        session_url: String?,
+        status: WhopSDK::Models::VerificationCreateResponse::status,
+        updated_at: String
+      }
+
+    class VerificationCreateResponse < WhopSDK::Internal::Type::BaseModel
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      attr_accessor address: WhopSDK::Models::VerificationCreateResponse::Address?
+
+      attr_accessor business_name: String?
+
+      attr_accessor business_structure: String?
+
+      attr_accessor country: String?
+
+      attr_reader created_at: String?
+
+      def created_at=: (String) -> String
+
+      attr_accessor date_of_birth: String?
+
+      attr_accessor first_name: String?
+
+      attr_reader kind: WhopSDK::Models::VerificationCreateResponse::kind?
+
+      def kind=: (
+        WhopSDK::Models::VerificationCreateResponse::kind
+      ) -> WhopSDK::Models::VerificationCreateResponse::kind
+
+      attr_accessor last_name: String?
+
+      attr_reader requested_information: ::Array[WhopSDK::Models::VerificationCreateResponse::RequestedInformation]?
+
+      def requested_information=: (
+        ::Array[WhopSDK::Models::VerificationCreateResponse::RequestedInformation]
+      ) -> ::Array[WhopSDK::Models::VerificationCreateResponse::RequestedInformation]
+
+      attr_reader required_documents: ::Array[WhopSDK::Models::VerificationCreateResponse::RequiredDocument]?
+
+      def required_documents=: (
+        ::Array[WhopSDK::Models::VerificationCreateResponse::RequiredDocument]
+      ) -> ::Array[WhopSDK::Models::VerificationCreateResponse::RequiredDocument]
+
+      attr_accessor session_url: String?
+
+      attr_reader status: WhopSDK::Models::VerificationCreateResponse::status?
+
+      def status=: (
+        WhopSDK::Models::VerificationCreateResponse::status
+      ) -> WhopSDK::Models::VerificationCreateResponse::status
+
+      attr_reader updated_at: String?
+
+      def updated_at=: (String) -> String
+
+      def initialize: (
+        ?id: String,
+        ?address: WhopSDK::Models::VerificationCreateResponse::Address?,
+        ?business_name: String?,
+        ?business_structure: String?,
+        ?country: String?,
+        ?created_at: String,
+        ?date_of_birth: String?,
+        ?first_name: String?,
+        ?kind: WhopSDK::Models::VerificationCreateResponse::kind,
+        ?last_name: String?,
+        ?requested_information: ::Array[WhopSDK::Models::VerificationCreateResponse::RequestedInformation],
+        ?required_documents: ::Array[WhopSDK::Models::VerificationCreateResponse::RequiredDocument],
+        ?session_url: String?,
+        ?status: WhopSDK::Models::VerificationCreateResponse::status,
+        ?updated_at: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        address: WhopSDK::Models::VerificationCreateResponse::Address?,
+        business_name: String?,
+        business_structure: String?,
+        country: String?,
+        created_at: String,
+        date_of_birth: String?,
+        first_name: String?,
+        kind: WhopSDK::Models::VerificationCreateResponse::kind,
+        last_name: String?,
+        requested_information: ::Array[WhopSDK::Models::VerificationCreateResponse::RequestedInformation],
+        required_documents: ::Array[WhopSDK::Models::VerificationCreateResponse::RequiredDocument],
+        session_url: String?,
+        status: WhopSDK::Models::VerificationCreateResponse::status,
+        updated_at: String
+      }
+
+      type address =
+        {
+          city: String?,
+          country: String?,
+          :line1 => String,
+          :line2 => String?,
+          postal_code: String?,
+          state: String?
+        }
+
+      class Address < WhopSDK::Internal::Type::BaseModel
+        attr_accessor city: String?
+
+        attr_accessor country: String?
+
+        attr_reader line1: String?
+
+        def line1=: (String) -> String
+
+        attr_accessor line2: String?
+
+        attr_accessor postal_code: String?
+
+        attr_accessor state: String?
+
+        def initialize: (
+          ?city: String?,
+          ?country: String?,
+          ?line1: String,
+          ?line2: String?,
+          ?postal_code: String?,
+          ?state: String?
+        ) -> void
+
+        def to_hash: -> {
+          city: String?,
+          country: String?,
+          :line1 => String,
+          :line2 => String?,
+          postal_code: String?,
+          state: String?
+        }
+      end
+
+      type kind = :individual | :business
+
+      module Kind
+        extend WhopSDK::Internal::Type::Enum
+
+        INDIVIDUAL: :individual
+        BUSINESS: :business
+
+        def self?.values: -> ::Array[WhopSDK::Models::VerificationCreateResponse::kind]
+      end
+
+      type requested_information =
+        {
+          id: String,
+          description: String?,
+          error_message: String?,
+          field: String,
+          label: String,
+          options: ::Array[String],
+          requested_files: ::Array[WhopSDK::Models::VerificationCreateResponse::RequestedInformation::RequestedFile],
+          type: String?
+        }
+
+      class RequestedInformation < WhopSDK::Internal::Type::BaseModel
+        attr_reader id: String?
+
+        def id=: (String) -> String
+
+        attr_accessor description: String?
+
+        attr_accessor error_message: String?
+
+        attr_reader field: String?
+
+        def field=: (String) -> String
+
+        attr_reader label: String?
+
+        def label=: (String) -> String
+
+        attr_reader options: ::Array[String]?
+
+        def options=: (::Array[String]) -> ::Array[String]
+
+        attr_reader requested_files: ::Array[WhopSDK::Models::VerificationCreateResponse::RequestedInformation::RequestedFile]?
+
+        def requested_files=: (
+          ::Array[WhopSDK::Models::VerificationCreateResponse::RequestedInformation::RequestedFile]
+        ) -> ::Array[WhopSDK::Models::VerificationCreateResponse::RequestedInformation::RequestedFile]
+
+        attr_accessor type: String?
+
+        def initialize: (
+          ?id: String,
+          ?description: String?,
+          ?error_message: String?,
+          ?field: String,
+          ?label: String,
+          ?options: ::Array[String],
+          ?requested_files: ::Array[WhopSDK::Models::VerificationCreateResponse::RequestedInformation::RequestedFile],
+          ?type: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          description: String?,
+          error_message: String?,
+          field: String,
+          label: String,
+          options: ::Array[String],
+          requested_files: ::Array[WhopSDK::Models::VerificationCreateResponse::RequestedInformation::RequestedFile],
+          type: String?
+        }
+
+        type requested_file =
+          {
+            category: String?,
+            is_optional: bool,
+            kind: String?,
+            label: String,
+            multiple: bool
+          }
+
+        class RequestedFile < WhopSDK::Internal::Type::BaseModel
+          attr_accessor category: String?
+
+          attr_reader is_optional: bool?
+
+          def is_optional=: (bool) -> bool
+
+          attr_accessor kind: String?
+
+          attr_reader label: String?
+
+          def label=: (String) -> String
+
+          attr_reader multiple: bool?
+
+          def multiple=: (bool) -> bool
+
+          def initialize: (
+            ?category: String?,
+            ?is_optional: bool,
+            ?kind: String?,
+            ?label: String,
+            ?multiple: bool
+          ) -> void
+
+          def to_hash: -> {
+            category: String?,
+            is_optional: bool,
+            kind: String?,
+            label: String,
+            multiple: bool
+          }
+        end
+      end
+
+      type required_document =
+        {
+          document: String,
+          rejection_reason: String?,
+          status: WhopSDK::Models::VerificationCreateResponse::RequiredDocument::status
+        }
+
+      class RequiredDocument < WhopSDK::Internal::Type::BaseModel
+        attr_reader document: String?
+
+        def document=: (String) -> String
+
+        attr_accessor rejection_reason: String?
+
+        attr_reader status: WhopSDK::Models::VerificationCreateResponse::RequiredDocument::status?
+
+        def status=: (
+          WhopSDK::Models::VerificationCreateResponse::RequiredDocument::status
+        ) -> WhopSDK::Models::VerificationCreateResponse::RequiredDocument::status
+
+        def initialize: (
+          ?document: String,
+          ?rejection_reason: String?,
+          ?status: WhopSDK::Models::VerificationCreateResponse::RequiredDocument::status
+        ) -> void
+
+        def to_hash: -> {
+          document: String,
+          rejection_reason: String?,
+          status: WhopSDK::Models::VerificationCreateResponse::RequiredDocument::status
+        }
+
+        type status = :pending_upload | :submitted
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          PENDING_UPLOAD: :pending_upload
+          SUBMITTED: :submitted
+
+          def self?.values: -> ::Array[WhopSDK::Models::VerificationCreateResponse::RequiredDocument::status]
+        end
+      end
+
+      type status =
+        :not_started | :pending | :approved | :rejected | :action_required
+
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        NOT_STARTED: :not_started
+        PENDING: :pending
+        APPROVED: :approved
+        REJECTED: :rejected
+        ACTION_REQUIRED: :action_required
+
+        def self?.values: -> ::Array[WhopSDK::Models::VerificationCreateResponse::status]
+      end
+    end
+  end
+end

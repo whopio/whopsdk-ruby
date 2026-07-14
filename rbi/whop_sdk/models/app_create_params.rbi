@@ -39,6 +39,11 @@ module WhopSDK
       sig { returns(T.nilable(T::Array[String])) }
       attr_accessor :redirect_uris
 
+      # The unique subdomain route where the app's hosted web builds are served, such as
+      # 'myapp' for myapp.whop.app.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :route
+
       sig do
         params(
           company_id: String,
@@ -46,6 +51,7 @@ module WhopSDK
           base_url: T.nilable(String),
           icon: T.nilable(WhopSDK::AppCreateParams::Icon::OrHash),
           redirect_uris: T.nilable(T::Array[String]),
+          route: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -63,6 +69,9 @@ module WhopSDK
         # The whitelisted OAuth callback URLs that users are redirected to after
         # authorizing the app.
         redirect_uris: nil,
+        # The unique subdomain route where the app's hosted web builds are served, such as
+        # 'myapp' for myapp.whop.app.
+        route: nil,
         request_options: {}
       )
       end
@@ -75,6 +84,7 @@ module WhopSDK
             base_url: T.nilable(String),
             icon: T.nilable(WhopSDK::AppCreateParams::Icon),
             redirect_uris: T.nilable(T::Array[String]),
+            route: T.nilable(String),
             request_options: WhopSDK::RequestOptions
           }
         )

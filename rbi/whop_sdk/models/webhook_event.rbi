@@ -25,6 +25,11 @@ module WhopSDK
         T.let(:"membership.activated", WhopSDK::WebhookEvent::TaggedSymbol)
       MEMBERSHIP_DEACTIVATED =
         T.let(:"membership.deactivated", WhopSDK::WebhookEvent::TaggedSymbol)
+      MEMBERSHIP_TRIAL_ENDING_SOON =
+        T.let(
+          :"membership.trial_ending_soon",
+          WhopSDK::WebhookEvent::TaggedSymbol
+        )
       ENTRY_CREATED =
         T.let(:"entry.created", WhopSDK::WebhookEvent::TaggedSymbol)
       ENTRY_APPROVED =
@@ -41,6 +46,11 @@ module WhopSDK
         T.let(:"setup_intent.succeeded", WhopSDK::WebhookEvent::TaggedSymbol)
       SETUP_INTENT_CANCELED =
         T.let(:"setup_intent.canceled", WhopSDK::WebhookEvent::TaggedSymbol)
+      LEDGER_ACCOUNT_FUNDS_AVAILABLE =
+        T.let(
+          :"ledger_account.funds_available",
+          WhopSDK::WebhookEvent::TaggedSymbol
+        )
       WITHDRAWAL_CREATED =
         T.let(:"withdrawal.created", WhopSDK::WebhookEvent::TaggedSymbol)
       WITHDRAWAL_UPDATED =
@@ -85,6 +95,10 @@ module WhopSDK
           :"resolution_center_case.decided",
           WhopSDK::WebhookEvent::TaggedSymbol
         )
+      CHAT_MESSAGE_CREATED =
+        T.let(:"chat.message.created", WhopSDK::WebhookEvent::TaggedSymbol)
+      CHAT_REACTION_CREATED =
+        T.let(:"chat.reaction.created", WhopSDK::WebhookEvent::TaggedSymbol)
       PAYMENT_CREATED =
         T.let(:"payment.created", WhopSDK::WebhookEvent::TaggedSymbol)
       PAYMENT_SUCCEEDED =

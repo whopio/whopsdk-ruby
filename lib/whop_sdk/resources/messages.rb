@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Messages
     class Messages
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::MessageCreateParams} for more details.

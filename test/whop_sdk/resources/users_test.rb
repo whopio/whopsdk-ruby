@@ -6,7 +6,7 @@ class WhopSDK::Test::Resources::UsersTest < WhopSDK::Test::ResourceTest
   def test_retrieve
     skip("Mock server tests are disabled")
 
-    response = @whop.users.retrieve("user_xxxxxxxxxxxxx")
+    response = @whop.users.retrieve("id")
 
     assert_pattern do
       response => WhopSDK::User
@@ -15,11 +15,16 @@ class WhopSDK::Test::Resources::UsersTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        balance: WhopSDK::UserBalance | nil,
+        balance_history: WhopSDK::User::BalanceHistory | nil,
         bio: String | nil,
-        created_at: Time,
+        created_at: String,
+        earnings_usd: WhopSDK::User::EarningsUsd | nil,
         name: String | nil,
-        profile_picture: WhopSDK::User::ProfilePicture | nil,
-        username: String
+        profile_picture: WhopSDK::Internal::Type::Unknown | nil,
+        username: String,
+        verification: WhopSDK::Internal::Type::Unknown,
+        whop_partner_enabled_at: String | nil
       }
     end
   end
@@ -27,7 +32,7 @@ class WhopSDK::Test::Resources::UsersTest < WhopSDK::Test::ResourceTest
   def test_update
     skip("Mock server tests are disabled")
 
-    response = @whop.users.update("user_xxxxxxxxxxxxx")
+    response = @whop.users.update("id")
 
     assert_pattern do
       response => WhopSDK::User
@@ -36,11 +41,16 @@ class WhopSDK::Test::Resources::UsersTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        balance: WhopSDK::UserBalance | nil,
+        balance_history: WhopSDK::User::BalanceHistory | nil,
         bio: String | nil,
-        created_at: Time,
+        created_at: String,
+        earnings_usd: WhopSDK::User::EarningsUsd | nil,
         name: String | nil,
-        profile_picture: WhopSDK::User::ProfilePicture | nil,
-        username: String
+        profile_picture: WhopSDK::Internal::Type::Unknown | nil,
+        username: String,
+        verification: WhopSDK::Internal::Type::Unknown,
+        whop_partner_enabled_at: String | nil
       }
     end
   end
@@ -58,17 +68,22 @@ class WhopSDK::Test::Resources::UsersTest < WhopSDK::Test::ResourceTest
     return if row.nil?
 
     assert_pattern do
-      row => WhopSDK::Models::UserListResponse
+      row => WhopSDK::User
     end
 
     assert_pattern do
       row => {
         id: String,
+        balance: WhopSDK::UserBalance | nil,
+        balance_history: WhopSDK::User::BalanceHistory | nil,
         bio: String | nil,
-        created_at: Time,
+        created_at: String,
+        earnings_usd: WhopSDK::User::EarningsUsd | nil,
         name: String | nil,
-        profile_picture: WhopSDK::Models::UserListResponse::ProfilePicture | nil,
-        username: String
+        profile_picture: WhopSDK::Internal::Type::Unknown | nil,
+        username: String,
+        verification: WhopSDK::Internal::Type::Unknown,
+        whop_partner_enabled_at: String | nil
       }
     end
   end
@@ -76,7 +91,7 @@ class WhopSDK::Test::Resources::UsersTest < WhopSDK::Test::ResourceTest
   def test_check_access_required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.users.check_access("resource_id", id: "user_xxxxxxxxxxxxx")
+    response = @whop.users.check_access("resource_id", id: "id")
 
     assert_pattern do
       response => WhopSDK::Models::UserCheckAccessResponse
@@ -84,8 +99,34 @@ class WhopSDK::Test::Resources::UsersTest < WhopSDK::Test::ResourceTest
 
     assert_pattern do
       response => {
-        access_level: WhopSDK::AccessLevel,
+        access_level: WhopSDK::Models::UserCheckAccessResponse::AccessLevel,
         has_access: WhopSDK::Internal::Type::Boolean
+      }
+    end
+  end
+
+  def test_update_me
+    skip("Mock server tests are disabled")
+
+    response = @whop.users.update_me
+
+    assert_pattern do
+      response => WhopSDK::User
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        balance: WhopSDK::UserBalance | nil,
+        balance_history: WhopSDK::User::BalanceHistory | nil,
+        bio: String | nil,
+        created_at: String,
+        earnings_usd: WhopSDK::User::EarningsUsd | nil,
+        name: String | nil,
+        profile_picture: WhopSDK::Internal::Type::Unknown | nil,
+        username: String,
+        verification: WhopSDK::Internal::Type::Unknown,
+        whop_partner_enabled_at: String | nil
       }
     end
   end

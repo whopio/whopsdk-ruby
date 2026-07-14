@@ -1,0 +1,154 @@
+module WhopSDK
+  module Models
+    type chat_reaction_created_webhook_event =
+      {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::ChatReactionCreatedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"chat.reaction.created",
+        company_id: String?
+      }
+
+    class ChatReactionCreatedWebhookEvent < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor api_version: :v1
+
+      attr_accessor data: WhopSDK::ChatReactionCreatedWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"chat.reaction.created"
+
+      attr_accessor company_id: String?
+
+      def initialize: (
+        id: String,
+        data: WhopSDK::ChatReactionCreatedWebhookEvent::Data,
+        timestamp: Time,
+        ?company_id: String?,
+        ?api_version: :v1,
+        ?type: :"chat.reaction.created"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        api_version: :v1,
+        data: WhopSDK::ChatReactionCreatedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"chat.reaction.created",
+        company_id: String?
+      }
+
+      type data =
+        {
+          audience: WhopSDK::ChatReactionCreatedWebhookEvent::Data::Audience,
+          channel: WhopSDK::ChatReactionCreatedWebhookEvent::Data::Channel,
+          message: WhopSDK::Message,
+          reaction: WhopSDK::Reaction,
+          reason: String
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor audience: WhopSDK::ChatReactionCreatedWebhookEvent::Data::Audience
+
+        attr_accessor channel: WhopSDK::ChatReactionCreatedWebhookEvent::Data::Channel
+
+        attr_accessor message: WhopSDK::Message
+
+        attr_accessor reaction: WhopSDK::Reaction
+
+        attr_accessor reason: String
+
+        def initialize: (
+          audience: WhopSDK::ChatReactionCreatedWebhookEvent::Data::Audience,
+          channel: WhopSDK::ChatReactionCreatedWebhookEvent::Data::Channel,
+          message: WhopSDK::Message,
+          reaction: WhopSDK::Reaction,
+          reason: String
+        ) -> void
+
+        def to_hash: -> {
+          audience: WhopSDK::ChatReactionCreatedWebhookEvent::Data::Audience,
+          channel: WhopSDK::ChatReactionCreatedWebhookEvent::Data::Channel,
+          message: WhopSDK::Message,
+          reaction: WhopSDK::Reaction,
+          reason: String
+        }
+
+        type audience =
+          {
+            type: WhopSDK::Models::ChatReactionCreatedWebhookEvent::Data::Audience::type_,
+            user_ids: ::Array[String]?
+          }
+
+        class Audience < WhopSDK::Internal::Type::BaseModel
+          attr_accessor type: WhopSDK::Models::ChatReactionCreatedWebhookEvent::Data::Audience::type_
+
+          attr_accessor user_ids: ::Array[String]?
+
+          def initialize: (
+            type: WhopSDK::Models::ChatReactionCreatedWebhookEvent::Data::Audience::type_,
+            ?user_ids: ::Array[String]?
+          ) -> void
+
+          def to_hash: -> {
+            type: WhopSDK::Models::ChatReactionCreatedWebhookEvent::Data::Audience::type_,
+            user_ids: ::Array[String]?
+          }
+
+          type type_ = :channel | :users
+
+          module Type
+            extend WhopSDK::Internal::Type::Enum
+
+            CHANNEL: :channel
+            USERS: :users
+
+            def self?.values: -> ::Array[WhopSDK::Models::ChatReactionCreatedWebhookEvent::Data::Audience::type_]
+          end
+        end
+
+        type channel =
+          {
+            id: String,
+            type: WhopSDK::Models::ChatReactionCreatedWebhookEvent::Data::Channel::type_,
+            experience_id: String?
+          }
+
+        class Channel < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor type: WhopSDK::Models::ChatReactionCreatedWebhookEvent::Data::Channel::type_
+
+          attr_accessor experience_id: String?
+
+          def initialize: (
+            id: String,
+            type: WhopSDK::Models::ChatReactionCreatedWebhookEvent::Data::Channel::type_,
+            ?experience_id: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            type: WhopSDK::Models::ChatReactionCreatedWebhookEvent::Data::Channel::type_,
+            experience_id: String?
+          }
+
+          type type_ = :chat | :direct_message | :support
+
+          module Type
+            extend WhopSDK::Internal::Type::Enum
+
+            CHAT: :chat
+            DIRECT_MESSAGE: :direct_message
+            SUPPORT: :support
+
+            def self?.values: -> ::Array[WhopSDK::Models::ChatReactionCreatedWebhookEvent::Data::Channel::type_]
+          end
+        end
+      end
+    end
+  end
+end

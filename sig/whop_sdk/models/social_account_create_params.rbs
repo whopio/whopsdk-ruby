@@ -1,0 +1,43 @@
+module WhopSDK
+  module Models
+    type social_account_create_params =
+      {
+        platform: WhopSDK::Models::SocialAccountCreateParams::platform,
+        account_id: String
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class SocialAccountCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor platform: WhopSDK::Models::SocialAccountCreateParams::platform
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
+
+      def initialize: (
+        platform: WhopSDK::Models::SocialAccountCreateParams::platform,
+        ?account_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        platform: WhopSDK::Models::SocialAccountCreateParams::platform,
+        account_id: String,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type platform = :facebook
+
+      module Platform
+        extend WhopSDK::Internal::Type::Enum
+
+        FACEBOOK: :facebook
+
+        def self?.values: -> ::Array[WhopSDK::Models::SocialAccountCreateParams::platform]
+      end
+    end
+  end
+end

@@ -148,32 +148,32 @@ module WhopSDK
 
         type summary =
           {
+            click_through_rate: Float,
             clicks: Integer,
+            cost_per_click: Float,
+            cost_per_mille: Float?,
             cost_per_result: Float?,
-            cpc: Float,
-            cpm: Float?,
-            ctr: Float,
             frequency: Float?,
             impressions: Integer,
             reach: Integer,
             result_count: Integer?,
             result_label_key: WhopSDK::Models::result_label_keys?,
             result_label_override: String?,
-            roas: Float?,
+            return_on_ad_spend: Float?,
             spend: Float,
             spend_currency: WhopSDK::Models::currency?
           }
 
         class Summary < WhopSDK::Internal::Type::BaseModel
+          attr_accessor click_through_rate: Float
+
           attr_accessor clicks: Integer
 
+          attr_accessor cost_per_click: Float
+
+          attr_accessor cost_per_mille: Float?
+
           attr_accessor cost_per_result: Float?
-
-          attr_accessor cpc: Float
-
-          attr_accessor cpm: Float?
-
-          attr_accessor ctr: Float
 
           attr_accessor frequency: Float?
 
@@ -187,42 +187,42 @@ module WhopSDK
 
           attr_accessor result_label_override: String?
 
-          attr_accessor roas: Float?
+          attr_accessor return_on_ad_spend: Float?
 
           attr_accessor spend: Float
 
           attr_accessor spend_currency: WhopSDK::Models::currency?
 
           def initialize: (
+            click_through_rate: Float,
             clicks: Integer,
+            cost_per_click: Float,
+            cost_per_mille: Float?,
             cost_per_result: Float?,
-            cpc: Float,
-            cpm: Float?,
-            ctr: Float,
             frequency: Float?,
             impressions: Integer,
             reach: Integer,
             result_count: Integer?,
             result_label_key: WhopSDK::Models::result_label_keys?,
             result_label_override: String?,
-            roas: Float?,
+            return_on_ad_spend: Float?,
             spend: Float,
             spend_currency: WhopSDK::Models::currency?
           ) -> void
 
           def to_hash: -> {
+            click_through_rate: Float,
             clicks: Integer,
+            cost_per_click: Float,
+            cost_per_mille: Float?,
             cost_per_result: Float?,
-            cpc: Float,
-            cpm: Float?,
-            ctr: Float,
             frequency: Float?,
             impressions: Integer,
             reach: Integer,
             result_count: Integer?,
             result_label_key: WhopSDK::Models::result_label_keys?,
             result_label_override: String?,
-            roas: Float?,
+            return_on_ad_spend: Float?,
             spend: Float,
             spend_currency: WhopSDK::Models::currency?
           }
@@ -303,32 +303,32 @@ module WhopSDK
 
       type summary =
         {
+          click_through_rate: Float,
           clicks: Integer,
+          cost_per_click: Float,
+          cost_per_mille: Float?,
           cost_per_result: Float?,
-          cpc: Float,
-          cpm: Float?,
-          ctr: Float,
           frequency: Float?,
           impressions: Integer,
           reach: Integer,
           result_count: Integer?,
           result_label_key: WhopSDK::Models::result_label_keys?,
           result_label_override: String?,
-          roas: Float?,
+          return_on_ad_spend: Float?,
           spend: Float,
           spend_currency: WhopSDK::Models::currency?
         }
 
       class Summary < WhopSDK::Internal::Type::BaseModel
+        attr_accessor click_through_rate: Float
+
         attr_accessor clicks: Integer
 
+        attr_accessor cost_per_click: Float
+
+        attr_accessor cost_per_mille: Float?
+
         attr_accessor cost_per_result: Float?
-
-        attr_accessor cpc: Float
-
-        attr_accessor cpm: Float?
-
-        attr_accessor ctr: Float
 
         attr_accessor frequency: Float?
 
@@ -342,42 +342,42 @@ module WhopSDK
 
         attr_accessor result_label_override: String?
 
-        attr_accessor roas: Float?
+        attr_accessor return_on_ad_spend: Float?
 
         attr_accessor spend: Float
 
         attr_accessor spend_currency: WhopSDK::Models::currency?
 
         def initialize: (
+          click_through_rate: Float,
           clicks: Integer,
+          cost_per_click: Float,
+          cost_per_mille: Float?,
           cost_per_result: Float?,
-          cpc: Float,
-          cpm: Float?,
-          ctr: Float,
           frequency: Float?,
           impressions: Integer,
           reach: Integer,
           result_count: Integer?,
           result_label_key: WhopSDK::Models::result_label_keys?,
           result_label_override: String?,
-          roas: Float?,
+          return_on_ad_spend: Float?,
           spend: Float,
           spend_currency: WhopSDK::Models::currency?
         ) -> void
 
         def to_hash: -> {
+          click_through_rate: Float,
           clicks: Integer,
+          cost_per_click: Float,
+          cost_per_mille: Float?,
           cost_per_result: Float?,
-          cpc: Float,
-          cpm: Float?,
-          ctr: Float,
           frequency: Float?,
           impressions: Integer,
           reach: Integer,
           result_count: Integer?,
           result_label_key: WhopSDK::Models::result_label_keys?,
           result_label_override: String?,
-          roas: Float?,
+          return_on_ad_spend: Float?,
           spend: Float,
           spend_currency: WhopSDK::Models::currency?
         }

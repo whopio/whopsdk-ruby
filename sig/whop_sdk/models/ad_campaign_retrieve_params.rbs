@@ -1,7 +1,8 @@
 module WhopSDK
   module Models
     type ad_campaign_retrieve_params =
-      { id: String } & WhopSDK::Internal::Type::request_parameters
+      { id: String, stats_from: String, stats_to: String, time_zone: String }
+      & WhopSDK::Internal::Type::request_parameters
 
     class AdCampaignRetrieveParams < WhopSDK::Internal::Type::BaseModel
       extend WhopSDK::Internal::Type::RequestParameters::Converter
@@ -9,12 +10,33 @@ module WhopSDK
 
       attr_accessor id: String
 
+      attr_reader stats_from: String?
+
+      def stats_from=: (String) -> String
+
+      attr_reader stats_to: String?
+
+      def stats_to=: (String) -> String
+
+      attr_reader time_zone: String?
+
+      def time_zone=: (String) -> String
+
       def initialize: (
         id: String,
+        ?stats_from: String,
+        ?stats_to: String,
+        ?time_zone: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
-      def to_hash: -> { id: String, request_options: WhopSDK::RequestOptions }
+      def to_hash: -> {
+        id: String,
+        stats_from: String,
+        stats_to: String,
+        time_zone: String,
+        request_options: WhopSDK::RequestOptions
+      }
     end
   end
 end

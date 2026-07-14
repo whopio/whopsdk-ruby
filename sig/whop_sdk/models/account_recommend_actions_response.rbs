@@ -1,0 +1,129 @@
+module WhopSDK
+  module Models
+    type account_recommend_actions_response =
+      { data: ::Array[WhopSDK::Models::AccountRecommendActionsResponse::Data] }
+
+    class AccountRecommendActionsResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor data: ::Array[WhopSDK::Models::AccountRecommendActionsResponse::Data]
+
+      def initialize: (
+        data: ::Array[WhopSDK::Models::AccountRecommendActionsResponse::Data]
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[WhopSDK::Models::AccountRecommendActionsResponse::Data]
+      }
+
+      type data =
+        {
+          action: WhopSDK::Models::AccountRecommendActionsResponse::Data::action,
+          blocked_capabilities: ::Array[String],
+          cta: String,
+          cta_label: String,
+          description: String,
+          icon_url: String?,
+          impact_score: Integer?,
+          reasoning: String?,
+          status: WhopSDK::Models::AccountRecommendActionsResponse::Data::status,
+          title: String
+        }
+
+      class Data < WhopSDK::Internal::Type::BaseModel
+        attr_accessor action: WhopSDK::Models::AccountRecommendActionsResponse::Data::action
+
+        attr_accessor blocked_capabilities: ::Array[String]
+
+        attr_accessor cta: String
+
+        attr_accessor cta_label: String
+
+        attr_accessor description: String
+
+        attr_accessor icon_url: String?
+
+        attr_accessor impact_score: Integer?
+
+        attr_accessor reasoning: String?
+
+        attr_accessor status: WhopSDK::Models::AccountRecommendActionsResponse::Data::status
+
+        attr_accessor title: String
+
+        def initialize: (
+          action: WhopSDK::Models::AccountRecommendActionsResponse::Data::action,
+          blocked_capabilities: ::Array[String],
+          cta: String,
+          cta_label: String,
+          description: String,
+          icon_url: String?,
+          impact_score: Integer?,
+          reasoning: String?,
+          status: WhopSDK::Models::AccountRecommendActionsResponse::Data::status,
+          title: String
+        ) -> void
+
+        def to_hash: -> {
+          action: WhopSDK::Models::AccountRecommendActionsResponse::Data::action,
+          blocked_capabilities: ::Array[String],
+          cta: String,
+          cta_label: String,
+          description: String,
+          icon_url: String?,
+          impact_score: Integer?,
+          reasoning: String?,
+          status: WhopSDK::Models::AccountRecommendActionsResponse::Data::status,
+          title: String
+        }
+
+        type action =
+          :theme_business
+          | :create_product
+          | :create_plan
+          | :verify_identity
+          | :connect_affiliate_program
+          | :create_promotion
+          | :setup_tracking_pixel
+          | :migrate_from_stripe
+          | :accept_first_payment
+          | :launch_first_ad
+          | :invite_team_member
+          | :enable_tax_collection
+          | :create_card
+          | :join_whop_university
+          | :apply_for_financing
+
+        module Action
+          extend WhopSDK::Internal::Type::Enum
+
+          THEME_BUSINESS: :theme_business
+          CREATE_PRODUCT: :create_product
+          CREATE_PLAN: :create_plan
+          VERIFY_IDENTITY: :verify_identity
+          CONNECT_AFFILIATE_PROGRAM: :connect_affiliate_program
+          CREATE_PROMOTION: :create_promotion
+          SETUP_TRACKING_PIXEL: :setup_tracking_pixel
+          MIGRATE_FROM_STRIPE: :migrate_from_stripe
+          ACCEPT_FIRST_PAYMENT: :accept_first_payment
+          LAUNCH_FIRST_AD: :launch_first_ad
+          INVITE_TEAM_MEMBER: :invite_team_member
+          ENABLE_TAX_COLLECTION: :enable_tax_collection
+          CREATE_CARD: :create_card
+          JOIN_WHOP_UNIVERSITY: :join_whop_university
+          APPLY_FOR_FINANCING: :apply_for_financing
+
+          def self?.values: -> ::Array[WhopSDK::Models::AccountRecommendActionsResponse::Data::action]
+        end
+
+        type status = :optional
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          OPTIONAL: :optional
+
+          def self?.values: -> ::Array[WhopSDK::Models::AccountRecommendActionsResponse::Data::status]
+        end
+      end
+    end
+  end
+end

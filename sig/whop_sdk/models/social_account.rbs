@@ -1,0 +1,74 @@
+module WhopSDK
+  module Models
+    type social_account =
+      {
+        id: String,
+        external_id: String?,
+        name: String?,
+        platform: WhopSDK::Models::SocialAccount::platform,
+        profile_picture_url: String?,
+        scopes: ::Array[String],
+        url: String?,
+        username: String?,
+        verified: bool
+      }
+
+    class SocialAccount < WhopSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor external_id: String?
+
+      attr_accessor name: String?
+
+      attr_accessor platform: WhopSDK::Models::SocialAccount::platform
+
+      attr_accessor profile_picture_url: String?
+
+      attr_accessor scopes: ::Array[String]
+
+      attr_accessor url: String?
+
+      attr_accessor username: String?
+
+      attr_accessor verified: bool
+
+      def initialize: (
+        id: String,
+        external_id: String?,
+        name: String?,
+        platform: WhopSDK::Models::SocialAccount::platform,
+        profile_picture_url: String?,
+        scopes: ::Array[String],
+        url: String?,
+        username: String?,
+        verified: bool
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        external_id: String?,
+        name: String?,
+        platform: WhopSDK::Models::SocialAccount::platform,
+        profile_picture_url: String?,
+        scopes: ::Array[String],
+        url: String?,
+        username: String?,
+        verified: bool
+      }
+
+      type platform = :x | :instagram | :youtube | :tiktok | :facebook
+
+      module Platform
+        extend WhopSDK::Internal::Type::Enum
+
+        X: :x
+        INSTAGRAM: :instagram
+        YOUTUBE: :youtube
+        TIKTOK: :tiktok
+        FACEBOOK: :facebook
+
+        def self?.values: -> ::Array[WhopSDK::Models::SocialAccount::platform]
+      end
+    end
+  end
+end

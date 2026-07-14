@@ -27,8 +27,18 @@ module WhopSDK
       REGISTRATIONS = :registrations
       CONTENT_VIEWS = :content_views
       SEARCHES = :searches
+      ADDS_TO_CART = :adds_to_cart
+      ADDS_TO_WISHLIST = :adds_to_wishlist
+      ADDS_OF_PAYMENT_INFO = :adds_of_payment_info
+      CHECKOUTS_INITIATED = :checkouts_initiated
       WEBSITE_SCHEDULES = :website_schedules
       WEBSITE_SUBMIT_APPLICATIONS = :website_submit_applications
+      WEBSITE_TRIALS_STARTED = :website_trials_started
+      WEBSITE_SUBSCRIPTIONS = :website_subscriptions
+      WEBSITE_CONTACTS = :website_contacts
+      WEBSITE_DONATIONS = :website_donations
+      WEBSITE_FIND_LOCATIONS = :website_find_locations
+      WEBSITE_PRODUCT_CUSTOMIZATIONS = :website_product_customizations
       CUSTOM = :custom
 
       # @!method self.values

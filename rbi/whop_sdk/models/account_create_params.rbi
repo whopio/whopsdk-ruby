@@ -26,10 +26,19 @@ module WhopSDK
       sig { params(metadata: T::Hash[Symbol, T.anything]).void }
       attr_writer :metadata
 
+      # The display name of the account. Defaults to `metadata.external_id` or the
+      # owner's email when omitted.
+      sig { returns(T.nilable(String)) }
+      attr_reader :title
+
+      sig { params(title: String).void }
+      attr_writer :title
+
       sig do
         params(
           email: String,
           metadata: T::Hash[Symbol, T.anything],
+          title: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -39,6 +48,9 @@ module WhopSDK
         email: nil,
         # Arbitrary key/value metadata to store on the account.
         metadata: nil,
+        # The display name of the account. Defaults to `metadata.external_id` or the
+        # owner's email when omitted.
+        title: nil,
         request_options: {}
       )
       end
@@ -48,6 +60,7 @@ module WhopSDK
           {
             email: String,
             metadata: T::Hash[Symbol, T.anything],
+            title: String,
             request_options: WhopSDK::RequestOptions
           }
         )

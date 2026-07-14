@@ -78,13 +78,14 @@ module WhopSDK
         def self?.values: -> ::Array[WhopSDK::Models::BountyCreateResponse::bounty_type]
       end
 
-      type status = :published | :archived
+      type status = :published | :archived | :scheduled
 
       module Status
         extend WhopSDK::Internal::Type::Enum
 
         PUBLISHED: :published
         ARCHIVED: :archived
+        SCHEDULED: :scheduled
 
         def self?.values: -> ::Array[WhopSDK::Models::BountyCreateResponse::status]
       end

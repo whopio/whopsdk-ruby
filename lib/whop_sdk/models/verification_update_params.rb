@@ -41,6 +41,14 @@ module WhopSDK
         variant -> { WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification }
 
         class UpdateIndividualVerification < WhopSDK::Internal::Type::BaseModel
+          # @!attribute business_tax_identification_number
+          #   The business ID number of the company, as appropriate for the company's country.
+          #   Examples are an Employer Identification Number (EIN) in the US, a Business
+          #   Number in Canada, or a Company Number in the UK.
+          #
+          #   @return [String, nil]
+          optional :business_tax_identification_number, String
+
           # @!attribute country
           #   Two-letter ISO 3166-1 country code, for example `US`, `DE`, or `GB`.
           #
@@ -80,13 +88,24 @@ module WhopSDK
           optional :requested_information,
                    -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation] }
 
-          # @!method initialize(country: nil, date_of_birth: nil, first_name: nil, last_name: nil, personal_address: nil, requested_information: nil)
+          # @!attribute tax_identification_number
+          #   The government-issued ID number of the person being verified — the individual
+          #   for a KYC verification, or the business representative for a KYB verification —
+          #   as appropriate for their country. Examples are a Social Security Number (SSN) in
+          #   the US, or a Social Insurance Number in Canada.
+          #
+          #   @return [String, nil]
+          optional :tax_identification_number, String
+
+          # @!method initialize(business_tax_identification_number: nil, country: nil, date_of_birth: nil, first_name: nil, last_name: nil, personal_address: nil, requested_information: nil, tax_identification_number: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::VerificationUpdateParams::Body::UpdateIndividualVerification}
           #   for more details.
           #
           #   Fields that can be updated on an individual (KYC) verification. At least one
           #   field is required.
+          #
+          #   @param business_tax_identification_number [String] The business ID number of the company, as appropriate for the company's country.
           #
           #   @param country [String] Two-letter ISO 3166-1 country code, for example `US`, `DE`, or `GB`.
           #
@@ -99,6 +118,8 @@ module WhopSDK
           #   @param personal_address [WhopSDK::Models::VerificationUpdateParams::Body::UpdateIndividualVerification::PersonalAddress] Personal address for the individual.
           #
           #   @param requested_information [Array<WhopSDK::Models::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation>] Answers to items returned in `requested_information`. Each entry must include th
+          #
+          #   @param tax_identification_number [String] The government-issued ID number of the person being verified — the individual fo
 
           # @see WhopSDK::Models::VerificationUpdateParams::Body::UpdateIndividualVerification#personal_address
           class PersonalAddress < WhopSDK::Internal::Type::BaseModel
@@ -329,6 +350,14 @@ module WhopSDK
           #   @return [String, nil]
           optional :business_structure, String
 
+          # @!attribute business_tax_identification_number
+          #   The business ID number of the company, as appropriate for the company's country.
+          #   Examples are an Employer Identification Number (EIN) in the US, a Business
+          #   Number in Canada, or a Company Number in the UK.
+          #
+          #   @return [String, nil]
+          optional :business_tax_identification_number, String
+
           # @!attribute country
           #   Two-letter ISO 3166-1 country code, for example `US`, `DE`, or `GB`.
           #
@@ -345,7 +374,16 @@ module WhopSDK
           optional :requested_information,
                    -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation] }
 
-          # @!method initialize(business_address: nil, business_name: nil, business_structure: nil, country: nil, requested_information: nil)
+          # @!attribute tax_identification_number
+          #   The government-issued ID number of the person being verified — the individual
+          #   for a KYC verification, or the business representative for a KYB verification —
+          #   as appropriate for their country. Examples are a Social Security Number (SSN) in
+          #   the US, or a Social Insurance Number in Canada.
+          #
+          #   @return [String, nil]
+          optional :tax_identification_number, String
+
+          # @!method initialize(business_address: nil, business_name: nil, business_structure: nil, business_tax_identification_number: nil, country: nil, requested_information: nil, tax_identification_number: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::VerificationUpdateParams::Body::UpdateBusinessVerification}
           #   for more details.
@@ -359,9 +397,13 @@ module WhopSDK
           #
           #   @param business_structure [String] Legal entity structure of the business, such as `private_corporation` or `sole_p
           #
+          #   @param business_tax_identification_number [String] The business ID number of the company, as appropriate for the company's country.
+          #
           #   @param country [String] Two-letter ISO 3166-1 country code, for example `US`, `DE`, or `GB`.
           #
           #   @param requested_information [Array<WhopSDK::Models::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation>] Answers to items returned in `requested_information`. Each entry must include th
+          #
+          #   @param tax_identification_number [String] The government-issued ID number of the person being verified — the individual fo
 
           # @see WhopSDK::Models::VerificationUpdateParams::Body::UpdateBusinessVerification#business_address
           class BusinessAddress < WhopSDK::Internal::Type::BaseModel

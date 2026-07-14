@@ -1,0 +1,28 @@
+module WhopSDK
+  module Resources
+    class Partners
+      attr_reader businesses: WhopSDK::Resources::Partners::Businesses
+
+      def create: (
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::PartnerCreateResponse
+
+      def leaderboard: (
+        ?period: WhopSDK::Models::PartnerLeaderboardParams::period,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::PartnerLeaderboardResponse
+
+      def referred_users: (
+        ?after: String,
+        ?before: String,
+        ?first: Integer,
+        ?has_businesses: bool,
+        ?has_earning_businesses: bool,
+        ?last: Integer,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::PartnerReferredUsersResponse
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

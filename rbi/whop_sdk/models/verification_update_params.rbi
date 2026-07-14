@@ -84,6 +84,15 @@ module WhopSDK
               )
             end
 
+          # The business ID number of the company, as appropriate for the company's country.
+          # Examples are an Employer Identification Number (EIN) in the US, a Business
+          # Number in Canada, or a Company Number in the UK.
+          sig { returns(T.nilable(String)) }
+          attr_reader :business_tax_identification_number
+
+          sig { params(business_tax_identification_number: String).void }
+          attr_writer :business_tax_identification_number
+
           # Two-letter ISO 3166-1 country code, for example `US`, `DE`, or `GB`.
           sig { returns(T.nilable(String)) }
           attr_reader :country
@@ -153,10 +162,21 @@ module WhopSDK
           end
           attr_writer :requested_information
 
+          # The government-issued ID number of the person being verified — the individual
+          # for a KYC verification, or the business representative for a KYB verification —
+          # as appropriate for their country. Examples are a Social Security Number (SSN) in
+          # the US, or a Social Insurance Number in Canada.
+          sig { returns(T.nilable(String)) }
+          attr_reader :tax_identification_number
+
+          sig { params(tax_identification_number: String).void }
+          attr_writer :tax_identification_number
+
           # Fields that can be updated on an individual (KYC) verification. At least one
           # field is required.
           sig do
             params(
+              business_tax_identification_number: String,
               country: String,
               date_of_birth: String,
               first_name: String,
@@ -166,10 +186,15 @@ module WhopSDK
               requested_information:
                 T::Array[
                   WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation::OrHash
-                ]
+                ],
+              tax_identification_number: String
             ).returns(T.attached_class)
           end
           def self.new(
+            # The business ID number of the company, as appropriate for the company's country.
+            # Examples are an Employer Identification Number (EIN) in the US, a Business
+            # Number in Canada, or a Company Number in the UK.
+            business_tax_identification_number: nil,
             # Two-letter ISO 3166-1 country code, for example `US`, `DE`, or `GB`.
             country: nil,
             # Formatted as `YYYY-MM-DD`.
@@ -182,13 +207,19 @@ module WhopSDK
             # the requested item `id` and exactly one answer payload matching the item's
             # `type`: `value` for `text`, `date`, or `phone`; `address` for `address`; `files`
             # for `files`.
-            requested_information: nil
+            requested_information: nil,
+            # The government-issued ID number of the person being verified — the individual
+            # for a KYC verification, or the business representative for a KYB verification —
+            # as appropriate for their country. Examples are a Social Security Number (SSN) in
+            # the US, or a Social Insurance Number in Canada.
+            tax_identification_number: nil
           )
           end
 
           sig do
             override.returns(
               {
+                business_tax_identification_number: String,
                 country: String,
                 date_of_birth: String,
                 first_name: String,
@@ -198,7 +229,8 @@ module WhopSDK
                 requested_information:
                   T::Array[
                     WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation
-                  ]
+                  ],
+                tax_identification_number: String
               }
             )
           end
@@ -669,6 +701,15 @@ module WhopSDK
           sig { params(business_structure: String).void }
           attr_writer :business_structure
 
+          # The business ID number of the company, as appropriate for the company's country.
+          # Examples are an Employer Identification Number (EIN) in the US, a Business
+          # Number in Canada, or a Company Number in the UK.
+          sig { returns(T.nilable(String)) }
+          attr_reader :business_tax_identification_number
+
+          sig { params(business_tax_identification_number: String).void }
+          attr_writer :business_tax_identification_number
+
           # Two-letter ISO 3166-1 country code, for example `US`, `DE`, or `GB`.
           sig { returns(T.nilable(String)) }
           attr_reader :country
@@ -701,6 +742,16 @@ module WhopSDK
           end
           attr_writer :requested_information
 
+          # The government-issued ID number of the person being verified — the individual
+          # for a KYC verification, or the business representative for a KYB verification —
+          # as appropriate for their country. Examples are a Social Security Number (SSN) in
+          # the US, or a Social Insurance Number in Canada.
+          sig { returns(T.nilable(String)) }
+          attr_reader :tax_identification_number
+
+          sig { params(tax_identification_number: String).void }
+          attr_writer :tax_identification_number
+
           # Fields that can be updated on a business entity (KYB) verification. At least one
           # field is required.
           sig do
@@ -709,11 +760,13 @@ module WhopSDK
                 WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::BusinessAddress::OrHash,
               business_name: String,
               business_structure: String,
+              business_tax_identification_number: String,
               country: String,
               requested_information:
                 T::Array[
                   WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation::OrHash
-                ]
+                ],
+              tax_identification_number: String
             ).returns(T.attached_class)
           end
           def self.new(
@@ -725,13 +778,22 @@ module WhopSDK
             # `sole_proprietorship`. Supported values vary by country of incorporation — see
             # [Business structures](/developer/verification/business-structures).
             business_structure: nil,
+            # The business ID number of the company, as appropriate for the company's country.
+            # Examples are an Employer Identification Number (EIN) in the US, a Business
+            # Number in Canada, or a Company Number in the UK.
+            business_tax_identification_number: nil,
             # Two-letter ISO 3166-1 country code, for example `US`, `DE`, or `GB`.
             country: nil,
             # Answers to items returned in `requested_information`. Each entry must include
             # the requested item `id` and exactly one answer payload matching the item's
             # `type`: `value` for `text`, `date`, or `phone`; `address` for `address`; `files`
             # for `files`.
-            requested_information: nil
+            requested_information: nil,
+            # The government-issued ID number of the person being verified — the individual
+            # for a KYC verification, or the business representative for a KYB verification —
+            # as appropriate for their country. Examples are a Social Security Number (SSN) in
+            # the US, or a Social Insurance Number in Canada.
+            tax_identification_number: nil
           )
           end
 
@@ -742,11 +804,13 @@ module WhopSDK
                   WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::BusinessAddress,
                 business_name: String,
                 business_structure: String,
+                business_tax_identification_number: String,
                 country: String,
                 requested_information:
                   T::Array[
                     WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation
-                  ]
+                  ],
+                tax_identification_number: String
               }
             )
           end

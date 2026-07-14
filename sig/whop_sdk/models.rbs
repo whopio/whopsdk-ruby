@@ -807,6 +807,8 @@ module WhopSDK
 
   class UserListParams = WhopSDK::Models::UserListParams
 
+  class UserRecommendActionsParams = WhopSDK::Models::UserRecommendActionsParams
+
   class UserRetrieveParams = WhopSDK::Models::UserRetrieveParams
 
   class UserUpdateMeParams = WhopSDK::Models::UserUpdateMeParams

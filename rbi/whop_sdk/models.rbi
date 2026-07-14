@@ -851,6 +851,8 @@ module WhopSDK
 
   UserListParams = WhopSDK::Models::UserListParams
 
+  UserRecommendActionsParams = WhopSDK::Models::UserRecommendActionsParams
+
   UserRetrieveParams = WhopSDK::Models::UserRetrieveParams
 
   UserUpdateMeParams = WhopSDK::Models::UserUpdateMeParams

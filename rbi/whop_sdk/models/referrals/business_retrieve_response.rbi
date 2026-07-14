@@ -1042,12 +1042,11 @@ module WhopSDK
             sig { returns(T.nilable(String)) }
             attr_accessor :icon_url
 
-            # Estimated revenue impact from 0-100, comparable across accounts, or `null` when
-            # not ranked
+            # Estimated impact from 0-100, or `null` when not ranked
             sig { returns(T.nilable(Integer)) }
             attr_accessor :impact_score
 
-            # Why this action was recommended for this account, or `null`
+            # Why this action was recommended, or `null`
             sig { returns(T.nilable(String)) }
             attr_accessor :reasoning
 
@@ -1092,10 +1091,9 @@ module WhopSDK
               description:,
               # Illustration icon URL, or `null`
               icon_url:,
-              # Estimated revenue impact from 0-100, comparable across accounts, or `null` when
-              # not ranked
+              # Estimated impact from 0-100, or `null` when not ranked
               impact_score:,
-              # Why this action was recommended for this account, or `null`
+              # Why this action was recommended, or `null`
               reasoning:,
               # Always optional — never blocking
               status:,

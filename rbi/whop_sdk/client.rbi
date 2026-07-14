@@ -271,14 +271,14 @@ module WhopSDK
     sig { returns(WhopSDK::Resources::Payouts) }
     attr_reader :payouts
 
-    # The Referrals API covers your Whop partner activity: the users you referred onto
+    # The Partners API covers your Whop partner activity: the users you referred onto
     # Whop, the businesses you referred and the earnings generated from their
     # processing volume, and the partner leaderboard.
     #
     # Use it to enroll as a Whop partner, list the users you referred, list your
     # referred businesses and review their earnings, and see the partner leaderboard.
-    sig { returns(WhopSDK::Resources::Referrals) }
-    attr_reader :referrals
+    sig { returns(WhopSDK::Resources::Partners) }
+    attr_reader :partners
 
     # Cards represent Whop-issued virtual payment cards that spend from an account or
     # user balance. Cards can be assigned to cardholders and configured with spending

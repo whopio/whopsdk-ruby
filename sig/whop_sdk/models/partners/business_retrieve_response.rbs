@@ -1,0 +1,677 @@
+module WhopSDK
+  module Models
+    module Partners
+      type business_retrieve_response =
+        {
+          id: String,
+          account: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account?,
+          created_at: Time,
+          earnings_usd: WhopSDK::Models::Partners::BusinessRetrieveResponse::EarningsUsd,
+          first_tier_partner: WhopSDK::Models::Partners::BusinessRetrieveResponse::FirstTierPartner?,
+          my_partner_tier: WhopSDK::Models::Partners::BusinessRetrieveResponse::my_partner_tier,
+          object: WhopSDK::Models::Partners::BusinessRetrieveResponse::object,
+          owner: WhopSDK::Models::Partners::BusinessRetrieveResponse::Owner?,
+          payout_percentage: Float,
+          referral_expires_at: Time?,
+          referral_started_at: Time?,
+          status: WhopSDK::Models::Partners::BusinessRetrieveResponse::status,
+          volume_usd: WhopSDK::Models::Partners::BusinessRetrieveResponse::VolumeUsd
+        }
+
+      class BusinessRetrieveResponse < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor account: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account?
+
+        attr_accessor created_at: Time
+
+        attr_accessor earnings_usd: WhopSDK::Models::Partners::BusinessRetrieveResponse::EarningsUsd
+
+        attr_accessor first_tier_partner: WhopSDK::Models::Partners::BusinessRetrieveResponse::FirstTierPartner?
+
+        attr_accessor my_partner_tier: WhopSDK::Models::Partners::BusinessRetrieveResponse::my_partner_tier
+
+        attr_accessor object: WhopSDK::Models::Partners::BusinessRetrieveResponse::object
+
+        attr_accessor owner: WhopSDK::Models::Partners::BusinessRetrieveResponse::Owner?
+
+        attr_accessor payout_percentage: Float
+
+        attr_accessor referral_expires_at: Time?
+
+        attr_accessor referral_started_at: Time?
+
+        attr_accessor status: WhopSDK::Models::Partners::BusinessRetrieveResponse::status
+
+        attr_accessor volume_usd: WhopSDK::Models::Partners::BusinessRetrieveResponse::VolumeUsd
+
+        def initialize: (
+          id: String,
+          account: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account?,
+          created_at: Time,
+          earnings_usd: WhopSDK::Models::Partners::BusinessRetrieveResponse::EarningsUsd,
+          first_tier_partner: WhopSDK::Models::Partners::BusinessRetrieveResponse::FirstTierPartner?,
+          my_partner_tier: WhopSDK::Models::Partners::BusinessRetrieveResponse::my_partner_tier,
+          object: WhopSDK::Models::Partners::BusinessRetrieveResponse::object,
+          owner: WhopSDK::Models::Partners::BusinessRetrieveResponse::Owner?,
+          payout_percentage: Float,
+          referral_expires_at: Time?,
+          referral_started_at: Time?,
+          status: WhopSDK::Models::Partners::BusinessRetrieveResponse::status,
+          volume_usd: WhopSDK::Models::Partners::BusinessRetrieveResponse::VolumeUsd
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          account: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account?,
+          created_at: Time,
+          earnings_usd: WhopSDK::Models::Partners::BusinessRetrieveResponse::EarningsUsd,
+          first_tier_partner: WhopSDK::Models::Partners::BusinessRetrieveResponse::FirstTierPartner?,
+          my_partner_tier: WhopSDK::Models::Partners::BusinessRetrieveResponse::my_partner_tier,
+          object: WhopSDK::Models::Partners::BusinessRetrieveResponse::object,
+          owner: WhopSDK::Models::Partners::BusinessRetrieveResponse::Owner?,
+          payout_percentage: Float,
+          referral_expires_at: Time?,
+          referral_started_at: Time?,
+          status: WhopSDK::Models::Partners::BusinessRetrieveResponse::status,
+          volume_usd: WhopSDK::Models::Partners::BusinessRetrieveResponse::VolumeUsd
+        }
+
+        type account =
+          {
+            id: String,
+            capabilities: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities?,
+            logo_url: String?,
+            recommended_actions: ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RecommendedAction]?,
+            required_actions: ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RequiredAction]?,
+            route: String,
+            title: String
+          }
+
+        class Account < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor capabilities: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities?
+
+          attr_accessor logo_url: String?
+
+          attr_accessor recommended_actions: ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RecommendedAction]?
+
+          attr_accessor required_actions: ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RequiredAction]?
+
+          attr_accessor route: String
+
+          attr_accessor title: String
+
+          def initialize: (
+            id: String,
+            capabilities: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities?,
+            logo_url: String?,
+            recommended_actions: ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RecommendedAction]?,
+            required_actions: ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RequiredAction]?,
+            route: String,
+            title: String
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            capabilities: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities?,
+            logo_url: String?,
+            recommended_actions: ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RecommendedAction]?,
+            required_actions: ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RequiredAction]?,
+            route: String,
+            title: String
+          }
+
+          type capabilities =
+            {
+              accept_bank_payments: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::accept_bank_payments,
+              accept_bnpl_payments: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::accept_bnpl_payments,
+              accept_card_payments: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::accept_card_payments,
+              bank_deposit: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::bank_deposit,
+              card_deposit: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::card_deposit,
+              card_issuing: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::card_issuing,
+              crypto_deposit: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::crypto_deposit,
+              crypto_payout: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::crypto_payout,
+              instant_payout: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::instant_payout,
+              standard_payout: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::standard_payout,
+              transfer: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::transfer
+            }
+
+          class Capabilities < WhopSDK::Internal::Type::BaseModel
+            attr_accessor accept_bank_payments: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::accept_bank_payments
+
+            attr_accessor accept_bnpl_payments: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::accept_bnpl_payments
+
+            attr_accessor accept_card_payments: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::accept_card_payments
+
+            attr_accessor bank_deposit: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::bank_deposit
+
+            attr_accessor card_deposit: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::card_deposit
+
+            attr_accessor card_issuing: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::card_issuing
+
+            attr_accessor crypto_deposit: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::crypto_deposit
+
+            attr_accessor crypto_payout: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::crypto_payout
+
+            attr_accessor instant_payout: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::instant_payout
+
+            attr_accessor standard_payout: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::standard_payout
+
+            attr_accessor transfer: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::transfer
+
+            def initialize: (
+              accept_bank_payments: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::accept_bank_payments,
+              accept_bnpl_payments: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::accept_bnpl_payments,
+              accept_card_payments: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::accept_card_payments,
+              bank_deposit: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::bank_deposit,
+              card_deposit: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::card_deposit,
+              card_issuing: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::card_issuing,
+              crypto_deposit: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::crypto_deposit,
+              crypto_payout: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::crypto_payout,
+              instant_payout: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::instant_payout,
+              standard_payout: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::standard_payout,
+              transfer: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::transfer
+            ) -> void
+
+            def to_hash: -> {
+              accept_bank_payments: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::accept_bank_payments,
+              accept_bnpl_payments: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::accept_bnpl_payments,
+              accept_card_payments: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::accept_card_payments,
+              bank_deposit: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::bank_deposit,
+              card_deposit: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::card_deposit,
+              card_issuing: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::card_issuing,
+              crypto_deposit: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::crypto_deposit,
+              crypto_payout: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::crypto_payout,
+              instant_payout: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::instant_payout,
+              standard_payout: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::standard_payout,
+              transfer: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::transfer
+            }
+
+            type accept_bank_payments = :active | :inactive | :pending
+
+            module AcceptBankPayments
+              extend WhopSDK::Internal::Type::Enum
+
+              ACTIVE: :active
+              INACTIVE: :inactive
+              PENDING: :pending
+
+              def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::accept_bank_payments]
+            end
+
+            type accept_bnpl_payments = :active | :inactive | :pending
+
+            module AcceptBnplPayments
+              extend WhopSDK::Internal::Type::Enum
+
+              ACTIVE: :active
+              INACTIVE: :inactive
+              PENDING: :pending
+
+              def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::accept_bnpl_payments]
+            end
+
+            type accept_card_payments = :active | :inactive | :pending
+
+            module AcceptCardPayments
+              extend WhopSDK::Internal::Type::Enum
+
+              ACTIVE: :active
+              INACTIVE: :inactive
+              PENDING: :pending
+
+              def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::accept_card_payments]
+            end
+
+            type bank_deposit = :active | :inactive | :pending
+
+            module BankDeposit
+              extend WhopSDK::Internal::Type::Enum
+
+              ACTIVE: :active
+              INACTIVE: :inactive
+              PENDING: :pending
+
+              def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::bank_deposit]
+            end
+
+            type card_deposit = :active | :inactive | :pending
+
+            module CardDeposit
+              extend WhopSDK::Internal::Type::Enum
+
+              ACTIVE: :active
+              INACTIVE: :inactive
+              PENDING: :pending
+
+              def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::card_deposit]
+            end
+
+            type card_issuing = :active | :inactive | :pending
+
+            module CardIssuing
+              extend WhopSDK::Internal::Type::Enum
+
+              ACTIVE: :active
+              INACTIVE: :inactive
+              PENDING: :pending
+
+              def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::card_issuing]
+            end
+
+            type crypto_deposit = :active | :inactive | :pending
+
+            module CryptoDeposit
+              extend WhopSDK::Internal::Type::Enum
+
+              ACTIVE: :active
+              INACTIVE: :inactive
+              PENDING: :pending
+
+              def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::crypto_deposit]
+            end
+
+            type crypto_payout = :active | :inactive | :pending
+
+            module CryptoPayout
+              extend WhopSDK::Internal::Type::Enum
+
+              ACTIVE: :active
+              INACTIVE: :inactive
+              PENDING: :pending
+
+              def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::crypto_payout]
+            end
+
+            type instant_payout = :active | :inactive | :pending
+
+            module InstantPayout
+              extend WhopSDK::Internal::Type::Enum
+
+              ACTIVE: :active
+              INACTIVE: :inactive
+              PENDING: :pending
+
+              def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::instant_payout]
+            end
+
+            type standard_payout = :active | :inactive | :pending
+
+            module StandardPayout
+              extend WhopSDK::Internal::Type::Enum
+
+              ACTIVE: :active
+              INACTIVE: :inactive
+              PENDING: :pending
+
+              def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::standard_payout]
+            end
+
+            type transfer = :active | :inactive | :pending
+
+            module Transfer
+              extend WhopSDK::Internal::Type::Enum
+
+              ACTIVE: :active
+              INACTIVE: :inactive
+              PENDING: :pending
+
+              def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::Capabilities::transfer]
+            end
+          end
+
+          type recommended_action =
+            {
+              action: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RecommendedAction::action,
+              blocked_capabilities: ::Array[String],
+              cta: String,
+              cta_label: String,
+              description: String,
+              icon_url: String?,
+              impact_score: Integer?,
+              reasoning: String?,
+              status: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RecommendedAction::status,
+              title: String
+            }
+
+          class RecommendedAction < WhopSDK::Internal::Type::BaseModel
+            attr_accessor action: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RecommendedAction::action
+
+            attr_accessor blocked_capabilities: ::Array[String]
+
+            attr_accessor cta: String
+
+            attr_accessor cta_label: String
+
+            attr_accessor description: String
+
+            attr_accessor icon_url: String?
+
+            attr_accessor impact_score: Integer?
+
+            attr_accessor reasoning: String?
+
+            attr_accessor status: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RecommendedAction::status
+
+            attr_accessor title: String
+
+            def initialize: (
+              action: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RecommendedAction::action,
+              blocked_capabilities: ::Array[String],
+              cta: String,
+              cta_label: String,
+              description: String,
+              icon_url: String?,
+              impact_score: Integer?,
+              reasoning: String?,
+              status: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RecommendedAction::status,
+              title: String
+            ) -> void
+
+            def to_hash: -> {
+              action: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RecommendedAction::action,
+              blocked_capabilities: ::Array[String],
+              cta: String,
+              cta_label: String,
+              description: String,
+              icon_url: String?,
+              impact_score: Integer?,
+              reasoning: String?,
+              status: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RecommendedAction::status,
+              title: String
+            }
+
+            type action =
+              :theme_business
+              | :create_product
+              | :create_plan
+              | :verify_identity
+              | :connect_affiliate_program
+              | :create_promotion
+              | :setup_tracking_pixel
+              | :migrate_from_stripe
+              | :accept_first_payment
+              | :launch_first_ad
+              | :invite_team_member
+              | :enable_tax_collection
+              | :create_card
+              | :join_whop_university
+              | :apply_for_financing
+
+            module Action
+              extend WhopSDK::Internal::Type::Enum
+
+              THEME_BUSINESS: :theme_business
+              CREATE_PRODUCT: :create_product
+              CREATE_PLAN: :create_plan
+              VERIFY_IDENTITY: :verify_identity
+              CONNECT_AFFILIATE_PROGRAM: :connect_affiliate_program
+              CREATE_PROMOTION: :create_promotion
+              SETUP_TRACKING_PIXEL: :setup_tracking_pixel
+              MIGRATE_FROM_STRIPE: :migrate_from_stripe
+              ACCEPT_FIRST_PAYMENT: :accept_first_payment
+              LAUNCH_FIRST_AD: :launch_first_ad
+              INVITE_TEAM_MEMBER: :invite_team_member
+              ENABLE_TAX_COLLECTION: :enable_tax_collection
+              CREATE_CARD: :create_card
+              JOIN_WHOP_UNIVERSITY: :join_whop_university
+              APPLY_FOR_FINANCING: :apply_for_financing
+
+              def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RecommendedAction::action]
+            end
+
+            type status = :optional
+
+            module Status
+              extend WhopSDK::Internal::Type::Enum
+
+              OPTIONAL: :optional
+
+              def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RecommendedAction::status]
+            end
+          end
+
+          type required_action =
+            {
+              action: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RequiredAction::action,
+              blocked_capabilities: ::Array[String],
+              cta: String?,
+              cta_label: String,
+              description: String,
+              icon_url: String?,
+              status: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RequiredAction::status,
+              title: String
+            }
+
+          class RequiredAction < WhopSDK::Internal::Type::BaseModel
+            attr_accessor action: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RequiredAction::action
+
+            attr_accessor blocked_capabilities: ::Array[String]
+
+            attr_accessor cta: String?
+
+            attr_accessor cta_label: String
+
+            attr_accessor description: String
+
+            attr_accessor icon_url: String?
+
+            attr_accessor status: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RequiredAction::status
+
+            attr_accessor title: String
+
+            def initialize: (
+              action: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RequiredAction::action,
+              blocked_capabilities: ::Array[String],
+              cta: String?,
+              cta_label: String,
+              description: String,
+              icon_url: String?,
+              status: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RequiredAction::status,
+              title: String
+            ) -> void
+
+            def to_hash: -> {
+              action: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RequiredAction::action,
+              blocked_capabilities: ::Array[String],
+              cta: String?,
+              cta_label: String,
+              description: String,
+              icon_url: String?,
+              status: WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RequiredAction::status,
+              title: String
+            }
+
+            type action =
+              :deposit_funds
+              | :submit_information_request
+              | :verify_identity
+              | :connect_fulfillment_tracker
+
+            module Action
+              extend WhopSDK::Internal::Type::Enum
+
+              DEPOSIT_FUNDS: :deposit_funds
+              SUBMIT_INFORMATION_REQUEST: :submit_information_request
+              VERIFY_IDENTITY: :verify_identity
+              CONNECT_FULFILLMENT_TRACKER: :connect_fulfillment_tracker
+
+              def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RequiredAction::action]
+            end
+
+            type status = :required | :pending
+
+            module Status
+              extend WhopSDK::Internal::Type::Enum
+
+              REQUIRED: :required
+              PENDING: :pending
+
+              def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::Account::RequiredAction::status]
+            end
+          end
+        end
+
+        type earnings_usd =
+          { completed: String, pending: String, total: String }
+
+        class EarningsUsd < WhopSDK::Internal::Type::BaseModel
+          attr_accessor completed: String
+
+          attr_accessor pending: String
+
+          attr_accessor total: String
+
+          def initialize: (
+            completed: String,
+            pending: String,
+            total: String
+          ) -> void
+
+          def to_hash: -> { completed: String, pending: String, total: String }
+        end
+
+        type first_tier_partner =
+          {
+            id: String,
+            name: String?,
+            profile_picture: WhopSDK::Models::Partners::BusinessRetrieveResponse::FirstTierPartner::ProfilePicture,
+            username: String
+          }
+
+        class FirstTierPartner < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor name: String?
+
+          attr_accessor profile_picture: WhopSDK::Models::Partners::BusinessRetrieveResponse::FirstTierPartner::ProfilePicture
+
+          attr_accessor username: String
+
+          def initialize: (
+            id: String,
+            name: String?,
+            profile_picture: WhopSDK::Models::Partners::BusinessRetrieveResponse::FirstTierPartner::ProfilePicture,
+            username: String
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            name: String?,
+            profile_picture: WhopSDK::Models::Partners::BusinessRetrieveResponse::FirstTierPartner::ProfilePicture,
+            username: String
+          }
+
+          type profile_picture = { url: String }
+
+          class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+            attr_accessor url: String
+
+            def initialize: (url: String) -> void
+
+            def to_hash: -> { url: String }
+          end
+        end
+
+        type my_partner_tier = :first | :second
+
+        module MyPartnerTier
+          extend WhopSDK::Internal::Type::Enum
+
+          FIRST: :first
+          SECOND: :second
+
+          def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::my_partner_tier]
+        end
+
+        type object = :partner_business
+
+        module Object
+          extend WhopSDK::Internal::Type::Enum
+
+          PARTNER_BUSINESS: :partner_business
+
+          def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::object]
+        end
+
+        type owner =
+          {
+            id: String,
+            name: String?,
+            profile_picture: WhopSDK::Models::Partners::BusinessRetrieveResponse::Owner::ProfilePicture,
+            username: String
+          }
+
+        class Owner < WhopSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor name: String?
+
+          attr_accessor profile_picture: WhopSDK::Models::Partners::BusinessRetrieveResponse::Owner::ProfilePicture
+
+          attr_accessor username: String
+
+          def initialize: (
+            id: String,
+            name: String?,
+            profile_picture: WhopSDK::Models::Partners::BusinessRetrieveResponse::Owner::ProfilePicture,
+            username: String
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            name: String?,
+            profile_picture: WhopSDK::Models::Partners::BusinessRetrieveResponse::Owner::ProfilePicture,
+            username: String
+          }
+
+          type profile_picture = { url: String }
+
+          class ProfilePicture < WhopSDK::Internal::Type::BaseModel
+            attr_accessor url: String
+
+            def initialize: (url: String) -> void
+
+            def to_hash: -> { url: String }
+          end
+        end
+
+        type status = :active | :removed
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          REMOVED: :removed
+
+          def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessRetrieveResponse::status]
+        end
+
+        type volume_usd =
+          { attributed: String, awaiting_settlement: String, settled: String }
+
+        class VolumeUsd < WhopSDK::Internal::Type::BaseModel
+          attr_accessor attributed: String
+
+          attr_accessor awaiting_settlement: String
+
+          attr_accessor settled: String
+
+          def initialize: (
+            attributed: String,
+            awaiting_settlement: String,
+            settled: String
+          ) -> void
+
+          def to_hash: -> {
+            attributed: String,
+            awaiting_settlement: String,
+            settled: String
+          }
+        end
+      end
+    end
+  end
+end

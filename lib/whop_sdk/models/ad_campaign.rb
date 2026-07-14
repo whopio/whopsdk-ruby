@@ -152,6 +152,16 @@ module WhopSDK
       #   @return [Float]
       required :custom_conversions, Float
 
+      # @!attribute custom_event_counts
+      #   Whop pixel-attributed custom conversions broken out by merchant-defined event
+      #   name, last-click, as a { event_name => count } map over the stats window. Empty
+      #   when no named custom events are attributed. Custom events fired without a name
+      #   are counted in custom_conversions but omitted here, so these values sum to at
+      #   most custom_conversions.
+      #
+      #   @return [Object]
+      required :custom_event_counts, WhopSDK::Internal::Type::Unknown
+
       # @!attribute delivery_status
       #   The current delivery state, mirroring the Delivery column in the ads dashboard.
       #   When several states apply at once, the highest-precedence one is returned.
@@ -234,6 +244,15 @@ module WhopSDK
       #   @return [String, nil]
       required :result_event_name, String, nil?: true
 
+      # @!attribute results
+      #   The Whop pixel-attributed count behind result_event. When a campaign's ad groups
+      #   optimize different goals there is no single result_event (it is null), and this
+      #   is instead the sum of each ad group's own attributed results. Null when nothing
+      #   Whop-attributable is being optimized for.
+      #
+      #   @return [Float, nil]
+      required :results, Float, nil?: true
+
       # @!attribute return_on_ad_spend
       #   Purchase value divided by spend, both in USD (a currency-neutral ratio); 0 when
       #   there is no spend.
@@ -307,7 +326,7 @@ module WhopSDK
       #   @return [Float]
       required :viewed_contents, Float
 
-      # @!method initialize(id:, added_to_carts:, bid_type:, budget_amount:, budget_optimization:, budget_type:, click_through_rate:, clicks:, completed_registrations:, contacts:, cost_per_added_to_cart:, cost_per_click:, cost_per_completed_registration:, cost_per_contact:, cost_per_lead:, cost_per_mille:, cost_per_purchase:, cost_per_result:, cost_per_schedule:, cost_per_submitted_application:, cost_per_viewed_content:, created_at:, custom_conversions:, delivery_status:, frequency:, impressions:, issues:, leads:, objective:, optimization_goal:, platform:, purchase_value:, purchases:, reach:, result_event:, result_event_name:, return_on_ad_spend:, schedules:, special_ad_categories:, spend:, spend_currency:, status:, submitted_applications:, title:, unique_click_through_rate:, unique_clicks:, updated_at:, viewed_contents:)
+      # @!method initialize(id:, added_to_carts:, bid_type:, budget_amount:, budget_optimization:, budget_type:, click_through_rate:, clicks:, completed_registrations:, contacts:, cost_per_added_to_cart:, cost_per_click:, cost_per_completed_registration:, cost_per_contact:, cost_per_lead:, cost_per_mille:, cost_per_purchase:, cost_per_result:, cost_per_schedule:, cost_per_submitted_application:, cost_per_viewed_content:, created_at:, custom_conversions:, custom_event_counts:, delivery_status:, frequency:, impressions:, issues:, leads:, objective:, optimization_goal:, platform:, purchase_value:, purchases:, reach:, result_event:, result_event_name:, results:, return_on_ad_spend:, schedules:, special_ad_categories:, spend:, spend_currency:, status:, submitted_applications:, title:, unique_click_through_rate:, unique_clicks:, updated_at:, viewed_contents:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AdCampaign} for more details.
       #
@@ -357,6 +376,8 @@ module WhopSDK
       #
       #   @param custom_conversions [Float] Whop pixel-attributed custom (merchant-defined) conversion events, last-click, a
       #
+      #   @param custom_event_counts [Object] Whop pixel-attributed custom conversions broken out by merchant-defined event na
+      #
       #   @param delivery_status [Symbol, WhopSDK::Models::AdCampaign::DeliveryStatus] The current delivery state, mirroring the Delivery column in the ads dashboard.
       #
       #   @param frequency [Float, nil] Platform-reported impressions divided by reach.
@@ -382,6 +403,8 @@ module WhopSDK
       #   @param result_event [Symbol, WhopSDK::Models::AdCampaign::ResultEvent, nil] The Whop pixel conversion event whose attributed count represents results — the
       #
       #   @param result_event_name [String, nil] The merchant-defined event name when result_event is custom; null for the standa
+      #
+      #   @param results [Float, nil] The Whop pixel-attributed count behind result_event. When a campaign's ad groups
       #
       #   @param return_on_ad_spend [Float] Purchase value divided by spend, both in USD (a currency-neutral ratio); 0 when
       #

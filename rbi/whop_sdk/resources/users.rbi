@@ -124,6 +124,24 @@ module WhopSDK
       )
       end
 
+      # Lists the recommended actions computed for the user: personal suggestions (e.g.
+      # start a business or become an affiliate) pooled with the highest-impact actions
+      # across the accounts the user owns. Business actions are tagged with their
+      # `account_id`/`account_name`; personal actions leave those `null`. Self-only:
+      # `id` must be `me` or the authenticated user's own tag/username.
+      sig do
+        params(
+          id: String,
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::Models::UserRecommendActionsResponse)
+      end
+      def recommend_actions(
+        # `me`, or the authenticated user's own `user_` tag or username.
+        id,
+        request_options: {}
+      )
+      end
+
       # Updates the authenticated user's global profile, or their profile override for
       # an account when account_id is given. Not available to API keys.
       sig do

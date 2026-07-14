@@ -723,14 +723,13 @@ module WhopSDK
         required :icon_url, String, nil?: true
 
         # @!attribute impact_score
-        #   Estimated revenue impact from 0-100, comparable across accounts, or `null` when
-        #   not ranked
+        #   Estimated impact from 0-100, or `null` when not ranked
         #
         #   @return [Integer, nil]
         required :impact_score, Integer, nil?: true
 
         # @!attribute reasoning
-        #   Why this action was recommended for this account, or `null`
+        #   Why this action was recommended, or `null`
         #
         #   @return [String, nil]
         required :reasoning, String, nil?: true
@@ -768,9 +767,9 @@ module WhopSDK
         #
         #   @param icon_url [String, nil] Illustration icon URL, or `null`
         #
-        #   @param impact_score [Integer, nil] Estimated revenue impact from 0-100, comparable across accounts, or `null` when
+        #   @param impact_score [Integer, nil] Estimated impact from 0-100, or `null` when not ranked
         #
-        #   @param reasoning [String, nil] Why this action was recommended for this account, or `null`
+        #   @param reasoning [String, nil] Why this action was recommended, or `null`
         #
         #   @param status [Symbol, WhopSDK::Models::Account::RecommendedAction::Status] Always optional — never blocking
         #

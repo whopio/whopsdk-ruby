@@ -25,6 +25,7 @@ module WhopSDK
         cost_per_viewed_content: Float?,
         created_at: String,
         custom_conversions: Float,
+        custom_event_counts: top,
         delivery_status: WhopSDK::Models::AdCampaign::delivery_status,
         frequency: Float?,
         impressions: Float,
@@ -38,6 +39,7 @@ module WhopSDK
         reach: Float,
         result_event: WhopSDK::Models::AdCampaign::result_event?,
         result_event_name: String?,
+        results: Float?,
         return_on_ad_spend: Float,
         schedules: Float,
         special_ad_categories: ::Array[WhopSDK::Models::AdCampaign::special_ad_category],
@@ -99,6 +101,8 @@ module WhopSDK
 
       attr_accessor custom_conversions: Float
 
+      attr_accessor custom_event_counts: top
+
       attr_accessor delivery_status: WhopSDK::Models::AdCampaign::delivery_status
 
       attr_accessor frequency: Float?
@@ -124,6 +128,8 @@ module WhopSDK
       attr_accessor result_event: WhopSDK::Models::AdCampaign::result_event?
 
       attr_accessor result_event_name: String?
+
+      attr_accessor results: Float?
 
       attr_accessor return_on_ad_spend: Float
 
@@ -173,6 +179,7 @@ module WhopSDK
         cost_per_viewed_content: Float?,
         created_at: String,
         custom_conversions: Float,
+        custom_event_counts: top,
         delivery_status: WhopSDK::Models::AdCampaign::delivery_status,
         frequency: Float?,
         impressions: Float,
@@ -186,6 +193,7 @@ module WhopSDK
         reach: Float,
         result_event: WhopSDK::Models::AdCampaign::result_event?,
         result_event_name: String?,
+        results: Float?,
         return_on_ad_spend: Float,
         schedules: Float,
         special_ad_categories: ::Array[WhopSDK::Models::AdCampaign::special_ad_category],
@@ -224,6 +232,7 @@ module WhopSDK
         cost_per_viewed_content: Float?,
         created_at: String,
         custom_conversions: Float,
+        custom_event_counts: top,
         delivery_status: WhopSDK::Models::AdCampaign::delivery_status,
         frequency: Float?,
         impressions: Float,
@@ -237,6 +246,7 @@ module WhopSDK
         reach: Float,
         result_event: WhopSDK::Models::AdCampaign::result_event?,
         result_event_name: String?,
+        results: Float?,
         return_on_ad_spend: Float,
         schedules: Float,
         special_ad_categories: ::Array[WhopSDK::Models::AdCampaign::special_ad_category],

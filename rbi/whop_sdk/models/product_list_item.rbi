@@ -21,6 +21,10 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :external_identifier
 
+      # The gallery images for this product, ordered by position.
+      sig { returns(T::Array[WhopSDK::ProductListItem::GalleryImage]) }
+      attr_accessor :gallery_images
+
       # A short marketing headline displayed prominently on the product's product page.
       sig { returns(T.nilable(String)) }
       attr_accessor :headline
@@ -70,6 +74,8 @@ module WhopSDK
           id: String,
           created_at: Time,
           external_identifier: T.nilable(String),
+          gallery_images:
+            T::Array[WhopSDK::ProductListItem::GalleryImage::OrHash],
           headline: T.nilable(String),
           member_count: Integer,
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
@@ -89,6 +95,8 @@ module WhopSDK
         # External identifier for the product. Providing it on a product creation endpoint
         # updates the existing product with this identifier instead of creating a new one.
         external_identifier:,
+        # The gallery images for this product, ordered by position.
+        gallery_images:,
         # A short marketing headline displayed prominently on the product's product page.
         headline:,
         # Active memberships for this product. Returns `0` if the account has disabled
@@ -122,6 +130,7 @@ module WhopSDK
             id: String,
             created_at: Time,
             external_identifier: T.nilable(String),
+            gallery_images: T::Array[WhopSDK::ProductListItem::GalleryImage],
             headline: T.nilable(String),
             member_count: Integer,
             metadata: T.nilable(T::Hash[Symbol, T.anything]),
@@ -135,6 +144,68 @@ module WhopSDK
         )
       end
       def to_hash
+      end
+
+      class GalleryImage < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::ProductListItem::GalleryImage,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # Represents a unique identifier that is Base64 obfuscated. It is often used to
+        # refetch an object or as key for a cache. The ID type appears in a JSON response
+        # as a String; however, it is not intended to be human-readable. When expected as
+        # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+        # input value will be accepted as an ID.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :content_type
+
+        # A pre-optimized URL for rendering this attachment on the client. This should be
+        # used for displaying attachments in apps.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :url
+
+        # Represents an image attachment
+        sig do
+          params(
+            id: String,
+            content_type: T.nilable(String),
+            url: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Represents a unique identifier that is Base64 obfuscated. It is often used to
+          # refetch an object or as key for a cache. The ID type appears in a JSON response
+          # as a String; however, it is not intended to be human-readable. When expected as
+          # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
+          # input value will be accepted as an ID.
+          id:,
+          # Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
+          content_type:,
+          # A pre-optimized URL for rendering this attachment on the client. This should be
+          # used for displaying attachments in apps.
+          url:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              content_type: T.nilable(String),
+              url: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
+        end
       end
     end
   end

@@ -3,16 +3,14 @@ module WhopSDK
     type product_list_params =
       {
         company_id: String,
-        after: String?,
-        before: String?,
-        created_after: Time?,
-        created_before: Time?,
-        direction: WhopSDK::Models::direction?,
-        first: Integer?,
-        last: Integer?,
-        order: WhopSDK::Models::ProductListParams::order?,
-        product_types: ::Array[WhopSDK::Models::access_pass_type]?,
-        visibilities: ::Array[WhopSDK::Models::visibility_filter]?
+        access_pass_types: ::Array[String],
+        after: String,
+        before: String,
+        direction: WhopSDK::Models::ProductListParams::direction,
+        first: Integer,
+        last: Integer,
+        order: String,
+        visibilities: ::Array[String]
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -22,68 +20,75 @@ module WhopSDK
 
       attr_accessor company_id: String
 
-      attr_accessor after: String?
+      attr_reader access_pass_types: ::Array[String]?
 
-      attr_accessor before: String?
+      def access_pass_types=: (::Array[String]) -> ::Array[String]
 
-      attr_accessor created_after: Time?
+      attr_reader after: String?
 
-      attr_accessor created_before: Time?
+      def after=: (String) -> String
 
-      attr_accessor direction: WhopSDK::Models::direction?
+      attr_reader before: String?
 
-      attr_accessor first: Integer?
+      def before=: (String) -> String
 
-      attr_accessor last: Integer?
+      attr_reader direction: WhopSDK::Models::ProductListParams::direction?
 
-      attr_accessor order: WhopSDK::Models::ProductListParams::order?
+      def direction=: (
+        WhopSDK::Models::ProductListParams::direction
+      ) -> WhopSDK::Models::ProductListParams::direction
 
-      attr_accessor product_types: ::Array[WhopSDK::Models::access_pass_type]?
+      attr_reader first: Integer?
 
-      attr_accessor visibilities: ::Array[WhopSDK::Models::visibility_filter]?
+      def first=: (Integer) -> Integer
+
+      attr_reader last: Integer?
+
+      def last=: (Integer) -> Integer
+
+      attr_reader order: String?
+
+      def order=: (String) -> String
+
+      attr_reader visibilities: ::Array[String]?
+
+      def visibilities=: (::Array[String]) -> ::Array[String]
 
       def initialize: (
         company_id: String,
-        ?after: String?,
-        ?before: String?,
-        ?created_after: Time?,
-        ?created_before: Time?,
-        ?direction: WhopSDK::Models::direction?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?order: WhopSDK::Models::ProductListParams::order?,
-        ?product_types: ::Array[WhopSDK::Models::access_pass_type]?,
-        ?visibilities: ::Array[WhopSDK::Models::visibility_filter]?,
+        ?access_pass_types: ::Array[String],
+        ?after: String,
+        ?before: String,
+        ?direction: WhopSDK::Models::ProductListParams::direction,
+        ?first: Integer,
+        ?last: Integer,
+        ?order: String,
+        ?visibilities: ::Array[String],
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         company_id: String,
-        after: String?,
-        before: String?,
-        created_after: Time?,
-        created_before: Time?,
-        direction: WhopSDK::Models::direction?,
-        first: Integer?,
-        last: Integer?,
-        order: WhopSDK::Models::ProductListParams::order?,
-        product_types: ::Array[WhopSDK::Models::access_pass_type]?,
-        visibilities: ::Array[WhopSDK::Models::visibility_filter]?,
+        access_pass_types: ::Array[String],
+        after: String,
+        before: String,
+        direction: WhopSDK::Models::ProductListParams::direction,
+        first: Integer,
+        last: Integer,
+        order: String,
+        visibilities: ::Array[String],
         request_options: WhopSDK::RequestOptions
       }
 
-      type order =
-        :active_memberships_count | :created_at | :usd_gmv | :usd_gmv_30_days
+      type direction = :asc | :desc
 
-      module Order
+      module Direction
         extend WhopSDK::Internal::Type::Enum
 
-        ACTIVE_MEMBERSHIPS_COUNT: :active_memberships_count
-        CREATED_AT: :created_at
-        USD_GMV: :usd_gmv
-        USD_GMV_30_DAYS: :usd_gmv_30_days
+        ASC: :asc
+        DESC: :desc
 
-        def self?.values: -> ::Array[WhopSDK::Models::ProductListParams::order]
+        def self?.values: -> ::Array[WhopSDK::Models::ProductListParams::direction]
       end
     end
   end

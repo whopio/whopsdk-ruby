@@ -8,99 +8,105 @@ module WhopSDK
       include WhopSDK::Internal::Type::RequestParameters
 
       # @!attribute after
-      #   Returns the elements in the list that come after the specified cursor.
+      #   Cursor to fetch the page after (from page_info.end_cursor).
       #
       #   @return [String, nil]
-      optional :after, String, nil?: true
+      optional :after, String
 
       # @!attribute before
-      #   Returns the elements in the list that come before the specified cursor.
+      #   Cursor to fetch the page before (from page_info.start_cursor).
       #
       #   @return [String, nil]
-      optional :before, String, nil?: true
+      optional :before, String
 
       # @!attribute created_after
-      #   Only return transfers created after this timestamp.
+      #   Only transfers created strictly after this ISO 8601 timestamp.
       #
-      #   @return [Time, nil]
-      optional :created_after, Time, nil?: true
+      #   @return [String, nil]
+      optional :created_after, String
 
       # @!attribute created_before
-      #   Only return transfers created before this timestamp.
+      #   Only transfers created strictly before this ISO 8601 timestamp.
       #
-      #   @return [Time, nil]
-      optional :created_before, Time, nil?: true
+      #   @return [String, nil]
+      optional :created_before, String
 
       # @!attribute destination_id
-      #   Filter to transfers received by this account. Accepts a user, company, or ledger
-      #   account ID.
+      #   Filter to transfers received by this account.
       #
       #   @return [String, nil]
-      optional :destination_id, String, nil?: true
+      optional :destination_id, String
 
       # @!attribute direction
-      #   The direction of the sort.
+      #   Sort direction. Defaults to desc.
       #
-      #   @return [Symbol, WhopSDK::Models::Direction, nil]
-      optional :direction, enum: -> { WhopSDK::Direction }, nil?: true
+      #   @return [Symbol, WhopSDK::Models::TransferListParams::Direction, nil]
+      optional :direction, enum: -> { WhopSDK::TransferListParams::Direction }
 
       # @!attribute first
-      #   Returns the first _n_ elements from the list.
+      #   Number of transfers to return from the start of the window.
       #
       #   @return [Integer, nil]
-      optional :first, Integer, nil?: true
+      optional :first, Integer
 
       # @!attribute last
-      #   Returns the last _n_ elements from the list.
+      #   Number of transfers to return from the end of the window.
       #
       #   @return [Integer, nil]
-      optional :last, Integer, nil?: true
+      optional :last, Integer
 
       # @!attribute order
-      #   Which columns can be used to sort.
+      #   Sort column. Defaults to created_at.
       #
       #   @return [Symbol, WhopSDK::Models::TransferListParams::Order, nil]
-      optional :order, enum: -> { WhopSDK::TransferListParams::Order }, nil?: true
+      optional :order, enum: -> { WhopSDK::TransferListParams::Order }
 
       # @!attribute origin_id
-      #   Filter to transfers sent from this account. Accepts a user, company, or ledger
-      #   account ID.
+      #   Filter to transfers sent from this account.
       #
       #   @return [String, nil]
-      optional :origin_id, String, nil?: true
+      optional :origin_id, String
 
       # @!method initialize(after: nil, before: nil, created_after: nil, created_before: nil, destination_id: nil, direction: nil, first: nil, last: nil, order: nil, origin_id: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {WhopSDK::Models::TransferListParams} for more details.
+      #   @param after [String] Cursor to fetch the page after (from page_info.end_cursor).
       #
-      #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      #   @param before [String] Cursor to fetch the page before (from page_info.start_cursor).
       #
-      #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #   @param created_after [String] Only transfers created strictly after this ISO 8601 timestamp.
       #
-      #   @param created_after [Time, nil] Only return transfers created after this timestamp.
+      #   @param created_before [String] Only transfers created strictly before this ISO 8601 timestamp.
       #
-      #   @param created_before [Time, nil] Only return transfers created before this timestamp.
+      #   @param destination_id [String] Filter to transfers received by this account.
       #
-      #   @param destination_id [String, nil] Filter to transfers received by this account. Accepts a user, company, or ledger
+      #   @param direction [Symbol, WhopSDK::Models::TransferListParams::Direction] Sort direction. Defaults to desc.
       #
-      #   @param direction [Symbol, WhopSDK::Models::Direction, nil] The direction of the sort.
+      #   @param first [Integer] Number of transfers to return from the start of the window.
       #
-      #   @param first [Integer, nil] Returns the first _n_ elements from the list.
+      #   @param last [Integer] Number of transfers to return from the end of the window.
       #
-      #   @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #   @param order [Symbol, WhopSDK::Models::TransferListParams::Order] Sort column. Defaults to created_at.
       #
-      #   @param order [Symbol, WhopSDK::Models::TransferListParams::Order, nil] Which columns can be used to sort.
-      #
-      #   @param origin_id [String, nil] Filter to transfers sent from this account. Accepts a user, company, or ledger a
+      #   @param origin_id [String] Filter to transfers sent from this account.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
 
-      # Which columns can be used to sort.
+      # Sort direction. Defaults to desc.
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC = :asc
+        DESC = :desc
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Sort column. Defaults to created_at.
       module Order
         extend WhopSDK::Internal::Type::Enum
 
-        AMOUNT = :amount
         CREATED_AT = :created_at
+        AMOUNT = :amount
 
         # @!method self.values
         #   @return [Array<Symbol>]

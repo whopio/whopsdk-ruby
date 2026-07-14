@@ -15,7 +15,7 @@ module WhopSDK
     # Default max retry delay in seconds.
     DEFAULT_MAX_RETRY_DELAY = 8.0
 
-    # A company API key, company scoped JWT, app API key, or user OAuth token. You
+    # An account API key, account scoped JWT, app API key, or user OAuth token. You
     # must prepend your key/token with the word `Bearer`, which will look like
     # `Bearer ***************************`
     # @return [String]
@@ -46,252 +46,372 @@ module WhopSDK
     # @return [String, nil]
     attr_reader :user_token_jwks_url
 
-    # Apps
+    # An App is software you build on Whop. It can be a hosted web app served at
+    # `<route>.whop.app` or an API integration installed as an experience, and it
+    # belongs to the account that owns its credentials, settings, builds, and runtime
+    # logs.
+    #
+    # Use the Apps API to manage app configuration and, for hosted apps, read server
+    # runtime logs for console output, uncaught exceptions, and failed requests. Logs
+    # are retained for 7 days and can be filtered by build, level, time window, and
+    # message text.
     # @return [WhopSDK::Resources::Apps]
     attr_reader :apps
 
-    # Invoices
     # @return [WhopSDK::Resources::Invoices]
     attr_reader :invoices
 
-    # Course lesson interactions
     # @return [WhopSDK::Resources::CourseLessonInteractions]
     attr_reader :course_lesson_interactions
 
-    # Products
+    # A Product is a digital good or service sold on Whop. Products may contain plans
+    # for pricing and/or experiences for content delivery.
+    #
+    # Use the Products API to create products, list products visible to your
+    # credentials, retrieve product details, update product metadata or merchandising
+    # fields, and delete products that should no longer be sold.
     # @return [WhopSDK::Resources::Products]
     attr_reader :products
 
-    # Companies
+    # A Social Account represents an external profile connected to a Whop account or
+    # user, such as a Facebook page or Instagram account. Connecting a social account
+    # lets Whop run [ads](/api-reference/beta/ads/ad) under that profile's identity
+    # and promote its existing posts.
+    #
+    # Use the Social Accounts API to list connected accounts, create a Whop-managed
+    # Facebook page, start an OAuth connection, disconnect a social account, and list
+    # a connected profile's posts.
+    # @return [WhopSDK::Resources::SocialAccounts]
+    attr_reader :social_accounts
+
+    # An Audience represents a customer list uploaded to Whop for ad targeting.
+    # Audiences belong to an account and sync to supported ad platforms as custom
+    # audiences.
+    #
+    # Use the Audiences API to create audiences from CSV uploads, monitor processing
+    # status, and list or delete audiences for an account. Created audiences are
+    # usable for targeting after processing reaches `ready` or `partial`.
+    # @return [WhopSDK::Resources::Audiences]
+    attr_reader :audiences
+
+    # A Media Asset is an AI-generated image or video created from a prompt and billed
+    # from an account balance. When generation finishes, the asset includes a file
+    # that can be attached anywhere Whop accepts files.
+    #
+    # Use the Media API to start a generation job and retrieve the asset while it
+    # processes or after it is ready.
+    # @return [WhopSDK::Resources::Media]
+    attr_reader :media
+
+    # A Person represents a visitor or customer of an account, assembled from
+    # [pixel events](/api-reference/beta/events/event) and purchase activity — ad
+    # clicks, storefront visits, and checkouts.
+    #
+    # Use the People API to list the people of an account and retrieve a single
+    # person.
+    # @return [WhopSDK::Resources::People]
+    attr_reader :people
+
+    # An Event records conversion or engagement activity for an account, such as page
+    # views, purchases, or leads. Each event ties the action to the
+    # [person](/api-reference/beta/people/person) who took it, so activity can be
+    # attributed to the ads and links that drove it.
+    #
+    # Use the Events API to send new tracking events and list the events recorded for
+    # a person.
+    # @return [WhopSDK::Resources::Events]
+    attr_reader :events
+
     # @return [WhopSDK::Resources::Companies]
     attr_reader :companies
 
-    # Webhooks
     # @return [WhopSDK::Resources::Webhooks]
     attr_reader :webhooks
 
+    # A Plan defines how customers buy a product. It controls pricing, billing
+    # cadence, availability, tax behavior, checkout fields, and purchase visibility.
+    #
+    # Use the Plans API to create plans for products, list existing plans, retrieve or
+    # update plan configuration, calculate tax for checkout, and delete plans that
+    # should no longer be offered.
     # @return [WhopSDK::Resources::Plans]
     attr_reader :plans
 
-    # Entries
     # @return [WhopSDK::Resources::Entries]
     attr_reader :entries
 
-    # Forum posts
     # @return [WhopSDK::Resources::ForumPosts]
     attr_reader :forum_posts
 
-    # Transfers
+    # Transfers move value between identities on Whop. They are used for
+    # account-to-account money movement, user payouts inside Whop, crypto transfers,
+    # and claim links depending on the destination type.
+    #
+    # Use the Transfers API to create a transfer, list previous transfers, and
+    # retrieve a transfer by ID when reconciling money movement between accounts or
+    # users.
     # @return [WhopSDK::Resources::Transfers]
     attr_reader :transfers
 
-    # Ledger accounts
     # @return [WhopSDK::Resources::LedgerAccounts]
     attr_reader :ledger_accounts
 
-    # Memberships
     # @return [WhopSDK::Resources::Memberships]
     attr_reader :memberships
 
-    # Authorized users
     # @return [WhopSDK::Resources::AuthorizedUsers]
     attr_reader :authorized_users
 
-    # App builds
     # @return [WhopSDK::Resources::AppBuilds]
     attr_reader :app_builds
 
-    # Shipments
     # @return [WhopSDK::Resources::Shipments]
     attr_reader :shipments
 
-    # Checkout configurations
+    # A Checkout Configuration is a reusable checkout link owned by an account. In
+    # `payment` mode it sells a specific plan; in `setup` mode it collects and saves
+    # payment details without charging. Each configuration can also override which
+    # payment methods are accepted and how 3D Secure is enforced for that checkout.
+    #
+    # Use the Checkout Configurations API to create checkout links for an existing or
+    # inline plan, list configurations for an account, retrieve the configuration
+    # behind a checkout URL, and delete links that should no longer be used.
     # @return [WhopSDK::Resources::CheckoutConfigurations]
     attr_reader :checkout_configurations
 
-    # Messages
     # @return [WhopSDK::Resources::Messages]
     attr_reader :messages
 
-    # Chat channels
     # @return [WhopSDK::Resources::ChatChannels]
     attr_reader :chat_channels
 
+    # A User represents a person on Whop. Users have a public profile and can buy
+    # products, join accounts, and access experiences.
+    #
+    # Use the Users API to search for users, retrieve or update profiles, and check
+    # whether a user has access to an account, product, or experience.
     # @return [WhopSDK::Resources::Users]
     attr_reader :users
 
-    # Payments
     # @return [WhopSDK::Resources::Payments]
     attr_reader :payments
 
-    # Support channels
     # @return [WhopSDK::Resources::SupportChannels]
     attr_reader :support_channels
 
-    # Experiences
     # @return [WhopSDK::Resources::Experiences]
     attr_reader :experiences
 
-    # Reactions
     # @return [WhopSDK::Resources::Reactions]
     attr_reader :reactions
 
-    # Members
     # @return [WhopSDK::Resources::Members]
     attr_reader :members
 
-    # Forums
     # @return [WhopSDK::Resources::Forums]
     attr_reader :forums
 
-    # Promo codes
     # @return [WhopSDK::Resources::PromoCodes]
     attr_reader :promo_codes
 
-    # Courses
     # @return [WhopSDK::Resources::Courses]
     attr_reader :courses
 
-    # Course chapters
     # @return [WhopSDK::Resources::CourseChapters]
     attr_reader :course_chapters
 
-    # Course lessons
     # @return [WhopSDK::Resources::CourseLessons]
     attr_reader :course_lessons
 
-    # Reviews
     # @return [WhopSDK::Resources::Reviews]
     attr_reader :reviews
 
-    # Course students
     # @return [WhopSDK::Resources::CourseStudents]
     attr_reader :course_students
 
-    # Access tokens
     # @return [WhopSDK::Resources::AccessTokens]
     attr_reader :access_tokens
 
-    # Notifications
     # @return [WhopSDK::Resources::Notifications]
     attr_reader :notifications
 
-    # Disputes
     # @return [WhopSDK::Resources::Disputes]
     attr_reader :disputes
 
-    # Refunds
     # @return [WhopSDK::Resources::Refunds]
     attr_reader :refunds
 
-    # Withdrawals
     # @return [WhopSDK::Resources::Withdrawals]
     attr_reader :withdrawals
 
-    # Account links
     # @return [WhopSDK::Resources::AccountLinks]
     attr_reader :account_links
 
+    # An Account represents a person or business on Whop that can have its own
+    # profile, wallet, and account-scoped settings. Use accounts for customers,
+    # creators, merchants, sellers, or connected businesses your integration supports.
+    #
+    # Use the Accounts API to create accounts, list accounts visible to your
+    # credentials, retrieve or update an account, and retrieve the account associated
+    # with the current API key.
     # @return [WhopSDK::Resources::Accounts]
     attr_reader :accounts
 
-    # @return [WhopSDK::Resources::Wallets]
-    attr_reader :wallets
-
+    # A Ledger Activity row is a single financial event on an account's ledger — a
+    # payment, withdrawal, refund, transfer, on-chain deposit, swap, or card
+    # transaction. Each row is derived from the underlying ledger lines and carries a
+    # typed `resource` and `source` so you can present and link the event without
+    # extra lookups.
+    #
+    # Use Ledger Activity to build a statement or transaction feed for an account or
+    # user. Reconcile against your own records with `amount` (signed, in the
+    # currency's smallest precision units) and `posted_at`, and use `available_at` to
+    # know when inflows became withdrawable.
     # @return [WhopSDK::Resources::FinancialActivity]
     attr_reader :financial_activity
 
+    # Stats represent aggregated activity for an account over time. They help you
+    # understand revenue, transactions, disputes, members, referrals, and advertising
+    # performance across reporting periods like days, weeks, or months.
+    #
+    # Use the Stats API to list available metrics and their filterable properties,
+    # then retrieve time-series values for a date range.
+    # @return [WhopSDK::Resources::Stats]
+    attr_reader :stats
+
+    # Payouts represent money sent from an account or user balance to an external
+    # destination, such as a bank account, wallet, or other saved payout method.
+    #
+    # Use the Payouts API to create payouts from stablecoin accounts, list payout
+    # history for accounts or users, monitor payout statuses, and show expected
+    # arrival details for funds leaving Whop.
+    # @return [WhopSDK::Resources::Payouts]
+    attr_reader :payouts
+
+    # The Referrals API covers your Whop partner activity: the users you referred onto
+    # Whop, the businesses you referred and the earnings generated from their
+    # processing volume, and the partner leaderboard.
+    #
+    # Use it to enroll as a Whop partner, list the users you referred, list your
+    # referred businesses and review their earnings, and see the partner leaderboard.
+    # @return [WhopSDK::Resources::Referrals]
+    attr_reader :referrals
+
+    # Cards represent Whop-issued virtual payment cards that spend from an account or
+    # user balance. Cards can be assigned to cardholders and configured with spending
+    # limits for controlled spending.
+    #
+    # Use the Cards API to issue cards, list cards for an account or user, and
+    # retrieve active card details such as the card number and CVC.
+    # @return [WhopSDK::Resources::Cards]
+    attr_reader :cards
+
+    # Swaps convert value between supported tokens, chains, or wallet destinations for
+    # an account. A swap quote describes the expected output, fees, and approval
+    # requirements before you create the swap.
+    #
+    # Use the Swaps API to quote a conversion, create the swap, list recent swaps, and
+    # retrieve status until the transaction completes.
     # @return [WhopSDK::Resources::Swaps]
     attr_reader :swaps
 
+    # Deposits describe ways to add funds to an account balance, including hosted
+    # deposit pages, bank deposit instructions, and supported crypto wallet addresses.
+    #
+    # Use the Deposits API to create deposit instructions for an account and retrieve
+    # existing bank deposit activity.
     # @return [WhopSDK::Resources::Deposits]
     attr_reader :deposits
 
-    # Setup intents
     # @return [WhopSDK::Resources::SetupIntents]
     attr_reader :setup_intents
 
-    # Payment methods
     # @return [WhopSDK::Resources::PaymentMethods]
     attr_reader :payment_methods
 
-    # Fee markups
     # @return [WhopSDK::Resources::FeeMarkups]
     attr_reader :fee_markups
 
-    # Payout methods
-    # @return [WhopSDK::Resources::PayoutMethods]
-    attr_reader :payout_methods
-
-    # Verifications
+    # A Verification represents an identity review for a person or business. Accounts
+    # and users complete verification when Whop needs to confirm who they are before
+    # enabling payouts or compliance-sensitive workflows.
+    #
+    # Use the Verifications API to start or resume a hosted verification session,
+    # check review status, and submit requested details or documents. If
+    # `requested_information` contains items, submit answers with
+    # [Update Verification](/api-reference/beta/verifications/update-verification).
     # @return [WhopSDK::Resources::Verifications]
     attr_reader :verifications
 
-    # Leads
     # @return [WhopSDK::Resources::Leads]
     attr_reader :leads
 
-    # Topups
     # @return [WhopSDK::Resources::Topups]
     attr_reader :topups
 
-    # Files
     # @return [WhopSDK::Resources::Files]
     attr_reader :files
 
-    # Company token transactions
     # @return [WhopSDK::Resources::CompanyTokenTransactions]
     attr_reader :company_token_transactions
 
-    # Dm members
     # @return [WhopSDK::Resources::DmMembers]
     attr_reader :dm_members
 
-    # Ai chats
     # @return [WhopSDK::Resources::AIChats]
     attr_reader :ai_chats
 
-    # Dm channels
     # @return [WhopSDK::Resources::DmChannels]
     attr_reader :dm_channels
 
-    # Dispute alerts
     # @return [WhopSDK::Resources::DisputeAlerts]
     attr_reader :dispute_alerts
 
-    # Resolution center cases
     # @return [WhopSDK::Resources::ResolutionCenterCases]
     attr_reader :resolution_center_cases
 
-    # Payout accounts
     # @return [WhopSDK::Resources::PayoutAccounts]
     attr_reader :payout_accounts
 
-    # Affiliates
     # @return [WhopSDK::Resources::Affiliates]
     attr_reader :affiliates
 
-    # Bounties
     # @return [WhopSDK::Resources::Bounties]
     attr_reader :bounties
 
-    # Ad campaigns
+    # @return [WhopSDK::Resources::Workforce]
+    attr_reader :workforce
+
+    # An Ad Campaign is the top-level container for paid ads on an ad network. It sets
+    # the platform, objective, and budget strategy shared by its
+    # [ad groups](/api-reference/beta/ad-groups/ad-group) and ads.
+    #
+    # Use the Ad Campaigns API to create campaigns, list campaigns for an account,
+    # retrieve or update campaign settings, and pause or resume campaign delivery.
     # @return [WhopSDK::Resources::AdCampaigns]
     attr_reader :ad_campaigns
 
-    # Ad groups
+    # An Ad Group sits inside an
+    # [ad campaign](/api-reference/beta/ad-campaigns/ad-campaign) and controls
+    # delivery for [ads](/api-reference/beta/ads/ad). It sets the audience,
+    # placements, schedule, budget, and optimization goal for its ads.
+    #
+    # Use the Ad Groups API to create ad groups in campaigns, list or retrieve
+    # targeting and delivery settings, update budgets or targeting, delete groups that
+    # should stop running, and pause or resume delivery.
     # @return [WhopSDK::Resources::AdGroups]
     attr_reader :ad_groups
 
-    # Ads
+    # An Ad is the individual creative unit delivered by an
+    # [ad group](/api-reference/beta/ad-groups/ad-group). It holds the copy, creative
+    # assets, and destination URL for one ad.
+    #
+    # Use the Ads API to list ads for an account, create ads inside ad groups,
+    # retrieve or update creative details, delete ads that should stop running, and
+    # pause or resume delivery.
     # @return [WhopSDK::Resources::Ads]
     attr_reader :ads
 
-    # Conversions
-    # @return [WhopSDK::Resources::Conversions]
-    attr_reader :conversions
-
-    # Ad reports
     # @return [WhopSDK::Resources::AdReports]
     attr_reader :ad_reports
 
@@ -306,7 +426,7 @@ module WhopSDK
 
     # Creates and returns a new client for interacting with the API.
     #
-    # @param api_key [String, nil] A company API key, company scoped JWT, app API key, or user OAuth token. You
+    # @param api_key [String, nil] An account API key, account scoped JWT, app API key, or user OAuth token. You
     # must prepend your key/token with the word `Bearer`, which will look like
     # `Bearer ***************************` Defaults to `ENV["WHOP_API_KEY"]`
     #
@@ -339,7 +459,7 @@ module WhopSDK
       api_key: ENV["WHOP_API_KEY"],
       webhook_key: ENV["WHOP_WEBHOOK_SECRET"],
       app_id: ENV["WHOP_APP_ID"],
-      version: ENV.fetch("WHOP_API_VERSION", "2026-06-08"),
+      version: ENV.fetch("WHOP_API_VERSION", "2026-07-08-1"),
       user_token_public_key: ENV["WHOP_USER_TOKEN_PUBLIC_KEY"],
       user_token_jwks_url: ENV["WHOP_USER_TOKEN_JWKS_URL"],
       base_url: ENV["WHOP_BASE_URL"],
@@ -388,6 +508,11 @@ module WhopSDK
       @invoices = WhopSDK::Resources::Invoices.new(client: self)
       @course_lesson_interactions = WhopSDK::Resources::CourseLessonInteractions.new(client: self)
       @products = WhopSDK::Resources::Products.new(client: self)
+      @social_accounts = WhopSDK::Resources::SocialAccounts.new(client: self)
+      @audiences = WhopSDK::Resources::Audiences.new(client: self)
+      @media = WhopSDK::Resources::Media.new(client: self)
+      @people = WhopSDK::Resources::People.new(client: self)
+      @events = WhopSDK::Resources::Events.new(client: self)
       @companies = WhopSDK::Resources::Companies.new(client: self)
       @webhooks = WhopSDK::Resources::Webhooks.new(client: self)
       @plans = WhopSDK::Resources::Plans.new(client: self)
@@ -422,14 +547,16 @@ module WhopSDK
       @withdrawals = WhopSDK::Resources::Withdrawals.new(client: self)
       @account_links = WhopSDK::Resources::AccountLinks.new(client: self)
       @accounts = WhopSDK::Resources::Accounts.new(client: self)
-      @wallets = WhopSDK::Resources::Wallets.new(client: self)
       @financial_activity = WhopSDK::Resources::FinancialActivity.new(client: self)
+      @stats = WhopSDK::Resources::Stats.new(client: self)
+      @payouts = WhopSDK::Resources::Payouts.new(client: self)
+      @referrals = WhopSDK::Resources::Referrals.new(client: self)
+      @cards = WhopSDK::Resources::Cards.new(client: self)
       @swaps = WhopSDK::Resources::Swaps.new(client: self)
       @deposits = WhopSDK::Resources::Deposits.new(client: self)
       @setup_intents = WhopSDK::Resources::SetupIntents.new(client: self)
       @payment_methods = WhopSDK::Resources::PaymentMethods.new(client: self)
       @fee_markups = WhopSDK::Resources::FeeMarkups.new(client: self)
-      @payout_methods = WhopSDK::Resources::PayoutMethods.new(client: self)
       @verifications = WhopSDK::Resources::Verifications.new(client: self)
       @leads = WhopSDK::Resources::Leads.new(client: self)
       @topups = WhopSDK::Resources::Topups.new(client: self)
@@ -443,10 +570,10 @@ module WhopSDK
       @payout_accounts = WhopSDK::Resources::PayoutAccounts.new(client: self)
       @affiliates = WhopSDK::Resources::Affiliates.new(client: self)
       @bounties = WhopSDK::Resources::Bounties.new(client: self)
+      @workforce = WhopSDK::Resources::Workforce.new(client: self)
       @ad_campaigns = WhopSDK::Resources::AdCampaigns.new(client: self)
       @ad_groups = WhopSDK::Resources::AdGroups.new(client: self)
       @ads = WhopSDK::Resources::Ads.new(client: self)
-      @conversions = WhopSDK::Resources::Conversions.new(client: self)
       @ad_reports = WhopSDK::Resources::AdReports.new(client: self)
     end
 

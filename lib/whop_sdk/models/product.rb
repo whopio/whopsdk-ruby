@@ -22,8 +22,7 @@ module WhopSDK
       required :created_at, Time
 
       # @!attribute custom_cta
-      #   The call-to-action button label displayed on the product's purchase page (e.g.,
-      #   'join', 'buy', 'subscribe').
+      #   Call-to-action button label shown on the product purchase page.
       #
       #   @return [Symbol, WhopSDK::Models::CustomCta]
       required :custom_cta, enum: -> { WhopSDK::CustomCta }
@@ -36,9 +35,8 @@ module WhopSDK
       required :custom_cta_url, String, nil?: true
 
       # @!attribute custom_statement_descriptor
-      #   A custom text label that appears on the customer's bank or credit card statement
-      #   for purchases of this product. Maximum 22 characters, including the required
-      #   prefix WHOP\*.
+      #   Custom bank statement descriptor for product purchases. Maximum 22 characters,
+      #   including required `WHOP*` prefix.
       #
       #   @return [String, nil]
       required :custom_statement_descriptor, String, nil?: true
@@ -51,9 +49,8 @@ module WhopSDK
       required :description, String, nil?: true
 
       # @!attribute external_identifier
-      #   A unique identifier used to create or update products via the API. When provided
-      #   on product creation endpoints, an existing product with this identifier will be
-      #   updated instead of creating a new one.
+      #   External identifier for the product. Providing it on a product creation endpoint
+      #   updates the existing product with this identifier instead of creating a new one.
       #
       #   @return [String, nil]
       required :external_identifier, String, nil?: true
@@ -65,8 +62,8 @@ module WhopSDK
       required :gallery_images, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::Product::GalleryImage] }
 
       # @!attribute global_affiliate_percentage
-      #   The commission rate (as a percentage) that affiliates earn on sales through the
-      #   Whop marketplace global affiliate program. Null if the program is not active.
+      #   Marketplace affiliate commission percentage for this product, or `null` if
+      #   program is inactive.
       #
       #   @return [Float, nil]
       required :global_affiliate_percentage, Float, nil?: true
@@ -85,9 +82,8 @@ module WhopSDK
       required :headline, String, nil?: true
 
       # @!attribute member_affiliate_percentage
-      #   The commission rate (as a percentage) that existing members earn when referring
-      #   new customers through the member affiliate program. Null if the program is not
-      #   active.
+      #   Member referral commission percentage for this product, or `null` if program is
+      #   inactive.
       #
       #   @return [Float, nil]
       required :member_affiliate_percentage, Float, nil?: true
@@ -99,15 +95,16 @@ module WhopSDK
       required :member_affiliate_status, enum: -> { WhopSDK::GlobalAffiliateStatus }
 
       # @!attribute member_count
-      #   The number of users who currently hold an active membership to this product.
-      #   Returns 0 if the company has disabled public member counts.
+      #   Active memberships for this product. Returns `0` if the account has disabled
+      #   public member counts.
       #
       #   @return [Integer]
       required :member_count, Integer
 
       # @!attribute metadata
-      #   Custom key-value pairs stored on the product. Included in webhook payloads for
-      #   payment and membership events.
+      #   Custom key-value pairs stored on the product and included in payment and
+      #   membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
+      #   per string value.
       #
       #   @return [Hash{Symbol=>Object}, nil]
       required :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
@@ -132,8 +129,8 @@ module WhopSDK
       required :published_reviews_count, Integer
 
       # @!attribute route
-      #   The URL slug used in the product's public link (e.g., 'my-product' in
-      #   whop.com/company/my-product).
+      #   URL slug in the product's public link, e.g. `pickaxe-analytics` in
+      #   whop.com/company/pickaxe-analytics.
       #
       #   @return [String]
       required :route, String
@@ -177,31 +174,31 @@ module WhopSDK
       #
       #   @param created_at [Time] The datetime the product was created.
       #
-      #   @param custom_cta [Symbol, WhopSDK::Models::CustomCta] The call-to-action button label displayed on the product's purchase page (e.g.,
+      #   @param custom_cta [Symbol, WhopSDK::Models::CustomCta] Call-to-action button label shown on the product purchase page.
       #
       #   @param custom_cta_url [String, nil] An optional URL that the call-to-action button links to instead of the default c
       #
-      #   @param custom_statement_descriptor [String, nil] A custom text label that appears on the customer's bank or credit card statement
+      #   @param custom_statement_descriptor [String, nil] Custom bank statement descriptor for product purchases. Maximum 22 characters, i
       #
       #   @param description [String, nil] A brief summary of what the product offers, displayed on product pages and searc
       #
-      #   @param external_identifier [String, nil] A unique identifier used to create or update products via the API. When provided
+      #   @param external_identifier [String, nil] External identifier for the product. Providing it on a product creation endpoint
       #
       #   @param gallery_images [Array<WhopSDK::Models::Product::GalleryImage>] The gallery images for this product, ordered by position.
       #
-      #   @param global_affiliate_percentage [Float, nil] The commission rate (as a percentage) that affiliates earn on sales through the
+      #   @param global_affiliate_percentage [Float, nil] Marketplace affiliate commission percentage for this product, or `null` if progr
       #
       #   @param global_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus] The enrollment status of this product in the Whop marketplace global affiliate p
       #
       #   @param headline [String, nil] A short marketing headline displayed prominently on the product's product page.
       #
-      #   @param member_affiliate_percentage [Float, nil] The commission rate (as a percentage) that existing members earn when referring
+      #   @param member_affiliate_percentage [Float, nil] Member referral commission percentage for this product, or `null` if program is
       #
       #   @param member_affiliate_status [Symbol, WhopSDK::Models::GlobalAffiliateStatus] The enrollment status of this product in the member affiliate program.
       #
-      #   @param member_count [Integer] The number of users who currently hold an active membership to this product. Ret
+      #   @param member_count [Integer] Active memberships for this product. Returns `0` if the account has disabled pub
       #
-      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the product. Included in webhook payloads for p
+      #   @param metadata [Hash{Symbol=>Object}, nil] Custom key-value pairs stored on the product and included in payment and members
       #
       #   @param owner_user [WhopSDK::Models::Product::OwnerUser] The user who owns the company that sells this product.
       #
@@ -209,7 +206,7 @@ module WhopSDK
       #
       #   @param published_reviews_count [Integer] The total number of published customer reviews for this product's company.
       #
-      #   @param route [String] The URL slug used in the product's public link (e.g., 'my-product' in whop.com/c
+      #   @param route [String] URL slug in the product's public link, e.g. `pickaxe-analytics` in whop.com/comp
       #
       #   @param title [String] The display name of the product shown to customers on the product page and in se
       #
@@ -228,7 +225,7 @@ module WhopSDK
         required :id, String
 
         # @!attribute route
-        #   The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
+        #   URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
         #
         #   @return [String]
         required :route, String
@@ -240,14 +237,11 @@ module WhopSDK
         required :title, String
 
         # @!method initialize(id:, route:, title:)
-        #   Some parameter documentations has been truncated, see
-        #   {WhopSDK::Models::Product::Company} for more details.
-        #
         #   The company this product belongs to.
         #
         #   @param id [String] The unique identifier for the company.
         #
-        #   @param route [String] The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
+        #   @param route [String] URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
         #
         #   @param title [String] The display name of the company shown to customers.
       end
@@ -320,14 +314,14 @@ module WhopSDK
         required :id, String
 
         # @!attribute name
-        #   The human-readable name of this tax classification (e.g., 'Digital - SaaS').
+        #   Human-readable name of this tax classification, such as 'Digital - SaaS'.
         #
         #   @return [String]
         required :name, String
 
         # @!attribute product_type
-        #   The broad product category this tax code covers (e.g., physical goods, digital
-        #   services).
+        #   Broad product category this tax code covers, such as physical goods or digital
+        #   services.
         #
         #   @return [Symbol, WhopSDK::Models::Product::ProductTaxCode::ProductType]
         required :product_type, enum: -> { WhopSDK::Product::ProductTaxCode::ProductType }
@@ -341,12 +335,12 @@ module WhopSDK
         #
         #   @param id [String] The unique identifier for the product tax code.
         #
-        #   @param name [String] The human-readable name of this tax classification (e.g., 'Digital - SaaS').
+        #   @param name [String] Human-readable name of this tax classification, such as 'Digital - SaaS'.
         #
-        #   @param product_type [Symbol, WhopSDK::Models::Product::ProductTaxCode::ProductType] The broad product category this tax code covers (e.g., physical goods, digital s
+        #   @param product_type [Symbol, WhopSDK::Models::Product::ProductTaxCode::ProductType] Broad product category this tax code covers, such as physical goods or digital s
 
-        # The broad product category this tax code covers (e.g., physical goods, digital
-        # services).
+        # Broad product category this tax code covers, such as physical goods or digital
+        # services.
         #
         # @see WhopSDK::Models::Product::ProductTaxCode#product_type
         module ProductType

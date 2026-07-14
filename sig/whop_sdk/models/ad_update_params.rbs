@@ -1,0 +1,742 @@
+module WhopSDK
+  module Models
+    type ad_update_params =
+      {
+        id: String,
+        call_to_action: WhopSDK::Models::AdUpdateParams::call_to_action,
+        creatives: ::Array[WhopSDK::AdUpdateParams::Creative],
+        descriptions: ::Array[String],
+        headlines: ::Array[String],
+        lead_form: WhopSDK::AdUpdateParams::LeadForm,
+        lead_form_id: String,
+        messaging_config: WhopSDK::AdUpdateParams::MessagingConfig,
+        multi_advertiser_ads: bool,
+        post_id: String,
+        post_source: WhopSDK::Models::AdUpdateParams::post_source,
+        primary_texts: ::Array[String],
+        social_accounts: ::Array[WhopSDK::AdUpdateParams::SocialAccount],
+        title: String,
+        url: String,
+        url_parameters: top
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class AdUpdateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_reader call_to_action: WhopSDK::Models::AdUpdateParams::call_to_action?
+
+      def call_to_action=: (
+        WhopSDK::Models::AdUpdateParams::call_to_action
+      ) -> WhopSDK::Models::AdUpdateParams::call_to_action
+
+      attr_reader creatives: ::Array[WhopSDK::AdUpdateParams::Creative]?
+
+      def creatives=: (
+        ::Array[WhopSDK::AdUpdateParams::Creative]
+      ) -> ::Array[WhopSDK::AdUpdateParams::Creative]
+
+      attr_reader descriptions: ::Array[String]?
+
+      def descriptions=: (::Array[String]) -> ::Array[String]
+
+      attr_reader headlines: ::Array[String]?
+
+      def headlines=: (::Array[String]) -> ::Array[String]
+
+      attr_reader lead_form: WhopSDK::AdUpdateParams::LeadForm?
+
+      def lead_form=: (
+        WhopSDK::AdUpdateParams::LeadForm
+      ) -> WhopSDK::AdUpdateParams::LeadForm
+
+      attr_reader lead_form_id: String?
+
+      def lead_form_id=: (String) -> String
+
+      attr_reader messaging_config: WhopSDK::AdUpdateParams::MessagingConfig?
+
+      def messaging_config=: (
+        WhopSDK::AdUpdateParams::MessagingConfig
+      ) -> WhopSDK::AdUpdateParams::MessagingConfig
+
+      attr_reader multi_advertiser_ads: bool?
+
+      def multi_advertiser_ads=: (bool) -> bool
+
+      attr_reader post_id: String?
+
+      def post_id=: (String) -> String
+
+      attr_reader post_source: WhopSDK::Models::AdUpdateParams::post_source?
+
+      def post_source=: (
+        WhopSDK::Models::AdUpdateParams::post_source
+      ) -> WhopSDK::Models::AdUpdateParams::post_source
+
+      attr_reader primary_texts: ::Array[String]?
+
+      def primary_texts=: (::Array[String]) -> ::Array[String]
+
+      attr_reader social_accounts: ::Array[WhopSDK::AdUpdateParams::SocialAccount]?
+
+      def social_accounts=: (
+        ::Array[WhopSDK::AdUpdateParams::SocialAccount]
+      ) -> ::Array[WhopSDK::AdUpdateParams::SocialAccount]
+
+      attr_reader title: String?
+
+      def title=: (String) -> String
+
+      attr_reader url: String?
+
+      def url=: (String) -> String
+
+      attr_reader url_parameters: top?
+
+      def url_parameters=: (top) -> top
+
+      def initialize: (
+        id: String,
+        ?call_to_action: WhopSDK::Models::AdUpdateParams::call_to_action,
+        ?creatives: ::Array[WhopSDK::AdUpdateParams::Creative],
+        ?descriptions: ::Array[String],
+        ?headlines: ::Array[String],
+        ?lead_form: WhopSDK::AdUpdateParams::LeadForm,
+        ?lead_form_id: String,
+        ?messaging_config: WhopSDK::AdUpdateParams::MessagingConfig,
+        ?multi_advertiser_ads: bool,
+        ?post_id: String,
+        ?post_source: WhopSDK::Models::AdUpdateParams::post_source,
+        ?primary_texts: ::Array[String],
+        ?social_accounts: ::Array[WhopSDK::AdUpdateParams::SocialAccount],
+        ?title: String,
+        ?url: String,
+        ?url_parameters: top,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        call_to_action: WhopSDK::Models::AdUpdateParams::call_to_action,
+        creatives: ::Array[WhopSDK::AdUpdateParams::Creative],
+        descriptions: ::Array[String],
+        headlines: ::Array[String],
+        lead_form: WhopSDK::AdUpdateParams::LeadForm,
+        lead_form_id: String,
+        messaging_config: WhopSDK::AdUpdateParams::MessagingConfig,
+        multi_advertiser_ads: bool,
+        post_id: String,
+        post_source: WhopSDK::Models::AdUpdateParams::post_source,
+        primary_texts: ::Array[String],
+        social_accounts: ::Array[WhopSDK::AdUpdateParams::SocialAccount],
+        title: String,
+        url: String,
+        url_parameters: top,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type call_to_action =
+        :apply_now
+        | :book_now
+        | :call_now
+        | :contact_us
+        | :download
+        | :get_directions
+        | :get_offer
+        | :get_quote
+        | :learn_more
+        | :listen_now
+        | :message_page
+        | :no_button
+        | :open_link
+        | :order_now
+        | :request_time
+        | :see_details
+        | :see_menu
+        | :send_updates
+        | :shop_now
+        | :sign_up
+        | :subscribe
+        | :watch_more
+
+      module CallToAction
+        extend WhopSDK::Internal::Type::Enum
+
+        APPLY_NOW: :apply_now
+        BOOK_NOW: :book_now
+        CALL_NOW: :call_now
+        CONTACT_US: :contact_us
+        DOWNLOAD: :download
+        GET_DIRECTIONS: :get_directions
+        GET_OFFER: :get_offer
+        GET_QUOTE: :get_quote
+        LEARN_MORE: :learn_more
+        LISTEN_NOW: :listen_now
+        MESSAGE_PAGE: :message_page
+        NO_BUTTON: :no_button
+        OPEN_LINK: :open_link
+        ORDER_NOW: :order_now
+        REQUEST_TIME: :request_time
+        SEE_DETAILS: :see_details
+        SEE_MENU: :see_menu
+        SEND_UPDATES: :send_updates
+        SHOP_NOW: :shop_now
+        SIGN_UP: :sign_up
+        SUBSCRIBE: :subscribe
+        WATCH_MORE: :watch_more
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdUpdateParams::call_to_action]
+      end
+
+      type creative =
+        {
+          id: String,
+          crop: WhopSDK::AdUpdateParams::Creative::Crop,
+          format_: WhopSDK::Models::AdUpdateParams::Creative::format_
+        }
+
+      class Creative < WhopSDK::Internal::Type::BaseModel
+        attr_reader id: String?
+
+        def id=: (String) -> String
+
+        attr_reader crop: WhopSDK::AdUpdateParams::Creative::Crop?
+
+        def crop=: (
+          WhopSDK::AdUpdateParams::Creative::Crop
+        ) -> WhopSDK::AdUpdateParams::Creative::Crop
+
+        attr_reader format_: WhopSDK::Models::AdUpdateParams::Creative::format_?
+
+        def format_=: (
+          WhopSDK::Models::AdUpdateParams::Creative::format_
+        ) -> WhopSDK::Models::AdUpdateParams::Creative::format_
+
+        def initialize: (
+          ?id: String,
+          ?crop: WhopSDK::AdUpdateParams::Creative::Crop,
+          ?format_: WhopSDK::Models::AdUpdateParams::Creative::format_
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          crop: WhopSDK::AdUpdateParams::Creative::Crop,
+          format_: WhopSDK::Models::AdUpdateParams::Creative::format_
+        }
+
+        type crop = { height: Float, width: Float, x: Float, y_: Float }
+
+        class Crop < WhopSDK::Internal::Type::BaseModel
+          attr_reader height: Float?
+
+          def height=: (Float) -> Float
+
+          attr_reader width: Float?
+
+          def width=: (Float) -> Float
+
+          attr_reader x: Float?
+
+          def x=: (Float) -> Float
+
+          attr_reader y_: Float?
+
+          def y_=: (Float) -> Float
+
+          def initialize: (
+            ?height: Float,
+            ?width: Float,
+            ?x: Float,
+            ?y_: Float
+          ) -> void
+
+          def to_hash: -> { height: Float, width: Float, x: Float, y_: Float }
+        end
+
+        type format_ = :square | :vertical | :horizontal
+
+        module Format
+          extend WhopSDK::Internal::Type::Enum
+
+          SQUARE: :square
+          VERTICAL: :vertical
+          HORIZONTAL: :horizontal
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdUpdateParams::Creative::format_]
+        end
+      end
+
+      type lead_form =
+        {
+          completion: WhopSDK::AdUpdateParams::LeadForm::Completion,
+          disclaimer: WhopSDK::AdUpdateParams::LeadForm::Disclaimer,
+          form_type: WhopSDK::Models::AdUpdateParams::LeadForm::form_type,
+          intro: WhopSDK::AdUpdateParams::LeadForm::Intro,
+          name: String,
+          phone_verification: bool,
+          privacy_policy: WhopSDK::AdUpdateParams::LeadForm::PrivacyPolicy,
+          questions: ::Array[WhopSDK::AdUpdateParams::LeadForm::Question]
+        }
+
+      class LeadForm < WhopSDK::Internal::Type::BaseModel
+        attr_reader completion: WhopSDK::AdUpdateParams::LeadForm::Completion?
+
+        def completion=: (
+          WhopSDK::AdUpdateParams::LeadForm::Completion
+        ) -> WhopSDK::AdUpdateParams::LeadForm::Completion
+
+        attr_reader disclaimer: WhopSDK::AdUpdateParams::LeadForm::Disclaimer?
+
+        def disclaimer=: (
+          WhopSDK::AdUpdateParams::LeadForm::Disclaimer
+        ) -> WhopSDK::AdUpdateParams::LeadForm::Disclaimer
+
+        attr_reader form_type: WhopSDK::Models::AdUpdateParams::LeadForm::form_type?
+
+        def form_type=: (
+          WhopSDK::Models::AdUpdateParams::LeadForm::form_type
+        ) -> WhopSDK::Models::AdUpdateParams::LeadForm::form_type
+
+        attr_reader intro: WhopSDK::AdUpdateParams::LeadForm::Intro?
+
+        def intro=: (
+          WhopSDK::AdUpdateParams::LeadForm::Intro
+        ) -> WhopSDK::AdUpdateParams::LeadForm::Intro
+
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        attr_reader phone_verification: bool?
+
+        def phone_verification=: (bool) -> bool
+
+        attr_reader privacy_policy: WhopSDK::AdUpdateParams::LeadForm::PrivacyPolicy?
+
+        def privacy_policy=: (
+          WhopSDK::AdUpdateParams::LeadForm::PrivacyPolicy
+        ) -> WhopSDK::AdUpdateParams::LeadForm::PrivacyPolicy
+
+        attr_reader questions: ::Array[WhopSDK::AdUpdateParams::LeadForm::Question]?
+
+        def questions=: (
+          ::Array[WhopSDK::AdUpdateParams::LeadForm::Question]
+        ) -> ::Array[WhopSDK::AdUpdateParams::LeadForm::Question]
+
+        def initialize: (
+          ?completion: WhopSDK::AdUpdateParams::LeadForm::Completion,
+          ?disclaimer: WhopSDK::AdUpdateParams::LeadForm::Disclaimer,
+          ?form_type: WhopSDK::Models::AdUpdateParams::LeadForm::form_type,
+          ?intro: WhopSDK::AdUpdateParams::LeadForm::Intro,
+          ?name: String,
+          ?phone_verification: bool,
+          ?privacy_policy: WhopSDK::AdUpdateParams::LeadForm::PrivacyPolicy,
+          ?questions: ::Array[WhopSDK::AdUpdateParams::LeadForm::Question]
+        ) -> void
+
+        def to_hash: -> {
+          completion: WhopSDK::AdUpdateParams::LeadForm::Completion,
+          disclaimer: WhopSDK::AdUpdateParams::LeadForm::Disclaimer,
+          form_type: WhopSDK::Models::AdUpdateParams::LeadForm::form_type,
+          intro: WhopSDK::AdUpdateParams::LeadForm::Intro,
+          name: String,
+          phone_verification: bool,
+          privacy_policy: WhopSDK::AdUpdateParams::LeadForm::PrivacyPolicy,
+          questions: ::Array[WhopSDK::AdUpdateParams::LeadForm::Question]
+        }
+
+        type completion =
+          {
+            button_text: String,
+            description: String,
+            headline: String,
+            url: String
+          }
+
+        class Completion < WhopSDK::Internal::Type::BaseModel
+          attr_reader button_text: String?
+
+          def button_text=: (String) -> String
+
+          attr_reader description: String?
+
+          def description=: (String) -> String
+
+          attr_reader headline: String?
+
+          def headline=: (String) -> String
+
+          attr_reader url: String?
+
+          def url=: (String) -> String
+
+          def initialize: (
+            ?button_text: String,
+            ?description: String,
+            ?headline: String,
+            ?url: String
+          ) -> void
+
+          def to_hash: -> {
+            button_text: String,
+            description: String,
+            headline: String,
+            url: String
+          }
+        end
+
+        type disclaimer =
+          {
+            body: String,
+            checkboxes: ::Array[WhopSDK::AdUpdateParams::LeadForm::Disclaimer::Checkbox],
+            title: String
+          }
+
+        class Disclaimer < WhopSDK::Internal::Type::BaseModel
+          attr_reader body: String?
+
+          def body=: (String) -> String
+
+          attr_reader checkboxes: ::Array[WhopSDK::AdUpdateParams::LeadForm::Disclaimer::Checkbox]?
+
+          def checkboxes=: (
+            ::Array[WhopSDK::AdUpdateParams::LeadForm::Disclaimer::Checkbox]
+          ) -> ::Array[WhopSDK::AdUpdateParams::LeadForm::Disclaimer::Checkbox]
+
+          attr_reader title: String?
+
+          def title=: (String) -> String
+
+          def initialize: (
+            ?body: String,
+            ?checkboxes: ::Array[WhopSDK::AdUpdateParams::LeadForm::Disclaimer::Checkbox],
+            ?title: String
+          ) -> void
+
+          def to_hash: -> {
+            body: String,
+            checkboxes: ::Array[WhopSDK::AdUpdateParams::LeadForm::Disclaimer::Checkbox],
+            title: String
+          }
+
+          type checkbox =
+            {
+              checked_by_default: bool,
+              key: String,
+              required: bool,
+              text: String
+            }
+
+          class Checkbox < WhopSDK::Internal::Type::BaseModel
+            attr_reader checked_by_default: bool?
+
+            def checked_by_default=: (bool) -> bool
+
+            attr_reader key: String?
+
+            def key=: (String) -> String
+
+            attr_reader required: bool?
+
+            def required=: (bool) -> bool
+
+            attr_reader text: String?
+
+            def text=: (String) -> String
+
+            def initialize: (
+              ?checked_by_default: bool,
+              ?key: String,
+              ?required: bool,
+              ?text: String
+            ) -> void
+
+            def to_hash: -> {
+              checked_by_default: bool,
+              key: String,
+              required: bool,
+              text: String
+            }
+          end
+        end
+
+        type form_type = :more_volume | :higher_intent
+
+        module FormType
+          extend WhopSDK::Internal::Type::Enum
+
+          MORE_VOLUME: :more_volume
+          HIGHER_INTENT: :higher_intent
+
+          def self?.values: -> ::Array[WhopSDK::Models::AdUpdateParams::LeadForm::form_type]
+        end
+
+        type intro = { description: String, headline: String }
+
+        class Intro < WhopSDK::Internal::Type::BaseModel
+          attr_reader description: String?
+
+          def description=: (String) -> String
+
+          attr_reader headline: String?
+
+          def headline=: (String) -> String
+
+          def initialize: (?description: String, ?headline: String) -> void
+
+          def to_hash: -> { description: String, headline: String }
+        end
+
+        type privacy_policy = { link_text: String, url: String }
+
+        class PrivacyPolicy < WhopSDK::Internal::Type::BaseModel
+          attr_reader link_text: String?
+
+          def link_text=: (String) -> String
+
+          attr_reader url: String?
+
+          def url=: (String) -> String
+
+          def initialize: (?link_text: String, ?url: String) -> void
+
+          def to_hash: -> { link_text: String, url: String }
+        end
+
+        type question =
+          {
+            format_: WhopSDK::Models::AdUpdateParams::LeadForm::Question::format_,
+            label: String,
+            options: ::Array[WhopSDK::AdUpdateParams::LeadForm::Question::Option],
+            type: WhopSDK::Models::AdUpdateParams::LeadForm::Question::type_
+          }
+
+        class Question < WhopSDK::Internal::Type::BaseModel
+          attr_reader format_: WhopSDK::Models::AdUpdateParams::LeadForm::Question::format_?
+
+          def format_=: (
+            WhopSDK::Models::AdUpdateParams::LeadForm::Question::format_
+          ) -> WhopSDK::Models::AdUpdateParams::LeadForm::Question::format_
+
+          attr_reader label: String?
+
+          def label=: (String) -> String
+
+          attr_reader options: ::Array[WhopSDK::AdUpdateParams::LeadForm::Question::Option]?
+
+          def options=: (
+            ::Array[WhopSDK::AdUpdateParams::LeadForm::Question::Option]
+          ) -> ::Array[WhopSDK::AdUpdateParams::LeadForm::Question::Option]
+
+          attr_reader type: WhopSDK::Models::AdUpdateParams::LeadForm::Question::type_?
+
+          def type=: (
+            WhopSDK::Models::AdUpdateParams::LeadForm::Question::type_
+          ) -> WhopSDK::Models::AdUpdateParams::LeadForm::Question::type_
+
+          def initialize: (
+            ?format_: WhopSDK::Models::AdUpdateParams::LeadForm::Question::format_,
+            ?label: String,
+            ?options: ::Array[WhopSDK::AdUpdateParams::LeadForm::Question::Option],
+            ?type: WhopSDK::Models::AdUpdateParams::LeadForm::Question::type_
+          ) -> void
+
+          def to_hash: -> {
+            format_: WhopSDK::Models::AdUpdateParams::LeadForm::Question::format_,
+            label: String,
+            options: ::Array[WhopSDK::AdUpdateParams::LeadForm::Question::Option],
+            type: WhopSDK::Models::AdUpdateParams::LeadForm::Question::type_
+          }
+
+          type format_ = :short_answer | :multiple_choice | :appointment
+
+          module Format
+            extend WhopSDK::Internal::Type::Enum
+
+            SHORT_ANSWER: :short_answer
+            MULTIPLE_CHOICE: :multiple_choice
+            APPOINTMENT: :appointment
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdUpdateParams::LeadForm::Question::format_]
+          end
+
+          type option =
+            {
+              key: String,
+              logic: WhopSDK::AdUpdateParams::LeadForm::Question::Option::Logic,
+              value: String
+            }
+
+          class Option < WhopSDK::Internal::Type::BaseModel
+            attr_reader key: String?
+
+            def key=: (String) -> String
+
+            attr_reader logic: WhopSDK::AdUpdateParams::LeadForm::Question::Option::Logic?
+
+            def logic=: (
+              WhopSDK::AdUpdateParams::LeadForm::Question::Option::Logic
+            ) -> WhopSDK::AdUpdateParams::LeadForm::Question::Option::Logic
+
+            attr_reader value: String?
+
+            def value=: (String) -> String
+
+            def initialize: (
+              ?key: String,
+              ?logic: WhopSDK::AdUpdateParams::LeadForm::Question::Option::Logic,
+              ?value: String
+            ) -> void
+
+            def to_hash: -> {
+              key: String,
+              logic: WhopSDK::AdUpdateParams::LeadForm::Question::Option::Logic,
+              value: String
+            }
+
+            type logic =
+              {
+                action: WhopSDK::Models::AdUpdateParams::LeadForm::Question::Option::Logic::action,
+                target_end_page_index: Integer,
+                target_question_index: Integer
+              }
+
+            class Logic < WhopSDK::Internal::Type::BaseModel
+              attr_reader action: WhopSDK::Models::AdUpdateParams::LeadForm::Question::Option::Logic::action?
+
+              def action=: (
+                WhopSDK::Models::AdUpdateParams::LeadForm::Question::Option::Logic::action
+              ) -> WhopSDK::Models::AdUpdateParams::LeadForm::Question::Option::Logic::action
+
+              attr_reader target_end_page_index: Integer?
+
+              def target_end_page_index=: (Integer) -> Integer
+
+              attr_reader target_question_index: Integer?
+
+              def target_question_index=: (Integer) -> Integer
+
+              def initialize: (
+                ?action: WhopSDK::Models::AdUpdateParams::LeadForm::Question::Option::Logic::action,
+                ?target_end_page_index: Integer,
+                ?target_question_index: Integer
+              ) -> void
+
+              def to_hash: -> {
+                action: WhopSDK::Models::AdUpdateParams::LeadForm::Question::Option::Logic::action,
+                target_end_page_index: Integer,
+                target_question_index: Integer
+              }
+
+              type action = :go_to_question | :submit_form | :close_form
+
+              module Action
+                extend WhopSDK::Internal::Type::Enum
+
+                GO_TO_QUESTION: :go_to_question
+                SUBMIT_FORM: :submit_form
+                CLOSE_FORM: :close_form
+
+                def self?.values: -> ::Array[WhopSDK::Models::AdUpdateParams::LeadForm::Question::Option::Logic::action]
+              end
+            end
+          end
+
+          type type_ =
+            :email
+            | :phone
+            | :full_name
+            | :first_name
+            | :last_name
+            | :city
+            | :state
+            | :zip
+            | :country
+            | :street_address
+            | :job_title
+            | :company_name
+            | :work_email
+            | :work_phone_number
+            | :dob
+            | :gender
+            | :marital_status
+            | :relationship_status
+            | :military_status
+            | :date_time
+            | :custom
+
+          module Type
+            extend WhopSDK::Internal::Type::Enum
+
+            EMAIL: :email
+            PHONE: :phone
+            FULL_NAME: :full_name
+            FIRST_NAME: :first_name
+            LAST_NAME: :last_name
+            CITY: :city
+            STATE: :state
+            ZIP: :zip
+            COUNTRY: :country
+            STREET_ADDRESS: :street_address
+            JOB_TITLE: :job_title
+            COMPANY_NAME: :company_name
+            WORK_EMAIL: :work_email
+            WORK_PHONE_NUMBER: :work_phone_number
+            DOB: :dob
+            GENDER: :gender
+            MARITAL_STATUS: :marital_status
+            RELATIONSHIP_STATUS: :relationship_status
+            MILITARY_STATUS: :military_status
+            DATE_TIME: :date_time
+            CUSTOM: :custom
+
+            def self?.values: -> ::Array[WhopSDK::Models::AdUpdateParams::LeadForm::Question::type_]
+          end
+        end
+      end
+
+      type messaging_config = { keyword: String, message: String }
+
+      class MessagingConfig < WhopSDK::Internal::Type::BaseModel
+        attr_reader keyword: String?
+
+        def keyword=: (String) -> String
+
+        attr_reader message: String?
+
+        def message=: (String) -> String
+
+        def initialize: (?keyword: String, ?message: String) -> void
+
+        def to_hash: -> { keyword: String, message: String }
+      end
+
+      type post_source = :facebook | :instagram
+
+      module PostSource
+        extend WhopSDK::Internal::Type::Enum
+
+        FACEBOOK: :facebook
+        INSTAGRAM: :instagram
+
+        def self?.values: -> ::Array[WhopSDK::Models::AdUpdateParams::post_source]
+      end
+
+      type social_account = { id: String }
+
+      class SocialAccount < WhopSDK::Internal::Type::BaseModel
+        attr_reader id: String?
+
+        def id=: (String) -> String
+
+        def initialize: (?id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+    end
+  end
+end

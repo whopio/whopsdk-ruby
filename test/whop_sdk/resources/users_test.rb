@@ -15,11 +15,16 @@ class WhopSDK::Test::Resources::UsersTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        balance: WhopSDK::UserBalance | nil,
+        balance_history: WhopSDK::User::BalanceHistory | nil,
         bio: String | nil,
         created_at: String,
+        earnings_usd: WhopSDK::User::EarningsUsd | nil,
         name: String | nil,
         profile_picture: WhopSDK::Internal::Type::Unknown | nil,
-        username: String
+        username: String,
+        verification: WhopSDK::Internal::Type::Unknown,
+        whop_partner_enabled_at: String | nil
       }
     end
   end
@@ -36,11 +41,16 @@ class WhopSDK::Test::Resources::UsersTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        balance: WhopSDK::UserBalance | nil,
+        balance_history: WhopSDK::User::BalanceHistory | nil,
         bio: String | nil,
         created_at: String,
+        earnings_usd: WhopSDK::User::EarningsUsd | nil,
         name: String | nil,
         profile_picture: WhopSDK::Internal::Type::Unknown | nil,
-        username: String
+        username: String,
+        verification: WhopSDK::Internal::Type::Unknown,
+        whop_partner_enabled_at: String | nil
       }
     end
   end
@@ -64,11 +74,16 @@ class WhopSDK::Test::Resources::UsersTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
+        balance: WhopSDK::UserBalance | nil,
+        balance_history: WhopSDK::User::BalanceHistory | nil,
         bio: String | nil,
         created_at: String,
+        earnings_usd: WhopSDK::User::EarningsUsd | nil,
         name: String | nil,
         profile_picture: WhopSDK::Internal::Type::Unknown | nil,
-        username: String
+        username: String,
+        verification: WhopSDK::Internal::Type::Unknown,
+        whop_partner_enabled_at: String | nil
       }
     end
   end
@@ -102,11 +117,16 @@ class WhopSDK::Test::Resources::UsersTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        balance: WhopSDK::UserBalance | nil,
+        balance_history: WhopSDK::User::BalanceHistory | nil,
         bio: String | nil,
         created_at: String,
+        earnings_usd: WhopSDK::User::EarningsUsd | nil,
         name: String | nil,
         profile_picture: WhopSDK::Internal::Type::Unknown | nil,
-        username: String
+        username: String,
+        verification: WhopSDK::Internal::Type::Unknown,
+        whop_partner_enabled_at: String | nil
       }
     end
   end

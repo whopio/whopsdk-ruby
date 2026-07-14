@@ -11,93 +11,174 @@ module WhopSDK
           T.any(WhopSDK::AdCampaignListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # Returns the elements in the list that come after the specified cursor.
+      # The account the campaigns belong to. Defaults to the account-scoped key's own
+      # account.
       sig { returns(T.nilable(String)) }
-      attr_accessor :after
+      attr_reader :account_id
 
-      # Returns the elements in the list that come before the specified cursor.
+      sig { params(account_id: String).void }
+      attr_writer :account_id
+
+      # Cursor to fetch the page after (from page_info.end_cursor).
       sig { returns(T.nilable(String)) }
-      attr_accessor :before
+      attr_reader :after
 
-      # The unique identifier of the company to list ad campaigns for.
+      sig { params(after: String).void }
+      attr_writer :after
+
+      # Cursor to fetch the page before (from page_info.start_cursor).
       sig { returns(T.nilable(String)) }
-      attr_accessor :company_id
+      attr_reader :before
 
-      # Only return ad campaigns created after this timestamp.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :created_after
+      sig { params(before: String).void }
+      attr_writer :before
 
-      # Only return ad campaigns created before this timestamp.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :created_before
-
-      # Returns the first _n_ elements from the list.
-      sig { returns(T.nilable(Integer)) }
-      attr_accessor :first
-
-      # Returns the last _n_ elements from the list.
-      sig { returns(T.nilable(Integer)) }
-      attr_accessor :last
-
-      # Case-insensitive substring match against the campaign title or ID.
+      # Only return campaigns created after this timestamp.
       sig { returns(T.nilable(String)) }
-      attr_accessor :query
+      attr_reader :created_after
 
-      # Inclusive start of the window for each campaign's metric fields (spend,
-      # impressions, …). Omit both statsFrom and statsTo for all-time stats.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :stats_from
+      sig { params(created_after: String).void }
+      attr_writer :created_after
 
-      # Inclusive end of the window for each campaign's metric fields. Omit both
-      # statsFrom and statsTo for all-time stats.
-      sig { returns(T.nilable(Time)) }
-      attr_accessor :stats_to
+      # Only return campaigns created before this timestamp.
+      sig { returns(T.nilable(String)) }
+      attr_reader :created_before
 
-      # The status of an ad campaign.
-      sig { returns(T.nilable(WhopSDK::AdCampaignStatus::OrSymbol)) }
-      attr_accessor :status
+      sig { params(created_before: String).void }
+      attr_writer :created_before
+
+      # The sort direction. Defaults to desc.
+      sig do
+        returns(T.nilable(WhopSDK::AdCampaignListParams::Direction::OrSymbol))
+      end
+      attr_reader :direction
 
       sig do
         params(
-          after: T.nilable(String),
-          before: T.nilable(String),
-          company_id: T.nilable(String),
-          created_after: T.nilable(Time),
-          created_before: T.nilable(Time),
-          first: T.nilable(Integer),
-          last: T.nilable(Integer),
-          query: T.nilable(String),
-          stats_from: T.nilable(Time),
-          stats_to: T.nilable(Time),
-          status: T.nilable(WhopSDK::AdCampaignStatus::OrSymbol),
+          direction: WhopSDK::AdCampaignListParams::Direction::OrSymbol
+        ).void
+      end
+      attr_writer :direction
+
+      # The number of campaigns to return.
+      sig { returns(T.nilable(Integer)) }
+      attr_reader :first
+
+      sig { params(first: Integer).void }
+      attr_writer :first
+
+      # The number of campaigns to return from the end of the range.
+      sig { returns(T.nilable(Integer)) }
+      attr_reader :last
+
+      sig { params(last: Integer).void }
+      attr_writer :last
+
+      # The field to sort by. Defaults to created_at. Stat columns (spend, impressions,
+      # …) rank over the stats_from/stats_to window across the whole list, not just the
+      # current page. results, cost_per_result and return_on_ad_spend rank by the same
+      # Whop pixel-attributed values the response reports.
+      sig { returns(T.nilable(WhopSDK::AdCampaignListParams::Order::OrSymbol)) }
+      attr_reader :order
+
+      sig { params(order: WhopSDK::AdCampaignListParams::Order::OrSymbol).void }
+      attr_writer :order
+
+      # Filter campaigns by a title or ID substring.
+      sig { returns(T.nilable(String)) }
+      attr_reader :query
+
+      sig { params(query: String).void }
+      attr_writer :query
+
+      # Start of the stats window. Defaults to all-time.
+      sig { returns(T.nilable(String)) }
+      attr_reader :stats_from
+
+      sig { params(stats_from: String).void }
+      attr_writer :stats_from
+
+      # End of the stats window. Defaults to now.
+      sig { returns(T.nilable(String)) }
+      attr_reader :stats_to
+
+      sig { params(stats_to: String).void }
+      attr_writer :stats_to
+
+      # Only return campaigns with this status.
+      sig do
+        returns(T.nilable(WhopSDK::AdCampaignListParams::Status::OrSymbol))
+      end
+      attr_reader :status
+
+      sig do
+        params(status: WhopSDK::AdCampaignListParams::Status::OrSymbol).void
+      end
+      attr_writer :status
+
+      # IANA timezone (e.g. America/New_York) the stats window is interpreted in. Bare
+      # stats_from/stats_to dates resolve to day boundaries on this clock. Defaults to
+      # UTC.
+      sig { returns(T.nilable(String)) }
+      attr_reader :time_zone
+
+      sig { params(time_zone: String).void }
+      attr_writer :time_zone
+
+      sig do
+        params(
+          account_id: String,
+          after: String,
+          before: String,
+          created_after: String,
+          created_before: String,
+          direction: WhopSDK::AdCampaignListParams::Direction::OrSymbol,
+          first: Integer,
+          last: Integer,
+          order: WhopSDK::AdCampaignListParams::Order::OrSymbol,
+          query: String,
+          stats_from: String,
+          stats_to: String,
+          status: WhopSDK::AdCampaignListParams::Status::OrSymbol,
+          time_zone: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # Returns the elements in the list that come after the specified cursor.
+        # The account the campaigns belong to. Defaults to the account-scoped key's own
+        # account.
+        account_id: nil,
+        # Cursor to fetch the page after (from page_info.end_cursor).
         after: nil,
-        # Returns the elements in the list that come before the specified cursor.
+        # Cursor to fetch the page before (from page_info.start_cursor).
         before: nil,
-        # The unique identifier of the company to list ad campaigns for.
-        company_id: nil,
-        # Only return ad campaigns created after this timestamp.
+        # Only return campaigns created after this timestamp.
         created_after: nil,
-        # Only return ad campaigns created before this timestamp.
+        # Only return campaigns created before this timestamp.
         created_before: nil,
-        # Returns the first _n_ elements from the list.
+        # The sort direction. Defaults to desc.
+        direction: nil,
+        # The number of campaigns to return.
         first: nil,
-        # Returns the last _n_ elements from the list.
+        # The number of campaigns to return from the end of the range.
         last: nil,
-        # Case-insensitive substring match against the campaign title or ID.
+        # The field to sort by. Defaults to created_at. Stat columns (spend, impressions,
+        # …) rank over the stats_from/stats_to window across the whole list, not just the
+        # current page. results, cost_per_result and return_on_ad_spend rank by the same
+        # Whop pixel-attributed values the response reports.
+        order: nil,
+        # Filter campaigns by a title or ID substring.
         query: nil,
-        # Inclusive start of the window for each campaign's metric fields (spend,
-        # impressions, …). Omit both statsFrom and statsTo for all-time stats.
+        # Start of the stats window. Defaults to all-time.
         stats_from: nil,
-        # Inclusive end of the window for each campaign's metric fields. Omit both
-        # statsFrom and statsTo for all-time stats.
+        # End of the stats window. Defaults to now.
         stats_to: nil,
-        # The status of an ad campaign.
+        # Only return campaigns with this status.
         status: nil,
+        # IANA timezone (e.g. America/New_York) the stats window is interpreted in. Bare
+        # stats_from/stats_to dates resolve to day boundaries on this clock. Defaults to
+        # UTC.
+        time_zone: nil,
         request_options: {}
       )
       end
@@ -105,22 +186,148 @@ module WhopSDK
       sig do
         override.returns(
           {
-            after: T.nilable(String),
-            before: T.nilable(String),
-            company_id: T.nilable(String),
-            created_after: T.nilable(Time),
-            created_before: T.nilable(Time),
-            first: T.nilable(Integer),
-            last: T.nilable(Integer),
-            query: T.nilable(String),
-            stats_from: T.nilable(Time),
-            stats_to: T.nilable(Time),
-            status: T.nilable(WhopSDK::AdCampaignStatus::OrSymbol),
+            account_id: String,
+            after: String,
+            before: String,
+            created_after: String,
+            created_before: String,
+            direction: WhopSDK::AdCampaignListParams::Direction::OrSymbol,
+            first: Integer,
+            last: Integer,
+            order: WhopSDK::AdCampaignListParams::Order::OrSymbol,
+            query: String,
+            stats_from: String,
+            stats_to: String,
+            status: WhopSDK::AdCampaignListParams::Status::OrSymbol,
+            time_zone: String,
             request_options: WhopSDK::RequestOptions
           }
         )
       end
       def to_hash
+      end
+
+      # The sort direction. Defaults to desc.
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, WhopSDK::AdCampaignListParams::Direction)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        ASC =
+          T.let(:asc, WhopSDK::AdCampaignListParams::Direction::TaggedSymbol)
+        DESC =
+          T.let(:desc, WhopSDK::AdCampaignListParams::Direction::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::AdCampaignListParams::Direction::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # The field to sort by. Defaults to created_at. Stat columns (spend, impressions,
+      # …) rank over the stats_from/stats_to window across the whole list, not just the
+      # current page. results, cost_per_result and return_on_ad_spend rank by the same
+      # Whop pixel-attributed values the response reports.
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::AdCampaignListParams::Order) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        CREATED_AT =
+          T.let(:created_at, WhopSDK::AdCampaignListParams::Order::TaggedSymbol)
+        UPDATED_AT =
+          T.let(:updated_at, WhopSDK::AdCampaignListParams::Order::TaggedSymbol)
+        SPEND =
+          T.let(:spend, WhopSDK::AdCampaignListParams::Order::TaggedSymbol)
+        IMPRESSIONS =
+          T.let(
+            :impressions,
+            WhopSDK::AdCampaignListParams::Order::TaggedSymbol
+          )
+        REACH =
+          T.let(:reach, WhopSDK::AdCampaignListParams::Order::TaggedSymbol)
+        CLICKS =
+          T.let(:clicks, WhopSDK::AdCampaignListParams::Order::TaggedSymbol)
+        UNIQUE_CLICKS =
+          T.let(
+            :unique_clicks,
+            WhopSDK::AdCampaignListParams::Order::TaggedSymbol
+          )
+        FREQUENCY =
+          T.let(:frequency, WhopSDK::AdCampaignListParams::Order::TaggedSymbol)
+        CLICK_THROUGH_RATE =
+          T.let(
+            :click_through_rate,
+            WhopSDK::AdCampaignListParams::Order::TaggedSymbol
+          )
+        RESULTS =
+          T.let(:results, WhopSDK::AdCampaignListParams::Order::TaggedSymbol)
+        COST_PER_MILLE =
+          T.let(
+            :cost_per_mille,
+            WhopSDK::AdCampaignListParams::Order::TaggedSymbol
+          )
+        COST_PER_CLICK =
+          T.let(
+            :cost_per_click,
+            WhopSDK::AdCampaignListParams::Order::TaggedSymbol
+          )
+        COST_PER_RESULT =
+          T.let(
+            :cost_per_result,
+            WhopSDK::AdCampaignListParams::Order::TaggedSymbol
+          )
+        RETURN_ON_AD_SPEND =
+          T.let(
+            :return_on_ad_spend,
+            WhopSDK::AdCampaignListParams::Order::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::AdCampaignListParams::Order::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # Only return campaigns with this status.
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::AdCampaignListParams::Status) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        DRAFT =
+          T.let(:draft, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
+        ACTIVE =
+          T.let(:active, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
+        PAUSED =
+          T.let(:paused, WhopSDK::AdCampaignListParams::Status::TaggedSymbol)
+        PAYMENT_FAILED =
+          T.let(
+            :payment_failed,
+            WhopSDK::AdCampaignListParams::Status::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::AdCampaignListParams::Status::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
     end
   end

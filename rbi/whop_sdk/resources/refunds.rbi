@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Refunds
     class Refunds
       # Retrieves the details of an existing refund.
       #

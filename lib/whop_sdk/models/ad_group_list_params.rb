@@ -7,126 +7,173 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute ad_campaign_id
-      #   Filter by ad campaign. Provide exactly one of ad_campaign_id or company_id.
+      # @!attribute account_id
+      #   Account whose ad groups to list. Defaults to the authenticated account.
       #
       #   @return [String, nil]
-      optional :ad_campaign_id, String, nil?: true
+      optional :account_id, String
 
-      # @!attribute ad_campaign_ids
-      #   Only return ad groups belonging to these ad campaigns (max 100). Can be combined
-      #   with companyId or used on its own.
+      # @!attribute ad_campaign_id
+      #   Filter to ad groups in this campaign.
       #
-      #   @return [Array<String>, nil]
-      optional :ad_campaign_ids, WhopSDK::Internal::Type::ArrayOf[String], nil?: true
+      #   @return [String, nil]
+      optional :ad_campaign_id, String
 
       # @!attribute after
-      #   Returns the elements in the list that come after the specified cursor.
+      #   Cursor to fetch the page after (from page_info.end_cursor).
       #
       #   @return [String, nil]
-      optional :after, String, nil?: true
+      optional :after, String
 
       # @!attribute before
-      #   Returns the elements in the list that come before the specified cursor.
+      #   Cursor to fetch the page before (from page_info.start_cursor).
       #
       #   @return [String, nil]
-      optional :before, String, nil?: true
-
-      # @!attribute campaign_id
-      #   Filter by campaign.
-      #
-      #   @return [String, nil]
-      optional :campaign_id, String, nil?: true
-
-      # @!attribute company_id
-      #   Filter by company. Provide companyId or adCampaignIds.
-      #
-      #   @return [String, nil]
-      optional :company_id, String, nil?: true
+      optional :before, String
 
       # @!attribute created_after
       #   Only return ad groups created after this timestamp.
       #
-      #   @return [Time, nil]
-      optional :created_after, Time, nil?: true
+      #   @return [String, nil]
+      optional :created_after, String
 
       # @!attribute created_before
       #   Only return ad groups created before this timestamp.
       #
-      #   @return [Time, nil]
-      optional :created_before, Time, nil?: true
+      #   @return [String, nil]
+      optional :created_before, String
+
+      # @!attribute direction
+      #   The sort direction. Defaults to desc.
+      #
+      #   @return [Symbol, WhopSDK::Models::AdGroupListParams::Direction, nil]
+      optional :direction, enum: -> { WhopSDK::AdGroupListParams::Direction }
 
       # @!attribute first
-      #   Returns the first _n_ elements from the list.
+      #   The number of ad groups to return.
       #
       #   @return [Integer, nil]
-      optional :first, Integer, nil?: true
+      optional :first, Integer
 
       # @!attribute last
-      #   Returns the last _n_ elements from the list.
+      #   The number of ad groups to return from the end of the range.
       #
       #   @return [Integer, nil]
-      optional :last, Integer, nil?: true
+      optional :last, Integer
+
+      # @!attribute order
+      #   The field to sort by. Defaults to created_at. Stat columns (spend, impressions,
+      #   …) rank over the stats_from/stats_to window across the whole list, not just the
+      #   current page. results, cost_per_result and return_on_ad_spend rank by the same
+      #   Whop pixel-attributed values the response reports.
+      #
+      #   @return [Symbol, WhopSDK::Models::AdGroupListParams::Order, nil]
+      optional :order, enum: -> { WhopSDK::AdGroupListParams::Order }
 
       # @!attribute query
-      #   Case-insensitive substring match against the ad group name or ID.
+      #   Filter ad groups by a title or ID substring.
       #
       #   @return [String, nil]
-      optional :query, String, nil?: true
+      optional :query, String
 
       # @!attribute stats_from
-      #   Inclusive start of the window for each ad group's metric fields (spend,
-      #   impressions, …). Omit both statsFrom and statsTo for all-time stats.
+      #   Start of the stats window. Defaults to all-time.
       #
-      #   @return [Time, nil]
-      optional :stats_from, Time, nil?: true
+      #   @return [String, nil]
+      optional :stats_from, String
 
       # @!attribute stats_to
-      #   Inclusive end of the window for each ad group's metric fields. Omit both
-      #   statsFrom and statsTo for all-time stats.
+      #   End of the stats window. Defaults to now.
       #
-      #   @return [Time, nil]
-      optional :stats_to, Time, nil?: true
+      #   @return [String, nil]
+      optional :stats_to, String
 
       # @!attribute status
-      #   The status of an external ad group.
+      #   Filter to a status (active, paused, in_review, rejected).
       #
-      #   @return [Symbol, WhopSDK::Models::AdGroupStatus, nil]
-      optional :status, enum: -> { WhopSDK::AdGroupStatus }, nil?: true
+      #   @return [String, nil]
+      optional :status, String
 
-      # @!method initialize(ad_campaign_id: nil, ad_campaign_ids: nil, after: nil, before: nil, campaign_id: nil, company_id: nil, created_after: nil, created_before: nil, first: nil, last: nil, query: nil, stats_from: nil, stats_to: nil, status: nil, request_options: {})
+      # @!attribute time_zone
+      #   IANA timezone (e.g. America/New_York) the stats window is interpreted in. Bare
+      #   stats_from/stats_to dates resolve to day boundaries on this clock. Defaults to
+      #   UTC.
+      #
+      #   @return [String, nil]
+      optional :time_zone, String
+
+      # @!method initialize(account_id: nil, ad_campaign_id: nil, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, query: nil, stats_from: nil, stats_to: nil, status: nil, time_zone: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AdGroupListParams} for more details.
       #
-      #   @param ad_campaign_id [String, nil] Filter by ad campaign. Provide exactly one of ad_campaign_id or company_id.
+      #   @param account_id [String] Account whose ad groups to list. Defaults to the authenticated account.
       #
-      #   @param ad_campaign_ids [Array<String>, nil] Only return ad groups belonging to these ad campaigns (max 100). Can be combined
+      #   @param ad_campaign_id [String] Filter to ad groups in this campaign.
       #
-      #   @param after [String, nil] Returns the elements in the list that come after the specified cursor.
+      #   @param after [String] Cursor to fetch the page after (from page_info.end_cursor).
       #
-      #   @param before [String, nil] Returns the elements in the list that come before the specified cursor.
+      #   @param before [String] Cursor to fetch the page before (from page_info.start_cursor).
       #
-      #   @param campaign_id [String, nil] Filter by campaign.
+      #   @param created_after [String] Only return ad groups created after this timestamp.
       #
-      #   @param company_id [String, nil] Filter by company. Provide companyId or adCampaignIds.
+      #   @param created_before [String] Only return ad groups created before this timestamp.
       #
-      #   @param created_after [Time, nil] Only return ad groups created after this timestamp.
+      #   @param direction [Symbol, WhopSDK::Models::AdGroupListParams::Direction] The sort direction. Defaults to desc.
       #
-      #   @param created_before [Time, nil] Only return ad groups created before this timestamp.
+      #   @param first [Integer] The number of ad groups to return.
       #
-      #   @param first [Integer, nil] Returns the first _n_ elements from the list.
+      #   @param last [Integer] The number of ad groups to return from the end of the range.
       #
-      #   @param last [Integer, nil] Returns the last _n_ elements from the list.
+      #   @param order [Symbol, WhopSDK::Models::AdGroupListParams::Order] The field to sort by. Defaults to created_at. Stat columns (spend, impressions,
       #
-      #   @param query [String, nil] Case-insensitive substring match against the ad group name or ID.
+      #   @param query [String] Filter ad groups by a title or ID substring.
       #
-      #   @param stats_from [Time, nil] Inclusive start of the window for each ad group's metric fields (spend, impressi
+      #   @param stats_from [String] Start of the stats window. Defaults to all-time.
       #
-      #   @param stats_to [Time, nil] Inclusive end of the window for each ad group's metric fields. Omit both statsFr
+      #   @param stats_to [String] End of the stats window. Defaults to now.
       #
-      #   @param status [Symbol, WhopSDK::Models::AdGroupStatus, nil] The status of an external ad group.
+      #   @param status [String] Filter to a status (active, paused, in_review, rejected).
+      #
+      #   @param time_zone [String] IANA timezone (e.g. America/New_York) the stats window is interpreted in. Bare s
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+
+      # The sort direction. Defaults to desc.
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC = :asc
+        DESC = :desc
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # The field to sort by. Defaults to created_at. Stat columns (spend, impressions,
+      # …) rank over the stats_from/stats_to window across the whole list, not just the
+      # current page. results, cost_per_result and return_on_ad_spend rank by the same
+      # Whop pixel-attributed values the response reports.
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        CREATED_AT = :created_at
+        UPDATED_AT = :updated_at
+        SPEND = :spend
+        IMPRESSIONS = :impressions
+        REACH = :reach
+        CLICKS = :clicks
+        UNIQUE_CLICKS = :unique_clicks
+        FREQUENCY = :frequency
+        CLICK_THROUGH_RATE = :click_through_rate
+        RESULTS = :results
+        COST_PER_MILLE = :cost_per_mille
+        COST_PER_CLICK = :cost_per_click
+        COST_PER_RESULT = :cost_per_result
+        RETURN_ON_AD_SPEND = :return_on_ad_spend
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

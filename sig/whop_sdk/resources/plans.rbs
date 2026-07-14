@@ -2,11 +2,10 @@ module WhopSDK
   module Resources
     class Plans
       def create: (
-        product_id: String,
+        ?account_id: String,
         ?adaptive_pricing_enabled: bool?,
         ?billing_period: Integer?,
         ?checkout_styling: top?,
-        ?company_id: String,
         ?currency: String,
         ?custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?,
         ?description: String?,
@@ -19,6 +18,7 @@ module WhopSDK
         ?override_tax_type: String,
         ?payment_method_configuration: WhopSDK::PlanCreateParams::PaymentMethodConfiguration?,
         ?plan_type: String,
+        ?product_id: String,
         ?release_method: String,
         ?renewal_price: Float?,
         ?split_pay_required_payments: Integer?,
@@ -66,7 +66,7 @@ module WhopSDK
       ) -> WhopSDK::Plan
 
       def list: (
-        company_id: String,
+        account_id: String,
         ?after: String,
         ?before: String,
         ?created_after: String,
@@ -83,6 +83,14 @@ module WhopSDK
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::PlanListResponse]
 
       def delete: (String id, ?request_options: WhopSDK::request_opts) -> bool
+
+      def calculate_tax: (
+        String id,
+        ?address: WhopSDK::PlanCalculateTaxParams::Address?,
+        ?ip_address: String,
+        ?tax_ids: ::Array[WhopSDK::PlanCalculateTaxParams::TaxID]?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::PlanCalculateTaxResponse
 
       def initialize: (client: WhopSDK::Client) -> void
     end

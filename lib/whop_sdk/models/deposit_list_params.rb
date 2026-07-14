@@ -1,0 +1,22 @@
+# frozen_string_literal: true
+
+module WhopSDK
+  module Models
+    # @see WhopSDK::Resources::Deposits#list
+    class DepositListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      # @!attribute account_id
+      #   Business account ID (biz\_\*).
+      #
+      #   @return [String]
+      required :account_id, String
+
+      # @!method initialize(account_id:, request_options: {})
+      #   @param account_id [String] Business account ID (biz\_\*).
+      #
+      #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
+    end
+  end
+end

@@ -57,7 +57,7 @@ module WhopSDK
       required :published_reviews_count, Integer
 
       # @!attribute route
-      #   The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
+      #   URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
       #
       #   @return [String]
       required :route, String
@@ -116,7 +116,7 @@ module WhopSDK
       #
       #   @param published_reviews_count [Integer] The total number of published customer reviews across all products for this comp
       #
-      #   @param route [String] The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
+      #   @param route [String] URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
       #
       #   @param send_customer_emails [Boolean] Whether Whop sends transactional emails (receipts, updates) to customers on beha
       #

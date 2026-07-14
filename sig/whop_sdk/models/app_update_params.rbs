@@ -16,6 +16,8 @@ module WhopSDK
         openapi_path: String?,
         redirect_uris: ::Array[String]?,
         required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
+        route: String?,
+        secrets: ::Hash[Symbol, top]?,
         skills_path: String?,
         status: WhopSDK::Models::app_statuses?
       }
@@ -53,6 +55,10 @@ module WhopSDK
 
       attr_accessor required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?
 
+      attr_accessor route: String?
+
+      attr_accessor secrets: ::Hash[Symbol, top]?
+
       attr_accessor skills_path: String?
 
       attr_accessor status: WhopSDK::Models::app_statuses?
@@ -72,6 +78,8 @@ module WhopSDK
         ?openapi_path: String?,
         ?redirect_uris: ::Array[String]?,
         ?required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
+        ?route: String?,
+        ?secrets: ::Hash[Symbol, top]?,
         ?skills_path: String?,
         ?status: WhopSDK::Models::app_statuses?,
         ?request_options: WhopSDK::request_opts
@@ -92,6 +100,8 @@ module WhopSDK
         openapi_path: String?,
         redirect_uris: ::Array[String]?,
         required_scopes: ::Array[WhopSDK::Models::AppUpdateParams::required_scope]?,
+        route: String?,
+        secrets: ::Hash[Symbol, top]?,
         skills_path: String?,
         status: WhopSDK::Models::app_statuses?,
         request_options: WhopSDK::RequestOptions

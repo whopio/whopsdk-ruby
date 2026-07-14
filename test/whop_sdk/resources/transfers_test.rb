@@ -6,42 +6,28 @@ class WhopSDK::Test::Resources::TransfersTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
     skip("Mock server tests are disabled")
 
-    response =
-      @whop.transfers.create(
-        amount: 6.9,
-        currency: :usd,
-        destination_id: "destination_id",
-        origin_id: "origin_id"
-      )
+    response = @whop.transfers.create(amount: 0, origin_id: "origin_id")
 
     assert_pattern do
-      response => WhopSDK::Transfer
+      response => WhopSDK::Models::TransferCreateResponse
     end
 
     assert_pattern do
-      response => {
-        id: String,
-        amount: Float,
-        created_at: Time,
-        currency: WhopSDK::Currency,
-        destination: WhopSDK::Transfer::Destination,
-        destination_ledger_account_id: String,
-        fee_amount: Float | nil,
-        metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        notes: String | nil,
-        origin: WhopSDK::Transfer::Origin,
-        origin_ledger_account_id: String
-      }
+      case response
+      in WhopSDK::Models::TransferCreateResponse::Transfer
+      in WhopSDK::Models::TransferCreateResponse::Send
+      in WhopSDK::Models::TransferCreateResponse::ClaimLink
+      end
     end
   end
 
   def test_retrieve
     skip("Mock server tests are disabled")
 
-    response = @whop.transfers.retrieve("ctt_xxxxxxxxxxxxxx")
+    response = @whop.transfers.retrieve("id")
 
     assert_pattern do
-      response => WhopSDK::Transfer
+      response => WhopSDK::Models::TransferRetrieveResponse
     end
 
     assert_pattern do
@@ -49,14 +35,14 @@ class WhopSDK::Test::Resources::TransfersTest < WhopSDK::Test::ResourceTest
         id: String,
         amount: Float,
         created_at: Time,
-        currency: WhopSDK::Currency,
-        destination: WhopSDK::Transfer::Destination,
+        currency: String,
+        destination: WhopSDK::Models::TransferRetrieveResponse::Destination,
         destination_ledger_account_id: String,
+        origin: WhopSDK::Models::TransferRetrieveResponse::Origin,
+        origin_ledger_account_id: String,
         fee_amount: Float | nil,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        notes: String | nil,
-        origin: WhopSDK::Transfer::Origin,
-        origin_ledger_account_id: String
+        notes: String | nil
       }
     end
   end
@@ -82,12 +68,12 @@ class WhopSDK::Test::Resources::TransfersTest < WhopSDK::Test::ResourceTest
         id: String,
         amount: Float,
         created_at: Time,
-        currency: WhopSDK::Currency,
+        currency: String,
         destination_ledger_account_id: String,
+        origin_ledger_account_id: String,
         fee_amount: Float | nil,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
-        notes: String | nil,
-        origin_ledger_account_id: String
+        notes: String | nil
       }
     end
   end

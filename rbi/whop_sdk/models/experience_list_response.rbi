@@ -237,7 +237,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
+        # URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
         sig { returns(String) }
         attr_accessor :route
 
@@ -254,7 +254,7 @@ module WhopSDK
         def self.new(
           # The unique identifier for the company.
           id:,
-          # The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
+          # URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
           route:,
           # The display name of the company shown to customers.
           title:

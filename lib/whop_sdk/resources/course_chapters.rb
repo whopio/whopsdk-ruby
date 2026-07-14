@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Course chapters
     class CourseChapters
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::CourseChapterCreateParams} for more details.

@@ -51,6 +51,7 @@ module WhopSDK
       HIPERCARD = T.let(:hipercard, WhopSDK::CardBrands::TaggedSymbol)
       JCBLANKAPAY = T.let(:jcblankapay, WhopSDK::CardBrands::TaggedSymbol)
       CMI = T.let(:cmi, WhopSDK::CardBrands::TaggedSymbol)
+      AURA = T.let(:aura, WhopSDK::CardBrands::TaggedSymbol)
       UNKNOWN = T.let(:unknown, WhopSDK::CardBrands::TaggedSymbol)
 
       sig { override.returns(T::Array[WhopSDK::CardBrands::TaggedSymbol]) }

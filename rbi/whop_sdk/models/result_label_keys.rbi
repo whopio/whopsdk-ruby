@@ -47,11 +47,34 @@ module WhopSDK
       CONTENT_VIEWS =
         T.let(:content_views, WhopSDK::ResultLabelKeys::TaggedSymbol)
       SEARCHES = T.let(:searches, WhopSDK::ResultLabelKeys::TaggedSymbol)
+      ADDS_TO_CART =
+        T.let(:adds_to_cart, WhopSDK::ResultLabelKeys::TaggedSymbol)
+      ADDS_TO_WISHLIST =
+        T.let(:adds_to_wishlist, WhopSDK::ResultLabelKeys::TaggedSymbol)
+      ADDS_OF_PAYMENT_INFO =
+        T.let(:adds_of_payment_info, WhopSDK::ResultLabelKeys::TaggedSymbol)
+      CHECKOUTS_INITIATED =
+        T.let(:checkouts_initiated, WhopSDK::ResultLabelKeys::TaggedSymbol)
       WEBSITE_SCHEDULES =
         T.let(:website_schedules, WhopSDK::ResultLabelKeys::TaggedSymbol)
       WEBSITE_SUBMIT_APPLICATIONS =
         T.let(
           :website_submit_applications,
+          WhopSDK::ResultLabelKeys::TaggedSymbol
+        )
+      WEBSITE_TRIALS_STARTED =
+        T.let(:website_trials_started, WhopSDK::ResultLabelKeys::TaggedSymbol)
+      WEBSITE_SUBSCRIPTIONS =
+        T.let(:website_subscriptions, WhopSDK::ResultLabelKeys::TaggedSymbol)
+      WEBSITE_CONTACTS =
+        T.let(:website_contacts, WhopSDK::ResultLabelKeys::TaggedSymbol)
+      WEBSITE_DONATIONS =
+        T.let(:website_donations, WhopSDK::ResultLabelKeys::TaggedSymbol)
+      WEBSITE_FIND_LOCATIONS =
+        T.let(:website_find_locations, WhopSDK::ResultLabelKeys::TaggedSymbol)
+      WEBSITE_PRODUCT_CUSTOMIZATIONS =
+        T.let(
+          :website_product_customizations,
           WhopSDK::ResultLabelKeys::TaggedSymbol
         )
       CUSTOM = T.let(:custom, WhopSDK::ResultLabelKeys::TaggedSymbol)

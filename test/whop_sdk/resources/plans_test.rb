@@ -3,10 +3,10 @@
 require_relative "../test_helper"
 
 class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
-  def test_create_required_params
+  def test_create
     skip("Mock server tests are disabled")
 
-    response = @whop.plans.create(product_id: "product_id")
+    response = @whop.plans.create
 
     assert_pattern do
       response => WhopSDK::Plan
@@ -15,13 +15,13 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        account: WhopSDK::Internal::Type::Unknown | nil,
         adaptive_pricing_enabled: WhopSDK::Internal::Type::Boolean,
         billing_period: Float | nil,
         collect_tax: WhopSDK::Internal::Type::Boolean,
-        company: WhopSDK::Internal::Type::Unknown | nil,
         created_at: String,
         currency: WhopSDK::Plan::Currency,
-        custom_fields: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Internal::Type::Unknown]),
+        custom_fields: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Plan::CustomField]),
         description: String | nil,
         expiration_days: Float | nil,
         initial_price: Float,
@@ -37,7 +37,7 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
         renewal_price: Float,
         split_pay_required_payments: Float | nil,
         stock: Float | nil,
-        tax_type: String,
+        tax_type: WhopSDK::Plan::TaxType,
         three_ds_level: WhopSDK::Plan::ThreeDSLevel | nil,
         title: String | nil,
         trial_period_days: Float | nil,
@@ -60,13 +60,13 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        account: WhopSDK::Internal::Type::Unknown | nil,
         adaptive_pricing_enabled: WhopSDK::Internal::Type::Boolean,
         billing_period: Float | nil,
         collect_tax: WhopSDK::Internal::Type::Boolean,
-        company: WhopSDK::Internal::Type::Unknown | nil,
         created_at: String,
         currency: WhopSDK::Plan::Currency,
-        custom_fields: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Internal::Type::Unknown]),
+        custom_fields: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Plan::CustomField]),
         description: String | nil,
         expiration_days: Float | nil,
         initial_price: Float,
@@ -82,7 +82,7 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
         renewal_price: Float,
         split_pay_required_payments: Float | nil,
         stock: Float | nil,
-        tax_type: String,
+        tax_type: WhopSDK::Plan::TaxType,
         three_ds_level: WhopSDK::Plan::ThreeDSLevel | nil,
         title: String | nil,
         trial_period_days: Float | nil,
@@ -105,13 +105,13 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        account: WhopSDK::Internal::Type::Unknown | nil,
         adaptive_pricing_enabled: WhopSDK::Internal::Type::Boolean,
         billing_period: Float | nil,
         collect_tax: WhopSDK::Internal::Type::Boolean,
-        company: WhopSDK::Internal::Type::Unknown | nil,
         created_at: String,
         currency: WhopSDK::Plan::Currency,
-        custom_fields: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Internal::Type::Unknown]),
+        custom_fields: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Plan::CustomField]),
         description: String | nil,
         expiration_days: Float | nil,
         initial_price: Float,
@@ -127,7 +127,7 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
         renewal_price: Float,
         split_pay_required_payments: Float | nil,
         stock: Float | nil,
-        tax_type: String,
+        tax_type: WhopSDK::Plan::TaxType,
         three_ds_level: WhopSDK::Plan::ThreeDSLevel | nil,
         title: String | nil,
         trial_period_days: Float | nil,
@@ -141,7 +141,7 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
   def test_list_required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.plans.list(company_id: "company_id")
+    response = @whop.plans.list(account_id: "account_id")
 
     assert_pattern do
       response => WhopSDK::Internal::CursorPage
@@ -157,9 +157,9 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
+        account: WhopSDK::Internal::Type::Unknown | nil,
         adaptive_pricing_enabled: WhopSDK::Internal::Type::Boolean,
         billing_period: Float | nil,
-        company: WhopSDK::Internal::Type::Unknown | nil,
         created_at: String,
         currency: String,
         description: String | nil,
@@ -194,6 +194,27 @@ class WhopSDK::Test::Resources::PlansTest < WhopSDK::Test::ResourceTest
 
     assert_pattern do
       response => WhopSDK::Internal::Type::Boolean
+    end
+  end
+
+  def test_calculate_tax
+    skip("Mock server tests are disabled")
+
+    response = @whop.plans.calculate_tax("id")
+
+    assert_pattern do
+      response => WhopSDK::Models::PlanCalculateTaxResponse
+    end
+
+    assert_pattern do
+      response => {
+        currency: String,
+        status: WhopSDK::Models::PlanCalculateTaxResponse::Status,
+        subtotal: Integer,
+        tax_amount: Integer,
+        tax_behavior: WhopSDK::Models::PlanCalculateTaxResponse::TaxBehavior,
+        total: Integer
+      }
     end
   end
 end

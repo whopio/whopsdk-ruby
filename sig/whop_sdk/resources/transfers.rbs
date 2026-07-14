@@ -3,31 +3,34 @@ module WhopSDK
     class Transfers
       def create: (
         amount: Float,
-        currency: WhopSDK::Models::currency,
-        destination_id: String,
         origin_id: String,
+        ?currency: String,
+        ?destination_id: String,
+        ?expires_at: Time?,
         ?idempotence_key: String?,
         ?metadata: ::Hash[Symbol, top]?,
         ?notes: String?,
+        ?redeemable_count: Integer,
+        ?type: WhopSDK::Models::TransferCreateParams::type_,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Transfer
+      ) -> WhopSDK::Models::transfer_create_response
 
       def retrieve: (
         String id,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Transfer
+      ) -> WhopSDK::Models::TransferRetrieveResponse
 
       def list: (
-        ?after: String?,
-        ?before: String?,
-        ?created_after: Time?,
-        ?created_before: Time?,
-        ?destination_id: String?,
-        ?direction: WhopSDK::Models::direction?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?order: WhopSDK::Models::TransferListParams::order?,
-        ?origin_id: String?,
+        ?after: String,
+        ?before: String,
+        ?created_after: String,
+        ?created_before: String,
+        ?destination_id: String,
+        ?direction: WhopSDK::Models::TransferListParams::direction,
+        ?first: Integer,
+        ?last: Integer,
+        ?order: WhopSDK::Models::TransferListParams::order,
+        ?origin_id: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::TransferListResponse]
 

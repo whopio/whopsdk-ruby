@@ -25,12 +25,16 @@ class WhopSDK::Test::Resources::AppsTest < WhopSDK::Test::ResourceTest
         discover_path: String | nil,
         domain_id: String,
         experience_path: String | nil,
+        hosted_url: String | nil,
         icon: WhopSDK::App::Icon | nil,
         name: String,
         openapi_path: String | nil,
         origin: String | nil,
+        production_web_build: WhopSDK::App::ProductionWebBuild | nil,
         redirect_uris: ^(WhopSDK::Internal::Type::ArrayOf[String]),
         requested_permissions: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::App::RequestedPermission]),
+        route: String | nil,
+        secrets: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
         skills_path: String | nil,
         stats: WhopSDK::App::Stats | nil,
         status: WhopSDK::AppStatuses,
@@ -61,12 +65,16 @@ class WhopSDK::Test::Resources::AppsTest < WhopSDK::Test::ResourceTest
         discover_path: String | nil,
         domain_id: String,
         experience_path: String | nil,
+        hosted_url: String | nil,
         icon: WhopSDK::App::Icon | nil,
         name: String,
         openapi_path: String | nil,
         origin: String | nil,
+        production_web_build: WhopSDK::App::ProductionWebBuild | nil,
         redirect_uris: ^(WhopSDK::Internal::Type::ArrayOf[String]),
         requested_permissions: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::App::RequestedPermission]),
+        route: String | nil,
+        secrets: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
         skills_path: String | nil,
         stats: WhopSDK::App::Stats | nil,
         status: WhopSDK::AppStatuses,
@@ -97,12 +105,16 @@ class WhopSDK::Test::Resources::AppsTest < WhopSDK::Test::ResourceTest
         discover_path: String | nil,
         domain_id: String,
         experience_path: String | nil,
+        hosted_url: String | nil,
         icon: WhopSDK::App::Icon | nil,
         name: String,
         openapi_path: String | nil,
         origin: String | nil,
+        production_web_build: WhopSDK::App::ProductionWebBuild | nil,
         redirect_uris: ^(WhopSDK::Internal::Type::ArrayOf[String]),
         requested_permissions: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::App::RequestedPermission]),
+        route: String | nil,
+        secrets: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
         skills_path: String | nil,
         stats: WhopSDK::App::Stats | nil,
         status: WhopSDK::AppStatuses,
@@ -139,13 +151,32 @@ class WhopSDK::Test::Resources::AppsTest < WhopSDK::Test::ResourceTest
         discover_path: String | nil,
         domain_id: String,
         experience_path: String | nil,
+        hosted_url: String | nil,
         icon: WhopSDK::Models::AppListResponse::Icon | nil,
         name: String,
         openapi_path: String | nil,
         origin: String | nil,
+        route: String | nil,
         skills_path: String | nil,
         status: WhopSDK::AppStatuses,
         verified: WhopSDK::Internal::Type::Boolean
+      }
+    end
+  end
+
+  def test_logs
+    skip("Mock server tests are disabled")
+
+    response = @whop.apps.logs("id")
+
+    assert_pattern do
+      response => WhopSDK::Models::AppLogsResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::AppLogsResponse::Data]),
+        page_info: WhopSDK::Models::AppLogsResponse::PageInfo
       }
     end
   end

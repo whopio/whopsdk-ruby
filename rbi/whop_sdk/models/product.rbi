@@ -21,8 +21,7 @@ module WhopSDK
       sig { returns(Time) }
       attr_accessor :created_at
 
-      # The call-to-action button label displayed on the product's purchase page (e.g.,
-      # 'join', 'buy', 'subscribe').
+      # Call-to-action button label shown on the product purchase page.
       sig { returns(WhopSDK::CustomCta::TaggedSymbol) }
       attr_accessor :custom_cta
 
@@ -31,9 +30,8 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :custom_cta_url
 
-      # A custom text label that appears on the customer's bank or credit card statement
-      # for purchases of this product. Maximum 22 characters, including the required
-      # prefix WHOP\*.
+      # Custom bank statement descriptor for product purchases. Maximum 22 characters,
+      # including required `WHOP*` prefix.
       sig { returns(T.nilable(String)) }
       attr_accessor :custom_statement_descriptor
 
@@ -42,9 +40,8 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      # A unique identifier used to create or update products via the API. When provided
-      # on product creation endpoints, an existing product with this identifier will be
-      # updated instead of creating a new one.
+      # External identifier for the product. Providing it on a product creation endpoint
+      # updates the existing product with this identifier instead of creating a new one.
       sig { returns(T.nilable(String)) }
       attr_accessor :external_identifier
 
@@ -52,8 +49,8 @@ module WhopSDK
       sig { returns(T::Array[WhopSDK::Product::GalleryImage]) }
       attr_accessor :gallery_images
 
-      # The commission rate (as a percentage) that affiliates earn on sales through the
-      # Whop marketplace global affiliate program. Null if the program is not active.
+      # Marketplace affiliate commission percentage for this product, or `null` if
+      # program is inactive.
       sig { returns(T.nilable(Float)) }
       attr_accessor :global_affiliate_percentage
 
@@ -66,9 +63,8 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :headline
 
-      # The commission rate (as a percentage) that existing members earn when referring
-      # new customers through the member affiliate program. Null if the program is not
-      # active.
+      # Member referral commission percentage for this product, or `null` if program is
+      # inactive.
       sig { returns(T.nilable(Float)) }
       attr_accessor :member_affiliate_percentage
 
@@ -76,13 +72,14 @@ module WhopSDK
       sig { returns(WhopSDK::GlobalAffiliateStatus::TaggedSymbol) }
       attr_accessor :member_affiliate_status
 
-      # The number of users who currently hold an active membership to this product.
-      # Returns 0 if the company has disabled public member counts.
+      # Active memberships for this product. Returns `0` if the account has disabled
+      # public member counts.
       sig { returns(Integer) }
       attr_accessor :member_count
 
-      # Custom key-value pairs stored on the product. Included in webhook payloads for
-      # payment and membership events.
+      # Custom key-value pairs stored on the product and included in payment and
+      # membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
+      # per string value.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
@@ -109,8 +106,8 @@ module WhopSDK
       sig { returns(Integer) }
       attr_accessor :published_reviews_count
 
-      # The URL slug used in the product's public link (e.g., 'my-product' in
-      # whop.com/company/my-product).
+      # URL slug in the product's public link, e.g. `pickaxe-analytics` in
+      # whop.com/company/pickaxe-analytics.
       sig { returns(String) }
       attr_accessor :route
 
@@ -169,44 +166,41 @@ module WhopSDK
         company:,
         # The datetime the product was created.
         created_at:,
-        # The call-to-action button label displayed on the product's purchase page (e.g.,
-        # 'join', 'buy', 'subscribe').
+        # Call-to-action button label shown on the product purchase page.
         custom_cta:,
         # An optional URL that the call-to-action button links to instead of the default
         # checkout flow. Null if no custom URL is set.
         custom_cta_url:,
-        # A custom text label that appears on the customer's bank or credit card statement
-        # for purchases of this product. Maximum 22 characters, including the required
-        # prefix WHOP\*.
+        # Custom bank statement descriptor for product purchases. Maximum 22 characters,
+        # including required `WHOP*` prefix.
         custom_statement_descriptor:,
         # A brief summary of what the product offers, displayed on product pages and
         # search results.
         description:,
-        # A unique identifier used to create or update products via the API. When provided
-        # on product creation endpoints, an existing product with this identifier will be
-        # updated instead of creating a new one.
+        # External identifier for the product. Providing it on a product creation endpoint
+        # updates the existing product with this identifier instead of creating a new one.
         external_identifier:,
         # The gallery images for this product, ordered by position.
         gallery_images:,
-        # The commission rate (as a percentage) that affiliates earn on sales through the
-        # Whop marketplace global affiliate program. Null if the program is not active.
+        # Marketplace affiliate commission percentage for this product, or `null` if
+        # program is inactive.
         global_affiliate_percentage:,
         # The enrollment status of this product in the Whop marketplace global affiliate
         # program.
         global_affiliate_status:,
         # A short marketing headline displayed prominently on the product's product page.
         headline:,
-        # The commission rate (as a percentage) that existing members earn when referring
-        # new customers through the member affiliate program. Null if the program is not
-        # active.
+        # Member referral commission percentage for this product, or `null` if program is
+        # inactive.
         member_affiliate_percentage:,
         # The enrollment status of this product in the member affiliate program.
         member_affiliate_status:,
-        # The number of users who currently hold an active membership to this product.
-        # Returns 0 if the company has disabled public member counts.
+        # Active memberships for this product. Returns `0` if the account has disabled
+        # public member counts.
         member_count:,
-        # Custom key-value pairs stored on the product. Included in webhook payloads for
-        # payment and membership events.
+        # Custom key-value pairs stored on the product and included in payment and
+        # membership webhook payloads. Max 50 keys, 100 characters per key, 500 characters
+        # per string value.
         metadata:,
         # The user who owns the company that sells this product.
         owner_user:,
@@ -215,8 +209,8 @@ module WhopSDK
         product_tax_code:,
         # The total number of published customer reviews for this product's company.
         published_reviews_count:,
-        # The URL slug used in the product's public link (e.g., 'my-product' in
-        # whop.com/company/my-product).
+        # URL slug in the product's public link, e.g. `pickaxe-analytics` in
+        # whop.com/company/pickaxe-analytics.
         route:,
         # The display name of the product shown to customers on the product page and in
         # search results.
@@ -276,7 +270,7 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
+        # URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
         sig { returns(String) }
         attr_accessor :route
 
@@ -293,7 +287,7 @@ module WhopSDK
         def self.new(
           # The unique identifier for the company.
           id:,
-          # The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
+          # URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
           route:,
           # The display name of the company shown to customers.
           title:
@@ -399,12 +393,12 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
-        # The human-readable name of this tax classification (e.g., 'Digital - SaaS').
+        # Human-readable name of this tax classification, such as 'Digital - SaaS'.
         sig { returns(String) }
         attr_accessor :name
 
-        # The broad product category this tax code covers (e.g., physical goods, digital
-        # services).
+        # Broad product category this tax code covers, such as physical goods or digital
+        # services.
         sig do
           returns(WhopSDK::Product::ProductTaxCode::ProductType::TaggedSymbol)
         end
@@ -423,10 +417,10 @@ module WhopSDK
         def self.new(
           # The unique identifier for the product tax code.
           id:,
-          # The human-readable name of this tax classification (e.g., 'Digital - SaaS').
+          # Human-readable name of this tax classification, such as 'Digital - SaaS'.
           name:,
-          # The broad product category this tax code covers (e.g., physical goods, digital
-          # services).
+          # Broad product category this tax code covers, such as physical goods or digital
+          # services.
           product_type:
         )
         end
@@ -444,8 +438,8 @@ module WhopSDK
         def to_hash
         end
 
-        # The broad product category this tax code covers (e.g., physical goods, digital
-        # services).
+        # Broad product category this tax code covers, such as physical goods or digital
+        # services.
         module ProductType
           extend WhopSDK::Internal::Type::Enum
 

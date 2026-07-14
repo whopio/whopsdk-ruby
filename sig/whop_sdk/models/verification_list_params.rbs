@@ -2,11 +2,9 @@ module WhopSDK
   module Models
     type verification_list_params =
       {
-        payout_account_id: String,
-        after: String?,
-        before: String?,
-        first: Integer?,
-        last: Integer?
+        account_id: String,
+        direction: WhopSDK::Models::VerificationListParams::direction,
+        order: WhopSDK::Models::VerificationListParams::order
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -14,33 +12,55 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor payout_account_id: String
+      attr_accessor account_id: String
 
-      attr_accessor after: String?
+      attr_reader direction: WhopSDK::Models::VerificationListParams::direction?
 
-      attr_accessor before: String?
+      def direction=: (
+        WhopSDK::Models::VerificationListParams::direction
+      ) -> WhopSDK::Models::VerificationListParams::direction
 
-      attr_accessor first: Integer?
+      attr_reader order: WhopSDK::Models::VerificationListParams::order?
 
-      attr_accessor last: Integer?
+      def order=: (
+        WhopSDK::Models::VerificationListParams::order
+      ) -> WhopSDK::Models::VerificationListParams::order
 
       def initialize: (
-        payout_account_id: String,
-        ?after: String?,
-        ?before: String?,
-        ?first: Integer?,
-        ?last: Integer?,
+        account_id: String,
+        ?direction: WhopSDK::Models::VerificationListParams::direction,
+        ?order: WhopSDK::Models::VerificationListParams::order,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
-        payout_account_id: String,
-        after: String?,
-        before: String?,
-        first: Integer?,
-        last: Integer?,
+        account_id: String,
+        direction: WhopSDK::Models::VerificationListParams::direction,
+        order: WhopSDK::Models::VerificationListParams::order,
         request_options: WhopSDK::RequestOptions
       }
+
+      type direction = :asc | :desc
+
+      module Direction
+        extend WhopSDK::Internal::Type::Enum
+
+        ASC: :asc
+        DESC: :desc
+
+        def self?.values: -> ::Array[WhopSDK::Models::VerificationListParams::direction]
+      end
+
+      type order = :updated_at | :created_at
+
+      module Order
+        extend WhopSDK::Internal::Type::Enum
+
+        UPDATED_AT: :updated_at
+        CREATED_AT: :created_at
+
+        def self?.values: -> ::Array[WhopSDK::Models::VerificationListParams::order]
+      end
     end
   end
 end

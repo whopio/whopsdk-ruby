@@ -11,9 +11,9 @@ module WhopSDK
           T.any(WhopSDK::PlanListParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The unique identifier of the company to list plans for.
+      # The unique identifier of the account to list plans for.
       sig { returns(String) }
-      attr_accessor :company_id
+      attr_accessor :account_id
 
       # A cursor; returns plans after this position.
       sig { returns(T.nilable(String)) }
@@ -103,7 +103,7 @@ module WhopSDK
 
       sig do
         params(
-          company_id: String,
+          account_id: String,
           after: String,
           before: String,
           created_after: String,
@@ -120,8 +120,8 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier of the company to list plans for.
-        company_id:,
+        # The unique identifier of the account to list plans for.
+        account_id:,
         # A cursor; returns plans after this position.
         after: nil,
         # A cursor; returns plans before this position.
@@ -153,7 +153,7 @@ module WhopSDK
       sig do
         override.returns(
           {
-            company_id: String,
+            account_id: String,
             after: String,
             before: String,
             created_after: String,
@@ -211,8 +211,8 @@ module WhopSDK
           T.let(:created_at, WhopSDK::PlanListParams::Order::TaggedSymbol)
         INTERNAL_NOTES =
           T.let(:internal_notes, WhopSDK::PlanListParams::Order::TaggedSymbol)
-        EXPIRES_AT =
-          T.let(:expires_at, WhopSDK::PlanListParams::Order::TaggedSymbol)
+        EXPIRATION_DAYS =
+          T.let(:expiration_days, WhopSDK::PlanListParams::Order::TaggedSymbol)
 
         sig do
           override.returns(

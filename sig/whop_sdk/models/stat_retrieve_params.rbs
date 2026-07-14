@@ -1,0 +1,211 @@
+module WhopSDK
+  module Models
+    type stat_retrieve_params =
+      {
+        metric: String,
+        from: Date,
+        to: Date,
+        access_level: String,
+        account_id: String,
+        ad_campaign_ids: ::Array[String],
+        ad_group_ids: ::Array[String],
+        ad_ids: ::Array[String],
+        breakdown_by: String,
+        card_network: String,
+        category: String,
+        convert_to: String,
+        currency: String,
+        fee_type: String,
+        interval: WhopSDK::Models::StatRetrieveParams::interval,
+        most_recent_action: String,
+        payment_method: String,
+        product: String,
+        referred_user_id: String,
+        segment: String,
+        snapshot_window: WhopSDK::Models::StatRetrieveParams::snapshot_window,
+        source: String,
+        status: String,
+        time_zone: String
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class StatRetrieveParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor metric: String
+
+      attr_accessor from: Date
+
+      attr_accessor to: Date
+
+      attr_reader access_level: String?
+
+      def access_level=: (String) -> String
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
+
+      attr_reader ad_campaign_ids: ::Array[String]?
+
+      def ad_campaign_ids=: (::Array[String]) -> ::Array[String]
+
+      attr_reader ad_group_ids: ::Array[String]?
+
+      def ad_group_ids=: (::Array[String]) -> ::Array[String]
+
+      attr_reader ad_ids: ::Array[String]?
+
+      def ad_ids=: (::Array[String]) -> ::Array[String]
+
+      attr_reader breakdown_by: String?
+
+      def breakdown_by=: (String) -> String
+
+      attr_reader card_network: String?
+
+      def card_network=: (String) -> String
+
+      attr_reader category: String?
+
+      def category=: (String) -> String
+
+      attr_reader convert_to: String?
+
+      def convert_to=: (String) -> String
+
+      attr_reader currency: String?
+
+      def currency=: (String) -> String
+
+      attr_reader fee_type: String?
+
+      def fee_type=: (String) -> String
+
+      attr_reader interval: WhopSDK::Models::StatRetrieveParams::interval?
+
+      def interval=: (
+        WhopSDK::Models::StatRetrieveParams::interval
+      ) -> WhopSDK::Models::StatRetrieveParams::interval
+
+      attr_reader most_recent_action: String?
+
+      def most_recent_action=: (String) -> String
+
+      attr_reader payment_method: String?
+
+      def payment_method=: (String) -> String
+
+      attr_reader product: String?
+
+      def product=: (String) -> String
+
+      attr_reader referred_user_id: String?
+
+      def referred_user_id=: (String) -> String
+
+      attr_reader segment: String?
+
+      def segment=: (String) -> String
+
+      attr_reader snapshot_window: WhopSDK::Models::StatRetrieveParams::snapshot_window?
+
+      def snapshot_window=: (
+        WhopSDK::Models::StatRetrieveParams::snapshot_window
+      ) -> WhopSDK::Models::StatRetrieveParams::snapshot_window
+
+      attr_reader source: String?
+
+      def source=: (String) -> String
+
+      attr_reader status: String?
+
+      def status=: (String) -> String
+
+      attr_reader time_zone: String?
+
+      def time_zone=: (String) -> String
+
+      def initialize: (
+        metric: String,
+        from: Date,
+        to: Date,
+        ?access_level: String,
+        ?account_id: String,
+        ?ad_campaign_ids: ::Array[String],
+        ?ad_group_ids: ::Array[String],
+        ?ad_ids: ::Array[String],
+        ?breakdown_by: String,
+        ?card_network: String,
+        ?category: String,
+        ?convert_to: String,
+        ?currency: String,
+        ?fee_type: String,
+        ?interval: WhopSDK::Models::StatRetrieveParams::interval,
+        ?most_recent_action: String,
+        ?payment_method: String,
+        ?product: String,
+        ?referred_user_id: String,
+        ?segment: String,
+        ?snapshot_window: WhopSDK::Models::StatRetrieveParams::snapshot_window,
+        ?source: String,
+        ?status: String,
+        ?time_zone: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        metric: String,
+        from: Date,
+        to: Date,
+        access_level: String,
+        account_id: String,
+        ad_campaign_ids: ::Array[String],
+        ad_group_ids: ::Array[String],
+        ad_ids: ::Array[String],
+        breakdown_by: String,
+        card_network: String,
+        category: String,
+        convert_to: String,
+        currency: String,
+        fee_type: String,
+        interval: WhopSDK::Models::StatRetrieveParams::interval,
+        most_recent_action: String,
+        payment_method: String,
+        product: String,
+        referred_user_id: String,
+        segment: String,
+        snapshot_window: WhopSDK::Models::StatRetrieveParams::snapshot_window,
+        source: String,
+        status: String,
+        time_zone: String,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type interval = :hour | :day | :week | :month | :year
+
+      module Interval
+        extend WhopSDK::Internal::Type::Enum
+
+        HOUR: :hour
+        DAY: :day
+        WEEK: :week
+        MONTH: :month
+        YEAR: :year
+
+        def self?.values: -> ::Array[WhopSDK::Models::StatRetrieveParams::interval]
+      end
+
+      type snapshot_window = :"30d"
+
+      module SnapshotWindow
+        extend WhopSDK::Internal::Type::Enum
+
+        SNAPSHOT_WINDOW_30D: :"30d"
+
+        def self?.values: -> ::Array[WhopSDK::Models::StatRetrieveParams::snapshot_window]
+      end
+    end
+  end
+end

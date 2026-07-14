@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Ad reports
     class AdReports
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::AdReportRetrieveParams} for more details.

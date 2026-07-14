@@ -18,8 +18,7 @@ module WhopSDK
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :adaptive_pricing_enabled
 
-      # The number of days between recurring charges. For example, 30 for monthly or 365
-      # for yearly.
+      # Recurring billing interval in days, such as 30 for monthly or 365 for annual.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :billing_period
 
@@ -45,7 +44,7 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      # The number of days until the membership expires and access is revoked.
+      # Access duration in days before the membership expires.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :expiration_days
 
@@ -58,12 +57,11 @@ module WhopSDK
       end
       attr_writer :image
 
-      # The amount charged on the first purchase, in the plan's currency (e.g., 10.43
-      # for $10.43).
+      # Initial amount charged in the plan's currency, e.g. 10.43 for $10.43.
       sig { returns(T.nilable(Float)) }
       attr_accessor :initial_price
 
-      # Private notes visible only to the business owner. Not shown to customers.
+      # Private notes visible only to the account owner. Not shown to customers.
       sig { returns(T.nilable(String)) }
       attr_accessor :internal_notes
 
@@ -72,7 +70,8 @@ module WhopSDK
       attr_accessor :legacy_payment_method_controls
 
       # Custom key-value pairs to store on the plan. Included in webhook payloads for
-      # payment and membership events.
+      # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+      # string value.
       sig { returns(T.nilable(T.anything)) }
       attr_accessor :metadata
 
@@ -88,7 +87,7 @@ module WhopSDK
       attr_writer :override_tax_type
 
       # Explicit payment method configuration for the plan. When not provided, the
-      # company's defaults apply.
+      # account's defaults apply.
       sig do
         returns(
           T.nilable(WhopSDK::PlanUpdateParams::PaymentMethodConfiguration)
@@ -124,7 +123,7 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :strike_through_renewal_price
 
-      # The 3D Secure behavior for this plan. Send null to inherit the account default.
+      # 3D Secure behavior for this plan. Send `null` to inherit the account default.
       sig do
         returns(T.nilable(WhopSDK::PlanUpdateParams::ThreeDSLevel::OrSymbol))
       end
@@ -141,7 +140,7 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
-      # The number of free trial days before the first charge on a recurring plan.
+      # Free trial duration before the first recurring charge.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :trial_period_days
 
@@ -194,8 +193,7 @@ module WhopSDK
         id:,
         # Whether this plan accepts local currency payments via adaptive pricing.
         adaptive_pricing_enabled: nil,
-        # The number of days between recurring charges. For example, 30 for monthly or 365
-        # for yearly.
+        # Recurring billing interval in days, such as 30 for monthly or 365 for annual.
         billing_period: nil,
         # Checkout styling overrides for this plan.
         checkout_styling: nil,
@@ -206,26 +204,26 @@ module WhopSDK
         custom_fields: nil,
         # A text description of the plan displayed to customers on the product page.
         description: nil,
-        # The number of days until the membership expires and access is revoked.
+        # Access duration in days before the membership expires.
         expiration_days: nil,
         # An image displayed on the product page to represent this plan.
         image: nil,
-        # The amount charged on the first purchase, in the plan's currency (e.g., 10.43
-        # for $10.43).
+        # Initial amount charged in the plan's currency, e.g. 10.43 for $10.43.
         initial_price: nil,
-        # Private notes visible only to the business owner. Not shown to customers.
+        # Private notes visible only to the account owner. Not shown to customers.
         internal_notes: nil,
         # Whether this plan uses legacy payment method controls.
         legacy_payment_method_controls: nil,
         # Custom key-value pairs to store on the plan. Included in webhook payloads for
-        # payment and membership events.
+        # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+        # string value.
         metadata: nil,
         # Whether to offer a retention discount when a customer attempts to cancel.
         offer_cancel_discount: nil,
         # Override the default tax classification for this specific plan.
         override_tax_type: nil,
         # Explicit payment method configuration for the plan. When not provided, the
-        # company's defaults apply.
+        # account's defaults apply.
         payment_method_configuration: nil,
         # The amount charged each billing period for recurring plans, in the plan's
         # currency.
@@ -237,11 +235,11 @@ module WhopSDK
         strike_through_initial_price: nil,
         # A comparison price displayed with a strikethrough for the renewal price.
         strike_through_renewal_price: nil,
-        # The 3D Secure behavior for this plan. Send null to inherit the account default.
+        # 3D Secure behavior for this plan. Send `null` to inherit the account default.
         three_ds_level: nil,
         # The display name of the plan shown to customers on the product page.
         title: nil,
-        # The number of free trial days before the first charge on a recurring plan.
+        # Free trial duration before the first recurring charge.
         trial_period_days: nil,
         # Whether the plan has unlimited stock. When true, the stock field is ignored.
         unlimited_stock: nil,
@@ -476,7 +474,7 @@ module WhopSDK
         attr_writer :include_platform_defaults
 
         # Explicit payment method configuration for the plan. When not provided, the
-        # company's defaults apply.
+        # account's defaults apply.
         sig do
           params(
             disabled: T::Array[String],
@@ -504,7 +502,7 @@ module WhopSDK
         end
       end
 
-      # The 3D Secure behavior for this plan. Send null to inherit the account default.
+      # 3D Secure behavior for this plan. Send `null` to inherit the account default.
       module ThreeDSLevel
         extend WhopSDK::Internal::Type::Enum
 

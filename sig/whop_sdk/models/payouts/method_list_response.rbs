@@ -1,0 +1,229 @@
+module WhopSDK
+  module Models
+    module Payouts
+      type method_list_response =
+        {
+          id: String,
+          account_reference: String?,
+          created_at: Time,
+          destination_currency: String,
+          institution_name: String?,
+          is_default: bool,
+          nickname: String?,
+          object: WhopSDK::Models::Payouts::MethodListResponse::object,
+          payer_name: String?,
+          payout_destination: WhopSDK::Models::Payouts::MethodListResponse::PayoutDestination?,
+          quote: WhopSDK::Models::Payouts::MethodListResponse::Quote?,
+          status: WhopSDK::Models::Payouts::MethodListResponse::status
+        }
+
+      class MethodListResponse < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor account_reference: String?
+
+        attr_accessor created_at: Time
+
+        attr_accessor destination_currency: String
+
+        attr_accessor institution_name: String?
+
+        attr_accessor is_default: bool
+
+        attr_accessor nickname: String?
+
+        attr_accessor object: WhopSDK::Models::Payouts::MethodListResponse::object
+
+        attr_accessor payer_name: String?
+
+        attr_accessor payout_destination: WhopSDK::Models::Payouts::MethodListResponse::PayoutDestination?
+
+        attr_accessor quote: WhopSDK::Models::Payouts::MethodListResponse::Quote?
+
+        attr_accessor status: WhopSDK::Models::Payouts::MethodListResponse::status
+
+        def initialize: (
+          id: String,
+          account_reference: String?,
+          created_at: Time,
+          destination_currency: String,
+          institution_name: String?,
+          is_default: bool,
+          nickname: String?,
+          object: WhopSDK::Models::Payouts::MethodListResponse::object,
+          payer_name: String?,
+          payout_destination: WhopSDK::Models::Payouts::MethodListResponse::PayoutDestination?,
+          quote: WhopSDK::Models::Payouts::MethodListResponse::Quote?,
+          status: WhopSDK::Models::Payouts::MethodListResponse::status
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          account_reference: String?,
+          created_at: Time,
+          destination_currency: String,
+          institution_name: String?,
+          is_default: bool,
+          nickname: String?,
+          object: WhopSDK::Models::Payouts::MethodListResponse::object,
+          payer_name: String?,
+          payout_destination: WhopSDK::Models::Payouts::MethodListResponse::PayoutDestination?,
+          quote: WhopSDK::Models::Payouts::MethodListResponse::Quote?,
+          status: WhopSDK::Models::Payouts::MethodListResponse::status
+        }
+
+        type object = :payout_method
+
+        module Object
+          extend WhopSDK::Internal::Type::Enum
+
+          PAYOUT_METHOD: :payout_method
+
+          def self?.values: -> ::Array[WhopSDK::Models::Payouts::MethodListResponse::object]
+        end
+
+        type payout_destination =
+          {
+            delivery_type: String,
+            icon_url: String?,
+            name: String?,
+            supports_instant_delivery: bool,
+            supports_standard_delivery: bool
+          }
+
+        class PayoutDestination < WhopSDK::Internal::Type::BaseModel
+          attr_accessor delivery_type: String
+
+          attr_accessor icon_url: String?
+
+          attr_accessor name: String?
+
+          attr_accessor supports_instant_delivery: bool
+
+          attr_accessor supports_standard_delivery: bool
+
+          def initialize: (
+            delivery_type: String,
+            icon_url: String?,
+            name: String?,
+            supports_instant_delivery: bool,
+            supports_standard_delivery: bool
+          ) -> void
+
+          def to_hash: -> {
+            delivery_type: String,
+            icon_url: String?,
+            name: String?,
+            supports_instant_delivery: bool,
+            supports_standard_delivery: bool
+          }
+        end
+
+        type quote =
+          {
+            amount: Float,
+            currency: String,
+            exchange_rate: Float,
+            instant: WhopSDK::Models::Payouts::MethodListResponse::Quote::Instant?,
+            max_limit: Float?,
+            min_limit: Float,
+            standard: WhopSDK::Models::Payouts::MethodListResponse::Quote::Standard?
+          }
+
+        class Quote < WhopSDK::Internal::Type::BaseModel
+          attr_accessor amount: Float
+
+          attr_accessor currency: String
+
+          attr_accessor exchange_rate: Float
+
+          attr_accessor instant: WhopSDK::Models::Payouts::MethodListResponse::Quote::Instant?
+
+          attr_accessor max_limit: Float?
+
+          attr_accessor min_limit: Float
+
+          attr_accessor standard: WhopSDK::Models::Payouts::MethodListResponse::Quote::Standard?
+
+          def initialize: (
+            amount: Float,
+            currency: String,
+            exchange_rate: Float,
+            instant: WhopSDK::Models::Payouts::MethodListResponse::Quote::Instant?,
+            max_limit: Float?,
+            min_limit: Float,
+            standard: WhopSDK::Models::Payouts::MethodListResponse::Quote::Standard?
+          ) -> void
+
+          def to_hash: -> {
+            amount: Float,
+            currency: String,
+            exchange_rate: Float,
+            instant: WhopSDK::Models::Payouts::MethodListResponse::Quote::Instant?,
+            max_limit: Float?,
+            min_limit: Float,
+            standard: WhopSDK::Models::Payouts::MethodListResponse::Quote::Standard?
+          }
+
+          type instant =
+            { estimated_arrival: Time, fee: Float, total_received: Float }
+
+          class Instant < WhopSDK::Internal::Type::BaseModel
+            attr_accessor estimated_arrival: Time
+
+            attr_accessor fee: Float
+
+            attr_accessor total_received: Float
+
+            def initialize: (
+              estimated_arrival: Time,
+              fee: Float,
+              total_received: Float
+            ) -> void
+
+            def to_hash: -> {
+              estimated_arrival: Time,
+              fee: Float,
+              total_received: Float
+            }
+          end
+
+          type standard =
+            { estimated_arrival: Time, fee: Float, total_received: Float }
+
+          class Standard < WhopSDK::Internal::Type::BaseModel
+            attr_accessor estimated_arrival: Time
+
+            attr_accessor fee: Float
+
+            attr_accessor total_received: Float
+
+            def initialize: (
+              estimated_arrival: Time,
+              fee: Float,
+              total_received: Float
+            ) -> void
+
+            def to_hash: -> {
+              estimated_arrival: Time,
+              fee: Float,
+              total_received: Float
+            }
+          end
+        end
+
+        type status = :created | :active | :broken
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          CREATED: :created
+          ACTIVE: :active
+          BROKEN: :broken
+
+          def self?.values: -> ::Array[WhopSDK::Models::Payouts::MethodListResponse::status]
+        end
+      end
+    end
+  end
+end

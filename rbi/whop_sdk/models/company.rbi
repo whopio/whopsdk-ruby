@@ -66,7 +66,7 @@ module WhopSDK
       sig { returns(Integer) }
       attr_accessor :published_reviews_count
 
-      # The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
+      # URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
       sig { returns(String) }
       attr_accessor :route
 
@@ -147,7 +147,7 @@ module WhopSDK
         # The total number of published customer reviews across all products for this
         # company.
         published_reviews_count:,
-        # The URL slug for the company's store page (e.g., 'pickaxe' in whop.com/pickaxe).
+        # URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe.
         route:,
         # Whether Whop sends transactional emails (receipts, updates) to customers on
         # behalf of this company.

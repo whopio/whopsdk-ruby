@@ -2,11 +2,10 @@ module WhopSDK
   module Models
     type plan_create_params =
       {
-        product_id: String,
+        account_id: String,
         adaptive_pricing_enabled: bool?,
         billing_period: Integer?,
         checkout_styling: top?,
-        company_id: String,
         currency: String,
         custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?,
         description: String?,
@@ -19,6 +18,7 @@ module WhopSDK
         override_tax_type: String,
         payment_method_configuration: WhopSDK::PlanCreateParams::PaymentMethodConfiguration?,
         plan_type: String,
+        product_id: String,
         release_method: String,
         renewal_price: Float?,
         split_pay_required_payments: Integer?,
@@ -35,17 +35,15 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor product_id: String
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
 
       attr_accessor adaptive_pricing_enabled: bool?
 
       attr_accessor billing_period: Integer?
 
       attr_accessor checkout_styling: top?
-
-      attr_reader company_id: String?
-
-      def company_id=: (String) -> String
 
       attr_reader currency: String?
 
@@ -77,6 +75,10 @@ module WhopSDK
 
       def plan_type=: (String) -> String
 
+      attr_reader product_id: String?
+
+      def product_id=: (String) -> String
+
       attr_reader release_method: String?
 
       def release_method=: (String) -> String
@@ -104,11 +106,10 @@ module WhopSDK
       def visibility=: (String) -> String
 
       def initialize: (
-        product_id: String,
+        ?account_id: String,
         ?adaptive_pricing_enabled: bool?,
         ?billing_period: Integer?,
         ?checkout_styling: top?,
-        ?company_id: String,
         ?currency: String,
         ?custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?,
         ?description: String?,
@@ -121,6 +122,7 @@ module WhopSDK
         ?override_tax_type: String,
         ?payment_method_configuration: WhopSDK::PlanCreateParams::PaymentMethodConfiguration?,
         ?plan_type: String,
+        ?product_id: String,
         ?release_method: String,
         ?renewal_price: Float?,
         ?split_pay_required_payments: Integer?,
@@ -134,11 +136,10 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
-        product_id: String,
+        account_id: String,
         adaptive_pricing_enabled: bool?,
         billing_period: Integer?,
         checkout_styling: top?,
-        company_id: String,
         currency: String,
         custom_fields: ::Array[WhopSDK::PlanCreateParams::CustomField]?,
         description: String?,
@@ -151,6 +152,7 @@ module WhopSDK
         override_tax_type: String,
         payment_method_configuration: WhopSDK::PlanCreateParams::PaymentMethodConfiguration?,
         plan_type: String,
+        product_id: String,
         release_method: String,
         renewal_price: Float?,
         split_pay_required_payments: Integer?,

@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Reviews
     class Reviews
       # Retrieves the details of an existing review.
       #

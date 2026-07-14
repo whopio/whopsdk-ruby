@@ -11,30 +11,25 @@ module WhopSDK
           T.any(WhopSDK::PlanCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The unique identifier of the product to attach this plan to.
-      sig { returns(String) }
-      attr_accessor :product_id
+      # The unique identifier of the account to create this plan for. Defaults to the
+      # caller's account.
+      sig { returns(T.nilable(String)) }
+      attr_reader :account_id
+
+      sig { params(account_id: String).void }
+      attr_writer :account_id
 
       # Whether this plan accepts local currency payments via adaptive pricing.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :adaptive_pricing_enabled
 
-      # The number of days between recurring charges. For example, 30 for monthly or 365
-      # for yearly.
+      # Recurring billing interval in days, such as 30 for monthly or 365 for annual.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :billing_period
 
       # Checkout styling overrides for this plan.
       sig { returns(T.nilable(T.anything)) }
       attr_accessor :checkout_styling
-
-      # The unique identifier of the company to create this plan for. Defaults to the
-      # caller's company.
-      sig { returns(T.nilable(String)) }
-      attr_reader :company_id
-
-      sig { params(company_id: String).void }
-      attr_writer :company_id
 
       # The three-letter ISO currency code for the plan's pricing. Defaults to USD.
       sig { returns(T.nilable(String)) }
@@ -54,7 +49,7 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      # The number of days until the membership expires and access is revoked.
+      # Access duration in days before the membership expires.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :expiration_days
 
@@ -67,12 +62,11 @@ module WhopSDK
       end
       attr_writer :image
 
-      # The amount charged on the first purchase, in the plan's currency (e.g., 10.43
-      # for $10.43).
+      # Initial amount charged in the plan's currency, e.g. 10.43 for $10.43.
       sig { returns(T.nilable(Float)) }
       attr_accessor :initial_price
 
-      # Private notes visible only to the business owner. Not shown to customers.
+      # Private notes visible only to the account owner. Not shown to customers.
       sig { returns(T.nilable(String)) }
       attr_accessor :internal_notes
 
@@ -81,7 +75,8 @@ module WhopSDK
       attr_accessor :legacy_payment_method_controls
 
       # Custom key-value pairs to store on the plan. Included in webhook payloads for
-      # payment and membership events.
+      # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+      # string value.
       sig { returns(T.nilable(T.anything)) }
       attr_accessor :metadata
 
@@ -93,7 +88,7 @@ module WhopSDK
       attr_writer :override_tax_type
 
       # Explicit payment method configuration for the plan. When not provided, the
-      # company's defaults apply.
+      # account's defaults apply.
       sig do
         returns(
           T.nilable(WhopSDK::PlanCreateParams::PaymentMethodConfiguration)
@@ -111,14 +106,21 @@ module WhopSDK
       end
       attr_writer :payment_method_configuration
 
-      # The billing type of the plan, such as one_time or renewal.
+      # Plan billing type, such as `one_time` or `renewal`.
       sig { returns(T.nilable(String)) }
       attr_reader :plan_type
 
       sig { params(plan_type: String).void }
       attr_writer :plan_type
 
-      # The method used to sell this plan (e.g., buy_now, waitlist).
+      # The unique identifier of the product to attach this plan to.
+      sig { returns(T.nilable(String)) }
+      attr_reader :product_id
+
+      sig { params(product_id: String).void }
+      attr_writer :product_id
+
+      # Sales method for this plan, such as `buy_now` or `waitlist`.
       sig { returns(T.nilable(String)) }
       attr_reader :release_method
 
@@ -130,7 +132,7 @@ module WhopSDK
       sig { returns(T.nilable(Float)) }
       attr_accessor :renewal_price
 
-      # The number of installment payments required before the subscription pauses.
+      # Installment payments required before the subscription pauses.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :split_pay_required_payments
 
@@ -139,7 +141,7 @@ module WhopSDK
       sig { returns(T.nilable(Integer)) }
       attr_accessor :stock
 
-      # The 3D Secure behavior for this plan. Send null to inherit the account default.
+      # 3D Secure behavior for this plan. Send `null` to inherit the account default.
       sig do
         returns(T.nilable(WhopSDK::PlanCreateParams::ThreeDSLevel::OrSymbol))
       end
@@ -156,7 +158,7 @@ module WhopSDK
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
-      # The number of free trial days before the first charge on a recurring plan.
+      # Free trial duration before the first recurring charge.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :trial_period_days
 
@@ -173,11 +175,10 @@ module WhopSDK
 
       sig do
         params(
-          product_id: String,
+          account_id: String,
           adaptive_pricing_enabled: T.nilable(T::Boolean),
           billing_period: T.nilable(Integer),
           checkout_styling: T.nilable(T.anything),
-          company_id: String,
           currency: String,
           custom_fields:
             T.nilable(T::Array[WhopSDK::PlanCreateParams::CustomField::OrHash]),
@@ -194,6 +195,7 @@ module WhopSDK
               WhopSDK::PlanCreateParams::PaymentMethodConfiguration::OrHash
             ),
           plan_type: String,
+          product_id: String,
           release_method: String,
           renewal_price: T.nilable(Float),
           split_pay_required_payments: T.nilable(Integer),
@@ -207,18 +209,15 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier of the product to attach this plan to.
-        product_id:,
+        # The unique identifier of the account to create this plan for. Defaults to the
+        # caller's account.
+        account_id: nil,
         # Whether this plan accepts local currency payments via adaptive pricing.
         adaptive_pricing_enabled: nil,
-        # The number of days between recurring charges. For example, 30 for monthly or 365
-        # for yearly.
+        # Recurring billing interval in days, such as 30 for monthly or 365 for annual.
         billing_period: nil,
         # Checkout styling overrides for this plan.
         checkout_styling: nil,
-        # The unique identifier of the company to create this plan for. Defaults to the
-        # caller's company.
-        company_id: nil,
         # The three-letter ISO currency code for the plan's pricing. Defaults to USD.
         currency: nil,
         # An array of custom field definitions to collect from customers at checkout.
@@ -226,42 +225,44 @@ module WhopSDK
         custom_fields: nil,
         # A text description of the plan displayed to customers on the product page.
         description: nil,
-        # The number of days until the membership expires and access is revoked.
+        # Access duration in days before the membership expires.
         expiration_days: nil,
         # An image displayed on the product page to represent this plan.
         image: nil,
-        # The amount charged on the first purchase, in the plan's currency (e.g., 10.43
-        # for $10.43).
+        # Initial amount charged in the plan's currency, e.g. 10.43 for $10.43.
         initial_price: nil,
-        # Private notes visible only to the business owner. Not shown to customers.
+        # Private notes visible only to the account owner. Not shown to customers.
         internal_notes: nil,
         # Whether this plan uses legacy payment method controls.
         legacy_payment_method_controls: nil,
         # Custom key-value pairs to store on the plan. Included in webhook payloads for
-        # payment and membership events.
+        # payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+        # string value.
         metadata: nil,
         # Override the default tax classification for this specific plan.
         override_tax_type: nil,
         # Explicit payment method configuration for the plan. When not provided, the
-        # company's defaults apply.
+        # account's defaults apply.
         payment_method_configuration: nil,
-        # The billing type of the plan, such as one_time or renewal.
+        # Plan billing type, such as `one_time` or `renewal`.
         plan_type: nil,
-        # The method used to sell this plan (e.g., buy_now, waitlist).
+        # The unique identifier of the product to attach this plan to.
+        product_id: nil,
+        # Sales method for this plan, such as `buy_now` or `waitlist`.
         release_method: nil,
         # The amount charged each billing period for recurring plans, in the plan's
         # currency.
         renewal_price: nil,
-        # The number of installment payments required before the subscription pauses.
+        # Installment payments required before the subscription pauses.
         split_pay_required_payments: nil,
         # The maximum number of units available for purchase. Ignored when unlimited_stock
         # is true.
         stock: nil,
-        # The 3D Secure behavior for this plan. Send null to inherit the account default.
+        # 3D Secure behavior for this plan. Send `null` to inherit the account default.
         three_ds_level: nil,
         # The display name of the plan shown to customers on the product page.
         title: nil,
-        # The number of free trial days before the first charge on a recurring plan.
+        # Free trial duration before the first recurring charge.
         trial_period_days: nil,
         # Whether the plan has unlimited stock. When true, the stock field is ignored.
         unlimited_stock: nil,
@@ -274,11 +275,10 @@ module WhopSDK
       sig do
         override.returns(
           {
-            product_id: String,
+            account_id: String,
             adaptive_pricing_enabled: T.nilable(T::Boolean),
             billing_period: T.nilable(Integer),
             checkout_styling: T.nilable(T.anything),
-            company_id: String,
             currency: String,
             custom_fields:
               T.nilable(T::Array[WhopSDK::PlanCreateParams::CustomField]),
@@ -293,6 +293,7 @@ module WhopSDK
             payment_method_configuration:
               T.nilable(WhopSDK::PlanCreateParams::PaymentMethodConfiguration),
             plan_type: String,
+            product_id: String,
             release_method: String,
             renewal_price: T.nilable(Float),
             split_pay_required_payments: T.nilable(Integer),
@@ -497,7 +498,7 @@ module WhopSDK
         attr_writer :include_platform_defaults
 
         # Explicit payment method configuration for the plan. When not provided, the
-        # company's defaults apply.
+        # account's defaults apply.
         sig do
           params(
             disabled: T::Array[String],
@@ -525,7 +526,7 @@ module WhopSDK
         end
       end
 
-      # The 3D Secure behavior for this plan. Send null to inherit the account default.
+      # 3D Secure behavior for this plan. Send `null` to inherit the account default.
       module ThreeDSLevel
         extend WhopSDK::Internal::Type::Enum
 

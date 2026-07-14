@@ -1,0 +1,364 @@
+module WhopSDK
+  module Models
+    type verification_create_params =
+      {
+        account_id: String,
+        body: WhopSDK::Models::VerificationCreateParams::body
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class VerificationCreateParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
+
+      attr_accessor body: WhopSDK::Models::VerificationCreateParams::body
+
+      def initialize: (
+        account_id: String,
+        body: WhopSDK::Models::VerificationCreateParams::body,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        body: WhopSDK::Models::VerificationCreateParams::body,
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type body =
+        WhopSDK::VerificationCreateParams::Body::Individual
+        | WhopSDK::VerificationCreateParams::Body::Business
+
+      module Body
+        extend WhopSDK::Internal::Type::Union
+
+        type individual =
+          {
+            address: WhopSDK::VerificationCreateParams::Body::Individual::Address,
+            business_name: String,
+            business_structure: String,
+            business_website: String,
+            country: String,
+            date_of_birth: String,
+            document_type: WhopSDK::Models::VerificationCreateParams::Body::Individual::document_type,
+            documents: ::Hash[Symbol, String],
+            first_name: String,
+            kind: WhopSDK::Models::VerificationCreateParams::Body::Individual::kind,
+            last_name: String,
+            phone: String,
+            tax_identification_number: String
+          }
+
+        class Individual < WhopSDK::Internal::Type::BaseModel
+          attr_reader address: WhopSDK::VerificationCreateParams::Body::Individual::Address?
+
+          def address=: (
+            WhopSDK::VerificationCreateParams::Body::Individual::Address
+          ) -> WhopSDK::VerificationCreateParams::Body::Individual::Address
+
+          attr_reader business_name: String?
+
+          def business_name=: (String) -> String
+
+          attr_reader business_structure: String?
+
+          def business_structure=: (String) -> String
+
+          attr_reader business_website: String?
+
+          def business_website=: (String) -> String
+
+          attr_reader country: String?
+
+          def country=: (String) -> String
+
+          attr_reader date_of_birth: String?
+
+          def date_of_birth=: (String) -> String
+
+          attr_reader document_type: WhopSDK::Models::VerificationCreateParams::Body::Individual::document_type?
+
+          def document_type=: (
+            WhopSDK::Models::VerificationCreateParams::Body::Individual::document_type
+          ) -> WhopSDK::Models::VerificationCreateParams::Body::Individual::document_type
+
+          attr_reader documents: ::Hash[Symbol, String]?
+
+          def documents=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+          attr_reader first_name: String?
+
+          def first_name=: (String) -> String
+
+          attr_reader kind: WhopSDK::Models::VerificationCreateParams::Body::Individual::kind?
+
+          def kind=: (
+            WhopSDK::Models::VerificationCreateParams::Body::Individual::kind
+          ) -> WhopSDK::Models::VerificationCreateParams::Body::Individual::kind
+
+          attr_reader last_name: String?
+
+          def last_name=: (String) -> String
+
+          attr_reader phone: String?
+
+          def phone=: (String) -> String
+
+          attr_reader tax_identification_number: String?
+
+          def tax_identification_number=: (String) -> String
+
+          def initialize: (
+            ?address: WhopSDK::VerificationCreateParams::Body::Individual::Address,
+            ?business_name: String,
+            ?business_structure: String,
+            ?business_website: String,
+            ?country: String,
+            ?date_of_birth: String,
+            ?document_type: WhopSDK::Models::VerificationCreateParams::Body::Individual::document_type,
+            ?documents: ::Hash[Symbol, String],
+            ?first_name: String,
+            ?kind: WhopSDK::Models::VerificationCreateParams::Body::Individual::kind,
+            ?last_name: String,
+            ?phone: String,
+            ?tax_identification_number: String
+          ) -> void
+
+          def to_hash: -> {
+            address: WhopSDK::VerificationCreateParams::Body::Individual::Address,
+            business_name: String,
+            business_structure: String,
+            business_website: String,
+            country: String,
+            date_of_birth: String,
+            document_type: WhopSDK::Models::VerificationCreateParams::Body::Individual::document_type,
+            documents: ::Hash[Symbol, String],
+            first_name: String,
+            kind: WhopSDK::Models::VerificationCreateParams::Body::Individual::kind,
+            last_name: String,
+            phone: String,
+            tax_identification_number: String
+          }
+
+          type address =
+            {
+              city: String,
+              country: String,
+              :line1 => String,
+              :line2 => String,
+              postal_code: String,
+              state: String
+            }
+
+          class Address < WhopSDK::Internal::Type::BaseModel
+            attr_reader city: String?
+
+            def city=: (String) -> String
+
+            attr_reader country: String?
+
+            def country=: (String) -> String
+
+            attr_reader line1: String?
+
+            def line1=: (String) -> String
+
+            attr_reader line2: String?
+
+            def line2=: (String) -> String
+
+            attr_reader postal_code: String?
+
+            def postal_code=: (String) -> String
+
+            attr_reader state: String?
+
+            def state=: (String) -> String
+
+            def initialize: (
+              ?city: String,
+              ?country: String,
+              ?line1: String,
+              ?line2: String,
+              ?postal_code: String,
+              ?state: String
+            ) -> void
+
+            def to_hash: -> {
+              city: String,
+              country: String,
+              :line1 => String,
+              :line2 => String,
+              postal_code: String,
+              state: String
+            }
+          end
+
+          type document_type =
+            :ID_CARD | :PASSPORT | :DRIVERS | :RESIDENCE_PERMIT
+
+          module DocumentType
+            extend WhopSDK::Internal::Type::Enum
+
+            ID_CARD: :ID_CARD
+            PASSPORT: :PASSPORT
+            DRIVERS: :DRIVERS
+            RESIDENCE_PERMIT: :RESIDENCE_PERMIT
+
+            def self?.values: -> ::Array[WhopSDK::Models::VerificationCreateParams::Body::Individual::document_type]
+          end
+
+          type kind = :individual
+
+          module Kind
+            extend WhopSDK::Internal::Type::Enum
+
+            INDIVIDUAL: :individual
+
+            def self?.values: -> ::Array[WhopSDK::Models::VerificationCreateParams::Body::Individual::kind]
+          end
+        end
+
+        type business =
+          {
+            address: WhopSDK::VerificationCreateParams::Body::Business::Address,
+            business_name: String,
+            business_structure: String,
+            business_website: String,
+            country: String,
+            kind: WhopSDK::Models::VerificationCreateParams::Body::Business::kind,
+            place_of_incorporation: String,
+            tax_identification_number: String
+          }
+
+        class Business < WhopSDK::Internal::Type::BaseModel
+          attr_reader address: WhopSDK::VerificationCreateParams::Body::Business::Address?
+
+          def address=: (
+            WhopSDK::VerificationCreateParams::Body::Business::Address
+          ) -> WhopSDK::VerificationCreateParams::Body::Business::Address
+
+          attr_reader business_name: String?
+
+          def business_name=: (String) -> String
+
+          attr_reader business_structure: String?
+
+          def business_structure=: (String) -> String
+
+          attr_reader business_website: String?
+
+          def business_website=: (String) -> String
+
+          attr_reader country: String?
+
+          def country=: (String) -> String
+
+          attr_reader kind: WhopSDK::Models::VerificationCreateParams::Body::Business::kind?
+
+          def kind=: (
+            WhopSDK::Models::VerificationCreateParams::Body::Business::kind
+          ) -> WhopSDK::Models::VerificationCreateParams::Body::Business::kind
+
+          attr_reader place_of_incorporation: String?
+
+          def place_of_incorporation=: (String) -> String
+
+          attr_reader tax_identification_number: String?
+
+          def tax_identification_number=: (String) -> String
+
+          def initialize: (
+            ?address: WhopSDK::VerificationCreateParams::Body::Business::Address,
+            ?business_name: String,
+            ?business_structure: String,
+            ?business_website: String,
+            ?country: String,
+            ?kind: WhopSDK::Models::VerificationCreateParams::Body::Business::kind,
+            ?place_of_incorporation: String,
+            ?tax_identification_number: String
+          ) -> void
+
+          def to_hash: -> {
+            address: WhopSDK::VerificationCreateParams::Body::Business::Address,
+            business_name: String,
+            business_structure: String,
+            business_website: String,
+            country: String,
+            kind: WhopSDK::Models::VerificationCreateParams::Body::Business::kind,
+            place_of_incorporation: String,
+            tax_identification_number: String
+          }
+
+          type address =
+            {
+              city: String,
+              country: String,
+              :line1 => String,
+              :line2 => String,
+              postal_code: String,
+              state: String
+            }
+
+          class Address < WhopSDK::Internal::Type::BaseModel
+            attr_reader city: String?
+
+            def city=: (String) -> String
+
+            attr_reader country: String?
+
+            def country=: (String) -> String
+
+            attr_reader line1: String?
+
+            def line1=: (String) -> String
+
+            attr_reader line2: String?
+
+            def line2=: (String) -> String
+
+            attr_reader postal_code: String?
+
+            def postal_code=: (String) -> String
+
+            attr_reader state: String?
+
+            def state=: (String) -> String
+
+            def initialize: (
+              ?city: String,
+              ?country: String,
+              ?line1: String,
+              ?line2: String,
+              ?postal_code: String,
+              ?state: String
+            ) -> void
+
+            def to_hash: -> {
+              city: String,
+              country: String,
+              :line1 => String,
+              :line2 => String,
+              postal_code: String,
+              state: String
+            }
+          end
+
+          type kind = :business
+
+          module Kind
+            extend WhopSDK::Internal::Type::Enum
+
+            BUSINESS: :business
+
+            def self?.values: -> ::Array[WhopSDK::Models::VerificationCreateParams::Body::Business::kind]
+          end
+        end
+
+        def self?.variants: -> ::Array[WhopSDK::Models::VerificationCreateParams::body]
+      end
+    end
+  end
+end

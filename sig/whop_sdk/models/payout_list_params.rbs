@@ -1,0 +1,70 @@
+module WhopSDK
+  module Models
+    type payout_list_params =
+      {
+        account_id: String,
+        after: String,
+        before: String,
+        currency: String,
+        first: Integer,
+        last: Integer,
+        user_id: String
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class PayoutListParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
+
+      attr_reader after: String?
+
+      def after=: (String) -> String
+
+      attr_reader before: String?
+
+      def before=: (String) -> String
+
+      attr_reader currency: String?
+
+      def currency=: (String) -> String
+
+      attr_reader first: Integer?
+
+      def first=: (Integer) -> Integer
+
+      attr_reader last: Integer?
+
+      def last=: (Integer) -> Integer
+
+      attr_reader user_id: String?
+
+      def user_id=: (String) -> String
+
+      def initialize: (
+        ?account_id: String,
+        ?after: String,
+        ?before: String,
+        ?currency: String,
+        ?first: Integer,
+        ?last: Integer,
+        ?user_id: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        after: String,
+        before: String,
+        currency: String,
+        first: Integer,
+        last: Integer,
+        user_id: String,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

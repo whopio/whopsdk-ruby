@@ -7,11 +7,11 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute company_id
-      #   The unique identifier of the company to list plans for.
+      # @!attribute account_id
+      #   The unique identifier of the account to list plans for.
       #
       #   @return [String]
-      required :company_id, String
+      required :account_id, String
 
       # @!attribute after
       #   A cursor; returns plans after this position.
@@ -85,8 +85,8 @@ module WhopSDK
       #   @return [Array<String>, nil]
       optional :visibilities, WhopSDK::Internal::Type::ArrayOf[String]
 
-      # @!method initialize(company_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_types: nil, product_ids: nil, release_methods: nil, visibilities: nil, request_options: {})
-      #   @param company_id [String] The unique identifier of the company to list plans for.
+      # @!method initialize(account_id:, after: nil, before: nil, created_after: nil, created_before: nil, direction: nil, first: nil, last: nil, order: nil, plan_types: nil, product_ids: nil, release_methods: nil, visibilities: nil, request_options: {})
+      #   @param account_id [String] The unique identifier of the account to list plans for.
       #
       #   @param after [String] A cursor; returns plans after this position.
       #
@@ -133,7 +133,7 @@ module WhopSDK
         ACTIVE_MEMBERS_COUNT = :active_members_count
         CREATED_AT = :created_at
         INTERNAL_NOTES = :internal_notes
-        EXPIRES_AT = :expires_at
+        EXPIRATION_DAYS = :expiration_days
 
         # @!method self.values
         #   @return [Array<Symbol>]

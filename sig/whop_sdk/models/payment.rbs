@@ -34,17 +34,22 @@ module WhopSDK
         refundable: bool,
         refunded_amount: Float?,
         refunded_at: Time?,
+        refunds: ::Array[WhopSDK::Payment::Refund],
         resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
+        risk_score: Integer?,
+        risk_signals: ::Hash[Symbol, top]?,
         settlement_amount: Float,
         settlement_currency: WhopSDK::Models::currency,
         settlement_exchange_rate: Float?,
+        shipping_address: WhopSDK::Payment::ShippingAddress?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
         tax_amount: Float?,
         tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         tax_refunded_amount: Float?,
+        three_ds_verified: bool,
         total: Float?,
         updated_at: Time,
         usd_total: Float?,
@@ -117,15 +122,23 @@ module WhopSDK
 
       attr_accessor refunded_at: Time?
 
+      attr_accessor refunds: ::Array[WhopSDK::Payment::Refund]
+
       attr_accessor resolutions: ::Array[WhopSDK::Payment::Resolution]?
 
       attr_accessor retryable: bool
+
+      attr_accessor risk_score: Integer?
+
+      attr_accessor risk_signals: ::Hash[Symbol, top]?
 
       attr_accessor settlement_amount: Float
 
       attr_accessor settlement_currency: WhopSDK::Models::currency
 
       attr_accessor settlement_exchange_rate: Float?
+
+      attr_accessor shipping_address: WhopSDK::Payment::ShippingAddress?
 
       attr_accessor status: WhopSDK::Models::receipt_status?
 
@@ -138,6 +151,8 @@ module WhopSDK
       attr_accessor tax_behavior: WhopSDK::Models::receipt_tax_behavior?
 
       attr_accessor tax_refunded_amount: Float?
+
+      attr_accessor three_ds_verified: bool
 
       attr_accessor total: Float?
 
@@ -182,17 +197,22 @@ module WhopSDK
         refundable: bool,
         refunded_amount: Float?,
         refunded_at: Time?,
+        refunds: ::Array[WhopSDK::Payment::Refund],
         resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
+        risk_score: Integer?,
+        risk_signals: ::Hash[Symbol, top]?,
         settlement_amount: Float,
         settlement_currency: WhopSDK::Models::currency,
         settlement_exchange_rate: Float?,
+        shipping_address: WhopSDK::Payment::ShippingAddress?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
         tax_amount: Float?,
         tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         tax_refunded_amount: Float?,
+        three_ds_verified: bool,
         total: Float?,
         updated_at: Time,
         usd_total: Float?,
@@ -233,17 +253,22 @@ module WhopSDK
         refundable: bool,
         refunded_amount: Float?,
         refunded_at: Time?,
+        refunds: ::Array[WhopSDK::Payment::Refund],
         resolutions: ::Array[WhopSDK::Payment::Resolution]?,
         retryable: bool,
+        risk_score: Integer?,
+        risk_signals: ::Hash[Symbol, top]?,
         settlement_amount: Float,
         settlement_currency: WhopSDK::Models::currency,
         settlement_exchange_rate: Float?,
+        shipping_address: WhopSDK::Payment::ShippingAddress?,
         status: WhopSDK::Models::receipt_status?,
         substatus: WhopSDK::Models::friendly_receipt_status,
         subtotal: Float?,
         tax_amount: Float?,
         tax_behavior: WhopSDK::Models::receipt_tax_behavior?,
         tax_refunded_amount: Float?,
+        three_ds_verified: bool,
         total: Float?,
         updated_at: Time,
         usd_total: Float?,
@@ -707,6 +732,43 @@ module WhopSDK
         }
       end
 
+      type refund =
+        {
+          id: String,
+          amount: Float,
+          created_at: Time,
+          currency: WhopSDK::Models::currency,
+          status: WhopSDK::Models::refund_status
+        }
+
+      class Refund < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor amount: Float
+
+        attr_accessor created_at: Time
+
+        attr_accessor currency: WhopSDK::Models::currency
+
+        attr_accessor status: WhopSDK::Models::refund_status
+
+        def initialize: (
+          id: String,
+          amount: Float,
+          created_at: Time,
+          currency: WhopSDK::Models::currency,
+          status: WhopSDK::Models::refund_status
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          amount: Float,
+          created_at: Time,
+          currency: WhopSDK::Models::currency,
+          status: WhopSDK::Models::refund_status
+        }
+      end
+
       type resolution =
         {
           id: String,
@@ -761,6 +823,53 @@ module WhopSDK
           merchant_response_actions: ::Array[WhopSDK::Models::resolution_center_case_merchant_response],
           platform_response_actions: ::Array[WhopSDK::Models::resolution_center_case_platform_response],
           status: WhopSDK::Models::resolution_center_case_status
+        }
+      end
+
+      type shipping_address =
+        {
+          city: String?,
+          country: String?,
+          :line1 => String?,
+          :line2 => String?,
+          name: String?,
+          postal_code: String?,
+          state: String?
+        }
+
+      class ShippingAddress < WhopSDK::Internal::Type::BaseModel
+        attr_accessor city: String?
+
+        attr_accessor country: String?
+
+        attr_accessor line1: String?
+
+        attr_accessor line2: String?
+
+        attr_accessor name: String?
+
+        attr_accessor postal_code: String?
+
+        attr_accessor state: String?
+
+        def initialize: (
+          city: String?,
+          country: String?,
+          line1: String?,
+          line2: String?,
+          name: String?,
+          postal_code: String?,
+          state: String?
+        ) -> void
+
+        def to_hash: -> {
+          city: String?,
+          country: String?,
+          :line1 => String?,
+          :line2 => String?,
+          name: String?,
+          postal_code: String?,
+          state: String?
         }
       end
 

@@ -13,28 +13,31 @@ module WhopSDK
       required :id, String
 
       # @!attribute stats_from
-      #   Inclusive start of the window for the ad group's metric fields (spend,
-      #   impressions, …). Omit both statsFrom and statsTo for all-time stats.
+      #   Start of the stats window.
       #
-      #   @return [Time, nil]
-      optional :stats_from, Time, nil?: true
+      #   @return [String, nil]
+      optional :stats_from, String
 
       # @!attribute stats_to
-      #   Inclusive end of the window for the ad group's metric fields. Omit both
-      #   statsFrom and statsTo for all-time stats.
+      #   End of the stats window.
       #
-      #   @return [Time, nil]
-      optional :stats_to, Time, nil?: true
+      #   @return [String, nil]
+      optional :stats_to, String
 
-      # @!method initialize(id:, stats_from: nil, stats_to: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {WhopSDK::Models::AdGroupRetrieveParams} for more details.
+      # @!attribute time_zone
+      #   IANA timezone the stats window is interpreted in. Defaults to UTC.
       #
+      #   @return [String, nil]
+      optional :time_zone, String
+
+      # @!method initialize(id:, stats_from: nil, stats_to: nil, time_zone: nil, request_options: {})
       #   @param id [String]
       #
-      #   @param stats_from [Time, nil] Inclusive start of the window for the ad group's metric fields (spend, impressio
+      #   @param stats_from [String] Start of the stats window.
       #
-      #   @param stats_to [Time, nil] Inclusive end of the window for the ad group's metric fields. Omit both statsFro
+      #   @param stats_to [String] End of the stats window.
+      #
+      #   @param time_zone [String] IANA timezone the stats window is interpreted in. Defaults to UTC.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
     end

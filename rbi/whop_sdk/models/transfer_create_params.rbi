@@ -11,75 +11,102 @@ module WhopSDK
           T.any(WhopSDK::TransferCreateParams, WhopSDK::Internal::AnyHash)
         end
 
-      # The amount to transfer in the specified currency. For example, 25.00 for $25.00
-      # USD.
+      # The amount to move, in the transfer currency. For example 25.00.
       sig { returns(Float) }
       attr_accessor :amount
 
-      # The currency of the transfer amount, such as 'usd'.
-      sig { returns(WhopSDK::Currency::OrSymbol) }
-      attr_accessor :currency
-
-      # The identifier of the account receiving the funds. Accepts a user ID
-      # ('user_xxx'), company ID ('biz_xxx'), ledger account ID ('ldgr_xxx'), or an
-      # email address — emails without an existing Whop user trigger a placeholder-user
-      # signup.
-      sig { returns(String) }
-      attr_accessor :destination_id
-
-      # The identifier of the account sending the funds. Accepts a user ID ('user_xxx'),
-      # company ID ('biz_xxx'), or ledger account ID ('ldgr_xxx').
+      # The account sending the funds. A user ID (user_xxx), account ID (biz_xxx), or
+      # ledger account ID (ldgr_xxx).
       sig { returns(String) }
       attr_accessor :origin_id
 
-      # A unique key to prevent duplicate transfers. Use a UUID or similar unique
-      # string.
+      # Currency, such as `usd`. Required for ledger transfers.
+      sig { returns(T.nilable(String)) }
+      attr_reader :currency
+
+      sig { params(currency: String).void }
+      attr_writer :currency
+
+      # The recipient. Required for ledger and wallet*send (a user*/biz*/ldgr* ID, or —
+      # for sends — an email). Omit for claim_link.
+      sig { returns(T.nilable(String)) }
+      attr_reader :destination_id
+
+      sig { params(destination_id: String).void }
+      attr_writer :destination_id
+
+      # claim_link only. Link expiry as an ISO 8601 timestamp. Defaults to 24 hours from
+      # creation.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :expires_at
+
+      # Ledger transfers only. A unique key to prevent duplicate transfers.
       sig { returns(T.nilable(String)) }
       attr_accessor :idempotence_key
 
-      # A JSON object of custom metadata to attach to the transfer for tracking
-      # purposes.
+      # Ledger transfers only. Custom key-value pairs attached to the transfer. Max 50
+      # keys, 100 chars per key, 500 chars per string value.
       sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
       attr_accessor :metadata
 
-      # A short note describing the transfer, up to 50 characters.
+      # Ledger transfers only. A short note describing the transfer.
       sig { returns(T.nilable(String)) }
       attr_accessor :notes
+
+      # claim_link only. How many different users can claim the link. Defaults to 1.
+      sig { returns(T.nilable(Integer)) }
+      attr_reader :redeemable_count
+
+      sig { params(redeemable_count: Integer).void }
+      attr_writer :redeemable_count
+
+      # The kind of money movement. Defaults to ledger.
+      sig { returns(T.nilable(WhopSDK::TransferCreateParams::Type::OrSymbol)) }
+      attr_reader :type
+
+      sig { params(type: WhopSDK::TransferCreateParams::Type::OrSymbol).void }
+      attr_writer :type
 
       sig do
         params(
           amount: Float,
-          currency: WhopSDK::Currency::OrSymbol,
-          destination_id: String,
           origin_id: String,
+          currency: String,
+          destination_id: String,
+          expires_at: T.nilable(Time),
           idempotence_key: T.nilable(String),
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
           notes: T.nilable(String),
+          redeemable_count: Integer,
+          type: WhopSDK::TransferCreateParams::Type::OrSymbol,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # The amount to transfer in the specified currency. For example, 25.00 for $25.00
-        # USD.
+        # The amount to move, in the transfer currency. For example 25.00.
         amount:,
-        # The currency of the transfer amount, such as 'usd'.
-        currency:,
-        # The identifier of the account receiving the funds. Accepts a user ID
-        # ('user_xxx'), company ID ('biz_xxx'), ledger account ID ('ldgr_xxx'), or an
-        # email address — emails without an existing Whop user trigger a placeholder-user
-        # signup.
-        destination_id:,
-        # The identifier of the account sending the funds. Accepts a user ID ('user_xxx'),
-        # company ID ('biz_xxx'), or ledger account ID ('ldgr_xxx').
+        # The account sending the funds. A user ID (user_xxx), account ID (biz_xxx), or
+        # ledger account ID (ldgr_xxx).
         origin_id:,
-        # A unique key to prevent duplicate transfers. Use a UUID or similar unique
-        # string.
+        # Currency, such as `usd`. Required for ledger transfers.
+        currency: nil,
+        # The recipient. Required for ledger and wallet*send (a user*/biz*/ldgr* ID, or —
+        # for sends — an email). Omit for claim_link.
+        destination_id: nil,
+        # claim_link only. Link expiry as an ISO 8601 timestamp. Defaults to 24 hours from
+        # creation.
+        expires_at: nil,
+        # Ledger transfers only. A unique key to prevent duplicate transfers.
         idempotence_key: nil,
-        # A JSON object of custom metadata to attach to the transfer for tracking
-        # purposes.
+        # Ledger transfers only. Custom key-value pairs attached to the transfer. Max 50
+        # keys, 100 chars per key, 500 chars per string value.
         metadata: nil,
-        # A short note describing the transfer, up to 50 characters.
+        # Ledger transfers only. A short note describing the transfer.
         notes: nil,
+        # claim_link only. How many different users can claim the link. Defaults to 1.
+        redeemable_count: nil,
+        # The kind of money movement. Defaults to ledger.
+        type: nil,
         request_options: {}
       )
       end
@@ -88,17 +115,44 @@ module WhopSDK
         override.returns(
           {
             amount: Float,
-            currency: WhopSDK::Currency::OrSymbol,
-            destination_id: String,
             origin_id: String,
+            currency: String,
+            destination_id: String,
+            expires_at: T.nilable(Time),
             idempotence_key: T.nilable(String),
             metadata: T.nilable(T::Hash[Symbol, T.anything]),
             notes: T.nilable(String),
+            redeemable_count: Integer,
+            type: WhopSDK::TransferCreateParams::Type::OrSymbol,
             request_options: WhopSDK::RequestOptions
           }
         )
       end
       def to_hash
+      end
+
+      # The kind of money movement. Defaults to ledger.
+      module Type
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::TransferCreateParams::Type) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        LEDGER =
+          T.let(:ledger, WhopSDK::TransferCreateParams::Type::TaggedSymbol)
+        WALLET_SEND =
+          T.let(:wallet_send, WhopSDK::TransferCreateParams::Type::TaggedSymbol)
+        CLAIM_LINK =
+          T.let(:claim_link, WhopSDK::TransferCreateParams::Type::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::TransferCreateParams::Type::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
       end
     end
   end

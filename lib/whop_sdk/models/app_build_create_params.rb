@@ -10,7 +10,7 @@ module WhopSDK
       # @!attribute attachment
       #   The build file to upload. For iOS and Android, this should be a .zip archive
       #   containing a main_js_bundle.hbc file and an optional assets folder. For web,
-      #   this should be a JavaScript file.
+      #   this should be a JavaScript file or a .zip archive of the hosted site.
       #
       #   @return [WhopSDK::Models::AppBuildCreateParams::Attachment]
       required :attachment, -> { WhopSDK::AppBuildCreateParams::Attachment }
@@ -78,7 +78,7 @@ module WhopSDK
         # @!method initialize(id:)
         #   The build file to upload. For iOS and Android, this should be a .zip archive
         #   containing a main_js_bundle.hbc file and an optional assets folder. For web,
-        #   this should be a JavaScript file.
+        #   this should be a JavaScript file or a .zip archive of the hosted site.
         #
         #   @param id [String] The ID of an existing file object.
       end

@@ -22,7 +22,8 @@ class WhopSDK::Test::Resources::SetupIntentsTest < WhopSDK::Test::ResourceTest
         member: WhopSDK::SetupIntent::Member | nil,
         metadata: ^(WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown]) | nil,
         payment_method: WhopSDK::SetupIntent::PaymentMethod | nil,
-        status: WhopSDK::SetupIntentStatus
+        status: WhopSDK::SetupIntentStatus,
+        three_ds_verified: WhopSDK::Internal::Type::Boolean
       }
     end
   end

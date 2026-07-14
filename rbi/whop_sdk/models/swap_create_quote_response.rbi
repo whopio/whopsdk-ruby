@@ -11,18 +11,23 @@ module WhopSDK
           )
         end
 
+      # Source token amount used for the quote.
       sig { returns(String) }
       attr_accessor :amount_in
 
+      # Estimated destination token amount.
       sig { returns(String) }
       attr_accessor :amount_out
 
+      # Whop fee in basis points.
       sig { returns(Integer) }
       attr_accessor :fee_bps
 
+      # Resolved source token details.
       sig { returns(T::Hash[Symbol, T.anything]) }
       attr_accessor :from_token
 
+      # Metadata from the request.
       sig { returns(T::Hash[Symbol, T.anything]) }
       attr_accessor :metadata
 
@@ -31,30 +36,38 @@ module WhopSDK
       end
       attr_accessor :object
 
+      # Quoted exchange rate.
       sig { returns(String) }
       attr_accessor :rate
 
+      # Resolved destination token details.
       sig { returns(T::Hash[Symbol, T.anything]) }
       attr_accessor :to_token
 
+      # Minimum destination amount after slippage.
       sig { returns(T.nilable(String)) }
       attr_reader :amount_out_min
 
       sig { params(amount_out_min: String).void }
       attr_writer :amount_out_min
 
+      # Estimated bridge fee for cross-chain swaps.
       sig { returns(T.nilable(String)) }
       attr_accessor :bridge_fee
 
+      # Estimated time for the swap to complete.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :estimated_duration_seconds
 
+      # Source wallet address used for the quote.
       sig { returns(T.nilable(String)) }
       attr_accessor :from_address
 
+      # Whether the source token needs approval before swapping.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :requires_token_approval
 
+      # Destination wallet address used for the quote.
       sig { returns(T.nilable(String)) }
       attr_accessor :to_address
 
@@ -77,19 +90,32 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
+        # Source token amount used for the quote.
         amount_in:,
+        # Estimated destination token amount.
         amount_out:,
+        # Whop fee in basis points.
         fee_bps:,
+        # Resolved source token details.
         from_token:,
+        # Metadata from the request.
         metadata:,
         object:,
+        # Quoted exchange rate.
         rate:,
+        # Resolved destination token details.
         to_token:,
+        # Minimum destination amount after slippage.
         amount_out_min: nil,
+        # Estimated bridge fee for cross-chain swaps.
         bridge_fee: nil,
+        # Estimated time for the swap to complete.
         estimated_duration_seconds: nil,
+        # Source wallet address used for the quote.
         from_address: nil,
+        # Whether the source token needs approval before swapping.
         requires_token_approval: nil,
+        # Destination wallet address used for the quote.
         to_address: nil
       )
       end

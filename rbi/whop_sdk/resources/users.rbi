@@ -2,22 +2,47 @@
 
 module WhopSDK
   module Resources
+    # A User represents a person on Whop. Users have a public profile and can buy
+    # products, join accounts, and access experiences.
+    #
+    # Use the Users API to search for users, retrieve or update profiles, and check
+    # whether a user has access to an account, product, or experience.
     class Users
       # Retrieves a user's public profile by user\_ tag, username, or 'me'.
       sig do
         params(
           id: String,
           account_id: String,
+          from: String,
+          include_balance_history: T::Boolean,
+          interval: WhopSDK::UserRetrieveParams::Interval::OrSymbol,
+          time_zone: String,
+          to: String,
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::User)
       end
       def retrieve(
-        # The ID of the user, which will look like user\_******\*******, a username, or
-        # 'me'.
+        # User ID (prefixed `user_`), username, or `me`.
         id,
         # When set, returns the user's account-specific profile overrides for this
         # account.
         account_id: nil,
+        # Balance-history window start, ISO 8601 date or datetime. Defaults to 30 days
+        # ago. Only used with `include_balance_history`.
+        from: nil,
+        # On `GET /users/me`, also compute the caller's balance history (opt-in; runs a
+        # heavier query). Ignored for other users and for callers without balance-read
+        # scope.
+        include_balance_history: nil,
+        # Balance-history point granularity. Defaults to `day`. Only used with
+        # `include_balance_history`.
+        interval: nil,
+        # IANA time zone the balance-history points are bucketed in. Defaults to `UTC`.
+        # Only used with `include_balance_history`.
+        time_zone: nil,
+        # Balance-history window end, ISO 8601 date or datetime. Defaults to now. Only
+        # used with `include_balance_history`.
+        to: nil,
         request_options: {}
       )
       end
@@ -36,8 +61,7 @@ module WhopSDK
         ).returns(WhopSDK::User)
       end
       def update(
-        # Path param: The ID of the user, which will look like user\_******\*******, a
-        # username, or 'me'.
+        # Path param: User ID (prefixed `user_`), username, or `me`.
         id,
         # Query param: The account whose profile override to update. Required for API key
         # callers.
@@ -82,8 +106,8 @@ module WhopSDK
       )
       end
 
-      # Checks whether a user has access to a company, product, or experience the caller
-      # can reach.
+      # Checks whether a user has access to an account, product, or experience the
+      # caller can reach.
       sig do
         params(
           resource_id: String,
@@ -92,7 +116,7 @@ module WhopSDK
         ).returns(WhopSDK::Models::UserCheckAccessResponse)
       end
       def check_access(
-        # A company (biz*), product (prod*), or experience (exp\_) ID.
+        # An account (biz*), product (prod*), or experience (exp\_) ID.
         resource_id,
         # The user\_ tag or username to check access for.
         id:,

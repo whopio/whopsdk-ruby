@@ -262,7 +262,7 @@ module WhopSDK
         required :id, String
 
         # @!attribute content_type
-        #   The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
+        #   Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
         #
         #   @return [String, nil]
         required :content_type, String, nil?: true
@@ -289,7 +289,7 @@ module WhopSDK
         #
         #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
         #
-        #   @param content_type [String, nil] The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
+        #   @param content_type [String, nil] Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
         #
         #   @param filename [String, nil] The original filename of the uploaded attachment, including its file extension.
         #
@@ -331,7 +331,7 @@ module WhopSDK
         required :id, String
 
         # @!attribute content_type
-        #   The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
+        #   Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
         #
         #   @return [String, nil]
         required :content_type, String, nil?: true
@@ -358,7 +358,7 @@ module WhopSDK
         #
         #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
         #
-        #   @param content_type [String, nil] The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
+        #   @param content_type [String, nil] Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
         #
         #   @param filename [String, nil] The original filename of the uploaded attachment, including its file extension.
         #
@@ -637,7 +637,7 @@ module WhopSDK
         required :id, String
 
         # @!attribute content_type
-        #   The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
+        #   Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
         #
         #   @return [String, nil]
         required :content_type, String, nil?: true
@@ -664,7 +664,7 @@ module WhopSDK
         #
         #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
         #
-        #   @param content_type [String, nil] The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
+        #   @param content_type [String, nil] Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
         #
         #   @param filename [String, nil] The original filename of the uploaded attachment, including its file extension.
         #
@@ -684,7 +684,7 @@ module WhopSDK
         required :id, String
 
         # @!attribute content_type
-        #   The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
+        #   Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
         #
         #   @return [String, nil]
         required :content_type, String, nil?: true
@@ -711,7 +711,7 @@ module WhopSDK
         #
         #   @param id [String] Represents a unique identifier that is Base64 obfuscated. It is often used to re
         #
-        #   @param content_type [String, nil] The MIME type of the uploaded file (e.g., image/jpeg, video/mp4, audio/mpeg).
+        #   @param content_type [String, nil] Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
         #
         #   @param filename [String, nil] The original filename of the uploaded attachment, including its file extension.
         #

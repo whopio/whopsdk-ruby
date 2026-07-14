@@ -2,7 +2,7 @@ module WhopSDK
   module Models
     type plan_list_params =
       {
-        company_id: String,
+        account_id: String,
         after: String,
         before: String,
         created_after: String,
@@ -22,7 +22,7 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      attr_accessor company_id: String
+      attr_accessor account_id: String
 
       attr_reader after: String?
 
@@ -77,7 +77,7 @@ module WhopSDK
       def visibilities=: (::Array[String]) -> ::Array[String]
 
       def initialize: (
-        company_id: String,
+        account_id: String,
         ?after: String,
         ?before: String,
         ?created_after: String,
@@ -94,7 +94,7 @@ module WhopSDK
       ) -> void
 
       def to_hash: -> {
-        company_id: String,
+        account_id: String,
         after: String,
         before: String,
         created_after: String,
@@ -126,7 +126,7 @@ module WhopSDK
         | :active_members_count
         | :created_at
         | :internal_notes
-        | :expires_at
+        | :expiration_days
 
       module Order
         extend WhopSDK::Internal::Type::Enum
@@ -135,7 +135,7 @@ module WhopSDK
         ACTIVE_MEMBERS_COUNT: :active_members_count
         CREATED_AT: :created_at
         INTERNAL_NOTES: :internal_notes
-        EXPIRES_AT: :expires_at
+        EXPIRATION_DAYS: :expiration_days
 
         def self?.values: -> ::Array[WhopSDK::Models::PlanListParams::order]
       end

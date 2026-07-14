@@ -1,0 +1,37 @@
+module WhopSDK
+  module Models
+    type social_account_posts_response =
+      {
+        data: ::Array[WhopSDK::SocialAccountPost],
+        page_info: WhopSDK::Models::SocialAccountPostsResponse::PageInfo
+      }
+
+    class SocialAccountPostsResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor data: ::Array[WhopSDK::SocialAccountPost]
+
+      attr_accessor page_info: WhopSDK::Models::SocialAccountPostsResponse::PageInfo
+
+      def initialize: (
+        data: ::Array[WhopSDK::SocialAccountPost],
+        page_info: WhopSDK::Models::SocialAccountPostsResponse::PageInfo
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[WhopSDK::SocialAccountPost],
+        page_info: WhopSDK::Models::SocialAccountPostsResponse::PageInfo
+      }
+
+      type page_info = { end_cursor: String?, has_next_page: bool }
+
+      class PageInfo < WhopSDK::Internal::Type::BaseModel
+        attr_accessor end_cursor: String?
+
+        attr_accessor has_next_page: bool
+
+        def initialize: (end_cursor: String?, has_next_page: bool) -> void
+
+        def to_hash: -> { end_cursor: String?, has_next_page: bool }
+      end
+    end
+  end
+end

@@ -6,233 +6,470 @@ module WhopSDK
       OrHash =
         T.type_alias { T.any(WhopSDK::AdGroup, WhopSDK::Internal::AnyHash) }
 
-      # The unique identifier for this ad group.
+      # Unique identifier for the ad group.
       sig { returns(String) }
       attr_accessor :id
 
-      # The ad campaign this ad group belongs to.
+      # The ad campaign this ad group belongs to, an object with an id.
       sig { returns(WhopSDK::AdGroup::AdCampaign) }
       attr_reader :ad_campaign
 
       sig { params(ad_campaign: WhopSDK::AdGroup::AdCampaign::OrHash).void }
       attr_writer :ad_campaign
 
-      # Budget amount in dollars.
-      sig { returns(T.nilable(Float)) }
-      attr_accessor :budget
+      # Whop pixel-attributed add-to-cart events, last-click.
+      sig { returns(Float) }
+      attr_accessor :added_to_carts
 
-      # The budget type for an ad campaign or ad group.
-      sig { returns(T.nilable(WhopSDK::AdBudgetType::TaggedSymbol)) }
+      # Saved-audience targeting: { include, exclude } arrays of audience IDs.
+      sig { returns(T.anything) }
+      attr_accessor :audiences
+
+      # Bid strategy.
+      sig { returns(T.nilable(WhopSDK::AdGroup::BidType::TaggedSymbol)) }
+      attr_accessor :bid_type
+
+      # Ad-set budget; null when the campaign owns budget (CBO).
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :budget_amount
+
+      # Whether the budget is daily or lifetime.
+      sig { returns(T.nilable(WhopSDK::AdGroup::BudgetType::TaggedSymbol)) }
       attr_accessor :budget_type
 
-      # Click-through rate as a fraction of impressions (clicks / impressions, 0–1).
+      # Clicks divided by impressions, between 0 and 1.
       sig { returns(Float) }
       attr_accessor :click_through_rate
 
-      # Total clicks on this ad group's ads in the stats window.
-      sig { returns(Integer) }
+      # The number of clicks.
+      sig { returns(Float) }
       attr_accessor :clicks
 
-      # Cost per click in dollars (spend / clicks). 0 when there are no clicks.
+      # Whop pixel-attributed complete-registration events, last-click.
+      sig { returns(Float) }
+      attr_accessor :completed_registrations
+
+      # Whop pixel-attributed contact events, last-click.
+      sig { returns(Float) }
+      attr_accessor :contacts
+
+      # The pixel event optimized for. A standard event, or any custom pixel event name.
+      sig { returns(T.nilable(WhopSDK::AdGroup::ConversionEvent::Variants)) }
+      attr_accessor :conversion_event
+
+      # Where results happen: website, profile (IG/FB), messaging (DM), on_ad
+      # (engagement), or the lead destinations (instant_forms,
+      # instant_forms_and_messenger, website_and_instant_forms).
+      sig do
+        returns(T.nilable(WhopSDK::AdGroup::ConversionLocation::TaggedSymbol))
+      end
+      attr_accessor :conversion_location
+
+      # Spend divided by attributed add-to-cart events; null when they are not the goal
+      # and none are attributed.
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :cost_per_added_to_cart
+
+      # Spend divided by clicks; 0 when there are no clicks.
       sig { returns(Float) }
       attr_accessor :cost_per_click
 
-      # Cost in dollars per Whop pixel-attributed lead (spend / leads). 0 when leads are
-      # tracked but none happened yet; null when leads are not a goal and none were
+      # Spend divided by attributed complete-registration events; null when they are not
+      # the goal and none are attributed.
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :cost_per_completed_registration
+
+      # Spend divided by attributed contact events; null when contacts are not the goal
+      # and none are attributed.
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :cost_per_contact
+
+      # Spend divided by attributed leads; null when leads are not a goal and none are
       # attributed.
       sig { returns(T.nilable(Float)) }
       attr_accessor :cost_per_lead
 
-      # Cost per 1,000 impressions in dollars (spend / impressions × 1000). 0 when there
-      # are no impressions.
+      # Spend per 1,000 impressions; 0 when there are no impressions.
       sig { returns(Float) }
       attr_accessor :cost_per_mille
 
-      # Cost in dollars per Whop pixel-attributed purchase (spend / purchases). 0 when
-      # purchases are tracked but none happened yet; null when purchases are not a goal
-      # and none were attributed.
+      # Spend divided by attributed purchases; null when purchases are not a goal and
+      # none are attributed.
       sig { returns(T.nilable(Float)) }
       attr_accessor :cost_per_purchase
 
-      # Cost in dollars per optimization result (spend / results). 0 when a result is
-      # being optimized for but none happened yet; null when nothing is being optimized
-      # for.
+      # Spend divided by Whop pixel-attributed results; null when nothing
+      # Whop-attributable is being optimized for.
       sig { returns(T.nilable(Float)) }
       attr_accessor :cost_per_result
 
-      # When the ad group was created.
-      sig { returns(Time) }
+      # Spend divided by attributed schedule events; null when schedules are not the
+      # goal and none are attributed.
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :cost_per_schedule
+
+      # Spend divided by attributed submit-application events; null when they are not
+      # the goal and none are attributed.
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :cost_per_submitted_application
+
+      # Spend divided by attributed view-content events; null when they are not the goal
+      # and none are attributed.
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :cost_per_viewed_content
+
+      # When the ad group was created, ISO 8601.
+      sig { returns(String) }
       attr_accessor :created_at
 
-      # Average number of times each person saw an ad (impressions / reach), as reported
-      # by the platform.
+      # Whop pixel-attributed custom (merchant-defined) conversion events, last-click,
+      # across all custom event names.
+      sig { returns(Float) }
+      attr_accessor :custom_conversions
+
+      # The current delivery state, mirroring the Delivery column in the ads dashboard.
+      # When several states apply at once, the highest-precedence one is returned.
+      sig { returns(WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol) }
+      attr_accessor :delivery_status
+
+      # Demographic targeting: automatic (Advantage+), age range, gender.
+      sig { returns(T.anything) }
+      attr_accessor :demographics
+
+      # Target/cap cost for average_target / maximum_target.
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :desired_cost_per_result
+
+      # Device targeting: platforms and operating systems.
+      sig { returns(T.anything) }
+      attr_accessor :devices
+
+      # Whether ads within this ad group have their creatives and copy dynamically AB
+      # tested.
+      sig { returns(T::Boolean) }
+      attr_accessor :dynamic_creative
+
+      # Schedule end, ISO 8601.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :ends_at
+
+      # Platform-reported impressions divided by reach.
       sig { returns(T.nilable(Float)) }
       attr_accessor :frequency
 
-      # Total impressions (views) on this ad group's ads in the stats window.
-      sig { returns(Integer) }
+      # Impression cap; only valid for reach optimization.
+      sig { returns(T.nilable(T.anything)) }
+      attr_accessor :frequency_cap
+
+      # The number of impressions.
+      sig { returns(Float) }
       attr_accessor :impressions
 
-      # Open platform issues affecting this ad group and its descendant ads,
-      # deduplicated per object. Empty when there are none.
       sig { returns(T::Array[WhopSDK::AdGroup::Issue]) }
       attr_accessor :issues
 
-      # Number of Whop pixel-attributed leads (last-click) in the stats window.
-      sig { returns(Integer) }
+      sig { returns(T::Array[String]) }
+      attr_accessor :languages
+
+      # Whop pixel-attributed leads, last-click.
+      sig { returns(Float) }
       attr_accessor :leads
 
-      # The external ad platform this ad group is running on (e.g., meta, tiktok).
-      sig { returns(WhopSDK::AdCampaignPlatform::TaggedSymbol) }
-      attr_accessor :platform
+      sig { returns(T::Array[String]) }
+      attr_accessor :message_apps
 
-      # Total USD value of Whop pixel-attributed purchases in the stats window.
+      # Daily spend floor within the budget.
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :minimum_daily_spend
+
+      # What the ad group optimizes for.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :optimization_goal
+
+      sig { returns(T::Array[T.anything]) }
+      attr_accessor :placements
+
+      # USD value of pixel-attributed purchases.
       sig { returns(Float) }
       attr_accessor :purchase_value
 
-      # Number of Whop pixel-attributed purchases (last-click) in the stats window.
-      sig { returns(Integer) }
+      # Whop pixel-attributed purchases, last-click.
+      sig { returns(Float) }
       attr_accessor :purchases
 
-      # Unique users reached in the stats window (deduplicated by the platform).
-      sig { returns(Integer) }
+      # The number of unique people who saw this.
+      sig { returns(Float) }
       attr_accessor :reach
 
-      # Return on ad spend as a ratio (purchaseValue / spend) — 2.5 means $2.50 of
-      # attributed purchase value per $1 spent. 0 when there is no spend.
+      # Geo targeting: include/exclude countries, regions (ISO 3166-2 states, e.g.
+      # US-CA), cities, zips.
+      sig { returns(T.anything) }
+      attr_accessor :regions
+
+      # The Whop pixel conversion event whose attributed count represents results — the
+      # optimization goal, or the highest-volume attributed event for campaigns that
+      # budget per ad group. Null when the goal isn't a Whop-attributed event.
+      sig { returns(T.nilable(WhopSDK::AdGroup::ResultEvent::TaggedSymbol)) }
+      attr_accessor :result_event
+
+      # The merchant-defined event name when result_event is custom; null for the
+      # standard events.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :result_event_name
+
+      # Purchase value divided by spend, both in USD (a currency-neutral ratio); 0 when
+      # there is no spend.
       sig { returns(Float) }
       attr_accessor :return_on_ad_spend
 
-      # Amount charged in dollars in the stats window.
+      # Whop pixel-attributed schedule events, last-click.
+      sig { returns(Float) }
+      attr_accessor :schedules
+
+      # The amount charged, in spend_currency.
       sig { returns(Float) }
       attr_accessor :spend
 
-      # The available currencies on the platform
-      sig { returns(T.nilable(WhopSDK::Currency::TaggedSymbol)) }
+      # The ISO 4217 currency code of all monetary metrics.
+      sig { returns(T.nilable(String)) }
       attr_accessor :spend_currency
 
-      # Current operational status of the ad group.
-      sig { returns(WhopSDK::AdGroupStatus::TaggedSymbol) }
+      # Schedule start, ISO 8601.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :starts_at
+
+      # Delivery status of the ad group.
+      sig { returns(WhopSDK::AdGroup::Status::TaggedSymbol) }
       attr_accessor :status
 
-      # The ad group name shown in the Whop dashboard.
+      # Whop pixel-attributed submit-application events, last-click.
+      sig { returns(Float) }
+      attr_accessor :submitted_applications
+
+      # The display title of the ad group.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
-      # Unique click-through rate as a fraction of impressions (unique clicks /
-      # impressions, 0–1).
+      # Unique clicks divided by impressions, between 0 and 1.
       sig { returns(T.nilable(Float)) }
       attr_accessor :unique_click_through_rate
 
-      # Unique clicks (deduplicated by the platform) in the stats window.
-      sig { returns(Integer) }
+      # The number of unique clicks.
+      sig { returns(Float) }
       attr_accessor :unique_clicks
 
-      # When the ad group was last updated.
-      sig { returns(Time) }
+      # When the ad group was last updated, ISO 8601.
+      sig { returns(String) }
       attr_accessor :updated_at
 
-      # An ad group belonging to an ad campaign.
+      # Whop pixel-attributed view-content events, last-click.
+      sig { returns(Float) }
+      attr_accessor :viewed_contents
+
       sig do
         params(
           id: String,
           ad_campaign: WhopSDK::AdGroup::AdCampaign::OrHash,
-          budget: T.nilable(Float),
-          budget_type: T.nilable(WhopSDK::AdBudgetType::OrSymbol),
+          added_to_carts: Float,
+          audiences: T.anything,
+          bid_type: T.nilable(WhopSDK::AdGroup::BidType::OrSymbol),
+          budget_amount: T.nilable(Float),
+          budget_type: T.nilable(WhopSDK::AdGroup::BudgetType::OrSymbol),
           click_through_rate: Float,
-          clicks: Integer,
+          clicks: Float,
+          completed_registrations: Float,
+          contacts: Float,
+          conversion_event:
+            T.nilable(
+              T.any(WhopSDK::AdGroup::ConversionEvent::OrSymbol, String)
+            ),
+          conversion_location:
+            T.nilable(WhopSDK::AdGroup::ConversionLocation::OrSymbol),
+          cost_per_added_to_cart: T.nilable(Float),
           cost_per_click: Float,
+          cost_per_completed_registration: T.nilable(Float),
+          cost_per_contact: T.nilable(Float),
           cost_per_lead: T.nilable(Float),
           cost_per_mille: Float,
           cost_per_purchase: T.nilable(Float),
           cost_per_result: T.nilable(Float),
-          created_at: Time,
+          cost_per_schedule: T.nilable(Float),
+          cost_per_submitted_application: T.nilable(Float),
+          cost_per_viewed_content: T.nilable(Float),
+          created_at: String,
+          custom_conversions: Float,
+          delivery_status: WhopSDK::AdGroup::DeliveryStatus::OrSymbol,
+          demographics: T.anything,
+          desired_cost_per_result: T.nilable(Float),
+          devices: T.anything,
+          dynamic_creative: T::Boolean,
+          ends_at: T.nilable(String),
           frequency: T.nilable(Float),
-          impressions: Integer,
+          frequency_cap: T.nilable(T.anything),
+          impressions: Float,
           issues: T::Array[WhopSDK::AdGroup::Issue::OrHash],
-          leads: Integer,
-          platform: WhopSDK::AdCampaignPlatform::OrSymbol,
+          languages: T::Array[String],
+          leads: Float,
+          message_apps: T::Array[String],
+          minimum_daily_spend: T.nilable(Float),
+          optimization_goal: T.nilable(String),
+          placements: T::Array[T.anything],
           purchase_value: Float,
-          purchases: Integer,
-          reach: Integer,
+          purchases: Float,
+          reach: Float,
+          regions: T.anything,
+          result_event: T.nilable(WhopSDK::AdGroup::ResultEvent::OrSymbol),
+          result_event_name: T.nilable(String),
           return_on_ad_spend: Float,
+          schedules: Float,
           spend: Float,
-          spend_currency: T.nilable(WhopSDK::Currency::OrSymbol),
-          status: WhopSDK::AdGroupStatus::OrSymbol,
+          spend_currency: T.nilable(String),
+          starts_at: T.nilable(String),
+          status: WhopSDK::AdGroup::Status::OrSymbol,
+          submitted_applications: Float,
           title: T.nilable(String),
           unique_click_through_rate: T.nilable(Float),
-          unique_clicks: Integer,
-          updated_at: Time
+          unique_clicks: Float,
+          updated_at: String,
+          viewed_contents: Float
         ).returns(T.attached_class)
       end
       def self.new(
-        # The unique identifier for this ad group.
+        # Unique identifier for the ad group.
         id:,
-        # The ad campaign this ad group belongs to.
+        # The ad campaign this ad group belongs to, an object with an id.
         ad_campaign:,
-        # Budget amount in dollars.
-        budget:,
-        # The budget type for an ad campaign or ad group.
+        # Whop pixel-attributed add-to-cart events, last-click.
+        added_to_carts:,
+        # Saved-audience targeting: { include, exclude } arrays of audience IDs.
+        audiences:,
+        # Bid strategy.
+        bid_type:,
+        # Ad-set budget; null when the campaign owns budget (CBO).
+        budget_amount:,
+        # Whether the budget is daily or lifetime.
         budget_type:,
-        # Click-through rate as a fraction of impressions (clicks / impressions, 0–1).
+        # Clicks divided by impressions, between 0 and 1.
         click_through_rate:,
-        # Total clicks on this ad group's ads in the stats window.
+        # The number of clicks.
         clicks:,
-        # Cost per click in dollars (spend / clicks). 0 when there are no clicks.
+        # Whop pixel-attributed complete-registration events, last-click.
+        completed_registrations:,
+        # Whop pixel-attributed contact events, last-click.
+        contacts:,
+        # The pixel event optimized for. A standard event, or any custom pixel event name.
+        conversion_event:,
+        # Where results happen: website, profile (IG/FB), messaging (DM), on_ad
+        # (engagement), or the lead destinations (instant_forms,
+        # instant_forms_and_messenger, website_and_instant_forms).
+        conversion_location:,
+        # Spend divided by attributed add-to-cart events; null when they are not the goal
+        # and none are attributed.
+        cost_per_added_to_cart:,
+        # Spend divided by clicks; 0 when there are no clicks.
         cost_per_click:,
-        # Cost in dollars per Whop pixel-attributed lead (spend / leads). 0 when leads are
-        # tracked but none happened yet; null when leads are not a goal and none were
+        # Spend divided by attributed complete-registration events; null when they are not
+        # the goal and none are attributed.
+        cost_per_completed_registration:,
+        # Spend divided by attributed contact events; null when contacts are not the goal
+        # and none are attributed.
+        cost_per_contact:,
+        # Spend divided by attributed leads; null when leads are not a goal and none are
         # attributed.
         cost_per_lead:,
-        # Cost per 1,000 impressions in dollars (spend / impressions × 1000). 0 when there
-        # are no impressions.
+        # Spend per 1,000 impressions; 0 when there are no impressions.
         cost_per_mille:,
-        # Cost in dollars per Whop pixel-attributed purchase (spend / purchases). 0 when
-        # purchases are tracked but none happened yet; null when purchases are not a goal
-        # and none were attributed.
+        # Spend divided by attributed purchases; null when purchases are not a goal and
+        # none are attributed.
         cost_per_purchase:,
-        # Cost in dollars per optimization result (spend / results). 0 when a result is
-        # being optimized for but none happened yet; null when nothing is being optimized
-        # for.
+        # Spend divided by Whop pixel-attributed results; null when nothing
+        # Whop-attributable is being optimized for.
         cost_per_result:,
-        # When the ad group was created.
+        # Spend divided by attributed schedule events; null when schedules are not the
+        # goal and none are attributed.
+        cost_per_schedule:,
+        # Spend divided by attributed submit-application events; null when they are not
+        # the goal and none are attributed.
+        cost_per_submitted_application:,
+        # Spend divided by attributed view-content events; null when they are not the goal
+        # and none are attributed.
+        cost_per_viewed_content:,
+        # When the ad group was created, ISO 8601.
         created_at:,
-        # Average number of times each person saw an ad (impressions / reach), as reported
-        # by the platform.
+        # Whop pixel-attributed custom (merchant-defined) conversion events, last-click,
+        # across all custom event names.
+        custom_conversions:,
+        # The current delivery state, mirroring the Delivery column in the ads dashboard.
+        # When several states apply at once, the highest-precedence one is returned.
+        delivery_status:,
+        # Demographic targeting: automatic (Advantage+), age range, gender.
+        demographics:,
+        # Target/cap cost for average_target / maximum_target.
+        desired_cost_per_result:,
+        # Device targeting: platforms and operating systems.
+        devices:,
+        # Whether ads within this ad group have their creatives and copy dynamically AB
+        # tested.
+        dynamic_creative:,
+        # Schedule end, ISO 8601.
+        ends_at:,
+        # Platform-reported impressions divided by reach.
         frequency:,
-        # Total impressions (views) on this ad group's ads in the stats window.
+        # Impression cap; only valid for reach optimization.
+        frequency_cap:,
+        # The number of impressions.
         impressions:,
-        # Open platform issues affecting this ad group and its descendant ads,
-        # deduplicated per object. Empty when there are none.
         issues:,
-        # Number of Whop pixel-attributed leads (last-click) in the stats window.
+        languages:,
+        # Whop pixel-attributed leads, last-click.
         leads:,
-        # The external ad platform this ad group is running on (e.g., meta, tiktok).
-        platform:,
-        # Total USD value of Whop pixel-attributed purchases in the stats window.
+        message_apps:,
+        # Daily spend floor within the budget.
+        minimum_daily_spend:,
+        # What the ad group optimizes for.
+        optimization_goal:,
+        placements:,
+        # USD value of pixel-attributed purchases.
         purchase_value:,
-        # Number of Whop pixel-attributed purchases (last-click) in the stats window.
+        # Whop pixel-attributed purchases, last-click.
         purchases:,
-        # Unique users reached in the stats window (deduplicated by the platform).
+        # The number of unique people who saw this.
         reach:,
-        # Return on ad spend as a ratio (purchaseValue / spend) — 2.5 means $2.50 of
-        # attributed purchase value per $1 spent. 0 when there is no spend.
+        # Geo targeting: include/exclude countries, regions (ISO 3166-2 states, e.g.
+        # US-CA), cities, zips.
+        regions:,
+        # The Whop pixel conversion event whose attributed count represents results — the
+        # optimization goal, or the highest-volume attributed event for campaigns that
+        # budget per ad group. Null when the goal isn't a Whop-attributed event.
+        result_event:,
+        # The merchant-defined event name when result_event is custom; null for the
+        # standard events.
+        result_event_name:,
+        # Purchase value divided by spend, both in USD (a currency-neutral ratio); 0 when
+        # there is no spend.
         return_on_ad_spend:,
-        # Amount charged in dollars in the stats window.
+        # Whop pixel-attributed schedule events, last-click.
+        schedules:,
+        # The amount charged, in spend_currency.
         spend:,
-        # The available currencies on the platform
+        # The ISO 4217 currency code of all monetary metrics.
         spend_currency:,
-        # Current operational status of the ad group.
+        # Schedule start, ISO 8601.
+        starts_at:,
+        # Delivery status of the ad group.
         status:,
-        # The ad group name shown in the Whop dashboard.
+        # Whop pixel-attributed submit-application events, last-click.
+        submitted_applications:,
+        # The display title of the ad group.
         title:,
-        # Unique click-through rate as a fraction of impressions (unique clicks /
-        # impressions, 0–1).
+        # Unique clicks divided by impressions, between 0 and 1.
         unique_click_through_rate:,
-        # Unique clicks (deduplicated by the platform) in the stats window.
+        # The number of unique clicks.
         unique_clicks:,
-        # When the ad group was last updated.
-        updated_at:
+        # When the ad group was last updated, ISO 8601.
+        updated_at:,
+        # Whop pixel-attributed view-content events, last-click.
+        viewed_contents:
       )
       end
 
@@ -241,32 +478,67 @@ module WhopSDK
           {
             id: String,
             ad_campaign: WhopSDK::AdGroup::AdCampaign,
-            budget: T.nilable(Float),
-            budget_type: T.nilable(WhopSDK::AdBudgetType::TaggedSymbol),
+            added_to_carts: Float,
+            audiences: T.anything,
+            bid_type: T.nilable(WhopSDK::AdGroup::BidType::TaggedSymbol),
+            budget_amount: T.nilable(Float),
+            budget_type: T.nilable(WhopSDK::AdGroup::BudgetType::TaggedSymbol),
             click_through_rate: Float,
-            clicks: Integer,
+            clicks: Float,
+            completed_registrations: Float,
+            contacts: Float,
+            conversion_event:
+              T.nilable(WhopSDK::AdGroup::ConversionEvent::Variants),
+            conversion_location:
+              T.nilable(WhopSDK::AdGroup::ConversionLocation::TaggedSymbol),
+            cost_per_added_to_cart: T.nilable(Float),
             cost_per_click: Float,
+            cost_per_completed_registration: T.nilable(Float),
+            cost_per_contact: T.nilable(Float),
             cost_per_lead: T.nilable(Float),
             cost_per_mille: Float,
             cost_per_purchase: T.nilable(Float),
             cost_per_result: T.nilable(Float),
-            created_at: Time,
+            cost_per_schedule: T.nilable(Float),
+            cost_per_submitted_application: T.nilable(Float),
+            cost_per_viewed_content: T.nilable(Float),
+            created_at: String,
+            custom_conversions: Float,
+            delivery_status: WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol,
+            demographics: T.anything,
+            desired_cost_per_result: T.nilable(Float),
+            devices: T.anything,
+            dynamic_creative: T::Boolean,
+            ends_at: T.nilable(String),
             frequency: T.nilable(Float),
-            impressions: Integer,
+            frequency_cap: T.nilable(T.anything),
+            impressions: Float,
             issues: T::Array[WhopSDK::AdGroup::Issue],
-            leads: Integer,
-            platform: WhopSDK::AdCampaignPlatform::TaggedSymbol,
+            languages: T::Array[String],
+            leads: Float,
+            message_apps: T::Array[String],
+            minimum_daily_spend: T.nilable(Float),
+            optimization_goal: T.nilable(String),
+            placements: T::Array[T.anything],
             purchase_value: Float,
-            purchases: Integer,
-            reach: Integer,
+            purchases: Float,
+            reach: Float,
+            regions: T.anything,
+            result_event:
+              T.nilable(WhopSDK::AdGroup::ResultEvent::TaggedSymbol),
+            result_event_name: T.nilable(String),
             return_on_ad_spend: Float,
+            schedules: Float,
             spend: Float,
-            spend_currency: T.nilable(WhopSDK::Currency::TaggedSymbol),
-            status: WhopSDK::AdGroupStatus::TaggedSymbol,
+            spend_currency: T.nilable(String),
+            starts_at: T.nilable(String),
+            status: WhopSDK::AdGroup::Status::TaggedSymbol,
+            submitted_applications: Float,
             title: T.nilable(String),
             unique_click_through_rate: T.nilable(Float),
-            unique_clicks: Integer,
-            updated_at: Time
+            unique_clicks: Float,
+            updated_at: String,
+            viewed_contents: Float
           }
         )
       end
@@ -279,14 +551,14 @@ module WhopSDK
             T.any(WhopSDK::AdGroup::AdCampaign, WhopSDK::Internal::AnyHash)
           end
 
-        # The unique identifier for this ad campaign.
+        # The referenced entity's id.
         sig { returns(String) }
         attr_accessor :id
 
-        # The ad campaign this ad group belongs to.
+        # The ad campaign this ad group belongs to, an object with an id.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
-          # The unique identifier for this ad campaign.
+          # The referenced entity's id.
           id:
         )
         end
@@ -296,160 +568,349 @@ module WhopSDK
         end
       end
 
+      # Bid strategy.
+      module BidType
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol = T.type_alias { T.all(Symbol, WhopSDK::AdGroup::BidType) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        MINIMUM_COST =
+          T.let(:minimum_cost, WhopSDK::AdGroup::BidType::TaggedSymbol)
+        AVERAGE_TARGET =
+          T.let(:average_target, WhopSDK::AdGroup::BidType::TaggedSymbol)
+        MAXIMUM_TARGET =
+          T.let(:maximum_target, WhopSDK::AdGroup::BidType::TaggedSymbol)
+
+        sig do
+          override.returns(T::Array[WhopSDK::AdGroup::BidType::TaggedSymbol])
+        end
+        def self.values
+        end
+      end
+
+      # Whether the budget is daily or lifetime.
+      module BudgetType
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::AdGroup::BudgetType) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        DAILY = T.let(:daily, WhopSDK::AdGroup::BudgetType::TaggedSymbol)
+        LIFETIME = T.let(:lifetime, WhopSDK::AdGroup::BudgetType::TaggedSymbol)
+
+        sig do
+          override.returns(T::Array[WhopSDK::AdGroup::BudgetType::TaggedSymbol])
+        end
+        def self.values
+        end
+      end
+
+      # The pixel event optimized for. A standard event, or any custom pixel event name.
+      module ConversionEvent
+        extend WhopSDK::Internal::Type::Union
+
+        Variants =
+          T.type_alias do
+            T.any(WhopSDK::AdGroup::ConversionEvent::TaggedSymbol, String)
+          end
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::AdGroup::ConversionEvent::Variants]
+          )
+        end
+        def self.variants
+        end
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::AdGroup::ConversionEvent) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        PURCHASE =
+          T.let(:purchase, WhopSDK::AdGroup::ConversionEvent::TaggedSymbol)
+        ADD_TO_CART =
+          T.let(:add_to_cart, WhopSDK::AdGroup::ConversionEvent::TaggedSymbol)
+        INITIATED_CHECKOUT =
+          T.let(
+            :initiated_checkout,
+            WhopSDK::AdGroup::ConversionEvent::TaggedSymbol
+          )
+        ADD_PAYMENT_INFO =
+          T.let(
+            :add_payment_info,
+            WhopSDK::AdGroup::ConversionEvent::TaggedSymbol
+          )
+        COMPLETE_REGISTRATION =
+          T.let(
+            :complete_registration,
+            WhopSDK::AdGroup::ConversionEvent::TaggedSymbol
+          )
+        LEAD = T.let(:lead, WhopSDK::AdGroup::ConversionEvent::TaggedSymbol)
+        CONTENT_VIEW =
+          T.let(:content_view, WhopSDK::AdGroup::ConversionEvent::TaggedSymbol)
+        SEARCH = T.let(:search, WhopSDK::AdGroup::ConversionEvent::TaggedSymbol)
+        CONTACT =
+          T.let(:contact, WhopSDK::AdGroup::ConversionEvent::TaggedSymbol)
+        CUSTOMIZE_PRODUCT =
+          T.let(
+            :customize_product,
+            WhopSDK::AdGroup::ConversionEvent::TaggedSymbol
+          )
+        DONATE = T.let(:donate, WhopSDK::AdGroup::ConversionEvent::TaggedSymbol)
+        FIND_LOCATION =
+          T.let(:find_location, WhopSDK::AdGroup::ConversionEvent::TaggedSymbol)
+        SCHEDULE =
+          T.let(:schedule, WhopSDK::AdGroup::ConversionEvent::TaggedSymbol)
+        START_TRIAL =
+          T.let(:start_trial, WhopSDK::AdGroup::ConversionEvent::TaggedSymbol)
+        SUBMIT_APPLICATION =
+          T.let(
+            :submit_application,
+            WhopSDK::AdGroup::ConversionEvent::TaggedSymbol
+          )
+        SUBSCRIBE =
+          T.let(:subscribe, WhopSDK::AdGroup::ConversionEvent::TaggedSymbol)
+      end
+
+      # Where results happen: website, profile (IG/FB), messaging (DM), on_ad
+      # (engagement), or the lead destinations (instant_forms,
+      # instant_forms_and_messenger, website_and_instant_forms).
+      module ConversionLocation
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::AdGroup::ConversionLocation) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        WEBSITE =
+          T.let(:website, WhopSDK::AdGroup::ConversionLocation::TaggedSymbol)
+        PROFILE =
+          T.let(:profile, WhopSDK::AdGroup::ConversionLocation::TaggedSymbol)
+        MESSAGING =
+          T.let(:messaging, WhopSDK::AdGroup::ConversionLocation::TaggedSymbol)
+        ON_AD =
+          T.let(:on_ad, WhopSDK::AdGroup::ConversionLocation::TaggedSymbol)
+        INSTANT_FORMS =
+          T.let(
+            :instant_forms,
+            WhopSDK::AdGroup::ConversionLocation::TaggedSymbol
+          )
+        INSTANT_FORMS_AND_MESSENGER =
+          T.let(
+            :instant_forms_and_messenger,
+            WhopSDK::AdGroup::ConversionLocation::TaggedSymbol
+          )
+        WEBSITE_AND_INSTANT_FORMS =
+          T.let(
+            :website_and_instant_forms,
+            WhopSDK::AdGroup::ConversionLocation::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::AdGroup::ConversionLocation::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # The current delivery state, mirroring the Delivery column in the ads dashboard.
+      # When several states apply at once, the highest-precedence one is returned.
+      module DeliveryStatus
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::AdGroup::DeliveryStatus) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        ALL_ADS_REJECTED =
+          T.let(
+            :all_ads_rejected,
+            WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol
+          )
+        REJECTED =
+          T.let(:rejected, WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol)
+        DRAFT = T.let(:draft, WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol)
+        NO_ADS = T.let(:no_ads, WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol)
+        CAMPAIGN_PAUSED =
+          T.let(
+            :campaign_paused,
+            WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol
+          )
+        PAUSED = T.let(:paused, WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol)
+        PROCESSING =
+          T.let(:processing, WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol)
+        ISSUES = T.let(:issues, WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol)
+        SCHEDULED =
+          T.let(:scheduled, WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol)
+        COMPLETED =
+          T.let(:completed, WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol)
+        ADS_OFF =
+          T.let(:ads_off, WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol)
+        LEARNING_LIMITED =
+          T.let(
+            :learning_limited,
+            WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol
+          )
+        LEARNING =
+          T.let(:learning, WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol)
+        ACTIVE = T.let(:active, WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol)
+
+        sig do
+          override.returns(
+            T::Array[WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
       class Issue < WhopSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(WhopSDK::AdGroup::Issue, WhopSDK::Internal::AnyHash)
           end
 
-        # Whop's canonical category that a raw platform issue is bucketed into.
-        sig do
-          returns(T.nilable(WhopSDK::AdGroup::Issue::Category::TaggedSymbol))
-        end
-        attr_accessor :category
+        # Unique identifier for the issue.
+        sig { returns(String) }
+        attr_accessor :id
 
-        # When the issue was first reported.
-        sig { returns(Time) }
-        attr_accessor :created_at
+        # A description of what the issue is and how it can be resolved.
+        sig { returns(String) }
+        attr_accessor :message
 
-        # Current resolution status.
-        sig { returns(WhopSDK::AdGroup::Issue::ResolutionStatus::TaggedSymbol) }
-        attr_accessor :resolution_status
-
-        # The Whop ID of the ad object this issue is on (the ad, ad group, or campaign).
-        # Null when the issue isn't tied to a local object.
+        # The ID of the campaign, ad group, or ad the issue is attached to.
         sig { returns(T.nilable(String)) }
         attr_accessor :resource_id
 
-        # The kind of ad object this issue is on: `ad`, `ad_group`, or `ad_campaign`.
-        # Pairs with `resourceId`.
-        sig { returns(String) }
+        # The type of resource the issue is attached to.
+        sig { returns(WhopSDK::AdGroup::Issue::ResourceType::TaggedSymbol) }
         attr_accessor :resource_type
 
-        # Finer-grained sub-bucket within the category (e.g. the specific Meta policy for
-        # a rejection).
-        sig { returns(T.nilable(String)) }
-        attr_accessor :subtype
-
-        # A platform-reported issue on an ad object (rejection, policy flag, etc.).
+        # Open issues affecting this ad group and its descendant ads. Empty when there are
+        # none.
         sig do
           params(
-            category: T.nilable(WhopSDK::AdGroup::Issue::Category::OrSymbol),
-            created_at: Time,
-            resolution_status:
-              WhopSDK::AdGroup::Issue::ResolutionStatus::OrSymbol,
+            id: String,
+            message: String,
             resource_id: T.nilable(String),
-            resource_type: String,
-            subtype: T.nilable(String)
+            resource_type: WhopSDK::AdGroup::Issue::ResourceType::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(
-          # Whop's canonical category that a raw platform issue is bucketed into.
-          category:,
-          # When the issue was first reported.
-          created_at:,
-          # Current resolution status.
-          resolution_status:,
-          # The Whop ID of the ad object this issue is on (the ad, ad group, or campaign).
-          # Null when the issue isn't tied to a local object.
+          # Unique identifier for the issue.
+          id:,
+          # A description of what the issue is and how it can be resolved.
+          message:,
+          # The ID of the campaign, ad group, or ad the issue is attached to.
           resource_id:,
-          # The kind of ad object this issue is on: `ad`, `ad_group`, or `ad_campaign`.
-          # Pairs with `resourceId`.
-          resource_type:,
-          # Finer-grained sub-bucket within the category (e.g. the specific Meta policy for
-          # a rejection).
-          subtype:
+          # The type of resource the issue is attached to.
+          resource_type:
         )
         end
 
         sig do
           override.returns(
             {
-              category:
-                T.nilable(WhopSDK::AdGroup::Issue::Category::TaggedSymbol),
-              created_at: Time,
-              resolution_status:
-                WhopSDK::AdGroup::Issue::ResolutionStatus::TaggedSymbol,
+              id: String,
+              message: String,
               resource_id: T.nilable(String),
-              resource_type: String,
-              subtype: T.nilable(String)
+              resource_type: WhopSDK::AdGroup::Issue::ResourceType::TaggedSymbol
             }
           )
         end
         def to_hash
         end
 
-        # Whop's canonical category that a raw platform issue is bucketed into.
-        module Category
+        # The type of resource the issue is attached to.
+        module ResourceType
           extend WhopSDK::Internal::Type::Enum
 
           TaggedSymbol =
-            T.type_alias { T.all(Symbol, WhopSDK::AdGroup::Issue::Category) }
+            T.type_alias do
+              T.all(Symbol, WhopSDK::AdGroup::Issue::ResourceType)
+            end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          POLICY_REJECTION =
+          AD_CAMPAIGN =
             T.let(
-              :policy_rejection,
-              WhopSDK::AdGroup::Issue::Category::TaggedSymbol
+              :ad_campaign,
+              WhopSDK::AdGroup::Issue::ResourceType::TaggedSymbol
             )
-          CREATIVE_MEDIA =
+          AD_GROUP =
             T.let(
-              :creative_media,
-              WhopSDK::AdGroup::Issue::Category::TaggedSymbol
+              :ad_group,
+              WhopSDK::AdGroup::Issue::ResourceType::TaggedSymbol
             )
-          AUDIENCE_TARGETING =
-            T.let(
-              :audience_targeting,
-              WhopSDK::AdGroup::Issue::Category::TaggedSymbol
-            )
-          AD_VOLUME_LIMIT =
-            T.let(
-              :ad_volume_limit,
-              WhopSDK::AdGroup::Issue::Category::TaggedSymbol
-            )
+          AD = T.let(:ad, WhopSDK::AdGroup::Issue::ResourceType::TaggedSymbol)
 
           sig do
             override.returns(
-              T::Array[WhopSDK::AdGroup::Issue::Category::TaggedSymbol]
+              T::Array[WhopSDK::AdGroup::Issue::ResourceType::TaggedSymbol]
             )
           end
           def self.values
           end
         end
+      end
 
-        # Current resolution status.
-        module ResolutionStatus
-          extend WhopSDK::Internal::Type::Enum
+      # The Whop pixel conversion event whose attributed count represents results — the
+      # optimization goal, or the highest-volume attributed event for campaigns that
+      # budget per ad group. Null when the goal isn't a Whop-attributed event.
+      module ResultEvent
+        extend WhopSDK::Internal::Type::Enum
 
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, WhopSDK::AdGroup::Issue::ResolutionStatus)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, WhopSDK::AdGroup::ResultEvent) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          OPEN =
-            T.let(
-              :open,
-              WhopSDK::AdGroup::Issue::ResolutionStatus::TaggedSymbol
-            )
-          RESOLVED =
-            T.let(
-              :resolved,
-              WhopSDK::AdGroup::Issue::ResolutionStatus::TaggedSymbol
-            )
-          ACKNOWLEDGED =
-            T.let(
-              :acknowledged,
-              WhopSDK::AdGroup::Issue::ResolutionStatus::TaggedSymbol
-            )
+        PURCHASE = T.let(:purchase, WhopSDK::AdGroup::ResultEvent::TaggedSymbol)
+        LEAD = T.let(:lead, WhopSDK::AdGroup::ResultEvent::TaggedSymbol)
+        SCHEDULE = T.let(:schedule, WhopSDK::AdGroup::ResultEvent::TaggedSymbol)
+        SUBMIT_APPLICATION =
+          T.let(
+            :submit_application,
+            WhopSDK::AdGroup::ResultEvent::TaggedSymbol
+          )
+        CONTACT = T.let(:contact, WhopSDK::AdGroup::ResultEvent::TaggedSymbol)
+        COMPLETE_REGISTRATION =
+          T.let(
+            :complete_registration,
+            WhopSDK::AdGroup::ResultEvent::TaggedSymbol
+          )
+        VIEW_CONTENT =
+          T.let(:view_content, WhopSDK::AdGroup::ResultEvent::TaggedSymbol)
+        ADD_TO_CART =
+          T.let(:add_to_cart, WhopSDK::AdGroup::ResultEvent::TaggedSymbol)
+        CUSTOM = T.let(:custom, WhopSDK::AdGroup::ResultEvent::TaggedSymbol)
 
-          sig do
-            override.returns(
-              T::Array[WhopSDK::AdGroup::Issue::ResolutionStatus::TaggedSymbol]
-            )
-          end
-          def self.values
-          end
+        sig do
+          override.returns(
+            T::Array[WhopSDK::AdGroup::ResultEvent::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # Delivery status of the ad group.
+      module Status
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol = T.type_alias { T.all(Symbol, WhopSDK::AdGroup::Status) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        ACTIVE = T.let(:active, WhopSDK::AdGroup::Status::TaggedSymbol)
+        PAUSED = T.let(:paused, WhopSDK::AdGroup::Status::TaggedSymbol)
+        REJECTED = T.let(:rejected, WhopSDK::AdGroup::Status::TaggedSymbol)
+
+        sig do
+          override.returns(T::Array[WhopSDK::AdGroup::Status::TaggedSymbol])
+        end
+        def self.values
         end
       end
     end

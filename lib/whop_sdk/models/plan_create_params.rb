@@ -7,11 +7,12 @@ module WhopSDK
       extend WhopSDK::Internal::Type::RequestParameters::Converter
       include WhopSDK::Internal::Type::RequestParameters
 
-      # @!attribute product_id
-      #   The unique identifier of the product to attach this plan to.
+      # @!attribute account_id
+      #   The unique identifier of the account to create this plan for. Defaults to the
+      #   caller's account.
       #
-      #   @return [String]
-      required :product_id, String
+      #   @return [String, nil]
+      optional :account_id, String
 
       # @!attribute adaptive_pricing_enabled
       #   Whether this plan accepts local currency payments via adaptive pricing.
@@ -20,8 +21,7 @@ module WhopSDK
       optional :adaptive_pricing_enabled, WhopSDK::Internal::Type::Boolean, nil?: true
 
       # @!attribute billing_period
-      #   The number of days between recurring charges. For example, 30 for monthly or 365
-      #   for yearly.
+      #   Recurring billing interval in days, such as 30 for monthly or 365 for annual.
       #
       #   @return [Integer, nil]
       optional :billing_period, Integer, nil?: true
@@ -31,13 +31,6 @@ module WhopSDK
       #
       #   @return [Object, nil]
       optional :checkout_styling, WhopSDK::Internal::Type::Unknown, nil?: true
-
-      # @!attribute company_id
-      #   The unique identifier of the company to create this plan for. Defaults to the
-      #   caller's company.
-      #
-      #   @return [String, nil]
-      optional :company_id, String
 
       # @!attribute currency
       #   The three-letter ISO currency code for the plan's pricing. Defaults to USD.
@@ -61,7 +54,7 @@ module WhopSDK
       optional :description, String, nil?: true
 
       # @!attribute expiration_days
-      #   The number of days until the membership expires and access is revoked.
+      #   Access duration in days before the membership expires.
       #
       #   @return [Integer, nil]
       optional :expiration_days, Integer, nil?: true
@@ -73,14 +66,13 @@ module WhopSDK
       optional :image, -> { WhopSDK::PlanCreateParams::Image }, nil?: true
 
       # @!attribute initial_price
-      #   The amount charged on the first purchase, in the plan's currency (e.g., 10.43
-      #   for $10.43).
+      #   Initial amount charged in the plan's currency, e.g. 10.43 for $10.43.
       #
       #   @return [Float, nil]
       optional :initial_price, Float, nil?: true
 
       # @!attribute internal_notes
-      #   Private notes visible only to the business owner. Not shown to customers.
+      #   Private notes visible only to the account owner. Not shown to customers.
       #
       #   @return [String, nil]
       optional :internal_notes, String, nil?: true
@@ -93,7 +85,8 @@ module WhopSDK
 
       # @!attribute metadata
       #   Custom key-value pairs to store on the plan. Included in webhook payloads for
-      #   payment and membership events.
+      #   payment and membership events. Max 50 keys, 100 chars per key, 500 chars per
+      #   string value.
       #
       #   @return [Object, nil]
       optional :metadata, WhopSDK::Internal::Type::Unknown, nil?: true
@@ -106,7 +99,7 @@ module WhopSDK
 
       # @!attribute payment_method_configuration
       #   Explicit payment method configuration for the plan. When not provided, the
-      #   company's defaults apply.
+      #   account's defaults apply.
       #
       #   @return [WhopSDK::Models::PlanCreateParams::PaymentMethodConfiguration, nil]
       optional :payment_method_configuration,
@@ -114,13 +107,19 @@ module WhopSDK
                nil?: true
 
       # @!attribute plan_type
-      #   The billing type of the plan, such as one_time or renewal.
+      #   Plan billing type, such as `one_time` or `renewal`.
       #
       #   @return [String, nil]
       optional :plan_type, String
 
+      # @!attribute product_id
+      #   The unique identifier of the product to attach this plan to.
+      #
+      #   @return [String, nil]
+      optional :product_id, String
+
       # @!attribute release_method
-      #   The method used to sell this plan (e.g., buy_now, waitlist).
+      #   Sales method for this plan, such as `buy_now` or `waitlist`.
       #
       #   @return [String, nil]
       optional :release_method, String
@@ -133,7 +132,7 @@ module WhopSDK
       optional :renewal_price, Float, nil?: true
 
       # @!attribute split_pay_required_payments
-      #   The number of installment payments required before the subscription pauses.
+      #   Installment payments required before the subscription pauses.
       #
       #   @return [Integer, nil]
       optional :split_pay_required_payments, Integer, nil?: true
@@ -146,7 +145,7 @@ module WhopSDK
       optional :stock, Integer, nil?: true
 
       # @!attribute three_ds_level
-      #   The 3D Secure behavior for this plan. Send null to inherit the account default.
+      #   3D Secure behavior for this plan. Send `null` to inherit the account default.
       #
       #   @return [Symbol, WhopSDK::Models::PlanCreateParams::ThreeDSLevel, nil]
       optional :three_ds_level, enum: -> { WhopSDK::PlanCreateParams::ThreeDSLevel }
@@ -158,7 +157,7 @@ module WhopSDK
       optional :title, String, nil?: true
 
       # @!attribute trial_period_days
-      #   The number of free trial days before the first charge on a recurring plan.
+      #   Free trial duration before the first recurring charge.
       #
       #   @return [Integer, nil]
       optional :trial_period_days, Integer, nil?: true
@@ -175,19 +174,17 @@ module WhopSDK
       #   @return [String, nil]
       optional :visibility, String
 
-      # @!method initialize(product_id:, adaptive_pricing_enabled: nil, billing_period: nil, checkout_styling: nil, company_id: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, metadata: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, release_method: nil, renewal_price: nil, split_pay_required_payments: nil, stock: nil, three_ds_level: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
+      # @!method initialize(account_id: nil, adaptive_pricing_enabled: nil, billing_period: nil, checkout_styling: nil, currency: nil, custom_fields: nil, description: nil, expiration_days: nil, image: nil, initial_price: nil, internal_notes: nil, legacy_payment_method_controls: nil, metadata: nil, override_tax_type: nil, payment_method_configuration: nil, plan_type: nil, product_id: nil, release_method: nil, renewal_price: nil, split_pay_required_payments: nil, stock: nil, three_ds_level: nil, title: nil, trial_period_days: nil, unlimited_stock: nil, visibility: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::PlanCreateParams} for more details.
       #
-      #   @param product_id [String] The unique identifier of the product to attach this plan to.
+      #   @param account_id [String] The unique identifier of the account to create this plan for. Defaults to the ca
       #
       #   @param adaptive_pricing_enabled [Boolean, nil] Whether this plan accepts local currency payments via adaptive pricing.
       #
-      #   @param billing_period [Integer, nil] The number of days between recurring charges. For example, 30 for monthly or 365
+      #   @param billing_period [Integer, nil] Recurring billing interval in days, such as 30 for monthly or 365 for annual.
       #
       #   @param checkout_styling [Object, nil] Checkout styling overrides for this plan.
-      #
-      #   @param company_id [String] The unique identifier of the company to create this plan for. Defaults to the ca
       #
       #   @param currency [String] The three-letter ISO currency code for the plan's pricing. Defaults to USD.
       #
@@ -195,13 +192,13 @@ module WhopSDK
       #
       #   @param description [String, nil] A text description of the plan displayed to customers on the product page.
       #
-      #   @param expiration_days [Integer, nil] The number of days until the membership expires and access is revoked.
+      #   @param expiration_days [Integer, nil] Access duration in days before the membership expires.
       #
       #   @param image [WhopSDK::Models::PlanCreateParams::Image, nil] An image displayed on the product page to represent this plan.
       #
-      #   @param initial_price [Float, nil] The amount charged on the first purchase, in the plan's currency (e.g., 10.43 fo
+      #   @param initial_price [Float, nil] Initial amount charged in the plan's currency, e.g. 10.43 for $10.43.
       #
-      #   @param internal_notes [String, nil] Private notes visible only to the business owner. Not shown to customers.
+      #   @param internal_notes [String, nil] Private notes visible only to the account owner. Not shown to customers.
       #
       #   @param legacy_payment_method_controls [Boolean, nil] Whether this plan uses legacy payment method controls.
       #
@@ -209,23 +206,25 @@ module WhopSDK
       #
       #   @param override_tax_type [String] Override the default tax classification for this specific plan.
       #
-      #   @param payment_method_configuration [WhopSDK::Models::PlanCreateParams::PaymentMethodConfiguration, nil] Explicit payment method configuration for the plan. When not provided, the compa
+      #   @param payment_method_configuration [WhopSDK::Models::PlanCreateParams::PaymentMethodConfiguration, nil] Explicit payment method configuration for the plan. When not provided, the accou
       #
-      #   @param plan_type [String] The billing type of the plan, such as one_time or renewal.
+      #   @param plan_type [String] Plan billing type, such as `one_time` or `renewal`.
       #
-      #   @param release_method [String] The method used to sell this plan (e.g., buy_now, waitlist).
+      #   @param product_id [String] The unique identifier of the product to attach this plan to.
+      #
+      #   @param release_method [String] Sales method for this plan, such as `buy_now` or `waitlist`.
       #
       #   @param renewal_price [Float, nil] The amount charged each billing period for recurring plans, in the plan's curren
       #
-      #   @param split_pay_required_payments [Integer, nil] The number of installment payments required before the subscription pauses.
+      #   @param split_pay_required_payments [Integer, nil] Installment payments required before the subscription pauses.
       #
       #   @param stock [Integer, nil] The maximum number of units available for purchase. Ignored when unlimited_stock
       #
-      #   @param three_ds_level [Symbol, WhopSDK::Models::PlanCreateParams::ThreeDSLevel] The 3D Secure behavior for this plan. Send null to inherit the account default.
+      #   @param three_ds_level [Symbol, WhopSDK::Models::PlanCreateParams::ThreeDSLevel] 3D Secure behavior for this plan. Send `null` to inherit the account default.
       #
       #   @param title [String, nil] The display name of the plan shown to customers on the product page.
       #
-      #   @param trial_period_days [Integer, nil] The number of free trial days before the first charge on a recurring plan.
+      #   @param trial_period_days [Integer, nil] Free trial duration before the first recurring charge.
       #
       #   @param unlimited_stock [Boolean, nil] Whether the plan has unlimited stock. When true, the stock field is ignored.
       #
@@ -332,14 +331,14 @@ module WhopSDK
 
         # @!method initialize(disabled: nil, enabled: nil, include_platform_defaults: nil)
         #   Explicit payment method configuration for the plan. When not provided, the
-        #   company's defaults apply.
+        #   account's defaults apply.
         #
         #   @param disabled [Array<String>]
         #   @param enabled [Array<String>]
         #   @param include_platform_defaults [Boolean]
       end
 
-      # The 3D Secure behavior for this plan. Send null to inherit the account default.
+      # 3D Secure behavior for this plan. Send `null` to inherit the account default.
       module ThreeDSLevel
         extend WhopSDK::Internal::Type::Enum
 

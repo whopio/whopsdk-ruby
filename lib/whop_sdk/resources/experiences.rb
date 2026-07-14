@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Experiences
     class Experiences
       # Required permissions:
       #

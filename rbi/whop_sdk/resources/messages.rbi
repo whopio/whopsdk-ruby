@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Messages
     class Messages
       # Send a new message in an experience chat, DM, or group chat channel. Supports
       # text content, attachments, polls, and replies.

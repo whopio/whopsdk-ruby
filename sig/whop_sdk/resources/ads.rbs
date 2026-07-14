@@ -1,36 +1,76 @@
 module WhopSDK
   module Resources
     class Ads
+      def create: (
+        ?ad_group: top,
+        ?ad_group_id: String,
+        ?call_to_action: WhopSDK::Models::AdCreateParams::call_to_action,
+        ?creatives: ::Array[WhopSDK::AdCreateParams::Creative],
+        ?descriptions: ::Array[String],
+        ?headlines: ::Array[String],
+        ?lead_form: WhopSDK::AdCreateParams::LeadForm,
+        ?lead_form_id: String,
+        ?messaging_config: WhopSDK::AdCreateParams::MessagingConfig,
+        ?multi_advertiser_ads: bool,
+        ?post_id: String,
+        ?post_source: WhopSDK::Models::AdCreateParams::post_source,
+        ?primary_texts: ::Array[String],
+        ?social_accounts: ::Array[WhopSDK::AdCreateParams::SocialAccount],
+        ?title: String,
+        ?url: String,
+        ?url_parameters: top,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Ad
+
       def retrieve: (
         String id,
-        ?stats_from: Time?,
-        ?stats_to: Time?,
+        ?stats_from: String,
+        ?stats_to: String,
+        ?time_zone: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Ad
+
+      def update: (
+        String id,
+        ?call_to_action: WhopSDK::Models::AdUpdateParams::call_to_action,
+        ?creatives: ::Array[WhopSDK::AdUpdateParams::Creative],
+        ?descriptions: ::Array[String],
+        ?headlines: ::Array[String],
+        ?lead_form: WhopSDK::AdUpdateParams::LeadForm,
+        ?lead_form_id: String,
+        ?messaging_config: WhopSDK::AdUpdateParams::MessagingConfig,
+        ?multi_advertiser_ads: bool,
+        ?post_id: String,
+        ?post_source: WhopSDK::Models::AdUpdateParams::post_source,
+        ?primary_texts: ::Array[String],
+        ?social_accounts: ::Array[WhopSDK::AdUpdateParams::SocialAccount],
+        ?title: String,
+        ?url: String,
+        ?url_parameters: top,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Ad
 
       def list: (
-        ?ad_campaign_id: String?,
-        ?ad_campaign_ids: ::Array[String]?,
-        ?ad_group_id: String?,
-        ?ad_group_ids: ::Array[String]?,
-        ?after: String?,
-        ?before: String?,
-        ?campaign_id: String?,
-        ?company_id: String?,
-        ?created_after: Time?,
-        ?created_before: Time?,
-        ?direction: WhopSDK::Models::direction?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?order: WhopSDK::Models::AdListParams::order?,
-        ?order_by: WhopSDK::Models::AdListParams::order_by?,
-        ?order_direction: WhopSDK::Models::direction?,
-        ?query: String?,
-        ?stats_from: Time?,
-        ?stats_to: Time?,
-        ?status: WhopSDK::Models::external_ad_status?,
+        ?account_id: String,
+        ?ad_campaign_id: String,
+        ?ad_group_id: String,
+        ?after: String,
+        ?before: String,
+        ?created_after: String,
+        ?created_before: String,
+        ?direction: WhopSDK::Models::AdListParams::direction,
+        ?first: Integer,
+        ?last: Integer,
+        ?order: WhopSDK::Models::AdListParams::order,
+        ?query: String,
+        ?stats_from: String,
+        ?stats_to: String,
+        ?status: WhopSDK::Models::AdListParams::status,
+        ?time_zone: String,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::AdListResponse]
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Ad]
+
+      def delete: (String id, ?request_options: WhopSDK::request_opts) -> bool
 
       def pause: (
         String id,

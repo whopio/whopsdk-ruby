@@ -1,0 +1,40 @@
+module WhopSDK
+  module Resources
+    class Events
+      def create: (
+        account_id: String,
+        event_name: WhopSDK::Models::EventCreateParams::event_name,
+        ?action_source: WhopSDK::Models::EventCreateParams::action_source?,
+        ?context: WhopSDK::EventCreateParams::Context?,
+        ?currency: WhopSDK::Models::EventCreateParams::currency?,
+        ?custom_name: String?,
+        ?duration: Integer?,
+        ?event_id: String?,
+        ?event_time: Time?,
+        ?plan_id: String?,
+        ?product_id: String?,
+        ?referrer_url: String?,
+        ?resumed: bool?,
+        ?source: String?,
+        ?title: String?,
+        ?url: String?,
+        ?user: WhopSDK::EventCreateParams::User?,
+        ?value: Float?,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::EventCreateResponse
+
+      def list: (
+        person_id: String,
+        ?account_id: String,
+        ?after: String,
+        ?before: String,
+        ?first: Integer,
+        ?from: Integer,
+        ?to: Integer,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::EventListResponse]
+
+      def initialize: (client: WhopSDK::Client) -> void
+    end
+  end
+end

@@ -25,19 +25,24 @@ module WhopSDK
         {
           id: String,
           amount: String,
+          available_at: Time?,
           created_at: Time?,
           currency: WhopSDK::Models::FinancialActivityListResponse::Data::Currency,
           line_type: String,
           object: WhopSDK::Models::FinancialActivityListResponse::Data::object,
           posted_at: Time,
           resource: WhopSDK::Models::FinancialActivityListResponse::Data::resource?,
-          source: WhopSDK::Models::FinancialActivityListResponse::Data::Source?
+          source: WhopSDK::Models::FinancialActivityListResponse::Data::Source?,
+          account: WhopSDK::Models::FinancialActivityListResponse::Data::account,
+          ledger_account_id: String?
         }
 
       class Data < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor amount: String
+
+        attr_accessor available_at: Time?
 
         attr_accessor created_at: Time?
 
@@ -53,28 +58,42 @@ module WhopSDK
 
         attr_accessor source: WhopSDK::Models::FinancialActivityListResponse::Data::Source?
 
+        attr_reader account: WhopSDK::Models::FinancialActivityListResponse::Data::account?
+
+        def account=: (
+          WhopSDK::Models::FinancialActivityListResponse::Data::account
+        ) -> WhopSDK::Models::FinancialActivityListResponse::Data::account
+
+        attr_accessor ledger_account_id: String?
+
         def initialize: (
           id: String,
           amount: String,
+          available_at: Time?,
           created_at: Time?,
           currency: WhopSDK::Models::FinancialActivityListResponse::Data::Currency,
           line_type: String,
           object: WhopSDK::Models::FinancialActivityListResponse::Data::object,
           posted_at: Time,
           resource: WhopSDK::Models::FinancialActivityListResponse::Data::resource?,
-          source: WhopSDK::Models::FinancialActivityListResponse::Data::Source?
+          source: WhopSDK::Models::FinancialActivityListResponse::Data::Source?,
+          ?account: WhopSDK::Models::FinancialActivityListResponse::Data::account,
+          ?ledger_account_id: String?
         ) -> void
 
         def to_hash: -> {
           id: String,
           amount: String,
+          available_at: Time?,
           created_at: Time?,
           currency: WhopSDK::Models::FinancialActivityListResponse::Data::Currency,
           line_type: String,
           object: WhopSDK::Models::FinancialActivityListResponse::Data::object,
           posted_at: Time,
           resource: WhopSDK::Models::FinancialActivityListResponse::Data::resource?,
-          source: WhopSDK::Models::FinancialActivityListResponse::Data::Source?
+          source: WhopSDK::Models::FinancialActivityListResponse::Data::Source?,
+          account: WhopSDK::Models::FinancialActivityListResponse::Data::account,
+          ledger_account_id: String?
         }
 
         type currency = { code: String, precision: String }
@@ -105,6 +124,8 @@ module WhopSDK
           | WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2
           | WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3
           | WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember4
+          | WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember5
+          | WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember6
 
         module Resource
           extend WhopSDK::Internal::Type::Union
@@ -207,7 +228,8 @@ module WhopSDK
             {
               id: String,
               object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::object,
-              owner: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::owner?
+              status: String,
+              title: String
             }
 
           class UnionMember2 < WhopSDK::Internal::Type::BaseModel
@@ -215,18 +237,59 @@ module WhopSDK
 
             attr_accessor object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::object
 
-            attr_accessor owner: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::owner?
+            attr_accessor status: String
+
+            attr_accessor title: String
 
             def initialize: (
               id: String,
               object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::object,
-              owner: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::owner?
+              status: String,
+              title: String
             ) -> void
 
             def to_hash: -> {
               id: String,
               object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::object,
-              owner: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::owner?
+              status: String,
+              title: String
+            }
+
+            type object = :bounty
+
+            module Object
+              extend WhopSDK::Internal::Type::Enum
+
+              BOUNTY: :bounty
+
+              def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::object]
+            end
+          end
+
+          type union_member3 =
+            {
+              id: String,
+              object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::object,
+              owner: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::owner?
+            }
+
+          class UnionMember3 < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::object
+
+            attr_accessor owner: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::owner?
+
+            def initialize: (
+              id: String,
+              object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::object,
+              owner: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::owner?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::object,
+              owner: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::owner?
             }
 
             type object = :ledger_account
@@ -236,12 +299,12 @@ module WhopSDK
 
               LEDGER_ACCOUNT: :ledger_account
 
-              def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::object]
+              def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::object]
             end
 
             type owner =
-              WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::Owner::UnionMember0
-              | WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::Owner::UnionMember1
+              WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::Owner::UnionMember0
+              | WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::Owner::UnionMember1
 
             module Owner
               extend WhopSDK::Internal::Type::Union
@@ -250,7 +313,7 @@ module WhopSDK
                 {
                   id: String,
                   logo_url: String?,
-                  object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::Owner::UnionMember0::object,
+                  object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::Owner::UnionMember0::object,
                   route: String?,
                   title: String?
                 }
@@ -260,7 +323,7 @@ module WhopSDK
 
                 attr_accessor logo_url: String?
 
-                attr_accessor object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::Owner::UnionMember0::object
+                attr_accessor object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::Owner::UnionMember0::object
 
                 attr_accessor route: String?
 
@@ -269,7 +332,7 @@ module WhopSDK
                 def initialize: (
                   id: String,
                   logo_url: String?,
-                  object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::Owner::UnionMember0::object,
+                  object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::Owner::UnionMember0::object,
                   route: String?,
                   title: String?
                 ) -> void
@@ -277,7 +340,7 @@ module WhopSDK
                 def to_hash: -> {
                   id: String,
                   logo_url: String?,
-                  object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::Owner::UnionMember0::object,
+                  object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::Owner::UnionMember0::object,
                   route: String?,
                   title: String?
                 }
@@ -289,7 +352,7 @@ module WhopSDK
 
                   ACCOUNT: :account
 
-                  def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::Owner::UnionMember0::object]
+                  def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::Owner::UnionMember0::object]
                 end
               end
 
@@ -297,7 +360,7 @@ module WhopSDK
                 {
                   id: String,
                   name: String?,
-                  object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::Owner::UnionMember1::object,
+                  object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::Owner::UnionMember1::object,
                   profile_picture_url: String?,
                   username: String?
                 }
@@ -307,7 +370,7 @@ module WhopSDK
 
                 attr_accessor name: String?
 
-                attr_accessor object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::Owner::UnionMember1::object
+                attr_accessor object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::Owner::UnionMember1::object
 
                 attr_accessor profile_picture_url: String?
 
@@ -316,7 +379,7 @@ module WhopSDK
                 def initialize: (
                   id: String,
                   name: String?,
-                  object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::Owner::UnionMember1::object,
+                  object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::Owner::UnionMember1::object,
                   profile_picture_url: String?,
                   username: String?
                 ) -> void
@@ -324,7 +387,7 @@ module WhopSDK
                 def to_hash: -> {
                   id: String,
                   name: String?,
-                  object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::Owner::UnionMember1::object,
+                  object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::Owner::UnionMember1::object,
                   profile_picture_url: String?,
                   username: String?
                 }
@@ -336,57 +399,57 @@ module WhopSDK
 
                   USER: :user
 
-                  def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::Owner::UnionMember1::object]
+                  def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::Owner::UnionMember1::object]
                 end
               end
 
-              def self?.variants: -> ::Array[WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember2::owner]
+              def self?.variants: -> ::Array[WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::owner]
             end
           end
 
-          type union_member3 =
+          type union_member4 =
             {
               id: String,
-              bank: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::Bank?,
-              card: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::Card?,
+              bank: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember4::Bank?,
+              card: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember4::Card?,
               email_identifier: String?,
               gateway_type: String?,
-              object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::object,
+              object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember4::object,
               payment_method_type: String?
             }
 
-          class UnionMember3 < WhopSDK::Internal::Type::BaseModel
+          class UnionMember4 < WhopSDK::Internal::Type::BaseModel
             attr_accessor id: String
 
-            attr_accessor bank: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::Bank?
+            attr_accessor bank: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember4::Bank?
 
-            attr_accessor card: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::Card?
+            attr_accessor card: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember4::Card?
 
             attr_accessor email_identifier: String?
 
             attr_accessor gateway_type: String?
 
-            attr_accessor object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::object
+            attr_accessor object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember4::object
 
             attr_accessor payment_method_type: String?
 
             def initialize: (
               id: String,
-              bank: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::Bank?,
-              card: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::Card?,
+              bank: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember4::Bank?,
+              card: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember4::Card?,
               email_identifier: String?,
               gateway_type: String?,
-              object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::object,
+              object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember4::object,
               payment_method_type: String?
             ) -> void
 
             def to_hash: -> {
               id: String,
-              bank: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::Bank?,
-              card: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::Card?,
+              bank: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember4::Bank?,
+              card: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember4::Card?,
               email_identifier: String?,
               gateway_type: String?,
-              object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::object,
+              object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember4::object,
               payment_method_type: String?
             }
 
@@ -461,22 +524,22 @@ module WhopSDK
 
               PAYMENT_METHOD: :payment_method
 
-              def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember3::object]
+              def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember4::object]
             end
           end
 
-          type union_member4 =
+          type union_member5 =
             {
               id: String,
               account_reference: String?,
               destination_currency_code: String?,
               institution_name: String?,
               nickname: String?,
-              object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember4::object,
+              object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember5::object,
               provider: String?
             }
 
-          class UnionMember4 < WhopSDK::Internal::Type::BaseModel
+          class UnionMember5 < WhopSDK::Internal::Type::BaseModel
             attr_accessor id: String
 
             attr_accessor account_reference: String?
@@ -487,7 +550,7 @@ module WhopSDK
 
             attr_accessor nickname: String?
 
-            attr_accessor object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember4::object
+            attr_accessor object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember5::object
 
             attr_accessor provider: String?
 
@@ -497,7 +560,7 @@ module WhopSDK
               destination_currency_code: String?,
               institution_name: String?,
               nickname: String?,
-              object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember4::object,
+              object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember5::object,
               provider: String?
             ) -> void
 
@@ -507,7 +570,7 @@ module WhopSDK
               destination_currency_code: String?,
               institution_name: String?,
               nickname: String?,
-              object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember4::object,
+              object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember5::object,
               provider: String?
             }
 
@@ -518,7 +581,99 @@ module WhopSDK
 
               PAYOUT_METHOD: :payout_method
 
-              def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember4::object]
+              def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember5::object]
+            end
+          end
+
+          type union_member6 =
+            {
+              id: String,
+              authorized_at: Time?,
+              card_id: String?,
+              cashback_usd: String?,
+              declined_reason: String?,
+              local_amount: String?,
+              local_currency: String?,
+              merchant_category: String?,
+              merchant_icon_url: String?,
+              merchant_name: String?,
+              object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember6::object,
+              posted_at: Time?,
+              status: String?,
+              usd_amount: String?
+            }
+
+          class UnionMember6 < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor authorized_at: Time?
+
+            attr_accessor card_id: String?
+
+            attr_accessor cashback_usd: String?
+
+            attr_accessor declined_reason: String?
+
+            attr_accessor local_amount: String?
+
+            attr_accessor local_currency: String?
+
+            attr_accessor merchant_category: String?
+
+            attr_accessor merchant_icon_url: String?
+
+            attr_accessor merchant_name: String?
+
+            attr_accessor object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember6::object
+
+            attr_accessor posted_at: Time?
+
+            attr_accessor status: String?
+
+            attr_accessor usd_amount: String?
+
+            def initialize: (
+              id: String,
+              authorized_at: Time?,
+              card_id: String?,
+              cashback_usd: String?,
+              declined_reason: String?,
+              local_amount: String?,
+              local_currency: String?,
+              merchant_category: String?,
+              merchant_icon_url: String?,
+              merchant_name: String?,
+              object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember6::object,
+              posted_at: Time?,
+              status: String?,
+              usd_amount: String?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              authorized_at: Time?,
+              card_id: String?,
+              cashback_usd: String?,
+              declined_reason: String?,
+              local_amount: String?,
+              local_currency: String?,
+              merchant_category: String?,
+              merchant_icon_url: String?,
+              merchant_name: String?,
+              object: WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember6::object,
+              posted_at: Time?,
+              status: String?,
+              usd_amount: String?
+            }
+
+            type object = :card_transaction
+
+            module Object
+              extend WhopSDK::Internal::Type::Enum
+
+              CARD_TRANSACTION: :card_transaction
+
+              def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityListResponse::Data::Resource::UnionMember6::object]
             end
           end
 
@@ -529,12 +684,22 @@ module WhopSDK
           {
             id: String,
             object: String,
+            amount_float: Float?,
+            chain: String?,
+            claim_url: String?,
             created_at: Time?,
             estimated_arrival: Time?,
+            from_amount: String?,
+            from_currency: String?,
             payer_name: String?,
             payout_destination: WhopSDK::Models::FinancialActivityListResponse::Data::Source::PayoutDestination?,
             payout_token_nickname: String?,
-            status: String?
+            reason: String?,
+            sender_address: String?,
+            status: String?,
+            to_amount: String?,
+            to_currency: String?,
+            tx_hash: String?
           }
 
         class Source < WhopSDK::Internal::Type::BaseModel
@@ -542,9 +707,19 @@ module WhopSDK
 
           attr_accessor object: String
 
+          attr_accessor amount_float: Float?
+
+          attr_accessor chain: String?
+
+          attr_accessor claim_url: String?
+
           attr_accessor created_at: Time?
 
           attr_accessor estimated_arrival: Time?
+
+          attr_accessor from_amount: String?
+
+          attr_accessor from_currency: String?
 
           attr_accessor payer_name: String?
 
@@ -552,28 +727,58 @@ module WhopSDK
 
           attr_accessor payout_token_nickname: String?
 
+          attr_accessor reason: String?
+
+          attr_accessor sender_address: String?
+
           attr_accessor status: String?
+
+          attr_accessor to_amount: String?
+
+          attr_accessor to_currency: String?
+
+          attr_accessor tx_hash: String?
 
           def initialize: (
             id: String,
             object: String,
+            ?amount_float: Float?,
+            ?chain: String?,
+            ?claim_url: String?,
             ?created_at: Time?,
             ?estimated_arrival: Time?,
+            ?from_amount: String?,
+            ?from_currency: String?,
             ?payer_name: String?,
             ?payout_destination: WhopSDK::Models::FinancialActivityListResponse::Data::Source::PayoutDestination?,
             ?payout_token_nickname: String?,
-            ?status: String?
+            ?reason: String?,
+            ?sender_address: String?,
+            ?status: String?,
+            ?to_amount: String?,
+            ?to_currency: String?,
+            ?tx_hash: String?
           ) -> void
 
           def to_hash: -> {
             id: String,
             object: String,
+            amount_float: Float?,
+            chain: String?,
+            claim_url: String?,
             created_at: Time?,
             estimated_arrival: Time?,
+            from_amount: String?,
+            from_currency: String?,
             payer_name: String?,
             payout_destination: WhopSDK::Models::FinancialActivityListResponse::Data::Source::PayoutDestination?,
             payout_token_nickname: String?,
-            status: String?
+            reason: String?,
+            sender_address: String?,
+            status: String?,
+            to_amount: String?,
+            to_currency: String?,
+            tx_hash: String?
           }
 
           type payout_destination = { icon_url: String?, payer_name: String? }
@@ -587,6 +792,110 @@ module WhopSDK
 
             def to_hash: -> { icon_url: String?, payer_name: String? }
           end
+        end
+
+        type account =
+          WhopSDK::Models::FinancialActivityListResponse::Data::Account::UnionMember0
+          | WhopSDK::Models::FinancialActivityListResponse::Data::Account::UnionMember1
+
+        module Account
+          extend WhopSDK::Internal::Type::Union
+
+          type union_member0 =
+            {
+              id: String,
+              logo_url: String?,
+              object: WhopSDK::Models::FinancialActivityListResponse::Data::Account::UnionMember0::object,
+              route: String?,
+              title: String?
+            }
+
+          class UnionMember0 < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor logo_url: String?
+
+            attr_accessor object: WhopSDK::Models::FinancialActivityListResponse::Data::Account::UnionMember0::object
+
+            attr_accessor route: String?
+
+            attr_accessor title: String?
+
+            def initialize: (
+              id: String,
+              logo_url: String?,
+              object: WhopSDK::Models::FinancialActivityListResponse::Data::Account::UnionMember0::object,
+              route: String?,
+              title: String?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              logo_url: String?,
+              object: WhopSDK::Models::FinancialActivityListResponse::Data::Account::UnionMember0::object,
+              route: String?,
+              title: String?
+            }
+
+            type object = :account
+
+            module Object
+              extend WhopSDK::Internal::Type::Enum
+
+              ACCOUNT: :account
+
+              def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityListResponse::Data::Account::UnionMember0::object]
+            end
+          end
+
+          type union_member1 =
+            {
+              id: String,
+              name: String?,
+              object: WhopSDK::Models::FinancialActivityListResponse::Data::Account::UnionMember1::object,
+              profile_picture_url: String?,
+              username: String?
+            }
+
+          class UnionMember1 < WhopSDK::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor name: String?
+
+            attr_accessor object: WhopSDK::Models::FinancialActivityListResponse::Data::Account::UnionMember1::object
+
+            attr_accessor profile_picture_url: String?
+
+            attr_accessor username: String?
+
+            def initialize: (
+              id: String,
+              name: String?,
+              object: WhopSDK::Models::FinancialActivityListResponse::Data::Account::UnionMember1::object,
+              profile_picture_url: String?,
+              username: String?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              name: String?,
+              object: WhopSDK::Models::FinancialActivityListResponse::Data::Account::UnionMember1::object,
+              profile_picture_url: String?,
+              username: String?
+            }
+
+            type object = :user
+
+            module Object
+              extend WhopSDK::Internal::Type::Enum
+
+              USER: :user
+
+              def self?.values: -> ::Array[WhopSDK::Models::FinancialActivityListResponse::Data::Account::UnionMember1::object]
+            end
+          end
+
+          def self?.variants: -> ::Array[WhopSDK::Models::FinancialActivityListResponse::Data::account]
         end
       end
 

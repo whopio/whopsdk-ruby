@@ -8,10 +8,14 @@ module WhopSDK
         title: String,
         accepted_submissions_limit: Integer?,
         allowed_country_codes: ::Array[String]?,
+        business_goal_type: WhopSDK::Models::BountyCreateParams::business_goal_type?,
         experience_id: String?,
         origin_account_id: String?,
         post_markdown_content: String?,
-        post_title: String?
+        post_title: String?,
+        scheduled_frequency: WhopSDK::Models::BountyCreateParams::scheduled_frequency?,
+        scheduled_publish_at: Time?,
+        scheduled_timezone: String?
       }
       & WhopSDK::Internal::Type::request_parameters
 
@@ -31,6 +35,8 @@ module WhopSDK
 
       attr_accessor allowed_country_codes: ::Array[String]?
 
+      attr_accessor business_goal_type: WhopSDK::Models::BountyCreateParams::business_goal_type?
+
       attr_accessor experience_id: String?
 
       attr_accessor origin_account_id: String?
@@ -39,6 +45,12 @@ module WhopSDK
 
       attr_accessor post_title: String?
 
+      attr_accessor scheduled_frequency: WhopSDK::Models::BountyCreateParams::scheduled_frequency?
+
+      attr_accessor scheduled_publish_at: Time?
+
+      attr_accessor scheduled_timezone: String?
+
       def initialize: (
         base_unit_amount: Float,
         currency: WhopSDK::Models::currency,
@@ -46,10 +58,14 @@ module WhopSDK
         title: String,
         ?accepted_submissions_limit: Integer?,
         ?allowed_country_codes: ::Array[String]?,
+        ?business_goal_type: WhopSDK::Models::BountyCreateParams::business_goal_type?,
         ?experience_id: String?,
         ?origin_account_id: String?,
         ?post_markdown_content: String?,
         ?post_title: String?,
+        ?scheduled_frequency: WhopSDK::Models::BountyCreateParams::scheduled_frequency?,
+        ?scheduled_publish_at: Time?,
+        ?scheduled_timezone: String?,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
@@ -60,12 +76,51 @@ module WhopSDK
         title: String,
         accepted_submissions_limit: Integer?,
         allowed_country_codes: ::Array[String]?,
+        business_goal_type: WhopSDK::Models::BountyCreateParams::business_goal_type?,
         experience_id: String?,
         origin_account_id: String?,
         post_markdown_content: String?,
         post_title: String?,
+        scheduled_frequency: WhopSDK::Models::BountyCreateParams::scheduled_frequency?,
+        scheduled_publish_at: Time?,
+        scheduled_timezone: String?,
         request_options: WhopSDK::RequestOptions
       }
+
+      type business_goal_type =
+        :clipping
+        | :post_engagement
+        | :owned_account_growth
+        | :ugc_content
+        | :local_activation
+        | :other
+
+      module BusinessGoalType
+        extend WhopSDK::Internal::Type::Enum
+
+        CLIPPING: :clipping
+        POST_ENGAGEMENT: :post_engagement
+        OWNED_ACCOUNT_GROWTH: :owned_account_growth
+        UGC_CONTENT: :ugc_content
+        LOCAL_ACTIVATION: :local_activation
+        OTHER: :other
+
+        def self?.values: -> ::Array[WhopSDK::Models::BountyCreateParams::business_goal_type]
+      end
+
+      type scheduled_frequency = :once | :hourly | :daily | :weekly | :monthly
+
+      module ScheduledFrequency
+        extend WhopSDK::Internal::Type::Enum
+
+        ONCE: :once
+        HOURLY: :hourly
+        DAILY: :daily
+        WEEKLY: :weekly
+        MONTHLY: :monthly
+
+        def self?.values: -> ::Array[WhopSDK::Models::BountyCreateParams::scheduled_frequency]
+      end
     end
   end
 end

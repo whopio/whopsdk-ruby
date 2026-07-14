@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Promo codes
     class PromoCodes
       # Some parameter documentations has been truncated, see
       # {WhopSDK::Models::PromoCodeCreateParams} for more details.

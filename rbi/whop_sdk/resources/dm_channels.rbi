@@ -2,7 +2,6 @@
 
 module WhopSDK
   module Resources
-    # Dm channels
     class DmChannels
       # Create a new DM channel between two or more users, optionally scoped to a
       # specific company. Returns the existing channel if one already exists.

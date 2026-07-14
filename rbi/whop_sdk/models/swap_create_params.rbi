@@ -15,24 +15,29 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :account_id
 
-      # Input token amount.
+      # Source token amount.
       sig { returns(String) }
       attr_accessor :amount
 
-      # Source token contract address.
+      # Source token contract address or ticker symbol, such as "USDT".
       sig { returns(String) }
       attr_accessor :from_token
 
-      # Destination token contract address.
+      # Destination token contract address or ticker symbol, such as "XAUT".
       sig { returns(String) }
       attr_accessor :to_token
 
+      # Source chain name or chain ID. Defaults to the source token's chain when
+      # omitted.
       sig { returns(T.nilable(WhopSDK::SwapCreateParams::FromChain::Variants)) }
       attr_accessor :from_chain
 
+      # Maximum slippage tolerance in basis points.
       sig { returns(T.nilable(Integer)) }
       attr_accessor :slippage_bps
 
+      # Destination chain name or chain ID. Defaults to the destination token's chain
+      # when omitted.
       sig { returns(T.nilable(WhopSDK::SwapCreateParams::ToChain::Variants)) }
       attr_accessor :to_chain
 
@@ -51,14 +56,19 @@ module WhopSDK
       def self.new(
         # Business or user account ID (biz*\* / user*\*).
         account_id:,
-        # Input token amount.
+        # Source token amount.
         amount:,
-        # Source token contract address.
+        # Source token contract address or ticker symbol, such as "USDT".
         from_token:,
-        # Destination token contract address.
+        # Destination token contract address or ticker symbol, such as "XAUT".
         to_token:,
+        # Source chain name or chain ID. Defaults to the source token's chain when
+        # omitted.
         from_chain: nil,
+        # Maximum slippage tolerance in basis points.
         slippage_bps: nil,
+        # Destination chain name or chain ID. Defaults to the destination token's chain
+        # when omitted.
         to_chain: nil,
         request_options: {}
       )
@@ -82,6 +92,8 @@ module WhopSDK
       def to_hash
       end
 
+      # Source chain name or chain ID. Defaults to the source token's chain when
+      # omitted.
       module FromChain
         extend WhopSDK::Internal::Type::Union
 
@@ -96,6 +108,8 @@ module WhopSDK
         end
       end
 
+      # Destination chain name or chain ID. Defaults to the destination token's chain
+      # when omitted.
       module ToChain
         extend WhopSDK::Internal::Type::Union
 

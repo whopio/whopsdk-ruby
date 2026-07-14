@@ -4,6 +4,11 @@ module WhopSDK
       def retrieve: (
         String id,
         ?account_id: String,
+        ?from: String,
+        ?include_balance_history: bool,
+        ?interval: WhopSDK::Models::UserRetrieveParams::interval,
+        ?time_zone: String,
+        ?to: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::User
 

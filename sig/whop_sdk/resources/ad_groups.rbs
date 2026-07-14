@@ -1,43 +1,83 @@
 module WhopSDK
   module Resources
     class AdGroups
+      def create: (
+        ad_campaign_id: String,
+        ?audiences: top,
+        ?bid_type: WhopSDK::Models::AdGroupCreateParams::bid_type,
+        ?budget_amount: Float,
+        ?budget_type: WhopSDK::Models::AdGroupCreateParams::budget_type,
+        ?conversion_event: WhopSDK::Models::AdGroupCreateParams::conversion_event?,
+        ?conversion_location: WhopSDK::Models::AdGroupCreateParams::conversion_location,
+        ?demographics: top,
+        ?desired_cost_per_result: Float,
+        ?devices: top,
+        ?dynamic_creative: bool,
+        ?ends_at: String,
+        ?frequency_cap: top,
+        ?languages: ::Array[String],
+        ?message_apps: ::Array[WhopSDK::Models::AdGroupCreateParams::message_app],
+        ?minimum_daily_spend: Float,
+        ?optimization_goal: String,
+        ?placements: top,
+        ?regions: top,
+        ?starts_at: String,
+        ?status: WhopSDK::Models::AdGroupCreateParams::status,
+        ?title: String,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::AdGroup
+
       def retrieve: (
         String id,
-        ?stats_from: Time?,
-        ?stats_to: Time?,
+        ?stats_from: String,
+        ?stats_to: String,
+        ?time_zone: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::AdGroup
 
       def update: (
         String id,
-        ?budget: Float?,
-        ?budget_type: WhopSDK::Models::ad_budget_type?,
-        ?config: WhopSDK::AdGroupUpdateParams::Config?,
-        ?daily_budget: Float?,
-        ?name: String?,
-        ?platform_config: WhopSDK::AdGroupUpdateParams::PlatformConfig?,
-        ?status: WhopSDK::Models::ad_group_status?,
-        ?title: String?,
+        ?audiences: top,
+        ?bid_type: WhopSDK::Models::AdGroupUpdateParams::bid_type,
+        ?budget_amount: Float,
+        ?budget_type: WhopSDK::Models::AdGroupUpdateParams::budget_type,
+        ?conversion_event: WhopSDK::Models::AdGroupUpdateParams::conversion_event?,
+        ?conversion_location: WhopSDK::Models::AdGroupUpdateParams::conversion_location,
+        ?demographics: top,
+        ?desired_cost_per_result: Float,
+        ?devices: top,
+        ?ends_at: String,
+        ?frequency_cap: top,
+        ?languages: ::Array[String],
+        ?message_apps: ::Array[WhopSDK::Models::AdGroupUpdateParams::message_app],
+        ?minimum_daily_spend: Float,
+        ?optimization_goal: String,
+        ?placements: top,
+        ?regions: top,
+        ?starts_at: String,
+        ?status: WhopSDK::Models::AdGroupUpdateParams::status,
+        ?title: String,
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::AdGroup
 
       def list: (
-        ?ad_campaign_id: String?,
-        ?ad_campaign_ids: ::Array[String]?,
-        ?after: String?,
-        ?before: String?,
-        ?campaign_id: String?,
-        ?company_id: String?,
-        ?created_after: Time?,
-        ?created_before: Time?,
-        ?first: Integer?,
-        ?last: Integer?,
-        ?query: String?,
-        ?stats_from: Time?,
-        ?stats_to: Time?,
-        ?status: WhopSDK::Models::ad_group_status?,
+        ?account_id: String,
+        ?ad_campaign_id: String,
+        ?after: String,
+        ?before: String,
+        ?created_after: String,
+        ?created_before: String,
+        ?direction: WhopSDK::Models::AdGroupListParams::direction,
+        ?first: Integer,
+        ?last: Integer,
+        ?order: WhopSDK::Models::AdGroupListParams::order,
+        ?query: String,
+        ?stats_from: String,
+        ?stats_to: String,
+        ?status: String,
+        ?time_zone: String,
         ?request_options: WhopSDK::request_opts
-      ) -> WhopSDK::Internal::CursorPage[WhopSDK::Models::AdGroupListResponse]
+      ) -> WhopSDK::Internal::CursorPage[WhopSDK::AdGroup]
 
       def delete: (String id, ?request_options: WhopSDK::request_opts) -> bool
 

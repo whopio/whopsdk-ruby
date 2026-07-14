@@ -1,0 +1,69 @@
+module WhopSDK
+  module Models
+    type social_account_connect_params =
+      {
+        platform: WhopSDK::Models::SocialAccountConnectParams::platform,
+        account_id: String,
+        redirect_url: String,
+        scopes: ::Array[WhopSDK::Models::SocialAccountConnectParams::scope]
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class SocialAccountConnectParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_accessor platform: WhopSDK::Models::SocialAccountConnectParams::platform
+
+      attr_reader account_id: String?
+
+      def account_id=: (String) -> String
+
+      attr_reader redirect_url: String?
+
+      def redirect_url=: (String) -> String
+
+      attr_reader scopes: ::Array[WhopSDK::Models::SocialAccountConnectParams::scope]?
+
+      def scopes=: (
+        ::Array[WhopSDK::Models::SocialAccountConnectParams::scope]
+      ) -> ::Array[WhopSDK::Models::SocialAccountConnectParams::scope]
+
+      def initialize: (
+        platform: WhopSDK::Models::SocialAccountConnectParams::platform,
+        ?account_id: String,
+        ?redirect_url: String,
+        ?scopes: ::Array[WhopSDK::Models::SocialAccountConnectParams::scope],
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        platform: WhopSDK::Models::SocialAccountConnectParams::platform,
+        account_id: String,
+        redirect_url: String,
+        scopes: ::Array[WhopSDK::Models::SocialAccountConnectParams::scope],
+        request_options: WhopSDK::RequestOptions
+      }
+
+      type platform = :meta_business
+
+      module Platform
+        extend WhopSDK::Internal::Type::Enum
+
+        META_BUSINESS: :meta_business
+
+        def self?.values: -> ::Array[WhopSDK::Models::SocialAccountConnectParams::platform]
+      end
+
+      type scope = :advertise
+
+      module Scope
+        extend WhopSDK::Internal::Type::Enum
+
+        ADVERTISE: :advertise
+
+        def self?.values: -> ::Array[WhopSDK::Models::SocialAccountConnectParams::scope]
+      end
+    end
+  end
+end

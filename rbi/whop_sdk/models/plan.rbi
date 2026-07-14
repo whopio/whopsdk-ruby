@@ -5,145 +5,139 @@ module WhopSDK
     class Plan < WhopSDK::Internal::Type::BaseModel
       OrHash = T.type_alias { T.any(WhopSDK::Plan, WhopSDK::Internal::AnyHash) }
 
-      # The ID of the plan, which will look like plan\_******\*******
+      # Plan ID, prefixed `plan_`.
       sig { returns(String) }
       attr_accessor :id
 
-      # Whether this plan accepts local currency payments via adaptive pricing
+      # Account that sells this plan; `null` for standalone invoice plans.
+      sig { returns(T.nilable(T.anything)) }
+      attr_accessor :account
+
+      # Whether this plan accepts local currency payments via adaptive pricing.
       sig { returns(T::Boolean) }
       attr_accessor :adaptive_pricing_enabled
 
-      # The number of days between recurring charges. Null for one-time plans
+      # Recurring billing interval in days, such as 30 for monthly or 365 for annual.
+      # `null` for one-time plans.
       sig { returns(T.nilable(Float)) }
       attr_accessor :billing_period
 
-      # Whether tax is collected on purchases of this plan
+      # Whether tax is collected on purchases of this plan.
       sig { returns(T::Boolean) }
       attr_accessor :collect_tax
 
-      # The company that sells this plan, an object with an id and title. Null for
-      # standalone invoice plans
-      sig { returns(T.nilable(T.anything)) }
-      attr_accessor :company
-
-      # When the plan was created, as an ISO 8601 timestamp
+      # When the plan was created, as an ISO 8601 timestamp.
       sig { returns(String) }
       attr_accessor :created_at
 
-      # The three-letter ISO currency code all prices on this plan are denominated in
+      # Three-letter ISO currency code for this plan's prices.
       sig { returns(WhopSDK::Plan::Currency::TaggedSymbol) }
       attr_accessor :currency
 
-      # Custom input fields displayed on the checkout form, objects with id, field_type,
-      # name, order, placeholder and required
-      sig { returns(T::Array[T.anything]) }
+      sig { returns(T::Array[WhopSDK::Plan::CustomField]) }
       attr_accessor :custom_fields
 
-      # A text description of the plan visible to customers
+      # Customer-visible plan description.
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      # The number of days until the membership expires, for expiration-based plans
+      # Access duration in days for expiration-based plans.
       sig { returns(T.nilable(Float)) }
       attr_accessor :expiration_days
 
-      # The initial purchase price in the plan's currency
+      # Initial purchase price in plan currency.
       sig { returns(Float) }
       attr_accessor :initial_price
 
-      # Private notes visible only to authorized team members
+      # Private notes visible only to authorized team members.
       sig { returns(T.nilable(String)) }
       attr_accessor :internal_notes
 
-      # The invoice this plan was generated for, an object with an id. Null unless the
-      # plan was created for an invoice
+      # Invoice this plan was generated for; `null` unless created for an invoice.
       sig { returns(T.nilable(T.anything)) }
       attr_accessor :invoice
 
-      # The number of active memberships on this plan. Only visible to authorized team
-      # members
+      # Active memberships through this plan, when visible to the requester.
       sig { returns(T.nilable(Float)) }
       attr_accessor :member_count
 
-      # Custom key-value pairs stored on the plan
+      # Custom key-value pairs stored on the plan.
       sig { returns(T.nilable(T.anything)) }
       attr_accessor :metadata
 
-      # The explicit payment method configuration for the plan, an object with enabled,
-      # disabled and include_platform_defaults. Null if the plan uses default settings
+      # Payment method configuration (`enabled`, `disabled`,
+      # `include_platform_defaults`); `null` when plan uses default settings.
       sig { returns(T.nilable(T.anything)) }
       attr_accessor :payment_method_configuration
 
-      # The billing model for this plan: 'renewal' for recurring subscriptions or
-      # 'one_time' for single payments
+      # Billing model for this plan: `renewal` (recurring) or `one_time` (single
+      # payment).
       sig { returns(WhopSDK::Plan::PlanType::TaggedSymbol) }
       attr_accessor :plan_type
 
-      # The product this plan belongs to, an object with an id and title. Null for
-      # standalone plans
+      # Product this plan belongs to; `null` for standalone plans.
       sig { returns(T.nilable(T.anything)) }
       attr_accessor :product
 
-      # The full URL where customers can purchase this plan directly
+      # URL where customers can purchase this plan directly.
       sig { returns(String) }
       attr_accessor :purchase_url
 
-      # The method used to sell this plan, e.g. 'buy_now' or 'waitlist'
+      # Sales method for this plan, such as `buy_now` or `waitlist`.
       sig { returns(WhopSDK::Plan::ReleaseMethod::TaggedSymbol) }
       attr_accessor :release_method
 
-      # The recurring price charged every billing period in the plan's currency
+      # Recurring price charged every billing period.
       sig { returns(Float) }
       attr_accessor :renewal_price
 
-      # The number of installment payments required before the subscription pauses
+      # Installment payments required before the subscription pauses.
       sig { returns(T.nilable(Float)) }
       attr_accessor :split_pay_required_payments
 
-      # The number of units available for purchase. Only visible to authorized team
-      # members
+      # Units available for purchase, when visible to the requester.
       sig { returns(T.nilable(Float)) }
       attr_accessor :stock
 
-      # How tax is handled for this plan: 'inclusive', 'exclusive', or 'unspecified'
-      sig { returns(String) }
+      # How tax is handled for this plan.
+      sig { returns(WhopSDK::Plan::TaxType::TaggedSymbol) }
       attr_accessor :tax_type
 
-      # The 3D Secure behavior for this plan. Null means the plan inherits the account
-      # default
+      # 3D Secure behavior for this plan; `null` inherits account default.
       sig { returns(T.nilable(WhopSDK::Plan::ThreeDSLevel::TaggedSymbol)) }
       attr_accessor :three_ds_level
 
-      # The display name of the plan shown to customers
+      # Plan display name shown to customers.
       sig { returns(T.nilable(String)) }
       attr_accessor :title
 
-      # The number of free trial days before the first charge on a recurring plan
+      # Free trial days before the first renewal charge. `null` if no trial is
+      # configured or the user has already used a trial for this plan.
       sig { returns(T.nilable(Float)) }
       attr_accessor :trial_period_days
 
-      # Whether the plan has unlimited stock
+      # Whether the plan has unlimited stock.
       sig { returns(T::Boolean) }
       attr_accessor :unlimited_stock
 
-      # When the plan was last updated, as an ISO 8601 timestamp
+      # When the plan was last updated, as an ISO 8601 timestamp.
       sig { returns(String) }
       attr_accessor :updated_at
 
-      # Whether the plan is visible to customers or hidden from public view
+      # Whether the plan is visible to customers or hidden from public view.
       sig { returns(WhopSDK::Plan::Visibility::TaggedSymbol) }
       attr_accessor :visibility
 
       sig do
         params(
           id: String,
+          account: T.nilable(T.anything),
           adaptive_pricing_enabled: T::Boolean,
           billing_period: T.nilable(Float),
           collect_tax: T::Boolean,
-          company: T.nilable(T.anything),
           created_at: String,
           currency: WhopSDK::Plan::Currency::OrSymbol,
-          custom_fields: T::Array[T.anything],
+          custom_fields: T::Array[WhopSDK::Plan::CustomField::OrHash],
           description: T.nilable(String),
           expiration_days: T.nilable(Float),
           initial_price: Float,
@@ -159,7 +153,7 @@ module WhopSDK
           renewal_price: Float,
           split_pay_required_payments: T.nilable(Float),
           stock: T.nilable(Float),
-          tax_type: String,
+          tax_type: WhopSDK::Plan::TaxType::OrSymbol,
           three_ds_level: T.nilable(WhopSDK::Plan::ThreeDSLevel::OrSymbol),
           title: T.nilable(String),
           trial_period_days: T.nilable(Float),
@@ -169,74 +163,68 @@ module WhopSDK
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the plan, which will look like plan\_******\*******
+        # Plan ID, prefixed `plan_`.
         id:,
-        # Whether this plan accepts local currency payments via adaptive pricing
+        # Account that sells this plan; `null` for standalone invoice plans.
+        account:,
+        # Whether this plan accepts local currency payments via adaptive pricing.
         adaptive_pricing_enabled:,
-        # The number of days between recurring charges. Null for one-time plans
+        # Recurring billing interval in days, such as 30 for monthly or 365 for annual.
+        # `null` for one-time plans.
         billing_period:,
-        # Whether tax is collected on purchases of this plan
+        # Whether tax is collected on purchases of this plan.
         collect_tax:,
-        # The company that sells this plan, an object with an id and title. Null for
-        # standalone invoice plans
-        company:,
-        # When the plan was created, as an ISO 8601 timestamp
+        # When the plan was created, as an ISO 8601 timestamp.
         created_at:,
-        # The three-letter ISO currency code all prices on this plan are denominated in
+        # Three-letter ISO currency code for this plan's prices.
         currency:,
-        # Custom input fields displayed on the checkout form, objects with id, field_type,
-        # name, order, placeholder and required
         custom_fields:,
-        # A text description of the plan visible to customers
+        # Customer-visible plan description.
         description:,
-        # The number of days until the membership expires, for expiration-based plans
+        # Access duration in days for expiration-based plans.
         expiration_days:,
-        # The initial purchase price in the plan's currency
+        # Initial purchase price in plan currency.
         initial_price:,
-        # Private notes visible only to authorized team members
+        # Private notes visible only to authorized team members.
         internal_notes:,
-        # The invoice this plan was generated for, an object with an id. Null unless the
-        # plan was created for an invoice
+        # Invoice this plan was generated for; `null` unless created for an invoice.
         invoice:,
-        # The number of active memberships on this plan. Only visible to authorized team
-        # members
+        # Active memberships through this plan, when visible to the requester.
         member_count:,
-        # Custom key-value pairs stored on the plan
+        # Custom key-value pairs stored on the plan.
         metadata:,
-        # The explicit payment method configuration for the plan, an object with enabled,
-        # disabled and include_platform_defaults. Null if the plan uses default settings
+        # Payment method configuration (`enabled`, `disabled`,
+        # `include_platform_defaults`); `null` when plan uses default settings.
         payment_method_configuration:,
-        # The billing model for this plan: 'renewal' for recurring subscriptions or
-        # 'one_time' for single payments
+        # Billing model for this plan: `renewal` (recurring) or `one_time` (single
+        # payment).
         plan_type:,
-        # The product this plan belongs to, an object with an id and title. Null for
-        # standalone plans
+        # Product this plan belongs to; `null` for standalone plans.
         product:,
-        # The full URL where customers can purchase this plan directly
+        # URL where customers can purchase this plan directly.
         purchase_url:,
-        # The method used to sell this plan, e.g. 'buy_now' or 'waitlist'
+        # Sales method for this plan, such as `buy_now` or `waitlist`.
         release_method:,
-        # The recurring price charged every billing period in the plan's currency
+        # Recurring price charged every billing period.
         renewal_price:,
-        # The number of installment payments required before the subscription pauses
+        # Installment payments required before the subscription pauses.
         split_pay_required_payments:,
-        # The number of units available for purchase. Only visible to authorized team
-        # members
+        # Units available for purchase, when visible to the requester.
         stock:,
-        # How tax is handled for this plan: 'inclusive', 'exclusive', or 'unspecified'
+        # How tax is handled for this plan.
         tax_type:,
-        # The 3D Secure behavior for this plan. Null means the plan inherits the account
-        # default
+        # 3D Secure behavior for this plan; `null` inherits account default.
         three_ds_level:,
-        # The display name of the plan shown to customers
+        # Plan display name shown to customers.
         title:,
-        # The number of free trial days before the first charge on a recurring plan
+        # Free trial days before the first renewal charge. `null` if no trial is
+        # configured or the user has already used a trial for this plan.
         trial_period_days:,
-        # Whether the plan has unlimited stock
+        # Whether the plan has unlimited stock.
         unlimited_stock:,
-        # When the plan was last updated, as an ISO 8601 timestamp
+        # When the plan was last updated, as an ISO 8601 timestamp.
         updated_at:,
-        # Whether the plan is visible to customers or hidden from public view
+        # Whether the plan is visible to customers or hidden from public view.
         visibility:
       )
       end
@@ -245,13 +233,13 @@ module WhopSDK
         override.returns(
           {
             id: String,
+            account: T.nilable(T.anything),
             adaptive_pricing_enabled: T::Boolean,
             billing_period: T.nilable(Float),
             collect_tax: T::Boolean,
-            company: T.nilable(T.anything),
             created_at: String,
             currency: WhopSDK::Plan::Currency::TaggedSymbol,
-            custom_fields: T::Array[T.anything],
+            custom_fields: T::Array[WhopSDK::Plan::CustomField],
             description: T.nilable(String),
             expiration_days: T.nilable(Float),
             initial_price: Float,
@@ -267,7 +255,7 @@ module WhopSDK
             renewal_price: Float,
             split_pay_required_payments: T.nilable(Float),
             stock: T.nilable(Float),
-            tax_type: String,
+            tax_type: WhopSDK::Plan::TaxType::TaggedSymbol,
             three_ds_level:
               T.nilable(WhopSDK::Plan::ThreeDSLevel::TaggedSymbol),
             title: T.nilable(String),
@@ -281,7 +269,7 @@ module WhopSDK
       def to_hash
       end
 
-      # The three-letter ISO currency code all prices on this plan are denominated in
+      # Three-letter ISO currency code for this plan's prices.
       module Currency
         extend WhopSDK::Internal::Type::Enum
 
@@ -386,8 +374,103 @@ module WhopSDK
         end
       end
 
-      # The billing model for this plan: 'renewal' for recurring subscriptions or
-      # 'one_time' for single payments
+      class CustomField < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(WhopSDK::Plan::CustomField, WhopSDK::Internal::AnyHash)
+          end
+
+        # Custom field ID.
+        sig { returns(String) }
+        attr_accessor :id
+
+        # Custom field input type.
+        sig { returns(WhopSDK::Plan::CustomField::FieldType::TaggedSymbol) }
+        attr_accessor :field_type
+
+        # Field label shown to customer at checkout.
+        sig { returns(String) }
+        attr_accessor :name
+
+        # Field position on checkout form.
+        sig { returns(Float) }
+        attr_accessor :order
+
+        # Placeholder text shown in empty field.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :placeholder
+
+        # Whether the customer must complete this field to check out.
+        sig { returns(T::Boolean) }
+        attr_accessor :required
+
+        # Custom input fields collected on the checkout form.
+        sig do
+          params(
+            id: String,
+            field_type: WhopSDK::Plan::CustomField::FieldType::OrSymbol,
+            name: String,
+            order: Float,
+            placeholder: T.nilable(String),
+            required: T::Boolean
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Custom field ID.
+          id:,
+          # Custom field input type.
+          field_type:,
+          # Field label shown to customer at checkout.
+          name:,
+          # Field position on checkout form.
+          order:,
+          # Placeholder text shown in empty field.
+          placeholder:,
+          # Whether the customer must complete this field to check out.
+          required:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              field_type: WhopSDK::Plan::CustomField::FieldType::TaggedSymbol,
+              name: String,
+              order: Float,
+              placeholder: T.nilable(String),
+              required: T::Boolean
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # Custom field input type.
+        module FieldType
+          extend WhopSDK::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, WhopSDK::Plan::CustomField::FieldType)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          TEXT =
+            T.let(:text, WhopSDK::Plan::CustomField::FieldType::TaggedSymbol)
+
+          sig do
+            override.returns(
+              T::Array[WhopSDK::Plan::CustomField::FieldType::TaggedSymbol]
+            )
+          end
+          def self.values
+          end
+        end
+      end
+
+      # Billing model for this plan: `renewal` (recurring) or `one_time` (single
+      # payment).
       module PlanType
         extend WhopSDK::Internal::Type::Enum
 
@@ -404,7 +487,7 @@ module WhopSDK
         end
       end
 
-      # The method used to sell this plan, e.g. 'buy_now' or 'waitlist'
+      # Sales method for this plan, such as `buy_now` or `waitlist`.
       module ReleaseMethod
         extend WhopSDK::Internal::Type::Enum
 
@@ -422,8 +505,23 @@ module WhopSDK
         end
       end
 
-      # The 3D Secure behavior for this plan. Null means the plan inherits the account
-      # default
+      # How tax is handled for this plan.
+      module TaxType
+        extend WhopSDK::Internal::Type::Enum
+
+        TaggedSymbol = T.type_alias { T.all(Symbol, WhopSDK::Plan::TaxType) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        INCLUSIVE = T.let(:inclusive, WhopSDK::Plan::TaxType::TaggedSymbol)
+        EXCLUSIVE = T.let(:exclusive, WhopSDK::Plan::TaxType::TaggedSymbol)
+        UNSPECIFIED = T.let(:unspecified, WhopSDK::Plan::TaxType::TaggedSymbol)
+
+        sig { override.returns(T::Array[WhopSDK::Plan::TaxType::TaggedSymbol]) }
+        def self.values
+        end
+      end
+
+      # 3D Secure behavior for this plan; `null` inherits account default.
       module ThreeDSLevel
         extend WhopSDK::Internal::Type::Enum
 
@@ -443,7 +541,7 @@ module WhopSDK
         end
       end
 
-      # Whether the plan is visible to customers or hidden from public view
+      # Whether the plan is visible to customers or hidden from public view.
       module Visibility
         extend WhopSDK::Internal::Type::Enum
 

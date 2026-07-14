@@ -13,7 +13,7 @@ module WhopSDK
 
       # The build file to upload. For iOS and Android, this should be a .zip archive
       # containing a main_js_bundle.hbc file and an optional assets folder. For web,
-      # this should be a JavaScript file.
+      # this should be a JavaScript file or a .zip archive of the hosted site.
       sig { returns(WhopSDK::AppBuildCreateParams::Attachment) }
       attr_reader :attachment
 
@@ -62,7 +62,7 @@ module WhopSDK
       def self.new(
         # The build file to upload. For iOS and Android, this should be a .zip archive
         # containing a main_js_bundle.hbc file and an optional assets folder. For web,
-        # this should be a JavaScript file.
+        # this should be a JavaScript file or a .zip archive of the hosted site.
         attachment:,
         # A client-generated checksum of the build file, used to verify file integrity
         # when unpacked on a device.
@@ -113,7 +113,7 @@ module WhopSDK
 
         # The build file to upload. For iOS and Android, this should be a .zip archive
         # containing a main_js_bundle.hbc file and an optional assets folder. For web,
-        # this should be a JavaScript file.
+        # this should be a JavaScript file or a .zip archive of the hosted site.
         sig { params(id: String).returns(T.attached_class) }
         def self.new(
           # The ID of an existing file object.

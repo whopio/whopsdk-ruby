@@ -3,13 +3,13 @@ module WhopSDK
     type plan =
       {
         id: String,
+        account: top?,
         adaptive_pricing_enabled: bool,
         billing_period: Float?,
         collect_tax: bool,
-        company: top?,
         created_at: String,
         currency: WhopSDK::Models::Plan::currency,
-        custom_fields: ::Array[top],
+        custom_fields: ::Array[WhopSDK::Plan::CustomField],
         description: String?,
         expiration_days: Float?,
         initial_price: Float,
@@ -25,7 +25,7 @@ module WhopSDK
         renewal_price: Float,
         split_pay_required_payments: Float?,
         stock: Float?,
-        tax_type: String,
+        tax_type: WhopSDK::Models::Plan::tax_type,
         three_ds_level: WhopSDK::Models::Plan::three_ds_level?,
         title: String?,
         trial_period_days: Float?,
@@ -37,19 +37,19 @@ module WhopSDK
     class Plan < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
 
+      attr_accessor account: top?
+
       attr_accessor adaptive_pricing_enabled: bool
 
       attr_accessor billing_period: Float?
 
       attr_accessor collect_tax: bool
 
-      attr_accessor company: top?
-
       attr_accessor created_at: String
 
       attr_accessor currency: WhopSDK::Models::Plan::currency
 
-      attr_accessor custom_fields: ::Array[top]
+      attr_accessor custom_fields: ::Array[WhopSDK::Plan::CustomField]
 
       attr_accessor description: String?
 
@@ -81,7 +81,7 @@ module WhopSDK
 
       attr_accessor stock: Float?
 
-      attr_accessor tax_type: String
+      attr_accessor tax_type: WhopSDK::Models::Plan::tax_type
 
       attr_accessor three_ds_level: WhopSDK::Models::Plan::three_ds_level?
 
@@ -97,13 +97,13 @@ module WhopSDK
 
       def initialize: (
         id: String,
+        account: top?,
         adaptive_pricing_enabled: bool,
         billing_period: Float?,
         collect_tax: bool,
-        company: top?,
         created_at: String,
         currency: WhopSDK::Models::Plan::currency,
-        custom_fields: ::Array[top],
+        custom_fields: ::Array[WhopSDK::Plan::CustomField],
         description: String?,
         expiration_days: Float?,
         initial_price: Float,
@@ -119,7 +119,7 @@ module WhopSDK
         renewal_price: Float,
         split_pay_required_payments: Float?,
         stock: Float?,
-        tax_type: String,
+        tax_type: WhopSDK::Models::Plan::tax_type,
         three_ds_level: WhopSDK::Models::Plan::three_ds_level?,
         title: String?,
         trial_period_days: Float?,
@@ -130,13 +130,13 @@ module WhopSDK
 
       def to_hash: -> {
         id: String,
+        account: top?,
         adaptive_pricing_enabled: bool,
         billing_period: Float?,
         collect_tax: bool,
-        company: top?,
         created_at: String,
         currency: WhopSDK::Models::Plan::currency,
-        custom_fields: ::Array[top],
+        custom_fields: ::Array[WhopSDK::Plan::CustomField],
         description: String?,
         expiration_days: Float?,
         initial_price: Float,
@@ -152,7 +152,7 @@ module WhopSDK
         renewal_price: Float,
         split_pay_required_payments: Float?,
         stock: Float?,
-        tax_type: String,
+        tax_type: WhopSDK::Models::Plan::tax_type,
         three_ds_level: WhopSDK::Models::Plan::three_ds_level?,
         title: String?,
         trial_period_days: Float?,
@@ -350,6 +350,58 @@ module WhopSDK
         def self?.values: -> ::Array[WhopSDK::Models::Plan::currency]
       end
 
+      type custom_field =
+        {
+          id: String,
+          field_type: WhopSDK::Models::Plan::CustomField::field_type,
+          name: String,
+          order: Float,
+          placeholder: String?,
+          required: bool
+        }
+
+      class CustomField < WhopSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor field_type: WhopSDK::Models::Plan::CustomField::field_type
+
+        attr_accessor name: String
+
+        attr_accessor order: Float
+
+        attr_accessor placeholder: String?
+
+        attr_accessor required: bool
+
+        def initialize: (
+          id: String,
+          field_type: WhopSDK::Models::Plan::CustomField::field_type,
+          name: String,
+          order: Float,
+          placeholder: String?,
+          required: bool
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          field_type: WhopSDK::Models::Plan::CustomField::field_type,
+          name: String,
+          order: Float,
+          placeholder: String?,
+          required: bool
+        }
+
+        type field_type = :text
+
+        module FieldType
+          extend WhopSDK::Internal::Type::Enum
+
+          TEXT: :text
+
+          def self?.values: -> ::Array[WhopSDK::Models::Plan::CustomField::field_type]
+        end
+      end
+
       type plan_type = :renewal | :one_time
 
       module PlanType
@@ -370,6 +422,18 @@ module WhopSDK
         WAITLIST: :waitlist
 
         def self?.values: -> ::Array[WhopSDK::Models::Plan::release_method]
+      end
+
+      type tax_type = :inclusive | :exclusive | :unspecified
+
+      module TaxType
+        extend WhopSDK::Internal::Type::Enum
+
+        INCLUSIVE: :inclusive
+        EXCLUSIVE: :exclusive
+        UNSPECIFIED: :unspecified
+
+        def self?.values: -> ::Array[WhopSDK::Models::Plan::tax_type]
       end
 
       type three_ds_level = :mandate_challenge | :frictionless

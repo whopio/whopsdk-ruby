@@ -64,7 +64,14 @@ module WhopSDK
       #   @return [Symbol, WhopSDK::Models::SetupIntentStatus]
       required :status, enum: -> { WhopSDK::SetupIntentStatus }
 
-      # @!method initialize(id:, checkout_configuration:, company:, created_at:, error_message:, member:, metadata:, payment_method:, status:)
+      # @!attribute three_ds_verified
+      #   Whether 3D Secure authentication was completed when this payment method was set
+      #   up.
+      #
+      #   @return [Boolean]
+      required :three_ds_verified, WhopSDK::Internal::Type::Boolean
+
+      # @!method initialize(id:, checkout_configuration:, company:, created_at:, error_message:, member:, metadata:, payment_method:, status:, three_ds_verified:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::SetupIntent} for more details.
       #
@@ -88,6 +95,8 @@ module WhopSDK
       #   @param payment_method [WhopSDK::Models::SetupIntent::PaymentMethod, nil] The saved payment method created by this setup intent. Null if the setup has not
       #
       #   @param status [Symbol, WhopSDK::Models::SetupIntentStatus] The current status of the setup intent.
+      #
+      #   @param three_ds_verified [Boolean] Whether 3D Secure authentication was completed when this payment method was set
 
       # @see WhopSDK::Models::SetupIntent#checkout_configuration
       class CheckoutConfiguration < WhopSDK::Internal::Type::BaseModel

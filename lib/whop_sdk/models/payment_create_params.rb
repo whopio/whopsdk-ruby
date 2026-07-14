@@ -60,7 +60,15 @@ module WhopSDK
           #   @return [Hash{Symbol=>Object}, nil]
           optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
-          # @!method initialize(company_id:, member_id:, payment_method_id:, plan:, metadata: nil)
+          # @!attribute promo_code_id
+          #   The ID of an active promo code to apply to this payment. The promo code must
+          #   belong to the company and be valid for the plan being purchased. The plan must
+          #   be attached to a product — promo codes are not eligible for one-off purchases.
+          #
+          #   @return [String, nil]
+          optional :promo_code_id, String, nil?: true
+
+          # @!method initialize(company_id:, member_id:, payment_method_id:, plan:, metadata: nil, promo_code_id: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlan} for
           #   more details.
@@ -76,6 +84,8 @@ module WhopSDK
           #   @param plan [WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlan::Plan] Pass this object to create a new plan for this payment
           #
           #   @param metadata [Hash{Symbol=>Object}, nil] Custom metadata to attach to the payment.
+          #
+          #   @param promo_code_id [String, nil] The ID of an active promo code to apply to this payment. The promo code must bel
 
           # @see WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlan#plan
           class Plan < WhopSDK::Internal::Type::BaseModel
@@ -363,7 +373,15 @@ module WhopSDK
           #   @return [Hash{Symbol=>Object}, nil]
           optional :metadata, WhopSDK::Internal::Type::HashOf[WhopSDK::Internal::Type::Unknown], nil?: true
 
-          # @!method initialize(company_id:, member_id:, payment_method_id:, plan_id:, metadata: nil)
+          # @!attribute promo_code_id
+          #   The ID of an active promo code to apply to this payment. The promo code must
+          #   belong to the company and be valid for the plan being purchased. The plan must
+          #   be attached to a product — promo codes are not eligible for one-off purchases.
+          #
+          #   @return [String, nil]
+          optional :promo_code_id, String, nil?: true
+
+          # @!method initialize(company_id:, member_id:, payment_method_id:, plan_id:, metadata: nil, promo_code_id: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::PaymentCreateParams::Body::CreatePaymentInputWithPlanID} for
           #   more details.
@@ -379,6 +397,8 @@ module WhopSDK
           #   @param plan_id [String] An ID of an existing plan to use for the payment.
           #
           #   @param metadata [Hash{Symbol=>Object}, nil] Custom metadata to attach to the payment.
+          #
+          #   @param promo_code_id [String, nil] The ID of an active promo code to apply to this payment. The promo code must bel
         end
 
         # @!method self.variants

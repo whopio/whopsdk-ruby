@@ -73,6 +73,11 @@ module WhopSDK
       sig { returns(WhopSDK::SetupIntentStatus::TaggedSymbol) }
       attr_accessor :status
 
+      # Whether 3D Secure authentication was completed when this payment method was set
+      # up.
+      sig { returns(T::Boolean) }
+      attr_accessor :three_ds_verified
+
       # A setup intent allows a user to save a payment method for future use without
       # making an immediate purchase.
       sig do
@@ -87,7 +92,8 @@ module WhopSDK
           metadata: T.nilable(T::Hash[Symbol, T.anything]),
           payment_method:
             T.nilable(WhopSDK::SetupIntent::PaymentMethod::OrHash),
-          status: WhopSDK::SetupIntentStatus::OrSymbol
+          status: WhopSDK::SetupIntentStatus::OrSymbol,
+          three_ds_verified: T::Boolean
         ).returns(T.attached_class)
       end
       def self.new(
@@ -114,7 +120,10 @@ module WhopSDK
         # completed successfully.
         payment_method:,
         # The current status of the setup intent.
-        status:
+        status:,
+        # Whether 3D Secure authentication was completed when this payment method was set
+        # up.
+        three_ds_verified:
       )
       end
 
@@ -130,7 +139,8 @@ module WhopSDK
             member: T.nilable(WhopSDK::SetupIntent::Member),
             metadata: T.nilable(T::Hash[Symbol, T.anything]),
             payment_method: T.nilable(WhopSDK::SetupIntent::PaymentMethod),
-            status: WhopSDK::SetupIntentStatus::TaggedSymbol
+            status: WhopSDK::SetupIntentStatus::TaggedSymbol,
+            three_ds_verified: T::Boolean
           }
         )
       end

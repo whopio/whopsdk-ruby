@@ -1,0 +1,63 @@
+module WhopSDK
+  module Models
+    type referral_referred_users_params =
+      {
+        after: String,
+        before: String,
+        first: Integer,
+        has_businesses: bool,
+        has_earning_businesses: bool,
+        last: Integer
+      }
+      & WhopSDK::Internal::Type::request_parameters
+
+    class ReferralReferredUsersParams < WhopSDK::Internal::Type::BaseModel
+      extend WhopSDK::Internal::Type::RequestParameters::Converter
+      include WhopSDK::Internal::Type::RequestParameters
+
+      attr_reader after: String?
+
+      def after=: (String) -> String
+
+      attr_reader before: String?
+
+      def before=: (String) -> String
+
+      attr_reader first: Integer?
+
+      def first=: (Integer) -> Integer
+
+      attr_reader has_businesses: bool?
+
+      def has_businesses=: (bool) -> bool
+
+      attr_reader has_earning_businesses: bool?
+
+      def has_earning_businesses=: (bool) -> bool
+
+      attr_reader last: Integer?
+
+      def last=: (Integer) -> Integer
+
+      def initialize: (
+        ?after: String,
+        ?before: String,
+        ?first: Integer,
+        ?has_businesses: bool,
+        ?has_earning_businesses: bool,
+        ?last: Integer,
+        ?request_options: WhopSDK::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        after: String,
+        before: String,
+        first: Integer,
+        has_businesses: bool,
+        has_earning_businesses: bool,
+        last: Integer,
+        request_options: WhopSDK::RequestOptions
+      }
+    end
+  end
+end

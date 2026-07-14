@@ -2,87 +2,175 @@ module WhopSDK
   module Models
     type deposit_create_response =
       {
-        amount: String,
-        deposit_address: WhopSDK::Models::DepositCreateResponse::DepositAddress,
-        destination: WhopSDK::Models::DepositCreateResponse::Destination,
+        account_id: String?,
         hosted_url: String?,
         metadata: ::Hash[Symbol, top],
-        object: WhopSDK::Models::DepositCreateResponse::object
+        methods_: WhopSDK::Models::DepositCreateResponse::Methods,
+        object: WhopSDK::Models::DepositCreateResponse::object,
+        amount: String
       }
 
     class DepositCreateResponse < WhopSDK::Internal::Type::BaseModel
-      attr_accessor amount: String
-
-      attr_accessor deposit_address: WhopSDK::Models::DepositCreateResponse::DepositAddress
-
-      attr_accessor destination: WhopSDK::Models::DepositCreateResponse::Destination
+      attr_accessor account_id: String?
 
       attr_accessor hosted_url: String?
 
       attr_accessor metadata: ::Hash[Symbol, top]
 
+      attr_accessor methods_: WhopSDK::Models::DepositCreateResponse::Methods
+
       attr_accessor object: WhopSDK::Models::DepositCreateResponse::object
 
+      attr_reader amount: String?
+
+      def amount=: (String) -> String
+
       def initialize: (
-        amount: String,
-        deposit_address: WhopSDK::Models::DepositCreateResponse::DepositAddress,
-        destination: WhopSDK::Models::DepositCreateResponse::Destination,
+        account_id: String?,
         hosted_url: String?,
         metadata: ::Hash[Symbol, top],
-        object: WhopSDK::Models::DepositCreateResponse::object
+        methods_: WhopSDK::Models::DepositCreateResponse::Methods,
+        object: WhopSDK::Models::DepositCreateResponse::object,
+        ?amount: String
       ) -> void
 
       def to_hash: -> {
-        amount: String,
-        deposit_address: WhopSDK::Models::DepositCreateResponse::DepositAddress,
-        destination: WhopSDK::Models::DepositCreateResponse::Destination,
+        account_id: String?,
         hosted_url: String?,
         metadata: ::Hash[Symbol, top],
-        object: WhopSDK::Models::DepositCreateResponse::object
+        methods_: WhopSDK::Models::DepositCreateResponse::Methods,
+        object: WhopSDK::Models::DepositCreateResponse::object,
+        amount: String
       }
 
-      type deposit_address = { evm: String, solana: String }
-
-      class DepositAddress < WhopSDK::Internal::Type::BaseModel
-        attr_accessor evm: String
-
-        attr_accessor solana: String
-
-        def initialize: (evm: String, solana: String) -> void
-
-        def to_hash: -> { evm: String, solana: String }
-      end
-
-      type destination =
+      type methods_ =
         {
-          address: String,
-          currency: String,
-          network: String,
-          account_id: String?
+          bank: WhopSDK::Models::DepositCreateResponse::Methods::Bank?,
+          crypto: ::Array[WhopSDK::Models::DepositCreateResponse::Methods::Crypto]
         }
 
-      class Destination < WhopSDK::Internal::Type::BaseModel
-        attr_accessor address: String
+      class Methods < WhopSDK::Internal::Type::BaseModel
+        attr_accessor bank: WhopSDK::Models::DepositCreateResponse::Methods::Bank?
 
-        attr_accessor currency: String
-
-        attr_accessor network: String
-
-        attr_accessor account_id: String?
+        attr_accessor crypto: ::Array[WhopSDK::Models::DepositCreateResponse::Methods::Crypto]
 
         def initialize: (
-          address: String,
-          currency: String,
-          network: String,
-          ?account_id: String?
+          bank: WhopSDK::Models::DepositCreateResponse::Methods::Bank?,
+          crypto: ::Array[WhopSDK::Models::DepositCreateResponse::Methods::Crypto]
         ) -> void
 
         def to_hash: -> {
-          address: String,
-          currency: String,
-          network: String,
-          account_id: String?
+          bank: WhopSDK::Models::DepositCreateResponse::Methods::Bank?,
+          crypto: ::Array[WhopSDK::Models::DepositCreateResponse::Methods::Crypto]
         }
+
+        type bank =
+          {
+            currencies: ::Array[WhopSDK::Models::DepositCreateResponse::Methods::Bank::Currency]
+          }
+
+        class Bank < WhopSDK::Internal::Type::BaseModel
+          attr_accessor currencies: ::Array[WhopSDK::Models::DepositCreateResponse::Methods::Bank::Currency]
+
+          def initialize: (
+            currencies: ::Array[WhopSDK::Models::DepositCreateResponse::Methods::Bank::Currency]
+          ) -> void
+
+          def to_hash: -> {
+            currencies: ::Array[WhopSDK::Models::DepositCreateResponse::Methods::Bank::Currency]
+          }
+
+          type currency =
+            {
+              account_number: String?,
+              currency: String,
+              deposit_bank_name: String?,
+              deposit_beneficiary_name: String?,
+              deposit_reference: String?,
+              rails: ::Array[String],
+              routing_number: String?
+            }
+
+          class Currency < WhopSDK::Internal::Type::BaseModel
+            attr_accessor account_number: String?
+
+            attr_accessor currency: String
+
+            attr_accessor deposit_bank_name: String?
+
+            attr_accessor deposit_beneficiary_name: String?
+
+            attr_accessor deposit_reference: String?
+
+            attr_accessor rails: ::Array[String]
+
+            attr_accessor routing_number: String?
+
+            def initialize: (
+              account_number: String?,
+              currency: String,
+              deposit_bank_name: String?,
+              deposit_beneficiary_name: String?,
+              deposit_reference: String?,
+              rails: ::Array[String],
+              routing_number: String?
+            ) -> void
+
+            def to_hash: -> {
+              account_number: String?,
+              currency: String,
+              deposit_bank_name: String?,
+              deposit_beneficiary_name: String?,
+              deposit_reference: String?,
+              rails: ::Array[String],
+              routing_number: String?
+            }
+          end
+        end
+
+        type crypto =
+          {
+            deposit_address: String?,
+            icon_url: String?,
+            name: String,
+            supported_currencies: ::Array[WhopSDK::Models::DepositCreateResponse::Methods::Crypto::SupportedCurrency]
+          }
+
+        class Crypto < WhopSDK::Internal::Type::BaseModel
+          attr_accessor deposit_address: String?
+
+          attr_accessor icon_url: String?
+
+          attr_accessor name: String
+
+          attr_accessor supported_currencies: ::Array[WhopSDK::Models::DepositCreateResponse::Methods::Crypto::SupportedCurrency]
+
+          def initialize: (
+            deposit_address: String?,
+            icon_url: String?,
+            name: String,
+            supported_currencies: ::Array[WhopSDK::Models::DepositCreateResponse::Methods::Crypto::SupportedCurrency]
+          ) -> void
+
+          def to_hash: -> {
+            deposit_address: String?,
+            icon_url: String?,
+            name: String,
+            supported_currencies: ::Array[WhopSDK::Models::DepositCreateResponse::Methods::Crypto::SupportedCurrency]
+          }
+
+          type supported_currency = { icon_url: String?, name: String }
+
+          class SupportedCurrency < WhopSDK::Internal::Type::BaseModel
+            attr_accessor icon_url: String?
+
+            attr_accessor name: String
+
+            def initialize: (icon_url: String?, name: String) -> void
+
+            def to_hash: -> { icon_url: String?, name: String }
+          end
+        end
       end
 
       type object = :deposit

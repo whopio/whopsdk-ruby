@@ -2,7 +2,15 @@
 
 module WhopSDK
   module Resources
-    # Apps
+    # An App is software you build on Whop. It can be a hosted web app served at
+    # `<route>.whop.app` or an API integration installed as an experience, and it
+    # belongs to the account that owns its credentials, settings, builds, and runtime
+    # logs.
+    #
+    # Use the Apps API to manage app configuration and, for hosted apps, read server
+    # runtime logs for console output, uncaught exceptions, and failed requests. Logs
+    # are retained for 7 days and can be filtered by build, level, time window, and
+    # message text.
     class Apps
       # Register a new app on the Whop developer platform. Apps provide custom
       # experiences that can be added to products.
@@ -11,6 +19,7 @@ module WhopSDK
       #
       # - `developer:create_app`
       # - `developer:manage_api_key`
+      # - `developer:update_app`
       sig do
         params(
           company_id: String,
@@ -18,6 +27,7 @@ module WhopSDK
           base_url: T.nilable(String),
           icon: T.nilable(WhopSDK::AppCreateParams::Icon::OrHash),
           redirect_uris: T.nilable(T::Array[String]),
+          route: T.nilable(String),
           request_options: WhopSDK::RequestOptions::OrHash
         ).returns(WhopSDK::App)
       end
@@ -35,6 +45,9 @@ module WhopSDK
         # The whitelisted OAuth callback URLs that users are redirected to after
         # authorizing the app.
         redirect_uris: nil,
+        # The unique subdomain route where the app's hosted web builds are served, such as
+        # 'myapp' for myapp.whop.app.
+        route: nil,
         request_options: {}
       )
       end
@@ -44,6 +57,7 @@ module WhopSDK
       # Required permissions:
       #
       # - `developer:manage_api_key`
+      # - `developer:update_app`
       sig do
         params(
           id: String,
@@ -84,6 +98,8 @@ module WhopSDK
             T.nilable(
               T::Array[WhopSDK::AppUpdateParams::RequiredScope::OrSymbol]
             ),
+          route: T.nilable(String),
+          secrets: T.nilable(T::Hash[Symbol, T.anything]),
           skills_path: T.nilable(String),
           status: T.nilable(WhopSDK::AppStatuses::OrSymbol),
           request_options: WhopSDK::RequestOptions::OrHash
@@ -122,6 +138,14 @@ module WhopSDK
         redirect_uris: nil,
         # The permission scopes the app will request from users when they install it.
         required_scopes: nil,
+        # The unique subdomain route where the app's hosted web builds are served, such as
+        # 'myapp' for myapp.whop.app.
+        route: nil,
+        # Secrets to add or overwrite on the app, as an object of string values (e.g.
+        # {"MAIL_API_KEY": "..."}). Keys not included are left untouched. Pass null or an
+        # empty string as the value to delete a secret. Secrets are encrypted at rest and
+        # injected into the app's hosted server runtime as environment bindings.
+        secrets: nil,
         # The URL path to the skills directory of the app, such as '/assets/skills/'.
         skills_path: nil,
         # The status of an experience interface
@@ -174,6 +198,47 @@ module WhopSDK
         verified_apps_only: nil,
         # The different types of an app view
         view_type: nil,
+        request_options: {}
+      )
+      end
+
+      # Lists a hosted app's server runtime logs, most recent first: console output,
+      # uncaught exceptions, and failed-request summaries captured on whop.app hosting.
+      # Logs are retained for 7 days.
+      sig do
+        params(
+          id: String,
+          after: String,
+          app_build_id: String,
+          before: String,
+          created_after: Time,
+          created_before: Time,
+          first: Integer,
+          level: WhopSDK::AppLogsParams::Level::OrSymbol,
+          query: String,
+          request_options: WhopSDK::RequestOptions::OrHash
+        ).returns(WhopSDK::Models::AppLogsResponse)
+      end
+      def logs(
+        # The ID of the app, which will look like app\_******\*******.
+        id,
+        # A cursor for fetching logs after a previous page.
+        after: nil,
+        # Only return logs from this build.
+        app_build_id: nil,
+        # A cursor for fetching logs before a later page.
+        before: nil,
+        # Start of the time window as an ISO 8601 timestamp. Defaults to 7 days before
+        # created_before.
+        created_after: nil,
+        # End of the time window as an ISO 8601 timestamp. Defaults to now.
+        created_before: nil,
+        # The number of log lines to return (max 500).
+        first: nil,
+        # Only return console lines of this level.
+        level: nil,
+        # Only return logs whose message contains this text (case-insensitive).
+        query: nil,
         request_options: {}
       )
       end

@@ -1,7 +1,15 @@
 module WhopSDK
   module Models
     type user_retrieve_params =
-      { id: String, account_id: String }
+      {
+        id: String,
+        account_id: String,
+        from: String,
+        include_balance_history: bool,
+        interval: WhopSDK::Models::UserRetrieveParams::interval,
+        time_zone: String,
+        to: String
+      }
       & WhopSDK::Internal::Type::request_parameters
 
     class UserRetrieveParams < WhopSDK::Internal::Type::BaseModel
@@ -14,17 +22,62 @@ module WhopSDK
 
       def account_id=: (String) -> String
 
+      attr_reader from: String?
+
+      def from=: (String) -> String
+
+      attr_reader include_balance_history: bool?
+
+      def include_balance_history=: (bool) -> bool
+
+      attr_reader interval: WhopSDK::Models::UserRetrieveParams::interval?
+
+      def interval=: (
+        WhopSDK::Models::UserRetrieveParams::interval
+      ) -> WhopSDK::Models::UserRetrieveParams::interval
+
+      attr_reader time_zone: String?
+
+      def time_zone=: (String) -> String
+
+      attr_reader to: String?
+
+      def to=: (String) -> String
+
       def initialize: (
         id: String,
         ?account_id: String,
+        ?from: String,
+        ?include_balance_history: bool,
+        ?interval: WhopSDK::Models::UserRetrieveParams::interval,
+        ?time_zone: String,
+        ?to: String,
         ?request_options: WhopSDK::request_opts
       ) -> void
 
       def to_hash: -> {
         id: String,
         account_id: String,
+        from: String,
+        include_balance_history: bool,
+        interval: WhopSDK::Models::UserRetrieveParams::interval,
+        time_zone: String,
+        to: String,
         request_options: WhopSDK::RequestOptions
       }
+
+      type interval = :hour | :day | :week | :month
+
+      module Interval
+        extend WhopSDK::Internal::Type::Enum
+
+        HOUR: :hour
+        DAY: :day
+        WEEK: :week
+        MONTH: :month
+
+        def self?.values: -> ::Array[WhopSDK::Models::UserRetrieveParams::interval]
+      end
     end
   end
 end

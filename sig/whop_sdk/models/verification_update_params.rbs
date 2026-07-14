@@ -36,15 +36,21 @@ module WhopSDK
 
         type update_individual_verification =
           {
+            business_tax_identification_number: String,
             country: String,
             date_of_birth: String,
             first_name: String,
             last_name: String,
             personal_address: WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::PersonalAddress,
-            requested_information: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation]
+            requested_information: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation],
+            tax_identification_number: String
           }
 
         class UpdateIndividualVerification < WhopSDK::Internal::Type::BaseModel
+          attr_reader business_tax_identification_number: String?
+
+          def business_tax_identification_number=: (String) -> String
+
           attr_reader country: String?
 
           def country=: (String) -> String
@@ -73,22 +79,30 @@ module WhopSDK
             ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation]
           ) -> ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation]
 
+          attr_reader tax_identification_number: String?
+
+          def tax_identification_number=: (String) -> String
+
           def initialize: (
+            ?business_tax_identification_number: String,
             ?country: String,
             ?date_of_birth: String,
             ?first_name: String,
             ?last_name: String,
             ?personal_address: WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::PersonalAddress,
-            ?requested_information: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation]
+            ?requested_information: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation],
+            ?tax_identification_number: String
           ) -> void
 
           def to_hash: -> {
+            business_tax_identification_number: String,
             country: String,
             date_of_birth: String,
             first_name: String,
             last_name: String,
             personal_address: WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::PersonalAddress,
-            requested_information: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation]
+            requested_information: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateIndividualVerification::RequestedInformation],
+            tax_identification_number: String
           }
 
           type personal_address =
@@ -307,8 +321,10 @@ module WhopSDK
             business_address: WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::BusinessAddress,
             business_name: String,
             business_structure: String,
+            business_tax_identification_number: String,
             country: String,
-            requested_information: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation]
+            requested_information: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation],
+            tax_identification_number: String
           }
 
         class UpdateBusinessVerification < WhopSDK::Internal::Type::BaseModel
@@ -326,6 +342,10 @@ module WhopSDK
 
           def business_structure=: (String) -> String
 
+          attr_reader business_tax_identification_number: String?
+
+          def business_tax_identification_number=: (String) -> String
+
           attr_reader country: String?
 
           def country=: (String) -> String
@@ -336,20 +356,28 @@ module WhopSDK
             ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation]
           ) -> ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation]
 
+          attr_reader tax_identification_number: String?
+
+          def tax_identification_number=: (String) -> String
+
           def initialize: (
             ?business_address: WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::BusinessAddress,
             ?business_name: String,
             ?business_structure: String,
+            ?business_tax_identification_number: String,
             ?country: String,
-            ?requested_information: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation]
+            ?requested_information: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation],
+            ?tax_identification_number: String
           ) -> void
 
           def to_hash: -> {
             business_address: WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::BusinessAddress,
             business_name: String,
             business_structure: String,
+            business_tax_identification_number: String,
             country: String,
-            requested_information: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation]
+            requested_information: ::Array[WhopSDK::VerificationUpdateParams::Body::UpdateBusinessVerification::RequestedInformation],
+            tax_identification_number: String
           }
 
           type business_address =

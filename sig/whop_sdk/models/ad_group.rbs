@@ -32,6 +32,7 @@ module WhopSDK
         delivery_status: WhopSDK::Models::AdGroup::delivery_status,
         demographics: top,
         desired_cost_per_result: Float?,
+        detailed_targeting: top,
         devices: top,
         dynamic_creative: bool,
         ends_at: String?,
@@ -126,6 +127,8 @@ module WhopSDK
       attr_accessor demographics: top
 
       attr_accessor desired_cost_per_result: Float?
+
+      attr_accessor detailed_targeting: top
 
       attr_accessor devices: top
 
@@ -222,6 +225,7 @@ module WhopSDK
         delivery_status: WhopSDK::Models::AdGroup::delivery_status,
         demographics: top,
         desired_cost_per_result: Float?,
+        detailed_targeting: top,
         devices: top,
         dynamic_creative: bool,
         ends_at: String?,
@@ -287,6 +291,7 @@ module WhopSDK
         delivery_status: WhopSDK::Models::AdGroup::delivery_status,
         demographics: top,
         desired_cost_per_result: Float?,
+        detailed_targeting: top,
         devices: top,
         dynamic_creative: bool,
         ends_at: String?,

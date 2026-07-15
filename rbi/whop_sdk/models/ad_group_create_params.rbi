@@ -100,6 +100,18 @@ module WhopSDK
       sig { params(desired_cost_per_result: Float).void }
       attr_writer :desired_cost_per_result
 
+      # Detailed targeting: { interests: [{id, name}], behaviors: [{id, name}],
+      # demographics: [{id, name, type}] } where type is one of life_events, industries,
+      # income, family_statuses. IDs come from Meta's targeting taxonomy. At most 100
+      # entries per section. Incompatible with demographics.automatic (Advantage+) and
+      # Special Ad Category campaigns. Sending the field states complete intent —
+      # omitted sections clear their stored entries.
+      sig { returns(T.nilable(T.anything)) }
+      attr_reader :detailed_targeting
+
+      sig { params(detailed_targeting: T.anything).void }
+      attr_writer :detailed_targeting
+
       # Device targeting: { platforms, operating_systems: [{ os, minimum_version }] }.
       sig { returns(T.nilable(T.anything)) }
       attr_reader :devices
@@ -190,12 +202,12 @@ module WhopSDK
       sig { params(placements: T.anything).void }
       attr_writer :placements
 
-      # Geo targeting: { include / exclude: { countries (ISO 3166-1), regions
-      # (states/provinces as ISO 3166-2, e.g. US-CA), cities (keyed), zips,
-      # custom_locations } }. custom_locations entries are pin + radius: { latitude,
-      # longitude, radius, distance_unit ('mile' default, or 'kilometer'), name
-      # (optional display label) }. Radius must be 1-50 miles or 1-80 km; at most 200
-      # custom locations across include and exclude.
+      # Geo targeting: { include / exclude: { countries (ISO 3166-1), country_groups
+      # (include-only, e.g. 'worldwide' for global reach), regions (ISO 3166-2 states,
+      # e.g. US-CA), cities (keyed), zips, custom_locations } }. custom_locations
+      # entries are pin + radius: { latitude, longitude, radius, distance_unit ('mile'
+      # default, or 'kilometer'), name (optional label) }. Radius 1-50 miles or 1-80 km;
+      # at most 200 custom locations across include and exclude.
       sig { returns(T.nilable(T.anything)) }
       attr_reader :regions
 
@@ -243,6 +255,7 @@ module WhopSDK
             WhopSDK::AdGroupCreateParams::ConversionLocation::OrSymbol,
           demographics: T.anything,
           desired_cost_per_result: Float,
+          detailed_targeting: T.anything,
           devices: T.anything,
           dynamic_creative: T::Boolean,
           ends_at: String,
@@ -283,6 +296,13 @@ module WhopSDK
         demographics: nil,
         # Target/cap cost for average_target / maximum_target.
         desired_cost_per_result: nil,
+        # Detailed targeting: { interests: [{id, name}], behaviors: [{id, name}],
+        # demographics: [{id, name, type}] } where type is one of life_events, industries,
+        # income, family_statuses. IDs come from Meta's targeting taxonomy. At most 100
+        # entries per section. Incompatible with demographics.automatic (Advantage+) and
+        # Special Ad Category campaigns. Sending the field states complete intent —
+        # omitted sections clear their stored entries.
+        detailed_targeting: nil,
         # Device targeting: { platforms, operating_systems: [{ os, minimum_version }] }.
         devices: nil,
         # Run Meta dynamic (Advantage+) creative for this ad set. Set at creation;
@@ -317,12 +337,12 @@ module WhopSDK
         # - `threads`: `threads_stream`
         # - `whatsapp`: `status`
         placements: nil,
-        # Geo targeting: { include / exclude: { countries (ISO 3166-1), regions
-        # (states/provinces as ISO 3166-2, e.g. US-CA), cities (keyed), zips,
-        # custom_locations } }. custom_locations entries are pin + radius: { latitude,
-        # longitude, radius, distance_unit ('mile' default, or 'kilometer'), name
-        # (optional display label) }. Radius must be 1-50 miles or 1-80 km; at most 200
-        # custom locations across include and exclude.
+        # Geo targeting: { include / exclude: { countries (ISO 3166-1), country_groups
+        # (include-only, e.g. 'worldwide' for global reach), regions (ISO 3166-2 states,
+        # e.g. US-CA), cities (keyed), zips, custom_locations } }. custom_locations
+        # entries are pin + radius: { latitude, longitude, radius, distance_unit ('mile'
+        # default, or 'kilometer'), name (optional label) }. Radius 1-50 miles or 1-80 km;
+        # at most 200 custom locations across include and exclude.
         regions: nil,
         # Schedule start, ISO 8601.
         starts_at: nil,
@@ -353,6 +373,7 @@ module WhopSDK
               WhopSDK::AdGroupCreateParams::ConversionLocation::OrSymbol,
             demographics: T.anything,
             desired_cost_per_result: Float,
+            detailed_targeting: T.anything,
             devices: T.anything,
             dynamic_creative: T::Boolean,
             ends_at: String,

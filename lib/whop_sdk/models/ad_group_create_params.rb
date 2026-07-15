@@ -65,6 +65,17 @@ module WhopSDK
       #   @return [Float, nil]
       optional :desired_cost_per_result, Float
 
+      # @!attribute detailed_targeting
+      #   Detailed targeting: { interests: [{id, name}], behaviors: [{id, name}],
+      #   demographics: [{id, name, type}] } where type is one of life_events, industries,
+      #   income, family_statuses. IDs come from Meta's targeting taxonomy. At most 100
+      #   entries per section. Incompatible with demographics.automatic (Advantage+) and
+      #   Special Ad Category campaigns. Sending the field states complete intent —
+      #   omitted sections clear their stored entries.
+      #
+      #   @return [Object, nil]
+      optional :detailed_targeting, WhopSDK::Internal::Type::Unknown
+
       # @!attribute devices
       #   Device targeting: { platforms, operating_systems: [{ os, minimum_version }] }.
       #
@@ -137,12 +148,12 @@ module WhopSDK
       optional :placements, WhopSDK::Internal::Type::Unknown
 
       # @!attribute regions
-      #   Geo targeting: { include / exclude: { countries (ISO 3166-1), regions
-      #   (states/provinces as ISO 3166-2, e.g. US-CA), cities (keyed), zips,
-      #   custom_locations } }. custom_locations entries are pin + radius: { latitude,
-      #   longitude, radius, distance_unit ('mile' default, or 'kilometer'), name
-      #   (optional display label) }. Radius must be 1-50 miles or 1-80 km; at most 200
-      #   custom locations across include and exclude.
+      #   Geo targeting: { include / exclude: { countries (ISO 3166-1), country_groups
+      #   (include-only, e.g. 'worldwide' for global reach), regions (ISO 3166-2 states,
+      #   e.g. US-CA), cities (keyed), zips, custom_locations } }. custom_locations
+      #   entries are pin + radius: { latitude, longitude, radius, distance_unit ('mile'
+      #   default, or 'kilometer'), name (optional label) }. Radius 1-50 miles or 1-80 km;
+      #   at most 200 custom locations across include and exclude.
       #
       #   @return [Object, nil]
       optional :regions, WhopSDK::Internal::Type::Unknown
@@ -165,7 +176,7 @@ module WhopSDK
       #   @return [String, nil]
       optional :title, String
 
-      # @!method initialize(ad_campaign_id:, audiences: nil, bid_type: nil, budget_amount: nil, budget_type: nil, conversion_event: nil, conversion_location: nil, demographics: nil, desired_cost_per_result: nil, devices: nil, dynamic_creative: nil, ends_at: nil, frequency_cap: nil, languages: nil, message_apps: nil, minimum_daily_spend: nil, optimization_goal: nil, placements: nil, regions: nil, starts_at: nil, status: nil, title: nil, request_options: {})
+      # @!method initialize(ad_campaign_id:, audiences: nil, bid_type: nil, budget_amount: nil, budget_type: nil, conversion_event: nil, conversion_location: nil, demographics: nil, desired_cost_per_result: nil, detailed_targeting: nil, devices: nil, dynamic_creative: nil, ends_at: nil, frequency_cap: nil, languages: nil, message_apps: nil, minimum_daily_spend: nil, optimization_goal: nil, placements: nil, regions: nil, starts_at: nil, status: nil, title: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::AdGroupCreateParams} for more details.
       #
@@ -187,6 +198,8 @@ module WhopSDK
       #
       #   @param desired_cost_per_result [Float] Target/cap cost for average_target / maximum_target.
       #
+      #   @param detailed_targeting [Object] Detailed targeting: { interests: [{id, name}], behaviors: [{id, name}], demograp
+      #
       #   @param devices [Object] Device targeting: { platforms, operating_systems: [{ os, minimum_version }] }.
       #
       #   @param dynamic_creative [Boolean] Run Meta dynamic (Advantage+) creative for this ad set. Set at creation; immutab
@@ -205,7 +218,7 @@ module WhopSDK
       #
       #   @param placements [Object] 'automatic' (Advantage+) or a list of { platform, positions }. Omit positions to
       #
-      #   @param regions [Object] Geo targeting: { include / exclude: { countries (ISO 3166-1), regions (states/pr
+      #   @param regions [Object] Geo targeting: { include / exclude: { countries (ISO 3166-1), country_groups (in
       #
       #   @param starts_at [String] Schedule start, ISO 8601.
       #

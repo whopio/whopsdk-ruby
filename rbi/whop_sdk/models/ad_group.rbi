@@ -127,6 +127,14 @@ module WhopSDK
       sig { returns(Float) }
       attr_accessor :custom_conversions
 
+      # Whop pixel-attributed custom conversions broken out by merchant-defined event
+      # name, last-click, as a { event_name => count } map over the stats window. Empty
+      # when no named custom events are attributed. Custom events fired without a name
+      # are counted in custom_conversions but omitted here, so these values sum to at
+      # most custom_conversions.
+      sig { returns(T.anything) }
+      attr_accessor :custom_event_counts
+
       # The current delivery state, mirroring the Delivery column in the ads dashboard.
       # When several states apply at once, the highest-precedence one is returned.
       sig { returns(WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol) }
@@ -139,6 +147,13 @@ module WhopSDK
       # Target/cap cost for average_target / maximum_target.
       sig { returns(T.nilable(Float)) }
       attr_accessor :desired_cost_per_result
+
+      # Detailed targeting: { interests: [{id, name}], behaviors: [{id, name}],
+      # demographics: [{id, name, type}] } where demographics type is one of
+      # life_events, industries, income, family_statuses. Incompatible with
+      # demographics.automatic (Advantage+) and Special Ad Category campaigns.
+      sig { returns(T.anything) }
+      attr_accessor :detailed_targeting
 
       # Device targeting: platforms and operating systems.
       sig { returns(T.anything) }
@@ -201,8 +216,10 @@ module WhopSDK
       sig { returns(Float) }
       attr_accessor :reach
 
-      # Geo targeting: include/exclude countries, regions (ISO 3166-2 states, e.g.
-      # US-CA), cities, zips.
+      # Geo targeting: include/exclude countries, country_groups (include-only Meta
+      # groups like worldwide — global reach), regions (ISO 3166-2 states, e.g. US-CA),
+      # cities, zips, and custom_locations (pin + radius: { latitude, longitude, radius,
+      # distance_unit, name }).
       sig { returns(T.anything) }
       attr_accessor :regions
 
@@ -216,6 +233,13 @@ module WhopSDK
       # standard events.
       sig { returns(T.nilable(String)) }
       attr_accessor :result_event_name
+
+      # The Whop pixel-attributed count behind result_event. When a campaign's ad groups
+      # optimize different goals there is no single result_event (it is null), and this
+      # is instead the sum of each ad group's own attributed results. Null when nothing
+      # Whop-attributable is being optimized for.
+      sig { returns(T.nilable(Float)) }
+      attr_accessor :results
 
       # Purchase value divided by spend, both in USD (a currency-neutral ratio); 0 when
       # there is no spend.
@@ -298,9 +322,11 @@ module WhopSDK
           cost_per_viewed_content: T.nilable(Float),
           created_at: String,
           custom_conversions: Float,
+          custom_event_counts: T.anything,
           delivery_status: WhopSDK::AdGroup::DeliveryStatus::OrSymbol,
           demographics: T.anything,
           desired_cost_per_result: T.nilable(Float),
+          detailed_targeting: T.anything,
           devices: T.anything,
           dynamic_creative: T::Boolean,
           ends_at: T.nilable(String),
@@ -320,6 +346,7 @@ module WhopSDK
           regions: T.anything,
           result_event: T.nilable(WhopSDK::AdGroup::ResultEvent::OrSymbol),
           result_event_name: T.nilable(String),
+          results: T.nilable(Float),
           return_on_ad_spend: Float,
           schedules: Float,
           spend: Float,
@@ -399,6 +426,12 @@ module WhopSDK
         # Whop pixel-attributed custom (merchant-defined) conversion events, last-click,
         # across all custom event names.
         custom_conversions:,
+        # Whop pixel-attributed custom conversions broken out by merchant-defined event
+        # name, last-click, as a { event_name => count } map over the stats window. Empty
+        # when no named custom events are attributed. Custom events fired without a name
+        # are counted in custom_conversions but omitted here, so these values sum to at
+        # most custom_conversions.
+        custom_event_counts:,
         # The current delivery state, mirroring the Delivery column in the ads dashboard.
         # When several states apply at once, the highest-precedence one is returned.
         delivery_status:,
@@ -406,6 +439,11 @@ module WhopSDK
         demographics:,
         # Target/cap cost for average_target / maximum_target.
         desired_cost_per_result:,
+        # Detailed targeting: { interests: [{id, name}], behaviors: [{id, name}],
+        # demographics: [{id, name, type}] } where demographics type is one of
+        # life_events, industries, income, family_statuses. Incompatible with
+        # demographics.automatic (Advantage+) and Special Ad Category campaigns.
+        detailed_targeting:,
         # Device targeting: platforms and operating systems.
         devices:,
         # Whether ads within this ad group have their creatives and copy dynamically AB
@@ -435,8 +473,10 @@ module WhopSDK
         purchases:,
         # The number of unique people who saw this.
         reach:,
-        # Geo targeting: include/exclude countries, regions (ISO 3166-2 states, e.g.
-        # US-CA), cities, zips.
+        # Geo targeting: include/exclude countries, country_groups (include-only Meta
+        # groups like worldwide — global reach), regions (ISO 3166-2 states, e.g. US-CA),
+        # cities, zips, and custom_locations (pin + radius: { latitude, longitude, radius,
+        # distance_unit, name }).
         regions:,
         # The Whop pixel conversion event whose attributed count represents results — the
         # optimization goal, or the highest-volume attributed event for campaigns that
@@ -445,6 +485,11 @@ module WhopSDK
         # The merchant-defined event name when result_event is custom; null for the
         # standard events.
         result_event_name:,
+        # The Whop pixel-attributed count behind result_event. When a campaign's ad groups
+        # optimize different goals there is no single result_event (it is null), and this
+        # is instead the sum of each ad group's own attributed results. Null when nothing
+        # Whop-attributable is being optimized for.
+        results:,
         # Purchase value divided by spend, both in USD (a currency-neutral ratio); 0 when
         # there is no spend.
         return_on_ad_spend:,
@@ -504,9 +549,11 @@ module WhopSDK
             cost_per_viewed_content: T.nilable(Float),
             created_at: String,
             custom_conversions: Float,
+            custom_event_counts: T.anything,
             delivery_status: WhopSDK::AdGroup::DeliveryStatus::TaggedSymbol,
             demographics: T.anything,
             desired_cost_per_result: T.nilable(Float),
+            detailed_targeting: T.anything,
             devices: T.anything,
             dynamic_creative: T::Boolean,
             ends_at: T.nilable(String),
@@ -527,6 +574,7 @@ module WhopSDK
             result_event:
               T.nilable(WhopSDK::AdGroup::ResultEvent::TaggedSymbol),
             result_event_name: T.nilable(String),
+            results: T.nilable(Float),
             return_on_ad_spend: Float,
             schedules: Float,
             spend: Float,

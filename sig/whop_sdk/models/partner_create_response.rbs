@@ -1,0 +1,19 @@
+module WhopSDK
+  module Models
+    type partner_create_response =
+      { referral_link: String, whop_partner_enabled_at: Time }
+
+    class PartnerCreateResponse < WhopSDK::Internal::Type::BaseModel
+      attr_accessor referral_link: String
+
+      attr_accessor whop_partner_enabled_at: Time
+
+      def initialize: (
+        referral_link: String,
+        whop_partner_enabled_at: Time
+      ) -> void
+
+      def to_hash: -> { referral_link: String, whop_partner_enabled_at: Time }
+    end
+  end
+end

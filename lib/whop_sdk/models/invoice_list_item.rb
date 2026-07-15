@@ -42,6 +42,12 @@ module WhopSDK
       #   @return [String]
       required :fetch_invoice_token, String
 
+      # @!attribute line_items
+      #   Optional line items that break down the invoice total into individual charges.
+      #
+      #   @return [Array<WhopSDK::Models::InvoiceListItem::LineItem>]
+      required :line_items, -> { WhopSDK::Internal::Type::ArrayOf[WhopSDK::InvoiceListItem::LineItem] }
+
       # @!attribute number
       #   The sequential invoice number for display purposes.
       #
@@ -61,7 +67,7 @@ module WhopSDK
       #   @return [WhopSDK::Models::InvoiceListItem::User, nil]
       required :user, -> { WhopSDK::InvoiceListItem::User }, nil?: true
 
-      # @!method initialize(id:, created_at:, current_plan:, due_date:, email_address:, fetch_invoice_token:, number:, status:, user:)
+      # @!method initialize(id:, created_at:, current_plan:, due_date:, email_address:, fetch_invoice_token:, line_items:, number:, status:, user:)
       #   Some parameter documentations has been truncated, see
       #   {WhopSDK::Models::InvoiceListItem} for more details.
       #
@@ -80,6 +86,8 @@ module WhopSDK
       #   @param email_address [String, nil] The email address of the customer this invoice is addressed to. Null if no email
       #
       #   @param fetch_invoice_token [String] A signed token that allows fetching invoice data publicly without authentication
+      #
+      #   @param line_items [Array<WhopSDK::Models::InvoiceListItem::LineItem>] Optional line items that break down the invoice total into individual charges.
       #
       #   @param number [String] The sequential invoice number for display purposes.
       #
@@ -119,6 +127,52 @@ module WhopSDK
         #   @param currency [Symbol, WhopSDK::Models::Currency] The currency used for all prices on this plan (e.g., 'usd', 'eur'). All monetary
         #
         #   @param formatted_price [String] The formatted price (including currency) for the plan.
+      end
+
+      class LineItem < WhopSDK::Internal::Type::BaseModel
+        # @!attribute label
+        #   The label or description for this line item.
+        #
+        #   @return [String]
+        required :label, String
+
+        # @!attribute position
+        #   The display order of this line item within the invoice.
+        #
+        #   @return [Integer]
+        required :position, Integer
+
+        # @!attribute quantity
+        #   The quantity of this line item.
+        #
+        #   @return [Float]
+        required :quantity, Float
+
+        # @!attribute total
+        #   The computed total for this line item (quantity \* unit_price).
+        #
+        #   @return [Float]
+        required :total, Float
+
+        # @!attribute unit_price
+        #   The unit price for this line item.
+        #
+        #   @return [Float]
+        required :unit_price, Float
+
+        # @!method initialize(label:, position:, quantity:, total:, unit_price:)
+        #   A line item on an invoice, representing a single charge with a label, quantity,
+        #   and unit price.
+        #
+        #   @param label [String] The label or description for this line item.
+        #
+        #   @param position [Integer] The display order of this line item within the invoice.
+        #
+        #   @param quantity [Float] The quantity of this line item.
+        #
+        #   @param total [Float] The computed total for this line item (quantity \* unit_price).
+        #
+        #   @param unit_price [Float] The unit price for this line item.
       end
 
       # @see WhopSDK::Models::InvoiceListItem#user

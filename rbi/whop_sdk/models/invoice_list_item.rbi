@@ -40,6 +40,10 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :fetch_invoice_token
 
+      # Optional line items that break down the invoice total into individual charges.
+      sig { returns(T::Array[WhopSDK::InvoiceListItem::LineItem]) }
+      attr_accessor :line_items
+
       # The sequential invoice number for display purposes.
       sig { returns(String) }
       attr_accessor :number
@@ -69,6 +73,7 @@ module WhopSDK
           due_date: T.nilable(Time),
           email_address: T.nilable(String),
           fetch_invoice_token: String,
+          line_items: T::Array[WhopSDK::InvoiceListItem::LineItem::OrHash],
           number: String,
           status: WhopSDK::InvoiceStatus::OrSymbol,
           user: T.nilable(WhopSDK::InvoiceListItem::User::OrHash)
@@ -90,6 +95,8 @@ module WhopSDK
         # A signed token that allows fetching invoice data publicly without
         # authentication.
         fetch_invoice_token:,
+        # Optional line items that break down the invoice total into individual charges.
+        line_items:,
         # The sequential invoice number for display purposes.
         number:,
         # The current payment status of the invoice, such as draft, open, paid, or void.
@@ -109,6 +116,7 @@ module WhopSDK
             due_date: T.nilable(Time),
             email_address: T.nilable(String),
             fetch_invoice_token: String,
+            line_items: T::Array[WhopSDK::InvoiceListItem::LineItem],
             number: String,
             status: WhopSDK::InvoiceStatus::TaggedSymbol,
             user: T.nilable(WhopSDK::InvoiceListItem::User)
@@ -165,6 +173,75 @@ module WhopSDK
               id: String,
               currency: WhopSDK::Currency::TaggedSymbol,
               formatted_price: String
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class LineItem < WhopSDK::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              WhopSDK::InvoiceListItem::LineItem,
+              WhopSDK::Internal::AnyHash
+            )
+          end
+
+        # The label or description for this line item.
+        sig { returns(String) }
+        attr_accessor :label
+
+        # The display order of this line item within the invoice.
+        sig { returns(Integer) }
+        attr_accessor :position
+
+        # The quantity of this line item.
+        sig { returns(Float) }
+        attr_accessor :quantity
+
+        # The computed total for this line item (quantity \* unit_price).
+        sig { returns(Float) }
+        attr_accessor :total
+
+        # The unit price for this line item.
+        sig { returns(Float) }
+        attr_accessor :unit_price
+
+        # A line item on an invoice, representing a single charge with a label, quantity,
+        # and unit price.
+        sig do
+          params(
+            label: String,
+            position: Integer,
+            quantity: Float,
+            total: Float,
+            unit_price: Float
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The label or description for this line item.
+          label:,
+          # The display order of this line item within the invoice.
+          position:,
+          # The quantity of this line item.
+          quantity:,
+          # The computed total for this line item (quantity \* unit_price).
+          total:,
+          # The unit price for this line item.
+          unit_price:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              label: String,
+              position: Integer,
+              quantity: Float,
+              total: Float,
+              unit_price: Float
             }
           )
         end

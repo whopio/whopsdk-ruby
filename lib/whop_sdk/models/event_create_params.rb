@@ -14,10 +14,14 @@ module WhopSDK
       required :account_id, String
 
       # @!attribute event_name
-      #   The type of conversion or engagement event
+      #   The type of event.
       #
-      #   @return [Symbol, WhopSDK::Models::EventCreateParams::EventName]
-      required :event_name, enum: -> { WhopSDK::EventCreateParams::EventName }
+      #   Use a standard event (lead, submit_application, contact, complete_registration,
+      #   schedule, view_content, add_to_cart) or pass your own name directly for a custom
+      #   event.
+      #
+      #   @return [String]
+      required :event_name, String
 
       # @!attribute action_source
       #   The channel where an event originated
@@ -122,7 +126,7 @@ module WhopSDK
       #
       #   @param account_id [String] The account to associate with this event.
       #
-      #   @param event_name [Symbol, WhopSDK::Models::EventCreateParams::EventName] The type of conversion or engagement event
+      #   @param event_name [String] The type of event.
       #
       #   @param action_source [Symbol, WhopSDK::Models::EventCreateParams::ActionSource, nil] The channel where an event originated
       #
@@ -157,24 +161,6 @@ module WhopSDK
       #   @param value [Float, nil] Monetary value associated with the event.
       #
       #   @param request_options [WhopSDK::RequestOptions, Hash{Symbol=>Object}]
-
-      # The type of conversion or engagement event
-      module EventName
-        extend WhopSDK::Internal::Type::Enum
-
-        LEAD = :lead
-        SUBMIT_APPLICATION = :submit_application
-        CONTACT = :contact
-        COMPLETE_REGISTRATION = :complete_registration
-        SCHEDULE = :schedule
-        VIEW_CONTENT = :view_content
-        ADD_TO_CART = :add_to_cart
-        CUSTOM = :custom
-        PAGE = :page
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
 
       # The channel where an event originated
       module ActionSource

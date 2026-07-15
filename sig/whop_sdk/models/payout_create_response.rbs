@@ -121,13 +121,15 @@ module WhopSDK
         def self?.values: -> ::Array[WhopSDK::Models::PayoutCreateResponse::speed]
       end
 
-      type status = :requested | :in_transit | :completed | :failed | :canceled
+      type status =
+        :requested | :in_transit | :denied | :completed | :failed | :canceled
 
       module Status
         extend WhopSDK::Internal::Type::Enum
 
         REQUESTED: :requested
         IN_TRANSIT: :in_transit
+        DENIED: :denied
         COMPLETED: :completed
         FAILED: :failed
         CANCELED: :canceled

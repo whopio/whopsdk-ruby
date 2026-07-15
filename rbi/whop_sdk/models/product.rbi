@@ -313,6 +313,10 @@ module WhopSDK
         sig { returns(String) }
         attr_accessor :id
 
+        # Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :content_type
+
         # A pre-optimized URL for rendering this attachment on the client. This should be
         # used for displaying attachments in apps.
         sig { returns(T.nilable(String)) }
@@ -320,7 +324,11 @@ module WhopSDK
 
         # Represents an image attachment
         sig do
-          params(id: String, url: T.nilable(String)).returns(T.attached_class)
+          params(
+            id: String,
+            content_type: T.nilable(String),
+            url: T.nilable(String)
+          ).returns(T.attached_class)
         end
         def self.new(
           # Represents a unique identifier that is Base64 obfuscated. It is often used to
@@ -329,13 +337,23 @@ module WhopSDK
           # an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`)
           # input value will be accepted as an ID.
           id:,
+          # Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg.
+          content_type:,
           # A pre-optimized URL for rendering this attachment on the client. This should be
           # used for displaying attachments in apps.
           url:
         )
         end
 
-        sig { override.returns({ id: String, url: T.nilable(String) }) }
+        sig do
+          override.returns(
+            {
+              id: String,
+              content_type: T.nilable(String),
+              url: T.nilable(String)
+            }
+          )
+        end
         def to_hash
         end
       end

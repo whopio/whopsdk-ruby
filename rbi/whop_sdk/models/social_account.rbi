@@ -12,6 +12,11 @@ module WhopSDK
       sig { returns(String) }
       attr_accessor :id
 
+      # Why this social account currently can't be used for advertising — a failed share
+      # or a Meta-side restriction. Null when the account is healthy.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :error
+
       # The platform-specific ID for this social account.
       sig { returns(T.nilable(String)) }
       attr_accessor :external_id
@@ -48,6 +53,7 @@ module WhopSDK
       sig do
         params(
           id: String,
+          error: T.nilable(String),
           external_id: T.nilable(String),
           name: T.nilable(String),
           platform: WhopSDK::SocialAccount::Platform::OrSymbol,
@@ -61,6 +67,9 @@ module WhopSDK
       def self.new(
         # Unique identifier for the social account.
         id:,
+        # Why this social account currently can't be used for advertising — a failed share
+        # or a Meta-side restriction. Null when the account is healthy.
+        error:,
         # The platform-specific ID for this social account.
         external_id:,
         # The display name of the social account on the platform.
@@ -85,6 +94,7 @@ module WhopSDK
         override.returns(
           {
             id: String,
+            error: T.nilable(String),
             external_id: T.nilable(String),
             name: T.nilable(String),
             platform: WhopSDK::SocialAccount::Platform::TaggedSymbol,

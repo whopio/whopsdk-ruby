@@ -16,7 +16,7 @@ module WhopSDK
       #
       # Creates an ad group (ad set) in a campaign.
       #
-      # @overload create(ad_campaign_id:, audiences: nil, bid_type: nil, budget_amount: nil, budget_type: nil, conversion_event: nil, conversion_location: nil, demographics: nil, desired_cost_per_result: nil, devices: nil, dynamic_creative: nil, ends_at: nil, frequency_cap: nil, languages: nil, message_apps: nil, minimum_daily_spend: nil, optimization_goal: nil, placements: nil, regions: nil, starts_at: nil, status: nil, title: nil, request_options: {})
+      # @overload create(ad_campaign_id:, audiences: nil, bid_type: nil, budget_amount: nil, budget_type: nil, conversion_event: nil, conversion_location: nil, demographics: nil, desired_cost_per_result: nil, detailed_targeting: nil, devices: nil, dynamic_creative: nil, ends_at: nil, frequency_cap: nil, languages: nil, message_apps: nil, minimum_daily_spend: nil, optimization_goal: nil, placements: nil, regions: nil, starts_at: nil, status: nil, title: nil, request_options: {})
       #
       # @param ad_campaign_id [String] The ad campaign to create the ad group in.
       #
@@ -36,6 +36,8 @@ module WhopSDK
       #
       # @param desired_cost_per_result [Float] Target/cap cost for average_target / maximum_target.
       #
+      # @param detailed_targeting [Object] Detailed targeting: { interests: [{id, name}], behaviors: [{id, name}], demograp
+      #
       # @param devices [Object] Device targeting: { platforms, operating_systems: [{ os, minimum_version }] }.
       #
       # @param dynamic_creative [Boolean] Run Meta dynamic (Advantage+) creative for this ad set. Set at creation; immutab
@@ -54,7 +56,7 @@ module WhopSDK
       #
       # @param placements [Object] 'automatic' (Advantage+) or a list of { platform, positions }. Omit positions to
       #
-      # @param regions [Object] Geo targeting: { include / exclude: { countries (ISO 3166-1), regions (states/pr
+      # @param regions [Object] Geo targeting: { include / exclude: { countries (ISO 3166-1), country_groups (in
       #
       # @param starts_at [String] Schedule start, ISO 8601.
       #
@@ -112,7 +114,7 @@ module WhopSDK
       #
       # Updates an ad group's editable fields. Only the keys you send are changed.
       #
-      # @overload update(id, audiences: nil, bid_type: nil, budget_amount: nil, budget_type: nil, conversion_event: nil, conversion_location: nil, demographics: nil, desired_cost_per_result: nil, devices: nil, ends_at: nil, frequency_cap: nil, languages: nil, message_apps: nil, minimum_daily_spend: nil, optimization_goal: nil, placements: nil, regions: nil, starts_at: nil, status: nil, title: nil, request_options: {})
+      # @overload update(id, audiences: nil, bid_type: nil, budget_amount: nil, budget_type: nil, conversion_event: nil, conversion_location: nil, demographics: nil, desired_cost_per_result: nil, detailed_targeting: nil, devices: nil, ends_at: nil, frequency_cap: nil, languages: nil, message_apps: nil, minimum_daily_spend: nil, optimization_goal: nil, placements: nil, regions: nil, starts_at: nil, status: nil, title: nil, request_options: {})
       #
       # @param id [String] The ad group ID.
       #
@@ -132,6 +134,8 @@ module WhopSDK
       #
       # @param desired_cost_per_result [Float] Target/cap cost for average_target / maximum_target.
       #
+      # @param detailed_targeting [Object] Detailed targeting: { interests: [{id, name}], behaviors: [{id, name}], demograp
+      #
       # @param devices [Object] Device targeting: { platforms, operating_systems: [{ os, minimum_version }] }.
       #
       # @param ends_at [String] Schedule end, ISO 8601.
@@ -148,7 +152,7 @@ module WhopSDK
       #
       # @param placements [Object] 'automatic' (Advantage+) or a list of { platform, positions }. Omit positions to
       #
-      # @param regions [Object] Geo targeting: { include / exclude: { countries (ISO 3166-1), regions (states/pr
+      # @param regions [Object] Geo targeting: { include / exclude: { countries (ISO 3166-1), country_groups (in
       #
       # @param starts_at [String] Schedule start, ISO 8601.
       #

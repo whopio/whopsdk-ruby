@@ -19,7 +19,7 @@ module WhopSDK
       #
       # @param account_id [String] The account to associate with this event.
       #
-      # @param event_name [Symbol, WhopSDK::Models::EventCreateParams::EventName] The type of conversion or engagement event
+      # @param event_name [String] The type of event.
       #
       # @param action_source [Symbol, WhopSDK::Models::EventCreateParams::ActionSource, nil] The channel where an event originated
       #

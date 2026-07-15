@@ -3,7 +3,7 @@ module WhopSDK
     type event_create_params =
       {
         account_id: String,
-        event_name: WhopSDK::Models::EventCreateParams::event_name,
+        event_name: String,
         action_source: WhopSDK::Models::EventCreateParams::action_source?,
         context: WhopSDK::EventCreateParams::Context?,
         currency: WhopSDK::Models::EventCreateParams::currency?,
@@ -29,7 +29,7 @@ module WhopSDK
 
       attr_accessor account_id: String
 
-      attr_accessor event_name: WhopSDK::Models::EventCreateParams::event_name
+      attr_accessor event_name: String
 
       attr_accessor action_source: WhopSDK::Models::EventCreateParams::action_source?
 
@@ -65,7 +65,7 @@ module WhopSDK
 
       def initialize: (
         account_id: String,
-        event_name: WhopSDK::Models::EventCreateParams::event_name,
+        event_name: String,
         ?action_source: WhopSDK::Models::EventCreateParams::action_source?,
         ?context: WhopSDK::EventCreateParams::Context?,
         ?currency: WhopSDK::Models::EventCreateParams::currency?,
@@ -87,7 +87,7 @@ module WhopSDK
 
       def to_hash: -> {
         account_id: String,
-        event_name: WhopSDK::Models::EventCreateParams::event_name,
+        event_name: String,
         action_source: WhopSDK::Models::EventCreateParams::action_source?,
         context: WhopSDK::EventCreateParams::Context?,
         currency: WhopSDK::Models::EventCreateParams::currency?,
@@ -106,33 +106,6 @@ module WhopSDK
         value: Float?,
         request_options: WhopSDK::RequestOptions
       }
-
-      type event_name =
-        :lead
-        | :submit_application
-        | :contact
-        | :complete_registration
-        | :schedule
-        | :view_content
-        | :add_to_cart
-        | :custom
-        | :page
-
-      module EventName
-        extend WhopSDK::Internal::Type::Enum
-
-        LEAD: :lead
-        SUBMIT_APPLICATION: :submit_application
-        CONTACT: :contact
-        COMPLETE_REGISTRATION: :complete_registration
-        SCHEDULE: :schedule
-        VIEW_CONTENT: :view_content
-        ADD_TO_CART: :add_to_cart
-        CUSTOM: :custom
-        PAGE: :page
-
-        def self?.values: -> ::Array[WhopSDK::Models::EventCreateParams::event_name]
-      end
 
       type action_source =
         :email

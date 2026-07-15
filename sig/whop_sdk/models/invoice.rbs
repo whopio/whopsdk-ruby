@@ -8,6 +8,7 @@ module WhopSDK
         due_date: Time?,
         email_address: String?,
         fetch_invoice_token: String,
+        line_items: ::Array[WhopSDK::Invoice::LineItem],
         number: String,
         status: WhopSDK::Models::invoice_status,
         user: WhopSDK::Invoice::User?
@@ -26,6 +27,8 @@ module WhopSDK
 
       attr_accessor fetch_invoice_token: String
 
+      attr_accessor line_items: ::Array[WhopSDK::Invoice::LineItem]
+
       attr_accessor number: String
 
       attr_accessor status: WhopSDK::Models::invoice_status
@@ -39,6 +42,7 @@ module WhopSDK
         due_date: Time?,
         email_address: String?,
         fetch_invoice_token: String,
+        line_items: ::Array[WhopSDK::Invoice::LineItem],
         number: String,
         status: WhopSDK::Models::invoice_status,
         user: WhopSDK::Invoice::User?
@@ -51,6 +55,7 @@ module WhopSDK
         due_date: Time?,
         email_address: String?,
         fetch_invoice_token: String,
+        line_items: ::Array[WhopSDK::Invoice::LineItem],
         number: String,
         status: WhopSDK::Models::invoice_status,
         user: WhopSDK::Invoice::User?
@@ -80,6 +85,43 @@ module WhopSDK
           id: String,
           currency: WhopSDK::Models::currency,
           formatted_price: String
+        }
+      end
+
+      type line_item =
+        {
+          label: String,
+          position: Integer,
+          quantity: Float,
+          total: Float,
+          unit_price: Float
+        }
+
+      class LineItem < WhopSDK::Internal::Type::BaseModel
+        attr_accessor label: String
+
+        attr_accessor position: Integer
+
+        attr_accessor quantity: Float
+
+        attr_accessor total: Float
+
+        attr_accessor unit_price: Float
+
+        def initialize: (
+          label: String,
+          position: Integer,
+          quantity: Float,
+          total: Float,
+          unit_price: Float
+        ) -> void
+
+        def to_hash: -> {
+          label: String,
+          position: Integer,
+          quantity: Float,
+          total: Float,
+          unit_price: Float
         }
       end
 

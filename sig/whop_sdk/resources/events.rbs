@@ -3,7 +3,7 @@ module WhopSDK
     class Events
       def create: (
         account_id: String,
-        event_name: WhopSDK::Models::EventCreateParams::event_name,
+        event_name: String,
         ?action_source: WhopSDK::Models::EventCreateParams::action_source?,
         ?context: WhopSDK::EventCreateParams::Context?,
         ?currency: WhopSDK::Models::EventCreateParams::currency?,

@@ -1,0 +1,176 @@
+module WhopSDK
+  module Models
+    module Partners
+      type business_list_params =
+        {
+          after: String,
+          before: String,
+          created_after: String,
+          created_before: String,
+          direction: WhopSDK::Models::Partners::BusinessListParams::direction,
+          first: Integer,
+          has_earnings: bool,
+          last: Integer,
+          order: WhopSDK::Models::Partners::BusinessListParams::order,
+          referred_user_id: String,
+          referred_username: String,
+          status: WhopSDK::Models::Partners::BusinessListParams::status,
+          tier: WhopSDK::Models::Partners::BusinessListParams::tier
+        }
+        & WhopSDK::Internal::Type::request_parameters
+
+      class BusinessListParams < WhopSDK::Internal::Type::BaseModel
+        extend WhopSDK::Internal::Type::RequestParameters::Converter
+        include WhopSDK::Internal::Type::RequestParameters
+
+        attr_reader after: String?
+
+        def after=: (String) -> String
+
+        attr_reader before: String?
+
+        def before=: (String) -> String
+
+        attr_reader created_after: String?
+
+        def created_after=: (String) -> String
+
+        attr_reader created_before: String?
+
+        def created_before=: (String) -> String
+
+        attr_reader direction: WhopSDK::Models::Partners::BusinessListParams::direction?
+
+        def direction=: (
+          WhopSDK::Models::Partners::BusinessListParams::direction
+        ) -> WhopSDK::Models::Partners::BusinessListParams::direction
+
+        attr_reader first: Integer?
+
+        def first=: (Integer) -> Integer
+
+        attr_reader has_earnings: bool?
+
+        def has_earnings=: (bool) -> bool
+
+        attr_reader last: Integer?
+
+        def last=: (Integer) -> Integer
+
+        attr_reader order: WhopSDK::Models::Partners::BusinessListParams::order?
+
+        def order=: (
+          WhopSDK::Models::Partners::BusinessListParams::order
+        ) -> WhopSDK::Models::Partners::BusinessListParams::order
+
+        attr_reader referred_user_id: String?
+
+        def referred_user_id=: (String) -> String
+
+        attr_reader referred_username: String?
+
+        def referred_username=: (String) -> String
+
+        attr_reader status: WhopSDK::Models::Partners::BusinessListParams::status?
+
+        def status=: (
+          WhopSDK::Models::Partners::BusinessListParams::status
+        ) -> WhopSDK::Models::Partners::BusinessListParams::status
+
+        attr_reader tier: WhopSDK::Models::Partners::BusinessListParams::tier?
+
+        def tier=: (
+          WhopSDK::Models::Partners::BusinessListParams::tier
+        ) -> WhopSDK::Models::Partners::BusinessListParams::tier
+
+        def initialize: (
+          ?after: String,
+          ?before: String,
+          ?created_after: String,
+          ?created_before: String,
+          ?direction: WhopSDK::Models::Partners::BusinessListParams::direction,
+          ?first: Integer,
+          ?has_earnings: bool,
+          ?last: Integer,
+          ?order: WhopSDK::Models::Partners::BusinessListParams::order,
+          ?referred_user_id: String,
+          ?referred_username: String,
+          ?status: WhopSDK::Models::Partners::BusinessListParams::status,
+          ?tier: WhopSDK::Models::Partners::BusinessListParams::tier,
+          ?request_options: WhopSDK::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          after: String,
+          before: String,
+          created_after: String,
+          created_before: String,
+          direction: WhopSDK::Models::Partners::BusinessListParams::direction,
+          first: Integer,
+          has_earnings: bool,
+          last: Integer,
+          order: WhopSDK::Models::Partners::BusinessListParams::order,
+          referred_user_id: String,
+          referred_username: String,
+          status: WhopSDK::Models::Partners::BusinessListParams::status,
+          tier: WhopSDK::Models::Partners::BusinessListParams::tier,
+          request_options: WhopSDK::RequestOptions
+        }
+
+        type direction = :asc | :desc
+
+        module Direction
+          extend WhopSDK::Internal::Type::Enum
+
+          ASC: :asc
+          DESC: :desc
+
+          def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessListParams::direction]
+        end
+
+        type order =
+          :created_at
+          | :referral_started_at
+          | :referral_expires_at
+          | :payout_percentage
+          | :volume_usd
+          | :earnings_usd
+
+        module Order
+          extend WhopSDK::Internal::Type::Enum
+
+          CREATED_AT: :created_at
+          REFERRAL_STARTED_AT: :referral_started_at
+          REFERRAL_EXPIRES_AT: :referral_expires_at
+          PAYOUT_PERCENTAGE: :payout_percentage
+          VOLUME_USD: :volume_usd
+          EARNINGS_USD: :earnings_usd
+
+          def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessListParams::order]
+        end
+
+        type status = :active | :removed
+
+        module Status
+          extend WhopSDK::Internal::Type::Enum
+
+          ACTIVE: :active
+          REMOVED: :removed
+
+          def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessListParams::status]
+        end
+
+        type tier = :first | :second
+
+        module Tier
+          extend WhopSDK::Internal::Type::Enum
+
+          FIRST: :first
+          SECOND: :second
+
+          def self?.values: -> ::Array[WhopSDK::Models::Partners::BusinessListParams::tier]
+        end
+      end
+    end
+  end
+end

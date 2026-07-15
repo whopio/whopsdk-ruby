@@ -28,6 +28,7 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
         due_date: Time | nil,
         email_address: String | nil,
         fetch_invoice_token: String,
+        line_items: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Invoice::LineItem]),
         number: String,
         status: WhopSDK::InvoiceStatus,
         user: WhopSDK::Invoice::User | nil
@@ -52,6 +53,7 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
         due_date: Time | nil,
         email_address: String | nil,
         fetch_invoice_token: String,
+        line_items: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Invoice::LineItem]),
         number: String,
         status: WhopSDK::InvoiceStatus,
         user: WhopSDK::Invoice::User | nil
@@ -76,6 +78,7 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
         due_date: Time | nil,
         email_address: String | nil,
         fetch_invoice_token: String,
+        line_items: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Invoice::LineItem]),
         number: String,
         status: WhopSDK::InvoiceStatus,
         user: WhopSDK::Invoice::User | nil
@@ -107,6 +110,7 @@ class WhopSDK::Test::Resources::InvoicesTest < WhopSDK::Test::ResourceTest
         due_date: Time | nil,
         email_address: String | nil,
         fetch_invoice_token: String,
+        line_items: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::InvoiceListItem::LineItem]),
         number: String,
         status: WhopSDK::InvoiceStatus,
         user: WhopSDK::InvoiceListItem::User | nil

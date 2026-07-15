@@ -276,14 +276,14 @@ module WhopSDK
     # @return [WhopSDK::Resources::Payouts]
     attr_reader :payouts
 
-    # The Referrals API covers your Whop partner activity: the users you referred onto
+    # The Partners API covers your Whop partner activity: the users you referred onto
     # Whop, the businesses you referred and the earnings generated from their
     # processing volume, and the partner leaderboard.
     #
     # Use it to enroll as a Whop partner, list the users you referred, list your
     # referred businesses and review their earnings, and see the partner leaderboard.
-    # @return [WhopSDK::Resources::Referrals]
-    attr_reader :referrals
+    # @return [WhopSDK::Resources::Partners]
+    attr_reader :partners
 
     # Cards represent Whop-issued virtual payment cards that spend from an account or
     # user balance. Cards can be assigned to cardholders and configured with spending
@@ -527,7 +527,7 @@ module WhopSDK
       @financial_activity = WhopSDK::Resources::FinancialActivity.new(client: self)
       @stats = WhopSDK::Resources::Stats.new(client: self)
       @payouts = WhopSDK::Resources::Payouts.new(client: self)
-      @referrals = WhopSDK::Resources::Referrals.new(client: self)
+      @partners = WhopSDK::Resources::Partners.new(client: self)
       @cards = WhopSDK::Resources::Cards.new(client: self)
       @swaps = WhopSDK::Resources::Swaps.new(client: self)
       @deposits = WhopSDK::Resources::Deposits.new(client: self)

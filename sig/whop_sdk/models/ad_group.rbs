@@ -28,9 +28,11 @@ module WhopSDK
         cost_per_viewed_content: Float?,
         created_at: String,
         custom_conversions: Float,
+        custom_event_counts: top,
         delivery_status: WhopSDK::Models::AdGroup::delivery_status,
         demographics: top,
         desired_cost_per_result: Float?,
+        detailed_targeting: top,
         devices: top,
         dynamic_creative: bool,
         ends_at: String?,
@@ -50,6 +52,7 @@ module WhopSDK
         regions: top,
         result_event: WhopSDK::Models::AdGroup::result_event?,
         result_event_name: String?,
+        results: Float?,
         return_on_ad_spend: Float,
         schedules: Float,
         spend: Float,
@@ -117,11 +120,15 @@ module WhopSDK
 
       attr_accessor custom_conversions: Float
 
+      attr_accessor custom_event_counts: top
+
       attr_accessor delivery_status: WhopSDK::Models::AdGroup::delivery_status
 
       attr_accessor demographics: top
 
       attr_accessor desired_cost_per_result: Float?
+
+      attr_accessor detailed_targeting: top
 
       attr_accessor devices: top
 
@@ -160,6 +167,8 @@ module WhopSDK
       attr_accessor result_event: WhopSDK::Models::AdGroup::result_event?
 
       attr_accessor result_event_name: String?
+
+      attr_accessor results: Float?
 
       attr_accessor return_on_ad_spend: Float
 
@@ -212,9 +221,11 @@ module WhopSDK
         cost_per_viewed_content: Float?,
         created_at: String,
         custom_conversions: Float,
+        custom_event_counts: top,
         delivery_status: WhopSDK::Models::AdGroup::delivery_status,
         demographics: top,
         desired_cost_per_result: Float?,
+        detailed_targeting: top,
         devices: top,
         dynamic_creative: bool,
         ends_at: String?,
@@ -234,6 +245,7 @@ module WhopSDK
         regions: top,
         result_event: WhopSDK::Models::AdGroup::result_event?,
         result_event_name: String?,
+        results: Float?,
         return_on_ad_spend: Float,
         schedules: Float,
         spend: Float,
@@ -275,9 +287,11 @@ module WhopSDK
         cost_per_viewed_content: Float?,
         created_at: String,
         custom_conversions: Float,
+        custom_event_counts: top,
         delivery_status: WhopSDK::Models::AdGroup::delivery_status,
         demographics: top,
         desired_cost_per_result: Float?,
+        detailed_targeting: top,
         devices: top,
         dynamic_creative: bool,
         ends_at: String?,
@@ -297,6 +311,7 @@ module WhopSDK
         regions: top,
         result_event: WhopSDK::Models::AdGroup::result_event?,
         result_event_name: String?,
+        results: Float?,
         return_on_ad_spend: Float,
         schedules: Float,
         spend: Float,

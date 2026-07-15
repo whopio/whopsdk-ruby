@@ -137,10 +137,11 @@ module WhopSDK
       attr_accessor :session_url
 
       # Current verification state. `not_started` before any session has been created;
-      # `pending` while a session is in progress; `action_required` when items in
-      # `requested_information` need answers before review can continue; `approved` once
-      # verification succeeds; `rejected` if it fails. Call the Create Verification
-      # endpoint again to start a new session.
+      # `pending` while a session is in progress and needs the user's input;
+      # `processing` while the provider reviews submitted documents — nothing to do but
+      # wait; `action_required` when items in `requested_information` need answers
+      # before review can continue; `approved` once verification succeeds; `rejected` if
+      # it fails. Call the Create Verification endpoint again to start a new session.
       sig do
         returns(
           T.nilable(
@@ -226,10 +227,11 @@ module WhopSDK
         # Expires 7 days after creation.
         session_url: nil,
         # Current verification state. `not_started` before any session has been created;
-        # `pending` while a session is in progress; `action_required` when items in
-        # `requested_information` need answers before review can continue; `approved` once
-        # verification succeeds; `rejected` if it fails. Call the Create Verification
-        # endpoint again to start a new session.
+        # `pending` while a session is in progress and needs the user's input;
+        # `processing` while the provider reviews submitted documents — nothing to do but
+        # wait; `action_required` when items in `requested_information` need answers
+        # before review can continue; `approved` once verification succeeds; `rejected` if
+        # it fails. Call the Create Verification endpoint again to start a new session.
         status: nil,
         # When the verification profile was last updated, as an ISO 8601 timestamp.
         updated_at: nil
@@ -707,10 +709,11 @@ module WhopSDK
       end
 
       # Current verification state. `not_started` before any session has been created;
-      # `pending` while a session is in progress; `action_required` when items in
-      # `requested_information` need answers before review can continue; `approved` once
-      # verification succeeds; `rejected` if it fails. Call the Create Verification
-      # endpoint again to start a new session.
+      # `pending` while a session is in progress and needs the user's input;
+      # `processing` while the provider reviews submitted documents — nothing to do but
+      # wait; `action_required` when items in `requested_information` need answers
+      # before review can continue; `approved` once verification succeeds; `rejected` if
+      # it fails. Call the Create Verification endpoint again to start a new session.
       module Status
         extend WhopSDK::Internal::Type::Enum
 
@@ -728,6 +731,11 @@ module WhopSDK
         PENDING =
           T.let(
             :pending,
+            WhopSDK::Models::VerificationRetrieveResponse::Status::TaggedSymbol
+          )
+        PROCESSING =
+          T.let(
+            :processing,
             WhopSDK::Models::VerificationRetrieveResponse::Status::TaggedSymbol
           )
         APPROVED =

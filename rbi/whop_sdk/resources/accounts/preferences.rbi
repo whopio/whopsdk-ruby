@@ -31,9 +31,9 @@ module WhopSDK
         # always requires a `primary` entry. `backup` is optional when the primary is
         # `platform_balance` — omitting it removes any configured card — while a `card`
         # primary requires a `platform_balance` backup. A `platform_balance` entry may
-        # omit `id` to use the account's default Whop balance. Changing which funding
-        # sources are configured requires a user token, while account API keys may only
-        # swap `primary` and `backup`.
+        # omit `id` to use the account's default Whop balance. Configuring a `card`
+        # requires a user token; account API keys can set up platform-balance billing,
+        # remove a configured card, and swap `primary` and `backup`.
         sig do
           params(
             account_id: String,

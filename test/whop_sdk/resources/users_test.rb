@@ -105,6 +105,22 @@ class WhopSDK::Test::Resources::UsersTest < WhopSDK::Test::ResourceTest
     end
   end
 
+  def test_recommend_actions
+    skip("Mock server tests are disabled")
+
+    response = @whop.users.recommend_actions("id")
+
+    assert_pattern do
+      response => WhopSDK::Models::UserRecommendActionsResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: ^(WhopSDK::Internal::Type::ArrayOf[WhopSDK::Models::UserRecommendActionsResponse::Data])
+      }
+    end
+  end
+
   def test_update_me
     skip("Mock server tests are disabled")
 

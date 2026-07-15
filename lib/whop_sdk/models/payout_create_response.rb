@@ -173,6 +173,7 @@ module WhopSDK
 
         REQUESTED = :requested
         IN_TRANSIT = :in_transit
+        DENIED = :denied
         COMPLETED = :completed
         FAILED = :failed
         CANCELED = :canceled

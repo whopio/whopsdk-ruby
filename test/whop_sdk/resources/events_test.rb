@@ -6,7 +6,7 @@ class WhopSDK::Test::Resources::EventsTest < WhopSDK::Test::ResourceTest
   def test_create_required_params
     skip("Mock server tests are disabled")
 
-    response = @whop.events.create(account_id: "account_id", event_name: :lead)
+    response = @whop.events.create(account_id: "account_id", event_name: "course_completed")
 
     assert_pattern do
       response => WhopSDK::Models::EventCreateResponse

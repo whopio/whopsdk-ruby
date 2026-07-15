@@ -210,7 +210,8 @@ module WhopSDK
       attr_accessor :reach
 
       # Geo targeting: include/exclude countries, regions (ISO 3166-2 states, e.g.
-      # US-CA), cities, zips.
+      # US-CA), cities, zips, and custom_locations (pin + radius: { latitude, longitude,
+      # radius, distance_unit, name }).
       sig { returns(T.anything) }
       attr_accessor :regions
 
@@ -459,7 +460,8 @@ module WhopSDK
         # The number of unique people who saw this.
         reach:,
         # Geo targeting: include/exclude countries, regions (ISO 3166-2 states, e.g.
-        # US-CA), cities, zips.
+        # US-CA), cities, zips, and custom_locations (pin + radius: { latitude, longitude,
+        # radius, distance_unit, name }).
         regions:,
         # The Whop pixel conversion event whose attributed count represents results — the
         # optimization goal, or the highest-volume attributed event for campaigns that

@@ -296,7 +296,8 @@ module WhopSDK
 
       # @!attribute regions
       #   Geo targeting: include/exclude countries, regions (ISO 3166-2 states, e.g.
-      #   US-CA), cities, zips.
+      #   US-CA), cities, zips, and custom_locations (pin + radius: { latitude, longitude,
+      #   radius, distance_unit, name }).
       #
       #   @return [Object]
       required :regions, WhopSDK::Internal::Type::Unknown

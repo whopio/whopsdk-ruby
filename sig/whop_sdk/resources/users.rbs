@@ -37,6 +37,11 @@ module WhopSDK
         ?request_options: WhopSDK::request_opts
       ) -> WhopSDK::Models::UserCheckAccessResponse
 
+      def recommend_actions: (
+        String id,
+        ?request_options: WhopSDK::request_opts
+      ) -> WhopSDK::Models::UserRecommendActionsResponse
+
       def update_me: (
         ?account_id: String,
         ?bio: String,

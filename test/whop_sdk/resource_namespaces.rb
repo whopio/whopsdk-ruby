@@ -12,12 +12,12 @@ module WhopSDK
       module Businesses
       end
 
-      module Payouts
-      end
-
-      module Referrals
+      module Partners
         module Businesses
         end
+      end
+
+      module Payouts
       end
 
       module Workforce

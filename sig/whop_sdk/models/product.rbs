@@ -145,16 +145,22 @@ module WhopSDK
         def to_hash: -> { id: String, route: String, title: String }
       end
 
-      type gallery_image = { id: String, url: String? }
+      type gallery_image = { id: String, content_type: String?, url: String? }
 
       class GalleryImage < WhopSDK::Internal::Type::BaseModel
         attr_accessor id: String
 
+        attr_accessor content_type: String?
+
         attr_accessor url: String?
 
-        def initialize: (id: String, url: String?) -> void
+        def initialize: (
+          id: String,
+          content_type: String?,
+          url: String?
+        ) -> void
 
-        def to_hash: -> { id: String, url: String? }
+        def to_hash: -> { id: String, content_type: String?, url: String? }
       end
 
       type owner_user = { id: String, name: String?, username: String }

@@ -78,6 +78,14 @@ module WhopSDK
           #   @return [String, nil]
           optional :business_structure, String
 
+          # @!attribute business_tax_identification_number
+          #   The business ID number of the company, as appropriate for the company's country.
+          #   Examples are an Employer Identification Number (EIN) in the US, a Business
+          #   Number in Canada, or a Company Number in the UK.
+          #
+          #   @return [String, nil]
+          optional :business_tax_identification_number, String
+
           # @!attribute business_website
           #   Business website URL. Whop store pages are not accepted.
           #
@@ -142,12 +150,15 @@ module WhopSDK
           optional :phone, String
 
           # @!attribute tax_identification_number
-          #   SSN or ITIN. Tokenized in transit and never stored raw.
+          #   The government-issued ID number of the person being verified — the individual
+          #   for a KYC verification, or the business representative for a KYB verification —
+          #   as appropriate for their country. Examples are a Social Security Number (SSN) in
+          #   the US, or a Social Insurance Number in Canada.
           #
           #   @return [String, nil]
           optional :tax_identification_number, String
 
-          # @!method initialize(address: nil, business_name: nil, business_structure: nil, business_website: nil, country: nil, date_of_birth: nil, document_type: nil, documents: nil, first_name: nil, kind: nil, last_name: nil, phone: nil, tax_identification_number: nil)
+          # @!method initialize(address: nil, business_name: nil, business_structure: nil, business_tax_identification_number: nil, business_website: nil, country: nil, date_of_birth: nil, document_type: nil, documents: nil, first_name: nil, kind: nil, last_name: nil, phone: nil, tax_identification_number: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::VerificationCreateParams::Body::Individual} for more details.
           #
@@ -165,6 +176,8 @@ module WhopSDK
           #   @param business_name [String] Legal business name for a sole proprietor or single-member LLC.
           #
           #   @param business_structure [String] Entity type for sole proprietors, such as `single_member_llc`. Supported values
+          #
+          #   @param business_tax_identification_number [String] The business ID number of the company, as appropriate for the company's country.
           #
           #   @param business_website [String] Business website URL. Whop store pages are not accepted.
           #
@@ -184,7 +197,7 @@ module WhopSDK
           #
           #   @param phone [String]
           #
-          #   @param tax_identification_number [String] SSN or ITIN. Tokenized in transit and never stored raw.
+          #   @param tax_identification_number [String] The government-issued ID number of the person being verified — the individual fo
 
           # @see WhopSDK::Models::VerificationCreateParams::Body::Individual#address
           class Address < WhopSDK::Internal::Type::BaseModel
@@ -288,6 +301,14 @@ module WhopSDK
           #   @return [String, nil]
           optional :business_structure, String
 
+          # @!attribute business_tax_identification_number
+          #   The business ID number of the company, as appropriate for the company's country.
+          #   Examples are an Employer Identification Number (EIN) in the US, a Business
+          #   Number in Canada, or a Company Number in the UK.
+          #
+          #   @return [String, nil]
+          optional :business_tax_identification_number, String
+
           # @!attribute business_website
           #   Business website URL. Whop store pages are not accepted.
           #
@@ -313,12 +334,15 @@ module WhopSDK
           optional :place_of_incorporation, String
 
           # @!attribute tax_identification_number
-          #   EIN. Tokenized in transit and never stored raw.
+          #   The government-issued ID number of the person being verified — the individual
+          #   for a KYC verification, or the business representative for a KYB verification —
+          #   as appropriate for their country. Examples are a Social Security Number (SSN) in
+          #   the US, or a Social Insurance Number in Canada.
           #
           #   @return [String, nil]
           optional :tax_identification_number, String
 
-          # @!method initialize(address: nil, business_name: nil, business_structure: nil, business_website: nil, country: nil, kind: nil, place_of_incorporation: nil, tax_identification_number: nil)
+          # @!method initialize(address: nil, business_name: nil, business_structure: nil, business_tax_identification_number: nil, business_website: nil, country: nil, kind: nil, place_of_incorporation: nil, tax_identification_number: nil)
           #   Some parameter documentations has been truncated, see
           #   {WhopSDK::Models::VerificationCreateParams::Body::Business} for more details.
           #
@@ -332,6 +356,8 @@ module WhopSDK
           #
           #   @param business_structure [String] Legal entity structure of the business, such as `private_corporation` or `sole_p
           #
+          #   @param business_tax_identification_number [String] The business ID number of the company, as appropriate for the company's country.
+          #
           #   @param business_website [String] Business website URL. Whop store pages are not accepted.
           #
           #   @param country [String] Country of incorporation as a two-letter ISO 3166-1 country code.
@@ -340,7 +366,7 @@ module WhopSDK
           #
           #   @param place_of_incorporation [String] State or region where the business is incorporated.
           #
-          #   @param tax_identification_number [String] EIN. Tokenized in transit and never stored raw.
+          #   @param tax_identification_number [String] The government-issued ID number of the person being verified — the individual fo
 
           # @see WhopSDK::Models::VerificationCreateParams::Body::Business#address
           class Address < WhopSDK::Internal::Type::BaseModel

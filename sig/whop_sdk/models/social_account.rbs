@@ -3,6 +3,7 @@ module WhopSDK
     type social_account =
       {
         id: String,
+        error: String?,
         external_id: String?,
         name: String?,
         platform: WhopSDK::Models::SocialAccount::platform,
@@ -15,6 +16,8 @@ module WhopSDK
 
     class SocialAccount < WhopSDK::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor error: String?
 
       attr_accessor external_id: String?
 
@@ -34,6 +37,7 @@ module WhopSDK
 
       def initialize: (
         id: String,
+        error: String?,
         external_id: String?,
         name: String?,
         platform: WhopSDK::Models::SocialAccount::platform,
@@ -46,6 +50,7 @@ module WhopSDK
 
       def to_hash: -> {
         id: String,
+        error: String?,
         external_id: String?,
         name: String?,
         platform: WhopSDK::Models::SocialAccount::platform,
